@@ -11,8 +11,9 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./packages"
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"],
-  "exclude": ["node_modules", "dist", "**/*.js", "**/*.d.ts"]
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

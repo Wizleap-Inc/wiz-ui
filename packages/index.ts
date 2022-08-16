@@ -1,9 +1,10 @@
-import * as Components from "./components";
+import * as components  from "./components";
 import _Vue from "vue";
 
 const install = (Vue: typeof _Vue) => {
-  for (const component in Components) {
-    Vue.component(component, Components[component]);
+  for (const component in components) {
+    // @ts-ignore
+    Vue.component(component, components[component]);
   }
 };
 

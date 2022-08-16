@@ -1,2 +1,2 @@
 import Paragraph from "./src/Paragraph.vue";
-export { Paragraph };
+export default Paragraph;

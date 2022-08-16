@@ -12,7 +12,7 @@ const { logText } = toRefs(props);
 const handleClick = (e: MouseEvent) => {
   e.preventDefault();
   console.log("clicked");
-  console.log(logText);
+  console.log(logText.value);
 };
 
 onMounted(() => {

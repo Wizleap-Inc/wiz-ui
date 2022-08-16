@@ -1,96 +1,88 @@
-import { defineComponent as v, toRefs as b, onMounted as $ } from "vue";
-const y = /* @__PURE__ */ v({
+import { defineComponent as p, toRefs as g, onMounted as b } from "vue";
+const C = /* @__PURE__ */ p({
   __name: "Button",
   props: {
     logText: null
   },
-  setup(n) {
-    const e = n, { logText: r } = b(e), a = (s) => {
-      s.preventDefault(), console.log("clicked"), console.log(r);
+  setup(o) {
+    const e = o, { logText: r } = g(e), a = (s) => {
+      s.preventDefault(), console.log("clicked"), console.log(r.value);
     };
-    return $(() => {
+    return b(() => {
       console.log("mounted");
     }), { __sfc: !0, props: e, logText: r, handleClick: a };
   }
 });
-function m(n, e, r, a, s, u, f, h) {
-  var o = typeof n == "function" ? n.options : n;
-  e && (o.render = e, o.staticRenderFns = r, o._compiled = !0), a && (o.functional = !0), u && (o._scopeId = "data-v-" + u);
+function d(o, e, r, a, s, i, l, v) {
+  var n = typeof o == "function" ? o.options : o;
+  e && (n.render = e, n.staticRenderFns = r, n._compiled = !0), a && (n.functional = !0), i && (n._scopeId = "data-v-" + i);
   var _;
-  if (f ? (_ = function(t) {
-    t = t || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !t && typeof __VUE_SSR_CONTEXT__ < "u" && (t = __VUE_SSR_CONTEXT__), s && s.call(this, t), t && t._registeredComponents && t._registeredComponents.add(f);
-  }, o._ssrRegister = _) : s && (_ = h ? function() {
+  if (l ? (_ = function(t) {
+    t = t || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !t && typeof __VUE_SSR_CONTEXT__ < "u" && (t = __VUE_SSR_CONTEXT__), s && s.call(this, t), t && t._registeredComponents && t._registeredComponents.add(l);
+  }, n._ssrRegister = _) : s && (_ = v ? function() {
     s.call(
       this,
-      (o.functional ? this.parent : this).$root.$options.shadowRoot
+      (n.functional ? this.parent : this).$root.$options.shadowRoot
     );
   } : s), _)
-    if (o.functional) {
-      o._injectStyles = _;
-      var g = o.render;
-      o.render = function(C, p) {
-        return _.call(p), g(C, p);
+    if (n.functional) {
+      n._injectStyles = _;
+      var h = n.render;
+      n.render = function(m, c) {
+        return _.call(c), h(m, c);
       };
     } else {
-      var c = o.beforeCreate;
-      o.beforeCreate = c ? [].concat(c, _) : [_];
+      var u = n.beforeCreate;
+      n.beforeCreate = u ? [].concat(u, _) : [_];
     }
   return {
-    exports: n,
-    options: o
+    exports: o,
+    options: n
   };
 }
-var P = function() {
+var $ = function() {
   var e = this, r = e._self._c, a = e._self._setupProxy;
   return r("button", { staticClass: "button", on: { click: a.handleClick } }, [e._v("button")]);
-}, R = [], w = /* @__PURE__ */ m(
+}, y = [], P = /* @__PURE__ */ d(
+  C,
+  $,
   y,
-  P,
-  R,
   !1,
   null,
-  "e694243f",
+  "d6d34b2b",
   null,
   null
 );
-const i = w.exports;
-i.install = (n) => {
-  n.component(i.name, i);
-};
-const T = /* @__PURE__ */ v({
+const R = P.exports, w = /* @__PURE__ */ p({
   __name: "Paragraph",
-  setup(n) {
+  setup(o) {
     return { __sfc: !0 };
   }
 });
-var z = function() {
+var T = function() {
   var e = this, r = e._self._c;
   return e._self._setupProxy, r("p", [e._v("paragraph")]);
-}, k = [], B = /* @__PURE__ */ m(
+}, z = [], k = /* @__PURE__ */ d(
+  w,
   T,
   z,
-  k,
   !1,
   null,
   "7e4bb773",
   null,
   null
 );
-const l = B.exports;
-l.install = (n) => {
-  n.component(l.name, l);
-};
-const d = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const B = k.exports, f = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  WizButton: i,
-  WizParagraph: l
-}, Symbol.toStringTag, { value: "Module" })), W = (n) => {
-  for (const e in d)
-    n.component(e, d[e]);
+  WizButton: R,
+  WizParagraph: B
+}, Symbol.toStringTag, { value: "Module" })), W = (o) => {
+  for (const e in f)
+    o.component(e, f[e]);
 };
 typeof window < "u" && window.Vue && W(window.Vue);
 export {
-  i as WizButton,
-  l as WizParagraph,
+  R as WizButton,
+  B as WizParagraph,
   W as default
 };
