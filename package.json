@@ -48,6 +48,5 @@
   "types": "./types/index.d.ts",
   "dependencies": {
     "vue": "^2.7.13"
-  },
-  "private": true
+  }
 }
