@@ -29,10 +29,6 @@
     "vite-plugin-dts": "^1.4.1",
     "vue-tsc": "^0.39.5"
   },
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/wizleap-inc/wiz-ui.git"
