@@ -31,7 +31,7 @@
   },
   "publishConfig": {
     "access": "restricted",
-    "registry": "https://npm.pkg.github.com/"
+    "Wizleap-Inc:registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
