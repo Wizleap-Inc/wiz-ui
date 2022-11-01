@@ -31,7 +31,7 @@ jobs:
         run: npm run build
 
       - name: publish
-        run: npx can-npm-publish --verbose && npm publish || echo "No need to publish"
+        run: npx can-npm-publish --verbose && npm publish --access public || echo "No need to publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 

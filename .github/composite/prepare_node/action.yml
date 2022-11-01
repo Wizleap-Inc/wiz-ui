@@ -17,6 +17,11 @@ runs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ inputs.node-version }}
+        registry-url: "https://registry.npmjs.org"
+        scope: "@wizleap-inc"
+        always-auth: true
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
     - name: Cache node_modules
       id: node_modules_cache_id
