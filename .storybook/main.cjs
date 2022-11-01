@@ -8,6 +8,9 @@ module.exports = {
     "@storybook/addon-interactions",
   ],
   framework: "@storybook/vue",
+  features: {
+    interactionsDebugger: true,
+  },
   core: {
     builder: "@storybook/builder-vite",
   },
