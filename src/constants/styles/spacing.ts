@@ -48,8 +48,6 @@ export const getSpacingCSS = (spacings: SpacingProps): CSSProperties => {
     if (!value) continue;
     const spacingValue = getSpacingValue(value);
     if (!spacingValue) continue;
-    if (!css[key]) continue;
-    css[key] = spacingValue;
   }
   return css;
 };
