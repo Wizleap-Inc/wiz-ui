@@ -1,6 +1,6 @@
-import vue from "@vitejs/plugin-vue2";
-
 import path from "path";
+
+import vue from "@vitejs/plugin-vue2";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -8,17 +8,18 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      outputDir: ["types"],
-      staticImport: true,
-      insertTypesEntry: true,
-      include: [path.resolve(__dirname, "packages")],
+      outputDir: path.resolve(__dirname, "types"),
     }),
   ],
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
   build: {
     lib: {
-      entry: path.resolve(__dirname, "packages/index.ts"),
-      name: "WizUI",
-      formats: ["es", "umd"],
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "Wiz-UI",
       fileName: (format) => `wiz-ui.${format}.js`,
     },
     rollupOptions: {

@@ -1,0 +1,31 @@
+name: Prepare Node.js Environment
+description: Prepare Node.js environment for the job, this is a composite action for reusability
+inputs:
+  node-version:
+    description: "Node.js version to use"
+    required: false
+    default: "16.x"
+  runs-on:
+    description: "Operating system to use"
+    required: false
+    default: "ubuntu-20.04"
+
+runs:
+  using: "Composite"
+  steps:
+    - name: Use Node.js ${{ inputs.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Cache node_modules
+      id: node_modules_cache_id
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ inputs.os }}-node-v${{ inputs.node-version }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/wiz-ui/package-lock.json')) }}
+
+    - name: npm ci
+      shell: bash
+      if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+      run: npm ci
