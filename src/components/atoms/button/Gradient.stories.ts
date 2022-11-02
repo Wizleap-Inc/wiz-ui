@@ -1,7 +1,9 @@
-import { userEvent, within, waitFor } from "@storybook/testing-library";
-import type { Story } from "@storybook/vue";
+import { expect } from "@storybook/jest";
+import { screen, userEvent, waitFor } from "@storybook/testing-library";
 
 import GradientButton from "./Gradient.vue";
+
+import type { Story } from "@storybook/vue";
 
 export default {
   title: "Atoms/Button/Gradient",
@@ -19,8 +21,8 @@ Default.args = {
   disabled: false,
   slot: "Hello World!",
 };
-Default.play = async ({ canvasElement }) => {
-  const button = within(canvasElement).getByRole("button");
+Default.play = async () => {
+  const button = screen.getByRole("button");
   userEvent.click(button);
   await waitFor(() => expect(button).toHaveFocus());
 };
