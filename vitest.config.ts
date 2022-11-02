@@ -11,8 +11,8 @@ export default defineConfig({
     coverage: {
       all: true,
       clean: false,
-      include: ["src/{components}/**/*.{js,ts,vue}"],
-      exclude: ["src/{components}/**/*.story.vue"],
+      include: ["src/**/*.{ts,vue}"],
+      exclude: ["src/**/*.stories.ts"],
     },
   },
   resolve: {
