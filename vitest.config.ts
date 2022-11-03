@@ -12,7 +12,11 @@ export default defineConfig({
       all: true,
       clean: false,
       include: ["src/**/*.{ts,vue}"],
-      exclude: ["src/**/*.stories.ts"],
+      exclude: [
+        "src/**/*.stories.ts",
+        "src/**/index.ts",
+        "src/types/**/*",
+      ],
     },
   },
   resolve: {

@@ -1,6 +1,5 @@
 import { ObjectKeysWithSeparator } from "../../types/utils/object";
 
-import { getValueFromAccessor } from "./../../utils/object";
 
 export const COLOR_MAP = {
   green: {
@@ -61,5 +60,3 @@ interface ColorPropsItems {
 
 export type ColorProps = Partial<ColorPropsItems>;
 
-export const getColors = (color: ColorKeys) =>
-  getValueFromAccessor(COLOR_MAP, color);
