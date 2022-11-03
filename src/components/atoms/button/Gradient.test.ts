@@ -30,7 +30,7 @@ describe("GradientButton", () => {
           disabled: true,
         },
       });
-      expect(wrapper.classes()).toContain("gradient-btn--disabled");
+      expect(wrapper.classes()).toContain("wiz-button--disabled");
     });
   });
 

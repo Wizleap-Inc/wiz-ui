@@ -17,14 +17,20 @@ export default {
     rounded: {
       control: {
         type: "boolean",
-      }
+      },
     },
     variant: {
       control: {
         type: "select",
         options: ["primary", "sub"],
-      }
-    }
+      },
+    },
+    size: {
+      control: {
+        type: "select",
+        options: ["sm", "md", "lg"],
+      },
+    },
   },
 };
 
