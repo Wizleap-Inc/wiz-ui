@@ -29,7 +29,7 @@ const onClick = () => {
   if (!props.disabled) emit("click");
 };
 
-const GRADIENT_COLOR = THEME.color.gradient["900"];
+const GRADIENT_COLOR = THEME.color.gradient;
 </script>
 
 <style lang="scss" scoped>
