@@ -10,3 +10,7 @@ export type ObjectKeysWithSeparator<
   : never;
 
 export type FindDeep<T> = T extends Record<string, infer U> ? FindDeep<U> : T;
+
+export type Entries<TObj> = {
+  [Key in keyof TObj]: [keyof Pick<TObj, Key>, TObj[Key]];
+}[keyof TObj][];
