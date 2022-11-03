@@ -1,5 +1,5 @@
-node_modules
-storybook-static
-coverage
-dist
-types
+/node_modules
+/storybook-static
+/coverage
+/dist
+/types
