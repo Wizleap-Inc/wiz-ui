@@ -32,7 +32,7 @@ runs:
       uses: actions/cache@v2
       with:
         path: node_modules
-        key: ${{ inputs.os }}-node-v${{ inputs.node-version }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/wiz-ui/package-lock.json')) }}
+        key: ${{ inputs.runs-on }}-node-v${{ inputs.node-version }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
 
     - name: npm ci
       shell: bash
