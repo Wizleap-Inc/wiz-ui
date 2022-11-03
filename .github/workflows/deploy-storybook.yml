@@ -6,7 +6,7 @@ on:
       - "**/*.stories.ts"
     branches-ignore:
       - "main"
-      - "development"
+      - "develop"
 
 env:
   AWS_REGION: ap-northeast-1
