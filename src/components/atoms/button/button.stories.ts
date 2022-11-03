@@ -1,13 +1,13 @@
 import { expect } from "@storybook/jest";
 import { screen, userEvent, waitFor } from "@storybook/testing-library";
 
-import GradientButton from "./Gradient.vue";
+import Button from "./button.vue";
 
 import type { Story } from "@storybook/vue";
 
 export default {
   title: "Atoms/Button",
-  component: GradientButton,
+  component: Button,
   argTypes: {
     disabled: {
       control: {
@@ -36,8 +36,8 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { GradientButton },
-  template: `<GradientButton v-bind="$props">{{ slot }}</GradientButton>`,
+  components: { Button },
+  template: `<Button v-bind="$props">{{ slot }}</Button>`,
 });
 
 export const Default = Template.bind({});
