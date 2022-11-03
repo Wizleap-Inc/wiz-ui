@@ -1,4 +1,5 @@
 import { mount } from "@vue/test-utils";
+import { describe, expect, it } from "vitest";
 
 import GradientButton from "./Gradient.vue";
 
@@ -12,12 +13,13 @@ describe("GradientButton", () => {
 
   describe("Slot", () => {
     it("テキストが正しく表示されるか", () => {
+      const slotText = "Hello World!";
       const wrapper = mount(GradientButton, {
         slots: {
-          default: "Hello World!",
+          default: slotText,
         },
       });
-      expect(wrapper.html()).contains("Hello World!");
+      expect(wrapper.html()).toContain(slotText);
     });
   });
 
@@ -35,8 +37,9 @@ describe("GradientButton", () => {
   describe("Emits", () => {
     it("clickイベントが発火されるか", async () => {
       const wrapper = mount(GradientButton);
-      await wrapper.trigger("click");
-      expect(wrapper.emitted("click")).toBeTruthy();
+      const button = wrapper.find("button");
+      await button.trigger("click");
+      expect(button.emitted("click")).toBeTruthy();
     });
 
     it("disabled時clickイベントが発火されないか", async () => {
@@ -45,8 +48,9 @@ describe("GradientButton", () => {
           disabled: true,
         },
       });
-      await wrapper.trigger("click");
-      expect(wrapper.emitted("click")).toBeFalsy();
+      const button = wrapper.find("button");
+      await button.trigger("click");
+      expect(button.emitted("click")).toBeFalsy();
     });
   });
 });
