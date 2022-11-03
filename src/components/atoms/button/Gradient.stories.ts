@@ -6,8 +6,26 @@ import GradientButton from "./Gradient.vue";
 import type { Story } from "@storybook/vue";
 
 export default {
-  title: "Atoms/Button/Gradient",
+  title: "Atoms/Button",
   component: GradientButton,
+  argTypes: {
+    disabled: {
+      control: {
+        type: "boolean",
+      },
+    },
+    rounded: {
+      control: {
+        type: "boolean",
+      }
+    },
+    variant: {
+      control: {
+        type: "select",
+        options: ["primary", "sub"],
+      }
+    }
+  },
 };
 
 const Template: Story = (args, { argTypes }) => ({
@@ -18,8 +36,7 @@ const Template: Story = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  disabled: false,
-  slot: "Hello World!",
+  slot: "保存する",
 };
 Default.play = async () => {
   const button = screen.getByRole("button");
@@ -30,5 +47,23 @@ Default.play = async () => {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  slot: "Hello World!",
+  slot: "保存する",
+};
+
+export const Rounded = Template.bind({});
+Rounded.args = {
+  rounded: true,
+  slot: "保存する",
+};
+
+export const VariantPrimary = Template.bind({});
+VariantPrimary.args = {
+  variant: "primary",
+  slot: "保存する",
+};
+
+export const VariantSub = Template.bind({});
+VariantSub.args = {
+  variant: "sub",
+  slot: "保存する",
 };

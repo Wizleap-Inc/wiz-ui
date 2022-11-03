@@ -34,7 +34,7 @@ export const COLOR_MAP = {
     "700": "#EFB92E",
     "800": "#E9AD12",
   },
-  mono: {
+  gray: {
     "300": "#EEF0EF",
     "400": "#D3D8D7",
     "500": "#AFB8B6",
