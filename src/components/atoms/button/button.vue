@@ -6,6 +6,7 @@
       'wiz-button--variant-sub': variant === 'sub',
       'wiz-button--disabled': disabled,
       'wiz-button--round': rounded,
+      'wiz-button--expand': expand,
       'wiz-button--size-sm': size === 'sm',
       'wiz-button--size-md': size === 'md',
       'wiz-button--size-lg': size === 'lg',
@@ -25,6 +26,7 @@ import { SPACING_MAP } from "@/constants/styles/spacing";
 interface Props {
   variant?: "primary" | "sub";
   size?: "sm" | "md" | "lg";
+  expand?: boolean;
   disabled?: boolean;
   rounded?: boolean;
 }
@@ -37,6 +39,7 @@ const props = withDefaults(defineProps<Props>(), {
   variant: "primary",
   disabled: false,
   rounded: false,
+  expand: false,
   size: "md",
 });
 
@@ -49,10 +52,10 @@ const colorGradient = THEME.color.gradient;
 const colorWhite = THEME.color.white["800"];
 const colorGreen = THEME.color.green["800"];
 const shadowMd = THEME.shadow.md;
-const borderRadiusXxs = THEME.spacing.xxs;
+const borderRadiusXxs = THEME.spacing.xs2;
 const borderRadiusMax = THEME.spacing.max;
 const gray400 = THEME.color.gray["400"];
-const padding = `${SPACING_MAP["sm"]} ${SPACING_MAP["xl"]}`;
+const padding = `${SPACING_MAP["xs"]} ${SPACING_MAP["xl"]}`;
 const fontSizeXs = THEME.fontSize["xs"];
 const fontSizeSm = THEME.fontSize["sm"];
 const fontSizeMd = THEME.fontSize["md"];
@@ -60,7 +63,7 @@ const fontSizeMd = THEME.fontSize["md"];
 
 <style lang="scss" scoped>
 .wiz-button {
-  width: 100%;
+  width: fit-content;
   font-weight: bold;
   padding: v-bind(padding);
   cursor: pointer;
@@ -92,6 +95,10 @@ const fontSizeMd = THEME.fontSize["md"];
 
   &--round {
     border-radius: v-bind(borderRadiusMax);
+  }
+
+  &--expand {
+    width: 100%;
   }
 
   &--size {

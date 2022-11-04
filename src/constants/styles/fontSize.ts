@@ -1,4 +1,6 @@
 export const FONT_SIZE_MAP = {
+  /** 10px */
+  xs2: "0.625rem",
   /** 12px */
   xs: "0.75rem",
   /** 14px */

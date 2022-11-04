@@ -47,3 +47,17 @@ export const COLOR_MAP = {
   gradient: "linear-gradient(90deg, #3db783 0%, #099ec3 100%)",
   transparent: "transparent",
 } as const;
+
+export const COLOR_MAP_ACCESSORS = (() => {
+  const accessors: string[] = [];
+  for (const [color, shades] of Object.entries(COLOR_MAP)) {
+    if (typeof shades === "string") {
+      accessors.push(color);
+    } else {
+      for (const shade of Object.keys(shades)) {
+        accessors.push(`${color}.${shade}`);
+      }
+    }
+  }
+  return accessors;
+})();

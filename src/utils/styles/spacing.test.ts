@@ -6,10 +6,10 @@ describe("Spacing/Styles/Utils", () => {
   it("getSpacing", () => {
     const input = {
       gap: "md",
-    }
+    };
     const output = {
       gap: "1rem",
-    }
-    expect(getSpacingCSS(input)).toEqual(output)
-  })
-})
+    };
+    expect(getSpacingCSS(input)).toEqual(output);
+  });
+});

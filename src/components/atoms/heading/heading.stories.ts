@@ -1,3 +1,5 @@
+import { COLOR_MAP_ACCESSORS } from "./../../../constants/styles/color";
+import { FONT_SIZE_MAP } from "./../../../constants/styles/fontSize";
 import Heading from "./heading.vue";
 
 import type { Story } from "@storybook/vue";
@@ -12,6 +14,18 @@ export default {
         options: [1, 2, 3, 4, 5, 6],
       },
     },
+    fontSize: {
+      control: {
+        type: "select",
+        options: Object.keys(FONT_SIZE_MAP),
+      },
+    },
+    color: {
+      control: {
+        type: "select",
+        options: COLOR_MAP_ACCESSORS,
+      },
+    },
   },
 };
 
@@ -21,43 +35,35 @@ const Template: Story = (_, { argTypes }) => ({
   template: `<Heading v-bind="$props">{{ slot }}</Heading>`,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  slot: "案件管理",
+const sampleHeadingTexts = {
+  1: "案件管理",
+  2: "初回面談前",
+  3: "契約・最終意向把握",
+  4: "現在のステータス",
+  5: "Level5の見出し",
+  6: "Level6の見出し",
 };
 
-export const H1 = Template.bind({});
-H1.args = {
-  level: 1,
-  slot: "案件管理",
-};
+export const Overview = ((_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { Heading },
+  setup() {
+    return {
+      sampleHeadingTexts,
+    };
+  },
+  template: `
+    <table>
+      <tr v-for="[level, text] in Object.entries(sampleHeadingTexts)" :key="level">
+        <td style="padding: 1rem;">H{{ level }}</td>
+        <td style="padding: 1rem;"><Heading :level="+level">{{ text }}</Heading></td>
+      </tr>
+    </table>
+  `,
+})).bind({});
 
-export const H2 = Template.bind({});
-H2.args = {
-  level: 2,
-  slot: "初回面談前",
-};
-
-export const H3 = Template.bind({});
-H3.args = {
-  level: 3,
-  slot: "契約・最終意向把握",
-};
-
-export const H4 = Template.bind({});
-H4.args = {
-  level: 4,
-  slot: "現在のステータス",
-};
-
-export const H5 = Template.bind({});
-H5.args = {
-  level: 5,
-  slot: "Level5の見出し",
-};
-
-export const H6 = Template.bind({});
-H6.args = {
-  level: 6,
-  slot: "Level6の見出し",
+export const Color = Template.bind({});
+Color.args = {
+  color: "green.800",
+  slot: "Heading",
 };
