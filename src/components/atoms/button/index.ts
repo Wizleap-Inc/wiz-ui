@@ -1,1 +1,1 @@
-export { default as WizGradientButton } from "./Gradient.vue";
+export { default as WizButton } from "./button.vue";

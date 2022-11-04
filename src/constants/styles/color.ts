@@ -1,6 +1,3 @@
-import { ObjectKeysWithSeparator } from "../../types/utils/object";
-
-
 export const COLOR_MAP = {
   green: {
     "300": "#E4FBF4",
@@ -50,13 +47,3 @@ export const COLOR_MAP = {
   gradient: "linear-gradient(90deg, #3db783 0%, #099ec3 100%)",
   transparent: "transparent",
 } as const;
-
-export type ColorKeys = ObjectKeysWithSeparator<typeof COLOR_MAP>;
-
-interface ColorPropsItems {
-  color: ColorKeys;
-  bgColor: ColorKeys;
-}
-
-export type ColorProps = Partial<ColorPropsItems>;
-
