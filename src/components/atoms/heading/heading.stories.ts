@@ -15,7 +15,7 @@ export default {
   },
 };
 
-const Template: Story = (args, { argTypes }) => ({
+const Template: Story = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { Heading },
   template: `<Heading v-bind="$props">{{ slot }}</Heading>`,
