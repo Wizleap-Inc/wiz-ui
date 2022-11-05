@@ -15,12 +15,12 @@
 import { computed, withDefaults } from "vue";
 
 import { FontSizeKeys, FONT_SIZE_MAP } from "@/constants/styles/fontSize";
-import { ColorSelects } from "@/types/styles/color";
+import { ColorKeys } from "@/types/styles/color";
 import { getColorCss } from "@/utils/styles/color";
 
 interface Props {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
-  color?: ColorSelects;
+  color?: ColorKeys;
   fontSize?: FontSizeKeys;
 }
 
