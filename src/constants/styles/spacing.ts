@@ -1,5 +1,6 @@
 export const SPACING_MAP = {
   no: "0",
+  xs2: "0.25rem",
   xs: "0.5rem",
   sm: "0.75rem",
   md: "1rem",
@@ -8,5 +9,6 @@ export const SPACING_MAP = {
   xl2: "2rem",
   xl3: "2.5rem",
   xl4: "3rem",
+  max: "9999px",
   at: "auto",
 } as const;

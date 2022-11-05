@@ -1,7 +1,3 @@
-import { ObjectKeysWithSeparator } from "../../types/utils/object";
-
-import { getValueFromAccessor } from "./../../utils/object";
-
 export const COLOR_MAP = {
   green: {
     "300": "#E4FBF4",
@@ -35,7 +31,7 @@ export const COLOR_MAP = {
     "700": "#EFB92E",
     "800": "#E9AD12",
   },
-  mono: {
+  gray: {
     "300": "#EEF0EF",
     "400": "#D3D8D7",
     "500": "#AFB8B6",
@@ -52,14 +48,16 @@ export const COLOR_MAP = {
   transparent: "transparent",
 } as const;
 
-export type ColorKeys = ObjectKeysWithSeparator<typeof COLOR_MAP>;
-
-interface ColorPropsItems {
-  color: ColorKeys;
-  bgColor: ColorKeys;
-}
-
-export type ColorProps = Partial<ColorPropsItems>;
-
-export const getColors = (color: ColorKeys) =>
-  getValueFromAccessor(COLOR_MAP, color);
+export const COLOR_MAP_ACCESSORS = (() => {
+  const accessors: string[] = [];
+  for (const [color, shades] of Object.entries(COLOR_MAP)) {
+    if (typeof shades === "string") {
+      accessors.push(color);
+    } else {
+      for (const shade of Object.keys(shades)) {
+        accessors.push(`${color}.${shade}`);
+      }
+    }
+  }
+  return accessors;
+})();
