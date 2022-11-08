@@ -1,13 +1,13 @@
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
-import { FONT_SIZE_MAP } from "../../../constants/styles/fontSize";
 
+import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/fontSize";
 import WizText from "./text.vue";
 
 import type { Story } from "@storybook/vue";
 
 export default {
   title: "Atoms/Text",
-  component: Text,
+  component: WizText,
   argTypes: {
     as: {
       control: {
@@ -18,7 +18,7 @@ export default {
     fontSize: {
       control: {
         type: "select",
-        options: Object.keys(FONT_SIZE_MAP),
+        options: FONT_SIZE_ACCESSORS,
       },
     },
     color: {

@@ -14,8 +14,8 @@
 <script setup lang="ts">
 import { computed, withDefaults } from "vue";
 
-import { FontSizeKeys } from "@/constants/styles/fontSize";
 import { ColorKeys } from "@/types/styles/color";
+import { FontSizeKeys } from "@/types/styles/fontSize";
 import { getColorCss } from "@/utils/styles/color";
 import { getFontSizeCss } from "@/utils/styles/fontSize";
 
