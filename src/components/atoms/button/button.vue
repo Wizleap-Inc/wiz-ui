@@ -48,6 +48,7 @@ const emit = defineEmits<Emits>();
 const onClick = () => {
   if (!props.disabled) emit("click");
 };
+
 const colorGradient = THEME.color.gradient;
 const colorWhite = THEME.color.white["800"];
 const colorGreen = THEME.color.green["800"];

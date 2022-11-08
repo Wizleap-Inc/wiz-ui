@@ -1,12 +1,12 @@
 import { COLOR_MAP_ACCESSORS } from "./../../../constants/styles/color";
 import { FONT_SIZE_MAP } from "./../../../constants/styles/fontSize";
-import Heading from "./heading.vue";
+import WizHeading from "./heading.vue";
 
 import type { Story } from "@storybook/vue";
 
 export default {
   title: "Atoms/Heading",
-  component: Heading,
+  component: WizHeading,
   argTypes: {
     level: {
       control: {
@@ -31,8 +31,8 @@ export default {
 
 const Template: Story = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Heading },
-  template: `<Heading v-bind="$props">{{ slot }}</Heading>`,
+  components: { WizHeading },
+  template: `<WizHeading v-bind="$props">{{ slot }}</WizHeading>`,
 });
 
 const sampleHeadingTexts = {
@@ -46,7 +46,7 @@ const sampleHeadingTexts = {
 
 export const Overview = ((_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { Heading },
+  components: { WizHeading },
   setup() {
     return {
       sampleHeadingTexts,
@@ -56,7 +56,7 @@ export const Overview = ((_, { argTypes }) => ({
     <table>
       <tr v-for="[level, text] in Object.entries(sampleHeadingTexts)" :key="level">
         <td style="padding: 1rem;">H{{ level }}</td>
-        <td style="padding: 1rem;"><Heading :level="+level">{{ text }}</Heading></td>
+        <td style="padding: 1rem;"><WizHeading :level="+level">{{ text }}</WizHeading></td>
       </tr>
     </table>
   `,
