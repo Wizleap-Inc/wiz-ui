@@ -1,3 +1,5 @@
+import { FontSizeKeys } from "@/types/styles/fontSize";
+
 export const FONT_SIZE_MAP = {
   /** 10px */
   xs2: "0.625rem",
@@ -19,4 +21,4 @@ export const FONT_SIZE_MAP = {
   xl4: "2rem",
 } as const;
 
-export type FontSizeKeys = keyof typeof FONT_SIZE_MAP;
+export const FONT_SIZE_ACCESSORS = Object.keys(FONT_SIZE_MAP) as FontSizeKeys[];

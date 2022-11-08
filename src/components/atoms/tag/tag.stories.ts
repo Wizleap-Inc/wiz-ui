@@ -1,5 +1,5 @@
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
-import { FONT_SIZE_MAP } from "../../../constants/styles/fontSize";
+import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/fontSize";
 import { WizIClose } from "../../icons";
 
 import WizTag from "./tag.vue";
@@ -13,7 +13,7 @@ export default {
     fontSize: {
       control: {
         type: "select",
-        options: Object.keys(FONT_SIZE_MAP),
+        options: FONT_SIZE_ACCESSORS,
       },
     },
     fontWeight: {
