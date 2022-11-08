@@ -9,3 +9,9 @@ interface ColorPropsItems {
 }
 
 export type ColorProps = Partial<ColorPropsItems>;
+
+export type ColorKeysSplit = ColorKeys extends `${infer Keys}`
+  ? Keys extends `${infer Key}.${infer Rest}`
+    ? [Key, Rest]
+    : [Keys]
+  : never;
