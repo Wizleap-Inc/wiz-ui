@@ -14,9 +14,10 @@
 <script setup lang="ts">
 import { computed, withDefaults } from "vue";
 
-import { FontSizeKeys, FONT_SIZE_MAP } from "@/constants/styles/fontSize";
+import { FontSizeKeys } from "@/constants/styles/fontSize";
 import { ColorKeys } from "@/types/styles/color";
 import { getColorCss } from "@/utils/styles/color";
+import { getFontSizeCss } from "@/utils/styles/fontSize";
 
 interface Props {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
@@ -29,14 +30,14 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const computedFontSize = computed(() => {
-  if (props.fontSize) return FONT_SIZE_MAP[props.fontSize];
-  if (props.level === 1) return FONT_SIZE_MAP["xl2"];
-  if (props.level === 2) return FONT_SIZE_MAP["xl"];
-  if (props.level === 3) return FONT_SIZE_MAP["md"];
-  if (props.level === 4) return FONT_SIZE_MAP["sm"];
-  if (props.level === 5) return FONT_SIZE_MAP["xs"];
-  if (props.level === 6) return FONT_SIZE_MAP["xs2"];
-  return FONT_SIZE_MAP["md"];
+  if (props.fontSize) return getFontSizeCss(props.fontSize);
+  if (props.level === 1) return getFontSizeCss("xl2");
+  if (props.level === 2) return getFontSizeCss("xl");
+  if (props.level === 3) return getFontSizeCss("md");
+  if (props.level === 4) return getFontSizeCss("sm");
+  if (props.level === 5) return getFontSizeCss("xs");
+  if (props.level === 6) return getFontSizeCss("xs2");
+  return getFontSizeCss("md");
 });
 
 const computedColor = computed(() => {
