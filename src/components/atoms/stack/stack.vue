@@ -75,6 +75,7 @@ const computedSpacingStyles = computed(() => {
 <style lang="scss" scoped>
 .wiz-stack {
   display: flex;
+
   &--vertical {
     flex-direction: column;
   }

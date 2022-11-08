@@ -9,13 +9,6 @@ import { WizStack } from ".";
 
 const spacingControls = [
   "gap",
-  "m",
-  "mt",
-  "mr",
-  "mb",
-  "ml",
-  "mx",
-  "my",
   "p",
   "pt",
   "pr",
@@ -23,6 +16,13 @@ const spacingControls = [
   "pl",
   "px",
   "py",
+  "m",
+  "mt",
+  "mr",
+  "mb",
+  "ml",
+  "mx",
+  "my",
 ].reduce((acc, key) => {
   acc[key] = {
     control: {
@@ -70,6 +70,11 @@ const Template: Story = (_, { argTypes }) => ({
 });
 
 export const Default = Template.bind({});
+
+export const Horizontal = Template.bind({});
+Horizontal.args = {
+  direction: "horizontal",
+};
 
 export const Vertical = Template.bind({});
 Vertical.args = {
