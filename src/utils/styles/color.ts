@@ -1,11 +1,5 @@
 import { THEME } from "@/constants";
-import { ColorKeys } from "@/types/styles/color";
-
-type ColorKeysSplit = ColorKeys extends `${infer Keys}`
-  ? Keys extends `${infer Key}.${infer Rest}`
-    ? [Key, Rest]
-    : [Keys]
-  : never;
+import { ColorKeys, ColorKeysSplit } from "@/types/styles/color";
 
 export const getColorCss = (color: ColorKeys) => {
   const [k, v] = color.split(".") as ColorKeysSplit;
