@@ -1,3 +1,4 @@
+import { SpacingKeys } from "@/types/styles/spacing";
 export const SPACING_MAP = {
   no: "0",
   /** 4px */
@@ -21,3 +22,5 @@ export const SPACING_MAP = {
   max: "9999px",
   at: "auto",
 } as const;
+
+export const SPACING_ACCESSORS = Object.keys(SPACING_MAP) as SpacingKeys[];
