@@ -1,3 +1,3 @@
-export { default as Stack } from "./stack.vue";
-export { default as VStack } from "./v-stack.vue";
-export { default as HStack } from "./h-stack.vue";
+export { default as WizStack } from "./stack.vue";
+export { default as WizVStack } from "./v-stack.vue";
+export { default as WizHStack } from "./h-stack.vue";
