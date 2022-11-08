@@ -7,7 +7,7 @@ import type { Story } from "@storybook/vue";
 
 export default {
   title: "Atoms/Text",
-  component: Text,
+  component: WizText,
   argTypes: {
     as: {
       control: {
