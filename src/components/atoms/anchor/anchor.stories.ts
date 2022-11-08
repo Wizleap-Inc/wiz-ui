@@ -1,8 +1,8 @@
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
 import { FONT_SIZE_MAP } from "../../../constants/styles/fontSize";
+import WizIArrowRight from "../../icons/arrowRight.vue";
 
 import WizAnchor from "./anchor.vue";
-import WizIArrowRight from "../../icons/arrowRight.vue";
 
 import type { Story } from "@storybook/vue";
 
