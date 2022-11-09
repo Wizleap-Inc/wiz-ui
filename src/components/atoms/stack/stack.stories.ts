@@ -1,5 +1,6 @@
 import { Story } from "@storybook/vue";
 import Vue from "vue";
+import { ref } from "vue";
 
 import { THEME } from "../../../constants";
 
@@ -9,6 +10,8 @@ import { WizStack } from ".";
 
 const spacingControls = [
   "gap",
+  "gx",
+  "gy",
   "p",
   "pt",
   "pr",
@@ -43,15 +46,38 @@ export default {
         options: ["horizontal", "vertical"],
       },
     },
+    align: {
+      control: {
+        type: "select",
+        options: ["start", "center", "end", "stretch"],
+      },
+    },
+    justify: {
+      control: {
+        type: "select",
+        options: ["start", "center", "end", "between", "around", "evenly"],
+      },
+    },
+    wrap: {
+      control: {
+        type: "boolean",
+      },
+    },
     ...spacingControls,
   },
 };
 
 const Box = Vue.component("Box", {
+  props: {
+    index: {
+      type: Number,
+      required: true,
+    },
+  },
   template: `
     <div :style="{
-      width: '8rem',
-      height: '5rem',
+      width: index + 4 + 'rem',
+      height: index + 2 + 'rem',
       background: '${THEME.color.gradient}',
       boxShadow: '${THEME.shadow.md}',
       borderRadius: '${THEME.spacing.xs}'
@@ -62,10 +88,20 @@ const Box = Vue.component("Box", {
 const Template: Story = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizStack, Box },
+  setup() {
+    const boxCount = ref<number>(5);
+    return {
+      boxCount,
+    };
+  },
   template: `
-    <WizStack v-bind="$props">
-      <Box v-for="i in 5" :key="i"/>
-    </WizStack>
+    <div style="width: 100%; height: 100%; background: ${THEME.color.gray[300]}; padding: ${THEME.spacing.xl2}; box-sizing: border-box;">
+      <label for="boxCountInput">箱の数（デバッグ用）</label>
+      <input type="number" id="boxCountInput" v-model="boxCount" style="margin-bottom: ${THEME.spacing.lg};"/>
+      <WizStack v-bind="$props">
+        <Box v-for="i in +boxCount > 0 ? +boxCount : 1" :index="i" :key="i"/>
+      </WizStack>
+    </div>
   `,
 });
 
