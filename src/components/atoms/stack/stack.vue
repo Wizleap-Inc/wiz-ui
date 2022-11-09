@@ -4,8 +4,21 @@
       'wiz-stack': true,
       'wiz-stack--vertical': direction === 'vertical',
       'wiz-stack--horizontal': direction === 'horizontal',
+      'wiz-stack--align-start': align === 'start',
+      'wiz-stack--align-center': align === 'center',
+      'wiz-stack--align-end': align === 'end',
+      'wiz-stack--align-stretch': align === 'start',
+      'wiz-stack--justify-start': justify === 'start',
+      'wiz-stack--justify-center': justify === 'center',
+      'wiz-stack--justify-end': justify === 'end',
+      'wiz-stack--justify-between': justify === 'between',
+      'wiz-stack--justify-around': justify === 'around',
+      'wiz-stack--justify-evenly': justify === 'evenly',
+      'wiz-stack--wrap': wrap,
     }"
-    :style="computedSpacingStyles"
+    :style="{
+      ...computedSpacingStyles,
+    }"
   >
     <slot />
   </div>
@@ -15,11 +28,16 @@
 import { computed } from "vue";
 
 import { SpacingKeys } from "@/types/styles/spacing";
-import { getSpacingCSS } from "@/utils/styles/spacing";
+import { getSpacingCSS, getCoupleSpacingCSS } from "@/utils/styles/spacing";
 
 interface Props {
   direction?: "horizontal" | "vertical";
+  align?: "start" | "center" | "end" | "stretch";
+  justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+  wrap?: boolean;
   gap?: SpacingKeys;
+  gx?: SpacingKeys;
+  gy?: SpacingKeys;
   p?: SpacingKeys;
   pt?: SpacingKeys;
   pr?: SpacingKeys;
@@ -38,26 +56,24 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   direction: "horizontal",
-  gap: "md",
+  align: "stretch",
+  justify: "start",
+  wrap: true,
 });
 
 const computedSpacingStyles = computed(() => {
   const spacingStyles = {
-    gap: getSpacingCSS(props.gap),
-    padding: getSpacingCSS(props.p),
+    gap: getSpacingCSS(props.gap) || getCoupleSpacingCSS(props.gx, props.gy),
+    padding: getSpacingCSS(props.p) || getCoupleSpacingCSS(props.px, props.py),
     paddingTop: getSpacingCSS(props.pt),
     paddingRight: getSpacingCSS(props.pr),
     paddingBottom: getSpacingCSS(props.pb),
     paddingLeft: getSpacingCSS(props.pl),
-    paddingX: getSpacingCSS(props.px),
-    paddingY: getSpacingCSS(props.py),
-    margin: getSpacingCSS(props.m),
+    margin: getSpacingCSS(props.m) || getCoupleSpacingCSS(props.mx, props.my),
     marginTop: getSpacingCSS(props.mt),
     marginRight: getSpacingCSS(props.mr),
     marginBottom: getSpacingCSS(props.mb),
     marginLeft: getSpacingCSS(props.ml),
-    marginX: getSpacingCSS(props.mx),
-    marginY: getSpacingCSS(props.my),
   };
 
   const isSpacingStylesKey = (key: string): key is keyof typeof spacingStyles =>
@@ -82,6 +98,50 @@ const computedSpacingStyles = computed(() => {
 
   &--horizontal {
     flex-direction: row;
+  }
+
+  &--align-start {
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--align-end {
+    align-items: flex-end;
+  }
+
+  &--align-stretch {
+    align-items: stretch;
+  }
+
+  &--justify-start {
+    justify-content: flex-start;
+  }
+
+  &--justify-center {
+    justify-content: center;
+  }
+
+  &--justify-end {
+    justify-content: flex-end;
+  }
+
+  &--justify-between {
+    justify-content: space-between;
+  }
+
+  &--justify-around {
+    justify-content: space-around;
+  }
+
+  &--justify-evenly {
+    justify-content: space-evenly;
+  }
+
+  &--wrap {
+    flex-wrap: wrap;
   }
 }
 </style>
