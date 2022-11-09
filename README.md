@@ -34,5 +34,5 @@ clone the repo
 
 ```bash
 npm ci # install dependencies
-npm run dev # start dev server
+npm run storybook # start ui-dev server
 ```
