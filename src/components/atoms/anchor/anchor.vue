@@ -1,6 +1,8 @@
 <template>
   <a class="wiz-anchor" :href="href" :target="target" :rel="rel">
-    <component v-if="icon" :is="icon" />
+    <span class="wiz-anchor__icon">
+      <component v-if="icon" :is="icon" />
+    </span>
     <slot />
   </a>
 </template>
@@ -65,9 +67,13 @@ const computedFontWeight = computed(() => props.fontWeight);
     // 未定
   }
 
-  & > svg {
+  &__icon {
+    vertical-align: middle;
+    font-size: 1.5em;
+  }
+
+  & svg {
     fill: v-bind(computedColor);
-    vertical-align: top;
   }
 }
 </style>
