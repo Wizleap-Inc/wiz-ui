@@ -19,7 +19,7 @@ import 'wiz-ui/dist/wiz-ui.css'
 import components in your component
 
 ```js
-import { WButton } from 'wiz-ui'
+import { WizButton } from 'wiz-ui'
 ```
 
 ## Contributing
