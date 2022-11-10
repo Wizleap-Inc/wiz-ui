@@ -9,5 +9,5 @@ export const THEME = {
   spacing: SPACING_MAP,
   fontSize: FONT_SIZE_MAP,
   breakpoint: BREAKPOINT_MAP,
-  shadow: SHADOW_MAP
+  shadow: SHADOW_MAP,
 } as const;
