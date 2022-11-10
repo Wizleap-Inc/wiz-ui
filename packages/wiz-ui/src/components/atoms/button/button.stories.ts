@@ -37,7 +37,7 @@ export default {
   },
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizButton },
   template: `<WizButton v-bind="$props">{{ slot }}</WizButton>`,

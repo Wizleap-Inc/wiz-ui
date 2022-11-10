@@ -6,7 +6,7 @@ export default {
   title: "Icons",
 };
 
-export const Overview = ((args, { argTypes }) => ({
+export const Overview = ((_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ...Icons },
   setup() {
