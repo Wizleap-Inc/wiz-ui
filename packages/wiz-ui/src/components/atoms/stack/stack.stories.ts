@@ -1,5 +1,5 @@
-import Vue from "vue";
-import { ref } from "vue";
+import { StoryFn } from "@storybook/vue";
+import Vue, { ref } from "vue";
 
 import { THEME } from "../../../constants";
 
@@ -7,7 +7,7 @@ import { SPACING_ACCESSORS } from "./../../../constants/styles/spacing";
 
 import { WizStack } from ".";
 
-const spacingControls = [
+const spacingKeys = [
   "gap",
   "gx",
   "gy",
@@ -25,42 +25,33 @@ const spacingControls = [
   "ml",
   "mx",
   "my",
-].reduce((acc, key) => {
+];
+const spacingControls = spacingKeys.reduce((acc, key) => {
   acc[key] = {
-    control: {
-      type: "select",
-      options: SPACING_ACCESSORS,
-    },
+    control: { type: "select" },
+    options: SPACING_ACCESSORS,
   };
   return acc;
-}, {});
+}, {} as Record<string, any>);
 
 export default {
   title: "Atoms/Stack",
   component: WizStack,
   argTypes: {
     direction: {
-      control: {
-        type: "select",
-        options: ["horizontal", "vertical"],
-      },
+      control: { type: "select" },
+      options: ["horizontal", "vertical"],
     },
     align: {
-      control: {
-        type: "select",
-        options: ["start", "center", "end", "stretch"],
-      },
+      control: { type: "select" },
+      options: ["start", "center", "end", "stretch"],
     },
     justify: {
-      control: {
-        type: "select",
-        options: ["start", "center", "end", "between", "around", "evenly"],
-      },
+      control: { type: "select" },
+      options: ["start", "center", "end", "between", "around", "evenly"],
     },
     wrap: {
-      control: {
-        type: "boolean",
-      },
+      control: { type: "boolean" },
     },
     ...spacingControls,
   },
@@ -85,7 +76,7 @@ const Box = Vue.component("Box", {
   `,
 });
 
-const Template = (_, { argTypes }) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizStack, Box },
   setup() {

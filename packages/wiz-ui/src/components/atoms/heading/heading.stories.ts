@@ -1,3 +1,5 @@
+import { StoryFn } from "@storybook/vue";
+
 import { COLOR_MAP_ACCESSORS } from "./../../../constants/styles/color";
 import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/fontSize";
 import WizHeading from "./heading.vue";
@@ -7,27 +9,20 @@ export default {
   component: WizHeading,
   argTypes: {
     level: {
-      control: {
-        type: "select",
-        options: [1, 2, 3, 4, 5, 6],
-      },
+      control: { type: "range", min: 1, max: 6 },
     },
     fontSize: {
-      control: {
-        type: "select",
-        options: FONT_SIZE_ACCESSORS,
-      },
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
     },
     color: {
-      control: {
-        type: "select",
-        options: COLOR_MAP_ACCESSORS,
-      },
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
     },
   },
 };
 
-const Template = (_, { argTypes }) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeading },
   template: `<WizHeading v-bind="$props">{{ slot }}</WizHeading>`,
@@ -42,7 +37,7 @@ const sampleHeadingTexts = {
   6: "Level6の見出し",
 };
 
-export const Overview = ((_, { argTypes }) => ({
+const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeading },
   setup() {
@@ -58,7 +53,9 @@ export const Overview = ((_, { argTypes }) => ({
       </tr>
     </table>
   `,
-})).bind({});
+});
+
+export const Overview = OverviewTemplate.bind({});
 
 export const Color = Template.bind({});
 Color.args = {

@@ -1,3 +1,4 @@
+import { StoryFn } from "@storybook/vue";
 import Vue from "vue";
 
 import { THEME } from "./index";
@@ -27,7 +28,7 @@ const ColorCircle = Vue.extend({
   },
 });
 
-const Template = (_, { argTypes }) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ColorCircle },
   template: `

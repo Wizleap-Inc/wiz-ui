@@ -1,3 +1,5 @@
+import { StoryFn } from "@storybook/vue";
+
 import { THEME } from "../../constants/styles";
 
 import * as Icons from ".";
@@ -6,7 +8,7 @@ export default {
   title: "Icons",
 };
 
-export const Overview = ((_, { argTypes }) => ({
+const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ...Icons },
   setup() {
@@ -24,4 +26,6 @@ export const Overview = ((_, { argTypes }) => ({
       </div>
     </div>
   `,
-})).bind({});
+});
+
+export const Overview = OverviewTemplate.bind({});

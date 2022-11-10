@@ -1,5 +1,6 @@
 import { expect } from "@storybook/jest";
-import { screen, userEvent, waitFor } from "@storybook/testing-library";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { StoryFn } from "@storybook/vue";
 
 import WizButton from "./button.vue";
 
@@ -8,36 +9,26 @@ export default {
   component: WizButton,
   argTypes: {
     disabled: {
-      control: {
-        type: "boolean",
-      },
+      control: { type: "boolean" },
     },
     rounded: {
-      control: {
-        type: "boolean",
-      },
+      control: { type: "boolean" },
     },
     expand: {
-      control: {
-        type: "boolean",
-      },
+      control: { type: "boolean" },
     },
     variant: {
-      control: {
-        type: "select",
-        options: ["primary", "sub"],
-      },
+      control: { type: "select" },
+      options: ["primary", "sub"],
     },
     size: {
-      control: {
-        type: "select",
-        options: ["sm", "md", "lg"],
-      },
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
     },
   },
 };
 
-const Template = (_, { argTypes }) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizButton },
   template: `<WizButton v-bind="$props">{{ slot }}</WizButton>`,
@@ -47,8 +38,10 @@ export const Default = Template.bind({});
 Default.args = {
   slot: "保存する",
 };
-Default.play = async () => {
-  const button = screen.getByRole("button");
+
+Default.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button = canvas.getByRole("button");
   userEvent.click(button);
   await waitFor(() => expect(button).toHaveFocus());
 };
@@ -65,7 +58,7 @@ Rounded.args = {
   slot: "保存する",
 };
 
-export const Variant = ((args, { argTypes }) => ({
+const VariantTemplate: StoryFn = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizButton },
   template: `
@@ -80,9 +73,11 @@ export const Variant = ((args, { argTypes }) => ({
       </tr>
     </table>
   `,
-})).bind({});
+});
 
-export const Size = ((_, { argTypes }) => ({
+export const Variant = VariantTemplate.bind({});
+
+const SizeTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizButton },
   template: `
@@ -101,7 +96,9 @@ export const Size = ((_, { argTypes }) => ({
       </tr>
     </table>
   `,
-})).bind({});
+});
+
+export const Size = SizeTemplate.bind({});
 
 export const Expand = Template.bind({});
 Expand.args = {

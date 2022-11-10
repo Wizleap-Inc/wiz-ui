@@ -1,7 +1,12 @@
 <template>
   <WizStack
     direction="horizontal"
+    :align="align"
+    :justify="justify"
+    :wrap="wrap"
     :gap="gap"
+    :gx="gx"
+    :gy="gy"
     :p="p"
     :pt="pt"
     :pr="pr"
@@ -27,7 +32,12 @@ import { SpacingKeys } from "@/types/styles/spacing";
 import { WizStack } from ".";
 
 export interface Props {
+  align?: "start" | "center" | "end" | "stretch";
+  justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+  wrap?: boolean;
   gap?: SpacingKeys;
+  gx?: SpacingKeys;
+  gy?: SpacingKeys;
   p?: SpacingKeys;
   pt?: SpacingKeys;
   pr?: SpacingKeys;
