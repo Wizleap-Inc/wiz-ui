@@ -1,3 +1,4 @@
+import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
@@ -64,7 +65,6 @@ Test.args = {
 
 Test.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await new Promise((resolve) => setTimeout(resolve, 0));
   const input = canvas.getByPlaceholderText("入力してください");
   userEvent.click(input);
   await waitFor(() => expect(input).toHaveFocus());
