@@ -20,5 +20,9 @@ jobs:
           runs-on: ${{ matrix.runs-on }}
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
+      - uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+
       - name: test
         run: npm run dev &>/dev/null & sleep 15 && npm run test
