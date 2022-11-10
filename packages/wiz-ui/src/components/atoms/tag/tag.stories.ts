@@ -4,8 +4,6 @@ import { WizIClose } from "../../icons";
 
 import WizTag from "./tag.vue";
 
-import type { Story } from "@storybook/vue-vite";
-
 export default {
   title: "Atoms/Tag",
   component: WizTag,
@@ -42,7 +40,7 @@ export default {
   },
 };
 
-const Template: Story = (_, { argTypes }) => ({
+const Template = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTag },
   template: `<WizTag v-bind="$props" />`,

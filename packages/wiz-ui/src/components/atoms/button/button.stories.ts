@@ -3,8 +3,6 @@ import { screen, userEvent, waitFor } from "@storybook/testing-library";
 
 import WizButton from "./button.vue";
 
-import type { Story } from "@storybook/vue-vite";
-
 export default {
   title: "Atoms/Button",
   component: WizButton,
@@ -39,7 +37,7 @@ export default {
   },
 };
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizButton },
   template: `<WizButton v-bind="$props">{{ slot }}</WizButton>`,

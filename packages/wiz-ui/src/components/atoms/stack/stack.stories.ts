@@ -1,4 +1,3 @@
-import { Story } from "@storybook/vue-vite";
 import Vue from "vue";
 import { ref } from "vue";
 
@@ -86,7 +85,7 @@ const Box = Vue.component("Box", {
   `,
 });
 
-const Template: Story = (_, { argTypes }) => ({
+const Template = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizStack, Box },
   setup() {

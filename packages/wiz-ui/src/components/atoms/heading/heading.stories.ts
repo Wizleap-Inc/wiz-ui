@@ -2,7 +2,6 @@ import { COLOR_MAP_ACCESSORS } from "./../../../constants/styles/color";
 import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/fontSize";
 import WizHeading from "./heading.vue";
 
-import type { Story } from "@storybook/vue-vite";
 
 export default {
   title: "Atoms/Heading",
@@ -29,7 +28,7 @@ export default {
   },
 };
 
-const Template: Story = (_, { argTypes }) => ({
+const Template = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeading },
   template: `<WizHeading v-bind="$props">{{ slot }}</WizHeading>`,
