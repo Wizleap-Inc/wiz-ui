@@ -1,6 +1,6 @@
-import WizMessageBox from "./message-box.vue";
-
 import { WizIClose } from "../../icons";
+
+import WizMessageBox from "./message-box.vue";
 
 import type { Story } from "@storybook/vue";
 
@@ -42,14 +42,14 @@ export const Caution = Template.bind({});
 Caution.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-  type: "Caution"
+  type: "Caution",
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-  type: "Warning"
+  type: "Warning",
 };
 
 export const WithIcon = Template.bind({});
