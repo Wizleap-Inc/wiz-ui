@@ -17,6 +17,7 @@ const ColorCircle = Vue.extend({
   },
   template: `<div :style="style"></div>`,
   computed: {
+    // eslint-disable-next-line vue/no-unused-properties
     style() {
       return {
         width: "3rem",

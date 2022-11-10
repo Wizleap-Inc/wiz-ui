@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FindDeep, ObjectKeysWithSeparator } from "@/types/utils/object";
 
 export const getValueFromAccessor = <T extends Readonly<object>>(

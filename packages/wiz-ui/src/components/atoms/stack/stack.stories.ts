@@ -69,6 +69,7 @@ export default {
 
 const Box = Vue.component("Box", {
   props: {
+    // eslint-disable-next-line vue/no-unused-properties
     index: {
       type: Number,
       required: true,

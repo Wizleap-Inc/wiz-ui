@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type ObjectKeysWithSeparator<
   T extends Record<string, any>,
   K extends keyof T = keyof T
