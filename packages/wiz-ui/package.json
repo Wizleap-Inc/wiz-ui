@@ -8,10 +8,7 @@
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "lint": "eslint --ext .js,.ts,.vue src",
-    "lint:fix": "eslint --ext .js,.ts,.vue src --fix",
-    "format": "prettier --write \"src/**/*.{js,ts,vue}\""
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -26,7 +23,6 @@
     "@storybook/testing-vue": "^0.0.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/vue": "^5.8.3",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@vitejs/plugin-vue2": "^1.1.2",
     "@vitest/coverage-c8": "^0.24.5",
     "babel-loader": "^8.2.5",
