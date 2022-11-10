@@ -1,6 +1,5 @@
 import { Story } from "@storybook/vue";
-import Vue from "vue";
-import { ref } from "vue";
+import Vue, { ref } from "vue";
 
 import { THEME } from "../../../constants";
 
