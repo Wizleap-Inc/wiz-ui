@@ -13,12 +13,6 @@
     "lint:fix": "eslint --ext .js,.ts,.vue src --fix",
     "format": "prettier --write \"src/**/*.{js,ts,vue}\""
   },
-  "lint-staged": {
-    "*.{js,ts,vue}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@storybook/addon-actions": "^7.0.0-alpha.48",
@@ -36,9 +30,7 @@
     "@vitejs/plugin-vue2": "^1.1.2",
     "@vitest/coverage-c8": "^0.24.5",
     "babel-loader": "^8.2.5",
-    "husky": "^8.0.1",
     "jsdom": "^20.0.2",
-    "lint-staged": "^13.0.3",
     "sass": "^1.55.0",
     "storybook": "^7.0.0-alpha.48",
     "typescript": "^4.6.4",

@@ -3,7 +3,14 @@
     "format:packages": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,md,mdx}'",
     "format": "npm run format:packages",
     "lint:packages": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
-    "lint": "npm run lint:packages"
+    "lint": "npm run lint:packages",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "workspaces": [
     "packages/*"
@@ -15,5 +22,9 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.7.0",
     "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3"
   }
 }
