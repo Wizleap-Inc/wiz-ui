@@ -42,12 +42,11 @@
   "license": "UNLICENSED",
   "author": "Wizleap Inc.",
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "main": "./dist/wiz-ui.umd.js",
   "module": "./dist/wiz-ui.es.js",
-  "types": "./types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "@storybook/vue-vite": "^7.0.0-alpha.35",
     "vue": "^2.7.13"
