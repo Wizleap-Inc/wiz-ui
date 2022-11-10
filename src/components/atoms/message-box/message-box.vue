@@ -68,13 +68,13 @@ const colorGray = THEME.color.gray["700"]
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-  margin-bottom:8px;
+  margin-bottom: 8px;
   color: v-bind(colorGray);
 }
 
 .wiz-message-box--icon {
-  width:24px;
-  height:24px;
+  width: 24px;
+  height: 24px;
   margin-right: 10px;
 }
 </style>
