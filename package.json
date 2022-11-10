@@ -1,17 +1,13 @@
 {
-  "name": "@wizleap-inc/wiz-ui",
-  "version": "0.0.4",
-  "description": "A Vue2 UI Framework for Wizleap Inc.",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "test-storybook": "test-storybook",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "lint": "eslint --ext .js,.ts,.vue src",
-    "lint:fix": "eslint --ext .js,.ts,.vue src --fix",
-    "format": "prettier --write \"src/**/*.{js,ts,vue}\""
+    "format:packages": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,md,mdx}'",
+    "format": "npm run format:packages",
+    "lint:packages": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
+    "lint": "npm run lint:packages",
+    "prepare": "husky install",
+    "build": "npm run --workspaces build",
+    "dev": "npm run --workspaces dev",
+    "test": "npm run --workspaces test"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
@@ -19,54 +15,20 @@
       "prettier --write"
     ]
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
-    "@babel/core": "^7.19.6",
-    "@storybook/addon-actions": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
-    "@storybook/addon-interactions": "^6.5.13",
-    "@storybook/addon-links": "^6.5.13",
-    "@storybook/builder-vite": "^0.2.5",
-    "@storybook/jest": "^0.0.10",
-    "@storybook/test-runner": "^0.9.0",
-    "@storybook/testing-library": "^0.0.13",
-    "@storybook/testing-vue": "^0.0.3",
-    "@storybook/vue": "^6.5.13",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/vue": "^5.8.3",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@vitejs/plugin-vue2": "^1.1.2",
-    "@vitest/coverage-c8": "^0.24.5",
-    "babel-loader": "^8.2.5",
-    "eslint": "^8.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.7.0",
-    "husky": "^8.0.1",
-    "jsdom": "^20.0.2",
+    "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "sass": "^1.55.0",
-    "typescript": "^4.6.4",
-    "vite": "^3.2.2",
-    "vite-plugin-dts": "^1.4.1",
-    "vitest": "^0.24.5",
-    "vue-tsc": "^1.0.9"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/wizleap-inc/wiz-ui.git"
-  },
-  "license": "UNLICENSED",
-  "author": "Wizleap Inc.",
-  "files": [
-    "dist",
-    "types"
-  ],
-  "main": "./dist/wiz-ui.umd.js",
-  "module": "./dist/wiz-ui.es.js",
-  "types": "./types/index.d.ts",
-  "dependencies": {
-    "vue": "^2.7.13"
+    "playwright": "^1.27.1",
+    "prettier": "^2.7.1"
   }
 }
