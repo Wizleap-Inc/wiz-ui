@@ -9,8 +9,9 @@
     "dev": "npm run dev:storybook",
     "dev:storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
+    "test": "npm run test:unit && npm run test:storybook",
     "test:storybook": "test-storybook",
-    "test": "vitest",
+    "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {

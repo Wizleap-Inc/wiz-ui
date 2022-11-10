@@ -21,4 +21,4 @@ jobs:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: test
-        run: npm run test
+        run: npm run dev &>/dev/null & sleep 15 && npm run test
