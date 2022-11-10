@@ -10,7 +10,7 @@ on:
 
 env:
   AWS_REGION: ap-northeast-1
-  DEPLOY_PATH: coverage
+  DEPLOY_PATH: packages/wiz-ui/coverage
   DEPLOY_BUCKET: wizleap-engineer-deploy
   DEPLOY_TYPE: vitest
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COVERAGE_FRONTEND_WORKFLOW_URL }}
