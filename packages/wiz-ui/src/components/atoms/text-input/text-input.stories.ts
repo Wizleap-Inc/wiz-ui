@@ -1,11 +1,9 @@
-import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
 import { THEME } from "./../../../constants/styles/index";
 import WizTextInput from "./text-input.vue";
-
-import type { Story } from "@storybook/vue";
 
 export default {
   title: "Atoms/TextInput",
@@ -34,7 +32,7 @@ export default {
   },
 };
 
-const Template: Story = (_, { argTypes }) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextInput },
   template: `<WizTextInput v-bind="$props">{{ slot }}</WizTextInput>`,
@@ -64,10 +62,9 @@ Test.args = {
   placeholder: "入力してください",
 };
 
-Test.play = async () => {
-  const canvasElement = document.querySelector("#root") as HTMLElement;
-  await new Promise((resolve) => setTimeout(resolve, 0));
+Test.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
+  await new Promise((resolve) => setTimeout(resolve, 0));
   const input = canvas.getByPlaceholderText("入力してください");
   userEvent.click(input);
   await waitFor(() => expect(input).toHaveFocus());
@@ -80,7 +77,7 @@ Test.play = async () => {
   await waitFor(() => expect(input).toHaveValue(""));
 };
 
-export const Playground = ((_, { argTypes }) => ({
+const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextInput },
   setup() {
@@ -93,4 +90,6 @@ export const Playground = ((_, { argTypes }) => ({
       <WizTextInput Placeholder="入力してください" v-model="hoge" />
     </div>
   `,
-})).bind({});
+});
+
+export const Playground = PlaygroundTemplate.bind({});

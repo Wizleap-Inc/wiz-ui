@@ -15,7 +15,6 @@
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
-
 interface Props {
   value: string;
   placeholder?: string;
@@ -23,20 +22,15 @@ interface Props {
   disabled?: boolean;
   expand?: boolean;
 }
-
 interface Emit {
   (e: "input", value: string): void;
 }
-
 defineProps<Props>();
-
 const emit = defineEmits<Emit>();
-
 const onInput = (e: Event) => {
   const target = e.target as HTMLInputElement;
   emit("input", target.value);
 };
-
 const fontSizeSm = THEME.fontSize.sm;
 const green800 = THEME.color.green["800"];
 const grey300 = THEME.color.gray["300"];
@@ -56,21 +50,17 @@ const spacingMd = THEME.spacing.md;
   font-size: v-bind(fontSizeSm);
   line-height: 1.5;
   color: v-bind(grey700);
-
   &::placeholder {
     color: v-bind(grey500);
   }
-
   &:focus {
     outline: none;
     border-color: v-bind(green800);
   }
-
   &--disabled {
     background-color: v-bind(grey300);
     cursor: not-allowed;
   }
-
   &--expand {
     width: calc(100% - 2 * v-bind(spacingMd));
   }
