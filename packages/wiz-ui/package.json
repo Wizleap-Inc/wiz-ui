@@ -3,10 +3,12 @@
   "version": "0.0.4",
   "description": "A Vue2 UI Framework for Wizleap Inc.",
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "test-storybook": "test-storybook",
+    "build": "npm run build:lib && npm run build:storybook",
+    "build:lib": "vue-tsc --noEmit && vite build",
+    "dev": "npm run dev:storybook",
+    "dev:storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build",
+    "test:storybook": "test-storybook",
     "test": "vitest",
     "test:coverage": "vitest run --coverage"
   },
@@ -16,11 +18,14 @@
     "@storybook/addon-essentials": "^7.0.0-alpha.48",
     "@storybook/addon-interactions": "^7.0.0-alpha.48",
     "@storybook/addon-links": "^7.0.0-alpha.48",
+    "@storybook/addons": "^6.5.13",
     "@storybook/builder-vite": "^7.0.0-alpha.48",
     "@storybook/jest": "^0.0.10",
     "@storybook/test-runner": "^0.10.0-next.1",
     "@storybook/testing-library": "^0.0.14-next.0",
     "@storybook/testing-vue": "^0.0.3",
+    "@storybook/theming": "^6.5.13",
+    "@storybook/vue-vite": "^7.0.0-alpha.35",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/vue": "^5.8.3",
     "@vitejs/plugin-vue2": "^1.1.2",
@@ -48,7 +53,6 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@storybook/vue-vite": "^7.0.0-alpha.35",
     "vue": "^2.7.13"
   }
 }

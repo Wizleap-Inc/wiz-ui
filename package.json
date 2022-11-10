@@ -4,7 +4,10 @@
     "format": "npm run format:packages",
     "lint:packages": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
     "lint": "npm run lint:packages",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "npm run --workspaces build",
+    "dev": "npm run --workspaces dev",
+    "test": "npm run --workspaces test"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [

@@ -2,7 +2,6 @@ import { create } from "@storybook/theming";
 
 export default create({
   base: "light",
-
   brandTitle: "Wizleap storybook",
   brandUrl: "https://wizleap.co.jp",
   brandImage:
