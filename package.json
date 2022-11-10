@@ -1,5 +1,12 @@
 {
+  "scripts": {
+    "format:packages": "prettier --write packages/**/*.{js,jsx,ts,tsx,json,md,mdx}",
+    "format": "npm run format:packages"
+  },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
 }
