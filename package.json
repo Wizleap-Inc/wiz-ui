@@ -1,12 +1,19 @@
 {
   "scripts": {
-    "format:packages": "prettier --write packages/**/*.{js,jsx,ts,tsx,json,md,mdx}",
-    "format": "npm run format:packages"
+    "format:packages": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,md,mdx}'",
+    "format": "npm run format:packages",
+    "lint:packages": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
+    "lint": "npm run lint:packages"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-plugin-vue": "^9.7.0",
     "prettier": "^2.7.1"
   }
 }
