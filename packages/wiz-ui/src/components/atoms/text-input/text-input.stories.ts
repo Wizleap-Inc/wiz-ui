@@ -36,7 +36,7 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextInput },
-  template: `<WizTextInput v-bind="$props">{{ slot }}</WizTextInput>`,
+  template: `<WizTextInput v-bind="$props" />`,
 });
 
 export const Default = Template.bind({});
