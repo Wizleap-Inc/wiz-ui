@@ -49,6 +49,7 @@ export const Default = Template.bind({});
 Default.args = {
   slot: "保存する",
 };
+
 Default.play = async () => {
   const button = screen.getByRole("button");
   userEvent.click(button);
