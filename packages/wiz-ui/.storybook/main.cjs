@@ -1,5 +1,4 @@
 const path = require("path");
-
 module.exports = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -7,7 +6,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
   ],
-  framework: "@storybook/vue",
+  framework: "@storybook/vue-vite",
   features: {
     interactionsDebugger: true,
   },
@@ -21,5 +20,8 @@ module.exports = {
     };
     config.base = "./";
     return config;
+  },
+  docsPage: {
+    docs: "automatic",
   },
 };
