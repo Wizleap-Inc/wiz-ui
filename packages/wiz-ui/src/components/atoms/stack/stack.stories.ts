@@ -1,4 +1,4 @@
-import { Story } from "@storybook/vue";
+import { Story } from "@storybook/vue-vite";
 import Vue from "vue";
 import { ref } from "vue";
 

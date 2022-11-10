@@ -2,7 +2,7 @@ import Vue from "vue";
 
 import { THEME } from "./index";
 
-import type { Story } from "@storybook/vue";
+import type { Story } from "@storybook/vue-vite";
 
 export default {
   title: "Variables/Color",

@@ -4,7 +4,7 @@ import { WizIClose } from "../../icons";
 
 import WizTag from "./tag.vue";
 
-import type { Story } from "@storybook/vue";
+import type { Story } from "@storybook/vue-vite";
 
 export default {
   title: "Atoms/Tag",

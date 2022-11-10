@@ -3,7 +3,7 @@ import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
 import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/fontSize";
 import WizText from "./text.vue";
 
-import type { Story } from "@storybook/vue";
+import type { Story } from "@storybook/vue-vite";
 
 export default {
   title: "Atoms/Text",

@@ -2,7 +2,7 @@ import { COLOR_MAP_ACCESSORS } from "./../../../constants/styles/color";
 import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/fontSize";
 import WizHeading from "./heading.vue";
 
-import type { Story } from "@storybook/vue";
+import type { Story } from "@storybook/vue-vite";
 
 export default {
   title: "Atoms/Heading",

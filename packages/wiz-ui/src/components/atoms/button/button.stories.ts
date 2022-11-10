@@ -3,7 +3,7 @@ import { screen, userEvent, waitFor } from "@storybook/testing-library";
 
 import WizButton from "./button.vue";
 
-import type { Story } from "@storybook/vue";
+import type { Story } from "@storybook/vue-vite";
 
 export default {
   title: "Atoms/Button",
