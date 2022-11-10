@@ -8,19 +8,10 @@ export default {
   title: "Atoms/MessageBox",
   component: WizMessageBox,
   argTypes: {
-    information: {
+    type: {
       control: {
-        type: "boolean",
-      },
-    },
-    caution: {
-      control: {
-        type: "boolean",
-      },
-    },
-    warning: {
-      control: {
-        type: "boolean",
+        type: "select",
+        options: ["Information", "Caution", "Warning"],
       },
     },
   },
