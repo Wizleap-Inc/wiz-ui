@@ -36,5 +36,5 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
-      - name: test
+      - name: Test
         run: npm run dev &>/dev/null & sleep 15 && npm run test
