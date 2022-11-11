@@ -1,13 +1,13 @@
 <template>
   <div :class="{
     'wiz-message-box': true,
-    'wiz-message-box--information': type === 'Information',
-    'wiz-message-box--caution': type === 'Caution',
-    'wiz-message-box--warning': type === 'Warning'
+    'wiz-message-box--information': type === 'information',
+    'wiz-message-box--caution': type === 'caution',
+    'wiz-message-box--warning': type === 'warning'
   }">
-    <component v-if="icon" :is="icon" class="wiz-message-box--icon" />
+    <component v-if="icon" :is="icon" class="wiz-message-box__icon" />
     <div>
-      <div class="wiz-message-box--title">{{ title }}</div>
+      <div class="wiz-message-box__title">{{ title }}</div>
       <slot></slot>
     </div>
   </div>
@@ -17,15 +17,16 @@
 import Vue from "vue";
 
 import { THEME } from "@/constants/styles";
+import { SPACING_MAP } from "@/constants/styles/spacing";
 
 interface Props {
-  type: "Information" | "Caution" | "Warning"
+  type: "information" | "caution" | "warning"
   title: string;
   icon?: Vue;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  type: "Information",
+withDefaults(defineProps<Props>(), {
+  type: "information",
   title: "",
 });
 
@@ -36,6 +37,11 @@ const borderYellow = THEME.color.yellow["800"];
 const colorRed = THEME.color.red["300"];
 const borderRed = THEME.color.red["800"];
 const colorGray = THEME.color.gray["700"]
+const borderRadiusXxs = THEME.spacing.xs2;
+const paddingMd = THEME.spacing.md;
+const fontSize = THEME.fontSize.sm
+const marginXs = THEME.spacing.xs
+const marginSm = THEME.spacing.sm
 </script>
 
 <style lang="scss" scoped>
@@ -43,38 +49,37 @@ const colorGray = THEME.color.gray["700"]
   display: flex;
   width: max-content;
   height: max-content;
-  padding: 16px;
+  padding: v-bind(paddingMd);
 
   &--information {
     background: v-bind(colorGreen);
     border: 1px solid v-bind(borderGreen);
-    border-radius: 4px;
+    border-radius: v-bind(borderRadiusXxs);
   }
 
   &--caution {
     background: v-bind(colorYellow);
     border: 1px solid v-bind(borderYellow);
-    border-radius: 4px;
+    border-radius: v-bind(borderRadiusXxs);
   }
 
   &--warning {
     background: v-bind(colorRed);
     border: 1px solid v-bind(borderRed);
-    border-radius: 4px;
+    border-radius: v-bind(borderRadiusXxs);
   }
-}
 
-.wiz-message-box--title {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 8px;
-  color: v-bind(colorGray);
-}
+  &__title {
+    font-weight: 700;
+    font-size: v-bind(fontSize);
+    margin-bottom: v-bind(marginXs);
+    color: v-bind(colorGray);
+  }
 
-.wiz-message-box--icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: v-bind(marginSm);
+  }
 }
 </style>
