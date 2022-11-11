@@ -68,7 +68,7 @@ const computedFontWeight = computed(() => props.fontWeight);
     font-size: 1.5em;
   }
 
-  & svg {
+  & > svg {
     fill: v-bind(computedColor);
   }
 }
