@@ -10,6 +10,7 @@
     :disabled="disabled"
     :value="value"
     @input="onInput"
+    type="text"
   />
 </template>
 
