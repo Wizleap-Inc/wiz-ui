@@ -10,10 +10,10 @@
 <script setup lang="ts">
 import Vue, { computed, withDefaults } from "vue";
 
-import { FONT_SIZE_MAP } from "@/constants/styles/fontSize";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/fontSize";
 import { getColorCss } from "@/utils/styles/color";
+import { getFontSizeCss } from "@/utils/styles/fontSize";
 
 interface Props {
   href: string;
@@ -44,7 +44,7 @@ const computedColor = computed(() => {
 });
 
 const computedFontSize = computed(() => {
-  return FONT_SIZE_MAP[props.fontSize];
+  return getFontSizeCss(props.fontSize);
 });
 
 const computedFontWeight = computed(() => props.fontWeight);
