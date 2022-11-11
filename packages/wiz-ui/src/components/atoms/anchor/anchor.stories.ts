@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
-import { FONT_SIZE_MAP } from "../../../constants/styles/fontSize";
+import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/fontSize";
 import WizIArrowRight from "../../icons/arrowRight.vue";
 
 import WizAnchor from "./anchor.vue";
@@ -12,7 +12,7 @@ export default {
   argTypes: {
     fontSize: {
       control: { type: "select" },
-      options: Object.keys(FONT_SIZE_MAP),
+      options: FONT_SIZE_ACCESSORS,
     },
     fontWeight: {
       control: { type: "select" },
