@@ -10,12 +10,12 @@ on:
 
 env:
   AWS_REGION: ap-northeast-1
-  DEPLOY_PATH: coverage
+  DEPLOY_PATH: packages/wiz-ui/coverage
   DEPLOY_BUCKET: wizleap-engineer-deploy
   DEPLOY_TYPE: vitest
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COVERAGE_FRONTEND_WORKFLOW_URL }}
   DEPLOY_URL_POSTFIX: /index.html
-  BUILD_COMMAND: npm run test:coverage
+  BUILD_COMMAND: npm run test:coverage -w packages/wiz-ui
 
 jobs:
   build:
