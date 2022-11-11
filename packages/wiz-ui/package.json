@@ -56,6 +56,7 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "vue": "^2.7.13"
+    "vue": "^2.7.13",
+    "vue-router": "^3.6.5"
   }
 }

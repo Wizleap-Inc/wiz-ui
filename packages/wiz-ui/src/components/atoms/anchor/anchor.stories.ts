@@ -43,7 +43,7 @@ Default.args = {
 export const Target = Template.bind({});
 Target.args = {
   slot: "リンク名リンク名リンク名リンク名リンク名",
-  href: "/",
+  to: "/",
   target: "_blank",
 };
 
@@ -68,17 +68,17 @@ const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <table>
       <tr>
-        <WizAnchor href="#">
+        <WizAnchor to="#">
           リンク名1
         </WizAnchor>
       </tr>
       <tr>
-        <WizAnchor href="#" fontWeight="bold">
-          リンク名3
+        <WizAnchor to="#" fontWeight="bold">
+          リンク名2
         </WizAnchor>
       </tr>
       <tr>
-        <WizAnchor href="#" :icon="WizIArrowRight">
+        <WizAnchor to="#" :icon="WizIArrowRight">
           リンク名3
         </WizAnchor>
       </tr>

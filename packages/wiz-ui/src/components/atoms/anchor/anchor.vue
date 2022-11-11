@@ -1,5 +1,17 @@
 <template>
-  <a class="wiz-anchor" :href="href" :target="target" :rel="rel">
+  <a v-if="target === '_self'" class="wiz-anchor" :to="to">
+    <span class="wiz-anchor__icon">
+      <component v-if="icon" :is="icon" />
+    </span>
+    <slot />
+  </a>
+  <a
+    v-else
+    class="wiz-anchor"
+    :href="to.toString()"
+    :target="target"
+    :rel="rel"
+  >
     <span class="wiz-anchor__icon">
       <component v-if="icon" :is="icon" />
     </span>
@@ -9,6 +21,7 @@
 
 <script setup lang="ts">
 import Vue, { computed, withDefaults } from "vue";
+import { RouterLinkProps } from "vue-router/types/router";
 
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/fontSize";
@@ -16,7 +29,7 @@ import { getColorCss } from "@/utils/styles/color";
 import { getFontSizeCss } from "@/utils/styles/fontSize";
 
 interface Props {
-  href: string;
+  to: RouterLinkProps["to"];
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: "normal" | "bold";
@@ -25,7 +38,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  href: "#",
+  to: "#",
   color: "blue.800",
   fontSize: "md",
   fontWeight: "normal",
@@ -58,6 +71,7 @@ const computedFontWeight = computed(() => props.fontWeight);
   font-size: v-bind(computedFontSize);
   font-weight: v-bind(computedFontWeight);
   text-decoration: none;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
