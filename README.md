@@ -19,7 +19,7 @@ import 'wiz-ui/dist/wiz-ui.css'
 import components in your component
 
 ```js
-import { WButton } from 'wiz-ui'
+import { WizButton } from 'wiz-ui'
 ```
 
 ## Contributing
@@ -34,5 +34,5 @@ clone the repo
 
 ```bash
 npm ci # install dependencies
-npm run dev # start dev server
+npm run dev # start ui-dev server
 ```
