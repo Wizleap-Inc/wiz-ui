@@ -60,11 +60,7 @@ const computedFontWeight = computed(() => props.fontWeight);
   text-decoration: none;
 
   &:hover {
-    // 未定
-  }
-
-  &:active {
-    // 未定
+    text-decoration: underline;
   }
 
   &__icon {
