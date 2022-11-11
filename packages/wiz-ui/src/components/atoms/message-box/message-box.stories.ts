@@ -1,8 +1,8 @@
+import { StoryFn } from "@storybook/vue";
+
 import { WizIClose } from "../../icons";
 
 import WizMessageBox from "./message-box.vue";
-
-import type { Story } from "@storybook/vue";
 
 export default {
   title: "Atoms/MessageBox",
@@ -11,13 +11,16 @@ export default {
     type: {
       control: {
         type: "select",
-        options: ["Information", "Caution", "Warning"],
+        options: ["information", "caution", "warning"],
       },
+    },
+    expand: {
+      control: { type: "boolean" },
     },
   },
 };
 
-const Template: Story = (args, { argTypes }) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizMessageBox },
   template: `<WizMessageBox v-bind="$props">{{ slot }}</WizMessageBox>`,
@@ -27,20 +30,21 @@ export const Information = Template.bind({});
 Information.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+  type: "information",
 };
 
 export const Caution = Template.bind({});
 Caution.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-  type: "Caution",
+  type: "caution",
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-  type: "Warning",
+  type: "warning",
 };
 
 export const WithIcon = Template.bind({});
@@ -48,4 +52,11 @@ WithIcon.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   icon: WizIClose,
+};
+
+export const Expand = Template.bind({});
+Expand.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+  expand: true,
 };

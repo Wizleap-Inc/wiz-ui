@@ -1,10 +1,13 @@
 <template>
-  <div :class="{
-    'wiz-message-box': true,
-    'wiz-message-box--information': type === 'information',
-    'wiz-message-box--caution': type === 'caution',
-    'wiz-message-box--warning': type === 'warning'
-  }">
+  <div
+    :class="{
+      'wiz-message-box': true,
+      'wiz-message-box--information': type === 'information',
+      'wiz-message-box--caution': type === 'caution',
+      'wiz-message-box--warning': type === 'warning',
+      'wiz-message-box--expand': expand,
+    }"
+  >
     <component v-if="icon" :is="icon" class="wiz-message-box__icon" />
     <div>
       <div class="wiz-message-box__title">{{ title }}</div>
@@ -14,34 +17,41 @@
 </template>
 
 <script setup lang="ts">
-import Vue from "vue";
+import Vue, { computed } from "vue";
 
 import { THEME } from "@/constants/styles";
-import { SPACING_MAP } from "@/constants/styles/spacing";
+import { ColorKeys } from "@/types/styles/color";
+import { getColorCss } from "@/utils/styles/color";
 
 interface Props {
-  type: "information" | "caution" | "warning"
+  type: "information" | "caution" | "warning";
   title: string;
+  color: ColorKeys;
   icon?: Vue;
+  expand?: boolean;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: "information",
   title: "",
+  color: "gray.900",
+  expand: false,
 });
 
+const computedColor = computed(() => getColorCss(props.color));
 const colorGreen = THEME.color.green["300"];
 const borderGreen = THEME.color.green["800"];
 const colorYellow = THEME.color.yellow["300"];
 const borderYellow = THEME.color.yellow["800"];
 const colorRed = THEME.color.red["300"];
 const borderRed = THEME.color.red["800"];
-const colorGray = THEME.color.gray["700"]
+const colorGray = THEME.color.gray["700"];
 const borderRadiusXxs = THEME.spacing.xs2;
 const paddingMd = THEME.spacing.md;
-const fontSize = THEME.fontSize.sm
-const marginXs = THEME.spacing.xs
-const marginSm = THEME.spacing.sm
+const fontSizeSm = THEME.fontSize.sm;
+const fontSizeXl = THEME.fontSize.xl;
+const marginXs = THEME.spacing.xs;
+const marginSm = THEME.spacing.sm;
 </script>
 
 <style lang="scss" scoped>
@@ -69,17 +79,21 @@ const marginSm = THEME.spacing.sm
     border-radius: v-bind(borderRadiusXxs);
   }
 
+  &--expand {
+    width: 100%;
+  }
+
   &__title {
     font-weight: 700;
-    font-size: v-bind(fontSize);
+    font-size: v-bind(fontSizeSm);
     margin-bottom: v-bind(marginXs);
     color: v-bind(colorGray);
   }
 
   &__icon {
-    width: 24px;
-    height: 24px;
+    font-size: v-bind(fontSizeXl);
     margin-right: v-bind(marginSm);
+    fill: v-bind(computedColor);
   }
 }
 </style>
