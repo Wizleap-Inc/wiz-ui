@@ -1,9 +1,9 @@
 <template>
   <input
     :class="{
-      'wiz-input': true,
-      'wiz-input--disabled': disabled,
-      'wiz-input--expand': expand,
+      'wiz-text-input': true,
+      'wiz-text-input--disabled': disabled,
+      'wiz-text-input--expand': expand,
     }"
     :placeholder="placeholder"
     :name="name"
@@ -43,7 +43,7 @@ const spacingMd = THEME.spacing.md;
 </script>
 
 <style lang="scss" scoped>
-.wiz-input {
+.wiz-text-input {
   border: 1px solid v-bind(grey400);
   border-radius: v-bind(spacingXs2);
   padding: v-bind(spacingXs) v-bind(spacingMd);
