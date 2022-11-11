@@ -4,11 +4,11 @@ import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
 import { THEME } from "./../../../constants/styles/index";
-import WizTextInput from "./text-input.vue";
+import WizBaseInput from "./base.vue";
 
 export default {
-  title: "Atoms/TextInput",
-  component: WizTextInput,
+  title: "Atoms/Input/Base",
+  component: WizBaseInput,
   argTypes: {
     value: {
       control: {
@@ -35,8 +35,8 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizTextInput },
-  template: `<WizTextInput v-bind="$props" />`,
+  components: { WizBaseInput },
+  template: `<WizBaseInput v-bind="$props" />`,
 });
 
 export const Default = Template.bind({});
@@ -79,7 +79,7 @@ Test.play = async ({ canvasElement }) => {
 
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizTextInput },
+  components: { WizBaseInput },
   setup() {
     const hoge = ref("");
     return { hoge };
@@ -87,7 +87,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <div>
       <p>入力値：{{ hoge }}</p>
-      <WizTextInput Placeholder="入力してください" v-model="hoge" />
+      <WizBaseInput Placeholder="入力してください" v-model="hoge" />
     </div>
   `,
 });
