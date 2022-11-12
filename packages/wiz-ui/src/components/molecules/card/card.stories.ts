@@ -1,5 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
+import { WizButton } from "@/components/atoms/button";
 import { COLOR_MAP_ACCESSORS } from "@/constants/styles/color";
 import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
 
@@ -37,14 +38,21 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizCard },
-  template: `<WizCard v-bind="$props">{{ slot }}</WizCard>`,
+  components: { WizCard, WizButton },
+  template: `<WizCard v-bind="$props">
+      <template #mainHeaderArea>{{ mainHeaderArea }}</template>
+      <template #subHeaderArea>{{ subHeaderArea }}</template>
+      {{ body }}
+      <template #footer><WizButton>{{ footer }}</WizButton></template>
+    </WizCard>`,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  title: "1回目面談開催予定です",
-  slot: "保存する",
-  babckgroudColor: "white.500",
-  shadow: true,
+  title: "",
+  mainHeaderArea: "mainHeaderAreaスロット",
+  subHeaderArea: "subHeaderAreaスロット",
+  body: "bodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテスト",
+  footer: "保存する",
+  backgroundColor: "white.500",
 };
