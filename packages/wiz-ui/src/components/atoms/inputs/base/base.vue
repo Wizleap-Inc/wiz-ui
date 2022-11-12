@@ -10,7 +10,7 @@
     :disabled="disabled"
     :value="value"
     @input="onInput"
-    type="text"
+    :type="type"
   />
 </template>
 
@@ -22,6 +22,7 @@ interface Props {
   name?: string;
   disabled?: boolean;
   expand?: boolean;
+  type: "text" | "password";
 }
 interface Emit {
   (e: "input", value: string): void;

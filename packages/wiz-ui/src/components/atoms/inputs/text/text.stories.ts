@@ -3,12 +3,13 @@ import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import { THEME } from "./../../../constants/styles/index";
-import WizBaseInput from "./base.vue";
+import { THEME } from "@/constants/styles/index";
+
+import WizTextInput from "./text.vue";
 
 export default {
-  title: "Atoms/Input/Base",
-  component: WizBaseInput,
+  title: "Atoms/Input/Text",
+  component: WizTextInput,
   argTypes: {
     value: {
       control: {
@@ -35,8 +36,8 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizBaseInput },
-  template: `<WizBaseInput v-bind="$props" />`,
+  components: { WizTextInput },
+  template: `<WizTextInput v-bind="$props" />`,
 });
 
 export const Default = Template.bind({});
@@ -79,7 +80,7 @@ Test.play = async ({ canvasElement }) => {
 
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizBaseInput },
+  components: { WizTextInput },
   setup() {
     const hoge = ref("");
     return { hoge };
@@ -87,7 +88,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <div>
       <p>入力値：{{ hoge }}</p>
-      <WizBaseInput Placeholder="入力してください" v-model="hoge" />
+      <WizTextInput Placeholder="入力してください" v-model="hoge" />
     </div>
   `,
 });

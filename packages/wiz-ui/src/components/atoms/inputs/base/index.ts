@@ -1,1 +1,1 @@
-export { default as WizBaseInput } from "./base.vue";
+export { default as PrivateBaseInput } from "./base.vue";

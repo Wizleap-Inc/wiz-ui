@@ -1,15 +1,26 @@
 <template>
-  <div class="wiz-password-input">
-    <WizTextInput v-model="" />
+  <div
+    :class="{
+      'wiz-password-input': true,
+      'wiz-password-input--expand': expand,
+    }"
+  >
+    <PrivateBaseInput
+      v-model="passwordValue"
+      :placeholder="placeholder"
+      :name="name"
+      :disabled="disabled"
+      :expand="expand"
+      :type="isPasswordVisible ? 'text' : 'password'"
+    />
     <div
-      class="wiz-password-input__visible-icon"
+      :class="{
+        'wiz-password-input__visible-icon': true,
+        'wiz-password-input__visible-icon--active': isPasswordVisible,
+      }"
       @click="isPasswordVisible = !isPasswordVisible"
     >
-      <Eye
-        width="md"
-        height="xs"
-        :color="isPasswordVisible ? ACCENT_COLOR : '#C0CCC8'"
-      />
+      <Eye />
     </div>
   </div>
 </template>
@@ -17,34 +28,46 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import Eye from "@/components/atoms/icons/Eye.vue";
-import { WizTextInput } from "@/components/atoms/text-input";
+import { PrivateBaseInput } from "@/components/atoms/inputs/base";
+import Eye from "@/components/icons/eye.vue";
 import { THEME } from "@/constants";
 
-const props = defineProps<{
-  modelValue: string;
+interface Props {
+  value: string;
   placeholder?: string;
   name?: string;
-}>();
+  disabled?: boolean;
+  expand?: boolean;
+}
+
+interface Emit {
+  (e: "input", value: string): void;
+}
+
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
 
 const isPasswordVisible = ref(false);
 
-const emit = defineEmits<{
-  (e: "update:modelValue", value: string): void;
-}>();
-
-const text = computed({
-  get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
+const passwordValue = computed({
+  get: () => props.value,
+  set: (value) => emit("input", value),
 });
 
-const ACCENT_COLOR = THEME.color.green["800"];
+const accentColor = THEME.color.green["800"];
+const defaultColor = THEME.color.gray["400"];
+const fontSizeXl2 = THEME.fontSize.xl2;
+const spacingSm = THEME.spacing.sm;
 </script>
 
 <style lang="scss" scoped>
-.password-input {
+.wiz-password-input {
   position: relative;
-  width: 100%;
+  width: fit-content;
+
+  &--expand {
+    width: 100%;
+  }
 
   &__visible-icon {
     position: absolute;
@@ -52,10 +75,20 @@ const ACCENT_COLOR = THEME.color.green["800"];
     top: 0;
     bottom: 0;
     margin: auto;
-    height: fit-content;
-    width: fit-content;
-    padding: 0.5rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: v-bind(fontSizeXl2);
+    line-height: v-bind(fontSizeXl2);
+    width: v-bind(fontSizeXl2);
+    height: v-bind(fontSizeXl2);
+    padding: v-bind(spacingSm);
+
+    fill: v-bind(defaultColor);
+    &--active > svg {
+      fill: v-bind(accentColor);
+    }
   }
 }
 </style>
