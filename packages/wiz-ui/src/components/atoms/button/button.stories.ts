@@ -8,6 +8,9 @@ export default {
   title: "Atoms/Button",
   component: WizButton,
   argTypes: {
+    disabled: {
+      control: { type: "boolean" },
+    },
     rounded: {
       control: { type: "boolean" },
     },

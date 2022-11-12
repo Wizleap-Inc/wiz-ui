@@ -37,4 +37,4 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Test
-        run: npm run dev &>/dev/null & sleep 15 && npm run test
+        run: npm run dev &>/dev/null & sleep 20 && npm run test

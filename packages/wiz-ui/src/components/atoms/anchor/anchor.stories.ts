@@ -7,6 +7,13 @@ import WizIArrowRight from "../../icons/arrow-right.vue";
 
 import WizAnchor from "./anchor.vue";
 
+const Home = {
+  template: "<div>Home</div>",
+};
+const About = {
+  template: "<div>About</div>",
+};
+
 export default {
   title: "Atoms/Anchor",
   component: WizAnchor,
@@ -30,12 +37,8 @@ export default {
   },
   decorators: [
     StoryRouter([
-      { path: "/", name: "home", component: { template: "<div>Home</div>" } },
-      {
-        path: "/about",
-        name: "about",
-        component: { template: "<div>About</div>" },
-      },
+      { path: "/", name: "home", component: Home },
+      { path: "/about", name: "about", component: About },
     ]),
   ],
 };
