@@ -14,7 +14,7 @@
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ci": "npm run test:unit && npm run test:storybook:ci",
-    "test:storybook:ci": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"yarn build-storybook --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && yarn test-storybook\""
+    "test:storybook:ci": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"storybook build --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && npm run test:storybook\""
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
