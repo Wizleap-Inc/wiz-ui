@@ -48,12 +48,12 @@ const colorYellow800 = THEME.color.yellow["800"];
 const colorRed300 = THEME.color.red["300"];
 const colorRed800 = THEME.color.red["800"];
 const colorGray700 = THEME.color.gray["700"];
-const spacingXxs = THEME.spacing.xs2;
+const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
 const spacingSm = THEME.spacing.sm;
 const spacingMd = THEME.spacing.md;
 const fontSizeSm = THEME.fontSize.sm;
-const fontSizeXl = THEME.fontSize.xl;
+const fontSizeXl2 = THEME.fontSize.xl2;
 </script>
 
 <style lang="scss" scoped>
@@ -66,19 +66,19 @@ const fontSizeXl = THEME.fontSize.xl;
   &--information {
     background: v-bind(colorGreen300);
     border: 1px solid v-bind(colorGreen800);
-    border-radius: v-bind(spacingXxs);
+    border-radius: v-bind(spacingXs2);
   }
 
   &--caution {
     background: v-bind(colorYellow300);
     border: 1px solid v-bind(colorYellow800);
-    border-radius: v-bind(spacingXxs);
+    border-radius: v-bind(spacingXs2);
   }
 
   &--warning {
     background: v-bind(colorRed300);
     border: 1px solid v-bind(colorRed800);
-    border-radius: v-bind(spacingXxs);
+    border-radius: v-bind(spacingXs2);
   }
 
   &--expand {
@@ -88,12 +88,13 @@ const fontSizeXl = THEME.fontSize.xl;
   &__title {
     font-weight: 700;
     font-size: v-bind(fontSizeSm);
+    line-height: v-bind(fontSizeXl2);
     margin-bottom: v-bind(spacingXs);
     color: v-bind(colorGray700);
   }
 
   &__icon {
-    font-size: v-bind(fontSizeXl);
+    font-size: v-bind(fontSizeXl2);
     margin-right: v-bind(spacingSm);
     fill: v-bind(computedColor);
   }

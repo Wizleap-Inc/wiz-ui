@@ -1,5 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 
+import { WizText } from "@/components/atoms/text";
+
 import { WizIClose } from "../../icons";
 
 import WizMessageBox from "./message-box.vue";
@@ -20,8 +22,8 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizMessageBox },
-  template: `<WizMessageBox v-bind="$props">{{ slot }}</WizMessageBox>`,
+  components: { WizMessageBox, WizText },
+  template: `<WizMessageBox v-bind="$props"><WizText>{{ slot }}</WizText></WizMessageBox>`,
 });
 
 export const Information = Template.bind({});
