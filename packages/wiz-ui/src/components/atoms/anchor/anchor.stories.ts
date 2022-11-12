@@ -1,10 +1,27 @@
 import { StoryFn } from "@storybook/vue";
+import StoryRouter from "storybook-vue-router";
 
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
 import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/fontSize";
 import WizIArrowRight from "../../icons/arrow-right.vue";
 
 import WizAnchor from "./anchor.vue";
+
+const Home = () => ({
+  template: `
+    <div>
+      <h1>Home</h1>
+    </div>
+  `,
+});
+
+const About = () => ({
+  template: `
+    <div>
+      <h1>About</h1>
+    </div>
+  `,
+});
 
 export default {
   title: "Atoms/Anchor",
@@ -27,6 +44,12 @@ export default {
       options: ["_blank", "_self"],
     },
   },
+  decorators: [
+    StoryRouter([
+      { path: "/", component: Home },
+      { path: "/about", component: About },
+    ]),
+  ],
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
@@ -43,7 +66,7 @@ Default.args = {
 export const Target = Template.bind({});
 Target.args = {
   slot: "リンク名リンク名リンク名リンク名リンク名",
-  to: "/",
+  to: "/page1",
   target: "_blank",
 };
 
@@ -57,6 +80,46 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   slot: "リンク名リンク名リンク名リンク名リンク名",
   icon: WizIArrowRight,
+};
+
+const VueRouterTemplate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizAnchor },
+  template: `
+  <div>
+    <pre><code>{{ annotation }}</code></pre>
+    <WizAnchor v-bind="$props">{{ slot }}</WizAnchor>
+  </div>
+  `,
+});
+
+export const InternalLinkString = VueRouterTemplate.bind({});
+InternalLinkString.args = {
+  annotation: "to = '/about'",
+  slot: "内部リンクです",
+  to: "/about",
+};
+
+export const InternalLinkObject = VueRouterTemplate.bind({});
+InternalLinkObject.args = {
+  annotation: "to = { name: 'about' }",
+  slot: "内部リンクです",
+  to: { name: "about" },
+};
+
+export const ExternalLink = VueRouterTemplate.bind({});
+ExternalLink.args = {
+  annotation: "to = 'https://www.google.com/'",
+  slot: "外部リンクです",
+  to: "https://google.com",
+};
+
+export const NewTabLink = VueRouterTemplate.bind({});
+NewTabLink.args = {
+  annotation: "to = '/about', target = '_blank'",
+  slot: "新しいタブで開くリンクです",
+  to: "/about",
+  target: "_blank",
 };
 
 const OverviewTemplate: StoryFn = (_, { argTypes }) => ({

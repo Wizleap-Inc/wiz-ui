@@ -1,16 +1,16 @@
 <template>
-  <a v-if="target === '_self'" class="wiz-anchor" :to="to">
+  <RouterLink v-if="isRouterLink" class="wiz-anchor" :to="to">
     <span class="wiz-anchor__icon">
       <component v-if="icon" :is="icon" />
     </span>
     <slot />
-  </a>
+  </RouterLink>
   <a
     v-else
     class="wiz-anchor"
-    :href="to.toString()"
-    :target="target"
-    :rel="rel"
+    :href="typeof to === 'string' ? to : to.path"
+    target="_blank"
+    rel="noopener noreferrer"
   >
     <span class="wiz-anchor__icon">
       <component v-if="icon" :is="icon" />
@@ -45,11 +45,13 @@ const props = withDefaults(defineProps<Props>(), {
   target: "_self",
 });
 
-const rel = computed(() => {
-  if (props.target === "_blank") {
-    return "noopener noreferrer";
-  }
-  return undefined;
+const isRouterLink = computed(() => {
+  // propsのtoがobjectだった時点でLocation遷移なので、RouterLinkを使う
+  if (typeof props.to === "object") return true;
+  // propsのtoがhttpから始まってる時点で外部リンクなので、aタグを使う
+  if (props.to.startsWith("http")) return false;
+  // propsのtargetが_blankだったら新規タブで読み込まないといけないので、aタグ
+  return props.target !== "_blank";
 });
 
 const computedColor = computed(() => {
@@ -80,10 +82,9 @@ const computedFontWeight = computed(() => props.fontWeight);
   &__icon {
     vertical-align: middle;
     font-size: 1.5em;
-  }
-
-  & > svg {
-    fill: v-bind(computedColor);
+    & > svg {
+      fill: v-bind(computedColor);
+    }
   }
 }
 </style>
