@@ -1,5 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 import StoryRouter from "storybook-vue-router";
+import { Component } from "vue";
 
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
 import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/fontSize";
@@ -7,21 +8,12 @@ import WizIArrowRight from "../../icons/arrow-right.vue";
 
 import WizAnchor from "./anchor.vue";
 
-const Home = () => ({
-  template: `
-    <div>
-      <h1>Home</h1>
-    </div>
-  `,
-});
-
-const About = () => ({
-  template: `
-    <div>
-      <h1>About</h1>
-    </div>
-  `,
-});
+const Home: Component = {
+  template: "<div>Home</div>",
+};
+const About: Component = {
+  template: "<div>About</div>",
+};
 
 export default {
   title: "Atoms/Anchor",
@@ -87,6 +79,7 @@ const VueRouterTemplate: StoryFn = (_, { argTypes }) => ({
   components: { WizAnchor },
   template: `
   <div>
+    <p>現在地：{{ $route.path }}</p>
     <pre><code>{{ annotation }}</code></pre>
     <WizAnchor v-bind="$props">{{ slot }}</WizAnchor>
   </div>
@@ -131,19 +124,16 @@ const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <table>
       <tr>
-        <WizAnchor to="#">
-          リンク名1
-        </WizAnchor>
+        <td>Default</td>
+        <td><WizAnchor to="#">リンク名</WizAnchor></td>
       </tr>
       <tr>
-        <WizAnchor to="#" fontWeight="bold">
-          リンク名2
-        </WizAnchor>
+        <td>Bold</td>
+        <td><WizAnchor to="#" fontWeight="bold">リンク名</WizAnchor></td>
       </tr>
       <tr>
-        <WizAnchor to="#" :icon="WizIArrowRight">
-          リンク名3
-        </WizAnchor>
+        <td>With Icon</td>
+        <td><WizAnchor to="#" :icon="WizIArrowRight">リンク名</WizAnchor></td>
       </tr>
     </table>
   `,
