@@ -9,10 +9,8 @@ export default {
   component: WizMessageBox,
   argTypes: {
     type: {
-      control: {
-        type: "select",
-        options: ["information", "caution", "warning"],
-      },
+      control: { type: "select" },
+      options: ["information", "caution", "warning"],
     },
     expand: {
       control: { type: "boolean" },

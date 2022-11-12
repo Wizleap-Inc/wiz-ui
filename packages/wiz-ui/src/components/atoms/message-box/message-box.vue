@@ -20,13 +20,11 @@
 import Vue, { computed } from "vue";
 
 import { THEME } from "@/constants/styles";
-import { ColorKeys } from "@/types/styles/color";
 import { getColorCss } from "@/utils/styles/color";
 
 interface Props {
   type: "information" | "caution" | "warning";
   title: string;
-  color: ColorKeys;
   icon?: Vue;
   expand?: boolean;
 }
@@ -34,11 +32,15 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   type: "information",
   title: "",
-  color: "gray.900",
   expand: false,
 });
 
-const computedColor = computed(() => getColorCss(props.color));
+const computedColor = computed(() => {
+  if (props.type === "caution") return getColorCss("yellow.800");
+  if (props.type === "warning") return getColorCss("red.800");
+  return getColorCss("green.800");
+});
+
 const colorGreen = THEME.color.green["300"];
 const borderGreen = THEME.color.green["800"];
 const colorYellow = THEME.color.yellow["300"];
