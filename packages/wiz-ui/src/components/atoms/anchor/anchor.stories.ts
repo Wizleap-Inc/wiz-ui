@@ -1,6 +1,5 @@
 import { StoryFn } from "@storybook/vue";
 import StoryRouter from "storybook-vue-router";
-import { Component } from "vue";
 
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
 import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/fontSize";
@@ -8,10 +7,10 @@ import WizIArrowRight from "../../icons/arrow-right.vue";
 
 import WizAnchor from "./anchor.vue";
 
-const Home: Component = {
+const Home = {
   template: "<div>Home</div>",
 };
-const About: Component = {
+const About = {
   template: "<div>About</div>",
 };
 
