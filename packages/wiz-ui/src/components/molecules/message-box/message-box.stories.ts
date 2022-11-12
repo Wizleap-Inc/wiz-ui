@@ -5,7 +5,7 @@ import { WizIClose } from "../../icons";
 import WizMessageBox from "./message-box.vue";
 
 export default {
-  title: "Atoms/MessageBox",
+  title: "Molecules/MessageBox",
   component: WizMessageBox,
   argTypes: {
     type: {
