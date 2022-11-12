@@ -8,7 +8,7 @@ export default {
   title: "Molecules/MessageBox",
   component: WizMessageBox,
   argTypes: {
-    type: {
+    variant: {
       control: { type: "select" },
       options: ["information", "caution", "warning"],
     },
@@ -28,21 +28,21 @@ export const Information = Template.bind({});
 Information.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-  type: "information",
+  variant: "information",
 };
 
 export const Caution = Template.bind({});
 Caution.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-  type: "caution",
+  variant: "caution",
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-  type: "warning",
+  variant: "warning",
 };
 
 export const WithIcon = Template.bind({});
