@@ -9,7 +9,8 @@
     "resolve-deps": "rimraf ./node_modules/@types/react",
     "build": "npm run --workspaces build",
     "dev": "npm run --workspaces dev",
-    "test": "npm run --workspaces test"
+    "test": "npm run --workspaces test",
+    "test:ci": "npm run --workspaces test:ci"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
