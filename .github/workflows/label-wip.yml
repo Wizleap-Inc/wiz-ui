@@ -1,4 +1,4 @@
-name: "Add WIP Label"
+name: WIP Labeler
 
 on:
   pull_request:

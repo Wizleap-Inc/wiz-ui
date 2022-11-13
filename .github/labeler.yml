@@ -1,12 +1,12 @@
 🏭 ci:
-  - .github/**/*
+  - ".github/**/*"
 
 ✅ test
-  - **/*.test.ts
+  - "**/*.test.ts"
 
 📝 docs
-  - docs/**/*.md
+  - "docs/**/*.md"
 
 ⬆️ dependencies:
-  - **/package.json
-  - **/package-lock.json
+  - "**/package.json"
+  - "**/package-lock.json"
