@@ -1,10 +1,10 @@
 🏭 ci:
   - ".github/**/*"
 
-✅ test
+✅ test:
   - "**/*.test.ts"
 
-📝 docs
+📝 docs:
   - "docs/**/*.md"
 
 ⬆️ dependencies:
