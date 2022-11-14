@@ -54,5 +54,6 @@ Default.args = {
   subHeaderArea: "subHeaderAreaスロット",
   body: "bodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテスト",
   footer: "保存する",
-  backgroundColor: "white.500",
+  backgroundColor: "white.800",
+  shadow: true,
 };

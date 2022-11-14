@@ -1,5 +1,10 @@
 <template>
-  <div class="wiz-card">
+  <div
+    :class="{
+      'wiz-card': true,
+      'wiz-card--shadow': shadow,
+    }"
+  >
     <WizVStack gap="md">
       <div class="wiz-card__header">
         <WizHStack gap="xs2" class="wiz-card__header-main">
@@ -48,17 +53,16 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const computedPadding = computed(() => {
-  if (props.p) {
-    return getSpacingCSS(props.p);
+  if (props.px && props.py) {
+    return getCoupleSpacingCSS(props.px, props.py);
   }
-  return getCoupleSpacingCSS(props.px, props.py);
+  return getSpacingCSS(props.p);
 });
 
 const computedBackgroundColor = computed(() =>
   getColorCss(props.backgroundColor)
 );
 
-const computedShadow = computed(() => props.shadow);
 const computedAlign = computed(() => props.align);
 const colorGray400 = THEME.color.gray["400"];
 const colorGray700 = THEME.color.gray["700"];
@@ -68,8 +72,6 @@ const shadowMd = THEME.shadow.md;
 </script>
 
 <style lang="scss" scoped>
-$shadow: v-bind(computedShadow);
-
 .wiz-card {
   width: 100%;
   background-color: v-bind(computedBackgroundColor);
@@ -77,6 +79,10 @@ $shadow: v-bind(computedShadow);
   border: 1px solid v-bind(colorGray400);
   border-radius: v-bind(spacingXs2);
   box-sizing: border-box;
+
+  &--shadow {
+    box-shadow: v-bind(shadowMd);
+  }
 
   &__header {
     display: flex;
@@ -96,12 +102,6 @@ $shadow: v-bind(computedShadow);
 
   &__footer {
     text-align: v-bind(computedAlign);
-  }
-}
-
-@if $shadow {
-  .wiz-card {
-    box-shadow: v-bind(shadowMd);
   }
 }
 </style>
