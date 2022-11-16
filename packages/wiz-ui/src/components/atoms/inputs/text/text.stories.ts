@@ -3,11 +3,12 @@ import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import { THEME } from "./../../../constants/styles/index";
-import WizTextInput from "./text-input.vue";
+import { THEME } from "@/constants/styles/index";
+
+import WizTextInput from "./text.vue";
 
 export default {
-  title: "Atoms/TextInput",
+  title: "Atoms/Input/Text",
   component: WizTextInput,
   argTypes: {
     value: {
