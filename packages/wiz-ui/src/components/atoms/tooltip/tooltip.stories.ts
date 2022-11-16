@@ -1,7 +1,5 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizButton } from "../button";
-
 import WizTooltip from "./tooltip.vue";
 
 export default {
@@ -19,11 +17,19 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizTooltip, WizButton },
-  template: `<div style="margin:100px;height:200px"><span style="position:relative;">ホバー<WizTooltip v-bind="$props" /></span></div>`,
+  components: { WizTooltip },
+  template: `<div style="padding:100px;"><span style="position:relative;">テスト<WizTooltip v-bind="$props"/></span></div>`,
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const Oneline = Template.bind({});
+Oneline.args = {
   content: "保険見直し、つみたて・投資、ライフプラン",
+  slot: "テスト",
+};
+
+export const Newline = Template.bind({});
+Newline.args = {
+  content:
+    "保険見直し、つみたて・投資、ライフプラン保険見直し、つみたて・投資、ライフプラン",
+  slot: "テスト",
 };

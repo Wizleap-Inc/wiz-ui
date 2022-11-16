@@ -1,7 +1,9 @@
 <template>
-  <div class="wiz-tooltip" v-show="isShow">
-    <div class="wiz-tooltip__content" v-html="content"></div>
-  </div>
+  <Transition>
+    <span class="wiz-tooltip" v-show="isShow">
+      <span class="wiz-tooltip__content" v-html="content"> </span>
+    </span>
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -27,26 +29,41 @@ const spaceXs2 = THEME.spacing.xs2;
 <style lang="scss" scoped>
 .wiz-tooltip {
   position: absolute;
-  bottom: 30px;
-  width: max-content;
-  background-color: v-bind(colorGray800);
-  border-radius: v-bind(spaceXs2);
-  padding: v-bind(spaceXs);
+  text-align: center;
   z-index: 10;
+  width: 220px;
+  bottom: 180%;
+  left: 50%;
+  margin-left: -110px;
 
   &__content {
-    font-size: v-bind(fontSizeXs2);
+    background-color: v-bind(colorGray800);
     color: v-bind(colorWhite800);
-  }
+    font-size: v-bind(fontSizeXs2);
+    border-radius: v-bind(spaceXs2);
+    padding: v-bind(spaceXs);
+    display: inline-block;
 
-  &::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 95%;
-    border-style: solid;
-    border-width: 9px 5px 0 5px;
-    border-color: v-bind(colorGray800) transparent transparent transparent;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 95%;
+      margin-left: -5px;
+      border-style: solid;
+      border-width: 9px 5px 0 5px;
+      border-color: v-bind(colorGray800) transparent transparent transparent;
+    }
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
