@@ -8,7 +8,6 @@ export default {
 
 export const Overview: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: {},
   template: `
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       <div style="display: flex; flex-direction: column; gap: 0.5rem;">

@@ -70,7 +70,7 @@ jobs:
 
       - name: Deploy story to S3 bucket
         if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
-        run: aws s3 sync ${{ env.DEPLOY_PATH }} s3://${{ env.DEPLOY_BUCKET }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }} --delete
+        run: aws s3 sync --exact-timestamps --delete ${{ env.DEPLOY_PATH }} s3://${{ env.DEPLOY_BUCKET }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}
 
       - name: Notify to Slack Workflow
         if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
