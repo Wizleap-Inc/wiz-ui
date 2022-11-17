@@ -1,0 +1,12 @@
+🏭 ci:
+  - ".github/**/*"
+
+✅ test:
+  - "**/*.test.ts"
+
+📝 docs:
+  - "docs/**/*.md"
+
+⬆️ dependencies:
+  - "**/package.json"
+  - "**/package-lock.json"

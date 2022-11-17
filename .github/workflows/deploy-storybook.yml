@@ -69,9 +69,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy story to S3 bucket
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
         run: aws s3 sync ${{ env.DEPLOY_PATH }} s3://${{ env.DEPLOY_BUCKET }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }} --delete
 
       - name: Notify to Slack Workflow
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
         uses: slackapi/slack-github-action@v1.16.0
         with:
           payload: |
@@ -86,3 +88,12 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ env.NOTIFICATION_WEBHOOK_URL }}
+
+      - name: Comment to Pull Request
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ steps.get_pull_request_info.outputs.pull_request_number }}
+          body: |
+            Storybook URL: ${{ secrets.ENGINEER_DEPLOY_ORIGIN }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}${{ env.DEPLOY_URL_POSTFIX }}
+          reactions: rocket

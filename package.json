@@ -4,10 +4,13 @@
     "format": "npm run format:packages",
     "lint:packages": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
     "lint": "npm run lint:packages",
-    "prepare": "husky install && rimraf ./node_modules/@types/react",
+    "prepare": "husky install && npm run resolve-deps",
+    "prebuild": "npm run resolve-deps",
+    "resolve-deps": "rimraf ./node_modules/@types/react",
     "build": "npm run --workspaces build",
     "dev": "npm run --workspaces dev",
-    "test": "npm run --workspaces test"
+    "test": "npm run --workspaces test",
+    "test:ci": "npm run --workspaces test:ci"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
