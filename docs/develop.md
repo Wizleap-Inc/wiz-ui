@@ -27,9 +27,11 @@ p {
 }
 </style>
 ```
+
 は
+
 ```ts
-const HelloWorld = Vue.defineComponent({
+const HelloWorld = Vue.component({
   template: `
     <div>
       <p>{{ msg }}</p>
@@ -45,6 +47,4 @@ const HelloWorld = Vue.defineComponent({
     }
   `,
 })
-```
-}
 ```
