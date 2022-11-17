@@ -76,11 +76,11 @@ const shadowMd = THEME.shadow.md;
   width: 100%;
   background-color: v-bind(computedBackgroundColor);
   padding: v-bind(computedPadding);
-  border: 1px solid v-bind(colorGray400);
   border-radius: v-bind(spacingXs2);
-  box-sizing: border-box;
 
   &--shadow {
+    border: 1px solid v-bind(colorGray400);
+    box-sizing: border-box;
     box-shadow: v-bind(shadowMd);
   }
 
