@@ -1,23 +1,23 @@
 <template>
-  <Transition>
-    <span class="wiz-tooltip" v-show="isShow">
-      <span class="wiz-tooltip__content" v-html="content"> </span>
+  <div class="wiz-tooltip">
+    <slot></slot>
+    <span class="wiz-tooltip__block">
+      <span class="wiz-tooltip__block-content">
+        {{ content }}
+        <slot v-if="!content" name="tooltip-content" />
+      </span>
     </span>
-  </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
 
 interface Props {
-  content: string;
-  isShow: boolean;
+  content?: string;
 }
 
-withDefaults(defineProps<Props>(), {
-  content: "",
-  isShow: false,
-});
+defineProps<Props>();
 
 const colorGray800 = THEME.color.gray["800"];
 const colorWhite800 = THEME.color.white["800"];
@@ -28,42 +28,45 @@ const spaceXs2 = THEME.spacing.xs2;
 
 <style lang="scss" scoped>
 .wiz-tooltip {
-  position: absolute;
-  text-align: center;
-  z-index: 10;
-  width: 220px;
-  bottom: 180%;
-  left: 50%;
-  margin-left: -110px;
+  position: relative;
+  width: fit-content;
 
-  &__content {
-    background-color: v-bind(colorGray800);
-    color: v-bind(colorWhite800);
-    font-size: v-bind(fontSizeXs2);
-    border-radius: v-bind(spaceXs2);
-    padding: v-bind(spaceXs);
-    display: inline-block;
+  &:hover > &__block {
+    visibility: visible;
+    opacity: 1;
+  }
 
-    &::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 95%;
-      margin-left: -5px;
-      border-style: solid;
-      border-width: 9px 5px 0 5px;
-      border-color: v-bind(colorGray800) transparent transparent transparent;
+  &__block {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 100ms;
+    position: absolute;
+    text-align: center;
+    z-index: 10;
+    width: 220px;
+    bottom: 140%;
+    left: 50%;
+    margin-left: -110px;
+
+    &-content {
+      background-color: v-bind(colorGray800);
+      color: v-bind(colorWhite800);
+      font-size: v-bind(fontSizeXs2);
+      border-radius: v-bind(spaceXs2);
+      padding: v-bind(spaceXs);
+      display: inline-block;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 95%;
+        margin-left: -5px;
+        border-style: solid;
+        border-width: 9px 5px 0 5px;
+        border-color: v-bind(colorGray800) transparent transparent transparent;
+      }
     }
   }
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
 }
 </style>
