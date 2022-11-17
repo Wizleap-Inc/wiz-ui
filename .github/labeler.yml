@@ -4,6 +4,9 @@
 ✅ test:
   - "**/*.test.ts"
 
+🎨 story:
+  - "**/*.stories.ts"
+
 📝 docs:
   - "docs/**/*.md"
 
