@@ -28,11 +28,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-## Dev Setup
-
-clone the repo
-
-```bash
-npm ci # install dependencies
-npm run dev # start ui-dev server
-```
+`
