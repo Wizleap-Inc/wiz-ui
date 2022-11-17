@@ -1,3 +1,5 @@
+import { Z_INDEX_MAP } from "@/constants/styles/z-index";
+
 import { BREAKPOINT_MAP } from "./breakpoint";
 import { COLOR_MAP } from "./color";
 import { FONT_SIZE_MAP } from "./fontSize";
@@ -10,4 +12,5 @@ export const THEME = {
   fontSize: FONT_SIZE_MAP,
   breakpoint: BREAKPOINT_MAP,
   shadow: SHADOW_MAP,
+  zIndex: Z_INDEX_MAP,
 } as const;
