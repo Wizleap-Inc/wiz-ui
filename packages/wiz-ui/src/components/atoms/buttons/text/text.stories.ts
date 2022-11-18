@@ -2,11 +2,11 @@ import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 
-import WizButton from "./button.vue";
+import WizTextButton from "./text.vue";
 
 export default {
   title: "Atoms/Button",
-  component: WizButton,
+  component: WizTextButton,
   argTypes: {
     disabled: {
       control: { type: "boolean" },
@@ -30,8 +30,8 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizButton },
-  template: `<WizButton v-bind="$props">{{ slot }}</WizButton>`,
+  components: { WizTextButton },
+  template: `<WizTextButton v-bind="$props">{{ slot }}</WizTextButton>`,
 });
 
 export const Default = Template.bind({});
@@ -60,15 +60,15 @@ Rounded.args = {
 
 const VariantTemplate: StoryFn = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizButton },
+  components: { WizTextButton },
   template: `
     <table>
       <tr style="border-bottom: 1px solid #ccc;">
-        <td style="padding: 1rem;"><WizButton variant="primary">保存する</WizButton></td>
+        <td style="padding: 1rem;"><WizTextButton variant="primary">保存する</WizTextButton></td>
         <td style="padding: 1rem;">variant = primary</td>
       </tr>
       <tr>
-        <td style="padding: 1rem;"><WizButton variant="sub">保存する</WizButton></td>
+        <td style="padding: 1rem;"><WizTextButton variant="sub">保存する</WizTextButton></td>
         <td style="padding: 1rem;">variant = sub</td>
       </tr>
     </table>
@@ -79,19 +79,19 @@ export const Variant = VariantTemplate.bind({});
 
 const SizeTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizButton },
+  components: { WizTextButton },
   template: `
     <table>
       <tr style="border-bottom: 1px solid #ccc;">
-        <td style="padding: 1rem;"><WizButton size="sm">保存する</WizButton></td>
+        <td style="padding: 1rem;"><WizTextButton size="sm">保存する</WizTextButton></td>
         <td style="padding: 1rem;">size = sm</td>
       </tr>
       <tr>
-        <td style="padding: 1rem;"><WizButton size="md">保存する</WizButton></td>
+        <td style="padding: 1rem;"><WizTextButton size="md">保存する</WizTextButton></td>
         <td style="padding: 1rem;">size = md</td>
       </tr>
       <tr>
-        <td style="padding: 1rem;"><WizButton size="lg">保存する</WizButton></td>
+        <td style="padding: 1rem;"><WizTextButton size="lg">保存する</WizTextButton></td>
         <td style="padding: 1rem;">size = lg</td>
       </tr>
     </table>
