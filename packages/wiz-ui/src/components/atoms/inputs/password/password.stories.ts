@@ -77,13 +77,13 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPasswordInput },
   setup() {
-    const hoge = ref("");
-    return { hoge };
+    const value = ref("");
+    return { value };
   },
   template: `
     <div>
-      <p>入力値：{{ hoge }}</p>
-      <WizPasswordInput Placeholder="パスワードを入力" v-model="hoge" />
+      <p>入力値：{{ value }}</p>
+      <WizPasswordInput Placeholder="パスワードを入力" v-model="value" />
     </div>
   `,
 });
