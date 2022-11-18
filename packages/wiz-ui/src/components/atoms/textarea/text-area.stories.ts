@@ -5,11 +5,11 @@ import { ref } from "vue";
 
 import { THEME } from "@/constants/styles/index";
 
-import WizTextInput from "./text.vue";
+import WizTextArea from "./text-area.vue";
 
 export default {
-  title: "Atoms/Input/Text",
-  component: WizTextInput,
+  title: "Atoms/TextArea",
+  component: WizTextArea,
   argTypes: {
     value: {
       control: {
@@ -36,12 +36,12 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizTextInput },
+  components: { WizTextArea },
   setup() {
     const value = ref("");
     return { value };
   },
-  template: `<WizTextInput v-bind="$props" v-model="value" />`,
+  template: `<WizTextArea v-bind="$props" v-model="value" />`,
 });
 
 export const Default = Template.bind({});
@@ -70,21 +70,21 @@ Test.args = {
 
 Test.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const input = canvas.getByPlaceholderText("入力してください");
-  userEvent.click(input);
-  await waitFor(() => expect(input).toHaveFocus());
+  const textarea = canvas.getByPlaceholderText("入力してください");
+  userEvent.click(textarea);
+  await waitFor(() => expect(textarea).toHaveFocus());
   await waitFor(() =>
-    expect(input).toHaveStyle(`border: 1px solid ${THEME.color.green[800]};`)
+    expect(textarea).toHaveStyle(`border: 1px solid ${THEME.color.green[800]};`)
   );
-  userEvent.type(input, "Hoge");
-  await waitFor(() => expect(input).toHaveValue("Hoge"));
-  userEvent.clear(input);
-  await waitFor(() => expect(input).toHaveValue(""));
+  userEvent.type(textarea, "Hoge");
+  await waitFor(() => expect(textarea).toHaveValue("Hoge"));
+  userEvent.clear(textarea);
+  await waitFor(() => expect(textarea).toHaveValue(""));
 };
 
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizTextInput },
+  components: { WizTextArea },
   setup() {
     const value = ref("");
     return { value };
@@ -92,7 +92,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <div>
       <p>入力値：{{ value }}</p>
-      <WizTextInput Placeholder="入力してください" v-model="value" />
+      <WizTextArea Placeholder="入力してください" v-model="value" />
     </div>
   `,
 });
