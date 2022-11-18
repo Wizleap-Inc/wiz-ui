@@ -7,6 +7,12 @@ on:
     branches-ignore:
       - "main"
       - "develop"
+  push:
+    paths:
+      - "**/*.test.ts"
+    branches-ignore:
+      - "main"
+      - "develop"
 
 env:
   AWS_REGION: ap-northeast-1
@@ -88,3 +94,12 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ env.NOTIFICATION_WEBHOOK_URL }}
+
+      - name: Comment to Pull Request
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ steps.get_pull_request_info.outputs.pull_request_number }}
+          body: |
+            Coverage URL: (${{ secrets.ENGINEER_DEPLOY_ORIGIN }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}${{ env.DEPLOY_URL_POSTFIX }})
+          reactions: rocket

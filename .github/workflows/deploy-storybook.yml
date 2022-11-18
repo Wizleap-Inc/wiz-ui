@@ -7,6 +7,12 @@ on:
     branches-ignore:
       - "main"
       - "develop"
+  pull_request:
+    paths:
+      - "**/*.stories.ts"
+    branches-ignore:
+      - "main"
+      - "develop"
 
 env:
   AWS_REGION: ap-northeast-1
