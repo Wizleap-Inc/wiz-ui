@@ -62,16 +62,12 @@ const VariantTemplate: StoryFn = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextButton },
   template: `
-    <table>
-      <tr style="border-bottom: 1px solid #ccc;">
-        <td style="padding: 1rem;"><WizTextButton variant="primary">保存する</WizTextButton></td>
-        <td style="padding: 1rem;">variant = primary</td>
-      </tr>
-      <tr>
-        <td style="padding: 1rem;"><WizTextButton variant="sub">保存する</WizTextButton></td>
-        <td style="padding: 1rem;">variant = sub</td>
-      </tr>
-    </table>
+    <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <WizTextButton variant="primary">保存する</WizTextButton>
+      <span>variant = primary</span>
+      <WizTextButton variant="sub">保存する</WizTextButton>
+      <span>variant = sub</span>
+    </div>
   `,
 });
 
@@ -81,20 +77,14 @@ const SizeTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextButton },
   template: `
-    <table>
-      <tr style="border-bottom: 1px solid #ccc;">
-        <td style="padding: 1rem;"><WizTextButton size="sm">保存する</WizTextButton></td>
-        <td style="padding: 1rem;">size = sm</td>
-      </tr>
-      <tr>
-        <td style="padding: 1rem;"><WizTextButton size="md">保存する</WizTextButton></td>
-        <td style="padding: 1rem;">size = md</td>
-      </tr>
-      <tr>
-        <td style="padding: 1rem;"><WizTextButton size="lg">保存する</WizTextButton></td>
-        <td style="padding: 1rem;">size = lg</td>
-      </tr>
-    </table>
+    <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <WizTextButton size="sm">保存する</WizTextButton>
+      <span>size = sm</span>
+      <WizTextButton size="md">保存する</WizTextButton>
+      <span>size = md</span>
+      <WizTextButton size="lg">保存する</WizTextButton>
+      <span>size = lg</span>
+    </div>
   `,
 });
 
