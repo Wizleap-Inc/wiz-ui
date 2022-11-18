@@ -24,7 +24,7 @@ env:
   BUILD_COMMAND: npm run test:coverage -w packages/wiz-ui
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-20.04
 
     strategy:
