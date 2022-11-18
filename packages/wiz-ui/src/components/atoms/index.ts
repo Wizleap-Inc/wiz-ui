@@ -1,4 +1,4 @@
-export * from "./button";
+export * from "./buttons";
 export * from "./heading";
 export * from "./stack";
 export * from "./text";

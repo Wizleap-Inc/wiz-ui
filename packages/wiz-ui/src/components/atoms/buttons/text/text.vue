@@ -1,15 +1,15 @@
 <template>
   <button
     :class="{
-      'wiz-button': true,
-      'wiz-button--variant-primary': variant === 'primary',
-      'wiz-button--variant-sub': variant === 'sub',
-      'wiz-button--disabled': disabled,
-      'wiz-button--round': rounded,
-      'wiz-button--expand': expand,
-      'wiz-button--size-sm': size === 'sm',
-      'wiz-button--size-md': size === 'md',
-      'wiz-button--size-lg': size === 'lg',
+      'wiz-text-button': true,
+      'wiz-text-button--variant-primary': variant === 'primary',
+      'wiz-text-button--variant-sub': variant === 'sub',
+      'wiz-text-button--disabled': disabled,
+      'wiz-text-button--round': rounded,
+      'wiz-text-button--expand': expand,
+      'wiz-text-button--size-sm': size === 'sm',
+      'wiz-text-button--size-md': size === 'md',
+      'wiz-text-button--size-lg': size === 'lg',
     }"
     @click="onClick"
   >
@@ -63,7 +63,7 @@ const fontSizeMd = THEME.fontSize["md"];
 </script>
 
 <style lang="scss" scoped>
-.wiz-button {
+.wiz-text-button {
   width: fit-content;
   font-weight: bold;
   padding: v-bind(padding);
