@@ -5,3 +5,4 @@ export * from "./text";
 export * from "./tag";
 export * from "./tooltip";
 export * from "./inputs";
+export * from "./anchor";

@@ -38,7 +38,6 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  to: "#",
   color: "blue.800",
   fontSize: "md",
   fontWeight: "normal",
