@@ -5,7 +5,7 @@ import { StoryFn } from "@storybook/vue";
 import WizTextButton from "./text.vue";
 
 export default {
-  title: "Atoms/Button",
+  title: "Atoms/Buttons/Text",
   component: WizTextButton,
   argTypes: {
     disabled: {
