@@ -9,8 +9,8 @@
     "resolve-deps": "rimraf ./node_modules/@types/react",
     "build": "npm run --workspaces build",
     "dev": "npm run --workspaces dev",
-    "test": "npm run --workspaces test",
-    "test:ci": "npm run --workspaces test:ci"
+    "test": "npm run -w packages/* test",
+    "test:ci": "npm run -w packages/* test:ci"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
@@ -19,7 +19,8 @@
     ]
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.42.1",

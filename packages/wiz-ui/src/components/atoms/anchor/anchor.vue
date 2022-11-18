@@ -8,7 +8,7 @@
   <a
     v-else
     class="wiz-anchor"
-    :href="typeof to === 'string' ? to : to.path"
+    :href="typeof to === 'object' ? to.path : to"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -38,7 +38,6 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  to: "#",
   color: "blue.800",
   fontSize: "md",
   fontWeight: "normal",
@@ -46,6 +45,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const isRouterLink = computed(() => {
+  if (props.to === undefined) return false;
   // propsのtoがobjectだった時点でLocation遷移なので、RouterLinkを使う
   if (typeof props.to === "object") return true;
   // propsのtoがhttpから始まってる時点で外部リンクなので、aタグを使う
