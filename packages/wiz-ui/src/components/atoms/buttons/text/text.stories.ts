@@ -64,9 +64,9 @@ const VariantTemplate: StoryFn = (args, { argTypes }) => ({
   template: `
     <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
       <WizTextButton variant="primary">保存する</WizTextButton>
-      <span>variant = primary</span>
+      <div>variant = primary</div>
       <WizTextButton variant="sub">保存する</WizTextButton>
-      <span>variant = sub</span>
+      <div>variant = sub</div>
     </div>
   `,
 });
@@ -79,11 +79,11 @@ const SizeTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
       <WizTextButton size="sm">保存する</WizTextButton>
-      <span>size = sm</span>
+      <div>size = sm</div>
       <WizTextButton size="md">保存する</WizTextButton>
-      <span>size = md</span>
+      <div>size = md</div>
       <WizTextButton size="lg">保存する</WizTextButton>
-      <span>size = lg</span>
+      <div>size = lg</div>
     </div>
   `,
 });
