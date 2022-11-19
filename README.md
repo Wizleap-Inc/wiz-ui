@@ -5,7 +5,7 @@ Original Vue@^2.7 UI Library at Wizleap Inc.
 ## Installation
 
 ```bash
-npm install wiz-ui
+npm install @wizleap-inc/wiz-ui
 ```
 
 ## Usage
@@ -13,13 +13,13 @@ npm install wiz-ui
 import stylesheet in your main.js
 
 ```js
-import 'wiz-ui/dist/wiz-ui.css'
+import '@wizleap-inc/wiz-ui/dist/wiz-ui.css'
 ```
 
 import components in your component
 
 ```js
-import { WButton } from 'wiz-ui'
+import { WizButton } from '@wizleap-inc/wiz-ui'
 ```
 
 ## Contributing
@@ -28,11 +28,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-## Dev Setup
-
-clone the repo
-
-```bash
-npm ci # install dependencies
-npm run dev # start dev server
-```
+`

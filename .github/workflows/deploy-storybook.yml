@@ -6,19 +6,25 @@ on:
       - "**/*.stories.ts"
     branches-ignore:
       - "main"
-      - "development"
+      - "develop"
+  pull_request:
+    paths:
+      - "**/*.stories.ts"
+    branches-ignore:
+      - "main"
+      - "develop"
 
 env:
   AWS_REGION: ap-northeast-1
-  DEPLOY_PATH: storybook-static
+  DEPLOY_PATH: packages/wiz-ui/storybook-static
   DEPLOY_BUCKET: wizleap-engineer-deploy
   DEPLOY_TYPE: storybook
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COMPONENT_STORY_WORKFLOW_URL }}
   DEPLOY_URL_POSTFIX: /index.html
-  BUILD_COMMAND: npm run build-storybook
+  BUILD_COMMAND: npm run build:storybook -w packages/wiz-ui
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-20.04
 
     strategy:
@@ -69,9 +75,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy story to S3 bucket
-        run: aws s3 sync ${{ env.DEPLOY_PATH }} s3://${{ env.DEPLOY_BUCKET }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }} --delete
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
+        run: aws s3 sync --exact-timestamps --delete ${{ env.DEPLOY_PATH }} s3://${{ env.DEPLOY_BUCKET }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}
 
       - name: Notify to Slack Workflow
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
         uses: slackapi/slack-github-action@v1.16.0
         with:
           payload: |
@@ -86,3 +94,12 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ env.NOTIFICATION_WEBHOOK_URL }}
+
+      - name: Comment to Pull Request
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ steps.get_pull_request_info.outputs.pull_request_number }}
+          body: |
+            Storybook URL: ${{ secrets.ENGINEER_DEPLOY_ORIGIN }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}${{ env.DEPLOY_URL_POSTFIX }}
+          reactions: rocket

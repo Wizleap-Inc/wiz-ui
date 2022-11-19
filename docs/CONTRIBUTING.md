@@ -1,0 +1,31 @@
+# Contribution Guide
+
+## IssueFrow
+
+このリポジトリはIssueFrowを使用しています。
+[Todos](https://github.com/Wizleap-Inc/wiz-ui/issues/2)
+に制作中のものが書き溜めてあります。
+
+### 開発前
+
+開発時はTodoListからConvert to Issueを選択して**Issueを作成**し、自分をAssigneeにしてください。
+ブランチ名は任意ですが、`feat/*`という形式にしてfeatのサブブランチとして作成してください。
+
+### 開発
+
+当リポジトリActionにはPRを作成時に自動でstorybookをビルドし、S3にアップロードするものがあります。
+そのため、開発中に一度複数人エンジニアないしデザイナーと共有したい場合は、PRを作成してください。
+
+### PR作成
+
+PRを作成する際は、以下の項目を必ず記載してください。これはPULL_REQUEST_TEMPLATE.mdに記載されています。
+
+```text
+resolve: #[Issue番号]
+```
+
+開発前にIssueを作成していると思うので、そのIssue番号を記載してください。
+Issue番号を記載することで、PRがマージされた際にIssueが自動でクローズされ、進捗が確認できます。
+
+PRには**ラベルを必ずつけて**ください。
+Auto Labelerが動作しているので、PRを作成すると自動で一部ラベルがつきますが、全てを検出できているわけではないので、必ず確認してください。

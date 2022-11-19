@@ -1,0 +1,16 @@
+name: WIP Labeler
+
+on:
+  pull_request:
+    types: [opened, converted_to_draft]
+jobs:
+  add_wip_label:
+    if: github.event.pull_request.draft == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: |
+            🚧 wip
