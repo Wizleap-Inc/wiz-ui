@@ -68,6 +68,12 @@ Disabled.args = {
   placeholder: "入力してください",
 };
 
+export const Row = Template.bind({});
+Row.args = {
+  rows: 5,
+  placeholder: "入力してください",
+};
+
 export const Test = Template.bind({});
 Test.args = {
   placeholder: "入力してください",
