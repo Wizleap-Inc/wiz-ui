@@ -49,4 +49,5 @@ export const Bold = Template.bind({});
 Bold.args = {
   as: "p",
   bold: true,
+  slot: "これはテキストです。",
 };
