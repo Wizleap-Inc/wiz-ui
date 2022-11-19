@@ -1,6 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
+import { WizBox } from "@/components/atoms";
 import { WizChatCard } from "@/components/organisms";
 
 export default {
@@ -27,8 +28,13 @@ export default {
         type: "object",
       },
     },
-    close: {
-      action: "close",
+    isOpen: {
+      control: {
+        type: "boolean",
+      },
+    },
+    toggleDisplay: {
+      action: "toggleDisplay",
     },
     input: {
       action: "input",
@@ -39,18 +45,7 @@ export default {
   },
 };
 
-const Template: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizChatCard },
-  setup() {
-    const newMessage = ref("");
-    return { newMessage };
-  },
-  template: `<WizChatCard v-bind="$props" v-model="newMessage" @close="close" @input="input" @submit="submit" />`,
-});
-
-export const Default = Template.bind({});
-Default.args = {
+const templateArgs = {
   username: "マネーキャリアスタッフ",
   placeholder: "入力してください",
   messages: [
@@ -70,3 +65,41 @@ Default.args = {
     },
   ],
 };
+
+const Template: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizChatCard, WizBox },
+  setup() {
+    const newMessage = ref("");
+    return { newMessage };
+  },
+  template: `<WizChatCard v-bind="$props" v-model="newMessage" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />`,
+});
+
+export const Open = Template.bind({});
+Open.args = {
+  ...templateArgs,
+  isOpen: true,
+};
+
+export const Closed = Template.bind({});
+Closed.args = {
+  ...templateArgs,
+  isOpen: false,
+};
+
+const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizChatCard, WizBox },
+  setup() {
+    const isFloatingMenuOpen = ref(false);
+    const newMessage = ref("");
+    const toggleDisplay = () =>
+      (isFloatingMenuOpen.value = !isFloatingMenuOpen.value);
+    return { newMessage, isFloatingMenuOpen, toggleDisplay };
+  },
+  template: `<WizChatCard v-bind="$props" v-model="newMessage" :isOpen="isFloatingMenuOpen" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />`,
+});
+
+export const Playground = PlaygroundTemplate.bind({});
+Playground.args = templateArgs;

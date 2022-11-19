@@ -1,51 +1,61 @@
 <template>
-  <WizCard shadow :title="username">
-    <template #subHeaderArea>
-      <WizIconButton
-        variant="transparent"
-        :icon="WizIExpandMore"
-        @click="onClose"
-      />
-    </template>
-    <WizDivider />
-    <WizVStack gap="xs" height="320px" overflow="scroll" ref="chatListRef">
-      <WizChatItem
-        v-for="(item, i) in messages"
-        :key="i"
-        :message="item.message"
-        :username="item.username"
-        :sender="item.sender"
-        :maxChatItemWidth="'192px'"
-      />
-    </WizVStack>
-    <template #footer>
-      <WizChatForm
-        v-model="textValue"
-        @input="onInput"
-        @submit="onSubmit"
-        :placeholder="placeholder"
-      />
-    </template>
-  </WizCard>
+  <WizBox
+    position="fixed"
+    :top="isOpen ? 'calc(100% - 506.5px)' : 'calc(100% - 56px)'"
+    right="1.5rem"
+    width="20rem"
+    transition="top 0.3s ease-in-out"
+  >
+    <WizCard shadow :title="username">
+      <template #subHeaderArea>
+        <WizIcon
+          size="xl2"
+          color="gray.500"
+          :icon="isOpen ? WizIExpandMore : WizIExpandLess"
+        />
+      </template>
+      <WizDivider />
+      <WizVStack gap="xs" height="320px" overflow="scroll" ref="chatListRef">
+        <WizChatItem
+          v-for="(item, i) in messages"
+          :key="i"
+          :message="item.message"
+          :username="item.username"
+          :sender="item.sender"
+          :maxChatItemWidth="'192px'"
+        />
+      </WizVStack>
+      <template #footer>
+        <WizChatForm
+          v-model="textValue"
+          @input="onInput"
+          @submit="onSubmit"
+          :placeholder="placeholder"
+        />
+      </template>
+    </WizCard>
+    <button class="wiz-chat-card__open-btn" @click="toggleDisplay" />
+  </WizBox>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 
-import { WizDivider, WizIconButton, WizVStack } from "@/components/atoms";
-import { WizIExpandMore } from "@/components/icons";
+import { WizBox, WizDivider, WizIcon, WizVStack } from "@/components/atoms";
+import { WizIExpandMore, WizIExpandLess } from "@/components/icons";
 import { WizCard, WizChatForm, WizChatItem } from "@/components/molecules";
+import { THEME } from "@/constants";
 
 interface Props {
   value: string;
   username: string;
   placeholder?: string;
-  maxChatItemWidth?: string;
   messages: {
     message: string;
     sender: "me" | "other";
     username?: string;
   }[];
+  isOpen: boolean;
 }
 
 const props = defineProps<Props>();
@@ -53,7 +63,7 @@ const props = defineProps<Props>();
 interface Emit {
   (e: "input", value: string): void;
   (e: "submit"): void;
-  (e: "close"): void;
+  (e: "toggleDisplay"): void;
 }
 
 const emits = defineEmits<Emit>();
@@ -74,5 +84,21 @@ const onInput = () => emits("input", textValue.value);
 
 const onSubmit = () => emits("submit");
 
-const onClose = () => emits("close");
+const toggleDisplay = () => emits("toggleDisplay");
+
+const titleHeight = THEME.spacing.xl;
+const titlePadding = THEME.spacing.md;
 </script>
+
+<style lang="scss" scoped>
+.wiz-chat-card__open-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(v-bind(titleHeight) + v-bind(titlePadding) * 2);
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+</style>
