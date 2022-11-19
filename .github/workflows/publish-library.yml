@@ -33,7 +33,7 @@ jobs:
         run: npm run build:lib -w ${{ env.PUBLISH_WORKSPACE }}
 
       - name: publish
-        run: npm run check:lib-publish ${{ env.PUBLISH_WORKSPACE }} && npm publish --access public -w ${{ env.PUBLISH_WORKSPACE }} || echo "No need to publish"
+        run: npm run check:lib-publish -w ${{ env.PUBLISH_WORKSPACE }} && npm publish --access public -w ${{ env.PUBLISH_WORKSPACE }} || echo "No need to publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
