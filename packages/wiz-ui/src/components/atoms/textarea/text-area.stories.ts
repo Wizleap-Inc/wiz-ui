@@ -16,6 +16,11 @@ export default {
         type: "text",
       },
     },
+    name: {
+      control: {
+        type: "text",
+      },
+    },
     placeholder: {
       control: {
         type: "text",
@@ -41,7 +46,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const value = ref("");
     return { value };
   },
-  template: `<WizTextArea v-bind="$props" v-model="value" />`,
+  template: `<WizTextArea v-bind="$props" v-model="value" name="text-area" />`,
 });
 
 export const Default = Template.bind({});
@@ -92,7 +97,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <div>
       <p>入力値：{{ value }}</p>
-      <WizTextArea Placeholder="入力してください" v-model="value" />
+      <WizTextArea Placeholder="入力してください" v-model="value" name="text-area" />
     </div>
   `,
 });

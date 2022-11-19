@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizButton } from "@/components/atoms/button";
+import { WizTextButton } from "@/components/atoms/buttons/text";
 import { COLOR_MAP_ACCESSORS } from "@/constants/styles/color";
 import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
 
@@ -38,12 +38,12 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizCard, WizButton },
+  components: { WizCard, WizTextButton },
   template: `<WizCard v-bind="$props">
       <template #mainHeaderArea>{{ mainHeaderArea }}</template>
       <template #subHeaderArea>{{ subHeaderArea }}</template>
       {{ body }}
-      <template #footer><WizButton>{{ footer }}</WizButton></template>
+      <template #footer><WizTextButton>{{ footer }}</WizTextButton></template>
     </WizCard>`,
 });
 
