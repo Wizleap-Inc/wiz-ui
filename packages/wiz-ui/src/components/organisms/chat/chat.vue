@@ -1,8 +1,14 @@
 <template>
-  <WizCard shadow>
-    <WizChatHeader :username="username" @close="onClose" />
+  <WizCard shadow :title="username">
+    <template #subHeaderArea>
+      <WizIconButton
+        variant="transparent"
+        :icon="WizIExpandMore"
+        @click="onClose"
+      />
+    </template>
     <WizDivider />
-    <WizVStack gap="xs">
+    <WizVStack gap="xs" height="320px" overflow="scroll" ref="chatListRef">
       <WizChatItem
         v-for="(item, i) in messages"
         :key="i"
@@ -11,25 +17,23 @@
         :sender="item.sender"
       />
     </WizVStack>
-    <WizChatForm
-      v-model="textValue"
-      @input="onInput"
-      @submit="onSubmit"
-      :placeholder="placeholder"
-    />
+    <template #footer>
+      <WizChatForm
+        v-model="textValue"
+        @input="onInput"
+        @submit="onSubmit"
+        :placeholder="placeholder"
+      />
+    </template>
   </WizCard>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 
-import { WizDivider, WizVStack } from "@/components/atoms";
-import {
-  WizCard,
-  WizChatForm,
-  WizChatHeader,
-  WizChatItem,
-} from "@/components/molecules";
+import { WizDivider, WizIconButton, WizVStack } from "@/components/atoms";
+import { WizIExpandMore } from "@/components/icons";
+import { WizCard, WizChatForm, WizChatItem } from "@/components/molecules";
 
 interface Props {
   value: string;
@@ -51,6 +55,13 @@ interface Emit {
 }
 
 const emits = defineEmits<Emit>();
+
+const chatListRef = ref<InstanceType<typeof WizVStack>>();
+
+onMounted(() => {
+  if (!chatListRef.value) return;
+  chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
+});
 
 const textValue = computed({
   get: () => props.value,

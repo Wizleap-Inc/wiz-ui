@@ -19,7 +19,7 @@
         </WizHStack>
         <slot name="subHeaderArea"></slot>
       </div>
-      <slot></slot>
+      <slot v-if="slots.default" />
       <div class="wiz-card__footer" v-if="slots.footer">
         <slot name="footer"></slot>
       </div>

@@ -35,6 +35,7 @@ const color = computed(() => getColorCss(props.color));
 <style lang="scss" scoped>
 .wiz-divider {
   border: 0;
+  margin: 0;
   border-color: v-bind(color);
 
   &--variant {

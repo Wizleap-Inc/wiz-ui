@@ -43,9 +43,8 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizChat },
   setup() {
-    const messages = ref([]);
     const newMessage = ref("");
-    return { messages, newMessage };
+    return { newMessage };
   },
   template: `<WizChat v-bind="$props" v-model="newMessage" @close="close" @input="input" @submit="submit" />`,
 });
