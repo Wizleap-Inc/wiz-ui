@@ -48,13 +48,16 @@ interface Props {
   backgroundColor?: ColorKeys;
   shadow?: boolean;
   border?: boolean;
+  borderColor?: ColorKeys;
   align?: "start" | "center" | "end";
   fit?: boolean;
+  maxWidth?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   p: "md",
   backgroundColor: "white.800",
+  borderColor: "gray.400",
   shadow: false,
   border: false,
   align: "end",
@@ -73,17 +76,20 @@ const computedBackgroundColor = computed(() =>
   getColorCss(props.backgroundColor)
 );
 
+const computedBorderColor = computed(() => getColorCss(props.borderColor));
+
 const computedAlign = computed(() => props.align);
-const colorGray400 = THEME.color.gray["400"];
 const colorGray700 = THEME.color.gray["700"];
 const fontSizeMd = THEME.fontSize.md;
 const spacingXs2 = THEME.spacing.xs2;
 const shadowMd = THEME.shadow.md;
+const maxWidth = computed(() => props.maxWidth);
 </script>
 
 <style lang="scss" scoped>
 .wiz-card {
   width: 100%;
+  max-width: v-bind(maxWidth);
   background-color: v-bind(computedBackgroundColor);
   padding: v-bind(computedPadding);
   border-radius: v-bind(spacingXs2);
@@ -94,7 +100,7 @@ const shadowMd = THEME.shadow.md;
   }
 
   &--border {
-    border: 1px solid v-bind(colorGray400);
+    border: 1px solid v-bind(computedBorderColor);
   }
 
   &--fit {

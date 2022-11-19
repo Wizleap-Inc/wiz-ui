@@ -15,6 +15,7 @@
         :message="item.message"
         :username="item.username"
         :sender="item.sender"
+        :maxChatItemWidth="'192px'"
       />
     </WizVStack>
     <template #footer>
@@ -39,6 +40,7 @@ interface Props {
   value: string;
   username: string;
   placeholder?: string;
+  maxChatItemWidth?: string;
   messages: {
     message: string;
     sender: "me" | "other";

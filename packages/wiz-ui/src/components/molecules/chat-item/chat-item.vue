@@ -7,7 +7,16 @@
       color="gray.600"
       >{{ username }}</WizText
     >
-    <WizCard border fit px="xs" py="md">{{ message }}</WizCard>
+    <WizCard
+      border
+      fit
+      px="xs"
+      py="md"
+      borderColor="gray.300"
+      :maxWidth="maxChatItemWidth"
+    >
+      <WizText as="span" font-size="xs" color="gray.700">{{ message }}</WizText>
+    </WizCard>
   </WizVStack>
 </template>
 
@@ -19,6 +28,7 @@ interface Props {
   sender: "me" | "other";
   username?: string;
   message: string;
+  maxChatItemWidth?: string;
 }
 
 withDefaults(defineProps<Props>(), {

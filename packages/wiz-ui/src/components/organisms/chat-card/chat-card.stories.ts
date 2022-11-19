@@ -57,29 +57,16 @@ Default.args = {
     {
       message: "こんにちは",
       sender: "other",
-      username: "相手の名前",
+      username: "マネーキャリアスタッフ",
     },
     {
-      message: "こんにちは",
+      message: "テキストテキストテキストテキスト",
       sender: "me",
     },
     {
-      message: "元気ですか",
+      message: "テキストテキストテキストテキスト",
       sender: "other",
-      username: "相手の名前",
-    },
-    {
-      message: "元気です",
-      sender: "me",
-    },
-    {
-      message: "そうですか",
-      sender: "other",
-      username: "相手の名前",
-    },
-    {
-      message: "はい",
-      sender: "me",
+      username: "マネーキャリアスタッフ",
     },
   ],
 };
