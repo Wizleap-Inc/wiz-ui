@@ -1,11 +1,11 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import { WizChat } from "@/components/organisms";
+import { WizChatCard } from "@/components/organisms";
 
 export default {
-  title: "Organisms/Chat",
-  component: WizChat,
+  title: "Organisms/Chat/Card",
+  component: WizChatCard,
   argTypes: {
     value: {
       control: {
@@ -41,12 +41,12 @@ export default {
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizChat },
+  components: { WizChatCard },
   setup() {
     const newMessage = ref("");
     return { newMessage };
   },
-  template: `<WizChat v-bind="$props" v-model="newMessage" @close="close" @input="input" @submit="submit" />`,
+  template: `<WizChatCard v-bind="$props" v-model="newMessage" @close="close" @input="input" @submit="submit" />`,
 });
 
 export const Default = Template.bind({});
