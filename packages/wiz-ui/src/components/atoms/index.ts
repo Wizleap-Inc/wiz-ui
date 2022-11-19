@@ -7,3 +7,4 @@ export * from "./tooltip";
 export * from "./inputs";
 export * from "./anchor";
 export * from "./textarea";
+export * from "./divider";

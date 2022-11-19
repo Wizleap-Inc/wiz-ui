@@ -3,10 +3,15 @@
     :class="{
       'wiz-card': true,
       'wiz-card--shadow': shadow,
+      'wiz-card--border': border,
+      'wiz-card--fit': fit,
     }"
   >
     <WizVStack gap="md">
-      <div class="wiz-card__header">
+      <div
+        v-if="title || (!title && slots.mainHeaderArea) || hint"
+        class="wiz-card__header"
+      >
         <WizHStack gap="xs2" class="wiz-card__header-main">
           <slot v-if="!title" name="mainHeaderArea"></slot>
           <div class="wiz-card__header-title">{{ title }}</div>
@@ -15,7 +20,7 @@
         <slot name="subHeaderArea"></slot>
       </div>
       <slot></slot>
-      <div class="wiz-card__footer">
+      <div class="wiz-card__footer" v-if="slots.footer">
         <slot name="footer"></slot>
       </div>
     </WizVStack>
@@ -23,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, useSlots } from "vue";
 
 import WizHStack from "@/components/atoms/stack/h-stack.vue";
 import WizVStack from "@/components/atoms/stack/v-stack.vue";
@@ -42,15 +47,20 @@ interface Props {
   py?: SpacingKeys;
   backgroundColor?: ColorKeys;
   shadow?: boolean;
+  border?: boolean;
   align?: "start" | "center" | "end";
+  fit?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   p: "md",
   backgroundColor: "white.800",
   shadow: false,
+  border: false,
   align: "end",
 });
+
+const slots = useSlots();
 
 const computedPadding = computed(() => {
   if (props.px && props.py) {
@@ -80,8 +90,15 @@ const shadowMd = THEME.shadow.md;
   box-sizing: border-box;
 
   &--shadow {
-    border: 1px solid v-bind(colorGray400);
     box-shadow: v-bind(shadowMd);
+  }
+
+  &--border {
+    border: 1px solid v-bind(colorGray400);
+  }
+
+  &--fit {
+    width: fit-content;
   }
 
   &__header {
