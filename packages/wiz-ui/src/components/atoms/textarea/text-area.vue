@@ -19,13 +19,16 @@ import { THEME } from "@/constants";
 
 interface Props {
   value: string;
+  name: string;
   placeholder?: string;
-  name?: string;
   disabled?: boolean;
   expand?: boolean;
+  rows?: number;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  rows: 3,
+});
 
 interface Emit {
   (e: "input", value: string): void;
@@ -56,6 +59,7 @@ const spacingXs = THEME.spacing.xs;
   padding: v-bind(spacingXs);
   font-size: v-bind(fontSizeSm);
   line-height: 1.5;
+  height: calc(1.5em * v-bind(rows));
   color: v-bind(grey700);
 
   &::placeholder {
