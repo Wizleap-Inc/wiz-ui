@@ -19,6 +19,7 @@ interface Props {
   as?: "p" | "span";
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
+  bold?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -29,22 +30,17 @@ const props = withDefaults(defineProps<Props>(), {
 
 const computedIsP = computed(() => props.as === "p");
 const computedIsSpan = computed(() => props.as === "span");
-
-const computedColor = computed(() => {
-  return getColorCss(props.color);
-});
-
-const computedFontSize = computed(() => {
-  return FONT_SIZE_MAP[props.fontSize];
-});
+const computedColor = computed(() => getColorCss(props.color));
+const computedFontSize = computed(() => FONT_SIZE_MAP[props.fontSize]);
+const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
 </script>
 
 <style lang="scss" scoped>
 .wiz-text {
-  font-weight: 400;
   line-height: 1.5;
   margin: 0;
   color: v-bind(computedColor);
   font-size: v-bind(computedFontSize);
+  font-weight: v-bind(computedFontWeight);
 }
 </style>
