@@ -16,8 +16,8 @@ import { PrivateBaseInput } from "@/components/atoms/inputs/base";
 
 interface Props {
   value: string;
+  name: string;
   placeholder?: string;
-  name?: string;
   disabled?: boolean;
   expand?: boolean;
 }

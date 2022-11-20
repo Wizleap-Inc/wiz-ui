@@ -16,6 +16,11 @@ export default {
         type: "text",
       },
     },
+    name: {
+      control: {
+        type: "text",
+      },
+    },
     placeholder: {
       control: {
         type: "text",
@@ -37,7 +42,11 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextInput },
-  template: `<WizTextInput v-bind="$props" />`,
+  setup() {
+    const value = ref("");
+    return { value };
+  },
+  template: `<WizTextInput v-bind="$props" v-model="value" name="text-input" />`,
 });
 
 export const Default = Template.bind({});
@@ -82,13 +91,13 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextInput },
   setup() {
-    const hoge = ref("");
-    return { hoge };
+    const value = ref("");
+    return { value };
   },
   template: `
     <div>
-      <p>入力値：{{ hoge }}</p>
-      <WizTextInput Placeholder="入力してください" v-model="hoge" />
+      <p>入力値：{{ value }}</p>
+      <WizTextInput Placeholder="入力してください" v-model="value" name="text-input" />
     </div>
   `,
 });

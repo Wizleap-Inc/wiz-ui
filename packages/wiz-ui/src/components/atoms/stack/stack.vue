@@ -52,6 +52,9 @@ interface Props {
   ml?: SpacingKeys;
   mx?: SpacingKeys;
   my?: SpacingKeys;
+  width?: string;
+  height?: string;
+  overflow?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -59,6 +62,9 @@ const props = withDefaults(defineProps<Props>(), {
   align: "stretch",
   justify: "start",
   wrap: true,
+  width: "auto",
+  height: "auto",
+  overflow: "visible",
 });
 
 const computedSpacingStyles = computed(() => {
@@ -86,11 +92,18 @@ const computedSpacingStyles = computed(() => {
 
   return spacingStyles;
 });
+
+const computedWidth = computed(() => props.width);
+const computedHeight = computed(() => props.height);
+const computedOverflow = computed(() => props.overflow);
 </script>
 
 <style lang="scss" scoped>
 .wiz-stack {
   display: flex;
+  width: v-bind(computedWidth);
+  height: v-bind(computedHeight);
+  overflow: v-bind(computedOverflow);
 
   &--vertical {
     flex-direction: column;

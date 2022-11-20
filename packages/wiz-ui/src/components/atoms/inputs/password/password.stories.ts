@@ -7,6 +7,16 @@ export default {
   title: "Atoms/Input/Password",
   component: WizPasswordInput,
   argTypes: {
+    value: {
+      control: {
+        type: "text",
+      },
+    },
+    name: {
+      control: {
+        type: "text",
+      },
+    },
     placeholder: {
       control: { type: "text" },
     },
@@ -23,7 +33,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const value = ref("");
     return { value };
   },
-  template: `<WizPasswordInput v-bind="$props" v-model="value" />`,
+  template: `<WizPasswordInput v-bind="$props" v-model="value" name="text-input" />`,
 });
 
 export const Default = Template.bind({});
@@ -77,13 +87,13 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPasswordInput },
   setup() {
-    const hoge = ref("");
-    return { hoge };
+    const value = ref("");
+    return { value };
   },
   template: `
     <div>
-      <p>入力値：{{ hoge }}</p>
-      <WizPasswordInput Placeholder="パスワードを入力" v-model="hoge" />
+      <p>入力値：{{ value }}</p>
+      <WizPasswordInput Placeholder="パスワードを入力" v-model="value" name="text-input" />
     </div>
   `,
 });

@@ -7,6 +7,12 @@ on:
     branches-ignore:
       - "main"
       - "develop"
+  pull_request:
+    paths:
+      - "**/*.stories.ts"
+    branches-ignore:
+      - "main"
+      - "develop"
 
 env:
   AWS_REGION: ap-northeast-1
@@ -18,7 +24,7 @@ env:
   BUILD_COMMAND: npm run build:storybook -w packages/wiz-ui
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-20.04
 
     strategy:

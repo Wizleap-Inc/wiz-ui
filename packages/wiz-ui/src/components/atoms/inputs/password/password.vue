@@ -34,8 +34,8 @@ import { THEME } from "@/constants";
 
 interface Props {
   value: string;
+  name: string;
   placeholder?: string;
-  name?: string;
   disabled?: boolean;
   expand?: boolean;
 }

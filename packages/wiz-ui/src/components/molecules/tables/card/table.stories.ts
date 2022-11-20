@@ -12,7 +12,7 @@ import {
 } from ".";
 
 export default {
-  title: "Molecules/CardTable",
+  title: "Molecules/Tables/Card",
   component: WizCardTable,
   argTypes: {
     onClick: {
@@ -21,7 +21,7 @@ export default {
   },
 };
 
-const Template: StoryFn = (args, { argTypes }) => ({
+export const Default: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
     WizCardTable,
@@ -47,10 +47,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-
-const ExampleTemplate: StoryFn = (_, { argTypes }) => ({
+export const Example: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
     WizCardTable,
@@ -97,6 +94,3 @@ const ExampleTemplate: StoryFn = (_, { argTypes }) => ({
 </WizCardTable>
   `,
 });
-
-export const Example = ExampleTemplate.bind({});
-Example.args = {};
