@@ -1,54 +1,47 @@
 <template>
-  <div>
+  <div
+    class="wiz-selectbox"
+    :class="{
+      'wiz-selectbox--active': openSelectBox,
+      'wiz-selectbox--disabled': disabled,
+    }"
+  >
     <div
-      class="wiz-selectbox"
-      :class="{ 'wiz-selectbox--active': toggleSelectBox }"
+      class="wiz-selectbox__box"
+      :class="{ 'wiz-selectbox__box--selected': value }"
+      @click="toggleSelectBox"
     >
-      <div
-        class="wiz-selectbox__box"
-        @click="toggleSelectBox = !toggleSelectBox"
-      >
-        <WizHStack gap="sm" align="center">
-          <span>選択して下さい</span>
-          <span
-            v-for="(item, key) in items"
-            v-show="item.id == inputValue"
-            :key="'selected' + key"
-          >
-            {{ item.name }}
-          </span>
-          <WizIExpandLess v-if="toggleSelectBox" />
-          <WizIExpandMore v-else-if="!toggleSelectBox" />
-        </WizHStack>
-      </div>
-      <div class="wiz-selectbox__selector" v-show="toggleSelectBox">
-        <WizVStack gap="xs2">
-          <div
-            class="wiz-selectbox__selector-option"
-            v-for="option in items"
-            :key="'optionId' + option.id"
-            @click="
-              toggleSelectBox = !toggleSelectBox;
-              inputValue = option.id;
-            "
-          >
-            {{ option.name }}
-          </div>
-        </WizVStack>
-      </div>
+      <WizHStack gap="sm" align="center">
+        <span v-if="!value">選択して下さい</span>
+        <span
+          v-for="(option, key) in options"
+          v-show="option.id === value"
+          :key="'selected' + key"
+        >
+          {{ option.name }}
+        </span>
+        <WizIExpandLess v-if="openSelectBox" class="wiz-selectbox__box-less" />
+        <WizIExpandMore
+          v-else-if="!openSelectBox"
+          class="wiz-selectbox__box-more"
+        />
+      </WizHStack>
     </div>
-    <select
-      class="wiz-selectbox__hidden"
-      :name="'itemId'"
-      :disabled="false"
-      v-model="inputValue"
-    >
-      <option
-        v-for="option in items"
-        :value="option.id"
-        :key="'hiddenOption' + option.id"
-      />
-    </select>
+    <div class="wiz-selectbox__selector" v-show="openSelectBox">
+      <WizVStack gap="xs2">
+        <div
+          class="wiz-selectbox__selector-option"
+          v-for="(option, key) in options"
+          :key="'option' + key"
+          @click="
+            toggleSelectBox();
+            onSelect(option.id);
+          "
+        >
+          {{ option.name }}
+        </div>
+      </WizVStack>
+    </div>
   </div>
 </template>
 
@@ -62,18 +55,42 @@ import { THEME } from "@/constants/styles";
 import { WizHStack } from "../../stack";
 import { WizVStack } from "../../stack";
 
-const toggleSelectBox = ref(false);
-const inputValue = ref(null);
-const items = [
-  { id: 1, name: "調整中" },
-  { id: 2, name: "面談前" },
-];
+interface Option {
+  id: string;
+  name: string;
+}
+
+interface Props {
+  options: Option[];
+  value: string;
+  disabled?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  value: "",
+  disabled: false,
+});
+const openSelectBox = ref(false);
+const toggleSelectBox = () => {
+  if (props.disabled) {
+    return;
+  }
+  openSelectBox.value = !openSelectBox.value;
+};
+interface Emit {
+  (e: "select", value: string): void;
+}
+const emit = defineEmits<Emit>();
+const onSelect = (optionId: string) => {
+  emit("select", optionId);
+};
 
 const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
 const spacingSm = THEME.spacing.sm;
+const spacingXl = THEME.spacing.xl;
 const colorWhite800 = THEME.color.white["800"];
 const colorGray300 = THEME.color.gray["300"];
 const colorGray400 = THEME.color.gray["400"];
@@ -98,11 +115,29 @@ const shadowSm = THEME.shadow.sm;
     border-color: v-bind(colorGreen800);
   }
 
+  &--disabled {
+    background-color: v-bind(colorGray300);
+  }
+
   &__box {
     line-height: 38px;
     padding: v-bind(spacingNo) v-bind(spacingXs);
     font-size: v-bind(fontSizeSm);
     color: v-bind(colorGray500);
+
+    &-less {
+      fill: v-bind(colorGreen800);
+      font-size: v-bind(spacingXl);
+    }
+
+    &-more {
+      fill: v-bind(colorGray500);
+      font-size: v-bind(spacingXl);
+    }
+
+    &--selected {
+      color: v-bind(colorGray700);
+    }
   }
 
   &__selector {

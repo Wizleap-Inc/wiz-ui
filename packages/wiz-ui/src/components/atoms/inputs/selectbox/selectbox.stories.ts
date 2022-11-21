@@ -1,10 +1,9 @@
-// import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 
 import WizSelectBox from "./selectbox.vue";
 
 export default {
-  title: "Atoms/SelectBox",
+  title: "Atoms/Input/SelectBox",
   component: WizSelectBox,
   argTypes: {},
 };
