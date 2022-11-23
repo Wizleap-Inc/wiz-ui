@@ -40,11 +40,6 @@ jobs:
       - name: set version to env
         run: node -p -e '`VERSION=${require("./${{ env.PUBLISH_WORKSPACE }}/package.json").version}`' >> $GITHUB_ENV
 
-      - name: get latest tag
-        id: latest-tag
-        run: |
-          echo "::set-output name=latest_tag::$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)"
-
       - name: add version tag
         uses: pkgdeps/git-tag-action@v2
         with:
@@ -53,27 +48,3 @@ jobs:
           github_repo: ${{ github.repository }}
           git_commit_sha: ${{ github.sha }}
           git_tag_prefix: "v"
-
-      - name: get new version tag
-        id: new-tag
-        run: |
-          echo "::set-output name=new_tag::$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)"
-
-      - name: Generate release notes
-        id: release-notes
-        uses: pkgdeps/release-notes-generator-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_repo: ${{ github.repository }}
-          git_tag_prefix: "v"
-          git_tag_from: ${{ steps.latest-tag.outputs.latest_tag }}
-          git_tag_to: ${{ steps.new-tag.outputs.new_tag }}
-
-      - name: Create release
-        uses: pkgdeps/create-release-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_repo: ${{ github.repository }}
-          git_tag: ${{ steps.new-tag.outputs.new_tag }}
-          release_name: ${{ steps.new-tag.outputs.new_tag }}
-          release_body: ${{ steps.release-notes.outputs.release_notes }}
