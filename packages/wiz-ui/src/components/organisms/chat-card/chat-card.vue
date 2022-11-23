@@ -1,10 +1,13 @@
 <template>
   <WizBox
     position="fixed"
-    :top="isOpen ? 'calc(100% - 506.5px)' : 'calc(100% - 56px)'"
+    :top="
+      isOpen ? `calc(100% - ${floatChatCardHeight}px)` : 'calc(100% - 56px)'
+    "
     right="1.5rem"
     width="20rem"
     transition="top 0.3s ease-in-out"
+    ref="floatChatCardRef"
   >
     <WizCard shadow :title="username">
       <template #subHeaderArea>
@@ -28,7 +31,6 @@
       <template #footer>
         <WizChatForm
           v-model="textValue"
-          @input="onInput"
           @submit="onSubmit"
           :placeholder="placeholder"
         />
@@ -68,19 +70,23 @@ interface Emit {
 
 const emits = defineEmits<Emit>();
 
+const floatChatCardHeight = ref(0);
+const floatChatCardRef = ref<InstanceType<typeof WizBox>>();
 const chatListRef = ref<InstanceType<typeof WizVStack>>();
 
 onMounted(() => {
-  if (!chatListRef.value) return;
-  chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
+  if (floatChatCardRef.value) {
+    floatChatCardHeight.value = floatChatCardRef.value.$el.clientHeight;
+  }
+  if (chatListRef.value) {
+    chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
+  }
 });
 
 const textValue = computed({
   get: () => props.value,
   set: (value) => emits("input", value),
 });
-
-const onInput = () => emits("input", textValue.value);
 
 const onSubmit = () => emits("submit");
 
