@@ -31,7 +31,6 @@
       <template #footer>
         <WizChatForm
           v-model="textValue"
-          @input="onInput"
           @submit="onSubmit"
           :placeholder="placeholder"
         />
@@ -88,8 +87,6 @@ const textValue = computed({
   get: () => props.value,
   set: (value) => emits("input", value),
 });
-
-const onInput = () => emits("input", textValue.value);
 
 const onSubmit = () => emits("submit");
 
