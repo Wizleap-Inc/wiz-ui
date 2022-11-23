@@ -98,7 +98,12 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
       (isFloatingMenuOpen.value = !isFloatingMenuOpen.value);
     return { newMessage, isFloatingMenuOpen, toggleDisplay };
   },
-  template: `<WizChatCard v-bind="$props" v-model="newMessage" :isOpen="isFloatingMenuOpen" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />`,
+  template: `
+  <div>
+    <p>v-modelの値: {{newMessage}}</p>
+    <WizChatCard v-bind="$props" v-model="newMessage" :isOpen="isFloatingMenuOpen" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
+  </div>
+  `,
 });
 
 export const Playground = PlaygroundTemplate.bind({});
