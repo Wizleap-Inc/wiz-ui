@@ -107,10 +107,31 @@ Open.args = {
   isOpen: true,
 };
 
+export const HideReadStatus = Template.bind({});
+HideReadStatus.args = {
+  ...templateArgs,
+  isOpen: true,
+  hideReadStatus: true,
+};
+
+export const HideTimestamp = Template.bind({});
+HideTimestamp.args = {
+  ...templateArgs,
+  isOpen: true,
+  hideTimestamp: true,
+};
+
 export const Closed = Template.bind({});
 Closed.args = {
   ...templateArgs,
   isOpen: false,
+};
+
+export const WithUnreadCount = Template.bind({});
+WithUnreadCount.args = {
+  ...templateArgs,
+  isOpen: false,
+  unreadCount: 3,
 };
 
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
