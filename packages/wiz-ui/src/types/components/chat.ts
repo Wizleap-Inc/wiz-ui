@@ -1,6 +1,6 @@
 interface BaseMessage {
   message: string;
-  time?: string;
+  time?: Date;
 }
 
 interface MyMessage extends BaseMessage {

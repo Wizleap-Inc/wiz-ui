@@ -26,6 +26,8 @@
           :key="i"
           :content="item"
           :maxChatItemWidth="'192px'"
+          :hideReadStatus="hideReadStatus"
+          :hideTimestamp="hideTimestamp"
         />
       </WizVStack>
       <template #footer>
@@ -56,10 +58,14 @@ interface Props {
   placeholder?: string;
   messages: Message[];
   isOpen: boolean;
+  hideReadStatus?: boolean;
+  hideTimestamp?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isOpen: false,
+  hideReadStatus: false,
+  hideTimestamp: false,
 });
 
 interface Emit {
