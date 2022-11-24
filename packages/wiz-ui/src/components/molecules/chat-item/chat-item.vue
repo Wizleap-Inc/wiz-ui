@@ -22,12 +22,12 @@
       </WizCard>
       <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
         <WizText
-          v-if="!hideReadStatus && content.sender === 'me'"
+          v-if="!hideReadStatus && content.sender === 'me' && content.read"
           as="span"
           fontSize="xs2"
           color="gray.500"
         >
-          {{ content.read ? "既読" : "未読" }}
+          既読
         </WizText>
         <WizText
           v-if="!hideTimestamp && content.time"
