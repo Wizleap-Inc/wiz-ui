@@ -39,8 +39,8 @@ export default {
     hideTimestamp: {
       control: { type: "boolean" },
     },
-    unreadCount: {
-      control: { type: "number" },
+    haveNewMessage: {
+      control: { type: "boolean" },
     },
     toggleDisplay: {
       action: "toggleDisplay",
@@ -127,23 +127,23 @@ Closed.args = {
   isOpen: false,
 };
 
-export const WithUnreadCount = Template.bind({});
-WithUnreadCount.args = {
+export const HaveNewMessage = Template.bind({});
+HaveNewMessage.args = {
   ...templateArgs,
   isOpen: false,
-  unreadCount: 3,
+  haveNewMessage: true,
 };
 
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizChatCard, WizBox },
   setup() {
-    const unreadCount = ref(1);
+    const haveNewMessage = ref(true);
     const isFloatingMenuOpen = ref(false);
     const messages = ref(templateArgs.messages);
     const newMessage = ref("");
     const toggleDisplay = () => {
-      if (!isFloatingMenuOpen.value) unreadCount.value = 0;
+      if (!isFloatingMenuOpen.value) haveNewMessage.value = false;
       isFloatingMenuOpen.value = !isFloatingMenuOpen.value;
     };
     const postMessage = () => {
@@ -158,7 +158,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
     return {
       messages,
       newMessage,
-      unreadCount,
+      haveNewMessage,
       isFloatingMenuOpen,
       toggleDisplay,
       postMessage,
@@ -170,7 +170,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
       v-model="newMessage"
       :messages="messages"
       :isOpen="isFloatingMenuOpen"
-      :unreadCount="unreadCount"
+      :haveNewMessage="haveNewMessage"
       @toggleDisplay="toggleDisplay"
       @input="input"
       @submit="() => {

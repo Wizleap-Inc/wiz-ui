@@ -16,11 +16,7 @@
         <WizText color="gray.700" as="span" bold>
           {{ username }}
         </WizText>
-        <div v-if="unreadCount" class="wiz-chat-card__unread-count">
-          <WizText fontSize="xs" color="white.800" as="span" bold>
-            {{ unreadCount }}
-          </WizText>
-        </div>
+        <div v-if="haveNewMessage" class="wiz-chat-card__have-new-message" />
       </template>
       <template #subHeaderArea>
         <WizIcon
@@ -74,7 +70,7 @@ interface Props {
   placeholder?: string;
   messages: Message[];
   isOpen: boolean;
-  unreadCount?: number;
+  haveNewMessage?: boolean;
   hideReadStatus?: boolean;
   hideTimestamp?: boolean;
 }
@@ -133,9 +129,9 @@ const toggleDisplay = () => emits("toggleDisplay");
 const zIndex = nextZIndex();
 const titleHeight = THEME.spacing.xl;
 const titlePadding = THEME.spacing.md;
-const green800 = THEME.color.green[800];
+const red800 = THEME.color.red[800];
 const spacingMax = THEME.spacing.max;
-const fontSizeXl = THEME.fontSize.xl;
+const fontSizeMd = THEME.fontSize.md;
 </script>
 
 <style lang="scss" scoped>
@@ -152,14 +148,14 @@ const fontSizeXl = THEME.fontSize.xl;
     z-index: v-bind(zIndex);
   }
 
-  &__unread-count {
+  &__have-new-message {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: v-bind(fontSizeXl);
-    height: v-bind(fontSizeXl);
+    width: v-bind(fontSizeMd);
+    height: v-bind(fontSizeMd);
     border-radius: v-bind(spacingMax);
-    background: v-bind(green800);
+    background: v-bind(red800);
   }
 }
 </style>
