@@ -32,8 +32,8 @@ const Template: StoryFn = (_, { argTypes }) => ({
   template: `<WizChatItem v-bind="$props" />`,
 });
 
-export const Sender = Template.bind({});
-Sender.args = {
+export const OthersChatItem = Template.bind({});
+OthersChatItem.args = {
   content: {
     message: "こんにちは",
     sender: "other",
@@ -41,8 +41,8 @@ Sender.args = {
   },
 };
 
-export const Expand = Template.bind({});
-Expand.args = {
+export const MyChatItem = Template.bind({});
+MyChatItem.args = {
   content: {
     message: "こんにちは",
     sender: "me",
