@@ -10,3 +10,6 @@ export * from "./textarea";
 export * from "./divider";
 export * from "./box";
 export * from "./icon";
+export * from "./card";
+export * from "./message-box";
+export * from "./tables";

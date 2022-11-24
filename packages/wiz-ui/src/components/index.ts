@@ -1,4 +1,3 @@
 export * from "./base";
-export * from "./molecules";
-export * from "./organisms";
+export * from "./custom";
 export * from "./icons";
