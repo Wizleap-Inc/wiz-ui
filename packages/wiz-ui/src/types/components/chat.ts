@@ -1,9 +1,11 @@
 interface BaseMessage {
   message: string;
+  time?: Date;
 }
 
 interface MyMessage extends BaseMessage {
   sender: "me";
+  read?: boolean;
 }
 
 interface OtherMessage extends BaseMessage {

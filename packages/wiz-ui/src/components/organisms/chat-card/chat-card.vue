@@ -8,10 +8,16 @@
     "
     right="1.5rem"
     width="20rem"
-    transition="bottom 0.3s ease-in-out"
+    :transition="canAnimate ? 'bottom 0.3s ease-in-out' : undefined"
     ref="floatChatCardRef"
   >
-    <WizCard shadow :title="username">
+    <WizCard shadow>
+      <template #mainHeaderArea>
+        <WizText color="gray.700" as="span" bold>
+          {{ username }}
+        </WizText>
+        <div v-if="haveNewMessage" class="wiz-chat-card__have-new-message" />
+      </template>
       <template #subHeaderArea>
         <WizIcon
           size="xl2"
@@ -26,6 +32,8 @@
           :key="i"
           :content="item"
           :maxChatItemWidth="'192px'"
+          :hideReadStatus="hideReadStatus"
+          :hideTimestamp="hideTimestamp"
         />
       </WizVStack>
       <template #footer>
@@ -43,7 +51,13 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 
-import { WizBox, WizDivider, WizIcon, WizVStack } from "@/components/atoms";
+import {
+  WizBox,
+  WizDivider,
+  WizIcon,
+  WizText,
+  WizVStack,
+} from "@/components/atoms";
 import { WizIExpandMore, WizIExpandLess } from "@/components/icons";
 import { WizCard, WizChatForm, WizChatItem } from "@/components/molecules";
 import { THEME } from "@/constants";
@@ -56,10 +70,15 @@ interface Props {
   placeholder?: string;
   messages: Message[];
   isOpen: boolean;
+  haveNewMessage?: boolean;
+  hideReadStatus?: boolean;
+  hideTimestamp?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isOpen: false,
+  hideReadStatus: false,
+  hideTimestamp: false,
 });
 
 interface Emit {
@@ -72,6 +91,8 @@ const emits = defineEmits<Emit>();
 
 const { nextZIndex } = useZIndex();
 
+const canAnimate = ref(false);
+
 const floatChatCardHeight = ref(0);
 const floatChatCardRef = ref<InstanceType<typeof WizBox>>();
 const chatListRef = ref<InstanceType<typeof WizVStack>>();
@@ -80,6 +101,9 @@ onMounted(() => {
   if (floatChatCardRef.value) {
     floatChatCardHeight.value = floatChatCardRef.value.$el.clientHeight;
   }
+  setTimeout(() => {
+    canAnimate.value = true;
+  }, 0);
   if (chatListRef.value) {
     chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
   }
@@ -105,18 +129,33 @@ const toggleDisplay = () => emits("toggleDisplay");
 const zIndex = nextZIndex();
 const titleHeight = THEME.spacing.xl;
 const titlePadding = THEME.spacing.md;
+const red800 = THEME.color.red[800];
+const spacingMax = THEME.spacing.max;
+const fontSizeMd = THEME.fontSize.md;
 </script>
 
 <style lang="scss" scoped>
-.wiz-chat-card__open-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(v-bind(titleHeight) + v-bind(titlePadding) * 2);
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  z-index: v-bind(zIndex);
+.wiz-chat-card {
+  &__open-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(v-bind(titleHeight) + v-bind(titlePadding) * 2);
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    z-index: v-bind(zIndex);
+  }
+
+  &__have-new-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: v-bind(fontSizeMd);
+    height: v-bind(fontSizeMd);
+    border-radius: v-bind(spacingMax);
+    background: v-bind(red800);
+  }
 }
 </style>
