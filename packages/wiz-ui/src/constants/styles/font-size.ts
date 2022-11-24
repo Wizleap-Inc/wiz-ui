@@ -1,4 +1,4 @@
-import { FontSizeKeys } from "@/types/styles/fontSize";
+import { FontSizeKeys } from "@/types/styles/font-size";
 
 export const FONT_SIZE_MAP = {
   /** 10px */
