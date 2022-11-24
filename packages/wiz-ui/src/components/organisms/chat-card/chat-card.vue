@@ -8,7 +8,7 @@
     "
     right="1.5rem"
     width="20rem"
-    transition="bottom 0.3s ease-in-out"
+    :transition="canAnimate ? 'bottom 0.3s ease-in-out' : undefined"
     ref="floatChatCardRef"
   >
     <WizCard shadow :title="username">
@@ -78,6 +78,8 @@ const emits = defineEmits<Emit>();
 
 const { nextZIndex } = useZIndex();
 
+const canAnimate = ref(false);
+
 const floatChatCardHeight = ref(0);
 const floatChatCardRef = ref<InstanceType<typeof WizBox>>();
 const chatListRef = ref<InstanceType<typeof WizVStack>>();
@@ -86,6 +88,9 @@ onMounted(() => {
   if (floatChatCardRef.value) {
     floatChatCardHeight.value = floatChatCardRef.value.$el.clientHeight;
   }
+  setTimeout(() => {
+    canAnimate.value = true;
+  }, 0);
   if (chatListRef.value) {
     chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
   }
