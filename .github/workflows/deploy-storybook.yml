@@ -73,8 +73,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy story to S3 bucket
-        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
+      - name: Deploy story to S3 bucket if not main branch
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' && github.ref != 'refs/heads/main' }}
         run: aws s3 sync --exact-timestamps --delete ${{ env.DEPLOY_PATH }} s3://${{ env.DEPLOY_BUCKET }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}
 
       - name: Update Latest Deploy when merged to main
