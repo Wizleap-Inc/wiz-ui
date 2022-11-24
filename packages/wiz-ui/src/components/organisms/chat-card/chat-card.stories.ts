@@ -63,6 +63,34 @@ const templateArgs = {
       sender: "other",
       username: "マネーキャリアスタッフ",
     },
+    {
+      message: "こんにちは",
+      sender: "other",
+      username: "マネーキャリアスタッフ",
+    },
+    {
+      message: "テキストテキストテキストテキスト",
+      sender: "me",
+    },
+    {
+      message: "テキストテキストテキストテキスト",
+      sender: "other",
+      username: "マネーキャリアスタッフ",
+    },
+    {
+      message: "こんにちは",
+      sender: "other",
+      username: "マネーキャリアスタッフ",
+    },
+    {
+      message: "テキストテキストテキストテキスト",
+      sender: "me",
+    },
+    {
+      message: "テキストテキストテキストテキスト",
+      sender: "other",
+      username: "マネーキャリアスタッフ",
+    },
   ],
 };
 
@@ -93,18 +121,43 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   components: { WizChatCard, WizBox },
   setup() {
     const isFloatingMenuOpen = ref(false);
+    const messages = ref(templateArgs.messages);
     const newMessage = ref("");
     const toggleDisplay = () =>
       (isFloatingMenuOpen.value = !isFloatingMenuOpen.value);
-    return { newMessage, isFloatingMenuOpen, toggleDisplay };
+    const postMessage = () => {
+      messages.value.push({
+        message: newMessage.value,
+        sender: "me",
+      });
+      newMessage.value = "";
+    };
+    return {
+      messages,
+      newMessage,
+      isFloatingMenuOpen,
+      toggleDisplay,
+      postMessage,
+    };
   },
   template: `
-  <div>
-    <p>v-modelの値: {{newMessage}}</p>
-    <WizChatCard v-bind="$props" v-model="newMessage" :isOpen="isFloatingMenuOpen" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
-  </div>
+    <WizChatCard
+      v-bind="$props"
+      v-model="newMessage"
+      :messages="messages"
+      :isOpen="isFloatingMenuOpen"
+      @toggleDisplay="toggleDisplay"
+      @input="input"
+      @submit="() => {
+        submit();
+        postMessage();
+      }"
+    />
   `,
 });
 
 export const Playground = PlaygroundTemplate.bind({});
-Playground.args = templateArgs;
+Playground.args = {
+  username: templateArgs.username,
+  placeholder: templateArgs.placeholder,
+};
