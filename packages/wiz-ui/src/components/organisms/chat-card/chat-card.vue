@@ -58,7 +58,9 @@ interface Props {
   isOpen: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  isOpen: false,
+});
 
 interface Emit {
   (e: "input", value: string): void;
