@@ -9,7 +9,7 @@
       'wiz-stack--align-start': align === 'start',
       'wiz-stack--align-center': align === 'center',
       'wiz-stack--align-end': align === 'end',
-      'wiz-stack--align-stretch': align === 'start',
+      'wiz-stack--align-stretch': align === 'stretch',
       'wiz-stack--justify-start': justify === 'start',
       'wiz-stack--justify-center': justify === 'center',
       'wiz-stack--justify-end': justify === 'end',
