@@ -5,12 +5,12 @@ on:
     paths:
       - "**/*.stories.ts"
     branches-ignore:
-      - "main"
       - "develop"
   pull_request:
     paths:
       - "**/*.stories.ts"
     branches-ignore:
+      - "main"
       - "develop"
 
 env:
