@@ -2,7 +2,7 @@ import { StoryFn } from "@storybook/vue";
 import StoryRouter from "storybook-vue-router";
 
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
-import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/fontSize";
+import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/font-size";
 import WizIArrowRight from "../../icons/arrow-right.vue";
 
 import WizAnchor from "./anchor.vue";

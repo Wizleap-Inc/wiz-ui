@@ -33,6 +33,15 @@ export default {
         type: "boolean",
       },
     },
+    hideReadStatus: {
+      control: { type: "boolean" },
+    },
+    hideTimestamp: {
+      control: { type: "boolean" },
+    },
+    haveNewMessage: {
+      control: { type: "boolean" },
+    },
     toggleDisplay: {
       action: "toggleDisplay",
     },
@@ -50,18 +59,34 @@ const templateArgs = {
   placeholder: "入力してください",
   messages: [
     {
-      message: "こんにちは",
+      message: "こんにちは、マネーキャリアスタッフの田中です。",
       sender: "other",
       username: "マネーキャリアスタッフ",
+      time: new Date(),
     },
     {
-      message: "テキストテキストテキストテキスト",
+      message: "こんにちは、〇〇です。よろしくお願いします。",
       sender: "me",
+      read: true,
+      time: new Date(),
     },
     {
-      message: "テキストテキストテキストテキスト",
+      message: "よろしくお願いします。",
       sender: "other",
       username: "マネーキャリアスタッフ",
+      time: new Date(),
+    },
+    {
+      message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
+      sender: "me",
+      read: true,
+      time: new Date(),
+    },
+    {
+      message: "不在申請ですね、承知しました少々お待ちください。",
+      sender: "other",
+      username: "マネーキャリアスタッフ",
+      time: new Date(),
     },
   ],
 };
@@ -82,29 +107,82 @@ Open.args = {
   isOpen: true,
 };
 
+export const HideReadStatus = Template.bind({});
+HideReadStatus.args = {
+  ...templateArgs,
+  isOpen: true,
+  hideReadStatus: true,
+};
+
+export const HideTimestamp = Template.bind({});
+HideTimestamp.args = {
+  ...templateArgs,
+  isOpen: true,
+  hideTimestamp: true,
+};
+
 export const Closed = Template.bind({});
 Closed.args = {
   ...templateArgs,
   isOpen: false,
 };
 
+export const HaveNewMessage = Template.bind({});
+HaveNewMessage.args = {
+  ...templateArgs,
+  isOpen: false,
+  haveNewMessage: true,
+};
+
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizChatCard, WizBox },
   setup() {
+    const haveNewMessage = ref(true);
     const isFloatingMenuOpen = ref(false);
+    const messages = ref(templateArgs.messages);
     const newMessage = ref("");
-    const toggleDisplay = () =>
-      (isFloatingMenuOpen.value = !isFloatingMenuOpen.value);
-    return { newMessage, isFloatingMenuOpen, toggleDisplay };
+    const toggleDisplay = () => {
+      if (!isFloatingMenuOpen.value) haveNewMessage.value = false;
+      isFloatingMenuOpen.value = !isFloatingMenuOpen.value;
+    };
+    const postMessage = () => {
+      messages.value.push({
+        message: newMessage.value,
+        sender: "me",
+        read: false,
+        time: new Date(),
+      });
+      newMessage.value = "";
+    };
+    return {
+      messages,
+      newMessage,
+      haveNewMessage,
+      isFloatingMenuOpen,
+      toggleDisplay,
+      postMessage,
+    };
   },
   template: `
-  <div>
-    <p>v-modelの値: {{newMessage}}</p>
-    <WizChatCard v-bind="$props" v-model="newMessage" :isOpen="isFloatingMenuOpen" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
-  </div>
+    <WizChatCard
+      v-bind="$props"
+      v-model="newMessage"
+      :messages="messages"
+      :isOpen="isFloatingMenuOpen"
+      :haveNewMessage="haveNewMessage"
+      @toggleDisplay="toggleDisplay"
+      @input="input"
+      @submit="() => {
+        submit();
+        postMessage();
+      }"
+    />
   `,
 });
 
 export const Playground = PlaygroundTemplate.bind({});
-Playground.args = templateArgs;
+Playground.args = {
+  username: templateArgs.username,
+  placeholder: templateArgs.placeholder,
+};

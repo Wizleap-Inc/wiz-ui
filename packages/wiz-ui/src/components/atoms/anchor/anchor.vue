@@ -24,9 +24,9 @@ import Vue, { computed, withDefaults } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
 import { ColorKeys } from "@/types/styles/color";
-import { FontSizeKeys } from "@/types/styles/fontSize";
+import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
-import { getFontSizeCss } from "@/utils/styles/fontSize";
+import { getFontSizeCss } from "@/utils/styles/font-size";
 
 interface Props {
   to: RouterLinkProps["to"];

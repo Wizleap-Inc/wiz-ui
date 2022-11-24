@@ -2,12 +2,14 @@
   <div
     :class="{
       'wiz-stack': true,
-      'wiz-stack--vertical': direction === 'vertical',
-      'wiz-stack--horizontal': direction === 'horizontal',
+      'wiz-stack--vertical': direction === 'vertical' && !reverse,
+      'wiz-stack--horizontal': direction === 'horizontal' && !reverse,
+      'wiz-stack--vertical-reverse': direction === 'vertical' && reverse,
+      'wiz-stack--horizontal-reverse': direction === 'horizontal' && reverse,
       'wiz-stack--align-start': align === 'start',
       'wiz-stack--align-center': align === 'center',
       'wiz-stack--align-end': align === 'end',
-      'wiz-stack--align-stretch': align === 'start',
+      'wiz-stack--align-stretch': align === 'stretch',
       'wiz-stack--justify-start': justify === 'start',
       'wiz-stack--justify-center': justify === 'center',
       'wiz-stack--justify-end': justify === 'end',
@@ -55,6 +57,7 @@ interface Props {
   width?: string;
   height?: string;
   overflow?: string;
+  reverse?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -111,6 +114,14 @@ const computedOverflow = computed(() => props.overflow);
 
   &--horizontal {
     flex-direction: row;
+  }
+
+  &--vertical-reverse {
+    flex-direction: column-reverse;
+  }
+
+  &--horizontal-reverse {
+    flex-direction: row-reverse;
   }
 
   &--align-start {

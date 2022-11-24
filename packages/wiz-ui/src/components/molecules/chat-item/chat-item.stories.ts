@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/vue";
-import { ref } from "vue";
 
 import { WizChatItem } from "@/components/molecules/chat-item";
+import { Message } from "@/types/components/chat";
 
 export default {
   title: "Molecules/Chat/Item",
@@ -18,44 +18,94 @@ export default {
         type: "text",
       },
     },
+    hideReadStatus: {
+      control: { type: "boolean" },
+    },
+    hideTimestamp: {
+      control: { type: "boolean" },
+    },
   },
 };
 
-const Template: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizChatItem },
-  setup() {
-    const message = ref("");
-    const sender = ref("");
-    return { message, sender };
+const dummyItems: Record<string, Message> = {
+  otherChatItem: {
+    message: "こんにちは",
+    sender: "other",
+    username: "ユーザー名",
+    time: new Date(),
   },
-  template: `<WizChatItem v-bind="$props" />`,
+  myChatItem: {
+    message: "こんにちは",
+    sender: "me",
+    read: true,
+    time: new Date(),
+  },
+};
+
+export const ChatItemOwner: StoryFn = () => ({
+  components: { WizChatItem },
+  setup: () => dummyItems,
+  template: `
+    <div>
+      <WizChatItem :content="otherChatItem" />
+      <WizChatItem :content="myChatItem" />
+    </div>
+  `,
 });
 
-export const Sender = Template.bind({});
-Sender.args = {
-  message: "こんにちは",
-  sender: "other",
-  username: "ユーザー名",
-};
-
-export const Expand = Template.bind({});
-Expand.args = {
-  message: "こんにちは",
-  sender: "me",
-  username: "ユーザー名",
-};
-
-export const Overview: StoryFn = () => ({
+export const HideReadStatus: StoryFn = () => ({
   components: { WizChatItem },
+  setup: () => dummyItems,
   template: `
-    <div style="width: 300px; border: 1px solid #ccc; border-radius: 4px; padding: 8px;">
-      <WizChatItem message="こんにちは" sender="other" username="相手の名前" />
-      <WizChatItem message="こんにちは" sender="me" />
-      <WizChatItem message="元気ですか" sender="other" username="相手の名前" />
-      <WizChatItem message="元気です" sender="me" />
-      <WizChatItem message="そうですか" sender="other" username="相手の名前" />
-      <WizChatItem message="はい" sender="me" />
+    <div>
+      <WizChatItem :content="otherChatItem" hide-read-status />
+      <WizChatItem :content="myChatItem" hide-read-status />
+    </div>
+  `,
+});
+
+export const HideTimestamp: StoryFn = () => ({
+  components: { WizChatItem },
+  setup: () => dummyItems,
+  template: `
+    <div>
+      <WizChatItem :content="otherChatItem" hide-timestamp />
+      <WizChatItem :content="myChatItem" hide-timestamp />
+    </div>
+  `,
+});
+
+export const Overview: StoryFn = (_, { argTypes }) => ({
+  args: Object.keys(argTypes),
+  components: { WizChatItem },
+  setup() {
+    const OthersMessageObj: Message = {
+      message: "こんにちは",
+      sender: "other",
+      username: "ユーザー名",
+      time: new Date("2021-01-01 00:10:00"),
+    };
+    const unreadMyMessageObj: Message = {
+      message: "こんにちは",
+      sender: "me",
+      read: false,
+      time: new Date("2021-01-02 00:00:00"),
+    };
+    const readMyMessageObj: Message = {
+      message: "こんにちは",
+      sender: "me",
+      read: true,
+      time: new Date("2021-01-01 00:00:00"),
+    };
+    return {
+      OthersMessageObj,
+      unreadMyMessageObj,
+      readMyMessageObj,
+    };
+  },
+  template: `
+    <div style="width: 300px; border: 1px solid #ccc; border-radius: 4px; padding: 8px; display: flex; flex-direction: column; gap: 8px;">
+      <WizChatItem v-for="message in [OthersMessageObj, unreadMyMessageObj, readMyMessageObj]" :key="message.time" :content="message" v-bind="$props" />
     </div>
   `,
 });

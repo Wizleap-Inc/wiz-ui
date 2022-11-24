@@ -53,6 +53,9 @@ export default {
     wrap: {
       control: { type: "boolean" },
     },
+    reverse: {
+      control: { type: "boolean" },
+    },
     ...spacingControls,
   },
 };
