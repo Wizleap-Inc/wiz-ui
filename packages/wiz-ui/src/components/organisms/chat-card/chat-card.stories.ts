@@ -39,6 +39,9 @@ export default {
     hideTimestamp: {
       control: { type: "boolean" },
     },
+    unreadCount: {
+      control: { type: "number" },
+    },
     toggleDisplay: {
       action: "toggleDisplay",
     },
@@ -85,12 +88,6 @@ const templateArgs = {
       username: "マネーキャリアスタッフ",
       time: new Date(),
     },
-    {
-      message: "お願いします。",
-      sender: "me",
-      read: false,
-      time: new Date(),
-    },
   ],
 };
 
@@ -120,11 +117,14 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizChatCard, WizBox },
   setup() {
+    const unreadCount = ref(1);
     const isFloatingMenuOpen = ref(false);
     const messages = ref(templateArgs.messages);
     const newMessage = ref("");
-    const toggleDisplay = () =>
-      (isFloatingMenuOpen.value = !isFloatingMenuOpen.value);
+    const toggleDisplay = () => {
+      if (!isFloatingMenuOpen.value) unreadCount.value = 0;
+      isFloatingMenuOpen.value = !isFloatingMenuOpen.value;
+    };
     const postMessage = () => {
       messages.value.push({
         message: newMessage.value,
@@ -137,6 +137,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
     return {
       messages,
       newMessage,
+      unreadCount,
       isFloatingMenuOpen,
       toggleDisplay,
       postMessage,
@@ -148,6 +149,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
       v-model="newMessage"
       :messages="messages"
       :isOpen="isFloatingMenuOpen"
+      :unreadCount="unreadCount"
       @toggleDisplay="toggleDisplay"
       @input="input"
       @submit="() => {

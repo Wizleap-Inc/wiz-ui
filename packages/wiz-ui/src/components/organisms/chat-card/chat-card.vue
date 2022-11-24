@@ -11,7 +11,17 @@
     :transition="canAnimate ? 'bottom 0.3s ease-in-out' : undefined"
     ref="floatChatCardRef"
   >
-    <WizCard shadow :title="username">
+    <WizCard shadow>
+      <template #mainHeaderArea>
+        <WizText color="gray.700" as="span" bold>
+          {{ username }}
+        </WizText>
+        <div v-if="unreadCount" class="wiz-chat-card__unread-count">
+          <WizText fontSize="xs" color="white.800" as="span" bold>
+            {{ unreadCount }}
+          </WizText>
+        </div>
+      </template>
       <template #subHeaderArea>
         <WizIcon
           size="xl2"
@@ -45,7 +55,13 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 
-import { WizBox, WizDivider, WizIcon, WizVStack } from "@/components/atoms";
+import {
+  WizBox,
+  WizDivider,
+  WizIcon,
+  WizText,
+  WizVStack,
+} from "@/components/atoms";
 import { WizIExpandMore, WizIExpandLess } from "@/components/icons";
 import { WizCard, WizChatForm, WizChatItem } from "@/components/molecules";
 import { THEME } from "@/constants";
@@ -58,6 +74,7 @@ interface Props {
   placeholder?: string;
   messages: Message[];
   isOpen: boolean;
+  unreadCount?: number;
   hideReadStatus?: boolean;
   hideTimestamp?: boolean;
 }
@@ -116,18 +133,33 @@ const toggleDisplay = () => emits("toggleDisplay");
 const zIndex = nextZIndex();
 const titleHeight = THEME.spacing.xl;
 const titlePadding = THEME.spacing.md;
+const green800 = THEME.color.green[800];
+const spacingMax = THEME.spacing.max;
+const fontSizeXl = THEME.fontSize.xl;
 </script>
 
 <style lang="scss" scoped>
-.wiz-chat-card__open-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(v-bind(titleHeight) + v-bind(titlePadding) * 2);
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  z-index: v-bind(zIndex);
+.wiz-chat-card {
+  &__open-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(v-bind(titleHeight) + v-bind(titlePadding) * 2);
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    z-index: v-bind(zIndex);
+  }
+
+  &__unread-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: v-bind(fontSizeXl);
+    height: v-bind(fontSizeXl);
+    border-radius: v-bind(spacingMax);
+    background: v-bind(green800);
+  }
 }
 </style>
