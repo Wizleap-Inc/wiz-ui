@@ -47,6 +47,7 @@ import { WizBox, WizDivider, WizIcon, WizVStack } from "@/components/atoms";
 import { WizIExpandMore, WizIExpandLess } from "@/components/icons";
 import { WizCard, WizChatForm, WizChatItem } from "@/components/molecules";
 import { THEME } from "@/constants";
+import { useZIndex } from "@/hooks";
 import { Message } from "@/types/components/chat";
 
 interface Props {
@@ -66,6 +67,8 @@ interface Emit {
 }
 
 const emits = defineEmits<Emit>();
+
+const { nextZIndex } = useZIndex();
 
 const floatChatCardHeight = ref(0);
 const floatChatCardRef = ref<InstanceType<typeof WizBox>>();
@@ -97,6 +100,7 @@ const onSubmit = () => emits("submit");
 
 const toggleDisplay = () => emits("toggleDisplay");
 
+const zIndex = nextZIndex();
 const titleHeight = THEME.spacing.xl;
 const titlePadding = THEME.spacing.md;
 </script>
@@ -111,5 +115,6 @@ const titlePadding = THEME.spacing.md;
   border: none;
   cursor: pointer;
   background: transparent;
+  z-index: v-bind(zIndex);
 }
 </style>
