@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { PrivateBaseInput } from "@/components/atoms/inputs/base";
+import { PrivateBaseInput } from "../base";
 
 interface Props {
   value: string;

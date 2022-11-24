@@ -1,8 +1,9 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import { WizBox } from "@/components/atoms";
-import { WizChatCard } from "@/components/organisms";
+import { WizBox } from "@/components";
+
+import { WizChatCard } from ".";
 
 export default {
   title: "Organisms/Chat/Card",

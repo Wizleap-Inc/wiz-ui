@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import { WizChatForm } from "@/components/molecules/chat-form";
+import { WizChatForm } from ".";
 
 export default {
   title: "Molecules/Chat/Form",

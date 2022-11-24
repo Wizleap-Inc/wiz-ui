@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizText } from "@/components/atoms/text";
+import { WizText } from "@/components";
 
 import { WizIClose } from "../../icons";
 

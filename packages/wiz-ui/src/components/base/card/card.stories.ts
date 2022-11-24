@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizTextButton } from "@/components/atoms/buttons/text";
+import { WizTextButton } from "@/components";
 import { COLOR_MAP_ACCESSORS } from "@/constants/styles/color";
 import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
 

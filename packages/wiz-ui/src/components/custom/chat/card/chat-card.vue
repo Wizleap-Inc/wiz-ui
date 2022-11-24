@@ -57,9 +57,12 @@ import {
   WizIcon,
   WizText,
   WizVStack,
-} from "@/components/atoms";
-import { WizIExpandMore, WizIExpandLess } from "@/components/icons";
-import { WizCard, WizChatForm, WizChatItem } from "@/components/molecules";
+  WizCard,
+  WizChatForm,
+  WizChatItem,
+  WizIExpandMore,
+  WizIExpandLess,
+} from "@/components";
 import { THEME } from "@/constants";
 import { useZIndex } from "@/hooks";
 import { Message } from "@/types/components/chat";

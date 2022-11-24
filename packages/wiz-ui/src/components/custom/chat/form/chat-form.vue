@@ -16,8 +16,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { WizHStack, WizIconButton, WizTextArea } from "@/components/atoms";
-import { WizISend } from "@/components/icons";
+import { WizHStack, WizIconButton, WizTextArea, WizISend } from "@/components";
 
 interface Props {
   disabled?: boolean;

@@ -20,7 +20,7 @@
       }"
       @click="isPasswordVisible = !isPasswordVisible"
     >
-      <Eye />
+      <WizIEye />
     </div>
   </div>
 </template>
@@ -28,9 +28,10 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { PrivateBaseInput } from "@/components/atoms/inputs/base";
-import Eye from "@/components/icons/eye.vue";
+import { WizIEye } from "@/components";
 import { THEME } from "@/constants";
+
+import { PrivateBaseInput } from "../base";
 
 interface Props {
   value: string;

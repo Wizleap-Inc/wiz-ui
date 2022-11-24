@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizDivider } from "@/components/atoms";
+import { WizDivider } from "@/components";
 import { COLOR_MAP_ACCESSORS } from "@/constants/styles/color";
 
 export default {

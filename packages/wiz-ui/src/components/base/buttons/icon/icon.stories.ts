@@ -1,7 +1,8 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizIconButton } from "@/components/atoms/buttons/icon";
 import { WizISend } from "@/components/icons";
+
+import { WizIconButton } from ".";
 
 export default {
   title: "Atoms/Buttons/Icon",

@@ -30,9 +30,7 @@
 <script setup lang="ts">
 import { computed, useSlots } from "vue";
 
-import WizHStack from "@/components/atoms/stack/h-stack.vue";
-import WizVStack from "@/components/atoms/stack/v-stack.vue";
-import WizIHint from "@/components/icons/hint.vue";
+import { WizHStack, WizVStack, WizIHint } from "@/components";
 import { THEME } from "@/constants/styles";
 import { ColorKeys } from "@/types/styles/color";
 import { SpacingKeys } from "@/types/styles/spacing";

@@ -42,8 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { WizHStack, WizText, WizVStack } from "@/components/atoms";
-import { WizCard } from "@/components/molecules/card";
+import { WizHStack, WizText, WizVStack, WizCard } from "@/components";
 import { Message } from "@/types/components/chat";
 import { formatDateToTime } from "@/utils/date";
 

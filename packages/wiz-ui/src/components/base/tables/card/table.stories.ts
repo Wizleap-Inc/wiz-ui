@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizVStack } from "../../../atoms/stack";
+import { WizVStack } from "@/components";
 
 import {
   WizCardTable,

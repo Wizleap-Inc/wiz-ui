@@ -1,7 +1,8 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizChatItem } from "@/components/molecules/chat-item";
 import { Message } from "@/types/components/chat";
+
+import { WizChatItem } from ".";
 
 export default {
   title: "Molecules/Chat/Item",
