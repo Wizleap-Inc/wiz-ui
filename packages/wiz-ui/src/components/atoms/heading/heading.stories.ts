@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 
 import { COLOR_MAP_ACCESSORS } from "./../../../constants/styles/color";
-import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/fontSize";
+import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/font-size";
 import WizHeading from "./heading.vue";
 
 export default {

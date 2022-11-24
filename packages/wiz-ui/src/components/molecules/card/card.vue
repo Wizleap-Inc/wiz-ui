@@ -9,7 +9,7 @@
   >
     <WizVStack gap="md">
       <div
-        v-if="title || (!title && slots.mainHeaderArea) || hint"
+        v-if="title || (!title && slots.subHeaderArea) || hint"
         class="wiz-card__header"
       >
         <WizHStack gap="xs2" class="wiz-card__header-main">

@@ -1,12 +1,14 @@
 <template>
   <WizBox
     position="fixed"
-    :top="
-      isOpen ? `calc(100% - ${floatChatCardHeight}px)` : 'calc(100% - 56px)'
+    :bottom="
+      isOpen
+        ? '0'
+        : `calc(${THEME.fontSize.xl2} + ${THEME.spacing.md} * 2 - ${floatChatCardHeight}px)`
     "
     right="1.5rem"
     width="20rem"
-    transition="top 0.3s ease-in-out"
+    transition="bottom 0.3s ease-in-out"
     ref="floatChatCardRef"
   >
     <WizCard shadow :title="username">
@@ -22,9 +24,7 @@
         <WizChatItem
           v-for="(item, i) in messages"
           :key="i"
-          :message="item.message"
-          :username="item.username"
-          :sender="item.sender"
+          :content="item"
           :maxChatItemWidth="'192px'"
         />
       </WizVStack>
@@ -41,26 +41,26 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 
 import { WizBox, WizDivider, WizIcon, WizVStack } from "@/components/atoms";
 import { WizIExpandMore, WizIExpandLess } from "@/components/icons";
 import { WizCard, WizChatForm, WizChatItem } from "@/components/molecules";
 import { THEME } from "@/constants";
+import { useZIndex } from "@/hooks";
+import { Message } from "@/types/components/chat";
 
 interface Props {
   value: string;
   username: string;
   placeholder?: string;
-  messages: {
-    message: string;
-    sender: "me" | "other";
-    username?: string;
-  }[];
+  messages: Message[];
   isOpen: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  isOpen: false,
+});
 
 interface Emit {
   (e: "input", value: string): void;
@@ -69,6 +69,8 @@ interface Emit {
 }
 
 const emits = defineEmits<Emit>();
+
+const { nextZIndex } = useZIndex();
 
 const floatChatCardHeight = ref(0);
 const floatChatCardRef = ref<InstanceType<typeof WizBox>>();
@@ -83,6 +85,14 @@ onMounted(() => {
   }
 });
 
+watch(props.messages, () => {
+  nextTick(() => {
+    if (chatListRef.value) {
+      chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
+    }
+  });
+});
+
 const textValue = computed({
   get: () => props.value,
   set: (value) => emits("input", value),
@@ -92,6 +102,7 @@ const onSubmit = () => emits("submit");
 
 const toggleDisplay = () => emits("toggleDisplay");
 
+const zIndex = nextZIndex();
 const titleHeight = THEME.spacing.xl;
 const titlePadding = THEME.spacing.md;
 </script>
@@ -106,5 +117,6 @@ const titlePadding = THEME.spacing.md;
   border: none;
   cursor: pointer;
   background: transparent;
+  z-index: v-bind(zIndex);
 }
 </style>

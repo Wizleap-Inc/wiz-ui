@@ -34,28 +34,45 @@ const Template: StoryFn = (_, { argTypes }) => ({
 
 export const Sender = Template.bind({});
 Sender.args = {
-  message: "こんにちは",
-  sender: "other",
-  username: "ユーザー名",
+  content: {
+    message: "こんにちは",
+    sender: "other",
+    username: "ユーザー名",
+  },
 };
 
 export const Expand = Template.bind({});
 Expand.args = {
-  message: "こんにちは",
-  sender: "me",
-  username: "ユーザー名",
+  content: {
+    message: "こんにちは",
+    sender: "me",
+    username: "ユーザー名",
+  },
 };
 
 export const Overview: StoryFn = () => ({
   components: { WizChatItem },
+  setup() {
+    const othersMessageObj = {
+      message: "こんにちは",
+      sender: "other",
+      username: "ユーザー名",
+    };
+    const myMessageObj = {
+      message: "こんにちは",
+      sender: "me",
+      username: "ユーザー名",
+    };
+    return { othersMessageObj, myMessageObj };
+  },
   template: `
     <div style="width: 300px; border: 1px solid #ccc; border-radius: 4px; padding: 8px;">
-      <WizChatItem message="こんにちは" sender="other" username="相手の名前" />
-      <WizChatItem message="こんにちは" sender="me" />
-      <WizChatItem message="元気ですか" sender="other" username="相手の名前" />
-      <WizChatItem message="元気です" sender="me" />
-      <WizChatItem message="そうですか" sender="other" username="相手の名前" />
-      <WizChatItem message="はい" sender="me" />
+      <WizChatItem :content="othersMessageObj" />
+      <WizChatItem :content="myMessageObj" />
+      <WizChatItem :content="othersMessageObj" />
+      <WizChatItem :content="myMessageObj" />
+      <WizChatItem :content="othersMessageObj" />
+      <WizChatItem :content="myMessageObj" />
     </div>
   `,
 });
