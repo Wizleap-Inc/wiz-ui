@@ -1,11 +1,11 @@
 <template>
-  <WizVStack :align="sender === 'me' ? 'end' : 'start'" gap="no">
+  <WizVStack :align="content.sender === 'me' ? 'end' : 'start'" gap="no">
     <WizText
-      v-if="sender === 'other'"
+      v-if="content.sender === 'other'"
       as="span"
       font-size="xs2"
       color="gray.600"
-      >{{ username }}</WizText
+      >{{ content.username }}</WizText
     >
     <WizCard
       border
@@ -15,7 +15,9 @@
       borderColor="gray.300"
       :maxWidth="maxChatItemWidth"
     >
-      <WizText as="span" font-size="xs" color="gray.700">{{ message }}</WizText>
+      <WizText as="span" font-size="xs" color="gray.700">{{
+        content.message
+      }}</WizText>
     </WizCard>
   </WizVStack>
 </template>
@@ -23,15 +25,12 @@
 <script setup lang="ts">
 import { WizText, WizVStack } from "@/components/atoms";
 import { WizCard } from "@/components/molecules/card";
+import { Message } from "@/types/components/chat";
 
 interface Props {
-  sender: "me" | "other";
-  username?: string;
-  message: string;
+  content: Message;
   maxChatItemWidth?: string;
 }
 
-withDefaults(defineProps<Props>(), {
-  sender: "other",
-});
+defineProps<Props>();
 </script>
