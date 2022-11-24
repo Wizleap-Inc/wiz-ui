@@ -33,6 +33,12 @@ export default {
         type: "boolean",
       },
     },
+    hideReadStatus: {
+      control: { type: "boolean" },
+    },
+    hideTimestamp: {
+      control: { type: "boolean" },
+    },
     toggleDisplay: {
       action: "toggleDisplay",
     },
@@ -50,46 +56,40 @@ const templateArgs = {
   placeholder: "入力してください",
   messages: [
     {
-      message: "こんにちは",
+      message: "こんにちは、マネーキャリアスタッフの田中です。",
       sender: "other",
       username: "マネーキャリアスタッフ",
+      time: new Date(),
     },
     {
-      message: "テキストテキストテキストテキスト",
+      message: "こんにちは、〇〇です。よろしくお願いします。",
       sender: "me",
+      read: true,
+      time: new Date(),
     },
     {
-      message: "テキストテキストテキストテキスト",
+      message: "よろしくお願いします。",
       sender: "other",
       username: "マネーキャリアスタッフ",
+      time: new Date(),
     },
     {
-      message: "こんにちは",
-      sender: "other",
-      username: "マネーキャリアスタッフ",
-    },
-    {
-      message: "テキストテキストテキストテキスト",
+      message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
       sender: "me",
+      read: true,
+      time: new Date(),
     },
     {
-      message: "テキストテキストテキストテキスト",
+      message: "不在申請ですね、承知しました少々お待ちください。",
       sender: "other",
       username: "マネーキャリアスタッフ",
+      time: new Date(),
     },
     {
-      message: "こんにちは",
-      sender: "other",
-      username: "マネーキャリアスタッフ",
-    },
-    {
-      message: "テキストテキストテキストテキスト",
+      message: "お願いします。",
       sender: "me",
-    },
-    {
-      message: "テキストテキストテキストテキスト",
-      sender: "other",
-      username: "マネーキャリアスタッフ",
+      read: false,
+      time: new Date(),
     },
   ],
 };
@@ -129,6 +129,8 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
       messages.value.push({
         message: newMessage.value,
         sender: "me",
+        read: false,
+        time: new Date(),
       });
       newMessage.value = "";
     };
