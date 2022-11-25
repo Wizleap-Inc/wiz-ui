@@ -19,7 +19,7 @@ import { RouterLinkProps } from "vue-router/types/router";
 
 import { THEME } from "@/constants";
 
-import { key } from "../provider";
+import { key } from "./provider";
 
 interface Props {
   icon: Vue;

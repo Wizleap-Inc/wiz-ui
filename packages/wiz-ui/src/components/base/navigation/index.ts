@@ -1,2 +1,2 @@
-export * from "./item";
-export * from "./container";
+export { default as WizNavItem } from "./item.vue";
+export { default as WizNavContainer } from "./container.vue";

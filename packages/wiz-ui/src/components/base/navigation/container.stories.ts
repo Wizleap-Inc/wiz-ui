@@ -8,9 +8,7 @@ import {
   WizIHelp,
 } from "@/components/icons";
 
-import { WizNavItem } from "../item";
-
-import { WizNavContainer } from ".";
+import { WizNavItem, WizNavContainer } from ".";
 
 const Home = {
   template: "<div>Home</div>",

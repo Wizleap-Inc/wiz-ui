@@ -17,7 +17,7 @@ import { computed, provide, useSlots } from "vue";
 
 import { THEME } from "@/constants";
 
-import { key, useProvide } from "../provider";
+import { key, useProvide } from "./provider";
 
 const provider = useProvide();
 const { isMenuOpen } = provider;
