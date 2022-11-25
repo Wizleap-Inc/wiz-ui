@@ -5,11 +5,11 @@ import { WizIDashboard } from "@/components/icons";
 
 import { WizNavItem } from ".";
 
+const Index = {
+  template: "<div>Index</div>",
+};
 const Home = {
   template: "<div>Home</div>",
-};
-const About = {
-  template: "<div>About</div>",
 };
 
 export default {
@@ -31,8 +31,8 @@ export default {
   },
   decorators: [
     StoryRouter([
-      { path: "/", name: "home", component: Home },
-      { path: "/about", name: "about", component: About },
+      { path: "/", name: "index", component: Index },
+      { path: "/home", name: "home", component: Home },
     ]),
   ],
 };
@@ -45,7 +45,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
   },
   template: `
   <div>
-    <WizNavItem v-bind="$props" :active="$route.path === '/about'" />
+    <WizNavItem v-bind="$props" :active="$route.path === '/home'" />
     <router-view />
   </div>
   `,
@@ -54,6 +54,6 @@ const Template: StoryFn = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   icon: WizIDashboard,
-  label: "About",
-  to: "/about",
+  label: "Home",
+  to: "/home",
 };

@@ -59,6 +59,7 @@ const itemPadding = `${spacingXs} ${spacingSm} ${spacingXs} ${spacingXl}`;
   position: relative;
   font-size: v-bind(fontSizeXs);
   line-height: v-bind(fontSizeXl2);
+  transition: background-color 0.2s ease-in-out;
 
   &::before {
     content: "";
@@ -69,6 +70,7 @@ const itemPadding = `${spacingXs} ${spacingSm} ${spacingXs} ${spacingXl}`;
     height: 100%;
     background-color: v-bind(transparent);
     border-radius: v-bind(spacingXs2);
+    transition: background-color 0.2s ease-in-out;
   }
 
   &:hover::before,
