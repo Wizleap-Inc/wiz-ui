@@ -3,7 +3,7 @@ import { StoryFn } from "@storybook/vue";
 import WizTooltip from "./tooltip.vue";
 
 export default {
-  title: "Atoms/Tooltip",
+  title: "Base/Tooltip",
   component: WizTooltip,
   argTypes: {
     content: {

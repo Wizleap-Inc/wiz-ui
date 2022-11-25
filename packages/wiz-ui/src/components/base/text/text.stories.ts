@@ -6,7 +6,7 @@ import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/font-size";
 import WizText from "./text.vue";
 
 export default {
-  title: "Atoms/Text",
+  title: "Base/Text",
   component: WizText,
   argTypes: {
     as: {

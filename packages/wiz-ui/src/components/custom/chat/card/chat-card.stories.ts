@@ -6,7 +6,7 @@ import { WizBox } from "@/components";
 import { WizChatCard } from ".";
 
 export default {
-  title: "Organisms/Chat/Card",
+  title: "Custom/Chat/Card",
   component: WizChatCard,
   argTypes: {
     value: {

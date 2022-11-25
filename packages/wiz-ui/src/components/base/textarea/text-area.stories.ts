@@ -8,7 +8,7 @@ import { THEME } from "@/constants/styles/index";
 import WizTextArea from "./text-area.vue";
 
 export default {
-  title: "Atoms/TextArea",
+  title: "Base/TextArea",
   component: WizTextArea,
   argTypes: {
     value: {

@@ -35,7 +35,7 @@ const spacingControls = spacingKeys.reduce((acc, key) => {
 }, {} as Record<string, any>);
 
 export default {
-  title: "Atoms/Stack",
+  title: "Base/Stack",
   component: WizStack,
   argTypes: {
     direction: {

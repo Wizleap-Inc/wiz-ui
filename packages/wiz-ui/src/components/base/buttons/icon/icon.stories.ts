@@ -5,7 +5,7 @@ import { WizISend } from "@/components/icons";
 import { WizIconButton } from ".";
 
 export default {
-  title: "Atoms/Buttons/Icon",
+  title: "Base/Buttons/Icon",
   component: WizIconButton,
   argTypes: {
     variant: {

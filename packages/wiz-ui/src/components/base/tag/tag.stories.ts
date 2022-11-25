@@ -7,7 +7,7 @@ import { WizIClose } from "../../icons";
 import WizTag from "./tag.vue";
 
 export default {
-  title: "Atoms/Tag",
+  title: "Base/Tag",
   component: WizTag,
   argTypes: {
     fontSize: {

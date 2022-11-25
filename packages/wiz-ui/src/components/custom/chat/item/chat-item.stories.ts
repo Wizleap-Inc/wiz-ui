@@ -5,7 +5,7 @@ import { Message } from "@/types/components/chat";
 import { WizChatItem } from ".";
 
 export default {
-  title: "Molecules/Chat/Item",
+  title: "Custom/Chat/Item",
   component: WizChatItem,
   argTypes: {
     sender: {

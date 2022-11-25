@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { WizChatForm } from ".";
 
 export default {
-  title: "Molecules/Chat/Form",
+  title: "Custom/Chat/Form",
   component: WizChatForm,
   argTypes: {
     placeholder: {

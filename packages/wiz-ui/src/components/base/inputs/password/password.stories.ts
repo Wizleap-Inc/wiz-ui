@@ -4,7 +4,7 @@ import { ref } from "vue";
 import WizPasswordInput from "./password.vue";
 
 export default {
-  title: "Atoms/Input/Password",
+  title: "Base/Input/Password",
   component: WizPasswordInput,
   argTypes: {
     value: {
