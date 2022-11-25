@@ -13,15 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, useSlots } from "vue";
+import { computed, useSlots } from "vue";
 
 import { THEME } from "@/constants";
+import { globalInject, globalKey } from "@/providers";
 
-import { key, useProvide } from "./provider";
-
-const provider = useProvide();
-const { isMenuOpen } = provider;
-provide(key, provider);
+const { isMenuOpen } = globalInject(globalKey);
 
 const slots = useSlots();
 
@@ -33,7 +30,7 @@ const props = defineProps<Props>();
 const computedWidth = computed(() => {
   if (props.width) return props.width;
   if (isMenuOpen.value) return "180px";
-  return "64px";
+  return `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`;
 });
 const spacingXl2 = THEME.spacing.xl2;
 const white500 = THEME.color.white["500"];
@@ -47,6 +44,8 @@ const white500 = THEME.color.white["500"];
   background: v-bind(white500);
   width: v-bind(computedWidth);
   height: 100%;
+  transition: width 0.2s ease-in-out;
+  overflow: hidden;
 
   &__items {
     display: flex;

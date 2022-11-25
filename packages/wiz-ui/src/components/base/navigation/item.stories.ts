@@ -1,7 +1,9 @@
 import { StoryFn } from "@storybook/vue";
 import StoryRouter from "storybook-vue-router";
+import { provide } from "vue";
 
 import { WizIDashboard } from "@/components/icons";
+import { globalKey, useGlobalProvider } from "@/providers";
 
 import { WizNavItem } from ".";
 
@@ -34,6 +36,13 @@ export default {
       { path: "/", name: "index", component: Index },
       { path: "/home", name: "home", component: Home },
     ]),
+    (story: StoryFn) => ({
+      components: { story },
+      setup() {
+        provide(globalKey, useGlobalProvider());
+      },
+      template: `<story />`,
+    }),
   ],
 };
 

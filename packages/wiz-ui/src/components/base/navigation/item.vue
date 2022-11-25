@@ -7,19 +7,17 @@
     }"
   >
     <component :is="icon" class="wiz-navigation-item__icon" />
-    <div class="wiz-navigation-item__text" v-if="isMenuOpen">
+    <div class="wiz-navigation-item__text">
       {{ label }}
     </div>
   </RouterLink>
 </template>
 
 <script setup lang="ts">
-import Vue, { inject, ref } from "vue";
+import Vue from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
 import { THEME } from "@/constants";
-
-import { key } from "./provider";
 
 interface Props {
   icon: Vue;
@@ -27,10 +25,6 @@ interface Props {
   active: boolean;
   to: RouterLinkProps["to"];
 }
-
-const { isMenuOpen } = inject(key, {
-  isMenuOpen: ref(true),
-});
 
 defineProps<Props>();
 
@@ -90,10 +84,12 @@ const itemPadding = `${spacingXs} ${spacingSm} ${spacingXs} ${spacingXl}`;
   &__icon {
     font-size: v-bind(fontSizeXl2);
     fill: v-bind(gray700);
+    flex-shrink: 0;
   }
 
   &__text {
-    font-size: 0.875rem;
+    font-size: v-bind(fontSizeXs);
+    min-width: 0;
   }
 }
 </style>
