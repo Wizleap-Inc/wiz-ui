@@ -51,14 +51,14 @@ HaveImage.args = {
   alt: "avatar",
 };
 
-export const FailImage = Template.bind({});
-FailImage.args = {
+export const FailToLoadImage = Template.bind({});
+FailToLoadImage.args = {
   src: "./public/images/avatar-0.png",
   alt: "avatar",
 };
 
-export const FailImageWithFallback = Template.bind({});
-FailImageWithFallback.args = {
+export const FailToLoadImageWithFallback = Template.bind({});
+FailToLoadImageWithFallback.args = {
   src: "./public/images/avatar-0.png",
   alt: "avatar",
   fallback: "田",
