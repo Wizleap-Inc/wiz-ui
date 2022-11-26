@@ -24,6 +24,7 @@
     :width="width"
     :overflow="overflow"
     :reverse="reverse"
+    :position="position"
   >
     <slot />
   </WizStack>
@@ -58,6 +59,7 @@ export interface Props {
   width?: string;
   overflow?: string;
   reverse?: boolean;
+  position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
 }
 
 defineProps<Props>();
