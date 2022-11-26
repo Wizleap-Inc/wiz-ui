@@ -1,8 +1,8 @@
 <template>
-  <p v-if="computedIsP" class="wiz-text">
+  <p v-if="computedIsP" class="wiz-text" :style="overflowStyles">
     <slot />
   </p>
-  <span v-else-if="computedIsSpan" class="wiz-text">
+  <span v-else-if="computedIsSpan" class="wiz-text" :style="overflowStyles">
     <slot />
   </span>
 </template>
@@ -20,6 +20,7 @@ interface Props {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   bold?: boolean;
+  maxLines?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -33,6 +34,16 @@ const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
 const computedFontSize = computed(() => FONT_SIZE_MAP[props.fontSize]);
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
+
+const overflowStyles = computed(() => {
+  if (!props.maxLines) return {};
+  return {
+    overflow: "hidden",
+    display: "-webkit-box",
+    webkitBoxOrient: "vertical",
+    WebkitLineClamp: props.maxLines,
+  };
+});
 </script>
 
 <style lang="scss" scoped>
