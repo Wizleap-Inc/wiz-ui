@@ -12,6 +12,10 @@ import { ColorKeys } from "@/types/styles/color";
 import { ShadowKeys } from "@/types/styles/shadow";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { ZIndexKeys } from "@/types/styles/z-index";
+import { getColorCss } from "@/utils/styles/color";
+import { getShadowCss } from "@/utils/styles/shadow";
+import { getSpacingCSS } from "@/utils/styles/spacing";
+import { getZIndexCSS } from "@/utils/styles/z-index";
 
 interface Props {
   position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
@@ -21,10 +25,10 @@ interface Props {
   left?: string;
   width?: string;
   height?: string;
-  borderRadius?: SpacingKeys;
+  round?: SpacingKeys;
   zIndex?: ZIndexKeys;
-  backgroundColor?: ColorKeys;
-  boxShadow?: ShadowKeys;
+  bgColor?: ColorKeys;
+  shadow?: ShadowKeys;
   overflow?: "visible" | "hidden" | "scroll" | "auto";
   overflowX?: "visible" | "hidden" | "scroll" | "auto";
   overflowY?: "visible" | "hidden" | "scroll" | "auto";
@@ -46,10 +50,10 @@ const computedStyle = computed(() => {
   if (props.left) style.left = props.left;
   if (props.width) style.width = props.width;
   if (props.height) style.height = props.height;
-  if (props.borderRadius) style.borderRadius = props.borderRadius;
-  if (props.zIndex) style.zIndex = `${props.zIndex}`;
-  if (props.backgroundColor) style.backgroundColor = props.backgroundColor;
-  if (props.boxShadow) style.boxShadow = props.boxShadow;
+  if (props.round) style.borderRadius = getSpacingCSS(props.round);
+  if (props.zIndex) style.zIndex = getZIndexCSS(props.zIndex);
+  if (props.bgColor) style.backgroundColor = getColorCss(props.bgColor);
+  if (props.shadow) style.boxShadow = getShadowCss(props.shadow);
   if (props.overflow) style.overflow = props.overflow;
   if (props.overflowX) style.overflowX = props.overflowX;
   if (props.overflowY) style.overflowY = props.overflowY;
