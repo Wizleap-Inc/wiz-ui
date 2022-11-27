@@ -1,6 +1,7 @@
 interface BaseMessage {
   message: string;
   time?: Date;
+  username?: string;
 }
 
 interface MyMessage extends BaseMessage {
@@ -10,7 +11,6 @@ interface MyMessage extends BaseMessage {
 
 interface OtherMessage extends BaseMessage {
   sender: "other";
-  username: string;
 }
 
 export type Message = MyMessage | OtherMessage;
