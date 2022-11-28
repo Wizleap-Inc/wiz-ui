@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-for="(item, i) in notifications">
-      <WizNotificationCard
+      <WizNotificationPanel
         :key="i + 'notification'"
         :bold="bold"
         :variant="variant"
@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { WizDivider } from "@/components/base";
 
-import { WizNotificationCard } from "..";
+import { WizNotificationPanel } from "..";
 import { InfoItem } from "../types";
 
 interface Props {

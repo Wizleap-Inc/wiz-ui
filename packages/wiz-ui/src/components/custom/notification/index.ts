@@ -1,2 +1,2 @@
-export * from "./card";
+export * from "./panel";
 export * from "./list";

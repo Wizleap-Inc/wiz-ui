@@ -2,11 +2,11 @@ import { StoryFn } from "@storybook/vue";
 
 import { WizText, WizVStack, WizHStack, WizBox } from "@/components";
 
-import { WizNotificationCard } from ".";
+import { WizNotificationPanel } from ".";
 
 export default {
   title: "Custom/Notification/Card",
-  component: WizNotificationCard,
+  component: WizNotificationPanel,
   argTypes: {
     title: {
       control: { type: "text" },
@@ -49,17 +49,17 @@ const baseProps = {
 
 const MultiVariantTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizNotificationCard, WizVStack, WizHStack, WizText, WizBox },
+  components: { WizNotificationPanel, WizVStack, WizHStack, WizText, WizBox },
   template: `
   <div style="width: 616px">
     <WizHStack gap="md">
       <WizVStack gap="md">
         <WizText>primary</WizText>
-        <WizNotificationCard v-bind="$props" />
+        <WizNotificationPanel v-bind="$props" />
       </WizVStack>
       <WizVStack gap="md">
         <WizText>secondary</WizText>
-        <WizNotificationCard v-bind="$props" variant="secondary" />
+        <WizNotificationPanel v-bind="$props" variant="secondary" />
       </WizVStack>
     </WizHStack>
   </div>
