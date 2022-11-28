@@ -30,7 +30,6 @@
       </WizVStack>
       <WizIconButton :icon="WizIChevronRight" variant="transparent" />
     </WizHStack>
-    <WizDivider />
   </WizBox>
 </template>
 
@@ -39,7 +38,6 @@ import { computed } from "vue";
 
 import {
   WizBox,
-  WizDivider,
   WizHStack,
   WizIconButton,
   WizVStack,
@@ -48,7 +46,7 @@ import {
 import { WizIChevronRight } from "@/components/icons";
 import { formatDateToYMDHM, formatHowPast } from "@/utils/date";
 
-import type { InfoItem } from ".";
+import type { InfoItem } from "../types";
 
 interface Props {
   title: string;
