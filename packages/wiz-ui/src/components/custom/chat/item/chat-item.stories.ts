@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
-import { Message } from "@/types/components/chat";
+import { Message } from "..";
 
 import { WizChatItem } from ".";
 

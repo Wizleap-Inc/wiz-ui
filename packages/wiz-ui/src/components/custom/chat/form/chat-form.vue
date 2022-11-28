@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
 import { WizHStack, WizIconButton, WizTextArea, WizISend } from "@/components";
 
@@ -32,7 +32,6 @@ interface Emit {
 }
 const emits = defineEmits<Emit>();
 
-const value = ref("");
 const textValue = computed({
   get: () => props.value,
   set: (value) => emits("input", value),

@@ -65,7 +65,8 @@ import {
 } from "@/components";
 import { THEME } from "@/constants";
 import { useZIndex } from "@/hooks";
-import { Message } from "@/types/components/chat";
+
+import { Message } from "..";
 
 interface Props {
   value: string;
