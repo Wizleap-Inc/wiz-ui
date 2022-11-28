@@ -1,7 +1,7 @@
 <template>
   <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
     <WizText
-      v-if="content.sender === 'other'"
+      v-if="content.username"
       as="span"
       fontSize="xs2"
       color="gray.600"
@@ -22,15 +22,15 @@
       </WizCard>
       <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
         <WizText
-          v-if="!hideReadStatus && content.sender === 'me' && content.read"
+          v-if="content.read !== undefined"
           as="span"
           fontSize="xs2"
           color="gray.500"
         >
-          既読
+          {{ content.read ? "既読" : "未読" }}
         </WizText>
         <WizText
-          v-if="!hideTimestamp && content.time"
+          v-if="content.time"
           as="span"
           fontSize="xs2"
           color="gray.500"
@@ -49,8 +49,6 @@ import { Message } from "..";
 
 interface Props {
   content: Message;
-  hideReadStatus?: boolean;
-  hideTimestamp?: boolean;
   maxChatItemWidth?: string;
 }
 

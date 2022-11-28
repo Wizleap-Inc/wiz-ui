@@ -34,12 +34,6 @@ export default {
         type: "boolean",
       },
     },
-    hideReadStatus: {
-      control: { type: "boolean" },
-    },
-    hideTimestamp: {
-      control: { type: "boolean" },
-    },
     haveNewMessage: {
       control: { type: "boolean" },
     },
@@ -106,20 +100,6 @@ export const Open = Template.bind({});
 Open.args = {
   ...templateArgs,
   isOpen: true,
-};
-
-export const HideReadStatus = Template.bind({});
-HideReadStatus.args = {
-  ...templateArgs,
-  isOpen: true,
-  hideReadStatus: true,
-};
-
-export const HideTimestamp = Template.bind({});
-HideTimestamp.args = {
-  ...templateArgs,
-  isOpen: true,
-  hideTimestamp: true,
 };
 
 export const Closed = Template.bind({});
