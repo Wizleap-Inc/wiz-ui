@@ -36,6 +36,7 @@ interface Props {
   pointerEvents?: "auto" | "none";
   transform?: string;
   transition?: string;
+  opacity?: number;
 }
 
 const props = defineProps<Props>();
@@ -61,6 +62,7 @@ const computedStyle = computed(() => {
   if (props.pointerEvents) style.pointerEvents = props.pointerEvents;
   if (props.transform) style.transform = props.transform;
   if (props.transition) style.transition = props.transition;
+  if (props.opacity) style.opacity = props.opacity;
 
   return style;
 });

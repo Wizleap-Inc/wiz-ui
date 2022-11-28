@@ -18,51 +18,73 @@ export default {
       control: { type: "select" },
       options: ["primary", "secondary"],
     },
+    status: {
+      control: { type: "select" },
+      options: ["new", "read", "old"],
+    },
+    tableInfo: {
+      control: { type: "array" },
+    },
+    bold: {
+      control: { type: "boolean" },
+    },
   },
 };
-
-const Template: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizNotificationCard },
-  template: `
-  <div style="width: 300px;">
-    <WizNotificationCard v-bind="$props">{{ slot }}</WizNotificationCard>
-  </div>
-  `,
-});
-
-export const Default = Template.bind({});
-Default.args = {
-  title:
-    "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
-  timestamp: new Date("2021-01-01 00:00:00"),
-};
-
-const PrimaryTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizNotificationCard, WizVStack, WizHStack, WizText, WizBox },
-  template: `
-  <div style="width: 300px;">
-    <WizNotificationCard v-bind="$props">
-      <WizHStack gap="xl">
-        <WizVStack gap="xs">
-          <WizText bold fontSize="xs" color="gray.700">情報1</WizText>
-          <WizText bold fontSize="xs" color="gray.700">データ1</WizText>
-        </WizVStack>
-        <WizVStack gap="xs">
-          <WizText bold fontSize="xs" color="gray.700">情報2</WizText>
-          <WizText bold fontSize="xs" color="gray.700">データ2</WizText>
-        </WizVStack>
-      </WizHStack>
-    </WizNotificationCard>
-  </div>
-  `,
-});
-
-export const Primary = PrimaryTemplate.bind({});
-Primary.args = {
+const baseProps = {
   title:
     "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
   timestamp: new Date("2021-01-01 00:00:00"),
   variant: "primary",
+  tableInfo: [
+    {
+      title: "情報1",
+      content: "データ1",
+    },
+    {
+      title: "情報2",
+      content: "データ2",
+    },
+  ],
+};
+
+const MultiVariantTemplate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizNotificationCard, WizVStack, WizHStack, WizText, WizBox },
+  template: `
+  <div style="width: 616px">
+    <WizHStack gap="md">
+      <WizVStack gap="md">
+        <WizText>primary</WizText>
+        <WizNotificationCard v-bind="$props" />
+      </WizVStack>
+      <WizVStack gap="md">
+        <WizText>secondary</WizText>
+        <WizNotificationCard v-bind="$props" variant="secondary" />
+      </WizVStack>
+    </WizHStack>
+  </div>
+  `,
+});
+
+export const Variant = MultiVariantTemplate.bind({});
+Variant.args = {
+  ...baseProps,
+};
+
+export const StatusNew = MultiVariantTemplate.bind({});
+StatusNew.args = {
+  ...baseProps,
+  status: "new",
+};
+
+export const StatusRead = MultiVariantTemplate.bind({});
+StatusRead.args = {
+  ...baseProps,
+  status: "read",
+};
+
+export const StatusOld = MultiVariantTemplate.bind({});
+StatusOld.args = {
+  ...baseProps,
+  status: "old",
 };
