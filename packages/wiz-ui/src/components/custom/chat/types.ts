@@ -1,7 +1,7 @@
 export interface Message {
   message: string;
   sender: "me" | "other";
+  time: Date;
   username?: string;
-  time?: Date;
   read?: boolean;
 }

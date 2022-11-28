@@ -29,13 +29,9 @@
         >
           {{ content.read ? "既読" : "未読" }}
         </WizText>
-        <WizText
-          v-if="content.time"
-          as="span"
-          fontSize="xs2"
-          color="gray.500"
-          >{{ formatDateToTime(content.time) }}</WizText
-        >
+        <WizText as="span" fontSize="xs2" color="gray.500">{{
+          formatDateToTime(content.time)
+        }}</WizText>
       </WizVStack>
     </WizHStack>
   </WizVStack>
