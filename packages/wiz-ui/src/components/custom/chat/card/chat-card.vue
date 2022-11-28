@@ -27,12 +27,22 @@
       </template>
       <WizDivider />
       <WizVStack gap="xs" height="320px" overflow="scroll" ref="chatListRef">
-        <WizChatItem
-          v-for="(item, i) in messages"
-          :key="i"
-          :content="item"
-          :maxChatItemWidth="'192px'"
-        />
+        <template v-for="messages in displayMessages">
+          <WizHStack justify="center" :key="messages.date.toDateString()">
+            <WizTag
+              :label="formatDateToMonthDayWeek(messages.date)"
+              color="gray.900"
+              backgroundColor="gray.300"
+              fontSize="xs2"
+            />
+          </WizHStack>
+          <WizChatItem
+            v-for="(item, i) in messages.contents"
+            :key="messages.date.toDateString() + i"
+            :content="item"
+            maxChatItemWidth="192px"
+          />
+        </template>
       </WizVStack>
       <template #footer>
         <WizChatForm
@@ -54,7 +64,9 @@ import {
   WizDivider,
   WizIcon,
   WizText,
+  WizTag,
   WizVStack,
+  WizHStack,
   WizCard,
   WizChatForm,
   WizChatItem,
@@ -63,6 +75,7 @@ import {
 } from "@/components";
 import { THEME } from "@/constants";
 import { useZIndex } from "@/hooks";
+import { formatDateToMonthDayWeek } from "@/utils/date";
 
 import { Message } from "..";
 
@@ -105,6 +118,34 @@ onMounted(() => {
   if (chatListRef.value) {
     chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
   }
+});
+
+interface DisplayMessage {
+  date: Date;
+  contents: Message[];
+}
+
+const displayMessages = computed(() => {
+  const messages = props.messages;
+  const displayMessages: DisplayMessage[] = [];
+  messages.forEach((message) => {
+    const date = new Date(message.time);
+    const displayMessage = displayMessages.find(
+      (displayMessage) =>
+        displayMessage.date.getFullYear() === date.getFullYear() &&
+        displayMessage.date.getMonth() === date.getMonth() &&
+        displayMessage.date.getDate() === date.getDate()
+    );
+    if (displayMessage) {
+      displayMessage.contents.push(message);
+    } else {
+      displayMessages.push({
+        date,
+        contents: [message],
+      });
+    }
+  });
+  return displayMessages;
 });
 
 watch(props.messages, () => {
