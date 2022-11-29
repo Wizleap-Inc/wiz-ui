@@ -5,6 +5,7 @@ export { default as WizIEye } from "./eye.vue";
 export { default as WizISend } from "./send.vue";
 export { default as WizIExpandMore } from "./expand-more.vue";
 export { default as WizIExpandLess } from "./expand-less.vue";
+export { default as WizIChevronRight } from "./chevron-right.vue";
 export { default as WizIAssignment } from "./assignment.vue";
 export { default as WizIAssignmentAdd } from "./assignment-add.vue";
 export { default as WizIBusinessCenter } from "./business-center.vue";

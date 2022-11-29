@@ -49,6 +49,7 @@ const gray800 = THEME.color.gray[800];
 const green800 = THEME.color.green[800];
 const white500 = THEME.color.white[500];
 const white800 = THEME.color.white[800];
+const red800 = THEME.color.red[800];
 const fontSizeXs2 = THEME.fontSize.xs2;
 const fontSizeSm = THEME.fontSize.sm;
 const fontSizeLg = THEME.fontSize.lg;
@@ -63,6 +64,7 @@ const computedWidth = computed(() => props.width);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: v-bind(spacingXs2);
   height: 100%;
   padding: v-bind(spacingXs) v-bind(spacingXl);
   font-size: v-bind(fontSizeSm);
@@ -89,16 +91,16 @@ const computedWidth = computed(() => props.width);
 
   &__notification {
     line-height: v-bind(fontSizeLg);
-    margin-left: 5px;
     width: v-bind(fontSizeLg);
     height: v-bind(fontSizeLg);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ff4d4f;
-    color: #fff;
+    background-color: v-bind(red800);
+    color: v-bind(white800);
     font-size: v-bind(fontSizeXs2);
+    font-weight: normal;
   }
 }
 </style>
