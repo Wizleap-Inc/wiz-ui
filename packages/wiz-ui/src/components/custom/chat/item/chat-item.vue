@@ -1,7 +1,7 @@
 <template>
   <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
     <WizText
-      v-if="content.sender === 'other'"
+      v-if="content.username"
       as="span"
       fontSize="xs2"
       color="gray.600"
@@ -22,20 +22,16 @@
       </WizCard>
       <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
         <WizText
-          v-if="!hideReadStatus && content.sender === 'me' && content.read"
+          v-if="content.read !== undefined"
           as="span"
           fontSize="xs2"
           color="gray.500"
         >
-          既読
+          {{ content.read ? "既読" : "未読" }}
         </WizText>
-        <WizText
-          v-if="!hideTimestamp && content.time"
-          as="span"
-          fontSize="xs2"
-          color="gray.500"
-          >{{ formatDateToTime(content.time) }}</WizText
-        >
+        <WizText as="span" fontSize="xs2" color="gray.500">{{
+          formatDateToTime(content.time)
+        }}</WizText>
       </WizVStack>
     </WizHStack>
   </WizVStack>
@@ -43,13 +39,12 @@
 
 <script setup lang="ts">
 import { WizHStack, WizText, WizVStack, WizCard } from "@/components";
-import { Message } from "@/types/components/chat";
 import { formatDateToTime } from "@/utils/date";
+
+import { Message } from "..";
 
 interface Props {
   content: Message;
-  hideReadStatus?: boolean;
-  hideTimestamp?: boolean;
   maxChatItemWidth?: string;
 }
 
