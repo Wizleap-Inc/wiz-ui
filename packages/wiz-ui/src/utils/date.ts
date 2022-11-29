@@ -14,6 +14,14 @@ export const formatDateToTime = (date: Date): string => {
   return [hours, minutes].map((n) => String(n).padStart(2, "0")).join(":");
 };
 
+/**
+ * formatDateToYMDHM
+ * ```ts
+ * const input = new Date('2021-01-01 12:34:56');
+ * const output = '2021-01-01 12:34';
+ * assert.equal(formatDateToYMDHM(input), output);
+ * ```
+ */
 export const formatDateToYMDHM = (_date: Date): string => {
   const year = _date.getFullYear();
   const month = _date.getMonth() + 1;
