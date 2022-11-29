@@ -10,10 +10,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { FONT_SIZE_MAP } from "@/constants/styles/font-size";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
+
+defineOptions({
+  name: ComponentName.Text,
+});
 
 interface Props {
   as?: "p" | "span";

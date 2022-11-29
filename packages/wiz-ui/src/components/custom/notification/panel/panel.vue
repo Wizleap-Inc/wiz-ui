@@ -10,7 +10,7 @@
     cursor="pointer"
   >
     <WizHStack px="xs" py="md" justify="between" align="center">
-      <WizVStack gap="xs" position="relative">
+      <WizVStack gap="xs" position="relative" width="100%">
         <WizHStack v-if="variant === 'primary'" justify="between" align="start">
           <WizVStack gap="xs">
             <WizHStack gap="xl" v-for="(item, i) in tableInfo" :key="i">
@@ -33,7 +33,10 @@
           {{ displayDatetime }}
         </WizText>
       </WizVStack>
-      <WizIconButton :icon="WizIChevronRight" variant="transparent" />
+      <WizIcon
+        :icon="WizIChevronRight"
+        :color="isHovered || isPressed ? 'green.800' : 'gray.500'"
+      />
     </WizHStack>
   </WizBox>
 </template>
@@ -44,7 +47,7 @@ import { computed, ref } from "vue";
 import {
   WizBox,
   WizHStack,
-  WizIconButton,
+  WizIcon,
   WizVStack,
   WizText,
 } from "@/components/base";

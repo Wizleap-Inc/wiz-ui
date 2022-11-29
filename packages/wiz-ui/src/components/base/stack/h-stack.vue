@@ -22,6 +22,7 @@
     :mx="mx"
     :my="my"
     :width="width"
+    :height="height"
     :overflow="overflow"
     :reverse="reverse"
     :position="position"
@@ -57,6 +58,7 @@ export interface Props {
   mx?: SpacingKeys;
   my?: SpacingKeys;
   width?: string;
+  height?: string;
   overflow?: string;
   reverse?: boolean;
   position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
