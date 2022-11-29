@@ -1,12 +1,17 @@
 import { computed, ref } from "vue";
 
-import { getZIndexCSS } from "@/utils/styles/z-index";
-
 const zIndex = ref(0);
-const INITIAL_Z_INDEX = getZIndexCSS("popup");
 
-export const useZIndex = () => {
-  const currentZIndex = computed(() => INITIAL_Z_INDEX + zIndex.value);
+/**
+ * ```ts
+ * const {currentZIndex, nextZIndex} = useZIndex(THEME.zIndex.dialog);
+ * const dialogButtonZIndex = nextZIndex(); // 2001
+ * const confirmZIndex = nextZIndex(); // 2002
+ * ```
+ */
+export const useZIndex = (initialZIndex: number) => {
+  zIndex.value = initialZIndex;
+  const currentZIndex = computed(() => zIndex.value);
 
   const nextZIndex = () => {
     zIndex.value++;
