@@ -1,10 +1,10 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizTabPane } from ".";
+import TabPane from "./tab-pane.vue";
 
 export default {
   title: "Base/Tab/Pane",
-  component: WizTabPane,
+  component: TabPane,
   argTypes: {
     label: {
       control: { type: "text" },
@@ -21,14 +21,17 @@ export default {
     width: {
       control: { type: "text" },
     },
+    click: {
+      action: "click",
+    },
   },
 };
 
 const Template: StoryFn = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizTabPane },
+  components: { TabPane },
   template: `
-    <WizTabPane v-bind="$props" />
+    <TabPane v-bind="$props" @click="click" />
   `,
 });
 

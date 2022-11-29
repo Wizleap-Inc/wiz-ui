@@ -3,23 +3,27 @@
     :class="{
       'wiz-tab-panel': true,
       'wiz-tab-panel--active': active,
+      'wiz-tab-panel--disabled': disabled,
     }"
+    @click="onClick"
   >
     <span class="wiz-tab-panel__label">{{ label }}</span>
     <span v-if="notificationCount" class="wiz-tab-panel__notification">{{
       notificationCount
     }}</span>
-    <teleport v-if="injected" :to="`#${injected.tabContentId}`">
-      <slot />
-    </teleport>
+    <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from "vue";
+import { computed } from "vue";
 
-import { tabProviderKey } from "@/components/base/tab/provider";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.TabPane,
+});
 
 interface Props {
   label: string;
@@ -30,13 +34,16 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  width: "fit-content",
+  width: "100%",
 });
 
-const injected = inject(tabProviderKey);
-if (!injected) {
-  console.warn("TabPaneはTabコンポーネントの中で使用してください");
+interface Emits {
+  (event: "click"): void;
 }
+
+const emit = defineEmits<Emits>();
+
+const onClick = () => props.disabled || emit("click");
 
 const gray800 = THEME.color.gray[800];
 const green800 = THEME.color.green[800];
@@ -69,6 +76,11 @@ const computedWidth = computed(() => props.width);
     background: v-bind(white800);
     color: v-bind(green800);
     font-weight: bold;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &__label {

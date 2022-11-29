@@ -17,11 +17,14 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite/client", "@testing-library/jest-dom"]
+    "types": [
+      "vite/client",
+      "@testing-library/jest-dom",
+      "unplugin-vue-define-options/macros-global"
+    ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules", "dist"],
-  "references": [{ "path": "./tsconfig.node.json" }],
   "vueCompilerOptions": {
     "target": 2.7
   }
