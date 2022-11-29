@@ -1,4 +1,5 @@
 const path = require("path");
+
 module.exports = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -21,6 +22,7 @@ module.exports = {
     config.base = "./";
     return config;
   },
+  staticDirs: [{ from: "./assets", to: "/public" }],
   docsPage: {
     docs: "automatic",
   },
