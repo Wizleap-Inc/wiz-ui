@@ -5,7 +5,7 @@ import { WizText, WizVStack, WizHStack, WizBox } from "@/components";
 import { WizNotificationPanel } from ".";
 
 export default {
-  title: "Custom/Notification/Card",
+  title: "Custom/Notification/Panel",
   component: WizNotificationPanel,
   argTypes: {
     title: {
@@ -18,18 +18,15 @@ export default {
       control: { type: "select" },
       options: ["primary", "secondary"],
     },
-    status: {
-      control: { type: "select" },
-      options: ["new", "read", "old"],
-    },
     tableInfo: {
       control: { type: "array" },
     },
-    bold: {
+    read: {
       control: { type: "boolean" },
     },
   },
 };
+
 const baseProps = {
   title:
     "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
@@ -45,6 +42,7 @@ const baseProps = {
       content: "データ2",
     },
   ],
+  read: false,
 };
 
 const MultiVariantTemplate: StoryFn = (_, { argTypes }) => ({
@@ -54,11 +52,11 @@ const MultiVariantTemplate: StoryFn = (_, { argTypes }) => ({
   <div style="width: 616px">
     <WizHStack gap="md">
       <WizVStack gap="md">
-        <WizText>primary</WizText>
+        <WizText>variant = primary(default)</WizText>
         <WizNotificationPanel v-bind="$props" />
       </WizVStack>
       <WizVStack gap="md">
-        <WizText>secondary</WizText>
+        <WizText>variant = secondary</WizText>
         <WizNotificationPanel v-bind="$props" variant="secondary" />
       </WizVStack>
     </WizHStack>
@@ -66,25 +64,13 @@ const MultiVariantTemplate: StoryFn = (_, { argTypes }) => ({
   `,
 });
 
-export const Variant = MultiVariantTemplate.bind({});
-Variant.args = {
+export const Unread = MultiVariantTemplate.bind({});
+Unread.args = {
   ...baseProps,
 };
 
-export const StatusNew = MultiVariantTemplate.bind({});
-StatusNew.args = {
+export const Read = MultiVariantTemplate.bind({});
+Read.args = {
   ...baseProps,
-  status: "new",
-};
-
-export const StatusRead = MultiVariantTemplate.bind({});
-StatusRead.args = {
-  ...baseProps,
-  status: "read",
-};
-
-export const StatusOld = MultiVariantTemplate.bind({});
-StatusOld.args = {
-  ...baseProps,
-  status: "old",
+  read: true,
 };

@@ -1,18 +1,23 @@
 <template>
   <WizBox
-    :bgColor="status === 'new' ? 'white.800' : 'transparent'"
-    :opacity="status === 'old' ? 0.5 : 1"
+    @mouseover.native="isHovered = true"
+    @mouseleave.native="isHovered = false"
+    @pointerdown.native="isPressed = true"
+    @pointerup.native="isPressed = false"
+    :bgColor="isHovered ? 'green.300' : 'white.800'"
+    :opacity="isPressed ? 0.5 : 1"
     height="fit-content"
+    cursor="pointer"
   >
     <WizHStack px="xs" py="md" justify="between" align="center">
       <WizVStack gap="xs" position="relative">
         <WizHStack v-if="variant === 'primary'" justify="between" align="start">
           <WizVStack gap="xs">
             <WizHStack gap="xl" v-for="(item, i) in tableInfo" :key="i">
-              <WizText :bold="bold" fontSize="xs" color="gray.700">{{
+              <WizText :bold="!read" fontSize="xs" color="gray.700">{{
                 item.title
               }}</WizText>
-              <WizText :bold="bold" fontSize="xs" color="gray.700">{{
+              <WizText :bold="!read" fontSize="xs" color="gray.700">{{
                 item.content
               }}</WizText>
             </WizHStack>
@@ -21,7 +26,7 @@
             {{ displayHowPast }}
           </WizText>
         </WizHStack>
-        <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="bold">
+        <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="!read">
           {{ title }}
         </WizText>
         <WizText v-if="variant === 'secondary'" color="gray.600" fontSize="xs2">
@@ -34,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import {
   WizBox,
@@ -46,23 +51,24 @@ import {
 import { WizIChevronRight } from "@/components/icons";
 import { formatDateToYMDHM, formatHowPast } from "@/utils/date";
 
-import type { InfoItem } from "../types";
+import type { TableInfoItem } from "../types";
 
 interface Props {
   title: string;
   timestamp: Date;
   variant?: "primary" | "secondary";
-  status?: "new" | "read" | "old";
-  bold?: boolean;
-  tableInfo?: InfoItem[];
+  read: boolean;
+  tableInfo?: TableInfoItem[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: "primary",
   status: "new",
-  bold: false,
 });
 
 const displayDatetime = computed(() => formatDateToYMDHM(props.timestamp));
 const displayHowPast = computed(() => formatHowPast(props.timestamp));
+
+const isHovered = ref(false);
+const isPressed = ref(false);
 </script>

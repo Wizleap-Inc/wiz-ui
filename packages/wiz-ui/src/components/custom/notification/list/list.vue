@@ -3,11 +3,10 @@
     <template v-for="(item, i) in notifications">
       <WizNotificationPanel
         :key="i + 'notification'"
-        :bold="bold"
         :variant="variant"
+        :read="item.read"
         :title="item.title"
         :timestamp="item.timestamp"
-        :status="item.status"
         :tableInfo="item.tableInfo"
       />
       <WizDivider :key="i + 'divider'" v-if="i !== notifications.length - 1" />
@@ -19,16 +18,15 @@
 import { WizDivider } from "@/components/base";
 
 import { WizNotificationPanel } from "..";
-import { InfoItem } from "../types";
+import { TableInfoItem } from "../types";
 
 interface Props {
-  bold?: boolean;
   variant?: "primary" | "secondary";
   notifications: {
+    read: boolean;
     title: string;
     timestamp: Date;
-    status?: "new" | "read" | "old";
-    tableInfo?: InfoItem[];
+    tableInfo?: TableInfoItem[];
   }[];
 }
 

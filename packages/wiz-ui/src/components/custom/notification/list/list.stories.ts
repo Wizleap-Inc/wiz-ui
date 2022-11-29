@@ -8,9 +8,6 @@ export default {
   title: "Custom/Notification/List",
   component: WizNotificationList,
   argTypes: {
-    bold: {
-      control: { type: "boolean" },
-    },
     variant: {
       control: { type: "select" },
       options: ["primary", "secondary"],
@@ -27,7 +24,7 @@ const baseProps = {
       title:
         "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
       timestamp: new Date("2021-01-01 00:00:00"),
-      status: "new",
+      read: false,
       tableInfo: [
         {
           title: "情報1",
@@ -43,7 +40,7 @@ const baseProps = {
       title:
         "ふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふがふが",
       timestamp: new Date("2021-01-01 00:00:00"),
-      status: "read",
+      read: true,
       tableInfo: [
         {
           title: "情報3",
@@ -59,7 +56,7 @@ const baseProps = {
       title:
         "ぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよぴよ",
       timestamp: new Date("2021-01-01 00:00:00"),
-      status: "old",
+      read: true,
       tableInfo: [
         {
           title: "情報5",
@@ -90,10 +87,4 @@ const MultiVariantTemplate: StoryFn = (_, { argTypes }) => ({
 export const Variant = MultiVariantTemplate.bind({});
 Variant.args = {
   ...baseProps,
-};
-
-export const Bold = MultiVariantTemplate.bind({});
-Bold.args = {
-  ...baseProps,
-  bold: true,
 };

@@ -22,17 +22,11 @@ import { ComponentName } from "@/constants/component/name";
 import { SpacingKeys } from "@/types/styles/spacing";
 
 import TabPane from "./tab-pane.vue";
+import { TabItem } from "./types";
 
 defineOptions({
   name: ComponentName.Tab,
 });
-
-interface TabItem {
-  label: string;
-  name: string;
-  notificationCount?: number;
-  disabled?: boolean;
-}
 
 interface Props {
   gap?: SpacingKeys;
