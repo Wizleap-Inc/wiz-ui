@@ -4,7 +4,7 @@ import { WizDivider } from "@/components";
 import { COLOR_MAP_ACCESSORS } from "@/constants/styles/color";
 
 export default {
-  title: "Atoms/Divider",
+  title: "Base/Divider",
   component: WizDivider,
   argTypes: {
     color: {

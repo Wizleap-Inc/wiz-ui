@@ -15,3 +15,4 @@ export { default as WizIHelp } from "./help.vue";
 export { default as WizIManageAccounts } from "./manage-accounts.vue";
 export { default as WizIMonitoring } from "./monitoring.vue";
 export { default as WizITab } from "./tab.vue";
+export { default as WizINotification } from "./notification.vue";

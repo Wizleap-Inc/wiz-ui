@@ -7,7 +7,7 @@ import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
 import WizCard from "./card.vue";
 
 export default {
-  title: "Molecules/Card",
+  title: "Base/Card",
   component: WizCard,
   argTypes: {
     p: {

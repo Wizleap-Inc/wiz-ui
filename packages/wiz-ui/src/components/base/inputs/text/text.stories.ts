@@ -8,7 +8,7 @@ import { THEME } from "@/constants/styles/index";
 import WizTextInput from "./text.vue";
 
 export default {
-  title: "Atoms/Input/Text",
+  title: "Base/Input/Text",
   component: WizTextInput,
   argTypes: {
     value: {

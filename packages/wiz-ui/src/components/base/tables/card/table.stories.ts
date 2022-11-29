@@ -12,7 +12,7 @@ import {
 } from ".";
 
 export default {
-  title: "Molecules/Tables/Card",
+  title: "Base/Tables/Card",
   component: WizCardTable,
   argTypes: {
     onClick: {

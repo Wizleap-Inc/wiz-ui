@@ -15,7 +15,7 @@ const About = {
 };
 
 export default {
-  title: "Atoms/Anchor",
+  title: "Base/Anchor",
   component: WizAnchor,
   argTypes: {
     fontSize: {

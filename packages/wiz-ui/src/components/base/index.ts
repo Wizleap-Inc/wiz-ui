@@ -14,3 +14,5 @@ export * from "./card";
 export * from "./message-box";
 export * from "./tables";
 export * from "./navigation";
+export * from "./avatar";
+export * from "./tab";

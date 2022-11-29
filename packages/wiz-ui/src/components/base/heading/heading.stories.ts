@@ -5,7 +5,7 @@ import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/font-size";
 import WizHeading from "./heading.vue";
 
 export default {
-  title: "Atoms/Heading",
+  title: "Base/Heading",
   component: WizHeading,
   argTypes: {
     level: {
