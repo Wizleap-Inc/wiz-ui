@@ -1,17 +1,20 @@
 <template>
   <div>
     <WizTab v-model="activeTab" :items="tabs" />
-    <WizNotificationList
-      :notifications="displayNotifications"
-      :variant="selectedVariant"
-    />
+    <WizBox bgColor="white.800" roundB="xs2" overflow="hidden">
+      <WizNotificationList
+        :notifications="displayNotifications"
+        :variant="selectedVariant"
+        :height="height"
+      />
+    </WizBox>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { WizTab } from "@/components/base";
+import { WizBox, WizTab } from "@/components/base";
 import { TabItem } from "@/components/base/tab/types";
 
 import { WizNotificationList } from "./list";
@@ -22,6 +25,7 @@ interface Props {
     variant: "primary" | "secondary";
   })[];
   notifications: NotificationItem[];
+  height?: string;
 }
 
 const props = defineProps<Props>();
