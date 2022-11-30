@@ -8,14 +8,14 @@
   >
     <div
       class="wiz-selectbox__box"
-      :class="{ 'wiz-selectbox__box--selected': value }"
+      :class="{ 'wiz-selectbox__box--selected': !!value }"
       @click="toggleSelectBox"
     >
       <WizHStack gap="sm" align="center">
-        <span v-if="!selectValue">{{ placeholder }}</span>
+        <span v-if="!value">{{ placeholder }}</span>
         <span
           v-for="(option, key) in options"
-          v-show="option.value === selectValue"
+          v-show="option.value === value"
           :key="'selected' + key"
         >
           {{ option.label }}
@@ -33,10 +33,7 @@
           class="wiz-selectbox__selector-option"
           v-for="(option, key) in options"
           :key="'option' + key"
-          @click="
-            toggleSelectBox();
-            selectValue = option.value;
-          "
+          @click="onSelect(option.value)"
         >
           {{ option.label }}
         </div>
@@ -46,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 import { WizIExpandMore } from "@/components/icons";
 import { WizIExpandLess } from "@/components/icons";
@@ -69,9 +66,10 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   value: "",
-  placeholder: "選択して下さい",
+  placeholder: "選択してください",
   disabled: false,
 });
+
 const openSelectBox = ref(false);
 const toggleSelectBox = () => {
   if (props.disabled) {
@@ -85,10 +83,10 @@ interface Emit {
 }
 const emit = defineEmits<Emit>();
 
-const selectValue = computed({
-  get: () => props.value,
-  set: (value) => emit("input", value),
-});
+const onSelect = (value: string) => {
+  toggleSelectBox();
+  emit("input", value);
+};
 
 const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
@@ -173,6 +171,7 @@ const zIndexPopup = THEME.zIndex.popup;
       color: v-bind(colorGreen800);
       background: v-bind(colorGreen300);
     }
+
     &:active {
       color: v-bind(colorWhite800);
       background: v-bind(colorGreen800);
