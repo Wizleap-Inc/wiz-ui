@@ -91,12 +91,8 @@ const fontSizeXl3 = THEME.fontSize.xl3;
     &-transparent {
       background: none;
       border: none;
-      padding: 0;
       & > svg {
         fill: v-bind(colorGray500);
-      }
-      &:hover:not(.wiz-icon-button--disabled) {
-        background: v-bind(colorGray300);
       }
     }
   }
