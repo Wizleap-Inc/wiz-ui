@@ -45,7 +45,7 @@ const onClick = () => props.disabled || emits("click");
 const colorGradient = THEME.color.gradient;
 const colorWhite800 = THEME.color.white["800"];
 const colorGreen800 = THEME.color.green["800"];
-const colorGray500 = THEME.color.gray["500"];
+const colorGray700 = THEME.color.gray["700"];
 const colorGray400 = THEME.color.gray["400"];
 const colorGray300 = THEME.color.gray["300"];
 const shadowMd = THEME.shadow.md;
@@ -91,8 +91,9 @@ const fontSizeXl3 = THEME.fontSize.xl3;
     &-transparent {
       background: none;
       border: none;
+      padding: 0;
       & > svg {
-        fill: v-bind(colorGray500);
+        fill: v-bind(colorGray700);
       }
     }
   }
