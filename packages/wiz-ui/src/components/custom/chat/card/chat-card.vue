@@ -100,7 +100,7 @@ interface Emit {
 
 const emits = defineEmits<Emit>();
 
-const { nextZIndex } = useZIndex();
+const { nextZIndex } = useZIndex(THEME.zIndex.floating);
 
 const canAnimate = ref(false);
 
