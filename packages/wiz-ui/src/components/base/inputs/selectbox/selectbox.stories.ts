@@ -3,7 +3,7 @@ import { StoryFn } from "@storybook/vue";
 import WizSelectBox from "./selectbox.vue";
 
 export default {
-  title: "Atoms/Input/SelectBox",
+  title: "Base/Input/SelectBox",
   component: WizSelectBox,
   argTypes: {},
 };
@@ -16,3 +16,8 @@ const Template: StoryFn = (_, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};
