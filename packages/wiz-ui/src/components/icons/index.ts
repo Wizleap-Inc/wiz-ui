@@ -17,3 +17,4 @@ export { default as WizIManageAccounts } from "./manage-accounts.vue";
 export { default as WizIMonitoring } from "./monitoring.vue";
 export { default as WizITab } from "./tab.vue";
 export { default as WizINotification } from "./notification.vue";
+export { default as WizIMenu } from "./menu.vue";
