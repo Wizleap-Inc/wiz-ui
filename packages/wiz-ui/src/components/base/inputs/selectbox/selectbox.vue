@@ -11,7 +11,7 @@
       :class="{ 'wiz-selectbox__box--selected': !!value }"
       @click="toggleSelectBox"
     >
-      <WizHStack gap="sm" align="center" justify="between">
+      <WizHStack gap="sm" align="center" justify="between" height="100%">
         <span v-if="!value">{{ placeholder }}</span>
         <span
           v-for="(option, key) in options"
@@ -96,6 +96,7 @@ const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
 const spacingXl = THEME.spacing.xl;
+const spacingXl3 = THEME.spacing.xl3;
 const colorWhite800 = THEME.color.white["800"];
 const colorGray300 = THEME.color.gray["300"];
 const colorGray400 = THEME.color.gray["400"];
@@ -108,12 +109,14 @@ const zIndexPopup = THEME.zIndex.popup;
 </script>
 
 <style lang="scss" scoped>
+$border-width: 1px;
+
 .wiz-selectbox {
   position: relative;
   width: max-content;
-  height: 40px;
+  height: v-bind(spacingXl3);
   background: v-bind(colorWhite800);
-  border: 1px solid v-bind(colorGray400);
+  border: $border-width solid v-bind(colorGray400);
   border-radius: v-bind(spacingXs2);
   box-sizing: border-box;
   cursor: pointer;
@@ -129,7 +132,7 @@ const zIndexPopup = THEME.zIndex.popup;
   }
 
   &__box {
-    line-height: 38px;
+    height: 100%;
     padding: v-bind(spacingNo) v-bind(spacingXs);
     font-size: v-bind(fontSizeSm);
     color: v-bind(colorGray500);
@@ -152,7 +155,7 @@ const zIndexPopup = THEME.zIndex.popup;
 
   &__selector {
     position: absolute;
-    top: 40px;
+    top: calc(100% + $border-width * 2);
     left: 0;
     width: 100%;
     padding: v-bind(spacingXs);
