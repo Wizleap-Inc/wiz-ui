@@ -8,7 +8,6 @@ export default {
   component: WizToggleSwitch,
   argTypes: {},
 };
-
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizToggleSwitch },
