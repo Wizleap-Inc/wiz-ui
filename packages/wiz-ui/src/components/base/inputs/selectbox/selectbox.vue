@@ -11,7 +11,7 @@
       :class="{ 'wiz-selectbox__box--selected': !!value }"
       @click="toggleSelectBox"
     >
-      <WizHStack gap="sm" align="center">
+      <WizHStack gap="sm" align="center" justify="between">
         <span v-if="!value">{{ placeholder }}</span>
         <span
           v-for="(option, key) in options"
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 import { WizIExpandMore } from "@/components/icons";
 import { WizIExpandLess } from "@/components/icons";
@@ -61,12 +61,14 @@ interface Props {
   options: Option[];
   value: string;
   placeholder: string;
+  width?: string;
   disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   value: "",
   placeholder: "選択してください",
+  width: "10rem",
   disabled: false,
 });
 
@@ -88,6 +90,7 @@ const onSelect = (value: string) => {
   emit("input", value);
 };
 
+const width = computed(() => props.width);
 const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
@@ -130,6 +133,7 @@ const zIndexPopup = THEME.zIndex.popup;
     padding: v-bind(spacingNo) v-bind(spacingXs);
     font-size: v-bind(fontSizeSm);
     color: v-bind(colorGray500);
+    width: v-bind(width);
 
     &-less {
       fill: v-bind(colorGreen800);
