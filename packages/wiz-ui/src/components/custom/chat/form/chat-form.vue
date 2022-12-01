@@ -5,6 +5,7 @@
       :placeholder="placeholder"
       name="chat-form__textarea"
       :disabled="disabled"
+      :rows="formRows"
       expand
     />
     <div>
@@ -22,6 +23,7 @@ interface Props {
   disabled?: boolean;
   placeholder?: string;
   value: string;
+  formRows?: number;
 }
 
 const props = defineProps<Props>();
