@@ -49,6 +49,7 @@
           v-model="textValue"
           @submit="onSubmit"
           :placeholder="placeholder"
+          :formRows="formRows"
         />
       </template>
     </WizCard>
@@ -86,6 +87,7 @@ interface Props {
   messages: Message[];
   isOpen: boolean;
   haveNewMessage?: boolean;
+  formRows?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
