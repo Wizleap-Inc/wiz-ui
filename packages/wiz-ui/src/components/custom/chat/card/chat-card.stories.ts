@@ -34,6 +34,11 @@ export default {
         type: "boolean",
       },
     },
+    formRows: {
+      control: {
+        type: "number",
+      },
+    },
     haveNewMessage: {
       control: { type: "boolean" },
     },
@@ -100,6 +105,13 @@ export const Open = Template.bind({});
 Open.args = {
   ...templateArgs,
   isOpen: true,
+};
+
+export const FormRows = Template.bind({});
+FormRows.args = {
+  ...templateArgs,
+  isOpen: true,
+  formRows: 5,
 };
 
 export const Closed = Template.bind({});
