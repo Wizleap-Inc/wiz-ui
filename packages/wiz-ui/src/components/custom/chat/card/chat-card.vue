@@ -100,7 +100,7 @@ interface Emit {
 
 const emits = defineEmits<Emit>();
 
-const { nextZIndex } = useZIndex();
+const { currentZIndex } = useZIndex(THEME.zIndex.floating);
 
 const canAnimate = ref(false);
 
@@ -165,7 +165,7 @@ const onSubmit = () => emits("submit");
 
 const toggleDisplay = () => emits("toggleDisplay");
 
-const zIndex = nextZIndex();
+const zIndex = currentZIndex.value;
 const titleHeight = THEME.spacing.xl;
 const titlePadding = THEME.spacing.md;
 const red800 = THEME.color.red[800];
