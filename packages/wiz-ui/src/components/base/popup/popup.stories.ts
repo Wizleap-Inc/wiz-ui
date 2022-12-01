@@ -8,7 +8,7 @@ import { Z_INDEX_ACCESSORS } from "@/constants/styles/z-index";
 import { WizPopup } from ".";
 
 export default {
-  title: "Base/Popup/Popup",
+  title: "Base/Popup",
   component: WizPopup,
   argTypes: {
     layer: {
@@ -36,10 +36,12 @@ const Template: StoryFn = (_, { argTypes }) => ({
   },
   template: `
     <div style="position: relative;">
-      <WizTextButton @click.stop="toggleIsOpen">Open Popup</WizTextButton>
-      <WizPopup v-bind="$props" v-if="isOpen" @oof="toggleIsOpen">
-        This is popup.x
-      </WizPopup>
+      <wiz-text-button @click="toggleIsOpen">Toggle Popup</wiz-text-button>
+      <wiz-popup v-bind="$props" v-model="isOpen">
+        <div style="padding: 16px; background-color: white; border-radius: 4px;">
+          <span>Popup content</span>
+        </div>
+      </wiz-popup>
     </div>
   `,
 });
