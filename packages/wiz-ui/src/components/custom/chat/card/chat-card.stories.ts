@@ -42,6 +42,9 @@ export default {
     haveNewMessage: {
       control: { type: "boolean" },
     },
+    typingUsername: {
+      control: { type: "text" },
+    },
     toggleDisplay: {
       action: "toggleDisplay",
     },
@@ -112,6 +115,13 @@ FormRows.args = {
   ...templateArgs,
   isOpen: true,
   formRows: 5,
+};
+
+export const SomeonesTyping = Template.bind({});
+SomeonesTyping.args = {
+  ...templateArgs,
+  isOpen: true,
+  typingUsername: "なんとかかんとか",
 };
 
 export const Closed = Template.bind({});
