@@ -58,6 +58,7 @@ interface Props {
   height?: string;
   overflow?: string;
   reverse?: boolean;
+  position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -99,6 +100,7 @@ const computedSpacingStyles = computed(() => {
 const computedWidth = computed(() => props.width);
 const computedHeight = computed(() => props.height);
 const computedOverflow = computed(() => props.overflow);
+const computedPosition = computed(() => props.position);
 </script>
 
 <style lang="scss" scoped>
@@ -107,6 +109,7 @@ const computedOverflow = computed(() => props.overflow);
   width: v-bind(computedWidth);
   height: v-bind(computedHeight);
   overflow: v-bind(computedOverflow);
+  position: v-bind(computedPosition);
 
   &--vertical {
     flex-direction: column;

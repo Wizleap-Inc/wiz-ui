@@ -56,6 +56,10 @@ export default {
     reverse: {
       control: { type: "boolean" },
     },
+    position: {
+      control: { type: "select" },
+      options: ["relative", "absolute", "fixed", "sticky", "static"],
+    },
     ...spacingControls,
   },
 };

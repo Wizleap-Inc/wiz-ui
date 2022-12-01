@@ -22,8 +22,10 @@
     :mx="mx"
     :my="my"
     :width="width"
+    :height="height"
     :overflow="overflow"
     :reverse="reverse"
+    :position="position"
   >
     <slot />
   </WizStack>
@@ -56,8 +58,10 @@ export interface Props {
   mx?: SpacingKeys;
   my?: SpacingKeys;
   width?: string;
+  height?: string;
   overflow?: string;
   reverse?: boolean;
+  position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
 }
 
 defineProps<Props>();
