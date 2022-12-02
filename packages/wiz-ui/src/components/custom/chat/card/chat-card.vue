@@ -10,8 +10,9 @@
     width="20rem"
     :transition="canAnimate ? 'bottom 0.3s ease-in-out' : undefined"
     ref="floatChatCardRef"
+    zIndex="floating"
   >
-    <WizCard shadow>
+    <WizCard shadow align="start">
       <template #mainHeaderArea>
         <WizText color="gray.700" as="span" bold>
           {{ username }}
@@ -49,7 +50,16 @@
           v-model="textValue"
           @submit="onSubmit"
           :placeholder="placeholder"
+          :formRows="formRows"
         />
+        <WizVStack height="1.25rem" width="100%" justify="end">
+          <WizText v-if="typingUsername" color="gray.600" as="p" fontSize="xs2">
+            <WizText as="span" bold fontSize="xs2" color="gray.700">
+              {{ typingUsername }}
+            </WizText>
+            さんが入力しています...
+          </WizText>
+        </WizVStack>
       </template>
     </WizCard>
     <button class="wiz-chat-card__open-btn" @click="toggleDisplay" />
@@ -74,7 +84,6 @@ import {
   WizIExpandLess,
 } from "@/components";
 import { THEME } from "@/constants";
-import { useZIndex } from "@/hooks";
 import { formatDateToMonthDayWeek } from "@/utils/date";
 
 import { Message, DisplayMessage } from "..";
@@ -86,6 +95,8 @@ interface Props {
   messages: Message[];
   isOpen: boolean;
   haveNewMessage?: boolean;
+  formRows?: number;
+  typingUsername?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -99,8 +110,6 @@ interface Emit {
 }
 
 const emits = defineEmits<Emit>();
-
-const { nextZIndex } = useZIndex(THEME.zIndex.floating);
 
 const canAnimate = ref(false);
 
@@ -160,7 +169,6 @@ const onSubmit = () => emits("submit");
 
 const toggleDisplay = () => emits("toggleDisplay");
 
-const zIndex = nextZIndex();
 const titleHeight = THEME.spacing.xl;
 const titlePadding = THEME.spacing.md;
 const red800 = THEME.color.red[800];
@@ -179,7 +187,6 @@ const fontSizeMd = THEME.fontSize.md;
     border: none;
     cursor: pointer;
     background: transparent;
-    z-index: v-bind(zIndex);
   }
 
   &__have-new-message {
