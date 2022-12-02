@@ -2,14 +2,15 @@
   <WizBox :height="height" scroll="y">
     <template v-for="(item, i) in notifications">
       <WizNotificationPanel
-        :key="i + 'notification'"
+        :key="item.id"
         :variant="variant"
         :read="item.read"
         :title="item.title"
         :timestamp="item.timestamp"
         :tableInfo="item.tableInfo"
+        @click="onClick(item.id)"
       />
-      <WizDivider :key="i + 'divider'" v-if="i !== notifications.length - 1" />
+      <WizDivider :key="'divider' + i" v-if="i !== notifications.length - 1" />
     </template>
   </WizBox>
 </template>
@@ -18,26 +19,21 @@
 import { WizDivider, WizBox } from "@/components/base";
 
 import { WizNotificationPanel } from "..";
-import { TableInfoItem } from "../types";
+import { NotificationItem } from "../types";
 
 interface Props {
   variant?: "primary" | "secondary";
-  notifications: {
-    read: boolean;
-    title: string;
-    timestamp: Date;
-    tableInfo?: TableInfoItem[];
-  }[];
+  notifications: NotificationItem[];
   height?: string;
 }
 
 defineProps<Props>();
 
 interface Emit {
-  (event: "click"): void;
+  (event: "click", id: string): void;
 }
 
 const emit = defineEmits<Emit>();
 
-const onClick = () => emit("click");
+const onClick = (id: string) => emit("click", id);
 </script>

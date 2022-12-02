@@ -6,6 +6,7 @@
         :notifications="displayNotifications"
         :variant="selectedVariant"
         :height="height"
+        @click="onClick"
       />
     </WizBox>
   </div>
@@ -29,6 +30,14 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+interface Emit {
+  (event: "click", id: string): void;
+}
+
+const emit = defineEmits<Emit>();
+
+const onClick = (id: string) => emit("click", id);
 
 const activeTab = ref(props.tabs[0].name);
 

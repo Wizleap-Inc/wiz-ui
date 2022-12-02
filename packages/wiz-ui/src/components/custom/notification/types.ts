@@ -4,6 +4,7 @@ export interface TableInfoItem {
 }
 
 export interface NotificationItem {
+  id: string;
   title: string;
   timestamp: Date;
   tabName: string;

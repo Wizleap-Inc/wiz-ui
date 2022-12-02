@@ -4,11 +4,11 @@
     @mouseleave.native="isHovered = false"
     @pointerdown.native="isPressed = true"
     @pointerup.native="isPressed = false"
+    @click.native="onClick"
     :bgColor="isHovered ? 'green.300' : 'white.800'"
     :opacity="isPressed ? 0.5 : 1"
     height="fit-content"
     cursor="pointer"
-    @click="onClick"
   >
     <WizHStack px="xs" py="md" justify="between" align="center">
       <WizVStack gap="xs" position="relative" width="100%">
@@ -82,5 +82,8 @@ interface Emit {
 
 const emit = defineEmits<Emit>();
 
-const onClick = () => emit("click");
+const onClick = () => {
+  console.log("a");
+  emit("click");
+};
 </script>
