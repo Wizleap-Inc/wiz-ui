@@ -1,24 +1,15 @@
 import { onMounted, onBeforeUnmount, watch, Ref } from "vue";
-import { Vue } from "vue/types/vue";
 
 export const useClickOutside = (
-  elementRef: Ref<HTMLElement | Vue | undefined>,
+  elementRef: Ref<HTMLElement | undefined>,
   cb: (event: MouseEvent) => void
 ) => {
-  let el: HTMLElement | Vue | undefined = undefined;
+  let el: HTMLElement | undefined = undefined;
   const handleDocumentClick = (event: Event) => {
     if (!(event instanceof MouseEvent)) return;
 
     if (el) {
-      let htmlElement: Element | undefined = undefined;
-
-      if ("$el" in el) {
-        htmlElement = el.$el;
-      } else {
-        htmlElement = el;
-      }
-
-      if (htmlElement.contains(event.target as Node) === false) {
+      if (el.contains(event.target as Node) === false) {
         cb(event);
       }
     }

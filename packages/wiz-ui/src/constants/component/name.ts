@@ -3,4 +3,6 @@ export const ComponentName = {
   Tab: "WizTab",
   TabPane: "WizTabPane",
   Header: "WizHeader",
+  PopupContainer: "WizPopupContainer",
+  Popup: "WizPopup",
 } as const;
