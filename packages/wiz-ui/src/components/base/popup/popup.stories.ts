@@ -54,9 +54,9 @@ const Template: StoryFn = (_, { argTypes }) => ({
   template: `
   <div style="height: 100vh; width: 100vw; position: relative;">
     <div :style="{ position: 'absolute', top: y+'px', left: x+'px' }">
-      <wiz-popup-container>
+      <wiz-popup-container v-model="isOpen">
         <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-        <wiz-popup v-bind="$props" v-model="isOpen">
+        <wiz-popup v-bind="$props">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <span>Popup content</span>
           </div>
@@ -85,9 +85,9 @@ const MultipleTemplate: StoryFn = (_, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
-      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]">
+      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :value="isOpenIndex === i" @input="changeIsOpenIndex(i)">
         <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
-        <wiz-popup v-bind="pattern" :value="isOpenIndex === i" @input="changeIsOpenIndex(i)">
+        <wiz-popup v-bind="pattern">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content {{ pattern[main] }}</p>
           </div>
