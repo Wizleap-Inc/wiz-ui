@@ -23,7 +23,6 @@ import { computed, inject, nextTick, ref, watch } from "vue";
 
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
-import { useClickOutside } from "@/hooks/use-click-outside";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { ZIndexKeys } from "@/types/styles/z-index";
 import { getSpacingCSS } from "@/utils/styles/spacing";
@@ -56,12 +55,6 @@ const props = withDefaults(defineProps<Props>(), {
   gap: "no",
   direction: "bl",
 });
-
-interface Emits {
-  (event: "input", value: boolean): void;
-}
-
-const emit = defineEmits<Emits>();
 
 const popupRef = ref<HTMLElement | undefined>();
 
@@ -194,10 +187,6 @@ const computedDirection = computed(() => {
     if (y < height) return "lt";
   }
   return props.direction;
-});
-
-useClickOutside(popupRef, () => {
-  emit("input", false);
 });
 
 watch(props, () => {

@@ -148,17 +148,17 @@ export const MultiplePlayground: StoryFn = (_, { argTypes }) => ({
   },
   template: `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
-      <wiz-popup-container>
+      <wiz-popup-container @input="(v) => isOpen1 = v">
         <wiz-text-button @click="toggle1">Toggle Popup 1</wiz-text-button>
-        <wiz-popup layer="floating" v-model="isOpen1">
+        <wiz-popup layer="floating" :value="isOpen1">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content 1</p>
           </div>
         </wiz-popup>
       </wiz-popup-container>
-      <wiz-popup-container>
+      <wiz-popup-container @input="(v) => isOpen2 = v">
         <wiz-text-button @click="toggle2">Toggle Popup 2</wiz-text-button>
-        <wiz-popup layer="floating" v-model="isOpen2">
+        <wiz-popup layer="floating" :value="isOpen2">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content 2</p>
           </div>
