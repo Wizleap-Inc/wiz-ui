@@ -8,10 +8,8 @@ export const useClickOutside = (
   const handleDocumentClick = (event: Event) => {
     if (!(event instanceof MouseEvent)) return;
 
-    if (el) {
-      if (el.contains(event.target as Node) === false) {
-        cb(event);
-      }
+    if (el && !el.contains(event.target as Node)) {
+      cb(event);
     }
   };
 

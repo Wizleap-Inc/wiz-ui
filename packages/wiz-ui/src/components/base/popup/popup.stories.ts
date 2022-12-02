@@ -77,8 +77,9 @@ const MultipleTemplate: StoryFn = (_, { argTypes }) => ({
     const changeIsOpenIndex = (index: number) => {
       if (isOpenIndex.value === index) {
         isOpenIndex.value = null;
+      } else {
+        isOpenIndex.value = index;
       }
-      isOpenIndex.value = index;
     };
     return { isOpenIndex, changeIsOpenIndex };
   },
@@ -86,7 +87,7 @@ const MultipleTemplate: StoryFn = (_, { argTypes }) => ({
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
       <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]">
         <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
-        <wiz-popup v-bind="pattern">
+        <wiz-popup v-bind="pattern" :value="isOpenIndex === i" @input="changeIsOpenIndex(i)">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content {{ pattern[main] }}</p>
           </div>
@@ -100,14 +101,14 @@ export const Direction = MultipleTemplate.bind({});
 Direction.args = {
   main: "direction",
   patterns: [
-    { layer: "base", direction: "tl", value: true },
-    { layer: "base", direction: "tr", value: true },
-    { layer: "base", direction: "bl", value: true },
-    { layer: "base", direction: "br", value: true },
-    { layer: "base", direction: "lt", value: true },
-    { layer: "base", direction: "lb", value: true },
-    { layer: "base", direction: "rt", value: true },
-    { layer: "base", direction: "rb", value: true },
+    { layer: "base", direction: "bl" },
+    { layer: "base", direction: "br" },
+    { layer: "base", direction: "tl" },
+    { layer: "base", direction: "tr" },
+    { layer: "base", direction: "lt" },
+    { layer: "base", direction: "lb" },
+    { layer: "base", direction: "rt" },
+    { layer: "base", direction: "rb" },
   ],
 };
 
@@ -132,3 +133,37 @@ export const Playground = Template.bind({});
 Playground.args = {
   layer: "base",
 };
+
+export const MultiplePlayground: StoryFn = (_, { argTypes }) => ({
+  components: { WizPopup, WizTextButton, WizPopupContainer },
+  props: Object.keys(argTypes),
+  setup() {
+    const isOpen1 = ref(false);
+    const isOpen2 = ref(false);
+    const toggle1 = () => {
+      isOpen1.value = !isOpen1.value;
+    };
+    const toggle2 = () => (isOpen2.value = !isOpen2.value);
+    return { isOpen1, isOpen2, toggle1, toggle2 };
+  },
+  template: `
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
+      <wiz-popup-container>
+        <wiz-text-button @click="toggle1">Toggle Popup 1</wiz-text-button>
+        <wiz-popup layer="floating" v-model="isOpen1">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <p>This is a popup content 1</p>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+      <wiz-popup-container>
+        <wiz-text-button @click="toggle2">Toggle Popup 2</wiz-text-button>
+        <wiz-popup layer="floating" v-model="isOpen2">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <p>This is a popup content 2</p>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div>
+  `,
+});

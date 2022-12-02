@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, ref } from "vue";
+import { computed, inject, nextTick, ref, watch } from "vue";
 
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
@@ -196,7 +196,15 @@ const computedDirection = computed(() => {
   return props.direction;
 });
 
-useClickOutside(popupRef, () => emit("input", false));
+useClickOutside(popupRef, () => {
+  emit("input", false);
+});
+
+watch(props, () => {
+  nextTick(() => {
+    injected.updateBodyPxInfo();
+  });
+});
 
 const computedZIndex = computed(() => getZIndexCSS(props.layer));
 const shadowMd = THEME.shadow.md;

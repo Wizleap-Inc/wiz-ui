@@ -1,5 +1,5 @@
 <template>
-  <div class="wiz-popup-container" ref="popupContainerRef" @click="handleClick">
+  <div class="wiz-popup-container" ref="popupContainerRef">
     <slot />
   </div>
 </template>
@@ -12,12 +12,6 @@ import { POPUP_KEY, usePopupProvider } from "./provider";
 const popupContainerRef = ref<HTMLElement | undefined>();
 const provider = usePopupProvider(popupContainerRef);
 provide(POPUP_KEY, provider);
-
-const handleClick = (e: MouseEvent) => {
-  console.log("handleClick", e);
-  e.stopPropagation();
-  provider.updateBodyPxInfo();
-};
 </script>
 
 <style lang="scss" scoped>
