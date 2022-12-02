@@ -1,1 +1,1 @@
-export { default as WizHeader } from "./header.vue";
+export { default as WizCustomHeader } from "./header.vue";
