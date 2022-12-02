@@ -15,6 +15,9 @@ export default {
     notifications: {
       control: { type: "array" },
     },
+    height: {
+      control: { type: "string" },
+    },
   },
 };
 

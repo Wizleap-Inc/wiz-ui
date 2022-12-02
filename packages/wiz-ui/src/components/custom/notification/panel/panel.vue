@@ -8,6 +8,7 @@
     :opacity="isPressed ? 0.5 : 1"
     height="fit-content"
     cursor="pointer"
+    @click="onClick"
   >
     <WizHStack px="xs" py="md" justify="between" align="center">
       <WizVStack gap="xs" position="relative" width="100%">
@@ -74,4 +75,12 @@ const displayHowPast = computed(() => formatHowPast(props.timestamp));
 
 const isHovered = ref(false);
 const isPressed = ref(false);
+
+interface Emit {
+  (event: "click"): void;
+}
+
+const emit = defineEmits<Emit>();
+
+const onClick = () => emit("click");
 </script>
