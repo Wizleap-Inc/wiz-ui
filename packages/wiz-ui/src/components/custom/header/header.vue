@@ -14,7 +14,7 @@
         </WizHeading>
       </WizHStack>
       <WizHStack align="center" gap="xl">
-        <WizBox position="relative">
+        <WizPopupContainer v-model="isNotificationOpen">
           <WizIconButton
             :icon="WizINotification"
             size="lg"
@@ -22,21 +22,16 @@
             color="gray.700"
             @click="toggleNotificationOpen"
           />
-          <WizBox
-            position="absolute"
-            right="0"
-            top="calc(50% + 30px)"
-            width="300px"
-            dropShadow="md"
-          >
-            <WizNotification
-              v-if="isNotificationOpen"
-              :notifications="notifications"
-              :tabs="tabs"
-              height="640px"
-            />
-          </WizBox>
-        </WizBox>
+          <WizPopup layer="floating" gap="md" direction="bl">
+            <WizBox width="300px">
+              <WizNotification
+                :notifications="notifications"
+                :tabs="tabs"
+                height="640px"
+              />
+            </WizBox>
+          </WizPopup>
+        </WizPopupContainer>
         <WizAvatar :src="avatarSrc" />
       </WizHStack>
     </WizHStack>
@@ -52,6 +47,8 @@ import {
   WizHeading,
   WizHStack,
   WizIconButton,
+  WizPopupContainer,
+  WizPopup,
 } from "@/components/base";
 import type { TabItem } from "@/components/base/tab/types";
 import { WizNotification } from "@/components/custom/notification";
