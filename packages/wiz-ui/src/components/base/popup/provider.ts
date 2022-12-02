@@ -1,4 +1,4 @@
-import { Ref, InjectionKey, reactive } from "vue";
+import { Ref, InjectionKey, reactive, ref, readonly } from "vue";
 
 interface PxInfo {
   top: number;
@@ -21,6 +21,7 @@ export const usePopupProvider = (
     height: 0,
   };
   const bodyPxInfo = reactive<PxInfo>(initialPxInfo);
+  const isPopupOpen = ref(false);
 
   const updateBodyPxInfo = () => {
     if (containerRef.value) {
@@ -30,7 +31,17 @@ export const usePopupProvider = (
     }
   };
 
-  return { initialPxInfo, bodyPxInfo, updateBodyPxInfo };
+  const setPopupOpen = (isOpen: boolean) => {
+    isPopupOpen.value = isOpen;
+  };
+
+  return {
+    initialPxInfo,
+    bodyPxInfo: readonly(bodyPxInfo),
+    updateBodyPxInfo,
+    isPopupOpen: readonly(isPopupOpen),
+    setPopupOpen,
+  };
 };
 
 export const POPUP_KEY: InjectionKey<ReturnType<typeof usePopupProvider>> =

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="value"
+    v-show="isPopupOpen"
     :class="{
       'wiz-popup': true,
       'wiz-popup--direction-tl': computedDirection === 'tl',
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, nextTick, ref, watch } from "vue";
+import { computed, inject, ref } from "vue";
 
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
@@ -48,7 +48,6 @@ interface Props {
    * ```
    */
   direction?: "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb";
-  value: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -66,38 +65,40 @@ if (!injected) {
   );
 }
 
+const { isPopupOpen, bodyPxInfo } = injected;
+
 const popupRect = computed(() => {
   const popupWidth = popupRef.value?.offsetWidth ?? 0;
   const popupHeight = popupRef.value?.offsetHeight ?? 0;
 
   const popupLeft = (() => {
     if (props.direction === "tl" || props.direction === "bl") {
-      return injected.bodyPxInfo.left;
+      return bodyPxInfo.left;
     }
     if (props.direction === "tr" || props.direction === "br") {
-      return injected.bodyPxInfo.right - popupWidth;
+      return bodyPxInfo.right - popupWidth;
     }
     if (props.direction === "rt" || props.direction === "rb") {
-      return injected.bodyPxInfo.right;
+      return bodyPxInfo.right;
     }
     if (props.direction === "lt" || props.direction === "lb") {
-      return injected.bodyPxInfo.left - popupWidth;
+      return bodyPxInfo.left - popupWidth;
     }
     return 0;
   })();
 
   const popupTop = (() => {
     if (props.direction === "tl" || props.direction === "tr") {
-      return injected.bodyPxInfo.top;
+      return bodyPxInfo.top;
     }
     if (props.direction === "bl" || props.direction === "br") {
-      return injected.bodyPxInfo.bottom - popupHeight;
+      return bodyPxInfo.bottom - popupHeight;
     }
     if (props.direction === "rt" || props.direction === "lt") {
-      return injected.bodyPxInfo.top - popupHeight;
+      return bodyPxInfo.top - popupHeight;
     }
     if (props.direction === "rb" || props.direction === "lb") {
-      return injected.bodyPxInfo.bottom;
+      return bodyPxInfo.bottom;
     }
     return 0;
   })();
@@ -187,12 +188,6 @@ const computedDirection = computed(() => {
     if (y < height) return "lt";
   }
   return props.direction;
-});
-
-watch(props, () => {
-  nextTick(() => {
-    injected.updateBodyPxInfo();
-  });
 });
 
 const computedZIndex = computed(() => getZIndexCSS(props.layer));
