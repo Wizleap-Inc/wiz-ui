@@ -1,52 +1,59 @@
 <template>
-  <div
-    class="wiz-selectbox"
-    :class="{
-      'wiz-selectbox--active': openSelectBox,
-      'wiz-selectbox--disabled': disabled,
-    }"
-  >
+  <WizPopupContainer v-model="openSelectBox">
     <div
-      class="wiz-selectbox__box"
-      :class="{ 'wiz-selectbox__box--selected': !!value }"
-      @click="toggleSelectBox"
+      class="wiz-selectbox"
+      :class="{
+        'wiz-selectbox--active': openSelectBox,
+        'wiz-selectbox--disabled': disabled,
+      }"
     >
-      <WizHStack gap="sm" align="center" justify="between" height="100%">
-        <span v-if="!value">{{ placeholder }}</span>
-        <span
-          v-for="(option, key) in options"
-          v-show="option.value === value"
-          :key="'selected' + key"
-        >
-          {{ option.label }}
-        </span>
-        <WizIExpandLess v-if="openSelectBox" class="wiz-selectbox__box-less" />
-        <WizIExpandMore
-          v-else-if="!openSelectBox"
-          class="wiz-selectbox__box-more"
-        />
-      </WizHStack>
+      <div
+        class="wiz-selectbox__box"
+        :class="{ 'wiz-selectbox__box--selected': !!value }"
+        @click="toggleSelectBox"
+      >
+        <WizHStack gap="sm" align="center" justify="between" height="100%">
+          <span v-if="!value">{{ placeholder }}</span>
+          <span
+            v-for="(option, key) in options"
+            v-show="option.value === value"
+            :key="'selected' + key"
+          >
+            {{ option.label }}
+          </span>
+          <WizIExpandLess
+            v-if="openSelectBox"
+            class="wiz-selectbox__box-less"
+          />
+          <WizIExpandMore
+            v-else-if="!openSelectBox"
+            class="wiz-selectbox__box-more"
+          />
+        </WizHStack>
+      </div>
     </div>
-    <div class="wiz-selectbox__selector" v-show="openSelectBox">
-      <WizVStack gap="xs2">
-        <div
-          class="wiz-selectbox__selector-option"
-          v-for="(option, key) in options"
-          :key="'option' + key"
-          @click="onSelect(option.value)"
-        >
-          {{ option.label }}
-        </div>
-      </WizVStack>
-    </div>
-  </div>
+    <WizPopup layer="popover">
+      <div class="wiz-selectbox__selector">
+        <WizVStack gap="xs2">
+          <div
+            class="wiz-selectbox__selector-option"
+            v-for="(option, key) in options"
+            :key="'option' + key"
+            @click="onSelect(option.value)"
+          >
+            {{ option.label }}
+          </div>
+        </WizVStack>
+      </div>
+    </WizPopup>
+  </WizPopupContainer>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { WizIExpandMore } from "@/components/icons";
-import { WizIExpandLess } from "@/components/icons";
+import { WizPopupContainer, WizPopup } from "@/components";
+import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
 import { THEME } from "@/constants/styles";
 
 import { WizHStack } from "../../stack";
@@ -104,8 +111,6 @@ const colorGray500 = THEME.color.gray["500"];
 const colorGray700 = THEME.color.gray["700"];
 const colorGreen300 = THEME.color.green["300"];
 const colorGreen800 = THEME.color.green["800"];
-const shadowSm = THEME.shadow.sm;
-const zIndexPopup = THEME.zIndex.popup;
 </script>
 
 <style lang="scss" scoped>
@@ -154,25 +159,19 @@ $border-width: 1px;
   }
 
   &__selector {
-    position: absolute;
-    top: calc(100% + $border-width * 2);
-    left: 0;
-    width: 100%;
+    min-width: calc(v-bind(width) + $border-width * 2);
     padding: v-bind(spacingXs);
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
-    box-sizing: border-box;
-    box-shadow: v-bind(shadowSm);
-    z-index: v-bind(zIndexPopup);
   }
 
   &__selector-option {
-    position: relative;
     width: 100%;
     padding: v-bind(spacingXs) v-bind(spacingXs2);
     font-size: v-bind(fontSizeSm);
     color: v-bind(colorGray700);
     box-sizing: border-box;
+    cursor: pointer;
 
     &:hover {
       color: v-bind(colorGreen800);
