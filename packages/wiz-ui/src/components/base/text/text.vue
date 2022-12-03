@@ -26,6 +26,7 @@ interface Props {
   fontSize?: FontSizeKeys;
   bold?: boolean;
   maxLines?: number;
+  nowrap?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -39,6 +40,7 @@ const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
 const computedFontSize = computed(() => FONT_SIZE_MAP[props.fontSize]);
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
+const computedWhiteSpace = computed(() => (props.nowrap ? "nowrap" : "normal"));
 
 const overflowStyles = computed(() => {
   if (!props.maxLines) return {};
@@ -58,5 +60,6 @@ const overflowStyles = computed(() => {
   color: v-bind(computedColor);
   font-size: v-bind(computedFontSize);
   font-weight: v-bind(computedFontWeight);
+  white-space: v-bind(computedWhiteSpace);
 }
 </style>

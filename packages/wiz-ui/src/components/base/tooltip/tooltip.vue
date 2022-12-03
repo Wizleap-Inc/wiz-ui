@@ -1,16 +1,18 @@
 <template>
   <div class="wiz-tooltip">
     <slot></slot>
-    <span class="wiz-tooltip__block">
+    <span class="wiz-tooltip__block" v-if="content || slots.content">
       <span class="wiz-tooltip__block-content">
         {{ content }}
-        <slot v-if="!content" name="tooltip-content" />
+        <slot v-if="!content" name="content" />
       </span>
     </span>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useSlots } from "vue";
+
 import { THEME } from "@/constants";
 
 interface Props {
@@ -18,6 +20,8 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const slots = useSlots();
 
 const colorGray800 = THEME.color.gray["800"];
 const colorWhite800 = THEME.color.white["800"];
