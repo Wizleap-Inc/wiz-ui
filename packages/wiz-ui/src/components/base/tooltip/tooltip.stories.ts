@@ -15,7 +15,7 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTooltip },
-  template: `<div style="padding:100px;"><WizTooltip v-bind="$props">{{ slot }}<template #tooltip-content>コンテンツがない場合に表示するスロット</template></WizTooltip></div>`,
+  template: `<div style="padding:100px;"><WizTooltip v-bind="$props">{{ slot }}<template #content>コンテンツがない場合に表示するスロット</template></WizTooltip></div>`,
 });
 
 export const Oneline = Template.bind({});
