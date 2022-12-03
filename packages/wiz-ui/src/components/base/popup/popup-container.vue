@@ -44,5 +44,6 @@ useClickOutside(popupContainerRef, () => {
 <style lang="scss" scoped>
 .wiz-popup-container {
   position: relative;
+  width: fit-content;
 }
 </style>
