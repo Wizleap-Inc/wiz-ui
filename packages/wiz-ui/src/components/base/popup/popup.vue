@@ -191,7 +191,7 @@ const computedDirection = computed(() => {
 });
 
 const computedZIndex = computed(() => getZIndexCSS(props.layer));
-const shadowMd = THEME.shadow.md;
+const shadowSm = THEME.shadow.sm;
 const computedMargin = computed(() => getSpacingCSS(props.gap));
 </script>
 
@@ -199,7 +199,7 @@ const computedMargin = computed(() => getSpacingCSS(props.gap));
 .wiz-popup {
   position: absolute;
   z-index: v-bind(computedZIndex);
-  filter: drop-shadow(v-bind(shadowMd));
+  filter: drop-shadow(v-bind(shadowSm));
   width: max-content;
 
   &--direction-tl {

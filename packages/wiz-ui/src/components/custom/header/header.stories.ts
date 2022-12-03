@@ -3,11 +3,11 @@ import { provide } from "vue";
 
 import { useGlobalProvider, globalKey } from "@/providers";
 
-import { WizHeader } from ".";
+import { WizCustomHeader } from ".";
 
 export default {
   title: "Custom/Header",
-  component: WizHeader,
+  component: WizCustomHeader,
   decorators: [
     (story: StoryFn) => ({
       components: { story },
@@ -17,16 +17,22 @@ export default {
       template: `<story />`,
     }),
   ],
+  argTypes: {
+    clickNotification: {
+      action: "clickNotification",
+    },
+  },
 };
 
 const DefaultTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizHeader },
+  components: { WizCustomHeader },
   template: `
-    <wiz-header
+    <wiz-custom-header
       title="Wiz UI"
       avatarSrc="./public/images/avatar-1.png"
       v-bind="$props"
+      @clickNotification="clickNotification"
     />
   `,
 });
@@ -48,6 +54,7 @@ Default.args = {
     },
   ],
   notifications: Array.from({ length: 14 }, (_, i) => ({
+    id: i,
     title: "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
     timestamp: new Date(Date.now() - Math.random() * 1000 * 60 * 60 * 24 * 365),
     tabName: ["tab1", "tab2"][i % 2],

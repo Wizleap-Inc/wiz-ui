@@ -1,46 +1,40 @@
 <template>
-  <WizBox bg-color="white.500" width="100%" height="60px">
-    <WizHStack align="center" justify="between" py="lg" height="100%">
-      <WizHStack align="center" gap="sm">
+  <WizHeader gap-left="sm" gap-right="xl">
+    <template #left>
+      <WizIconButton
+        :icon="WizIMenu"
+        size="lg"
+        variant="transparent"
+        @click="toggleMenuOpen"
+      />
+      <component :is="logo" />
+      <WizHeading fontSize="sm" color="gray.900" padding="0 1rem">
+        {{ title }}
+      </WizHeading>
+    </template>
+    <template #right>
+      <WizPopupContainer v-model="isNotificationOpen">
         <WizIconButton
-          :icon="WizIMenu"
+          :icon="WizINotification"
           size="lg"
           variant="transparent"
-          @click="toggleMenuOpen"
+          color="gray.700"
+          @click="toggleNotificationOpen"
         />
-        <component :is="logo" />
-        <WizHeading fontSize="sm" color="gray.900" padding="0 1rem">
-          {{ title }}
-        </WizHeading>
-      </WizHStack>
-      <WizHStack align="center" gap="xl">
-        <WizBox position="relative">
-          <WizIconButton
-            :icon="WizINotification"
-            size="lg"
-            variant="transparent"
-            color="gray.700"
-            @click="toggleNotificationOpen"
-          />
-          <WizBox
-            position="absolute"
-            right="0"
-            top="calc(50% + 30px)"
-            width="300px"
-            dropShadow="md"
-          >
+        <WizPopup layer="floating" gap="md" direction="bl">
+          <WizBox width="300px">
             <WizNotification
-              v-if="isNotificationOpen"
               :notifications="notifications"
               :tabs="tabs"
               height="640px"
+              @click="onClick"
             />
           </WizBox>
-        </WizBox>
-        <WizAvatar :src="avatarSrc" />
-      </WizHStack>
-    </WizHStack>
-  </WizBox>
+        </WizPopup>
+      </WizPopupContainer>
+      <WizAvatar :src="avatarSrc" />
+    </template>
+  </WizHeader>
 </template>
 
 <script setup lang="ts">
@@ -50,8 +44,10 @@ import {
   WizAvatar,
   WizBox,
   WizHeading,
-  WizHStack,
+  WizHeader,
   WizIconButton,
+  WizPopupContainer,
+  WizPopup,
 } from "@/components/base";
 import type { TabItem } from "@/components/base/tab/types";
 import { WizNotification } from "@/components/custom/notification";
@@ -75,6 +71,14 @@ interface Props {
 }
 
 defineProps<Props>();
+
+interface Emit {
+  (event: "clickNotification", id: string): void;
+}
+
+const emit = defineEmits<Emit>();
+
+const onClick = (id: string) => emit("clickNotification", id);
 
 const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
 const isNotificationOpen = ref(false);

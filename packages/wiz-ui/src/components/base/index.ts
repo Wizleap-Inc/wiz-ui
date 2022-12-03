@@ -16,3 +16,5 @@ export * from "./tables";
 export * from "./navigation";
 export * from "./avatar";
 export * from "./tab";
+export * from "./popup";
+export * from "./header";
