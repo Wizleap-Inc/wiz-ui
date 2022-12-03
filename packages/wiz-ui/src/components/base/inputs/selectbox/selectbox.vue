@@ -18,6 +18,7 @@
             v-for="(option, key) in options"
             v-show="option.value === value"
             :key="'selected' + key"
+            class="wiz-selectbox__box__selected-value"
           >
             {{ option.label }}
           </span>
@@ -142,6 +143,10 @@ $border-width: 1px;
     font-size: v-bind(fontSizeSm);
     color: v-bind(colorGray500);
     width: v-bind(width);
+
+    &__selected-value {
+      overflow: hidden;
+    }
 
     &-less {
       fill: v-bind(colorGreen800);
