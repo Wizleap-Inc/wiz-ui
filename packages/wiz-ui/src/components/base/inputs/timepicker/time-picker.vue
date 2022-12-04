@@ -41,6 +41,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
+import { WizSchedule } from "@/components/icons";
 import { THEME } from "@/constants/styles";
 
 import { WizHStack } from "../../stack";
@@ -89,7 +90,6 @@ const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
-const spacingXl = THEME.spacing.xl;
 const spacingXl3 = THEME.spacing.xl3;
 const colorWhite800 = THEME.color.white["800"];
 const colorGray300 = THEME.color.gray["300"];
@@ -98,6 +98,8 @@ const colorGray500 = THEME.color.gray["500"];
 const colorGray700 = THEME.color.gray["700"];
 const colorGreen300 = THEME.color.green["300"];
 const colorGreen800 = THEME.color.green["800"];
+
+const fontSizeMd = THEME.fontSize.md;
 const shadowSm = THEME.shadow.sm;
 const zIndexPopup = THEME.zIndex.popup;
 </script>
@@ -134,14 +136,9 @@ $border-width: 1px;
     color: v-bind(colorGray500);
     width: v-bind(width);
 
-    &-less {
-      fill: v-bind(colorGreen800);
-      font-size: v-bind(spacingXl);
-    }
-
-    &-more {
+    &-icon {
       fill: v-bind(colorGray500);
-      font-size: v-bind(spacingXl);
+      font-size: v-bind(fontSizeMd);
     }
 
     &--selected {
