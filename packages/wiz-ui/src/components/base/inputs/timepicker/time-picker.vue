@@ -15,25 +15,46 @@
         <WizSchedule class="wiz-timepicker__box-icon" />
         <span v-if="!value">{{ placeholder }}</span>
         <span
-          v-for="(option, key) in options"
-          v-show="option.value === value"
+          v-for="(option, key) in hourOptions"
+          v-show="option === value"
           :key="'selected' + key"
         >
-          {{ option.label }}
+          {{ option }}
         </span>
       </WizHStack>
     </div>
     <div class="wiz-timepicker__selector" v-show="opentimepicker">
-      <WizVStack gap="xs2">
-        <div
-          class="wiz-timepicker__selector-option"
-          v-for="(option, key) in options"
-          :key="'option' + key"
-          @click="onSelect(option.value)"
+      <WizHStack overflow="none">
+        <WizVStack
+          class="wiz-timepicker__selector-list"
+          gap="xs2"
+          align="center"
         >
-          {{ option.label }}
-        </div>
-      </WizVStack>
+          <div
+            class="wiz-timepicker__selector-option"
+            v-for="(option, key) in hourOptions"
+            :key="'option' + key"
+            @click="onSelect(option)"
+          >
+            {{ option }}
+          </div>
+        </WizVStack>
+        <WizVStack
+          class="wiz-timepicker__selector-list"
+          gap="xs2"
+          align="center"
+          justify="center"
+        >
+          <div
+            class="wiz-timepicker__selector-option"
+            v-for="(option, key) in minuteOptions"
+            :key="'option' + key"
+            @click="onSelect(option)"
+          >
+            {{ option }}
+          </div>
+        </WizVStack>
+      </WizHStack>
     </div>
   </div>
 </template>
@@ -53,7 +74,6 @@ interface Option {
 }
 
 interface Props {
-  options: Option[];
   value: string;
   placeholder: string;
   width?: string;
@@ -68,6 +88,9 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const opentimepicker = ref(false);
+const hourOptions = ref([...Array(24).keys()].map((val) => String(val)));
+const minuteOptions = ref(["00", "15", "30", "45"]);
+
 const toggletimepicker = () => {
   if (props.disabled) {
     return;
@@ -87,6 +110,7 @@ const onSelect = (value: string) => {
 
 const width = computed(() => props.width);
 const fontSizeSm = THEME.fontSize.sm;
+const fontSizeMd = THEME.fontSize.md;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
@@ -99,7 +123,6 @@ const colorGray700 = THEME.color.gray["700"];
 const colorGreen300 = THEME.color.green["300"];
 const colorGreen800 = THEME.color.green["800"];
 
-const fontSizeMd = THEME.fontSize.md;
 const shadowSm = THEME.shadow.sm;
 const zIndexPopup = THEME.zIndex.popup;
 </script>
@@ -158,18 +181,26 @@ $border-width: 1px;
     box-shadow: v-bind(shadowSm);
     z-index: v-bind(zIndexPopup);
   }
+  &__selector-list {
+    width: 50%;
+    height: 12em;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
   &__selector-option {
     position: relative;
-    width: 100%;
-    padding: v-bind(spacingXs) v-bind(spacingXs2);
-    font-size: v-bind(fontSizeSm);
+    padding: v-bind(spacingXs2) v-bind(spacingXs2);
+    font-size: v-bind(fontSizeMd);
+    text-align: center;
     color: v-bind(colorGray700);
     box-sizing: border-box;
 
     &:hover {
+      width: 32px;
       color: v-bind(colorGreen800);
       background: v-bind(colorGreen300);
+      border-radius: 0.25em;
     }
 
     &:active {
