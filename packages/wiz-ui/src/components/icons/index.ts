@@ -24,6 +24,7 @@ import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizITab } from "./tab.vue";
+import { default as WizICalendar } from "./calendar.vue";
 
 export type TIcon =
   | typeof WizIAdd
@@ -51,7 +52,8 @@ export type TIcon =
   | typeof WizIRemove
   | typeof WizISchedule
   | typeof WizISend
-  | typeof WizITab;
+  | typeof WizITab
+  | typeof WizICalendar;
 
 export {
   WizIAdd,
@@ -80,4 +82,5 @@ export {
   WizISchedule,
   WizISend,
   WizITab,
+  WizICalendar,
 };
