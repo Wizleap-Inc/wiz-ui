@@ -100,7 +100,8 @@ interface Emit {
 const emit = defineEmits<Emit>();
 
 const onSelect = (inputValue: string, isHour = false) => {
-  let defaultValue = props.value.split(":");
+  let defaultValue =
+    props.value.length > 0 ? props.value.split(":") : ["0", "00"];
 
   // 時間の方でセットする場合
   if (isHour) {
