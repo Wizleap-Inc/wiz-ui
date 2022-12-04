@@ -1,62 +1,62 @@
 <template>
-  <div
-    class="wiz-timepicker"
-    :class="{
-      'wiz-timepicker--active': opentimepicker,
-      'wiz-timepicker--disabled': disabled,
-    }"
-  >
+  <WizPopupContainer v-model="opentimepicker">
     <div
-      class="wiz-timepicker__box"
-      :class="{ 'wiz-timepicker__box--selected': !!value }"
-      @click="toggletimepicker"
+      class="wiz-timepicker"
+      :class="{
+        'wiz-timepicker--active': opentimepicker,
+        'wiz-timepicker--disabled': disabled,
+      }"
     >
-      <WizHStack gap="sm" align="center" height="100%">
-        <WizSchedule class="wiz-timepicker__box-icon" />
-        <span v-if="!value">{{ placeholder }}</span>
-        <span
-          v-for="(option, key) in hourOptions"
-          v-show="option === value"
-          :key="'selected' + key"
-        >
-          {{ option }}
-        </span>
-      </WizHStack>
+      <div
+        class="wiz-timepicker__box"
+        :class="{ 'wiz-timepicker__box--selected': !!value }"
+        @click="toggletimepicker"
+      >
+        <WizHStack gap="sm" align="center" height="100%">
+          <WizSchedule class="wiz-timepicker__box-icon" />
+          <span v-if="!value">{{ placeholder }}</span>
+          <span v-else>
+            {{ value }}
+          </span>
+        </WizHStack>
+      </div>
+      <WizPopup layer="base" gap="xs">
+        <div class="wiz-timepicker__selector">
+          <WizHStack overflow="none">
+            <WizVStack
+              class="wiz-timepicker__selector-list"
+              gap="xs2"
+              align="center"
+            >
+              <div
+                class="wiz-timepicker__selector-option"
+                v-for="(option, key) in hourOptions"
+                :key="'option' + key"
+                @click="onSelect(option, true)"
+              >
+                {{ option }}
+              </div>
+            </WizVStack>
+            <WizVStack
+              class="wiz-timepicker__selector-list"
+              gap="xs2"
+              align="center"
+              justify="center"
+            >
+              <div
+                class="wiz-timepicker__selector-option"
+                v-for="(option, key) in minuteOptions"
+                :key="'option' + key"
+                @click="onSelect(option)"
+              >
+                {{ option }}
+              </div>
+            </WizVStack>
+          </WizHStack>
+        </div>
+      </WizPopup>
     </div>
-    <div class="wiz-timepicker__selector" v-show="opentimepicker">
-      <WizHStack overflow="none">
-        <WizVStack
-          class="wiz-timepicker__selector-list"
-          gap="xs2"
-          align="center"
-        >
-          <div
-            class="wiz-timepicker__selector-option"
-            v-for="(option, key) in hourOptions"
-            :key="'option' + key"
-            @click="onSelect(option)"
-          >
-            {{ option }}
-          </div>
-        </WizVStack>
-        <WizVStack
-          class="wiz-timepicker__selector-list"
-          gap="xs2"
-          align="center"
-          justify="center"
-        >
-          <div
-            class="wiz-timepicker__selector-option"
-            v-for="(option, key) in minuteOptions"
-            :key="'option' + key"
-            @click="onSelect(option)"
-          >
-            {{ option }}
-          </div>
-        </WizVStack>
-      </WizHStack>
-    </div>
-  </div>
+  </WizPopupContainer>
 </template>
 
 <script setup lang="ts">
@@ -65,13 +65,9 @@ import { ref, computed } from "vue";
 import { WizSchedule } from "@/components/icons";
 import { THEME } from "@/constants/styles";
 
+import { WizPopup, WizPopupContainer } from "../../popup";
 import { WizHStack } from "../../stack";
 import { WizVStack } from "../../stack";
-
-interface Option {
-  label: string;
-  value: string;
-}
 
 interface Props {
   value: string;
@@ -103,9 +99,16 @@ interface Emit {
 }
 const emit = defineEmits<Emit>();
 
-const onSelect = (value: string) => {
-  toggletimepicker();
-  emit("input", value);
+const onSelect = (inputValue: string, isHour = false) => {
+  let defaultValue = props.value.split(":");
+
+  // 時間の方でセットする場合
+  if (isHour) {
+    defaultValue[0] = inputValue;
+  } else {
+    defaultValue[1] = inputValue;
+  }
+  emit("input", defaultValue.join(":"));
 };
 
 const width = computed(() => props.width);
@@ -173,13 +176,13 @@ $border-width: 1px;
     position: absolute;
     top: calc(100% + $border-width * 2);
     left: 0;
-    width: 100%;
     padding: v-bind(spacingXs);
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;
     box-shadow: v-bind(shadowSm);
     z-index: v-bind(zIndexPopup);
+    width: 8em;
   }
   &__selector-list {
     width: 50%;
@@ -189,6 +192,7 @@ $border-width: 1px;
   }
 
   &__selector-option {
+    width: 2em;
     position: relative;
     padding: v-bind(spacingXs2) v-bind(spacingXs2);
     font-size: v-bind(fontSizeMd);
@@ -197,7 +201,6 @@ $border-width: 1px;
     box-sizing: border-box;
 
     &:hover {
-      width: 32px;
       color: v-bind(colorGreen800);
       background: v-bind(colorGreen300);
       border-radius: 0.25em;
