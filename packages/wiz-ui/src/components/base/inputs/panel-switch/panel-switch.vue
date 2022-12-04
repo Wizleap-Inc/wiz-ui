@@ -8,7 +8,7 @@
         'wiz-panel-switch__block-divider': key !== items.length - 1,
         'wiz-panel-switch__block-left': key === 0,
         'wiz-panel-switch__block-right': key === items.length - 1,
-        'wiz-panel-switch__block--active': switchValue === key + 1,
+        'wiz-panel-switch__block--active': key === switchValue - 1,
       }"
       :for="`panel${key}`"
     >
