@@ -20,7 +20,7 @@
           </span>
         </WizHStack>
       </div>
-      <WizPopup layer="base" gap="xs">
+      <WizPopup layer="popover" gap="xs">
         <div class="wiz-timepicker__selector">
           <WizHStack overflow="none">
             <WizVStack

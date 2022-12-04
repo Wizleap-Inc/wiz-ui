@@ -25,10 +25,13 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const value = ref("");
     return { value };
   },
-  template: `<WizTimePicker v-bind="$props"  v-model="value" @input="input"/>`,
+  template: `
+  <div>
+    <WizTimePicker v-bind="$props"  v-model="value" @input="input"/>
+  </div>`,
 });
 
-// デフォルトの場合
+// デフォルト
 export const Default = Template.bind({});
 
 // 入力禁止
