@@ -28,8 +28,10 @@ const Template: StoryFn = (_, { argTypes }) => ({
   template: `<WizTimePicker v-bind="$props"  v-model="value" @input="input"/>`,
 });
 
+// デフォルト
 export const Default = Template.bind({});
 
+// 入力禁止
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
