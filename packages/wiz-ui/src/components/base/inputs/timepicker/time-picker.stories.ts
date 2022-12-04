@@ -28,7 +28,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   template: `<WizTimePicker v-bind="$props"  v-model="value" @input="input"/>`,
 });
 
-// デフォルト
+// デフォルトの場合
 export const Default = Template.bind({});
 
 // 入力禁止
