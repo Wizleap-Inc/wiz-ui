@@ -1,9 +1,9 @@
 <template>
-  <WizPopupContainer v-model="opentimepicker">
+  <WizPopupContainer v-model="openTimepicker">
     <div
       class="wiz-timepicker"
       :class="{
-        'wiz-timepicker--active': opentimepicker,
+        'wiz-timepicker--active': openTimepicker,
         'wiz-timepicker--disabled': disabled,
       }"
     >
@@ -71,7 +71,7 @@ import { WizVStack } from "../../stack";
 
 interface Props {
   value: string;
-  placeholder: string;
+  placeholder?: string;
   width?: string;
   disabled?: boolean;
 }
@@ -79,19 +79,19 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   value: "",
   placeholder: "時間を選択",
-  width: "8rem",
+  width: "10rem",
   disabled: false,
 });
 
-const opentimepicker = ref(false);
-const hourOptions = ref([...Array(24).keys()].map((val) => String(val)));
-const minuteOptions = ref(["00", "15", "30", "45"]);
+const openTimepicker = ref(false);
+const hourOptions = [...Array(24).keys()].map((val) => String(val));
+const minuteOptions = ["00", "15", "30", "45"];
 
 const toggletimepicker = () => {
   if (props.disabled) {
     return;
   }
-  opentimepicker.value = !opentimepicker.value;
+  openTimepicker.value = !openTimepicker.value;
 };
 
 interface Emit {
@@ -113,7 +113,7 @@ const onSelect = (inputValue: string, isHour = false) => {
 
 const width = computed(() => props.width);
 const fontSizeSm = THEME.fontSize.sm;
-const fontSizeMd = THEME.fontSize.md;
+const fontSizeXs2 = THEME.fontSize.xs2;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
@@ -126,7 +126,6 @@ const colorGray700 = THEME.color.gray["700"];
 const colorGreen300 = THEME.color.green["300"];
 const colorGreen800 = THEME.color.green["800"];
 
-const shadowSm = THEME.shadow.sm;
 const zIndexPopup = THEME.zIndex.popup;
 </script>
 
@@ -134,10 +133,8 @@ const zIndexPopup = THEME.zIndex.popup;
 $border-width: 1px;
 
 .wiz-timepicker {
-  position: relative;
   width: max-content;
-  padding-left: 0.25em;
-  padding-right: 0.25em;
+  padding: 0 0.25em;
   height: v-bind(spacingXl3);
   background: v-bind(colorWhite800);
   border: $border-width solid v-bind(colorGray400);
@@ -164,7 +161,7 @@ $border-width: 1px;
 
     &-icon {
       fill: v-bind(colorGray500);
-      font-size: v-bind(fontSizeMd);
+      font-size: v-bind(fontSizeXs2);
     }
 
     &--selected {
@@ -176,17 +173,15 @@ $border-width: 1px;
     position: absolute;
     top: calc(100% + $border-width * 2);
     left: 0;
+    width: auto;
     padding: v-bind(spacingXs);
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;
-    box-shadow: v-bind(shadowSm);
     z-index: v-bind(zIndexPopup);
-    width: 8em;
   }
   &__selector-list {
-    width: 50%;
-    height: 12em;
+    height: 8em;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -195,7 +190,7 @@ $border-width: 1px;
     width: 2em;
     position: relative;
     padding: v-bind(spacingXs2) v-bind(spacingXs2);
-    font-size: v-bind(fontSizeMd);
+    font-size: v-bind(fontSizeXs2);
     text-align: center;
     color: v-bind(colorGray700);
     box-sizing: border-box;
@@ -203,7 +198,7 @@ $border-width: 1px;
     &:hover {
       color: v-bind(colorGreen800);
       background: v-bind(colorGreen300);
-      border-radius: 0.25em;
+      border-radius: v-bind(spacingXs2);
     }
 
     &:active {
