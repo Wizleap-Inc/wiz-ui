@@ -19,7 +19,7 @@
       </div>
       <WizPopup layer="popover" gap="xs">
         <div class="wiz-timepicker__selector">
-          <WizHStack overflow="none">
+          <WizHStack overflow="none" gap="xs2">
             <WizVStack
               class="wiz-timepicker__selector-list"
               gap="xs2"
@@ -33,6 +33,9 @@
               >
                 {{ option }}
               </div>
+            </WizVStack>
+            <WizVStack gap="xs2">
+              <WizDivider direction="vertical" />
             </WizVStack>
             <WizVStack
               class="wiz-timepicker__selector-list"
@@ -62,6 +65,7 @@ import { ref, computed } from "vue";
 import { WizISchedule } from "@/components/icons";
 import { THEME } from "@/constants/styles";
 
+import { WizDivider } from "../../divider";
 import { WizPopup, WizPopupContainer } from "../../popup";
 import { WizHStack } from "../../stack";
 import { WizVStack } from "../../stack";
