@@ -16,7 +16,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPanelSwitch },
   setup() {
-    const value = ref("");
+    const value = ref(0);
     return { value };
   },
   template: `

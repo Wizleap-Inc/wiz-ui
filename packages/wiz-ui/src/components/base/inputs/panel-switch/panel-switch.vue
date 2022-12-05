@@ -30,10 +30,7 @@ import { computed } from "vue";
 
 import { THEME } from "@/constants/styles";
 
-interface panelItems {
-  label: string;
-  value: number;
-}
+import { panelItems } from "./types";
 
 interface Props {
   value: number;
