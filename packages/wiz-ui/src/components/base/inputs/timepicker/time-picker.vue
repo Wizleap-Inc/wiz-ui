@@ -13,7 +13,7 @@
         @click="toggletimepicker"
       >
         <WizHStack gap="sm" align="center" height="100%">
-          <WizSchedule class="wiz-timepicker__box-icon" />
+          <WizISchedule class="wiz-timepicker__box-icon" />
           <span v-if="!value">{{ placeholder }}</span>
           <span v-else>
             {{ value }}
@@ -62,7 +62,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { WizSchedule } from "@/components/icons";
+import { WizISchedule } from "@/components/icons";
 import { THEME } from "@/constants/styles";
 
 import { WizPopup, WizPopupContainer } from "../../popup";
