@@ -27,6 +27,10 @@
             >
               <div
                 class="wiz-timepicker__selector-option"
+                :class="{
+                  'wiz-timepicker__selector-option-selected':
+                    option === selectedHour,
+                }"
                 v-for="(option, key) in hourOptions"
                 :key="'option' + key"
                 @click="onSelect(option, true)"
@@ -45,6 +49,10 @@
             >
               <div
                 class="wiz-timepicker__selector-option"
+                :class="{
+                  'wiz-timepicker__selector-option-selected':
+                    option === selectedMinute,
+                }"
                 v-for="(option, key) in minuteOptions"
                 :key="'option' + key"
                 @click="onSelect(option)"
@@ -85,6 +93,9 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const openTimepicker = ref(false);
+const selectedHour = ref("");
+const selectedMinute = ref("");
+
 const hourOptions = [...Array(24).keys()].map((val) => String(val));
 const minuteOptions = ["00", "15", "30", "45"];
 
@@ -107,8 +118,10 @@ const onSelect = (inputValue: string, isHour = false) => {
   // 時間の方でセットする場合
   if (isHour) {
     defaultValue[0] = inputValue;
+    selectedHour.value = inputValue;
   } else {
     defaultValue[1] = inputValue;
+    selectedMinute.value = inputValue;
   }
   emit("input", defaultValue.join(":"));
 };
@@ -118,8 +131,8 @@ const fontSizeSm = THEME.fontSize.sm;
 const fontSizeXs2 = THEME.fontSize.xs2;
 const fontSizeXl2 = THEME.fontSize.xl2;
 const spacingNo = THEME.spacing.no;
-const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
+const spacingXs2 = THEME.spacing.xs2;
 const spacingXl3 = THEME.spacing.xl3;
 const colorWhite800 = THEME.color.white["800"];
 const colorGray300 = THEME.color.gray["300"];
@@ -192,11 +205,13 @@ $border-width: 1px;
   &__selector-option {
     width: 2em;
     position: relative;
-    padding: v-bind(spacingXs2) v-bind(spacingXs2);
+    margin: 0 v-bind(spacingXs);
+    padding: v-bind(spacingXs2);
     font-size: v-bind(fontSizeXs2);
     text-align: center;
     color: v-bind(colorGray700);
     box-sizing: border-box;
+    border-radius: v-bind(spacingXs2);
 
     &:hover {
       color: v-bind(colorGreen800);
@@ -205,6 +220,11 @@ $border-width: 1px;
     }
 
     &:active {
+      color: v-bind(colorWhite800);
+      background: v-bind(colorGreen800);
+    }
+
+    &-selected {
       color: v-bind(colorWhite800);
       background: v-bind(colorGreen800);
     }
