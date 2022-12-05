@@ -10,14 +10,11 @@
       <div
         class="wiz-timepicker__box"
         :class="{ 'wiz-timepicker__box--selected': !!value }"
-        @click="toggletimepicker"
+        @click="toggleTimepicker"
       >
         <WizHStack gap="sm" align="center" height="100%">
           <WizISchedule class="wiz-timepicker__box-icon" />
-          <span v-if="!value">{{ placeholder }}</span>
-          <span v-else>
-            {{ value }}
-          </span>
+          <span>{{ value || placeholder }}</span>
         </WizHStack>
       </div>
       <WizPopup layer="popover" gap="xs">
@@ -87,7 +84,7 @@ const openTimepicker = ref(false);
 const hourOptions = [...Array(24).keys()].map((val) => String(val));
 const minuteOptions = ["00", "15", "30", "45"];
 
-const toggletimepicker = () => {
+const toggleTimepicker = () => {
   if (props.disabled) {
     return;
   }
@@ -115,6 +112,7 @@ const onSelect = (inputValue: string, isHour = false) => {
 const width = computed(() => props.width);
 const fontSizeSm = THEME.fontSize.sm;
 const fontSizeXs2 = THEME.fontSize.xs2;
+const fontSizeXl2 = THEME.fontSize.xl2;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
@@ -135,7 +133,7 @@ $border-width: 1px;
 
 .wiz-timepicker {
   width: max-content;
-  padding: 0 0.25em;
+  padding: 0 v-bind(spacingXs2);
   height: v-bind(spacingXl3);
   background: v-bind(colorWhite800);
   border: $border-width solid v-bind(colorGray400);
@@ -162,7 +160,7 @@ $border-width: 1px;
 
     &-icon {
       fill: v-bind(colorGray500);
-      font-size: v-bind(fontSizeXs2);
+      font-size: v-bind(fontSizeXl2);
     }
 
     &--selected {
