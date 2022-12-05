@@ -1,0 +1,107 @@
+<template>
+  <button
+    :class="{
+      'wiz-toggle-button': true,
+      'wiz-toggle-button--inActive': !isActive,
+      'wiz-toggle-button--active': isActive,
+      'wiz-toggle-button--disabled': disabled,
+    }"
+    @click="onClick"
+  >
+    <WizHStack align="center" gap="sm">
+      <component
+        v-if="!isActive"
+        class="wiz-toggle-button__icon"
+        :is="inActiveIcon"
+      />
+      <component
+        v-else-if="isActive"
+        class="wiz-toggle-button__icon"
+        :is="activeIcon"
+      />
+      <slot />
+    </WizHStack>
+  </button>
+</template>
+
+<script setup lang="ts">
+import Vue, { ref } from "vue";
+
+import WizHStack from "@/components/base/stack/h-stack.vue";
+import { THEME } from "@/constants";
+
+interface Props {
+  inActiveIcon: Vue;
+  activeIcon: Vue;
+  disabled?: boolean;
+}
+
+interface Emits {
+  (event: "click"): void;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isActive: false,
+  disabled: false,
+});
+const isActive = ref(false);
+const emits = defineEmits<Emits>();
+
+const onClick = () => {
+  if (props.disabled) return;
+  isActive.value = !isActive.value;
+  emits("click");
+};
+
+const spacingNo = THEME.spacing.no;
+const spacingXs2 = THEME.spacing.xs2;
+const spacingMd = THEME.spacing.md;
+const spacingXl3 = THEME.spacing.xl3;
+const colorWhite800 = THEME.color.white["800"];
+const colorGreen300 = THEME.color.green["300"];
+const colorGreen800 = THEME.color.green["800"];
+const colorGray400 = THEME.color.gray["400"];
+const shadowSm = THEME.shadow.sm;
+const fontSizeSm = THEME.fontSize.sm;
+const fontSizeXl = THEME.fontSize.xl;
+</script>
+
+<style lang="scss" scoped>
+$border-width: 1px;
+
+.wiz-toggle-button {
+  height: v-bind(spacingXl3);
+  width: max-content;
+  color: v-bind(colorGreen800);
+  border: none;
+  border-radius: v-bind(spacingXs2);
+  padding: v-bind(spacingNo) v-bind(spacingMd);
+  font-size: v-bind(fontSizeSm);
+  font-weight: bold;
+  cursor: pointer;
+
+  &--inActive {
+    background-color: v-bind(colorWhite800);
+    box-shadow: v-bind(shadowSm);
+  }
+
+  &--active {
+    background-color: v-bind(colorGreen300);
+    border: $border-width solid v-bind(colorGray400);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:hover:not(&--disabled) {
+    opacity: 0.5;
+  }
+
+  &__icon {
+    font-size: v-bind(fontSizeXl);
+    fill: v-bind(colorGreen800);
+  }
+}
+</style>
