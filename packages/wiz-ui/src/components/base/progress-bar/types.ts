@@ -9,6 +9,7 @@ export type ProgressStatus =
 export interface ProgressItem {
   status: ProgressStatus;
   label?: string;
+  annotation?: string;
   tooltip?: string;
   progress?: boolean;
   value?: number;
