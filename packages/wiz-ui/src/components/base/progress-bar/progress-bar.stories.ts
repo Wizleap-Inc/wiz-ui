@@ -78,3 +78,23 @@ WithLabel.args = {
     label: `Label ${index + 1}`,
   })),
 };
+
+export const WithAnnotation = Template.bind({});
+WithAnnotation.args = {
+  contents: baseContents.map((content, index) => ({
+    ...content,
+    annotation: `Annotation ${index + 1}`,
+  })),
+};
+
+export const WithAll = Template.bind({});
+WithAll.args = {
+  contents: baseContents.map((content, index) => ({
+    ...content,
+    value: index + 1,
+    progress: [1, 3, 4].includes(index),
+    tooltip: `Tooltip ${index + 1}`,
+    label: `Label ${index + 1}`,
+    annotation: `Annotation ${index + 1}`,
+  })),
+};

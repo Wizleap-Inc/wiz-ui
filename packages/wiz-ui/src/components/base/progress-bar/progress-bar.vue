@@ -11,6 +11,11 @@
       <WizTooltip
         :content="content.status === 'none' ? undefined : content.tooltip"
       >
+        <span class="wiz-progress__item__annotation">
+          <WizText fontSize="xs2" color="red.800" nowrap>
+            {{ content.annotation }}
+          </WizText>
+        </span>
         <WizProgressPoint :status="content.status" :value="content.value" />
         <span class="wiz-progress__item__label">
           <WizText fontSize="xs2" color="gray.600" nowrap>
@@ -39,6 +44,7 @@ export interface Props {
 defineProps<Props>();
 
 const spacingMd = THEME.spacing.md;
+const colorRed800 = THEME.color.red["800"];
 </script>
 
 <style lang="scss" scoped>
@@ -66,6 +72,14 @@ const spacingMd = THEME.spacing.md;
       bottom: calc(v-bind(spacingMd) * -1);
       left: 50%;
       transform: translateX(-50%);
+    }
+
+    &__annotation {
+      position: absolute;
+      top: calc(v-bind(spacingMd) * -1);
+      left: 50%;
+      transform: translateX(-50%);
+      color: v-bind(colorRed800);
     }
   }
 }
