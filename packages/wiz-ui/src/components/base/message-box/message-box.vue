@@ -62,6 +62,7 @@ const fontSizeXl2 = THEME.fontSize.xl2;
   width: max-content;
   height: max-content;
   padding: v-bind(spacingMd);
+  box-sizing: border-box;
 
   &--information {
     background: v-bind(colorGreen300);
