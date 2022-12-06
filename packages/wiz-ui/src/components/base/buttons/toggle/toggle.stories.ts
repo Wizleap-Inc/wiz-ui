@@ -26,6 +26,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     <WizToggleButton v-bind="$props" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="onClick('Default')">{{ slot }}</WizToggleButton>
   `,
 });
+
 export const Default = Template.bind({});
 Default.args = {
   slot: "顧客データ追加",

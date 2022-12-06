@@ -77,6 +77,10 @@ $border-width: 1px;
   font-weight: bold;
   cursor: pointer;
 
+  &:hover:not(&--disabled) {
+    opacity: 0.9;
+  }
+
   &--inActive {
     background-color: v-bind(colorWhite800);
     box-shadow: v-bind(shadowSm);
@@ -89,10 +93,6 @@ $border-width: 1px;
 
   &--disabled {
     cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  &:hover:not(&--disabled) {
     opacity: 0.5;
   }
 }
