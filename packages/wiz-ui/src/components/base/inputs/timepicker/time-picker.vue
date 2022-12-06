@@ -70,13 +70,11 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
+import { WizDivider, WizHStack, WizVStack } from "@/components";
 import { WizISchedule } from "@/components/icons";
 import { THEME } from "@/constants/styles";
 
-import { WizDivider } from "../../divider";
 import { WizPopup, WizPopupContainer } from "../../popup";
-import { WizHStack } from "../../stack";
-import { WizVStack } from "../../stack";
 
 interface Props {
   value: string;
