@@ -23,6 +23,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 const spacingSm = THEME.spacing.sm;
+const fontSizeSm = THEME.fontSize.sm;
 const colorGray300 = THEME.color.gray["300"];
 const colorGray700 = THEME.color.gray["700"];
 const colorWhite800 = THEME.color.white["800"];
@@ -30,6 +31,7 @@ const colorWhite800 = THEME.color.white["800"];
 
 <style lang="scss" scoped>
 .wiz-flat-table__td {
+  font-size: v-bind(fontSizeSm);
   padding: v-bind(spacingSm);
   color: v-bind(colorGray700);
   background: v-bind(colorWhite800);
