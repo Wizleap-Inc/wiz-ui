@@ -37,7 +37,6 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  isActive: false,
   disabled: false,
 });
 
