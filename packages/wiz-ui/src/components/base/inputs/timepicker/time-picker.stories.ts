@@ -25,11 +25,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const value = ref("");
     return { value };
   },
-  template: `
-    <div>
-      <WizTimePicker v-bind="$props"  v-model="value" @input="input"/>
-    </div>
-  `,
+  template: `<WizTimePicker v-bind="$props"  v-model="value" @input="input"/>`,
 });
 
 // デフォルト

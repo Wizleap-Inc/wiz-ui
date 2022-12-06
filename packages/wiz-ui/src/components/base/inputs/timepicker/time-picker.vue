@@ -13,18 +13,16 @@
         @click="toggleTimepicker"
       >
         <WizHStack gap="sm" align="center" height="100%">
-          <WizISchedule class="wiz-timepicker__box-icon" />
+          <WizIcon size="xl2" color="gray.500" :icon="WizISchedule">
+            <WizISchedule />
+          </WizIcon>
           <span>{{ value || placeholder }}</span>
         </WizHStack>
       </div>
       <WizPopup layer="popover" gap="xs">
         <div class="wiz-timepicker__selector">
           <WizHStack overflow="none" gap="xs2">
-            <WizVStack
-              class="wiz-timepicker__selector-list"
-              gap="xs2"
-              align="center"
-            >
+            <WizVStack height="8rem" gap="xs2" align="center" overflow="auto">
               <div
                 class="wiz-timepicker__selector-option"
                 :class="{
@@ -41,12 +39,7 @@
             <WizVStack gap="xs2">
               <WizDivider direction="vertical" />
             </WizVStack>
-            <WizVStack
-              class="wiz-timepicker__selector-list"
-              gap="xs2"
-              align="center"
-              justify="center"
-            >
+            <WizVStack gap="xs2" align="center" justify="center">
               <div
                 class="wiz-timepicker__selector-option"
                 :class="{
@@ -70,7 +63,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { WizDivider, WizHStack, WizVStack } from "@/components";
+import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";
 import { WizISchedule } from "@/components/icons";
 import { THEME } from "@/constants/styles";
 
@@ -127,7 +120,6 @@ const onSelect = (inputValue: string, isHour = false) => {
 const width = computed(() => props.width);
 const fontSizeSm = THEME.fontSize.sm;
 const fontSizeXs2 = THEME.fontSize.xs2;
-const fontSizeXl2 = THEME.fontSize.xl2;
 const spacingNo = THEME.spacing.no;
 const spacingXs = THEME.spacing.xs;
 const spacingXs2 = THEME.spacing.xs2;
@@ -173,11 +165,6 @@ $border-width: 1px;
     color: v-bind(colorGray500);
     width: v-bind(width);
 
-    &-icon {
-      fill: v-bind(colorGray500);
-      font-size: v-bind(fontSizeXl2);
-    }
-
     &--selected {
       color: v-bind(colorGray700);
     }
@@ -193,11 +180,6 @@ $border-width: 1px;
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;
     z-index: v-bind(zIndexPopup);
-  }
-  &__selector-list {
-    height: 8em;
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 
   &__selector-option {
