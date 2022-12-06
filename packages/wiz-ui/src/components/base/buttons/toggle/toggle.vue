@@ -8,16 +8,11 @@
     }"
     @click="onClick"
   >
-    <WizHStack align="center" gap="sm">
-      <component
-        v-if="!isActive"
-        class="wiz-toggle-button__icon"
-        :is="inActiveIcon"
-      />
-      <component
-        v-else-if="isActive"
-        class="wiz-toggle-button__icon"
-        :is="activeIcon"
+    <WizHStack align="center" gap="xs">
+      <WizIcon
+        :icon="isActive ? activeIcon : inActiveIcon"
+        color="green.800"
+        size="xl2"
       />
       <slot />
     </WizHStack>
@@ -27,6 +22,7 @@
 <script setup lang="ts">
 import Vue, { ref } from "vue";
 
+import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
 import { THEME } from "@/constants";
 
@@ -44,7 +40,9 @@ const props = withDefaults(defineProps<Props>(), {
   isActive: false,
   disabled: false,
 });
+
 const isActive = ref(false);
+
 const emits = defineEmits<Emits>();
 
 const onClick = () => {
@@ -63,7 +61,6 @@ const colorGreen800 = THEME.color.green["800"];
 const colorGray400 = THEME.color.gray["400"];
 const shadowSm = THEME.shadow.sm;
 const fontSizeSm = THEME.fontSize.sm;
-const fontSizeXl = THEME.fontSize.xl;
 </script>
 
 <style lang="scss" scoped>
@@ -97,11 +94,6 @@ $border-width: 1px;
 
   &:hover:not(&--disabled) {
     opacity: 0.5;
-  }
-
-  &__icon {
-    font-size: v-bind(fontSizeXl);
-    fill: v-bind(colorGreen800);
   }
 }
 </style>
