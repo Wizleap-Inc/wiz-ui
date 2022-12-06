@@ -83,7 +83,6 @@ interface Emit {
 const emit = defineEmits<Emit>();
 
 const onClick = () => {
-  console.log("a");
   emit("click");
 };
 </script>
