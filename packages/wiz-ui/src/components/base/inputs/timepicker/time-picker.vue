@@ -22,7 +22,13 @@
       <WizPopup layer="popover" gap="xs">
         <div class="wiz-timepicker__selector">
           <WizHStack overflow="none" gap="xs2">
-            <WizVStack height="8rem" gap="xs2" align="center" overflow="auto">
+            <WizVStack
+              class="wiz-timepicker__scroll"
+              height="8rem"
+              gap="xs2"
+              align="center"
+              overflow="auto"
+            >
               <div
                 class="wiz-timepicker__selector-option"
                 :class="{
@@ -131,8 +137,6 @@ const colorGray500 = THEME.color.gray["500"];
 const colorGray700 = THEME.color.gray["700"];
 const colorGreen300 = THEME.color.green["300"];
 const colorGreen800 = THEME.color.green["800"];
-
-const zIndexPopup = THEME.zIndex.popup;
 </script>
 
 <style lang="scss" scoped>
@@ -179,7 +183,22 @@ $border-width: 1px;
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;
-    z-index: v-bind(zIndexPopup);
+  }
+
+  &__scroll {
+    margin: v-bind(spacingXs2) 0;
+
+    // FireFox 用
+    scrollbar-width: thin;
+    scrollbar-color: v-bind(colorGray400) transparent;
+
+    &::-webkit-scrollbar {
+      width: v-bind(spacingXs2);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: v-bind(colorGray400);
+      border-radius: v-bind(spacingXs2);
+    }
   }
 
   &__selector-option {
