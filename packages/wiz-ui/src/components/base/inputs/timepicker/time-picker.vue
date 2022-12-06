@@ -13,9 +13,7 @@
         @click="toggleTimepicker"
       >
         <WizHStack gap="sm" align="center" height="100%">
-          <WizIcon size="xl2" color="gray.500" :icon="WizISchedule">
-            <WizISchedule />
-          </WizIcon>
+          <WizIcon size="xl2" color="gray.500" :icon="WizISchedule" />
           <span>{{ value || placeholder }}</span>
         </WizHStack>
       </div>
