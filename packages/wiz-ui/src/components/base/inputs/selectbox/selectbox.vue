@@ -65,7 +65,7 @@ import { Option } from "./types";
 interface Props {
   options: Option[];
   value: string;
-  placeholder: string;
+  placeholder?: string;
   width?: string;
   disabled?: boolean;
 }

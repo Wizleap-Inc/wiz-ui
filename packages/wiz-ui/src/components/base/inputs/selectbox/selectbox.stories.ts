@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { WizHStack } from "@/components";
 
-import WizSelectBox from "./selectbox.vue";
+import { WizSelectBox } from ".";
 
 export default {
   title: "Base/Input/SelectBox",

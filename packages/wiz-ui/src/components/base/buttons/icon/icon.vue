@@ -56,16 +56,17 @@ const fontSizeXl3 = THEME.fontSize.xl3;
 </script>
 
 <style lang="scss" scoped>
+$sub-button-border-width: 1px;
 .wiz-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  padding: v-bind(spacingXs);
 
   &--variant {
     &-primary {
+      padding: v-bind(spacingXs);
       box-shadow: v-bind(shadowMd);
       background: v-bind(colorGradient);
       border: none;
@@ -79,7 +80,8 @@ const fontSizeXl3 = THEME.fontSize.xl3;
 
     &-sub {
       background: v-bind(colorWhite800);
-      border: 1px solid v-bind(colorGray400);
+      border: $sub-button-border-width solid v-bind(colorGray400);
+      padding: calc(v-bind(spacingXs) - $sub-button-border-width);
       & > svg {
         fill: v-bind(colorGreen800);
       }
