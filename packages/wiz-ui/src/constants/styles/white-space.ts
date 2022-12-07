@@ -8,6 +8,6 @@ export const WHITE_SPACE_MAP = {
   breakSpaces: "break-spaces",
 } as const;
 
-export const SPACING_ACCESSORS = Object.keys(
+export const WHITE_SPACE_MAP_ACCESSORS = Object.keys(
   WHITE_SPACE_MAP
 ) as WhiteSpaceKeys[];
