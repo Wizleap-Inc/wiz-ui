@@ -14,6 +14,7 @@ import { ComponentName } from "@/constants/component/name";
 import { FONT_SIZE_MAP } from "@/constants/styles/font-size";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
+import { WhiteSpaceKeys } from "@/types/styles/white-space";
 import { getColorCss } from "@/utils/styles/color";
 
 defineOptions({
@@ -26,7 +27,7 @@ interface Props {
   fontSize?: FontSizeKeys;
   bold?: boolean;
   maxLines?: number;
-  nowrap?: boolean;
+  whiteSpace?: WhiteSpaceKeys;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -40,7 +41,7 @@ const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
 const computedFontSize = computed(() => FONT_SIZE_MAP[props.fontSize]);
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
-const computedWhiteSpace = computed(() => (props.nowrap ? "nowrap" : "normal"));
+const computedWhiteSpace = computed(() => props.whiteSpace);
 
 const overflowStyles = computed(() => {
   if (!props.maxLines) return {};
