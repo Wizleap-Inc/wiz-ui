@@ -60,10 +60,7 @@ import { THEME } from "@/constants/styles";
 import { WizHStack } from "../../stack";
 import { WizVStack } from "../../stack";
 
-interface Option {
-  label: string;
-  value: string;
-}
+import { Option } from "./types";
 
 interface Props {
   options: Option[];
