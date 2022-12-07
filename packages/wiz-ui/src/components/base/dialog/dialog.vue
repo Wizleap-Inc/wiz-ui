@@ -2,16 +2,20 @@
   <MountingPortal mountTo="body" name="dialog" append>
     <div class="wiz-dialog" :class="{ 'wiz-dialog--visible': visible }">
       <div class="wiz-dialog__mask" @click.self="close">
-        <WizCard maxWidth="600px" p="xl">
+        <WizCard :maxWidth="maxWidth" p="xl" :title="title" :align="align">
           <template #mainHeaderArea>
-            <slot name="mainHeaderArea"></slot>
+            <slot v-if="!title" name="title" />
           </template>
           <template #subHeaderArea>
-            <slot name="subHeaderArea"></slot>
+            <WizIconButton
+              :icon="WizIClose"
+              @click="close"
+              variant="transparent"
+            />
           </template>
           <slot />
           <template #footer>
-            <slot name="footer"></slot>
+            <slot name="footer" />
           </template>
         </WizCard>
       </div>
@@ -23,15 +27,27 @@
 import { MountingPortal } from "portal-vue";
 import { computed } from "vue";
 
+import { WizIconButton } from "@/components/base/buttons";
 import { WizCard } from "@/components/base/card";
+import { WizIClose } from "@/components/icons";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { useZIndex } from "@/hooks";
+
+defineOptions({
+  name: ComponentName.Dialog,
+});
 
 interface Props {
   value: boolean;
+  title?: string;
+  maxWidth?: string;
+  align?: "start" | "center" | "end";
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  maxWidth: "600px",
+});
 
 interface Emit {
   (e: "input", value: boolean): void;
