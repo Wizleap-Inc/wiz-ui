@@ -11,6 +11,6 @@
 <script setup lang="ts">
 import { WizProvider, WizHStack } from "@wizleap-inc/wiz-ui";
 
-import Header from "./components/header/index.vue";
-import Navigation from "./components/navigation/index.vue";
+import Header from "./components/layout/header/index.vue";
+import Navigation from "./components/layout/navigation/index.vue";
 </script>
