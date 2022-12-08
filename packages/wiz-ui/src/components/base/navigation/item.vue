@@ -1,7 +1,8 @@
 <template>
   <component
     :is="isExternalLink ? 'a' : 'router-link'"
-    :to="to"
+    :to="!isExternalLink ? to : undefined"
+    :href="isExternalLink ? to : undefined"
     :target="isExternalLink ? '_blank' : undefined"
     :class="{
       'wiz-navigation-item': true,
