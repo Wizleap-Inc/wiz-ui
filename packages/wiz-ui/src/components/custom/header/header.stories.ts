@@ -21,6 +21,9 @@ export default {
     clickNotification: {
       action: "clickNotification",
     },
+    fixed: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -37,8 +40,7 @@ const DefaultTemplate: StoryFn = (_, { argTypes }) => ({
   `,
 });
 
-export const Default = DefaultTemplate.bind({});
-Default.args = {
+const args = {
   tabs: [
     {
       label: "タブ1",
@@ -70,4 +72,15 @@ Default.args = {
       },
     ],
   })),
+};
+
+export const Default = DefaultTemplate.bind({});
+Default.args = {
+  ...args,
+};
+
+export const Fixed = DefaultTemplate.bind({});
+Fixed.args = {
+  ...args,
+  fixed: true,
 };

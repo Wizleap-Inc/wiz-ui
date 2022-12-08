@@ -1,5 +1,5 @@
 <template>
-  <WizHeader gap-left="sm" gap-right="xl">
+  <WizHeader gap-left="sm" gap-right="xl" :sticky="sticky">
     <template #left>
       <WizIconButton
         :icon="WizIMenu"
@@ -49,7 +49,7 @@ import {
   WizPopupContainer,
   WizPopup,
 } from "@/components/base";
-import type { TabItem } from "@/components/base/tab/types";
+import { NotificationTabItem } from "@/components/custom/header/types";
 import { WizNotification } from "@/components/custom/notification";
 import type { NotificationItem } from "@/components/custom/notification/types";
 import { WizIMenu, WizINotification } from "@/components/icons";
@@ -64,10 +64,9 @@ interface Props {
   title: string;
   logo?: Vue;
   avatarSrc: string;
-  tabs: (TabItem & {
-    variant: "primary" | "secondary";
-  })[];
+  tabs: NotificationTabItem[];
   notifications: NotificationItem[];
+  sticky?: boolean;
 }
 
 defineProps<Props>();

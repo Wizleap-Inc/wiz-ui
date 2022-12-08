@@ -1,5 +1,5 @@
 <template>
-  <div class="wiz-header">
+  <div class="wiz-header" :style="computedStickyStyle">
     <WizHStack align="center" justify="between" py="lg" height="100%">
       <WizHStack align="center" :gap="gapLeft">
         <slot name="left" />
@@ -12,6 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+import { StyleValue } from "vue/types/jsx";
+
 import { WizHStack } from "@/components/base";
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
@@ -24,12 +27,21 @@ defineOptions({
 interface Props {
   gapLeft?: SpacingKeys;
   gapRight?: SpacingKeys;
+  sticky?: boolean;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const white500 = THEME.color.white[500];
 const headerHeight = THEME.share.HEADER_HEIGHT;
+const computedStickyStyle = computed(() => {
+  const styles: StyleValue = {};
+  if (props.sticky) styles.position = "sticky";
+  if (props.sticky) styles.top = 0;
+  if (props.sticky) styles.left = 0;
+  if (props.sticky) styles.borderBottom = `1px solid ${THEME.color.gray[400]}`;
+  return styles;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -37,8 +49,5 @@ const headerHeight = THEME.share.HEADER_HEIGHT;
   background-color: v-bind(white500);
   width: 100%;
   height: v-bind(headerHeight);
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 </style>

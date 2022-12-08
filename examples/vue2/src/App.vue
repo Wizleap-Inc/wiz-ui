@@ -1,12 +1,14 @@
 <template>
   <WizProvider>
-    <WizHeader
+    <WizCustomHeader
       title="Wiz UI Playground"
       avatarSrc="https://avatars.githubusercontent.com/u/10214025?v=4"
+      :tabs="notificationTabs"
+      :notifications="notificationItems"
+      sticky
     />
-    <WizDivider />
-    <WizHStack height="calc(100vh - 60px)">
-      <WizNavContainer>
+    <WizHStack>
+      <WizNavContainer sticky>
         <WizNavItem
           v-for="(item, i) in navigationItems"
           :key="i"
@@ -16,7 +18,6 @@
           :active="item.active"
         />
       </WizNavContainer>
-      <WizDivider direction="vertical" />
       <router-view />
     </WizHStack>
   </WizProvider>
@@ -24,7 +25,6 @@
 
 <script setup lang="ts">
 import {
-  WizHeader,
   WizNavContainer,
   WizNavItem,
   WizIDashboard,
@@ -32,9 +32,11 @@ import {
   WizIBusinessCenter,
   WizIHelp,
   WizProvider,
+  WizCustomHeader,
   WizHStack,
-  WizDivider,
 } from "@wizleap-inc/wiz-ui";
+import { NotificationTabItem } from "@wizleap-inc/wiz-ui/dist/components/custom/header/types";
+import { NotificationItem } from "@wizleap-inc/wiz-ui/dist/components/custom/notification/types";
 import { computed } from "vue";
 import { useRoute } from "vue-router/composables";
 
@@ -67,6 +69,42 @@ const navigationItems = computed(() => [
     active: currentPath.value === "/help",
   },
 ]);
+
+const notificationTabs: NotificationTabItem[] = [
+  {
+    label: "タブ1",
+    name: "tab1",
+    notificationCount: 3,
+    variant: "primary",
+  },
+  {
+    label: "タブ2",
+    name: "tab2",
+    notificationCount: 0,
+    variant: "secondary",
+  },
+];
+
+const notificationItems: NotificationItem[] = Array.from(
+  { length: 14 },
+  (_, i) => ({
+    id: `${i}`,
+    title: "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
+    timestamp: new Date(Date.now() - Math.random() * 1000 * 60 * 60 * 24 * 365),
+    tabName: ["tab1", "tab2"][i % 2],
+    read: i % 3 === 0,
+    tableInfo: [
+      {
+        title: "情報1",
+        content: "データ1",
+      },
+      {
+        title: "情報2",
+        content: "データ2",
+      },
+    ],
+  })
+);
 </script>
 
 <style>
