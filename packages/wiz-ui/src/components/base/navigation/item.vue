@@ -1,6 +1,8 @@
 <template>
-  <RouterLink
+  <component
+    :is="isExternalLink ? 'a' : 'router-link'"
     :to="to"
+    :target="isExternalLink ? '_blank' : undefined"
     :class="{
       'wiz-navigation-item': true,
       'wiz-navigation-item--active': active,
@@ -10,11 +12,11 @@
     <div class="wiz-navigation-item__text">
       {{ label }}
     </div>
-  </RouterLink>
+  </component>
 </template>
 
 <script setup lang="ts">
-import Vue from "vue";
+import Vue, { computed } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
 import { THEME } from "@/constants";
@@ -26,7 +28,11 @@ interface Props {
   to: RouterLinkProps["to"];
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const isExternalLink = computed(
+  () => typeof props.to === "string" && props.to.startsWith("http")
+);
 
 const transparent = THEME.color.transparent;
 const gray700 = THEME.color.gray["700"];
@@ -90,6 +96,7 @@ const itemPadding = `${spacingXs} ${spacingSm} ${spacingXs} ${spacingXl}`;
   &__text {
     font-size: v-bind(fontSizeXs);
     min-width: 0;
+    white-space: nowrap;
   }
 }
 </style>

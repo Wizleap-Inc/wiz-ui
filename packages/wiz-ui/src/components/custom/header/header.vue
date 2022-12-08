@@ -32,7 +32,7 @@
           </WizBox>
         </WizPopup>
       </WizPopupContainer>
-      <WizAvatar :src="avatarSrc" />
+      <WizAvatar :src="avatarSrc" :fallback="avatarFallback" />
     </template>
   </WizHeader>
 </template>
@@ -64,6 +64,7 @@ interface Props {
   title: string;
   logo?: Vue;
   avatarSrc: string;
+  avatarFallback?: string;
   tabs: NotificationTabItem[];
   notifications: NotificationItem[];
   sticky?: boolean;
