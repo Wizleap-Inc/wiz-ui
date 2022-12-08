@@ -1,3 +1,11 @@
+import { TabItem } from "@/components/base/tab/types";
+
+import { PanelVariant } from "./panel/types";
+
+export type NotificationTabItem = TabItem & {
+  variant: PanelVariant;
+};
+
 export interface TableInfoItem {
   title: string;
   content: string;
