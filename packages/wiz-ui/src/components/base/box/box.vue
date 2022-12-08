@@ -26,9 +26,14 @@ interface Props {
   width?: string;
   height?: string;
   round?: SpacingKeys;
+  roundT?: SpacingKeys;
+  roundR?: SpacingKeys;
+  roundB?: SpacingKeys;
+  roundL?: SpacingKeys;
   zIndex?: ZIndexKeys;
   bgColor?: ColorKeys;
   shadow?: ShadowKeys;
+  dropShadow?: ShadowKeys;
   overflow?: "visible" | "hidden" | "scroll" | "auto";
   overflowX?: "visible" | "hidden" | "scroll" | "auto";
   overflowY?: "visible" | "hidden" | "scroll" | "auto";
@@ -37,6 +42,7 @@ interface Props {
   transform?: string;
   transition?: string;
   opacity?: number;
+  scroll?: "none" | "x" | "y" | "block" | "inline" | "both";
 }
 
 const props = defineProps<Props>();
@@ -52,9 +58,31 @@ const computedStyle = computed(() => {
   if (props.width) style.width = props.width;
   if (props.height) style.height = props.height;
   if (props.round) style.borderRadius = getSpacingCSS(props.round);
+  if (props.roundT) {
+    style.borderRadius = `${getSpacingCSS(props.roundT)} ${getSpacingCSS(
+      props.roundT
+    )} 0 0`;
+  }
+  if (props.roundR) {
+    style.borderRadius = `0 ${getSpacingCSS(props.roundR)} ${getSpacingCSS(
+      props.roundR
+    )} 0`;
+  }
+  if (props.roundB) {
+    style.borderRadius = `0 0 ${getSpacingCSS(props.roundB)} ${getSpacingCSS(
+      props.roundB
+    )}`;
+  }
+  if (props.roundL) {
+    style.borderRadius = `${getSpacingCSS(props.roundL)} 0 0 ${getSpacingCSS(
+      props.roundL
+    )}`;
+  }
   if (props.zIndex) style.zIndex = getZIndexCSS(props.zIndex);
   if (props.bgColor) style.backgroundColor = getColorCss(props.bgColor);
   if (props.shadow) style.boxShadow = getShadowCss(props.shadow);
+  if (props.dropShadow)
+    style.filter = `drop-shadow(${getShadowCss(props.dropShadow)})`;
   if (props.overflow) style.overflow = props.overflow;
   if (props.overflowX) style.overflowX = props.overflowX;
   if (props.overflowY) style.overflowY = props.overflowY;
@@ -63,6 +91,10 @@ const computedStyle = computed(() => {
   if (props.transform) style.transform = props.transform;
   if (props.transition) style.transition = props.transition;
   if (props.opacity) style.opacity = props.opacity;
+  if (props.scroll) {
+    style.scrollSnapType = props.scroll;
+    style.overflow = "scroll";
+  }
 
   return style;
 });

@@ -16,9 +16,13 @@
         borderColor="gray.300"
         :maxWidth="maxChatItemWidth"
       >
-        <WizText as="span" fontSize="xs" color="gray.700">{{
-          content.message
-        }}</WizText>
+        <WizText
+          as="span"
+          fontSize="xs"
+          color="gray.700"
+          whiteSpace="preLine"
+          >{{ content.message }}</WizText
+        >
       </WizCard>
       <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
         <WizText

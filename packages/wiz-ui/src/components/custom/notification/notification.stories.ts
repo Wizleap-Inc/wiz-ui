@@ -6,8 +6,14 @@ export default {
   title: "Custom/Notification",
   component: WizNotification,
   argTypes: {
-    items: {
-      control: { type: "object" },
+    tabs: {
+      control: { type: "array" },
+    },
+    notifications: {
+      control: { type: "array" },
+    },
+    click: {
+      action: "click",
     },
   },
 };
@@ -16,7 +22,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizNotification },
   template: `
-    <WizNotification v-bind="$props" />
+    <WizNotification v-bind="$props" @click="click"/>
   `,
 });
 
@@ -37,6 +43,7 @@ Default.args = {
     },
   ],
   notifications: Array.from({ length: 10 }, (_, i) => ({
+    id: i,
     title: "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
     timestamp: new Date(Date.now() - Math.random() * 1000 * 60 * 60 * 24 * 365),
     tabName: ["tab1", "tab2"][i % 2],

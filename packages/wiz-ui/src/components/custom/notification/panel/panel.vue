@@ -4,6 +4,7 @@
     @mouseleave.native="isHovered = false"
     @pointerdown.native="isPressed = true"
     @pointerup.native="isPressed = false"
+    @click.native="onClick"
     :bgColor="isHovered ? 'green.300' : 'white.800'"
     :opacity="isPressed ? 0.5 : 1"
     height="fit-content"
@@ -74,4 +75,14 @@ const displayHowPast = computed(() => formatHowPast(props.timestamp));
 
 const isHovered = ref(false);
 const isPressed = ref(false);
+
+interface Emit {
+  (event: "click"): void;
+}
+
+const emit = defineEmits<Emit>();
+
+const onClick = () => {
+  emit("click");
+};
 </script>

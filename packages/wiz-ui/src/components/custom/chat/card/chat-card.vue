@@ -86,7 +86,7 @@ import {
 import { THEME } from "@/constants";
 import { formatDateToMonthDayWeek } from "@/utils/date";
 
-import { Message } from "..";
+import { Message, DisplayMessage } from "..";
 
 interface Props {
   value: string;
@@ -128,11 +128,6 @@ onMounted(() => {
     chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
   }
 });
-
-interface DisplayMessage {
-  date: Date;
-  contents: Message[];
-}
 
 const displayMessages = computed(() => {
   const messages = props.messages;

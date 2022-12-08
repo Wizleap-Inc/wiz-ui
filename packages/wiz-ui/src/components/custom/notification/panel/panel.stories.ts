@@ -24,6 +24,9 @@ export default {
     read: {
       control: { type: "boolean" },
     },
+    click: {
+      action: "click",
+    },
   },
 };
 
@@ -53,11 +56,11 @@ const MultiVariantTemplate: StoryFn = (_, { argTypes }) => ({
     <WizHStack gap="md">
       <WizVStack gap="md">
         <WizText>variant = primary(default)</WizText>
-        <WizNotificationPanel v-bind="$props" />
+        <WizNotificationPanel v-bind="$props" @click="click"/>
       </WizVStack>
       <WizVStack gap="md">
         <WizText>variant = secondary</WizText>
-        <WizNotificationPanel v-bind="$props" variant="secondary" />
+        <WizNotificationPanel v-bind="$props" variant="secondary" @click="click"/>
       </WizVStack>
     </WizHStack>
   </div>

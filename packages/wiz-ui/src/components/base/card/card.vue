@@ -9,18 +9,18 @@
   >
     <WizVStack gap="md">
       <div
-        v-if="title || (!title && slots.subHeaderArea) || hint"
+        v-if="title || (!title && $slots.subHeaderArea) || hint"
         class="wiz-card__header"
       >
         <WizHStack gap="xs2" class="wiz-card__header-main">
           <slot v-if="!title" name="mainHeaderArea"></slot>
           <div class="wiz-card__header-title">{{ title }}</div>
-          <component v-if="hint" :is="WizIHint" />
+          <WizIcon v-if="hint" :is="WizIHint" />
         </WizHStack>
         <slot name="subHeaderArea"></slot>
       </div>
-      <slot v-if="slots.default" />
-      <div class="wiz-card__footer" v-if="slots.footer">
+      <slot v-if="$slots.default" />
+      <div class="wiz-card__footer" v-if="$slots.footer">
         <slot name="footer"></slot>
       </div>
     </WizVStack>
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useSlots } from "vue";
+import { computed } from "vue";
 
 import { WizHStack, WizVStack, WizIHint } from "@/components";
 import { THEME } from "@/constants/styles";
@@ -60,8 +60,6 @@ const props = withDefaults(defineProps<Props>(), {
   border: false,
   align: "end",
 });
-
-const slots = useSlots();
 
 const computedPadding = computed(() => {
   if (props.px && props.py) {

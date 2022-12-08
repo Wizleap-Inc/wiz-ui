@@ -45,7 +45,7 @@ const onClick = () => props.disabled || emits("click");
 const colorGradient = THEME.color.gradient;
 const colorWhite800 = THEME.color.white["800"];
 const colorGreen800 = THEME.color.green["800"];
-const colorGray500 = THEME.color.gray["500"];
+const colorGray700 = THEME.color.gray["700"];
 const colorGray400 = THEME.color.gray["400"];
 const colorGray300 = THEME.color.gray["300"];
 const shadowMd = THEME.shadow.md;
@@ -56,16 +56,17 @@ const fontSizeXl3 = THEME.fontSize.xl3;
 </script>
 
 <style lang="scss" scoped>
+$sub-button-border-width: 1px;
 .wiz-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  padding: v-bind(spacingXs);
 
   &--variant {
     &-primary {
+      padding: v-bind(spacingXs);
       box-shadow: v-bind(shadowMd);
       background: v-bind(colorGradient);
       border: none;
@@ -79,7 +80,8 @@ const fontSizeXl3 = THEME.fontSize.xl3;
 
     &-sub {
       background: v-bind(colorWhite800);
-      border: 1px solid v-bind(colorGray400);
+      border: $sub-button-border-width solid v-bind(colorGray400);
+      padding: calc(v-bind(spacingXs) - $sub-button-border-width);
       & > svg {
         fill: v-bind(colorGreen800);
       }
@@ -93,10 +95,7 @@ const fontSizeXl3 = THEME.fontSize.xl3;
       border: none;
       padding: 0;
       & > svg {
-        fill: v-bind(colorGray500);
-      }
-      &:hover:not(.wiz-icon-button--disabled) {
-        background: v-bind(colorGray300);
+        fill: v-bind(colorGray700);
       }
     }
   }

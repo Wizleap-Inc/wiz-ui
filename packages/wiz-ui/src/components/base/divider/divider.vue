@@ -52,11 +52,11 @@ const color = computed(() => getColorCss(props.color));
 
   &--direction {
     &-horizontal {
-      border-width: 0 0 1.5px 0;
+      border-width: 0 0 1px 0;
       width: 100%;
     }
     &-vertical {
-      border-width: 0 1.5px 0 0;
+      border-width: 0 1px 0 0;
       height: 100%;
     }
   }
