@@ -17,10 +17,10 @@ import { getColorCss } from "@/utils/styles/color";
 import { getSpacingCSS } from "@/utils/styles/spacing";
 
 interface Props {
+  src: string;
   size?: SpacingKeys;
   color?: ColorKeys;
   bgColor?: ColorKeys;
-  src: string;
   alt?: string;
   fallback?: string;
   clickable?: boolean;

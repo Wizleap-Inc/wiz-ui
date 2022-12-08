@@ -18,6 +18,9 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    sticky: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -75,7 +78,7 @@ export const Fixed: StoryFn = () => ({
   components: { WizHeader, WizTextButton },
   template: `
     <div style="height: 200vh">
-      <wiz-header>
+      <wiz-header sticky>
         <template #left>
           <wiz-text-button>Click</wiz-text-button>
           <wiz-text-button>Click</wiz-text-button>
