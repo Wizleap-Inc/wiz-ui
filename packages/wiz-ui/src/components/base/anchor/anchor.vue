@@ -34,6 +34,7 @@ interface Props {
   icon?: Vue;
   iconPosition?: "left" | "right";
   openInNewTab?: boolean;
+  nowrap?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -62,6 +63,7 @@ const computedFontSize = computed(() => {
 });
 
 const computedFontWeight = computed(() => props.fontWeight);
+const computedNowrap = computed(() => (props.nowrap ? "nowrap" : "normal"));
 </script>
 
 <style lang="scss" scoped>
@@ -73,6 +75,7 @@ const computedFontWeight = computed(() => props.fontWeight);
   font-weight: v-bind(computedFontWeight);
   text-decoration: none;
   cursor: pointer;
+  white-space: v-bind(computedNowrap);
 
   &:hover {
     text-decoration: underline;

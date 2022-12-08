@@ -7,6 +7,7 @@
       color="gray.700"
       fontSize="sm"
       openInNewTab
+      nowrap
     >
       会社概要
     </WizAnchor>
@@ -17,6 +18,7 @@
       color="gray.700"
       fontSize="sm"
       openInNewTab
+      nowrap
     >
       サービス
     </WizAnchor>
@@ -27,6 +29,7 @@
       color="gray.700"
       fontSize="sm"
       openInNewTab
+      nowrap
     >
       ニュース
     </WizAnchor>
