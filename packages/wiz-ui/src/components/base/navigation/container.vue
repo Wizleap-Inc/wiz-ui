@@ -56,6 +56,7 @@ const white500 = THEME.color.white["500"];
   justify-content: space-between;
   background: v-bind(white500);
   width: v-bind(computedWidth);
+  flex-shrink: 0;
   height: 100%;
   transition: width 0.2s ease-in-out;
   overflow: hidden;
