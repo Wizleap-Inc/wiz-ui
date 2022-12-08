@@ -26,13 +26,14 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   size: "xl2",
-  color: "gray.900",
   badgeColor: "white.800",
   badgeBgColor: "red.800",
 });
 
 const computedSize = computed(() => getFontSizeCss(props.size));
-const computedColor = computed(() => getColorCss(props.color));
+const computedColor = computed(() =>
+  props.color ? getColorCss(props.color) : "currentColor"
+);
 const computedBadgeColor = computed(() => getColorCss(props.badgeColor));
 const computedBadgeBgColor = computed(() => getColorCss(props.badgeBgColor));
 
