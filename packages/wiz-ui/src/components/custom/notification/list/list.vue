@@ -19,10 +19,11 @@
 import { WizDivider, WizBox } from "@/components/base";
 
 import { WizNotificationPanel } from "..";
+import { PanelVariant } from "../panel/types";
 import { NotificationItem } from "../types";
 
 interface Props {
-  variant?: "primary" | "secondary";
+  variant?: PanelVariant;
   notifications: NotificationItem[];
   height?: string;
 }

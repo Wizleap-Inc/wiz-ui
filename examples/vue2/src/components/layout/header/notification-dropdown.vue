@@ -29,7 +29,7 @@ import {
   WizBox,
   WizNotification,
 } from "@wizleap-inc/wiz-ui";
-import { NotificationTabItem } from "@wizleap-inc/wiz-ui/dist/components/custom/header/types";
+import { NotificationTabItem } from "@wizleap-inc/wiz-ui/dist/components/custom/notification/types";
 import { NotificationItem } from "@wizleap-inc/wiz-ui/dist/components/custom/notification/types";
 import { ref } from "vue";
 

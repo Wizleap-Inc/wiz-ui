@@ -55,12 +55,14 @@ import {
 import { WizIChevronRight } from "@/components/icons";
 import { formatDateToYMDHM, formatHowPast } from "@/utils/date";
 
+import { PanelVariant } from "./types";
+
 import type { TableInfoItem } from "../types";
 
 interface Props {
   title: string;
   timestamp: Date;
-  variant?: "primary" | "secondary";
+  variant?: PanelVariant;
   read: boolean;
   tableInfo?: TableInfoItem[];
 }
