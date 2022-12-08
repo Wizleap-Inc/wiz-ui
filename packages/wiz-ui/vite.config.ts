@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [Vue(), Dts(), DefineOptions()],
   resolve: {
     alias: {
-      "@": "/src",
+      "@": path.resolve(__dirname, "src"),
     },
   },
   build: {
