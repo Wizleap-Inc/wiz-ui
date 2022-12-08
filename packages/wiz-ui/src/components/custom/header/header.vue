@@ -1,5 +1,5 @@
 <template>
-  <WizHeader gap-left="sm" gap-right="xl" :sticky="sticky">
+  <WizHeader gapLeft="sm" gapRight="xl" :sticky="sticky">
     <template #left>
       <WizIconButton
         :icon="WizIMenu"
@@ -16,12 +16,12 @@
       <WizPopupContainer v-model="isNotificationOpen">
         <WizIconButton
           :icon="WizINotification"
-          size="lg"
+          size="xl"
           variant="transparent"
           color="gray.700"
           @click="toggleNotificationOpen"
         />
-        <WizPopup layer="floating" gap="md" direction="bl">
+        <WizPopup layer="floating" gap="md">
           <WizBox width="300px">
             <WizNotification
               :notifications="notifications"
@@ -32,7 +32,20 @@
           </WizBox>
         </WizPopup>
       </WizPopupContainer>
-      <WizAvatar :src="avatarSrc" :fallback="avatarFallback" />
+      <WizDropdown v-model="isAvatarDropdownOpen" gap="sm" skeleton>
+        <WizAvatar
+          :src="avatarSrc"
+          :fallback="avatarFallback"
+          @click="toggleAvatarDropdownOpen"
+          clickable
+        />
+        <template #options>
+          <WizDropdownItem>選択肢１</WizDropdownItem>
+          <WizDropdownItem>選択肢２</WizDropdownItem>
+          <WizDropdownItem>選択肢３</WizDropdownItem>
+          <WizDropdownItem>ログアウト</WizDropdownItem>
+        </template>
+      </WizDropdown>
     </template>
   </WizHeader>
 </template>
@@ -49,6 +62,7 @@ import {
   WizPopupContainer,
   WizPopup,
 } from "@/components/base";
+import { WizDropdown, WizDropdownItem } from "@/components/base/dropdown";
 import { NotificationTabItem } from "@/components/custom/header/types";
 import { WizNotification } from "@/components/custom/notification";
 import type { NotificationItem } from "@/components/custom/notification/types";
@@ -82,6 +96,7 @@ const onClick = (id: string) => emit("clickNotification", id);
 
 const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
 const isNotificationOpen = ref(false);
+const isAvatarDropdownOpen = ref(false);
 
 const toggleMenuOpen = () => {
   setIsMenuOpen(!isMenuOpen.value);
@@ -89,6 +104,10 @@ const toggleMenuOpen = () => {
 
 const toggleNotificationOpen = () => {
   isNotificationOpen.value = !isNotificationOpen.value;
+};
+
+const toggleAvatarDropdownOpen = () => {
+  isAvatarDropdownOpen.value = !isAvatarDropdownOpen.value;
 };
 </script>
 
