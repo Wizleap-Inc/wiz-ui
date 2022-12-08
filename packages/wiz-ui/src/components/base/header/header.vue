@@ -2,6 +2,12 @@
   <div class="wiz-header" :style="computedStickyStyle">
     <WizHStack align="center" justify="between" py="lg" height="100%">
       <WizHStack align="center" :gap="gapLeft">
+        <WizIconButton
+          :icon="WizIMenu"
+          size="lg"
+          variant="transparent"
+          @click="toggleMenuOpen"
+        />
         <slot name="left" />
       </WizHStack>
       <WizHStack align="center" :gap="gapRight">
@@ -15,9 +21,10 @@
 import { computed } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
-import { WizHStack } from "@/components/base";
+import { WizHStack, WizIconButton, WizIMenu } from "@/components";
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
+import { globalInject, globalKey } from "@/providers";
 import { SpacingKeys } from "@/types/styles/spacing";
 
 defineOptions({
@@ -31,6 +38,8 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
+const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen.value);
 
 const white500 = THEME.color.white[500];
 const headerHeight = THEME.share.HEADER_HEIGHT;

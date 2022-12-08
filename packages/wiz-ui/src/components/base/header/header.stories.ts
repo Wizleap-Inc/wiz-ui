@@ -1,8 +1,10 @@
 import { StoryFn } from "@storybook/vue";
+import { provide } from "vue";
 
 import { WizTextButton } from "@/components";
 import { THEME } from "@/constants";
 import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
+import { globalKey, useGlobalProvider } from "@/providers";
 
 import { WizHeader } from ".";
 
@@ -22,6 +24,15 @@ export default {
       control: { type: "boolean" },
     },
   },
+  decorators: [
+    (story: StoryFn) => ({
+      components: { story },
+      setup() {
+        provide(globalKey, useGlobalProvider());
+      },
+      template: `<story />`,
+    }),
+  ],
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
