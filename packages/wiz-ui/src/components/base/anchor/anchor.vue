@@ -1,22 +1,20 @@
 <template>
-  <RouterLink v-if="isRouterLink" class="wiz-anchor" :to="to">
-    <span class="wiz-anchor__icon">
-      <component v-if="icon" :is="icon" />
-    </span>
-    <slot />
-  </RouterLink>
-  <a
-    v-else
+  <component
+    :is="isRouterLink ? 'router-link' : 'a'"
     class="wiz-anchor"
-    :href="typeof to === 'object' ? to.path : to"
-    target="_blank"
-    rel="noopener noreferrer"
+    :to="isRouterLink ? to : undefined"
+    :href="isRouterLink ? undefined : to"
+    :target="openInNewTab ? '_blank' : undefined"
+    :rel="openInNewTab ? 'noopener noreferrer' : undefined"
   >
-    <span class="wiz-anchor__icon">
+    <span class="wiz-anchor__icon" v-if="iconPosition === 'left'">
       <component v-if="icon" :is="icon" />
     </span>
     <slot />
-  </a>
+    <span class="wiz-anchor__icon" v-if="iconPosition === 'right'">
+      <component v-if="icon" :is="icon" />
+    </span>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -33,15 +31,16 @@ interface Props {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: "normal" | "bold";
-  target?: "_blank" | "_self";
   icon?: Vue;
+  iconPosition?: "left" | "right";
+  openInNewTab?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   color: "blue.800",
   fontSize: "md",
   fontWeight: "normal",
-  target: "_self",
+  iconPosition: "left",
 });
 
 const isRouterLink = computed(() => {
@@ -51,7 +50,7 @@ const isRouterLink = computed(() => {
   // propsのtoがhttpから始まってる時点で外部リンクなので、aタグを使う
   if (props.to.startsWith("http")) return false;
   // propsのtargetが_blankだったら新規タブで読み込まないといけないので、aタグ
-  return props.target !== "_blank";
+  return props.openInNewTab === false;
 });
 
 const computedColor = computed(() => {
