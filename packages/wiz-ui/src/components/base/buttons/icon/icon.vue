@@ -9,6 +9,7 @@
       'wiz-icon-button--size-sm': size === 'sm',
       'wiz-icon-button--size-md': size === 'md',
       'wiz-icon-button--size-lg': size === 'lg',
+      'wiz-icon-button--size-xl': size === 'xl',
     }"
     @click="onClick"
   >
@@ -25,7 +26,7 @@ interface Props {
   icon: Vue;
   variant?: "primary" | "sub" | "transparent";
   disabled?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 interface Emits {
@@ -53,6 +54,7 @@ const spacingXs = THEME.spacing.xs;
 const fontSizeXl = THEME.fontSize.xl;
 const fontSizeXl2 = THEME.fontSize.xl2;
 const fontSizeXl3 = THEME.fontSize.xl3;
+const fontSizeXl4 = THEME.fontSize.xl4;
 </script>
 
 <style lang="scss" scoped>
@@ -115,6 +117,10 @@ $sub-button-border-width: 1px;
 
   &--size-lg {
     font-size: v-bind(fontSizeXl3);
+  }
+
+  &--size-xl {
+    font-size: v-bind(fontSizeXl4);
   }
 }
 </style>
