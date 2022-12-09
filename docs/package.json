@@ -1,0 +1,15 @@
+{
+  "name": "wiz-ui-docs",
+  "version": "0.0.0",
+  "description": "wiz-ui document",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3",
+    "@wizleap-inc/wiz-ui": "file:../../packages/wiz-ui"
+  }
+}
