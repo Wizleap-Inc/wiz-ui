@@ -18,6 +18,11 @@
 import { computed } from "vue";
 
 import { WizHStack, WizIconButton, WizTextArea, WizISend } from "@/components";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.ChatForm,
+});
 
 interface Props {
   disabled?: boolean;

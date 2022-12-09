@@ -11,8 +11,13 @@
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
 import { progressPointSize } from "./constants";
+
+defineOptions({
+  name: ComponentName.ProgressLine,
+});
 interface Props {
   active?: boolean;
   isFirst: boolean;

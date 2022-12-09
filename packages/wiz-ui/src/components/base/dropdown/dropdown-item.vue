@@ -12,7 +12,11 @@ import Vue from "vue";
 
 import { WizIcon, WizHStack } from "@/components";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
+defineOptions({
+  name: ComponentName.DropdownItem,
+});
 interface Props {
   icon?: Vue;
 }

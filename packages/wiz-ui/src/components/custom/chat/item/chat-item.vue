@@ -43,9 +43,14 @@
 
 <script setup lang="ts">
 import { WizHStack, WizText, WizVStack, WizCard } from "@/components";
+import { ComponentName } from "@/constants/component/name";
 import { formatDateToTime } from "@/utils/date";
 
 import { Message } from "..";
+
+defineOptions({
+  name: ComponentName.ChatItem,
+});
 
 interface Props {
   content: Message;

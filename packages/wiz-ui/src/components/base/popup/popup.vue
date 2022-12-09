@@ -30,6 +30,10 @@ import { getZIndexCSS } from "@/utils/styles/z-index";
 
 import { POPUP_KEY } from "./provider";
 
+defineOptions({
+  name: ComponentName.Popup,
+});
+
 interface Props {
   layer: ZIndexKeys;
   gap?: SpacingKeys;

@@ -29,8 +29,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { getSpacingCSS, getCoupleSpacingCSS } from "@/utils/styles/spacing";
+
+defineOptions({
+  name: ComponentName.Stack,
+});
 
 interface Props {
   direction?: "horizontal" | "vertical";

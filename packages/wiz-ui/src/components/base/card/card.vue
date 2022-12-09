@@ -31,12 +31,16 @@
 import { computed } from "vue";
 
 import { WizHStack, WizVStack, WizIHint } from "@/components";
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 import { ColorKeys } from "@/types/styles/color";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { getColorCss } from "@/utils/styles/color";
 import { getSpacingCSS, getCoupleSpacingCSS } from "@/utils/styles/spacing";
 
+defineOptions({
+  name: ComponentName.Card,
+});
 interface Props {
   title?: string;
   hint?: string;

@@ -19,9 +19,13 @@
 <script setup lang="ts">
 import Vue, { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 import { getColorCss } from "@/utils/styles/color";
 
+defineOptions({
+  name: ComponentName.MessageBox,
+});
 interface Props {
   variant: "information" | "caution" | "warning";
   title: string;
