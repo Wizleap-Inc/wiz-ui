@@ -4,17 +4,17 @@
 
 - Vue@^2.7
 - Vue Router@^3
-- Storybook@^7(alpha)
+- Portal Vue@^2
 
-## root
+## ワークスペース
 
 ```text
 root
-├── docs
-│   └── [Some Documents]
-└── packages (npm workspace)
+├── docs (VuePress Documentation)
+├── examples
+│   └── vue2 (example application using Wiz UI)
+└── packages
     ├── wiz-ui
-    │   └── [...]
     └── wiz-ui@next (comming soon)
 ```
 
@@ -22,19 +22,21 @@ root
 
 ```text
 wiz-ui
-├── dist (build files, pushed to npm, gitignored)
-│   └── [...]
-├── src (source files)
-│   ├── components (Vue components)
-│   │   ├── atoms (button, icon, etc...)
-│   │   └── molecules (card, form, etc...)
-│   ├── constants (constants; style variables, etc...)
+├── src (ソースコード)
+│   ├── components (Vueコンポーネント）
+│   │   ├── bases (button, icon, etc...)
+│   │   └── customs (card, notifications, etc...)
+│   ├── constants (サイズ定数、色定数、etc...)
 │   │   └── [...]
-│   ├── types (type definitions, conclude with .d.ts)
+│   ├── hooks (Vue Hooks, Composition API)
 │   │   └── [...]
-│   ├── utils (utility functions, which has no side effects)
+│   ├── providers (VueのProviderパターンを実装したもの)
 │   │   └── [...]
-│   └── index.ts (entry point)
-└── .storybook (storybook config)
+│   ├── types (型定義ファイル、型エイリアス)
+│   │   └── [...]
+│   ├── utils (ユーティリティ関数、副作用のない関数群)
+│   │   └── [...]
+│   └── index.ts (エントリーポイント)
+└── .storybook (Storybookの設定ファイル)
     └── [...]
 ```

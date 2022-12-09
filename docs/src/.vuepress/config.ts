@@ -1,10 +1,13 @@
-const { description } = require("../../package");
+import { resolve } from "path";
+import { defineConfig } from "vuepress/config";
+import { getSidebar } from "./config/sidebar";
+import { description } from "../../package.json";
 
-module.exports = {
+export default defineConfig((ctx) => ({
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "Vuepress Docs Boilerplate",
+  title: "Wiz UI Docs",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -41,12 +44,12 @@ module.exports = {
         link: "/guide/",
       },
       {
-        text: "Config",
-        link: "/config/",
+        text: "Component",
+        link: "/component/",
       },
       {
-        text: "VuePress",
-        link: "https://v1.vuepress.vuejs.org",
+        text: "Storybook",
+        link: "https://d39bx35pq0h9vg.cloudfront.net/wiz-ui/storybook/latest/index.html",
       },
     ],
     sidebar: {
@@ -54,8 +57,12 @@ module.exports = {
         {
           title: "Guide",
           collapsable: false,
-          children: ["", "using-vue"],
+          children: ["", "setup", "develop", "structure", "contributing"],
         },
+      ],
+      "/component/": [
+        getSidebar("base", resolve(process.cwd(), "src/component/base")),
+        getSidebar("custom", resolve(process.cwd(), "src/component/custom")),
       ],
     },
   },
@@ -64,4 +71,4 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: ["@vuepress/plugin-back-to-top", "@vuepress/plugin-medium-zoom"],
-};
+}));
