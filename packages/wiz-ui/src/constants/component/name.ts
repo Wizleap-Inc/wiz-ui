@@ -54,4 +54,5 @@ export const ComponentName = {
   ProgressPoint: "WizProgressPoint",
   SelectBox: "WizSelectBox",
   Dialog: "WizDialog",
+  Provider: "WizProvider",
 } as const;

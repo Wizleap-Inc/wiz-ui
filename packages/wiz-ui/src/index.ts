@@ -6,8 +6,7 @@ export * from "./constants";
 
 export const install = (vue: typeof Vue) => {
   Object.values(components).forEach((component) => {
-    console.log(component);
-    vue.component(component.name, component);
+    if (component.name) vue.component(component.name, component);
   });
 };
 

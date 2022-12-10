@@ -9,7 +9,8 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@wizleap-inc/vuepress-plugin-wiz-ui": "file:../packages/vuepress-plugin-wiz-ui",
     "vuepress": "^1.5.3",
-    "@wizleap-inc/wiz-ui": "file:../../packages/wiz-ui"
+    "vuepress-plugin-copy-code1": "^1.31.0-beta.1"
   }
 }

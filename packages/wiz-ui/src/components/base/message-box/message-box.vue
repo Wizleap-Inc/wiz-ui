@@ -27,7 +27,7 @@ defineOptions({
   name: ComponentName.MessageBox,
 });
 interface Props {
-  variant: "information" | "caution" | "warning";
+  variant?: "information" | "caution" | "warning";
   title: string;
   icon?: Vue;
   expand?: boolean;

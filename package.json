@@ -8,6 +8,7 @@
     "prebuild": "npm run resolve-deps",
     "resolve-deps": "rimraf ./node_modules/@types/react",
     "build": "run-p build:*",
+    "build:docs": "npm run --workspace ./docs build",
     "build:examples": "npm run --workspace ./examples/vue2 build",
     "build:wiz-ui": "npm run --workspace ./packages/wiz-ui build",
     "dev": "run-p dev:*",
@@ -16,6 +17,7 @@
     "dev:docs": "npm run --workspace ./docs dev",
     "test": "npm run -w packages/* test",
     "test:ci": "npm run -w packages/* test:ci"
+    
   },
   "lint-staged": {
     "*.{js,ts,vue}": [

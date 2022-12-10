@@ -1,7 +1,14 @@
 import { resolve } from "path";
-import { defineConfig } from "vuepress/config";
+import { defineConfig, UserPlugins } from "vuepress/config";
 import { getSidebar } from "./config/sidebar";
 import { description } from "../../package.json";
+
+const plugins = [
+  "@vuepress/plugin-back-to-top",
+  "@vuepress/plugin-medium-zoom",
+  "@wizleap-inc/vuepress-plugin-wiz-ui",
+  "vuepress-plugin-copy-code1",
+] as UserPlugins;
 
 export default defineConfig((ctx) => ({
   /**
@@ -70,5 +77,5 @@ export default defineConfig((ctx) => ({
   /**
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
-  plugins: ["@vuepress/plugin-back-to-top", "@vuepress/plugin-medium-zoom"],
+  plugins,
 }));
