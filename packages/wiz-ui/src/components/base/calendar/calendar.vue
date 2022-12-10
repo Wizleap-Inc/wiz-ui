@@ -7,7 +7,8 @@
       <td
         v-for="(i, day) in 7"
         :key="'day-' + day"
-        class="wiz-calendar-item-in-current-month"
+        :class="`${isCurrentMonthDateClass(row, day)}`"
+        @click="updateSelectedDate(calendarIndex(row, day))"
       >
         {{ showCalendarDates[calendarIndex(row, day)] }}
       </td>
@@ -16,7 +17,15 @@
 </template>
 
 <script setup lang="ts">
-import { withDefaults, defineProps, computed } from "vue";
+import {
+  ref,
+  withDefaults,
+  defineProps,
+  defineEmits,
+  computed,
+  watch,
+  toRefs,
+} from "vue";
 
 import { THEME } from "@/constants/styles";
 
@@ -25,9 +34,15 @@ interface Props {
   value: Date;
 }
 
+interface Emit {
+  (e: "input", value: Date): void;
+}
+const emits = defineEmits<Emit>();
+
 const props = withDefaults(defineProps<Props>(), {
   filledWeeks: false,
 });
+const { value } = toRefs(props);
 
 const calendarWeekList = ["日", "月", "火", "水", "木", "金", "土"];
 
@@ -71,7 +86,34 @@ const showCalendarDates = pastMonthDates.concat(
   currentMonthDates,
   nextMonthDates
 );
+const updateSelectedDate = (selectedIndex: number) => {
+  if (isCurrentMonth(selectedIndex)) {
+    const selectedDate = Number(showCalendarDates[selectedIndex]);
+    const updateValue = new Date(
+      currentShowYear,
+      currentShowMonth,
+      selectedDate
+    );
+    emits("input", updateValue);
+  }
+};
 const countWeekRow = showCalendarDates.length / 7;
+
+// class の定義
+const isCurrentMonthDateClass = computed(() => (row: number, day: number) => {
+  const selectedDateIndex = calendarIndex(row, day);
+  if (selectedDateIndex === selectDate.value)
+    return "wiz-calendar-item-selected";
+  return isCurrentMonth(selectedDateIndex)
+    ? "wiz-calendar-item-in-current-month"
+    : "wiz-calendar-item";
+});
+
+// 選択した値がアクティブになるようにする
+const selectDate = ref(currentShowFirstDay + currentShowDate - 1);
+watch(value, (newVal) => {
+  selectDate.value = currentShowFirstDay + newVal.getDate() - 1;
+});
 
 // カレンダーの配列におけるIndex
 const calendarIndex = (row: number, index: number) => {
@@ -100,15 +142,23 @@ const spacingXs = THEME.spacing.xs;
 <style lang="scss" scoped>
 .wiz-calendar {
   font-size: v-bind(fontSizeXs2);
-  color: v-bind(colorGray600);
   &-item {
+    color: v-bind(colorGray600);
     padding: v-bind(spacingXs2) v-bind(spacingXs);
     text-align: center;
+  }
+  &-item-selected {
+    padding: v-bind(spacingXs2) v-bind(spacingXs);
+    text-align: center;
+    background-color: v-bind(colorGreen800);
+    color: v-bind(colorWhite800);
+    border-radius: v-bind(spacingXs2);
   }
   &-item-in-current-month {
     padding: v-bind(spacingXs2) v-bind(spacingXs);
     text-align: center;
     color: v-bind(colorGray700);
+
     border-radius: v-bind(spacingXs2);
     cursor: pointer;
 

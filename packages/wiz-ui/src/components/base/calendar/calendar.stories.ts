@@ -12,6 +12,9 @@ export default {
         type: "text",
       },
     },
+    input: {
+      action: "input",
+    },
   },
 };
 
@@ -23,8 +26,9 @@ const Template: StoryFn = (_, { argTypes }) => ({
     return { value };
   },
   template: `
-  <div >
-    <WizCalendar v-bind="$props"  v-model="value"/>
+  <div>
+    <p>{{value.getFullYear()}}年 {{value.getMonth()+1}}月 {{value.getDate()}}日</p>
+    <WizCalendar v-bind="$props" v-model="value" @input="input"/>
   </div>
   `,
 });
