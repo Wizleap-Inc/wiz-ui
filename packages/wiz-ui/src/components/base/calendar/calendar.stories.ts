@@ -1,8 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import { WizHStack } from "@/components";
-
 import WizCalendar from "./calendar.vue";
 
 export default {
@@ -14,32 +12,27 @@ export default {
         type: "text",
       },
     },
-    input: {
-      action: "input",
-    },
   },
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizCalendar, WizHStack },
+  components: { WizCalendar },
   setup() {
-    const value = ref("");
+    const value = ref(new Date());
     return { value };
   },
-  template: `<WizCalendar v-bind="$props"  v-model="value" @input="input"/>`,
+  template: `
+  <div >
+    <WizCalendar v-bind="$props"  v-model="value"/>
+  </div>
+  `,
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  options: [
-    { label: "test1", value: "1" },
-    { label: "test2", value: "2" },
-    { label: "test3", value: "3" },
-  ],
-};
+Default.args = {};
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
+export const filledWeeks = Template.bind({});
+filledWeeks.args = {
+  filledWeeks: true,
 };
