@@ -19,7 +19,7 @@ import '@wizleap-inc/wiz-ui/dist/wiz-ui.css'
 import components in your component
 
 ```js
-import { WizButton } from '@wizleap-inc/wiz-ui'
+import { WizTextButton } from '@wizleap-inc/wiz-ui'
 ```
 
 ## Contributing
