@@ -19,6 +19,19 @@
       </div>
       <WizPopup layer="popover" gap="xs">
         <div class="wiz-datepicker__selector">
+          <WizHStack align="center" my="xs2" px="xs" justify="between">
+            <WizText fontSize="xs" color="gray.700">{{
+              currentDateTitle
+            }}</WizText>
+            <div class="wiz-datepicker__button_box">
+              <div class="wiz-datepicker__button_box_item">
+                <WizIcon size="md" :icon="WizIChevronLeft" />
+              </div>
+              <div class="wiz-datepicker__button_box_item">
+                <WizIcon size="md" :icon="WizIChevronRight" />
+              </div>
+            </div>
+          </WizHStack>
           <WizCalendar v-model="value" filledWeeks />
         </div>
       </WizPopup>
@@ -29,11 +42,20 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { WizIcon, WizHStack, WizCalendar } from "@/components";
-import { WizICalendar } from "@/components/icons";
-import { THEME } from "@/constants/styles";
-
-import { WizPopup, WizPopupContainer } from "../../popup";
+import {
+  WizIcon,
+  WizHStack,
+  WizCalendar,
+  WizText,
+  WizPopup,
+  WizPopupContainer,
+} from "@/components";
+import {
+  WizICalendar,
+  WizIChevronLeft,
+  WizIChevronRight,
+} from "@/components/icons";
+import { THEME } from "@/constants/";
 
 interface Props {
   value: Date;
@@ -61,6 +83,10 @@ const parseValue = (value: Date) => {
   return `${value.getFullYear()}/${value.getMonth() + 1}/${value.getDate()}`;
 };
 
+const currentDateTitle = computed(() => {
+  return `${props.value.getFullYear()}年${props.value.getMonth() + 1}月`;
+});
+
 const width = computed(() => props.width);
 const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
@@ -72,6 +98,7 @@ const colorGray300 = THEME.color.gray["300"];
 const colorGray400 = THEME.color.gray["400"];
 const colorGray500 = THEME.color.gray["500"];
 const colorGray700 = THEME.color.gray["700"];
+const colorGreen300 = THEME.color.green["300"];
 const colorGreen800 = THEME.color.green["800"];
 </script>
 
@@ -86,7 +113,6 @@ $border-width: 1px;
   border: $border-width solid v-bind(colorGray400);
   border-radius: v-bind(spacingXs2);
   box-sizing: border-box;
-  cursor: pointer;
 
   &--active {
     border-color: v-bind(colorGreen800);
@@ -119,6 +145,24 @@ $border-width: 1px;
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;
+  }
+
+  &__button_box {
+    gap: v-bind(spacingXs2);
+    display: flex;
+    &_item {
+      cursor: pointer;
+      padding: v-bind(spacingXs2);
+      border-radius: v-bind(spacingXs2);
+      &:hover {
+        background-color: v-bind(colorGreen300);
+        color: v-bind(colorGreen800);
+      }
+      &:active {
+        background-color: v-bind(colorGreen800);
+        color: v-bind(colorWhite800);
+      }
+    }
   }
 }
 </style>
