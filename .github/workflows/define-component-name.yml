@@ -10,9 +10,15 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: ls
+        run: ls -la
+
+      - name: pwd
+        run: pwd
+
       - name: check undefined component name count
         run: |
-          echo ::set-output name=undefined_component_name_count::$(grep -Lir 'defineOptions' packages/**/*.vue | wc -l)
+          echo ::set-output name=undefined_component_name_count::$(grep -Lir 'defineOptions' ./packages/**/*.vue | wc -l)
 
       - name: check undefined component name
         if: ${{ steps.undefined_component_name_count.outputs.undefined_component_name_count > 0 }}
