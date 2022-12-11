@@ -17,6 +17,7 @@ const IconComponentName = {
   IHelp: "WizIHelp",
   IManageAccounts: "WizIManageAccounts",
   IMonitoring: "WizIMonitoring",
+  IMoreVert: "WizIMoreVert",
   ITab: "WizITab",
   INotification: "WizINotification",
   IMenu: "WizIMenu",

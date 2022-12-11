@@ -17,6 +17,7 @@ import { default as WizIHint } from "./hint.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
+import { default as WizIMoreVert } from "./more-vert.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
 import { default as WizIRemove } from "./remove.vue";
@@ -44,6 +45,7 @@ export type TIcon =
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
+  | typeof WizIMoreVert
   | typeof WizINotification
   | typeof WizIOpenInNew
   | typeof WizIRemove
@@ -71,6 +73,7 @@ export {
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
+  WizIMoreVert,
   WizINotification,
   WizIOpenInNew,
   WizIRemove,
