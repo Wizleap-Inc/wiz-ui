@@ -11,3 +11,11 @@
     />
   </svg>
 </template>
+
+<script setup lang="ts">
+import { ComponentName } from "@/constants";
+
+defineOptions({
+  name: ComponentName.IHint,
+});
+</script>

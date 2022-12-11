@@ -1,3 +1,30 @@
+const IconComponentName = {
+  IArrowRight: "WizIArrowRight",
+  IClose: "WizIClose",
+  IHint: "WizIHint",
+  IEye: "WizIEye",
+  ISend: "WizISend",
+  IExpandMore: "WizIExpandMore",
+  IExpandLess: "WizIExpandLess",
+  IChevronRight: "WizIChevronRight",
+  IAssignment: "WizIAssignment",
+  IAssignmentAdd: "WizIAssignmentAdd",
+  IBusinessCenter: "WizIBusinessCenter",
+  IChat: "WizIChat",
+  IDashboard: "WizIDashboard",
+  IGroups: "WizIGroups",
+  IHelp: "WizIHelp",
+  IManageAccounts: "WizIManageAccounts",
+  IMonitoring: "WizIMonitoring",
+  ITab: "WizITab",
+  INotification: "WizINotification",
+  IMenu: "WizIMenu",
+  ISchedule: "WizISchedule",
+  IAdd: "WizIAdd",
+  IRemove: "WizIRemove",
+  IOpenInNew: "WizIOpenInNew",
+};
+
 export const ComponentName = {
   Anchor: "WizAnchor",
   Avatar: "WizAvatar",
@@ -56,4 +83,5 @@ export const ComponentName = {
   SelectBox: "WizSelectBox",
   Dialog: "WizDialog",
   Provider: "WizProvider",
+  ...IconComponentName,
 } as const;
