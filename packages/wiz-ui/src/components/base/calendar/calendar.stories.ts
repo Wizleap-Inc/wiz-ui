@@ -36,7 +36,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {};
 
-export const filledWeeks = Template.bind({});
-filledWeeks.args = {
+export const FilledWeeks = Template.bind({});
+FilledWeeks.args = {
   filledWeeks: true,
 };
