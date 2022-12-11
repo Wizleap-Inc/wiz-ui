@@ -1,0 +1,27 @@
+name: When a PR to main is opened or updated, run the build-check workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - uses: ./.github/composite/prepare_node
+        with:
+          node-version: ${{ matrix.node-version }}
+          runs-on: ${{ matrix.runs-on }}
+          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: build check
+        run: npm run build:lib -w packages/wiz-ui
