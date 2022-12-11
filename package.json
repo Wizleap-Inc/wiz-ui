@@ -15,9 +15,10 @@
     "dev:examples": "npm run --workspace ./examples/vue2 dev",
     "dev:wiz-ui": "npm run --workspace ./packages/wiz-ui dev",
     "dev:docs": "npm run --workspace ./docs dev",
-    "test": "npm run -w packages/* test",
-    "test:ci": "npm run -w packages/* test:ci"
-    
+    "test": "run-p test:*",
+    "test:wiz-ui": "npm run --workspace ./packages/wiz-ui test",
+    "test:ci": "run-p test:ci:*",
+    "test:ci:wiz-ui": "npm run --workspace ./packages/wiz-ui test:ci"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
