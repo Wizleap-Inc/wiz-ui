@@ -5,6 +5,7 @@
       'wiz-icon-button--variant-primary': variant === 'primary',
       'wiz-icon-button--variant-sub': variant === 'sub',
       'wiz-icon-button--variant-transparent': variant === 'transparent',
+      'wiz-icon-button--variant-link': variant === 'link',
       'wiz-icon-button--disabled': disabled,
       'wiz-icon-button--size-sm': size === 'sm',
       'wiz-icon-button--size-md': size === 'md',
@@ -28,7 +29,7 @@ defineOptions({
 
 interface Props {
   icon: TIcon;
-  variant?: "primary" | "sub" | "transparent";
+  variant?: "primary" | "sub" | "transparent" | "link";
   disabled?: boolean;
   size?: "sm" | "md" | "lg" | "xl";
 }
@@ -53,6 +54,7 @@ const colorGreen800 = THEME.color.green["800"];
 const colorGray700 = THEME.color.gray["700"];
 const colorGray400 = THEME.color.gray["400"];
 const colorGray300 = THEME.color.gray["300"];
+const coloBlue800 = THEME.color.blue["800"];
 const shadowMd = THEME.shadow.md;
 const spacingXs = THEME.spacing.xs;
 const fontSizeXl = THEME.fontSize.xl;
@@ -102,6 +104,15 @@ $sub-button-border-width: 1px;
       padding: 0;
       & > svg {
         fill: v-bind(colorGray700);
+      }
+    }
+
+    &-link {
+      background: none;
+      border: none;
+      padding: 0;
+      & > svg {
+        fill: v-bind(coloBlue800);
       }
     }
   }
