@@ -172,6 +172,8 @@ $border-width: 1px;
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;
+    max-height: 25rem;
+    overflow-y: auto;
   }
 
   &__selector-option {
