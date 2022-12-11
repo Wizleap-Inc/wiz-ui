@@ -32,12 +32,17 @@
 import { WizText } from "@/components/base/text";
 import { WizTooltip } from "@/components/base/tooltip";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
 import { WizProgressPoint, WizProgressLine } from ".";
 
 import type { ProgressItem } from "./types";
 
-export interface Props {
+defineOptions({
+  name: ComponentName.ProgressBar,
+});
+
+interface Props {
   contents: ProgressItem[];
 }
 

@@ -16,9 +16,14 @@
 import { computed, ref } from "vue";
 
 import { WizBox, WizTab } from "@/components/base";
+import { ComponentName } from "@/constants/component/name";
 
 import { WizNotificationList } from "./list";
 import { NotificationItem, NotificationTabItem } from "./types";
+
+defineOptions({
+  name: ComponentName.Notification,
+});
 
 interface Props {
   tabs: NotificationTabItem[];

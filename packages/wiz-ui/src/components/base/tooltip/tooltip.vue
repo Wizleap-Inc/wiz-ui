@@ -14,6 +14,11 @@
 import { useSlots } from "vue";
 
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.Tooltip,
+});
 
 interface Props {
   content?: string;

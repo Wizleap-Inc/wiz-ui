@@ -12,8 +12,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
+
 import { PrivateBaseInput } from "../base";
 
+defineOptions({
+  name: ComponentName.TextInput,
+});
 interface Props {
   value: string;
   name: string;

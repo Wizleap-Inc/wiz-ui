@@ -30,8 +30,13 @@ import { computed, ref } from "vue";
 
 import { WizIEye } from "@/components";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
 import { PrivateBaseInput } from "../base";
+
+defineOptions({
+  name: ComponentName.PasswordInput,
+});
 
 interface Props {
   value: string;

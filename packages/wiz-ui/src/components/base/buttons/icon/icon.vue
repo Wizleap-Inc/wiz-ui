@@ -21,6 +21,11 @@
 import Vue from "vue";
 
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.IconButton,
+});
 
 interface Props {
   icon: Vue;

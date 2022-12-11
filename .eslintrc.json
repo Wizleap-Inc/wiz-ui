@@ -25,6 +25,7 @@
       "<template>": "espree"
     }
   },
+  "ignorePatterns": ["packages/vuepress-plugin-wiz-ui"],
   "plugins": ["import", "unused-imports", "@typescript-eslint", "vue"],
   "rules": {
     "camelcase": "warn",
