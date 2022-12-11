@@ -15,10 +15,7 @@ export default {
     input: {
       action: "input",
     },
-  },
-  click: {
-    action: "click",
-  },
+  }
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
