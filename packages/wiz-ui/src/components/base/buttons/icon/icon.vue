@@ -18,8 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import Vue from "vue";
-
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
 
@@ -28,7 +27,7 @@ defineOptions({
 });
 
 interface Props {
-  icon: Vue;
+  icon: TIcon;
   variant?: "primary" | "sub" | "transparent";
   disabled?: boolean;
   size?: "sm" | "md" | "lg" | "xl";

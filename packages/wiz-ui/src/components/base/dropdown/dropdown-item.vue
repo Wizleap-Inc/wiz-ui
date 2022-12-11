@@ -8,9 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import Vue from "vue";
-
 import { WizIcon, WizHStack } from "@/components";
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
 
@@ -18,7 +17,7 @@ defineOptions({
   name: ComponentName.DropdownItem,
 });
 interface Props {
-  icon?: Vue;
+  icon?: TIcon;
 }
 
 defineProps<Props>();

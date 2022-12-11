@@ -8,8 +8,9 @@
 </template>
 
 <script setup lang="ts">
-import Vue, { computed } from "vue";
+import { computed } from "vue";
 
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
@@ -26,8 +27,9 @@ interface Props {
   badge?: string;
   badgeBgColor?: ColorKeys;
   badgeColor?: ColorKeys;
-  icon: Vue;
+  icon: TIcon;
 }
+
 const props = withDefaults(defineProps<Props>(), {
   size: "xl2",
   badgeColor: "white.800",

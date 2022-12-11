@@ -17,9 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import Vue, { computed } from "vue";
+import { computed } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
 
@@ -28,7 +29,7 @@ defineOptions({
 });
 
 interface Props {
-  icon: Vue;
+  icon: TIcon;
   label: string;
   active: boolean;
   to: RouterLinkProps["to"];
