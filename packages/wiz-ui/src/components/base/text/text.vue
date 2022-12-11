@@ -26,6 +26,7 @@ interface Props {
   as?: "p" | "span";
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
+  lineHeight?: FontSizeKeys | number;
   bold?: boolean;
   maxLines?: number;
   whiteSpace?: WhiteSpaceKeys;
@@ -35,6 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   as: "p",
   color: "gray.900",
   fontSize: "md",
+  lineHeight: 1.5,
   whiteSpace: "normal",
 });
 
@@ -42,6 +44,10 @@ const computedIsP = computed(() => props.as === "p");
 const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
 const computedFontSize = computed(() => getFontSizeCss(props.fontSize));
+const computedLineHeight = computed(() => {
+  if (typeof props.lineHeight === "number") return props.lineHeight;
+  return getFontSizeCss(props.lineHeight);
+});
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
 const computedWhiteSpace = computed(() => getWhiteSpaceCss(props.whiteSpace));
 
@@ -58,7 +64,7 @@ const overflowStyles = computed(() => {
 
 <style lang="scss" scoped>
 .wiz-text {
-  line-height: 1.5;
+  line-height: v-bind(computedLineHeight);
   margin: 0;
   color: v-bind(computedColor);
   font-size: v-bind(computedFontSize);

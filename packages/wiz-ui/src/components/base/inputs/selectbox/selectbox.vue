@@ -101,7 +101,7 @@ const onSelect = (value: string) => {
   emit("input", value);
 };
 
-const width = computed(() => (props.expand ? props.width : "100%"));
+const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
@@ -122,7 +122,7 @@ $border-width: 1px;
 
 .wiz-selectbox {
   position: relative;
-  width: v-bind(width);
+  width: v-bind(computedWidth);
   height: v-bind(spacingXl3);
   background: v-bind(colorWhite800);
   border: $border-width solid v-bind(colorGray400);
@@ -172,6 +172,8 @@ $border-width: 1px;
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;
+    max-height: 25rem;
+    overflow-y: auto;
   }
 
   &__selector-option {
