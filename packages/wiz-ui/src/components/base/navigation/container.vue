@@ -17,7 +17,12 @@ import { computed, useSlots } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { globalInject, globalKey } from "@/providers";
+
+defineOptions({
+  name: ComponentName.NavigationContainer,
+});
 
 const { isMenuOpen } = globalInject(globalKey);
 

@@ -32,11 +32,16 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@/constants/component/name";
 import { SpacingKeys } from "@/types/styles/spacing";
 
 import { WizStack } from ".";
 
-export interface Props {
+defineOptions({
+  name: ComponentName.VStack,
+});
+
+interface Props {
   align?: "start" | "center" | "end" | "stretch";
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
   wrap?: boolean;

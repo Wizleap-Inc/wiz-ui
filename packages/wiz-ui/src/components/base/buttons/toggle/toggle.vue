@@ -25,7 +25,11 @@ import Vue, { ref } from "vue";
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
+defineOptions({
+  name: ComponentName.ToggleButton,
+});
 interface Props {
   inActiveIcon: Vue;
   activeIcon: Vue;

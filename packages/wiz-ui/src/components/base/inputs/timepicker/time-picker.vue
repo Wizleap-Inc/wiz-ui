@@ -69,9 +69,14 @@ import { ref, computed } from "vue";
 
 import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";
 import { WizISchedule } from "@/components/icons";
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 
 import { WizPopup, WizPopupContainer } from "../../popup";
+
+defineOptions({
+  name: ComponentName.TimePicker,
+});
 
 interface Props {
   value: string;

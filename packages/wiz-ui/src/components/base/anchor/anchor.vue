@@ -21,6 +21,7 @@
 import Vue, { computed, withDefaults } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
@@ -36,6 +37,10 @@ interface Props {
   openInNewTab?: boolean;
   nowrap?: boolean;
 }
+
+defineOptions({
+  name: ComponentName.Anchor,
+});
 
 const props = withDefaults(defineProps<Props>(), {
   color: "blue.800",

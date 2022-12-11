@@ -6,6 +6,11 @@
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.CardTable,
+});
 
 const spacingXs = THEME.spacing.xs;
 const spacingXs2 = THEME.spacing.xs2;

@@ -11,11 +11,15 @@
 import Vue, { computed } from "vue";
 
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
 import { getFontSizeCss } from "@/utils/styles/font-size";
 
+defineOptions({
+  name: ComponentName.Icon,
+});
 interface Props {
   size?: FontSizeKeys;
   color?: ColorKeys;

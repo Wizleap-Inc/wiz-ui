@@ -7,10 +7,14 @@
 <script setup lang="ts">
 import { nextTick, provide, ref, watch } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { POPUP_KEY, usePopupProvider } from "./provider";
 
+defineOptions({
+  name: ComponentName.PopupContainer,
+});
 interface Props {
   value: boolean;
 }

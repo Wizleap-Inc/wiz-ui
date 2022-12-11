@@ -84,9 +84,14 @@ import {
   WizIExpandLess,
 } from "@/components";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { formatDateToMonthDayWeek } from "@/utils/date";
 
 import { Message, DisplayMessage } from "..";
+
+defineOptions({
+  name: ComponentName.ChatCard,
+});
 
 interface Props {
   value: string;

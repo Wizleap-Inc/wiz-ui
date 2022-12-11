@@ -55,12 +55,17 @@ import { ref, computed } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 
 import { WizHStack } from "../../stack";
 import { WizVStack } from "../../stack";
 
 import { Option } from "./types";
+
+defineOptions({
+  name: ComponentName.SelectBox,
+});
 
 interface Props {
   options: Option[];

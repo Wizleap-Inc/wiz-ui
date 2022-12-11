@@ -3,7 +3,7 @@
     <Header />
     <WizHStack>
       <Navigation />
-      <router-view />
+      <RouterView />
     </WizHStack>
   </WizProvider>
 </template>

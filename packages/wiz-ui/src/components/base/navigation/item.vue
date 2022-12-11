@@ -21,6 +21,11 @@ import Vue, { computed } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.NavigationItem,
+});
 
 interface Props {
   icon: Vue;

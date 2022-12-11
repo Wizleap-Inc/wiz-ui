@@ -12,8 +12,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 
+defineOptions({
+  name: ComponentName.ToggleSwitch,
+});
 interface Props {
   value: boolean;
 }

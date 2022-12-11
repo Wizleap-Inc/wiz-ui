@@ -16,6 +16,11 @@
 import { computed } from "vue";
 
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.TextArea,
+});
 
 interface Props {
   value: string;

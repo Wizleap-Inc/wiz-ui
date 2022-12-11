@@ -6,6 +6,11 @@
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.CardTr,
+});
 
 interface Emits {
   (event: "click"): void;

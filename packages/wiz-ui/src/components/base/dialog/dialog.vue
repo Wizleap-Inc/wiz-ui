@@ -1,6 +1,10 @@
 <template>
   <MountingPortal mountTo="body" name="dialog" append>
-    <div class="wiz-dialog" :class="{ 'wiz-dialog--visible': visible }">
+    <div
+      class="wiz-dialog"
+      :class="{ 'wiz-dialog--visible': visible }"
+      :style="{ zIndex: currentZIndex }"
+    >
       <div class="wiz-dialog__mask" @click.self="close">
         <WizCard :maxWidth="maxWidth" p="xl" :title="title" :align="align">
           <template #mainHeaderArea>
@@ -65,8 +69,6 @@ const close = () => {
 };
 
 const { currentZIndex } = useZIndex(THEME.zIndex.dialog);
-
-const colorGray800 = THEME.color.gray["800"];
 </script>
 
 <style lang="scss" scoped>
@@ -76,7 +78,6 @@ const colorGray800 = THEME.color.gray["800"];
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: v-bind(currentZIndex);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,7 +97,6 @@ const colorGray800 = THEME.color.gray["800"];
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: v-bind(colorGray800);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -14,10 +14,15 @@
 <script setup lang="ts">
 import { computed, withDefaults } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
 import { getFontSizeCss } from "@/utils/styles/font-size";
+
+defineOptions({
+  name: ComponentName.Heading,
+});
 
 interface Props {
   level?: 1 | 2 | 3 | 4 | 5 | 6;

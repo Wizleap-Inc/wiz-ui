@@ -19,8 +19,12 @@ import { computed } from "vue";
 
 import { WizPopup, WizPopupContainer, WizVStack } from "@/components";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { SpacingKeys } from "@/types/styles/spacing";
 
+defineOptions({
+  name: ComponentName.Dropdown,
+});
 interface Props {
   value: boolean; // is open
   skeleton?: boolean;
