@@ -5,6 +5,7 @@
     :name="name"
     :disabled="disabled"
     :expand="expand"
+    :width="width"
     type="text"
   />
 </template>
@@ -25,6 +26,7 @@ interface Props {
   placeholder?: string;
   disabled?: boolean;
   expand?: boolean;
+  width?: string;
 }
 
 const props = defineProps<Props>();

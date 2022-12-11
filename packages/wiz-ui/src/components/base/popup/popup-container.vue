@@ -1,5 +1,11 @@
 <template>
-  <div class="wiz-popup-container" ref="popupContainerRef">
+  <div
+    class="wiz-popup-container"
+    :class="{
+      'wiz-popup-container--expand': expand,
+    }"
+    ref="popupContainerRef"
+  >
     <slot />
   </div>
 </template>
@@ -15,8 +21,10 @@ import { POPUP_KEY, usePopupProvider } from "./provider";
 defineOptions({
   name: ComponentName.PopupContainer,
 });
+
 interface Props {
   value: boolean;
+  expand?: boolean;
 }
 
 const props = defineProps<Props>();
@@ -49,5 +57,9 @@ useClickOutside(popupContainerRef, () => {
 .wiz-popup-container {
   position: relative;
   width: fit-content;
+
+  &--expand {
+    width: 100%;
+  }
 }
 </style>

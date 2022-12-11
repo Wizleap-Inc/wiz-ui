@@ -39,6 +39,8 @@ export const Variant: StoryFn = (_, { argTypes }) => ({
       <div>variant = sub</div>
       <div><WizIconButton variant="transparent" :icon="WizISend" @click="onClick('transparent')" /></div>
       <div>variant = transparent</div>
+      <div><WizIconButton variant="link" :icon="WizISend" @click="onClick('link')" /></div>
+      <div>variant = link</div>
     </div>
   `,
 });
@@ -71,6 +73,8 @@ export const Disabled: StoryFn = (_, { argTypes }) => ({
       <div>disabled = true, variant = sub</div>
       <div><WizIconButton disabled variant="transparent" :icon="WizISend" @click="onClick('transparent disabled')" /></div>
       <div>disabled = true, variant = transparent</div>
+      <div><WizIconButton disabled variant="link" :icon="WizISend" @click="onClick('link disabled')" /></div>
+      <div>disabled = true, variant = link</div>
     </div>
   `,
 });

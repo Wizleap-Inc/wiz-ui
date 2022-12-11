@@ -7,6 +7,7 @@ import { default as WizIChat } from "./chat.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
+import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
@@ -33,6 +34,7 @@ export type TIcon =
   | typeof WizIChevronRight
   | typeof WizIClose
   | typeof WizIDashboard
+  | typeof WizIEditNote
   | typeof WizIExpandLess
   | typeof WizIExpandMore
   | typeof WizIEye
@@ -59,6 +61,7 @@ export {
   WizIChevronRight,
   WizIClose,
   WizIDashboard,
+  WizIEditNote,
   WizIExpandLess,
   WizIExpandMore,
   WizIEye,
