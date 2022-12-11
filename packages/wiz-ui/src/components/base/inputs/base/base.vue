@@ -15,7 +15,12 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@/constants";
+import { ComponentName, THEME } from "@/constants";
+
+defineOptions({
+  name: ComponentName.BaseInput,
+});
+
 interface Props {
   value: string;
   name: string;
@@ -24,15 +29,20 @@ interface Props {
   expand?: boolean;
   type: "text" | "password";
 }
+
+defineProps<Props>();
+
 interface Emit {
   (e: "input", value: string): void;
 }
-defineProps<Props>();
+
 const emit = defineEmits<Emit>();
+
 const onInput = (e: Event) => {
   const target = e.target as HTMLInputElement;
   emit("input", target.value);
 };
+
 const fontSizeSm = THEME.fontSize.sm;
 const green800 = THEME.color.green["800"];
 const grey300 = THEME.color.gray["300"];
