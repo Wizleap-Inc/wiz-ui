@@ -20,6 +20,8 @@ export const Overview: StoryFn = (_, { argTypes }) => ({
         <span style="font-size: ${THEME.fontSize.xl2};">fontSize.xl2</span>
         <span style="font-size: ${THEME.fontSize.xl3};">fontSize.xl3</span>
         <span style="font-size: ${THEME.fontSize.xl4};">fontSize.xl4</span>
+        <span style="font-size: ${THEME.fontSize.xl5};">fontSize.xl5</span>
+        <span style="font-size: ${THEME.fontSize.xl6};">fontSize.xl6</span>
       </div>
     </div>
   `,

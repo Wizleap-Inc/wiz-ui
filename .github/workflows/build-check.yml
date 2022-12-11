@@ -1,4 +1,4 @@
-name: Build Wiz-UI library
+name: Build check Wiz-UI library
 
 on:
   pull_request:

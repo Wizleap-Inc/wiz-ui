@@ -1,9 +1,14 @@
-name: Lint check Wiz-UI library
+name: Publish check Wiz-UI library
 
-on: push
+on:
+  pull_request:
+    branches:
+      - main
+env:
+  CI: true
 
 jobs:
-  lint:
+  publish:
     runs-on: ubuntu-20.04
 
     strategy:
@@ -20,5 +25,7 @@ jobs:
           runs-on: ${{ matrix.runs-on }}
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
-      - name: lint
-        run: npm run lint
+      - name: publish
+        run: npm run check:lib-publish -w packages/wiz-ui
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
