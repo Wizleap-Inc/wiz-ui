@@ -1,4 +1,4 @@
-name: When a PR to main is opened or updated, run the build-check workflow
+name: Build Wiz-UI library
 
 on:
   pull_request:
