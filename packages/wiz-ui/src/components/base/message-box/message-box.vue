@@ -17,8 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import Vue, { computed } from "vue";
+import { computed } from "vue";
 
+import type { TIcon } from "@/components/icons";
 import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 import { getColorCss } from "@/utils/styles/color";
@@ -29,7 +30,7 @@ defineOptions({
 interface Props {
   variant?: "information" | "caution" | "warning";
   title: string;
-  icon?: Vue;
+  icon?: TIcon;
   expand?: boolean;
 }
 

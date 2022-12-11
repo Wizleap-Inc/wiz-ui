@@ -20,10 +20,11 @@
 </template>
 
 <script setup lang="ts">
-import Vue, { ref } from "vue";
+import { ref } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
 import { ComponentName } from "@/constants/component/name";
 
@@ -31,8 +32,8 @@ defineOptions({
   name: ComponentName.ToggleButton,
 });
 interface Props {
-  inActiveIcon: Vue;
-  activeIcon: Vue;
+  inActiveIcon: TIcon;
+  activeIcon: TIcon;
   disabled?: boolean;
 }
 

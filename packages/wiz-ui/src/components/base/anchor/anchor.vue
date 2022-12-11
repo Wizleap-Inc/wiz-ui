@@ -18,9 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import Vue, { computed, withDefaults } from "vue";
+import { computed, withDefaults } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
+import type { TIcon } from "@/components/icons";
 import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
@@ -32,7 +33,7 @@ interface Props {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: "normal" | "bold";
-  icon?: Vue;
+  icon?: TIcon;
   iconPosition?: "left" | "right";
   openInNewTab?: boolean;
   nowrap?: boolean;
