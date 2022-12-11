@@ -6,6 +6,7 @@ const IconComponentName = {
   ISend: "WizISend",
   IExpandMore: "WizIExpandMore",
   IExpandLess: "WizIExpandLess",
+  IEditNote: "WizIEditNote",
   IChevronRight: "WizIChevronRight",
   IAssignment: "WizIAssignment",
   IAssignmentAdd: "WizIAssignmentAdd",
