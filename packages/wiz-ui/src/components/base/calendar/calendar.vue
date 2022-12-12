@@ -3,34 +3,26 @@
     <td v-for="row in calendarWeekList" class="wiz-calendar-item" :key="row">
       {{ row }}
     </td>
-    <tr v-for="(i, row) in countWeekRow" :key="'week-' + row">
+    <tr v-for="(week, row) in calendars" :key="row">
       <td
-        v-for="(i, day) in 7"
-        :key="'day-' + day"
-        :class="`${isCurrentMonthDateClass(row, day)}`"
-        @click="updateSelectedDate(calendarIndex(row, day))"
+        v-for="(day, col) in week"
+        :key="day"
+        :class="`${isCurrentMonthDateClass(row, col)}`"
+        @click="updateSelectedDate(row, col, day)"
       >
-        {{ showCalendarDates[calendarIndex(row, day)] }}
+        {{ day }}
       </td>
     </tr>
   </table>
 </template>
 
 <script setup lang="ts">
-import {
-  ref,
-  withDefaults,
-  defineProps,
-  defineEmits,
-  computed,
-  watch,
-  toRefs,
-} from "vue";
-
-import { THEME } from "@/constants/styles";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { withDefaults, defineProps, defineEmits, computed } from "vue";
 
 interface Props {
   filledWeeks?: boolean;
+  currentMonth: Date;
   value: Date;
 }
 
@@ -42,90 +34,112 @@ const emits = defineEmits<Emit>();
 const props = withDefaults(defineProps<Props>(), {
   filledWeeks: false,
 });
-const { value } = toRefs(props);
 
 const calendarWeekList = ["日", "月", "火", "水", "木", "金", "土"];
 
-const currentShowYear = computed(() => props.value.getFullYear()).value;
-const currentShowMonth = computed(() => props.value.getMonth()).value;
-const currentShowDate = computed(() => props.value.getDate()).value;
+const calendars = computed(() => {
+  const showCalendars: Array<Array<string>> = [];
+  const currentShowYear = props.currentMonth.getFullYear();
+  const currentShowMonth = props.currentMonth.getMonth();
 
-// 表示月の 1日（ついたち）
-const currentShowFirstDateTime = new Date(currentShowYear, currentShowMonth, 1);
-const currentShowFirstDay = currentShowFirstDateTime.getDay();
+  // 表示月の 1日（ついたち）
+  const currentShowFirstDateTime = new Date(
+    currentShowYear,
+    currentShowMonth,
+    1
+  );
+  const currentShowFirstDay = currentShowFirstDateTime.getDay();
 
-// 表示月の末日
-const currentShowMonthLastDateTime = new Date(
-  currentShowYear,
-  currentShowMonth + 1,
-  0
-);
-const currentShowMonthLastDate = currentShowMonthLastDateTime.getDate();
-const currentShowMonthLastDay = currentShowMonthLastDateTime.getDay();
+  // 表示月の末日
+  const currentShowMonthLastDateTime = new Date(
+    currentShowYear,
+    currentShowMonth + 1,
+    0
+  );
+  const currentShowMonthLastDate = currentShowMonthLastDateTime.getDate();
+  const currentShowMonthLastDay = currentShowMonthLastDateTime.getDay();
 
-// 表示月の一月前が何日あったか
-const pastMonthLastDay = new Date(
-  currentShowYear,
-  currentShowMonth,
-  0
-).getDate();
+  // 表示月の一月前が何日あったか
+  const pastMonthLastDay = new Date(
+    currentShowYear,
+    currentShowMonth,
+    0
+  ).getDate();
 
-// カレンダーに表示する日付
-const pastMonthDates = [...Array(currentShowFirstDay)]
-  .map((_, index) =>
-    props.filledWeeks ? String(pastMonthLastDay - index) : ""
-  )
-  .reverse();
-const currentMonthDates = [...Array(currentShowMonthLastDate)].map(
-  (key, index) => String(index + 1)
-);
-const nextMonthDates = [...Array(6 - currentShowMonthLastDay)].map((_, index) =>
-  props.filledWeeks ? String(index + 1) : ""
-);
-const showCalendarDates = pastMonthDates.concat(
-  currentMonthDates,
-  nextMonthDates
-);
-const updateSelectedDate = (selectedIndex: number) => {
-  if (isCurrentMonth(selectedIndex)) {
-    const selectedDate = Number(showCalendarDates[selectedIndex]);
-    const updateValue = new Date(
-      currentShowYear,
-      currentShowMonth,
-      selectedDate
-    );
-    emits("input", updateValue);
+  // カレンダーに表示する日付
+  const pastMonthDates = [...Array(currentShowFirstDay)]
+    .map((_, index) =>
+      props.filledWeeks ? String(pastMonthLastDay - index) : ""
+    )
+    .reverse();
+  const currentMonth = [...Array(currentShowMonthLastDate)].map((key, index) =>
+    String(index + 1)
+  );
+  const nextMonthDates = [...Array(6 - currentShowMonthLastDay)].map(
+    (_, index) => (props.filledWeeks ? String(index + 1) : "")
+  );
+  const showCalendarDates = [
+    ...pastMonthDates,
+    ...currentMonth,
+    ...nextMonthDates,
+  ];
+  for (let i = 0; i < showCalendarDates.length / 7; i++) {
+    showCalendars.push(showCalendarDates.slice(i * 7, (i + 1) * 7));
   }
-};
-const countWeekRow = showCalendarDates.length / 7;
+
+  return showCalendars;
+});
 
 // class の定義
-const isCurrentMonthDateClass = computed(() => (row: number, day: number) => {
-  const selectedDateIndex = calendarIndex(row, day);
-  if (selectedDateIndex === selectDate.value)
-    return "wiz-calendar-item-selected";
-  return isCurrentMonth(selectedDateIndex)
-    ? "wiz-calendar-item-in-current-month"
+const isCurrentMonthDateClass = computed(() => (row: number, col: number) => {
+  const pickedUpDate = new Date(
+    props.currentMonth.getFullYear(),
+    props.currentMonth.getMonth(),
+    Number(calendars.value[row][col])
+  );
+  return isCurrentMonth(row, col)
+    ? pickedUpDate.toString() === props.value.toString()
+      ? "wiz-calendar-item-selected"
+      : "wiz-calendar-item-in-current-month"
     : "wiz-calendar-item";
 });
 
-// 選択した値がアクティブになるようにする
-const selectDate = ref(currentShowFirstDay + currentShowDate - 1);
-watch(value, (newVal) => {
-  selectDate.value = currentShowFirstDay + newVal.getDate() - 1;
-});
+const isCurrentMonth = (row: number, col: number) => {
+  const currentShowYear = props.currentMonth.getFullYear();
+  const currentShowMonth = props.currentMonth.getMonth();
 
-// カレンダーの配列におけるIndex
-const calendarIndex = (row: number, index: number) => {
-  return row * 7 + index;
+  // 表示月の 1日（ついたち）
+  const currentShowFirstDateTime = new Date(
+    currentShowYear,
+    currentShowMonth,
+    1
+  );
+  const currentShowFirstDay = currentShowFirstDateTime.getDay();
+
+  // 表示月の末日
+  const currentShowLastDateTime = new Date(
+    currentShowYear,
+    currentShowMonth + 1,
+    0
+  );
+  const currentShowLastDay = currentShowLastDateTime.getDay();
+
+  // 初週、最終週で表示付きが含まれないかどうかを返す
+  return !(
+    (row === 0 && col < currentShowFirstDay) ||
+    (row === calendars.value.length - 1 && currentShowLastDay < col)
+  );
 };
 
-// 選択した日が表示月に含まれるかどうか
-const isCurrentMonth = (index: number) => {
-  return (
-    currentShowFirstDay <= index &&
-    index < currentShowFirstDay + currentShowMonthLastDate
-  );
+const updateSelectedDate = (row: number, col: number, day: string) => {
+  if (isCurrentMonth(row, col)) {
+    const selectedValue = new Date(
+      props.currentMonth.getFullYear(),
+      props.currentMonth.getMonth(),
+      Number(day)
+    );
+    emits("input", selectedValue);
+  }
 };
 
 // 以下、Style の定義

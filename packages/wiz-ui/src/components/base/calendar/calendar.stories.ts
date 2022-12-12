@@ -15,20 +15,23 @@ export default {
     input: {
       action: "input",
     },
-  }
+  },
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCalendar },
   setup() {
-    const value = ref(new Date());
-    return { value };
+    const defaultValue = new Date().setHours(0, 0, 0, 0);
+    const value = ref(new Date(defaultValue));
+
+    const currentMonth = ref(new Date(defaultValue));
+    return { value, currentMonth };
   },
   template: `
   <div>
     <p>{{value.getFullYear()}}年 {{value.getMonth()+1}}月 {{value.getDate()}}日</p>
-    <WizCalendar v-bind="$props" v-model="value" @input="input"/>
+    <WizCalendar v-bind="$props" v-model="value" :currentMonth="currentMonth" @input="input"/>
   </div>
   `,
 });

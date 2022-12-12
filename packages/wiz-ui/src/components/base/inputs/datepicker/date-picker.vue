@@ -20,19 +20,29 @@
       <WizPopup layer="popover" gap="xs">
         <div class="wiz-datepicker__selector">
           <WizHStack align="center" my="xs2" px="xs" justify="between">
-            <WizText fontSize="xs" color="gray.700">{{
+            <WizText as="span" fontSize="xs" color="gray.700">{{
               currentDateTitle
             }}</WizText>
             <div class="wiz-datepicker__button_box">
-              <div class="wiz-datepicker__button_box_item">
+              <div
+                class="wiz-datepicker__button_box_item"
+                @click="clickToPreviousMonth"
+              >
                 <WizIcon size="md" :icon="WizIChevronLeft" />
               </div>
-              <div class="wiz-datepicker__button_box_item">
+              <div
+                class="wiz-datepicker__button_box_item"
+                @click="clickToNextMonth"
+              >
                 <WizIcon size="md" :icon="WizIChevronRight" />
               </div>
             </div>
           </WizHStack>
-          <WizCalendar v-model="value" filledWeeks />
+          <WizCalendar
+            v-model="value"
+            :currentMonth="currentMonth"
+            filledWeeks
+          />
         </div>
       </WizPopup>
     </div>
@@ -40,7 +50,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ref, computed, withDefaults, defineProps, defineEmits } from "vue";
 
 import {
   WizIcon,
@@ -55,7 +66,6 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
 } from "@/components/icons";
-import { THEME } from "@/constants/";
 
 interface Props {
   value: Date;
@@ -70,6 +80,12 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
 });
 
+interface Emit {
+  (e: "input", value: Date): void;
+}
+const emits = defineEmits<Emit>();
+const defaultCurrentMonth = new Date().setHours(0, 0, 0, 0);
+const currentMonth = ref(new Date(defaultCurrentMonth));
 const openDatepicker = ref(false);
 
 const toggleDatepicker = () => {
@@ -79,12 +95,29 @@ const toggleDatepicker = () => {
   openDatepicker.value = !openDatepicker.value;
 };
 
-const parseValue = (value: Date) => {
+const clickToNextMonth = () => {
+  const setDateTime = currentMonth.value.setMonth(
+    currentMonth.value.getMonth() + 1
+  );
+  currentMonth.value = new Date(setDateTime);
+};
+
+const clickToPreviousMonth = () => {
+  const setDateTime = currentMonth.value.setMonth(
+    currentMonth.value.getMonth() - 1
+  );
+  currentMonth.value = new Date(setDateTime);
+};
+
+const parseValue = (inputValue?: Date) => {
+  const value = inputValue ?? new Date();
   return `${value.getFullYear()}/${value.getMonth() + 1}/${value.getDate()}`;
 };
 
 const currentDateTitle = computed(() => {
-  return `${props.value.getFullYear()}年${props.value.getMonth() + 1}月`;
+  return `${currentMonth.value.getFullYear()}年${
+    currentMonth.value.getMonth() + 1
+  }月`;
 });
 
 const width = computed(() => props.width);
