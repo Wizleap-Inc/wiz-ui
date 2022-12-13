@@ -1,7 +1,6 @@
 import { StoryFn } from "@storybook/vue";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import Vue from "vue";
-
-import { THEME } from "./index";
 
 export default {
   title: "Variables/Color",
