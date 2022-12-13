@@ -1,3 +1,4 @@
+import { THEME } from "@wiz-ui/constants";
 import { computed, ref } from "vue";
 
 const zIndex = ref(0);
@@ -9,8 +10,8 @@ const zIndex = ref(0);
  * const confirmZIndex = nextZIndex(); // 2002
  * ```
  */
-export const useZIndex = (initialZIndex: number) => {
-  zIndex.value = initialZIndex;
+export const useZIndex = (initialZIndex: number | string) => {
+  zIndex.value = +initialZIndex || +THEME.zIndex.base;
   const currentZIndex = computed(() => zIndex.value);
 
   const nextZIndex = () => {
