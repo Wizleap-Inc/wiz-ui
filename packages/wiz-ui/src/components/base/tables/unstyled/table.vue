@@ -6,10 +6,9 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
+import { getSpacingCss } from "@wiz-ui/constants/styles/spacing";
 import { computed } from "vue";
-
-import { SpacingKeys } from "@/types/styles/spacing";
-import { getSpacingCSS } from "@/utils/styles/spacing";
 
 defineOptions({
   name: ComponentName.UnstyledTable,
@@ -23,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   space: "no",
 });
 
-const computedSpace = computed(() => getSpacingCSS(props.space));
+const computedSpace = computed(() => getSpacingCss(props.space));
 </script>
 
 <style lang="scss" scoped>

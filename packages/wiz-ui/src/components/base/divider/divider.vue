@@ -13,10 +13,9 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { ColorKeys } from "@wiz-ui/constants/styles/color";
+import { getColorCss } from "@wiz-ui/constants/styles/color";
 import { computed } from "vue";
-
-import { ColorKeys } from "@/types/styles/color";
-import { getColorCss } from "@/utils/styles/color";
 
 defineOptions({
   name: ComponentName.Divider,

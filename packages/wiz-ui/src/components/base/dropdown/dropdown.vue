@@ -17,10 +17,10 @@
 <script setup lang="ts">
 import { THEME } from "@wiz-ui/constants";
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
 import { computed } from "vue";
 
 import { WizPopup, WizPopupContainer, WizVStack } from "@/components";
-import { SpacingKeys } from "@/types/styles/spacing";
 
 defineOptions({
   name: ComponentName.Dropdown,

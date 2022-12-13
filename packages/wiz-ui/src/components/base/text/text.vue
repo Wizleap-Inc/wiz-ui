@@ -11,14 +11,13 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { ColorKeys } from "@wiz-ui/constants/styles/color";
+import { getColorCss } from "@wiz-ui/constants/styles/color";
+import { FontSizeKeys } from "@wiz-ui/constants/styles/font-size";
+import { getFontSizeCss } from "@wiz-ui/constants/styles/font-size";
+import { WhiteSpaceKeys } from "@wiz-ui/constants/styles/white-space";
+import { getWhiteSpaceCss } from "@wiz-ui/constants/styles/white-space";
 import { computed } from "vue";
-
-import { ColorKeys } from "@/types/styles/color";
-import { FontSizeKeys } from "@/types/styles/font-size";
-import { WhiteSpaceKeys } from "@/types/styles/white-space";
-import { getColorCss } from "@/utils/styles/color";
-import { getFontSizeCss } from "@/utils/styles/font-size";
-import { getWhiteSpaceCss } from "@/utils/styles/white-space";
 
 defineOptions({
   name: ComponentName.Text,

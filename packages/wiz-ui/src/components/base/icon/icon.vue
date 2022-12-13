@@ -10,13 +10,13 @@
 <script setup lang="ts">
 import { THEME } from "@wiz-ui/constants";
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { ColorKeys } from "@wiz-ui/constants/styles/color";
+import { getColorCss } from "@wiz-ui/constants/styles/color";
+import { FontSizeKeys } from "@wiz-ui/constants/styles/font-size";
+import { getFontSizeCss } from "@wiz-ui/constants/styles/font-size";
 import { computed } from "vue";
 
 import type { TIcon } from "@/components/icons";
-import { ColorKeys } from "@/types/styles/color";
-import { FontSizeKeys } from "@/types/styles/font-size";
-import { getColorCss } from "@/utils/styles/color";
-import { getFontSizeCss } from "@/utils/styles/font-size";
 
 defineOptions({
   name: ComponentName.Icon,

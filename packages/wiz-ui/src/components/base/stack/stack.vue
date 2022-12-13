@@ -28,10 +28,12 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
+import {
+  getSpacingCss,
+  getCoupleSpacingCss,
+} from "@wiz-ui/constants/styles/spacing";
 import { computed } from "vue";
-
-import { SpacingKeys } from "@/types/styles/spacing";
-import { getSpacingCSS, getCoupleSpacingCSS } from "@/utils/styles/spacing";
 
 defineOptions({
   name: ComponentName.Stack,
@@ -78,17 +80,17 @@ const props = withDefaults(defineProps<Props>(), {
 
 const computedSpacingStyles = computed(() => {
   const spacingStyles = {
-    gap: getSpacingCSS(props.gap) || getCoupleSpacingCSS(props.gx, props.gy),
-    padding: getSpacingCSS(props.p) || getCoupleSpacingCSS(props.px, props.py),
-    paddingTop: getSpacingCSS(props.pt),
-    paddingRight: getSpacingCSS(props.pr),
-    paddingBottom: getSpacingCSS(props.pb),
-    paddingLeft: getSpacingCSS(props.pl),
-    margin: getSpacingCSS(props.m) || getCoupleSpacingCSS(props.mx, props.my),
-    marginTop: getSpacingCSS(props.mt),
-    marginRight: getSpacingCSS(props.mr),
-    marginBottom: getSpacingCSS(props.mb),
-    marginLeft: getSpacingCSS(props.ml),
+    gap: getSpacingCss(props.gap) || getCoupleSpacingCss(props.gx, props.gy),
+    padding: getSpacingCss(props.p) || getCoupleSpacingCss(props.px, props.py),
+    paddingTop: getSpacingCss(props.pt),
+    paddingRight: getSpacingCss(props.pr),
+    paddingBottom: getSpacingCss(props.pb),
+    paddingLeft: getSpacingCss(props.pl),
+    margin: getSpacingCss(props.m) || getCoupleSpacingCss(props.mx, props.my),
+    marginTop: getSpacingCss(props.mt),
+    marginRight: getSpacingCss(props.mr),
+    marginBottom: getSpacingCss(props.mb),
+    marginLeft: getSpacingCss(props.ml),
   };
 
   const isSpacingStylesKey = (key: string): key is keyof typeof spacingStyles =>

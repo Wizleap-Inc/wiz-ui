@@ -10,12 +10,11 @@
 <script setup lang="ts">
 import { THEME } from "@wiz-ui/constants";
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { ColorKeys } from "@wiz-ui/constants/styles/color";
+import { getColorCss } from "@wiz-ui/constants/styles/color";
+import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
+import { getSpacingCss } from "@wiz-ui/constants/styles/spacing";
 import { computed, ref } from "vue";
-
-import { ColorKeys } from "@/types/styles/color";
-import { SpacingKeys } from "@/types/styles/spacing";
-import { getColorCss } from "@/utils/styles/color";
-import { getSpacingCSS } from "@/utils/styles/spacing";
 
 defineOptions({
   name: ComponentName.Anchor,
@@ -47,8 +46,8 @@ const onClick = () => props.clickable && emits("click");
 
 const computedBackgroundColor = computed(() => getColorCss(props.bgColor));
 const computedColor = computed(() => getColorCss(props.color));
-const computedWidth = computed(() => getSpacingCSS(props.size));
-const computedHeight = computed(() => getSpacingCSS(props.size));
+const computedWidth = computed(() => getSpacingCss(props.size));
+const computedHeight = computed(() => getSpacingCss(props.size));
 
 const isImgLoadSuccess = ref(true);
 

@@ -18,9 +18,9 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
 
 import { WizHStack } from "@/components";
-import { SpacingKeys } from "@/types/styles/spacing";
 
 import TabPane from "./tab-pane.vue";
 import { TabItem } from "./types";

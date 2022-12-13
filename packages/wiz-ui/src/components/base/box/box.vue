@@ -6,17 +6,16 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wiz-ui/constants/component/name";
+import { ColorKeys } from "@wiz-ui/constants/styles/color";
+import { getColorCss } from "@wiz-ui/constants/styles/color";
+import { ShadowKeys } from "@wiz-ui/constants/styles/shadow";
+import { getShadowCss } from "@wiz-ui/constants/styles/shadow";
+import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
+import { getSpacingCss } from "@wiz-ui/constants/styles/spacing";
+import { ZIndexKeys } from "@wiz-ui/constants/styles/z-index";
+import { getZIndexCss } from "@wiz-ui/constants/styles/z-index";
 import { computed } from "vue";
 import { StyleValue } from "vue/types/jsx";
-
-import { ColorKeys } from "@/types/styles/color";
-import { ShadowKeys } from "@/types/styles/shadow";
-import { SpacingKeys } from "@/types/styles/spacing";
-import { ZIndexKeys } from "@/types/styles/z-index";
-import { getColorCss } from "@/utils/styles/color";
-import { getShadowCss } from "@/utils/styles/shadow";
-import { getSpacingCSS } from "@/utils/styles/spacing";
-import { getZIndexCSS } from "@/utils/styles/z-index";
 
 defineOptions({
   name: ComponentName.Box,
@@ -61,28 +60,28 @@ const computedStyle = computed(() => {
   if (props.left) style.left = props.left;
   if (props.width) style.width = props.width;
   if (props.height) style.height = props.height;
-  if (props.round) style.borderRadius = getSpacingCSS(props.round);
+  if (props.round) style.borderRadius = getSpacingCss(props.round);
   if (props.roundT) {
-    style.borderRadius = `${getSpacingCSS(props.roundT)} ${getSpacingCSS(
+    style.borderRadius = `${getSpacingCss(props.roundT)} ${getSpacingCss(
       props.roundT
     )} 0 0`;
   }
   if (props.roundR) {
-    style.borderRadius = `0 ${getSpacingCSS(props.roundR)} ${getSpacingCSS(
+    style.borderRadius = `0 ${getSpacingCss(props.roundR)} ${getSpacingCss(
       props.roundR
     )} 0`;
   }
   if (props.roundB) {
-    style.borderRadius = `0 0 ${getSpacingCSS(props.roundB)} ${getSpacingCSS(
+    style.borderRadius = `0 0 ${getSpacingCss(props.roundB)} ${getSpacingCss(
       props.roundB
     )}`;
   }
   if (props.roundL) {
-    style.borderRadius = `${getSpacingCSS(props.roundL)} 0 0 ${getSpacingCSS(
+    style.borderRadius = `${getSpacingCss(props.roundL)} 0 0 ${getSpacingCss(
       props.roundL
     )}`;
   }
-  if (props.zIndex) style.zIndex = getZIndexCSS(props.zIndex);
+  if (props.zIndex) style.zIndex = getZIndexCss(props.zIndex);
   if (props.bgColor) style.backgroundColor = getColorCss(props.bgColor);
   if (props.shadow) style.boxShadow = getShadowCss(props.shadow);
   if (props.dropShadow)

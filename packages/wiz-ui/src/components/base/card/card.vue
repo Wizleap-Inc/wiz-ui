@@ -30,13 +30,16 @@
 <script setup lang="ts">
 import { ComponentName } from "@wiz-ui/constants/component/name";
 import { THEME } from "@wiz-ui/constants/styles";
+import { ColorKeys } from "@wiz-ui/constants/styles/color";
+import { getColorCss } from "@wiz-ui/constants/styles/color";
+import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
+import {
+  getSpacingCss,
+  getCoupleSpacingCss,
+} from "@wiz-ui/constants/styles/spacing";
 import { computed } from "vue";
 
 import { WizHStack, WizVStack, WizIHint } from "@/components";
-import { ColorKeys } from "@/types/styles/color";
-import { SpacingKeys } from "@/types/styles/spacing";
-import { getColorCss } from "@/utils/styles/color";
-import { getSpacingCSS, getCoupleSpacingCSS } from "@/utils/styles/spacing";
 
 defineOptions({
   name: ComponentName.Card,
@@ -67,9 +70,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const computedPadding = computed(() => {
   if (props.px && props.py) {
-    return getCoupleSpacingCSS(props.px, props.py);
+    return getCoupleSpacingCss(props.px, props.py);
   }
-  return getSpacingCSS(props.p);
+  return getSpacingCss(props.p);
 });
 
 const computedBackgroundColor = computed(() =>

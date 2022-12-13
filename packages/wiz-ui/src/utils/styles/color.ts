@@ -1,6 +1,5 @@
 import { THEME } from "@wiz-ui/constants";
-
-import { ColorKeys, ColorKeysSplit } from "@/types/styles/color";
+import { ColorKeys, ColorKeysSplit } from "@wiz-ui/constants/styles/color";
 
 export const getColorCss = (color: ColorKeys) => {
   const [k, v] = color.split(".") as ColorKeysSplit;
