@@ -1,41 +1,48 @@
 <template>
-  <WizHStack class="wiz-radio" gap="xl2">
-    <div v-for="(option, key) in options" :key="key">
-      <input
-        class="wiz-radio__input"
-        type="radio"
-        :name="`radio${key}`"
-        :id="`radio${key}`"
-        :value="option.value"
-        v-model="radioValue"
-        :disabled="disabled"
-      />
-      <label class="wiz-radio__label" :for="`radio${key}`">
-        {{ option.label }}
-      </label>
-    </div>
-  </WizHStack>
+  <div class="wiz-radio">
+    <WizStack gap="xl2" :direction="direction" wrap>
+      <div v-for="(option, key) in options" :key="key">
+        <input
+          class="wiz-radio__input"
+          type="radio"
+          :name="`radio${key}`"
+          :id="`radio${key}`"
+          :value="option.value"
+          v-model="radioValue"
+          :disabled="disabled"
+        />
+        <label
+          :class="{
+            'wiz-radio__label': true,
+            'wiz-radio__label--disabled': disabled,
+          }"
+          :for="`radio${key}`"
+        >
+          {{ option.label }}
+        </label>
+      </div>
+    </WizStack>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 
-import WizHStack from "@/components/base/stack/h-stack.vue";
+import WizStack from "@/components/base/stack/stack.vue";
 import { THEME } from "@/constants/styles";
 
-interface Option {
-  label: string;
-  value: number;
-}
+import { RadioOption } from "./types";
 
 interface Props {
-  options: Option[];
+  options: RadioOption[];
   value: number;
   disabled?: boolean;
+  direction?: "horizontal" | "vertical";
 }
 
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
+  direction: "horizontal",
 });
 
 interface Emit {
@@ -64,6 +71,8 @@ const spacingMax = THEME.spacing.max;
 $border-width: 1px;
 
 .wiz-radio {
+  width: fit-content;
+
   &__input {
     position: absolute;
     opacity: 0;
@@ -97,6 +106,11 @@ $border-width: 1px;
     color: v-bind(colorGray600);
     gap: v-bind(spacingSm);
     cursor: pointer;
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
 
     &:before {
       content: "";

@@ -10,6 +10,9 @@ export default {
     input: {
       action: "input",
     },
+    disabled: {
+      control: { type: "boolean" },
+    },
   },
 };
 const Template: StoryFn = (_, { argTypes }) => ({
@@ -38,5 +41,20 @@ Default.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+  options: [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "test3", value: 3 },
+  ],
   disabled: true,
+};
+
+export const Vertical = Template.bind({});
+Vertical.args = {
+  options: [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "test3", value: 3 },
+  ],
+  direction: "vertical",
 };
