@@ -20,8 +20,13 @@
 <script setup lang="ts">
 import { withDefaults } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 import { SPACING_MAP } from "@/constants/styles/spacing";
+
+defineOptions({
+  name: ComponentName.TextButton,
+});
 
 interface Props {
   variant?: "primary" | "sub";

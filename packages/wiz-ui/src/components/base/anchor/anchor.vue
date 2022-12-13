@@ -1,28 +1,28 @@
 <template>
-  <RouterLink v-if="isRouterLink" class="wiz-anchor" :to="to">
-    <span class="wiz-anchor__icon">
-      <component v-if="icon" :is="icon" />
-    </span>
-    <slot />
-  </RouterLink>
-  <a
-    v-else
+  <component
+    :is="isRouterLink ? 'router-link' : 'a'"
     class="wiz-anchor"
-    :href="typeof to === 'object' ? to.path : to"
-    target="_blank"
-    rel="noopener noreferrer"
+    :to="isRouterLink ? to : undefined"
+    :href="isRouterLink ? undefined : to"
+    :target="openInNewTab ? '_blank' : undefined"
+    :rel="openInNewTab ? 'noopener noreferrer' : undefined"
   >
-    <span class="wiz-anchor__icon">
+    <span class="wiz-anchor__icon" v-if="iconPosition === 'left'">
       <component v-if="icon" :is="icon" />
     </span>
     <slot />
-  </a>
+    <span class="wiz-anchor__icon" v-if="iconPosition === 'right'">
+      <component v-if="icon" :is="icon" />
+    </span>
+  </component>
 </template>
 
 <script setup lang="ts">
-import Vue, { computed, withDefaults } from "vue";
+import { computed, withDefaults } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
+import type { TIcon } from "@/components/icons";
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
@@ -33,15 +33,21 @@ interface Props {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: "normal" | "bold";
-  target?: "_blank" | "_self";
-  icon?: Vue;
+  icon?: TIcon;
+  iconPosition?: "left" | "right";
+  openInNewTab?: boolean;
+  nowrap?: boolean;
 }
+
+defineOptions({
+  name: ComponentName.Anchor,
+});
 
 const props = withDefaults(defineProps<Props>(), {
   color: "blue.800",
   fontSize: "md",
   fontWeight: "normal",
-  target: "_self",
+  iconPosition: "left",
 });
 
 const isRouterLink = computed(() => {
@@ -51,7 +57,7 @@ const isRouterLink = computed(() => {
   // propsのtoがhttpから始まってる時点で外部リンクなので、aタグを使う
   if (props.to.startsWith("http")) return false;
   // propsのtargetが_blankだったら新規タブで読み込まないといけないので、aタグ
-  return props.target !== "_blank";
+  return props.openInNewTab === false;
 });
 
 const computedColor = computed(() => {
@@ -63,6 +69,7 @@ const computedFontSize = computed(() => {
 });
 
 const computedFontWeight = computed(() => props.fontWeight);
+const computedNowrap = computed(() => (props.nowrap ? "nowrap" : "normal"));
 </script>
 
 <style lang="scss" scoped>
@@ -74,6 +81,7 @@ const computedFontWeight = computed(() => props.fontWeight);
   font-weight: v-bind(computedFontWeight);
   text-decoration: none;
   cursor: pointer;
+  white-space: v-bind(computedNowrap);
 
   &:hover {
     text-decoration: underline;

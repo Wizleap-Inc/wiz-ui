@@ -1,4 +1,4 @@
-name: Lint Wiz-UI library
+name: Lint check Wiz-UI library
 
 on: push
 

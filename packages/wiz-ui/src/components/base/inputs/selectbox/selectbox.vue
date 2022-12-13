@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer v-model="openSelectBox">
+  <WizPopupContainer v-model="openSelectBox" :expand="expand">
     <div
       class="wiz-selectbox"
       :class="{
@@ -12,7 +12,7 @@
         :class="{ 'wiz-selectbox__box--selected': !!value }"
         @click="toggleSelectBox"
       >
-        <WizHStack gap="sm" align="center" justify="between" height="100%">
+        <WizHStack align="center" justify="between" height="100%">
           <span v-if="!value">{{ placeholder }}</span>
           <span
             v-for="(option, key) in options"
@@ -55,22 +55,25 @@ import { ref, computed } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 
 import { WizHStack } from "../../stack";
 import { WizVStack } from "../../stack";
 
-interface Option {
-  label: string;
-  value: string;
-}
+import { Option } from "./types";
+
+defineOptions({
+  name: ComponentName.SelectBox,
+});
 
 interface Props {
   options: Option[];
   value: string;
-  placeholder: string;
+  placeholder?: string;
   width?: string;
   disabled?: boolean;
+  expand?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -98,7 +101,7 @@ const onSelect = (value: string) => {
   emit("input", value);
 };
 
-const width = computed(() => props.width);
+const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
@@ -119,12 +122,11 @@ $border-width: 1px;
 
 .wiz-selectbox {
   position: relative;
-  width: max-content;
+  width: v-bind(computedWidth);
   height: v-bind(spacingXl3);
   background: v-bind(colorWhite800);
   border: $border-width solid v-bind(colorGray400);
   border-radius: v-bind(spacingXs2);
-  box-sizing: border-box;
   cursor: pointer;
 
   &--active {
@@ -142,7 +144,8 @@ $border-width: 1px;
     padding: v-bind(spacingNo) v-bind(spacingXs);
     font-size: v-bind(fontSizeSm);
     color: v-bind(colorGray500);
-    width: v-bind(width);
+    width: 100%;
+    box-sizing: border-box;
 
     &__selected-value {
       overflow: hidden;
@@ -168,6 +171,9 @@ $border-width: 1px;
     padding: v-bind(spacingXs);
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
+    box-sizing: border-box;
+    max-height: 25rem;
+    overflow-y: auto;
   }
 
   &__selector-option {

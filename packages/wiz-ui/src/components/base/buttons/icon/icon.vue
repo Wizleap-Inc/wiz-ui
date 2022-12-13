@@ -5,10 +5,12 @@
       'wiz-icon-button--variant-primary': variant === 'primary',
       'wiz-icon-button--variant-sub': variant === 'sub',
       'wiz-icon-button--variant-transparent': variant === 'transparent',
+      'wiz-icon-button--variant-link': variant === 'link',
       'wiz-icon-button--disabled': disabled,
       'wiz-icon-button--size-sm': size === 'sm',
       'wiz-icon-button--size-md': size === 'md',
       'wiz-icon-button--size-lg': size === 'lg',
+      'wiz-icon-button--size-xl': size === 'xl',
     }"
     @click="onClick"
   >
@@ -17,15 +19,19 @@
 </template>
 
 <script setup lang="ts">
-import Vue from "vue";
-
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.IconButton,
+});
 
 interface Props {
-  icon: Vue;
-  variant?: "primary" | "sub" | "transparent";
+  icon: TIcon;
+  variant?: "primary" | "sub" | "transparent" | "link";
   disabled?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 interface Emits {
@@ -48,24 +54,27 @@ const colorGreen800 = THEME.color.green["800"];
 const colorGray700 = THEME.color.gray["700"];
 const colorGray400 = THEME.color.gray["400"];
 const colorGray300 = THEME.color.gray["300"];
+const coloBlue800 = THEME.color.blue["800"];
 const shadowMd = THEME.shadow.md;
 const spacingXs = THEME.spacing.xs;
 const fontSizeXl = THEME.fontSize.xl;
 const fontSizeXl2 = THEME.fontSize.xl2;
 const fontSizeXl3 = THEME.fontSize.xl3;
+const fontSizeXl4 = THEME.fontSize.xl4;
 </script>
 
 <style lang="scss" scoped>
+$sub-button-border-width: 1px;
 .wiz-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  padding: v-bind(spacingXs);
 
   &--variant {
     &-primary {
+      padding: v-bind(spacingXs);
       box-shadow: v-bind(shadowMd);
       background: v-bind(colorGradient);
       border: none;
@@ -79,7 +88,8 @@ const fontSizeXl3 = THEME.fontSize.xl3;
 
     &-sub {
       background: v-bind(colorWhite800);
-      border: 1px solid v-bind(colorGray400);
+      border: $sub-button-border-width solid v-bind(colorGray400);
+      padding: calc(v-bind(spacingXs) - $sub-button-border-width);
       & > svg {
         fill: v-bind(colorGreen800);
       }
@@ -94,6 +104,15 @@ const fontSizeXl3 = THEME.fontSize.xl3;
       padding: 0;
       & > svg {
         fill: v-bind(colorGray700);
+      }
+    }
+
+    &-link {
+      background: none;
+      border: none;
+      padding: 0;
+      & > svg {
+        fill: v-bind(coloBlue800);
       }
     }
   }
@@ -113,6 +132,10 @@ const fontSizeXl3 = THEME.fontSize.xl3;
 
   &--size-lg {
     font-size: v-bind(fontSizeXl3);
+  }
+
+  &--size-xl {
+    font-size: v-bind(fontSizeXl4);
   }
 }
 </style>

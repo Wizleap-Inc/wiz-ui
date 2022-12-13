@@ -12,6 +12,11 @@
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.FlatTh,
+});
 
 interface Props {
   width?: string;

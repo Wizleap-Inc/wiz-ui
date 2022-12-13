@@ -14,9 +14,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { getColorCss } from "@/utils/styles/color";
 
+defineOptions({
+  name: ComponentName.Divider,
+});
 interface Props {
   color?: ColorKeys;
   variant?: "solid" | "dashed" | "dotted";

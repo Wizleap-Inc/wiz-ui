@@ -1,9 +1,11 @@
 <template>
   <p v-if="computedIsP" class="wiz-text" :style="overflowStyles">
-    <slot />
+    <span class="wiz-text__dummy" v-if="dummyValue">{{ dummyValue }}</span>
+    <slot v-else />
   </p>
   <span v-else-if="computedIsSpan" class="wiz-text" :style="overflowStyles">
-    <slot />
+    <span class="wiz-text__dummy" v-if="dummyValue">{{ dummyValue }}</span>
+    <slot v-else />
   </span>
 </template>
 
@@ -11,10 +13,12 @@
 import { computed } from "vue";
 
 import { ComponentName } from "@/constants/component/name";
-import { FONT_SIZE_MAP } from "@/constants/styles/font-size";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
+import { WhiteSpaceKeys } from "@/types/styles/white-space";
 import { getColorCss } from "@/utils/styles/color";
+import { getFontSizeCss } from "@/utils/styles/font-size";
+import { getWhiteSpaceCss } from "@/utils/styles/white-space";
 
 defineOptions({
   name: ComponentName.Text,
@@ -24,23 +28,31 @@ interface Props {
   as?: "p" | "span";
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
+  lineHeight?: FontSizeKeys | number;
   bold?: boolean;
   maxLines?: number;
-  nowrap?: boolean;
+  whiteSpace?: WhiteSpaceKeys;
+  dummyValue?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   as: "p",
   color: "gray.900",
   fontSize: "md",
+  lineHeight: 1.5,
+  whiteSpace: "normal",
 });
 
 const computedIsP = computed(() => props.as === "p");
 const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
-const computedFontSize = computed(() => FONT_SIZE_MAP[props.fontSize]);
+const computedFontSize = computed(() => getFontSizeCss(props.fontSize));
+const computedLineHeight = computed(() => {
+  if (typeof props.lineHeight === "number") return props.lineHeight;
+  return getFontSizeCss(props.lineHeight);
+});
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
-const computedWhiteSpace = computed(() => (props.nowrap ? "nowrap" : "normal"));
+const computedWhiteSpace = computed(() => getWhiteSpaceCss(props.whiteSpace));
 
 const overflowStyles = computed(() => {
   if (!props.maxLines) return {};
@@ -55,11 +67,15 @@ const overflowStyles = computed(() => {
 
 <style lang="scss" scoped>
 .wiz-text {
-  line-height: 1.5;
+  line-height: v-bind(computedLineHeight);
   margin: 0;
   color: v-bind(computedColor);
   font-size: v-bind(computedFontSize);
   font-weight: v-bind(computedFontWeight);
   white-space: v-bind(computedWhiteSpace);
+
+  &__dummy {
+    filter: blur(0.25rem);
+  }
 }
 </style>

@@ -23,12 +23,17 @@
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
 import { progressPointSize } from "./constants";
 
 import type { ProgressStatus } from "./types";
 
-export interface Props {
+defineOptions({
+  name: ComponentName.ProgressPoint,
+});
+
+interface Props {
   status: ProgressStatus;
   value?: number;
 }

@@ -18,3 +18,5 @@ export * from "./avatar";
 export * from "./tab";
 export * from "./popup";
 export * from "./header";
+export * from "./dropdown";
+export * from "./dialog";

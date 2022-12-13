@@ -11,6 +11,7 @@
       :name="name"
       :disabled="disabled"
       :expand="expand"
+      :width="width"
       :type="isPasswordVisible ? 'text' : 'password'"
     />
     <div
@@ -30,8 +31,13 @@ import { computed, ref } from "vue";
 
 import { WizIEye } from "@/components";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
 import { PrivateBaseInput } from "../base";
+
+defineOptions({
+  name: ComponentName.PasswordInput,
+});
 
 interface Props {
   value: string;
@@ -39,6 +45,7 @@ interface Props {
   placeholder?: string;
   disabled?: boolean;
   expand?: boolean;
+  width?: string;
 }
 
 interface Emit {
@@ -57,6 +64,8 @@ const passwordValue = computed({
 
 const accentColor = THEME.color.green["800"];
 const defaultColor = THEME.color.gray["400"];
+const fontSizeXs = THEME.fontSize.xs;
+const fontSizeSm = THEME.fontSize.sm;
 const fontSizeXl2 = THEME.fontSize.xl2;
 const spacingSm = THEME.spacing.sm;
 </script>
@@ -65,6 +74,10 @@ const spacingSm = THEME.spacing.sm;
 .wiz-password-input {
   position: relative;
   width: fit-content;
+
+  input::placeholder {
+    font-size: calc((v-bind(fontSizeSm) + v-bind(fontSizeXs)) / 2);
+  }
 
   &--expand {
     width: 100%;

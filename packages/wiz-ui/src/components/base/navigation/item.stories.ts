@@ -66,3 +66,10 @@ Default.args = {
   label: "Home",
   to: "/home",
 };
+
+export const External = Template.bind({});
+External.args = {
+  icon: WizIDashboard,
+  label: "Home",
+  to: "https://wizleap.co.jp",
+};

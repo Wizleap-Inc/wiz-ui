@@ -8,6 +8,7 @@
 import { computed } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { ShadowKeys } from "@/types/styles/shadow";
 import { SpacingKeys } from "@/types/styles/spacing";
@@ -17,6 +18,9 @@ import { getShadowCss } from "@/utils/styles/shadow";
 import { getSpacingCSS } from "@/utils/styles/spacing";
 import { getZIndexCSS } from "@/utils/styles/z-index";
 
+defineOptions({
+  name: ComponentName.Box,
+});
 interface Props {
   position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
   top?: string;

@@ -16,15 +16,17 @@
 import { computed, ref } from "vue";
 
 import { WizBox, WizTab } from "@/components/base";
-import { TabItem } from "@/components/base/tab/types";
+import { ComponentName } from "@/constants/component/name";
 
 import { WizNotificationList } from "./list";
-import { NotificationItem } from "./types";
+import { NotificationItem, NotificationTabItem } from "./types";
+
+defineOptions({
+  name: ComponentName.Notification,
+});
 
 interface Props {
-  tabs: (TabItem & {
-    variant: "primary" | "secondary";
-  })[];
+  tabs: NotificationTabItem[];
   notifications: NotificationItem[];
   height?: string;
 }

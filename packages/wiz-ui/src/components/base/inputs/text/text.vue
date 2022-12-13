@@ -5,6 +5,7 @@
     :name="name"
     :disabled="disabled"
     :expand="expand"
+    :width="width"
     type="text"
   />
 </template>
@@ -12,14 +13,20 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
+
 import { PrivateBaseInput } from "../base";
 
+defineOptions({
+  name: ComponentName.TextInput,
+});
 interface Props {
   value: string;
   name: string;
   placeholder?: string;
   disabled?: boolean;
   expand?: boolean;
+  width?: string;
 }
 
 const props = defineProps<Props>();

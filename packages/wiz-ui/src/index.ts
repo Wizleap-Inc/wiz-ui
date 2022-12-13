@@ -1,4 +1,18 @@
+import Vue from "vue";
+
+import * as components from "./components";
 export * from "./components";
 export * from "./constants";
 
-export const version = "0.1.4";
+export const install = (vue: typeof Vue) => {
+  Object.values(components).forEach((component) => {
+    if (component.name) vue.component(component.name, component);
+  });
+};
+
+export const version = "0.2.3";
+
+export default {
+  install,
+  version,
+};

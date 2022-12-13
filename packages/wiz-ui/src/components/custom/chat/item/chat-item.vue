@@ -16,9 +16,13 @@
         borderColor="gray.300"
         :maxWidth="maxChatItemWidth"
       >
-        <WizText as="span" fontSize="xs" color="gray.700">{{
-          content.message
-        }}</WizText>
+        <WizText
+          as="span"
+          fontSize="xs"
+          color="gray.700"
+          whiteSpace="preLine"
+          >{{ content.message }}</WizText
+        >
       </WizCard>
       <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
         <WizText
@@ -39,9 +43,14 @@
 
 <script setup lang="ts">
 import { WizHStack, WizText, WizVStack, WizCard } from "@/components";
+import { ComponentName } from "@/constants/component/name";
 import { formatDateToTime } from "@/utils/date";
 
 import { Message } from "..";
+
+defineOptions({
+  name: ComponentName.ChatItem,
+});
 
 interface Props {
   content: Message;

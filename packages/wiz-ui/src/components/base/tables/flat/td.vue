@@ -13,7 +13,11 @@
 
 <script setup lang="ts">
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
+defineOptions({
+  name: ComponentName.FlatTd,
+});
 interface Props {
   align?: "left" | "center" | "right";
 }

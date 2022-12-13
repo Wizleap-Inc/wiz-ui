@@ -1,6 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 
 import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
+import { WHITE_SPACE_MAP_ACCESSORS } from "../../../constants/styles/white-space";
 
 import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/font-size";
 import WizText from "./text.vue";
@@ -27,6 +28,13 @@ export default {
     maxLines: {
       control: { type: "number" },
     },
+    whiteSpace: {
+      control: { type: "select" },
+      options: WHITE_SPACE_MAP_ACCESSORS,
+    },
+    dummyValue: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -52,6 +60,19 @@ export const Bold = Template.bind({});
 Bold.args = {
   as: "p",
   bold: true,
+  slot: "これはテキストです。",
+};
+
+export const WhiteSpace = Template.bind({});
+WhiteSpace.args = {
+  as: "p",
+  whiteSpace: "preLine",
+  slot: "これはテキストです。\n改行を含みます。",
+};
+
+export const DummyValue = Template.bind({});
+DummyValue.args = {
+  dummyValue: "ABCDEFG",
   slot: "これはテキストです。",
 };
 

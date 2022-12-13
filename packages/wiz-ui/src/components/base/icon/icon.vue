@@ -8,31 +8,38 @@
 </template>
 
 <script setup lang="ts">
-import Vue, { computed } from "vue";
+import { computed } from "vue";
 
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
 import { getFontSizeCss } from "@/utils/styles/font-size";
 
+defineOptions({
+  name: ComponentName.Icon,
+});
 interface Props {
   size?: FontSizeKeys;
   color?: ColorKeys;
   badge?: string;
   badgeBgColor?: ColorKeys;
   badgeColor?: ColorKeys;
-  icon: Vue;
+  icon: TIcon;
 }
+
 const props = withDefaults(defineProps<Props>(), {
   size: "xl2",
-  color: "gray.900",
   badgeColor: "white.800",
   badgeBgColor: "red.800",
 });
 
 const computedSize = computed(() => getFontSizeCss(props.size));
-const computedColor = computed(() => getColorCss(props.color));
+const computedColor = computed(() =>
+  props.color ? getColorCss(props.color) : "currentColor"
+);
 const computedBadgeColor = computed(() => getColorCss(props.badgeColor));
 const computedBadgeBgColor = computed(() => getColorCss(props.badgeBgColor));
 

@@ -53,14 +53,21 @@ import {
   WizText,
 } from "@/components/base";
 import { WizIChevronRight } from "@/components/icons";
+import { ComponentName } from "@/constants/component/name";
 import { formatDateToYMDHM, formatHowPast } from "@/utils/date";
 
+import { PanelVariant } from "./types";
+
 import type { TableInfoItem } from "../types";
+
+defineOptions({
+  name: ComponentName.NotificationPanel,
+});
 
 interface Props {
   title: string;
   timestamp: Date;
-  variant?: "primary" | "secondary";
+  variant?: PanelVariant;
   read: boolean;
   tableInfo?: TableInfoItem[];
 }
@@ -83,7 +90,6 @@ interface Emit {
 const emit = defineEmits<Emit>();
 
 const onClick = () => {
-  console.log("a");
   emit("click");
 };
 </script>

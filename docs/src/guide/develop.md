@@ -1,4 +1,4 @@
-# 開発方法
+# 開発Tips
 
 ## Storybook
 
@@ -47,4 +47,49 @@ const HelloWorld = Vue.component({
     }
   `,
 })
+```
+
+これを使えば`*.stories.ts`に複数のコンポーネントを書くことができます。
+
+```ts
+import HelloWorld from './HelloWorld.vue'
+import { StoryFn } from '@storybook/vue'
+
+export default {
+  title: 'HelloWorld',
+  component: HelloWorld,
+  argTypes: {
+    disabled: {
+      control: { type: 'boolean' }
+    },
+    variant: {
+      control: { type: 'select' },
+      options: ['primary', 'secondary']
+    },
+  },
+}
+
+const Template: StoryFn = ({ args }, { argTypes }) => ({
+  components: { HelloWorld },
+  template: `
+    <HelloWorld v-bind="$props" />
+  `,
+})
+
+export const Default = Template.bind({})
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true, // <HelloWorld disabled />
+}
+
+export const Primary = Template.bind({})
+Primary.args = {
+  variant: 'primary', // <HelloWorld variant="primary" />
+}
+
+export const Secondary = Template.bind({})
+Secondary.args = {
+  variant: 'secondary', // <HelloWorld variant="secondary" />
+}
 ```

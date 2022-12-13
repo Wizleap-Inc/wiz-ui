@@ -6,20 +6,26 @@
 </template>
 
 <script setup lang="ts">
-import Vue, { computed } from "vue";
+import { computed } from "vue";
 
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { FONT_SIZE_MAP } from "@/constants/styles/font-size";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";
+
+defineOptions({
+  name: ComponentName.Tag,
+});
 
 interface Props {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: "normal" | "bold";
   backgroundColor?: ColorKeys;
-  icon?: Vue;
+  icon?: TIcon;
   label: string;
 }
 

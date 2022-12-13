@@ -17,12 +17,18 @@
 
 <script setup lang="ts">
 import { WizDivider, WizBox } from "@/components/base";
+import { ComponentName } from "@/constants/component/name";
 
 import { WizNotificationPanel } from "..";
+import { PanelVariant } from "../panel/types";
 import { NotificationItem } from "../types";
 
+defineOptions({
+  name: ComponentName.NotificationList,
+});
+
 interface Props {
-  variant?: "primary" | "secondary";
+  variant?: PanelVariant;
   notifications: NotificationItem[];
   height?: string;
 }

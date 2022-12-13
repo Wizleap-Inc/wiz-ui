@@ -1,8 +1,10 @@
 import { StoryFn } from "@storybook/vue";
+import { provide } from "vue";
 
 import { WizTextButton } from "@/components";
 import { THEME } from "@/constants";
 import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
+import { globalKey, useGlobalProvider } from "@/providers";
 
 import { WizHeader } from ".";
 
@@ -18,7 +20,19 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    sticky: {
+      control: { type: "boolean" },
+    },
   },
+  decorators: [
+    (story: StoryFn) => ({
+      components: { story },
+      setup() {
+        provide(globalKey, useGlobalProvider());
+      },
+      template: `<story />`,
+    }),
+  ],
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
@@ -75,7 +89,7 @@ export const Fixed: StoryFn = () => ({
   components: { WizHeader, WizTextButton },
   template: `
     <div style="height: 200vh">
-      <wiz-header>
+      <wiz-header sticky>
         <template #left>
           <wiz-text-button>Click</wiz-text-button>
           <wiz-text-button>Click</wiz-text-button>

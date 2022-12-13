@@ -11,16 +11,21 @@
 import { computed, ref } from "vue";
 
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { getColorCss } from "@/utils/styles/color";
 import { getSpacingCSS } from "@/utils/styles/spacing";
 
+defineOptions({
+  name: ComponentName.Anchor,
+});
+
 interface Props {
+  src: string;
   size?: SpacingKeys;
   color?: ColorKeys;
   bgColor?: ColorKeys;
-  src: string;
   alt?: string;
   fallback?: string;
   clickable?: boolean;

@@ -1,4 +1,5 @@
 import "@wizleap-inc/wiz-ui/dist/style.css";
+import "./styles/global.css";
 import Vue from "vue";
 import VueRouter from "vue-router";
 

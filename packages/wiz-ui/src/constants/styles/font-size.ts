@@ -19,6 +19,10 @@ export const FONT_SIZE_MAP = {
   xl3: "1.75rem",
   /** 32px */
   xl4: "2rem",
+  /** 36px */
+  xl5: "2.25rem",
+  /** 40px */
+  xl6: "2.5rem",
 } as const;
 
 export const FONT_SIZE_ACCESSORS = Object.keys(FONT_SIZE_MAP) as FontSizeKeys[];

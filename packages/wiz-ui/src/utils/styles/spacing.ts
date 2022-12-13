@@ -7,4 +7,4 @@ export const getSpacingCSS = (spacings?: SpacingKeys) =>
 export const getCoupleSpacingCSS = (
   spacingX?: SpacingKeys,
   spacingY?: SpacingKeys
-) => `${SPACING_MAP[spacingX || "no"]} ${SPACING_MAP[spacingY || "no"]}`;
+) => `${SPACING_MAP[spacingY || "no"]} ${SPACING_MAP[spacingX || "no"]}`;

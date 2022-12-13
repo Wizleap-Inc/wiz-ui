@@ -1,6 +1,9 @@
 <template>
-  <RouterLink
-    :to="to"
+  <component
+    :is="isExternalLink ? 'a' : 'router-link'"
+    :to="!isExternalLink ? to : undefined"
+    :href="isExternalLink ? to : undefined"
+    :target="isExternalLink ? '_blank' : undefined"
     :class="{
       'wiz-navigation-item': true,
       'wiz-navigation-item--active': active,
@@ -10,23 +13,33 @@
     <div class="wiz-navigation-item__text">
       {{ label }}
     </div>
-  </RouterLink>
+  </component>
 </template>
 
 <script setup lang="ts">
-import Vue from "vue";
+import { computed } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
+import type { TIcon } from "@/components/icons";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
+
+defineOptions({
+  name: ComponentName.NavigationItem,
+});
 
 interface Props {
-  icon: Vue;
+  icon: TIcon;
   label: string;
   active: boolean;
   to: RouterLinkProps["to"];
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const isExternalLink = computed(
+  () => typeof props.to === "string" && props.to.startsWith("http")
+);
 
 const transparent = THEME.color.transparent;
 const gray700 = THEME.color.gray["700"];
@@ -90,6 +103,7 @@ const itemPadding = `${spacingXs} ${spacingSm} ${spacingXs} ${spacingXl}`;
   &__text {
     font-size: v-bind(fontSizeXs);
     min-width: 0;
+    white-space: nowrap;
   }
 }
 </style>

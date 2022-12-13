@@ -12,13 +12,13 @@
         :content="content.status === 'none' ? undefined : content.tooltip"
       >
         <span class="wiz-progress__item__annotation">
-          <WizText fontSize="xs2" color="red.800" nowrap>
+          <WizText fontSize="xs2" color="red.800" whiteSpace="nowrap">
             {{ content.annotation }}
           </WizText>
         </span>
         <WizProgressPoint :status="content.status" :value="content.value" />
         <span class="wiz-progress__item__label">
-          <WizText fontSize="xs2" color="gray.600" nowrap>
+          <WizText fontSize="xs2" color="gray.600" whiteSpace="nowrap">
             {{ content.label }}
           </WizText>
         </span>
@@ -32,12 +32,17 @@
 import { WizText } from "@/components/base/text";
 import { WizTooltip } from "@/components/base/tooltip";
 import { THEME } from "@/constants";
+import { ComponentName } from "@/constants/component/name";
 
 import { WizProgressPoint, WizProgressLine } from ".";
 
 import type { ProgressItem } from "./types";
 
-export interface Props {
+defineOptions({
+  name: ComponentName.ProgressBar,
+});
+
+interface Props {
   contents: ProgressItem[];
 }
 

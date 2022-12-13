@@ -28,9 +28,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { ComponentName } from "@/constants/component/name";
 import { THEME } from "@/constants/styles";
 
 import { panelItems } from "./types";
+
+defineOptions({
+  name: ComponentName.PanelSwitch,
+});
 
 interface Props {
   value: number;

@@ -3,7 +3,6 @@
     :class="{
       'wiz-text-input': true,
       'wiz-text-input--disabled': disabled,
-      'wiz-text-input--expand': expand,
     }"
     :placeholder="placeholder"
     :name="name"
@@ -15,7 +14,14 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@/constants";
+import { computed } from "vue";
+
+import { ComponentName, THEME } from "@/constants";
+
+defineOptions({
+  name: ComponentName.BaseInput,
+});
+
 interface Props {
   value: string;
   name: string;
@@ -23,16 +29,24 @@ interface Props {
   disabled?: boolean;
   expand?: boolean;
   type: "text" | "password";
+  width?: string;
 }
+
+const props = withDefaults(defineProps<Props>(), {
+  width: "10rem",
+});
+
 interface Emit {
   (e: "input", value: string): void;
 }
-defineProps<Props>();
+
 const emit = defineEmits<Emit>();
+
 const onInput = (e: Event) => {
   const target = e.target as HTMLInputElement;
   emit("input", target.value);
 };
+
 const fontSizeSm = THEME.fontSize.sm;
 const green800 = THEME.color.green["800"];
 const grey300 = THEME.color.gray["300"];
@@ -42,6 +56,7 @@ const grey500 = THEME.color.gray["500"];
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
 const spacingMd = THEME.spacing.md;
+const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 </script>
 
 <style lang="scss" scoped>
@@ -52,6 +67,9 @@ const spacingMd = THEME.spacing.md;
   font-size: v-bind(fontSizeSm);
   line-height: 1.5;
   color: v-bind(grey700);
+  box-sizing: border-box;
+  width: v-bind(computedWidth);
+
   &::placeholder {
     color: v-bind(grey500);
   }
@@ -62,9 +80,6 @@ const spacingMd = THEME.spacing.md;
   &--disabled {
     background-color: v-bind(grey300);
     cursor: not-allowed;
-  }
-  &--expand {
-    width: calc(100% - 2 * v-bind(spacingMd));
   }
 }
 </style>
