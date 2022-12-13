@@ -1,4 +1,4 @@
-import { Z_INDEX_MAP } from "@/constants/styles/z-index";
+import { Z_INDEX_MAP } from "@wiz-ui/constants/styles/z-index";
 
 import { BREAKPOINT_MAP } from "./breakpoint";
 import { COLOR_MAP } from "./color";

@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed, withDefaults } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
 import type { TIcon } from "@/components/icons";
-import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { getColorCss } from "@/utils/styles/color";

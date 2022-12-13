@@ -13,11 +13,11 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wiz-ui/constants";
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed, useSlots } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 import { globalInject, globalKey } from "@/providers";
 
 defineOptions({

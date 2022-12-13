@@ -20,13 +20,13 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wiz-ui/constants";
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { ref } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
 import type { TIcon } from "@/components/icons";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 
 defineOptions({
   name: ComponentName.ToggleButton,

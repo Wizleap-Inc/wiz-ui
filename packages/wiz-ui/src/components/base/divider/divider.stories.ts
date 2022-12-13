@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/vue";
+import { COLOR_MAP_ACCESSORS } from "@wiz-ui/constants/styles/color";
 
 import { WizDivider } from "@/components";
-import { COLOR_MAP_ACCESSORS } from "@/constants/styles/color";
 
 export default {
   title: "Base/Divider",

@@ -18,11 +18,10 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
+import { THEME } from "@wiz-ui/constants/styles";
+import { SPACING_MAP } from "@wiz-ui/constants/styles/spacing";
 import { withDefaults } from "vue";
-
-import { ComponentName } from "@/constants/component/name";
-import { THEME } from "@/constants/styles";
-import { SPACING_MAP } from "@/constants/styles/spacing";
 
 defineOptions({
   name: ComponentName.TextButton,

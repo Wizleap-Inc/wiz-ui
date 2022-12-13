@@ -18,12 +18,12 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wiz-ui/constants";
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
 import { WizHStack, WizIconButton, WizIMenu } from "@/components";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 import { globalInject, globalKey } from "@/providers";
 import { SpacingKeys } from "@/types/styles/spacing";
 

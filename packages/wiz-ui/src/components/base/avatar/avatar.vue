@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wiz-ui/constants";
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed, ref } from "vue";
 
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { getColorCss } from "@/utils/styles/color";

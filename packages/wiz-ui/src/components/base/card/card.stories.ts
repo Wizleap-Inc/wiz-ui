@@ -1,8 +1,8 @@
 import { StoryFn } from "@storybook/vue";
+import { COLOR_MAP_ACCESSORS } from "@wiz-ui/constants/styles/color";
+import { SPACING_ACCESSORS } from "@wiz-ui/constants/styles/spacing";
 
 import { WizTextButton } from "@/components";
-import { COLOR_MAP_ACCESSORS } from "@/constants/styles/color";
-import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
 
 import WizCard from "./card.vue";
 

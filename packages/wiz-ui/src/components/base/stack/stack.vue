@@ -27,9 +27,9 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed } from "vue";
 
-import { ComponentName } from "@/constants/component/name";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { getSpacingCSS, getCoupleSpacingCSS } from "@/utils/styles/spacing";
 

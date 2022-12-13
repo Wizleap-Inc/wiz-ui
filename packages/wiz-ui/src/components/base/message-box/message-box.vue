@@ -17,11 +17,11 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
+import { THEME } from "@wiz-ui/constants/styles";
 import { computed } from "vue";
 
 import type { TIcon } from "@/components/icons";
-import { ComponentName } from "@/constants/component/name";
-import { THEME } from "@/constants/styles";
 import { getColorCss } from "@/utils/styles/color";
 
 defineOptions({

@@ -10,10 +10,9 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
+import { THEME } from "@wiz-ui/constants/styles";
 import { computed } from "vue";
-
-import { ComponentName } from "@/constants/component/name";
-import { THEME } from "@/constants/styles";
 
 defineOptions({
   name: ComponentName.ToggleSwitch,

@@ -1,9 +1,9 @@
 import { StoryFn } from "@storybook/vue";
+import { SPACING_ACCESSORS } from "@wiz-ui/constants/styles/spacing";
+import { Z_INDEX_ACCESSORS } from "@wiz-ui/constants/styles/z-index";
 import { onMounted, ref } from "vue";
 
 import { WizTextButton, WizHStack } from "@/components";
-import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
-import { Z_INDEX_ACCESSORS } from "@/constants/styles/z-index";
 
 import { WizPopup, WizPopupContainer } from ".";
 

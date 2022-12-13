@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed } from "vue";
 
-import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { FontSizeKeys } from "@/types/styles/font-size";
 import { WhiteSpaceKeys } from "@/types/styles/white-space";

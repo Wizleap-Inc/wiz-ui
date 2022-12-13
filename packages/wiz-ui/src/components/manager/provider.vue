@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { provide } from "vue";
 
-import { ComponentName } from "@/constants/component/name";
 import { globalKey, useGlobalProvider } from "@/providers";
 
 defineOptions({

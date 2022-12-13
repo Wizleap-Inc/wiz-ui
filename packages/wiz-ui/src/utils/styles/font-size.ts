@@ -1,4 +1,5 @@
-import { FONT_SIZE_MAP } from "@/constants/styles/font-size";
+import { FONT_SIZE_MAP } from "@wiz-ui/constants/styles/font-size";
+
 import { FontSizeKeys } from "@/types/styles/font-size";
 
 export const getFontSizeCss = (fontSize: FontSizeKeys) =>

@@ -19,10 +19,10 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wiz-ui/constants";
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed, inject, ref } from "vue";
 
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 import { SpacingKeys } from "@/types/styles/spacing";
 import { ZIndexKeys } from "@/types/styles/z-index";
 import { getSpacingCSS } from "@/utils/styles/spacing";

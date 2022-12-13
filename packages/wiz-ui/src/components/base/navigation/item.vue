@@ -17,12 +17,12 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wiz-ui/constants";
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
 import type { TIcon } from "@/components/icons";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 
 defineOptions({
   name: ComponentName.NavigationItem,

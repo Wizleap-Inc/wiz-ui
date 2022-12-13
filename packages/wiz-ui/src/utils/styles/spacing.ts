@@ -1,4 +1,5 @@
-import { SPACING_MAP } from "@/constants/styles/spacing";
+import { SPACING_MAP } from "@wiz-ui/constants/styles/spacing";
+
 import { SpacingKeys } from "@/types/styles/spacing";
 
 export const getSpacingCSS = (spacings?: SpacingKeys) =>

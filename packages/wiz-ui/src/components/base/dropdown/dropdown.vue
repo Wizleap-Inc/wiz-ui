@@ -15,11 +15,11 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wiz-ui/constants";
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed } from "vue";
 
 import { WizPopup, WizPopupContainer, WizVStack } from "@/components";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 import { SpacingKeys } from "@/types/styles/spacing";
 
 defineOptions({

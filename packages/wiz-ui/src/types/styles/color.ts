@@ -1,4 +1,5 @@
-import { COLOR_MAP } from "@/constants/styles/color";
+import { COLOR_MAP } from "@wiz-ui/constants/styles/color";
+
 import { ObjectKeysWithSeparator } from "@/types/utils/object";
 
 export type ColorKeys = ObjectKeysWithSeparator<typeof COLOR_MAP>;

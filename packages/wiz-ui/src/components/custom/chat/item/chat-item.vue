@@ -42,8 +42,9 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
+
 import { WizHStack, WizText, WizVStack, WizCard } from "@/components";
-import { ComponentName } from "@/constants/component/name";
 import { formatDateToTime } from "@/utils/date";
 
 import { Message } from "..";

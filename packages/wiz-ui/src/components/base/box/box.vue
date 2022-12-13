@@ -5,10 +5,10 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wiz-ui/constants/component/name";
 import { computed } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
-import { ComponentName } from "@/constants/component/name";
 import { ColorKeys } from "@/types/styles/color";
 import { ShadowKeys } from "@/types/styles/shadow";
 import { SpacingKeys } from "@/types/styles/spacing";
