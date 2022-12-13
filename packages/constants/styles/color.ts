@@ -1,4 +1,6 @@
-export const COLOR_MAP = {
+import { ObjectKeysWithSeparator } from "../types/object";
+
+const MULTI_COLOR_MAP = {
   green: {
     "300": "#E4FBF4",
     "400": "#D1F0E2",
@@ -44,20 +46,44 @@ export const COLOR_MAP = {
     "500": "#FFFFFFb2", // 70%
     "800": "#FFFFFF",
   },
+};
+
+const SINGLE_COLOR_MAP = {
   gradient: "linear-gradient(90deg, #3db783 0%, #099ec3 100%)",
   transparent: "transparent",
-} as const;
+};
+
+export const COLOR_MAP = {
+  ...MULTI_COLOR_MAP,
+  ...SINGLE_COLOR_MAP,
+};
+
+export type ColorKeys = ObjectKeysWithSeparator<typeof COLOR_MAP>;
 
 export const COLOR_MAP_ACCESSORS = (() => {
   const accessors: string[] = [];
-  for (const [color, shades] of Object.entries(COLOR_MAP)) {
-    if (typeof shades === "string") {
-      accessors.push(color);
-    } else {
-      for (const shade of Object.keys(shades)) {
-        accessors.push(`${color}.${shade}`);
-      }
+  const addAccessor = (key: string, value: string | object): void => {
+    if (typeof value === "string") {
+      accessors.push(key);
+    } else if (typeof value === "object") {
+      Object.entries(value).forEach(([subKey, subValue]) => {
+        addAccessor(`${key}.${subKey}`, subValue);
+      });
     }
-  }
-  return accessors;
+  };
+  Object.entries(COLOR_MAP).forEach(([key, value]) => {
+    addAccessor(key, value);
+  });
+  return accessors as ColorKeys[];
 })();
+
+export const getColorCss = (color: ColorKeys): string | undefined => {
+  const accessorList = color.split(".");
+  const colorValue = accessorList.reduce(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    (acc, accessor) => acc[accessor],
+    COLOR_MAP
+  );
+  return typeof colorValue === "string" ? colorValue : undefined;
+};
