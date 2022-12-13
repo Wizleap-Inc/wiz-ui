@@ -1,6 +1,6 @@
 <template>
   <div class="wiz-radio">
-    <WizStack gap="xl2" :direction="direction" wrap>
+    <WizStack :gap="gap" :direction="direction" wrap>
       <div v-for="(option, key) in options" :key="key">
         <input
           class="wiz-radio__input"
@@ -9,12 +9,12 @@
           :id="`radio${key}`"
           :value="option.value"
           v-model="radioValue"
-          :disabled="disabled"
+          :disabled="disabled || disabledKey === key"
         />
         <label
           :class="{
             'wiz-radio__label': true,
-            'wiz-radio__label--disabled': disabled,
+            'wiz-radio__label--disabled': disabled || disabledKey === key,
           }"
           :for="`radio${key}`"
         >
@@ -30,6 +30,7 @@ import { computed } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
 import { THEME } from "@/constants/styles";
+import { SpacingKeys } from "@/types/styles/spacing";
 
 import { RadioOption } from "./types";
 
@@ -37,12 +38,15 @@ interface Props {
   options: RadioOption[];
   value: number;
   disabled?: boolean;
+  disabledKey: number;
   direction?: "horizontal" | "vertical";
+  gap: SpacingKeys;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   direction: "horizontal",
+  gap: "xl",
 });
 
 interface Emit {
