@@ -8,7 +8,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
 import { provide } from "vue";
 
-import { globalKey, useGlobalProvider } from "@/providers";
+import { globalKey, useGlobalProvider } from "@/hooks/use-global-provider";
 
 defineOptions({
   name: ComponentName.Provider,
