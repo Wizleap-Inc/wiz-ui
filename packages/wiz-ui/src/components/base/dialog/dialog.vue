@@ -28,14 +28,13 @@
 </template>
 
 <script setup lang="ts">
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { MountingPortal } from "portal-vue";
 import { computed } from "vue";
 
 import { WizIconButton } from "@/components/base/buttons";
 import { WizCard } from "@/components/base/card";
 import { WizIClose } from "@/components/icons";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 import { useZIndex } from "@/hooks";
 
 defineOptions({

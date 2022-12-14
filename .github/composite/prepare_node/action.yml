@@ -27,14 +27,19 @@ runs:
       env:
         NODE_AUTH_TOKEN: ${{ inputs.node-auth-token }}
 
-    - name: Cache node_modules
-      id: node_modules_cache_id
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache yarn cache
       uses: actions/cache@v2
       with:
-        path: node_modules
-        key: ${{ inputs.runs-on }}-node-v${{ inputs.node-version }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ inputs.runs-on }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+        restore-keys: |
+          ${{ inputs.runs-on }}-yarn-
 
-    - name: npm ci
+    - name: Install dependencies
       shell: bash
-      if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
-      run: npm ci
+      run: yarn --frozen-lockfile

@@ -1,7 +1,9 @@
 import { StoryFn } from "@storybook/vue";
+import {
+  COLOR_MAP_ACCESSORS,
+  FONT_SIZE_ACCESSORS,
+} from "@wizleap-inc/wiz-ui-constants";
 
-import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
-import { FONT_SIZE_ACCESSORS } from "../../../constants/styles/font-size";
 import { WizIClose } from "../../icons";
 
 import WizTag from "./tag.vue";

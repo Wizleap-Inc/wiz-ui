@@ -1,12 +1,14 @@
-import { inject, InjectionKey } from "vue";
-
-import { useDisplayProvider } from "./display";
+import { ref, readonly, InjectionKey, inject } from "vue";
 
 export const useGlobalProvider = () => {
-  const displayProvider = useDisplayProvider();
+  const isMenuOpen = ref(true);
+  const setIsMenuOpen = (value: boolean) => {
+    isMenuOpen.value = value;
+  };
 
   return {
-    ...displayProvider,
+    isMenuOpen: readonly(isMenuOpen),
+    setIsMenuOpen,
   };
 };
 

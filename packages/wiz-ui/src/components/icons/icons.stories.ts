@@ -1,6 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-
-import { THEME } from "../../constants/styles";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 import * as Icons from ".";
 

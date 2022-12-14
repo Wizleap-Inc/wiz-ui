@@ -5,11 +5,12 @@
 </template>
 
 <script setup lang="ts">
+import {
+  ComponentName,
+  SpacingKeys,
+  getSpacingCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
-
-import { ComponentName } from "@/constants/component/name";
-import { SpacingKeys } from "@/types/styles/spacing";
-import { getSpacingCSS } from "@/utils/styles/spacing";
 
 defineOptions({
   name: ComponentName.UnstyledTable,
@@ -23,7 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   space: "no",
 });
 
-const computedSpace = computed(() => getSpacingCSS(props.space));
+const computedSpace = computed(() => getSpacingCss(props.space));
 </script>
 
 <style lang="scss" scoped>

@@ -21,7 +21,7 @@ env:
   DEPLOY_TYPE: vitest
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COVERAGE_FRONTEND_WORKFLOW_URL }}
   DEPLOY_URL_POSTFIX: /index.html
-  BUILD_COMMAND: npm run test:coverage -w packages/wiz-ui
+  BUILD_COMMAND: yarn workspace @wizleap-inc/wiz-ui test:coverage
 
 jobs:
   build-and-deploy:

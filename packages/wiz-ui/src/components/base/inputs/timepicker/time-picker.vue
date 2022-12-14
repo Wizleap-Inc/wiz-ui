@@ -65,12 +65,11 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { ref, computed } from "vue";
 
 import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";
 import { WizISchedule } from "@/components/icons";
-import { ComponentName } from "@/constants/component/name";
-import { THEME } from "@/constants/styles";
 
 import { WizPopup, WizPopupContainer } from "../../popup";
 

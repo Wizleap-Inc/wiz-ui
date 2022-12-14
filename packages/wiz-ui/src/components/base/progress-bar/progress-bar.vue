@@ -29,10 +29,10 @@
 </template>
 
 <script setup lang="ts">
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+
 import { WizText } from "@/components/base/text";
 import { WizTooltip } from "@/components/base/tooltip";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 
 import { WizProgressPoint, WizProgressLine } from ".";
 
