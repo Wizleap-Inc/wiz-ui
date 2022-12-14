@@ -22,7 +22,7 @@ jobs:
 
       - name: Get installed Playwright version
         id: playwright-version
-        run: echo "::set-output name=version::$(npm ls playwright | grep playwright | sed 's/.*@//' | tail -1)"
+        run: echo "::set-output name=version::$(yarn list playwright | grep playwright | sed 's/.*@//' | tail -1)"
 
       - uses: actions/cache@v3
         id: playwright-cache
@@ -37,4 +37,4 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Test
-        run: npm run test:ci
+        run: yarn test:ci

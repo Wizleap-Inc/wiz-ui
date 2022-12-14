@@ -24,4 +24,4 @@ jobs:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: build check
-        run: npm run build:lib -w packages/wiz-ui
+        run: yarn build:wiz-ui
