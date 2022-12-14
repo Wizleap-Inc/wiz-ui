@@ -1,7 +1,6 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizIAdd } from "@/components/icons";
-import { WizIRemove } from "@/components/icons";
+import { WizIAdd, WizIRemove } from "@/components/icons";
 
 import { WizToggleButton } from ".";
 
