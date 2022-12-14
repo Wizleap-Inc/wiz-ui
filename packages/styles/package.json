@@ -1,6 +1,7 @@
 {
-  "name": "@wizleap-inc/wiz-ui-style",
   "private": true,
+  "name": "@wizleap-inc/wiz-ui-styles",
+  "version": "0.0.0",
   "main": "index.ts",
   "devDependencies": {
     "@vanilla-extract/css": "^1.9.2"

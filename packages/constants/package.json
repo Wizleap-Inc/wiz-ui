@@ -1,5 +1,6 @@
 {
-  "name": "@wizleap-inc/wiz-ui-constants",
   "private": true,
+  "name": "@wizleap-inc/wiz-ui-constants",
+  "version": "0.0.0",
   "main": "index.ts"
 }

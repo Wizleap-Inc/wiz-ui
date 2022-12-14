@@ -1,4 +1,5 @@
 {
+  "private": true,
   "scripts": {
     "format:packages": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,md,mdx}'",
     "format": "npm run format:packages",
