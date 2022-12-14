@@ -1,5 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants/styles/color";
+import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizDivider } from "@/components";
 

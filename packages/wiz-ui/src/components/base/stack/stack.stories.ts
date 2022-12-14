@@ -1,6 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import { THEME, SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import Vue, { ref } from "vue";
 
 import { WizStack } from ".";

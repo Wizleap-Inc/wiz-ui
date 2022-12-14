@@ -19,12 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
-import { getSpacingCss } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
-import { ZIndexKeys } from "@wizleap-inc/wiz-ui-constants/styles/z-index";
-import { getZIndexCss } from "@wizleap-inc/wiz-ui-constants/styles/z-index";
+import {
+  THEME,
+  ComponentName,
+  SpacingKeys,
+  getSpacingCss,
+  ZIndexKeys,
+  getZIndexCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed, inject, ref } from "vue";
 
 import { POPUP_KEY } from "./provider";

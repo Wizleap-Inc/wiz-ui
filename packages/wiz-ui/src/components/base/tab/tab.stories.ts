@@ -1,5 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import { WizTab } from ".";

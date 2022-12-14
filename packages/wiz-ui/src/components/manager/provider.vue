@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { provide } from "vue";
 
 import { globalKey, useGlobalProvider } from "@/hooks/use-global-provider";

@@ -8,12 +8,14 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { ColorKeys } from "@wizleap-inc/wiz-ui-constants/styles/color";
-import { getColorCss } from "@wizleap-inc/wiz-ui-constants/styles/color";
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
-import { getSpacingCss } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import {
+  THEME,
+  ComponentName,
+  ColorKeys,
+  getColorCss,
+  SpacingKeys,
+  getSpacingCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed, ref } from "vue";
 
 defineOptions({

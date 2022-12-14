@@ -6,12 +6,14 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { ColorKeys } from "@wizleap-inc/wiz-ui-constants/styles/color";
-import { getColorCss } from "@wizleap-inc/wiz-ui-constants/styles/color";
-import { FONT_SIZE_MAP } from "@wizleap-inc/wiz-ui-constants/styles/font-size";
-import { FontSizeKeys } from "@wizleap-inc/wiz-ui-constants/styles/font-size";
+import {
+  THEME,
+  ComponentName,
+  ColorKeys,
+  getColorCss,
+  FONT_SIZE_MAP,
+  FontSizeKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 import type { TIcon } from "@/components/icons";

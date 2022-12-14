@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToTime } from "@wizleap-inc/wiz-ui-utils";
 
 import { WizHStack, WizText, WizVStack, WizCard } from "@/components";

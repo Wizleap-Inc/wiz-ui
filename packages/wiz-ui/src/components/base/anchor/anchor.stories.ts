@@ -1,6 +1,8 @@
 import { StoryFn } from "@storybook/vue";
-import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants/styles/color";
-import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants/styles/font-size";
+import {
+  COLOR_MAP_ACCESSORS,
+  FONT_SIZE_ACCESSORS,
+} from "@wizleap-inc/wiz-ui-constants";
 import StoryRouter from "storybook-vue-router";
 
 import WizIArrowRight from "../../icons/arrow-right.vue";

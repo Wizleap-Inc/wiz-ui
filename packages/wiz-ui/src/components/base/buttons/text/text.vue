@@ -18,9 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { THEME } from "@wizleap-inc/wiz-ui-constants/styles";
-import { SPACING_MAP } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import {
+  ComponentName,
+  THEME,
+  SPACING_MAP,
+} from "@wizleap-inc/wiz-ui-constants";
 import { withDefaults } from "vue";
 
 defineOptions({

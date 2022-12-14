@@ -17,9 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { THEME } from "@wizleap-inc/wiz-ui-constants/styles";
-import { getColorCss } from "@wizleap-inc/wiz-ui-constants/styles/color";
+import {
+  ComponentName,
+  THEME,
+  getColorCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 import type { TIcon } from "@/components/icons";

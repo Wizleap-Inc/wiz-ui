@@ -27,12 +27,12 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
 import {
+  ComponentName,
+  SpacingKeys,
   getSpacingCss,
   getCoupleSpacingCss,
-} from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 defineOptions({

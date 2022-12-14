@@ -5,15 +5,17 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { ColorKeys } from "@wizleap-inc/wiz-ui-constants/styles/color";
-import { getColorCss } from "@wizleap-inc/wiz-ui-constants/styles/color";
-import { ShadowKeys } from "@wizleap-inc/wiz-ui-constants/styles/shadow";
-import { getShadowCss } from "@wizleap-inc/wiz-ui-constants/styles/shadow";
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
-import { getSpacingCss } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
-import { ZIndexKeys } from "@wizleap-inc/wiz-ui-constants/styles/z-index";
-import { getZIndexCss } from "@wizleap-inc/wiz-ui-constants/styles/z-index";
+import {
+  ComponentName,
+  ColorKeys,
+  getColorCss,
+  ShadowKeys,
+  getShadowCss,
+  SpacingKeys,
+  getSpacingCss,
+  ZIndexKeys,
+  getZIndexCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 import { StyleValue } from "vue/types/jsx";
 

@@ -17,8 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizHStack } from "@/components";
 
