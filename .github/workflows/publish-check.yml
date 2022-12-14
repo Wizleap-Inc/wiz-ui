@@ -26,6 +26,6 @@ jobs:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: publish
-        run: npm run check:lib-publish -w packages/wiz-ui
+        run: yarn workspace @wizleap-inc/wiz-ui check:lib-publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

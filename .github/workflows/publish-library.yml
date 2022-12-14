@@ -2,7 +2,7 @@ name: Publish Wiz-UI library
 
 env:
   CI: true
-  PUBLISH_WORKSPACE: "packages/wiz-ui"
+  PUBLISH_WORKSPACE: "@wizleap-inc/wiz-ui"
 
 on:
   push:
@@ -30,10 +30,10 @@ jobs:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: build
-        run: npm run build:lib -w ${{ env.PUBLISH_WORKSPACE }}
+        run: yarn workspace ${{ env.PUBLISH_WORKSPACE }} build:lib
 
       - name: publish
-        run: npm run check:lib-publish -w ${{ env.PUBLISH_WORKSPACE }} && npm publish --access public -w ${{ env.PUBLISH_WORKSPACE }} || echo "No need to publish"
+        run: yarn workspace ${{ env.PUBLISH_WORKSPACE }} check:lib-publish && yarn workspace ${{ env.PUBLISH_WORKSPACE }} publish --access public || echo "No need to publish"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 

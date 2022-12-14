@@ -1,6 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-
-import { THEME } from "./index";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export default {
   title: "Variables/FontSize",

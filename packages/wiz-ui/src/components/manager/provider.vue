@@ -5,10 +5,10 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { provide } from "vue";
 
-import { ComponentName } from "@/constants/component/name";
-import { globalKey, useGlobalProvider } from "@/providers";
+import { globalKey, useGlobalProvider } from "@/hooks/use-global-provider";
 
 defineOptions({
   name: ComponentName.Provider,

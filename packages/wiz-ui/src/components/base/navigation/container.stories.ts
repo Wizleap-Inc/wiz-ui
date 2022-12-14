@@ -8,7 +8,11 @@ import {
   WizIBusinessCenter,
   WizIHelp,
 } from "@/components/icons";
-import { globalInject, globalKey, useGlobalProvider } from "@/providers";
+import {
+  globalInject,
+  globalKey,
+  useGlobalProvider,
+} from "@/hooks/use-global-provider";
 
 import { WizNavItem, WizNavContainer } from ".";
 

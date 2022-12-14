@@ -16,8 +16,9 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+
 import { WizDivider, WizBox } from "@/components/base";
-import { ComponentName } from "@/constants/component/name";
 
 import { WizNotificationPanel } from "..";
 import { PanelVariant } from "../panel/types";

@@ -28,15 +28,18 @@
 </template>
 
 <script setup lang="ts">
+import {
+  ComponentName,
+  THEME,
+  ColorKeys,
+  getColorCss,
+  SpacingKeys,
+  getSpacingCss,
+  getCoupleSpacingCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 import { WizHStack, WizVStack, WizIHint } from "@/components";
-import { ComponentName } from "@/constants/component/name";
-import { THEME } from "@/constants/styles";
-import { ColorKeys } from "@/types/styles/color";
-import { SpacingKeys } from "@/types/styles/spacing";
-import { getColorCss } from "@/utils/styles/color";
-import { getSpacingCSS, getCoupleSpacingCSS } from "@/utils/styles/spacing";
 
 defineOptions({
   name: ComponentName.Card,
@@ -67,9 +70,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const computedPadding = computed(() => {
   if (props.px && props.py) {
-    return getCoupleSpacingCSS(props.px, props.py);
+    return getCoupleSpacingCss(props.px, props.py);
   }
-  return getSpacingCSS(props.p);
+  return getSpacingCss(props.p);
 });
 
 const computedBackgroundColor = computed(() =>

@@ -3,7 +3,7 @@ import StoryRouter from "storybook-vue-router";
 import { provide } from "vue";
 
 import { WizIDashboard } from "@/components/icons";
-import { globalKey, useGlobalProvider } from "@/providers";
+import { globalKey, useGlobalProvider } from "@/hooks/use-global-provider";
 
 import { WizNavItem } from ".";
 

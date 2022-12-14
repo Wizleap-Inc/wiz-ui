@@ -22,8 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 
 import { progressPointSize } from "./constants";
 

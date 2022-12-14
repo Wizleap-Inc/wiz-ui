@@ -13,10 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
-
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 
 defineOptions({
   name: ComponentName.TextArea,

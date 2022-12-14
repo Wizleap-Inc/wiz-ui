@@ -43,6 +43,8 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { formatDateToYMDHM, formatHowPast } from "@wizleap-inc/wiz-ui-utils";
 import { computed, ref } from "vue";
 
 import {
@@ -53,8 +55,6 @@ import {
   WizText,
 } from "@/components/base";
 import { WizIChevronRight } from "@/components/icons";
-import { ComponentName } from "@/constants/component/name";
-import { formatDateToYMDHM, formatHowPast } from "@/utils/date";
 
 import { PanelVariant } from "./types";
 

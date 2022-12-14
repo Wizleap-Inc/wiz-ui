@@ -21,4 +21,4 @@ jobs:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: lint
-        run: npm run lint
+        run: yarn lint

@@ -17,12 +17,14 @@
 </template>
 
 <script setup lang="ts">
+import {
+  ComponentName,
+  THEME,
+  getColorCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 import type { TIcon } from "@/components/icons";
-import { ComponentName } from "@/constants/component/name";
-import { THEME } from "@/constants/styles";
-import { getColorCss } from "@/utils/styles/color";
 
 defineOptions({
   name: ComponentName.MessageBox,

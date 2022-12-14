@@ -8,14 +8,15 @@
 </template>
 
 <script setup lang="ts">
+import {
+  THEME,
+  ComponentName,
+  ColorKeys,
+  getColorCss,
+  SpacingKeys,
+  getSpacingCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed, ref } from "vue";
-
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
-import { ColorKeys } from "@/types/styles/color";
-import { SpacingKeys } from "@/types/styles/spacing";
-import { getColorCss } from "@/utils/styles/color";
-import { getSpacingCSS } from "@/utils/styles/spacing";
 
 defineOptions({
   name: ComponentName.Anchor,
@@ -47,8 +48,8 @@ const onClick = () => props.clickable && emits("click");
 
 const computedBackgroundColor = computed(() => getColorCss(props.bgColor));
 const computedColor = computed(() => getColorCss(props.color));
-const computedWidth = computed(() => getSpacingCSS(props.size));
-const computedHeight = computed(() => getSpacingCSS(props.size));
+const computedWidth = computed(() => getSpacingCss(props.size));
+const computedHeight = computed(() => getSpacingCss(props.size));
 
 const isImgLoadSuccess = ref(true);
 
