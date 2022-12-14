@@ -18,7 +18,7 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
 import { computed, useSlots } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
-import { globalInject, globalKey } from "@/providers";
+import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
 defineOptions({
   name: ComponentName.NavigationContainer,

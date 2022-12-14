@@ -25,7 +25,7 @@ import { computed } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
 import { WizHStack, WizIconButton, WizIMenu } from "@/components";
-import { globalInject, globalKey } from "@/providers";
+import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
 defineOptions({
   name: ComponentName.Header,
