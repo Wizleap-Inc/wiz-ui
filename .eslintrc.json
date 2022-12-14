@@ -128,6 +128,7 @@
         },
         "newlines-between": "always"
       }
-    ]
+    ],
+    "import/no-duplicates": "error"
   }
 }
