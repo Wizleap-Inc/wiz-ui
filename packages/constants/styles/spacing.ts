@@ -26,8 +26,8 @@ export type SpacingKeys = keyof typeof SPACING_MAP;
 
 export const SPACING_ACCESSORS = Object.keys(SPACING_MAP) as SpacingKeys[];
 
-export const getSpacingCss = (key?: SpacingKeys): string =>
-  SPACING_MAP[key || "no"];
+export const getSpacingCss = (key?: SpacingKeys) =>
+  key ? SPACING_MAP[key] : undefined;
 
 export const getCoupleSpacingCss = (x?: SpacingKeys, y?: SpacingKeys): string =>
-  `${getSpacingCss(x)} ${getSpacingCss(y)}`;
+  `${getSpacingCss(x) || "no"} ${getSpacingCss(y) || "no"}`;

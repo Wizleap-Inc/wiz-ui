@@ -1,7 +1,7 @@
 <template>
   <div class="wiz-header" :style="computedStickyStyle">
-    <WizHStack align="center" justify="between" py="lg" height="100%">
-      <WizHStack align="center" :gap="gapLeft">
+    <WizHStack align="center" justify="between" height="100%">
+      <WizHStack align="center" :gap="gapLeft" pl="lg">
         <WizIconButton
           :icon="WizIMenu"
           size="lg"
@@ -10,7 +10,7 @@
         />
         <slot name="left" />
       </WizHStack>
-      <WizHStack align="center" :gap="gapRight">
+      <WizHStack align="center" :gap="gapRight" pr="lg">
         <slot name="right" />
       </WizHStack>
     </WizHStack>
