@@ -1,5 +1,5 @@
 {
-  "name": "wizui-examples-vue2",
+  "name": "@wizleap-inc/wiz-ui-example-vue2",
   "private": true,
   "version": "0.0.0",
   "type": "module",
