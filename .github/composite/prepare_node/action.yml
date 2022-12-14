@@ -29,6 +29,7 @@ runs:
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
+      shell: bash
       run: echo "::set-output name=dir::$(yarn cache dir)"
 
     - name: Cache yarn cache
