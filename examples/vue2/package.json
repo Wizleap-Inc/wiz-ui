@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@wizleap-inc/wiz-ui": "file:../../packages/wiz-ui",
     "vue": "^2.7.14"
   },
   "devDependencies": {
