@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wiz-ui/constants/component/name";
-import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
-import { getSpacingCss } from "@wiz-ui/constants/styles/spacing";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
+import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import { getSpacingCss } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
 import { computed } from "vue";
 
 defineOptions({

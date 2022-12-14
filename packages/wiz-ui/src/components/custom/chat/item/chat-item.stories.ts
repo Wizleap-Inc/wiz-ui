@@ -1,5 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-import { THEME } from "@wiz-ui/constants";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 import { Message } from "..";
 

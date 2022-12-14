@@ -8,12 +8,12 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wiz-ui/constants";
-import { ComponentName } from "@wiz-ui/constants/component/name";
-import { ColorKeys } from "@wiz-ui/constants/styles/color";
-import { getColorCss } from "@wiz-ui/constants/styles/color";
-import { SpacingKeys } from "@wiz-ui/constants/styles/spacing";
-import { getSpacingCss } from "@wiz-ui/constants/styles/spacing";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
+import { ColorKeys } from "@wizleap-inc/wiz-ui-constants/styles/color";
+import { getColorCss } from "@wizleap-inc/wiz-ui-constants/styles/color";
+import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import { getSpacingCss } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
 import { computed, ref } from "vue";
 
 defineOptions({

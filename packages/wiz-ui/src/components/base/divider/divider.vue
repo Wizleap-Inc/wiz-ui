@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wiz-ui/constants/component/name";
-import { ColorKeys } from "@wiz-ui/constants/styles/color";
-import { getColorCss } from "@wiz-ui/constants/styles/color";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
+import { ColorKeys } from "@wizleap-inc/wiz-ui-constants/styles/color";
+import { getColorCss } from "@wizleap-inc/wiz-ui-constants/styles/color";
 import { computed } from "vue";
 
 defineOptions({

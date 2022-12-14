@@ -2,7 +2,7 @@ import Vue from "vue";
 
 import * as components from "./components";
 export * from "./components";
-export * from "@wiz-ui/constants";
+export * from "@wizleap-inc/wiz-ui-constants";
 
 export const install = (vue: typeof Vue) => {
   Object.values(components).forEach((component) => {

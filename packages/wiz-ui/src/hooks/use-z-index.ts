@@ -1,4 +1,4 @@
-import { THEME } from "@wiz-ui/constants";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { computed, ref } from "vue";
 
 const zIndex = ref(0);

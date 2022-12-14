@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wiz-ui/constants/component/name";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
 import { nextTick, provide, ref, watch } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";

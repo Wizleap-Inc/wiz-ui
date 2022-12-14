@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wiz-ui/constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 defineOptions({

@@ -51,8 +51,8 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wiz-ui/constants/component/name";
-import { THEME } from "@wiz-ui/constants/styles";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
+import { THEME } from "@wizleap-inc/wiz-ui-constants/styles";
 import { ref, computed } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";

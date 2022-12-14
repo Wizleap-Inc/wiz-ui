@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wiz-ui/constants";
-import { ComponentName } from "@wiz-ui/constants/component/name";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
 
 defineOptions({
   name: ComponentName.CardTable,
