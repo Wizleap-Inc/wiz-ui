@@ -23,3 +23,4 @@ export * from "./shadow";
 export * from "./share";
 export * from "./spacing";
 export * from "./z-index";
+export * from "./white-space";
