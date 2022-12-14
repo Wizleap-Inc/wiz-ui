@@ -69,6 +69,7 @@
 <script setup lang="ts">
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants/component/name";
+import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 
 import {
@@ -85,7 +86,6 @@ import {
   WizIExpandMore,
   WizIExpandLess,
 } from "@/components";
-import { formatDateToMonthDayWeek } from "@/utils/date";
 
 import { Message, DisplayMessage } from "..";
 
