@@ -32,6 +32,9 @@ export default {
       control: { type: "select" },
       options: WHITE_SPACE_MAP_ACCESSORS,
     },
+    dummyValue: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -65,6 +68,12 @@ WhiteSpace.args = {
   as: "p",
   whiteSpace: "preLine",
   slot: "これはテキストです。\n改行を含みます。",
+};
+
+export const DummyValue = Template.bind({});
+DummyValue.args = {
+  dummyValue: "ABCDEFG",
+  slot: "これはテキストです。",
 };
 
 const MaxLinesTemplate: StoryFn = (_, { argTypes }) => ({

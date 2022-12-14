@@ -1,9 +1,11 @@
 <template>
   <p v-if="computedIsP" class="wiz-text" :style="overflowStyles">
-    <slot />
+    <span class="wiz-text__dummy" v-if="dummyValue">{{ dummyValue }}</span>
+    <slot v-else />
   </p>
   <span v-else-if="computedIsSpan" class="wiz-text" :style="overflowStyles">
-    <slot />
+    <span class="wiz-text__dummy" v-if="dummyValue">{{ dummyValue }}</span>
+    <slot v-else />
   </span>
 </template>
 
@@ -30,6 +32,7 @@ interface Props {
   bold?: boolean;
   maxLines?: number;
   whiteSpace?: WhiteSpaceKeys;
+  dummyValue?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -70,5 +73,9 @@ const overflowStyles = computed(() => {
   font-size: v-bind(computedFontSize);
   font-weight: v-bind(computedFontWeight);
   white-space: v-bind(computedWhiteSpace);
+
+  &__dummy {
+    filter: blur(0.25rem);
+  }
 }
 </style>
