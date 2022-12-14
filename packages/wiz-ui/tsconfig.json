@@ -14,13 +14,5 @@
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "vueCompilerOptions": {
     "target": 2.7
-  },
-  "references": [
-    {
-      "path": "../styles"
-    },
-    {
-      "path": "../constants"
-    }
-  ]
+  }
 }

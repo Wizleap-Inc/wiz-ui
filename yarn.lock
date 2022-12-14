@@ -4437,14 +4437,8 @@
 "@wizleap-inc/vuepress-plugin-wiz-ui@file:packages/vuepress-plugin-wiz-ui":
   version "0.0.0"
   dependencies:
-    "@wizleap-inc/wiz-ui" "file:../../Library/Caches/Yarn/v6/npm-@wizleap-inc-vuepress-plugin-wiz-ui-0.0.0-a0f5c8ce-43ab-47e5-a508-3d6f11e1bb8e-1671040322988/node_modules/@wizleap-inc/wiz-ui"
+    "@wizleap-inc/wiz-ui" "file:../../Library/Caches/Yarn/v6/npm-@wizleap-inc-vuepress-plugin-wiz-ui-0.0.0-f3742d6a-ca54-4d80-a078-0fe10c2a6656-1671040695718/node_modules/@wizleap-inc/wiz-ui"
     markdown-it-container "^2.0.0"
-
-"@wizleap-inc/wiz-ui-constants@file:packages/constants":
-  version "0.0.0"
-
-"@wizleap-inc/wiz-ui-styles@file:packages/styles":
-  version "0.0.0"
 
 "@wizleap-inc/wiz-ui@file:packages/wiz-ui":
   version "0.2.3"

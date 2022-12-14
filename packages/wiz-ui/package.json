@@ -34,8 +34,6 @@
     "@testing-library/vue": "^5.8.3",
     "@vitejs/plugin-vue2": "^1.1.2",
     "@vitest/coverage-c8": "^0.24.5",
-    "@wizleap-inc/wiz-ui-constants": "file:../constants",
-    "@wizleap-inc/wiz-ui-styles": "file:../styles",
     "babel-loader": "^8.2.5",
     "can-npm-publish": "^1.3.6",
     "concurrently": "^7.5.0",
