@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { FONT_SIZE_MAP } from "@wizleap-inc/wiz-ui-constants";
 
-export const fontSizeStyle = styleVariants(THEME.fontSize, (fontSize) => ({
+export const fontSizeStyle = styleVariants(FONT_SIZE_MAP, (fontSize) => ({
   fontSize,
 }));

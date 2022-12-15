@@ -1,7 +1,7 @@
 import { styleVariants } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { SPACING_MAP } from "@wizleap-inc/wiz-ui-constants";
 
-export const sizeStyle = styleVariants(THEME.spacing, (value) => ({
+export const sizeStyle = styleVariants(SPACING_MAP, (value) => ({
   width: value,
   height: value,
 }));

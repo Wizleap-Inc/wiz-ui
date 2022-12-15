@@ -6,6 +6,7 @@ export const avatarStyle = style({
   borderRadius: "50%",
   overflow: "hidden",
 });
+
 export const avatarClickableStyle = style({
   cursor: "pointer",
 });
