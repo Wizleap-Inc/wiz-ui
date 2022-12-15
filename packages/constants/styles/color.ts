@@ -60,6 +60,23 @@ export const COLOR_MAP = {
 
 export type ColorKeys = ObjectKeysWithSeparator<typeof COLOR_MAP>;
 
+export const FLAT_COLOR_MAP: Record<ColorKeys, string> = (() => {
+  const flatColorMap = {} as Record<ColorKeys, string>;
+  const addColor = (key: string, value: string | object): void => {
+    if (typeof value === "string") {
+      flatColorMap[key as ColorKeys] = value;
+    } else if (typeof value === "object") {
+      Object.entries(value).forEach(([subKey, subValue]) => {
+        addColor(`${key}.${subKey}`, subValue);
+      });
+    }
+  };
+  Object.entries(COLOR_MAP).forEach(([key, value]) => {
+    addColor(key, value);
+  });
+  return flatColorMap;
+})();
+
 export const COLOR_MAP_ACCESSORS = (() => {
   const accessors: string[] = [];
   const addAccessor = (key: string, value: string | object): void => {
