@@ -27,7 +27,7 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeading },
-  template: `<WizHeading v-bind="$props">{{ slot }}</WizHeading>`,
+  template: `<WizHeading v-bind="$props">{{ slotDefault }}</WizHeading>`,
 });
 
 const sampleHeadingTexts = {
@@ -62,5 +62,5 @@ export const Overview = OverviewTemplate.bind({});
 export const Color = Template.bind({});
 Color.args = {
   color: "green.800",
-  slot: "Heading",
+  slotDefault: "Heading",
 };
