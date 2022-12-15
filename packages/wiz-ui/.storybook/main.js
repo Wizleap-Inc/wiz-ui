@@ -1,4 +1,6 @@
 const path = require("path");
+const { vanillaExtractPlugin } = require("@vanilla-extract/vite-plugin");
+const { mergeConfig } = require("vite");
 
 module.exports = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -15,12 +17,13 @@ module.exports = {
     builder: "@storybook/builder-vite",
   },
   viteFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@": path.resolve(__dirname, "../src"),
-    };
-    config.base = "./";
-    return config;
+    return mergeConfig(config, {
+      plugins: [vanillaExtractPlugin()],
+      alias: {
+        "@": path.resolve(__dirname, "../src"),
+      },
+      base: "./",
+    });
   },
   staticDirs: [{ from: "./assets", to: "/public" }],
   docsPage: {
