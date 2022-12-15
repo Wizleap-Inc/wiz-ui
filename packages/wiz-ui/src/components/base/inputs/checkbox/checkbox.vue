@@ -26,11 +26,11 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
 import { computed } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
-import { THEME } from "@/constants/styles";
-import { SpacingKeys } from "@/types/styles/spacing";
 
 import { CheckBoxOption } from "./types";
 
