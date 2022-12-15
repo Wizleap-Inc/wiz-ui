@@ -1,26 +1,35 @@
 <template>
   <div
-    :class="{
-      'wiz-card': true,
-      'wiz-card--shadow': shadow,
-      'wiz-card--border': border,
-      'wiz-card--fit': fit,
-    }"
+    :class="[
+      cardStyle,
+      fit && cardFitStyle,
+      shadow && cardShadowStyle,
+      border && cardBorderStyle,
+      px && paddingXStyle[px],
+      py && paddingYStyle[py],
+      !px && !py && paddingStyle[p],
+      backgroundStyle[backgroundColor],
+    ]"
+    :style="{ maxWidth }"
   >
-    <WizVStack gap="md">
+    <WizVStack gap="md" :align="align">
       <div
         v-if="title || (!title && $slots.subHeaderArea) || hint"
-        class="wiz-card__header"
+        :class="cardHeaderStyle"
       >
-        <WizHStack gap="xs2" class="wiz-card__header-main">
+        <div :class="cardHeaderMainStyle">
           <slot v-if="!title" name="mainHeaderArea"></slot>
-          <div class="wiz-card__header-title">{{ title }}</div>
-          <WizIcon v-if="hint" :is="WizIHint" />
-        </WizHStack>
+          <div :class="cardHeaderTitleStyle">{{ title }}</div>
+          <WizTooltip :content="hint">
+            <WizIcon v-if="hint" :icon="WizIHint" color="gray.600" size="lg" />
+          </WizTooltip>
+        </div>
         <slot name="subHeaderArea"></slot>
       </div>
-      <slot v-if="$slots.default" />
-      <div class="wiz-card__footer" v-if="$slots.footer">
+      <div :class="cardBodyStyle">
+        <slot v-if="$slots.default" />
+      </div>
+      <div v-if="$slots.footer">
         <slot name="footer"></slot>
       </div>
     </WizVStack>
@@ -30,16 +39,27 @@
 <script setup lang="ts">
 import {
   ComponentName,
-  THEME,
   ColorKeys,
-  getColorCss,
   SpacingKeys,
-  getSpacingCss,
-  getCoupleSpacingCss,
 } from "@wizleap-inc/wiz-ui-constants";
-import { computed } from "vue";
+import {
+  cardStyle,
+  cardFitStyle,
+  cardBodyStyle,
+  cardShadowStyle,
+  cardBorderStyle,
+  cardHeaderStyle,
+  cardHeaderMainStyle,
+  cardHeaderTitleStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/card.css";
+import {
+  paddingStyle,
+  paddingXStyle,
+  paddingYStyle,
+  backgroundStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 
-import { WizHStack, WizVStack, WizIHint } from "@/components";
+import { WizVStack, WizIHint, WizIcon, WizTooltip } from "@/components";
 
 defineOptions({
   name: ComponentName.Card,
@@ -53,81 +73,14 @@ interface Props {
   backgroundColor?: ColorKeys;
   shadow?: boolean;
   border?: boolean;
-  borderColor?: ColorKeys;
-  align?: "start" | "center" | "end";
+  align?: "start" | "center" | "end" | "stretch";
   fit?: boolean;
   maxWidth?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   p: "md",
   backgroundColor: "white.800",
-  borderColor: "gray.400",
-  shadow: false,
-  border: false,
   align: "end",
 });
-
-const computedPadding = computed(() => {
-  if (props.px && props.py) {
-    return getCoupleSpacingCss(props.px, props.py);
-  }
-  return getSpacingCss(props.p);
-});
-
-const computedBackgroundColor = computed(() =>
-  getColorCss(props.backgroundColor)
-);
-
-const computedBorderColor = computed(() => getColorCss(props.borderColor));
-
-const computedAlign = computed(() => props.align);
-const colorGray700 = THEME.color.gray["700"];
-const fontSizeMd = THEME.fontSize.md;
-const spacingXs2 = THEME.spacing.xs2;
-const shadowMd = THEME.shadow.md;
-const maxWidth = computed(() => props.maxWidth);
 </script>
-
-<style lang="scss" scoped>
-.wiz-card {
-  width: 100%;
-  max-width: v-bind(maxWidth);
-  background-color: v-bind(computedBackgroundColor);
-  padding: v-bind(computedPadding);
-  border-radius: v-bind(spacingXs2);
-  box-sizing: border-box;
-
-  &--shadow {
-    box-shadow: v-bind(shadowMd);
-  }
-
-  &--border {
-    border: 1px solid v-bind(computedBorderColor);
-  }
-
-  &--fit {
-    width: fit-content;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__header-main {
-    display: flex;
-    align-items: center;
-  }
-
-  &__header-title {
-    font-size: v-bind(fontSizeMd);
-    font-weight: 700;
-    color: v-bind(colorGray700);
-  }
-
-  &__footer {
-    text-align: v-bind(computedAlign);
-  }
-}
-</style>
