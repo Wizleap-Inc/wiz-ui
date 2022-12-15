@@ -12,6 +12,7 @@ export default {
     },
   },
 };
+
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCheckBox },
