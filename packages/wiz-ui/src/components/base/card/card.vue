@@ -18,19 +18,19 @@
         :class="cardHeaderStyle"
       >
         <div :class="cardHeaderMainStyle">
-          <slot v-if="!title" name="mainHeaderArea"></slot>
+          <slot v-if="!title" name="mainHeaderArea" />
           <div :class="cardHeaderTitleStyle">{{ title }}</div>
-          <WizTooltip :content="hint">
-            <WizIcon v-if="hint" :icon="WizIHint" color="gray.600" size="lg" />
+          <WizTooltip v-if="hint" :content="hint">
+            <WizIcon :icon="WizIHint" color="gray.600" size="lg" />
           </WizTooltip>
         </div>
-        <slot name="subHeaderArea"></slot>
+        <slot name="subHeaderArea" />
       </div>
-      <div :class="cardBodyStyle">
-        <slot v-if="$slots.default" />
+      <div v-if="$slots.default" :class="cardBodyStyle">
+        <slot />
       </div>
       <div v-if="$slots.footer">
-        <slot name="footer"></slot>
+        <slot name="footer" />
       </div>
     </WizVStack>
   </div>
