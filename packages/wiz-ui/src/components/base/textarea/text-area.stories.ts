@@ -1,9 +1,8 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
-
-import { THEME } from "@/constants/styles/index";
 
 import WizTextArea from "./text-area.vue";
 

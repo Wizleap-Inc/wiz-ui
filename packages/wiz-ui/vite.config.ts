@@ -6,7 +6,13 @@ import { defineConfig } from "vite";
 import Dts from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [Vue(), Dts(), DefineOptions()],
+  plugins: [
+    Vue(),
+    Dts({
+      entryRoot: path.resolve(__dirname, "src"),
+    }),
+    DefineOptions(),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),

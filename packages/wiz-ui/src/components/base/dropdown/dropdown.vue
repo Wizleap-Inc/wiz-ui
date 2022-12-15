@@ -15,12 +15,14 @@
 </template>
 
 <script setup lang="ts">
+import {
+  THEME,
+  ComponentName,
+  SpacingKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 import { WizPopup, WizPopupContainer, WizVStack } from "@/components";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
-import { SpacingKeys } from "@/types/styles/spacing";
 
 defineOptions({
   name: ComponentName.Dropdown,

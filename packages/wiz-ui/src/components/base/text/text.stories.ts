@@ -1,9 +1,10 @@
 import { StoryFn } from "@storybook/vue";
+import {
+  COLOR_MAP_ACCESSORS,
+  FONT_SIZE_ACCESSORS,
+  WHITE_SPACE_MAP_ACCESSORS,
+} from "@wizleap-inc/wiz-ui-constants";
 
-import { COLOR_MAP_ACCESSORS } from "../../../constants/styles/color";
-import { WHITE_SPACE_MAP_ACCESSORS } from "../../../constants/styles/white-space";
-
-import { FONT_SIZE_ACCESSORS } from "./../../../constants/styles/font-size";
 import WizText from "./text.vue";
 
 export default {

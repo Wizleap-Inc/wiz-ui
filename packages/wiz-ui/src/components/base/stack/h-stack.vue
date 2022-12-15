@@ -32,8 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@/constants/component/name";
-import { SpacingKeys } from "@/types/styles/spacing";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizStack } from ".";
 

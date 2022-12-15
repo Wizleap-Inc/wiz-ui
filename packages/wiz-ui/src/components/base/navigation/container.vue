@@ -13,12 +13,11 @@
 </template>
 
 <script setup lang="ts">
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { computed, useSlots } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
-import { globalInject, globalKey } from "@/providers";
+import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
 defineOptions({
   name: ComponentName.NavigationContainer,

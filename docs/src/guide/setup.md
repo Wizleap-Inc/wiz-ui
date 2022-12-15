@@ -8,28 +8,28 @@ cd wiz-ui
 ## 基本
 
 ```bash
-npm ci # install dependencies
-npm run dev # start all dev server
+yarn # install dependencies
+yarn dev # start all dev server
 ```
 
 ## 特定ワークスペースのみ立ち上げ
 
 ```bash
-npm run dev:docs # start docs dev server
-npm run dev:wiz-ui # start wiz-ui dev server(Storybook)
-npm run dev:examples # start examples dev server
+yarn dev:docs # start docs dev server
+yarn dev:wiz-ui # start wiz-ui dev server(Storybook)
+yarn dev:examples # start examples dev server
 ```
 
 ## ビルド
 
 ```bash
-npm run build # build all packages
+yarn build # build all packages
 ```
 
 ## 特定ワークスペースのみビルド
 
 ```bash
-npm run build:docs # build docs
-npm run build:wiz-ui # build wiz-ui
-npm run build:examples # build examples
+yarn build:docs # build docs
+yarn build:wiz-ui # build wiz-ui
+yarn build:examples # build examples
 ```

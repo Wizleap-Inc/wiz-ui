@@ -18,15 +18,17 @@
 </template>
 
 <script setup lang="ts">
+import {
+  ComponentName,
+  ColorKeys,
+  getColorCss,
+  FontSizeKeys,
+  getFontSizeCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed, withDefaults } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
 import type { TIcon } from "@/components/icons";
-import { ComponentName } from "@/constants/component/name";
-import { ColorKeys } from "@/types/styles/color";
-import { FontSizeKeys } from "@/types/styles/font-size";
-import { getColorCss } from "@/utils/styles/color";
-import { getFontSizeCss } from "@/utils/styles/font-size";
 
 interface Props {
   to: RouterLinkProps["to"];

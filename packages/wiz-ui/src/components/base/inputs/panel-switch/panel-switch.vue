@@ -26,10 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
-
-import { ComponentName } from "@/constants/component/name";
-import { THEME } from "@/constants/styles";
 
 import { panelItems } from "./types";
 

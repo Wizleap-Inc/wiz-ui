@@ -1,10 +1,9 @@
 import { StoryFn } from "@storybook/vue";
+import { THEME, SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { provide } from "vue";
 
 import { WizTextButton } from "@/components";
-import { THEME } from "@/constants";
-import { SPACING_ACCESSORS } from "@/constants/styles/spacing";
-import { globalKey, useGlobalProvider } from "@/providers";
+import { globalKey, useGlobalProvider } from "@/hooks/use-global-provider";
 
 import { WizHeader } from ".";
 

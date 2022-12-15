@@ -11,10 +11,8 @@
 </template>
 
 <script setup lang="ts">
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { useSlots } from "vue";
-
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 
 defineOptions({
   name: ComponentName.Tooltip,

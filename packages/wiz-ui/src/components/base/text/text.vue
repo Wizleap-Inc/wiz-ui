@@ -10,15 +10,16 @@
 </template>
 
 <script setup lang="ts">
+import {
+  ComponentName,
+  ColorKeys,
+  getColorCss,
+  FontSizeKeys,
+  getFontSizeCss,
+  WhiteSpaceKeys,
+  getWhiteSpaceCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
-
-import { ComponentName } from "@/constants/component/name";
-import { ColorKeys } from "@/types/styles/color";
-import { FontSizeKeys } from "@/types/styles/font-size";
-import { WhiteSpaceKeys } from "@/types/styles/white-space";
-import { getColorCss } from "@/utils/styles/color";
-import { getFontSizeCss } from "@/utils/styles/font-size";
-import { getWhiteSpaceCss } from "@/utils/styles/white-space";
 
 defineOptions({
   name: ComponentName.Text,
@@ -28,7 +29,7 @@ interface Props {
   as?: "p" | "span";
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
-  lineHeight?: FontSizeKeys | number;
+  lineHeight?: FontSizeKeys;
   bold?: boolean;
   maxLines?: number;
   whiteSpace?: WhiteSpaceKeys;
@@ -39,7 +40,6 @@ const props = withDefaults(defineProps<Props>(), {
   as: "p",
   color: "gray.900",
   fontSize: "md",
-  lineHeight: 1.5,
   whiteSpace: "normal",
 });
 
@@ -48,8 +48,7 @@ const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
 const computedFontSize = computed(() => getFontSizeCss(props.fontSize));
 const computedLineHeight = computed(() => {
-  if (typeof props.lineHeight === "number") return props.lineHeight;
-  return getFontSizeCss(props.lineHeight);
+  return props.lineHeight ? getFontSizeCss(props.lineHeight) : 1.5;
 });
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
 const computedWhiteSpace = computed(() => getWhiteSpaceCss(props.whiteSpace));

@@ -19,14 +19,15 @@
 </template>
 
 <script setup lang="ts">
+import {
+  THEME,
+  ComponentName,
+  SpacingKeys,
+  getSpacingCss,
+  ZIndexKeys,
+  getZIndexCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed, inject, ref } from "vue";
-
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
-import { SpacingKeys } from "@/types/styles/spacing";
-import { ZIndexKeys } from "@/types/styles/z-index";
-import { getSpacingCSS } from "@/utils/styles/spacing";
-import { getZIndexCSS } from "@/utils/styles/z-index";
 
 import { POPUP_KEY } from "./provider";
 
@@ -194,9 +195,9 @@ const computedDirection = computed(() => {
   return props.direction;
 });
 
-const computedZIndex = computed(() => getZIndexCSS(props.layer));
+const computedZIndex = computed(() => getZIndexCss(props.layer));
 const shadowSm = THEME.shadow.sm;
-const computedMargin = computed(() => getSpacingCSS(props.gap));
+const computedMargin = computed(() => getSpacingCss(props.gap));
 </script>
 
 <style lang="scss" scoped>

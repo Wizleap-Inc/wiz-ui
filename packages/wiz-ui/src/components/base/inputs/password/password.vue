@@ -27,11 +27,10 @@
 </template>
 
 <script setup lang="ts">
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { computed, ref } from "vue";
 
 import { WizIEye } from "@/components";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 
 import { PrivateBaseInput } from "../base";
 

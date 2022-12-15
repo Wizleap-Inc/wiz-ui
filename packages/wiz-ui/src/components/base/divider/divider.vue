@@ -12,11 +12,12 @@
 </template>
 
 <script setup lang="ts">
+import {
+  ComponentName,
+  ColorKeys,
+  getColorCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
-
-import { ComponentName } from "@/constants/component/name";
-import { ColorKeys } from "@/types/styles/color";
-import { getColorCss } from "@/utils/styles/color";
 
 defineOptions({
   name: ComponentName.Divider,

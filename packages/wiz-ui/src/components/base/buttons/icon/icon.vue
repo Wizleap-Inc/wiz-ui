@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
+import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+
 import type { TIcon } from "@/components/icons";
-import { THEME } from "@/constants";
-import { ComponentName } from "@/constants/component/name";
 
 defineOptions({
   name: ComponentName.IconButton,

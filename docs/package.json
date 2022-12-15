@@ -1,5 +1,5 @@
 {
-  "name": "wiz-ui-docs",
+  "name": "@wizleap-inc/wiz-ui-docs",
   "version": "0.0.0",
   "description": "wiz-ui document",
   "main": "index.js",
