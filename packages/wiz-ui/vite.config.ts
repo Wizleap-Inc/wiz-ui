@@ -1,5 +1,6 @@
 import path from "path";
 
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import Vue from "@vitejs/plugin-vue2";
 import DefineOptions from "unplugin-vue-define-options/vite";
 import { defineConfig } from "vite";
@@ -12,6 +13,7 @@ export default defineConfig({
       entryRoot: path.resolve(__dirname, "src"),
     }),
     DefineOptions(),
+    vanillaExtractPlugin(),
   ],
   resolve: {
     alias: {
