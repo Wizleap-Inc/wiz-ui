@@ -60,7 +60,6 @@ const checkboxValue = computed({
 });
 
 const fontSizeSm = THEME.fontSize.sm;
-const spacingXs3 = THEME.spacing.xs3;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingSm = THEME.spacing.sm;
 const colorGray400 = THEME.color.gray["400"];
@@ -113,7 +112,7 @@ $border-width: 1px;
     &:before {
       content: "";
       border: $border-width solid v-bind(colorGray400);
-      border-radius: v-bind(spacingXs3);
+      border-radius: calc(v-bind(spacingXs2) / 2);
       width: v-bind(spacingSm);
       height: v-bind(spacingSm);
       display: inline-block;
