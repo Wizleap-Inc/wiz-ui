@@ -3,6 +3,7 @@ name: Publish Wiz-UI library
 env:
   CI: true
   PUBLISH_WORKSPACE: "@wizleap-inc/wiz-ui"
+  PUBLISH_DIR: "packages/wiz-ui"
 
 on:
   push:
@@ -38,7 +39,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: set version to env
-        run: node -p -e '`VERSION=${require("./${{ env.PUBLISH_WORKSPACE }}/package.json").version}`' >> $GITHUB_ENV
+        run: node -p -e '`VERSION=${require("./${{ env.PUBLISH_DIR }}/package.json").version}`' >> $GITHUB_ENV
 
       - name: add version tag
         uses: pkgdeps/git-tag-action@v2
