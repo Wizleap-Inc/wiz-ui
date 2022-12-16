@@ -1,0 +1,20 @@
+name: Bundle Analyze Wiz-UI library
+
+on: [pull_request]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          build-script: build:lib
+          pattern: "./packages/wiz-ui/dist/{wiz-ui.es.js,wiz-ui.umd.js,style.css}"
