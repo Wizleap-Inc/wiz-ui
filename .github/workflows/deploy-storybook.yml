@@ -132,3 +132,4 @@ jobs:
             Updated At: ${{ steps.datetime.outputs.datetime }}
             Storybook URL: ${{ secrets.ENGINEER_DEPLOY_ORIGIN }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}${{ env.DEPLOY_URL_POSTFIX }}
           reactions: rocket
+          edit-mode: replace
