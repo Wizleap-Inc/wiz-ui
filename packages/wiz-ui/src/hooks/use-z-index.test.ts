@@ -5,8 +5,8 @@ import { useZIndex } from "./use-z-index";
 
 describe("useZIndex", () => {
   it("initialZIndexが数値のとき、その値を元に初期化する", () => {
-    const { currentZIndex } = useZIndex(100);
-    expect(currentZIndex.value).toBe(100);
+    const { currentZIndex } = useZIndex(1000);
+    expect(currentZIndex.value).toBe(1000);
   });
 
   it("initialZIndexが文字列のとき、その値を元に初期化する", () => {
@@ -16,8 +16,8 @@ describe("useZIndex", () => {
   });
 
   it("nextZIndexを呼び出すと、currentZIndexがインクリメントされる", () => {
-    const { currentZIndex, nextZIndex } = useZIndex(100);
+    const { currentZIndex, nextZIndex } = useZIndex(1000);
     nextZIndex();
-    expect(currentZIndex.value).toBe(101);
+    expect(currentZIndex.value).toBe(1001);
   });
 });
