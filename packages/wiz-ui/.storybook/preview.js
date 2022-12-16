@@ -6,4 +6,12 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds: {
+    values: [
+      {
+        name: "gradient",
+        value: "center / cover url(./public/images/gradient.png)",
+      },
+    ],
+  },
 };
