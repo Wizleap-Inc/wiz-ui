@@ -1,4 +1,5 @@
 import { StoryFn } from "@storybook/vue";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import { WizTextButton } from "@/components";
@@ -12,6 +13,13 @@ export default {
   argTypes: {
     click: {
       action: "click",
+    },
+    skeleton: {
+      control: { type: "boolean" },
+    },
+    gap: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
     },
   },
 };
@@ -36,3 +44,13 @@ const Template: StoryFn = (_, { argTypes }) => ({
 });
 
 export const Default = Template.bind({});
+
+export const Skeleton = Template.bind({});
+Skeleton.args = {
+  skeleton: true,
+};
+
+export const Gap = Template.bind({});
+Gap.args = {
+  gap: "lg",
+};

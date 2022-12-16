@@ -1,23 +1,20 @@
 <template>
   <hr
-    :class="{
-      'wiz-divider': true,
-      'wiz-divider--variant-solid': variant === 'solid',
-      'wiz-divider--variant-dashed': variant === 'dashed',
-      'wiz-divider--variant-dotted': variant === 'dotted',
-      'wiz-divider--direction-horizontal': direction === 'horizontal',
-      'wiz-divider--direction-vertical': direction === 'vertical',
-    }"
+    :class="[
+      dividerStyle[variant],
+      dividerDirectionStyle[direction],
+      borderColorStyle[color],
+    ]"
   />
 </template>
 
 <script setup lang="ts">
+import { ComponentName, ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  ComponentName,
-  ColorKeys,
-  getColorCss,
-} from "@wizleap-inc/wiz-ui-constants";
-import { computed } from "vue";
+  dividerStyle,
+  dividerDirectionStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/divider.css";
+import { borderColorStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 
 defineOptions({
   name: ComponentName.Divider,
@@ -28,42 +25,9 @@ interface Props {
   direction?: "horizontal" | "vertical";
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   color: "gray.400",
   variant: "solid",
   direction: "horizontal",
 });
-
-const color = computed(() => getColorCss(props.color));
 </script>
-
-<style lang="scss" scoped>
-.wiz-divider {
-  border: 0;
-  margin: 0;
-  border-color: v-bind(color);
-
-  &--variant {
-    &-solid {
-      border-style: solid;
-    }
-    &-dashed {
-      border-style: dashed;
-    }
-    &-dotted {
-      border-style: dotted;
-    }
-  }
-
-  &--direction {
-    &-horizontal {
-      border-width: 0 0 1px 0;
-      width: 100%;
-    }
-    &-vertical {
-      border-width: 0 1px 0 0;
-      height: 100%;
-    }
-  }
-}
-</style>
