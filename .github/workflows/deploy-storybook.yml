@@ -1,7 +1,6 @@
 name: Vue.js Storybook Deploy
 
 on:
-
   push:
     paths:
       - "**/*.stories.ts"
@@ -111,7 +110,8 @@ jobs:
         id: fc
         with:
           issue-number: ${{ steps.get_pull_request_info.outputs.pull_request_number }}
-          comment-author: "github-actions[bot]: Storybook Deployer"
+          comment-author: "github-actions[bot]"
+          body-includes: "Storybook URL:"
 
       - name: Create Comment
         if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' && steps.fc.outputs.comment-id == 0 }}
