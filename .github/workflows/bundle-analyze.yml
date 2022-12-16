@@ -13,12 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: ./.github/composite/prepare_node
-        with:
-          node-version: ${{ matrix.node-version }}
-          runs-on: ${{ matrix.runs-on }}
-          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
-
       - uses: preactjs/compressed-size-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
