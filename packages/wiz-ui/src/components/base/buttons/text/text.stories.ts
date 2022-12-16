@@ -77,7 +77,7 @@ const SizeTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextButton },
   template: `
-    <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+    <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center">
       <WizTextButton size="sm">保存する</WizTextButton>
       <div>size = sm</div>
       <WizTextButton size="md">保存する</WizTextButton>
