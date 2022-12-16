@@ -37,3 +37,7 @@ export const toggleButtonDisabledStyle = style({
   opacity: 0.5,
   cursor: "not-allowed",
 });
+
+export const toggleButtonRoundedStyle = style({
+  borderRadius: THEME.spacing.max,
+});

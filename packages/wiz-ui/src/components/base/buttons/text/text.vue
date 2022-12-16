@@ -43,7 +43,7 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   variant: "primary",
   disabled: false,
-  rounded: false,
+  rounded: true,
   expand: false,
   size: "md",
 });

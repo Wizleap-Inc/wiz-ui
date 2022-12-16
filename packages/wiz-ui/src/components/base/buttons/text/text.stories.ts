@@ -52,9 +52,9 @@ Disabled.args = {
   slotDefault: "保存する",
 };
 
-export const Rounded = Template.bind({});
-Rounded.args = {
-  rounded: true,
+export const Angled = Template.bind({});
+Angled.args = {
+  rounded: false,
   slotDefault: "保存する",
 };
 

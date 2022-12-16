@@ -4,6 +4,7 @@
       toggleButtonStyle,
       isActive && toggleButtonActiveStyle,
       disabled && toggleButtonDisabledStyle,
+      rounded && toggleButtonRoundedStyle,
     ]"
     :disabled="disabled"
     @click="onClick"
@@ -25,6 +26,7 @@ import {
   toggleButtonStyle,
   toggleButtonActiveStyle,
   toggleButtonDisabledStyle,
+  toggleButtonRoundedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
 import { ref } from "vue";
 
@@ -35,10 +37,12 @@ import type { TIcon } from "@/components/icons";
 defineOptions({
   name: ComponentName.ToggleButton,
 });
+
 interface Props {
   inActiveIcon: TIcon;
   activeIcon: TIcon;
   disabled?: boolean;
+  rounded?: boolean;
 }
 
 interface Emits {
@@ -47,6 +51,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
+  rounded: true,
 });
 
 const isActive = ref(false);

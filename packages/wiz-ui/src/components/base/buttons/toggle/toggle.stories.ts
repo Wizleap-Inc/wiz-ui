@@ -11,6 +11,9 @@ export default {
     disabled: {
       control: { type: "boolean" },
     },
+    rounded: {
+      control: { type: "boolean" },
+    },
     onClick: {
       action: "onClick",
     },
@@ -34,5 +37,11 @@ Default.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+  slotDefault: "顧客データ追加",
+};
+
+export const Angled = Template.bind({});
+Angled.args = {
+  rounded: false,
   slotDefault: "顧客データ追加",
 };
