@@ -7,7 +7,7 @@ on:
     branches-ignore:
       - "main"
       - "develop"
-  push:
+  pull_request:
     paths:
       - "**/*.test.ts"
     branches-ignore:
