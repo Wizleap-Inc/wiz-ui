@@ -22,5 +22,5 @@ jobs:
       - uses: preactjs/compressed-size-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          build-script: yarn workspace @wizleap-inc/wiz-ui build:lib
+          build-script: build:lib
           pattern: "./packages/wiz-ui/dist/{wiz-ui.es.js,wiz-ui.umd.js,style.css}"
