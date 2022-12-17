@@ -11,7 +11,7 @@ export const headerStickyStyle = style({
   position: "sticky",
   top: 0,
   left: 0,
-  borderBottomWidth: "1px",
+  borderWidth: "0 0 1px 0",
   borderStyle: "solid",
   borderColor: THEME.color.gray[400],
 });
