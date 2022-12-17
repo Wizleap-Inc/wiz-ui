@@ -27,6 +27,14 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    spaceX: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
+    spaceY: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
   },
 };
 

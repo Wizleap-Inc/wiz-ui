@@ -9,6 +9,7 @@ import {
   ComponentName,
   SpacingKeys,
   getSpacingCss,
+  getCoupleSpacingCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
@@ -18,13 +19,20 @@ defineOptions({
 
 interface Props {
   space?: SpacingKeys;
+  spaceX?: SpacingKeys;
+  spaceY?: SpacingKeys;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   space: "no",
 });
 
-const computedSpace = computed(() => getSpacingCss(props.space));
+const computedSpace = computed(() => {
+  if (props.spaceX || props.spaceY) {
+    return getCoupleSpacingCss(props.spaceX, props.spaceY);
+  }
+  return getSpacingCss(props.space);
+});
 </script>
 
 <style lang="scss" scoped>
