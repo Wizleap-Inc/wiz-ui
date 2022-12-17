@@ -31,6 +31,7 @@ export const ComponentName = {
   Anchor: "WizAnchor",
   Avatar: "WizAvatar",
   Box: "WizBox",
+  Badge: "WizBadge",
   IconButton: "WizIconButton",
   TextButton: "WizTextButton",
   ToggleButton: "WizToggleButton",
