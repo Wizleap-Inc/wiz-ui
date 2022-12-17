@@ -6,3 +6,4 @@ export * from "./font-size.css";
 export * from "./font-weight.css";
 export * from "./background.css";
 export * from "./border-color.css";
+export * from "./offset.css";
