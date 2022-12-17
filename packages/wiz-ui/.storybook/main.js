@@ -1,9 +1,8 @@
 const path = require("path");
 const { vanillaExtractPlugin } = require("@vanilla-extract/vite-plugin");
 const { mergeConfig } = require("vite");
-
 module.exports = {
-  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -25,8 +24,10 @@ module.exports = {
       base: "./",
     });
   },
-  staticDirs: [{ from: "./assets", to: "/public" }],
-  docsPage: {
-    docs: "automatic",
-  },
+  staticDirs: [
+    {
+      from: "./assets",
+      to: "/public",
+    },
+  ],
 };
