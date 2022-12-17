@@ -22,6 +22,7 @@ const onClick = () => emits("click");
 const colorWhite800 = THEME.color.white["800"];
 const colorGreen800 = THEME.color.green["800"];
 const colorGreen300 = THEME.color.green["300"];
+const colorGray300 = THEME.color.gray["300"];
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
 </script>
@@ -44,6 +45,7 @@ const spacingXs = THEME.spacing.xs;
       background-color: v-bind(colorWhite800);
       z-index: -1;
       box-sizing: border-box;
+      border: 1px solid v-bind(colorGray300);
     }
 
     &:hover {

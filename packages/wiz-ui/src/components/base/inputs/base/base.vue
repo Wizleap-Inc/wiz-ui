@@ -1,9 +1,7 @@
 <template>
   <input
-    :class="{
-      'wiz-text-input': true,
-      'wiz-text-input--disabled': disabled,
-    }"
+    :class="[baseInputStyle, disabled && baseInputDisabledStyle]"
+    :style="{ width: computedWidth }"
     :placeholder="placeholder"
     :name="name"
     :disabled="disabled"
@@ -14,7 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  baseInputStyle,
+  baseInputDisabledStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { computed } from "vue";
 
 defineOptions({
@@ -46,39 +48,5 @@ const onInput = (e: Event) => {
   emit("input", target.value);
 };
 
-const fontSizeSm = THEME.fontSize.sm;
-const green800 = THEME.color.green["800"];
-const grey300 = THEME.color.gray["300"];
-const grey400 = THEME.color.gray["400"];
-const grey700 = THEME.color.gray["700"];
-const grey500 = THEME.color.gray["500"];
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXs = THEME.spacing.xs;
-const spacingMd = THEME.spacing.md;
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 </script>
-
-<style lang="scss" scoped>
-.wiz-text-input {
-  border: 1px solid v-bind(grey400);
-  border-radius: v-bind(spacingXs2);
-  padding: v-bind(spacingXs) v-bind(spacingMd);
-  font-size: v-bind(fontSizeSm);
-  line-height: 1.5;
-  color: v-bind(grey700);
-  box-sizing: border-box;
-  width: v-bind(computedWidth);
-
-  &::placeholder {
-    color: v-bind(grey500);
-  }
-  &:focus {
-    outline: none;
-    border-color: v-bind(green800);
-  }
-  &--disabled {
-    background-color: v-bind(grey300);
-    cursor: not-allowed;
-  }
-}
-</style>

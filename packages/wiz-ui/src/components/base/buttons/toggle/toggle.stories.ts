@@ -11,6 +11,9 @@ export default {
     disabled: {
       control: { type: "boolean" },
     },
+    rounded: {
+      control: { type: "boolean" },
+    },
     onClick: {
       action: "onClick",
     },
@@ -22,17 +25,23 @@ const Template: StoryFn = (_, { argTypes }) => ({
   components: { WizToggleButton },
   setup: () => ({ WizIAdd, WizIRemove }),
   template: `
-    <WizToggleButton v-bind="$props" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="onClick('Default')">{{ slot }}</WizToggleButton>
+    <WizToggleButton v-bind="$props" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="onClick('Default')">{{ slotDefault }}</WizToggleButton>
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  slot: "顧客データ追加",
+  slotDefault: "顧客データ追加",
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  slot: "顧客データ追加",
+  slotDefault: "顧客データ追加",
+};
+
+export const Angled = Template.bind({});
+Angled.args = {
+  rounded: false,
+  slotDefault: "顧客データ追加",
 };

@@ -27,14 +27,14 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeading },
-  template: `<WizHeading v-bind="$props">{{ slot }}</WizHeading>`,
+  template: `<WizHeading v-bind="$props">{{ slotDefault }}</WizHeading>`,
 });
 
 const sampleHeadingTexts = {
-  1: "案件管理",
-  2: "初回面談前",
-  3: "契約・最終意向把握",
-  4: "現在のステータス",
+  1: "Level1の見出し",
+  2: "Level2の見出し",
+  3: "Level3の見出し",
+  4: "Level4の見出し",
   5: "Level5の見出し",
   6: "Level6の見出し",
 };
@@ -62,5 +62,5 @@ export const Overview = OverviewTemplate.bind({});
 export const Color = Template.bind({});
 Color.args = {
   color: "green.800",
-  slot: "Heading",
+  slotDefault: "Heading",
 };

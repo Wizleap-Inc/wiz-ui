@@ -2,10 +2,7 @@
   <WizPopupContainer v-model="modelValue">
     <slot />
     <WizPopup layer="popover" :gap="gap">
-      <div
-        class="wiz-dropdown__selector"
-        :class="{ 'wiz-dropdown__selector--skeleton': skeleton }"
-      >
+      <div :class="[dropdownStyle, skeleton && dropdownSkeletonStyle]">
         <WizVStack p="xs" gap="xs2">
           <slot name="options" />
         </WizVStack>
@@ -15,11 +12,11 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  THEME,
-  ComponentName,
-  SpacingKeys,
-} from "@wizleap-inc/wiz-ui-constants";
+  dropdownStyle,
+  dropdownSkeletonStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
 import { computed } from "vue";
 
 import { WizPopup, WizPopupContainer, WizVStack } from "@/components";
@@ -45,20 +42,4 @@ const modelValue = computed({
   get: () => props.value,
   set: (value: boolean) => emit("input", value),
 });
-
-const colorWhite800 = THEME.color.white[800];
-const colorWhite500 = THEME.color.white[500];
-const spacingXs2 = THEME.spacing.xs2;
 </script>
-
-<style lang="scss" scoped>
-.wiz-dropdown__selector {
-  background: v-bind(colorWhite800);
-  border-radius: v-bind(spacingXs2);
-  min-width: 10rem;
-
-  &--skeleton {
-    background: v-bind(colorWhite500);
-  }
-}
-</style>

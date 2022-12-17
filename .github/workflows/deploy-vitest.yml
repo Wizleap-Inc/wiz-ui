@@ -7,7 +7,7 @@ on:
     branches-ignore:
       - "main"
       - "develop"
-  push:
+  pull_request:
     paths:
       - "**/*.test.ts"
     branches-ignore:
@@ -95,11 +95,38 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ env.NOTIFICATION_WEBHOOK_URL }}
 
-      - name: Comment to Pull Request
+      - name: Get current datetime
+        id: datetime
+        run: echo "::set-output name=datetime::$(date +'%Y-%m-%d %H:%M:%S')"
+        env:
+          TZ: Asia/Tokyo
+
+      - name: Find Comment
         if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' }}
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ steps.get_pull_request_info.outputs.pull_request_number }}
+          comment-author: "github-actions[bot]"
+          body-includes: "Coverage URL:"
+
+      - name: Create Comment
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' && steps.fc.outputs.comment-id == 0 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ steps.get_pull_request_info.outputs.pull_request_number }}
           body: |
-            Coverage URL: (${{ secrets.ENGINEER_DEPLOY_ORIGIN }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}${{ env.DEPLOY_URL_POSTFIX }})
+            Updated At: ${{ steps.datetime.outputs.datetime }}
+            Coverage URL: ${{ secrets.ENGINEER_DEPLOY_ORIGIN }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}${{ env.DEPLOY_URL_POSTFIX }}
           reactions: rocket
+
+      - name: Update Comment
+        if: ${{ steps.get_pull_request_info.outputs.pull_request_number != '' && steps.fc.outputs.comment-id != 0 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          body: |
+            Updated At: ${{ steps.datetime.outputs.datetime }}
+            Coverage URL: ${{ secrets.ENGINEER_DEPLOY_ORIGIN }}/${{ github.event.repository.name }}/${{ env.DEPLOY_TYPE }}/${{ steps.get_pull_request_info.outputs.pull_request_number }}${{ env.DEPLOY_URL_POSTFIX }}
+          reactions: rocket
+          edit-mode: replace

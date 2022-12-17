@@ -30,4 +30,4 @@ export const getSpacingCss = (key?: SpacingKeys) =>
   key ? SPACING_MAP[key] : undefined;
 
 export const getCoupleSpacingCss = (x?: SpacingKeys, y?: SpacingKeys): string =>
-  `${getSpacingCss(x) || "no"} ${getSpacingCss(y) || "no"}`;
+  `${getSpacingCss(x || "no")} ${getSpacingCss(y || "no")}`;

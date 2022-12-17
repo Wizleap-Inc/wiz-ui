@@ -1,25 +1,28 @@
 <template>
   <button
-    :class="{
-      'wiz-icon-button': true,
-      'wiz-icon-button--variant-primary': variant === 'primary',
-      'wiz-icon-button--variant-sub': variant === 'sub',
-      'wiz-icon-button--variant-transparent': variant === 'transparent',
-      'wiz-icon-button--variant-link': variant === 'link',
-      'wiz-icon-button--disabled': disabled,
-      'wiz-icon-button--size-sm': size === 'sm',
-      'wiz-icon-button--size-md': size === 'md',
-      'wiz-icon-button--size-lg': size === 'lg',
-      'wiz-icon-button--size-xl': size === 'xl',
-    }"
+    :class="[
+      iconButtonStyle[variant],
+      disabled && iconButtonDisabledStyle,
+      fontSizeStyle[getRelativeFontSize(size, 3)],
+    ]"
+    :disabled="disabled"
     @click="onClick"
   >
-    <component :is="icon" />
+    <component :is="icon" :class="iconButtonSVGStyle[variant]" />
   </button>
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ComponentName,
+  getRelativeFontSize,
+} from "@wizleap-inc/wiz-ui-constants";
+import {
+  iconButtonSVGStyle,
+  iconButtonStyle,
+  iconButtonDisabledStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
+import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 
 import type { TIcon } from "@/components/icons";
 
@@ -47,95 +50,4 @@ const props = withDefaults(defineProps<Props>(), {
 const emits = defineEmits<Emits>();
 
 const onClick = () => props.disabled || emits("click");
-
-const colorGradient = THEME.color.gradient;
-const colorWhite800 = THEME.color.white["800"];
-const colorGreen800 = THEME.color.green["800"];
-const colorGray700 = THEME.color.gray["700"];
-const colorGray400 = THEME.color.gray["400"];
-const colorGray300 = THEME.color.gray["300"];
-const coloBlue800 = THEME.color.blue["800"];
-const shadowMd = THEME.shadow.md;
-const spacingXs = THEME.spacing.xs;
-const fontSizeXl = THEME.fontSize.xl;
-const fontSizeXl2 = THEME.fontSize.xl2;
-const fontSizeXl3 = THEME.fontSize.xl3;
-const fontSizeXl4 = THEME.fontSize.xl4;
 </script>
-
-<style lang="scss" scoped>
-$sub-button-border-width: 1px;
-.wiz-icon-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-
-  &--variant {
-    &-primary {
-      padding: v-bind(spacingXs);
-      box-shadow: v-bind(shadowMd);
-      background: v-bind(colorGradient);
-      border: none;
-      & > svg {
-        fill: v-bind(colorWhite800);
-      }
-      &:hover:not(.wiz-icon-button--disabled) {
-        opacity: 0.9;
-      }
-    }
-
-    &-sub {
-      background: v-bind(colorWhite800);
-      border: $sub-button-border-width solid v-bind(colorGray400);
-      padding: calc(v-bind(spacingXs) - $sub-button-border-width);
-      & > svg {
-        fill: v-bind(colorGreen800);
-      }
-      &:hover:not(.wiz-icon-button--disabled) {
-        background: v-bind(colorGray300);
-      }
-    }
-
-    &-transparent {
-      background: none;
-      border: none;
-      padding: 0;
-      & > svg {
-        fill: v-bind(colorGray700);
-      }
-    }
-
-    &-link {
-      background: none;
-      border: none;
-      padding: 0;
-      & > svg {
-        fill: v-bind(coloBlue800);
-      }
-    }
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  &--size-sm {
-    font-size: v-bind(fontSizeXl);
-  }
-
-  &--size-md {
-    font-size: v-bind(fontSizeXl2);
-  }
-
-  &--size-lg {
-    font-size: v-bind(fontSizeXl3);
-  }
-
-  &--size-xl {
-    font-size: v-bind(fontSizeXl4);
-  }
-}
-</style>
