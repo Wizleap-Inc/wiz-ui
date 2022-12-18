@@ -31,22 +31,23 @@ runs:
     - name: Update latest version of wiz-ui
       run: |
         cd ${{ inputs.npm-project-path }}
+        node -p -e '`BEFORE=${require("./package.json").dependencies["@wizleap-inc/wiz-ui"]}`' >> $GITHUB_ENV
         npm install @wizleap-inc/wiz-ui@latest
-        node -p -e '`VERSION=${require("./package.json").dependencies["@wizleap-inc/wiz-ui"]}`' >> $GITHUB_ENV
+        node -p -e '`AFTER=${require("./package.json").dependencies["@wizleap-inc/wiz-ui"]}`' >> $GITHUB_ENV
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v7
       with:
         author_name: ${{ inputs.author-name }}
         author_email: ${{ inputs.author-email }}
-        message: "chore: update version to ${{ env.VERSION }}"
+        message: "chore: update version to ${{ env.AFTER }}"
 
     - name: Push changes
       uses: peter-evans/create-pull-request@v4
       with:
         token: ${{ inputs.github-token }}
-        commit-message: "chore: update wiz-ui-version to ${{ env.VERSION }}"
-        title: "chore: update wiz-ui-version to ${{ env.VERSION }}"
-        body: "chore: update wiz-ui-version to ${{ env.VERSION }}"
-        branch: "chore/update-wiz-ui-version-to-${{ env.VERSION }}"
+        commit-message: "chore: update wiz-ui-version to ${{ env.AFTER }}"
+        title: "chore: update wiz-ui-version to ${{ env.AFTER }}"
+        body: "Wiz UIの自動アップデート: ${{ env.BEFORE }} -> ${{ env.AFTER }}\n**もしこれがパッチアップデートでなければすぐにマージせずに一度動作確認を行ってください。**"
+        branch: "chore/update-wiz-ui-version-to-${{ env.AFTER }}"
         delete-branch: true
