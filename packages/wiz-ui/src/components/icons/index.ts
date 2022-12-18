@@ -3,7 +3,9 @@ import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
+import { default as WizICalendar } from "./calendar.vue";
 import { default as WizIChat } from "./chat.vue";
+import { default as WizIChevronLeft } from "./chevron-left.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
@@ -33,6 +35,7 @@ export type TIcon =
   | typeof WizIBusinessCenter
   | typeof WizIChat
   | typeof WizIChevronRight
+  | typeof WizIChevronLeft
   | typeof WizIClose
   | typeof WizIDashboard
   | typeof WizIEditNote
@@ -51,7 +54,8 @@ export type TIcon =
   | typeof WizIRemove
   | typeof WizISchedule
   | typeof WizISend
-  | typeof WizITab;
+  | typeof WizITab
+  | typeof WizICalendar;
 
 export {
   WizIAdd,
@@ -61,6 +65,7 @@ export {
   WizIBusinessCenter,
   WizIChat,
   WizIChevronRight,
+  WizIChevronLeft,
   WizIClose,
   WizIDashboard,
   WizIEditNote,
@@ -80,4 +85,5 @@ export {
   WizISchedule,
   WizISend,
   WizITab,
+  WizICalendar,
 };
