@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { ref, computed, withDefaults, defineProps, defineEmits } from "vue";
+import { ref, computed, withDefaults, defineProps } from "vue";
 
 import {
   WizIcon,
@@ -80,10 +80,6 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
 });
 
-interface Emit {
-  (e: "input", value: Date): void;
-}
-const emits = defineEmits<Emit>();
 const defaultCurrentMonth = new Date().setHours(0, 0, 0, 0);
 const currentMonth = ref(new Date(defaultCurrentMonth));
 const openDatepicker = ref(false);

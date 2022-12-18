@@ -1,13 +1,13 @@
 <template>
   <table class="wiz-calendar">
-    <td v-for="row in calendarWeekList" class="wiz-calendar-item" :key="row">
+    <td v-for="row in WEEK_LIST_JP" class="wiz-calendar-item" :key="row">
       {{ row }}
     </td>
     <tr v-for="(week, row) in calendars" :key="row">
       <td
         v-for="(day, col) in week"
         :key="day"
-        :class="`${isCurrentMonthDateClass(row, col)}`"
+        :class="isCurrentMonthDateClass(row, col)"
         @click="updateSelectedDate(row, col, day)"
       >
         {{ day }}
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { THEME, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
 import { withDefaults, defineProps, defineEmits, computed } from "vue";
 
 interface Props {
@@ -34,8 +34,6 @@ const emits = defineEmits<Emit>();
 const props = withDefaults(defineProps<Props>(), {
   filledWeeks: false,
 });
-
-const calendarWeekList = ["日", "月", "火", "水", "木", "金", "土"];
 
 const calendars = computed(() => {
   const showCalendars: Array<Array<string>> = [];
