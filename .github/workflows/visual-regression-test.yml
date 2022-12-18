@@ -1,6 +1,6 @@
 name: Visual Regression Test Wiz-UI library
 
-on: [pull_request]
+on: [push]
 
 env:
   REG_NOTICE_CLIENT_ID: ${{ secrets.REG_NOTICE_CLIENT_ID }}
