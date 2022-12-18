@@ -29,6 +29,7 @@ runs:
         token: ${{ inputs.github-token }}
 
     - name: Update latest version of wiz-ui
+      shell: bash
       run: |
         cd ${{ inputs.npm-project-path }}
         node -p -e '`BEFORE=${require("./package.json").dependencies["@wizleap-inc/wiz-ui"]}`' >> $GITHUB_ENV
