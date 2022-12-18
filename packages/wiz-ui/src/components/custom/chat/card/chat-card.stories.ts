@@ -154,7 +154,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
         message: newMessage.value,
         sender: "me",
         read: false,
-        time: new Date(),
+        time: new Date("2022-08-02T04:00:00.000+09:00"),
       });
       newMessage.value = "";
     };
