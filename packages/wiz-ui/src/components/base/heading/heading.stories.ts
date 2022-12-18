@@ -24,43 +24,68 @@ export default {
   },
 };
 
-const Template: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizHeading },
-  template: `<WizHeading v-bind="$props">{{ slotDefault }}</WizHeading>`,
-});
+const HEADING_LIST = [1, 2, 3, 4, 5, 6];
 
-const sampleHeadingTexts = {
-  1: "Level1の見出し",
-  2: "Level2の見出し",
-  3: "Level3の見出し",
-  4: "Level4の見出し",
-  5: "Level5の見出し",
-  6: "Level6の見出し",
-};
-
-const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
+export const Level: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeading },
   setup() {
     return {
-      sampleHeadingTexts,
+      HEADING_LIST,
     };
   },
   template: `
     <table>
-      <tr v-for="[level, text] in Object.entries(sampleHeadingTexts)" :key="level">
-        <td style="padding: 1rem;">H{{ level }}</td>
-        <td style="padding: 1rem;"><WizHeading :level="+level">{{ text }}</WizHeading></td>
+      <tr v-for="heading in HEADING_LIST" :key="heading">
+        <td style="padding: 1rem;">level = {{ heading }}</td>
+        <td style="padding: 1rem;"><WizHeading :level="heading">Level{{ heading }}の見出し</WizHeading></td>
       </tr>
     </table>
   `,
 });
 
-export const Overview = OverviewTemplate.bind({});
+export const Color: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizHeading },
+  setup() {
+    return {
+      COLOR_MAP_ACCESSORS,
+    };
+  },
+  template: `
+    <table>
+      <tr v-for="color in COLOR_MAP_ACCESSORS" :key="color">
+        <td style="padding: 1rem;">{{ color }}</td>
+        <td style="padding: 1rem;"><WizHeading :color="color">{{ color }}の見出し</WizHeading></td>
+      </tr>
+    </table>
+  `,
+});
 
-export const Color = Template.bind({});
-Color.args = {
-  color: "green.800",
-  slotDefault: "Heading",
-};
+export const FontSize: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizHeading },
+  setup() {
+    return {
+      FONT_SIZE_ACCESSORS,
+    };
+  },
+  template: `
+    <table>
+      <tr v-for="fontSize in FONT_SIZE_ACCESSORS" :key="fontSize">
+        <td style="padding: 1rem;">{{ fontSize }}</td>
+        <td style="padding: 1rem;"><WizHeading :fontSize="fontSize">{{ fontSize }}の見出し</WizHeading></td>
+      </tr>
+    </table>
+  `,
+});
+
+export const Test: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizHeading },
+  template: `
+    <WizHeading fontSize="sm" color="gray.900" padding="0 1rem">
+      案件配信
+    </WizHeading>
+  `,
+});
