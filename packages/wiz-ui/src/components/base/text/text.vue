@@ -47,9 +47,9 @@ const computedIsP = computed(() => props.as === "p");
 const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
 const computedFontSize = computed(() => getFontSizeCss(props.fontSize));
-const computedLineHeight = computed(() => {
-  return props.lineHeight ? getFontSizeCss(props.lineHeight) : 1.5;
-});
+const computedLineHeight = computed(() =>
+  props.lineHeight ? getFontSizeCss(props.lineHeight) : "normal"
+);
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
 const computedWhiteSpace = computed(() => getWhiteSpaceCss(props.whiteSpace));
 
