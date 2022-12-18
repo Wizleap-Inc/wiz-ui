@@ -13,7 +13,7 @@ npm install @wizleap-inc/wiz-ui
 import stylesheet in your main.js
 
 ```js
-import '@wizleap-inc/wiz-ui/dist/wiz-ui.css'
+import '@wizleap-inc/wiz-ui/dist/style.css'
 ```
 
 import components in your component
