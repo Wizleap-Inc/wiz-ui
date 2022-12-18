@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        fetch-depth: 0
 
       - uses: ./.github/composite/prepare_node
         with:
