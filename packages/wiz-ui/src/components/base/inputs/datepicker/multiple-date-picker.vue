@@ -19,9 +19,9 @@
       </div>
       <WizPopup layer="popover" gap="xs">
         <div class="wiz-datepicker__selector">
-          <WizHStack> hoge </WizHStack>
+          <WizHStack align="center" justify="end" px="xs" py="xs2"> </WizHStack>
           <WizDivider />
-          <WizHStack align="center" my="xs2" px="xs" justify="between">
+          <WizHStack align="center" my="xs2" justify="between">
             <WizVStack px="xs" py="xs2">
               <WizHStack align="center" my="xs2" px="xs" justify="between">
                 <div class="wiz-datepicker__button_box">
@@ -39,14 +39,14 @@
               </WizHStack>
               <WizCalendar v-model="value" :currentMonth="currentMonth" />
             </WizVStack>
-            <WizVStack height="200px" py="xs">
+            <WizVStack height="210px" py="xs">
               <WizDivider direction="vertical" />
             </WizVStack>
             <WizVStack px="xs" py="xs2">
               <WizHStack align="center" my="xs2" px="xs" justify="between">
                 <div class="wiz-datepicker__button_box"></div>
                 <WizText as="span" fontSize="xs" color="gray.700">{{
-                  currentDateTitle
+                  nextDateTitle
                 }}</WizText>
                 <div class="wiz-datepicker__button_box">
                   <div
@@ -57,7 +57,7 @@
                   </div>
                 </div>
               </WizHStack>
-              <WizCalendar v-model="value" :currentMonth="currentMonth" />
+              <WizCalendar v-model="value" :currentMonth="nextMonth" />
             </WizVStack>
           </WizHStack>
         </div>
@@ -99,8 +99,15 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
 });
 
-const defaultCurrentMonth = new Date().setHours(0, 0, 0, 0);
-const currentMonth = ref(new Date(defaultCurrentMonth));
+const currentMonth = ref(new Date(new Date().setHours(0, 0, 0, 0)));
+const nextMonth = computed(
+  () =>
+    new Date(
+      currentMonth.value.getFullYear(),
+      currentMonth.value.getMonth() + 1,
+      currentMonth.value.getDate()
+    )
+);
 const openDatepicker = ref(false);
 
 const toggleDatepicker = () => {
@@ -132,6 +139,12 @@ const parseValue = (inputValue?: Date) => {
 const currentDateTitle = computed(() => {
   return `${currentMonth.value.getFullYear()}年${
     currentMonth.value.getMonth() + 1
+  }月`;
+});
+
+const nextDateTitle = computed(() => {
+  return `${nextMonth.value.getFullYear()}年${
+    nextMonth.value.getMonth() + 1
   }月`;
 });
 
@@ -174,7 +187,6 @@ $border-width: 1px;
 
   &__box {
     height: 100%;
-    padding: v-bind(spacingNo) v-bind(spacingXs);
     font-size: v-bind(fontSizeSm);
     color: v-bind(colorGray500);
     width: v-bind(width);
@@ -189,7 +201,6 @@ $border-width: 1px;
     top: calc(100% + $border-width * 2);
     left: 0;
     width: auto;
-    padding: 0 v-bind(spacingXs);
     background: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
     box-sizing: border-box;

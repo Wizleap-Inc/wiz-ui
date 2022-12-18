@@ -6,7 +6,7 @@
     <tr v-for="(week, row) in calendars" :key="row">
       <td
         v-for="(day, col) in week"
-        :key="day"
+        :key="col"
         :class="isCurrentMonthDateClass(row, col)"
         @click="updateSelectedDate(row, col, day)"
       >
