@@ -1,0 +1,39 @@
+name: reg-suit
+
+on: [pull_request]
+
+env:
+  REG_NOTICE_CLIENT_ID: ${{ secrets.REG_NOTICE_CLIENT_ID }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - uses: ./.github/composite/prepare_node
+        with:
+          node-version: ${{ matrix.node-version }}
+          runs-on: ${{ matrix.runs-on }}
+          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: workaround for detached HEAD
+        run: |
+          git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
+
+      - name: run storybook generate
+        run: yarn workspace @wizleap-inc/wiz-ui build:storybook
+
+      - name: run storycap
+        run: yarn workspace @wizleap-inc/wiz-ui ci:storycap
+
+      - name: run reg-suit
+        run: yarn workspace @wizleap-inc/wiz-ui ci:vrt
