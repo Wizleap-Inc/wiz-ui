@@ -1,4 +1,4 @@
-name: reg-suit
+name: Visual Regression Test Wiz-UI library
 
 on: [pull_request]
 
