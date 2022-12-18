@@ -10,7 +10,7 @@
     height="fit-content"
     cursor="pointer"
   >
-    <WizHStack px="xs" py="md" justify="between" align="center">
+    <WizHStack px="md" py="xs" justify="between" align="center">
       <WizVStack gap="xs" position="relative" width="100%">
         <WizHStack v-if="variant === 'primary'" justify="between" align="start">
           <WizVStack gap="xs">

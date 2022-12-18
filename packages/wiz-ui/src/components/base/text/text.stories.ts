@@ -81,14 +81,23 @@ const MaxLinesTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizText },
   template: `
+  <div style="display: flex; gap: 1rem;">
     <div style="width: 200px;">
-      <WizText v-bind="$props">{{ slot }}</WizText>
+      <WizText v-bind="$props">{{ slot1 }}</WizText>
     </div>
+    <div style="width: 200px;">
+      <WizText v-bind="$props">{{ slot2 }}</WizText>
+    </div>
+ </div>
   `,
 });
+
 export const MaxLines = MaxLinesTemplate.bind({});
 MaxLines.args = {
   as: "p",
   maxLines: 5,
-  slot: "これはとても長いテキストです。投稿内容に依存して高さが大きくズレるため、テキストの最大行数を指定し3点ドットで対応することにします。",
+  slot1:
+    "これはとても長いテキストです。投稿内容に依存して高さが大きくズレるため、テキストの最大行数を指定し3点ドットで対応することにします。",
+  slot2:
+    "WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.",
 };

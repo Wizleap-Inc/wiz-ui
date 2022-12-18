@@ -62,6 +62,8 @@ const overflowStyles = computed(() => {
     WebkitLineClamp: props.maxLines,
   };
 });
+
+const computedWordBreak = computed(() => props.maxLines && "break-all");
 </script>
 
 <style lang="scss" scoped>
@@ -72,6 +74,7 @@ const overflowStyles = computed(() => {
   font-size: v-bind(computedFontSize);
   font-weight: v-bind(computedFontWeight);
   white-space: v-bind(computedWhiteSpace);
+  word-break: v-bind(computedWordBreak);
 
   &__dummy {
     filter: blur(0.25rem);

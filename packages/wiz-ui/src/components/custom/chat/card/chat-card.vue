@@ -12,7 +12,7 @@
     ref="floatChatCardRef"
     zIndex="floating"
   >
-    <WizCard shadow align="start">
+    <WizCard shadow align="stretch">
       <template #mainHeaderArea>
         <WizText color="gray.700" as="span" bold>
           {{ username }}
@@ -27,7 +27,13 @@
         />
       </template>
       <WizDivider />
-      <WizVStack gap="xs" height="320px" overflow="scroll" ref="chatListRef">
+      <WizVStack
+        gap="xs"
+        py="xs"
+        height="320px"
+        overflow="scroll"
+        ref="chatListRef"
+      >
         <template v-for="messages in displayMessages">
           <WizHStack justify="center" :key="messages.date.toDateString()">
             <WizTag
@@ -52,7 +58,7 @@
           :placeholder="placeholder"
           :formRows="formRows"
         />
-        <WizVStack height="1.25rem" width="100%" justify="end">
+        <WizVStack height="1.125rem" width="100%" justify="end">
           <WizText v-if="typingUsername" color="gray.600" as="p" fontSize="xs2">
             <WizText as="span" bold fontSize="xs2" color="gray.700">
               {{ typingUsername }}
