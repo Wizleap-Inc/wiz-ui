@@ -27,6 +27,9 @@ jobs:
           runs-on: ${{ matrix.runs-on }}
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
+      - name: Install fonts
+        run: sudo apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
+
       - name: workaround for detached HEAD
         run: |
           git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
