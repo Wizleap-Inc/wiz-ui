@@ -55,7 +55,7 @@ jobs:
     needs: publish
     steps:
       - name: update in crm-market-holder
-        uses: ./.github/composite/update_wiz-ui
+        uses: ./.github/composite/update_wizui
         with:
           repository: "wizleap-inc/crm-market-holder"
           npm-project-path: "client"
@@ -68,7 +68,7 @@ jobs:
     needs: publish
     steps:
       - name: update in crm-expert
-        uses: ./.github/composite/update_wiz-ui
+        uses: ./.github/composite/update_wizui
         with:
           repository: "wizleap-inc/crm-expert"
           npm-project-path: "client"
@@ -81,7 +81,7 @@ jobs:
     needs: publish
     steps:
       - name: update in crm-admin
-        uses: ./.github/composite/update_wiz-ui
+        uses: ./.github/composite/update_wizui
         with:
           repository: "wizleap-inc/crm-admin"
           npm-project-path: "client"
