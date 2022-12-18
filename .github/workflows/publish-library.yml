@@ -50,7 +50,7 @@ jobs:
           git_commit_sha: ${{ github.sha }}
           git_tag_prefix: "v"
 
-  update-wiz-ui-version:
+  update-wiz-ui_crm-market-holder:
     runs-on: ubuntu-20.04
     needs: publish
     steps:
@@ -58,6 +58,32 @@ jobs:
         uses: ./.github/composite/update_wiz-ui
         with:
           repository: "wizleap-inc/crm-market-holder"
+          npm-project-path: "client"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          author-name: ${{ secrets.COMMITTER }}
+          author-email: ${{ secrets.COMMITTER_EMAIL }}
+
+  update-wiz-ui_crm-expert:
+    runs-on: ubuntu-20.04
+    needs: publish
+    steps:
+      - name: update in crm-expert
+        uses: ./.github/composite/update_wiz-ui
+        with:
+          repository: "wizleap-inc/crm-expert"
+          npm-project-path: "client"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          author-name: ${{ secrets.COMMITTER }}
+          author-email: ${{ secrets.COMMITTER_EMAIL }}
+
+  update-wiz-ui_crm-admin:
+    runs-on: ubuntu-20.04
+    needs: publish
+    steps:
+      - name: update in crm-admin
+        uses: ./.github/composite/update_wiz-ui
+        with:
+          repository: "wizleap-inc/crm-admin"
           npm-project-path: "client"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           author-name: ${{ secrets.COMMITTER }}
