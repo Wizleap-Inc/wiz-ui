@@ -1,0 +1,52 @@
+name: Update Wiz UI
+description: Update Wiz UI version in another repo
+inputs:
+  repository:
+    description: "Repository to update"
+    required: true
+  github-token:
+    description: "Github token to update the repository"
+    required: true
+  npm-project-path:
+    description: "Path to the npm project, relative to the root of the repository, where the package.json is located"
+    required: false
+    default: "."
+  author-name:
+    description: "Author name"
+    required: true
+    default: "sor4chi"
+  author-email:
+    description: "Author email"
+    required: true
+
+runs:
+  using: "Composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.repository }}
+        token: ${{ inputs.github-token }}
+
+    - name: Update latest version of wiz-ui
+      run: |
+        cd ${{ inputs.npm-project-path }}
+        npm install @wizleap-inc/wiz-ui@latest
+        node -p -e '`VERSION=${require("./package.json").dependencies["@wizleap-inc/wiz-ui"]}`' >> $GITHUB_ENV
+
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v7
+      with:
+        author_name: ${{ inputs.author-name }}
+        author_email: ${{ inputs.author-email }}
+        message: "chore: update version to ${{ env.VERSION }}"
+
+    - name: Push changes
+      uses: peter-evans/create-pull-request@v4
+      with:
+        token: ${{ inputs.github-token }}
+        commit-message: "chore: update wiz-ui-version to ${{ env.VERSION }}"
+        title: "chore: update wiz-ui-version to ${{ env.VERSION }}"
+        body: "chore: update wiz-ui-version to ${{ env.VERSION }}"
+        branch: "chore/update-wiz-ui-version-to-${{ env.VERSION }}"
+        delete-branch: true
