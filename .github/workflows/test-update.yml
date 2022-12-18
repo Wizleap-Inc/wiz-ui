@@ -6,6 +6,9 @@ jobs:
   update-wiz-ui:
     runs-on: ubuntu-20.04
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
       - name: update in crm-market-holder
         uses: ./.github/composite/update_wizui
         with:
