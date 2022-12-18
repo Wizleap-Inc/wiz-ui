@@ -80,13 +80,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 const computedSpacingStyles = computed(() => {
   const spacingStyles = {
-    gap: getSpacingCss(props.gap) || getCoupleSpacingCss(props.gx, props.gy),
-    padding: getSpacingCss(props.p) || getCoupleSpacingCss(props.px, props.py),
+    gap: getSpacingCss(props.gap) || getCoupleSpacingCss(props.gy, props.gx),
+    padding: getSpacingCss(props.p) || getCoupleSpacingCss(props.py, props.px),
     paddingTop: getSpacingCss(props.pt),
     paddingRight: getSpacingCss(props.pr),
     paddingBottom: getSpacingCss(props.pb),
     paddingLeft: getSpacingCss(props.pl),
-    margin: getSpacingCss(props.m) || getCoupleSpacingCss(props.mx, props.my),
+    margin: getSpacingCss(props.m) || getCoupleSpacingCss(props.my, props.mx),
     marginTop: getSpacingCss(props.mt),
     marginRight: getSpacingCss(props.mr),
     marginBottom: getSpacingCss(props.mb),
