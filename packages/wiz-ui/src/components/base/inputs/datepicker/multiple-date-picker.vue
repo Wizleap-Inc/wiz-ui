@@ -21,7 +21,7 @@
         <div class="wiz-datepicker__selector">
           <WizHStack align="center" justify="end" px="xs" py="xs2"> </WizHStack>
           <WizDivider />
-          <WizHStack align="center" my="xs2" justify="between">
+          <WizHStack height="15rem" align="center" my="xs2" justify="between">
             <WizVStack px="xs" py="xs2">
               <WizHStack align="center" my="xs2" px="xs" justify="between">
                 <div class="wiz-datepicker__button_box">
@@ -37,9 +37,11 @@
                 }}</WizText>
                 <div class="wiz-datepicker__button_box"></div>
               </WizHStack>
-              <WizCalendar v-model="value" :currentMonth="currentMonth" />
+              <div style="min-height: 12rem">
+                <WizCalendar v-model="value" :currentMonth="currentMonth" />
+              </div>
             </WizVStack>
-            <WizVStack height="210px" py="xs">
+            <WizVStack height="100%" py="xs">
               <WizDivider direction="vertical" />
             </WizVStack>
             <WizVStack px="xs" py="xs2">
@@ -57,7 +59,9 @@
                   </div>
                 </div>
               </WizHStack>
-              <WizCalendar v-model="value" :currentMonth="nextMonth" />
+              <div style="min-height: 12rem">
+                <WizCalendar v-model="value" :currentMonth="nextMonth" />
+              </div>
             </WizVStack>
           </WizHStack>
         </div>
@@ -150,8 +154,6 @@ const nextDateTitle = computed(() => {
 
 const width = computed(() => props.width);
 const fontSizeSm = THEME.fontSize.sm;
-const spacingNo = THEME.spacing.no;
-const spacingXs = THEME.spacing.xs;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXl3 = THEME.spacing.xl3;
 const colorWhite800 = THEME.color.white["800"];
