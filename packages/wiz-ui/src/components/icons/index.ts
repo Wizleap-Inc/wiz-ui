@@ -2,8 +2,10 @@ import { default as WizIAdd } from "./add.vue";
 import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
+import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizIChat } from "./chat.vue";
+import { default as WizICheckCircle } from "./check-circle.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
@@ -30,8 +32,10 @@ export type TIcon =
   | typeof WizIArrowRight
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
+  | typeof WizIAttachFile
   | typeof WizIBusinessCenter
   | typeof WizIChat
+  | typeof WizICheckCircle
   | typeof WizIChevronRight
   | typeof WizIClose
   | typeof WizIDashboard
@@ -58,8 +62,10 @@ export {
   WizIArrowRight,
   WizIAssignmentAdd,
   WizIAssignment,
+  WizIAttachFile,
   WizIBusinessCenter,
   WizIChat,
+  WizICheckCircle,
   WizIChevronRight,
   WizIClose,
   WizIDashboard,
