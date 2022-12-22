@@ -31,4 +31,8 @@ module.exports = {
       to: "/public",
     },
   ],
+  docs: {
+    docsPage: "automatic",
+    defaultName: "Docs",
+  },
 };
