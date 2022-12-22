@@ -24,7 +24,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const defaultValue = new Date().setHours(0, 0, 0, 0);
+    const defaultValue = new Date("2021-01-01T00:00:00.000Z");
     const value = ref(new Date(defaultValue));
     return { value };
   },
