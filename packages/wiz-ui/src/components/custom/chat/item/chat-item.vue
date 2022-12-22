@@ -11,8 +11,8 @@
       <WizCard
         border
         fit
-        px="xs"
-        py="md"
+        px="md"
+        py="xs"
         borderColor="gray.300"
         :maxWidth="maxChatItemWidth"
       >

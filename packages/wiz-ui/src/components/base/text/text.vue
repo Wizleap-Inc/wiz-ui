@@ -47,9 +47,9 @@ const computedIsP = computed(() => props.as === "p");
 const computedIsSpan = computed(() => props.as === "span");
 const computedColor = computed(() => getColorCss(props.color));
 const computedFontSize = computed(() => getFontSizeCss(props.fontSize));
-const computedLineHeight = computed(() => {
-  return props.lineHeight ? getFontSizeCss(props.lineHeight) : 1.5;
-});
+const computedLineHeight = computed(() =>
+  props.lineHeight ? getFontSizeCss(props.lineHeight) : "normal"
+);
 const computedFontWeight = computed(() => (props.bold ? "bold" : "normal"));
 const computedWhiteSpace = computed(() => getWhiteSpaceCss(props.whiteSpace));
 
@@ -62,6 +62,8 @@ const overflowStyles = computed(() => {
     WebkitLineClamp: props.maxLines,
   };
 });
+
+const computedWordBreak = computed(() => props.maxLines && "break-all");
 </script>
 
 <style lang="scss" scoped>
@@ -72,6 +74,7 @@ const overflowStyles = computed(() => {
   font-size: v-bind(computedFontSize);
   font-weight: v-bind(computedFontWeight);
   white-space: v-bind(computedWhiteSpace);
+  word-break: v-bind(computedWordBreak);
 
   &__dummy {
     filter: blur(0.25rem);

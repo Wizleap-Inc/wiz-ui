@@ -7,6 +7,7 @@ const IconComponentName = {
   IExpandMore: "WizIExpandMore",
   IExpandLess: "WizIExpandLess",
   IEditNote: "WizIEditNote",
+  IChevronLeft: "WizIChevronLeft",
   IChevronRight: "WizIChevronRight",
   IAssignment: "WizIAssignment",
   IAssignmentAdd: "WizIAssignmentAdd",
@@ -25,6 +26,7 @@ const IconComponentName = {
   IAdd: "WizIAdd",
   IRemove: "WizIRemove",
   IOpenInNew: "WizIOpenInNew",
+  ICalendar: "WizICalendar",
 };
 
 export const ComponentName = {

@@ -1,4 +1,4 @@
-name: Publish Wiz-UI library
+name: Publish Wiz-UI library, update Wiz-UI version in other repositories
 
 env:
   CI: true

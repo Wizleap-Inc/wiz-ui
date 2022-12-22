@@ -57,6 +57,7 @@ useClickOutside(popupContainerRef, () => {
 .wiz-popup-container {
   position: relative;
   width: fit-content;
+  height: fit-content;
 
   &--expand {
     width: 100%;

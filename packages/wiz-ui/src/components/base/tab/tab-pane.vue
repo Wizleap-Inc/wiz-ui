@@ -53,7 +53,6 @@ const fontSizeSm = THEME.fontSize.sm;
 const fontSizeLg = THEME.fontSize.lg;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
-const spacingXl = THEME.spacing.xl;
 const computedWidth = computed(() => props.width);
 </script>
 
@@ -64,7 +63,7 @@ const computedWidth = computed(() => props.width);
   justify-content: center;
   gap: v-bind(spacingXs2);
   height: 100%;
-  padding: v-bind(spacingXs) v-bind(spacingXl);
+  padding: v-bind(spacingXs);
   font-size: v-bind(fontSizeSm);
   width: v-bind(computedWidth);
   cursor: pointer;
