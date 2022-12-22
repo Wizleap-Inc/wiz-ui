@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { ref, computed, withDefaults, defineProps } from "vue";
+import { ref, computed } from "vue";
 
 import {
   WizIcon,

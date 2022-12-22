@@ -1,13 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
+import { FONT_WEIGHT_MAP } from "@wizleap-inc/wiz-ui-constants";
 
-export const fontWeightStyle = styleVariants({
-  thin: {
-    fontWeight: 100,
-  },
-  normal: {
-    fontWeight: 400,
-  },
-  bold: {
-    fontWeight: 700,
-  },
-});
+export const fontWeightStyle = styleVariants(FONT_WEIGHT_MAP, (fontWeight) => ({
+  fontWeight,
+}));
