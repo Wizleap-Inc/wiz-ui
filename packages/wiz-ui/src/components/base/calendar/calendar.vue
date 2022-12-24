@@ -27,7 +27,7 @@ import { withDefaults, defineProps, defineEmits, computed } from "vue";
 interface Props {
   filledWeeks?: boolean;
   currentMonth: Date;
-  value: Date;
+  value: Date | string;
   period?: "start" | "end";
   otherPeriod?: Date;
 }
@@ -99,7 +99,11 @@ const calendarItemColor = computed(() => (row: number, col: number) => {
   const pickedUpDate = new Date(
     props.currentMonth.getFullYear(),
     props.currentMonth.getMonth(),
-    Number(calendars.value[row][col])
+    Number(calendars.value[row][col]),
+    0,
+    0,
+    0,
+    0
   );
   if (!isCurrentMonth(row, col)) return "wiz-calendar-item-default";
   if (isActive(pickedUpDate)) return "wiz-calendar-item-active";
@@ -108,11 +112,21 @@ const calendarItemColor = computed(() => (row: number, col: number) => {
 });
 
 const isHover = (pickedUpDate: Date) => {
+  if (props.otherPeriod) {
+    if (props.period === "start")
+      return props.value < pickedUpDate && pickedUpDate < props.otherPeriod;
+    if (props.period === "end")
+      return pickedUpDate < props.value && props.otherPeriod < props.value;
+  }
   return false;
 };
 
 const isActive = (pickedUpDate: Date) => {
-  return false;
+  return (
+    props.value.toString() === pickedUpDate.toString() ||
+    (props.otherPeriod &&
+      props.otherPeriod.toString() === pickedUpDate.toString())
+  );
 };
 
 const isCurrentMonth = (row: number, col: number) => {
@@ -144,11 +158,42 @@ const isCurrentMonth = (row: number, col: number) => {
 
 const updateSelectedDate = (row: number, col: number, day: string) => {
   if (isCurrentMonth(row, col)) {
-    const selectedValue = new Date(
-      props.currentMonth.getFullYear(),
-      props.currentMonth.getMonth(),
-      Number(day)
-    );
+    let selectedValue = new Date();
+    if (
+      props.period == "start" &&
+      props.otherPeriod &&
+      props.currentMonth.getMonth() < props.otherPeriod.getMonth()
+    ) {
+      selectedValue = new Date(
+        props.currentMonth.getFullYear(),
+        props.currentMonth.getMonth() + 1,
+        Number(day)
+      );
+    } else if (
+      props.period == "end" &&
+      props.otherPeriod &&
+      props.currentMonth.getMonth() > props.otherPeriod.getMonth()
+    ) {
+      selectedValue = new Date(
+        props.currentMonth.getFullYear(),
+        props.currentMonth.getMonth() - 1,
+        Number(day),
+        0,
+        0,
+        0,
+        0
+      );
+    } else {
+      selectedValue = new Date(
+        props.currentMonth.getFullYear(),
+        props.currentMonth.getMonth(),
+        Number(day),
+        0,
+        0,
+        0,
+        0
+      );
+    }
     emits("input", selectedValue);
   }
 };

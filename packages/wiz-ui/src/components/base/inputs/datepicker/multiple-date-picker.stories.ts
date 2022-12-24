@@ -24,8 +24,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizMultipleDatepicker, WizHStack },
   setup() {
-    const defaultValue = new Date().setHours(0, 0, 0, 0);
-    const value = ref(new Date(defaultValue));
+    const value = ref<string>("1/1 - 2/5");
     return { value };
   },
   template: `

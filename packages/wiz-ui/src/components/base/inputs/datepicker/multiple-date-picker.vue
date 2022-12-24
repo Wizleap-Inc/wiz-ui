@@ -14,7 +14,7 @@
       >
         <WizHStack gap="sm" align="center" height="100%">
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
-          <span>{{ parseValue(value) || placeholder }}</span>
+          <span>{{ value || placeholder }}</span>
         </WizHStack>
       </div>
       <WizPopup layer="popover" gap="xs">
@@ -38,7 +38,13 @@
                 <div class="wiz-datepicker__button_box"></div>
               </WizHStack>
               <div style="min-height: 12rem">
-                <WizCalendar v-model="value" :currentMonth="currentMonth" />
+                <WizCalendar
+                  v-model="startPeriodData"
+                  :currentMonth="currentMonth"
+                  period="start"
+                  :otherPeriod="endPeriodData"
+                  @input="setStartPeriod"
+                />
               </div>
             </WizVStack>
             <WizVStack height="100%" py="xs">
@@ -60,7 +66,13 @@
                 </div>
               </WizHStack>
               <div style="min-height: 12rem">
-                <WizCalendar v-model="value" :currentMonth="nextMonth" />
+                <WizCalendar
+                  v-model="endPeriodData"
+                  :currentMonth="nextMonth"
+                  period="end"
+                  :otherPeriod="startPeriodData"
+                  @input="setEndPeriod"
+                />
               </div>
             </WizVStack>
           </WizHStack>
@@ -91,19 +103,65 @@ import {
 } from "@/components/icons";
 
 interface Props {
-  value: Date;
+  value: string;
   placeholder?: string;
   width?: string;
   disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  placeholder: "日付を選択",
+  placeholder: "開始日 - 終了日",
   width: "10rem",
   disabled: false,
 });
 
-const currentMonth = ref(new Date(new Date().setHours(0, 0, 0, 0)));
+const currentYear = new Date().getFullYear();
+
+const defaultDateTime = new Date(new Date().setHours(0, 0, 0, 0));
+const currentMonth = ref(defaultDateTime);
+const startPeriodData = ref(defaultDateTime);
+const endPeriodData = ref(defaultDateTime);
+
+if (props.value.includes("-")) {
+  const defaultPropsValues = props.value.split("-");
+  const defaultStartPeriodDates = defaultPropsValues[0].split("/");
+  const defaultStartPeriodMonth = Number(defaultStartPeriodDates[0]) - 1;
+  const defaultStartPeriodDate = Number(defaultStartPeriodDates[1]);
+
+  const defaultStartPeriodData = new Date(
+    currentYear,
+    defaultStartPeriodMonth,
+    defaultStartPeriodDate,
+    0,
+    0,
+    0,
+    0
+  );
+  startPeriodData.value = defaultStartPeriodData;
+
+  const defaultEndPeriodDates = defaultPropsValues[1].split("/");
+  const defaultEndPeriodMonth = Number(defaultEndPeriodDates[0]) - 1;
+  const defaultEndPeriodDate = Number(defaultEndPeriodDates[1]);
+
+  const defaultEndPeriodData = props.value.includes("-")
+    ? new Date(
+        currentYear,
+        defaultEndPeriodMonth,
+        defaultEndPeriodDate,
+        0,
+        0,
+        0,
+        0
+      )
+    : new Date(new Date().setHours(0, 0, 0, 0));
+  endPeriodData.value = defaultEndPeriodData;
+}
+
+interface Emit {
+  (e: "input", value: string): void;
+}
+const emits = defineEmits<Emit>();
+
 const nextMonth = computed(
   () =>
     new Date(
@@ -113,6 +171,30 @@ const nextMonth = computed(
     )
 );
 const openDatepicker = ref(false);
+
+const setStartPeriod = (newVal: Date) => {
+  startPeriodData.value = newVal;
+  emits(
+    "input",
+    `${
+      startPeriodData.value.getMonth() + 1
+    }/${startPeriodData.value.getDate()} - ${
+      endPeriodData.value.getMonth() + 1
+    }/${endPeriodData.value.getDate()}`
+  );
+};
+
+const setEndPeriod = (newVal: Date) => {
+  endPeriodData.value = newVal;
+  emits(
+    "input",
+    `${
+      startPeriodData.value.getMonth() + 1
+    }/${startPeriodData.value.getDate()} - ${
+      endPeriodData.value.getMonth() + 1
+    }/${endPeriodData.value.getDate()}`
+  );
+};
 
 const toggleDatepicker = () => {
   if (props.disabled) {
@@ -133,11 +215,6 @@ const clickToPreviousMonth = () => {
     currentMonth.value.getMonth() - 1
   );
   currentMonth.value = new Date(setDateTime);
-};
-
-const parseValue = (inputValue?: Date) => {
-  const value = inputValue ?? new Date();
-  return `${value.getFullYear()}/${value.getMonth() + 1}/${value.getDate()}`;
 };
 
 const currentDateTitle = computed(() => {
