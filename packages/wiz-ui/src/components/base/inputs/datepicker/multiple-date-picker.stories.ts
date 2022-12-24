@@ -24,7 +24,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizMultipleDatepicker, WizHStack },
   setup() {
-    const value = ref<string>("12/10 - 12/25");
+    const value = ref<string>("12/10-12/25");
     return { value };
   },
   template: `

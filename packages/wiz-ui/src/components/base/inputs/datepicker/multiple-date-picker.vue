@@ -19,7 +19,15 @@
       </div>
       <WizPopup layer="popover" gap="xs">
         <div class="wiz-datepicker__selector">
-          <WizHStack align="center" justify="end" px="xs" py="xs2"> </WizHStack>
+          <WizHStack align="center" justify="end" px="xs" py="xs2">
+            <WizSelectBox
+              width="8rem"
+              height="2rem"
+              v-model="selectBoxValue"
+              :options="SelectBoxOptions"
+              @input="selectboxInput"
+            />
+          </WizHStack>
           <WizDivider />
           <WizHStack height="15rem" align="center" my="xs2" justify="between">
             <WizVStack px="xs" py="xs2">
@@ -95,6 +103,7 @@ import {
   WizPopup,
   WizPopupContainer,
   WizDivider,
+  WizSelectBox,
 } from "@/components";
 import {
   WizICalendar,
@@ -114,6 +123,30 @@ const props = withDefaults(defineProps<Props>(), {
   width: "10rem",
   disabled: false,
 });
+
+const SelectBoxTypeArray = ["登録日", "相談日", "受注日"];
+type SelectBoxType = "登録日" | "相談日" | "受注日";
+
+const selectBoxValue = ref<SelectBoxType>("登録日");
+const SelectBoxOptions = [
+  { label: "登録日", value: "登録日" },
+  { label: "相談日", value: "相談日" },
+  { label: "受注日", value: "受注日" },
+];
+
+const selectboxInput = () => {
+  const parsedValue = props.value.includes("-") && props.value.split("-");
+  if (parsedValue) {
+    const selectedValue = parsedValue[parsedValue.length - 1];
+    if (SelectBoxTypeArray.includes(selectedValue)) {
+      parsedValue.pop();
+    }
+  }
+  const setValue = parsedValue
+    ? [...parsedValue, selectBoxValue.value].join("-")
+    : `-${selectBoxValue.value ?? ""}`;
+  emits("input", setValue);
+};
 
 const currentYear = new Date().getFullYear();
 
@@ -155,6 +188,10 @@ if (props.value.includes("-")) {
       )
     : new Date(new Date().setHours(0, 0, 0, 0));
   endPeriodData.value = defaultEndPeriodData;
+
+  if (SelectBoxTypeArray.includes(defaultPropsValues[2])) {
+    selectBoxValue.value = defaultPropsValues[2] as SelectBoxType;
+  }
 }
 
 interface Emit {
@@ -174,25 +211,27 @@ const openDatepicker = ref(false);
 
 const setStartPeriod = (newVal: Date) => {
   startPeriodData.value = newVal;
+  const setSelectValue = selectBoxValue.value ? "-" + selectBoxValue.value : "";
   emits(
     "input",
     `${
       startPeriodData.value.getMonth() + 1
-    }/${startPeriodData.value.getDate()} - ${
+    }/${startPeriodData.value.getDate()}-${
       endPeriodData.value.getMonth() + 1
-    }/${endPeriodData.value.getDate()}`
+    }/${endPeriodData.value.getDate()}${setSelectValue}`
   );
 };
 
 const setEndPeriod = (newVal: Date) => {
   endPeriodData.value = newVal;
+  const setSelectValue = selectBoxValue.value ? "-" + selectBoxValue.value : "";
   emits(
     "input",
     `${
       startPeriodData.value.getMonth() + 1
-    }/${startPeriodData.value.getDate()} - ${
+    }/${startPeriodData.value.getDate()}-${
       endPeriodData.value.getMonth() + 1
-    }/${endPeriodData.value.getDate()}`
+    }/${endPeriodData.value.getDate()}${setSelectValue}`
   );
 };
 
