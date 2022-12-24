@@ -69,6 +69,7 @@ interface Props {
   options: Option[];
   value: string;
   placeholder?: string;
+  height?: string;
   width?: string;
   disabled?: boolean;
   expand?: boolean;
@@ -78,6 +79,7 @@ const props = withDefaults(defineProps<Props>(), {
   value: "",
   placeholder: "選択してください",
   width: "10rem",
+  height: "2.5rem",
   disabled: false,
 });
 
@@ -100,12 +102,12 @@ const onSelect = (value: string) => {
 };
 
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
+const computedHeight = computed(() => props.height);
 const fontSizeSm = THEME.fontSize.sm;
 const spacingNo = THEME.spacing.no;
 const spacingXs2 = THEME.spacing.xs2;
 const spacingXs = THEME.spacing.xs;
 const spacingXl = THEME.spacing.xl;
-const spacingXl3 = THEME.spacing.xl3;
 const colorWhite800 = THEME.color.white["800"];
 const colorGray300 = THEME.color.gray["300"];
 const colorGray400 = THEME.color.gray["400"];
@@ -121,7 +123,7 @@ $border-width: 1px;
 .wiz-selectbox {
   position: relative;
   width: v-bind(computedWidth);
-  height: v-bind(spacingXl3);
+  height: v-bind(computedHeight);
   background: v-bind(colorWhite800);
   border: $border-width solid v-bind(colorGray400);
   border-radius: v-bind(spacingXs2);
