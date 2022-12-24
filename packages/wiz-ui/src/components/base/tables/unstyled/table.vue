@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const computedSpace = computed(() => {
   if (props.spaceX || props.spaceY) {
+    // border-spacingはweb標準仕様よりxyの順序が逆
     return getCoupleSpacingCss(props.spaceX, props.spaceY);
   }
   return getSpacingCss(props.space);

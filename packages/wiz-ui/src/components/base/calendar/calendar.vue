@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { THEME, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
-import { withDefaults, defineProps, defineEmits, computed } from "vue";
+import { defineEmits, computed } from "vue";
 
 interface Props {
   filledWeeks?: boolean;
