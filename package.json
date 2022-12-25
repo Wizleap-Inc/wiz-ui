@@ -11,15 +11,16 @@
     "build": "run-p build:*",
     "build:docs": "yarn workspace @wizleap-inc/wiz-ui-docs build",
     "build:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 build",
-    "build:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build",
+    "build:sb": "yarn workspace @wizleap-inc/wiz-ui build:storybook",
+    "build:lib": "yarn workspace @wizleap-inc/wiz-ui build:lib",
     "dev": "run-p dev:*",
     "dev:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 dev",
     "dev:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui dev",
     "dev:docs": "yarn workspace @wizleap-inc/wiz-ui-docs dev",
     "test": "run-p test:*",
     "test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui test",
-    "test:ci": "run-p test:ci:*",
-    "test:ci:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui test:ci"
+    "ci:test": "run-p ci:test:*",
+    "ci:test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui ci:test"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [

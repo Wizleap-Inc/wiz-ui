@@ -1,11 +1,10 @@
 <template>
   <MountingPortal mountTo="body" name="dialog" append>
     <div
-      class="wiz-dialog"
-      :class="{ 'wiz-dialog--visible': visible }"
+      :class="[dialogStyle, visible && dialogVisibleStyle]"
       :style="{ zIndex: currentZIndex }"
     >
-      <div class="wiz-dialog__mask" @click.self="close">
+      <div :class="dialogMaskStyle" @click.self="close">
         <WizCard :maxWidth="maxWidth" p="xl" :title="title" :align="align">
           <template #mainHeaderArea>
             <slot v-if="!title" name="title" />
@@ -29,6 +28,11 @@
 
 <script setup lang="ts">
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  dialogStyle,
+  dialogVisibleStyle,
+  dialogMaskStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/dialog.css";
 import { MountingPortal } from "portal-vue";
 import { computed } from "vue";
 
@@ -63,42 +67,7 @@ const visible = computed({
   set: (value) => emit("input", value),
 });
 
-const close = () => {
-  visible.value = false;
-};
+const close = () => (visible.value = false);
 
 const { currentZIndex } = useZIndex(THEME.zIndex.dialog);
 </script>
-
-<style lang="scss" scoped>
-.wiz-dialog {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  &--visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  &__mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-</style>

@@ -17,12 +17,14 @@
       :icon="icon"
       v-if="icon && iconPosition === 'left'"
       :size="getRelativeFontSize(fontSize, 3)"
+      :color="color"
     />
     <slot />
     <WizIcon
       :icon="icon"
       v-if="icon && iconPosition === 'right'"
       :size="getRelativeFontSize(fontSize, 3)"
+      :color="color"
     />
   </component>
 </template>
@@ -33,14 +35,15 @@ import {
   ColorKeys,
   FontSizeKeys,
   getRelativeFontSize,
+  FontWeightKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   anchorStyle,
   anchorNoWrapStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/anchor.css";
 import {
-  fontSizeStyle,
   colorStyle,
+  fontSizeStyle,
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, withDefaults } from "vue";
@@ -52,7 +55,7 @@ interface Props {
   to: RouterLinkProps["to"];
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
-  fontWeight?: "normal" | "bold";
+  fontWeight?: FontWeightKeys;
   icon?: TIcon;
   iconPosition?: "left" | "right";
   openInNewTab?: boolean;

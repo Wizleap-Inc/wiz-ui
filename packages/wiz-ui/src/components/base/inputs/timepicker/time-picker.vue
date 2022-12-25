@@ -26,13 +26,23 @@
               gap="xs2"
               align="center"
               overflow="auto"
-            >
+              ><div
+                :class="[
+                  'wiz-timepicker__selector-option',
+                  'wiz-timepicker__selector-option-type',
+                ]"
+              >
+                時
+              </div>
               <div
-                class="wiz-timepicker__selector-option"
-                :class="{
-                  'wiz-timepicker__selector-option-selected':
-                    option === selectedHour,
-                }"
+                :class="[
+                  'wiz-timepicker__selector-option',
+                  'wiz-timepicker__selector-option-item',
+                  {
+                    'wiz-timepicker__selector-option-selected':
+                      option === selectedHour,
+                  },
+                ]"
                 v-for="(option, key) in hourOptions"
                 :key="'option' + key"
                 @click="onSelect(option, true)"
@@ -45,11 +55,22 @@
             </WizVStack>
             <WizVStack gap="xs2" align="center" justify="center">
               <div
-                class="wiz-timepicker__selector-option"
-                :class="{
-                  'wiz-timepicker__selector-option-selected':
-                    option === selectedMinute,
-                }"
+                :class="[
+                  'wiz-timepicker__selector-option',
+                  'wiz-timepicker__selector-option-type',
+                ]"
+              >
+                分
+              </div>
+              <div
+                :class="[
+                  'wiz-timepicker__selector-option',
+                  'wiz-timepicker__selector-option-item',
+                  {
+                    'wiz-timepicker__selector-option-selected':
+                      option === selectedMinute,
+                  },
+                ]"
                 v-for="(option, key) in minuteOptions"
                 :key="'option' + key"
                 @click="onSelect(option)"
@@ -136,6 +157,7 @@ const colorWhite800 = THEME.color.white["800"];
 const colorGray300 = THEME.color.gray["300"];
 const colorGray400 = THEME.color.gray["400"];
 const colorGray500 = THEME.color.gray["500"];
+const colorGray600 = THEME.color.gray["600"];
 const colorGray700 = THEME.color.gray["700"];
 const colorGreen300 = THEME.color.green["300"];
 const colorGreen800 = THEME.color.green["800"];
@@ -210,24 +232,28 @@ $border-width: 1px;
     padding: v-bind(spacingXs2);
     font-size: v-bind(fontSizeXs2);
     text-align: center;
-    color: v-bind(colorGray700);
     box-sizing: border-box;
     border-radius: v-bind(spacingXs2);
-
-    &:hover {
-      color: v-bind(colorGreen800);
-      background: v-bind(colorGreen300);
-      border-radius: v-bind(spacingXs2);
+    &-type {
+      color: v-bind(colorGray600);
     }
+    &-item {
+      color: v-bind(colorGray700);
+      &:hover {
+        color: v-bind(colorGreen800);
+        background: v-bind(colorGreen300);
+        border-radius: v-bind(spacingXs2);
+      }
 
-    &:active {
-      color: v-bind(colorWhite800);
-      background: v-bind(colorGreen800);
-    }
+      &:active {
+        color: v-bind(colorWhite800);
+        background: v-bind(colorGreen800);
+      }
 
-    &-selected {
-      color: v-bind(colorWhite800);
-      background: v-bind(colorGreen800);
+      &-selected {
+        color: v-bind(colorWhite800);
+        background: v-bind(colorGreen800);
+      }
     }
   }
 }

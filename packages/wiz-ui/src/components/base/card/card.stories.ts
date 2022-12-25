@@ -35,6 +35,12 @@ export default {
       control: { type: "select" },
       options: ["start", "center", "end"],
     },
+    title: {
+      control: { type: "text" },
+    },
+    hint: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -42,20 +48,19 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCard, WizTextButton },
   template: `<WizCard v-bind="$props">
-      <template #mainHeaderArea>{{ mainHeaderArea }}</template>
-      <template #subHeaderArea>{{ subHeaderArea }}</template>
-      {{ body }}
-      <template #footer><WizTextButton>{{ footer }}</WizTextButton></template>
+      <template #mainHeaderArea>{{ slotMainHeaderArea }}</template>
+      <template #subHeaderArea>{{ slotMubHeaderArea }}</template>
+      {{ slotDefault }}
+      <template #footer><WizTextButton>{{ slotFooter }}</WizTextButton></template>
     </WizCard>`,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  title: "",
-  mainHeaderArea: "mainHeaderAreaスロット",
-  subHeaderArea: "subHeaderAreaスロット",
-  body: "bodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテストbodyスロットテスト",
-  footer: "保存する",
+  slotMainHeaderArea: "mainHeaderAreaスロット",
+  slotMubHeaderArea: "subHeaderAreaスロット",
+  slotDefault: "defaultスロット",
+  slotFooter: "保存する",
   backgroundColor: "white.800",
   shadow: true,
 };

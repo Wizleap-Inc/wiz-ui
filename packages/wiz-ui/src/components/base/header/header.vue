@@ -1,5 +1,8 @@
 <template>
-  <div class="wiz-header" :style="computedStickyStyle">
+  <div
+    :class="[headerStyle, sticky && headerStickyStyle]"
+    :style="{ zIndex: headerZIndex }"
+  >
     <WizHStack align="center" justify="between" height="100%">
       <WizHStack align="center" :gap="gapLeft" pl="lg">
         <WizIconButton
@@ -19,14 +22,17 @@
 
 <script setup lang="ts">
 import {
-  THEME,
   ComponentName,
   SpacingKeys,
+  THEME,
 } from "@wizleap-inc/wiz-ui-constants";
-import { computed } from "vue";
-import { StyleValue } from "vue/types/jsx";
+import {
+  headerStyle,
+  headerStickyStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/header.css";
 
 import { WizHStack, WizIconButton, WizIMenu } from "@/components";
+import { useZIndex } from "@/hooks";
 import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
 defineOptions({
@@ -39,26 +45,9 @@ interface Props {
   sticky?: boolean;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
 const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen.value);
-
-const white500 = THEME.color.white[500];
-const headerHeight = THEME.share.HEADER_HEIGHT;
-const computedStickyStyle = computed(() => {
-  const styles: StyleValue = {};
-  if (props.sticky) styles.position = "sticky";
-  if (props.sticky) styles.top = 0;
-  if (props.sticky) styles.left = 0;
-  if (props.sticky) styles.borderBottom = `1px solid ${THEME.color.gray[400]}`;
-  return styles;
-});
+const { nextZIndex } = useZIndex(THEME.zIndex.base);
+const headerZIndex = nextZIndex();
 </script>
-
-<style lang="scss" scoped>
-.wiz-header {
-  background-color: v-bind(white500);
-  width: 100%;
-  height: v-bind(headerHeight);
-}
-</style>

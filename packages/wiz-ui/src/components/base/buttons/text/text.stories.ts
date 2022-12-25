@@ -31,12 +31,12 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextButton },
-  template: `<WizTextButton v-bind="$props">{{ slot }}</WizTextButton>`,
+  template: `<WizTextButton v-bind="$props">{{ slotDefault }}</WizTextButton>`,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  slot: "保存する",
+  slotDefault: "保存する",
 };
 
 Default.play = async ({ canvasElement }) => {
@@ -49,13 +49,13 @@ Default.play = async ({ canvasElement }) => {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  slot: "保存する",
+  slotDefault: "保存する",
 };
 
-export const Rounded = Template.bind({});
-Rounded.args = {
-  rounded: true,
-  slot: "保存する",
+export const Angled = Template.bind({});
+Angled.args = {
+  rounded: false,
+  slotDefault: "保存する",
 };
 
 const VariantTemplate: StoryFn = (args, { argTypes }) => ({
@@ -93,5 +93,5 @@ export const Size = SizeTemplate.bind({});
 export const Expand = Template.bind({});
 Expand.args = {
   expand: true,
-  slot: "保存する",
+  slotDefault: "保存する",
 };

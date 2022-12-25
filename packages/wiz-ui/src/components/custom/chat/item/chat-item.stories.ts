@@ -22,12 +22,12 @@ const dummyData: Record<string, Message> = {
   otherChatItem: {
     message: "こんにちは",
     sender: "other",
-    time: new Date(),
+    time: new Date("2021-01-01T00:00:00.000+09:00"),
   },
   myChatItem: {
     message: "こんにちは",
     sender: "me",
-    time: new Date(),
+    time: new Date("2021-01-01T00:00:00.000+09:00"),
   },
 };
 
@@ -83,62 +83,62 @@ export const Overview: StoryFn = (_, { argTypes }) => ({
         title: "最小限表示（相手）",
         message: "こんにちは",
         sender: "other",
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "最小限表示（自分）",
         message: "こんにちは",
         sender: "me",
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "ユーザー名表示（相手）",
         message: "こんにちは",
         sender: "other",
         username: "ユーザー名",
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "ユーザー名表示（自分）",
         message: "こんにちは",
         sender: "me",
         username: "ユーザー名",
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "既読表示（相手）",
         message: "こんにちは",
         sender: "other",
         read: true,
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "既読表示（自分）",
         message: "こんにちは",
         sender: "me",
         read: true,
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "未読表示（相手）",
         message: "こんにちは",
         sender: "other",
         read: false,
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "未読表示（自分）",
         message: "こんにちは",
         sender: "me",
         read: false,
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
       },
       {
         title: "最大限表示（相手）",
         message: "こんにちは",
         sender: "other",
         username: "ユーザー名",
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
         read: false,
       },
       {
@@ -146,7 +146,7 @@ export const Overview: StoryFn = (_, { argTypes }) => ({
         message: "こんにちは",
         sender: "me",
         username: "ユーザー名",
-        time: new Date(),
+        time: new Date("2021-01-01T00:00:00.000+09:00"),
         read: true,
       },
     ];
@@ -172,7 +172,7 @@ export const Overview: StoryFn = (_, { argTypes }) => ({
           <td style="padding: 1rem;"><WizChatItem :content="message" /></td>
           <td style="padding: 1rem;">{{ message.sender }}</td>
           <td style="padding: 1rem;">{{ message.time }}</td>
-          <td :style="{ padding: '1rem', color: message.username === undefined || '${THEME.color.green[800]}'}">{{ message.username === undefined ? "undefined" : "new Date()" }}</td>
+          <td :style="{ padding: '1rem', color: message.username === undefined || '${THEME.color.green[800]}'}">{{ message.username === undefined ? "undefined" : "new Date('2021-01-01T00:00:00.000+09:00')" }}</td>
           <td :style="{ padding: '1rem', color: message.read === undefined || '${THEME.color.green[800]}'}">{{ message.read === undefined ? "undefined" : message.read }}</td>
         </tr>
       </template>
