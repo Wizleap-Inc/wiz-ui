@@ -2,32 +2,39 @@
   <WizVStack gap="sm">
     <div
       v-if="isUploading"
-      :class="[
-        uploadDisplayStyle,
-        uploadStatus ? uploadDisplayFadeOutStyle : '',
-      ]"
+      :class="[uploadDisplayStyle, isUploaded ? uploadDisplayFadeOutStyle : '']"
     >
       <span>{{
-        uploadStatus
+        isUploaded
           ? "ファイルアップロード完了"
-          : `ファイルアップロード中…（1/${fileList.length}）`
+          : `ファイルアップロード中…（${completedFileCount}/${uploadingFileCount}）`
       }}</span>
       <WizHStack align="center" gap="xs">
-        <span :class="uploadDisplayBarBgStyle" />
-        <span v-if="isUploading" :class="uploadDisplayBarStyle" />
+        <span :class="uploadDisplayBarBgStyle">
+          <span
+            :class="uploadDisplayBarStyle"
+            :style="{ width: `${progress}%` }"
+          />
+        </span>
         <components
           :class="[
             checkCircleIconStyle,
-            uploadStatus
-              ? checkCircleIconDoneStyle
+            isUploaded
+              ? checkCircleIconCompletedStyle
               : checkCircleIconDefaultStyle,
           ]"
           :is="WizICheckCircle"
         ></components>
       </WizHStack>
     </div>
-    <template v-if="uploadStatus">
-      <div :class="uploadDisplayStyle" v-for="file in fileList">
+    <template v-if="fileList.length">
+      <div
+        :class="[
+          uploadDisplayStyle,
+          isApplyFadeIn(index) ? uploadDisplayFadeInStyle : '',
+        ]"
+        v-for="(file, index) in Array.from(fileList)"
+      >
         <WizHStack align="center" gap="xs2">
           <components
             :class="attachFileIconStyle"
@@ -44,40 +51,45 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   uploadDisplayStyle,
+  uploadDisplayFadeInStyle,
   uploadDisplayFadeOutStyle,
   uploadDisplayBarBgStyle,
   uploadDisplayBarStyle,
   checkCircleIconStyle,
   checkCircleIconDefaultStyle,
-  checkCircleIconDoneStyle,
+  checkCircleIconCompletedStyle,
   attachFileIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/upload-display.css";
-import { ref, watch } from "vue";
+import { computed } from "vue";
 
+import { WizHStack, WizVStack } from "@/components";
 import { WizICheckCircle, WizIAttachFile } from "@/components/icons";
-
-import { WizHStack, WizVStack } from "../../stack";
 
 defineOptions({
   name: ComponentName.UploadDisplay,
 });
+
 interface Props {
-  fileList: any;
+  fileList: File[];
+  uploadingFileCount: number;
+  completedFileCount: number;
+  progress: number;
+  isUploaded: boolean;
+  isUploading: boolean;
 }
+const props = defineProps<Props>();
 
-const props = withDefaults(defineProps<Props>(), {});
-
-const isUploading = ref(false);
-const uploadStatus = ref(false);
-
-watch(props, () => {
-  isUploading.value = true;
-  setTimeout(() => {
-    uploadStatus.value = true;
-    setTimeout(() => {
-      isUploading.value = false;
-    }, 500);
-  }, 2000);
-  console.log("props", props);
+const isApplyFadeIn = computed(() => {
+  return function (index: number) {
+    const uploadedFileCount = props.fileList.length - props.uploadingFileCount;
+    if (
+      (props.uploadingFileCount === 1 && index === props.fileList.length - 1) ||
+      props.fileList.length === props.uploadingFileCount ||
+      index >= uploadedFileCount
+    ) {
+      return true;
+    }
+    return false;
+  };
 });
 </script>

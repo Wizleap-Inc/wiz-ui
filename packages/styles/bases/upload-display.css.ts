@@ -3,17 +3,16 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const BORDER_WIDTH = "1px";
 const BAR_HEIGHT = "6px";
-const BAR_ANIMATION_TIME = "2s";
 const CARD_ANIMATION_TIME = "0.5s";
+
+const fadeIn = keyframes({
+  "0%": { opacity: 0 },
+  "100%": { opacity: 1 },
+});
 
 const fadeOut = keyframes({
   "0%": { opacity: 1 },
   "100%": { opacity: 0 },
-});
-
-const uploading = keyframes({
-  "0%": { width: 0 },
-  "100%": { width: "472px" },
 });
 
 export const uploadDisplayStyle = style({
@@ -28,14 +27,8 @@ export const uploadDisplayStyle = style({
   width: "504px",
 });
 
-export const uploadDisplayFadeOutStyle = style({
-  animationName: fadeOut,
-  animationDuration: CARD_ANIMATION_TIME,
-  animationTimingFunction: "ease-out",
-  animationFillMode: "forwards",
-});
-
 export const uploadDisplayBarBgStyle = style({
+  position: "relative",
   height: BAR_HEIGHT,
   background: THEME.color.gray[400],
   borderRadius: THEME.spacing.xs2,
@@ -44,13 +37,9 @@ export const uploadDisplayBarBgStyle = style({
 
 export const uploadDisplayBarStyle = style({
   position: "absolute",
-  width: "472px",
   height: BAR_HEIGHT,
   background: THEME.color.green[800],
   borderRadius: THEME.spacing.xs2,
-  animationName: uploading,
-  animationDuration: BAR_ANIMATION_TIME,
-  animationTimingFunction: `${BAR_ANIMATION_TIME} linear`,
 });
 
 export const checkCircleIconStyle = style({
@@ -68,6 +57,20 @@ export const checkCircleIconDefaultStyle = style({
   fill: THEME.color.gray[400],
 });
 
-export const checkCircleIconDoneStyle = style({
+export const checkCircleIconCompletedStyle = style({
   fill: THEME.color.green[800],
+});
+
+export const uploadDisplayFadeInStyle = style({
+  animationName: fadeIn,
+  animationDuration: CARD_ANIMATION_TIME,
+  animationTimingFunction: "ease-out",
+  animationFillMode: "forwards",
+});
+
+export const uploadDisplayFadeOutStyle = style({
+  animationName: fadeOut,
+  animationDuration: CARD_ANIMATION_TIME,
+  animationTimingFunction: "ease-out",
+  animationFillMode: "forwards",
 });

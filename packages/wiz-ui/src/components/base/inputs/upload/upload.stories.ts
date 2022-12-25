@@ -5,17 +5,16 @@ import WizUploadInput from "./upload.vue";
 export default {
   title: "Base/Input/Upload",
   component: WizUploadInput,
-  argTypes: {
-    dropFile: {
-      action: "dropFile",
-    },
-  },
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizUploadInput },
-  template: `<div style="padding:100px;"><WizUploadInput v-bind="$props"></WizUploadInput><div style="margin-top:50px;"></div></div>`,
+  setup() {
+    const uploadUrl = "http://localhost:6006";
+    return { uploadUrl };
+  },
+  template: `<div style="padding:100px;"><WizUploadInput v-bind="$props" :uploadUrl="uploadUrl"></WizUploadInput></div>`,
 });
 
 export const Default = Template.bind({});
