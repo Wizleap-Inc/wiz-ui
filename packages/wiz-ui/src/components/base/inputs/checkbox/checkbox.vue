@@ -16,9 +16,9 @@
             checkboxLabelStyle,
             checkboxValue.includes(option.value) && checkboxLabelCheckedStyle,
             (disabled || disabledKey === key) && checkboxLabelDisabledStyle,
+            checkboxLabelCursorStyle[labelPointer(key)],
           ]"
           :for="`checkbox${key}`"
-          :style="{ cursor: labelPointer(key) }"
         >
           <span
             :class="[
@@ -41,6 +41,7 @@ import {
   checkboxLabelStyle,
   checkboxLabelCheckedStyle,
   checkboxLabelDisabledStyle,
+  checkboxLabelCursorStyle,
   checkboxBlockStyle,
   checkboxBlockCheckedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
@@ -75,8 +76,6 @@ const checkboxValue = computed({
   set: (value) => emit("input", value),
 });
 
-const labelPointer = (key: number) => {
-  if (props.disabled || props.disabledKey === key) return "not-allowed";
-  return "pointer";
-};
+const labelPointer = (key: number) =>
+  props.disabled || props.disabledKey === key ? "disabled" : "default";
 </script>

@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -38,6 +38,15 @@ export const checkboxLabelCheckedStyle = style({
 
 export const checkboxLabelDisabledStyle = style({
   opacity: 0.5,
+});
+
+export const checkboxLabelCursorStyle = styleVariants({
+  default: {
+    cursor: "pointer",
+  },
+  disabled: {
+    cursor: "not-allowed",
+  },
 });
 
 export const checkboxBlockStyle = style({
