@@ -16,7 +16,7 @@
             radioLabelStyle,
             radioValue === option.value && radioLabelCheckedStyle,
             (disabled || disabledKey === key) && radioLabelDisabledStyle,
-            radioLabelColorStyle,
+            radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
             radioLabelCursorStyle[radioLabelCursor(key)],
           ]"
           :for="`radio${key}`"
@@ -70,6 +70,9 @@ const radioValue = computed({
   get: () => props.value,
   set: (value) => emit("input", value),
 });
+
+const radioLabelColor = (isChecked: boolean) =>
+  isChecked ? "checked" : "default";
 
 const radioLabelCursor = (key: number) =>
   props.disabled || props.disabledKey === key ? "disabled" : "default";

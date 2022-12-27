@@ -16,7 +16,6 @@ export const radioInputStyle = style({
 export const radioLabelStyle = style({
   display: "flex",
   alignItems: "center",
-  fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
   ":before": {
     content: "",
