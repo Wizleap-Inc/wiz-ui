@@ -9,8 +9,8 @@
         key === 0 && panelSwitchBlockLeftStyle,
         key === items.length - 1 && panelSwitchBlockRightStyle,
         key === switchValue - 1 && panelSwitchBlockActiveStyle,
+        panelSwitchBlockColorStyle[panelSwitchBlockColor(key)],
       ]"
-      :style="{ color: panelSwitchBlockColor(key) }"
       :for="`panel${key}`"
     >
       {{ item.label }}
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   panelSwitchStyle,
   panelSwitchBlockStyle,
@@ -35,6 +35,7 @@ import {
   panelSwitchBlockDividerStyle,
   panelSwitchBlockLeftStyle,
   panelSwitchBlockRightStyle,
+  panelSwitchBlockColorStyle,
   panelSwitchInputStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/panel-switch-input.css";
 import { computed } from "vue";
@@ -64,7 +65,5 @@ const switchValue = computed({
 });
 
 const panelSwitchBlockColor = (key: number) =>
-  key === switchValue.value - 1
-    ? THEME.color.white["800"]
-    : THEME.color.gray["600"];
+  key === switchValue.value - 1 ? "active" : "default";
 </script>

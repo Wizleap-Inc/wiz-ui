@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const panelSwitchStyle = style({
@@ -43,6 +43,15 @@ export const panelSwitchBlockRightStyle = style({
   borderRight: `1px solid ${THEME.color.gray["400"]}`,
   borderTopRightRadius: THEME.spacing.xs2,
   borderBottomRightRadius: THEME.spacing.xs2,
+});
+
+export const panelSwitchBlockColorStyle = styleVariants({
+  default: {
+    color: THEME.color.gray["600"],
+  },
+  active: {
+    color: THEME.color.white["800"],
+  },
 });
 
 export const panelSwitchInputStyle = style({
