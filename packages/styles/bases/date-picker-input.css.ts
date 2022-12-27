@@ -7,7 +7,7 @@ export const datePickerStyle = style({
   height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
   border: "1px solid " + THEME.color.gray["400"],
-  borderRadius: THEME.spacing.xs,
+  borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
 });
 
