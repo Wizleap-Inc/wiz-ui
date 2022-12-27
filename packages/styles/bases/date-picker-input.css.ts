@@ -3,11 +3,11 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const datePickerStyle = style({
   width: "max-content",
-  padding: "0 8px",
-  height: "40px",
+  padding: `${THEME.spacing.no} ${THEME.spacing.xs2}`,
+  height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
   border: "1px solid " + THEME.color.gray["400"],
-  borderRadius: "8px",
+  borderRadius: THEME.spacing.xs,
   boxSizing: "border-box",
 });
 
@@ -23,7 +23,7 @@ export const datePickerDisabledStyle = style({
 
 export const datePickerBoxStyle = style({
   height: "100%",
-  padding: "0 8px",
+  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
 });
 
@@ -41,21 +41,21 @@ export const datePickerSelectorStyle = style({
   top: "calc(100% + 2px)",
   left: "0",
   width: "auto",
-  padding: "8px",
+  padding: THEME.spacing.xs,
   background: THEME.color.white["800"],
-  borderRadius: "8px",
+  borderRadius: THEME.spacing.xs,
   boxSizing: "border-box",
 });
 
 export const datePickerButtonBoxStyle = style({
-  gap: "8px",
+  gap: THEME.spacing.xs,
   display: "flex",
 });
 
 export const datePickerButtonBoxItemStyle = style({
   cursor: "pointer",
-  padding: "8px",
-  borderRadius: "8px",
+  padding: THEME.spacing.xs,
+  borderRadius: THEME.spacing.xs,
   ":hover": {
     backgroundColor: THEME.color.green["300"],
     color: THEME.color.green["800"],
