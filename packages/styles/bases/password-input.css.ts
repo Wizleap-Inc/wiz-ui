@@ -3,11 +3,12 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const passwordStyle = style({
   position: "relative",
-  // selectors: {
-  //   "& input::placeholder": {
-  //     fontSize: `calc((${THEME.fontSize.sm} + ${THEME.fontSize.xs}) / 2)`,
-  //   },
-  // },
+});
+
+export const passwordInputStyle = style({
+  "::placeholder": {
+    fontSize: `calc((${THEME.fontSize.sm} + ${THEME.fontSize.xs}) / 2)`,
+  },
 });
 
 export const passwordExpandStyle = styleVariants({
@@ -38,9 +39,5 @@ export const passwordVisibleIconStyle = style({
 });
 
 export const passwordVisibleIconActiveStyle = style({
-  // selectors: {
-  //   "& > svg": {
-  //     fill: THEME.color.green["800"],
-  //   },
-  // },
+  fill: THEME.color.green["800"],
 });

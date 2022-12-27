@@ -1,6 +1,7 @@
 <template>
   <div :class="[passwordStyle, passwordExpandStyle[computedExpand]]">
     <PrivateBaseInput
+      :class="passwordInputStyle"
       v-model="passwordValue"
       :placeholder="placeholder"
       :name="name"
@@ -10,13 +11,10 @@
       :type="isPasswordVisible ? 'text' : 'password'"
     />
     <div
-      :class="[
-        passwordVisibleIconStyle,
-        isPasswordVisible && passwordVisibleIconActiveStyle,
-      ]"
+      :class="passwordVisibleIconStyle"
       @click="isPasswordVisible = !isPasswordVisible"
     >
-      <WizIEye />
+      <WizIEye :class="isPasswordVisible && passwordVisibleIconActiveStyle" />
     </div>
   </div>
 </template>
@@ -25,6 +23,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   passwordStyle,
+  passwordInputStyle,
   passwordExpandStyle,
   passwordVisibleIconStyle,
   passwordVisibleIconActiveStyle,
