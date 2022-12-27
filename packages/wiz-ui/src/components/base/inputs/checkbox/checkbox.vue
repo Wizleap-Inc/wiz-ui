@@ -18,6 +18,7 @@
             (disabled || disabledKey === key) && checkboxLabelDisabledStyle,
           ]"
           :for="`checkbox${key}`"
+          :style="{ cursor: labelPointer(key) }"
         >
           <span
             :class="[
@@ -73,4 +74,9 @@ const checkboxValue = computed({
   get: () => props.value,
   set: (value) => emit("input", value),
 });
+
+const labelPointer = (key: number) => {
+  if (props.disabled || props.disabledKey === key) return "not-allowed";
+  return "pointer";
+};
 </script>

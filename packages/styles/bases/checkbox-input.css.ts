@@ -19,7 +19,6 @@ export const checkboxLabelStyle = style({
   color: THEME.color.gray["600"],
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
-  cursor: "pointer",
   ":before": {
     content: "",
     border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
@@ -38,7 +37,6 @@ export const checkboxLabelCheckedStyle = style({
 });
 
 export const checkboxLabelDisabledStyle = style({
-  cursor: "not-allowed",
   opacity: 0.5,
 });
 
