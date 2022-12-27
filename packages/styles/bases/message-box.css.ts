@@ -38,7 +38,18 @@ export const messageBoxWidthStyle = styleVariants({
 export const messageBoxIconStyle = style({
   fontSize: THEME.fontSize.xl2,
   marginRight: THEME.spacing.sm,
-  fill: THEME.color.gray[700],
+});
+
+export const messageBoxIconFillStyle = styleVariants({
+  information: {
+    fill: THEME.color.green[800],
+  },
+  caution: {
+    fill: THEME.color.yellow[800],
+  },
+  warning: {
+    fill: THEME.color.red[800],
+  },
 });
 
 export const messageBoxTitleStyle = style({
@@ -46,4 +57,5 @@ export const messageBoxTitleStyle = style({
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl2,
   marginBottom: THEME.spacing.xs,
+  color: THEME.color.gray[700],
 });

@@ -6,7 +6,11 @@
       messageBoxVariantStyle[variant],
     ]"
   >
-    <component v-if="icon" :is="icon" :class="messageBoxIconStyle" />
+    <component
+      v-if="icon"
+      :is="icon"
+      :class="[messageBoxIconStyle, messageBoxIconFillStyle[variant]]"
+    />
     <div>
       <div :class="messageBoxTitleStyle">{{ title }}</div>
       <slot></slot>
@@ -21,6 +25,7 @@ import {
   messageBoxWidthStyle,
   messageBoxVariantStyle,
   messageBoxIconStyle,
+  messageBoxIconFillStyle,
   messageBoxTitleStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
 import { computed } from "vue";
