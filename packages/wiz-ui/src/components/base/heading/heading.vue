@@ -57,16 +57,12 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const computedFontSize = computed(() => {
-  if (props.fontSize) {
-    return props.fontSize;
-  }
+  if (props.fontSize) return props.fontSize;
   return DEFAULT_FONT_SIZE[props.level];
 });
 
 const computedColor = computed(() => {
-  if (props.color) {
-    return props.color;
-  }
+  if (props.color) return props.color;
   return DEFAULT_COLOR[props.level];
 });
 
