@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const datePickerStyle = style({
@@ -25,6 +25,15 @@ export const datePickerBoxStyle = style({
   height: "100%",
   padding: "0 8px",
   fontSize: THEME.fontSize.sm,
+});
+
+export const datePickerBoxColorStyle = styleVariants({
+  default: {
+    color: THEME.color.gray["500"],
+  },
+  selected: {
+    color: THEME.color.gray["700"],
+  },
 });
 
 export const datePickerSelectorStyle = style({

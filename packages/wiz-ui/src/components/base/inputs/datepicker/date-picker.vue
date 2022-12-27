@@ -8,10 +8,12 @@
       ]"
     >
       <div
-        :class="datePickerBoxStyle"
+        :class="[
+          datePickerBoxStyle,
+          datePickerBoxColorStyle[datePickerBoxColor],
+        ]"
         :style="{
           width,
-          color: datePickerBoxColor,
         }"
         @click="toggleDatepicker"
       >
@@ -53,12 +55,12 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   datePickerStyle,
   datePickerActiveStyle,
   datePickerDisabledStyle,
   datePickerBoxStyle,
+  datePickerBoxColorStyle,
   datePickerSelectorStyle,
   datePickerButtonBoxStyle,
   datePickerButtonBoxItemStyle,
@@ -129,6 +131,6 @@ const currentDateTitle = computed(() => {
 });
 
 const datePickerBoxColor = computed(() =>
-  props.value ? THEME.color.gray["700"] : THEME.color.gray["500"]
+  props.value ? "selected" : "default"
 );
 </script>
