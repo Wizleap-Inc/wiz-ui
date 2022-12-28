@@ -41,3 +41,14 @@ export const popupStyle = style({
   filter: `drop-shadow(${THEME.shadow.sm})`,
   width: "max-content",
 });
+
+export const popupContainerStyle = styleVariants({
+  default: {
+    position: "relative",
+    width: "fit-content",
+    height: "fit-content",
+  },
+  expanded: {
+    width: "100%",
+  },
+});
