@@ -1,15 +1,19 @@
 <template>
   <WizPopupContainer v-model="openSelectBox" :expand="expand">
     <div
-      class="wiz-selectbox"
-      :class="{
-        'wiz-selectbox--active': openSelectBox,
-        'wiz-selectbox--disabled': disabled,
-      }"
+      :class="[
+        selectBoxStyle,
+        openSelectBox && selectBoxActiveStyle,
+        disabled && selectBoxDisabledStyle,
+        selectBoxCursorStyle[selectBoxCursor],
+      ]"
+      :style="{ width: computedWidth }"
     >
       <div
-        class="wiz-selectbox__box"
-        :class="{ 'wiz-selectbox__box--selected': !!value }"
+        :class="[
+          selectBoxInnerBoxStyle,
+          !!value && selectBoxInnerBoxSelectedStyle,
+        ]"
         @click="toggleSelectBox"
       >
         <WizHStack align="center" justify="between" height="100%">
@@ -18,26 +22,29 @@
             v-for="(option, key) in options"
             v-show="option.value === value"
             :key="'selected' + key"
-            class="wiz-selectbox__box__selected-value"
+            :class="selectBoxInnerBoxSelectedValueStyle"
           >
             {{ option.label }}
           </span>
           <WizIExpandLess
             v-if="openSelectBox"
-            class="wiz-selectbox__box-less"
+            :class="selectBoxInnerBoxLessStyle"
           />
           <WizIExpandMore
             v-else-if="!openSelectBox"
-            class="wiz-selectbox__box-more"
+            :class="selectBoxInnerBoxMoreStyle"
           />
         </WizHStack>
       </div>
     </div>
     <WizPopup layer="popover">
-      <div class="wiz-selectbox__selector">
+      <div
+        :class="selectBoxSelectorStyle"
+        :style="{ 'min-width': `calc(${width} + ${BORDER_WIDTH} * 2)` }"
+      >
         <WizVStack gap="xs2">
           <div
-            class="wiz-selectbox__selector-option"
+            :class="selectBoxSelectorOptionStyle"
             v-for="(option, key) in options"
             :key="'option' + key"
             @click="onSelect(option.value)"
@@ -52,6 +59,20 @@
 
 <script setup lang="ts">
 import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import {
+  BORDER_WIDTH,
+  selectBoxStyle,
+  selectBoxActiveStyle,
+  selectBoxDisabledStyle,
+  selectBoxCursorStyle,
+  selectBoxInnerBoxStyle,
+  selectBoxInnerBoxSelectedValueStyle,
+  selectBoxInnerBoxLessStyle,
+  selectBoxInnerBoxMoreStyle,
+  selectBoxInnerBoxSelectedStyle,
+  selectBoxSelectorStyle,
+  selectBoxSelectorOptionStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { ref, computed } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";
@@ -98,6 +119,10 @@ const onSelect = (value: string) => {
   toggleSelectBox();
   emit("input", value);
 };
+
+const selectBoxCursor = computed(() =>
+  props.disabled ? "disabled" : "default"
+);
 
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 const fontSizeSm = THEME.fontSize.sm;

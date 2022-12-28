@@ -1,9 +1,9 @@
 <template>
-  <div class="wiz-radio">
+  <div :class="radioStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
       <div v-for="(option, key) in options" :key="key">
         <input
-          class="wiz-radio__input"
+          :class="radioInputStyle"
           type="radio"
           :name="`radio${key}`"
           :id="`radio${key}`"
@@ -12,10 +12,13 @@
           :disabled="disabled || disabledKey === key"
         />
         <label
-          :class="{
-            'wiz-radio__label': true,
-            'wiz-radio__label--disabled': disabled || disabledKey === key,
-          }"
+          :class="[
+            radioLabelStyle,
+            radioValue === option.value && radioLabelCheckedStyle,
+            (disabled || disabledKey === key) && radioLabelDisabledStyle,
+            radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
+            radioLabelCursorStyle[radioLabelCursor(key)],
+          ]"
           :for="`radio${key}`"
         >
           {{ option.label }}
@@ -26,7 +29,16 @@
 </template>
 
 <script setup lang="ts">
-import { THEME, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  radioStyle,
+  radioInputStyle,
+  radioLabelStyle,
+  radioLabelCheckedStyle,
+  radioLabelDisabledStyle,
+  radioLabelColorStyle,
+  radioLabelCursorStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import { computed } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
@@ -59,72 +71,9 @@ const radioValue = computed({
   set: (value) => emit("input", value),
 });
 
-const colorWhite800 = THEME.color.white["800"];
-const colorGray400 = THEME.color.gray["400"];
-const colorGray600 = THEME.color.gray["600"];
-const colorGreen800 = THEME.color.green["800"];
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXs = THEME.spacing.xs;
-const spacingSm = THEME.spacing.sm;
-const spacingMd = THEME.spacing.md;
-const spacingMax = THEME.spacing.max;
+const radioLabelColor = (isChecked: boolean) =>
+  isChecked ? "checked" : "default";
+
+const radioLabelCursor = (key: number) =>
+  props.disabled || props.disabledKey === key ? "disabled" : "default";
 </script>
-
-<style lang="scss" scoped>
-$border-width: 1px;
-
-.wiz-radio {
-  width: fit-content;
-
-  &__input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-
-    &:checked {
-      + .wiz-radio__label {
-        position: relative;
-        color: v-bind(colorGreen800);
-
-        &:before {
-          border: $border-width solid v-bind(colorGreen800);
-        }
-
-        &:after {
-          position: absolute;
-          content: "";
-          width: v-bind(spacingXs);
-          height: v-bind(spacingXs);
-          left: v-bind(spacingXs2);
-          background: v-bind(colorGreen800);
-          border-radius: v-bind(spacingMax);
-        }
-      }
-    }
-  }
-
-  &__label {
-    display: flex;
-    align-items: center;
-    color: v-bind(colorGray600);
-    gap: v-bind(spacingSm);
-    cursor: pointer;
-
-    &--disabled {
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
-
-    &:before {
-      content: "";
-      background: v-bind(colorWhite800);
-      border: $border-width solid v-bind(colorGray400);
-      border-radius: v-bind(spacingMax);
-      width: v-bind(spacingMd);
-      height: v-bind(spacingMd);
-      box-sizing: border-box;
-      display: inline-block;
-    }
-  }
-}
-</style>

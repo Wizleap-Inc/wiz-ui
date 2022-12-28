@@ -1,11 +1,7 @@
 <template>
-  <div
-    :class="{
-      'wiz-password-input': true,
-      'wiz-password-input--expand': expand,
-    }"
-  >
+  <div :class="[passwordStyle, passwordExpandStyle[computedExpand]]">
     <PrivateBaseInput
+      :class="passwordInputStyle"
       v-model="passwordValue"
       :placeholder="placeholder"
       :name="name"
@@ -15,19 +11,23 @@
       :type="isPasswordVisible ? 'text' : 'password'"
     />
     <div
-      :class="{
-        'wiz-password-input__visible-icon': true,
-        'wiz-password-input__visible-icon--active': isPasswordVisible,
-      }"
+      :class="passwordVisibleIconStyle"
       @click="isPasswordVisible = !isPasswordVisible"
     >
-      <WizIEye />
+      <WizIEye :class="isPasswordVisible && passwordVisibleIconActiveStyle" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  passwordStyle,
+  passwordInputStyle,
+  passwordExpandStyle,
+  passwordVisibleIconStyle,
+  passwordVisibleIconActiveStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
 import { computed, ref } from "vue";
 
 import { WizIEye } from "@/components";
@@ -61,47 +61,5 @@ const passwordValue = computed({
   set: (value) => emit("input", value),
 });
 
-const accentColor = THEME.color.green["800"];
-const defaultColor = THEME.color.gray["400"];
-const fontSizeXs = THEME.fontSize.xs;
-const fontSizeSm = THEME.fontSize.sm;
-const fontSizeXl2 = THEME.fontSize.xl2;
-const spacingSm = THEME.spacing.sm;
+const computedExpand = computed(() => (props.expand ? "expand" : "default"));
 </script>
-
-<style lang="scss" scoped>
-.wiz-password-input {
-  position: relative;
-  width: fit-content;
-
-  input::placeholder {
-    font-size: calc((v-bind(fontSizeSm) + v-bind(fontSizeXs)) / 2);
-  }
-
-  &--expand {
-    width: 100%;
-  }
-
-  &__visible-icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: v-bind(fontSizeXl2);
-    line-height: v-bind(fontSizeXl2);
-    width: v-bind(fontSizeXl2);
-    height: v-bind(fontSizeXl2);
-    padding: v-bind(spacingSm);
-
-    fill: v-bind(defaultColor);
-    &--active > svg {
-      fill: v-bind(accentColor);
-    }
-  }
-}
-</style>
