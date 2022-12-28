@@ -1,13 +1,17 @@
 <template>
   <table class="wiz-calendar">
-    <td v-for="row in WEEK_LIST_JP" class="wiz-calendar-item" :key="row">
+    <td
+      v-for="row in WEEK_LIST_JP"
+      class="wiz-calendar-item wiz-calendar-item-default"
+      :key="row"
+    >
       {{ row }}
     </td>
     <tr v-for="(week, row) in calendars" :key="row">
       <td
         v-for="(day, col) in week"
-        :key="day"
-        :class="isCurrentMonthDateClass(row, col)"
+        :key="col"
+        :class="['wiz-calendar-item', calendarItemColor(row, col)]"
         @click="updateSelectedDate(row, col, day)"
       >
         {{ day }}
@@ -23,7 +27,9 @@ import { computed } from "vue";
 interface Props {
   filledWeeks?: boolean;
   currentMonth: Date;
-  value: Date;
+  value: Date | string;
+  period?: "start" | "end";
+  otherPeriod?: Date;
 }
 
 interface Emit {
@@ -89,18 +95,39 @@ const calendars = computed(() => {
 });
 
 // class の定義
-const isCurrentMonthDateClass = computed(() => (row: number, col: number) => {
+const calendarItemColor = computed(() => (row: number, col: number) => {
   const pickedUpDate = new Date(
     props.currentMonth.getFullYear(),
     props.currentMonth.getMonth(),
-    Number(calendars.value[row][col])
+    Number(calendars.value[row][col]),
+    0,
+    0,
+    0,
+    0
   );
-  return isCurrentMonth(row, col)
-    ? pickedUpDate.toString() === props.value.toString()
-      ? "wiz-calendar-item-selected"
-      : "wiz-calendar-item-in-current-month"
-    : "wiz-calendar-item";
+  if (!isCurrentMonth(row, col)) return "wiz-calendar-item-default";
+  if (isActive(pickedUpDate)) return "wiz-calendar-item-active";
+  if (isHover(pickedUpDate)) return "wiz-calendar-item-hover";
+  return "wiz-calendar-item-in-current-month";
 });
+
+const isHover = (pickedUpDate: Date) => {
+  if (props.otherPeriod) {
+    if (props.period === "start")
+      return props.value < pickedUpDate && pickedUpDate < props.otherPeriod;
+    if (props.period === "end")
+      return pickedUpDate < props.value && props.otherPeriod < props.value;
+  }
+  return false;
+};
+
+const isActive = (pickedUpDate: Date) => {
+  return (
+    props.value.toString() === pickedUpDate.toString() ||
+    (props.otherPeriod &&
+      props.otherPeriod.toString() === pickedUpDate.toString())
+  );
+};
 
 const isCurrentMonth = (row: number, col: number) => {
   const currentShowYear = props.currentMonth.getFullYear();
@@ -131,11 +158,42 @@ const isCurrentMonth = (row: number, col: number) => {
 
 const updateSelectedDate = (row: number, col: number, day: string) => {
   if (isCurrentMonth(row, col)) {
-    const selectedValue = new Date(
-      props.currentMonth.getFullYear(),
-      props.currentMonth.getMonth(),
-      Number(day)
-    );
+    let selectedValue = new Date();
+    if (
+      props.period == "start" &&
+      props.otherPeriod &&
+      props.currentMonth.getMonth() < props.otherPeriod.getMonth()
+    ) {
+      selectedValue = new Date(
+        props.currentMonth.getFullYear(),
+        props.currentMonth.getMonth() + 1,
+        Number(day)
+      );
+    } else if (
+      props.period == "end" &&
+      props.otherPeriod &&
+      props.currentMonth.getMonth() > props.otherPeriod.getMonth()
+    ) {
+      selectedValue = new Date(
+        props.currentMonth.getFullYear(),
+        props.currentMonth.getMonth() - 1,
+        Number(day),
+        0,
+        0,
+        0,
+        0
+      );
+    } else {
+      selectedValue = new Date(
+        props.currentMonth.getFullYear(),
+        props.currentMonth.getMonth(),
+        Number(day),
+        0,
+        0,
+        0,
+        0
+      );
+    }
     emits("input", selectedValue);
   }
 };
@@ -154,33 +212,39 @@ const spacingXs = THEME.spacing.xs;
 <style lang="scss" scoped>
 .wiz-calendar {
   font-size: v-bind(fontSizeXs2);
+
   &-item {
-    color: v-bind(colorGray600);
     padding: v-bind(spacingXs2) v-bind(spacingXs);
     text-align: center;
-  }
-  &-item-selected {
-    padding: v-bind(spacingXs2) v-bind(spacingXs);
-    text-align: center;
-    background-color: v-bind(colorGreen800);
-    color: v-bind(colorWhite800);
     border-radius: v-bind(spacingXs2);
-  }
-  &-item-in-current-month {
-    padding: v-bind(spacingXs2) v-bind(spacingXs);
-    text-align: center;
-    color: v-bind(colorGray700);
 
-    border-radius: v-bind(spacingXs2);
-    cursor: pointer;
+    &-default {
+      color: v-bind(colorGray600);
+    }
 
-    &:hover {
+    &-hover {
       background-color: v-bind(colorGreen300);
       color: v-bind(colorGreen800);
     }
-    &:active {
+
+    &-active {
       background-color: v-bind(colorGreen800);
       color: v-bind(colorWhite800);
+    }
+
+    &-in-current-month {
+      color: v-bind(colorGray700);
+      cursor: pointer;
+
+      &:hover {
+        background-color: v-bind(colorGreen300);
+        color: v-bind(colorGreen800);
+      }
+
+      &:active {
+        background-color: v-bind(colorGreen800);
+        color: v-bind(colorWhite800);
+      }
     }
   }
 }

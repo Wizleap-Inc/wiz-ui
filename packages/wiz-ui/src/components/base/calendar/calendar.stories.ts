@@ -22,7 +22,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCalendar },
   setup() {
-    const defaultValue = new Date("2021-01-01T00:00:00.000Z");
+    const defaultValue = new Date(2023, 0, 8, 0, 0, 0, 0);
     const value = ref(new Date(defaultValue));
 
     const currentMonth = ref(new Date(defaultValue));
@@ -42,4 +42,10 @@ Default.args = {};
 export const FilledWeeks = Template.bind({});
 FilledWeeks.args = {
   filledWeeks: true,
+};
+
+export const WithPeriod = Template.bind({});
+WithPeriod.args = {
+  period: "start",
+  otherPeriod: new Date(2023, 0, 18, 0, 0, 0, 0),
 };
