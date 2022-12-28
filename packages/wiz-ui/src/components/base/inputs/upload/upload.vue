@@ -10,6 +10,7 @@
         :class="uploadInputStyle"
         @change="selectFile"
         type="file"
+        multiple
       />こちらにドラック＆ドロップしてファイルをアップロード</label
     >
     <WizUploadDisplay

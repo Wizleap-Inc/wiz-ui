@@ -24,7 +24,6 @@ export const uploadDisplayStyle = style({
   borderColor: THEME.color.gray[400],
   borderRadius: THEME.spacing.xs2,
   padding: `${THEME.spacing.md} ${THEME.spacing.xl}`,
-  width: "504px",
 });
 
 export const uploadDisplayBarBgStyle = style({
@@ -32,7 +31,7 @@ export const uploadDisplayBarBgStyle = style({
   height: BAR_HEIGHT,
   background: THEME.color.gray[400],
   borderRadius: THEME.spacing.xs2,
-  width: "472px",
+  width: "100%",
 });
 
 export const uploadDisplayBarStyle = style({
