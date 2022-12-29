@@ -1,21 +1,34 @@
 <template>
-  <span class="wiz-tag">
-    <component v-if="icon" :is="icon" />
+  <span
+    :class="[
+      tagStlye,
+      colorStyle[color],
+      fontSizeStyle[fontSize],
+      fontWeightStyle[fontWeight],
+      backgroundStyle[backgroundColor],
+    ]"
+  >
+    <WizIcon v-if="icon" :icon="icon" :color="color" />
     {{ label }}
   </span>
 </template>
 
 <script setup lang="ts">
 import {
-  THEME,
   ComponentName,
   ColorKeys,
-  getColorCss,
-  FONT_SIZE_MAP,
   FontSizeKeys,
+  FontWeightKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import { computed } from "vue";
+import { tagStlye } from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
+import {
+  backgroundStyle,
+  colorStyle,
+  fontSizeStyle,
+  fontWeightStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 
+import { WizIcon } from "@/components/base";
 import type { TIcon } from "@/components/icons";
 
 defineOptions({
@@ -25,48 +38,16 @@ defineOptions({
 interface Props {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
-  fontWeight?: "normal" | "bold";
+  fontWeight?: FontWeightKeys;
   backgroundColor?: ColorKeys;
   icon?: TIcon;
   label: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   color: "white.800",
   backgroundColor: "blue.800",
   fontSize: "md",
   fontWeight: "normal",
 });
-
-const computedColor = computed(() => getColorCss(props.color));
-
-const computedBackgroundColor = computed(() =>
-  getColorCss(props.backgroundColor)
-);
-
-const computedFontSize = computed(() => FONT_SIZE_MAP[props.fontSize]);
-
-const computedFontWeight = computed(() => props.fontWeight);
-
-const spaceXs = THEME.spacing.xs;
-const spaceXs2 = THEME.spacing.xs2;
 </script>
-
-<style lang="scss" scoped>
-.wiz-tag {
-  border-radius: v-bind(spaceXs2);
-  padding: v-bind(spaceXs2) v-bind(spaceXs);
-  color: v-bind(computedColor);
-  font-size: v-bind(computedFontSize);
-  font-weight: v-bind(computedFontWeight);
-  background-color: v-bind(computedBackgroundColor);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: max-content;
-
-  & > svg {
-    fill: v-bind(computedColor);
-  }
-}
-</style>

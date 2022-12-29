@@ -1,5 +1,5 @@
 <template>
-  <div :class="iconStyle">
+  <div :class="[iconStyle, iconSizeStyle[size]]">
     <component :is="icon" :class="[fontSizeStyle[size], fillStyle[color]]" />
   </div>
 </template>
@@ -10,7 +10,10 @@ import {
   ColorKeys,
   FontSizeKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import { iconStyle } from "@wizleap-inc/wiz-ui-styles/bases/icon.css";
+import {
+  iconStyle,
+  iconSizeStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/icon.css";
 import { fillStyle, fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 
 import type { TIcon } from "@/components/icons";
