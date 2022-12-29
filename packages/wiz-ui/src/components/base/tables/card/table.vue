@@ -1,23 +1,14 @@
 <template>
-  <table class="wiz-card-table">
+  <table :class="cardTableStyle">
     <slot />
   </table>
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { cardTableStyle } from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
 
 defineOptions({
   name: ComponentName.CardTable,
 });
-
-const spacingXs = THEME.spacing.xs;
-const spacingXs2 = THEME.spacing.xs2;
 </script>
-
-<style lang="scss" scoped>
-.wiz-card-table {
-  border-collapse: separate;
-  border-spacing: 0 calc(v-bind(spacingXs2) + v-bind(spacingXs) * 2);
-}
-</style>

@@ -1,14 +1,11 @@
 <template>
   <div
-    :class="{
-      'wiz-tab-panel': true,
-      'wiz-tab-panel--active': active,
-      'wiz-tab-panel--disabled': disabled,
-    }"
+    :class="[tabPaneStyle, tabPaneVariantStyle[variant]]"
+    :style="{ width }"
     @click="onClick"
   >
-    <span class="wiz-tab-panel__label">{{ label }}</span>
-    <span v-if="notificationCount" class="wiz-tab-panel__notification">{{
+    <span :class="tabPaneLabelStyle">{{ label }}</span>
+    <span v-if="notificationCount" :class="tabPaneNotificationStyle">{{
       notificationCount
     }}</span>
     <slot />
@@ -16,7 +13,13 @@
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  tabPaneStyle,
+  tabPaneVariantStyle,
+  tabPaneLabelStyle,
+  tabPaneNotificationStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/tab.css";
 import { computed } from "vue";
 
 defineOptions({
@@ -42,62 +45,9 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const onClick = () => props.disabled || emit("click");
-
-const gray800 = THEME.color.gray[800];
-const green800 = THEME.color.green[800];
-const white500 = THEME.color.white[500];
-const white800 = THEME.color.white[800];
-const red800 = THEME.color.red[800];
-const fontSizeXs2 = THEME.fontSize.xs2;
-const fontSizeSm = THEME.fontSize.sm;
-const fontSizeLg = THEME.fontSize.lg;
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXs = THEME.spacing.xs;
-const computedWidth = computed(() => props.width);
+const variant = computed(() => {
+  if (props.disabled) return "disabled";
+  if (props.active) return "active";
+  return "default";
+});
 </script>
-
-<style lang="scss" scoped>
-.wiz-tab-panel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: v-bind(spacingXs2);
-  height: 100%;
-  padding: v-bind(spacingXs);
-  font-size: v-bind(fontSizeSm);
-  width: v-bind(computedWidth);
-  cursor: pointer;
-  color: v-bind(gray800);
-  background: v-bind(white500);
-  border-radius: v-bind(spacingXs2) v-bind(spacingXs2) 0 0;
-
-  &--active {
-    background: v-bind(white800);
-    color: v-bind(green800);
-    font-weight: bold;
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  &__label {
-    line-height: v-bind(fontSizeLg);
-  }
-
-  &__notification {
-    line-height: v-bind(fontSizeLg);
-    width: v-bind(fontSizeLg);
-    height: v-bind(fontSizeLg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: v-bind(red800);
-    color: v-bind(white800);
-    font-size: v-bind(fontSizeXs2);
-    font-weight: normal;
-  }
-}
-</style>

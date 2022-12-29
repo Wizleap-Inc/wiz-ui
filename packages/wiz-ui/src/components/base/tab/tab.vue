@@ -45,5 +45,3 @@ const emit = defineEmits<Emits>();
 
 const select = (name: string) => emit("input", name);
 </script>
-
-<style lang="scss" scoped></style>

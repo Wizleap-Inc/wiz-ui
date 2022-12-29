@@ -1,17 +1,22 @@
 <template>
-  <table class="wiz-unstyled-table">
+  <table
+    :class="[
+      spaceX && borderSpacingXStyle[spaceX],
+      spaceY && borderSpacingYStyle[spaceY],
+      !spaceX && !spaceY && borderSpacingStyle[space],
+    ]"
+  >
     <slot />
   </table>
 </template>
 
 <script setup lang="ts">
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  ComponentName,
-  SpacingKeys,
-  getSpacingCss,
-  getCoupleSpacingCss,
-} from "@wizleap-inc/wiz-ui-constants";
-import { computed } from "vue";
+  borderSpacingStyle,
+  borderSpacingXStyle,
+  borderSpacingYStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 
 defineOptions({
   name: ComponentName.UnstyledTable,
@@ -23,21 +28,7 @@ interface Props {
   spaceY?: SpacingKeys;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   space: "no",
 });
-
-const computedSpace = computed(() => {
-  if (props.spaceX || props.spaceY) {
-    // border-spacingはweb標準仕様よりxyの順序が逆
-    return getCoupleSpacingCss(props.spaceX, props.spaceY);
-  }
-  return getSpacingCss(props.space);
-});
 </script>
-
-<style lang="scss" scoped>
-.wiz-unstyled-table {
-  border-spacing: v-bind(computedSpace);
-}
-</style>
