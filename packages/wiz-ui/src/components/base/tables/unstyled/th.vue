@@ -1,11 +1,12 @@
 <template>
-  <th class="wiz-unstyled-table__th">
+  <th :class="unstyledTh" :style="{ width }">
     <slot />
   </th>
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { unstyledTh } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 
 defineOptions({
   name: ComponentName.FlatTh,
@@ -18,14 +19,4 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   width: "auto",
 });
-
-const fontSizeSm = THEME.fontSize.sm;
 </script>
-
-<style lang="scss" scoped>
-.wiz-unstyled-table__th {
-  width: v-bind(width);
-  font-size: v-bind(fontSizeSm);
-  font-weight: bold;
-}
-</style>

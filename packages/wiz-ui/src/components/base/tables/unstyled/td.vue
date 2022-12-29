@@ -1,18 +1,15 @@
 <template>
-  <td
-    class="wiz-unstyled-table__td"
-    :class="{
-      'wiz-unstyled-table__td--left': align === 'left',
-      'wiz-unstyled-table__td--center': align === 'center',
-      'wiz-unstyled-table__td--right': align === 'right',
-    }"
-  >
+  <td :class="[unstyledTdStyle, unstyledTdAlignStyle[align]]">
     <slot />
   </td>
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  unstyledTdStyle,
+  unstyledTdAlignStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 
 defineOptions({
   name: ComponentName.UnstyledTd,
@@ -24,25 +21,4 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   align: "center",
 });
-
-const fontSizeSm = THEME.fontSize.sm;
 </script>
-
-<style lang="scss" scoped>
-.wiz-unstyled-table__td {
-  font-size: v-bind(fontSizeSm);
-  padding: 0;
-
-  &--left {
-    text-align: left;
-  }
-
-  &--center {
-    text-align: center;
-  }
-
-  &--right {
-    text-align: right;
-  }
-}
-</style>
