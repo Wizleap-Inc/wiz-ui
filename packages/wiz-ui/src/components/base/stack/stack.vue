@@ -1,25 +1,34 @@
 <template>
   <div
-    :class="{
-      'wiz-stack': true,
-      'wiz-stack--vertical': direction === 'vertical' && !reverse,
-      'wiz-stack--horizontal': direction === 'horizontal' && !reverse,
-      'wiz-stack--vertical-reverse': direction === 'vertical' && reverse,
-      'wiz-stack--horizontal-reverse': direction === 'horizontal' && reverse,
-      'wiz-stack--align-start': align === 'start',
-      'wiz-stack--align-center': align === 'center',
-      'wiz-stack--align-end': align === 'end',
-      'wiz-stack--align-stretch': align === 'stretch',
-      'wiz-stack--justify-start': justify === 'start',
-      'wiz-stack--justify-center': justify === 'center',
-      'wiz-stack--justify-end': justify === 'end',
-      'wiz-stack--justify-between': justify === 'between',
-      'wiz-stack--justify-around': justify === 'around',
-      'wiz-stack--justify-evenly': justify === 'evenly',
-      'wiz-stack--wrap': wrap,
-    }"
+    :class="[
+      stackStyle,
+      stackDirectionStyle[computedDirection],
+      stackJustifyStyle[justify],
+      stackAlignStyle[align],
+      position && stackPositionStyle[position],
+      wrap && stackWrapStyle,
+      gx && gapXStyle[gx],
+      gy && gapYStyle[gy],
+      !gx && !gy && gap && gapStyle[gap],
+      mx && marginXStyle[mx],
+      my && marginYStyle[my],
+      !mx && !my && m && marginStyle[m],
+      mt && marginTopStyle[mt],
+      mr && marginRightStyle[mr],
+      mb && marginBottomStyle[mb],
+      ml && marginLeftStyle[ml],
+      px && paddingXStyle[px],
+      py && paddingYStyle[py],
+      !px && !py && p && paddingStyle[p],
+      pt && paddingTopStyle[pt],
+      pr && paddingRightStyle[pr],
+      pb && paddingBottomStyle[pb],
+      pl && paddingLeftStyle[pl],
+    ]"
     :style="{
-      ...computedSpacingStyles,
+      width,
+      height,
+      overflow,
     }"
   >
     <slot />
@@ -27,12 +36,34 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  ComponentName,
-  SpacingKeys,
-  getSpacingCss,
-  getCoupleSpacingCss,
-} from "@wizleap-inc/wiz-ui-constants";
+  stackStyle,
+  stackDirectionStyle,
+  stackJustifyStyle,
+  stackAlignStyle,
+  stackWrapStyle,
+  stackPositionStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/stack.css";
+import {
+  gapStyle,
+  gapXStyle,
+  gapYStyle,
+  marginStyle,
+  marginXStyle,
+  marginYStyle,
+  marginTopStyle,
+  marginRightStyle,
+  marginBottomStyle,
+  marginLeftStyle,
+  paddingStyle,
+  paddingXStyle,
+  paddingYStyle,
+  paddingTopStyle,
+  paddingRightStyle,
+  paddingBottomStyle,
+  paddingLeftStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed } from "vue";
 
 defineOptions({
@@ -78,104 +109,10 @@ const props = withDefaults(defineProps<Props>(), {
   overflow: "visible",
 });
 
-const computedSpacingStyles = computed(() => {
-  const spacingStyles = {
-    gap: getSpacingCss(props.gap) || getCoupleSpacingCss(props.gy, props.gx),
-    padding: getSpacingCss(props.p) || getCoupleSpacingCss(props.py, props.px),
-    paddingTop: getSpacingCss(props.pt),
-    paddingRight: getSpacingCss(props.pr),
-    paddingBottom: getSpacingCss(props.pb),
-    paddingLeft: getSpacingCss(props.pl),
-    margin: getSpacingCss(props.m) || getCoupleSpacingCss(props.my, props.mx),
-    marginTop: getSpacingCss(props.mt),
-    marginRight: getSpacingCss(props.mr),
-    marginBottom: getSpacingCss(props.mb),
-    marginLeft: getSpacingCss(props.ml),
-  };
-
-  const isSpacingStylesKey = (key: string): key is keyof typeof spacingStyles =>
-    key in spacingStyles;
-
-  for (const key in spacingStyles) {
-    if (isSpacingStylesKey(key) && !spacingStyles[key])
-      delete spacingStyles[key];
+const computedDirection = computed(() => {
+  if (props.direction === "horizontal") {
+    return props.reverse ? "horizontalReverse" : "horizontal";
   }
-
-  return spacingStyles;
+  return props.reverse ? "verticalReverse" : "vertical";
 });
-
-const computedWidth = computed(() => props.width);
-const computedHeight = computed(() => props.height);
-const computedOverflow = computed(() => props.overflow);
-const computedPosition = computed(() => props.position);
 </script>
-
-<style lang="scss" scoped>
-.wiz-stack {
-  display: flex;
-  width: v-bind(computedWidth);
-  height: v-bind(computedHeight);
-  overflow: v-bind(computedOverflow);
-  position: v-bind(computedPosition);
-
-  &--vertical {
-    flex-direction: column;
-  }
-
-  &--horizontal {
-    flex-direction: row;
-  }
-
-  &--vertical-reverse {
-    flex-direction: column-reverse;
-  }
-
-  &--horizontal-reverse {
-    flex-direction: row-reverse;
-  }
-
-  &--align-start {
-    align-items: flex-start;
-  }
-
-  &--align-center {
-    align-items: center;
-  }
-
-  &--align-end {
-    align-items: flex-end;
-  }
-
-  &--align-stretch {
-    align-items: stretch;
-  }
-
-  &--justify-start {
-    justify-content: flex-start;
-  }
-
-  &--justify-center {
-    justify-content: center;
-  }
-
-  &--justify-end {
-    justify-content: flex-end;
-  }
-
-  &--justify-between {
-    justify-content: space-between;
-  }
-
-  &--justify-around {
-    justify-content: space-around;
-  }
-
-  &--justify-evenly {
-    justify-content: space-evenly;
-  }
-
-  &--wrap {
-    flex-wrap: wrap;
-  }
-}
-</style>
