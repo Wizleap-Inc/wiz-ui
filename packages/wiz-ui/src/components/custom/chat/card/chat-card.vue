@@ -27,30 +27,26 @@
         />
       </template>
       <WizDivider />
-      <WizVStack
-        gap="xs"
-        py="xs"
-        height="320px"
-        overflow="scroll"
-        ref="chatListRef"
-      >
-        <template v-for="messages in displayMessages">
-          <WizHStack justify="center" :key="messages.date.toDateString()">
-            <WizTag
-              :label="formatDateToMonthDayWeek(messages.date)"
-              color="gray.900"
-              backgroundColor="gray.300"
-              fontSize="xs2"
+      <WizBox overflowY="scroll">
+        <WizVStack gap="xs" py="xs" height="320px" ref="chatListRef">
+          <template v-for="messages in displayMessages">
+            <WizHStack justify="center" :key="messages.date.toDateString()">
+              <WizTag
+                :label="formatDateToMonthDayWeek(messages.date)"
+                color="gray.900"
+                backgroundColor="gray.300"
+                fontSize="xs2"
+              />
+            </WizHStack>
+            <WizChatItem
+              v-for="(item, i) in messages.contents"
+              :key="messages.date.toDateString() + i"
+              :content="item"
+              maxChatItemWidth="192px"
             />
-          </WizHStack>
-          <WizChatItem
-            v-for="(item, i) in messages.contents"
-            :key="messages.date.toDateString() + i"
-            :content="item"
-            maxChatItemWidth="192px"
-          />
-        </template>
-      </WizVStack>
+          </template>
+        </WizVStack>
+      </WizBox>
       <template #footer>
         <WizChatForm
           v-model="textValue"
