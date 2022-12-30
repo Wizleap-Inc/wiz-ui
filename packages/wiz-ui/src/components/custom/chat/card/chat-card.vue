@@ -17,7 +17,13 @@
         <WizText color="gray.700" as="span" bold>
           {{ username }}
         </WizText>
-        <div v-if="haveNewMessage" class="wiz-chat-card__have-new-message" />
+        <WizBox
+          v-if="haveNewMessage"
+          :width="THEME.fontSize.md"
+          :height="THEME.fontSize.md"
+          bgColor="red.800"
+          round="max"
+        />
       </template>
       <template #subHeaderArea>
         <WizIcon
@@ -64,12 +70,13 @@
         </WizVStack>
       </template>
     </WizCard>
-    <button class="wiz-chat-card__open-btn" @click="toggleDisplay" />
+    <button :class="chatCardOpenButtonStyle" @click="toggleDisplay" />
   </WizBox>
 </template>
 
 <script setup lang="ts">
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { chatCardOpenButtonStyle } from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 
@@ -174,35 +181,4 @@ const textValue = computed({
 const onSubmit = () => emits("submit");
 
 const toggleDisplay = () => emits("toggleDisplay");
-
-const titleHeight = THEME.spacing.xl;
-const titlePadding = THEME.spacing.md;
-const red800 = THEME.color.red[800];
-const spacingMax = THEME.spacing.max;
-const fontSizeMd = THEME.fontSize.md;
 </script>
-
-<style lang="scss" scoped>
-.wiz-chat-card {
-  &__open-btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(v-bind(titleHeight) + v-bind(titlePadding) * 2);
-    border: none;
-    cursor: pointer;
-    background: transparent;
-  }
-
-  &__have-new-message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: v-bind(fontSizeMd);
-    height: v-bind(fontSizeMd);
-    border-radius: v-bind(spacingMax);
-    background: v-bind(red800);
-  }
-}
-</style>
