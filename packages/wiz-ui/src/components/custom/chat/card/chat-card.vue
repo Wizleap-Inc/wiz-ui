@@ -33,8 +33,8 @@
         />
       </template>
       <WizDivider />
-      <WizBox overflowY="scroll">
-        <WizVStack gap="xs" py="xs" height="320px" ref="chatListRef">
+      <WizBox overflowY="scroll" ref="chatListRef">
+        <WizVStack gap="xs" py="xs" height="320px">
           <template v-for="messages in displayMessages">
             <WizHStack justify="center" :key="messages.date.toDateString()">
               <WizTag
