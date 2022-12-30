@@ -10,3 +10,5 @@ export * from "./border-color.css";
 export * from "./border-spacing.css";
 export * from "./offset.css";
 export * from "./z-index.css";
+export * from "./line-height.css";
+export * from "./white-space.css";
