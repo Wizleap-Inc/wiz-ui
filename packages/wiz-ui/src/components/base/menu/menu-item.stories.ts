@@ -51,9 +51,8 @@ Active.args = {
 Active.parameters = {
   docs: {
     description: {
-      story: `
-Active を設定することで、常にアクティブ化することもできます。
-      `,
+      story:
+        "Active を設定することで、常にアクティブ化することもできます。 default 値は `false` です。",
     },
     source: {
       code: `
@@ -74,7 +73,7 @@ Disabled.parameters = {
   docs: {
     description: {
       story:
-        "`clickable = false`  とすることで、クリックできないように設定することもできます。default は `true`",
+        "`clickable = false`  とすることで、クリックできないように設定することもできます。default 値は `true`",
     },
     source: {
       code: `

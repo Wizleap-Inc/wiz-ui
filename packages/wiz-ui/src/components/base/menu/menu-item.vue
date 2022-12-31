@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[dynamicClass, menuItemStyle]"
+    :class="[menuItemStyle, menuItemVariantStyle[componentStatus]]"
     :style="{ width: width }"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
@@ -19,9 +19,7 @@
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   menuItemStyle,
-  menuItemHoverStyle,
-  menuItemActiveStyle,
-  menuItemDisabledStyle,
+  menuItemVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { ref, computed, defineProps, defineEmits } from "vue";
 
@@ -66,10 +64,10 @@ const iconColor = computed((): ColorKeys => {
     ? "green.800"
     : "gray.500";
 });
-const dynamicClass = computed(() => {
-  if (!props.clickable) return menuItemDisabledStyle;
-  if (props.active || isPressed.value) return menuItemActiveStyle;
-  if (isHover.value) return menuItemHoverStyle;
-  return "";
+const componentStatus = computed(() => {
+  if (!props.clickable) return "disabled";
+  if (props.active || isPressed.value) return "active";
+  if (isHover.value) return "hover";
+  return "default";
 });
 </script>
