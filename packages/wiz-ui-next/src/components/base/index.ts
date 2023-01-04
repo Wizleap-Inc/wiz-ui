@@ -1,6 +1,7 @@
 export * from "./buttons";
 export * from "./calendar";
 export * from "./divider";
+export * from "./header";
 export * from "./heading";
 export * from "./icon";
 export * from "./inputs";
