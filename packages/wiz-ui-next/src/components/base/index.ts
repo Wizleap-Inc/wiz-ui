@@ -3,6 +3,7 @@ export * from "./calendar";
 export * from "./divider";
 export * from "./icon";
 export * from "./inputs";
+export * from "./menu";
 export * from "./message-box";
 export * from "./navigation";
 export * from "./popup";
