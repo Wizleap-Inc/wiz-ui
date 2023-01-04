@@ -39,7 +39,7 @@ export const Default: StoryFn<typeof WizCardTable> = (args) => ({
         </WizCardTr>
       </WizCardThead>
       <WizCardTbody>
-        <WizCardTr v-for="i in 3" @click="onClick('Row ' + i)">
+        <WizCardTr v-for="i in 3" @click="args.onClick('Row ' + i)">
           <WizCardTd v-for="j in 3" :key="j">Row {{ i }}</WizCardTd>
         </WizCardTr>
       </WizCardTbody>
@@ -82,7 +82,7 @@ export const Example: StoryFn<typeof WizCardTable> = (args) => ({
     </WizCardTr>
   </WizCardThead>
   <WizCardTbody>
-    <WizCardTr v-for="i in 3" :key="i" @click="onClick('Row ' + i)">
+    <WizCardTr v-for="i in 3" :key="i" @click="args.onClick('Row ' + i)">
       <WizCardTd v-for="(row, j) in rows" :key="j">
         <WizVStack>
           <span v-for="(item, k) in row" :key="k">{{ item }}</span>

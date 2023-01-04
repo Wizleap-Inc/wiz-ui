@@ -24,7 +24,7 @@ const Template: StoryFn<typeof WizToggleButton> = (args) => ({
   components: { WizToggleButton },
   setup: () => ({ args, WizIAdd, WizIRemove }),
   template: `
-    <WizToggleButton v-bind="args" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="onClick('Default')">{{ "顧客データ追加" }}</WizToggleButton>
+    <WizToggleButton v-bind="args" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="args.onClick('Default')">{{ "顧客データ追加" }}</WizToggleButton>
   `,
 });
 
