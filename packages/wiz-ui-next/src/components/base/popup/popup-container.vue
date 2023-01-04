@@ -21,14 +21,14 @@ defineOptions({
 });
 
 interface Props {
-  value: boolean;
+  modelValue: boolean;
   expand?: boolean;
 }
 
 const props = defineProps<Props>();
 
 interface Emits {
-  (event: "input", value: boolean): void;
+  (event: "update:modelValue", value: boolean): void;
 }
 
 const emit = defineEmits<Emits>();
@@ -40,13 +40,13 @@ provide(POPUP_KEY, provider);
 const { setPopupOpen, updateBodyPxInfo } = provider;
 
 watch(props, () => {
-  setPopupOpen(props.value);
+  setPopupOpen(props.modelValue);
   nextTick(() => {
     updateBodyPxInfo();
   });
 });
 
 useClickOutside(popupContainerRef, () => {
-  emit("input", false);
+  emit("update:modelValue", false);
 });
 </script>
