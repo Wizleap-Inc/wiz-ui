@@ -8,22 +8,16 @@ export default {
   component: WizDivider,
   argTypes: {
     color: {
-      control: {
-        type: "select",
-        options: COLOR_MAP_ACCESSORS,
-      },
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
     },
     direction: {
-      control: {
-        type: "select",
-        options: ["horizontal", "vertical"],
-      },
+      control: { type: "select" },
+      options: ["horizontal", "vertical"],
     },
     variant: {
-      control: {
-        type: "select",
-        options: ["solid", "dashed", "dotted"],
-      },
+      control: { type: "select" },
+      options: ["solid", "dashed", "dotted"],
     },
   },
 } as Meta<typeof WizDivider>;

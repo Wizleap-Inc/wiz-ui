@@ -19,6 +19,7 @@ import { borderColorStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 defineOptions({
   name: ComponentName.Divider,
 });
+
 interface Props {
   color?: ColorKeys;
   variant?: "solid" | "dashed" | "dotted";
