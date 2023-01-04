@@ -61,7 +61,7 @@ export const Direction: StoryFn<typeof WizPopup> = (args) => ({
   },
   template: `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
-      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :value="isOpenIndex === i" @input="changeIsOpenIndex(i)">
+      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :modelValue="isOpenIndex === i" @update:modelValue="changeIsOpenIndex(i)">
         <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
         <wiz-popup v-bind="pattern">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
@@ -105,7 +105,7 @@ export const Gap: StoryFn<typeof WizPopup> = (args) => ({
   },
   template: `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
-      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :value="isOpenIndex === i" @input="changeIsOpenIndex(i)">
+      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :modelValue="isOpenIndex === i" @update:modelValue="changeIsOpenIndex(i)">
         <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
         <wiz-popup v-bind="pattern">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
