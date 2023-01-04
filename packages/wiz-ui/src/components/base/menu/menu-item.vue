@@ -21,7 +21,7 @@ import {
   menuItemStyle,
   menuItemVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
-import { ref, computed, defineProps, defineEmits } from "vue";
+import { ref, computed } from "vue";
 
 import { WizIChevronRight } from "@/components/icons";
 
