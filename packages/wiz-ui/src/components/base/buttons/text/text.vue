@@ -7,6 +7,7 @@
       rounded && textButtonRoundStyle,
       expand && textButtonExpandStyle,
     ]"
+    :disabled="disabled"
     @click="onClick"
   >
     <slot />
