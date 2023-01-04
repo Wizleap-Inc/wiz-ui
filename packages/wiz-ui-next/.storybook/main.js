@@ -34,5 +34,6 @@ module.exports = {
   docs: {
     docsPage: "automatic",
     defaultName: "Docs",
+    autodocs: true,
   },
 };
