@@ -25,19 +25,19 @@ export default {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
     },
+    onClick: {
+      action: "onClick",
+    },
   },
 } as Meta<typeof WizTextButton>;
 
 const Template: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
   setup: () => ({ args }),
-  template: `<WizTextButton v-bind="args">{{ slotDefault }}</WizTextButton>`,
+  template: `<WizTextButton v-bind="args" @click="args.onClick">{{ "保存する" }}</WizTextButton>`,
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  slotDefault: "保存する",
-};
 
 Default.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -49,16 +49,19 @@ Default.play = async ({ canvasElement }) => {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  slotDefault: "保存する",
 };
 
 export const Angled = Template.bind({});
 Angled.args = {
   rounded: false,
-  slotDefault: "保存する",
 };
 
-const VariantTemplate: StoryFn<typeof WizTextButton> = (args) => ({
+export const Expand = Template.bind({});
+Expand.args = {
+  expand: true,
+};
+
+export const Variant: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
   setup: () => ({ args }),
   template: `
@@ -71,9 +74,7 @@ const VariantTemplate: StoryFn<typeof WizTextButton> = (args) => ({
   `,
 });
 
-export const Variant = VariantTemplate.bind({});
-
-const SizeTemplate: StoryFn<typeof WizTextButton> = (args) => ({
+export const Size: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
   setup: () => ({ args }),
   template: `
@@ -87,11 +88,3 @@ const SizeTemplate: StoryFn<typeof WizTextButton> = (args) => ({
     </div>
   `,
 });
-
-export const Size = SizeTemplate.bind({});
-
-export const Expand = Template.bind({});
-Expand.args = {
-  expand: true,
-  slotDefault: "保存する",
-};

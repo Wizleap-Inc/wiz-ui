@@ -24,23 +24,18 @@ const Template: StoryFn<typeof WizToggleButton> = (args) => ({
   components: { WizToggleButton },
   setup: () => ({ args, WizIAdd, WizIRemove }),
   template: `
-    <WizToggleButton v-bind="args" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="onClick('Default')">{{ slotDefault }}</WizToggleButton>
+    <WizToggleButton v-bind="args" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="onClick('Default')">{{ "顧客データ追加" }}</WizToggleButton>
   `,
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  slotDefault: "顧客データ追加",
-};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  slotDefault: "顧客データ追加",
 };
 
 export const Angled = Template.bind({});
 Angled.args = {
   rounded: false,
-  slotDefault: "顧客データ追加",
 };
