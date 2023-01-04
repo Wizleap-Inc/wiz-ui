@@ -27,7 +27,7 @@ defineOptions({
 });
 
 interface Props {
-  value: string;
+  modelValue: string;
   name: string;
   placeholder?: string;
   disabled?: boolean;
@@ -40,13 +40,13 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 interface Emit {
-  (e: "input", value: string): void;
+  (e: "update:modelValue", value: string): void;
 }
 
 const emit = defineEmits<Emit>();
 
 const textValue = computed({
-  get: () => props.value,
-  set: (value) => emit("input", value),
+  get: () => props.modelValue,
+  set: (value) => emit("update:modelValue", value),
 });
 </script>

@@ -35,6 +35,9 @@ export default {
         type: "boolean",
       },
     },
+    update: {
+      action: "update:modelValue",
+    },
   },
 };
 
@@ -91,17 +94,16 @@ Test.play = async ({ canvasElement }) => {
   await waitFor(() => expect(textarea).toHaveValue(""));
 };
 
-const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const PlaygroundTemplate: StoryFn = (args) => ({
   components: { WizTextArea },
   setup() {
     const value = ref("");
-    return { value };
+    return { value, args };
   },
   template: `
     <div>
       <p>入力値：{{ value }}</p>
-      <WizTextArea Placeholder="入力してください" v-model="value" name="text-area" />
+      <WizTextArea Placeholder="入力してください" v-model="value" name="text-area" @update:modelValue="args.update" />
     </div>
   `,
 });
