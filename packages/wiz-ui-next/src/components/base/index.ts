@@ -1,4 +1,6 @@
+export * from "./divider";
 export * from "./icon";
+export * from "./popup";
 export * from "./stack";
 export * from "./tables";
 export * from "./tooltip";
