@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { StoryFn } from "@storybook/vue";
+import { StoryFn, Meta } from "@storybook/vue3";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
@@ -39,9 +39,9 @@ export default {
       action: "update:modelValue",
     },
   },
-};
+} as Meta<typeof WizTextArea>;
 
-const Template: StoryFn = (args) => ({
+const Template: StoryFn<typeof WizTextArea> = (args) => ({
   components: { WizTextArea },
   setup() {
     const value = ref("");
@@ -94,7 +94,7 @@ Test.play = async ({ canvasElement }) => {
   await waitFor(() => expect(textarea).toHaveValue(""));
 };
 
-const PlaygroundTemplate: StoryFn = (args) => ({
+const PlaygroundTemplate: StoryFn<typeof WizTextArea> = (args) => ({
   components: { WizTextArea },
   setup() {
     const value = ref("");

@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue";
+import { StoryFn, Meta } from "@storybook/vue3";
 import {
   COLOR_MAP_ACCESSORS,
   FONT_SIZE_ACCESSORS,

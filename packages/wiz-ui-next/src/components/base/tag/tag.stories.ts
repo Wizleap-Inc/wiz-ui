@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/vue";
+import { StoryFn, Meta } from "@storybook/vue3";
 import {
   COLOR_MAP_ACCESSORS,
   FONT_SIZE_ACCESSORS,
@@ -32,9 +32,9 @@ export default {
       control: { type: "text" },
     },
   },
-};
+} as Meta<typeof WizTag>;
 
-const Template: StoryFn = (args) => ({
+const Template: StoryFn<typeof WizTag> = (args) => ({
   setup: () => ({ args }),
   components: { WizTag },
   template: `<WizTag v-bind="args" />`,
@@ -57,8 +57,8 @@ WithIcon.args = {
   icon: WizIClose,
 };
 
-const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const OverviewTemplate: StoryFn<typeof WizTag> = (args) => ({
+  setup: () => ({ args }),
   components: { WizTag },
   template: `
     <div style="display: flex; flex-wrap: wrap; gap: 8px;">

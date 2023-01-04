@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/vue";
+import { StoryFn, Meta } from "@storybook/vue3";
 import {
   COLOR_MAP_ACCESSORS,
   FONT_SIZE_ACCESSORS,
@@ -25,9 +25,9 @@ export default {
       control: { type: "object" },
     },
   },
-};
+} as Meta<typeof WizIcon>;
 
-const Template: StoryFn = (args) => ({
+const Template: StoryFn<typeof WizIcon> = (args) => ({
   setup: () => ({ args }),
   components: { WizIcon },
   template: `<WizIcon v-bind="args" />`,
@@ -38,9 +38,10 @@ Default.args = {
   icon: WizINotification,
 };
 
-export const Size: StoryFn = () => ({
+export const Size: StoryFn<typeof WizIcon> = (args) => ({
   components: { WizIcon },
   setup: () => ({
+    args,
     FONT_SIZE_ACCESSORS,
     WizINotification,
   }),
@@ -54,9 +55,10 @@ export const Size: StoryFn = () => ({
   `,
 });
 
-export const Color: StoryFn = () => ({
+export const Color: StoryFn<typeof WizIcon> = (args) => ({
   components: { WizIcon },
   setup: () => ({
+    args,
     COLOR_MAP_ACCESSORS,
     WizINotification,
   }),
@@ -70,9 +72,10 @@ export const Color: StoryFn = () => ({
   `,
 });
 
-export const Icon: StoryFn = () => ({
+export const Icon: StoryFn<typeof WizIcon> = (args) => ({
   components: { WizIcon },
   setup: () => ({
+    args,
     Icons,
   }),
   template: `

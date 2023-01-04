@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/vue";
+import { StoryFn, Meta } from "@storybook/vue3";
 
 import WizTooltip from "./tooltip.vue";
 
@@ -10,9 +10,9 @@ export default {
       control: { type: "text" },
     },
   },
-};
+} as Meta<typeof WizTooltip>;
 
-const Template: StoryFn = (arg) => ({
+const Template: StoryFn<typeof WizTooltip> = (arg) => ({
   setup: () => ({ arg }),
   components: { WizTooltip },
   template: `<div style="padding:100px;"><WizTooltip v-bind="arg">{{ arg.slot }}<template #content>コンテンツがない場合に表示するスロット</template></WizTooltip></div>`,
