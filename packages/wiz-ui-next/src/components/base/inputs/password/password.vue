@@ -40,7 +40,7 @@ defineOptions({
 });
 
 interface Props {
-  value: string;
+  modelValue: string;
   name: string;
   placeholder?: string;
   disabled?: boolean;
@@ -49,7 +49,7 @@ interface Props {
 }
 
 interface Emit {
-  (e: "input", value: string): void;
+  (e: "update:modelValue", value: string): void;
 }
 
 const props = defineProps<Props>();
@@ -58,8 +58,8 @@ const emit = defineEmits<Emit>();
 const isPasswordVisible = ref(false);
 
 const passwordValue = computed({
-  get: () => props.value,
-  set: (value) => emit("input", value),
+  get: () => props.modelValue,
+  set: (value) => emit("update:modelValue", value),
 });
 
 const computedExpand = computed(() => (props.expand ? "expand" : "default"));
