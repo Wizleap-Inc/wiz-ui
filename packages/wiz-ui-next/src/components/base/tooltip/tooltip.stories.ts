@@ -12,21 +12,27 @@ export default {
   },
 } as Meta<typeof WizTooltip>;
 
-const Template: StoryFn<typeof WizTooltip> = (arg) => ({
-  setup: () => ({ arg }),
+const Template: StoryFn<typeof WizTooltip> = (args) => ({
+  setup: () => ({ args }),
   components: { WizTooltip },
-  template: `<div style="padding:100px;"><WizTooltip v-bind="arg">{{ arg.slot }}<template #content>コンテンツがない場合に表示するスロット</template></WizTooltip></div>`,
+  template: `
+    <div style="padding:100px;">
+      <WizTooltip v-bind="args">
+        {{ "保険見直し、つみ…" }}
+        <template #content>
+          コンテンツがない場合に表示するスロット
+        </template>
+      </WizTooltip>
+    </div>`,
 });
 
 export const Oneline = Template.bind({});
 Oneline.args = {
   content: "保険見直し、つみたて・投資、ライフプラン",
-  slot: "保険見直し、つみ…",
 };
 
 export const Newline = Template.bind({});
 Newline.args = {
   content:
     "保険見直し、つみたて・投資、ライフプラン保険見直し、つみたて・投資、ライフプラン",
-  slot: "保険見直し、つみ…",
 };
