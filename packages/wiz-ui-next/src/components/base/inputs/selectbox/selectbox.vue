@@ -80,15 +80,15 @@ import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
 
 import { WizHStack, WizVStack } from "../../stack";
 
-import { Option } from "./types";
+import { SelectBoxOption } from "./types";
 
 defineOptions({
   name: ComponentName.SelectBox,
 });
 
 interface Props {
-  options: Option[];
-  modelValue: string;
+  options: SelectBoxOption[];
+  modelValue: number;
   placeholder?: string;
   width?: string;
   disabled?: boolean;
@@ -96,7 +96,6 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: "",
   placeholder: "選択してください",
   width: "10rem",
   disabled: false,
@@ -111,11 +110,11 @@ const toggleSelectBox = () => {
 };
 
 interface Emit {
-  (e: "update:modelValue", value: string): void;
+  (e: "update:modelValue", value: number): void;
 }
 const emit = defineEmits<Emit>();
 
-const onSelect = (value: string) => {
+const onSelect = (value: number) => {
   toggleSelectBox();
   emit("update:modelValue", value);
 };
