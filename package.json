@@ -11,16 +11,20 @@
     "build": "run-p build:*",
     "build:docs": "yarn workspace @wizleap-inc/wiz-ui-docs build",
     "build:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 build",
-    "build:sb": "yarn workspace @wizleap-inc/wiz-ui build:storybook",
+    "build:sb": "run-p build:sb:*",
+    "build:sb:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:storybook",
+    "build:sb:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:storybook",
     "build:lib": "run-p build:lib:*",
     "build:lib:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:lib",
     "build:lib:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:lib",
     "dev": "run-p dev:*",
     "dev:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 dev",
     "dev:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui dev",
+    "dev:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next dev",
     "dev:docs": "yarn workspace @wizleap-inc/wiz-ui-docs dev",
     "test": "run-p test:*",
     "test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui test",
+    "test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next test",
     "ci:test": "run-p ci:test:*",
     "ci:test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui ci:test",
     "ci:test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next ci:test"
@@ -31,11 +35,19 @@
       "prettier --write"
     ]
   },
-  "workspaces": [
-    "packages/*",
-    "examples/*",
-    "docs"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "examples/*",
+      "docs"
+    ],
+    "nohoist": [
+      "**/@wizleap-inc/wiz-ui",
+      "**/@wizleap-inc/wiz-ui/**",
+      "**/@wizleap-inc/wiz-ui-next",
+      "**/@wizleap-inc/wiz-ui-next/**"
+    ]
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
