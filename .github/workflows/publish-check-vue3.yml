@@ -1,0 +1,31 @@
+name: Publish check Wiz-UI library (Vue 2)
+
+on:
+  pull_request:
+    branches:
+      - main
+env:
+  CI: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - uses: ./.github/composite/prepare_node
+        with:
+          node-version: ${{ matrix.node-version }}
+          runs-on: ${{ matrix.runs-on }}
+          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: publish
+        run: yarn workspace @wizleap-inc/wiz-ui check:lib-publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
