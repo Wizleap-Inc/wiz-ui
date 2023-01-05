@@ -75,14 +75,14 @@ Test.args = {
 Test.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const input = canvas.getByPlaceholderText("入力してください");
-  userEvent.click(input);
+  await userEvent.click(input);
   await waitFor(() => expect(input).toHaveFocus());
   await waitFor(() =>
     expect(input).toHaveStyle(`border: 1px solid ${THEME.color.green[800]};`)
   );
-  userEvent.type(input, "Hoge");
+  await userEvent.type(input, "Hoge");
   await waitFor(() => expect(input).toHaveValue("Hoge"));
-  userEvent.clear(input);
+  await userEvent.clear(input);
   await waitFor(() => expect(input).toHaveValue(""));
 };
 

@@ -1,11 +1,17 @@
 <template>
-  <div class="wiz-navigation-container" :style="computedStickyStyle">
-    <div class="wiz-navigation-container__items">
+  <div
+    :class="navigationContainerStyle"
+    :style="{
+      ...computedStickyStyle,
+      width: computedWidth,
+    }"
+  >
+    <div :class="navigationContainerItemsStyle">
       <slot />
     </div>
     <div
       v-if="isMenuOpen && slots.footer"
-      class="wiz-navigation-container__footer"
+      :class="navigationContainerFooterStyle"
     >
       <slot name="footer" />
     </div>
@@ -14,6 +20,11 @@
 
 <script setup lang="ts">
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  navigationContainerStyle,
+  navigationContainerItemsStyle,
+  navigationContainerFooterStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, useSlots } from "vue";
 import { StyleValue } from "vue/types/jsx";
 
@@ -49,29 +60,4 @@ const computedStickyStyle = computed(() => {
     styles.height = `calc(100vh - ${THEME.share.HEADER_HEIGHT} - 1px)`;
   return styles;
 });
-const spacingXl2 = THEME.spacing.xl2;
-const white500 = THEME.color.white["500"];
 </script>
-
-<style lang="scss" scoped>
-.wiz-navigation-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: v-bind(white500);
-  width: v-bind(computedWidth);
-  flex-shrink: 0;
-  height: 100%;
-  transition: width 0.2s ease-in-out;
-  overflow: hidden;
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__footer {
-    padding: v-bind(spacingXl2);
-  }
-}
-</style>

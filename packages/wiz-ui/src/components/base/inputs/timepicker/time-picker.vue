@@ -1,15 +1,19 @@
 <template>
   <WizPopupContainer v-model="openTimepicker">
     <div
-      class="wiz-timepicker"
-      :class="{
-        'wiz-timepicker--active': openTimepicker,
-        'wiz-timepicker--disabled': disabled,
-      }"
+      :class="[
+        timePickerStyle,
+        openTimepicker && timePickerActiveStyle,
+        disabled && timePickerDisabledStyle,
+        timePickerCursorStyle[timePickerCursor],
+      ]"
     >
       <div
-        class="wiz-timepicker__box"
-        :class="{ 'wiz-timepicker__box--selected': !!value }"
+        :class="[
+          timePickerBoxStyle,
+          timePickerBoxColorStyle[timePickerBoxColor],
+        ]"
+        :style="{ width }"
         @click="toggleTimepicker"
       >
         <WizHStack gap="sm" align="center" height="100%">
@@ -18,23 +22,34 @@
         </WizHStack>
       </div>
       <WizPopup layer="popover" gap="xs">
-        <div class="wiz-timepicker__selector">
+        <div :class="timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">
             <WizVStack
-              class="wiz-timepicker__scroll"
+              :class="timePickerScrollStyle"
               height="8rem"
               gap="xs2"
               align="center"
               overflow="auto"
-            >
+              ><div
+                :class="[
+                  timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionTypeStyle,
+                ]"
+              >
+                時
+              </div>
               <div
-                class="wiz-timepicker__selector-option"
-                :class="{
-                  'wiz-timepicker__selector-option-selected':
-                    option === selectedHour,
-                }"
                 v-for="(option, key) in hourOptions"
                 :key="'option' + key"
+                :class="[
+                  timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionItemStyle,
+                  option === selectedHour &&
+                    timePickerSelectorOptionItemSelectedStyle,
+                  timePickerSelectorOptionItemColorStyle[
+                    timePickerSelectorOptionItemColor(option === selectedHour)
+                  ],
+                ]"
                 @click="onSelect(option, true)"
               >
                 {{ option }}
@@ -45,13 +60,25 @@
             </WizVStack>
             <WizVStack gap="xs2" align="center" justify="center">
               <div
-                class="wiz-timepicker__selector-option"
-                :class="{
-                  'wiz-timepicker__selector-option-selected':
-                    option === selectedMinute,
-                }"
+                :class="[
+                  timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionTypeStyle,
+                ]"
+              >
+                分
+              </div>
+              <div
                 v-for="(option, key) in minuteOptions"
                 :key="'option' + key"
+                :class="[
+                  timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionItemStyle,
+                  option === selectedMinute &&
+                    timePickerSelectorOptionItemSelectedStyle,
+                  timePickerSelectorOptionItemColorStyle[
+                    timePickerSelectorOptionItemColor(option === selectedMinute)
+                  ],
+                ]"
                 @click="onSelect(option)"
               >
                 {{ option }}
@@ -65,7 +92,22 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  timePickerStyle,
+  timePickerActiveStyle,
+  timePickerDisabledStyle,
+  timePickerCursorStyle,
+  timePickerBoxStyle,
+  timePickerBoxColorStyle,
+  timePickerScrollStyle,
+  timePickerSelectorStyle,
+  timePickerSelectorOptionStyle,
+  timePickerSelectorOptionTypeStyle,
+  timePickerSelectorOptionItemStyle,
+  timePickerSelectorOptionItemSelectedStyle,
+  timePickerSelectorOptionItemColorStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { ref, computed } from "vue";
 
 import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";
@@ -125,110 +167,16 @@ const onSelect = (inputValue: string, isHour = false) => {
   emit("input", defaultValue.join(":"));
 };
 
+const timePickerCursor = computed(() =>
+  props.disabled ? "disabled" : "default"
+);
+
+const timePickerBoxColor = computed(() =>
+  props.value ? "selected" : "default"
+);
+
+const timePickerSelectorOptionItemColor = (isSelected: boolean) =>
+  isSelected ? "selected" : "default";
+
 const width = computed(() => props.width);
-const fontSizeSm = THEME.fontSize.sm;
-const fontSizeXs2 = THEME.fontSize.xs2;
-const spacingNo = THEME.spacing.no;
-const spacingXs = THEME.spacing.xs;
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXl3 = THEME.spacing.xl3;
-const colorWhite800 = THEME.color.white["800"];
-const colorGray300 = THEME.color.gray["300"];
-const colorGray400 = THEME.color.gray["400"];
-const colorGray500 = THEME.color.gray["500"];
-const colorGray700 = THEME.color.gray["700"];
-const colorGreen300 = THEME.color.green["300"];
-const colorGreen800 = THEME.color.green["800"];
 </script>
-
-<style lang="scss" scoped>
-$border-width: 1px;
-
-.wiz-timepicker {
-  width: max-content;
-  padding: 0 v-bind(spacingXs2);
-  height: v-bind(spacingXl3);
-  background: v-bind(colorWhite800);
-  border: $border-width solid v-bind(colorGray400);
-  border-radius: v-bind(spacingXs2);
-  box-sizing: border-box;
-  cursor: pointer;
-
-  &--active {
-    border-color: v-bind(colorGreen800);
-  }
-
-  &--disabled {
-    color: v-bind(colorGray700);
-    background-color: v-bind(colorGray300);
-    cursor: not-allowed;
-  }
-
-  &__box {
-    height: 100%;
-    padding: v-bind(spacingNo) v-bind(spacingXs);
-    font-size: v-bind(fontSizeSm);
-    color: v-bind(colorGray500);
-    width: v-bind(width);
-
-    &--selected {
-      color: v-bind(colorGray700);
-    }
-  }
-
-  &__selector {
-    position: absolute;
-    top: calc(100% + $border-width * 2);
-    left: 0;
-    width: auto;
-    padding: v-bind(spacingXs);
-    background: v-bind(colorWhite800);
-    border-radius: v-bind(spacingXs2);
-    box-sizing: border-box;
-  }
-
-  &__scroll {
-    margin: v-bind(spacingXs2) 0;
-
-    // FireFox 用
-    scrollbar-width: thin;
-    scrollbar-color: v-bind(colorGray400) transparent;
-
-    &::-webkit-scrollbar {
-      width: v-bind(spacingXs2);
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: v-bind(colorGray400);
-      border-radius: v-bind(spacingXs2);
-    }
-  }
-
-  &__selector-option {
-    width: 2em;
-    position: relative;
-    margin: 0 v-bind(spacingXs);
-    padding: v-bind(spacingXs2);
-    font-size: v-bind(fontSizeXs2);
-    text-align: center;
-    color: v-bind(colorGray700);
-    box-sizing: border-box;
-    border-radius: v-bind(spacingXs2);
-
-    &:hover {
-      color: v-bind(colorGreen800);
-      background: v-bind(colorGreen300);
-      border-radius: v-bind(spacingXs2);
-    }
-
-    &:active {
-      color: v-bind(colorWhite800);
-      background: v-bind(colorGreen800);
-    }
-
-    &-selected {
-      color: v-bind(colorWhite800);
-      background: v-bind(colorGreen800);
-    }
-  }
-}
-</style>

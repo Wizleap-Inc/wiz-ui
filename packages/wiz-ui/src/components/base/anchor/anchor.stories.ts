@@ -2,6 +2,7 @@ import { StoryFn } from "@storybook/vue";
 import {
   COLOR_MAP_ACCESSORS,
   FONT_SIZE_ACCESSORS,
+  FONT_WEIGHT_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 import StoryRouter from "storybook-vue-router";
 
@@ -20,21 +21,50 @@ export default {
   title: "Base/Anchor",
   component: WizAnchor,
   argTypes: {
+    to: {
+      table: {
+        type: {
+          summary: "string | Location",
+        },
+      },
+    },
     fontSize: {
       control: { type: "select" },
       options: FONT_SIZE_ACCESSORS,
+      defaultValue: "md",
     },
     fontWeight: {
       control: { type: "select" },
-      options: ["normal", "bold"],
+      options: FONT_WEIGHT_ACCESSORS,
+      defaultValue: "normal",
     },
     color: {
       control: { type: "select" },
       options: COLOR_MAP_ACCESSORS,
+      defaultValue: "blue.800",
     },
-    target: {
+    iconPosition: {
       control: { type: "select" },
-      options: ["_blank", "_self"],
+      options: ["left", "right"],
+      defaultValue: "left",
+    },
+    openInNewTab: {
+      control: { type: "boolean" },
+      defaultValue: false,
+    },
+    icon: {
+      control: { type: "object" },
+    },
+    default: {
+      table: {
+        type: {
+          summary: "string | Component",
+        },
+      },
+    },
+    nowrap: {
+      control: { type: "boolean" },
+      defaultValue: false,
     },
   },
   decorators: [
@@ -53,91 +83,154 @@ const Template: StoryFn = (_, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  slotDefault: "リンク名リンク名リンク名リンク名リンク名",
+  slotDefault: "○○へ飛ぶ",
+  to: "#",
+};
+Default.parameters = {
+  docs: {
+    description: {
+      story: `
+Vue RouterのRouter Linkを内包しているので、Router Linkのtoを参照してください。
+toが文字列かつ、http(s)で始まる場合は、外部リンクとして<a> + hrefで出力されます。
+      `,
+    },
+    source: {
+      code: `
+<template>
+  <WizAnchor to="#">○○へ飛ぶ</WizAnchor>
+</template>
+      `,
+    },
+  },
 };
 
-export const Target = Template.bind({});
-Target.args = {
-  slotDefault: "リンク名リンク名リンク名リンク名リンク名",
-  to: "/page1",
-  target: "_blank",
+export const Color = Template.bind({});
+Color.args = {
+  slotDefault: "○○へ飛ぶ",
+  color: "red.800",
+};
+Color.parameters = {
+  docs: {
+    description: {
+      story:
+        "文字色を指定することができます。選択肢はVariablesのColorを参照してください。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAnchor color="red.800" to="#">○○へ飛ぶ</WizAnchor>
+</template>
+      `,
+    },
+  },
 };
 
-export const Bold = Template.bind({});
-Bold.args = {
-  slotDefault: "リンク名リンク名リンク名リンク名リンク名",
+export const FontSize = Template.bind({});
+FontSize.args = {
+  slotDefault: "○○へ飛ぶ",
+  fontSize: "sm",
+};
+FontSize.parameters = {
+  docs: {
+    description: {
+      story:
+        "文字サイズを指定することができます。選択肢はVariablesのFontSizeを参照してください。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAnchor fontSize="sm" to="#">○○へ飛ぶ</WizAnchor>
+</template>
+      `,
+    },
+  },
+};
+
+export const FontWight = Template.bind({});
+FontWight.args = {
+  slotDefault: "○○へ飛ぶ",
   fontWeight: "bold",
 };
+FontWight.parameters = {
+  docs: {
+    description: {
+      story: "文字の太さを指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAnchor fontWeight="bold" to="#">○○へ飛ぶ</WizAnchor>
+</template>
+      `,
+    },
+  },
+};
 
-export const WithIcon = Template.bind({});
-WithIcon.args = {
-  slotDefault: "リンク名リンク名リンク名リンク名リンク名",
+export const Icon = Template.bind({});
+Icon.args = {
+  slotDefault: "○○へ飛ぶ",
   icon: WizIArrowRight,
 };
-
-const VueRouterTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizAnchor },
-  template: `
-  <div>
-    <p>現在地：{{ $route.path }}</p>
-    <pre><code>{{ annotation }}</code></pre>
-    <WizAnchor v-bind="$props">{{ slotDefault }}</WizAnchor>
-  </div>
-  `,
-});
-
-export const InternalLinkString = VueRouterTemplate.bind({});
-InternalLinkString.args = {
-  annotation: "to = '/about'",
-  slotDefault: "内部リンクです",
-  to: "/about",
-};
-
-export const InternalLinkObject = VueRouterTemplate.bind({});
-InternalLinkObject.args = {
-  annotation: "to = { name: 'about' }",
-  slotDefault: "内部リンクです",
-  to: { name: "about" },
-};
-
-export const ExternalLink = VueRouterTemplate.bind({});
-ExternalLink.args = {
-  annotation: "to = 'https://www.google.com/'",
-  slotDefault: "外部リンクです",
-  to: "https://google.com",
-};
-
-export const NewTabLink = VueRouterTemplate.bind({});
-NewTabLink.args = {
-  annotation: "to = '/about', target = '_blank'",
-  slotDefault: "新しいタブで開くリンクです",
-  to: "/about",
-  target: "_blank",
-};
-
-const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizAnchor },
-  setup() {
-    return { WizIArrowRight };
+Icon.parameters = {
+  docs: {
+    description: {
+      story:
+        "アイコンを指定することができます。`WizI`というPrefixのコンポーネントがアイコンなのでそれを渡してください。選択肢はIconsを参照してください。",
+    },
+    source: {
+      code: `
+import { WizIArrowRight } from "@wizleap-inc/wiz-ui";
+<template>
+  <WizAnchor :icon="WizIArrowRight">○○へ飛ぶ</WizAnchor>
+</template>
+      `,
+    },
   },
-  template: `
-    <table>
-      <tr>
-        <td>Default</td>
-        <td><WizAnchor to="#">リンク名</WizAnchor></td>
-      </tr>
-      <tr>
-        <td>Bold</td>
-        <td><WizAnchor to="#" fontWeight="bold">リンク名</WizAnchor></td>
-      </tr>
-      <tr>
-        <td>With Icon</td>
-        <td><WizAnchor to="#" :icon="WizIArrowRight">リンク名</WizAnchor></td>
-      </tr>
-    </table>
-  `,
-});
+};
 
-export const Overview = OverviewTemplate.bind({});
+export const IconPosition = Template.bind({});
+IconPosition.args = {
+  slotDefault: "○○へ飛ぶ",
+  icon: WizIArrowRight,
+  iconPosition: "right",
+};
+IconPosition.parameters = {
+  docs: {
+    description: {
+      story: `
+アイコンの配置を指定することができます。
+- left: 左寄せ
+- right: 右寄せ
+      `,
+    },
+    source: {
+      code: `
+import { WizIArrowRight } from "@wizleap-inc/wiz-ui";
+<template>
+  <WizAnchor :icon="WizIArrowRight" iconPosition="right" to="#">○○へ飛ぶ</WizAnchor>
+</template>
+      `,
+    },
+  },
+};
+
+export const OpenInNewTab = Template.bind({});
+OpenInNewTab.args = {
+  slotDefault: "○○へ飛ぶ",
+  to: "https://wizleap.co.jp",
+  openInNewTab: true,
+};
+OpenInNewTab.parameters = {
+  docs: {
+    description: {
+      story: "外部リンクの場合、新しいタブで開くかどうかを指定できます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAnchor to="https://wizleap.co.jp" openInNewTab>○○へ飛ぶ</WizAnchor>
+</template>
+      `,
+    },
+  },
+};
