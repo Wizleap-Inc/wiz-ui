@@ -9,7 +9,7 @@ export const textDefaultLineHeightStyle = style({
   lineHeight: "normal",
 });
 
-export const textFontWeightStle = styleVariants({
+export const textFontWeightStyle = styleVariants({
   default: {
     fontWeight: "normal",
   },

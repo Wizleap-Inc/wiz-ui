@@ -1,0 +1,26 @@
+<template>
+  <div style="display: flex">
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+    <div>これはAboutページです。</div>
+  </div>
+</template>

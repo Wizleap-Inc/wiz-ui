@@ -1,4 +1,4 @@
-name: Publish check Wiz-UI library
+name: Publish check Wiz-UI library (Vue 2)
 
 on:
   pull_request:

@@ -10,17 +10,18 @@
       :width="width"
       :type="isPasswordVisible ? 'text' : 'password'"
     />
-    <div
+    <button
+      :aria-label="AREA_LABELS.PASSWORD_VISIBLE_TOGGLE"
       :class="passwordVisibleIconStyle"
       @click="isPasswordVisible = !isPasswordVisible"
     >
       <WizIEye :class="isPasswordVisible && passwordVisibleIconActiveStyle" />
-    </div>
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { AREA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   passwordStyle,
   passwordInputStyle,

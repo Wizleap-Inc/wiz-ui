@@ -22,19 +22,21 @@ export const passwordExpandStyle = styleVariants({
 
 export const passwordVisibleIconStyle = style({
   position: "absolute",
-  right: "0",
+  right: THEME.spacing.sm,
   top: "0",
   bottom: "0",
   margin: "auto",
   cursor: "pointer",
   display: "flex",
+  background: "none",
+  border: "none",
   alignItems: "center",
   justifyContent: "center",
   fontSize: THEME.fontSize.xl2,
   lineHeight: THEME.fontSize.xl2,
   width: THEME.fontSize.xl2,
   height: THEME.fontSize.xl2,
-  padding: THEME.spacing.sm,
+  padding: THEME.spacing.no,
   fill: THEME.color.gray["400"],
 });
 

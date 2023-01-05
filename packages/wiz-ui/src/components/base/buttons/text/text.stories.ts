@@ -42,7 +42,7 @@ Default.args = {
 Default.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const button = canvas.getByRole("button");
-  userEvent.click(button);
+  await userEvent.click(button);
   await waitFor(() => expect(button).toHaveFocus());
 };
 
