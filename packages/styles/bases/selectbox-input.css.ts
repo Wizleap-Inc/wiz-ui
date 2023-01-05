@@ -9,6 +9,7 @@ export const selectBoxStyle = style({
   background: THEME.color.white["800"],
   border: `${BORDER_WIDTH} solid ${THEME.color.gray["400"]}`,
   borderRadius: THEME.spacing.xs2,
+  boxSizing: "border-box",
 });
 
 export const selectBoxActiveStyle = style({

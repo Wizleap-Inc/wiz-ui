@@ -38,10 +38,7 @@
       </div>
     </div>
     <WizPopup layer="popover">
-      <div
-        :class="selectBoxSelectorStyle"
-        :style="{ 'min-width': `calc(${width} + ${BORDER_WIDTH} * 2)` }"
-      >
+      <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
         <WizVStack gap="xs2">
           <div
             :class="selectBoxSelectorOptionStyle"
@@ -60,7 +57,6 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  BORDER_WIDTH,
   selectBoxStyle,
   selectBoxActiveStyle,
   selectBoxDisabledStyle,
