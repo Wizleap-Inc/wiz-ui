@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const baseInputStyle = style({
@@ -17,11 +17,22 @@ export const baseInputStyle = style({
   },
   ":focus": {
     outline: "none",
-    borderColor: THEME.color.green[800],
   },
 });
 
 export const baseInputDisabledStyle = style({
   backgroundColor: THEME.color.gray[300],
   cursor: "not-allowed",
+});
+
+export const baseInputBorderColorStyle = styleVariants({
+  default: {
+    borderColor: THEME.color.gray[400],
+  },
+  focus: {
+    borderColor: THEME.color.green[800],
+  },
+  error: {
+    borderColor: THEME.color.red[400],
+  },
 });

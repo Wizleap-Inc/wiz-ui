@@ -1,11 +1,17 @@
 <template>
   <input
-    :class="[baseInputStyle, disabled && baseInputDisabledStyle]"
+    :class="[
+      baseInputStyle,
+      disabled && baseInputDisabledStyle,
+      baseInputBorderColorStyle[state],
+    ]"
     :style="{ width: computedWidth }"
     :placeholder="placeholder"
     :name="name"
     :disabled="disabled"
     :type="type"
+    @focusin="hasFocus = true"
+    @focusout="hasFocus = false"
     v-model="value"
   />
 </template>
@@ -15,8 +21,9 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   baseInputStyle,
   baseInputDisabledStyle,
+  baseInputBorderColorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 defineOptions({
   name: ComponentName.BaseInput,
@@ -30,6 +37,7 @@ interface Props {
   expand?: boolean;
   type: "text" | "password";
   width?: string;
+  error?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -47,5 +55,13 @@ const value = computed({
   set: (value) => emit("update:modelValue", value),
 });
 
+const hasFocus = ref(false);
+
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
+
+const state = computed(() => {
+  if (props.error) return "error";
+  if (hasFocus.value) return "focus";
+  return "default";
+});
 </script>
