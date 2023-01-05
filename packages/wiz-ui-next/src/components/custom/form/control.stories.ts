@@ -4,7 +4,6 @@ import { ref } from "vue";
 import { WizTextInput } from "@/components";
 
 import { WizFormControl } from ".";
-
 export default {
   title: "Custom/Form/Control",
   component: WizFormControl,

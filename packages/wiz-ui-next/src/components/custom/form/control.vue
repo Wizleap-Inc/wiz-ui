@@ -9,7 +9,7 @@
         <slot />
       </WizVStack>
     </WizHStack>
-    <WizHStack>
+    <WizHStack :height="THEME.fontSize.sm">
       <WizBox :width="labelWidth" />
       <WizText font-size="xs2" line-height="sm" color="red.800">{{
         error
@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { onMounted, provide, watch, inject, computed } from "vue";
 
 import {
