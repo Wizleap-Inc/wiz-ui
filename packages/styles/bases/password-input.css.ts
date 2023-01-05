@@ -22,7 +22,7 @@ export const passwordExpandStyle = styleVariants({
 
 export const passwordVisibleIconStyle = style({
   position: "absolute",
-  right: THEME.spacing.md,
+  right: THEME.spacing.sm,
   top: "0",
   bottom: "0",
   margin: "auto",
