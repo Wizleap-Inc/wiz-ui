@@ -7,13 +7,22 @@ export const selectBoxStyle = style({
   position: "relative",
   height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
-  border: `${BORDER_WIDTH} solid ${THEME.color.gray["400"]}`,
+  borderWidth: BORDER_WIDTH,
+  borderStyle: "solid",
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
 });
 
-export const selectBoxActiveStyle = style({
-  borderColor: THEME.color.green["800"],
+export const selectBoxBorderColorStyle = styleVariants({
+  default: {
+    borderColor: THEME.color.gray[400],
+  },
+  active: {
+    borderColor: THEME.color.green[800],
+  },
+  error: {
+    borderColor: THEME.color.red[400],
+  },
 });
 
 export const selectBoxDisabledStyle = style({

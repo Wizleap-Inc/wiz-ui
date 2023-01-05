@@ -3,7 +3,7 @@
     <div
       :class="[
         selectBoxStyle,
-        openSelectBox && selectBoxActiveStyle,
+        selectBoxBorderColorStyle[state],
         disabled && selectBoxDisabledStyle,
         selectBoxCursorStyle[selectBoxCursor],
       ]"
@@ -58,7 +58,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   selectBoxStyle,
-  selectBoxActiveStyle,
+  selectBoxBorderColorStyle,
   selectBoxDisabledStyle,
   selectBoxCursorStyle,
   selectBoxInnerBoxStyle,
@@ -69,10 +69,11 @@ import {
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizHStack, WizVStack } from "../../stack";
 
@@ -119,5 +120,15 @@ const selectBoxCursor = computed(() =>
   props.disabled ? "disabled" : "default"
 );
 
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openSelectBox.value) return "active";
+  return "default";
+});
 </script>
