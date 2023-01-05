@@ -43,7 +43,7 @@ Default.args = {
     },
   ],
   notifications: Array.from({ length: 10 }, (_, i) => ({
-    id: i,
+    id: `${i}`,
     title: "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
     timestamp: new Date(
       new Date("2021-01-01T00:00:00.000Z").getTime() + i * 1000 * 60 * 60 * 24

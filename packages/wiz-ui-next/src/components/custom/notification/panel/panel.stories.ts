@@ -34,7 +34,6 @@ const baseProps = {
   title:
     "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
   timestamp: new Date("2021-01-01 00:00:00"),
-  variant: "primary",
   tableInfo: [
     {
       title: "情報1",

@@ -23,40 +23,41 @@ export default {
 const Template: StoryFn<typeof WizMessageBox> = (args) => ({
   components: { WizMessageBox, WizText },
   setup: () => ({ args }),
-  template: `<WizMessageBox v-bind="args"><WizText>{{ args.slot }}</WizText></WizMessageBox>`,
+  template: `
+    <WizMessageBox v-bind="args">
+      <WizText>
+        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+      </WizText>
+    </WizMessageBox>
+  `,
 });
 
 export const Information = Template.bind({});
 Information.args = {
   title: "ヘッダーヘッダーヘッダー",
-  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "information",
 };
 
 export const Caution = Template.bind({});
 Caution.args = {
   title: "ヘッダーヘッダーヘッダー",
-  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "caution",
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   title: "ヘッダーヘッダーヘッダー",
-  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "warning",
 };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   title: "ヘッダーヘッダーヘッダー",
-  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   icon: WizIClose,
 };
 
 export const Expand = Template.bind({});
 Expand.args = {
   title: "ヘッダーヘッダーヘッダー",
-  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
 };

@@ -22,18 +22,14 @@ const Template: StoryFn<typeof WizDropdownItem> = (args) => ({
   setup: () => ({ args }),
   template: `
     <WizDropdownItem v-bind="args" @click="args.click">
-      {{ args.slotDefault }}
+      選択肢
     </WizDropdownItem>
   `,
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  slotDefault: "選択肢",
-};
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  slotDefault: "選択肢",
   icon: WizIOpenInNew,
 };
