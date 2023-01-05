@@ -3,7 +3,8 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const textAreaStyle = style({
   resize: "none",
-  border: `1px solid ${THEME.color.gray[400]}`,
+  borderWidth: "1px",
+  borderStyle: "solid",
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   padding: THEME.spacing.xs,
@@ -16,7 +17,6 @@ export const textAreaStyle = style({
 
   ":focus": {
     outline: "none",
-    borderColor: THEME.color.green[800],
   },
 });
 
@@ -33,4 +33,16 @@ export const textAreaVariantStyle = styleVariants({
 
 export const textAreaExpandStyle = style({
   width: "100%",
+});
+
+export const textAreaBorderColorStyle = styleVariants({
+  default: {
+    borderColor: THEME.color.gray[400],
+  },
+  focus: {
+    borderColor: THEME.color.green[800],
+  },
+  error: {
+    borderColor: THEME.color.red[400],
+  },
 });
