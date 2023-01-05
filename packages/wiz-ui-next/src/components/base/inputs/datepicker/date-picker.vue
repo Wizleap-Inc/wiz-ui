@@ -3,7 +3,7 @@
     <div
       :class="[
         datePickerStyle,
-        datePickerBorderColorStyle[state],
+        inputBorderStyle[state],
         disabled && datePickerDisabledStyle,
       ]"
     >
@@ -57,7 +57,6 @@
 <script setup lang="ts">
 import {
   datePickerStyle,
-  datePickerBorderColorStyle,
   datePickerDisabledStyle,
   datePickerBoxStyle,
   datePickerBoxColorStyle,
@@ -65,6 +64,7 @@ import {
   datePickerButtonBoxStyle,
   datePickerButtonBoxItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject } from "vue";
 
 import {

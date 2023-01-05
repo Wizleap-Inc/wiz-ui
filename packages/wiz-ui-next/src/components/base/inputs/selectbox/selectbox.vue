@@ -3,7 +3,7 @@
     <div
       :class="[
         selectBoxStyle,
-        selectBoxBorderColorStyle[state],
+        inputBorderStyle[state],
         disabled && selectBoxDisabledStyle,
         selectBoxCursorStyle[selectBoxCursor],
       ]"
@@ -58,7 +58,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   selectBoxStyle,
-  selectBoxBorderColorStyle,
   selectBoxDisabledStyle,
   selectBoxCursorStyle,
   selectBoxInnerBoxStyle,
@@ -69,6 +68,7 @@ import {
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";

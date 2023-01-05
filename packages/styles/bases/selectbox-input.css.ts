@@ -1,28 +1,12 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const BORDER_WIDTH = "1px";
-
 export const selectBoxStyle = style({
   position: "relative",
   height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
-  borderWidth: BORDER_WIDTH,
-  borderStyle: "solid",
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-});
-
-export const selectBoxBorderColorStyle = styleVariants({
-  default: {
-    borderColor: THEME.color.gray[400],
-  },
-  active: {
-    borderColor: THEME.color.green[800],
-  },
-  error: {
-    borderColor: THEME.color.red[400],
-  },
 });
 
 export const selectBoxDisabledStyle = style({

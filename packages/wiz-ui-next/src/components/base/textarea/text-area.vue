@@ -9,7 +9,7 @@
       textAreaStyle,
       textAreaVariantStyle[disabled ? 'disabled' : 'default'],
       expand && textAreaExpandStyle,
-      textAreaBorderColorStyle[state],
+      inputBorderStyle[state],
     ]"
     @focusin="hasFocus = true"
     @focusout="hasFocus = false"
@@ -22,8 +22,8 @@ import {
   textAreaStyle,
   textAreaVariantStyle,
   textAreaExpandStyle,
-  textAreaBorderColorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, inject, ref } from "vue";
 
 import { formControlKey } from "@/hooks/use-form-control-provider";
@@ -63,7 +63,7 @@ const hasFocus = ref(false);
 
 const state = computed(() => {
   if (isError.value) return "error";
-  if (hasFocus.value) return "focus";
+  if (hasFocus.value) return "active";
   return "default";
 });
 </script>

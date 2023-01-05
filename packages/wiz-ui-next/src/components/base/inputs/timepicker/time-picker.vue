@@ -3,7 +3,7 @@
     <div
       :class="[
         timePickerStyle,
-        timePickerBorderColorStyle[state],
+        inputBorderStyle[state],
         disabled && timePickerDisabledStyle,
         timePickerCursorStyle[timePickerCursor],
       ]"
@@ -95,7 +95,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   timePickerStyle,
-  timePickerBorderColorStyle,
   timePickerDisabledStyle,
   timePickerCursorStyle,
   timePickerBoxStyle,
@@ -108,6 +107,7 @@ import {
   timePickerSelectorOptionItemSelectedStyle,
   timePickerSelectorOptionItemColorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject } from "vue";
 
 import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";

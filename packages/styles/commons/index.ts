@@ -13,3 +13,4 @@ export * from "./offset.css";
 export * from "./z-index.css";
 export * from "./line-height.css";
 export * from "./white-space.css";
+export * from "./input.css";

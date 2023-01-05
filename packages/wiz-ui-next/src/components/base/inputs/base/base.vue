@@ -3,7 +3,7 @@
     :class="[
       baseInputStyle,
       disabled && baseInputDisabledStyle,
-      baseInputBorderColorStyle[state],
+      inputBorderStyle[state],
     ]"
     :style="{ width: computedWidth }"
     :placeholder="placeholder"
@@ -21,8 +21,8 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   baseInputStyle,
   baseInputDisabledStyle,
-  baseInputBorderColorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, ref } from "vue";
 
 defineOptions({
@@ -61,7 +61,7 @@ const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 const state = computed(() => {
   if (props.error) return "error";
-  if (hasFocus.value) return "focus";
+  if (hasFocus.value) return "active";
   return "default";
 });
 </script>
