@@ -3,7 +3,7 @@
     v-if="computedIsP"
     :class="[
       textStyle,
-      textFontWeightStle[bold ? 'bold' : 'default'],
+      textFontWeightStyle[bold ? 'bold' : 'default'],
       maxLines && textWordBreakStyle,
       lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
       fontSizeStyle[fontSize],
@@ -19,7 +19,7 @@
     v-else-if="computedIsSpan"
     :class="[
       textStyle,
-      textFontWeightStle[bold ? 'bold' : 'default'],
+      textFontWeightStyle[bold ? 'bold' : 'default'],
       maxLines && textWordBreakStyle,
       lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
       fontSizeStyle[fontSize],
@@ -44,7 +44,7 @@ import {
   textStyle,
   textDummyStyle,
   textDefaultLineHeightStyle,
-  textFontWeightStle,
+  textFontWeightStyle,
   textWordBreakStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text.css";
 import {
