@@ -3,7 +3,7 @@
     <div
       :class="[
         timePickerStyle,
-        openTimepicker && timePickerActiveStyle,
+        timePickerBorderColorStyle[state],
         disabled && timePickerDisabledStyle,
         timePickerCursorStyle[timePickerCursor],
       ]"
@@ -95,7 +95,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   timePickerStyle,
-  timePickerActiveStyle,
+  timePickerBorderColorStyle,
   timePickerDisabledStyle,
   timePickerCursorStyle,
   timePickerBoxStyle,
@@ -108,10 +108,11 @@ import {
   timePickerSelectorOptionItemSelectedStyle,
   timePickerSelectorOptionItemColorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 
 import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";
 import { WizISchedule } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizPopup, WizPopupContainer } from "../../popup";
 
@@ -179,4 +180,14 @@ const timePickerSelectorOptionItemColor = (isSelected: boolean) =>
   isSelected ? "selected" : "default";
 
 const width = computed(() => props.width);
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openTimepicker.value) return "active";
+  return "default";
+});
 </script>

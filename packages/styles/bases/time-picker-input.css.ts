@@ -8,13 +8,22 @@ export const timePickerStyle = style({
   padding: `0 ${THEME.spacing.xs2}`,
   height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
-  border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+  borderWidth: borderWidth,
+  borderStyle: "solid",
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
 });
 
-export const timePickerActiveStyle = style({
-  borderColor: THEME.color.green["800"],
+export const timePickerBorderColorStyle = styleVariants({
+  default: {
+    borderColor: THEME.color.gray["400"],
+  },
+  active: {
+    borderColor: THEME.color.green["800"],
+  },
+  error: {
+    borderColor: THEME.color.red["400"],
+  },
 });
 
 export const timePickerDisabledStyle = style({
