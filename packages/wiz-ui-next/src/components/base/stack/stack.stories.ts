@@ -1,5 +1,4 @@
-import { StoryFn } from "@storybook/vue";
-import { Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { THEME, SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { defineComponent, ref } from "vue";
 

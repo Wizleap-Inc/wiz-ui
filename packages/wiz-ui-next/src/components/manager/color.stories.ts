@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/vue";
+import { StoryFn } from "@storybook/vue3";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { defineComponent } from "vue";
 

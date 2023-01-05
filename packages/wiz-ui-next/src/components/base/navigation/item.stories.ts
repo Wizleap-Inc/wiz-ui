@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/vue";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { provide } from "vue";
 
 import { WizIDashboard } from "@/components/icons";
@@ -24,17 +24,16 @@ export default {
     },
   },
   decorators: [
-    (story: StoryFn) => ({
-      components: { story },
+    () => ({
       setup() {
         provide(globalKey, useGlobalProvider());
       },
       template: `<story />`,
     }),
   ],
-};
+} as Meta<typeof WizNavItem>;
 
-const Template: StoryFn = (args) => ({
+const Template: StoryFn<typeof WizNavItem> = (args) => ({
   components: { WizNavItem },
   setup: () => ({ args }),
   template: `
