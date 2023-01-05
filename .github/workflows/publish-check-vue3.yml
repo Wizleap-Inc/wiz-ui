@@ -1,4 +1,4 @@
-name: Publish check Wiz-UI library (Vue 2)
+name: Publish check Wiz-UI-Next library (Vue 3)
 
 on:
   pull_request:
@@ -26,6 +26,6 @@ jobs:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: publish
-        run: yarn workspace @wizleap-inc/wiz-ui check:lib-publish
+        run: yarn workspace @wizleap-inc/wiz-ui-next check:lib-publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
