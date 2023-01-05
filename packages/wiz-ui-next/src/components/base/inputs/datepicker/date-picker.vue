@@ -3,7 +3,7 @@
     <div
       :class="[
         datePickerStyle,
-        openDatepicker && datePickerActiveStyle,
+        datePickerBorderColorStyle[state],
         disabled && datePickerDisabledStyle,
       ]"
     >
@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import {
   datePickerStyle,
-  datePickerActiveStyle,
+  datePickerBorderColorStyle,
   datePickerDisabledStyle,
   datePickerBoxStyle,
   datePickerBoxColorStyle,
@@ -65,7 +65,7 @@ import {
   datePickerButtonBoxStyle,
   datePickerButtonBoxItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 
 import {
   WizIcon,
@@ -80,6 +80,7 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
 } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 interface Props {
   modelValue: Date;
@@ -144,4 +145,14 @@ const calenderValue = computed({
 const datePickerBoxColor = computed(() =>
   calenderValue.value ? "selected" : "default"
 );
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openDatepicker.value) return "active";
+  return "default";
+});
 </script>

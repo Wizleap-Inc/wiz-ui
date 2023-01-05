@@ -6,13 +6,23 @@ export const datePickerStyle = style({
   padding: `${THEME.spacing.no} ${THEME.spacing.xs2}`,
   height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
-  border: "1px solid " + THEME.color.gray["400"],
+  borderWidth: "1px",
+  borderStyle: "solid",
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
+  cursor: "pointer",
 });
 
-export const datePickerActiveStyle = style({
-  borderColor: THEME.color.green["800"],
+export const datePickerBorderColorStyle = styleVariants({
+  default: {
+    borderColor: THEME.color.gray["400"],
+  },
+  active: {
+    borderColor: THEME.color.green["800"],
+  },
+  error: {
+    borderColor: THEME.color.red["400"],
+  },
 });
 
 export const datePickerDisabledStyle = style({
