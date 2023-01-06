@@ -2,6 +2,7 @@
   <button
     :class="[
       toggleButtonStyle,
+      toggleButtonSizeStyle[size],
       isActive && toggleButtonActiveStyle,
       disabled && toggleButtonDisabledStyle,
       rounded && toggleButtonRoundedStyle,
@@ -13,7 +14,7 @@
       <WizIcon
         :icon="isActive ? activeIcon : inActiveIcon"
         color="green.800"
-        size="xl2"
+        :size="iconSize"
       />
       <slot />
     </WizHStack>
@@ -27,8 +28,9 @@ import {
   toggleButtonActiveStyle,
   toggleButtonDisabledStyle,
   toggleButtonRoundedStyle,
+  toggleButtonSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
@@ -43,6 +45,7 @@ interface Props {
   activeIcon: TIcon;
   disabled?: boolean;
   rounded?: boolean;
+  size?: "sm" | "md" | "lg";
 }
 
 interface Emits {
@@ -50,8 +53,10 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  iconPosition: "left",
   disabled: false,
   rounded: true,
+  size: "md",
 });
 
 const isActive = ref(false);
@@ -63,4 +68,11 @@ const onClick = () => {
   isActive.value = !isActive.value;
   emits("click");
 };
+
+const iconSize = computed(() => {
+  if (props.size === "sm") return "xl";
+  if (props.size === "md") return "xl2";
+  if (props.size === "lg") return "xl3";
+  return undefined;
+});
 </script>
