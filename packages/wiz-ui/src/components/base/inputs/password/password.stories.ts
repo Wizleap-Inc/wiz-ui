@@ -1,4 +1,7 @@
+import { expect } from "@storybook/jest";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
+import { AREA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import WizPasswordInput from "./password.vue";
@@ -62,25 +65,21 @@ Test.args = {
 };
 
 Test.play = async ({ canvasElement }) => {
-  // const canvas = within(canvasElement);
-  // const input = canvas.getByPlaceholderText("パスワードを入力");
-  // userEvent.click(input);
-  // // 1. focus check
-  // await waitFor(() => expect(input).toHaveFocus());
-  // // 2. type check
-  // userEvent.type(input, "password");
-  // await waitFor(() => expect(input).toHaveValue("password"));
-  // const password = canvas.getByText("password");
-  // // 3. password is hidden
-  // expect(password).not.toBeVisible();
-  // const showPassword = canvas.getAllByRole("div", {
-  //   name: "password-input",
-  // })[1];
-  // console.log(showPassword);
-  // // 4. click visible button
-  // userEvent.click(showPassword);
-  // // 5. password is visible
-  // await waitFor(() => expect(password).toBeVisible());
+  const DUMMY_PASSWORD = "example";
+  const canvas = within(canvasElement);
+  const input = canvas.getByPlaceholderText("パスワードを入力");
+  const visibleToggle = canvas.getByLabelText(
+    AREA_LABELS.PASSWORD_VISIBLE_TOGGLE
+  );
+
+  await userEvent.click(input);
+  await waitFor(() => expect(input).toHaveFocus());
+  await userEvent.type(input, DUMMY_PASSWORD);
+  await waitFor(() => expect(input).toHaveAttribute("type", "password"));
+  await waitFor(() => expect(input).toHaveValue(DUMMY_PASSWORD));
+  await userEvent.click(visibleToggle);
+  await waitFor(() => expect(input).toHaveAttribute("type", "text"));
+  await waitFor(() => expect(input).toHaveValue(DUMMY_PASSWORD));
 };
 
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
