@@ -3,6 +3,8 @@ import { ref } from "vue";
 
 import { WizHStack } from "@/components";
 
+import { SelectBoxOption } from "./types";
+
 import { WizSelectBox } from ".";
 
 export default {
@@ -37,13 +39,17 @@ const Template: StoryFn = (_, { argTypes }) => ({
   `,
 });
 
+const _getDummyOptions = (label: string, count: number) => {
+  const options: SelectBoxOption[] = [];
+  for (let i = 0; i < count; i++) {
+    options.push({ label: label + i, value: i });
+  }
+  return options;
+};
+
 export const Default = Template.bind({});
 Default.args = {
-  options: [
-    { label: "test1", value: "1" },
-    { label: "test2", value: "2" },
-    { label: "test3", value: "3" },
-  ],
+  options: _getDummyOptions("test", 3),
 };
 
 export const Disabled = Template.bind({});
@@ -52,7 +58,7 @@ Disabled.args = {
   disabled: true,
 };
 
-const MutliTemplate: StoryFn = (_, { argTypes }) => ({
+const MultiTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizSelectBox, WizHStack },
   setup() {
@@ -67,41 +73,18 @@ const MutliTemplate: StoryFn = (_, { argTypes }) => ({
   `,
 });
 
-export const LongLabel = MutliTemplate.bind({});
+export const LongLabel = MultiTemplate.bind({});
 LongLabel.args = {
-  options: [
-    {
-      label: "ThisIsALongLabel!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1",
-      value: "1",
-    },
-    { label: "test2", value: "2" },
-    { label: "test3", value: "3" },
-  ],
+  options: _getDummyOptions("ThisIsTooLongLabelThisIsTooLongLabel", 3),
 };
 
 export const Expand = Template.bind({});
 Expand.args = {
-  options: [{ label: "test1", value: "1" }],
+  options: _getDummyOptions("test", 1),
   expand: true,
 };
 
 export const ManyOptions = Template.bind({});
 ManyOptions.args = {
-  options: [
-    { label: "test1", value: "1" },
-    { label: "test2", value: "2" },
-    { label: "test3", value: "3" },
-    { label: "test4", value: "4" },
-    { label: "test5", value: "5" },
-    { label: "test6", value: "6" },
-    { label: "test7", value: "7" },
-    { label: "test8", value: "8" },
-    { label: "test9", value: "9" },
-    { label: "test10", value: "10" },
-    { label: "test11", value: "11" },
-    { label: "test12", value: "12" },
-    { label: "test13", value: "13" },
-    { label: "test14", value: "14" },
-    { label: "test15", value: "15" },
-  ],
+  options: _getDummyOptions("test", 15),
 };
