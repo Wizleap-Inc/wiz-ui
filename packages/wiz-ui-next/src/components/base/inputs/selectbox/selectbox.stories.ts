@@ -28,7 +28,7 @@ export default {
 const Template: StoryFn<typeof WizSelectBox> = (args) => ({
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref("");
+    const value = ref(0);
     return { value, args };
   },
   template: `
@@ -40,7 +40,7 @@ const Template: StoryFn<typeof WizSelectBox> = (args) => ({
 
 const _getDummyOptions = (label: string, count: number) => {
   const options: SelectBoxOption[] = [];
-  for (let i = 0; i < count; i++) {
+  for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i });
   }
   return options;
@@ -60,7 +60,7 @@ Disabled.args = {
 const MultiTemplate: StoryFn<typeof WizSelectBox> = (args) => ({
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref("");
+    const value = ref(0);
     return { value, args };
   },
   template: `

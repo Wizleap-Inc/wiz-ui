@@ -29,7 +29,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref("");
+    const value = ref(0);
     return { value };
   },
   template: `
@@ -41,7 +41,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
 
 const _getDummyOptions = (label: string, count: number) => {
   const options: SelectBoxOption[] = [];
-  for (let i = 0; i < count; i++) {
+  for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i });
   }
   return options;
@@ -62,7 +62,7 @@ const MultiTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref("");
+    const value = ref(0);
     return { value };
   },
   template: `
