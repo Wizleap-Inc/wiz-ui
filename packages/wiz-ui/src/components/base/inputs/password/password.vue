@@ -8,6 +8,7 @@
       :disabled="disabled"
       :expand="expand"
       :width="width"
+      :error="isError"
       :type="isPasswordVisible ? 'text' : 'password'"
     />
     <button
@@ -29,9 +30,10 @@ import {
   passwordVisibleIconStyle,
   passwordVisibleIconActiveStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
-import { computed, ref } from "vue";
+import { computed, ref, inject } from "vue";
 
 import { WizIEye } from "@/components";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { PrivateBaseInput } from "../base";
 
@@ -63,4 +65,8 @@ const passwordValue = computed({
 });
 
 const computedExpand = computed(() => (props.expand ? "expand" : "default"));
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
 </script>
