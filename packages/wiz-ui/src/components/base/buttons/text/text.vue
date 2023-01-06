@@ -13,7 +13,7 @@
     <WizHStack
       align="center"
       justify="center"
-      gap="xs"
+      gap="xs2"
       :reverse="iconPosition === 'right'"
     >
       <WizIcon

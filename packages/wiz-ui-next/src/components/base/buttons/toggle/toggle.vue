@@ -10,7 +10,7 @@
     :disabled="disabled"
     @click="onClick"
   >
-    <WizHStack align="center" gap="xs">
+    <WizHStack align="center" gap="xs2">
       <WizIcon
         :icon="isActive ? activeIcon : inActiveIcon"
         color="green.800"
