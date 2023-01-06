@@ -19,7 +19,7 @@
       >
         <WizHStack gap="sm" align="center" height="100%">
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
-          <span>{{ parseValue(calenderValue) || placeholder }}</span>
+          <span>{{ parseValue(calendarValue) || placeholder }}</span>
         </WizHStack>
       </div>
       <WizPopup layer="popover" gap="xs">
@@ -44,7 +44,7 @@
             </div>
           </WizHStack>
           <WizCalendar
-            v-model="calenderValue"
+            v-model="calendarValue"
             :currentMonth="currentMonth"
             filledWeeks
           />
@@ -137,13 +137,13 @@ const currentDateTitle = computed(() => {
   }月`;
 });
 
-const calenderValue = computed({
+const calendarValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
 
 const datePickerBoxColor = computed(() =>
-  calenderValue.value ? "selected" : "default"
+  calendarValue.value ? "selected" : "default"
 );
 
 // Form Control
