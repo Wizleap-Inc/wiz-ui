@@ -9,15 +9,15 @@
           :id="`radio${key}`"
           :value="option.value"
           v-model="radioValue"
-          :disabled="disabled || disabledKey === key"
+          :disabled="disabled || option.disabled"
         />
         <label
           :class="[
             radioLabelStyle,
             radioValue === option.value && radioLabelCheckedStyle,
-            (disabled || disabledKey === key) && radioLabelDisabledStyle,
+            (disabled || option.disabled) && radioLabelDisabledStyle,
             radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
-            radioLabelCursorStyle[radioLabelCursor(key)],
+            radioLabelCursorStyle[radioLabelCursor(option.disabled)],
           ]"
           :for="`radio${key}`"
         >
@@ -49,7 +49,6 @@ interface Props {
   options: RadioOption[];
   value: number;
   disabled?: boolean;
-  disabledKey?: number;
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
 }
@@ -74,6 +73,6 @@ const radioValue = computed({
 const radioLabelColor = (isChecked: boolean) =>
   isChecked ? "checked" : "default";
 
-const radioLabelCursor = (key: number) =>
-  props.disabled || props.disabledKey === key ? "disabled" : "default";
+const radioLabelCursor = (optionDisabled?: boolean) =>
+  props.disabled || optionDisabled ? "disabled" : "default";
 </script>
