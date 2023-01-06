@@ -1,7 +1,6 @@
 const IconComponentName = {
   IArrowRight: "WizIArrowRight",
   IClose: "WizIClose",
-  IHint: "WizIHint",
   IEye: "WizIEye",
   ISend: "WizISend",
   IExpandMore: "WizIExpandMore",
