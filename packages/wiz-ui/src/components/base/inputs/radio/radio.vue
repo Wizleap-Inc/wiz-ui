@@ -49,9 +49,9 @@ interface Props {
   options: RadioOption[];
   value: number;
   disabled?: boolean;
-  disabledKey: number;
+  disabledKey?: number;
   direction?: "horizontal" | "vertical";
-  gap: SpacingKeys;
+  gap?: SpacingKeys;
 }
 
 const props = withDefaults(defineProps<Props>(), {

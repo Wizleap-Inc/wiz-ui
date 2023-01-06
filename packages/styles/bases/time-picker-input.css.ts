@@ -1,20 +1,13 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-const borderWidth = "1px";
-
 export const timePickerStyle = style({
   width: "max-content",
   padding: `0 ${THEME.spacing.xs2}`,
   height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
-  border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-});
-
-export const timePickerActiveStyle = style({
-  borderColor: THEME.color.green["800"],
 });
 
 export const timePickerDisabledStyle = style({
@@ -48,7 +41,7 @@ export const timePickerBoxColorStyle = styleVariants({
 
 export const timePickerSelectorStyle = style({
   position: "absolute",
-  top: `calc(100% + ${borderWidth} * 2)`,
+  top: `calc(100% + 1px * 2)`,
   left: 0,
   width: "auto",
   padding: THEME.spacing.xs,
