@@ -49,7 +49,7 @@ interface Props {
   options: RadioOption[];
   modelValue: number;
   disabled?: boolean;
-  disabledKey: number;
+  disabledKey?: number;
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
 }

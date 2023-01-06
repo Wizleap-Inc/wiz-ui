@@ -19,7 +19,7 @@ export default {
 const Template: StoryFn<typeof WizRadio> = (args) => ({
   components: { WizRadio },
   setup() {
-    const value = ref();
+    const value = ref(0);
     return { value, args };
   },
   template: `

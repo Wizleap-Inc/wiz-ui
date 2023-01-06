@@ -225,11 +225,11 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
     const passwordInput = ref("");
     const textareaInput = ref("");
     const SELECT_OPTIONS: SelectBoxOption[] = CHOICES;
-    const selectInput = ref<string | null>(null);
+    const selectInput = ref(0);
     const CHECKBOX_OPTIONS: CheckBoxOption[] = CHOICES;
     const checkboxInput = ref<number[]>([]);
     const RADIO_OPTIONS: RadioOption[] = CHOICES;
-    const radioInput = ref<number | null>(null);
+    const radioInput = ref(0);
     const datePickerInput = ref(new Date(2021, 0, 1));
     const timePickerInput = ref("");
     return {
