@@ -51,7 +51,7 @@ interface Props {
   disabled?: boolean;
   disabledKey: number;
   direction?: "horizontal" | "vertical";
-  gap: SpacingKeys;
+  gap?: SpacingKeys;
 }
 
 const props = withDefaults(defineProps<Props>(), {
