@@ -34,8 +34,8 @@ export default {
       control: { type: "select" },
       options: ["left", "right"],
     },
-    onClick: {
-      action: "onClick",
+    click: {
+      action: "click",
     },
   },
 } as Meta<typeof WizTextButton>;
@@ -43,7 +43,7 @@ export default {
 const Template: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
   setup: () => ({ args }),
-  template: `<WizTextButton v-bind="args" @click="args.onClick">{{ "保存する" }}</WizTextButton>`,
+  template: `<WizTextButton v-bind="args" @click="() => args.click">{{ "保存する" }}</WizTextButton>`,
 });
 
 export const Default = Template.bind({});

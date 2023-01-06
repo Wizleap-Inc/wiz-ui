@@ -34,8 +34,8 @@ export default {
       control: { type: "select" },
       options: ["left", "right"],
     },
-    onClick: {
-      action: "onClick",
+    click: {
+      action: "click",
     },
   },
 };
@@ -43,7 +43,7 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextButton },
-  template: `<WizTextButton v-bind="$props" @click="onClick">{{ "保存する" }}</WizTextButton>`,
+  template: `<WizTextButton v-bind="$props" @click="click">{{ "保存する" }}</WizTextButton>`,
 });
 
 export const Default = Template.bind({});
