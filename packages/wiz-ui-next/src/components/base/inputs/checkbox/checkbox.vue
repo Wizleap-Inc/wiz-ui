@@ -9,14 +9,14 @@
           :name="`checkbox${key}`"
           :value="option.value"
           v-model="checkboxValue"
-          :disabled="disabled || disabledKey === key"
+          :disabled="disabled || option.disabled"
         />
         <label
           :class="[
             checkboxLabelStyle,
             checkboxValue.includes(option.value) && checkboxLabelCheckedStyle,
-            (disabled || disabledKey === key) && checkboxLabelDisabledStyle,
-            checkboxLabelCursorStyle[labelPointer(key)],
+            (disabled || option.disabled) && checkboxLabelDisabledStyle,
+            checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
           :for="`checkbox${key}`"
         >
@@ -55,7 +55,6 @@ interface Props {
   options: CheckBoxOption[];
   modelValue: number[];
   disabled?: boolean;
-  disabledKey?: number;
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
 }
@@ -76,6 +75,6 @@ const checkboxValue = computed({
   set: (value) => emit("update:modelValue", value),
 });
 
-const labelPointer = (key: number) =>
-  props.disabled || props.disabledKey === key ? "disabled" : "default";
+const labelPointer = (optionDisabled?: boolean) =>
+  props.disabled || optionDisabled ? "disabled" : "default";
 </script>
