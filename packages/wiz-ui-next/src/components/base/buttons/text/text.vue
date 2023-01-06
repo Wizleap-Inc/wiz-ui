@@ -10,7 +10,15 @@
     :disabled="disabled"
     @click="onClick"
   >
-    <slot />
+    <WizHStack
+      align="center"
+      justify="center"
+      gap="xs"
+      :reverse="iconPosition === 'right'"
+    >
+      <WizIcon v-if="icon" :icon="icon" :color="variantColor" size="xl2" />
+      <slot />
+    </WizHStack>
   </button>
 </template>
 
@@ -23,7 +31,9 @@ import {
   textButtonExpandStyle,
   textButtonSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
-import { withDefaults } from "vue";
+import { withDefaults, computed } from "vue";
+
+import { TIcon, WizHStack, WizIcon } from "@/components";
 
 defineOptions({
   name: ComponentName.TextButton,
@@ -35,6 +45,8 @@ interface Props {
   expand?: boolean;
   disabled?: boolean;
   rounded?: boolean;
+  icon?: TIcon;
+  iconPosition?: "left" | "right";
 }
 
 interface Emits {
@@ -47,9 +59,16 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: true,
   expand: false,
   size: "md",
+  iconPosition: "left",
 });
 
 const emit = defineEmits<Emits>();
 
 const onClick = () => props.disabled || emit("click");
+
+const variantColor = computed(() => {
+  if (props.variant === "primary") return "white.800";
+  if (props.variant === "sub") return "green.800";
+  return undefined;
+});
 </script>

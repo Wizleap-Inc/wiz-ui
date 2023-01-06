@@ -2,6 +2,8 @@ import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn, Meta } from "@storybook/vue3";
 
+import { WizIAdd } from "@/components/icons";
+
 import WizTextButton from "./text.vue";
 
 export default {
@@ -24,6 +26,13 @@ export default {
     size: {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
+    },
+    icon: {
+      control: { type: "object" },
+    },
+    iconPosition: {
+      control: { type: "select" },
+      options: ["left", "right"],
     },
     onClick: {
       action: "onClick",
@@ -59,6 +68,17 @@ Angled.args = {
 export const Expand = Template.bind({});
 Expand.args = {
   expand: true,
+};
+
+export const Icon = Template.bind({});
+Icon.args = {
+  icon: WizIAdd,
+};
+
+export const IconPosition = Template.bind({});
+IconPosition.args = {
+  icon: WizIAdd,
+  iconPosition: "right",
 };
 
 export const Variant: StoryFn<typeof WizTextButton> = (args) => ({
