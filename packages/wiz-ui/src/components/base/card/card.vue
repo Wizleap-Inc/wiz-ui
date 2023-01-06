@@ -21,7 +21,7 @@
           <slot v-if="!title" name="mainHeaderArea" />
           <div :class="cardHeaderTitleStyle">{{ title }}</div>
           <WizTooltip v-if="hint" :content="hint">
-            <WizIcon :icon="WizIHint" color="gray.600" size="lg" />
+            <WizIcon :icon="WizIHelp" color="gray.600" size="lg" />
           </WizTooltip>
         </div>
         <slot name="subHeaderArea" />
@@ -59,7 +59,7 @@ import {
   backgroundStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 
-import { WizVStack, WizIHint, WizIcon, WizTooltip } from "@/components";
+import { WizVStack, WizIHelp, WizIcon, WizTooltip } from "@/components";
 
 defineOptions({
   name: ComponentName.Card,

@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const toggleButtonStyle = style({
@@ -11,7 +11,6 @@ export const toggleButtonStyle = style({
   fontWeight: "bold",
   padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
   borderRadius: THEME.spacing.xs2,
-  fontSize: THEME.fontSize.sm,
   background: THEME.color.white[800],
   boxShadow: THEME.shadow.sm,
   color: THEME.color.green[800],
@@ -40,4 +39,16 @@ export const toggleButtonDisabledStyle = style({
 
 export const toggleButtonRoundedStyle = style({
   borderRadius: THEME.spacing.max,
+});
+
+export const toggleButtonSizeStyle = styleVariants({
+  sm: {
+    fontSize: THEME.fontSize.xs,
+  },
+  md: {
+    fontSize: THEME.fontSize.sm,
+  },
+  lg: {
+    fontSize: THEME.fontSize.md,
+  },
 });

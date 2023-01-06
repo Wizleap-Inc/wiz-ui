@@ -16,6 +16,7 @@ const IconComponentName = {
   IDashboard: "WizIDashboard",
   IGroups: "WizIGroups",
   IHelp: "WizIHelp",
+  IInfo: "WizIInfo",
   IManageAccounts: "WizIManageAccounts",
   IMonitoring: "WizIMonitoring",
   IMoreVert: "WizIMoreVert",
