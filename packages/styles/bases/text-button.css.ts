@@ -29,9 +29,8 @@ export const textButtonStyle = styleVariants({
     {
       background: THEME.color.white[800],
       color: THEME.color.green[800],
-      borderWidth: "1px",
-      borderStyle: "solid",
-      borderColor: THEME.color.gray[400],
+      boxShadow: THEME.shadow.md,
+      border: "none",
     },
   ],
 });
