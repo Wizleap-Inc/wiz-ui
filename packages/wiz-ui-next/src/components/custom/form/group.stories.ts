@@ -70,7 +70,7 @@ const CODE_TEMPLATE = ({ labelWidth, gap }: Partial<Props>) => `
       <WizTextInput v-model="input" name="input" />
     </WizFormControl>
     ...
-  </WizFormGroup$>
+  </WizFormGroup>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";

@@ -42,7 +42,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   },
   components: { WizFormGroup, WizFormControl, WizTextInput },
   template: `
-    <WizFormGroup v-bind="args">
+    <WizFormGroup v-bind="$props">
       <WizFormControl label="Label1">
         <WizTextInput v-model="input1" name="input1" />
       </WizFormControl>
@@ -71,7 +71,7 @@ const CODE_TEMPLATE = ({ labelWidth, gap }: Partial<Props>) => `
       <WizTextInput v-model="input" name="input" />
     </WizFormControl>
     ...
-  </WizFormGroup$>
+  </WizFormGroup>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";

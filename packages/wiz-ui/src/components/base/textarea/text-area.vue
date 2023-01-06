@@ -11,6 +11,8 @@
       expand && textAreaExpandStyle,
       inputBorderStyle[state],
     ]"
+    @focusin="hasFocus = true"
+    @focusout="hasFocus = false"
   />
 </template>
 

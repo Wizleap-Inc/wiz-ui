@@ -47,7 +47,7 @@ const CODE_TEMPLATE = ({ label, required, error }: Partial<Props>) => `
     (error ? ` error="${error}"` : "")
   }>
     <WizTextInput v-model="input" name="input" placeholder="入力してください" />
-  </WizFormControl$>
+  </WizFormControl>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
