@@ -15,7 +15,7 @@ import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
-import { default as WizIHint } from "./hint.vue";
+import { default as WizIInfo } from "./info.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
@@ -44,7 +44,7 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIGroups
   | typeof WizIHelp
-  | typeof WizIHint
+  | typeof WizIInfo
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -74,7 +74,7 @@ export {
   WizIEye,
   WizIGroups,
   WizIHelp,
-  WizIHint,
+  WizIInfo,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
