@@ -2,8 +2,6 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const baseTextButtonStyle = style({
-  fontWeight: "bold",
-  padding: `${THEME.spacing["xs"]} ${THEME.spacing["xl"]}`,
   cursor: "pointer",
   borderRadius: THEME.spacing.xs2,
   width: "fit-content",
@@ -48,14 +46,39 @@ export const textButtonExpandStyle = style({
   width: "100%",
 });
 
+const textButtonSizeXsStyle = style({
+  padding: `${THEME.spacing["xs2"]} ${THEME.spacing["sm"]}`,
+  lineHeight: THEME.fontSize.lg,
+});
+
+const textButtonSizeNotXsStyle = style({
+  padding: `${THEME.spacing["xs"]} ${THEME.spacing["xl"]}`,
+  fontWeight: "bold",
+});
+
 export const textButtonSizeStyle = styleVariants({
-  sm: {
-    fontSize: THEME.fontSize.xs,
-  },
-  md: {
-    fontSize: THEME.fontSize.sm,
-  },
-  lg: {
-    fontSize: THEME.fontSize.md,
-  },
+  xs: [
+    textButtonSizeXsStyle,
+    {
+      fontSize: THEME.fontSize.xs,
+    },
+  ],
+  sm: [
+    textButtonSizeNotXsStyle,
+    {
+      fontSize: THEME.fontSize.xs,
+    },
+  ],
+  md: [
+    textButtonSizeNotXsStyle,
+    {
+      fontSize: THEME.fontSize.sm,
+    },
+  ],
+  lg: [
+    textButtonSizeNotXsStyle,
+    {
+      fontSize: THEME.fontSize.md,
+    },
+  ],
 });
