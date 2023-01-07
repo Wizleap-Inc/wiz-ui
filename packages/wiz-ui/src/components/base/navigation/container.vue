@@ -38,11 +38,16 @@ const { isMenuOpen } = globalInject(globalKey);
 
 const slots = useSlots();
 
-interface Props {
-  width?: string;
-  sticky?: boolean;
-}
-const props = defineProps<Props>();
+const props = defineProps({
+  width: {
+    type: String,
+    required: false,
+  },
+  sticky: {
+    type: Boolean,
+    requird: false,
+  },
+});
 
 const computedWidth = computed(() => {
   if (props.width) return props.width;

@@ -20,12 +20,16 @@ defineOptions({
   name: ComponentName.PopupContainer,
 });
 
-interface Props {
-  value: boolean;
-  expand?: boolean;
-}
-
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: Boolean,
+    required: true,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+});
 
 interface Emits {
   (event: "input", value: boolean): void;

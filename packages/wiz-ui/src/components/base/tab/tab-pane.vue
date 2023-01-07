@@ -26,16 +26,28 @@ defineOptions({
   name: ComponentName.TabPane,
 });
 
-interface Props {
-  label: string;
-  active?: boolean;
-  disabled?: boolean;
-  notificationCount?: number;
-  width?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  width: "100%",
+const props = defineProps({
+  label: {
+    type: String,
+    required: true,
+  },
+  active: {
+    type: Boolean,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  notificationCount: {
+    type: Number,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "100%",
+  },
 });
 
 interface Emits {

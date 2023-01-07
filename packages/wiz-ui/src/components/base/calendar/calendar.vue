@@ -26,21 +26,27 @@ import {
   calendarStyle,
   calendarItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
-import { computed } from "vue";
-
-interface Props {
-  filledWeeks?: boolean;
-  currentMonth: Date;
-  value: Date;
-}
+import { computed, PropType } from "vue";
 
 interface Emit {
   (e: "input", value: Date): void;
 }
 const emits = defineEmits<Emit>();
 
-const props = withDefaults(defineProps<Props>(), {
-  filledWeeks: false,
+const props = defineProps({
+  currentMonth: {
+    type: Object as PropType<Date>,
+    required: true,
+  },
+  value: {
+    type: Object as PropType<Date>,
+    required: true,
+  },
+  filledWeeks: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const calendars = computed(() => {

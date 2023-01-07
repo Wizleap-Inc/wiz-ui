@@ -19,7 +19,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import { headingStyle } from "@wizleap-inc/wiz-ui-styles/bases/heading.css";
 import { colorStyle, fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, withDefaults } from "vue";
+import { computed, PropType } from "vue";
 
 defineOptions({
   name: ComponentName.Heading,
@@ -52,8 +52,20 @@ const DEFAULT_COLOR: Record<Exclude<Props["level"], undefined>, ColorKeys> = {
   6: "gray.700",
 } as const;
 
-const props = withDefaults(defineProps<Props>(), {
-  level: 1,
+const props = defineProps({
+  level: {
+    type: Number as PropType<1 | 2 | 3 | 4 | 5 | 6>,
+    required: false,
+    default: 1,
+  },
+  color: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+  },
+  fontSize: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+  },
 });
 
 const computedFontSize = computed(() => {

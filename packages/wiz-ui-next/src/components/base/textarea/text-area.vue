@@ -32,17 +32,32 @@ defineOptions({
   name: ComponentName.TextArea,
 });
 
-interface Props {
-  modelValue: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
-  expand?: boolean;
-  rows?: number;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  rows: 3,
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+  rows: {
+    type: Number,
+    required: false,
+    default: 3,
+  },
 });
 
 interface Emit {
