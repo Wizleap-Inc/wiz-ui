@@ -40,17 +40,6 @@ defineOptions({
   name: ComponentName.Badge,
 });
 
-/*
-interface Props {
-  label: string;
-  hidden: boolean;
-  color: ColorKeys;
-  bgColor: ColorKeys;
-  offset: SpacingKeys;
-  size: "sm" | "md" | "lg";
-}
-*/
-
 defineProps({
   label: {
     type: String,

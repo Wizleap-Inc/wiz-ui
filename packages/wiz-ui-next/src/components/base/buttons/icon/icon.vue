@@ -31,15 +31,6 @@ defineOptions({
   name: ComponentName.IconButton,
 });
 
-/*
-interface Props {
-  icon: TIcon;
-  variant: "primary" | "sub" | "transparent" | "link";
-  disabled: boolean;
-  size: "sm" | "md" | "lg" | "xl";
-}
-*/
-
 interface Emits {
   (event: "click"): void;
 }
