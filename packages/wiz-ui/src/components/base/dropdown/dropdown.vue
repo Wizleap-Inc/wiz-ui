@@ -17,20 +17,36 @@ import {
   dropdownStyle,
   dropdownSkeletonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import { WizPopup, WizPopupContainer, WizVStack } from "@/components";
 
 defineOptions({
   name: ComponentName.Dropdown,
 });
+
+/*
 interface Props {
   value: boolean; // is open
   skeleton?: boolean;
   gap?: SpacingKeys;
 }
+*/
 
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: Boolean,
+    required: true,
+  },
+  skeleton: {
+    type: Boolean,
+    required: false,
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+});
 
 interface Emit {
   (event: "input", value: boolean): void;
