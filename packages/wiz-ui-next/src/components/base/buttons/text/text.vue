@@ -36,7 +36,7 @@ import {
   textButtonExpandStyle,
   textButtonSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
-import { withDefaults, computed } from "vue";
+import { computed, PropType } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -45,26 +45,54 @@ defineOptions({
 });
 
 interface Props {
-  variant?: "primary" | "sub";
-  size?: "xs" | "sm" | "md" | "lg";
-  expand?: boolean;
-  disabled?: boolean;
-  rounded?: boolean;
-  icon?: TIcon;
-  iconPosition?: "left" | "right";
+  variant: "primary" | "sub";
+  size: "xs"|"sm" | "md" | "lg";
+  expand: boolean;
+  disabled: boolean;
+  rounded: boolean;
+  icon: TIcon;
+  iconPosition: "left" | "right";
 }
 
 interface Emits {
   (e: "click"): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  variant: "primary",
-  disabled: false,
-  rounded: true,
-  expand: false,
-  size: "md",
-  iconPosition: "left",
+const props = defineProps({
+  variant: {
+    type: String as PropType<Props["variant"]>,
+    required: false,
+    default: "primary",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  rounded: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  size: {
+    type: String as PropType<Props["size"]>,
+    required: false,
+    default: "md",
+  },
+  icon: {
+    type: Object as PropType<Props["icon"]>,
+    required: false,
+  },
+  iconPosition: {
+    type: String as PropType<Props["iconPosition"]>,
+    required: false,
+    default: "left"
+  }
 });
 
 const emit = defineEmits<Emits>();
