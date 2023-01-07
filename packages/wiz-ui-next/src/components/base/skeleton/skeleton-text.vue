@@ -1,17 +1,19 @@
 <template>
-  <WizVStack v-if="isLoading" :gap="gap">
-    <div v-for="line in lines" :key="line">
-      <div
-        :class="[
-          skeletonStyle,
-          normalSkeletonStyle,
-          textSkeletonStyle[judgeOrder(line)],
-          fontSizeAsHeightStyle[fontSize],
-        ]"
-      />
-    </div>
-  </WizVStack>
-  <slot v-else />
+  <div>
+    <WizVStack v-if="isLoading" :gap="gap">
+      <div v-for="line in lines" :key="line">
+        <div
+          :class="[
+            skeletonStyle,
+            normalSkeletonStyle,
+            textSkeletonStyle[judgeOrder(line)],
+            fontSizeAsHeightStyle[fontSize],
+          ]"
+        />
+      </div>
+    </WizVStack>
+    <slot v-else />
+  </div>
 </template>
 
 <script setup lang="ts">

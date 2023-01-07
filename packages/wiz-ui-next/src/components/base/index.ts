@@ -15,6 +15,7 @@ export * from "./inputs";
 export * from "./menu";
 export * from "./message-box";
 export * from "./navigation";
+export * from "./pagination";
 export * from "./popup";
 export * from "./progress-bar";
 export * from "./stack";
