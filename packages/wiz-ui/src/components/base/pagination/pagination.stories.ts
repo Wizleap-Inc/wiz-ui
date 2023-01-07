@@ -7,11 +7,14 @@ export default {
   title: "Base/Pagination",
   component: WizPagination,
   argTypes: {
+    value: {
+      control: { type: "number" },
+    },
+    length: {
+      control: { type: "number" },
+    },
     update: {
       action: "update",
-    },
-    pageSlot: {
-      control: { type: "number" },
     },
   },
 };
@@ -20,19 +23,24 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPagination },
   setup() {
-    const pageSlot = ref(5);
-    const page = ref(1);
-    const onUpdatePage = (pageNumber: number) => {
-      page.value = pageNumber;
-    };
-    return { page, pageSlot, onUpdatePage };
+    const page = ref(0);
+    return { page };
   },
-  template: `
-     <div style="height: 100vh;padding:100px;background:#E4FBF4">
-      ページ:{{ page }}
-      <WizPagination v-bind="$props" @update="onUpdatePage" :pageSlot="pageSlot"></WizPagination>
-    </div>`,
+  template: `<WizPagination v-model="page" @input="update" v-bind="$props" />`,
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  length: 5,
+};
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizPagination v-model="page" @input="update" :length="5" />
+</template>
+      `,
+    },
+  },
+};

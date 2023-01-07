@@ -2,8 +2,11 @@
   <div :class="paginationStyle">
     <WizHStack gap="md">
       <div
-        :class="paginationButtonStyle['default']"
-        @click="onUpdatePage(activePageNumber - 1)"
+        :class="[
+          paginationButtonStyle,
+          paginationButtonVariantStyle['default'],
+        ]"
+        @click="onUpdatePage(activeValue - 1)"
       >
         <component
           :is="WizIChevronLeft"
@@ -11,19 +14,23 @@
         ></component>
       </div>
       <div
-        v-for="pageNumber in pageSlot"
-        :class="
-          activePageNumber === pageNumber
-            ? paginationButtonStyle['active']
-            : paginationButtonStyle['default']
-        "
-        @click="onUpdatePage(pageNumber)"
+        v-for="index in length"
+        :class="[
+          paginationButtonStyle,
+          paginationButtonVariantStyle[
+            activeValue === index ? 'active' : 'default'
+          ],
+        ]"
+        @click="onUpdatePage(index)"
       >
-        {{ pageNumber }}
+        {{ index }}
       </div>
       <div
-        :class="paginationButtonStyle['default']"
-        @click="onUpdatePage(activePageNumber + 1)"
+        :class="[
+          paginationButtonStyle,
+          paginationButtonVariantStyle['default'],
+        ]"
+        @click="onUpdatePage(activeValue + 1)"
       >
         <component
           :is="WizIChevronRight"
@@ -38,29 +45,39 @@
 import {
   paginationStyle,
   paginationButtonStyle,
+  paginationButtonVariantStyle,
   paginationIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
-import { ref } from "vue";
+import { computed, PropType } from "vue";
 
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
 
 import { WizHStack } from "../stack";
 
-interface Props {
-  pageSlot: number;
-}
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: Number as PropType<number>,
+    required: true,
+  },
+  length: {
+    type: Number as PropType<number>,
+    required: true,
+  },
+});
 
 interface Emits {
-  (event: "update", pageNumber: number): void;
+  (event: "input", value: number): void;
 }
+
 const emits = defineEmits<Emits>();
 
-const activePageNumber = ref(1);
+const activeValue = computed({
+  get: () => props.value,
+  set: (value: number) => emits("input", value),
+});
 
-const onUpdatePage = (pageNumber: number) => {
-  if (pageNumber === 0 || pageNumber === props.pageSlot + 1) return;
-  activePageNumber.value = pageNumber;
-  emits("update", pageNumber);
+const onUpdatePage = (index: number) => {
+  if (index < 1 || index > props.length) return;
+  activeValue.value = index;
 };
 </script>
