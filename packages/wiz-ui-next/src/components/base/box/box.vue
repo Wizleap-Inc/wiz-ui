@@ -16,40 +16,141 @@ import {
   ZIndexKeys,
   getZIndexCss,
 } from "@wizleap-inc/wiz-ui-constants";
-import { computed, StyleValue } from "vue";
+import { computed, PropType, StyleValue } from "vue";
 
 defineOptions({
   name: ComponentName.Box,
 });
 interface Props {
-  position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-  width?: string;
-  height?: string;
-  round?: SpacingKeys;
-  roundT?: SpacingKeys;
-  roundR?: SpacingKeys;
-  roundB?: SpacingKeys;
-  roundL?: SpacingKeys;
-  zIndex?: ZIndexKeys;
-  bgColor?: ColorKeys;
-  shadow?: ShadowKeys;
-  dropShadow?: ShadowKeys;
-  overflow?: "visible" | "hidden" | "scroll" | "auto";
-  overflowX?: "visible" | "hidden" | "scroll" | "auto";
-  overflowY?: "visible" | "hidden" | "scroll" | "auto";
-  cursor?: "pointer" | "default";
-  pointerEvents?: "auto" | "none";
-  transform?: string;
-  transition?: string;
-  opacity?: number;
-  scroll?: "none" | "x" | "y" | "block" | "inline" | "both";
+  position: "absolute" | "relative" | "fixed" | "sticky" | "static";
+  top: string;
+  right: string;
+  bottom: string;
+  left: string;
+  width: string;
+  height: string;
+  round: SpacingKeys;
+  roundT: SpacingKeys;
+  roundR: SpacingKeys;
+  roundB: SpacingKeys;
+  roundL: SpacingKeys;
+  zIndex: ZIndexKeys;
+  bgColor: ColorKeys;
+  shadow: ShadowKeys;
+  dropShadow: ShadowKeys;
+  overflow: "visible" | "hidden" | "scroll" | "auto";
+  overflowX: "visible" | "hidden" | "scroll" | "auto";
+  overflowY: "visible" | "hidden" | "scroll" | "auto";
+  cursor: "pointer" | "default";
+  pointerEvents: "auto" | "none";
+  transform: string;
+  transition: string;
+  opacity: number;
+  scroll: "none" | "x" | "y" | "block" | "inline" | "both";
 }
 
-const props = defineProps<Props>();
+const props = defineProps({
+  position: {
+    type: String as PropType<Props["position"]>,
+    required: false,
+  },
+  top: {
+    type: String,
+    required: false,
+  },
+  right: {
+    type: String,
+    required: false,
+  },
+  left: {
+    type: String,
+    required: false,
+  },
+  bottom: {
+    type: String,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+  },
+  height: {
+    type: String,
+    required: false,
+  },
+  round: {
+    type: String as PropType<Props["round"]>,
+    required: false,
+  },
+  roundT: {
+    type: String as PropType<Props["roundT"]>,
+    required: false,
+  },
+  roundL: {
+    type: String as PropType<Props["roundL"]>,
+    required: false,
+  },
+  roundR: {
+    type: String as PropType<Props["roundR"]>,
+    required: false,
+  },
+  roundB: {
+    type: String as PropType<Props["roundB"]>,
+    required: false,
+  },
+  zIndex: {
+    type: String as PropType<Props["zIndex"]>,
+    required: false,
+  },
+  bgColor: {
+    type: String as PropType<Props["bgColor"]>,
+    required: false,
+  },
+  shadow: {
+    type: String as PropType<Props["shadow"]>,
+    required: false,
+  },
+  dropShadow: {
+    type: String as PropType<Props["dropShadow"]>,
+    required: false,
+  },
+  overflow: {
+    type: String as PropType<Props["overflow"]>,
+    required: false,
+  },
+  overflowX: {
+    type: String as PropType<Props["overflowX"]>,
+    required: false,
+  },
+  overflowY: {
+    type: String as PropType<Props["overflowY"]>,
+    required: false,
+  },
+  cursor: {
+    type: String as PropType<Props["cursor"]>,
+    required: false,
+  },
+  pointerEvents: {
+    type: String as PropType<Props["pointerEvents"]>,
+    required: false,
+  },
+  transform: {
+    type: String,
+    required: false,
+  },
+  transition: {
+    type: String,
+    required: false,
+  },
+  opacity: {
+    type: Number,
+    required: false,
+  },
+  scroll: {
+    type: String as PropType<Props["scroll"]>,
+    required: false,
+  },
+});
 
 const computedStyle = computed(() => {
   const style: StyleValue = {};
