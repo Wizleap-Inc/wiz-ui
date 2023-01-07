@@ -40,14 +40,6 @@ defineOptions({
   name: ComponentName.Header,
 });
 
-/*
-interface Props {
-  gapLeft?: SpacingKeys;
-  gapRight?: SpacingKeys;
-  sticky?: boolean;
-}
-*/
-
 defineProps({
   gapLeft: {
     type: String as PropType<SpacingKeys>,

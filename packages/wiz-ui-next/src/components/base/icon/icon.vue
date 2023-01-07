@@ -23,14 +23,6 @@ defineOptions({
   name: ComponentName.Icon,
 });
 
-/*
-interface Props {
-  size?: FontSizeKeys;
-  color?: ColorKeys;
-  icon: TIcon;
-}
-*/
-
 defineProps({
   icon: {
     type: Object as PropType<TIcon>,
