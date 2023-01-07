@@ -16,40 +16,146 @@ import {
   ZIndexKeys,
   getZIndexCss,
 } from "@wizleap-inc/wiz-ui-constants";
-import { computed, StyleValue } from "vue";
+import { computed, PropType, StyleValue } from "vue";
 
 defineOptions({
   name: ComponentName.Box,
 });
-interface Props {
-  position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-  width?: string;
-  height?: string;
-  round?: SpacingKeys;
-  roundT?: SpacingKeys;
-  roundR?: SpacingKeys;
-  roundB?: SpacingKeys;
-  roundL?: SpacingKeys;
-  zIndex?: ZIndexKeys;
-  bgColor?: ColorKeys;
-  shadow?: ShadowKeys;
-  dropShadow?: ShadowKeys;
-  overflow?: "visible" | "hidden" | "scroll" | "auto";
-  overflowX?: "visible" | "hidden" | "scroll" | "auto";
-  overflowY?: "visible" | "hidden" | "scroll" | "auto";
-  cursor?: "pointer" | "default";
-  pointerEvents?: "auto" | "none";
-  transform?: string;
-  transition?: string;
-  opacity?: number;
-  scroll?: "none" | "x" | "y" | "block" | "inline" | "both";
-}
 
-const props = defineProps<Props>();
+/**
+interface Props {
+  position: "absolute" | "relative" | "fixed" | "sticky" | "static";
+  top: string;
+  right: string;
+  bottom: string;
+  left: string;
+  width: string;
+  height: string;
+  round: SpacingKeys;
+  roundT: SpacingKeys;
+  roundR: SpacingKeys;
+  roundB: SpacingKeys;
+  roundL: SpacingKeys;
+  zIndex: ZIndexKeys;
+  bgColor: ColorKeys;
+  shadow: ShadowKeys;
+  dropShadow: ShadowKeys;
+  overflow: "visible" | "hidden" | "scroll" | "auto";
+  overflowX: "visible" | "hidden" | "scroll" | "auto";
+  overflowY: "visible" | "hidden" | "scroll" | "auto";
+  cursor: "pointer" | "default";
+  pointerEvents: "auto" | "none";
+  transform: string;
+  transition: string;
+  opacity: number;
+  scroll: "none" | "x" | "y" | "block" | "inline" | "both";
+}
+*/
+
+const props = defineProps({
+  position: {
+    type: String as PropType<
+      "absolute" | "relative" | "fixed" | "sticky" | "static"
+    >,
+    required: false,
+  },
+  top: {
+    type: String,
+    required: false,
+  },
+  right: {
+    type: String,
+    required: false,
+  },
+  left: {
+    type: String,
+    required: false,
+  },
+  bottom: {
+    type: String,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+  },
+  height: {
+    type: String,
+    required: false,
+  },
+  round: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  roundT: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  roundL: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  roundR: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  roundB: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  zIndex: {
+    type: String as PropType<ZIndexKeys>,
+    required: false,
+  },
+  bgColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+  },
+  shadow: {
+    type: String as PropType<ShadowKeys>,
+    required: false,
+  },
+  dropShadow: {
+    type: String as PropType<ShadowKeys>,
+    required: false,
+  },
+  overflow: {
+    type: String as PropType<"visible" | "hidden" | "scroll" | "auto">,
+    required: false,
+  },
+  overflowX: {
+    type: String as PropType<"visible" | "hidden" | "scroll" | "auto">,
+    required: false,
+  },
+  overflowY: {
+    type: String as PropType<"visible" | "hidden" | "scroll" | "auto">,
+    required: false,
+  },
+  cursor: {
+    type: String as PropType<"pointer" | "default">,
+    required: false,
+  },
+  pointerEvents: {
+    type: String as PropType<"auto" | "none">,
+    required: false,
+  },
+  transform: {
+    type: String,
+    required: false,
+  },
+  transition: {
+    type: String,
+    required: false,
+  },
+  opacity: {
+    type: Number,
+    required: false,
+  },
+  scroll: {
+    type: String as PropType<"none" | "x" | "y" | "block" | "inline" | "both">,
+    required: false,
+  },
+});
 
 const computedStyle = computed(() => {
   const style: StyleValue = {};

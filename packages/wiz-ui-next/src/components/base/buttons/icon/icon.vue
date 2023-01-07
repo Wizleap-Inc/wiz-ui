@@ -23,6 +23,7 @@ import {
   iconButtonDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType } from "vue";
 
 import type { TIcon } from "@/components/icons";
 
@@ -30,21 +31,39 @@ defineOptions({
   name: ComponentName.IconButton,
 });
 
+/*
 interface Props {
   icon: TIcon;
-  variant?: "primary" | "sub" | "transparent" | "link";
-  disabled?: boolean;
-  size?: "sm" | "md" | "lg" | "xl";
+  variant: "primary" | "sub" | "transparent" | "link";
+  disabled: boolean;
+  size: "sm" | "md" | "lg" | "xl";
 }
+*/
 
 interface Emits {
   (event: "click"): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  variant: "primary",
-  size: "md",
-  disabled: false,
+const props = defineProps({
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: true,
+  },
+  variant: {
+    type: String as PropType<"primary" | "sub" | "transparent" | "link">,
+    required: false,
+    default: "primary",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  size: {
+    type: String as PropType<"sm" | "md" | "lg" | "xl">,
+    required: false,
+    default: "md",
+  },
 });
 
 const emits = defineEmits<Emits>();
