@@ -44,15 +44,6 @@ defineOptions({
   name: ComponentName.Dialog,
 });
 
-/*
-interface Props {
-  modelValue: boolean;
-  title?: string;
-  maxWidth?: string;
-  align?: "start" | "center" | "end";
-}
-*/
-
 const props = defineProps({
   modelValue: {
     type: Boolean,
