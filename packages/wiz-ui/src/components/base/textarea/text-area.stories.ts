@@ -81,14 +81,14 @@ Test.args = {
 Test.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textarea = canvas.getByPlaceholderText("入力してください");
-  userEvent.click(textarea);
+  await userEvent.click(textarea);
   await waitFor(() => expect(textarea).toHaveFocus());
   await waitFor(() =>
     expect(textarea).toHaveStyle(`border: 1px solid ${THEME.color.green[800]};`)
   );
-  userEvent.type(textarea, "Hoge");
+  await userEvent.type(textarea, "Hoge");
   await waitFor(() => expect(textarea).toHaveValue("Hoge"));
-  userEvent.clear(textarea);
+  await userEvent.clear(textarea);
   await waitFor(() => expect(textarea).toHaveValue(""));
 };
 

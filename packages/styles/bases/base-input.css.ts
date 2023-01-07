@@ -2,9 +2,6 @@ import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const baseInputStyle = style({
-  borderWidth: "1px",
-  borderStyle: "solid",
-  borderColor: THEME.color.gray[400],
   borderRadius: THEME.spacing.xs2,
   padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
   fontSize: THEME.fontSize.sm,
@@ -17,7 +14,6 @@ export const baseInputStyle = style({
   },
   ":focus": {
     outline: "none",
-    borderColor: THEME.color.green[800],
   },
 });
 

@@ -1,15 +1,20 @@
 <template>
   <WizPopupContainer v-model="openDatepicker">
     <div
-      class="wiz-datepicker"
-      :class="{
-        'wiz-datepicker--active': openDatepicker,
-        'wiz-datepicker--disabled': disabled,
-      }"
+      :class="[
+        datePickerStyle,
+        inputBorderStyle[state],
+        disabled && datePickerDisabledStyle,
+      ]"
     >
       <div
-        class="wiz-datepicker__box"
-        :class="{ 'wiz-datepicker__box--selected': !!value }"
+        :class="[
+          datePickerBoxStyle,
+          datePickerBoxColorStyle[datePickerBoxColor],
+        ]"
+        :style="{
+          width,
+        }"
         @click="toggleDatepicker"
       >
         <WizHStack gap="sm" align="center" height="100%">
@@ -18,20 +23,20 @@
         </WizHStack>
       </div>
       <WizPopup layer="popover" gap="xs">
-        <div class="wiz-datepicker__selector">
+        <div :class="datePickerSelectorStyle">
           <WizHStack align="center" my="xs2" px="xs" justify="between">
             <WizText as="span" fontSize="xs" color="gray.700">{{
               currentDateTitle
             }}</WizText>
-            <div class="wiz-datepicker__button_box">
+            <div :class="datePickerButtonBoxStyle">
               <div
-                class="wiz-datepicker__button_box_item"
+                :class="datePickerButtonBoxItemStyle"
                 @click="clickToPreviousMonth"
               >
                 <WizIcon size="md" :icon="WizIChevronLeft" />
               </div>
               <div
-                class="wiz-datepicker__button_box_item"
+                :class="datePickerButtonBoxItemStyle"
                 @click="clickToNextMonth"
               >
                 <WizIcon size="md" :icon="WizIChevronRight" />
@@ -39,7 +44,7 @@
             </div>
           </WizHStack>
           <WizCalendar
-            v-model="value"
+            v-model="calendarValue"
             :currentMonth="currentMonth"
             filledWeeks
           />
@@ -50,8 +55,17 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { ref, computed } from "vue";
+import {
+  datePickerStyle,
+  datePickerDisabledStyle,
+  datePickerBoxStyle,
+  datePickerBoxColorStyle,
+  datePickerSelectorStyle,
+  datePickerButtonBoxStyle,
+  datePickerButtonBoxItemStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { ref, computed, inject } from "vue";
 
 import {
   WizIcon,
@@ -66,6 +80,7 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
 } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 interface Props {
   value: Date;
@@ -74,11 +89,17 @@ interface Props {
   disabled?: boolean;
 }
 
+interface Emit {
+  (e: "input", value: Date): void;
+}
+
 const props = withDefaults(defineProps<Props>(), {
   placeholder: "日付を選択",
   width: "10rem",
   disabled: false,
 });
+
+const emit = defineEmits<Emit>();
 
 const defaultCurrentMonth = new Date().setHours(0, 0, 0, 0);
 const currentMonth = ref(new Date(defaultCurrentMonth));
@@ -116,82 +137,22 @@ const currentDateTitle = computed(() => {
   }月`;
 });
 
-const width = computed(() => props.width);
-const fontSizeSm = THEME.fontSize.sm;
-const spacingNo = THEME.spacing.no;
-const spacingXs = THEME.spacing.xs;
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXl3 = THEME.spacing.xl3;
-const colorWhite800 = THEME.color.white["800"];
-const colorGray300 = THEME.color.gray["300"];
-const colorGray400 = THEME.color.gray["400"];
-const colorGray500 = THEME.color.gray["500"];
-const colorGray700 = THEME.color.gray["700"];
-const colorGreen300 = THEME.color.green["300"];
-const colorGreen800 = THEME.color.green["800"];
+const calendarValue = computed({
+  get: () => props.value,
+  set: (value) => emit("input", value),
+});
+
+const datePickerBoxColor = computed(() =>
+  calendarValue.value ? "selected" : "default"
+);
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openDatepicker.value) return "active";
+  return "default";
+});
 </script>
-
-<style lang="scss" scoped>
-$border-width: 1px;
-
-.wiz-datepicker {
-  width: max-content;
-  padding: 0 v-bind(spacingXs2);
-  height: v-bind(spacingXl3);
-  background: v-bind(colorWhite800);
-  border: $border-width solid v-bind(colorGray400);
-  border-radius: v-bind(spacingXs2);
-  box-sizing: border-box;
-
-  &--active {
-    border-color: v-bind(colorGreen800);
-  }
-
-  &--disabled {
-    color: v-bind(colorGray700);
-    background-color: v-bind(colorGray300);
-    cursor: not-allowed;
-  }
-
-  &__box {
-    height: 100%;
-    padding: v-bind(spacingNo) v-bind(spacingXs);
-    font-size: v-bind(fontSizeSm);
-    color: v-bind(colorGray500);
-    width: v-bind(width);
-
-    &--selected {
-      color: v-bind(colorGray700);
-    }
-  }
-
-  &__selector {
-    position: absolute;
-    top: calc(100% + $border-width * 2);
-    left: 0;
-    width: auto;
-    padding: v-bind(spacingXs);
-    background: v-bind(colorWhite800);
-    border-radius: v-bind(spacingXs2);
-    box-sizing: border-box;
-  }
-
-  &__button_box {
-    gap: v-bind(spacingXs2);
-    display: flex;
-    &_item {
-      cursor: pointer;
-      padding: v-bind(spacingXs2);
-      border-radius: v-bind(spacingXs2);
-      &:hover {
-        background-color: v-bind(colorGreen300);
-        color: v-bind(colorGreen800);
-      }
-      &:active {
-        background-color: v-bind(colorGreen800);
-        color: v-bind(colorWhite800);
-      }
-    }
-  }
-}
-</style>

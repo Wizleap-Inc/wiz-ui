@@ -4,17 +4,29 @@
     :placeholder="placeholder"
     :name="name"
     :disabled="disabled"
-    :class="{
-      'wiz-text-area': true,
-      'wiz-text-area--disabled': disabled,
-      'wiz-text-area--expand': expand,
-    }"
+    :rows="rows"
+    :class="[
+      textAreaStyle,
+      textAreaVariantStyle[disabled ? 'disabled' : 'default'],
+      expand && textAreaExpandStyle,
+      inputBorderStyle[state],
+    ]"
+    @focusin="hasFocus = true"
+    @focusout="hasFocus = false"
   />
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { computed } from "vue";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  textAreaStyle,
+  textAreaVariantStyle,
+  textAreaExpandStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { computed, inject, ref } from "vue";
+
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 defineOptions({
   name: ComponentName.TextArea,
@@ -44,44 +56,14 @@ const textValue = computed({
   set: (value) => emit("input", value),
 });
 
-const fontSizeSm = THEME.fontSize.sm;
-const green800 = THEME.color.green["800"];
-const gray300 = THEME.color.gray["300"];
-const gray400 = THEME.color.gray["400"];
-const gray700 = THEME.color.gray["700"];
-const gray500 = THEME.color.gray["500"];
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXs = THEME.spacing.xs;
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+const hasFocus = ref(false);
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (hasFocus.value) return "active";
+  return "default";
+});
 </script>
-
-<style lang="scss" scoped>
-.wiz-text-area {
-  resize: none;
-  border: 1px solid v-bind(gray400);
-  border-radius: v-bind(spacingXs2);
-  padding: v-bind(spacingXs);
-  font-size: v-bind(fontSizeSm);
-  line-height: 1.5;
-  height: calc(1.5em * v-bind(rows));
-  color: v-bind(gray700);
-
-  &::placeholder {
-    color: v-bind(gray500);
-  }
-
-  &:focus {
-    outline: none;
-    border-color: v-bind(green800);
-  }
-
-  &--disabled {
-    background-color: v-bind(gray300);
-    color: v-bind(gray500);
-    cursor: not-allowed;
-  }
-
-  &--expand {
-    width: calc(100% - 2 * v-bind(spacingXs));
-  }
-}
-</style>

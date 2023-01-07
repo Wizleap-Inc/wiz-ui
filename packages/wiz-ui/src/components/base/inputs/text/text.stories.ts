@@ -1,7 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import WizTextInput from "./text.vue";
@@ -73,16 +72,15 @@ Test.args = {
 };
 
 Test.play = async ({ canvasElement }) => {
+  const DUMMY_INPUT_VALUE = "Hoge";
   const canvas = within(canvasElement);
   const input = canvas.getByPlaceholderText("入力してください");
-  userEvent.click(input);
+
+  await userEvent.click(input);
   await waitFor(() => expect(input).toHaveFocus());
-  await waitFor(() =>
-    expect(input).toHaveStyle(`border: 1px solid ${THEME.color.green[800]};`)
-  );
-  userEvent.type(input, "Hoge");
-  await waitFor(() => expect(input).toHaveValue("Hoge"));
-  userEvent.clear(input);
+  await userEvent.type(input, DUMMY_INPUT_VALUE);
+  await waitFor(() => expect(input).toHaveValue(DUMMY_INPUT_VALUE));
+  await userEvent.clear(input);
   await waitFor(() => expect(input).toHaveValue(""));
 };
 
