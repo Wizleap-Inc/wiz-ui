@@ -2,6 +2,8 @@ import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn, Meta } from "@storybook/vue3";
 
+import { WizIAdd } from "@/components/icons";
+
 import WizTextButton from "./text.vue";
 
 export default {
@@ -23,10 +25,17 @@ export default {
     },
     size: {
       control: { type: "select" },
-      options: ["sm", "md", "lg"],
+      options: ["xs", "sm", "md", "lg"],
     },
-    onClick: {
-      action: "onClick",
+    icon: {
+      control: { type: "object" },
+    },
+    iconPosition: {
+      control: { type: "select" },
+      options: ["left", "right"],
+    },
+    click: {
+      action: "click",
     },
   },
 } as Meta<typeof WizTextButton>;
@@ -34,7 +43,7 @@ export default {
 const Template: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
   setup: () => ({ args }),
-  template: `<WizTextButton v-bind="args" @click="args.onClick">{{ "保存する" }}</WizTextButton>`,
+  template: `<WizTextButton v-bind="args" @click="() => args.click">{{ "保存する" }}</WizTextButton>`,
 });
 
 export const Default = Template.bind({});
@@ -61,6 +70,17 @@ Expand.args = {
   expand: true,
 };
 
+export const Icon = Template.bind({});
+Icon.args = {
+  icon: WizIAdd,
+};
+
+export const IconPosition = Template.bind({});
+IconPosition.args = {
+  icon: WizIAdd,
+  iconPosition: "right",
+};
+
 export const Variant: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
   setup: () => ({ args }),
@@ -79,6 +99,8 @@ export const Size: StoryFn<typeof WizTextButton> = (args) => ({
   setup: () => ({ args }),
   template: `
     <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <WizTextButton size="xs">保存する</WizTextButton>
+      <div>size = xs</div>
       <WizTextButton size="sm">保存する</WizTextButton>
       <div>size = sm</div>
       <WizTextButton size="md">保存する</WizTextButton>

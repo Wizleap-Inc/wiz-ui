@@ -48,4 +48,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
           git_commit_sha: ${{ github.sha }}
-          git_tag_prefix: "For Vue2 v"
+          git_tag_prefix: "Vue2-v"

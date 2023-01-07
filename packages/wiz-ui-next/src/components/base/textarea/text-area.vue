@@ -9,7 +9,10 @@
       textAreaStyle,
       textAreaVariantStyle[disabled ? 'disabled' : 'default'],
       expand && textAreaExpandStyle,
+      inputBorderStyle[state],
     ]"
+    @focusin="hasFocus = true"
+    @focusout="hasFocus = false"
   />
 </template>
 
@@ -20,7 +23,10 @@ import {
   textAreaVariantStyle,
   textAreaExpandStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
-import { computed } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { computed, inject, ref } from "vue";
+
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 defineOptions({
   name: ComponentName.TextArea,
@@ -48,5 +54,16 @@ const emit = defineEmits<Emit>();
 const textValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
+});
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+const hasFocus = ref(false);
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (hasFocus.value) return "active";
+  return "default";
 });
 </script>

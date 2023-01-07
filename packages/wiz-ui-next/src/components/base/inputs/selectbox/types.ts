@@ -1,4 +1,4 @@
-export interface Option {
+export interface SelectBoxOption {
   label: string;
-  value: string;
+  value: number;
 }

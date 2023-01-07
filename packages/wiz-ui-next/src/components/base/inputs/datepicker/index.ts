@@ -1,1 +1,1 @@
-export { default as WizDatepicker } from "./date-picker.vue";
+export { default as WizDatePicker } from "./date-picker.vue";

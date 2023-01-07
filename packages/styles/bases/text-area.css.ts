@@ -3,7 +3,6 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const textAreaStyle = style({
   resize: "none",
-  border: `1px solid ${THEME.color.gray[400]}`,
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   padding: THEME.spacing.xs,
@@ -16,7 +15,6 @@ export const textAreaStyle = style({
 
   ":focus": {
     outline: "none",
-    borderColor: THEME.color.green[800],
   },
 });
 

@@ -3,7 +3,7 @@
     <div
       :class="[
         datePickerStyle,
-        openDatepicker && datePickerActiveStyle,
+        inputBorderStyle[state],
         disabled && datePickerDisabledStyle,
       ]"
     >
@@ -19,7 +19,7 @@
       >
         <WizHStack gap="sm" align="center" height="100%">
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
-          <span>{{ parseValue(calenderValue) || placeholder }}</span>
+          <span>{{ parseValue(calendarValue) || placeholder }}</span>
         </WizHStack>
       </div>
       <WizPopup layer="popover" gap="xs">
@@ -44,7 +44,7 @@
             </div>
           </WizHStack>
           <WizCalendar
-            v-model="calenderValue"
+            v-model="calendarValue"
             :currentMonth="currentMonth"
             filledWeeks
           />
@@ -57,7 +57,6 @@
 <script setup lang="ts">
 import {
   datePickerStyle,
-  datePickerActiveStyle,
   datePickerDisabledStyle,
   datePickerBoxStyle,
   datePickerBoxColorStyle,
@@ -65,7 +64,8 @@ import {
   datePickerButtonBoxStyle,
   datePickerButtonBoxItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
-import { ref, computed } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { ref, computed, inject } from "vue";
 
 import {
   WizIcon,
@@ -80,6 +80,7 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
 } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 interface Props {
   modelValue: Date;
@@ -136,12 +137,22 @@ const currentDateTitle = computed(() => {
   }月`;
 });
 
-const calenderValue = computed({
+const calendarValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
 
 const datePickerBoxColor = computed(() =>
-  calenderValue.value ? "selected" : "default"
+  calendarValue.value ? "selected" : "default"
 );
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openDatepicker.value) return "active";
+  return "default";
+});
 </script>

@@ -3,7 +3,7 @@
     <div
       :class="[
         selectBoxStyle,
-        openSelectBox && selectBoxActiveStyle,
+        inputBorderStyle[state],
         disabled && selectBoxDisabledStyle,
         selectBoxCursorStyle[selectBoxCursor],
       ]"
@@ -38,10 +38,7 @@
       </div>
     </div>
     <WizPopup layer="popover">
-      <div
-        :class="selectBoxSelectorStyle"
-        :style="{ 'min-width': `calc(${width} + ${BORDER_WIDTH} * 2)` }"
-      >
+      <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
         <WizVStack gap="xs2">
           <div
             :class="selectBoxSelectorOptionStyle"
@@ -60,9 +57,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  BORDER_WIDTH,
   selectBoxStyle,
-  selectBoxActiveStyle,
   selectBoxDisabledStyle,
   selectBoxCursorStyle,
   selectBoxInnerBoxStyle,
@@ -73,22 +68,24 @@ import {
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
-import { ref, computed } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { ref, computed, inject } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizHStack, WizVStack } from "../../stack";
 
-import { Option } from "./types";
+import { SelectBoxOption } from "./types";
 
 defineOptions({
   name: ComponentName.SelectBox,
 });
 
 interface Props {
-  options: Option[];
-  value: string;
+  options: SelectBoxOption[];
+  value: number;
   placeholder?: string;
   width?: string;
   disabled?: boolean;
@@ -96,7 +93,6 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  value: "",
   placeholder: "選択してください",
   width: "10rem",
   disabled: false,
@@ -111,11 +107,11 @@ const toggleSelectBox = () => {
 };
 
 interface Emit {
-  (e: "input", value: string): void;
+  (e: "input", value: number): void;
 }
 const emit = defineEmits<Emit>();
 
-const onSelect = (value: string) => {
+const onSelect = (value: number) => {
   toggleSelectBox();
   emit("input", value);
 };
@@ -124,5 +120,15 @@ const selectBoxCursor = computed(() =>
   props.disabled ? "disabled" : "default"
 );
 
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openSelectBox.value) return "active";
+  return "default";
+});
 </script>
