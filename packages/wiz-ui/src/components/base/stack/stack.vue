@@ -74,6 +74,7 @@ const props = defineProps({
   direction: {
     type: String as PropType<"horizontal" | "vertical">,
     required: false,
+    default: "horizontal",
   },
   align: {
     type: String as PropType<"start" | "center" | "end" | "stretch">,
