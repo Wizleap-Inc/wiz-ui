@@ -44,6 +44,7 @@ defineOptions({
   name: ComponentName.Anchor,
 });
 
+/**
 interface Props {
   src: string;
   size: SpacingKeys;
@@ -53,6 +54,7 @@ interface Props {
   fallback: string;
   clickable: boolean;
 }
+*/
 
 const props = defineProps({
   src: {
@@ -60,17 +62,17 @@ const props = defineProps({
     required: true,
   },
   size: {
-    type: String as PropType<Props["size"]>,
+    type: String as PropType<SpacingKeys>,
     required: false,
     default: "xl3",
   },
   color: {
-    type: String as PropType<Props["color"]>,
+    type: String as PropType<ColorKeys>,
     required: false,
     default: "gray.900",
   },
   bgColor: {
-    type: String as PropType<Props["bgColor"]>,
+    type: String as PropType<ColorKeys>,
     required: false,
     default: "gray.400",
   },

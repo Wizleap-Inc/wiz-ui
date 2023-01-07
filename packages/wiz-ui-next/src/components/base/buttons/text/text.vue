@@ -44,6 +44,7 @@ defineOptions({
   name: ComponentName.TextButton,
 });
 
+/*
 interface Props {
   variant: "primary" | "sub";
   size: "xs"|"sm" | "md" | "lg";
@@ -53,6 +54,7 @@ interface Props {
   icon: TIcon;
   iconPosition: "left" | "right";
 }
+*/
 
 interface Emits {
   (e: "click"): void;
@@ -60,7 +62,7 @@ interface Emits {
 
 const props = defineProps({
   variant: {
-    type: String as PropType<Props["variant"]>,
+    type: String as PropType<"primary" | "sub">,
     required: false,
     default: "primary",
   },
@@ -80,19 +82,19 @@ const props = defineProps({
     default: false,
   },
   size: {
-    type: String as PropType<Props["size"]>,
+    type: String as PropType<"xs" | "sm" | "md" | "lg">,
     required: false,
     default: "md",
   },
   icon: {
-    type: Object as PropType<Props["icon"]>,
+    type: Object as PropType<TIcon>,
     required: false,
   },
   iconPosition: {
-    type: String as PropType<Props["iconPosition"]>,
+    type: String as PropType<"left" | "right">,
     required: false,
-    default: "left"
-  }
+    default: "left",
+  },
 });
 
 const emit = defineEmits<Emits>();

@@ -40,6 +40,7 @@ defineOptions({
   name: ComponentName.Badge,
 });
 
+/*
 interface Props {
   label: string;
   hidden: boolean;
@@ -48,6 +49,7 @@ interface Props {
   offset: SpacingKeys;
   size: "sm" | "md" | "lg";
 }
+*/
 
 defineProps({
   label: {
@@ -60,22 +62,22 @@ defineProps({
     default: false,
   },
   color: {
-    type: String as PropType<Props["color"]>,
+    type: String as PropType<ColorKeys>,
     required: false,
     default: "white.800",
   },
   bgColor: {
-    type: String as PropType<Props["bgColor"]>,
+    type: String as PropType<ColorKeys>,
     required: false,
     default: "red.800",
   },
   offset: {
-    type: String as PropType<Props["offset"]>,
+    type: String as PropType<SpacingKeys>,
     required: false,
     default: "no",
   },
   size: {
-    type: String as PropType<Props["size"]>,
+    type: String as PropType<"sm" | "md" | "lg">,
     required: false,
     default: "md",
   },

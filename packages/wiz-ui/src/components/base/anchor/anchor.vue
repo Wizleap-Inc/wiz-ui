@@ -51,7 +51,8 @@ import { RouterLinkProps } from "vue-router/types/router";
 
 import { WizIcon, TIcon } from "@/components";
 
-interface Props {
+/**
+ * interface Props {
   to: RouterLinkProps["to"];
   color: ColorKeys;
   fontSize: FontSizeKeys;
@@ -61,37 +62,37 @@ interface Props {
   openInNewTab: boolean;
   nowrap: boolean;
 }
+ */
 
 defineOptions({
   name: ComponentName.Anchor,
 });
-
 const props = defineProps({
   to: {
-    type: String as PropType<Props["to"]>,
+    type: String as PropType<RouterLinkProps["to"]>,
     required: true,
   },
   color: {
-    type: String as PropType<Props["color"]>,
+    type: String as PropType<ColorKeys>,
     required: false,
     default: "blue.800",
   },
   fontSize: {
-    type: String as PropType<Props["fontSize"]>,
+    type: String as PropType<FontSizeKeys>,
     required: false,
     default: "md",
   },
   fontWeight: {
-    type: String as PropType<Props["fontWeight"]>,
+    type: String as PropType<FontWeightKeys>,
     required: false,
     default: "normal",
   },
   icon: {
-    type: Object as PropType<Props["icon"]>,
+    type: Object as PropType<TIcon>,
     required: false,
   },
   iconPosition: {
-    type: String as PropType<Props["iconPosition"]>,
+    type: String as PropType<"left" | "right">,
     required: false,
     default: "left",
   },

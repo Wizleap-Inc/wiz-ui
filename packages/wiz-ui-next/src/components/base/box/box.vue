@@ -21,6 +21,8 @@ import { computed, PropType, StyleValue } from "vue";
 defineOptions({
   name: ComponentName.Box,
 });
+
+/**
 interface Props {
   position: "absolute" | "relative" | "fixed" | "sticky" | "static";
   top: string;
@@ -48,10 +50,13 @@ interface Props {
   opacity: number;
   scroll: "none" | "x" | "y" | "block" | "inline" | "both";
 }
+*/
 
 const props = defineProps({
   position: {
-    type: String as PropType<Props["position"]>,
+    type: String as PropType<
+      "absolute" | "relative" | "fixed" | "sticky" | "static"
+    >,
     required: false,
   },
   top: {
@@ -79,59 +84,59 @@ const props = defineProps({
     required: false,
   },
   round: {
-    type: String as PropType<Props["round"]>,
+    type: String as PropType<SpacingKeys>,
     required: false,
   },
   roundT: {
-    type: String as PropType<Props["roundT"]>,
+    type: String as PropType<SpacingKeys>,
     required: false,
   },
   roundL: {
-    type: String as PropType<Props["roundL"]>,
+    type: String as PropType<SpacingKeys>,
     required: false,
   },
   roundR: {
-    type: String as PropType<Props["roundR"]>,
+    type: String as PropType<SpacingKeys>,
     required: false,
   },
   roundB: {
-    type: String as PropType<Props["roundB"]>,
+    type: String as PropType<SpacingKeys>,
     required: false,
   },
   zIndex: {
-    type: String as PropType<Props["zIndex"]>,
+    type: String as PropType<ZIndexKeys>,
     required: false,
   },
   bgColor: {
-    type: String as PropType<Props["bgColor"]>,
+    type: String as PropType<ColorKeys>,
     required: false,
   },
   shadow: {
-    type: String as PropType<Props["shadow"]>,
+    type: String as PropType<ShadowKeys>,
     required: false,
   },
   dropShadow: {
-    type: String as PropType<Props["dropShadow"]>,
+    type: String as PropType<ShadowKeys>,
     required: false,
   },
   overflow: {
-    type: String as PropType<Props["overflow"]>,
+    type: String as PropType<"visible" | "hidden" | "scroll" | "auto">,
     required: false,
   },
   overflowX: {
-    type: String as PropType<Props["overflowX"]>,
+    type: String as PropType<"visible" | "hidden" | "scroll" | "auto">,
     required: false,
   },
   overflowY: {
-    type: String as PropType<Props["overflowY"]>,
+    type: String as PropType<"visible" | "hidden" | "scroll" | "auto">,
     required: false,
   },
   cursor: {
-    type: String as PropType<Props["cursor"]>,
+    type: String as PropType<"pointer" | "default">,
     required: false,
   },
   pointerEvents: {
-    type: String as PropType<Props["pointerEvents"]>,
+    type: String as PropType<"auto" | "none">,
     required: false,
   },
   transform: {
@@ -147,7 +152,7 @@ const props = defineProps({
     required: false,
   },
   scroll: {
-    type: String as PropType<Props["scroll"]>,
+    type: String as PropType<"none" | "x" | "y" | "block" | "inline" | "both">,
     required: false,
   },
 });

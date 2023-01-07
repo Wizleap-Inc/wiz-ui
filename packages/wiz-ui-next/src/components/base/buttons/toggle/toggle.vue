@@ -40,6 +40,7 @@ defineOptions({
   name: ComponentName.ToggleButton,
 });
 
+/*
 interface Props {
   inActiveIcon: TIcon;
   activeIcon: TIcon;
@@ -47,6 +48,7 @@ interface Props {
   rounded: boolean;
   size: "sm" | "md" | "lg";
 }
+*/
 
 interface Emits {
   (event: "click"): void;
@@ -54,11 +56,11 @@ interface Emits {
 
 const props = defineProps({
   inActiveIcon: {
-    type: Object as PropType<Props["inActiveIcon"]>,
+    type: Object as PropType<TIcon>,
     required: true,
   },
   activeIcon: {
-    type: Object as PropType<Props["activeIcon"]>,
+    type: Object as PropType<TIcon>,
     required: true,
   },
   disabled: {
@@ -72,10 +74,10 @@ const props = defineProps({
     default: true,
   },
   size: {
-    type: String as PropType<Props["size"]>,
+    type: String as PropType<"sm" | "md" | "lg">,
     required: false,
-    default: "md"
-  }
+    default: "md",
+  },
 });
 
 const isActive = ref(false);

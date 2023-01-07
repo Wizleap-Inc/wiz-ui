@@ -30,12 +30,15 @@ import type { TIcon } from "@/components/icons";
 defineOptions({
   name: ComponentName.IconButton,
 });
+
+/*
 interface Props {
   icon: TIcon;
   variant: "primary" | "sub" | "transparent" | "link";
   disabled: boolean;
   size: "sm" | "md" | "lg" | "xl";
 }
+*/
 
 interface Emits {
   (event: "click"): void;
@@ -43,11 +46,11 @@ interface Emits {
 
 const props = defineProps({
   icon: {
-    type: Object as PropType<Props["icon"]>,
+    type: Object as PropType<TIcon>,
     required: true,
   },
   variant: {
-    type: String as PropType<Props["variant"]>,
+    type: String as PropType<"primary" | "sub" | "transparent" | "link">,
     required: false,
     default: "primary",
   },
@@ -57,7 +60,7 @@ const props = defineProps({
     default: false,
   },
   size: {
-    type: String as PropType<Props["size"]>,
+    type: String as PropType<"sm" | "md" | "lg" | "xl">,
     required: false,
     default: "md",
   },
