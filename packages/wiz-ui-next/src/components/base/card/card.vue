@@ -62,6 +62,7 @@ import {
   paddingYStyle,
   backgroundStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType } from "vue";
 
 import { WizVStack, WizIHelp, WizIcon, WizTooltip } from "@/components";
 
@@ -69,6 +70,7 @@ defineOptions({
   name: ComponentName.Card,
 });
 
+/*
 interface Props {
   title?: string;
   hint?: string;
@@ -82,10 +84,55 @@ interface Props {
   fit?: boolean;
   maxWidth?: string;
 }
+*/
 
-withDefaults(defineProps<Props>(), {
-  p: "md",
-  backgroundColor: "white.800",
-  align: "end",
+defineProps({
+  title: {
+    type: String,
+    required: false,
+  },
+  hint: {
+    type: String,
+    required: false,
+  },
+  p: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "md",
+  },
+  px: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  py: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  backgroundColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "white.800",
+  },
+  shadow: {
+    type: Boolean,
+    required: false,
+  },
+  border: {
+    type: Boolean,
+    required: false,
+  },
+  align: {
+    type: String as PropType<"start" | "center" | "end" | "stretch">,
+    required: false,
+    default: "end",
+  },
+  fit: {
+    type: Boolean,
+    required: false,
+  },
+  maxWidth: {
+    type: String,
+    required: false,
+  },
 });
 </script>
