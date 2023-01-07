@@ -28,7 +28,7 @@ import {
   navigationItemIconActiveStyle,
   navigationItemTextStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 import { RouterLinkProps } from "vue-router";
 
 import type { TIcon } from "@/components/icons";
@@ -37,14 +37,24 @@ defineOptions({
   name: ComponentName.NavigationItem,
 });
 
-interface Props {
-  icon: TIcon;
-  label: string;
-  active: boolean;
-  to: RouterLinkProps["to"];
-}
-
-const props = defineProps<Props>();
+const props = defineProps({
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: true,
+  },
+  label: {
+    type: String,
+    required: true,
+  },
+  active: {
+    type: Boolean,
+    required: true,
+  },
+  to: {
+    type: Object as PropType<RouterLinkProps["to"]>,
+    required: true,
+  },
+});
 
 const isExternalLink = computed(
   () => typeof props.to === "string" && props.to.startsWith("http")
