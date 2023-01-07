@@ -30,6 +30,7 @@ import {
   headerStyle,
   headerStickyStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/header.css";
+import { PropType } from "vue";
 
 import { WizHStack, WizIconButton, WizIMenu } from "@/components";
 import { useZIndex } from "@/hooks";
@@ -39,13 +40,29 @@ defineOptions({
   name: ComponentName.Header,
 });
 
+/*
 interface Props {
   gapLeft?: SpacingKeys;
   gapRight?: SpacingKeys;
   sticky?: boolean;
 }
+*/
 
-defineProps<Props>();
+defineProps({
+  gapLeft: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  gapRight: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  sticky: {
+    type: Boolean,
+    required: false,
+  },
+});
+
 const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
 const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen.value);
 const { nextZIndex } = useZIndex(THEME.zIndex.base);
