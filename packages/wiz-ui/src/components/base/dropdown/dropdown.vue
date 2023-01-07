@@ -25,14 +25,6 @@ defineOptions({
   name: ComponentName.Dropdown,
 });
 
-/*
-interface Props {
-  value: boolean; // is open
-  skeleton?: boolean;
-  gap?: SpacingKeys;
-}
-*/
-
 const props = defineProps({
   value: {
     type: Boolean,

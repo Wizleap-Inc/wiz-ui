@@ -66,22 +66,6 @@ defineOptions({
   name: ComponentName.Card,
 });
 
-/*
-interface Props {
-  title?: string;
-  hint?: string;
-  p?: SpacingKeys;
-  px?: SpacingKeys;
-  py?: SpacingKeys;
-  backgroundColor?: ColorKeys;
-  shadow?: boolean;
-  border?: boolean;
-  align?: "start" | "center" | "end" | "stretch";
-  fit?: boolean;
-  maxWidth?: string;
-}
-*/
-
 defineProps({
   title: {
     type: String,

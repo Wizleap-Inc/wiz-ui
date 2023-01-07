@@ -26,12 +26,6 @@ defineOptions({
   name: ComponentName.DropdownItem,
 });
 
-/*
-interface Props {
-  icon?: TIcon;
-}
-*/
-
 defineProps({
   icon: {
     type: Object as PropType<TIcon>,
