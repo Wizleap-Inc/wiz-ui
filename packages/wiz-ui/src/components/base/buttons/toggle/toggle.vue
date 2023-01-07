@@ -40,16 +40,6 @@ defineOptions({
   name: ComponentName.ToggleButton,
 });
 
-/*
-interface Props {
-  inActiveIcon: TIcon;
-  activeIcon: TIcon;
-  disabled: boolean;
-  rounded: boolean;
-  size: "sm" | "md" | "lg";
-}
-*/
-
 interface Emits {
   (event: "click"): void;
 }

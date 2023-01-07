@@ -23,36 +23,6 @@ defineOptions({
   name: ComponentName.Box,
 });
 
-/*
-interface Props {
-  position: "absolute" | "relative" | "fixed" | "sticky" | "static";
-  top: string;
-  right: string;
-  bottom: string;
-  left: string;
-  width: string;
-  height: string;
-  round: SpacingKeys;
-  roundT: SpacingKeys;
-  roundR: SpacingKeys;
-  roundB: SpacingKeys;
-  roundL: SpacingKeys;
-  zIndex: ZIndexKeys;
-  bgColor: ColorKeys;
-  shadow: ShadowKeys;
-  dropShadow: ShadowKeys;
-  overflow: "visible" | "hidden" | "scroll" | "auto";
-  overflowX: "visible" | "hidden" | "scroll" | "auto";
-  overflowY: "visible" | "hidden" | "scroll" | "auto";
-  cursor: "pointer" | "default";
-  pointerEvents: "auto" | "none";
-  transform: string;
-  transition: string;
-  opacity: number;
-  scroll: "none" | "x" | "y" | "block" | "inline" | "both";
-}
-*/
-
 const props = defineProps({
   position: {
     type: String as PropType<

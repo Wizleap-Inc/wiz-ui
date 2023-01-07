@@ -44,18 +44,6 @@ defineOptions({
   name: ComponentName.Anchor,
 });
 
-/**
-interface Props {
-  src: string;
-  size: SpacingKeys;
-  color: ColorKeys;
-  bgColor: ColorKeys;
-  alt: string;
-  fallback: string;
-  clickable: boolean;
-}
-*/
-
 const props = defineProps({
   src: {
     type: String,

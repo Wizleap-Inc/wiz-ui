@@ -44,18 +44,6 @@ defineOptions({
   name: ComponentName.TextButton,
 });
 
-/*
-interface Props {
-  variant: "primary" | "sub";
-  size: "xs"|"sm" | "md" | "lg";
-  expand: boolean;
-  disabled: boolean;
-  rounded: boolean;
-  icon: TIcon;
-  iconPosition: "left" | "right";
-}
-*/
-
 interface Emits {
   (e: "click"): void;
 }
