@@ -24,3 +24,4 @@ export * from "./progress-bar";
 export * from "./badge";
 export * from "./calendar";
 export * from "./menu";
+export * from "./skeleton";

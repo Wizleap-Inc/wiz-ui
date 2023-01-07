@@ -18,6 +18,7 @@ export * from "./navigation";
 export * from "./popup";
 export * from "./progress-bar";
 export * from "./stack";
+export * from "./skeleton";
 export * from "./tab";
 export * from "./tables";
 export * from "./tag";
