@@ -30,7 +30,7 @@ import {
   toggleButtonRoundedStyle,
   toggleButtonSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
-import { ref, computed } from "vue";
+import { ref, computed, PropType } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
@@ -43,20 +43,39 @@ defineOptions({
 interface Props {
   inActiveIcon: TIcon;
   activeIcon: TIcon;
-  disabled?: boolean;
-  rounded?: boolean;
-  size?: "sm" | "md" | "lg";
+  disabled: boolean;
+  rounded: boolean;
+  size: "sm" | "md" | "lg";
 }
 
 interface Emits {
   (event: "click"): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  iconPosition: "left",
-  disabled: false,
-  rounded: true,
-  size: "md",
+const props = defineProps({
+  inActiveIcon: {
+    type: Object as PropType<Props["inActiveIcon"]>,
+    required: true,
+  },
+  activeIcon: {
+    type: Object as PropType<Props["activeIcon"]>,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  rounded: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  size: {
+    type: String as PropType<Props["size"]>,
+    required: false,
+    default: "md"
+  }
 });
 
 const isActive = ref(false);
