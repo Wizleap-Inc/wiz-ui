@@ -26,6 +26,7 @@ import {
   progressPointValueStyle,
   progressPointVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
+import { PropType } from "vue";
 
 import type { ProgressStatus } from "./types";
 
@@ -33,10 +34,14 @@ defineOptions({
   name: ComponentName.ProgressPoint,
 });
 
-interface Props {
-  status: ProgressStatus;
-  value?: number;
-}
-
-defineProps<Props>();
+defineProps({
+  status: {
+    type: String as PropType<ProgressStatus>,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: false,
+  },
+});
 </script>

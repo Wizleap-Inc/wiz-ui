@@ -37,28 +37,49 @@ import {
   colorStyle,
   whiteSpaceStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 defineOptions({
   name: ComponentName.Text,
 });
 
-interface Props {
-  as?: "p" | "span";
-  color?: ColorKeys;
-  fontSize?: FontSizeKeys;
-  lineHeight?: FontSizeKeys;
-  bold?: boolean;
-  maxLines?: number;
-  whiteSpace?: WhiteSpaceKeys;
-  dummyValue?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  as: "p",
-  color: "gray.900",
-  fontSize: "md",
-  whiteSpace: "normal",
+const props = defineProps({
+  as: {
+    type: String as PropType<"p" | "span">,
+    required: false,
+    default: "p",
+  },
+  color: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "gray.900",
+  },
+  fontSize: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+    default: "md",
+  },
+  lineHeight: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+  },
+  bold: {
+    type: Boolean,
+    required: false,
+  },
+  maxLines: {
+    type: Number,
+    required: false,
+  },
+  whiteSpace: {
+    type: String as PropType<WhiteSpaceKeys>,
+    required: false,
+    default: "normal",
+  },
+  dummyValue: {
+    type: String,
+    required: false,
+  },
 });
 
 const overflowStyles = computed(() => {

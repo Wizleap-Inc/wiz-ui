@@ -33,6 +33,7 @@ import {
   progressBarItemLabelStyle,
   progressBarItemAnnotationStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
+import { PropType } from "vue";
 
 import { WizText } from "@/components/base/text";
 import { WizTooltip } from "@/components/base/tooltip";
@@ -45,9 +46,10 @@ defineOptions({
   name: ComponentName.ProgressBar,
 });
 
-interface Props {
-  contents: ProgressItem[];
-}
-
-defineProps<Props>();
+defineProps({
+  contents: {
+    type: Array as PropType<ProgressItem[]>,
+    required: true,
+  },
+});
 </script>

@@ -23,11 +23,12 @@ defineOptions({
   name: ComponentName.Tooltip,
 });
 
-interface Props {
-  content?: string;
-}
-
-defineProps<Props>();
+defineProps({
+  content: {
+    type: String,
+    required: false,
+  },
+});
 
 const slots = useSlots();
 </script>
