@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue";
+import { StoryFn, Meta } from "@storybook/vue3";
 import { ref } from "vue";
 
 import WizPagination from "./pagination.vue";
@@ -19,14 +19,14 @@ export default {
   },
 } as Meta<typeof WizPagination>;
 
-const Template: StoryFn<typeof WizPagination> = (_, { argTypes }) => ({
+const Template: StoryFn<typeof WizPagination> = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPagination },
   setup() {
     const page = ref(1);
-    return { page };
+    return { page, args };
   },
-  template: `<WizPagination v-model="page" @input="update" v-bind="$props" />`,
+  template: `<WizPagination v-model="page" @input="args.update" v-bind="args" />`,
 });
 
 export const Default = Template.bind({});

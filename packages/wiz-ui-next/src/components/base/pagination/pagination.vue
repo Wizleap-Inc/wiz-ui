@@ -55,7 +55,7 @@ import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
 import { WizHStack } from "../stack";
 
 const props = defineProps({
-  value: {
+  modelValue: {
     type: Number as PropType<number>,
     required: true,
   },
@@ -66,14 +66,14 @@ const props = defineProps({
 });
 
 interface Emits {
-  (event: "input", value: number): void;
+  (event: "update:modelValue", value: number): void;
 }
 
 const emits = defineEmits<Emits>();
 
 const activeValue = computed({
-  get: () => props.value,
-  set: (value: number) => emits("input", value),
+  get: () => props.modelValue,
+  set: (value: number) => emits("update:modelValue", value),
 });
 
 const onUpdatePage = (index: number) => {
