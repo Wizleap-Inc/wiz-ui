@@ -21,14 +21,6 @@ defineOptions({
   name: ComponentName.Divider,
 });
 
-/*
-interface Props {
-  color?: ColorKeys;
-  variant?: "solid" | "dashed" | "dotted";
-  direction?: "horizontal" | "vertical";
-}
-*/
-
 defineProps({
   color: {
     type: String as PropType<ColorKeys>,

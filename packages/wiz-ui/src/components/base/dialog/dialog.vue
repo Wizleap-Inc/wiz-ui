@@ -46,7 +46,7 @@ defineOptions({
 });
 
 const props = defineProps({
-  modelValue: {
+  value: {
     type: Boolean,
     required: true,
   },

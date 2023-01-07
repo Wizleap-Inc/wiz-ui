@@ -51,19 +51,6 @@ import { RouterLinkProps } from "vue-router/types/router";
 
 import { WizIcon, TIcon } from "@/components";
 
-/*
-interface Props {
-  to: RouterLinkProps["to"];
-  color: ColorKeys;
-  fontSize: FontSizeKeys;
-  fontWeight: FontWeightKeys;
-  icon: TIcon;
-  iconPosition: "left" | "right";
-  openInNewTab: boolean;
-  nowrap: boolean;
-}
-*/
-
 defineOptions({
   name: ComponentName.Anchor,
 });
