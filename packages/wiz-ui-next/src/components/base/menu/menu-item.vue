@@ -27,21 +27,30 @@ import { WizIChevronRight } from "@/components/icons";
 
 import { WizHStack, WizIcon } from "../";
 
-interface Props {
-  label: string;
-  width?: string;
-  active?: boolean;
-  clickable?: boolean;
-}
-
 interface Emit {
   (event: "click"): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  active: false,
-  clickable: true,
-  width: "10rem",
+const props = defineProps({
+  label: {
+    type: String,
+    required: true,
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  active: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  clickable: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
 });
 
 const emit = defineEmits<Emit>();

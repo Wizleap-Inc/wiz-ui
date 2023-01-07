@@ -20,10 +20,15 @@ import {
 defineOptions({
   name: ComponentName.ProgressLine,
 });
-interface Props {
-  active?: boolean;
-  isFirst: boolean;
-}
 
-defineProps<Props>();
+defineProps({
+  active: {
+    type: Boolean,
+    required: false,
+  },
+  isFirst: {
+    type: Boolean,
+    required: true,
+  },
+});
 </script>
