@@ -27,6 +27,7 @@ import {
   fontSizeStyle,
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType } from "vue";
 
 import { WizIcon } from "@/components/base";
 import type { TIcon } from "@/components/icons";
@@ -35,19 +36,34 @@ defineOptions({
   name: ComponentName.Tag,
 });
 
-interface Props {
-  color?: ColorKeys;
-  fontSize?: FontSizeKeys;
-  fontWeight?: FontWeightKeys;
-  backgroundColor?: ColorKeys;
-  icon?: TIcon;
-  label: string;
-}
-
-withDefaults(defineProps<Props>(), {
-  color: "white.800",
-  backgroundColor: "blue.800",
-  fontSize: "md",
-  fontWeight: "normal",
+defineProps({
+  label: {
+    type: String,
+    required: true,
+  },
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+  },
+  color: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "white.800",
+  },
+  backgroundColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "blue.800",
+  },
+  fontSize: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+    default: "md",
+  },
+  fontWeight: {
+    type: String as PropType<FontWeightKeys>,
+    required: false,
+    default: "normal",
+  },
 });
 </script>
