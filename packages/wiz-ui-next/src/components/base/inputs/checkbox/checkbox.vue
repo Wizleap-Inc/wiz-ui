@@ -45,24 +45,35 @@ import {
   checkboxBlockStyle,
   checkboxBlockCheckedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
 
 import { CheckBoxOption } from "./types";
 
-interface Props {
-  options: CheckBoxOption[];
-  modelValue: number[];
-  disabled?: boolean;
-  direction?: "horizontal" | "vertical";
-  gap?: SpacingKeys;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  direction: "horizontal",
-  gap: "xl",
+const props = defineProps({
+  options: {
+    type: Array as PropType<CheckBoxOption[]>,
+    required: true,
+  },
+  modelValue: {
+    type: Array as PropType<number[]>,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  direction: {
+    type: String as PropType<"horizontal" | "vertical">,
+    required: false,
+    default: "horizontal",
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "xl",
+  },
 });
 
 interface Emit {
