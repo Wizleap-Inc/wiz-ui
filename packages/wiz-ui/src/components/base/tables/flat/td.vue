@@ -10,16 +10,17 @@ import {
   flatTdStyle,
   flatTdAlignStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
+import { PropType } from "vue";
 
 defineOptions({
   name: ComponentName.FlatTd,
 });
 
-interface Props {
-  align?: "left" | "center" | "right";
-}
-
-withDefaults(defineProps<Props>(), {
-  align: "center",
+defineProps({
+  align: {
+    type: String as PropType<"left" | "center" | "right">,
+    required: false,
+    default: "center",
+  },
 });
 </script>

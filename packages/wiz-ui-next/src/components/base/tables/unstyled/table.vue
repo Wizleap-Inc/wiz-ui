@@ -17,6 +17,7 @@ import {
   borderSpacingXStyle,
   borderSpacingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType } from "vue";
 
 defineOptions({
   name: ComponentName.UnstyledTable,
@@ -28,7 +29,19 @@ interface Props {
   spaceY?: SpacingKeys;
 }
 
-withDefaults(defineProps<Props>(), {
-  space: "no",
+defineProps({
+  space: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  spaceX: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  spaceY: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
 });
 </script>
