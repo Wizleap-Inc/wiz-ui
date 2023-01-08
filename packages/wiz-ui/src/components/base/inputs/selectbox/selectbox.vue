@@ -69,7 +69,7 @@ import {
   selectBoxSelectorOptionStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject } from "vue";
+import { ref, computed, inject, PropType } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
@@ -83,19 +83,34 @@ defineOptions({
   name: ComponentName.SelectBox,
 });
 
-interface Props {
-  options: SelectBoxOption[];
-  value: number;
-  placeholder?: string;
-  width?: string;
-  disabled?: boolean;
-  expand?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  placeholder: "選択してください",
-  width: "10rem",
-  disabled: false,
+const props = defineProps({
+  options: {
+    type: Array as PropType<SelectBoxOption[]>,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: "選択してください",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 const openSelectBox = ref(false);
