@@ -41,20 +41,37 @@ defineOptions({
   name: ComponentName.PasswordInput,
 });
 
-interface Props {
-  value: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
-  expand?: boolean;
-  width?: string;
-}
-
 interface Emit {
   (e: "input", value: string): void;
 }
 
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+  },
+});
+
 const emit = defineEmits<Emit>();
 
 const isPasswordVisible = ref(false);
