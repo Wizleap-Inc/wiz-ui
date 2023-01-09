@@ -120,13 +120,6 @@ defineOptions({
   name: ComponentName.TimePicker,
 });
 
-interface Props {
-  modelValue: string;
-  placeholder?: string;
-  width?: string;
-  disabled?: boolean;
-}
-
 const props = defineProps({
   modelValue: {
     type: String,

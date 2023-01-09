@@ -23,12 +23,6 @@ defineOptions({
   name: ComponentName.UnstyledTable,
 });
 
-interface Props {
-  space?: SpacingKeys;
-  spaceX?: SpacingKeys;
-  spaceY?: SpacingKeys;
-}
-
 defineProps({
   space: {
     type: String as PropType<SpacingKeys>,
