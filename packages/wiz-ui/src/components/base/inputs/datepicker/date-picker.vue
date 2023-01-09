@@ -82,13 +82,6 @@ import {
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-interface Props {
-  value: Date;
-  placeholder?: string;
-  width?: string;
-  disabled?: boolean;
-}
-
 interface Emit {
   (e: "input", value: Date): void;
 }
