@@ -53,12 +53,12 @@ const Template: StoryFn = (_, { argTypes }) => ({
   `,
 });
 
-interface Props {
+interface Options {
   labelWidth: string;
   gap: string;
 }
 
-const CODE_TEMPLATE = ({ labelWidth, gap }: Partial<Props>) => `
+const CODE_TEMPLATE = ({ labelWidth, gap }: Partial<Options>) => `
 <template>
   <WizFormGroup${
     (labelWidth ? ` label-width="${labelWidth}"` : "") +

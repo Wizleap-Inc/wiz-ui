@@ -41,14 +41,19 @@ const Template: StoryFn<typeof WizSkeletonText> = (args) => ({
 `,
 });
 
-interface Props {
+interface Options {
   fontSize: string;
   gap: string;
   lines: number;
   isLoading: boolean;
 }
 
-const CODE_TEMPLATE = ({ fontSize, gap, lines, isLoading }: Partial<Props>) => `
+const CODE_TEMPLATE = ({
+  fontSize,
+  gap,
+  lines,
+  isLoading,
+}: Partial<Options>) => `
 <template>
   <WizSkeletonText${
     (fontSize ? ` :fontSize="${fontSize}"` : "") +

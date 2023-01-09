@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { dropdownItemStyle } from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
-import { computed, ref } from "vue";
+import { computed, ref, PropType } from "vue";
 
 import { WizIcon, WizHStack } from "@/components";
 import type { TIcon } from "@/components/icons";
@@ -26,11 +26,12 @@ defineOptions({
   name: ComponentName.DropdownItem,
 });
 
-interface Props {
-  icon?: TIcon;
-}
-
-defineProps<Props>();
+defineProps({
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+  },
+});
 
 interface Emit {
   (event: "click"): void;

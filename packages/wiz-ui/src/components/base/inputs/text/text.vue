@@ -22,16 +22,34 @@ import { PrivateBaseInput } from "../base";
 defineOptions({
   name: ComponentName.TextInput,
 });
-interface Props {
-  value: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
-  expand?: boolean;
-  width?: string;
-}
 
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  width: {
+    type: String,
+    required: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+});
 
 interface Emit {
   (e: "input", value: string): void;

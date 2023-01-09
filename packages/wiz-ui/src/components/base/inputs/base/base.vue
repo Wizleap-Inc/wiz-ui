@@ -21,25 +21,46 @@ import {
   baseInputDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, ref } from "vue";
+import { computed, PropType, ref } from "vue";
 
 defineOptions({
   name: ComponentName.BaseInput,
 });
 
-interface Props {
-  value: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
-  expand?: boolean;
-  type: "text" | "password";
-  width?: string;
-  error?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  width: "10rem",
+const props = defineProps({
+  value: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+  type: {
+    type: String as PropType<"text" | "password">,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  error: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 interface Emit {

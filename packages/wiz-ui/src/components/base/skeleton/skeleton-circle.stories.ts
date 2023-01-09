@@ -27,12 +27,12 @@ const Template: StoryFn<typeof WizSkeletonCircle> = (_, { argTypes }) => ({
 `,
 });
 
-interface Props {
+interface Options {
   size: string;
   isLoading: boolean;
 }
 
-const CODE_TEMPLATE = ({ size, isLoading }: Partial<Props>) => `
+const CODE_TEMPLATE = ({ size, isLoading }: Partial<Options>) => `
 <template>
   <WizSkeletonCircle${
     (size ? ` :size="${size}"` : "") +

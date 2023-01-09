@@ -120,18 +120,26 @@ defineOptions({
   name: ComponentName.TimePicker,
 });
 
-interface Props {
-  modelValue: string;
-  placeholder?: string;
-  width?: string;
-  disabled?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: "",
-  placeholder: "時間を選択",
-  width: "10rem",
-  disabled: false,
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: "時間を選択",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const openTimepicker = ref(false);

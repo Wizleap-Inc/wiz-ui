@@ -76,3 +76,7 @@ export const navigationItemTextStyle = style({
   minWidth: 0,
   whiteSpace: "nowrap",
 });
+
+export const navigationItemTextActiveStyle = style({
+  fontWeight: "bold",
+});

@@ -30,7 +30,7 @@ import {
   marginXStyle,
   marginYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, inject, ref } from "vue";
+import { computed, inject, PropType, ref } from "vue";
 
 import { POPUP_KEY } from "./provider";
 
@@ -38,29 +38,23 @@ defineOptions({
   name: ComponentName.Popup,
 });
 
-interface Props {
-  layer: ZIndexKeys;
-  gap?: SpacingKeys;
-  /**
-   * ```
-   * b = bottom
-   * t = top
-   * l = left
-   * r = right
-   *
-   * 例)
-   * - tl = 上方向に出て、左寄せ
-   * - rb = 右方向に出て、下寄せ
-   *
-   * default: bl
-   * ```
-   */
-  direction?: "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb";
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  gap: "no",
-  direction: "bl",
+const props = defineProps({
+  layer: {
+    type: String as PropType<ZIndexKeys>,
+    required: true,
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  direction: {
+    type: String as PropType<
+      "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb"
+    >,
+    required: false,
+    default: "bl",
+  },
 });
 
 const popupRef = ref<HTMLElement | undefined>();

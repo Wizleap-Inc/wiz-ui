@@ -38,26 +38,44 @@ import {
   sizeStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref } from "vue";
+import { ref, PropType } from "vue";
 
 defineOptions({
   name: ComponentName.Anchor,
 });
 
-interface Props {
-  src: string;
-  size?: SpacingKeys;
-  color?: ColorKeys;
-  bgColor?: ColorKeys;
-  alt?: string;
-  fallback?: string;
-  clickable?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  size: "xl3",
-  bgColor: "gray.400",
-  color: "gray.900",
+const props = defineProps({
+  src: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "xl3",
+  },
+  color: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "gray.900",
+  },
+  bgColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "gray.400",
+  },
+  alt: {
+    type: String,
+    required: false,
+  },
+  fallback: {
+    type: String,
+    required: false,
+  },
+  clickable: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 interface Emits {

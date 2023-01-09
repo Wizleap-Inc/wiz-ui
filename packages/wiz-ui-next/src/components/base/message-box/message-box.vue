@@ -28,24 +28,33 @@ import {
   messageBoxIconFillStyle,
   messageBoxTitleStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import type { TIcon } from "@/components/icons";
 
 defineOptions({
   name: ComponentName.MessageBox,
 });
-interface Props {
-  variant?: "information" | "caution" | "warning";
-  title: string;
-  icon?: TIcon;
-  expand?: boolean;
-}
 
-const props = withDefaults(defineProps<Props>(), {
-  variant: "information",
-  title: "",
-  expand: false,
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  variant: {
+    type: String as PropType<"information" | "caution" | "warning">,
+    required: false,
+    default: "information",
+  },
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const computedWidth = computed(() => {
