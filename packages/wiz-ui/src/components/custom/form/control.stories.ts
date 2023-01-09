@@ -34,13 +34,13 @@ const Template: StoryFn = (_, { argTypes }) => ({
   `,
 });
 
-interface Props {
+interface Options {
   label: string;
   required: boolean;
   error: string;
 }
 
-const CODE_TEMPLATE = ({ label, required, error }: Partial<Props>) => `
+const CODE_TEMPLATE = ({ label, required, error }: Partial<Options>) => `
 <template>
   <WizFormControl${
     (label ? ` label="${label}"` : "") +
