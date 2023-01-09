@@ -13,7 +13,12 @@
         active && navigationItemIconActiveStyle,
       ]"
     />
-    <div :class="navigationItemTextStyle">
+    <div
+      :class="[
+        navigationItemTextStyle,
+        active && navigationItemTextActiveStyle,
+      ]"
+    >
       {{ label }}
     </div>
   </component>
@@ -27,6 +32,7 @@ import {
   navigationItemIconStyle,
   navigationItemIconActiveStyle,
   navigationItemTextStyle,
+  navigationItemTextActiveStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, PropType } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
