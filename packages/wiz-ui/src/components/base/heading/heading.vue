@@ -25,14 +25,10 @@ defineOptions({
   name: ComponentName.Heading,
 });
 
-interface Props {
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
-  color?: ColorKeys;
-  fontSize?: FontSizeKeys;
-}
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 const DEFAULT_FONT_SIZE: Record<
-  Exclude<Props["level"], undefined>,
+  Exclude<HeadingLevel, undefined>,
   FontSizeKeys
 > = {
   1: "xl2",
@@ -43,7 +39,7 @@ const DEFAULT_FONT_SIZE: Record<
   6: "xs2",
 } as const;
 
-const DEFAULT_COLOR: Record<Exclude<Props["level"], undefined>, ColorKeys> = {
+const DEFAULT_COLOR: Record<Exclude<HeadingLevel, undefined>, ColorKeys> = {
   1: "gray.900",
   2: "gray.800",
   3: "gray.700",
@@ -54,7 +50,7 @@ const DEFAULT_COLOR: Record<Exclude<Props["level"], undefined>, ColorKeys> = {
 
 const props = defineProps({
   level: {
-    type: Number as PropType<1 | 2 | 3 | 4 | 5 | 6>,
+    type: Number as PropType<HeadingLevel>,
     required: false,
     default: 1,
   },

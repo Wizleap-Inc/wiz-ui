@@ -29,17 +29,6 @@ defineOptions({
   name: ComponentName.BaseInput,
 });
 
-interface Props {
-  modelValue: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
-  expand?: boolean;
-  type: "text" | "password";
-  width?: string;
-  error?: boolean;
-}
-
 const props = defineProps({
   modelValue: {
     type: String,

@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { computed, ref } from "vue";
+import { computed, ref, PropType } from "vue";
 
 import { WizBox, WizTab } from "@/components/base";
 
@@ -25,13 +25,20 @@ defineOptions({
   name: ComponentName.Notification,
 });
 
-interface Props {
-  tabs: NotificationTabItem[];
-  notifications: NotificationItem[];
-  height?: string;
-}
-
-const props = defineProps<Props>();
+const props = defineProps({
+  tabs: {
+    type: Array as PropType<NotificationTabItem[]>,
+    required: true,
+  },
+  notifications: {
+    type: Array as PropType<NotificationItem[]>,
+    required: true,
+  },
+  height: {
+    type: String,
+    required: false,
+  },
+});
 
 interface Emit {
   (event: "click", id: string): void;

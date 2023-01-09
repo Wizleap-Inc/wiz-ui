@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { PropType } from "vue";
 
 import { WizDivider, WizBox } from "@/components/base";
 
@@ -27,13 +28,20 @@ defineOptions({
   name: ComponentName.NotificationList,
 });
 
-interface Props {
-  variant?: PanelVariant;
-  notifications: NotificationItem[];
-  height?: string;
-}
-
-defineProps<Props>();
+defineProps({
+  variant: {
+    type: String as PropType<PanelVariant>,
+    required: false,
+  },
+  notifications: {
+    type: Array as PropType<NotificationItem[]>,
+    required: true,
+  },
+  height: {
+    type: String,
+    required: false,
+  },
+});
 
 interface Emit {
   (event: "click", id: string): void;

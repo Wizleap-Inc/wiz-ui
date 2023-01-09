@@ -24,14 +24,24 @@ defineOptions({
   name: ComponentName.ChatForm,
 });
 
-interface Props {
-  disabled?: boolean;
-  placeholder?: string;
-  value: string;
-  formRows?: number;
-}
-
-const props = defineProps<Props>();
+const props = defineProps({
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  value: {
+    type: String,
+    required: true,
+  },
+  formRows: {
+    type: Number,
+    required: false,
+  },
+});
 
 interface Emit {
   (e: "input", value: string): void;

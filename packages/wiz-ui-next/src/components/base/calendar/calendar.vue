@@ -28,14 +28,6 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import { computed, PropType } from "vue";
 
-/**
-interface Props {
-  filledWeeks?: boolean;
-  currentMonth: Date;
-  value: Date;
-}
-*/
-
 interface Emit {
   (e: "update:modelValue", value: Date): void;
 }

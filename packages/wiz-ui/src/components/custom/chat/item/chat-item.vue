@@ -44,6 +44,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToTime } from "@wizleap-inc/wiz-ui-utils";
+import { PropType } from "vue";
 
 import { WizHStack, WizText, WizVStack, WizCard } from "@/components";
 
@@ -53,10 +54,14 @@ defineOptions({
   name: ComponentName.ChatItem,
 });
 
-interface Props {
-  content: Message;
-  maxChatItemWidth?: string;
-}
-
-defineProps<Props>();
+defineProps({
+  content: {
+    type: Object as PropType<Message>,
+    required: true,
+  },
+  maxChatItemWidth: {
+    type: String,
+    required: false,
+  },
+});
 </script>

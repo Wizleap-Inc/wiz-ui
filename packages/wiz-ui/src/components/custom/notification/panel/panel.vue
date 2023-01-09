@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToYMDHM, formatHowPast } from "@wizleap-inc/wiz-ui-utils";
-import { computed, ref } from "vue";
+import { computed, ref, PropType } from "vue";
 
 import {
   WizBox,
@@ -64,17 +64,28 @@ defineOptions({
   name: ComponentName.NotificationPanel,
 });
 
-interface Props {
-  title: string;
-  timestamp: Date;
-  variant?: PanelVariant;
-  read: boolean;
-  tableInfo?: TableInfoItem[];
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  variant: "primary",
-  status: "new",
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  timestamp: {
+    type: Date,
+    required: true,
+  },
+  variant: {
+    type: String as PropType<PanelVariant>,
+    required: false,
+    default: "primary",
+  },
+  read: {
+    type: Boolean,
+    required: true,
+  },
+  tableInfo: {
+    type: Array as PropType<TableInfoItem[]>,
+    required: false,
+  },
 });
 
 const displayDatetime = computed(() => formatDateToYMDHM(props.timestamp));
