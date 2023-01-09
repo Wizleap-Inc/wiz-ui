@@ -27,6 +27,9 @@ const IconComponentName = {
   IRemove: "WizIRemove",
   IOpenInNew: "WizIOpenInNew",
   ICalendar: "WizICalendar",
+  INoteAdd: "WizINoteAdd",
+  ITask: "WizITask",
+  IAutoRenew: "WizIAutoRenew",
 };
 
 export const ComponentName = {
