@@ -81,7 +81,7 @@
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { chatCardOpenButtonStyle } from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
-import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch, PropType } from "vue";
 
 import {
   WizBox,
@@ -98,25 +98,46 @@ import {
   WizIExpandLess,
 } from "@/components";
 
-import { Message, DisplayMessage } from "..";
+import { DisplayMessage, Message } from "..";
 
 defineOptions({
   name: ComponentName.ChatCard,
 });
 
-interface Props {
-  modelValue: string;
-  username: string;
-  placeholder?: string;
-  messages: Message[];
-  isOpen: boolean;
-  haveNewMessage?: boolean;
-  formRows?: number;
-  typingUsername?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  isOpen: false,
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  messages: {
+    type: Array as PropType<Message[]>,
+    required: true,
+  },
+  isOpen: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  haveNewMessage: {
+    type: Boolean,
+    required: false,
+  },
+  formRows: {
+    type: Number,
+    required: false,
+  },
+  typingUsername: {
+    type: String,
+    required: false,
+  },
 });
 
 interface Emit {
