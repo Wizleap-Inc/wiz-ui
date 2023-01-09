@@ -2,7 +2,7 @@ import { default as WizIAdd } from "./add.vue";
 import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
-import { default as WizIAutoRenew } from "./auto-renew.vue";
+import { default as WizIAutoRenew } from "./autorenew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizIChat } from "./chat.vue";
