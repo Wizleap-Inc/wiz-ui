@@ -28,11 +28,12 @@ defineOptions({
   name: ComponentName.ToggleSwitch,
 });
 
-interface Props {
-  modelValue: boolean;
-}
-
-const props = defineProps<Props>();
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    required: true,
+  },
+});
 
 interface Emit {
   (e: "update:modelValue", value: boolean): void;

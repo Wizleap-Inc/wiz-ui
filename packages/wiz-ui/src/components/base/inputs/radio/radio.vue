@@ -39,24 +39,36 @@ import {
   radioLabelColorStyle,
   radioLabelCursorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
 
 import { RadioOption } from "./types";
 
-interface Props {
-  options: RadioOption[];
-  value: number;
-  disabled?: boolean;
-  direction?: "horizontal" | "vertical";
-  gap?: SpacingKeys;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  direction: "horizontal",
-  gap: "xl",
+const props = defineProps({
+  options: {
+    type: Array as PropType<RadioOption[]>,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  direction: {
+    type: String as PropType<"horizontal" | "vertical">,
+    required: false,
+    default: "horizontal",
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "xl",
+  },
 });
 
 interface Emit {

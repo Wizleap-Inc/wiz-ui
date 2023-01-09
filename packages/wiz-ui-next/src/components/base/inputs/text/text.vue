@@ -23,17 +23,33 @@ defineOptions({
   name: ComponentName.TextInput,
 });
 
-interface Props {
-  modelValue: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
-  expand?: boolean;
-  width?: string;
-}
-
-const props = defineProps<Props>();
-
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  width: {
+    type: String,
+    required: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+});
 interface Emit {
   (e: "update:modelValue", value: string): void;
 }

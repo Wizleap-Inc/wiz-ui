@@ -93,10 +93,26 @@ interface Emit {
   (e: "input", value: Date): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  placeholder: "日付を選択",
-  width: "10rem",
-  disabled: false,
+const props = defineProps({
+  value: {
+    type: Date,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: "日付を選択",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
