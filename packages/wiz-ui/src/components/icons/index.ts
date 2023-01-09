@@ -2,6 +2,7 @@ import { default as WizIAdd } from "./add.vue";
 import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
+import { default as WizIAutoRenew } from "./autorenew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizIChat } from "./chat.vue";
@@ -20,12 +21,14 @@ import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVert } from "./more-vert.vue";
+import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizITab } from "./tab.vue";
+import { default as WizITask } from "./task.vue";
 
 export type TIcon =
   | typeof WizIAdd
@@ -55,7 +58,10 @@ export type TIcon =
   | typeof WizISchedule
   | typeof WizISend
   | typeof WizITab
-  | typeof WizICalendar;
+  | typeof WizICalendar
+  | typeof WizINoteAdd
+  | typeof WizITask
+  | typeof WizIAutoRenew;
 
 export {
   WizIAdd,
@@ -86,4 +92,7 @@ export {
   WizISend,
   WizITab,
   WizICalendar,
+  WizINoteAdd,
+  WizITask,
+  WizIAutoRenew,
 };
