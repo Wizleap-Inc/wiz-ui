@@ -10,15 +10,17 @@ import {
   unstyledTdStyle,
   unstyledTdAlignStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import { PropType } from "vue";
 
 defineOptions({
   name: ComponentName.UnstyledTd,
 });
-interface Props {
-  align?: "left" | "center" | "right";
-}
 
-withDefaults(defineProps<Props>(), {
-  align: "center",
+defineProps({
+  align: {
+    type: String as PropType<"left" | "center" | "right">,
+    required: false,
+    default: "center",
+  },
 });
 </script>

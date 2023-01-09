@@ -10,18 +10,22 @@ import {
   flatTh,
   flatThVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
+import { PropType } from "vue";
 
 defineOptions({
   name: ComponentName.FlatTh,
 });
 
-interface Props {
-  width?: string;
-  scope?: "col" | "row";
-}
-
-withDefaults(defineProps<Props>(), {
-  width: "auto",
-  scope: "col",
+defineProps({
+  width: {
+    type: String,
+    required: false,
+    default: "auto",
+  },
+  scope: {
+    type: String as PropType<"col" | "row">,
+    required: false,
+    default: "col",
+  },
 });
 </script>

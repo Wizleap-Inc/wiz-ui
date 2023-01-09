@@ -12,11 +12,11 @@ defineOptions({
   name: ComponentName.FlatTh,
 });
 
-interface Props {
-  width?: string;
-}
-
-withDefaults(defineProps<Props>(), {
-  width: "auto",
+defineProps({
+  width: {
+    type: String,
+    required: false,
+    default: "auto",
+  },
 });
 </script>
