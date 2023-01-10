@@ -30,6 +30,7 @@ const IconComponentName = {
   INoteAdd: "WizINoteAdd",
   ITask: "WizITask",
   IAutoRenew: "WizIAutoRenew",
+  ICircleCheck: "WizICircleCheck",
 };
 
 export const ComponentName = {
