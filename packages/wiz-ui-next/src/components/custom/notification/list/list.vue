@@ -1,5 +1,5 @@
 <template>
-  <WizBox :height="height" scroll="y">
+  <WizBox :height="height" overflowY="scroll">
     <template v-for="(item, i) in notifications" :key="item.id">
       <WizNotificationPanel
         :variant="variant"
