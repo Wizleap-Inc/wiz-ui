@@ -8,6 +8,7 @@ import { default as WizICalendar } from "./calendar.vue";
 import { default as WizIChat } from "./chat.vue";
 import { default as WizIChevronLeft } from "./chevron-left.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
+import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
@@ -39,6 +40,7 @@ export type TIcon =
   | typeof WizIChat
   | typeof WizIChevronRight
   | typeof WizIChevronLeft
+  | typeof WizICircleCheck
   | typeof WizIClose
   | typeof WizIDashboard
   | typeof WizIEditNote
@@ -72,6 +74,7 @@ export {
   WizIChat,
   WizIChevronRight,
   WizIChevronLeft,
+  WizICircleCheck,
   WizIClose,
   WizIDashboard,
   WizIEditNote,
