@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const badgeStyle = style({
+  pointerEvents: "none",
   position: "absolute",
   display: "inline-flex",
   alignItems: "center",
