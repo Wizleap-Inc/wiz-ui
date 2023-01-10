@@ -1,13 +1,17 @@
 <template>
-  <table class="wiz-calendar">
-    <td v-for="row in WEEK_LIST_JP" class="wiz-calendar-item" :key="row">
+  <table :class="calendarStyle">
+    <td
+      v-for="row in WEEK_LIST_JP"
+      :class="calendarItemStyle['default']"
+      :key="row"
+    >
       {{ row }}
     </td>
-    <tr v-for="(week, row) in calendars" :key="row">
+    <tr v-for="(week, row) in calendars" :key="[week, row].join('-')">
       <td
         v-for="(day, col) in week"
-        :key="day"
-        :class="isCurrentMonthDateClass(row, col)"
+        :key="[day, col].join('-')"
+        :class="calendarItemStyle[getDateState(row, col)]"
         @click="updateSelectedDate(row, col, day)"
       >
         {{ day }}
@@ -17,22 +21,32 @@
 </template>
 
 <script setup lang="ts">
-import { THEME, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
-import { computed } from "vue";
-
-interface Props {
-  filledWeeks?: boolean;
-  currentMonth: Date;
-  value: Date;
-}
+import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
+import {
+  calendarStyle,
+  calendarItemStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
+import { computed, PropType } from "vue";
 
 interface Emit {
   (e: "input", value: Date): void;
 }
 const emits = defineEmits<Emit>();
 
-const props = withDefaults(defineProps<Props>(), {
-  filledWeeks: false,
+const props = defineProps({
+  currentMonth: {
+    type: Object as PropType<Date>,
+    required: true,
+  },
+  value: {
+    type: Object as PropType<Date>,
+    required: true,
+  },
+  filledWeeks: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const calendars = computed(() => {
@@ -88,20 +102,6 @@ const calendars = computed(() => {
   return showCalendars;
 });
 
-// class の定義
-const isCurrentMonthDateClass = computed(() => (row: number, col: number) => {
-  const pickedUpDate = new Date(
-    props.currentMonth.getFullYear(),
-    props.currentMonth.getMonth(),
-    Number(calendars.value[row][col])
-  );
-  return isCurrentMonth(row, col)
-    ? pickedUpDate.toString() === props.value.toString()
-      ? "wiz-calendar-item-selected"
-      : "wiz-calendar-item-in-current-month"
-    : "wiz-calendar-item";
-});
-
 const isCurrentMonth = (row: number, col: number) => {
   const currentShowYear = props.currentMonth.getFullYear();
   const currentShowMonth = props.currentMonth.getMonth();
@@ -129,6 +129,18 @@ const isCurrentMonth = (row: number, col: number) => {
   );
 };
 
+// class の定義
+const getDateState = computed(() => (row: number, col: number) => {
+  const pickedUpDate = new Date(
+    props.currentMonth.getFullYear(),
+    props.currentMonth.getMonth(),
+    Number(calendars.value[row][col])
+  );
+  if (!isCurrentMonth(row, col)) return "default";
+  if (pickedUpDate.toString() === props.value.toString()) return "selected";
+  return "inCurrentMonth";
+});
+
 const updateSelectedDate = (row: number, col: number, day: string) => {
   if (isCurrentMonth(row, col)) {
     const selectedValue = new Date(
@@ -139,49 +151,4 @@ const updateSelectedDate = (row: number, col: number, day: string) => {
     emits("input", selectedValue);
   }
 };
-
-// 以下、Style の定義
-const colorWhite800 = THEME.color.white["800"];
-const colorGray600 = THEME.color.gray["600"];
-const colorGray700 = THEME.color.gray["700"];
-const colorGreen300 = THEME.color.green["300"];
-const colorGreen800 = THEME.color.green["800"];
-const fontSizeXs2 = THEME.fontSize.xs2;
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXs = THEME.spacing.xs;
 </script>
-
-<style lang="scss" scoped>
-.wiz-calendar {
-  font-size: v-bind(fontSizeXs2);
-  &-item {
-    color: v-bind(colorGray600);
-    padding: v-bind(spacingXs2) v-bind(spacingXs);
-    text-align: center;
-  }
-  &-item-selected {
-    padding: v-bind(spacingXs2) v-bind(spacingXs);
-    text-align: center;
-    background-color: v-bind(colorGreen800);
-    color: v-bind(colorWhite800);
-    border-radius: v-bind(spacingXs2);
-  }
-  &-item-in-current-month {
-    padding: v-bind(spacingXs2) v-bind(spacingXs);
-    text-align: center;
-    color: v-bind(colorGray700);
-
-    border-radius: v-bind(spacingXs2);
-    cursor: pointer;
-
-    &:hover {
-      background-color: v-bind(colorGreen300);
-      color: v-bind(colorGreen800);
-    }
-    &:active {
-      background-color: v-bind(colorGreen800);
-      color: v-bind(colorWhite800);
-    }
-  }
-}
-</style>

@@ -1,17 +1,14 @@
 <template>
   <div
     v-show="isPopupOpen"
-    :class="{
-      'wiz-popup': true,
-      'wiz-popup--direction-tl': computedDirection === 'tl',
-      'wiz-popup--direction-tr': computedDirection === 'tr',
-      'wiz-popup--direction-bl': computedDirection === 'bl',
-      'wiz-popup--direction-br': computedDirection === 'br',
-      'wiz-popup--direction-rt': computedDirection === 'rt',
-      'wiz-popup--direction-rb': computedDirection === 'rb',
-      'wiz-popup--direction-lt': computedDirection === 'lt',
-      'wiz-popup--direction-lb': computedDirection === 'lb',
-    }"
+    :class="[
+      popupStyle,
+      popupDirectionStyle[computedDirection],
+      ['tl', 'tr', 'bl', 'br'].includes(direction)
+        ? marginYStyle[gap]
+        : marginXStyle[gap],
+      zIndexStyle[layer],
+    ]"
     ref="popupRef"
   >
     <slot />
@@ -20,14 +17,20 @@
 
 <script setup lang="ts">
 import {
-  THEME,
   ComponentName,
   SpacingKeys,
-  getSpacingCss,
   ZIndexKeys,
-  getZIndexCss,
 } from "@wizleap-inc/wiz-ui-constants";
-import { computed, inject, ref } from "vue";
+import {
+  popupStyle,
+  popupDirectionStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
+import {
+  zIndexStyle,
+  marginXStyle,
+  marginYStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
+import { computed, inject, ref, PropType } from "vue";
 
 import { POPUP_KEY } from "./provider";
 
@@ -35,29 +38,23 @@ defineOptions({
   name: ComponentName.Popup,
 });
 
-interface Props {
-  layer: ZIndexKeys;
-  gap?: SpacingKeys;
-  /**
-   * ```
-   * b = bottom
-   * t = top
-   * l = left
-   * r = right
-   *
-   * 例)
-   * - tl = 上方向に出て、左寄せ
-   * - rb = 右方向に出て、下寄せ
-   *
-   * default: bl
-   * ```
-   */
-  direction?: "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb";
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  gap: "no",
-  direction: "bl",
+const props = defineProps({
+  layer: {
+    type: String as PropType<ZIndexKeys>,
+    required: true,
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  direction: {
+    type: String as PropType<
+      "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb"
+    >,
+    required: false,
+    default: "bl",
+  },
 });
 
 const popupRef = ref<HTMLElement | undefined>();
@@ -194,65 +191,4 @@ const computedDirection = computed(() => {
   }
   return props.direction;
 });
-
-const computedZIndex = computed(() => getZIndexCss(props.layer));
-const shadowSm = THEME.shadow.sm;
-const computedMargin = computed(() => getSpacingCss(props.gap));
 </script>
-
-<style lang="scss" scoped>
-.wiz-popup {
-  position: absolute;
-  z-index: v-bind(computedZIndex);
-  filter: drop-shadow(v-bind(shadowSm));
-  width: max-content;
-
-  &--direction-tl {
-    bottom: 100%;
-    left: 0;
-    margin: v-bind(computedMargin) 0;
-  }
-
-  &--direction-tr {
-    bottom: 100%;
-    right: 0;
-    margin: v-bind(computedMargin) 0;
-  }
-
-  &--direction-bl {
-    top: 100%;
-    left: 0;
-    margin: v-bind(computedMargin) 0;
-  }
-
-  &--direction-br {
-    top: 100%;
-    right: 0;
-    margin: v-bind(computedMargin) 0;
-  }
-
-  &--direction-rt {
-    top: 0;
-    left: 100%;
-    margin: 0 v-bind(computedMargin);
-  }
-
-  &--direction-rb {
-    bottom: 0;
-    left: 100%;
-    margin: 0 v-bind(computedMargin);
-  }
-
-  &--direction-lt {
-    top: 0;
-    right: 100%;
-    margin: 0 v-bind(computedMargin);
-  }
-
-  &--direction-lb {
-    bottom: 0;
-    right: 100%;
-    margin: 0 v-bind(computedMargin);
-  }
-}
-</style>

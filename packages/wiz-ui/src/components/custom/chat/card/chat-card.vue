@@ -17,7 +17,13 @@
         <WizText color="gray.700" as="span" bold>
           {{ username }}
         </WizText>
-        <div v-if="haveNewMessage" class="wiz-chat-card__have-new-message" />
+        <WizBox
+          v-if="haveNewMessage"
+          :width="THEME.fontSize.md"
+          :height="THEME.fontSize.md"
+          bgColor="red.800"
+          round="max"
+        />
       </template>
       <template #subHeaderArea>
         <WizIcon
@@ -27,30 +33,26 @@
         />
       </template>
       <WizDivider />
-      <WizVStack
-        gap="xs"
-        py="xs"
-        height="320px"
-        overflow="scroll"
-        ref="chatListRef"
-      >
-        <template v-for="messages in displayMessages">
-          <WizHStack justify="center" :key="messages.date.toDateString()">
-            <WizTag
-              :label="formatDateToMonthDayWeek(messages.date)"
-              color="gray.900"
-              backgroundColor="gray.300"
-              fontSize="xs2"
+      <WizBox overflowY="scroll" ref="chatListRef">
+        <WizVStack gap="xs" py="xs" height="320px">
+          <template v-for="messages in displayMessages">
+            <WizHStack justify="center" :key="messages.date.toDateString()">
+              <WizTag
+                :label="formatDateToMonthDayWeek(messages.date)"
+                color="gray.900"
+                backgroundColor="gray.300"
+                fontSize="xs2"
+              />
+            </WizHStack>
+            <WizChatItem
+              v-for="(item, i) in messages.contents"
+              :key="messages.date.toDateString() + i"
+              :content="item"
+              maxChatItemWidth="192px"
             />
-          </WizHStack>
-          <WizChatItem
-            v-for="(item, i) in messages.contents"
-            :key="messages.date.toDateString() + i"
-            :content="item"
-            maxChatItemWidth="192px"
-          />
-        </template>
-      </WizVStack>
+          </template>
+        </WizVStack>
+      </WizBox>
       <template #footer>
         <WizChatForm
           v-model="textValue"
@@ -68,14 +70,15 @@
         </WizVStack>
       </template>
     </WizCard>
-    <button class="wiz-chat-card__open-btn" @click="toggleDisplay" />
+    <button :class="chatCardOpenButtonStyle" @click="toggleDisplay" />
   </WizBox>
 </template>
 
 <script setup lang="ts">
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { chatCardOpenButtonStyle } from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
-import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch, PropType } from "vue";
 
 import {
   WizBox,
@@ -98,19 +101,40 @@ defineOptions({
   name: ComponentName.ChatCard,
 });
 
-interface Props {
-  value: string;
-  username: string;
-  placeholder?: string;
-  messages: Message[];
-  isOpen: boolean;
-  haveNewMessage?: boolean;
-  formRows?: number;
-  typingUsername?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  isOpen: false,
+const props = defineProps({
+  value: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  messages: {
+    type: Array as PropType<Message[]>,
+    required: true,
+  },
+  isOpen: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  haveNewMessage: {
+    type: Boolean,
+    required: false,
+  },
+  formRows: {
+    type: Number,
+    required: false,
+  },
+  typingUsername: {
+    type: String,
+    required: false,
+  },
 });
 
 interface Emit {
@@ -178,35 +202,4 @@ const textValue = computed({
 const onSubmit = () => emits("submit");
 
 const toggleDisplay = () => emits("toggleDisplay");
-
-const titleHeight = THEME.spacing.xl;
-const titlePadding = THEME.spacing.md;
-const red800 = THEME.color.red[800];
-const spacingMax = THEME.spacing.max;
-const fontSizeMd = THEME.fontSize.md;
 </script>
-
-<style lang="scss" scoped>
-.wiz-chat-card {
-  &__open-btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(v-bind(titleHeight) + v-bind(titlePadding) * 2);
-    border: none;
-    cursor: pointer;
-    background: transparent;
-  }
-
-  &__have-new-message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: v-bind(fontSizeMd);
-    height: v-bind(fontSizeMd);
-    border-radius: v-bind(spacingMax);
-    background: v-bind(red800);
-  }
-}
-</style>

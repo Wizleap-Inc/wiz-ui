@@ -19,20 +19,16 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import { headingStyle } from "@wizleap-inc/wiz-ui-styles/bases/heading.css";
 import { colorStyle, fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, withDefaults } from "vue";
+import { computed, PropType } from "vue";
 
 defineOptions({
   name: ComponentName.Heading,
 });
 
-interface Props {
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
-  color?: ColorKeys;
-  fontSize?: FontSizeKeys;
-}
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 const DEFAULT_FONT_SIZE: Record<
-  Exclude<Props["level"], undefined>,
+  Exclude<HeadingLevel, undefined>,
   FontSizeKeys
 > = {
   1: "xl2",
@@ -43,7 +39,7 @@ const DEFAULT_FONT_SIZE: Record<
   6: "xs2",
 } as const;
 
-const DEFAULT_COLOR: Record<Exclude<Props["level"], undefined>, ColorKeys> = {
+const DEFAULT_COLOR: Record<Exclude<HeadingLevel, undefined>, ColorKeys> = {
   1: "gray.900",
   2: "gray.800",
   3: "gray.700",
@@ -52,8 +48,20 @@ const DEFAULT_COLOR: Record<Exclude<Props["level"], undefined>, ColorKeys> = {
   6: "gray.700",
 } as const;
 
-const props = withDefaults(defineProps<Props>(), {
-  level: 1,
+const props = defineProps({
+  level: {
+    type: Number as PropType<HeadingLevel>,
+    required: false,
+    default: 1,
+  },
+  color: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+  },
+  fontSize: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+  },
 });
 
 const computedFontSize = computed(() => {

@@ -9,15 +9,15 @@
           :id="`radio${key}`"
           :value="option.value"
           v-model="radioValue"
-          :disabled="disabled || disabledKey === key"
+          :disabled="disabled || option.disabled"
         />
         <label
           :class="[
             radioLabelStyle,
             radioValue === option.value && radioLabelCheckedStyle,
-            (disabled || disabledKey === key) && radioLabelDisabledStyle,
+            (disabled || option.disabled) && radioLabelDisabledStyle,
             radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
-            radioLabelCursorStyle[radioLabelCursor(key)],
+            radioLabelCursorStyle[radioLabelCursor(option.disabled)],
           ]"
           :for="`radio${key}`"
         >
@@ -39,25 +39,36 @@ import {
   radioLabelColorStyle,
   radioLabelCursorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
 
 import { RadioOption } from "./types";
 
-interface Props {
-  options: RadioOption[];
-  value: number;
-  disabled?: boolean;
-  disabledKey: number;
-  direction?: "horizontal" | "vertical";
-  gap: SpacingKeys;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  direction: "horizontal",
-  gap: "xl",
+const props = defineProps({
+  options: {
+    type: Array as PropType<RadioOption[]>,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  direction: {
+    type: String as PropType<"horizontal" | "vertical">,
+    required: false,
+    default: "horizontal",
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "xl",
+  },
 });
 
 interface Emit {
@@ -74,6 +85,6 @@ const radioValue = computed({
 const radioLabelColor = (isChecked: boolean) =>
   isChecked ? "checked" : "default";
 
-const radioLabelCursor = (key: number) =>
-  props.disabled || props.disabledKey === key ? "disabled" : "default";
+const radioLabelCursor = (optionDisabled?: boolean) =>
+  props.disabled || optionDisabled ? "disabled" : "default";
 </script>

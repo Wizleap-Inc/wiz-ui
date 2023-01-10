@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { PropType } from "vue";
 
 import { WizHStack } from "@/components";
 
@@ -28,14 +29,24 @@ defineOptions({
   name: ComponentName.Tab,
 });
 
-interface Props {
-  gap?: SpacingKeys;
-  width?: string;
-  value: string;
-  items: TabItem[];
-}
-
-defineProps<Props>();
+defineProps({
+  value: {
+    type: String,
+    required: true,
+  },
+  items: {
+    type: Array as PropType<TabItem[]>,
+    required: true,
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+  },
+});
 
 interface Emits {
   (event: "input", value: string): void;
@@ -45,5 +56,3 @@ const emit = defineEmits<Emits>();
 
 const select = (name: string) => emit("input", name);
 </script>
-
-<style lang="scss" scoped></style>

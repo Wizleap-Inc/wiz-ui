@@ -1,12 +1,15 @@
 <template>
   <input
-    :class="[baseInputStyle, disabled && baseInputDisabledStyle]"
+    :class="[
+      baseInputStyle,
+      disabled && baseInputDisabledStyle,
+      inputBorderStyle[state],
+    ]"
     :style="{ width: computedWidth }"
     :placeholder="placeholder"
     :name="name"
     :disabled="disabled"
-    :value="value"
-    @input="onInput"
+    v-model="textValue"
     :type="type"
   />
 </template>
@@ -17,24 +20,47 @@ import {
   baseInputStyle,
   baseInputDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
-import { computed } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { computed, PropType, ref } from "vue";
 
 defineOptions({
   name: ComponentName.BaseInput,
 });
 
-interface Props {
-  value: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
-  expand?: boolean;
-  type: "text" | "password";
-  width?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  width: "10rem",
+const props = defineProps({
+  value: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+  type: {
+    type: String as PropType<"text" | "password">,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  error: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 interface Emit {
@@ -43,10 +69,18 @@ interface Emit {
 
 const emit = defineEmits<Emit>();
 
-const onInput = (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  emit("input", target.value);
-};
+const textValue = computed({
+  get: () => props.value,
+  set: (value) => emit("input", value),
+});
+
+const hasFocus = ref(false);
 
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
+
+const state = computed(() => {
+  if (props.error) return "error";
+  if (hasFocus.value) return "active";
+  return "default";
+});
 </script>

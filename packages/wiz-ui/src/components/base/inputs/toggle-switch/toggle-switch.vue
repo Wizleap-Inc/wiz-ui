@@ -27,11 +27,13 @@ import { computed } from "vue";
 defineOptions({
   name: ComponentName.ToggleSwitch,
 });
-interface Props {
-  value: boolean;
-}
 
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: Boolean,
+    required: true,
+  },
+});
 
 interface Emit {
   (e: "input", value: boolean): void;

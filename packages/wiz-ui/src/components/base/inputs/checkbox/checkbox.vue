@@ -9,14 +9,14 @@
           :name="`checkbox${key}`"
           :value="option.value"
           v-model="checkboxValue"
-          :disabled="disabled || disabledKey === key"
+          :disabled="disabled || option.disabled"
         />
         <label
           :class="[
             checkboxLabelStyle,
             checkboxValue.includes(option.value) && checkboxLabelCheckedStyle,
-            (disabled || disabledKey === key) && checkboxLabelDisabledStyle,
-            checkboxLabelCursorStyle[labelPointer(key)],
+            (disabled || option.disabled) && checkboxLabelDisabledStyle,
+            checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
           :for="`checkbox${key}`"
         >
@@ -45,25 +45,35 @@ import {
   checkboxBlockStyle,
   checkboxBlockCheckedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
 
 import { CheckBoxOption } from "./types";
 
-interface Props {
-  options: CheckBoxOption[];
-  value: number[];
-  disabled?: boolean;
-  disabledKey?: number;
-  direction?: "horizontal" | "vertical";
-  gap?: SpacingKeys;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  direction: "horizontal",
-  gap: "xl",
+const props = defineProps({
+  options: {
+    type: Array as PropType<CheckBoxOption[]>,
+    required: true,
+  },
+  value: {
+    type: Array as PropType<number[]>,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  direction: {
+    type: String as PropType<"horizontal" | "vertical">,
+    required: false,
+    default: "horizontal",
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "xl",
+  },
 });
 
 interface Emit {
@@ -76,6 +86,6 @@ const checkboxValue = computed({
   set: (value) => emit("input", value),
 });
 
-const labelPointer = (key: number) =>
-  props.disabled || props.disabledKey === key ? "disabled" : "default";
+const labelPointer = (optionDisabled?: boolean) =>
+  props.disabled || optionDisabled ? "disabled" : "default";
 </script>

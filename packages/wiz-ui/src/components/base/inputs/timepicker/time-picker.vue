@@ -3,7 +3,7 @@
     <div
       :class="[
         timePickerStyle,
-        openTimepicker && timePickerActiveStyle,
+        inputBorderStyle[state],
         disabled && timePickerDisabledStyle,
         timePickerCursorStyle[timePickerCursor],
       ]"
@@ -92,10 +92,9 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   timePickerStyle,
-  timePickerActiveStyle,
   timePickerDisabledStyle,
   timePickerCursorStyle,
   timePickerBoxStyle,
@@ -108,10 +107,12 @@ import {
   timePickerSelectorOptionItemSelectedStyle,
   timePickerSelectorOptionItemColorStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
-import { ref, computed } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { ref, computed, inject } from "vue";
 
 import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";
 import { WizISchedule } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizPopup, WizPopupContainer } from "../../popup";
 
@@ -119,18 +120,26 @@ defineOptions({
   name: ComponentName.TimePicker,
 });
 
-interface Props {
-  value: string;
-  placeholder?: string;
-  width?: string;
-  disabled?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  value: "",
-  placeholder: "時間を選択",
-  width: "10rem",
-  disabled: false,
+const props = defineProps({
+  value: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: "時間を選択",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const openTimepicker = ref(false);
@@ -179,114 +188,14 @@ const timePickerSelectorOptionItemColor = (isSelected: boolean) =>
   isSelected ? "selected" : "default";
 
 const width = computed(() => props.width);
-const fontSizeSm = THEME.fontSize.sm;
-const fontSizeXs2 = THEME.fontSize.xs2;
-const spacingNo = THEME.spacing.no;
-const spacingXs = THEME.spacing.xs;
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXl3 = THEME.spacing.xl3;
-const colorWhite800 = THEME.color.white["800"];
-const colorGray300 = THEME.color.gray["300"];
-const colorGray400 = THEME.color.gray["400"];
-const colorGray500 = THEME.color.gray["500"];
-const colorGray600 = THEME.color.gray["600"];
-const colorGray700 = THEME.color.gray["700"];
-const colorGreen300 = THEME.color.green["300"];
-const colorGreen800 = THEME.color.green["800"];
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openTimepicker.value) return "active";
+  return "default";
+});
 </script>
-
-<style lang="scss" scoped>
-$border-width: 1px;
-
-.wiz-timepicker {
-  width: max-content;
-  padding: 0 v-bind(spacingXs2);
-  height: v-bind(spacingXl3);
-  background: v-bind(colorWhite800);
-  border: $border-width solid v-bind(colorGray400);
-  border-radius: v-bind(spacingXs2);
-  box-sizing: border-box;
-  cursor: pointer;
-
-  &--active {
-    border-color: v-bind(colorGreen800);
-  }
-
-  &--disabled {
-    color: v-bind(colorGray700);
-    background-color: v-bind(colorGray300);
-    cursor: not-allowed;
-  }
-
-  &__box {
-    height: 100%;
-    padding: v-bind(spacingNo) v-bind(spacingXs);
-    font-size: v-bind(fontSizeSm);
-    color: v-bind(colorGray500);
-    width: v-bind(width);
-
-    &--selected {
-      color: v-bind(colorGray700);
-    }
-  }
-
-  &__selector {
-    position: absolute;
-    top: calc(100% + $border-width * 2);
-    left: 0;
-    width: auto;
-    padding: v-bind(spacingXs);
-    background: v-bind(colorWhite800);
-    border-radius: v-bind(spacingXs2);
-    box-sizing: border-box;
-  }
-
-  &__scroll {
-    margin: v-bind(spacingXs2) 0;
-
-    // FireFox 用
-    scrollbar-width: thin;
-    scrollbar-color: v-bind(colorGray400) transparent;
-
-    &::-webkit-scrollbar {
-      width: v-bind(spacingXs2);
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: v-bind(colorGray400);
-      border-radius: v-bind(spacingXs2);
-    }
-  }
-
-  &__selector-option {
-    width: 2em;
-    position: relative;
-    margin: 0 v-bind(spacingXs);
-    padding: v-bind(spacingXs2);
-    font-size: v-bind(fontSizeXs2);
-    text-align: center;
-    box-sizing: border-box;
-    border-radius: v-bind(spacingXs2);
-    &-type {
-      color: v-bind(colorGray600);
-    }
-    &-item {
-      color: v-bind(colorGray700);
-      &:hover {
-        color: v-bind(colorGreen800);
-        background: v-bind(colorGreen300);
-        border-radius: v-bind(spacingXs2);
-      }
-
-      &:active {
-        color: v-bind(colorWhite800);
-        background: v-bind(colorGreen800);
-      }
-
-      &-selected {
-        color: v-bind(colorWhite800);
-        background: v-bind(colorGreen800);
-      }
-    }
-  }
-}
-</style>

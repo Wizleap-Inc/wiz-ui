@@ -1,9 +1,6 @@
 <template>
   <div
-    class="wiz-popup-container"
-    :class="{
-      'wiz-popup-container--expand': expand,
-    }"
+    :class="popupContainerStyle[expand ? 'expanded' : 'default']"
     ref="popupContainerRef"
   >
     <slot />
@@ -12,6 +9,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { popupContainerStyle } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { nextTick, provide, ref, watch } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
@@ -22,12 +20,16 @@ defineOptions({
   name: ComponentName.PopupContainer,
 });
 
-interface Props {
-  value: boolean;
-  expand?: boolean;
-}
-
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: Boolean,
+    required: true,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
+});
 
 interface Emits {
   (event: "input", value: boolean): void;
@@ -52,15 +54,3 @@ useClickOutside(popupContainerRef, () => {
   emit("input", false);
 });
 </script>
-
-<style lang="scss" scoped>
-.wiz-popup-container {
-  position: relative;
-  width: fit-content;
-  height: fit-content;
-
-  &--expand {
-    width: 100%;
-  }
-}
-</style>

@@ -38,7 +38,7 @@ import {
   panelSwitchBlockColorStyle,
   panelSwitchInputStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/panel-switch-input.css";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import { panelItems } from "./types";
 
@@ -46,12 +46,16 @@ defineOptions({
   name: ComponentName.PanelSwitch,
 });
 
-interface Props {
-  value: number;
-  items: panelItems[];
-}
-
-const props = defineProps<Props>();
+const props = defineProps({
+  value: {
+    type: Number,
+    required: true,
+  },
+  items: {
+    type: Array as PropType<panelItems[]>,
+    required: true,
+  },
+});
 
 interface Emit {
   (e: "input", value: number): void;

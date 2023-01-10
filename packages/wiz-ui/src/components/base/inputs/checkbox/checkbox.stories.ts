@@ -1,4 +1,5 @@
 import { StoryFn } from "@storybook/vue";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import { WizCheckBox } from ".";
@@ -7,6 +8,20 @@ export default {
   title: "Base/Input/CheckBox",
   component: WizCheckBox,
   argTypes: {
+    options: {
+      control: { type: "object" },
+    },
+    disabled: {
+      control: { type: "boolean" },
+    },
+    direction: {
+      control: { type: "select" },
+      options: ["horizontal", "vertical"],
+    },
+    gap: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
     input: {
       action: "input",
     },
@@ -53,11 +68,10 @@ export const SpotDisabled = Template.bind({});
 SpotDisabled.args = {
   options: [
     { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
+    { label: "test2", value: 2, disabled: true },
     { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test4", value: 4, disabled: true },
   ],
-  disabledKey: 1,
 };
 
 export const Vertical = Template.bind({});
@@ -69,4 +83,15 @@ Vertical.args = {
     { label: "test4", value: 4 },
   ],
   direction: "vertical",
+};
+
+export const Gap = Template.bind({});
+Gap.args = {
+  options: [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "test3", value: 3 },
+    { label: "test4", value: 4 },
+  ],
+  gap: "sm",
 };

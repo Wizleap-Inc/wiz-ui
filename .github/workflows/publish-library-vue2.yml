@@ -1,0 +1,51 @@
+name: Publish Wiz-UI library (Vue 2)
+
+env:
+  CI: true
+  PUBLISH_WORKSPACE: "@wizleap-inc/wiz-ui"
+  PUBLISH_DIR: "packages/wiz-ui"
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "!*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - uses: ./.github/composite/prepare_node
+        with:
+          node-version: ${{ matrix.node-version }}
+          runs-on: ${{ matrix.runs-on }}
+          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: build
+        run: yarn workspace ${{ env.PUBLISH_WORKSPACE }} build:lib
+
+      - name: publish
+        run: yarn workspace ${{ env.PUBLISH_WORKSPACE }} check:lib-publish && yarn workspace ${{ env.PUBLISH_WORKSPACE }} publish --access public || echo "No need to publish"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: set version to env
+        run: node -p -e '`VERSION=${require("./${{ env.PUBLISH_DIR }}/package.json").version}`' >> $GITHUB_ENV
+
+      - name: add version tag
+        uses: pkgdeps/git-tag-action@v2
+        with:
+          version: ${{ env.VERSION }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "Vue2-v"

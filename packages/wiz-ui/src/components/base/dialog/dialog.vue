@@ -34,7 +34,7 @@ import {
   dialogMaskStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/dialog.css";
 import { MountingPortal } from "portal-vue";
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 
 import { WizIconButton } from "@/components/base/buttons";
 import { WizCard } from "@/components/base/card";
@@ -45,15 +45,24 @@ defineOptions({
   name: ComponentName.Dialog,
 });
 
-interface Props {
-  value: boolean;
-  title?: string;
-  maxWidth?: string;
-  align?: "start" | "center" | "end";
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  maxWidth: "600px",
+const props = defineProps({
+  value: {
+    type: Boolean,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: false,
+  },
+  maxWidth: {
+    type: String,
+    required: false,
+    default: "600px",
+  },
+  align: {
+    type: String as PropType<"start" | "center" | "end">,
+    required: false,
+  },
 });
 
 interface Emit {

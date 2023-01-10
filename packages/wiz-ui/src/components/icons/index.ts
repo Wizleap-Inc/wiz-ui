@@ -3,12 +3,14 @@ import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
+import { default as WizIAutoRenew } from "./autorenew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizIChat } from "./chat.vue";
 import { default as WizICheckCircle } from "./check-circle.vue";
 import { default as WizIChevronLeft } from "./chevron-left.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
+import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
@@ -17,17 +19,19 @@ import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
-import { default as WizIHint } from "./hint.vue";
+import { default as WizIInfo } from "./info.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVert } from "./more-vert.vue";
+import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizITab } from "./tab.vue";
+import { default as WizITask } from "./task.vue";
 
 export type TIcon =
   | typeof WizIAdd
@@ -40,6 +44,7 @@ export type TIcon =
   | typeof WizICheckCircle
   | typeof WizIChevronRight
   | typeof WizIChevronLeft
+  | typeof WizICircleCheck
   | typeof WizIClose
   | typeof WizIDashboard
   | typeof WizIEditNote
@@ -48,7 +53,7 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIGroups
   | typeof WizIHelp
-  | typeof WizIHint
+  | typeof WizIInfo
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -59,7 +64,10 @@ export type TIcon =
   | typeof WizISchedule
   | typeof WizISend
   | typeof WizITab
-  | typeof WizICalendar;
+  | typeof WizICalendar
+  | typeof WizINoteAdd
+  | typeof WizITask
+  | typeof WizIAutoRenew;
 
 export {
   WizIAdd,
@@ -72,6 +80,7 @@ export {
   WizICheckCircle,
   WizIChevronRight,
   WizIChevronLeft,
+  WizICircleCheck,
   WizIClose,
   WizIDashboard,
   WizIEditNote,
@@ -80,7 +89,7 @@ export {
   WizIEye,
   WizIGroups,
   WizIHelp,
-  WizIHint,
+  WizIInfo,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
@@ -92,4 +101,7 @@ export {
   WizISend,
   WizITab,
   WizICalendar,
+  WizINoteAdd,
+  WizITask,
+  WizIAutoRenew,
 };

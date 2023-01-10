@@ -3,7 +3,7 @@
     <div
       :class="[
         datePickerStyle,
-        openDatepicker && datePickerActiveStyle,
+        inputBorderStyle[state],
         disabled && datePickerDisabledStyle,
       ]"
     >
@@ -44,7 +44,7 @@
             </div>
           </WizHStack>
           <WizCalendar
-            v-model="value"
+            v-model="calendarValue"
             :currentMonth="currentMonth"
             filledWeeks
           />
@@ -57,7 +57,6 @@
 <script setup lang="ts">
 import {
   datePickerStyle,
-  datePickerActiveStyle,
   datePickerDisabledStyle,
   datePickerBoxStyle,
   datePickerBoxColorStyle,
@@ -65,7 +64,8 @@ import {
   datePickerButtonBoxStyle,
   datePickerButtonBoxItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
-import { ref, computed } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { ref, computed, inject } from "vue";
 
 import {
   WizIcon,
@@ -80,19 +80,35 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
 } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
-interface Props {
-  value: Date;
-  placeholder?: string;
-  width?: string;
-  disabled?: boolean;
+interface Emit {
+  (e: "input", value: Date): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  placeholder: "日付を選択",
-  width: "10rem",
-  disabled: false,
+const props = defineProps({
+  value: {
+    type: Date,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: "日付を選択",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
+
+const emit = defineEmits<Emit>();
 
 const defaultCurrentMonth = new Date().setHours(0, 0, 0, 0);
 const currentMonth = ref(new Date(defaultCurrentMonth));
@@ -130,7 +146,22 @@ const currentDateTitle = computed(() => {
   }月`;
 });
 
+const calendarValue = computed({
+  get: () => props.value,
+  set: (value) => emit("input", value),
+});
+
 const datePickerBoxColor = computed(() =>
-  props.value ? "selected" : "default"
+  calendarValue.value ? "selected" : "default"
 );
+
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openDatepicker.value) return "active";
+  return "default";
+});
 </script>

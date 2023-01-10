@@ -2,6 +2,7 @@
   <button
     :class="[
       toggleButtonStyle,
+      toggleButtonSizeStyle[size],
       isActive && toggleButtonActiveStyle,
       disabled && toggleButtonDisabledStyle,
       rounded && toggleButtonRoundedStyle,
@@ -9,11 +10,11 @@
     :disabled="disabled"
     @click="onClick"
   >
-    <WizHStack align="center" gap="xs">
+    <WizHStack align="center" gap="xs2">
       <WizIcon
         :icon="isActive ? activeIcon : inActiveIcon"
         color="green.800"
-        size="xl2"
+        :size="iconSize"
       />
       <slot />
     </WizHStack>
@@ -27,8 +28,9 @@ import {
   toggleButtonActiveStyle,
   toggleButtonDisabledStyle,
   toggleButtonRoundedStyle,
+  toggleButtonSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
-import { ref } from "vue";
+import { ref, computed, PropType } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
@@ -38,20 +40,33 @@ defineOptions({
   name: ComponentName.ToggleButton,
 });
 
-interface Props {
-  inActiveIcon: TIcon;
-  activeIcon: TIcon;
-  disabled?: boolean;
-  rounded?: boolean;
-}
-
 interface Emits {
   (event: "click"): void;
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  rounded: true,
+const props = defineProps({
+  inActiveIcon: {
+    type: Object as PropType<TIcon>,
+    required: true,
+  },
+  activeIcon: {
+    type: Object as PropType<TIcon>,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  rounded: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  size: {
+    type: String as PropType<"sm" | "md" | "lg">,
+    required: false,
+    default: "md",
+  },
 });
 
 const isActive = ref(false);
@@ -63,4 +78,11 @@ const onClick = () => {
   isActive.value = !isActive.value;
   emits("click");
 };
+
+const iconSize = computed(() => {
+  if (props.size === "sm") return "xl";
+  if (props.size === "md") return "xl2";
+  if (props.size === "lg") return "xl3";
+  return undefined;
+});
 </script>

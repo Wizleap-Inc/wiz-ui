@@ -3,7 +3,7 @@
     <div
       :class="[
         selectBoxStyle,
-        openSelectBox && selectBoxActiveStyle,
+        inputBorderStyle[state],
         disabled && selectBoxDisabledStyle,
         selectBoxCursorStyle[selectBoxCursor],
       ]"
@@ -38,10 +38,7 @@
       </div>
     </div>
     <WizPopup layer="popover">
-      <div
-        :class="selectBoxSelectorStyle"
-        :style="{ 'min-width': `calc(${width} + ${BORDER_WIDTH} * 2)` }"
-      >
+      <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
         <WizVStack gap="xs2">
           <div
             :class="selectBoxSelectorOptionStyle"
@@ -58,11 +55,9 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  BORDER_WIDTH,
   selectBoxStyle,
-  selectBoxActiveStyle,
   selectBoxDisabledStyle,
   selectBoxCursorStyle,
   selectBoxInnerBoxStyle,
@@ -73,33 +68,49 @@ import {
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
-import { ref, computed } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { ref, computed, inject, PropType } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizHStack, WizVStack } from "../../stack";
 
-import { Option } from "./types";
+import { SelectBoxOption } from "./types";
 
 defineOptions({
   name: ComponentName.SelectBox,
 });
 
-interface Props {
-  options: Option[];
-  value: string;
-  placeholder?: string;
-  width?: string;
-  disabled?: boolean;
-  expand?: boolean;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  value: "",
-  placeholder: "選択してください",
-  width: "10rem",
-  disabled: false,
+const props = defineProps({
+  options: {
+    type: Array as PropType<SelectBoxOption[]>,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: "選択してください",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "10rem",
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 const openSelectBox = ref(false);
@@ -111,11 +122,11 @@ const toggleSelectBox = () => {
 };
 
 interface Emit {
-  (e: "input", value: string): void;
+  (e: "input", value: number): void;
 }
 const emit = defineEmits<Emit>();
 
-const onSelect = (value: string) => {
+const onSelect = (value: number) => {
   toggleSelectBox();
   emit("input", value);
 };
@@ -124,98 +135,15 @@ const selectBoxCursor = computed(() =>
   props.disabled ? "disabled" : "default"
 );
 
+// Form Control
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
-const fontSizeSm = THEME.fontSize.sm;
-const spacingNo = THEME.spacing.no;
-const spacingXs2 = THEME.spacing.xs2;
-const spacingXs = THEME.spacing.xs;
-const spacingXl = THEME.spacing.xl;
-const spacingXl3 = THEME.spacing.xl3;
-const colorWhite800 = THEME.color.white["800"];
-const colorGray300 = THEME.color.gray["300"];
-const colorGray400 = THEME.color.gray["400"];
-const colorGray500 = THEME.color.gray["500"];
-const colorGray700 = THEME.color.gray["700"];
-const colorGreen300 = THEME.color.green["300"];
-const colorGreen800 = THEME.color.green["800"];
+
+const state = computed(() => {
+  if (isError.value) return "error";
+  if (openSelectBox.value) return "active";
+  return "default";
+});
 </script>
-
-<style lang="scss" scoped>
-$border-width: 1px;
-
-.wiz-selectbox {
-  position: relative;
-  width: v-bind(computedWidth);
-  height: v-bind(spacingXl3);
-  background: v-bind(colorWhite800);
-  border: $border-width solid v-bind(colorGray400);
-  border-radius: v-bind(spacingXs2);
-  cursor: pointer;
-
-  &--active {
-    border-color: v-bind(colorGreen800);
-  }
-
-  &--disabled {
-    color: v-bind(colorGray700);
-    background-color: v-bind(colorGray300);
-    cursor: not-allowed;
-  }
-
-  &__box {
-    height: 100%;
-    padding: v-bind(spacingNo) v-bind(spacingXs);
-    font-size: v-bind(fontSizeSm);
-    color: v-bind(colorGray500);
-    width: 100%;
-    box-sizing: border-box;
-
-    &__selected-value {
-      overflow: hidden;
-    }
-
-    &-less {
-      fill: v-bind(colorGreen800);
-      font-size: v-bind(spacingXl);
-    }
-
-    &-more {
-      fill: v-bind(colorGray500);
-      font-size: v-bind(spacingXl);
-    }
-
-    &--selected {
-      color: v-bind(colorGray700);
-    }
-  }
-
-  &__selector {
-    min-width: calc(v-bind(width) + $border-width * 2);
-    padding: v-bind(spacingXs);
-    background: v-bind(colorWhite800);
-    border-radius: v-bind(spacingXs2);
-    box-sizing: border-box;
-    max-height: 25rem;
-    overflow-y: auto;
-  }
-
-  &__selector-option {
-    width: 100%;
-    padding: v-bind(spacingXs) v-bind(spacingXs2);
-    font-size: v-bind(fontSizeSm);
-    color: v-bind(colorGray700);
-    box-sizing: border-box;
-    cursor: pointer;
-
-    &:hover {
-      color: v-bind(colorGreen800);
-      background: v-bind(colorGreen300);
-    }
-
-    &:active {
-      color: v-bind(colorWhite800);
-      background: v-bind(colorGreen800);
-    }
-  }
-}
-</style>
