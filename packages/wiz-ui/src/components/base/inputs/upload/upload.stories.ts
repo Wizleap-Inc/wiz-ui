@@ -1,20 +1,21 @@
 import { StoryFn } from "@storybook/vue";
 
-import WizUploadInput from "./upload.vue";
+import { WizUpload } from ".";
 
 export default {
   title: "Base/Input/Upload",
-  component: WizUploadInput,
+  component: WizUpload,
+  argTypes: {},
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizUploadInput },
+  components: { WizUpload },
   setup() {
     const uploadUrl = "http://localhost:6006";
     return { uploadUrl };
   },
-  template: `<div style="padding:100px;"><WizUploadInput v-bind="$props" :uploadUrl="uploadUrl"></WizUploadInput></div>`,
+  template: `<div style="padding:100px;"><WizUpload v-bind="$props" :uploadUrl="uploadUrl"></WizUpload></div>`,
 });
 
 export const Default = Template.bind({});
