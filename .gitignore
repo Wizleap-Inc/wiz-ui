@@ -3,3 +3,4 @@ storybook-static
 coverage
 dist
 __screenshots__
+stats.html

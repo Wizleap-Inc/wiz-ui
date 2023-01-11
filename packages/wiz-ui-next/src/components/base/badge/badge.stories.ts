@@ -5,7 +5,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import { defineComponent } from "vue";
 
-import { WizAvatar, WizIcon } from "@/components";
+import { WizAvatar, WizIcon, WizIconButton } from "@/components";
 import { WizINotification } from "@/components/icons";
 
 import { WizBadge } from ".";
@@ -35,6 +35,9 @@ export default {
     size: {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
+    },
+    buttonClick: {
+      action: "buttonClick",
     },
   },
 } as Meta<typeof WizBadge>;
@@ -152,5 +155,18 @@ export const WithSlot: StoryFn<typeof WizBadge> = (args) => ({
       </WizBadge>
 
     </div>
+  `,
+});
+
+export const WithIconButton: StoryFn<typeof WizBadge> = (args) => ({
+  components: { WizBadge, WizIconButton, WizIcon },
+  setup: () => ({
+    WizINotification,
+    args,
+  }),
+  template: `
+  <WizBadge label="99+">
+    <WizIconButton size="xl4" :icon="WizINotification" variant="transparent" @click="args.buttonClick" />
+  </WizBadge>
   `,
 });

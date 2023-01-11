@@ -5,7 +5,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import Vue from "vue";
 
-import { WizAvatar, WizIcon } from "@/components";
+import { WizAvatar, WizIcon, WizIconButton } from "@/components";
 import { WizINotification } from "@/components/icons";
 
 import { WizBadge } from ".";
@@ -152,5 +152,18 @@ export const WithSlot: StoryFn = () => ({
       </WizBadge>
 
     </div>
+  `,
+});
+
+export const WithIconButton: StoryFn<typeof WizBadge> = (args) => ({
+  components: { WizBadge, WizIconButton, WizIcon },
+  setup: () => ({
+    WizINotification,
+    args,
+  }),
+  template: `
+  <WizBadge label="99+">
+    <WizIconButton size="xl4" :icon="WizINotification" variant="transparent" @click="args.buttonClick" />
+  </WizBadge>
   `,
 });
