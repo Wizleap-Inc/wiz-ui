@@ -41,7 +41,7 @@ export const uploadDisplayBarStyle = style({
   borderRadius: THEME.spacing.xs2,
 });
 
-export const checkCircleIconStyle = style({
+export const circleCheckIconStyle = style({
   height: "1.5rem",
   width: "1.5rem",
 });
@@ -52,11 +52,11 @@ export const attachFileIconStyle = style({
   width: "1.5rem",
 });
 
-export const checkCircleIconDefaultStyle = style({
+export const circleCheckIconDefaultStyle = style({
   fill: THEME.color.gray[400],
 });
 
-export const checkCircleIconCompletedStyle = style({
+export const circleCheckIconCompletedStyle = style({
   fill: THEME.color.green[800],
 });
 
