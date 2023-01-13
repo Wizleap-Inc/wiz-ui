@@ -57,7 +57,7 @@ const props = defineProps({
     required: true,
   },
   to: {
-    type: Object as PropType<RouterLinkProps["to"]>,
+    type: [Object, String] as PropType<RouterLinkProps["to"]>,
     required: true,
   },
 });

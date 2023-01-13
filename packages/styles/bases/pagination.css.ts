@@ -5,7 +5,7 @@ export const paginationStyle = style({
   width: "fit-content",
   background: THEME.color.white[500],
   borderRadius: THEME.spacing.max,
-  padding: `${THEME.spacing.sm} ${THEME.spacing.md}`,
+  padding: THEME.spacing.sm,
 });
 
 export const paginationButtonStyle = style({
@@ -17,6 +17,7 @@ export const paginationButtonStyle = style({
   justifyContent: "center",
   alignItems: "center",
   cursor: "pointer",
+  userSelect: "none",
 });
 
 export const paginationButtonVariantStyle = styleVariants({
