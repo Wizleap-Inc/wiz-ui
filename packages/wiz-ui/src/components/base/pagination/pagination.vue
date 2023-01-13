@@ -2,6 +2,7 @@
   <div :class="paginationStyle">
     <WizHStack gap="md">
       <div
+        v-if="activeValue > 1"
         :class="[
           paginationButtonStyle,
           paginationButtonVariantStyle['default'],
@@ -26,6 +27,7 @@
         {{ index }}
       </div>
       <div
+        v-if="activeValue < length"
         :class="[
           paginationButtonStyle,
           paginationButtonVariantStyle['default'],
