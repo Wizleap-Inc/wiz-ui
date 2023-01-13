@@ -15,7 +15,7 @@ export const tabPaneStyle = style({
 export const tabPaneVariantStyle = styleVariants({
   default: {
     cursor: "pointer",
-    color: THEME.color.gray[800],
+    color: THEME.color.gray[600],
     background: THEME.color.white[500],
   },
   active: {
@@ -25,7 +25,7 @@ export const tabPaneVariantStyle = styleVariants({
   },
   disabled: {
     background: THEME.color.white[800],
-    color: THEME.color.gray[800],
+    color: THEME.color.gray[600],
     cursor: "not-allowed",
     opacity: 0.5,
   },
