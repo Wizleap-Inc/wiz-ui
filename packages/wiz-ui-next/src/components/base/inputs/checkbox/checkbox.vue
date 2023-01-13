@@ -20,9 +20,12 @@
           ]"
           :for="`checkbox${key}`"
         >
+          <WizICheck
+            v-if="checkboxValue.includes(option.value)"
+            :class="checkboxIconStyle"
+          />
           <span
             :class="[
-              checkboxBlockStyle,
               checkboxValue.includes(option.value) && checkboxBlockCheckedStyle,
             ]"
             >{{ option.label }}</span
@@ -42,12 +45,13 @@ import {
   checkboxLabelCheckedStyle,
   checkboxLabelDisabledStyle,
   checkboxLabelCursorStyle,
-  checkboxBlockStyle,
+  checkboxIconStyle,
   checkboxBlockCheckedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import { computed, PropType } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
+import { WizICheck } from "@/components/icons";
 
 import { CheckBoxOption } from "./types";
 
