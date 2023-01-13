@@ -2,6 +2,7 @@ import path from "path";
 
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import Vue from "@vitejs/plugin-vue";
+import { visualizer } from "rollup-plugin-visualizer";
 import DefineOptions from "unplugin-vue-define-options/vite";
 import { defineConfig } from "vite";
 import Dts from "vite-plugin-dts";
@@ -14,6 +15,7 @@ export default defineConfig({
     }),
     DefineOptions(),
     vanillaExtractPlugin(),
+    visualizer(),
   ],
   resolve: {
     alias: {
@@ -34,5 +36,8 @@ export default defineConfig({
         },
       },
     },
+  },
+  define: {
+    __VUE_OPTIONS_API__: false,
   },
 });

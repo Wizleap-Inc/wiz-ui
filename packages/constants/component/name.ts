@@ -26,10 +26,13 @@ const IconComponentName = {
   IAdd: "WizIAdd",
   IRemove: "WizIRemove",
   IOpenInNew: "WizIOpenInNew",
+  ICheckCircle: "WizICheckCircle",
+  IAttachFile: "WizIAttachFile",
   ICalendar: "WizICalendar",
   INoteAdd: "WizINoteAdd",
   ITask: "WizITask",
   IAutoRenew: "WizIAutoRenew",
+  ICircleCheck: "WizICircleCheck",
 };
 
 export const ComponentName = {
@@ -78,6 +81,8 @@ export const ComponentName = {
   UnstyledTr: "WizUnstyledTr",
   UnstyledTh: "WizUnstyledTh",
   UnstyledTd: "WizUnstyledTd",
+  UploadInput: "WizUploadInput",
+  UploadDisplay: "WizUploadDisplay",
   Tag: "WizTag",
   TextArea: "WizTextArea",
   Tooltip: "WizTooltip",

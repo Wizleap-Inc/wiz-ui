@@ -121,7 +121,7 @@ const props = defineProps({
     type: Number,
     required: false,
   },
-  scroll: {
+  snapScroll: {
     type: String as PropType<"none" | "x" | "y" | "block" | "inline" | "both">,
     required: false,
   },
@@ -171,8 +171,8 @@ const computedStyle = computed(() => {
   if (props.transform) style.transform = props.transform;
   if (props.transition) style.transition = props.transition;
   if (props.opacity) style.opacity = props.opacity;
-  if (props.scroll) {
-    style.scrollSnapType = props.scroll;
+  if (props.snapScroll) {
+    style.scrollSnapType = props.snapScroll;
     style.overflow = "scroll";
   }
 
