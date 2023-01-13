@@ -14,6 +14,7 @@ export const checkboxInputStyle = style({
 });
 
 export const checkboxLabelStyle = style({
+  position: "relative",
   display: "flex",
   alignItems: "center",
   color: THEME.color.gray["600"],
@@ -49,39 +50,11 @@ export const checkboxLabelCursorStyle = styleVariants({
   },
 });
 
-export const checkboxBlockStyle = style({
-  ":before": {
-    content: "",
-    position: "absolute",
-    display: "none",
-    height: "1px",
-    width: "4px",
-    top: "11px",
-    left: "2px",
-    background: THEME.color.green["800"],
-    borderRadius: THEME.spacing.xs2,
-    transform: "rotate(45deg)",
-  },
-  ":after": {
-    content: "",
-    position: "absolute",
-    display: "none",
-    height: "1px",
-    width: "8px",
-    top: "10px",
-    left: "4px",
-    background: THEME.color.green["800"],
-    borderRadius: THEME.spacing.xs2,
-    transform: "rotate(-45deg)",
-  },
+export const checkboxIconStyle = style({
+  position: "absolute",
+  fill: THEME.color.green["800"],
 });
 
 export const checkboxBlockCheckedStyle = style({
   color: THEME.color.green["800"],
-  ":before": {
-    display: "block",
-  },
-  ":after": {
-    display: "block",
-  },
 });
