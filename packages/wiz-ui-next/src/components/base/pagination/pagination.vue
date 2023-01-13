@@ -15,7 +15,7 @@
         ></component>
       </div>
       <div
-        v-for="index in length"
+        v-for="index in displayIndex"
         :class="[
           paginationButtonStyle,
           paginationButtonVariantStyle[
@@ -83,4 +83,12 @@ const onUpdatePage = (index: number) => {
   if (index > props.length) return (activeValue.value = props.length);
   activeValue.value = index;
 };
+
+const displayIndex = computed(() => {
+  // if we have 10 pages
+  let from = activeValue.value - 2; // -2, -1, [activeValue], 1, 2
+  if (activeValue.value < 3) from = 1; // fixed to 1, 2, 3, 4, 5
+  if (activeValue.value > props.length - 2) from = props.length - 4; //  fixed to 6, 7, 8, 9, 10
+  return Array.from({ length: 5 }, (_, i) => from + i);
+});
 </script>

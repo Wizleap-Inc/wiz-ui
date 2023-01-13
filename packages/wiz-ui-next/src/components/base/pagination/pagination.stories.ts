@@ -31,7 +31,7 @@ const Template: StoryFn<typeof WizPagination> = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  length: 5,
+  length: 10,
 };
 Default.parameters = {
   docs: {
