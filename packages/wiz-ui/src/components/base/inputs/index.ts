@@ -7,3 +7,4 @@ export * from "./toggle-switch";
 export * from "./panel-switch";
 export * from "./timepicker";
 export * from "./datepicker";
+export * from "./upload";
