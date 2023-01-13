@@ -17,6 +17,7 @@ export const paginationButtonStyle = style({
   justifyContent: "center",
   alignItems: "center",
   cursor: "pointer",
+  userSelect: "none",
 });
 
 export const paginationButtonVariantStyle = styleVariants({
