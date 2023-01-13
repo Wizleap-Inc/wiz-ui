@@ -6,8 +6,7 @@ export const tabPaneStyle = style({
   alignItems: "center",
   justifyContent: "center",
   gap: THEME.spacing.xs2,
-  height: "100%",
-  padding: THEME.spacing.xs,
+  height: THEME.spacing.xl3,
   fontSize: THEME.fontSize.sm,
   borderRadius: `${THEME.spacing.xs2} ${THEME.spacing.xs2} 0 0`,
 });
