@@ -47,7 +47,7 @@ defineProps({
     required: false,
   },
   variant: {
-    type: String as PropType<"info" | "error" | "success">,
+    type: String as PropType<"info" | "error" | "success" | "mono">,
     required: false,
     default: "info",
   },
