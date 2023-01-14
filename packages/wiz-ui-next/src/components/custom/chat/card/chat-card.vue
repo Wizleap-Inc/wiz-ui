@@ -14,7 +14,7 @@
   >
     <WizCard shadow align="stretch">
       <template #mainHeaderArea>
-        <WizHStack align="center">
+        <WizHStack align="center" gap="xs2">
           <WizText color="gray.700" as="span" bold>
             {{ username }}
           </WizText>

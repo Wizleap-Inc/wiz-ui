@@ -198,7 +198,7 @@ WithBgColor.parameters = {
   docs: {
     description: {
       story:
-        "Badge の背景の色を変更することができます選択肢はVariablesのColorを参照してください。defaultは `red.800` です。",
+        "Badge の背景の色を変更することができます選択肢はVariablesのColorを参照してください。default は `red.800` です。",
     },
     source: {
       code: `

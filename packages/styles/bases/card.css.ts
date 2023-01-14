@@ -28,6 +28,7 @@ export const cardFitStyle = style({
 export const cardHeaderStyle = style({
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
   width: "100%",
 });
 
