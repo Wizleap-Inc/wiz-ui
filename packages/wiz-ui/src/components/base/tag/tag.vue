@@ -2,14 +2,13 @@
   <span
     :class="[
       tagStyle,
-      colorStyle[color],
+      tagColorStyle[variant],
       fontSizeStyle[fontSize],
       fontWeightStyle[fontWeight],
-      backgroundStyle[backgroundColor],
     ]"
     :style="{ width: width || 'max-content' }"
   >
-    <WizIcon v-if="icon" :icon="icon" :color="color" />
+    <WizIcon v-if="icon" :icon="icon" :color="tagIconColorStyle[variant]" />
     {{ label }}
   </span>
 </template>
@@ -17,14 +16,15 @@
 <script setup lang="ts">
 import {
   ComponentName,
-  ColorKeys,
   FontSizeKeys,
   FontWeightKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import { tagStyle } from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
-  backgroundStyle,
-  colorStyle,
+  tagStyle,
+  tagColorStyle,
+  tagIconColorStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
+import {
   fontSizeStyle,
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
@@ -46,15 +46,10 @@ defineProps({
     type: Object as PropType<TIcon>,
     required: false,
   },
-  color: {
-    type: String as PropType<ColorKeys>,
+  variant: {
+    type: String as PropType<"info" | "error" | "success">,
     required: false,
-    default: "white.800",
-  },
-  backgroundColor: {
-    type: String as PropType<ColorKeys>,
-    required: false,
-    default: "blue.800",
+    default: "info",
   },
   fontSize: {
     type: String as PropType<FontSizeKeys>,

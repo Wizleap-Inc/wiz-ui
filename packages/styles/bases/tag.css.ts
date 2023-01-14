@@ -1,5 +1,5 @@
-import { style } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { style, styleVariants } from "@vanilla-extract/css";
+import { ColorKeys, THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const tagStyle = style({
   borderRadius: THEME.spacing.xs2,
@@ -8,3 +8,24 @@ export const tagStyle = style({
   alignItems: "center",
   justifyContent: "center",
 });
+
+export const tagColorStyle = styleVariants({
+  info: {
+    backgroundColor: THEME.color.blue[800],
+    color: THEME.color.white[800],
+  },
+  error: {
+    backgroundColor: THEME.color.red[300],
+    color: THEME.color.red[800],
+  },
+  success: {
+    backgroundColor: THEME.color.green[300],
+    color: THEME.color.gray[700],
+  },
+});
+
+export const tagIconColorStyle: Record<string, ColorKeys> = {
+  info: "white.800",
+  error: "red.800",
+  success: "green.800",
+};
