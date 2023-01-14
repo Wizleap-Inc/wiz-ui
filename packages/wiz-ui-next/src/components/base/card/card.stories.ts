@@ -4,7 +4,13 @@ import {
   SPACING_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 
-import { WizTextButton } from "@/components";
+import {
+  WizTextButton,
+  WizTooltip,
+  WizIcon,
+  WizHStack,
+  WizIHelp,
+} from "@/components";
 
 import WizCard from "./card.vue";
 
@@ -38,12 +44,6 @@ export default {
       control: { type: "select" },
       options: ["start", "center", "end"],
     },
-    title: {
-      control: { type: "text" },
-    },
-    hint: {
-      control: { type: "text" },
-    },
   },
 } as Meta<typeof WizCard>;
 
@@ -51,10 +51,7 @@ const Template: StoryFn<typeof WizCard> = (args) => ({
   components: { WizCard, WizTextButton },
   setup: () => ({ args }),
   template: `<WizCard v-bind="args">
-      <template #mainHeaderArea>mainHeaderAreaスロット</template>
-      <template #subHeaderArea>subHeaderAreaスロット</template>
       defaultスロット
-      <template #footer><WizTextButton>保存する</WizTextButton></template>
     </WizCard>`,
 });
 
@@ -75,12 +72,45 @@ Align.args = {
   align: "center",
 };
 
-export const Title = Template.bind({});
-Title.args = {
-  title: "タイトル",
-};
+export const MainHeaderArea: StoryFn<typeof WizCard> = (args) => ({
+  components: { WizCard },
+  setup: () => ({ args }),
+  template: `<WizCard v-bind="args">
+      <template #mainHeaderArea>mainHeaderAreaスロット</template>
+      defaultスロット
+    </WizCard>`,
+});
 
-export const Hint = Template.bind({});
-Hint.args = {
-  hint: "ヒント",
-};
+export const MainHeaderAreaWithHint: StoryFn<typeof WizCard> = (args) => ({
+  components: { WizCard, WizTooltip, WizIcon, WizHStack },
+  setup: () => ({ args, WizIHelp }),
+  template: `<WizCard v-bind="args">
+      <template #mainHeaderArea>
+        <WizHStack align="center">
+          mainHeaderAreaスロット
+          <WizTooltip content="これはヒントです">
+            <WizIcon :icon="WizIHelp" color="gray.600" size="lg" />
+          </WizTooltip>
+        </WizHStack>
+      </template>
+      defaultスロット
+    </WizCard>`,
+});
+
+export const SubHeaderArea: StoryFn<typeof WizCard> = (args) => ({
+  components: { WizCard },
+  setup: () => ({ args }),
+  template: `<WizCard v-bind="args">
+      <template #subHeaderArea>subHeaderAreaスロット</template>
+      defaultスロット
+    </WizCard>`,
+});
+
+export const Footer: StoryFn<typeof WizCard> = (args) => ({
+  components: { WizCard, WizTextButton },
+  setup: () => ({ args }),
+  template: `<WizCard v-bind="args">
+      defaultスロット
+      <template #footer><WizTextButton>保存する</WizTextButton></template>
+    </WizCard>`,
+});

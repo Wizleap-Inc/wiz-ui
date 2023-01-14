@@ -36,9 +36,3 @@ export const cardHeaderMainStyle = style({
   alignItems: "center",
   gap: THEME.spacing.xs2,
 });
-
-export const cardHeaderTitleStyle = style({
-  fontSize: THEME.fontSize.md,
-  fontWeight: "bold",
-  color: THEME.color.gray[700],
-});
