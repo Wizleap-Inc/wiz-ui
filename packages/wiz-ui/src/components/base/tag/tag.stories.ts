@@ -31,6 +31,9 @@ export default {
     label: {
       control: { type: "text" },
     },
+    width: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -55,6 +58,12 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   label: "タグ",
   icon: WizIClose,
+};
+
+export const Width = Template.bind({});
+Width.args = {
+  label: "タグ",
+  width: "100px",
 };
 
 const OverviewTemplate: StoryFn = (_, { argTypes }) => ({

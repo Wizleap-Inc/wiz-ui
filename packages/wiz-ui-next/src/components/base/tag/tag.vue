@@ -7,6 +7,7 @@
       fontWeightStyle[fontWeight],
       backgroundStyle[backgroundColor],
     ]"
+    :style="{ width: width || 'max-content' }"
   >
     <WizIcon v-if="icon" :icon="icon" :color="color" />
     {{ label }}
@@ -64,6 +65,10 @@ defineProps({
     type: String as PropType<FontWeightKeys>,
     required: false,
     default: "normal",
+  },
+  width: {
+    type: String,
+    required: false,
   },
 });
 </script>

@@ -7,5 +7,4 @@ export const tagStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "max-content",
 });
