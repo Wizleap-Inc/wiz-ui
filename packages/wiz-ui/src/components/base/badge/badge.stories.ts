@@ -276,7 +276,6 @@ export const WithSlot: StoryFn = () => ({
     </div>
   `,
 });
-
 WithSlot.parameters = {
   docs: {
     description: {
@@ -301,19 +300,18 @@ WithSlot.parameters = {
   },
 };
 
-export const WithIconButton: StoryFn<typeof WizBadge> = (args) => ({
+export const WithIconButton: StoryFn<typeof WizBadge> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { WizBadge, WizIconButton, WizIcon },
   setup: () => ({
     WizINotification,
-    args,
   }),
   template: `
   <WizBadge label="99+">
-    <WizIconButton size="xl4" :icon="WizINotification" variant="transparent" @click="args.buttonClick" />
+    <WizIconButton size="xl4" :icon="WizINotification" variant="transparent"/>
   </WizBadge>
   `,
 });
-
 WithIconButton.parameters = {
   docs: {
     description: {
