@@ -52,7 +52,7 @@ const props = defineProps({
   },
   expand: {
     type: Boolean,
-    required: false,
+    required: true,
     default: false,
   },
 });

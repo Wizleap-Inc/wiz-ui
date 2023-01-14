@@ -2,7 +2,7 @@
   <div
     v-show="isPopupOpen"
     :class="[
-      popupStyle,
+      popupStyle[expand ? 'expanded' : 'default'],
       popupDirectionStyle[computedDirection],
       ['tl', 'tr', 'bl', 'br'].includes(direction)
         ? marginYStyle[gap]
@@ -54,6 +54,10 @@ const props = defineProps({
     >,
     required: false,
     default: "bl",
+  },
+  expand: {
+    type: Boolean,
+    required: false,
   },
 });
 

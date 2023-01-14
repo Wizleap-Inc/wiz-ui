@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const popupDirectionStyle = styleVariants({
@@ -36,10 +36,17 @@ export const popupDirectionStyle = styleVariants({
   },
 });
 
-export const popupStyle = style({
-  position: "absolute",
-  filter: `drop-shadow(${THEME.shadow.sm})`,
-  width: "max-content",
+export const popupStyle = styleVariants({
+  default: {
+    position: "absolute",
+    filter: `drop-shadow(${THEME.shadow.sm})`,
+    width: "max-content",
+  },
+  expanded: {
+    position: "absolute",
+    filter: `drop-shadow(${THEME.shadow.sm})`,
+    width: "100%",
+  },
 });
 
 export const popupContainerStyle = styleVariants({
@@ -49,6 +56,8 @@ export const popupContainerStyle = styleVariants({
     height: "fit-content",
   },
   expanded: {
+    position: "relative",
+    height: "fit-content",
     width: "100%",
   },
 });
