@@ -52,10 +52,41 @@ HaveImage.args = {
   alt: "avatar",
 };
 
+HaveImage.parameters = {
+  docs: {
+    description: {
+      story: "イメージの表示に成功したときに画像が表示されます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAvatar src="./public/images/avatar-1.png" alt="avatar"/>
+</template>
+      `,
+    },
+  },
+};
+
 export const FailToLoadImage = Template.bind({});
 FailToLoadImage.args = {
   src: "./public/images/avatar-0.png",
   alt: "avatar",
+};
+
+FailToLoadImage.parameters = {
+  docs: {
+    description: {
+      story:
+        "イメージの表示に失敗した場合は、画像の代わりに `alt` で指定した代替テキストが表示されます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAvatar src="./public/images/avatar-0.png" alt="avatar"/>
+</template>
+      `,
+    },
+  },
 };
 
 export const FailToLoadImageWithFallback = Template.bind({});
@@ -65,9 +96,41 @@ FailToLoadImageWithFallback.args = {
   fallback: "田",
 };
 
+FailToLoadImageWithFallback.parameters = {
+  docs: {
+    description: {
+      story:
+        "`fallback` を設定した場合、画像の表示に失敗した際に、`alt`の代わりに `fallback` で指定されたテキストが表示されます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAvatar src="./public/images/avatar-0.png" alt="avatar" fallback="田"/>
+</template>
+      `,
+    },
+  },
+};
+
 export const Clickable = Template.bind({});
 Clickable.args = {
   src: "./public/images/avatar-1.png",
   alt: "avatar",
   clickable: true,
+};
+
+Clickable.parameters = {
+  docs: {
+    description: {
+      story:
+        "`clickable`を `true` にすることで、`onClick` を有効にすることができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizAvatar src="./public/images/avatar-1.png" alt="avatar"/>
+</template>
+      `,
+    },
+  },
 };

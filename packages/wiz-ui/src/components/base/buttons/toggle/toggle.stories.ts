@@ -50,10 +50,40 @@ Disabled.args = {
   slotDefault: "顧客データ追加",
 };
 
+Disabled.parameters = {
+  docs: {
+    description: {
+      story:
+        "ボタンのクリックを `disabled`に設定できます。 default は `false` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizToggleButton disabled>{{ "顧客データ追加" }}</WizToggleButton>
+</template>
+      `,
+    },
+  },
+};
+
 export const Angled = Template.bind({});
 Angled.args = {
   rounded: false,
   slotDefault: "顧客データ追加",
+};
+Angled.parameters = {
+  docs: {
+    description: {
+      story: "ボタンの形を矩形にすることができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizToggleButton rounded>{{ "顧客データ追加" }}</WizToggleButton>
+</template>
+      `,
+    },
+  },
 };
 
 export const Size: StoryFn = (_, { argTypes }) => ({
@@ -71,3 +101,26 @@ export const Size: StoryFn = (_, { argTypes }) => ({
     </div>
   `,
 });
+
+Size.parameters = {
+  docs: {
+    description: {
+      story:
+        "ボタンの大きさを指定することができます。 'sm', 'md', 'lg' から選択できます。default は `md` です。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+    <WizToggleButton size="sm" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="args.onClick('Small')">{{ "顧客データ追加" }}</WizToggleButton>
+    <div>size = sm</div>
+    <WizToggleButton size="md" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="args.onClick('Medium')">{{ "顧客データ追加" }}</WizToggleButton>
+    <div>size = md</div>
+    <WizToggleButton size="lg" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="args.onClick('Large')">{{ "顧客データ追加" }}</WizToggleButton>
+    <div>size = lg</div>
+  </div>
+</template>
+      `,
+    },
+  },
+};

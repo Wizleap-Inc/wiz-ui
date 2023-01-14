@@ -44,6 +44,10 @@ export default {
       control: { type: "select" },
       options: ["start", "center", "end"],
     },
+    gap: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
   },
 };
 
@@ -60,6 +64,7 @@ export const Default = Template.bind({});
 export const Shadow = Template.bind({});
 Shadow.args = {
   shadow: true,
+  gap: "md",
 };
 
 export const Border = Template.bind({});
@@ -70,6 +75,11 @@ Border.args = {
 export const Align = Template.bind({});
 Align.args = {
   align: "center",
+};
+
+export const Gap = Template.bind({});
+Gap.args = {
+  gap: "xl",
 };
 
 export const MainHeaderArea: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
