@@ -46,7 +46,12 @@
             :key="'option' + key"
             @click="onSelect(option.value)"
           >
-            {{ option.label }}
+            <span>
+              {{ option.label }}
+            </span>
+            <span v-if="option.exLabel">
+              {{ option.exLabel }}
+            </span>
           </div>
         </WizVStack>
       </div>

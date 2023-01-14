@@ -38,10 +38,10 @@ const Template: StoryFn<typeof WizSelectBox> = (args) => ({
   `,
 });
 
-const _getDummyOptions = (label: string, count: number) => {
+const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   const options: SelectBoxOption[] = [];
   for (let i = 1; i <= count; i++) {
-    options.push({ label: label + i, value: i });
+    options.push({ label: label + i, value: i, exLabel });
   }
   return options;
 };
@@ -85,4 +85,9 @@ Expand.args = {
 export const ManyOptions = Template.bind({});
 ManyOptions.args = {
   options: _getDummyOptions("test", 15),
+};
+
+export const ExtraLabel = Template.bind({});
+ExtraLabel.args = {
+  options: _getDummyOptions("test", 3, "(10)"),
 };
