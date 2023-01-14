@@ -54,7 +54,7 @@ export default {
 const Template: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCard, WizTextButton },
-  template: `<WizCard v-bind="args">
+  template: `<WizCard v-bind="$props">
       defaultスロット
     </WizCard>`,
 });
@@ -85,7 +85,7 @@ Gap.args = {
 export const MainHeaderArea: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCard },
-  template: `<WizCard v-bind="args">
+  template: `<WizCard v-bind="$props">
       <template #mainHeaderArea>mainHeaderAreaスロット</template>
       defaultスロット
     </WizCard>`,
@@ -98,7 +98,7 @@ export const MainHeaderAreaWithHint: StoryFn<typeof WizCard> = (
   props: Object.keys(argTypes),
   components: { WizCard, WizTooltip, WizIcon, WizHStack },
   setup: () => ({ WizIHelp }),
-  template: `<WizCard v-bind="args">
+  template: `<WizCard v-bind="$props">
       <template #mainHeaderArea>
         <WizHStack align="center">
           mainHeaderAreaスロット
@@ -114,7 +114,7 @@ export const MainHeaderAreaWithHint: StoryFn<typeof WizCard> = (
 export const SubHeaderArea: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCard },
-  template: `<WizCard v-bind="args">
+  template: `<WizCard v-bind="$props">
       <template #subHeaderArea>subHeaderAreaスロット</template>
       defaultスロット
     </WizCard>`,
@@ -123,7 +123,7 @@ export const SubHeaderArea: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
 export const Footer: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCard, WizTextButton },
-  template: `<WizCard v-bind="args">
+  template: `<WizCard v-bind="$props">
       defaultスロット
       <template #footer><WizTextButton>保存する</WizTextButton></template>
     </WizCard>`,
