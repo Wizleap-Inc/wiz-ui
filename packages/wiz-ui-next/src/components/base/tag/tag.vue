@@ -1,7 +1,7 @@
 <template>
   <span
     :class="[
-      tagStlye,
+      tagStyle,
       colorStyle[color],
       fontSizeStyle[fontSize],
       fontWeightStyle[fontWeight],
@@ -20,7 +20,7 @@ import {
   FontSizeKeys,
   FontWeightKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import { tagStlye } from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
+import { tagStyle } from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
   backgroundStyle,
   colorStyle,
