@@ -6,9 +6,9 @@ export const gapStyle = styleVariants(SPACING_MAP, (gap) => ({
 }));
 
 export const gapXStyle = styleVariants(SPACING_MAP, (gapX) => ({
-  columnGap: `${gapX}`,
+  columnGap: gapX,
 }));
 
 export const gapYStyle = styleVariants(SPACING_MAP, (gapY) => ({
-  rowGap: `${gapY}`,
+  rowGap: gapY,
 }));
