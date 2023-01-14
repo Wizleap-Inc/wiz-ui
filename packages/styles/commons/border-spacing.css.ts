@@ -11,13 +11,13 @@ export const borderSpacingStyle = styleVariants(
 export const borderSpacingXStyle = styleVariants(
   SPACING_MAP,
   (borderSpacingX) => ({
-    borderSpacing: `0 ${borderSpacingX}`,
+    borderSpacing: `${borderSpacingX} 0`,
   })
 );
 
 export const borderSpacingYStyle = styleVariants(
   SPACING_MAP,
   (borderSpacingY) => ({
-    borderSpacing: `${borderSpacingY} 0`,
+    borderSpacing: `0 ${borderSpacingY}`,
   })
 );

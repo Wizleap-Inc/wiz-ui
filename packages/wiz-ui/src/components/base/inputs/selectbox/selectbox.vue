@@ -12,12 +12,12 @@
       <div
         :class="[
           selectBoxInnerBoxStyle,
-          !!value && selectBoxInnerBoxSelectedStyle,
+          !!isValueMatched && selectBoxInnerBoxSelectedStyle,
         ]"
         @click="toggleSelectBox"
       >
         <WizHStack align="center" justify="between" height="100%">
-          <span v-if="!value">{{ placeholder }}</span>
+          <span v-if="!isValueMatched">{{ placeholder }}</span>
           <span
             v-for="(option, key) in options"
             v-show="option.value === value"
@@ -145,5 +145,9 @@ const state = computed(() => {
   if (isError.value) return "error";
   if (openSelectBox.value) return "active";
   return "default";
+});
+
+const isValueMatched = computed(() => {
+  return props.options.some((option) => option.value === props.value);
 });
 </script>
