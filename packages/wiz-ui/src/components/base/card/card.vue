@@ -12,7 +12,7 @@
     ]"
     :style="{ maxWidth }"
   >
-    <WizVStack gap="md" :align="align">
+    <WizVStack :gap="gap" :align="align">
       <div
         v-if="title || (!title && $slots.subHeaderArea) || hint"
         :class="cardHeaderStyle"
@@ -113,6 +113,11 @@ defineProps({
   maxWidth: {
     type: String,
     required: false,
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "md",
   },
 });
 </script>
