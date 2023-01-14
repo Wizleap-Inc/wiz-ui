@@ -28,6 +28,7 @@ export const cardFitStyle = style({
 export const cardHeaderStyle = style({
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
   width: "100%",
 });
 
@@ -35,10 +36,4 @@ export const cardHeaderMainStyle = style({
   display: "flex",
   alignItems: "center",
   gap: THEME.spacing.xs2,
-});
-
-export const cardHeaderTitleStyle = style({
-  fontSize: THEME.fontSize.md,
-  fontWeight: "bold",
-  color: THEME.color.gray[700],
 });

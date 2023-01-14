@@ -1,8 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-import {
-  COLOR_MAP_ACCESSORS,
-  FONT_SIZE_ACCESSORS,
-} from "@wizleap-inc/wiz-ui-constants";
+import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizIClose } from "../../icons";
 
@@ -20,15 +17,14 @@ export default {
       control: { type: "select" },
       options: ["normal", "bold"],
     },
-    color: {
+    variant: {
       control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    backgroundColor: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
+      options: ["info", "error", "success", "mono"],
     },
     label: {
+      control: { type: "text" },
+    },
+    width: {
       control: { type: "text" },
     },
   },
@@ -57,16 +53,26 @@ WithIcon.args = {
   icon: WizIClose,
 };
 
-const OverviewTemplate: StoryFn = (_, { argTypes }) => ({
+export const Width = Template.bind({});
+Width.args = {
+  label: "タグ",
+  width: "100px",
+};
+
+export const Variant: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup: () => ({ WizIClose }),
   components: { WizTag },
   template: `
-    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-      <WizTag label="必須" />
-      <WizTag label="自動失注" color="red.800" backgroundColor="red.300" />
-      <WizTag label="申請完了" color="gray.700" backgroundColor="green.300" />
+    <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <WizTag label="必須" variant="info" :icon="WizIClose" />
+      <div>variant="info"</div>
+      <WizTag label="自動失注" variant="error" :icon="WizIClose" />
+      <div>variant="error"</div>
+      <WizTag label="申請完了" variant="success" :icon="WizIClose" />
+      <div>variant="success"</div>
+      <WizTag label="11/11(月)" variant="mono" :icon="WizIClose" />
+      <div>variant="mono"</div>
     </div>
   `,
 });
-
-export const Overview = OverviewTemplate.bind({});

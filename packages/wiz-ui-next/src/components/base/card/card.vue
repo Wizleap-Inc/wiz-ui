@@ -12,23 +12,20 @@
     ]"
     :style="{ maxWidth }"
   >
-    <WizVStack gap="md" :align="align">
+    <WizVStack :gap="gap" :align="align">
       <div
         v-if="
-          title ||
-          (!title && $slots.subHeaderArea && $slots.subHeaderArea()) ||
-          hint
+          ($slots.mainHeaderArea && $slots.mainHeaderArea()) ||
+          ($slots.subHeaderArea && $slots.subHeaderArea())
         "
         :class="cardHeaderStyle"
       >
-        <div :class="cardHeaderMainStyle">
-          <slot v-if="!title" name="mainHeaderArea" />
-          <div :class="cardHeaderTitleStyle">{{ title }}</div>
-          <WizTooltip v-if="hint" :content="hint">
-            <WizIcon :icon="WizIHelp" color="gray.600" size="lg" />
-          </WizTooltip>
+        <div>
+          <slot name="mainHeaderArea" />
         </div>
-        <slot name="subHeaderArea" />
+        <div>
+          <slot name="subHeaderArea" />
+        </div>
       </div>
       <div v-if="$slots.default && $slots.default()" :class="cardBodyStyle">
         <slot />
@@ -53,8 +50,6 @@ import {
   cardShadowStyle,
   cardBorderStyle,
   cardHeaderStyle,
-  cardHeaderMainStyle,
-  cardHeaderTitleStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/card.css";
 import {
   paddingStyle,
@@ -64,7 +59,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 
-import { WizVStack, WizIHelp, WizIcon, WizTooltip } from "@/components";
+import { WizVStack } from "@/components";
 
 defineOptions({
   name: ComponentName.Card,
@@ -117,6 +112,11 @@ defineProps({
   maxWidth: {
     type: String,
     required: false,
+  },
+  gap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "md",
   },
 });
 </script>
