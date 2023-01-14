@@ -44,6 +44,10 @@ export default {
     hint: {
       control: { type: "text" },
     },
+    gap: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
   },
 } as Meta<typeof WizCard>;
 
@@ -83,4 +87,9 @@ Title.args = {
 export const Hint = Template.bind({});
 Hint.args = {
   hint: "ヒント",
+};
+
+export const Gap = Template.bind({});
+Gap.args = {
+  gap: "xl",
 };

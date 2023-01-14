@@ -31,7 +31,7 @@ import {
   uploadInputStyle,
   uploadEnterStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/upload.css";
-import { ref, computed } from "vue";
+import { ref, computed, PropType } from "vue";
 
 import { WizVStack } from "@/components";
 
@@ -41,10 +41,16 @@ defineOptions({
   name: ComponentName.UploadInput,
 });
 
-interface Props {
-  uploadUrl: string;
-}
-const props = defineProps<Props>();
+const props = defineProps({
+  uploadUrl: {
+    type: String,
+    required: true,
+  },
+  requestHeaders: {
+    type: Object as PropType<Record<string, string>>,
+    required: false,
+  },
+});
 
 const isEnter = ref(false);
 const isUploading = ref(false);
@@ -76,6 +82,11 @@ const uploadFile = async (
   formData.append("file", file);
   const xhr = new XMLHttpRequest();
   xhr.open("POST", uploadUrl, true);
+  if (props.requestHeaders) {
+    for (const [key, value] of Object.entries(props.requestHeaders)) {
+      xhr.setRequestHeader(key, value);
+    }
+  }
   xhr.upload.onprogress = (event) => {
     if (event.lengthComputable) {
       onProgress(Math.round((event.loaded / event.total) * 100));

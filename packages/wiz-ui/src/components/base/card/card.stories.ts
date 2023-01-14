@@ -41,6 +41,10 @@ export default {
     hint: {
       control: { type: "text" },
     },
+    gap: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
   },
 };
 
@@ -63,4 +67,5 @@ Default.args = {
   slotFooter: "保存する",
   backgroundColor: "white.800",
   shadow: true,
+  gap: "md",
 };
