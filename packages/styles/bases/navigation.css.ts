@@ -15,6 +15,7 @@ export const navigationContainerStyle = style({
 export const navigationContainerItemsStyle = style({
   display: "flex",
   flexDirection: "column",
+  cursor: "pointer",
 });
 
 export const navigationContainerFooterStyle = style({
