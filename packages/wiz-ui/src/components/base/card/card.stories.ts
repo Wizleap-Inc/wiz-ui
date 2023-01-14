@@ -110,9 +110,9 @@ export const SubHeaderArea: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
     </WizCard>`,
 });
 
-export const Footer: StoryFn<typeof WizCard> = (args) => ({
+export const Footer: StoryFn<typeof WizCard> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { WizCard, WizTextButton },
-  setup: () => ({ args }),
   template: `<WizCard v-bind="args">
       defaultスロット
       <template #footer><WizTextButton>保存する</WizTextButton></template>
