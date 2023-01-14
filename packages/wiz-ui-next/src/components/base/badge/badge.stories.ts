@@ -59,10 +59,39 @@ export const Hidden = Template.bind({});
 Hidden.args = {
   hidden: true,
 };
+Hidden.parameters = {
+  docs: {
+    description: {
+      story:
+        "`コンポーネントを非表示にすることができます。default は`false` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizBadge hidden><sampleBadgedComponents /></WizBadge>
+</template>
+      `,
+    },
+  },
+};
 
 export const WithLabel = Template.bind({});
 WithLabel.args = {
   label: "99+",
+};
+WithLabel.parameters = {
+  docs: {
+    description: {
+      story: "Badge 内に label テキストを表示します。",
+    },
+    source: {
+      code: `
+<template>
+  <WizBadge label="99+"><sampleBadgedComponents /></WizBadge>
+</template>
+      `,
+    },
+  },
 };
 
 export const WithOffset: StoryFn<typeof WizBadge> = (args) => ({
@@ -83,6 +112,29 @@ export const WithOffset: StoryFn<typeof WizBadge> = (args) => ({
   `,
 });
 
+WithOffset.parameters = {
+  docs: {
+    description: {
+      story:
+        "Badge の位置を変更することができます。選択肢はVariablesのSpacingを参照してください。default は `no` です。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <template v-for="offset in SPACING_ACCESSORS">
+        <div>Offset = {{ offset }}</div>
+        <WizBadge label="99+" :offset="offset">
+          <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+        </WizBadge>
+      </template>
+    </div>
+</template>
+      `,
+    },
+  },
+};
+
 export const WithColor: StoryFn<typeof WizBadge> = (args) => ({
   components: { WizBadge, WizAvatar },
   setup: () => ({
@@ -100,6 +152,29 @@ export const WithColor: StoryFn<typeof WizBadge> = (args) => ({
     </div>
   `,
 });
+
+WithColor.parameters = {
+  docs: {
+    description: {
+      story:
+        "Badge の文字色を変更することができます。選択肢はVariablesのColorを参照してください。default は `white.800` です。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+    <template v-for="color in COLOR_MAP_ACCESSORS">
+      <div>Color = {{ color }}</div>
+      <WizBadge label="99+" :color="color">
+        <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+      </WizBadge>
+    </template>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const WithBgColor: StoryFn<typeof WizBadge> = (args) => ({
   components: { WizBadge, WizAvatar },
@@ -119,6 +194,29 @@ export const WithBgColor: StoryFn<typeof WizBadge> = (args) => ({
   `,
 });
 
+WithBgColor.parameters = {
+  docs: {
+    description: {
+      story:
+        "Badge の背景の色を変更することができます選択肢はVariablesのColorを参照してください。default は `red.800` です。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+    <template v-for="bgColor in COLOR_MAP_ACCESSORS">
+      <div>Background Color = {{ bgColor }}</div>
+      <WizBadge label="99+" :bg-color="bgColor">
+        <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+      </WizBadge>
+    </template>
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
 export const WithSize: StoryFn<typeof WizBadge> = (args) => ({
   components: { WizBadge, WizAvatar },
   setup: () => ({
@@ -137,6 +235,29 @@ export const WithSize: StoryFn<typeof WizBadge> = (args) => ({
   `,
 });
 
+WithSize.parameters = {
+  docs: {
+    description: {
+      story:
+        "Badge の大きさを変更することができます。`sm`, `md`, `lg` の中から選択できます。 default は `md` です。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+    <template v-for="bgColor in COLOR_MAP_ACCESSORS">
+      <div>Background Color = {{ bgColor }}</div>
+      <WizBadge label="99+" :bg-color="bgColor">
+        <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+      </WizBadge>
+    </template>
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
 export const WithSlot: StoryFn<typeof WizBadge> = (args) => ({
   components: { WizBadge, WizAvatar, WizIcon },
   setup: () => ({
@@ -153,10 +274,33 @@ export const WithSlot: StoryFn<typeof WizBadge> = (args) => ({
       <WizBadge label="99+" size="sm">
         <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
       </WizBadge>
-
     </div>
   `,
 });
+
+WithSlot.parameters = {
+  docs: {
+    description: {
+      story: "`<WizBadge>`にコンポーネントを内包して設定することもできます。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <div>Slot = WizIcon</div>
+      <WizBadge label="99+">
+        <WizIcon :icon="WizINotification" size="xl6" />
+      </WizBadge>
+      <div>Slot = WizAvatar</div>
+      <WizBadge label="99+" size="sm">
+        <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+      </WizBadge>
+    </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const WithIconButton: StoryFn<typeof WizBadge> = (args) => ({
   components: { WizBadge, WizIconButton, WizIcon },
@@ -170,3 +314,20 @@ export const WithIconButton: StoryFn<typeof WizBadge> = (args) => ({
   </WizBadge>
   `,
 });
+
+WithSlot.parameters = {
+  docs: {
+    description: {
+      story: "`<WizBadge>` に `<WizIconButton>` を内包することもできます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizBadge label="99+">
+    <WizIconButton size="xl4" :icon="WizINotification" variant="transparent" @click="args.buttonClick" />
+  </WizBadge>
+</template>
+      `,
+    },
+  },
+};
