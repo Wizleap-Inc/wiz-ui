@@ -34,6 +34,7 @@ export const selectBoxInnerBoxStyle = style({
 
 export const selectBoxInnerBoxSelectedValueStyle = style({
   overflow: "hidden",
+  textOverflow: "ellipsis",
 });
 
 export const selectBoxInnerBoxLessStyle = style({
