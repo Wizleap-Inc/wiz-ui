@@ -46,6 +46,134 @@ export const Default: StoryFn = (_, { argTypes }) => ({
     </WizCardTable>
   `,
 });
+Default.parameters = {
+  docs: {
+    description: {
+      component: `
+### WizCardTable
+
+WizCardTableは、カード調のテーブルを作成するコンポーネントです。
+一列ごとにカードとして生成されるため、Trに対してクリックイベントを設定することができます。
+router-pushなどと組み合わせて、クリックした行に対応するページに遷移するような使い方ができます。
+      `,
+    },
+    source: {
+      code: `
+<template>
+  <WizCardTable>
+    <WizCardThead>
+      <WizCardTr>
+        <WizCardTh>Column 1</WizCardTh>
+        <WizCardTh>Column 2</WizCardTh>
+        <WizCardTh>Column 3</WizCardTh>
+      </WizCardTr>
+    </WizCardThead>
+    <WizCardTbody>
+      <WizCardTr @click="onClick('Row 1')">
+        <WizCardTd>Row 1</WizCardTd>
+        <WizCardTd>Row 1</WizCardTd>
+        <WizCardTd>Row 1</WizCardTd>
+      </WizCardTr>
+      <WizCardTr @click="onClick('Row 2')">
+        <WizCardTd>Row 2</WizCardTd>
+        <WizCardTd>Row 2</WizCardTd>
+        <WizCardTd>Row 2</WizCardTd>
+      </WizCardTr>
+      <WizCardTr @click="onClick('Row 3')">
+        <WizCardTd>Row 3</WizCardTd>
+        <WizCardTd>Row 3</WizCardTd>
+        <WizCardTd>Row 3</WizCardTd>
+      </WizCardTr>
+    </WizCardTbody>
+  </WizCardTable>
+</template>
+
+<script setup lang="ts">
+import { WizCardTable, WizCardThead, WizCardTbody, WizCardTr, WizCardTh, WizCardTd } from "@/components/base/tables/card";
+
+export const onClick = (text: string) => {
+  console.log(text);
+};
+</script>
+      `,
+    },
+  },
+};
+
+export const UnionColumn: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizCardTable,
+    WizCardThead,
+    WizCardTbody,
+    WizCardTr,
+    WizCardTh,
+    WizCardTd,
+  },
+  template: `
+    <WizCardTable>
+      <WizCardThead>
+        <WizCardTr>
+          <WizCardTh v-for="i in 2" :key="i" :colSpan="2">Column {{ i }}</WizCardTh>
+        </WizCardTr>
+      </WizCardThead>
+      <WizCardTbody>
+        <WizCardTr v-for="i in 3" @click="onClick('Row ' + i)">
+          <WizCardTd v-for="j in 4" :key="j">Row {{ i }}</WizCardTd>
+        </WizCardTr>
+      </WizCardTbody>
+    </WizCardTable>
+  `,
+});
+UnionColumn.parameters = {
+  docs: {
+    description: {
+      story: "`colSpan`を指定することで、列を結合することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizCardTable>
+    <WizCardThead>
+      <WizCardTr>
+        <WizCardTh :colSpan="2">Column 1</WizCardTh>
+        <WizCardTh :colSpan="2">Column 2</WizCardTh>
+      </WizCardTr>
+    </WizCardThead>
+    <WizCardTbody>
+      <WizCardTr @click="onClick('Row 1')">
+        <WizCardTd>Row 1</WizCardTd>
+        <WizCardTd>Row 1</WizCardTd>
+        <WizCardTd>Row 1</WizCardTd>
+        <WizCardTd>Row 1</WizCardTd>
+      </WizCardTr>
+      <WizCardTr @click="onClick('Row 2')">
+        <WizCardTd>Row 2</WizCardTd>
+        <WizCardTd>Row 2</WizCardTd>
+        <WizCardTd>Row 2</WizCardTd>
+        <WizCardTd>Row 2</WizCardTd>
+      </WizCardTr>
+      <WizCardTr @click="onClick('Row 3')">
+        <WizCardTd>Row 3</WizCardTd>
+        <WizCardTd>Row 3</WizCardTd>
+        <WizCardTd>Row 3</WizCardTd>
+        <WizCardTd>Row 3</WizCardTd>
+      </WizCardTr>
+    </WizCardTbody>
+  </WizCardTable>
+</template>
+
+<script setup lang="ts">
+import { WizCardTable, WizCardThead, WizCardTbody, WizCardTr, WizCardTh, WizCardTd } from "@/components/base/tables/card";
+
+export const onClick = (text: string) => {
+  console.log(text);
+};
+</script>
+      `,
+    },
+  },
+};
 
 export const Example: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
