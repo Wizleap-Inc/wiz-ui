@@ -1,23 +1,24 @@
 <template>
-  <div :class="tooltipStyle">
+  <span :class="tooltipStyle">
     <slot />
-    <span :class="tooltipBlockStyle" v-if="content || slots.content">
-      <span :class="tooltipContentStyle">
-        {{ content }}
-        <slot v-if="!content" name="content" />
-      </span>
+    <span :class="tooltipContentStyle" v-if="content || slots.content">
+      {{ content }}
+      <slot v-if="!content" name="content" />
+      <WizIChangeHistory :class="tooltipIconStyle" />
     </span>
-  </div>
+  </span>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   tooltipStyle,
-  tooltipBlockStyle,
   tooltipContentStyle,
+  tooltipIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
 import { useSlots } from "vue";
+
+import { WizIChangeHistory } from "@/components/icons";
 
 defineOptions({
   name: ComponentName.Tooltip,
