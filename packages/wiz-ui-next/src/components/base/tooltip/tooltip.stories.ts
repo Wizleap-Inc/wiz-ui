@@ -26,13 +26,13 @@ const Template: StoryFn<typeof WizTooltip> = (args) => ({
     </div>`,
 });
 
-export const Oneline = Template.bind({});
-Oneline.args = {
+export const Default = Template.bind({});
+Default.args = {
   content: "保険見直し、つみたて・投資、ライフプラン",
 };
 
-export const Newline = Template.bind({});
-Newline.args = {
+export const NewLine = Template.bind({});
+NewLine.args = {
   content:
-    "保険見直し、つみたて・投資、ライフプラン保険見直し、つみたて・投資、ライフプラン",
+    "保険見直し、つみたて・投資、ライフプラン\n 保険見直し、つみたて・投資、ライフプラン",
 };
