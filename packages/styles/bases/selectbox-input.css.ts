@@ -64,6 +64,7 @@ export const selectBoxSelectorOptionStyle = style({
   width: "100%",
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["700"],
