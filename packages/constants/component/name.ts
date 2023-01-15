@@ -33,6 +33,7 @@ const IconComponentName = {
   ITask: "WizITask",
   IAutoRenew: "WizIAutoRenew",
   ICircleCheck: "WizICircleCheck",
+  IChangeHistory: "WizIChangeHistory",
   IUpload: "WizIUpload",
   IDownload: "WizIDownload",
 };

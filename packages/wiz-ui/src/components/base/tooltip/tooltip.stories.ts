@@ -15,18 +15,26 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTooltip },
-  template: `<div style="padding:100px;"><WizTooltip v-bind="$props">{{ slot }}<template #content>コンテンツがない場合に表示するスロット</template></WizTooltip></div>`,
+  template: `
+    <div style="padding:100px;">
+      <WizTooltip v-bind="$props">
+        {{ text }}
+        <template #content>
+          コンテンツがない場合に表示するスロット
+        </template>
+      </WizTooltip>
+    </div>`,
 });
 
-export const Oneline = Template.bind({});
-Oneline.args = {
+export const Default = Template.bind({});
+Default.args = {
   content: "保険見直し、つみたて・投資、ライフプラン",
-  slot: "保険見直し、つみ…",
+  text: "保険見直し、つみ…",
 };
 
-export const Newline = Template.bind({});
-Newline.args = {
+export const NewLine = Template.bind({});
+NewLine.args = {
   content:
-    "保険見直し、つみたて・投資、ライフプラン保険見直し、つみたて・投資、ライフプラン",
-  slot: "保険見直し、つみ…",
+    "保険見直し、つみたて・投資、ライフプラン\n 保険見直し、つみたて・投資、ライフプラン",
+  text: "保険見直し、つみ…",
 };
