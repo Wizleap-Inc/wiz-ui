@@ -34,5 +34,5 @@ Default.args = {
 export const NewLine = Template.bind({});
 NewLine.args = {
   content:
-    "保険見直し、つみたて・投資、ライフプラン\n 保険見直し、つみたて・投資、ライフプラン",
+    "保険見直し、つみたて・投資、ライフプラン\n保険見直し、つみたて・投資、ライフプラン",
 };
