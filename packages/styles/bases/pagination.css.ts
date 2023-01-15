@@ -1,17 +1,31 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
+const PAGINATION_BTN_SIZE = THEME.spacing.xl3;
+const PAGINATION_GAP_SIZE = THEME.spacing.md;
+
 export const paginationStyle = style({
   width: "fit-content",
   background: THEME.color.white[500],
   borderRadius: THEME.spacing.max,
   padding: THEME.spacing.sm,
+  display: "flex",
+  gap: PAGINATION_GAP_SIZE,
+});
+
+export const paginationGapStyle = styleVariants({
+  left: {
+    marginLeft: `calc(${PAGINATION_BTN_SIZE} + ${PAGINATION_GAP_SIZE})`,
+  },
+  right: {
+    marginRight: `calc(${PAGINATION_BTN_SIZE} + ${PAGINATION_GAP_SIZE})`,
+  },
 });
 
 export const paginationButtonStyle = style({
   fontSize: THEME.fontSize.sm,
-  height: THEME.spacing.xl3,
-  width: THEME.spacing.xl3,
+  height: PAGINATION_BTN_SIZE,
+  width: PAGINATION_BTN_SIZE,
   borderRadius: THEME.spacing.max,
   display: "flex",
   justifyContent: "center",

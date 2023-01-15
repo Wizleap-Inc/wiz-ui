@@ -49,7 +49,23 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  minWidth: {
+    type: String,
+    required: false,
+  },
+  maxWidth: {
+    type: String,
+    required: false,
+  },
   height: {
+    type: String,
+    required: false,
+  },
+  minHeight: {
+    type: String,
+    required: false,
+  },
+  maxHeight: {
     type: String,
     required: false,
   },
@@ -136,7 +152,11 @@ const computedStyle = computed(() => {
   if (props.bottom) style.bottom = props.bottom;
   if (props.left) style.left = props.left;
   if (props.width) style.width = props.width;
+  if (props.minWidth) style.minWidth = props.minWidth;
+  if (props.maxWidth) style.maxWidth = props.maxWidth;
   if (props.height) style.height = props.height;
+  if (props.minHeight) style.minHeight = props.minHeight;
+  if (props.maxHeight) style.maxHeight = props.maxHeight;
   if (props.round) style.borderRadius = getSpacingCss(props.round);
   if (props.roundT) {
     style.borderRadius = `${getSpacingCss(props.roundT)} ${getSpacingCss(

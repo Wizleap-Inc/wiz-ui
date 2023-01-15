@@ -60,9 +60,40 @@ Disabled.args = {
   disabled: true,
 };
 
+Disabled.parameters = {
+  docs: {
+    description: {
+      story:
+        "ボタンのクリックを `disabled`に設定できます。 default は `false` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTextButton disabled @click="click">{{ "保存する" }}</WizTextButton>
+</template>
+      `,
+    },
+  },
+};
+
 export const Angled = Template.bind({});
 Angled.args = {
   rounded: false,
+};
+Angled.parameters = {
+  docs: {
+    description: {
+      story:
+        "ボタンの大きさを指定することができます。 'sm', 'md', 'lg', xl' から選択できます。default は `md` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTextButton rounded @click="click">{{ "保存する" }}</WizTextButton>
+</template>
+      `,
+    },
+  },
 };
 
 export const Expand = Template.bind({});
@@ -70,15 +101,65 @@ Expand.args = {
   expand: true,
 };
 
+Expand.parameters = {
+  docs: {
+    description: {
+      story: "`expand` を指定すると、ボタンは幅いっぱいに広がります。 ",
+    },
+    source: {
+      code: `
+<template>
+  <WizTextButton expand @click="click">{{ "保存する" }}</WizTextButton>
+</template>
+      `,
+    },
+  },
+};
+
 export const Icon = Template.bind({});
 Icon.args = {
   icon: WizIAdd,
+};
+
+Icon.parameters = {
+  docs: {
+    description: {
+      story:
+        "アイコンを指定することができます。`WizI`というPrefixのコンポーネントがアイコンなのでそれを渡してください。選択肢はIconsを参照してください。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTextButton :icon="WizIAdd" @click="click">{{ "保存する" }}</WizTextButton>
+</template>
+      `,
+    },
+  },
 };
 
 export const IconPosition = Template.bind({});
 IconPosition.args = {
   icon: WizIAdd,
   iconPosition: "right",
+};
+
+IconPosition.parameters = {
+  docs: {
+    description: {
+      story: `
+アイコンの配置を指定することができます。
+- left: 左寄せ
+- right: 右寄せ
+`,
+    },
+    source: {
+      code: `
+<template>
+  <WizTextButton :icon="WizIAdd" iconPosition="right" @click="click">{{ "保存する" }}</WizTextButton>
+</template>
+      `,
+    },
+  },
 };
 
 export const Variant: StoryFn<typeof WizTextButton> = (args) => ({
@@ -93,6 +174,27 @@ export const Variant: StoryFn<typeof WizTextButton> = (args) => ({
     </div>
   `,
 });
+
+Variant.parameters = {
+  docs: {
+    description: {
+      story:
+        "`variant` により、IconButton の色を決められたテーマ色に変更することができます。'primary', 'sub', 'transparent', 'link', から選択できます。 default は`primary` です。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+    <WizTextButton variant="primary">保存する</WizTextButton>
+    <div>variant = primary</div>
+    <WizTextButton variant="sub">保存する</WizTextButton>
+    <div>variant = sub</div>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const Size: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
@@ -110,3 +212,26 @@ export const Size: StoryFn<typeof WizTextButton> = (args) => ({
     </div>
   `,
 });
+
+Size.parameters = {
+  docs: {
+    description: {
+      story:
+        "ボタンの大きさを指定することができます。 'sm', 'md', 'lg', xl' から選択できます。default は `md` です。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+    <WizTextButton size="sm" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="args.onClick('Small')">{{ "顧客データ追加" }}</WizTextButton>
+    <div>size = sm</div>
+    <WizTextButton size="md" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="args.onClick('Medium')">{{ "顧客データ追加" }}</WizTextButton>
+    <div>size = md</div>
+    <WizTextButton size="lg" :inActiveIcon="WizIAdd" :activeIcon="WizIRemove" @click="args.onClick('Large')">{{ "顧客データ追加" }}</WizTextButton>
+    <div>size = lg</div>
+  </div>
+</template>
+      `,
+    },
+  },
+};

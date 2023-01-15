@@ -14,6 +14,7 @@ import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
+import { default as WizIDownload } from "./download.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
@@ -33,6 +34,7 @@ import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
+import { default as WizIUpload } from "./upload.vue";
 
 export type TIcon =
   | typeof WizIAdd
@@ -69,7 +71,9 @@ export type TIcon =
   | typeof WizICalendar
   | typeof WizINoteAdd
   | typeof WizITask
-  | typeof WizIAutoRenew;
+  | typeof WizIAutoRenew
+  | typeof WizIUpload
+  | typeof WizIDownload;
 
 export {
   WizIAdd,
@@ -107,4 +111,6 @@ export {
   WizINoteAdd,
   WizITask,
   WizIAutoRenew,
+  WizIUpload,
+  WizIDownload,
 };

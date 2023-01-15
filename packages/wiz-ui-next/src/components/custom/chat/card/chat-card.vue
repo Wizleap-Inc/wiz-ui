@@ -14,16 +14,18 @@
   >
     <WizCard shadow align="stretch">
       <template #mainHeaderArea>
-        <WizText color="gray.700" as="span" bold>
-          {{ username }}
-        </WizText>
-        <WizBox
-          v-if="haveNewMessage"
-          :width="THEME.fontSize.md"
-          :height="THEME.fontSize.md"
-          bgColor="red.800"
-          round="max"
-        />
+        <WizHStack align="center" gap="xs2">
+          <WizText color="gray.700" as="span" bold>
+            {{ username }}
+          </WizText>
+          <WizBox
+            v-if="haveNewMessage"
+            :width="THEME.fontSize.md"
+            :height="THEME.fontSize.md"
+            bgColor="red.800"
+            round="max"
+          />
+        </WizHStack>
       </template>
       <template #subHeaderArea>
         <WizIcon
@@ -42,8 +44,7 @@
             <WizHStack justify="center">
               <WizTag
                 :label="formatDateToMonthDayWeek(messages.date)"
-                color="gray.900"
-                backgroundColor="gray.300"
+                variant="mono"
                 fontSize="xs2"
               />
             </WizHStack>

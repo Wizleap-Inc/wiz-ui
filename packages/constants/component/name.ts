@@ -34,6 +34,8 @@ const IconComponentName = {
   IAutoRenew: "WizIAutoRenew",
   ICircleCheck: "WizICircleCheck",
   IChangeHistory: "WizIChangeHistory",
+  IUpload: "WizIUpload",
+  IDownload: "WizIDownload",
 };
 
 export const ComponentName = {
