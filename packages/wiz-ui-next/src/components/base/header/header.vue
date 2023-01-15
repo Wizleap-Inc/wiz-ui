@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[headerStyle, sticky && headerStickyStyle]"
-    :style="{ zIndex: headerZIndex }"
+    :style="{ zIndex: currentZIndex }"
   >
     <WizHStack align="center" justify="between" height="100%">
       <WizHStack align="center" :gap="gapLeft" pl="lg">
@@ -57,6 +57,5 @@ defineProps({
 
 const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
 const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen.value);
-const { nextZIndex } = useZIndex(THEME.zIndex.base);
-const headerZIndex = nextZIndex();
+const { currentZIndex } = useZIndex(THEME.zIndex.floating);
 </script>
