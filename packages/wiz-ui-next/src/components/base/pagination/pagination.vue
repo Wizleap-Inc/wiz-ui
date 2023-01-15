@@ -85,6 +85,9 @@ const onUpdatePage = (index: number) => {
 };
 
 const displayIndex = computed(() => {
+  // if we have less than 5 pages, display all pages
+  if (props.length <= 5)
+    return Array.from({ length: props.length }, (_, i) => i + 1);
   // if we have 10 pages
   let from = activeValue.value - 2; // -2, -1, [activeValue], 1, 2
   if (activeValue.value < 3) from = 1; // fixed to 1, 2, 3, 4, 5
