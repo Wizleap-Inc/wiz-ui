@@ -6,6 +6,7 @@ import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./autorenew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
+import { default as WizIChangeHistory } from "./change-history.vue";
 import { default as WizIChat } from "./chat.vue";
 import { default as WizICheck } from "./check.vue";
 import { default as WizIChevronLeft } from "./chevron-left.vue";
@@ -40,6 +41,7 @@ export type TIcon =
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIBusinessCenter
+  | typeof WizIChangeHistory
   | typeof WizIChat
   | typeof WizICheck
   | typeof WizIChevronRight
@@ -76,6 +78,7 @@ export {
   WizIAssignment,
   WizIAttachFile,
   WizIBusinessCenter,
+  WizIChangeHistory,
   WizIChat,
   WizICheck,
   WizIChevronRight,
