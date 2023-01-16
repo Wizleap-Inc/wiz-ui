@@ -153,6 +153,7 @@ Title.parameters = {
 export const Align = Template.bind({});
 Align.args = {
   align: "center",
+  slotFooter: ExampleFooterComponent,
 };
 Align.parameters = {
   docs: {
