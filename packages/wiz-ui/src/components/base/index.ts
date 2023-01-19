@@ -26,3 +26,4 @@ export * from "./calendar";
 export * from "./menu";
 export * from "./pagination";
 export * from "./skeleton";
+export * from "./graphs";
