@@ -108,5 +108,6 @@ export const ComponentName = {
   SelectBox: "WizSelectBox",
   Dialog: "WizDialog",
   Provider: "WizProvider",
+  CircleGraph: "WizCircleGraph",
   ...IconComponentName,
 } as const;
