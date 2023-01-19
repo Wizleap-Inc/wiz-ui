@@ -43,6 +43,12 @@ import {
   CircleBarPercentageStyle,
   CircleBarStyle,
   GRAPH_COLORS,
+  STROKE_WIDTH,
+  VIEW_BOX_SIZE,
+  HALF_VIEW_BOX_SIZE,
+  RADIUS,
+  DIAMETER,
+  MARGIN_OF_CIRCLE,
 } from "@wizleap-inc/wiz-ui-styles/bases/circle-graph.css";
 import { computed, PropType } from "vue";
 
@@ -52,13 +58,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const STROKE_WIDTH = 1.8;
-const VIEW_BOX_SIZE = 36;
-const HALF_VIEW_BOX_SIZE = VIEW_BOX_SIZE / 2;
-const RADIUS = 100 / (2 * Math.PI);
-const DIAMETER = RADIUS * 2;
-const MARGIN_OF_CIRCLE = (VIEW_BOX_SIZE - DIAMETER) / 2;
 
 const percentagesForDisplay = computed(() => {
   let startRotatedPercentage = 0;

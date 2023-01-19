@@ -9,6 +9,13 @@ export const GRAPH_COLORS = [
   THEME.color.gray[300],
 ];
 
+export const STROKE_WIDTH = 1.8;
+export const VIEW_BOX_SIZE = 36;
+export const HALF_VIEW_BOX_SIZE = VIEW_BOX_SIZE / 2;
+export const RADIUS = 100 / (2 * Math.PI);
+export const DIAMETER = RADIUS * 2;
+export const MARGIN_OF_CIRCLE = (VIEW_BOX_SIZE - DIAMETER) / 2;
+
 const VERTICAL_GAP = THEME.spacing.lg;
 const LABEL_AREA_HEIGHT = THEME.fontSize.xl;
 
