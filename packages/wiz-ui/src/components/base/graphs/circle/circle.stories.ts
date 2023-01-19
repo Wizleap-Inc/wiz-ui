@@ -8,13 +8,13 @@ import { WizCircleGraph } from ".";
 
 export default {
   title: "Base/Graphs/Circle",
-  components: WizCircleGraph,
+  component: WizCircleGraph,
   argTypes: {
     otherLabels: {
-      type: "text",
+      control: { type: "text" },
     },
     data: {
-      type: "array",
+      control: { type: "array" },
     },
   },
 } as Meta<typeof WizCircleGraph>;
