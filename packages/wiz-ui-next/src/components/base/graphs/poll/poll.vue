@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   PollGraphWrapperStyle,
   PollGraphDividerStyle,
@@ -36,6 +37,10 @@ import { onMounted, PropType, ref } from "vue";
 
 import Row from "./row.vue";
 import { PollGraphData } from "./types";
+
+defineOptions({
+  name: ComponentName.PollGraph,
+});
 
 defineProps({
   isColorFixed: {

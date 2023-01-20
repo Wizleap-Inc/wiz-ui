@@ -109,5 +109,8 @@ export const ComponentName = {
   Dialog: "WizDialog",
   Provider: "WizProvider",
   CircleGraph: "WizCircleGraph",
+  PollGraph: "WizPollGraph",
+  TransitionGraph: "WizTransitionGraph",
+  MeterGraph: "WizMeterGraph",
   ...IconComponentName,
 } as const;
