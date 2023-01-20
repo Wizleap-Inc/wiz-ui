@@ -27,7 +27,7 @@ const Template: StoryFn<typeof WizPollGraph> = (args) => ({
   setup: () => ({ args }),
   components: { WizPollGraph },
   template: `
-    <WizPollGraph v-bind="$props"/>
+    <WizPollGraph v-bind="args"/>
   `,
 });
 
