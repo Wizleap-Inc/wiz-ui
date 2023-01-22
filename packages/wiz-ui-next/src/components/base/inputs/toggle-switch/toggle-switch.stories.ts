@@ -28,3 +28,17 @@ const Template: StoryFn<typeof WizToggleSwitch> = (args) => ({
 });
 
 export const Default = Template.bind({});
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizToggleSwitch v-bind="$props" v-model="value" />
+  </div>
+</template>
+      `,
+    },
+  },
+};
