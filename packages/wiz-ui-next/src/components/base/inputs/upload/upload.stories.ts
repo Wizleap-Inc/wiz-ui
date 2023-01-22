@@ -18,3 +18,14 @@ const Template: StoryFn<typeof WizUpload> = (args) => ({
 });
 
 export const Default = Template.bind({});
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <div style="padding:100px;"><WizUpload :uploadUrl="uploadUrl"></WizUpload></div>
+</template>
+      `,
+    },
+  },
+};
