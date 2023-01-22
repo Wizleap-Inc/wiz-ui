@@ -40,22 +40,74 @@ const Template: StoryFn = (_, { argTypes }) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizPasswordInput v-bind="$props" v-model="value" name="text-input" />
+</template>
+      `,
+    },
+  },
+};
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
   placeholder: "パスワードを入力",
+};
+Placeholder.parameters = {
+  docs: {
+    description: {
+      story: "`placeholder` を指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizPasswordInput placeholder="パスワードを入力" v-model="value" name="text-input" />
+</template>
+      `,
+    },
+  },
 };
 
 export const Expand = Template.bind({});
 Expand.args = {
   expand: true,
 };
+Expand.parameters = {
+  docs: {
+    description: {
+      story: "コンポーネントを幅いっぱいに広げるように指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizPasswordInput expand v-model="value" name="text-input" />
+</template>
+      `,
+    },
+  },
+};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
   placeholder: "パスワードを入力",
+};
+Disabled.parameters = {
+  docs: {
+    description: {
+      story: "コンポーネントを幅いっぱいに指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizPasswordInput expand v-model="value" name="text-input" />
+</template>
+      `,
+    },
+  },
 };
 
 export const Test = Template.bind({});
