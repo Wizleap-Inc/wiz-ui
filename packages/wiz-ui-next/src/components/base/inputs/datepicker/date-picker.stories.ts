@@ -35,8 +35,37 @@ const Template: StoryFn<typeof WizDatepicker> = (args) => ({
 });
 
 export const Default = Template.bind({});
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+    <WizHStack>
+      <WizDatepicker v-bind="$props"  v-model="value" @input="input"/>
+    </WizHStack>
+</template>
+      `,
+    },
+  },
+};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+Disabled.parameters = {
+  docs: {
+    description: {
+      story: "`disabled` に指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizHStack>
+    <WizDatepicker disabled v-model="value" @input="input"/>
+  </WizHStack>
+</template>
+      `,
+    },
+  },
 };
