@@ -42,6 +42,17 @@ const Template: StoryFn<typeof WizHeader> = (args) => ({
 });
 
 export const Default = Template.bind({});
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <wiz-header v-bind="$props"/>
+</template>
+      `,
+    },
+  },
+};
 
 const LeftSlotTemplate: StoryFn<typeof WizHeader> = (args) => ({
   components: { WizHeader, WizTextButton },
@@ -58,9 +69,51 @@ const LeftSlotTemplate: StoryFn<typeof WizHeader> = (args) => ({
 });
 
 export const LeftSlot = LeftSlotTemplate.bind({});
+LeftSlot.parameters = {
+  docs: {
+    description: {
+      story: "ヘッダー内部の左側にコンポーネントを設定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <wiz-header v-bind="$props">
+    <template #left>
+      <wiz-text-button>Click</wiz-text-button>
+      <wiz-text-button>Click</wiz-text-button>
+      <wiz-text-button>Click</wiz-text-button>
+    </template>
+  </wiz-header>
+</template>
+      `,
+    },
+  },
+};
+
 export const LeftSlotWithGap = LeftSlotTemplate.bind({});
 LeftSlotWithGap.args = {
   gapLeft: "sm",
+};
+LeftSlotWithGap.parameters = {
+  docs: {
+    description: {
+      story:
+        " LeftSlot 内部でgap を指定することができます。選択肢はVariablesのSpacingKeysを参照してください。",
+    },
+    source: {
+      code: `
+<template>
+  <wiz-header gapLeft="sm">
+      <template #left>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+      </template>
+    </wiz-header>
+</template>
+      `,
+    },
+  },
 };
 
 const RightSlotTemplate: StoryFn<typeof WizHeader> = (args) => ({
@@ -78,9 +131,51 @@ const RightSlotTemplate: StoryFn<typeof WizHeader> = (args) => ({
 });
 
 export const RightSlot = RightSlotTemplate.bind({});
+RightSlot.parameters = {
+  docs: {
+    description: {
+      story: "ヘッダー内部の右側にコンポーネントを設定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <wiz-header v-bind="$props">
+    <template #right>
+      <wiz-text-button>Click</wiz-text-button>
+      <wiz-text-button>Click</wiz-text-button>
+      <wiz-text-button>Click</wiz-text-button>
+    </template>
+  </wiz-header>
+</template>
+      `,
+    },
+  },
+};
+
 export const RightSlotWithGap = RightSlotTemplate.bind({});
 RightSlotWithGap.args = {
   gapRight: "sm",
+};
+RightSlotWithGap.parameters = {
+  docs: {
+    description: {
+      story:
+        "RightSlot 内部でgap を指定することができます。選択肢はVariablesのSpacingKeysを参照してください。",
+    },
+    source: {
+      code: `
+<template>
+    <wiz-header gapRight="sm">
+      <template #right>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+      </template>
+    </wiz-header>
+</template>
+      `,
+    },
+  },
 };
 
 export const Fixed: StoryFn<typeof WizHeader> = (args) => ({
@@ -106,3 +201,33 @@ export const Fixed: StoryFn<typeof WizHeader> = (args) => ({
     </div>
   `,
 });
+Fixed.parameters = {
+  docs: {
+    description: {
+      story: "Header を固定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="height: 200vh">
+    <wiz-header sticky>
+      <template #left>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+      </template>
+      <template #right>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+        <wiz-text-button>Click</wiz-text-button>
+      </template>
+    </wiz-header>
+    <div style="margin-top: ${THEME.share.HEADER_HEIGHT};">
+      <h1>Scroll down</h1>
+    </div>
+  </div>
+</template>
+      `,
+    },
+  },
+};
