@@ -36,3 +36,25 @@ Default.args = {
     { label: "test4", value: 4 },
   ],
 };
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<script>
+  const items = [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "test3", value: 3 },
+    { label: "test4", value: 4 },
+  ]
+</script>
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizPanelSwitch :items="items" v-model="value" @input="input"/>
+  </div>
+</template>
+      `,
+    },
+  },
+};
