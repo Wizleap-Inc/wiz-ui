@@ -29,9 +29,34 @@ const Template: StoryFn<typeof WizTimePicker> = (args) => ({
 
 // デフォルト
 export const Default = Template.bind({});
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizTimePicker v-model="value" @input="input"/>
+</template>
+      `,
+    },
+  },
+};
 
 // 入力禁止
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+Disabled.parameters = {
+  docs: {
+    description: {
+      story: "`disabled` に指定することもできます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTimePicker disabled v-model="value" @input="input"/>
+</template>
+      `,
+    },
+  },
 };
