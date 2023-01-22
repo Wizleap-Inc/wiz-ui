@@ -52,6 +52,28 @@ Default.args = {
     { label: "test4", value: 4 },
   ],
 };
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<script>
+  const options = [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "test3", value: 3 },
+    { label: "test4", value: 4 },
+  ]
+</script>
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizRadio :options="options" v-model="value" @input="input"/>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const AllDisabled = Template.bind({});
 AllDisabled.args = {
@@ -62,6 +84,31 @@ AllDisabled.args = {
     { label: "test4", value: 4 },
   ],
   disabled: true,
+};
+AllDisabled.parameters = {
+  docs: {
+    description: {
+      story: "入力を `disabled` にすることもできます。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const options = [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "test3", value: 3 },
+    { label: "test4", value: 4 },
+  ]
+</script>
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizRadio :options="options" v-model="value" @input="input"/>
+  </div>
+</template>
+      `,
+    },
+  },
 };
 
 export const SpotDisabled = Template.bind({});
@@ -74,6 +121,31 @@ SpotDisabled.args = {
   ],
   disabledKey: 0,
 };
+SpotDisabled.parameters = {
+  docs: {
+    description: {
+      story: "選択肢の一部を disabled にすることもできます。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const options = [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2, disabled: true },
+    { label: "test3", value: 3 },
+    { label: "test4", value: 4, disabled: true },
+  ]
+</script>
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizRadio :options ="options" v-model="value" @input="args.input"/>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const Vertical = Template.bind({});
 Vertical.args = {
@@ -84,6 +156,32 @@ Vertical.args = {
     { label: "test4", value: 4 },
   ],
   direction: "vertical",
+};
+Vertical.parameters = {
+  docs: {
+    description: {
+      story:
+        "選択肢を出す方向を変えることができます。 選択肢は `vertical`, `horizontal` から選択できます。 default は `horizontal` です。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const options = [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "test3", value: 3 },
+    { label: "test4", value: 4 },
+  ]
+</script>
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizRadio :options ="options" direction="vertical" v-model="value" @input="args.input"/>
+  </div>
+</template>
+      `,
+    },
+  },
 };
 
 export const Gap = Template.bind({});
