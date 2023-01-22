@@ -41,6 +41,26 @@ export const Level: StoryFn<typeof WizHeading> = (args) => ({
     </table>
   `,
 });
+Level.parameters = {
+  docs: {
+    description: {
+      story:
+        "Heading のコンテンツデータを`h1` ~ `h6` で変更することができます。選択肢は 1 ~ 6 から指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <table>
+      <tr v-for="heading in HEADING_LIST" :key="heading">
+        <td style="padding: 1rem;">level = {{ heading }}</td>
+        <td style="padding: 1rem;"><WizHeading :level="heading">Level{{ heading }}の見出し</WizHeading></td>
+      </tr>
+    </table>
+</template>
+      `,
+    },
+  },
+};
 
 export const Color: StoryFn<typeof WizHeading> = (args) => ({
   components: { WizHeading },
@@ -57,6 +77,26 @@ export const Color: StoryFn<typeof WizHeading> = (args) => ({
     </table>
   `,
 });
+Color.parameters = {
+  docs: {
+    description: {
+      story:
+        "文字色を変更することができます。選択肢はColorKeyから指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <table>
+    <tr v-for="color in COLOR_MAP_ACCESSORS" :key="color">
+      <td style="padding: 1rem;">{{ color }}</td>
+      <td style="padding: 1rem;"><WizHeading :color="color">{{ color }}の見出し</WizHeading></td>
+    </tr>
+  </table>
+</template>
+      `,
+    },
+  },
+};
 
 export const FontSize: StoryFn<typeof WizHeading> = (args) => ({
   components: { WizHeading },
@@ -73,6 +113,27 @@ export const FontSize: StoryFn<typeof WizHeading> = (args) => ({
     </table>
   `,
 });
+
+FontSize.parameters = {
+  docs: {
+    description: {
+      story:
+        "文字色を変更することができます。選択肢はColorKeyから指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <table>
+    <tr v-for="color in COLOR_MAP_ACCESSORS" :key="color">
+      <td style="padding: 1rem;">{{ color }}</td>
+      <td style="padding: 1rem;"><WizHeading :color="color">{{ color }}の見出し</WizHeading></td>
+    </tr>
+  </table>
+</template>
+      `,
+    },
+  },
+};
 
 export const Test: StoryFn<typeof WizHeading> = (args) => ({
   components: { WizHeading },
