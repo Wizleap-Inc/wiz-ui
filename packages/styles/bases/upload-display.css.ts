@@ -2,7 +2,6 @@ import { style, keyframes } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const BORDER_WIDTH = "1px";
-const BAR_HEIGHT = "6px";
 const CARD_ANIMATION_TIME = "0.5s";
 
 const fadeIn = keyframes({
@@ -24,21 +23,6 @@ export const uploadDisplayStyle = style({
   borderColor: THEME.color.gray[400],
   borderRadius: THEME.spacing.xs2,
   padding: `${THEME.spacing.md} ${THEME.spacing.xl}`,
-});
-
-export const uploadDisplayBarBgStyle = style({
-  position: "relative",
-  height: BAR_HEIGHT,
-  background: THEME.color.gray[400],
-  borderRadius: THEME.spacing.xs2,
-  width: "100%",
-});
-
-export const uploadDisplayBarStyle = style({
-  position: "absolute",
-  height: BAR_HEIGHT,
-  background: THEME.color.green[800],
-  borderRadius: THEME.spacing.xs2,
 });
 
 export const circleCheckIconStyle = style({
