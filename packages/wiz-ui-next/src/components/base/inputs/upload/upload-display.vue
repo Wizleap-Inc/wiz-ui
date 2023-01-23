@@ -10,12 +10,7 @@
           : `ファイルアップロード中…（${completedFileCount}/${uploadingFileCount}）`
       }}</span>
       <WizHStack align="center" gap="xs">
-        <span :class="uploadDisplayBarBgStyle">
-          <span
-            :class="uploadDisplayBarStyle"
-            :style="{ width: `${progress}%` }"
-          />
-        </span>
+        <WizLineGraph :percentage="progress" />
         <WizICircleCheck
           :class="[
             circleCheckIconStyle,
@@ -49,8 +44,6 @@ import {
   uploadDisplayStyle,
   uploadDisplayFadeInStyle,
   uploadDisplayFadeOutStyle,
-  uploadDisplayBarBgStyle,
-  uploadDisplayBarStyle,
   circleCheckIconStyle,
   circleCheckIconDefaultStyle,
   circleCheckIconCompletedStyle,
@@ -58,7 +51,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/upload-display.css";
 import { computed } from "vue";
 
-import { WizHStack, WizVStack } from "@/components";
+import { WizLineGraph, WizHStack, WizVStack } from "@/components";
 import { WizICircleCheck, WizIAttachFile } from "@/components/icons";
 
 defineOptions({
