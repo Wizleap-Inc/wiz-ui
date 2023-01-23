@@ -36,6 +36,7 @@ const IconComponentName = {
   IChangeHistory: "WizIChangeHistory",
   IUpload: "WizIUpload",
   IDownload: "WizIDownload",
+  IPinDrop: "WizIPinDrop",
 };
 
 export const ComponentName = {
