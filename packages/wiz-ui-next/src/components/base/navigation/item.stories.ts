@@ -50,13 +50,43 @@ Default.args = {
   to: "/",
   active: false,
 };
-
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <div>
+    <WizNavItem :icon="WizIDashboard" label="Home" to="/home" :active="$route.path === '/home'" />
+    <router-view />
+  </div>
+</template>
+      `,
+    },
+  },
+};
 export const Active = Template.bind({});
 Active.args = {
   icon: WizIDashboard,
   label: "Home",
   to: "/",
   active: true,
+};
+Active.parameters = {
+  docs: {
+    description: {
+      story: "`active` を指定すると NavItem がハイライトされます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizNavItem :icon="WizIDashboard" label="Home" to="https://wizleap.co.jp" active />
+    <router-view />
+  </div>
+</template>
+      `,
+    },
+  },
 };
 
 export const External = Template.bind({});
@@ -65,4 +95,21 @@ External.args = {
   label: "Home",
   to: "https://wizleap.co.jp",
   active: false,
+};
+External.parameters = {
+  docs: {
+    description: {
+      story: "外部リンクへ飛ばすこともできます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizNavItem :icon="WizIDashboard" label="Home" to="https://wizleap.co.jp" :active="$route.path === '/home'" />
+    <router-view />
+  </div>
+</template>
+      `,
+    },
+  },
 };
