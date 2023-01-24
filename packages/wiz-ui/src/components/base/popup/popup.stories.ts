@@ -113,10 +113,55 @@ Direction.args = {
     { layer: "base", direction: "rb" },
   ],
 };
+Direction.parameters = {
+  docs: {
+    description: {
+      story:
+        "`direction` を指定することで、Popup を出す方向を変えることができます。指定できる値は以下の例の通り。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+const isOpenIndex = ref<number | null>(null);
+const changeIsOpenIndex = (index: number) => {
+  if (isOpenIndex.value === index) {
+    isOpenIndex.value = null;
+  } else {
+    isOpenIndex.value = index;
+  }
+};
+const pattern = [
+    { layer: "base", direction: "bl" },
+    { layer: "base", direction: "br" },
+    { layer: "base", direction: "tl" },
+    { layer: "base", direction: "tr" },
+    { layer: "base", direction: "lt" },
+    { layer: "base", direction: "lb" },
+    { layer: "base", direction: "rt" },
+    { layer: "base", direction: "rb" },
+  ]
+
+</script>
+<template>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
+      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :value="isOpenIndex === i" @input="changeIsOpenIndex(i)">
+        <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
+        <wiz-popup v-bind="pattern">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <p>This is a popup content {{ pattern[main] }}</p>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const Gap = MultipleTemplate.bind({});
 Gap.args = {
-  main: "gap",
+  main: "layer",
   patterns: [
     { layer: "base", direction: "rt", gap: "no", value: true },
     { layer: "base", direction: "rt", gap: "xs2", value: true },
@@ -130,10 +175,51 @@ Gap.args = {
     { layer: "base", direction: "rt", gap: "xl4", value: true },
   ],
 };
-
-export const Playground = Template.bind({});
-Playground.args = {
-  layer: "base",
+Gap.parameters = {
+  docs: {
+    description: {
+      story:
+        "`gap` を指定することで、表示される Popup の周りに余白を適用することができます。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+const isOpenIndex = ref<number | null>(null);
+const changeIsOpenIndex = (index: number) => {
+  if (isOpenIndex.value === index) {
+    isOpenIndex.value = null;
+  } else {
+    isOpenIndex.value = index;
+  }
+};
+const pattern = [
+    { layer: "base", direction: "rt", gap: "no", value: true },
+    { layer: "base", direction: "rt", gap: "xs2", value: true },
+    { layer: "base", direction: "rt", gap: "xs", value: true },
+    { layer: "base", direction: "rt", gap: "sm", value: true },
+    { layer: "base", direction: "rt", gap: "md", value: true },
+    { layer: "base", direction: "rt", gap: "lg", value: true },
+    { layer: "base", direction: "rt", gap: "xl", value: true },
+    { layer: "base", direction: "rt", gap: "xl2", value: true },
+    { layer: "base", direction: "rt", gap: "xl3", value: true },
+    { layer: "base", direction: "rt", gap: "xl4", value: true },
+  ]
+</script>
+<template>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
+      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :value="isOpenIndex === i" @input="changeIsOpenIndex(i)">
+        <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
+        <wiz-popup v-bind="pattern">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <p>This is a popup content {{ pattern[main] }}</p>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div>
+</template>
+      `,
+    },
+  },
 };
 
 export const MultiplePlayground: StoryFn = (_, { argTypes }) => ({
