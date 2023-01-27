@@ -54,17 +54,56 @@ export const Default = Template.bind({});
 Default.args = {
   items,
 };
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizTab width="200px" @input="input" />
+</template>
+      `,
+    },
+  },
+};
 
 export const Gap = Template.bind({});
 Gap.args = {
   gap: "sm",
   items,
 };
+Gap.parameters = {
+  docs: {
+    description: {
+      story: "`gap` を指定することで、余白を指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTab width="200px" @input="input" />
+</template>
+      `,
+    },
+  },
+};
 
 export const Width = Template.bind({});
 Width.args = {
   width: "200px",
   items,
+};
+Width.parameters = {
+  docs: {
+    description: {
+      story: "`width` を指定することで、幅を指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTab width="200px" @input="input" />
+</template>
+      `,
+    },
+  },
 };
 
 export const Playground: StoryFn = (_, { argTypes }) => ({
@@ -104,3 +143,38 @@ export const Playground: StoryFn = (_, { argTypes }) => ({
     </div>
   `,
 });
+Playground.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+  const activeTab = ref("hoge");
+  const tabItems = [
+    {
+      label: "Basic",
+      name: "basic",
+    },
+    {
+      label: "Notification",
+      name: "notification",
+      notificationCount: 10,
+    },
+    {
+      label: "Disabled",
+      name: "disabled",
+      disabled: true,
+    },
+  ];
+</script>
+<template>
+    <div>
+      <WizTab v-model="activeTab" :items="tabItems" @input="input" v-bind="$props" />
+      <div v-if="activeTab === 'basic'">Basicの中身</div>
+      <div v-else-if="activeTab === 'notification'">Notificationの中身</div>
+      <div v-else-if="activeTab === 'disabled'">Disabledの中身</div>
+    </div>
+</template>
+      `,
+    },
+  },
+};
