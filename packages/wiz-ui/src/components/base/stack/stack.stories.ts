@@ -101,13 +101,71 @@ const Template: StoryFn = (_, { argTypes }) => ({
 });
 
 export const Default = Template.bind({});
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
 
+<template>
+  <div style="width: 100%; height: 100%; background: ${THEME.color.gray[300]}; padding: ${THEME.spacing.xl2}; box-sizing: border-box;">
+    <label for="boxCountInput">箱の数（デバッグ用）</label>
+    <input type="number" id="boxCountInput" v-model="boxCount" style="margin-bottom: ${THEME.spacing.lg};"/>
+    <WizStack v-bind="$props">
+      <Box v-for="i in +boxCount > 0 ? +boxCount : 1" :index="i" :key="i"/>
+    </WizStack>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 export const Horizontal = Template.bind({});
 Horizontal.args = {
   direction: "horizontal",
+};
+Horizontal.parameters = {
+  docs: {
+    description: {
+      story: "`direction` を指定することで、",
+    },
+    source: {
+      code: `
+<template>
+  <div style="width: 100%; height: 100%; background: ${THEME.color.gray[300]}; padding: ${THEME.spacing.xl2}; box-sizing: border-box;">
+    <label for="boxCountInput">箱の数（デバッグ用）</label>
+    <input type="number" id="boxCountInput" v-model="boxCount" style="margin-bottom: ${THEME.spacing.lg};"/>
+    <WizStack direction="horizontal">
+      <Box v-for="i in +boxCount > 0 ? +boxCount : 1" :index="i" :key="i"/>
+    </WizStack>
+  </div>
+</template>
+      `,
+    },
+  },
 };
 
 export const Vertical = Template.bind({});
 Vertical.args = {
   direction: "vertical",
+};
+Vertical.parameters = {
+  docs: {
+    description: {
+      story:
+        "`label` を指定することで、Progress の下側に ラベル を表示することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="width: 100%; height: 100%; background: ${THEME.color.gray[300]}; padding: ${THEME.spacing.xl2}; box-sizing: border-box;">
+    <label for="boxCountInput">箱の数（デバッグ用）</label>
+    <input type="number" id="boxCountInput" v-model="boxCount" style="margin-bottom: ${THEME.spacing.lg};"/>
+    <WizStack direction="vertical">
+      <Box v-for="i in +boxCount > 0 ? +boxCount : 1" :index="i" :key="i"/>
+    </WizStack>
+  </div>
+</template>
+      `,
+    },
+  },
 };
