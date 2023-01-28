@@ -53,6 +53,19 @@ export const Paragraph = Template.bind({});
 Paragraph.args = {
   as: "p",
 };
+Paragraph.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizText as="p">
+    これはテキストです。 これはテキストです。
+  </WizText>
+</template>
+      `,
+    },
+  },
+};
 
 export const Span = Template.bind({});
 Span.args = {
@@ -70,6 +83,21 @@ WhiteSpace.args = {
   as: "p",
   whiteSpace: "preLine",
 };
+WhiteSpace.parameters = {
+  docs: {
+    description: {
+      story:
+        "要素内の `white-space` を指定することができます。選択肢は `WhiteSpacingKey` から指定することができます。 default は `normal` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizText as="p" whiteSpace="preLine">これはテキストです。</WizText>
+</template>
+      `,
+    },
+  },
+};
 
 export const LineHeight = Template.bind({});
 LineHeight.args = {
@@ -77,11 +105,41 @@ LineHeight.args = {
   whiteSpace: "preLine",
   lineHeight: "xl",
 };
+LineHeight.parameters = {
+  docs: {
+    description: {
+      story:
+        "要素内の `line-height` を指定することができます。選択肢は `FontSizeKey` から指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizText as="p" whiteSpace="preLine" lightHeight="xl">これはテキストです。</WizText>
+</template>
+      `,
+    },
+  },
+};
 
 export const FontSize = Template.bind({});
 FontSize.args = {
   as: "p",
   fontSize: "xl",
+};
+FontSize.parameters = {
+  docs: {
+    description: {
+      story:
+        "要素内の `white-space` を指定することができます。選択肢は `FontSizeKey` から指定することができます。 default は `md` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizText as="p" fontSize="xl">これはテキストです。</WizText>
+</template>
+      `,
+    },
+  },
 };
 
 export const Color = Template.bind({});
@@ -89,10 +147,40 @@ Color.args = {
   as: "p",
   color: "blue.800",
 };
+Color.parameters = {
+  docs: {
+    description: {
+      story:
+        "要素内の `white-space` を指定することができます。選択肢は `ColorKey` から指定することができます。 default は `gray.900` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizText as="p" color="blue.800">これはテキストです。</WizText>
+</template>
+      `,
+    },
+  },
+};
 
 export const DummyValue = Template.bind({});
 DummyValue.args = {
   dummyValue: "ABCDEFG",
+};
+DummyValue.parameters = {
+  docs: {
+    description: {
+      story:
+        "`DummyValue` を指定すると、slot の文章代わりに `dummyValue` が入力されたものにぼかされた文字が表示される。",
+    },
+    source: {
+      code: `
+<template>
+  <WizText as="p" dummyValue="ABCDEFG">これはテキストです。</WizText>
+</template>
+      `,
+    },
+  },
 };
 
 const MaxLinesTemplate: StoryFn = (args) => ({
@@ -114,4 +202,30 @@ export const MaxLines = MaxLinesTemplate.bind({});
 MaxLines.args = {
   as: "p",
   maxLines: 5,
+};
+MaxLines.parameters = {
+  docs: {
+    description: {
+      story:
+        "`maxLens` を指定すると、長文のテキストが入力された際に特定の行で省略することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="display: flex; gap: 1rem;">
+    <div style="width: 200px;">
+      <WizText as="p" :maxLines="5" >
+        これはとても長いテキストです。投稿内容に依存して高さが大きくズレるため、テキストの最大行数を指定し3点ドットで対応することにします。
+      </WizText>
+    </div>
+    <div style="width: 200px;">
+      <WizText v-bind="$props">
+        WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.
+      </WizText>
+    </div>
+ </div>
+</template>
+      `,
+    },
+  },
 };
