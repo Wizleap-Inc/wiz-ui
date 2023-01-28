@@ -97,3 +97,10 @@ NewLine.parameters = {
     },
   },
 };
+NewLine.parameters = {
+  docs: {
+    description: {
+      story: "`Tooltip` は、文章を複数行にわたって入力することもできます。",
+    },
+  },
+};
