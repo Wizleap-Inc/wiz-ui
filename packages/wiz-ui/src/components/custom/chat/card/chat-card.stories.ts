@@ -142,12 +142,117 @@ Open.args = {
   ...templateArgs,
   isOpen: true,
 };
+Open.parameters = {
+  docs: {
+    description: {
+      story:
+        "`isOpen` で Chat Card のコンテンツが開いているかどうかを指定します。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const templateArgs = {
+    username: "マネーキャリアスタッフ",
+    placeholder: "入力してください",
+    messages: [
+      {
+        message: "こんにちは、マネーキャリアスタッフの田中です。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-01T23:00:00.000+09:00"),
+      },
+      {
+        message: "こんにちは、〇〇です。よろしくお願いします。",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T00:00:00.000+09:00"),
+      },
+      {
+        message: "よろしくお願いします。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T01:00:00.000+09:00"),
+      },
+      {
+        message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T02:00:00.000+09:00"),
+      },
+      {
+        message: "不在申請ですね、承知しました少々お待ちください。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T03:00:00.000+09:00"),
+      },
+    ],
+  };
+</script>
+<template>
+  <WizChatCard v-bind="templateArgs" isOpen v-model="newMessage" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
+</template>
+      `,
+    },
+  },
+};
 
 export const FormRows = Template.bind({});
 FormRows.args = {
   ...templateArgs,
   isOpen: true,
   formRows: 5,
+};
+FormRows.parameters = {
+  docs: {
+    description: {
+      story: "`formRows` で入力フォームの行を指定することができます。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const templateArgs = {
+    username: "マネーキャリアスタッフ",
+    placeholder: "入力してください",
+    messages: [
+      {
+        message: "こんにちは、マネーキャリアスタッフの田中です。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-01T23:00:00.000+09:00"),
+      },
+      {
+        message: "こんにちは、〇〇です。よろしくお願いします。",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T00:00:00.000+09:00"),
+      },
+      {
+        message: "よろしくお願いします。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T01:00:00.000+09:00"),
+      },
+      {
+        message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T02:00:00.000+09:00"),
+      },
+      {
+        message: "不在申請ですね、承知しました少々お待ちください。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T03:00:00.000+09:00"),
+      },
+    ],
+  };
+</script>
+<template>
+  <WizChatCard v-bind="templateArgs" isOpen :formRows="5" v-model="newMessage" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
+</template>
+      `,
+    },
+  },
 };
 
 export const SomeonesTyping = Template.bind({});
@@ -183,11 +288,116 @@ Status.args = {
   statusOptions: STATUS_OPTIONS,
   statusPlaceholder: "ステータスを選択してください",
 };
+Status.parameters = {
+  docs: {
+    description: {
+      story:
+        "`typingUsername` で現在入力しているユーザーを他のユーザーに通知します。 ",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const templateArgs = {
+    username: "マネーキャリアスタッフ",
+    placeholder: "入力してください",
+    messages: [
+      {
+        message: "こんにちは、マネーキャリアスタッフの田中です。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-01T23:00:00.000+09:00"),
+      },
+      {
+        message: "こんにちは、〇〇です。よろしくお願いします。",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T00:00:00.000+09:00"),
+      },
+      {
+        message: "よろしくお願いします。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T01:00:00.000+09:00"),
+      },
+      {
+        message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T02:00:00.000+09:00"),
+      },
+      {
+        message: "不在申請ですね、承知しました少々お待ちください。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T03:00:00.000+09:00"),
+      },
+    ],
+  };
+</script>
+<template>
+  <WizChatCard v-bind="templateArgs" isOpen typingUsername="なんとかかんとか" v-model="newMessage" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
+</template>
+      `,
+    },
+  },
+};
 
 export const Closed = Template.bind({});
 Closed.args = {
   ...templateArgs,
   isOpen: false,
+};
+Closed.parameters = {
+  docs: {
+    description: {
+      story: "`isOpen = false` で Chat Card を閉じます。 ",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const templateArgs = {
+    username: "マネーキャリアスタッフ",
+    placeholder: "入力してください",
+    messages: [
+      {
+        message: "こんにちは、マネーキャリアスタッフの田中です。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-01T23:00:00.000+09:00"),
+      },
+      {
+        message: "こんにちは、〇〇です。よろしくお願いします。",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T00:00:00.000+09:00"),
+      },
+      {
+        message: "よろしくお願いします。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T01:00:00.000+09:00"),
+      },
+      {
+        message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T02:00:00.000+09:00"),
+      },
+      {
+        message: "不在申請ですね、承知しました少々お待ちください。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T03:00:00.000+09:00"),
+      },
+    ],
+  };
+</script>
+<template>
+  <WizChatCard v-bind="templateArgs" :isOpen="false" v-model="newMessage" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
+</template>
+      `,
+    },
+  },
 };
 
 export const HaveNewMessage = Template.bind({});
@@ -196,7 +406,58 @@ HaveNewMessage.args = {
   isOpen: false,
   haveNewMessage: true,
 };
-
+HaveNewMessage.parameters = {
+  docs: {
+    description: {
+      story: "`haveNewMessage` を指定することで、Notification が表示されます。",
+    },
+    source: {
+      code: `
+<script lang="ts" setup>
+  const templateArgs = {
+    username: "マネーキャリアスタッフ",
+    placeholder: "入力してください",
+    messages: [
+      {
+        message: "こんにちは、マネーキャリアスタッフの田中です。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-01T23:00:00.000+09:00"),
+      },
+      {
+        message: "こんにちは、〇〇です。よろしくお願いします。",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T00:00:00.000+09:00"),
+      },
+      {
+        message: "よろしくお願いします。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T01:00:00.000+09:00"),
+      },
+      {
+        message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
+        sender: "me",
+        read: true,
+        time: new Date("2021-08-02T02:00:00.000+09:00"),
+      },
+      {
+        message: "不在申請ですね、承知しました少々お待ちください。",
+        sender: "other",
+        username: "マネーキャリアスタッフ",
+        time: new Date("2021-08-02T03:00:00.000+09:00"),
+      },
+    ],
+  };
+</script>
+<template>
+  <WizChatCard v-bind="templateArgs" haveNewMessage isOpen  v-model="newMessage" @toggleDisplay="toggleDisplay" @input="input" @submit="submit" />
+</template>
+      `,
+    },
+  },
+};
 const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizChatCard, WizBox },
