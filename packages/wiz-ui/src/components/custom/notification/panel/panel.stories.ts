@@ -71,9 +71,79 @@ export const Unread = MultiVariantTemplate.bind({});
 Unread.args = {
   ...baseProps,
 };
+Unread.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+const baseProps = {
+  title:
+    "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
+  timestamp: new Date("2021-01-01 00:00:00"),
+  variant: "primary",
+  tableInfo: [
+    {
+      title: "情報1",
+      content: "データ1",
+    },
+    {
+      title: "情報2",
+      content: "データ2",
+    },
+  ],
+  read: false,
+}
+</script>
+<template>
+  <div style="width: 616px">
+    <WizHStack gap="md">
+      <WizNotificationList v-bind="baseProps" @click="args.click"/>
+      <WizNotificationList v-bind="baseProps" variant="secondary" @click="args.click"/>
+    </WizHStack>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const Read = MultiVariantTemplate.bind({});
 Read.args = {
   ...baseProps,
   read: true,
+};
+Read.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+  const baseProps = {
+    title:
+      "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
+    timestamp: new Date("2021-01-01 00:00:00"),
+    variant: "primary",
+    tableInfo: [
+      {
+        title: "情報1",
+        content: "データ1",
+      },
+      {
+        title: "情報2",
+        content: "データ2",
+      },
+    ],
+    read: false,
+  }
+</script>
+<template>
+  <div style="width: 616px">
+    <WizHStack gap="md">
+      <WizNotificationList v-bind="baseProps" @click="args.click"/>
+      <WizNotificationList v-bind="baseProps" variant="secondary" @click="args.click"/>
+    </WizHStack>
+  </div>
+</template>
+      `,
+    },
+  },
 };

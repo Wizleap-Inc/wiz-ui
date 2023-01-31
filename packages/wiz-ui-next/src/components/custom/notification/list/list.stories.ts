@@ -63,3 +63,42 @@ export const Variant = MultiVariantTemplate.bind({});
 Variant.args = {
   ...baseProps,
 };
+Variant.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+  const baseProps = baseProps = {
+    notifications: Array.from({ length: 3 }, (_, i) => ({
+      id: i,
+      title: "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
+      timestamp: new Date(
+        new Date("2021-01-01T00:00:00.000Z").getTime() + i * 1000 * 60 * 60 * 24
+      ),
+      tabName: ["tab1", "tab2"][i % 2],
+      read: i % 3 === 0,
+      tableInfo: [
+        {
+          title: "情報1",
+          content: "データ1",
+        },
+        {
+          title: "情報2",
+          content: "データ2",
+        },
+      ],
+    })),
+  };
+</script>
+<template>
+  <div style="width: 616px">
+    <WizHStack gap="md">
+      <WizNotificationList v-bind="baseProps" @click="args.click"/>
+      <WizNotificationList v-bind="baseProps" variant="secondary" @click="args.click"/>
+    </WizHStack>
+  </div>
+</template>
+      `,
+    },
+  },
+};
