@@ -131,10 +131,12 @@ const CHOICES = [
   {
     label: "選択肢1",
     value: 1,
+    key: "choice1",
   },
   {
     label: "選択肢2",
     value: 2,
+    key: "choice2",
   },
 ];
 
