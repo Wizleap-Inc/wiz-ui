@@ -29,6 +29,7 @@ import { default as WizIMoreVert } from "./more-vert.vue";
 import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
+import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
@@ -75,7 +76,8 @@ export type TIcon =
   | typeof WizITask
   | typeof WizIAutoRenew
   | typeof WizIUpload
-  | typeof WizIDownload;
+  | typeof WizIDownload
+  | typeof WizIPinDrop;
 
 export {
   WizIAdd,
@@ -116,4 +118,5 @@ export {
   WizIAutoRenew,
   WizIUpload,
   WizIDownload,
+  WizIPinDrop,
 };

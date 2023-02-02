@@ -37,6 +37,7 @@ const IconComponentName = {
   IUpload: "WizIUpload",
   IDownload: "WizIDownload",
   ISearch: "WizSearch",
+  IPinDrop: "WizIPinDrop",
 };
 
 export const ComponentName = {
@@ -111,5 +112,10 @@ export const ComponentName = {
   SelectBox: "WizSelectBox",
   Dialog: "WizDialog",
   Provider: "WizProvider",
+  CircleGraph: "WizCircleGraph",
+  PollGraph: "WizPollGraph",
+  TransitionGraph: "WizTransitionGraph",
+  MeterGraph: "WizMeterGraph",
+  LineGraph: "WizLineGraph",
   ...IconComponentName,
 } as const;
