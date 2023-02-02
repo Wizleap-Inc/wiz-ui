@@ -1,12 +1,12 @@
 <template>
   <div :class="checkboxStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
-      <div v-for="(option, key) in options" :key="key">
+      <div v-for="option in options" :key="option.key">
         <input
           :class="checkboxInputStyle"
           type="checkbox"
-          :id="`checkbox${key}`"
-          :name="`checkbox${key}`"
+          :id="`checkbox${option.key}`"
+          :name="`checkbox${option.key}`"
           :value="option.value"
           v-model="checkboxValue"
           :disabled="disabled || option.disabled"
@@ -18,7 +18,7 @@
             (disabled || option.disabled) && checkboxLabelDisabledStyle,
             checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
-          :for="`checkbox${key}`"
+          :for="`checkbox${option.key}`"
         >
           <WizICheck
             v-if="checkboxValue.includes(option.value)"
