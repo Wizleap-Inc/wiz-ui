@@ -18,7 +18,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTooltip },
   template: `
-    <div style="width: 800px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;">
+    <div style="width: 700px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;">
       <WizTooltip v-bind="$props">
         保険見直し、つみ…
         <template #content>保険見直し、つみたて・投資、ライフプラン</template>
