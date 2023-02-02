@@ -36,6 +36,7 @@ const IconComponentName = {
   IChangeHistory: "WizIChangeHistory",
   IUpload: "WizIUpload",
   IDownload: "WizIDownload",
+  ISearch: "WizSearch",
 };
 
 export const ComponentName = {
@@ -95,6 +96,8 @@ export const ComponentName = {
   Notification: "WizNotification",
   NotificationList: "WizNotificationList",
   NotificationPanel: "WizNotificationPanel",
+  SearchInput: "WizSearchInput",
+  SearchPopup: "WizSearchPopup",
   Stack: "WizStack",
   Skeleton: "WizSkeleton",
   SkeletonText: "WizSkeletonText",

@@ -31,6 +31,7 @@ import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
+import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
@@ -66,6 +67,7 @@ export type TIcon =
   | typeof WizIOpenInNew
   | typeof WizIRemove
   | typeof WizISchedule
+  | typeof WizISearch
   | typeof WizISend
   | typeof WizITab
   | typeof WizICalendar
@@ -105,6 +107,7 @@ export {
   WizIOpenInNew,
   WizIRemove,
   WizISchedule,
+  WizISearch,
   WizISend,
   WizITab,
   WizICalendar,
