@@ -127,16 +127,29 @@ Gap.parameters = {
   },
 };
 
-const CHOICES = [
+const ALL_INPUT_CHOICES = [
   {
     label: "選択肢1",
     value: 1,
-    key: "choice1",
+    key: "allInputChoice1",
   },
   {
     label: "選択肢2",
     value: 2,
-    key: "choice2",
+    key: "allInputChoice2",
+  },
+];
+
+const ALL_INPUT_ERROR_CHOICES = [
+  {
+    label: "選択肢1",
+    value: 1,
+    key: "allInputErrorChoice1",
+  },
+  {
+    label: "選択肢2",
+    value: 2,
+    key: "allInputErrorChoice2",
   },
 ];
 
@@ -157,11 +170,11 @@ export const AllInput: StoryFn<typeof WizFormControl> = () => ({
     const textInput = ref("");
     const passwordInput = ref("");
     const textareaInput = ref("");
-    const SELECT_OPTIONS: SelectBoxOption[] = CHOICES;
+    const SELECT_OPTIONS: SelectBoxOption[] = ALL_INPUT_CHOICES;
     const selectInput = ref<string | null>(null);
-    const CHECKBOX_OPTIONS: CheckBoxOption[] = CHOICES;
+    const CHECKBOX_OPTIONS: CheckBoxOption[] = ALL_INPUT_CHOICES;
     const checkboxInput = ref<number[]>([]);
-    const RADIO_OPTIONS: RadioOption[] = CHOICES;
+    const RADIO_OPTIONS: RadioOption[] = ALL_INPUT_CHOICES;
     const radioInput = ref<number | null>(null);
     const datePickerInput = ref(new Date(2021, 0, 1));
     const timePickerInput = ref("");
@@ -226,11 +239,11 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
     const textInput = ref("");
     const passwordInput = ref("");
     const textareaInput = ref("");
-    const SELECT_OPTIONS: SelectBoxOption[] = CHOICES;
+    const SELECT_OPTIONS: SelectBoxOption[] = ALL_INPUT_ERROR_CHOICES;
     const selectInput = ref(0);
-    const CHECKBOX_OPTIONS: CheckBoxOption[] = CHOICES;
+    const CHECKBOX_OPTIONS: CheckBoxOption[] = ALL_INPUT_ERROR_CHOICES;
     const checkboxInput = ref<number[]>([]);
-    const RADIO_OPTIONS: RadioOption[] = CHOICES;
+    const RADIO_OPTIONS: RadioOption[] = ALL_INPUT_ERROR_CHOICES;
     const radioInput = ref(0);
     const datePickerInput = ref(new Date(2021, 0, 1));
     const timePickerInput = ref("");
