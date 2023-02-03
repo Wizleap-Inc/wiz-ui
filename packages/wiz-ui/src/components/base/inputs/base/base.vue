@@ -2,6 +2,7 @@
   <input
     :class="[
       baseInputStyle,
+      baseInputPaddingStyle[spaceType],
       disabled && baseInputDisabledStyle,
       inputBorderStyle[state],
     ]"
@@ -19,6 +20,7 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   baseInputStyle,
   baseInputDisabledStyle,
+  baseInputPaddingStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType, ref } from "vue";
@@ -60,6 +62,11 @@ const props = defineProps({
   error: {
     type: Boolean,
     required: false,
+  },
+  spaceType: {
+    type: String as PropType<"left" | "right" | "both" | "none">,
+    required: false,
+    default: "none",
   },
 });
 
