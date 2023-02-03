@@ -108,6 +108,17 @@ const templateMessages: Message[] = [
     username: "マネーキャリアスタッフ",
     time: new Date("2021-08-02T03:00:00.000+09:00"),
   },
+  {
+    message:
+      "こちらが申請条件になります。https://example.com/shinsei-zyoken ご確認いただいたあとこちらのリンクから必要事項を入力してください。https://example.com/shinsei-form",
+    sender: "me",
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
+    time: new Date("2021-08-02T04:00:00.000+09:00"),
+  },
 ];
 
 const templateArgs = {

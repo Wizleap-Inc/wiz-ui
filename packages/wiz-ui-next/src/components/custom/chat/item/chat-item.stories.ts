@@ -72,3 +72,20 @@ export const ChatItemUsername: StoryFn<typeof WizChatItem> = (args) => ({
     </div>
   `,
 });
+
+export const ChatItemWithLink: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizChatItem },
+  setup: () => dummyData,
+  template: `
+    <WizChatItem v-bind="$props" />
+  `,
+});
+ChatItemWithLink.args = {
+  content: {
+    message:
+      "こんにちは、こちらがHPになります。https://wizleap.co.jp ご確認いただいたあとこちらのリンクからご返信ください。https://example.com",
+    sender: "other",
+    time: new Date("2021-01-01T00:00:00.000+09:00"),
+  },
+};
