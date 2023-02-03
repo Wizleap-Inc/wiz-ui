@@ -73,12 +73,11 @@ export const ChatItemUsername: StoryFn<typeof WizChatItem> = (args) => ({
   `,
 });
 
-export const ChatItemWithLink: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+export const ChatItemWithLink: StoryFn = (args) => ({
   components: { WizChatItem },
-  setup: () => dummyData,
+  setup: () => ({ args }),
   template: `
-    <WizChatItem v-bind="$props" />
+    <WizChatItem v-bind="args" />
   `,
 });
 ChatItemWithLink.args = {
