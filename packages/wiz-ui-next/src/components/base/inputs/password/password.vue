@@ -10,6 +10,7 @@
       :width="width"
       :error="isError"
       :type="isPasswordVisible ? 'text' : 'password'"
+      space-type="right"
     />
     <button
       :aria-label="AREA_LABELS.PASSWORD_VISIBLE_TOGGLE"
