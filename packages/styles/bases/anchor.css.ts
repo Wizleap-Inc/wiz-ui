@@ -9,6 +9,7 @@ export const anchorStyle = style([
     cursor: "pointer",
     display: "inline-flex",
     alignItems: "center",
+    wordBreak: "break-word",
 
     ":hover": {
       textDecoration: "underline",

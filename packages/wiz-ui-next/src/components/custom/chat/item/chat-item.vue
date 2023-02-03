@@ -16,13 +16,28 @@
         borderColor="gray.300"
         :maxWidth="maxChatItemWidth"
       >
-        <WizText
-          as="span"
-          fontSize="xs"
-          color="gray.700"
-          whiteSpace="preLine"
-          >{{ content.message }}</WizText
-        >
+        <template v-for="(part, i) in linkify(content.message)">
+          <WizAnchor
+            v-if="part.type === 'link'"
+            :to="part.content"
+            :key="'anchor' + i"
+            target="_blank"
+            fontSize="xs"
+          >
+            {{ part.content }}
+          </WizAnchor>
+          <WizText
+            v-else
+            as="span"
+            fontSize="xs"
+            color="gray.700"
+            whiteSpace="preLine"
+            breakAll
+            :key="'text' + i"
+          >
+            {{ part.content }}
+          </WizText>
+        </template>
       </WizCard>
       <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
         <WizTooltip>
@@ -48,7 +63,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { formatDateToTime } from "@wizleap-inc/wiz-ui-utils";
+import { formatDateToTime, linkify } from "@wizleap-inc/wiz-ui-utils";
 import { computed, PropType } from "vue";
 
 import {
@@ -57,6 +72,7 @@ import {
   WizVStack,
   WizCard,
   WizTooltip,
+  WizAnchor,
 } from "@/components";
 
 import { Message } from "..";
