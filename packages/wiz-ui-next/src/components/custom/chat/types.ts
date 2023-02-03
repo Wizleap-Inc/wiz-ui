@@ -3,7 +3,7 @@ export interface Message {
   sender: "me" | "other";
   time: Date;
   username?: string;
-  read?: boolean;
+  readers?: string[];
 }
 
 export interface DisplayMessage {

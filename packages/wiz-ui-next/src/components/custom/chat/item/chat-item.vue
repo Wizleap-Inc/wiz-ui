@@ -25,14 +25,19 @@
         >
       </WizCard>
       <WizVStack :align="content.sender === 'me' ? 'end' : 'start'">
-        <WizText
-          v-if="content.read !== undefined"
-          as="span"
-          fontSize="xs2"
-          color="gray.500"
-        >
-          {{ content.read ? "既読" : "未読" }}
-        </WizText>
+        <WizTooltip>
+          <WizText
+            v-if="content.readers !== undefined"
+            as="span"
+            fontSize="xs2"
+            color="gray.500"
+          >
+            {{ displayReadStatus }}
+          </WizText>
+          <template #content v-if="content.readers?.length">
+            {{ content.readers?.join("\n") }}
+          </template>
+        </WizTooltip>
         <WizText as="span" fontSize="xs2" color="gray.500">{{
           formatDateToTime(content.time)
         }}</WizText>
@@ -44,9 +49,15 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToTime } from "@wizleap-inc/wiz-ui-utils";
-import { PropType } from "vue";
+import { computed, PropType } from "vue";
 
-import { WizHStack, WizText, WizVStack, WizCard } from "@/components";
+import {
+  WizHStack,
+  WizText,
+  WizVStack,
+  WizCard,
+  WizTooltip,
+} from "@/components";
 
 import { Message } from "..";
 
@@ -54,7 +65,7 @@ defineOptions({
   name: ComponentName.ChatItem,
 });
 
-defineProps({
+const props = defineProps({
   content: {
     type: Object as PropType<Message>,
     required: true,
@@ -63,5 +74,12 @@ defineProps({
     type: String,
     required: false,
   },
+});
+
+const displayReadStatus = computed(() => {
+  const cnt = props.content.readers?.length ?? -1;
+  if (cnt < 1) return "未読";
+  if (cnt === 1) return "既読";
+  return `既読${cnt}`;
 });
 </script>
