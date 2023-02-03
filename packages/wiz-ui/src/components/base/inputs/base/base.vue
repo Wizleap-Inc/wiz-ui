@@ -2,15 +2,18 @@
   <input
     :class="[
       baseInputStyle,
+      baseInputPaddingStyle[spaceType],
       disabled && baseInputDisabledStyle,
       inputBorderStyle[state],
     ]"
     :style="{ width: computedWidth }"
     :placeholder="placeholder"
-    :name="name"
     :disabled="disabled"
-    v-model="textValue"
     :type="type"
+    @focusin="hasFocus = true"
+    @focusout="hasFocus = false"
+    v-model="textValue"
+    :id="id"
   />
 </template>
 
@@ -19,6 +22,7 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   baseInputStyle,
   baseInputDisabledStyle,
+  baseInputPaddingStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType, ref } from "vue";
@@ -28,11 +32,11 @@ defineOptions({
 });
 
 const props = defineProps({
-  value: {
+  id: {
     type: String,
-    required: true,
+    required: false,
   },
-  name: {
+  value: {
     type: String,
     required: true,
   },
@@ -60,6 +64,11 @@ const props = defineProps({
   error: {
     type: Boolean,
     required: false,
+  },
+  spaceType: {
+    type: String as PropType<"left" | "right" | "both" | "none">,
+    required: false,
+    default: "none",
   },
 });
 

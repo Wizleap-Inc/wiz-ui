@@ -10,12 +10,12 @@ export default {
   title: "Base/Input/Password",
   component: WizPasswordInput,
   argTypes: {
-    value: {
+    modelValue: {
       control: {
         type: "text",
       },
     },
-    name: {
+    id: {
       control: {
         type: "text",
       },
@@ -62,7 +62,6 @@ Disabled.args = {
 
 export const Test = Template.bind({});
 Test.args = {
-  name: "password-input",
   placeholder: "パスワードを入力",
 };
 
