@@ -3,6 +3,8 @@ import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
+import { WizISearch } from "@/components/icons";
+
 import WizTextInput from "./text.vue";
 
 export default {
@@ -64,6 +66,12 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
   placeholder: "入力してください",
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  placeholder: "入力してください",
+  icon: WizISearch,
 };
 
 export const Test = Template.bind({});
