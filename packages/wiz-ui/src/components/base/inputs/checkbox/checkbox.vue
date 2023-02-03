@@ -5,8 +5,8 @@
         <input
           :class="checkboxInputStyle"
           type="checkbox"
-          :id="`checkbox${option.key}`"
-          :name="`checkbox${option.key}`"
+          :id="`${option.key}`"
+          :name="`${option.key}`"
           :value="option.value"
           v-model="checkboxValue"
           :disabled="disabled || option.disabled"
@@ -18,7 +18,7 @@
             (disabled || option.disabled) && checkboxLabelDisabledStyle,
             checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
-          :for="`checkbox${option.key}`"
+          :for="`${option.key}`"
         >
           <WizICheck
             v-if="checkboxValue.includes(option.value)"
