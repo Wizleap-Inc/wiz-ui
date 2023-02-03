@@ -36,6 +36,7 @@ export const selectBoxInnerBoxSelectedValueStyle = style({
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+  color: THEME.color.gray["700"],
 });
 
 export const selectBoxInnerBoxLessStyle = style({
@@ -46,10 +47,6 @@ export const selectBoxInnerBoxLessStyle = style({
 export const selectBoxInnerBoxMoreStyle = style({
   fill: THEME.color.gray["500"],
   fontSize: THEME.spacing.xl,
-});
-
-export const selectBoxInnerBoxSelectedStyle = style({
-  color: THEME.color.gray["700"],
 });
 
 export const selectBoxSelectorStyle = style({
@@ -79,4 +76,10 @@ export const selectBoxSelectorOptionStyle = style({
     color: THEME.color.white["800"],
     background: THEME.color.green["800"],
   },
+});
+
+export const selectBoxPlaceholderStyle = style({
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 });
