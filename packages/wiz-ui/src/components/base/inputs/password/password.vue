@@ -1,10 +1,9 @@
 <template>
   <div :class="[passwordStyle, passwordExpandStyle[computedExpand]]">
     <PrivateBaseInput
-      :class="passwordInputStyle"
       v-model="passwordValue"
       :placeholder="placeholder"
-      :name="name"
+      :id="id"
       :disabled="disabled"
       :expand="expand"
       :width="width"
@@ -26,7 +25,6 @@
 import { AREA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   passwordStyle,
-  passwordInputStyle,
   passwordExpandStyle,
   passwordVisibleIconStyle,
   passwordVisibleIconActiveStyle,
@@ -47,11 +45,11 @@ interface Emit {
 }
 
 const props = defineProps({
-  value: {
+  id: {
     type: String,
-    required: true,
+    required: false,
   },
-  name: {
+  value: {
     type: String,
     required: true,
   },
