@@ -79,7 +79,11 @@ const templateMessages: Message[] = [
   {
     message: "こんにちは、〇〇です。よろしくお願いします。",
     sender: "me",
-    read: true,
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
     time: new Date("2021-08-02T00:00:00.000+09:00"),
   },
   {
@@ -91,7 +95,11 @@ const templateMessages: Message[] = [
   {
     message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
     sender: "me",
-    read: true,
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
     time: new Date("2021-08-02T02:00:00.000+09:00"),
   },
   {
@@ -194,7 +202,7 @@ const PlaygroundTemplate: StoryFn<typeof WizChatCard> = (args) => ({
       messages.value.push({
         message: newMessage.value,
         sender: "me",
-        read: false,
+        readers: ["マネーキャリアスタッフ"],
         time: new Date("2022-08-02T04:00:00.000+09:00"),
       });
       newMessage.value = "";

@@ -4,6 +4,8 @@ import { ref } from "vue";
 import { WizBox } from "@/components";
 import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
+import { Message } from "./../types";
+
 import { WizChatCard } from ".";
 
 export default {
@@ -67,41 +69,51 @@ export default {
   },
 };
 
+const templateMessages: Message[] = [
+  {
+    message: "こんにちは、マネーキャリアスタッフの田中です。",
+    sender: "other",
+    username: "マネーキャリアスタッフ",
+    time: new Date("2021-08-01T23:00:00.000+09:00"),
+  },
+  {
+    message: "こんにちは、〇〇です。よろしくお願いします。",
+    sender: "me",
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
+    time: new Date("2021-08-02T00:00:00.000+09:00"),
+  },
+  {
+    message: "よろしくお願いします。",
+    sender: "other",
+    username: "マネーキャリアスタッフ",
+    time: new Date("2021-08-02T01:00:00.000+09:00"),
+  },
+  {
+    message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
+    sender: "me",
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
+    time: new Date("2021-08-02T02:00:00.000+09:00"),
+  },
+  {
+    message: "不在申請ですね、承知しました少々お待ちください。",
+    sender: "other",
+    username: "マネーキャリアスタッフ",
+    time: new Date("2021-08-02T03:00:00.000+09:00"),
+  },
+];
+
 const templateArgs = {
   username: "マネーキャリアスタッフ",
   placeholder: "入力してください",
-  messages: [
-    {
-      message: "こんにちは、マネーキャリアスタッフの田中です。",
-      sender: "other",
-      username: "マネーキャリアスタッフ",
-      time: new Date("2021-08-01T23:00:00.000+09:00"),
-    },
-    {
-      message: "こんにちは、〇〇です。よろしくお願いします。",
-      sender: "me",
-      read: true,
-      time: new Date("2021-08-02T00:00:00.000+09:00"),
-    },
-    {
-      message: "よろしくお願いします。",
-      sender: "other",
-      username: "マネーキャリアスタッフ",
-      time: new Date("2021-08-02T01:00:00.000+09:00"),
-    },
-    {
-      message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
-      sender: "me",
-      read: true,
-      time: new Date("2021-08-02T02:00:00.000+09:00"),
-    },
-    {
-      message: "不在申請ですね、承知しました少々お待ちください。",
-      sender: "other",
-      username: "マネーキャリアスタッフ",
-      time: new Date("2021-08-02T03:00:00.000+09:00"),
-    },
-  ],
+  messages: templateMessages,
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({
@@ -191,7 +203,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
       messages.value.push({
         message: newMessage.value,
         sender: "me",
-        read: false,
+        readers: ["マネーキャリアスタッフ"],
         time: new Date("2022-08-02T04:00:00.000+09:00"),
       });
       newMessage.value = "";

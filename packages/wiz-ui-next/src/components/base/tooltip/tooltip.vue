@@ -9,7 +9,9 @@
       :class="[tooltipPopupStyle, tooltipPositionStyle[direction]]"
       :style="{
         opacity: isHover || hover ? 1 : 0,
+        pointerEvents: isHover || hover ? 'auto' : 'none',
       }"
+      v-if="$slots.content"
     >
       <div :class="tooltipContentStyle">
         <slot name="content" />
