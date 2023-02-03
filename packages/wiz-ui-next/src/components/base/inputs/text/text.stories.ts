@@ -48,7 +48,7 @@ const Template: StoryFn<typeof WizTextInput> = (args) => ({
     const value = ref("");
     return { value, args };
   },
-  template: `<WizTextInput v-bind="args" v-model="value" name="text-input" />`,
+  template: `<WizTextInput v-bind="args" v-model="value" />`,
 });
 
 export const Default = Template.bind({});
@@ -103,7 +103,7 @@ const PlaygroundTemplate: StoryFn<typeof WizTextInput> = (args) => ({
   template: `
     <div>
       <p>入力値：{{ value }}</p>
-      <WizTextInput v-bind="args" placeholder="入力してください" v-model="value" name="text-input" @update:modelValue="args.update" />
+      <WizTextInput v-bind="args" placeholder="入力してください" v-model="value" @update:modelValue="args.update" />
     </div>
   `,
 });
