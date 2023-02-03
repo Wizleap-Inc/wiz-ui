@@ -13,7 +13,9 @@ import { default as WizIChevronLeft } from "./chevron-left.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizIClose } from "./close.vue";
+import { default as WizIContentCopy } from "./content-copy.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
+import { default as WizIDescription } from "./description.vue";
 import { default as WizIDownload } from "./download.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
@@ -75,7 +77,9 @@ export type TIcon =
   | typeof WizIAutoRenew
   | typeof WizIUpload
   | typeof WizIDownload
-  | typeof WizIPinDrop;
+  | typeof WizIPinDrop
+  | typeof WizIContentCopy
+  | typeof WizIDescription;
 
 export {
   WizIAdd,
@@ -116,4 +120,6 @@ export {
   WizIUpload,
   WizIDownload,
   WizIPinDrop,
+  WizIContentCopy,
+  WizIDescription,
 };
