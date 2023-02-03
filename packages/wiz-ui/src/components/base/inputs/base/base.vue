@@ -8,10 +8,12 @@
     ]"
     :style="{ width: computedWidth }"
     :placeholder="placeholder"
-    :name="name"
     :disabled="disabled"
-    v-model="textValue"
     :type="type"
+    @focusin="hasFocus = true"
+    @focusout="hasFocus = false"
+    v-model="textValue"
+    :id="id"
   />
 </template>
 
@@ -30,11 +32,11 @@ defineOptions({
 });
 
 const props = defineProps({
-  value: {
+  id: {
     type: String,
-    required: true,
+    required: false,
   },
-  name: {
+  value: {
     type: String,
     required: true,
   },

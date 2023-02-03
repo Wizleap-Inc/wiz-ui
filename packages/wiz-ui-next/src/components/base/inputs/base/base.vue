@@ -8,12 +8,12 @@
     ]"
     :style="{ width: computedWidth }"
     :placeholder="placeholder"
-    :name="name"
     :disabled="disabled"
     :type="type"
     @focusin="hasFocus = true"
     @focusout="hasFocus = false"
-    v-model="value"
+    v-model="textValue"
+    :id="id"
   />
 </template>
 
@@ -32,11 +32,11 @@ defineOptions({
 });
 
 const props = defineProps({
-  modelValue: {
+  id: {
     type: String,
-    required: true,
+    required: false,
   },
-  name: {
+  modelValue: {
     type: String,
     required: true,
   },
@@ -78,7 +78,7 @@ interface Emit {
 
 const emit = defineEmits<Emit>();
 
-const value = computed({
+const textValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
