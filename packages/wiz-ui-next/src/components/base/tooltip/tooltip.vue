@@ -9,6 +9,7 @@
       :class="[tooltipPopupStyle, tooltipPositionStyle[direction]]"
       :style="{
         opacity: isHover || hover ? 1 : 0,
+        pointerEvents: isHover || hover ? 'auto' : 'none',
       }"
     >
       <div :class="tooltipContentStyle">
