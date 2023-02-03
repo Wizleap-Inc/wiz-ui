@@ -1,12 +1,26 @@
 <template>
-  <span :class="tooltipStyle">
+  <div
+    :class="tooltipStyle"
+    @mouseenter="isHover = true"
+    @mouseleave="isHover = false"
+  >
     <slot />
-    <span :class="tooltipContentStyle" v-if="content || slots.content">
-      {{ content }}
-      <slot v-if="!content" name="content" />
-      <WizIChangeHistory :class="tooltipIconStyle" />
-    </span>
-  </span>
+    <div
+      :class="[tooltipPopupStyle, tooltipPositionStyle[direction]]"
+      :style="{
+        opacity: isHover || hover ? 1 : 0,
+        pointerEvents: isHover || hover ? 'auto' : 'none',
+      }"
+      v-if="$slots.content"
+    >
+      <div :class="tooltipContentStyle">
+        <slot name="content" />
+      </div>
+      <WizIChangeHistory
+        :class="[tooltipIconStyle, tooltipIconDirectionStyle[direction]]"
+      />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -15,8 +29,11 @@ import {
   tooltipStyle,
   tooltipContentStyle,
   tooltipIconStyle,
+  tooltipIconDirectionStyle,
+  tooltipPositionStyle,
+  tooltipPopupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
-import { useSlots } from "vue";
+import { PropType, ref } from "vue";
 
 import { WizIChangeHistory } from "@/components/icons";
 
@@ -24,12 +41,18 @@ defineOptions({
   name: ComponentName.Tooltip,
 });
 
+const isHover = ref(false);
+
 defineProps({
-  content: {
-    type: String,
+  direction: {
+    type: String as PropType<"top" | "bottom" | "left" | "right">,
     required: false,
+    default: "top",
+  },
+  hover: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
-
-const slots = useSlots();
 </script>

@@ -1,10 +1,10 @@
 <template>
-  <p
-    v-if="computedIsP"
+  <component
+    :is="as"
     :class="[
       textStyle,
       textFontWeightStyle[bold ? 'bold' : 'default'],
-      maxLines && textWordBreakStyle,
+      (maxLines || breakAll) && textWordBreakStyle,
       lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
       fontSizeStyle[fontSize],
       colorStyle[color],
@@ -14,23 +14,7 @@
   >
     <span :class="textDummyStyle" v-if="dummyValue">{{ dummyValue }}</span>
     <slot v-else />
-  </p>
-  <span
-    v-else-if="computedIsSpan"
-    :class="[
-      textStyle,
-      textFontWeightStyle[bold ? 'bold' : 'default'],
-      maxLines && textWordBreakStyle,
-      lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
-      fontSizeStyle[fontSize],
-      colorStyle[color],
-      whiteSpaceStyle[whiteSpace],
-    ]"
-    :style="overflowStyles"
-  >
-    <span :class="textDummyStyle" v-if="dummyValue">{{ dummyValue }}</span>
-    <slot v-else />
-  </span>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -96,10 +80,11 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  breakAll: {
+    type: Boolean,
+    required: false,
+  },
 });
-
-const computedIsP = computed(() => props.as === "p");
-const computedIsSpan = computed(() => props.as === "span");
 
 const overflowStyles = computed(() => {
   if (!props.maxLines) return {};

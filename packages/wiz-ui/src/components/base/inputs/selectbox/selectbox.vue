@@ -9,15 +9,11 @@
       ]"
       :style="{ width: computedWidth }"
     >
-      <div
-        :class="[
-          selectBoxInnerBoxStyle,
-          !!isValueMatched && selectBoxInnerBoxSelectedStyle,
-        ]"
-        @click="toggleSelectBox"
-      >
+      <div :class="selectBoxInnerBoxStyle" @click="toggleSelectBox">
         <WizHStack align="center" justify="between" height="100%">
-          <span v-if="!isValueMatched">{{ placeholder }}</span>
+          <span v-if="!isValueMatched" :class="selectBoxPlaceholderStyle">{{
+            placeholder
+          }}</span>
           <span
             v-for="(option, key) in options"
             v-show="option.value === value"
@@ -69,9 +65,9 @@ import {
   selectBoxInnerBoxSelectedValueStyle,
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
-  selectBoxInnerBoxSelectedStyle,
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
+  selectBoxPlaceholderStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";

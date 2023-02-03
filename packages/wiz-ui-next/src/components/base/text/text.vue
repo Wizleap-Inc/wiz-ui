@@ -4,7 +4,7 @@
     :class="[
       textStyle,
       textFontWeightStyle[bold ? 'bold' : 'default'],
-      maxLines && textWordBreakStyle,
+      (maxLines || breakAll) && textWordBreakStyle,
       lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
       fontSizeStyle[fontSize],
       colorStyle[color],
@@ -78,6 +78,10 @@ const props = defineProps({
   },
   dummyValue: {
     type: String,
+    required: false,
+  },
+  breakAll: {
+    type: Boolean,
     required: false,
   },
 });

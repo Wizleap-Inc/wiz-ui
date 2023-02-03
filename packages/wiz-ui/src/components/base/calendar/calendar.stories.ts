@@ -43,3 +43,22 @@ export const FilledWeeks = Template.bind({});
 FilledWeeks.args = {
   filledWeeks: true,
 };
+
+FilledWeeks.parameters = {
+  docs: {
+    description: {
+      story:
+        "指定すると該当しない月の日付を表示するようにします。default では `false` になります。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <p>{{value.getFullYear()}}年 {{value.getMonth()+1}}月 {{value.getDate()}}日</p>
+    <WizCalendar filledWeeks v-model="value" :currentMonth="currentMonth" @input="input"/>
+  </div>
+</template>
+      `,
+    },
+  },
+};

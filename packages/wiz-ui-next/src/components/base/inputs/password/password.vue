@@ -1,15 +1,15 @@
 <template>
   <div :class="[passwordStyle, passwordExpandStyle[computedExpand]]">
     <PrivateBaseInput
-      :class="passwordInputStyle"
       v-model="passwordValue"
       :placeholder="placeholder"
-      :name="name"
+      :id="id"
       :disabled="disabled"
       :expand="expand"
       :width="width"
       :error="isError"
       :type="isPasswordVisible ? 'text' : 'password'"
+      space-type="right"
     />
     <button
       :aria-label="AREA_LABELS.PASSWORD_VISIBLE_TOGGLE"
@@ -25,7 +25,6 @@
 import { AREA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   passwordStyle,
-  passwordInputStyle,
   passwordExpandStyle,
   passwordVisibleIconStyle,
   passwordVisibleIconActiveStyle,
@@ -46,11 +45,11 @@ interface Emit {
 }
 
 const props = defineProps({
-  modelValue: {
+  id: {
     type: String,
-    required: true,
+    required: false,
   },
-  name: {
+  modelValue: {
     type: String,
     required: true,
   },
