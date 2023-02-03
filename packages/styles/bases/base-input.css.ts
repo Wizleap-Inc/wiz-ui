@@ -10,6 +10,7 @@ export const baseInputStyle = style({
 
   "::placeholder": {
     color: THEME.color.gray[500],
+    fontSize: `calc((${THEME.fontSize.sm} + ${THEME.fontSize.xs}) / 2)`,
   },
   ":focus": {
     outline: "none",
