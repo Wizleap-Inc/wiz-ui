@@ -34,6 +34,7 @@ import { default as WizIOpenInNew } from "./open-in-new.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
+import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
@@ -79,7 +80,8 @@ export type TIcon =
   | typeof WizIDownload
   | typeof WizIPinDrop
   | typeof WizIContentCopy
-  | typeof WizIDescription;
+  | typeof WizIDescription
+  | typeof WizISearch;
 
 export {
   WizIAdd,
@@ -122,4 +124,5 @@ export {
   WizIPinDrop,
   WizIContentCopy,
   WizIDescription,
+  WizISearch,
 };
