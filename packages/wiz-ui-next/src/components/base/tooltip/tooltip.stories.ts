@@ -97,3 +97,24 @@ NewLine.parameters = {
     },
   },
 };
+NewLine.parameters = {
+  docs: {
+    description: {
+      story: "`Tooltip` は、文章を複数行にわたって入力することもできます。",
+    },
+    source: {
+      code: `
+<template>
+  <div style="padding:100px;">
+    <WizTooltip content="保険見直し、つみたて・投資、ライフプラン\n保険見直し、つみたて・投資、ライフプラン">
+      {{ "保険見直し、つみ…" }}
+      <template #content>
+        コンテンツがない場合に表示するスロット
+      </template>
+    </WizTooltip>
+  </div>
+</template>
+      `,
+    },
+  },
+};

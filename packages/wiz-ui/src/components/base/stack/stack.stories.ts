@@ -105,7 +105,6 @@ Default.parameters = {
   docs: {
     source: {
       code: `
-
 <template>
   <div style="width: 100%; height: 100%; background: ${THEME.color.gray[300]}; padding: ${THEME.spacing.xl2}; box-sizing: border-box;">
     <label for="boxCountInput">箱の数（デバッグ用）</label>
@@ -125,9 +124,6 @@ Horizontal.args = {
 };
 Horizontal.parameters = {
   docs: {
-    description: {
-      story: "`direction` を指定することで、",
-    },
     source: {
       code: `
 <template>
