@@ -46,10 +46,10 @@ const Template: StoryFn = (_, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
 };
 Default.parameters = {
@@ -78,35 +78,60 @@ Default.parameters = {
   },
 };
 
+export const Options = Template.bind({});
+Options.args = {
+  options: [
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
+  ],
+};
+Options.parameters = {
+  docs: {
+    description: {
+      story: `
+optionsには、labelとvalueとkeyを指定してください。
+labelは表示される文字列、valueは入力値として使用されます。<br/>
+keyはcheckboxのidとして使用されます。keyは一意である必要があります。
+      `,
+    },
+    source: {
+      code: `
+<template>
+   <div>
+    <p>入力値：{{ value }}</p>
+    <WizCheckBox v-bind="$props" v-model="value" @input="input"/>
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
 export const AllDisabled = Template.bind({});
 AllDisabled.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
   disabled: true,
 };
 AllDisabled.parameters = {
   docs: {
     description: {
-      story: "入力を `disabled` にすることもできます。",
+      story: `
+disabledをtrueにすると、全てのチェックボックスがdisabledになります。
+      `,
     },
     source: {
       code: `
-<script lang="ts" setup>
-  const options = [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
-  ]
-</script>
 <template>
-  <div>
+   <div>
     <p>入力値：{{ value }}</p>
-    <WizCheckBox disabled :options ="options" v-model="value" @input="args.input"/>
+    <WizCheckBox v-bind="$props" v-model="value" @input="input"/>
   </div>
 </template>
       `,
@@ -117,34 +142,28 @@ AllDisabled.parameters = {
 export const SpotDisabled = Template.bind({});
 SpotDisabled.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2, disabled: true },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4, disabled: true },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2", disabled: true },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4", disabled: true },
   ],
 };
 SpotDisabled.parameters = {
   docs: {
     description: {
-      story: "選択肢の一部を disabled にすることもできます。",
+      story: `
+optionsの中にdisabledをtrueにすると、そのチェックボックスがdisabledになります。
+          `,
     },
     source: {
       code: `
-<script lang="ts" setup>
-  const options = [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2, disabled: true },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4, disabled: true },
-  ]
-</script>
 <template>
-  <div>
+   <div>
     <p>入力値：{{ value }}</p>
-    <WizCheckBox :options ="options" v-model="value" @input="args.input"/>
+    <WizCheckBox v-bind="$props" v-model="value" @input="input"/>
   </div>
 </template>
-      `,
+    `,
     },
   },
 };
@@ -152,10 +171,10 @@ SpotDisabled.parameters = {
 export const Vertical = Template.bind({});
 Vertical.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
   direction: "vertical",
 };
@@ -186,39 +205,53 @@ Vertical.parameters = {
   },
 };
 
-export const Gap = Template.bind({});
-Gap.args = {
-  options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
-  ],
-  gap: "sm",
-};
-Gap.parameters = {
+Vertical.parameters = {
   docs: {
     description: {
-      story:
-        "選択肢に `gap` を指定して余白を設定することができます。選択肢はSpacingKeysの中から選択できます。default 値は `xl` です。",
+      story: `
+directionをverticalにすると、チェックボックスが縦に並びます。
+      `,
     },
     source: {
       code: `
-<script lang="ts" setup>
-  const options = [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
-  ]
-</script>
 <template>
-  <div>
+   <div>
     <p>入力値：{{ value }}</p>
-    <WizCheckBox  :options ="options" gap="sm" v-model="value" @input="args.input"/>
+    <WizCheckBox v-bind="$props" v-model="value" @input="input"/>
   </div>
 </template>
-      `,
+    `,
+    },
+  },
+};
+
+export const Gap = Template.bind({});
+Gap.args = {
+  options: [
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
+  ],
+  gap: "sm",
+};
+
+Gap.parameters = {
+  docs: {
+    description: {
+      story: `
+gapを指定すると、チェックボックスの間に余白を設定できます。
+          `,
+    },
+    source: {
+      code: `
+<template>
+   <div>
+    <p>入力値：{{ value }}</p>
+    <WizCheckBox v-bind="$props" v-model="value" @input="input"/>
+  </div>
+</template>
+    `,
     },
   },
 };

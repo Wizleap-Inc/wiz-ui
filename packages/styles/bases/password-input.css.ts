@@ -5,12 +5,6 @@ export const passwordStyle = style({
   position: "relative",
 });
 
-export const passwordInputStyle = style({
-  "::placeholder": {
-    fontSize: `calc((${THEME.fontSize.sm} + ${THEME.fontSize.xs}) / 2)`,
-  },
-});
-
 export const passwordExpandStyle = styleVariants({
   default: {
     width: "fit-content",
@@ -22,7 +16,7 @@ export const passwordExpandStyle = styleVariants({
 
 export const passwordVisibleIconStyle = style({
   position: "absolute",
-  right: THEME.spacing.sm,
+  right: THEME.spacing.xs,
   top: "0",
   bottom: "0",
   margin: "auto",

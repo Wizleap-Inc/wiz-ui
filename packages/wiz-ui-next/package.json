@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-next",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
@@ -14,7 +14,7 @@
     "ci:test": "run-p ci:test:storybook",
     "ci:test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"storybook build --quiet && npx http-server storybook-static --port 6007 --silent\" \"wait-on tcp:6007 && yarn test:storybook\"",
     "ci:vrt": "reg-suit run",
-    "ci:storycap": "storycap --serverTimeout 100000 --captureTimeout 20000 --serverCmd 'npx http-server storybook-static --ci --port 6007' http://localhost:6007"
+    "ci:storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6007' http://localhost:6007"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^7.0.0-beta.19",

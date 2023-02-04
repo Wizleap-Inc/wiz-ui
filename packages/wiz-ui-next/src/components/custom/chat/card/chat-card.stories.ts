@@ -2,6 +2,7 @@ import { StoryFn, Meta } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizBox } from "@/components";
+import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
 import { Message } from "..";
 
@@ -47,6 +48,15 @@ export default {
     typingUsername: {
       control: { type: "text" },
     },
+    status: {
+      control: { type: "number" },
+    },
+    statusOptions: {
+      control: { type: "object" },
+    },
+    statusPlaceholder: {
+      control: { type: "text" },
+    },
     toggleDisplay: {
       action: "toggleDisplay",
     },
@@ -69,7 +79,11 @@ const templateMessages: Message[] = [
   {
     message: "こんにちは、〇〇です。よろしくお願いします。",
     sender: "me",
-    read: true,
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
     time: new Date("2021-08-02T00:00:00.000+09:00"),
   },
   {
@@ -81,7 +95,11 @@ const templateMessages: Message[] = [
   {
     message: "面談者が時間になっても来ない場合は、どうすればいいですか？",
     sender: "me",
-    read: true,
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
     time: new Date("2021-08-02T02:00:00.000+09:00"),
   },
   {
@@ -89,6 +107,17 @@ const templateMessages: Message[] = [
     sender: "other",
     username: "マネーキャリアスタッフ",
     time: new Date("2021-08-02T03:00:00.000+09:00"),
+  },
+  {
+    message:
+      "こちらが申請条件になります。https://example.com/shinsei-zyoken ご確認いただいたあとこちらのリンクから必要事項を入力してください。https://example.com/shinsei-form",
+    sender: "me",
+    readers: [
+      "マネーキャリアスタッフ1",
+      "マネーキャリアスタッフ2",
+      "マネーキャリアスタッフ3",
+    ],
+    time: new Date("2021-08-02T04:00:00.000+09:00"),
   },
 ];
 
@@ -126,6 +155,33 @@ SomeonesTyping.args = {
   isOpen: true,
   typingUsername: "なんとかかんとか",
 };
+const STATUS_OPTIONS: SelectBoxOption[] = [
+  {
+    label: "ステータス１",
+    value: 1,
+  },
+  {
+    label: "ステータス２",
+    value: 2,
+  },
+  {
+    label: "ステータス３",
+    value: 3,
+  },
+  {
+    label: "ステータス４",
+    value: 4,
+  },
+];
+
+export const Status = Template.bind({});
+Status.args = {
+  ...templateArgs,
+  isOpen: true,
+  status: 1,
+  statusOptions: STATUS_OPTIONS,
+  statusPlaceholder: "ステータスを選択してください",
+};
 
 export const Closed = Template.bind({});
 Closed.args = {
@@ -147,6 +203,7 @@ const PlaygroundTemplate: StoryFn<typeof WizChatCard> = (args) => ({
     const isFloatingMenuOpen = ref(false);
     const messages = ref(templateArgs.messages);
     const newMessage = ref("");
+    const status = ref(0);
     const toggleDisplay = () => {
       if (!isFloatingMenuOpen.value) haveNewMessage.value = false;
       isFloatingMenuOpen.value = !isFloatingMenuOpen.value;
@@ -156,7 +213,7 @@ const PlaygroundTemplate: StoryFn<typeof WizChatCard> = (args) => ({
       messages.value.push({
         message: newMessage.value,
         sender: "me",
-        read: false,
+        readers: ["マネーキャリアスタッフ"],
         time: new Date("2022-08-02T04:00:00.000+09:00"),
       });
       newMessage.value = "";
@@ -165,6 +222,8 @@ const PlaygroundTemplate: StoryFn<typeof WizChatCard> = (args) => ({
       messages,
       newMessage,
       haveNewMessage,
+      status,
+      STATUS_OPTIONS,
       isFloatingMenuOpen,
       toggleDisplay,
       postMessage,
@@ -178,6 +237,8 @@ const PlaygroundTemplate: StoryFn<typeof WizChatCard> = (args) => ({
       :messages="messages"
       :isOpen="isFloatingMenuOpen"
       :haveNewMessage="haveNewMessage"
+      v-model:status="status"
+      :statusOptions="STATUS_OPTIONS"
       @toggleDisplay="() => {
         args.toggleDisplay();
         toggleDisplay();
@@ -195,4 +256,6 @@ export const Playground = PlaygroundTemplate.bind({});
 Playground.args = {
   username: templateArgs.username,
   placeholder: templateArgs.placeholder,
+  statusPlaceholder: "ステータスを選択してください",
+  typingUsername: "なんとかかんとか",
 };

@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   graphBodyStyle,
   summaryLabelStyle,
@@ -27,6 +28,10 @@ import { computed, PropType } from "vue";
 import Bar from "./bar.vue";
 import Container from "./container.vue";
 import { TransitionGraphData } from "./types";
+
+defineOptions({
+  name: ComponentName.TransitionGraph,
+});
 
 const props = defineProps({
   data: {

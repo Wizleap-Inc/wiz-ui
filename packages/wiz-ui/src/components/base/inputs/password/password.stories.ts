@@ -15,7 +15,7 @@ export default {
         type: "text",
       },
     },
-    name: {
+    id: {
       control: {
         type: "text",
       },
@@ -112,7 +112,6 @@ Disabled.parameters = {
 
 export const Test = Template.bind({});
 Test.args = {
-  name: "password-input",
   placeholder: "パスワードを入力",
 };
 

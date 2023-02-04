@@ -3,6 +3,8 @@ import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
+import { WizISearch } from "@/components/icons";
+
 import WizTextInput from "./text.vue";
 
 export default {
@@ -44,7 +46,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const value = ref("");
     return { value };
   },
-  template: `<WizTextInput v-bind="$props" v-model="value" name="text-input" />`,
+  template: `<WizTextInput v-bind="$props" v-model="value" />`,
 });
 
 export const Default = Template.bind({});
@@ -119,6 +121,12 @@ Disabled.parameters = {
   },
 };
 
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  placeholder: "入力してください",
+  icon: WizISearch,
+};
+
 export const Test = Template.bind({});
 Test.args = {
   placeholder: "入力してください",
@@ -147,7 +155,7 @@ const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
   template: `
     <div>
       <p>入力値：{{ value }}</p>
-      <WizTextInput Placeholder="入力してください" v-model="value" name="text-input" />
+      <WizTextInput placeholder="入力してください" v-model="value" />
     </div>
   `,
 });
