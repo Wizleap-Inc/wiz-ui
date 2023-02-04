@@ -52,15 +52,55 @@ const Template: StoryFn<typeof WizTextArea> = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizTextArea v-model="value" name="text-area" />
+</template>
+      `,
+    },
+  },
+};
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
   placeholder: "入力してください",
 };
+Placeholder.parameters = {
+  docs: {
+    description: {
+      story:
+        "要素内の `white-space` を指定することができます。選択肢は `WhiteSpacingKey` から指定することができます。 default は `normal` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTextArea placeholder="入力してください。" v-model="value" name="text-area" />
+</template>
+      `,
+    },
+  },
+};
 
 export const Expand = Template.bind({});
 Expand.args = {
   expand: true,
+};
+Expand.parameters = {
+  docs: {
+    description: {
+      story: "`expand` を指定することで、幅いっぱいに表示することができます。 ",
+    },
+    source: {
+      code: `
+<template>
+  <WizTextArea expand placeholder="入力してください。" v-model="value" name="text-area" />
+</template>
+      `,
+    },
+  },
 };
 
 export const Disabled = Template.bind({});
@@ -68,11 +108,36 @@ Disabled.args = {
   disabled: true,
   placeholder: "入力してください",
 };
-
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizTextArea disabled placeholder="入力してください。" v-model="value" name="text-area" />
+</template>
+      `,
+    },
+  },
+};
 export const Row = Template.bind({});
 Row.args = {
   rows: 5,
   placeholder: "入力してください",
+};
+Row.parameters = {
+  docs: {
+    description: {
+      story:
+        "`rows` を指定することで、デフォルトで表示される行数を指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTextArea :rows="5"  v-model="value" name="text-area" />
+</template>
+      `,
+    },
+  },
 };
 
 export const Test = Template.bind({});
@@ -109,3 +174,20 @@ const PlaygroundTemplate: StoryFn<typeof WizTextArea> = (args) => ({
 });
 
 export const Playground = PlaygroundTemplate.bind({});
+Playground.parameters = {
+  docs: {
+    source: {
+      code: `
+<script setup lang="ts">
+  const value = ref("");
+</script>
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizTextArea Placeholder="入力してください" v-model="value" name="text-area" @update:modelValue="args.update" />
+  </div>
+</template>
+      `,
+    },
+  },
+};
