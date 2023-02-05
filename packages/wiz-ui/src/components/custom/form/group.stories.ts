@@ -249,7 +249,7 @@ export const AllInputError: StoryFn = () => ({
     const textareaInput = ref("");
     const SELECT_OPTIONS: SelectBoxOption[] = SELECT_BOX_CHOICES;
     const selectInput = ref(0);
-    const CHECKBOX_OPTIONS: CheckBoxOption[] = [
+    const checkBoxOptions: CheckBoxOption[] = [
       {
         label: "選択肢1",
         value: 1,
@@ -262,7 +262,7 @@ export const AllInputError: StoryFn = () => ({
       },
     ];
     const checkboxInput = ref<number[]>([]);
-    const RADIO_OPTIONS: RadioOption[] = [
+    const radioOptions: RadioOption[] = [
       {
         label: "選択肢1",
         value: 1,
@@ -284,9 +284,9 @@ export const AllInputError: StoryFn = () => ({
       selectInput,
       SELECT_OPTIONS,
       checkboxInput,
-      CHECKBOX_OPTIONS,
+      checkBoxOptions,
       radioInput,
-      RADIO_OPTIONS,
+      radioOptions,
       datePickerInput,
       timePickerInput,
     };
@@ -303,10 +303,10 @@ export const AllInputError: StoryFn = () => ({
         <WizSelectBox v-model="selectInput" name="selectInput" placeholder="選択してください" :options="SELECT_OPTIONS" />
       </WizFormControl>
       <WizFormControl label="WizCheckBox" error="エラーが発生しました">
-        <WizCheckBox v-model="checkboxInput" name="checkboxInput" :options="CHECKBOX_OPTIONS" />
+        <WizCheckBox v-model="checkboxInput" name="checkboxInput" :options="checkBoxOptions" />
       </WizFormControl>
       <WizFormControl label="WizRadio" error="エラーが発生しました">
-        <WizRadio v-model="radioInput" name="radioInput" :options="RADIO_OPTIONS" />
+        <WizRadio v-model="radioInput" name="radioInput" :options="radioOptions" />
       </WizFormControl>
       <WizFormControl label="WizDatePicker" error="エラーが発生しました">
         <WizDatePicker v-model="datePickerInput" name="datePickerInput" />
