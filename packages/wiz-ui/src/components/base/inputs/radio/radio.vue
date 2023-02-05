@@ -5,8 +5,8 @@
         <input
           :class="radioInputStyle"
           type="radio"
-          :name="`${option.key}`"
-          :id="`${option.key}`"
+          :name="option.key"
+          :id="option.key"
           :value="option.value"
           v-model="radioValue"
           :disabled="disabled || option.disabled"
@@ -19,7 +19,7 @@
             radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
             radioLabelCursorStyle[radioLabelCursor(option.disabled)],
           ]"
-          :for="`${option.key}`"
+          :for="option.key"
         >
           {{ option.label }}
         </label>
