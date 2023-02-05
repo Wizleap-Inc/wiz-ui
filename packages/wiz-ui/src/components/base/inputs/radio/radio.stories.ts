@@ -46,20 +46,20 @@ const Template: StoryFn = (_, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
 };
 
 export const AllDisabled = Template.bind({});
 AllDisabled.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
   disabled: true,
 };
@@ -67,10 +67,10 @@ AllDisabled.args = {
 export const SpotDisabled = Template.bind({});
 SpotDisabled.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2, disabled: true },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4, disabled: true },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2", disabled: true },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4", disabled: true },
   ],
   disabledKey: 0,
 };
@@ -78,10 +78,10 @@ SpotDisabled.args = {
 export const Vertical = Template.bind({});
 Vertical.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
   direction: "vertical",
 };
@@ -89,10 +89,10 @@ Vertical.args = {
 export const Gap = Template.bind({});
 Gap.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test1" },
+    { label: "test3", value: 3, key: "test1" },
+    { label: "test4", value: 4, key: "test1" },
   ],
   gap: "sm",
 };
