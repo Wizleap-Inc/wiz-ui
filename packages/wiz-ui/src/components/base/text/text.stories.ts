@@ -13,7 +13,7 @@ export default {
   argTypes: {
     as: {
       control: { type: "select" },
-      options: ["p", "span"],
+      options: ["p", "span", "label"],
     },
     fontSize: {
       control: { type: "select" },
