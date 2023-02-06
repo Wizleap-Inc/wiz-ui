@@ -10,6 +10,7 @@
       colorStyle[color],
       whiteSpaceStyle[whiteSpace],
     ]"
+    :for="htmlFor"
     :style="overflowStyles"
   >
     <span :class="textDummyStyle" v-if="dummyValue">{{ dummyValue }}</span>
