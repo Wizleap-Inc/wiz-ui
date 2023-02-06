@@ -8,6 +8,9 @@ export default {
   title: "Custom/Form/Control",
   component: WizFormControl,
   argTypes: {
+    htmlFor: {
+      control: { type: "text" },
+    },
     label: {
       control: { type: "text" },
     },
@@ -29,7 +32,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   components: { WizFormControl, WizTextInput },
   template: `
     <WizFormControl v-bind="$props">
-      <WizTextInput v-model="input" name="input" placeholder="入力してください" />
+      <WizTextInput v-model="input" name="input" :id="htmlFor" placeholder="入力してください" />
     </WizFormControl>
   `,
 });
@@ -63,6 +66,25 @@ Default.args = {
   label: "Label",
 };
 Default.parameters = {
+  docs: {
+    description: {
+      component: `
+### WizFormControl
+各Inputコンポーネントをラップするコンポーネントです。そのInputコンポーネントのラベルやエラーメッセージを表示します。
+    `,
+    },
+    source: {
+      code: CODE_TEMPLATE(Default.args),
+    },
+  },
+};
+
+export const HtmlFor = Template.bind({});
+HtmlFor.args = {
+  label: "Label",
+  htmlFor: "hogefuga",
+};
+HtmlFor.parameters = {
   docs: {
     description: {
       component: `
