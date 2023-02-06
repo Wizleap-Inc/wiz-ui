@@ -49,6 +49,10 @@ const props = defineProps({
     required: false,
     default: "p",
   },
+  htmlFor: {
+    type: String,
+    required: false,
+  },
   color: {
     type: String as PropType<ColorKeys>,
     required: false,
