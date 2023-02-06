@@ -15,6 +15,9 @@ export default {
       control: { type: "select" },
       options: ["p", "span", "label"],
     },
+    htmlFor: {
+      control: { type: "text" },
+    },
     fontSize: {
       control: { type: "select" },
       options: FONT_SIZE_ACCESSORS,
@@ -57,6 +60,11 @@ Paragraph.args = {
 export const Span = Template.bind({});
 Span.args = {
   as: "span",
+};
+
+export const Label = Template.bind({});
+Label.args = {
+  as: "label",
 };
 
 export const Bold = Template.bind({});
