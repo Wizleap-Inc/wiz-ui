@@ -82,7 +82,7 @@ Default.parameters = {
 export const HtmlFor = Template.bind({});
 HtmlFor.args = {
   label: "Label",
-  htmlFor: "hogefuga",
+  htmlFor: "hogehoge",
 };
 HtmlFor.parameters = {
   docs: {
