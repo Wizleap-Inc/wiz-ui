@@ -15,7 +15,7 @@ export default {
         type: "text",
       },
     },
-    name: {
+    id: {
       control: {
         type: "text",
       },

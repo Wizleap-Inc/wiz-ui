@@ -1,12 +1,12 @@
 <template>
   <div :class="radioStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
-      <div v-for="(option, key) in options" :key="key">
+      <div v-for="option in options" :key="option.key">
         <input
           :class="radioInputStyle"
           type="radio"
-          :name="`radio${key}`"
-          :id="`radio${key}`"
+          :name="option.key"
+          :id="option.key"
           :value="option.value"
           v-model="radioValue"
           :disabled="disabled || option.disabled"
@@ -19,7 +19,7 @@
             radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
             radioLabelCursorStyle[radioLabelCursor(option.disabled)],
           ]"
-          :for="`radio${key}`"
+          :for="option.key"
         >
           {{ option.label }}
         </label>
