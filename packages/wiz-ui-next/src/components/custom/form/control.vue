@@ -2,7 +2,7 @@
   <WizVStack>
     <WizHStack>
       <WizHStack :width="labelWidth" align="center" gap="xs2">
-        <WizText as="label" :html-for="htmlFor">{{ label }}</WizText>
+        <WizText as="label" :htmlFor="htmlFor">{{ label }}</WizText>
         <WizTag font-size="xs2" label="必須" v-if="required" />
       </WizHStack>
       <WizVStack>
