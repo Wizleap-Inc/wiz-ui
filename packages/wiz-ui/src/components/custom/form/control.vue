@@ -2,7 +2,7 @@
   <WizVStack>
     <WizHStack>
       <WizHStack :width="labelWidth" align="center" gap="xs2">
-        <WizText>{{ label }}</WizText>
+        <WizText as="label" :htmlFor="htmlFor">{{ label }}</WizText>
         <WizTag font-size="xs2" label="必須" v-if="required" />
       </WizHStack>
       <WizVStack>
@@ -36,6 +36,10 @@ import {
 import { formGroupKey } from "@/hooks/use-form-group-provider";
 
 const props = defineProps({
+  htmlFor: {
+    type: String,
+    required: false,
+  },
   label: {
     type: String,
     required: true,
