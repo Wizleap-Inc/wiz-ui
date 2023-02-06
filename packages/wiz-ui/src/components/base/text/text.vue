@@ -45,7 +45,7 @@ defineOptions({
 
 const props = defineProps({
   as: {
-    type: String as PropType<"p" | "span">,
+    type: String as PropType<"p" | "span" | "label">,
     required: false,
     default: "p",
   },
