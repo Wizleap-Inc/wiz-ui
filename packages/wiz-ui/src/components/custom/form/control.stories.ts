@@ -93,7 +93,7 @@ HtmlFor.parameters = {
     `,
     },
     source: {
-      code: CODE_TEMPLATE(Default.args),
+      code: CODE_TEMPLATE(HtmlFor.args),
     },
   },
 };
