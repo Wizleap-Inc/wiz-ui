@@ -81,8 +81,7 @@ export type TIcon =
   | typeof WizIDownload
   | typeof WizIPinDrop
   | typeof WizIContentCopy
-  | typeof WizIDescription
-  | typeof WizISearch;
+  | typeof WizIDescription;
 
 export {
   WizIAdd,
@@ -126,5 +125,4 @@ export {
   WizIPinDrop,
   WizIContentCopy,
   WizIDescription,
-  WizISearch,
 };
