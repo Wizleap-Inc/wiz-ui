@@ -1,8 +1,8 @@
 <template>
   <textarea
     v-model="textValue"
+    :id="id"
     :placeholder="placeholder"
-    :name="name"
     :disabled="disabled"
     :rows="rows"
     :class="[
@@ -33,11 +33,11 @@ defineOptions({
 });
 
 const props = defineProps({
-  value: {
+  id: {
     type: String,
-    required: true,
+    required: false,
   },
-  name: {
+  value: {
     type: String,
     required: true,
   },

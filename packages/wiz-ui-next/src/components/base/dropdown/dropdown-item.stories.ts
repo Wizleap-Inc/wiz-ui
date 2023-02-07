@@ -33,3 +33,16 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   icon: WizIOpenInNew,
 };
+WithIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <WizDropdownItem :slotDefault="選択肢" :icon="WizIOpenInNew" @click="click">
+    {{ slotDefault }}
+  </WizDropdownItem>
+</template>
+      `,
+    },
+  },
+};

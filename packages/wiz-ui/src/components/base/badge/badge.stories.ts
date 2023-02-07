@@ -64,7 +64,7 @@ Hidden.parameters = {
   docs: {
     description: {
       story:
-        "`コンポーネントを非表示にすることができます。default は`false` です。",
+        "コンポーネントを非表示にすることができます。default は`false` です。",
     },
     source: {
       code: `

@@ -92,15 +92,94 @@ export const MaxWidth = Template.bind({});
 MaxWidth.args = {
   maxWidth: "300px",
 };
+MaxWidth.parameters = {
+  docs: {
+    description: {
+      story: "最大幅を指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizDialog maxWidth="300px" v-model="isOpen">
+      <template #title v-if="slotTitle">
+        <component :is="slotTitle" />
+      </template>
+      <component :is="slotDefault" />
+      <template #footer v-if="slotFooter">
+        <component :is="slotFooter" />
+      </template>
+    </WizDialog>
+    <button @click="isOpen = true">Open</button>
+    <div style="height: 200vh"></div>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const Title = Template.bind({});
 Title.args = {
   title: "Dialog Title From Props",
 };
+Title.parameters = {
+  docs: {
+    description: {
+      story: "Dialog の タイトル名を指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizDialog title="Dialog Title" v-model="isOpen">
+      <template #title v-if="slotTitle">
+        <component :is="slotTitle" />
+      </template>
+      <component :is="slotDefault" />
+      <template #footer v-if="slotFooter">
+        <component :is="slotFooter" />
+      </template>
+    </WizDialog>
+    <button @click="isOpen = true">Open</button>
+    <div style="height: 200vh"></div>
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const Align = Template.bind({});
 Align.args = {
   align: "center",
+};
+Align.parameters = {
+  docs: {
+    description: {
+      story:
+        "`align` を指定することができます。選択肢は `start`, `center`, `end` の中から選択できます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizDialog maxWidth="300px" align="center" v-model="isOpen">
+      <template #title v-if="slotTitle">
+        <component :is="slotTitle" />
+      </template>
+      <component :is="slotDefault" />
+      <template #footer v-if="slotFooter">
+        <component :is="slotFooter" />
+      </template>
+    </WizDialog>
+    <button @click="isOpen = true">Open</button>
+    <div style="height: 200vh"></div>
+  </div>
+</template>
+      `,
+    },
+  },
 };
 
 export const Playground: StoryFn<typeof WizDialog> = (args) => ({
@@ -168,3 +247,35 @@ export const NestedDialog: StoryFn<typeof WizDialog> = (args) => ({
   </div>
   `,
 });
+NestedDialog.parameters = {
+  docs: {
+    description: {
+      story: "dialog の中に dialog コンポーネントを設定することもできます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizDialog v-bind="$props" v-model="isOpen" title="Dialog 1">
+      <WizText>Dialog 1</WizText>
+      <template #footer>
+        <WizTextButton @click="isOpen2 = true">Open Dialog 2</WizTextButton>
+      </template>
+    </WizDialog>
+    <WizDialog v-bind="$props" v-model="isOpen2" title="Dialog 2" maxWidth="300px">
+      <WizText>Dialog 2</WizText>
+      <template #footer>
+        <WizTextButton @click="isOpen3 = true">Open Dialog 3</WizTextButton>
+      </template>
+    </WizDialog>
+    <WizDialog v-bind="$props" v-model="isOpen3" title="Dialog 3">
+      <WizText>Dialog 3</WizText>
+    </WizDialog>
+    <button @click="isOpen = true">Open</button>
+    <div style="height: 200vh"></div>
+  </div>
+</template>
+      `,
+    },
+  },
+};

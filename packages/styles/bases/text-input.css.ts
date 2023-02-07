@@ -1,11 +1,11 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const passwordStyle = style({
+export const textInputStyle = style({
   position: "relative",
 });
 
-export const passwordExpandStyle = styleVariants({
+export const textInputExpandStyle = styleVariants({
   default: {
     width: "fit-content",
   },
@@ -14,13 +14,12 @@ export const passwordExpandStyle = styleVariants({
   },
 });
 
-export const passwordVisibleIconStyle = style({
+export const textInputIconStyle = style({
   position: "absolute",
-  right: THEME.spacing.xs,
+  left: THEME.spacing.xs,
   top: "0",
   bottom: "0",
   margin: "auto",
-  cursor: "pointer",
   display: "flex",
   background: "none",
   border: "none",
@@ -31,9 +30,5 @@ export const passwordVisibleIconStyle = style({
   width: THEME.fontSize.xl2,
   height: THEME.fontSize.xl2,
   padding: THEME.spacing.no,
-  fill: THEME.color.gray["400"],
-});
-
-export const passwordVisibleIconActiveStyle = style({
-  fill: THEME.color.green["800"],
+  fill: THEME.color.gray[500],
 });

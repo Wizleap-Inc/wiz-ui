@@ -38,6 +38,9 @@ const IconComponentName = {
   IDownload: "WizIDownload",
   ISearch: "WizSearch",
   IPinDrop: "WizIPinDrop",
+  IContentCopy: "WizIContentCopy",
+  IDescription: "WizIDescription",
+  ISearch: "WizISearch",
 };
 
 export const ComponentName = {

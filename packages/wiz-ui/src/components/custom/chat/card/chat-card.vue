@@ -55,13 +55,27 @@
         </WizVStack>
       </WizBox>
       <template #footer>
-        <WizChatForm
-          v-model="textValue"
-          @submit="onSubmit"
-          :placeholder="placeholder"
-          :formRows="formRows"
-        />
-        <WizVStack height="1.125rem" width="100%" justify="end">
+        <WizVStack width="100%" justify="end" gap="xs">
+          <WizChatForm
+            v-model="textValue"
+            @submit="onSubmit"
+            :placeholder="placeholder"
+            :formRows="formRows"
+          />
+          <WizHStack v-if="status !== undefined && statusOptions !== undefined">
+            <WizSelectBox
+              :options="statusOptions"
+              v-model="statusValue"
+              :placeholder="statusPlaceholder"
+              expand
+            />
+            <div
+              :style="{
+                width: THEME.spacing.xl4,
+                flexShrink: 0,
+              }"
+            />
+          </WizHStack>
           <WizText v-if="typingUsername" color="gray.600" as="p" fontSize="xs2">
             <WizText as="span" bold fontSize="xs2" color="gray.700">
               {{ typingUsername }}
@@ -94,7 +108,9 @@ import {
   WizChatItem,
   WizIExpandMore,
   WizIExpandLess,
+  WizSelectBox,
 } from "@/components";
+import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
 import { Message, DisplayMessage } from "..";
 
@@ -136,12 +152,25 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  status: {
+    type: Number,
+    required: false,
+  },
+  statusOptions: {
+    type: Array as PropType<SelectBoxOption[]>,
+    required: false,
+  },
+  statusPlaceholder: {
+    type: String,
+    required: false,
+  },
 });
 
 interface Emit {
   (e: "input", value: string): void;
   (e: "submit"): void;
   (e: "toggleDisplay"): void;
+  (e: "updateStatus", value: number): void;
 }
 
 const emits = defineEmits<Emit>();
@@ -198,6 +227,11 @@ watch(props.messages, () => {
 const textValue = computed({
   get: () => props.value,
   set: (value) => emits("input", value),
+});
+
+const statusValue = computed({
+  get: () => props.status || NaN,
+  set: (value) => value && emits("updateStatus", value),
 });
 
 const onSubmit = () => emits("submit");

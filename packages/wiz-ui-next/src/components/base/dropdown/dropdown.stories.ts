@@ -48,8 +48,52 @@ export const Skeleton = Template.bind({});
 Skeleton.args = {
   skeleton: true,
 };
-
+Skeleton.parameters = {
+  docs: {
+    description: {
+      story:
+        "Dropdown の選択肢にスケルトンスクリーンを指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizDropdown skelton v-model="isOpen">
+      <WizTextButton @click="isOpen = !isOpen" name="trigger">Click me</WizTextButton>
+      <template #options>
+        <WizDropdownItem @click="click">選択肢1</WizDropdownItem>
+        <WizDropdownItem @click="click">選択肢2</WizDropdownItem>
+        <WizDropdownItem @click="click">選択肢3</WizDropdownItem>
+      </template>
+    </WizDropdown>
+</template>
+      `,
+    },
+  },
+};
 export const Gap = Template.bind({});
 Gap.args = {
   gap: "lg",
+};
+
+Gap.parameters = {
+  docs: {
+    description: {
+      story:
+        "gap を指定することができます。選択肢はVariablesのSpacingKeysを参照してください。",
+    },
+    source: {
+      code: `
+<template>
+  <WizDropdown gap="lg" v-model="isOpen">
+    <WizTextButton @click="isOpen = !isOpen" name="trigger">Click me</WizTextButton>
+    <template #options>
+      <WizDropdownItem @click="click">選択肢1</WizDropdownItem>
+      <WizDropdownItem @click="click">選択肢2</WizDropdownItem>
+      <WizDropdownItem @click="click">選択肢3</WizDropdownItem>
+    </template>
+  </WizDropdown>
+</template>
+      `,
+    },
+  },
 };
