@@ -1,5 +1,7 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
+
+const borderWidth = "1px";
 
 export const searchStyle = style({
   position: "relative",
@@ -9,7 +11,7 @@ export const searchInputStyle = style({
   borderRadius: THEME.spacing.xs2,
   padding: `${THEME.spacing.xs} ${THEME.spacing.xl2} ${THEME.spacing.xs} ${THEME.spacing.xl3}`,
   fontSize: THEME.fontSize.sm,
-  lineHeight: 1.5,
+  lineHeight: THEME.spacing.xl,
   color: THEME.color.gray[700],
   boxSizing: "border-box",
   ":focus": {
@@ -26,15 +28,6 @@ export const searchInputDisabledStyle = style({
   cursor: "not-allowed",
 });
 
-export const searchExpandStyle = styleVariants({
-  default: {
-    width: "fit-content",
-  },
-  expand: {
-    width: "100%",
-  },
-});
-
 export const searchInputIconStyle = style({
   position: "absolute",
   top: THEME.spacing.xs,
@@ -49,41 +42,69 @@ export const searchInputIconStyle = style({
   fill: THEME.color.gray["400"],
 });
 
-export const searchDividerStyle = style({
-  paddingTop: THEME.spacing.xs,
-  // paddingBottom: THEME.spacing.xs,
-});
-
 export const searchPopupStyle = style({
   display: "flex",
 });
 
-export const searchPopupBlockStyle = style({
-  // display: "flex",
-  // alignItems: "flex-start",
-  height: "fit-content",
+export const searchBlockStyle = style({
   backgroundColor: THEME.color.white[800],
-  // borderRadius: THEME.spacing.xs2,
-  // paddingTop: THEME.spacing.xs,
-  paddingBottom: THEME.spacing.xs,
   paddingRight: THEME.spacing.xs,
   paddingLeft: THEME.spacing.xs,
-});
-
-export const searchPopupItemStyle = style({
-  paddingTop: THEME.spacing.xs,
-});
-
-export const searchPopupItemExpandStyle = styleVariants({
-  default: {
-    width: "10rem",
+  height: "fit-content",
+  maxHeight: "25rem",
+  overflowY: "auto",
+  "::-webkit-scrollbar": {
+    width: THEME.spacing.xs2,
   },
-  expand: {
-    width: "100%",
+  "::-webkit-scrollbar-thumb": {
+    backgroundColor: THEME.color.gray[400],
+    borderRadius: THEME.spacing.xs,
   },
 });
 
-export const searchDropItemStyle = style({
+export const searchBlockBorderStyle = style({
+  borderRight: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+});
+
+export const searchBlockBorderRadiusStyle = style({
+  borderRadius: `${THEME.spacing.xs2} ${THEME.spacing.no} ${THEME.spacing.no} ${THEME.spacing.xs2}`,
+});
+
+export const searchPopupBlockStyle = style({
+  backgroundColor: THEME.color.white[800],
+  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
+  height: "fit-content",
+  maxHeight: "25rem",
+  overflowY: "auto",
+  "::-webkit-scrollbar": {
+    width: THEME.spacing.xs2,
+  },
+  "::-webkit-scrollbar-thumb": {
+    backgroundColor: THEME.color.gray[400],
+    borderRadius: THEME.spacing.xs,
+  },
+});
+
+export const searchPopupBlockBorderRightStyle = style({
+  borderRight: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+});
+
+export const searchPopupBlockBorderRadiusStyle = style({
+  borderRadius: `${THEME.spacing.no} ${THEME.spacing.xs2} ${THEME.spacing.xs2} ${THEME.spacing.no}`,
+});
+
+export const searchDropdownItemStyle = style({
+  padding: `${THEME.spacing.xs} ${THEME.spacing.no}`,
+});
+
+export const searchPopupDropdownItemStyle = style({
+  padding: `${THEME.spacing.xs} ${THEME.spacing.no}`,
+});
+
+export const searchDropdownLabelStyle = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   paddingLeft: THEME.spacing.xs,
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
@@ -94,4 +115,49 @@ export const searchDropItemStyle = style({
     background: THEME.color.green[300],
     color: THEME.color.green[800],
   },
+});
+
+export const searchDropdownCheckboxItemStyle = style({
+  padding: `${THEME.spacing.xs} ${THEME.spacing.sm}`,
+});
+
+export const searchCheckboxInputStyle = style({
+  display: "none",
+});
+
+export const searchCheckboxLabelStyle = style({
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
+  color: THEME.color.gray["600"],
+  lineHeight: THEME.fontSize.xl2,
+  fontSize: THEME.fontSize.sm,
+  gap: THEME.spacing.sm,
+  cursor: "pointer",
+  ":before": {
+    content: "",
+    border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+    borderRadius: `calc(${THEME.spacing.xs2} / 2)`,
+    width: THEME.spacing.md,
+    height: THEME.spacing.md,
+    boxSizing: "border-box",
+    display: "inline-block",
+  },
+});
+
+export const searchCheckboxLabelCheckedStyle = style({
+  ":before": {
+    border: `${borderWidth} solid ${THEME.color.green["800"]}`,
+  },
+});
+
+export const searchCheckboxIconStyle = style({
+  position: "absolute",
+  top: THEME.spacing.xs2,
+  left: borderWidth,
+  fill: THEME.color.green["800"],
+});
+
+export const searchCheckboxBlockCheckedStyle = style({
+  color: THEME.color.green["800"],
 });
