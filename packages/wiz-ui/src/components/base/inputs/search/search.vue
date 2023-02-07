@@ -30,9 +30,7 @@
         >
           <div v-for="(option, key) in options" :key="key">
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
-              <WizHStack
-                align="center"
-                justify="between"
+              <div
                 :class="searchDropdownLabelStyle"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
@@ -43,7 +41,7 @@
                   :icon="WizIChevronRight"
                   :color="computedIconColor(option.value)"
                 />
-              </WizHStack>
+              </div>
             </div>
             <div
               v-else
@@ -86,7 +84,8 @@
           </div>
         </div>
         <WizSearchPopup
-          v-model="checkValues"
+          :values="values"
+          @input="inputValues"
           :options="options"
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
@@ -120,7 +119,6 @@ import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, watch, PropType } from "vue";
 
 import {
-  WizHStack,
   WizDivider,
   WizISearch,
   WizPopupContainer,
@@ -141,7 +139,7 @@ const props = defineProps({
     type: Array as PropType<SearchInputOption[]>,
     required: true,
   },
-  modelValue: {
+  values: {
     type: Array as PropType<number[]>,
     required: true,
   },
@@ -173,16 +171,20 @@ const props = defineProps({
 });
 
 const emit = defineEmits<{
-  (e: "update:modelValue", value: number[]): void;
+  (e: "input", value: number[]): void;
   (e: "click"): void;
 }>();
 
 const checkValues = computed({
-  get: () => props.modelValue,
+  get: () => props.values,
   set: (value) => {
-    emit("update:modelValue", value);
+    emit("input", value);
   },
 });
+
+const inputValues = (value: number[]) => {
+  emit("input", value);
+};
 
 const searchValue = ref("");
 const filteredOptions = ref<SearchInputOption[]>([]);
