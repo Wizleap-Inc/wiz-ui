@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
 import WizSearchInput from "./search.vue";
@@ -31,9 +31,10 @@ export default {
       action: "input",
     },
   },
-} as Meta<typeof WizSearchInput>;
+};
 
-const Template: StoryFn<typeof WizSearchInput> = (args) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { WizSearchInput },
   setup() {
     const values = ref<number[]>([]);
@@ -154,9 +155,13 @@ const Template: StoryFn<typeof WizSearchInput> = (args) => ({
       },
     ];
 
-    return { values, args, options };
+    const inputValues = (value: number[]) => {
+      values.value = value;
+    };
+
+    return { values, inputValues, options };
   },
-  template: `<div><div>values:{{ values }}</div><WizSearchInput v-bind="args" v-model="values" :options="options" name="search-input"/></div>`,
+  template: `<div><div>values:{{ values }}</div><WizSearchInput v-bind="$props" :values="values" @input="inputValues" :options="options" name="search-input"/></div>`,
 });
 
 export const Default = Template.bind({});
