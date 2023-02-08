@@ -25,7 +25,7 @@ export default {
     },
     size: {
       control: { type: "select" },
-      options: ["xs", "sm", "md", "lg"],
+      options: ["sm", "md", "lg"],
     },
     icon: {
       control: { type: "object" },
@@ -201,8 +201,6 @@ export const Size: StoryFn<typeof WizTextButton> = (args) => ({
   setup: () => ({ args }),
   template: `
     <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
-      <WizTextButton size="xs">保存する</WizTextButton>
-      <div>size = xs</div>
       <WizTextButton size="sm">保存する</WizTextButton>
       <div>size = sm</div>
       <WizTextButton size="md">保存する</WizTextButton>
