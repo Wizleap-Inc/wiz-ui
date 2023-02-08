@@ -156,7 +156,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
 
     return { values, inputValues, options };
   },
-  template: `<div><div>values: {{ values }}</div><WizSearchInput v-bind="$props" :values="values" @input="inputValues" :options="options" name="search-input"/></div>`,
+  template: `<div><div>values:{{ values }}</div><WizSearchInput v-bind="$props" :values="values" @input="inputValues" :options="options" name="search-input"/></div>`,
 });
 
 export const Default = Template.bind({});
