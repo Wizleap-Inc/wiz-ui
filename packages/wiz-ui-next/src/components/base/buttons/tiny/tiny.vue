@@ -3,10 +3,14 @@
     :class="[
       tinyButtonStyle,
       tinyButtonSizeStyle,
-      disabled && tinyButtonDisabledStyle,
+      status === 'Off' && tinyButtonOffStyle,
+      status === 'disableTranslucent' && tinyButtonDisabledStyle,
+      status === 'disableGray' && tinyButtonDisabledGrayStyle,
       rounded && tinyButtonRoundStyle,
     ]"
-    :disabled="disabled"
+    :disabled="
+      props.status === 'disableGray' || props.status === 'disableTranslucent'
+    "
     @click="onClick"
   >
     <WizHStack
@@ -28,6 +32,8 @@ import {
   tinyButtonDisabledStyle,
   tinyButtonRoundStyle,
   tinyButtonSizeStyle,
+  tinyButtonDisabledGrayStyle,
+  tinyButtonOffStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
 import { PropType } from "vue";
 
@@ -42,10 +48,12 @@ interface Emits {
 }
 
 const props = defineProps({
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
+  status: {
+    type: String as PropType<
+      "On" | "Off" | "disableGray" | "disableTranslucent"
+    >,
+    required: true,
+    default: "Off",
   },
   rounded: {
     type: Boolean,
@@ -65,5 +73,6 @@ const props = defineProps({
 
 const emit = defineEmits<Emits>();
 
-const onClick = () => props.disabled || emit("click");
+const onClick = () =>
+  props.status === "On" || props.status === "Off" || emit("click");
 </script>

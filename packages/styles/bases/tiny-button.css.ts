@@ -16,15 +16,18 @@ export const tinyButtonStyle = style({
   },
 });
 
+export const tinyButtonOffStyle = style({
+  background: THEME.color.gray[500],
+  opacity: 0.5,
+});
+
 export const tinyButtonDisabledStyle = style({
   opacity: 0.5,
   cursor: "not-allowed",
 });
 
-// TODO: Disableのパターンを追加
 export const tinyButtonDisabledGrayStyle = style({
-  backgroundColor: THEME.color.gray[500],
-  opacity: 0.1,
+  background: THEME.color.gray[700],
   cursor: "not-allowed",
 });
 

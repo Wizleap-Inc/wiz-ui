@@ -10,8 +10,9 @@ export default {
   title: "Base/Buttons/Tiny",
   component: WizTinyButton,
   argTypes: {
-    disabled: {
-      control: { type: "boolean" },
+    status: {
+      control: { type: "select" },
+      options: ["On", "Off", "disableGray", "disableTranslucent"],
     },
     rounded: {
       control: { type: "boolean" },
@@ -44,16 +45,16 @@ Default.play = async ({ canvasElement }) => {
   await waitFor(() => expect(button).toHaveFocus());
 };
 
-export const DisabledState = Template.bind({});
-DisabledState.args = {
-  disabledState: "active",
+export const Status = Template.bind({});
+Status.args = {
+  status: "Off",
 };
 
-DisabledState.parameters = {
+Status.parameters = {
   docs: {
     description: {
       story:
-        "ボタンのクリックを `disabled`に設定できます。 default は `false` です。",
+        "ボタンの状態を設定できます．`On`または`Off`の場合は押下可能です．それ以外の場合は押下できません．",
     },
     source: {
       code: `
