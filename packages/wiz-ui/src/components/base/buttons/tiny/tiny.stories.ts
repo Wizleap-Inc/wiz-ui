@@ -13,6 +13,10 @@ export default {
     disabled: {
       control: { type: "boolean" },
     },
+    disabledState: {
+      control: { type: "select" },
+      options: ["active", "disabled_translucent", "disabled_gray"],
+    },
     rounded: {
       control: { type: "boolean" },
     },
@@ -50,6 +54,27 @@ Disabled.args = {
 };
 
 Disabled.parameters = {
+  docs: {
+    description: {
+      story:
+        "ボタンのクリックを `disabled`に設定できます。 default は `false` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
+</template>
+      `,
+    },
+  },
+};
+
+export const DisabledState = Template.bind({});
+DisabledState.args = {
+  disabledState: "active",
+};
+
+DisabledState.parameters = {
   docs: {
     description: {
       story:
