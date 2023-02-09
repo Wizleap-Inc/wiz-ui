@@ -70,7 +70,7 @@ const props = defineProps({
     default: false,
   },
   size: {
-    type: String as PropType<"sm" | "md" | "lg">,
+    type: String as PropType<"xs" | "sm" | "md" | "lg">,
     required: false,
     default: "md",
   },
@@ -96,6 +96,7 @@ const variantColor = computed(() => {
 });
 
 const iconSize = computed(() => {
+  if (props.size === "xs") return "lg";
   if (props.size === "sm") return "xl";
   if (props.size === "md") return "xl2";
   if (props.size === "lg") return "xl3";

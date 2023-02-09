@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { Meta, StoryFn } from "@storybook/vue";
+import { StoryFn } from "@storybook/vue";
 
 import { WizIAdd } from "@/components/icons";
 
@@ -25,7 +25,7 @@ export default {
     },
     size: {
       control: { type: "select" },
-      options: ["sm", "md", "lg"],
+      options: ["xs", "sm", "md", "lg"],
     },
     icon: {
       control: { type: "object" },
@@ -38,9 +38,9 @@ export default {
       action: "click",
     },
   },
-} as Meta<typeof WizTextButton>;
+};
 
-const Template: StoryFn<typeof WizTextButton> = (_, { argTypes }) => ({
+const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTextButton },
   template: `<WizTextButton v-bind="$props" @click="click">{{ "保存する" }}</WizTextButton>`,
@@ -201,6 +201,8 @@ export const Size: StoryFn = (_, { argTypes }) => ({
   components: { WizTextButton },
   template: `
     <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <WizTextButton size="xs">保存する</WizTextButton>
+      <div>size = xs</div>
       <WizTextButton size="sm">保存する</WizTextButton>
       <div>size = sm</div>
       <WizTextButton size="md">保存する</WizTextButton>

@@ -57,6 +57,12 @@ const textButtonSizeNotXsStyle = style({
 });
 
 export const textButtonSizeStyle = styleVariants({
+  xs: [
+    textButtonSizeXsStyle,
+    {
+      fontSize: THEME.fontSize.xs,
+    },
+  ],
   sm: [
     textButtonSizeNotXsStyle,
     {
