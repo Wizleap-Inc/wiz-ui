@@ -6,7 +6,6 @@
       selectable && !active && tinyButtonSelectableStyle.inactive,
       !selectable && active && tinyButtonNotSelectableStyle.active,
       !selectable && !active && tinyButtonNotSelectableStyle.inactive,
-      rounded && tinyButtonRoundStyle,
     ]"
     :disabled="props.selectable"
     @click="onClick"
@@ -26,7 +25,6 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  tinyButtonRoundStyle,
   tinyButtonSizeStyle,
   tinyButtonSelectableStyle,
   tinyButtonNotSelectableStyle,
@@ -53,11 +51,6 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
-  },
-  rounded: {
-    type: Boolean,
-    required: false,
-    default: true,
   },
   icon: {
     type: Object as PropType<TIcon>,

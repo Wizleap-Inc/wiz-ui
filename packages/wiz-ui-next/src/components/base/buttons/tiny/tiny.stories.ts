@@ -88,25 +88,6 @@ Active.parameters = {
   },
 };
 
-export const Angled = Template.bind({});
-Angled.args = {
-  rounded: false,
-};
-Angled.parameters = {
-  docs: {
-    description: {
-      story: "ボタンの形を矩形にすることができます。",
-    },
-    source: {
-      code: `
-<template>
-  <WizTinyButton rounded @click="click">{{ "保存する" }}</WizTinyButton>
-</template>
-      `,
-    },
-  },
-};
-
 export const Icon = Template.bind({});
 Icon.args = {
   icon: WizIAdd,

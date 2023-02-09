@@ -16,9 +16,6 @@ export default {
     active: {
       control: { type: "boolean" },
     },
-    rounded: {
-      control: { type: "boolean" },
-    },
     icon: {
       control: { type: "object" },
     },
@@ -85,25 +82,6 @@ Active.parameters = {
       code: `
 <template>
   <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
-</template>
-      `,
-    },
-  },
-};
-
-export const Angled = Template.bind({});
-Angled.args = {
-  rounded: false,
-};
-Angled.parameters = {
-  docs: {
-    description: {
-      story: "ボタンの形を矩形にすることができます。",
-    },
-    source: {
-      code: `
-<template>
-  <WizTinyButton rounded @click="click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },
