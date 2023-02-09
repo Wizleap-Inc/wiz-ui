@@ -13,7 +13,10 @@ export default {
   argTypes: {
     as: {
       control: { type: "select" },
-      options: ["p", "span"],
+      options: ["p", "span", "label"],
+    },
+    htmlFor: {
+      control: { type: "text" },
     },
     fontSize: {
       control: { type: "select" },
@@ -54,6 +57,12 @@ Paragraph.args = {
 export const Span = Template.bind({});
 Span.args = {
   as: "span",
+  slot: "これはテキストです。",
+};
+
+export const Label = Template.bind({});
+Label.args = {
+  as: "label",
   slot: "これはテキストです。",
 };
 
