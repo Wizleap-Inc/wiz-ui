@@ -135,7 +135,7 @@ const getDateState = computed(() => (row: number, col: number) => {
     props.currentMonth.getMonth(),
     Number(calendars.value[row][col])
   );
-  if (!isCurrentMonth(row, col)) return "default";
+  if (!isCurrentMonth(row, col)) return "outOfCurrentMonth";
   if (pickedUpDate.toString() === props.modelValue.toString())
     return "selected";
   return "inCurrentMonth";
