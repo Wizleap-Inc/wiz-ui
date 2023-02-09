@@ -48,7 +48,7 @@ const props = defineProps({
   active: {
     type: Boolean,
     required: false,
-    default: false,
+    default: true,
   },
   icon: {
     type: Object as PropType<TIcon>,
