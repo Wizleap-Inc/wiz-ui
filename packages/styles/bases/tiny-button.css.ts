@@ -22,7 +22,7 @@ export const tinyButtonVaraiantStyle = styleVariants({
   "clickable+inactive": {
     cursor: "pointer",
     boxShadow: THEME.shadow.md,
-    background: `${THEME.color.gray[600]}`,
+    background: THEME.color.gray[600],
   },
   "unclickable+active": {
     cursor: "not-allowed",
@@ -32,17 +32,13 @@ export const tinyButtonVaraiantStyle = styleVariants({
   },
   "unclickable+inactive": {
     cursor: "not-allowed",
-    boxShadow: `${THEME.shadow.none}`,
-    background: `${THEME.color.gray[400]}`,
+    boxShadow: THEME.shadow.none,
+    background: THEME.color.gray[400],
   },
 });
 
 export const tinyButtonSizeStyle = style({
-  padding: `${THEME.spacing["xs"]} ${THEME.spacing["xl"]}`,
+  padding: `${THEME.spacing["xs2"]} ${THEME.spacing["sm"]}`,
   fontWeight: "bold",
   fontSize: THEME.fontSize.xs,
-});
-
-export const tinyButtonRoundStyle = style({
-  borderRadius: THEME.spacing.max,
 });
