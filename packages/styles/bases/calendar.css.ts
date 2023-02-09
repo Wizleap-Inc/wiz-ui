@@ -34,4 +34,11 @@ export const calendarItemStyle = styleVariants({
       color: THEME.color.white[800],
     },
   },
+  outOfCurrentMonth: {
+    color: THEME.color.gray[500],
+    padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
+    textAlign: "center",
+    borderRadius: THEME.spacing.xs2,
+    cursor: "pointer",
+  },
 });
