@@ -1,13 +1,11 @@
 <template>
   <button
     :class="[
+      tinyButtonBaseStyle,
       tinyButtonSizeStyle,
-      selectable && active && tinyButtonSelectableStyle.active,
-      selectable && !active && tinyButtonSelectableStyle.inactive,
-      !selectable && active && tinyButtonNotSelectableStyle.active,
-      !selectable && !active && tinyButtonNotSelectableStyle.inactive,
+      tinyButtonVaraiantStyle[tinyButtonState],
     ]"
-    :disabled="props.selectable"
+    :disabled="props.clickable"
     @click="onClick"
   >
     <WizHStack
@@ -25,11 +23,11 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
+  tinyButtonBaseStyle,
   tinyButtonSizeStyle,
-  tinyButtonSelectableStyle,
-  tinyButtonNotSelectableStyle,
+  tinyButtonVaraiantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
-import { PropType } from "vue";
+import { computed, PropType } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -42,7 +40,7 @@ interface Emits {
 }
 
 const props = defineProps({
-  selectable: {
+  clickable: {
     type: Boolean,
     required: false,
     default: true,
@@ -65,5 +63,10 @@ const props = defineProps({
 
 const emit = defineEmits<Emits>();
 
-const onClick = () => props.selectable && emit("click");
+const onClick = () => props.clickable && emit("click");
+const tinyButtonState = computed(() => {
+  const selectable = props.clickable ? "clickable" : "unclickable";
+  const active = props.active ? "active" : "inactive";
+  return `${selectable}+${active}` as const;
+});
 </script>

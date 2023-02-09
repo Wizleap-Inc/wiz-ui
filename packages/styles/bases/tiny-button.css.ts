@@ -1,13 +1,10 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-const tinyButtonBaseStyle = style({
-  cursor: "pointer",
+export const tinyButtonBaseStyle = style({
   borderRadius: THEME.spacing.xs2,
   width: "fit-content",
-  background: THEME.color.gradient,
   color: THEME.color.white[800],
-  boxShadow: THEME.shadow.md,
   border: "none",
   selectors: {
     "&:hover:not(:disabled)": {
@@ -16,32 +13,28 @@ const tinyButtonBaseStyle = style({
   },
 });
 
-export const tinyButtonSelectableStyle = styleVariants({
-  active: [tinyButtonBaseStyle],
-  inactive: [
-    tinyButtonBaseStyle,
-    {
-      background: THEME.color.gray[600],
-    },
-  ],
-});
-
-export const tinyButtonNotSelectableStyle = styleVariants({
-  active: [
-    tinyButtonBaseStyle,
-    {
-      opacity: 0.5,
-      cursor: "not-allowed",
-    },
-  ],
-  inactive: [
-    tinyButtonBaseStyle,
-    {
-      background: THEME.color.gray[400],
-      boxShadow: THEME.shadow.none,
-      cursor: "not-allowed",
-    },
-  ],
+export const tinyButtonVaraiantStyle = styleVariants({
+  "clickable+active": {
+    cursor: "pointer",
+    boxShadow: THEME.shadow.md,
+    background: THEME.color.gradient,
+  },
+  "clickable+inactive": {
+    cursor: "pointer",
+    boxShadow: THEME.shadow.md,
+    background: `${THEME.color.gray[600]}`,
+  },
+  "unclickable+active": {
+    cursor: "not-allowed",
+    boxShadow: THEME.shadow.md,
+    background: THEME.color.gradient,
+    opacity: 0.5,
+  },
+  "unclickable+inactive": {
+    cursor: "not-allowed",
+    boxShadow: `${THEME.shadow.none}`,
+    background: `${THEME.color.gray[400]}`,
+  },
 });
 
 export const tinyButtonSizeStyle = style({
