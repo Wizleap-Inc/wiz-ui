@@ -14,7 +14,7 @@
       gap="xs2"
       :reverse="iconPosition === 'right'"
     >
-      <WizIcon v-if="icon" :icon="icon" size="xs" />
+      <WizIcon v-if="icon" :icon="icon" color="white.800" size="xs" />
       <slot />
     </WizHStack>
   </button>
