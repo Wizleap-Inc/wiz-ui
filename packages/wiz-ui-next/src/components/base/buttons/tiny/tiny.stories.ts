@@ -1,5 +1,3 @@
-import { expect } from "@storybook/jest";
-import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn, Meta } from "@storybook/vue3";
 
 import { WizIAdd } from "@/components/icons";
@@ -10,7 +8,7 @@ export default {
   title: "Base/Buttons/Tiny",
   component: WizTinyButton,
   argTypes: {
-    selectable: {
+    clickable: {
       control: { type: "boolean" },
     },
     active: {
@@ -37,20 +35,13 @@ const Template: StoryFn<typeof WizTinyButton> = (args) => ({
 
 export const Default = Template.bind({});
 
-Default.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.click(button);
-  await waitFor(() => expect(button).toHaveFocus());
-};
-
-export const Selectable = Template.bind({});
-Selectable.args = {
-  selectable: true,
+export const Clickable = Template.bind({});
+Clickable.args = {
+  clickable: true,
   active: false,
 };
 
-Selectable.parameters = {
+Clickable.parameters = {
   docs: {
     description: {
       story:
@@ -68,7 +59,7 @@ Selectable.parameters = {
 
 export const Active = Template.bind({});
 Active.args = {
-  selectable: true,
+  clickable: true,
   active: false,
 };
 
