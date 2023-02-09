@@ -10,6 +10,7 @@
       colorStyle[color],
       whiteSpaceStyle[whiteSpace],
     ]"
+    :for="htmlFor"
     :style="overflowStyles"
   >
     <span :class="textDummyStyle" v-if="dummyValue">{{ dummyValue }}</span>
@@ -45,9 +46,13 @@ defineOptions({
 
 const props = defineProps({
   as: {
-    type: String as PropType<"p" | "span">,
+    type: String as PropType<"p" | "span" | "label">,
     required: false,
     default: "p",
+  },
+  htmlFor: {
+    type: String,
+    required: false,
   },
   color: {
     type: String as PropType<ColorKeys>,

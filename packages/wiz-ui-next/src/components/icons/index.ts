@@ -6,6 +6,7 @@ import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./autorenew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
+import { default as WizICamera } from "./camera.vue";
 import { default as WizIChangeHistory } from "./change-history.vue";
 import { default as WizIChat } from "./chat.vue";
 import { default as WizICheck } from "./check.vue";
@@ -70,7 +71,6 @@ export type TIcon =
   | typeof WizIOpenInNew
   | typeof WizIRemove
   | typeof WizISchedule
-  | typeof WizISearch
   | typeof WizISend
   | typeof WizITab
   | typeof WizICalendar
@@ -81,7 +81,9 @@ export type TIcon =
   | typeof WizIDownload
   | typeof WizIPinDrop
   | typeof WizIContentCopy
-  | typeof WizIDescription;
+  | typeof WizIDescription
+  | typeof WizISearch
+  | typeof WizICamera;
 
 export {
   WizIAdd,
@@ -113,7 +115,6 @@ export {
   WizIOpenInNew,
   WizIRemove,
   WizISchedule,
-  WizISearch,
   WizISend,
   WizITab,
   WizICalendar,
@@ -125,4 +126,6 @@ export {
   WizIPinDrop,
   WizIContentCopy,
   WizIDescription,
+  WizISearch,
+  WizICamera,
 };
