@@ -1,7 +1,7 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const tinyButtonStyle = style({
+const tinyButtonBaseStyle = style({
   cursor: "pointer",
   borderRadius: THEME.spacing.xs2,
   width: "fit-content",
@@ -16,27 +16,40 @@ export const tinyButtonStyle = style({
   },
 });
 
-export const tinyButtonOffStyle = style({
-  background: THEME.color.gray[500],
-  opacity: 0.5,
+export const tinyButtonSelectableStyle = styleVariants({
+  active: [tinyButtonBaseStyle],
+  inactive: [
+    tinyButtonBaseStyle,
+    {
+      background: THEME.color.gray[600],
+    },
+  ],
 });
 
-export const tinyButtonDisabledStyle = style({
-  opacity: 0.5,
-  cursor: "not-allowed",
-});
-
-export const tinyButtonDisabledGrayStyle = style({
-  background: THEME.color.gray[700],
-  cursor: "not-allowed",
-});
-
-export const tinyButtonRoundStyle = style({
-  borderRadius: THEME.spacing.max,
+export const tinyButtonNotSelectableStyle = styleVariants({
+  active: [
+    tinyButtonBaseStyle,
+    {
+      opacity: 0.5,
+      cursor: "not-allowed",
+    },
+  ],
+  inactive: [
+    tinyButtonBaseStyle,
+    {
+      background: THEME.color.gray[400],
+      boxShadow: THEME.shadow.none,
+      cursor: "not-allowed",
+    },
+  ],
 });
 
 export const tinyButtonSizeStyle = style({
   padding: `${THEME.spacing["xs"]} ${THEME.spacing["xl"]}`,
   fontWeight: "bold",
   fontSize: THEME.fontSize.xs,
+});
+
+export const tinyButtonRoundStyle = style({
+  borderRadius: THEME.spacing.max,
 });

@@ -1,16 +1,14 @@
 <template>
   <button
     :class="[
-      tinyButtonStyle,
       tinyButtonSizeStyle,
-      status === 'Off' && tinyButtonOffStyle,
-      status === 'disableTranslucent' && tinyButtonDisabledStyle,
-      status === 'disableGray' && tinyButtonDisabledGrayStyle,
+      selectable && active && tinyButtonSelectableStyle.active,
+      selectable && !active && tinyButtonSelectableStyle.inactive,
+      !selectable && active && tinyButtonNotSelectableStyle.active,
+      !selectable && !active && tinyButtonNotSelectableStyle.inactive,
       rounded && tinyButtonRoundStyle,
     ]"
-    :disabled="
-      props.status === 'disableGray' || props.status === 'disableTranslucent'
-    "
+    :disabled="props.selectable"
     @click="onClick"
   >
     <WizHStack
@@ -28,12 +26,10 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  tinyButtonStyle,
-  tinyButtonDisabledStyle,
   tinyButtonRoundStyle,
   tinyButtonSizeStyle,
-  tinyButtonDisabledGrayStyle,
-  tinyButtonOffStyle,
+  tinyButtonSelectableStyle,
+  tinyButtonNotSelectableStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
 import { PropType } from "vue";
 
@@ -48,12 +44,15 @@ interface Emits {
 }
 
 const props = defineProps({
-  status: {
-    type: String as PropType<
-      "On" | "Off" | "disableGray" | "disableTranslucent"
-    >,
-    required: true,
-    default: "Off",
+  selectable: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  active: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
   rounded: {
     type: Boolean,
@@ -73,6 +72,5 @@ const props = defineProps({
 
 const emit = defineEmits<Emits>();
 
-const onClick = () =>
-  props.status === "On" || props.status === "Off" || emit("click");
+const onClick = () => props.selectable || emit("click");
 </script>
