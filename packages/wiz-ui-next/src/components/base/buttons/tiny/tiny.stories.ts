@@ -59,8 +59,8 @@ Clickable.parameters = {
 
 export const Active = Template.bind({});
 Active.args = {
-  clickable: true,
-  active: false,
+  clickable: false,
+  active: true,
 };
 
 Active.parameters = {
@@ -82,6 +82,8 @@ Active.parameters = {
 export const Icon = Template.bind({});
 Icon.args = {
   icon: WizIAdd,
+  clickable: true,
+  active: true,
 };
 
 Icon.parameters = {
@@ -104,6 +106,8 @@ export const IconPosition = Template.bind({});
 IconPosition.args = {
   icon: WizIAdd,
   iconPosition: "right",
+  clickable: true,
+  active: true,
 };
 
 IconPosition.parameters = {
