@@ -65,5 +65,5 @@ const props = defineProps({
 
 const emit = defineEmits<Emits>();
 
-const onClick = () => props.selectable || emit("click");
+const onClick = () => props.selectable && emit("click");
 </script>
