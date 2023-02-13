@@ -40,6 +40,7 @@ const IconComponentName = {
   IContentCopy: "WizIContentCopy",
   IDescription: "WizIDescription",
   ISearch: "WizISearch",
+  ICamera: "WizICamera",
 };
 
 export const ComponentName = {
