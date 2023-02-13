@@ -43,7 +43,10 @@ defineOptions({
 });
 
 const props = defineProps({
-  xhr: {
+  /**
+   * @example xhrLauncher: () => new XMLHttpRequest()
+   * */
+  xhrLauncher: {
     type: Function as PropType<() => XMLHttpRequest>,
     required: true,
   },
@@ -81,7 +84,7 @@ const uploadFile = (
 ) => {
   const formData = new FormData();
   formData.append("file", file);
-  const xhr = props.xhr();
+  const xhr = props.xhrLauncher();
   xhr.addEventListener("progress", (event) => {
     if (event.lengthComputable) {
       onProgress(Math.round((event.loaded / event.total) * 100));

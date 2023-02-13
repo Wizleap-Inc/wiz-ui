@@ -12,20 +12,20 @@ const Template: StoryFn<typeof WizUpload> = (args) => ({
   components: { WizUpload },
   setup() {
     const uploadUrl = "http://localhost:6006";
-    const xhr = () => {
+    const xhrLauncher = () => {
       const xhr = new XMLHttpRequest();
       xhr.open("POST", uploadUrl, true);
       return xhr;
     };
-    return { uploadUrl, args, xhr };
+    return { uploadUrl, args, xhrLauncher };
   },
-  template: `<div style="padding:100px;"><WizUpload v-bind="args" :xhr="xhr"/></div>`,
+  template: `<div style="padding:100px;"><WizUpload v-bind="args" :xhrLauncher="xhrLauncher"/></div>`,
 });
 
 export const Default = Template.bind({});
 
-export const XHR = Template.bind({});
-XHR.args = {
+export const XhrLauncher = Template.bind({});
+XhrLauncher.args = {
   xhr: () => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:6006", true);
@@ -35,17 +35,17 @@ XHR.args = {
     return xhr;
   },
 };
-XHR.parameters = {
+XhrLauncher.parameters = {
   docs: {
     description: {
       story: `
-xhrには必ずXMLHttpRequestのインスタンスを返す関数を渡す必要があります<br>
-xhrに対して、openメソッドでアップロード先のURL、request methodを指定してください。アップロード完了時の挙動なども指定できます。
+xhrLauncherには必ずXMLHttpRequestのインスタンスを返す関数を渡す必要があります<br>
+XMLHttpRequestのインスタンスに対して、openメソッドでアップロード先のURL、request methodを指定してください。アップロード完了時の挙動なども指定できます。
       `,
     },
     source: {
       code: `
-const xhr = () => {
+const xhrLauncher = () => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:6006", true);
     xhr.onload = () => {
@@ -53,7 +53,7 @@ const xhr = () => {
     };
     return xhr;
 };
-<WizUpload :xhr="xhr"/>
+<WizUpload :xhrLauncher="xhrLauncher"/>
   `,
     },
   },
@@ -62,7 +62,7 @@ const xhr = () => {
 export const MULTIPLE = Template.bind({});
 MULTIPLE.args = {
   multiple: true,
-  xhr: () => {
+  xhrLauncher: () => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:6006", true);
     return xhr;
@@ -77,13 +77,13 @@ multipleをtrueにすると、複数ファイルのアップロードが可能�
     },
     source: {
       code: `
-const xhr = () => {
+const xhrLauncher = () => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:6006", true);
     return xhr;
 };
 const multiple = true;
-<WizUpload :xhr="xhr" :multiple="multiple"/>
+<WizUpload :xhrLauncher="xhrLauncher" :multiple="multiple"/>
   `,
     },
   },
