@@ -4,6 +4,7 @@
     :class="[
       textStyle,
       textFontWeightStyle[bold ? 'bold' : 'default'],
+      textAlignStyle[textAlign],
       (maxLines || breakAll) && textWordBreakStyle,
       lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
       fontSizeStyle[fontSize],
@@ -31,6 +32,7 @@ import {
   textDefaultLineHeightStyle,
   textFontWeightStyle,
   textWordBreakStyle,
+  textAlignStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text.css";
 import {
   lineHeightStyle,
@@ -88,6 +90,11 @@ const props = defineProps({
   breakAll: {
     type: Boolean,
     required: false,
+  },
+  textAlign: {
+    type: String as PropType<"start" | "end" | "left" | "right" | "center">,
+    required: false,
+    default: "start",
   },
 });
 

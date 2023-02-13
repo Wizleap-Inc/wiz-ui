@@ -43,6 +43,10 @@ export default {
     dummyValue: {
       control: { type: "text" },
     },
+    textAlign: {
+      control: { type: "select" },
+      options: ["start", "end", "left", "right", "center"],
+    },
   },
 } as Meta<typeof WizText>;
 

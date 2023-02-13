@@ -39,6 +39,10 @@ export default {
     dummyValue: {
       control: { type: "text" },
     },
+    textAlign: {
+      control: { type: "select" },
+      options: ["start", "end", "left", "right", "center"],
+    },
   },
 };
 
@@ -84,6 +88,13 @@ export const DummyValue = Template.bind({});
 DummyValue.args = {
   dummyValue: "ABCDEFG",
   slot: "これはテキストです。",
+};
+
+export const textAlign = Template.bind({});
+textAlign.args = {
+  as: "p",
+  slot: "これはテキストです。",
+  textAlign: "start",
 };
 
 const MaxLinesTemplate: StoryFn = (_, { argTypes }) => ({
