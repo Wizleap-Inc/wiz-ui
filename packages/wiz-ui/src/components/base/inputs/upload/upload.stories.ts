@@ -26,7 +26,7 @@ export const Default = Template.bind({});
 
 export const XhrLauncher = Template.bind({});
 XhrLauncher.args = {
-  xhr: () => {
+  xhrLauncher: () => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:6006", true);
     xhr.onload = () => {
