@@ -24,6 +24,9 @@ export default {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
     },
+    modelValue: {
+      control: { type: "boolean" },
+    },
     onClick: {
       action: "onClick",
     },
@@ -78,6 +81,16 @@ Angled.parameters = {
       `,
     },
   },
+};
+
+export const On = Template.bind({});
+On.args = {
+  modelValue: true,
+};
+
+export const Off = Template.bind({});
+Off.args = {
+  modelValue: false,
 };
 
 export const Size: StoryFn<typeof WizToggleButton> = (args) => ({

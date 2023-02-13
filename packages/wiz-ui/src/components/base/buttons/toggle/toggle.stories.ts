@@ -24,6 +24,9 @@ export default {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
     },
+    value: {
+      control: { type: "boolean" },
+    },
     onClick: {
       action: "onClick",
     },
@@ -84,6 +87,16 @@ Angled.parameters = {
       `,
     },
   },
+};
+
+export const On = Template.bind({});
+On.args = {
+  value: true,
+};
+
+export const Off = Template.bind({});
+Off.args = {
+  values: false,
 };
 
 export const Size: StoryFn = (_, { argTypes }) => ({
