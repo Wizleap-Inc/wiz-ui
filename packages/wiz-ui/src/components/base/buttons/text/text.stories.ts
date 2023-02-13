@@ -83,8 +83,7 @@ Angled.args = {
 Angled.parameters = {
   docs: {
     description: {
-      story:
-        "ボタンの大きさを指定することができます。 'sm', 'md', 'lg', xl' から選択できます。default は `md` です。",
+      story: "ボタンの形を矩形にすることができます。",
     },
     source: {
       code: `

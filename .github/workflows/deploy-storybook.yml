@@ -2,13 +2,9 @@ name: Vue.js Storybook Deploy
 
 on:
   push:
-    paths:
-      - "**/*.stories.ts"
     branches-ignore:
       - "develop"
   pull_request:
-    paths:
-      - "**/*.stories.ts"
     branches-ignore:
       - "main"
       - "develop"
