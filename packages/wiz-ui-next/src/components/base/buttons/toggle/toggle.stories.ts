@@ -87,12 +87,39 @@ export const On = Template.bind({});
 On.args = {
   modelValue: true,
 };
+On.parameters = {
+  docs: {
+    description: {
+      story: "ボタンのOn/Offを指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizToggleButton rounded>{{ "顧客データ追加" }}</WizToggleButton>
+</template>
+      `,
+    },
+  },
+};
 
 export const Off = Template.bind({});
 Off.args = {
   modelValue: false,
 };
-
+Off.parameters = {
+  docs: {
+    description: {
+      story: "ボタンのOn/Offを指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizToggleButton rounded>{{ "顧客データ追加" }}</WizToggleButton>
+</template>
+      `,
+    },
+  },
+};
 export const Size: StoryFn<typeof WizToggleButton> = (args) => ({
   components: { WizToggleButton },
   setup: () => ({ args, WizIAdd, WizIRemove }),
