@@ -30,7 +30,7 @@ import {
   toggleButtonRoundedStyle,
   toggleButtonSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
-import { ref, computed, PropType } from "vue";
+import { computed, PropType } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
@@ -41,7 +41,7 @@ defineOptions({
 });
 
 interface Emits {
-  (event: "click"): void;
+  (event: "update:modelValue", value: boolean): void;
 }
 
 const props = defineProps({
@@ -68,16 +68,22 @@ const props = defineProps({
     required: false,
     default: "md",
   },
+  modelValue: {
+    type: Boolean,
+    required: true,
+  },
 });
 
-const isActive = ref(false);
-
 const emits = defineEmits<Emits>();
+
+const isActive = computed({
+  get: () => props.modelValue,
+  set: (value) => emits("update:modelValue", value),
+});
 
 const onClick = () => {
   if (props.disabled) return;
   isActive.value = !isActive.value;
-  emits("click");
 };
 
 const iconSize = computed(() => {

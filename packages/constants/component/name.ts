@@ -40,6 +40,7 @@ const IconComponentName = {
   IContentCopy: "WizIContentCopy",
   IDescription: "WizIDescription",
   ISearch: "WizISearch",
+  ICamera: "WizICamera",
 };
 
 export const ComponentName = {
@@ -49,6 +50,7 @@ export const ComponentName = {
   Badge: "WizBadge",
   IconButton: "WizIconButton",
   TextButton: "WizTextButton",
+  TinyButton: "WizTinyButton",
   ToggleButton: "WizToggleButton",
   Card: "WizCard",
   Divider: "WizDivider",
