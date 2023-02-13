@@ -70,8 +70,7 @@ const props = defineProps({
   },
   modelValue: {
     type: Boolean,
-    required: false,
-    default: false,
+    required: true,
   },
 });
 
