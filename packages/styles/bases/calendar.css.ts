@@ -6,7 +6,7 @@ export const calendarStyle = style({
 });
 
 export const calendarItemStyle = styleVariants({
-  default: {
+  dayOfWeek: {
     color: THEME.color.gray[600],
     padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
     textAlign: "center",

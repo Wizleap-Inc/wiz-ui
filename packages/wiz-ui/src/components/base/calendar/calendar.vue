@@ -2,7 +2,7 @@
   <table :class="calendarStyle">
     <td
       v-for="row in WEEK_LIST_JP"
-      :class="calendarItemStyle['default']"
+      :class="calendarItemStyle['dayOfWeek']"
       :key="row"
     >
       {{ row }}
