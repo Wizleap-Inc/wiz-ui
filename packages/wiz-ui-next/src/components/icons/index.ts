@@ -24,6 +24,7 @@ import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
+import { default as WizIHome } from "./home.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
@@ -33,10 +34,12 @@ import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
+import { default as WizIPublic } from "./public.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
+import { default as WizIStoreFront } from "./store-front.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
 import { default as WizIUpload } from "./upload.vue";
@@ -83,7 +86,10 @@ export type TIcon =
   | typeof WizIContentCopy
   | typeof WizIDescription
   | typeof WizISearch
-  | typeof WizICamera;
+  | typeof WizICamera
+  | typeof WizIHome
+  | typeof WizIPublic
+  | typeof WizIStoreFront;
 
 export {
   WizIAdd,
@@ -128,4 +134,7 @@ export {
   WizIDescription,
   WizISearch,
   WizICamera,
+  WizIHome,
+  WizIPublic,
+  WizIStoreFront,
 };

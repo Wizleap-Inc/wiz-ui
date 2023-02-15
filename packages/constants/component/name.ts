@@ -41,6 +41,9 @@ const IconComponentName = {
   IDescription: "WizIDescription",
   ISearch: "WizISearch",
   ICamera: "WizICamera",
+  IHome: "WizIHome",
+  IPublic: "WizIPublic",
+  IStoreFront: "WizIStoreFront",
 };
 
 export const ComponentName = {
