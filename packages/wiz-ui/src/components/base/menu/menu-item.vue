@@ -5,7 +5,8 @@
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
     @mousedown="onMouseDown"
-    @mouseup="onMouseUp"
+    @mouseup="inactivate"
+    @mouseout="inactivate"
     @click="onClick"
   >
     <WizHStack align="center" justify="between">
@@ -65,7 +66,7 @@ const onMouseLeave = () => (isHover.value = false);
 const onClick = () => props.clickable && emit("click");
 
 const onMouseDown = () => (isPressed.value = true);
-const onMouseUp = () => (isPressed.value = false);
+const inactivate = () => (isPressed.value = false);
 
 const width = computed(() => props.width);
 const iconColor = computed((): ColorKeys => {
