@@ -2,6 +2,9 @@ name: Lint check All libraries
 
 on: push
 
+env:
+  YARN_CACHE_FOLDER: .cache/yarn
+
 jobs:
   lint:
     runs-on: ubuntu-20.04
@@ -19,6 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           runs-on: ${{ matrix.runs-on }}
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
 
       - name: lint
         run: yarn lint
