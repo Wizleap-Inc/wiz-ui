@@ -37,4 +37,6 @@ runs:
         path: ${{ inputs.yarn-cache-folder }}
         key: ${{ runner.os }}-yarn-cache-v1
 
-    - run: yarn install
+    - name: Install dependencies
+      shell: bash
+      run: yarn install
