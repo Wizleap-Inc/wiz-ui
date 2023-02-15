@@ -6,6 +6,7 @@ on:
       - main
 env:
   CI: true
+  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   publish:
@@ -24,6 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           runs-on: ${{ matrix.runs-on }}
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
 
       - name: publish
         run: yarn workspace @wizleap-inc/wiz-ui check:lib-publish

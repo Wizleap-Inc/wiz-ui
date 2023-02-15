@@ -4,6 +4,7 @@ env:
   CI: true
   PUBLISH_WORKSPACE: "@wizleap-inc/wiz-ui"
   PUBLISH_DIR: "packages/wiz-ui"
+  YARN_CACHE_FOLDER: .cache/yarn
 
 on:
   push:
@@ -29,6 +30,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           runs-on: ${{ matrix.runs-on }}
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
 
       - name: build
         run: yarn workspace ${{ env.PUBLISH_WORKSPACE }} build:lib

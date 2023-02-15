@@ -22,6 +22,7 @@ env:
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COVERAGE_FRONTEND_WORKFLOW_URL }}
   DEPLOY_URL_POSTFIX: /index.html
   BUILD_COMMAND: yarn workspace @wizleap-inc/wiz-ui test:coverage
+  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   build-and-deploy:
@@ -40,6 +41,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           runs-on: ${{ matrix.runs-on }}
+          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
 
       - name: Build ${{ env.DEPLOY_TYPE }}
         run: ${{ env.BUILD_COMMAND }}
