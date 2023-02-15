@@ -4,7 +4,7 @@
     :style="{ width: width }"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
-    @mousedown="onMouseDown"
+    @mousedown="activate"
     @mouseup="inactivate"
     @mouseout="inactivate"
     @click="onClick"
@@ -65,7 +65,7 @@ const onMouseOver = () => {
 const onMouseLeave = () => (isHover.value = false);
 const onClick = () => props.clickable && emit("click");
 
-const onMouseDown = () => (isPressed.value = true);
+const activate = () => (isPressed.value = true);
 const inactivate = () => (isPressed.value = false);
 
 const width = computed(() => props.width);
