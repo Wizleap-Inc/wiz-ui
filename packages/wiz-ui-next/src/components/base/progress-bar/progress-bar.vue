@@ -6,7 +6,7 @@
       :class="progressBarItemStyle[i === 0 ? 'first' : 'default']"
     >
       <WizTooltip>
-        <template #content>
+        <template #content v-if="content.tooltip">
           {{ content.status === "none" ? undefined : content.tooltip }}
         </template>
         <span :class="progressBarItemAnnotationStyle">
