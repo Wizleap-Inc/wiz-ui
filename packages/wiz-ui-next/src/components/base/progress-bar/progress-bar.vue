@@ -5,9 +5,10 @@
       :key="i"
       :class="progressBarItemStyle[i === 0 ? 'first' : 'default']"
     >
-      <WizTooltip
-        :content="content.status === 'none' ? undefined : content.tooltip"
-      >
+      <WizTooltip>
+        <template #content>
+          {{ content.status === "none" ? undefined : content.tooltip }}
+        </template>
         <span :class="progressBarItemAnnotationStyle">
           <WizText fontSize="xs2" color="red.800" whiteSpace="nowrap">
             {{ content.annotation }}
