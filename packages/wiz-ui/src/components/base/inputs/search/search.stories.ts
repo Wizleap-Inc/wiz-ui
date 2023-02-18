@@ -40,7 +40,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const values = ref<number[]>([]);
     const options = [
       {
-        label: "保険会社1",
+        label: "テスト会社1",
         value: 1,
         children: [
           {
