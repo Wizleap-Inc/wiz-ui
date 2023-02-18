@@ -14,6 +14,9 @@ export default {
     active: {
       control: { type: "boolean" },
     },
+    width: {
+      control: { type: "text" },
+    },
     icon: {
       control: { type: "object" },
     },
