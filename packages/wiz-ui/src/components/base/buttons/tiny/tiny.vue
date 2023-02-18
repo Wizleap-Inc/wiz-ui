@@ -13,6 +13,7 @@
       justify="center"
       gap="xs2"
       :reverse="iconPosition === 'right'"
+      :width="width"
     >
       <WizIcon v-if="icon" :icon="icon" color="white.800" size="xs" />
       <slot />
@@ -49,6 +50,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: true,
+  },
+  width: {
+    type: String,
+    required: false,
   },
   icon: {
     type: Object as PropType<TIcon>,
