@@ -15,6 +15,8 @@
         :disabled="disabled"
         @focusin="hasFocus = true"
         @focusout="hasFocus = false"
+        @click="openPopup = !openPopup"
+        autocomplete="off"
       />
       <WizISearch :class="searchInputIconStyle" />
     </div>
@@ -28,7 +30,7 @@
           ]"
           :style="{ width: computedPopupWidth }"
         >
-          <div v-for="(option, key) in options" :key="key">
+          <div v-for="(option, key) in filteredOptions" :key="key">
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
               <div
                 :class="searchDropdownLabelStyle"
@@ -116,7 +118,7 @@ import {
   searchCheckboxBlockCheckedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, watch, PropType } from "vue";
+import { ref, computed, watch, PropType, onMounted } from "vue";
 
 import {
   WizDivider,
@@ -220,11 +222,17 @@ const onMouseover = (value: number) => {
 };
 
 watch(searchValue, () => {
-  filteredOptions.value = props.options.filter((option) => {
-    return option.label.indexOf(searchValue.value[0]) !== -1;
-  });
-  if (filteredOptions.value.length) {
-    openPopup.value = true;
+  selectedItem.value = [];
+  if (searchValue.value.length) {
+    filteredOptions.value = props.options.filter((option) => {
+      return option.label.indexOf(searchValue.value[0]) !== -1;
+    });
+  } else {
+    filteredOptions.value = props.options;
   }
+});
+
+onMounted(() => {
+  filteredOptions.value = props.options;
 });
 </script>
