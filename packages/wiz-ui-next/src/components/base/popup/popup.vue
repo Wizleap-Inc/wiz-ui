@@ -112,7 +112,7 @@ const popupRect = computed(() => {
 
 const spaceBetweenPopupAndWindow = computed(() => {
   const { top, right, bottom, left } = popupRect.value;
-  const { scrollHeight, scrollWidth } = document.body;
+  const { scrollHeight, scrollWidth } = document.documentElement;
   if (props.direction === "bl") {
     return { x: scrollWidth - right, y: scrollHeight - bottom };
   }
