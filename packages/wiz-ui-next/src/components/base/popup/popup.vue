@@ -1,18 +1,23 @@
 <template>
-  <div
-    v-show="isPopupOpen"
-    :class="[
-      popupStyle,
-      popupDirectionStyle[computedDirection],
-      ['tl', 'tr', 'bl', 'br'].includes(direction)
-        ? marginYStyle[gap]
-        : marginXStyle[gap],
-      zIndexStyle[layer],
-    ]"
-    ref="popupRef"
-  >
-    <slot />
-  </div>
+  <teleport to="body" :disabled="!isPopupOpen">
+    <div
+      v-show="isPopupOpen"
+      :class="[
+        popupStyle,
+        popupDirectionStyle[computedDirection],
+        ['tl', 'tr', 'bl', 'br'].includes(direction)
+          ? marginYStyle[gap]
+          : marginXStyle[gap],
+        zIndexStyle[layer],
+      ]"
+      :style="{
+        inset: insetPosition,
+      }"
+      ref="popupRef"
+    >
+      <slot />
+    </div>
+  </teleport>
 </template>
 
 <script setup lang="ts">
@@ -68,6 +73,10 @@ if (!injected) {
 }
 
 const { isPopupOpen, bodyPxInfo } = injected;
+
+const insetPosition = computed(
+  () => `${bodyPxInfo.top + bodyPxInfo.height}px auto auto ${bodyPxInfo.left}px`
+);
 
 const popupRect = computed(() => {
   const popupWidth = popupRef.value?.offsetWidth ?? 0;

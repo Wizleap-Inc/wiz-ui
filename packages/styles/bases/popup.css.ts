@@ -44,12 +44,10 @@ export const popupStyle = style({
 
 export const popupContainerStyle = styleVariants({
   default: {
-    position: "relative",
     width: "fit-content",
     height: "fit-content",
   },
   expanded: {
-    position: "relative",
     width: "100%",
   },
 });
