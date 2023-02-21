@@ -153,13 +153,9 @@ const mutableSelectedItem = computed(() => {
 });
 
 const isBorder = computed(() => (options: SearchInputOption[]) => {
-  let result = false;
-  options.forEach((option: SearchInputOption) => {
-    if (mutableSelectedItem.value.includes(option.value)) {
-      result = true;
-    }
-  });
-  return result;
+  return options.some((option) =>
+    mutableSelectedItem.value.includes(option.value)
+  );
 });
 
 const computedPopupWidth = computed(() => props.popupWidth);
