@@ -27,7 +27,14 @@ export const usePopupProvider = (
     if (containerRef.value) {
       const { top, left, right, bottom, width, height } =
         containerRef.value.getBoundingClientRect();
-      Object.assign(bodyPxInfo, { top, left, right, bottom, width, height });
+      Object.assign(bodyPxInfo, {
+        top: top + window.scrollY,
+        left: left + window.scrollX,
+        right,
+        bottom,
+        width,
+        height,
+      });
     }
   };
 

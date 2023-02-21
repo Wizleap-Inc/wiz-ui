@@ -15,7 +15,9 @@ export default {
   argTypes: {
     layer: {
       control: { type: "select" },
-      options: Z_INDEX_ACCESSORS,
+      options: Z_INDEX_ACCESSORS.filter(
+        (key) => key !== "base" && key !== "dialog"
+      ),
     },
     gap: {
       control: { type: "select" },
@@ -103,14 +105,14 @@ export const Direction = MultipleTemplate.bind({});
 Direction.args = {
   main: "direction",
   patterns: [
-    { layer: "base", direction: "bl" },
-    { layer: "base", direction: "br" },
-    { layer: "base", direction: "tl" },
-    { layer: "base", direction: "tr" },
-    { layer: "base", direction: "lt" },
-    { layer: "base", direction: "lb" },
-    { layer: "base", direction: "rt" },
-    { layer: "base", direction: "rb" },
+    { direction: "bl" },
+    { direction: "br" },
+    { direction: "tl" },
+    { direction: "tr" },
+    { direction: "lt" },
+    { direction: "lb" },
+    { direction: "rt" },
+    { direction: "rb" },
   ],
 };
 
@@ -118,23 +120,20 @@ export const Gap = MultipleTemplate.bind({});
 Gap.args = {
   main: "gap",
   patterns: [
-    { layer: "base", direction: "rt", gap: "no", value: true },
-    { layer: "base", direction: "rt", gap: "xs2", value: true },
-    { layer: "base", direction: "rt", gap: "xs", value: true },
-    { layer: "base", direction: "rt", gap: "sm", value: true },
-    { layer: "base", direction: "rt", gap: "md", value: true },
-    { layer: "base", direction: "rt", gap: "lg", value: true },
-    { layer: "base", direction: "rt", gap: "xl", value: true },
-    { layer: "base", direction: "rt", gap: "xl2", value: true },
-    { layer: "base", direction: "rt", gap: "xl3", value: true },
-    { layer: "base", direction: "rt", gap: "xl4", value: true },
+    { direction: "rt", gap: "no", value: true },
+    { direction: "rt", gap: "xs2", value: true },
+    { direction: "rt", gap: "xs", value: true },
+    { direction: "rt", gap: "sm", value: true },
+    { direction: "rt", gap: "md", value: true },
+    { direction: "rt", gap: "lg", value: true },
+    { direction: "rt", gap: "xl", value: true },
+    { direction: "rt", gap: "xl2", value: true },
+    { direction: "rt", gap: "xl3", value: true },
+    { direction: "rt", gap: "xl4", value: true },
   ],
 };
 
 export const Playground = Template.bind({});
-Playground.args = {
-  layer: "base",
-};
 
 export const MultiplePlayground: StoryFn = (_, { argTypes }) => ({
   components: { WizPopup, WizTextButton, WizPopupContainer },
@@ -152,7 +151,7 @@ export const MultiplePlayground: StoryFn = (_, { argTypes }) => ({
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
       <wiz-popup-container v-model="isOpen1">
         <wiz-text-button @click="toggle1">Toggle Popup 1</wiz-text-button>
-        <wiz-popup layer="floating">
+        <wiz-popup>
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content 1</p>
           </div>
@@ -160,7 +159,7 @@ export const MultiplePlayground: StoryFn = (_, { argTypes }) => ({
       </wiz-popup-container>
       <wiz-popup-container v-model="isOpen2">
         <wiz-text-button @click="toggle2">Toggle Popup 2</wiz-text-button>
-        <wiz-popup layer="floating">
+        <wiz-popup>
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content 2</p>
           </div>
