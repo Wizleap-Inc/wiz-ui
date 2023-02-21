@@ -36,8 +36,9 @@ defineOptions({
 
 const props = defineProps({
   layer: {
-    type: String as PropType<ZIndexKeys>,
-    required: true,
+    type: String as PropType<Exclude<ZIndexKeys, "base" | "dialog">>,
+    required: false,
+    default: "floating",
   },
   gap: {
     type: String as PropType<SpacingKeys>,

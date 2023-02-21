@@ -15,7 +15,9 @@ export default {
   argTypes: {
     layer: {
       control: { type: "select" },
-      options: Z_INDEX_ACCESSORS,
+      options: Z_INDEX_ACCESSORS.filter(
+        (key) => key !== "base" && key !== "dialog"
+      ),
     },
     gap: {
       control: { type: "select" },
@@ -48,14 +50,14 @@ export const Direction: StoryFn<typeof WizPopup> = (args) => ({
       args,
       main: "direction",
       patterns: [
-        { layer: "base", direction: "bl" },
-        { layer: "base", direction: "br" },
-        { layer: "base", direction: "tl" },
-        { layer: "base", direction: "tr" },
-        { layer: "base", direction: "lt" },
-        { layer: "base", direction: "lb" },
-        { layer: "base", direction: "rt" },
-        { layer: "base", direction: "rb" },
+        { direction: "bl" },
+        { direction: "br" },
+        { direction: "tl" },
+        { direction: "tr" },
+        { direction: "lt" },
+        { direction: "lb" },
+        { direction: "rt" },
+        { direction: "rb" },
       ],
     };
   },
@@ -90,16 +92,16 @@ export const Gap: StoryFn<typeof WizPopup> = (args) => ({
       args,
       main: "gap",
       patterns: [
-        { layer: "base", direction: "rt", gap: "no", value: true },
-        { layer: "base", direction: "rt", gap: "xs2", value: true },
-        { layer: "base", direction: "rt", gap: "xs", value: true },
-        { layer: "base", direction: "rt", gap: "sm", value: true },
-        { layer: "base", direction: "rt", gap: "md", value: true },
-        { layer: "base", direction: "rt", gap: "lg", value: true },
-        { layer: "base", direction: "rt", gap: "xl", value: true },
-        { layer: "base", direction: "rt", gap: "xl2", value: true },
-        { layer: "base", direction: "rt", gap: "xl3", value: true },
-        { layer: "base", direction: "rt", gap: "xl4", value: true },
+        { direction: "rt", gap: "no", value: true },
+        { direction: "rt", gap: "xs2", value: true },
+        { direction: "rt", gap: "xs", value: true },
+        { direction: "rt", gap: "sm", value: true },
+        { direction: "rt", gap: "md", value: true },
+        { direction: "rt", gap: "lg", value: true },
+        { direction: "rt", gap: "xl", value: true },
+        { direction: "rt", gap: "xl2", value: true },
+        { direction: "rt", gap: "xl3", value: true },
+        { direction: "rt", gap: "xl4", value: true },
       ],
     };
   },
@@ -143,7 +145,7 @@ export const Playground: StoryFn<typeof WizPopup> = (args) => ({
     <div :style="{ position: 'absolute', top: y+'px', left: x+'px' }">
       <wiz-popup-container v-model="isOpen">
         <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-        <wiz-popup v-bind="args" layer="base">
+        <wiz-popup v-bind="args">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <span>Popup content</span>
           </div>
