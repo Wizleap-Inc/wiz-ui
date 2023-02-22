@@ -15,7 +15,10 @@
         :disabled="disabled"
         @focusin="hasFocus = true"
         @focusout="hasFocus = false"
-        @click="openPopup = !openPopup"
+        @click="
+          openPopup = !openPopup;
+          selectedItem = [];
+        "
         autocomplete="off"
       />
       <WizISearch :class="searchInputIconStyle" />
@@ -56,8 +59,8 @@
                 :value="option.value"
                 :class="searchCheckboxInputStyle"
                 type="checkbox"
-                :id="`checkbox${option.value}`"
-                :name="`checkbox${option.value}`"
+                :id="`${option.label}_${option.value}`"
+                :name="`${option.label}_${option.value}`"
               />
               <label
                 :class="[
@@ -66,7 +69,11 @@
                     activeItem === option.value) &&
                     searchCheckboxLabelCheckedStyle,
                 ]"
-                :for="`checkbox${option.value}`"
+                :for="`${option.label}_${option.value}`"
+                @mouseover="
+                  selectedItem = [];
+                  isBorder = false;
+                "
               >
                 <WizICheck
                   v-if="checkValues.includes(option.value)"
@@ -223,6 +230,7 @@ const onMouseover = (value: number) => {
 
 watch(searchValue, () => {
   selectedItem.value = [];
+  openPopup.value = true;
   if (searchValue.value.length) {
     filteredOptions.value = props.options.filter((option) => {
       return option.label.indexOf(searchValue.value[0]) !== -1;
