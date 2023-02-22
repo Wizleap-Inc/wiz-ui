@@ -12,6 +12,9 @@
       align="center"
       justify="center"
       gap="xs2"
+      :p="p"
+      :px="px"
+      :py="py"
       :reverse="iconPosition === 'right'"
     >
       <WizIcon v-if="icon" :icon="icon" color="white.800" size="xs" />
@@ -21,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   tinyButtonBaseStyle,
   tinyButtonSizeStyle,
@@ -50,6 +53,9 @@ const props = defineProps({
     required: false,
     default: true,
   },
+  p: { type: String as PropType<SpacingKeys>, required: false },
+  px: { type: String as PropType<SpacingKeys>, required: false },
+  py: { type: String as PropType<SpacingKeys>, required: false },
   icon: {
     type: Object as PropType<TIcon>,
     required: false,
