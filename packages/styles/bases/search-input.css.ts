@@ -42,6 +42,10 @@ export const searchInputIconStyle = style({
   fill: THEME.color.gray["400"],
 });
 
+export const searchContainerStyle = style({
+  position: "absolute",
+});
+
 export const searchPopupStyle = style({
   display: "flex",
 });
@@ -103,7 +107,7 @@ export const searchPopupDropdownItemStyle = style({
 
 export const searchDropdownLabelStyle = style({
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
   paddingLeft: THEME.spacing.xs,
   cursor: "pointer",
