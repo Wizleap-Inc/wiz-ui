@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const tooltipStyle = style({
+  display: "inline-block",
   position: "relative",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[800],
