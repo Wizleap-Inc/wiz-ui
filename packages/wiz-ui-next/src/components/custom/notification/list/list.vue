@@ -1,15 +1,25 @@
 <template>
   <WizBox :height="height" overflowY="scroll">
-    <template v-for="(item, i) in notifications" :key="item.id">
-      <WizNotificationPanel
-        :variant="variant"
-        :read="item.read"
-        :title="item.title"
-        :timestamp="item.timestamp"
-        :tableInfo="item.tableInfo"
-        @click="onClick(item.id)"
-      />
-      <WizDivider :key="'divider' + i" v-if="i !== notifications.length - 1" />
+    <template v-if="notifications.length > 0">
+      <template v-for="(item, i) in notifications" :key="item.id">
+        <WizNotificationPanel
+          :variant="variant"
+          :read="item.read"
+          :title="item.title"
+          :timestamp="item.timestamp"
+          :tableInfo="item.tableInfo"
+          @click="onClick(item.id)"
+        />
+        <WizDivider
+          :key="'divider' + i"
+          v-if="i !== notifications.length - 1"
+        />
+      </template>
+    </template>
+    <template v-else>
+      <WizHStack align="center" justify="center" height="100%">
+        <WizText color="gray.600" fontSize="sm">{{ emptyMessage }}</WizText>
+      </WizHStack>
     </template>
   </WizBox>
 </template>
@@ -18,7 +28,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { PropType } from "vue";
 
-import { WizDivider, WizBox } from "@/components/base";
+import { WizDivider, WizBox, WizHStack, WizText } from "@/components/base";
 
 import { WizNotificationPanel } from "..";
 import { PanelVariant } from "../panel/types";
@@ -40,6 +50,11 @@ defineProps({
   height: {
     type: String,
     required: false,
+  },
+  emptyMessage: {
+    type: String,
+    required: false,
+    default: "メッセージがありません。",
   },
 });
 
