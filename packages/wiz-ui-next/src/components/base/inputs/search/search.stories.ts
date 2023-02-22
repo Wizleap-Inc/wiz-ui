@@ -143,7 +143,7 @@ const Template: StoryFn<typeof WizSearchInput> = (args) => ({
         ],
       },
       {
-        label: "保険会社3",
+        label: "テスト保険会社3",
         value: 21,
         children: [],
       },
