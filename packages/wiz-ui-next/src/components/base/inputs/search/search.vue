@@ -30,7 +30,10 @@
           ]"
           :style="{ width: computedPopupWidth }"
         >
-          <div v-for="(option, key) in filteredOptions" :key="key">
+          <div
+            v-for="(option, key) in filteredOptions"
+            :key="`${option.label}_${option.value}_${key}`"
+          >
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
               <WizHStack
                 align="center"
