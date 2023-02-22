@@ -54,7 +54,6 @@ defineProps({
   emptyMessage: {
     type: String,
     required: false,
-    default: "メッセージがありません。",
   },
 });
 
