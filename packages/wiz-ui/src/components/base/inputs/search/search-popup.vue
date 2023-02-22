@@ -40,8 +40,8 @@
                 :value="item.value"
                 :class="searchCheckboxInputStyle"
                 type="checkbox"
-                :id="`checkbox${item.value}`"
-                :name="`checkbox${item.value}`"
+                :id="`${item.label}_${item.value}`"
+                :name="`${item.label}_${item.value}`"
               />
               <label
                 :class="[
@@ -50,7 +50,7 @@
                     activeItem === item.value) &&
                     searchCheckboxLabelCheckedStyle,
                 ]"
-                :for="`checkbox${item.value}`"
+                :for="`${item.label}_${item.value}`"
               >
                 <WizICheck
                   v-if="checkValues.includes(item.value)"
