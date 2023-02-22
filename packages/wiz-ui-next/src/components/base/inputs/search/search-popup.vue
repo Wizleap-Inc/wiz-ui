@@ -1,6 +1,10 @@
 <template>
-  <template v-for="(option, key) in options" :key="key">
-    <div v-if="option.children.length" :class="searchPopupStyle">
+  <template v-for="(option, key) in options">
+    <div
+      v-if="option.children.length"
+      :class="searchPopupStyle"
+      :key="`${option.label}_${option.value}_${key}`"
+    >
       <div
         v-if="selectedItem.includes(option.value)"
         :class="[
@@ -10,7 +14,10 @@
         ]"
         :style="{ width: computedPopupWidth }"
       >
-        <div v-for="(item, key) in option.children" :key="key">
+        <div
+          v-for="(item, key) in option.children"
+          :key="`${item.label}_${item.value}_${key}`"
+        >
           <div
             v-if="item.children.length"
             :class="searchPopupDropdownItemStyle"
