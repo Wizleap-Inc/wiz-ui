@@ -141,6 +141,10 @@ const props = defineProps({
     type: String as PropType<"none" | "x" | "y" | "block" | "inline" | "both">,
     required: false,
   },
+  backdropBlur: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+  },
 });
 
 const computedStyle = computed(() => {
@@ -195,6 +199,8 @@ const computedStyle = computed(() => {
     style.scrollSnapType = props.snapScroll;
     style.overflow = "scroll";
   }
+  if (props.snapScroll)
+    style.backdropFilter = getSpacingCss(props.backdropBlur);
 
   return style;
 });
