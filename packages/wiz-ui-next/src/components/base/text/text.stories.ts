@@ -13,7 +13,10 @@ export default {
   argTypes: {
     as: {
       control: { type: "select" },
-      options: ["p", "span"],
+      options: ["p", "span", "label"],
+    },
+    htmlFor: {
+      control: { type: "text" },
     },
     fontSize: {
       control: { type: "select" },
@@ -40,6 +43,10 @@ export default {
     dummyValue: {
       control: { type: "text" },
     },
+    textAlign: {
+      control: { type: "select" },
+      options: ["start", "end", "left", "right", "center"],
+    },
   },
 } as Meta<typeof WizText>;
 
@@ -57,6 +64,11 @@ Paragraph.args = {
 export const Span = Template.bind({});
 Span.args = {
   as: "span",
+};
+
+export const Label = Template.bind({});
+Label.args = {
+  as: "label",
 };
 
 export const Bold = Template.bind({});

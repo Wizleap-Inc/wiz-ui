@@ -11,7 +11,7 @@ export const install = (vue: typeof Vue) => {
   });
 };
 
-export const version = "0.6.0";
+export const version = "0.6.2";
 
 export default {
   install,

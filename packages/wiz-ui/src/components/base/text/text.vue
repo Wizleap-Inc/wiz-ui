@@ -4,12 +4,14 @@
     :class="[
       textStyle,
       textFontWeightStyle[bold ? 'bold' : 'default'],
+      textAlignStyle[textAlign],
       (maxLines || breakAll) && textWordBreakStyle,
       lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
       fontSizeStyle[fontSize],
       colorStyle[color],
       whiteSpaceStyle[whiteSpace],
     ]"
+    :for="htmlFor"
     :style="overflowStyles"
   >
     <span :class="textDummyStyle" v-if="dummyValue">{{ dummyValue }}</span>
@@ -30,6 +32,7 @@ import {
   textDefaultLineHeightStyle,
   textFontWeightStyle,
   textWordBreakStyle,
+  textAlignStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text.css";
 import {
   lineHeightStyle,
@@ -45,9 +48,13 @@ defineOptions({
 
 const props = defineProps({
   as: {
-    type: String as PropType<"p" | "span">,
+    type: String as PropType<"p" | "span" | "label">,
     required: false,
     default: "p",
+  },
+  htmlFor: {
+    type: String,
+    required: false,
   },
   color: {
     type: String as PropType<ColorKeys>,
@@ -83,6 +90,11 @@ const props = defineProps({
   breakAll: {
     type: Boolean,
     required: false,
+  },
+  textAlign: {
+    type: String as PropType<"start" | "end" | "left" | "right" | "center">,
+    required: false,
+    default: "start",
   },
 });
 

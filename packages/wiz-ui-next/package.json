@@ -1,18 +1,18 @@
 {
   "name": "@wizleap-inc/wiz-ui-next",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
     "build:lib": "vue-tsc --noEmit && vite build",
-    "build:storybook": "storybook build",
+    "build:storybook": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
     "check:lib-publish": "can-npm-publish --verbose",
     "dev": "run-p dev:*",
     "dev:storybook": "storybook dev -p 6007",
     "test": "run-p test:unit test:storybook",
     "test:storybook": "test-storybook --url http://localhost:6007",
     "ci:test": "run-p ci:test:storybook",
-    "ci:test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"storybook build --quiet && npx http-server storybook-static --port 6007 --silent\" \"wait-on tcp:6007 && yarn test:storybook\"",
+    "ci:test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6007 --silent\" \"wait-on tcp:6007 && yarn test:storybook\"",
     "ci:vrt": "reg-suit run",
     "ci:storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6007' http://localhost:6007"
   },

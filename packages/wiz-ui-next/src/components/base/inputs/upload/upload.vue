@@ -6,11 +6,12 @@
       @dragleave="dragLeave"
       @dragover.prevent
       @drop.prevent="dropFile"
+      v-if="(!multiple && !isUploaded) || multiple"
       ><input
         :class="uploadInputStyle"
         @change="selectFile"
         type="file"
-        multiple
+        :multiple="multiple"
       />こちらにドラック＆ドロップしてファイルをアップロード</label
     >
     <WizUploadDisplay
@@ -42,13 +43,17 @@ defineOptions({
 });
 
 const props = defineProps({
-  uploadUrl: {
-    type: String,
+  /**
+   * @example xhrLauncher: () => new XMLHttpRequest()
+   * */
+  xhrLauncher: {
+    type: Function as PropType<() => XMLHttpRequest>,
     required: true,
   },
-  requestHeaders: {
-    type: Object as PropType<Record<string, string>>,
+  multiple: {
+    type: Boolean,
     required: false,
+    default: false,
   },
 });
 
@@ -72,44 +77,36 @@ const dragLeave = () => {
   isEnter.value = false;
 };
 
-const uploadFile = async (
+const uploadFile = (
   file: File,
-  uploadUrl: string,
   onProgress: (progress: number) => void,
   onComplete: () => void
 ) => {
   const formData = new FormData();
   formData.append("file", file);
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", uploadUrl, true);
-  if (props.requestHeaders) {
-    for (const [key, value] of Object.entries(props.requestHeaders)) {
-      xhr.setRequestHeader(key, value);
-    }
-  }
-  xhr.upload.onprogress = (event) => {
+  const xhr = props.xhrLauncher();
+  xhr.addEventListener("progress", (event) => {
     if (event.lengthComputable) {
       onProgress(Math.round((event.loaded / event.total) * 100));
     }
-  };
-  xhr.onload = () => {
+  });
+  xhr.addEventListener("load", () => {
     if (xhr.status === 200) {
       onComplete();
     }
-  };
+  });
   xhr.send(formData);
 };
 
-const uploadFileList = async (fileList: FileList, uploadUrl: string) => {
+const uploadFileList = async (fileList: FileList) => {
   isUploaded.value = false;
   isUploading.value = true;
   uploadingFileCount.value = fileList.length;
 
   const fileArray = Array.from(fileList);
-  fileArray.forEach((file, i) => {
-    uploadFile(
+  fileArray.map(async (file, i) => {
+    await uploadFile(
       file,
-      uploadUrl,
       (p) => {
         progressPercentages.value.splice(i, 1, p);
       },
@@ -142,7 +139,7 @@ const dropFile = (event: DragEvent) => {
     fileList.value = Array.from(event.dataTransfer.files);
   }
 
-  uploadFileList(event.dataTransfer.files, props.uploadUrl);
+  uploadFileList(event.dataTransfer.files);
 };
 
 const selectFile = (event: Event) => {
@@ -163,7 +160,7 @@ const selectFile = (event: Event) => {
       fileList.value = Array.from(event.target.files);
     }
 
-    uploadFileList(event.target.files, props.uploadUrl);
+    uploadFileList(event.target.files);
   }
 };
 </script>

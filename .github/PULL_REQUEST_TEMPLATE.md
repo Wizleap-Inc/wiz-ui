@@ -2,4 +2,4 @@
 
 resolve: #[issue番号(必須)]
 
-<!-- reviewerに@sor4chiを追加してください-->
+<!-- reviewerにオーナーを追加してください-->
