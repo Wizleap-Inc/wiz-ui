@@ -62,3 +62,24 @@ Default.args = {
     ],
   })),
 };
+
+export const Empty = Template.bind({});
+Empty.args = {
+  tabs: [
+    {
+      label: "タブ1",
+      name: "tab1",
+      notificationCount: 0,
+      variant: "primary",
+    },
+    {
+      label: "タブ2",
+      name: "tab2",
+      notificationCount: 0,
+      variant: "secondary",
+    },
+  ],
+  notifications: [],
+  height: "300px",
+  emptyMessage: "メッセージはありません。",
+};
