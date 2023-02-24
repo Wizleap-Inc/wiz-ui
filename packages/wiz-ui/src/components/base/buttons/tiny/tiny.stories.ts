@@ -41,7 +41,7 @@ const MultipleTemplate: StoryFn<typeof WizTinyButton> = (_, { argTypes }) => ({
   components: { WizTinyButton },
   template: `
   <table>
-    <tr v-for="(pattern, i) in patterns"  :key="pattern[main]" :value="isOpenIndex === i">
+    <tr v-for="(pattern, i) in patterns" :key="pattern[main]">
       <td style="padding: 1rem;"> {{"clickable="}}{{ pattern.clickable ? "true" : "false"}} </td>
       <td style="padding: 1rem;"> {{"active="}}{{ pattern.active ? "true" : "false"}} </td>
       <td style="padding: 1rem;"> 
