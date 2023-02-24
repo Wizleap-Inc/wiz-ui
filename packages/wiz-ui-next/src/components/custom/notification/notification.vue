@@ -6,6 +6,7 @@
         :notifications="displayNotifications"
         :variant="selectedVariant"
         :height="height"
+        :emptyMessage="emptyMessage"
         @click="onClick"
       />
     </WizBox>
@@ -35,6 +36,10 @@ const props = defineProps({
     required: true,
   },
   height: {
+    type: String,
+    required: false,
+  },
+  emptyMessage: {
     type: String,
     required: false,
   },
