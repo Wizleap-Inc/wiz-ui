@@ -199,7 +199,7 @@ const computedStyle = computed(() => {
     style.scrollSnapType = props.snapScroll;
     style.overflow = "scroll";
   }
-  if (props.snapScroll)
+  if (props.backdropBlur)
     style.backdropFilter = getSpacingCss(props.backdropBlur);
 
   return style;
