@@ -36,11 +36,11 @@ const props = defineProps({
     required: true,
   },
   height: {
-    type: String as PropType<string>,
+    type: String,
     required: false,
   },
   emptyMessage: {
-    type: String as PropType<string>,
+    type: String,
     required: false,
   },
 });
