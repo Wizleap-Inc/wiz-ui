@@ -14,6 +14,9 @@ export default {
     active: {
       control: { type: "boolean" },
     },
+    hover: {
+      control: { type: "boolean" },
+    },
     icon: {
       control: { type: "object" },
     },
@@ -56,7 +59,6 @@ Clickable.parameters = {
     },
   },
 };
-
 export const Active = Template.bind({});
 Active.args = {
   clickable: false,
@@ -68,6 +70,28 @@ Active.parameters = {
     description: {
       story:
         "ボタンのOn/Offを `active`に設定できます。 default は `false` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
+</template>
+      `,
+    },
+  },
+};
+
+export const Hover = Template.bind({});
+Hover.args = {
+  clickable: true,
+  active: true,
+  hover: true,
+};
+Hover.parameters = {
+  docs: {
+    description: {
+      story:
+        "hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。",
     },
     source: {
       code: `
