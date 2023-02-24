@@ -5,8 +5,13 @@
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
     ]"
+    :style="{
+      opacity: clickable ? (isHover || hover ? 0.9 : 1) : undefined,
+    }"
     :disabled="!props.clickable"
     @click="onClick"
+    @mouseenter="isHover = true"
+    @mouseleave="isHover = false"
   >
     <WizHStack
       align="center"
@@ -27,7 +32,7 @@ import {
   tinyButtonSizeStyle,
   tinyButtonVaraiantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
-import { computed, PropType } from "vue";
+import { computed, PropType, ref } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -39,6 +44,8 @@ interface Emits {
   (e: "click"): void;
 }
 
+const isHover = ref(false);
+
 const props = defineProps({
   clickable: {
     type: Boolean,
@@ -49,6 +56,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: true,
+  },
+  hover: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
   icon: {
     type: Object as PropType<TIcon>,

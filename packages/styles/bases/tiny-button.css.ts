@@ -6,11 +6,6 @@ export const tinyButtonBaseStyle = style({
   width: "fit-content",
   color: THEME.color.white[800],
   border: "none",
-  selectors: {
-    "&:hover:not(:disabled)": {
-      opacity: 0.9,
-    },
-  },
 });
 
 export const tinyButtonVaraiantStyle = styleVariants({
