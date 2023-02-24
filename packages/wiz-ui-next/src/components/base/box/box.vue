@@ -142,7 +142,7 @@ const props = defineProps({
     required: false,
   },
   backdropBlur: {
-    type: String as PropType<SpacingKeys>,
+    type: String as PropType<Exclude<SpacingKeys, "auto">>,
     required: false,
   },
 });
