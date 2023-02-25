@@ -1,7 +1,12 @@
 <template>
-  <WizPopupContainer v-model="modelValue">
+  <WizPopupContainer>
     <slot />
-    <WizPopup layer="popover" :gap="gap">
+    <WizPopup
+      :isOpen="modelValue"
+      @onClose="modelValue = false"
+      layer="popover"
+      :gap="gap"
+    >
       <div :class="[dropdownStyle, skeleton && dropdownSkeletonStyle]">
         <WizVStack p="xs" gap="xs2">
           <slot name="options" />
