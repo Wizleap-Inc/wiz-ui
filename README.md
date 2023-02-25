@@ -1,11 +1,13 @@
 # Wiz UI
 
-Original Vue@^2.7 UI Library at Wizleap Inc.
+Original Vue@^2.7 and Vue@^3.0 components library for Wizleap
 
 ## Installation
 
 ```bash
 npm install @wizleap-inc/wiz-ui
+yarn add @wizleap-inc/wiz-ui
+pnpm add @wizleap-inc/wiz-ui
 ```
 
 ## Usage
@@ -24,6 +26,17 @@ import { WizTextButton } from '@wizleap-inc/wiz-ui'
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+### Prepare
 
-Please make sure to update tests as appropriate.
+```bash
+yarn
+yarn build:lib
+```
+
+### Development
+
+```bash
+yarn dev # for launching all dev servers
+yarn dev:wiz-ui # for launching wiz-ui dev server
+yarn dev:wiz-ui-next # for launching wiz-ui-next dev server
+```

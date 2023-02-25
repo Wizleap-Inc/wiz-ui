@@ -2,13 +2,9 @@ name: Vue.js Storybook Deploy
 
 on:
   push:
-    paths:
-      - "**/*.stories.ts"
     branches-ignore:
       - "develop"
   pull_request:
-    paths:
-      - "**/*.stories.ts"
     branches-ignore:
       - "main"
       - "develop"
@@ -21,6 +17,7 @@ env:
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COMPONENT_STORY_WORKFLOW_URL }}
   DEPLOY_URL_POSTFIX: /index.html
   BUILD_COMMAND: yarn build:sb
+  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   build-and-deploy:
@@ -39,6 +36,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           runs-on: ${{ matrix.runs-on }}
+          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
+          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
 
       - name: Build ${{ env.DEPLOY_TYPE }}
         run: ${{ env.BUILD_COMMAND }}

@@ -18,6 +18,24 @@ export const textFontWeightStyle = styleVariants({
   },
 });
 
+export const textAlignStyle = styleVariants({
+  start: {
+    textAlign: "start",
+  },
+  end: {
+    textAlign: "end",
+  },
+  left: {
+    textAlign: "left",
+  },
+  right: {
+    textAlign: "right",
+  },
+  center: {
+    textAlign: "center",
+  },
+});
+
 export const textWordBreakStyle = style({
   wordBreak: "break-all",
 });

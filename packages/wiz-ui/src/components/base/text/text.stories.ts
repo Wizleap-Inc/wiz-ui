@@ -13,7 +13,10 @@ export default {
   argTypes: {
     as: {
       control: { type: "select" },
-      options: ["p", "span"],
+      options: ["p", "span", "label"],
+    },
+    htmlFor: {
+      control: { type: "text" },
     },
     fontSize: {
       control: { type: "select" },
@@ -36,6 +39,10 @@ export default {
     dummyValue: {
       control: { type: "text" },
     },
+    textAlign: {
+      control: { type: "select" },
+      options: ["start", "end", "left", "right", "center"],
+    },
   },
 };
 
@@ -57,6 +64,12 @@ Span.args = {
   slot: "これはテキストです。",
 };
 
+export const Label = Template.bind({});
+Label.args = {
+  as: "label",
+  slot: "これはテキストです。",
+};
+
 export const Bold = Template.bind({});
 Bold.args = {
   as: "p",
@@ -75,6 +88,13 @@ export const DummyValue = Template.bind({});
 DummyValue.args = {
   dummyValue: "ABCDEFG",
   slot: "これはテキストです。",
+};
+
+export const textAlign = Template.bind({});
+textAlign.args = {
+  as: "p",
+  slot: "これはテキストです。",
+  textAlign: "start",
 };
 
 const MaxLinesTemplate: StoryFn = (_, { argTypes }) => ({

@@ -45,10 +45,10 @@ const Template: StoryFn<typeof WizRadio> = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
 };
 Default.parameters = {
@@ -74,35 +74,60 @@ Default.parameters = {
   },
 };
 
+export const Options = Template.bind({});
+Options.args = {
+  options: [
+    { label: "test1", value: 1, key: "options1" },
+    { label: "test2", value: 2, key: "options2" },
+    { label: "test3", value: 3, key: "options3" },
+    { label: "test4", value: 4, key: "options4" },
+  ],
+};
+Options.parameters = {
+  docs: {
+    description: {
+      story: `
+optionsには、labelとvalueとkeyを指定してください。
+labelは表示される文字列、valueは入力値として使用されます。<br/>
+keyはcheckboxのidとして使用されます。keyは一意である必要があります。
+      `,
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizRadio v-bind="$props" v-model="value" @input="input"/>
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
 export const AllDisabled = Template.bind({});
 AllDisabled.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2" },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4" },
   ],
   disabled: true,
 };
 AllDisabled.parameters = {
   docs: {
     description: {
-      story: "入力を `disabled` にすることもできます。",
+      story: `
+disabledをtrueにすると、全てのradioがdisabledになります。
+      `,
     },
     source: {
       code: `
-<script lang="ts" setup>
-  const options = [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
-  ]
-</script>
 <template>
   <div>
     <p>入力値：{{ value }}</p>
-    <WizCheckBox disabled :options ="options" v-model="value" @input="args.input"/>
+    <WizRadio v-bind="$props" v-model="value" @input="input"/>
   </div>
 </template>
       `,
@@ -113,34 +138,28 @@ AllDisabled.parameters = {
 export const SpotDisabled = Template.bind({});
 SpotDisabled.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2, disabled: true },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4, disabled: true },
+    { label: "test1", value: 1, key: "spotDisabled1" },
+    { label: "test2", value: 2, key: "spotDisabled2", disabled: true },
+    { label: "test3", value: 3, key: "spotDisabled3" },
+    { label: "test4", value: 4, key: "spotDisabled4", disabled: true },
   ],
 };
 SpotDisabled.parameters = {
   docs: {
     description: {
-      story: "選択肢の一部を disabled にすることもできます。",
+      story: `
+optionsの中にdisabledをtrueにすると、そのradioがdisabledになります。
+          `,
     },
     source: {
       code: `
-<script lang="ts" setup>
-  const options = [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2, disabled: true },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4, disabled: true },
-  ]
-</script>
 <template>
   <div>
     <p>入力値：{{ value }}</p>
-    <WizCheckBox :options ="options" v-model="value" @input="args.input"/>
+    <WizRadio v-bind="$props" v-model="value" @input="input"/>
   </div>
 </template>
-      `,
+    `,
     },
   },
 };
@@ -148,10 +167,10 @@ SpotDisabled.parameters = {
 export const Vertical = Template.bind({});
 Vertical.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "vertical1" },
+    { label: "test2", value: 2, key: "vertical2" },
+    { label: "test3", value: 3, key: "vertical3" },
+    { label: "test4", value: 4, key: "vertical4" },
   ],
   direction: "vertical",
 };
@@ -182,13 +201,33 @@ Vertical.parameters = {
   },
 };
 
+Vertical.parameters = {
+  docs: {
+    description: {
+      story: `
+directionをverticalにすると、チェックボックスが縦に並びます。
+      `,
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizRadio v-bind="$props" v-model="value" @input="input"/>
+  </div>
+</template>
+    `,
+    },
+  },
+};
+
 export const Gap = Template.bind({});
 Gap.args = {
   options: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
+    { label: "test1", value: 1, key: "gap1" },
+    { label: "test2", value: 2, key: "gap2" },
+    { label: "test3", value: 3, key: "gap3" },
+    { label: "test4", value: 4, key: "gap4" },
   ],
   gap: "sm",
 };
@@ -196,26 +235,19 @@ Gap.args = {
 Gap.parameters = {
   docs: {
     description: {
-      story:
-        "選択肢に `gap` を指定して余白を設定することができます。選択肢はSpacingKeysの中から選択できます。default 値は `xl` です。",
+      story: `
+gapを指定すると、チェックボックスの間に余白を設定できます。
+          `,
     },
     source: {
       code: `
-<script lang="ts" setup>
-  const options = [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
-  ]
-</script>
 <template>
   <div>
     <p>入力値：{{ value }}</p>
-    <WizRadio  :options ="options" gap="sm" v-model="value" @input="args.input"/>
+    <WizRadio v-bind="$props" v-model="value" @input="input"/>
   </div>
 </template>
-      `,
+    `,
     },
   },
 };

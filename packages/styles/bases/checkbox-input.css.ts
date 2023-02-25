@@ -5,6 +5,7 @@ const borderWidth = "1px";
 
 export const checkboxStyle = style({
   width: "fit-content",
+  lineHeight: "100%",
 });
 
 export const checkboxInputStyle = style({

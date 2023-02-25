@@ -24,6 +24,9 @@ export default {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
     },
+    value: {
+      control: { type: "boolean" },
+    },
     onClick: {
       action: "onClick",
     },
@@ -75,6 +78,46 @@ Angled.parameters = {
   docs: {
     description: {
       story: "ボタンの形を矩形にすることができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizToggleButton rounded>{{ "顧客データ追加" }}</WizToggleButton>
+</template>
+      `,
+    },
+  },
+};
+
+export const On = Template.bind({});
+On.args = {
+  value: true,
+  slotDefault: "顧客データ追加",
+};
+On.parameters = {
+  docs: {
+    description: {
+      story: "ボタンのOn/Offを指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizToggleButton rounded>{{ "顧客データ追加" }}</WizToggleButton>
+</template>
+      `,
+    },
+  },
+};
+
+export const Off = Template.bind({});
+Off.args = {
+  values: false,
+  slotDefault: "顧客データ追加",
+};
+Off.parameters = {
+  docs: {
+    description: {
+      story: "ボタンのOn/Offを指定することができます。",
     },
     source: {
       code: `

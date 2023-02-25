@@ -3,6 +3,7 @@
     <input
       :class="toggleSwitchInputStyle"
       type="checkbox"
+      :area-label="label"
       v-model="switchValue"
     />
     <span
@@ -31,6 +32,10 @@ defineOptions({
 const props = defineProps({
   value: {
     type: Boolean,
+    required: true,
+  },
+  label: {
+    type: String,
     required: true,
   },
 });
