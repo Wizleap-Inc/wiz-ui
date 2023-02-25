@@ -25,7 +25,6 @@
       <WizPopup
         :isOpen="openDatepicker"
         @onClose="openDatepicker = false"
-        layer="popover"
         gap="xs"
       >
         <div :class="datePickerSelectorStyle">

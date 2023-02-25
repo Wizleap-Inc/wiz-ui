@@ -24,7 +24,6 @@
       <WizPopup
         :isOpen="openTimepicker"
         @onClose="openTimepicker = false"
-        layer="popover"
         gap="xs"
       >
         <div :class="timePickerSelectorStyle">
