@@ -197,7 +197,7 @@ Vertical.parameters = {
 <template>
   <div>
     <p>入力値：{{ value }}</p>
-    <WizCheckBox :options ="options" direction="vertical" v-model="value" @input="args.input"/>
+    <WizCheckBox :options ="options" direction="vertical" v-model="value" @input="input"/>
   </div>
 </template>
       `,

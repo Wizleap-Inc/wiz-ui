@@ -54,7 +54,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
   },
   template: `
   <div>
-    <WizNavItem v-bind="$props" :active="$route.path === '/home'" />
+    <WizNavItem v-bind="$props" />
     <router-view />
   </div>
   `,
@@ -66,10 +66,66 @@ Default.args = {
   label: "Home",
   to: "/home",
 };
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <div>
+    <WizNavItem :icon="WizIDashboard" label="Home" to="/home" :active="$route.path === '/home'" />
+    <router-view />
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
+export const Active = Template.bind({});
+Active.args = {
+  icon: WizIDashboard,
+  label: "Home",
+  to: "/",
+  active: true,
+};
+Active.parameters = {
+  docs: {
+    description: {
+      story: "`active` を指定すると NavItem がハイライトされます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizNavItem :icon="WizIDashboard" label="Home" to="https://wizleap.co.jp" active />
+    <router-view />
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const External = Template.bind({});
 External.args = {
   icon: WizIDashboard,
   label: "Home",
   to: "https://wizleap.co.jp",
+};
+External.parameters = {
+  docs: {
+    description: {
+      story: "外部リンクへ飛ばすこともできます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizNavItem :icon="WizIDashboard" label="Home" to="https://wizleap.co.jp" :active="$route.path === '/home'" />
+    <router-view />
+  </div>
+</template>
+      `,
+    },
+  },
 };

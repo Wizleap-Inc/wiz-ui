@@ -32,12 +32,48 @@ Information.args = {
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "information",
 };
+Information.parameters = {
+  docs: {
+    description: {
+      story: "Message のスタイルを `information` は次のとおりです。",
+    },
+    source: {
+      code: `
+<template>
+  <WizMessageBox title="ヘッダーヘッダーヘッダー" variant="information">
+    <WizText>
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+    </WizText>
+  </WizMessageBox>
+</template>
+      `,
+    },
+  },
+};
 
 export const Caution = Template.bind({});
 Caution.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "caution",
+};
+Caution.parameters = {
+  docs: {
+    description: {
+      story: "Message のスタイルの `caution` は次のとおりです。",
+    },
+    source: {
+      code: `
+<template>
+  <WizMessageBox title="ヘッダーヘッダーヘッダー" variant="caution">
+    <WizText>
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+    </WizText>
+  </WizMessageBox>
+</template>
+      `,
+    },
+  },
 };
 
 export const Warning = Template.bind({});
@@ -46,6 +82,24 @@ Warning.args = {
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "warning",
 };
+Warning.parameters = {
+  docs: {
+    description: {
+      story: "Message のスタイルを `warning` は次のとおりです。",
+    },
+    source: {
+      code: `
+<template>
+  <WizMessageBox title="ヘッダーヘッダーヘッダー" variant="warning">
+    <WizText>
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+    </WizText>
+  </WizMessageBox>
+</template>
+      `,
+    },
+  },
+};
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
@@ -53,10 +107,46 @@ WithIcon.args = {
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   icon: WizIClose,
 };
+WithIcon.parameters = {
+  docs: {
+    description: {
+      story: "MessageBox に Icon を付与することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizMessageBox title="ヘッダーヘッダーヘッダー" variant="information" :icon="WizIClose">
+    <WizText>
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+    </WizText>
+  </WizMessageBox>
+</template>
+      `,
+    },
+  },
+};
 
 export const Expand = Template.bind({});
 Expand.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
+};
+Expand.parameters = {
+  docs: {
+    description: {
+      story: "コンポーネントを幅いっぱいに広げるように指定することができます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizMessageBox title="ヘッダーヘッダーヘッダー" variant="information" expand>
+    <WizText>
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+    </WizText>
+  </WizMessageBox>
+</template>
+      `,
+    },
+  },
 };
