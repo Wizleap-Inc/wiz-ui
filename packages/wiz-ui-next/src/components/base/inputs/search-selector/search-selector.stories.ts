@@ -62,3 +62,32 @@ export const Template: StoryFn<typeof WizSearchSelector> = (args) => ({
     </WizHStack>
   `,
 });
+
+export const Selecting: StoryFn<typeof WizSearchSelector> = (args) => ({
+  components: { WizSearchSelector, WizHStack },
+  setup() {
+    const initValue = 1;
+    const currentValue = ref(initValue);
+    const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
+    const clear = () => {
+      currentValue.value = initValue;
+    };
+    const selectNewLabel = (label: string) => {
+      options.value.push({
+        label: label,
+        value: options.value.length + 1,
+      });
+      currentValue.value = options.value.length;
+    };
+    return { currentValue, args, options, selectNewLabel, clear };
+  },
+  template: `
+    <WizHStack>
+      <WizSearchSelector 
+        v-bind="args" v-model="currentValue"
+        :options="options" 
+        @clear="clear" @selectNewLabel="selectNewLabel"
+      />
+    </WizHStack>
+  `,
+});

@@ -64,3 +64,32 @@ const Template: StoryFn = (_, { argTypes }) => ({
 });
 
 export const Default = Template.bind({});
+
+export const Selecting: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizSearchSelector, WizHStack },
+  setup() {
+    const initValue = 1;
+    const value = ref(initValue);
+    const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
+    const clear = () => {
+      value.value = initValue;
+    };
+    const selectNewLabel = (label: string) => {
+      options.value.push({
+        label: label,
+        value: options.value.length + 1,
+      });
+      value.value = options.value.length;
+    };
+    return { value, options, selectNewLabel, clear };
+  },
+  template: `
+    <WizHStack>
+      <WizSearchSelector 
+        v-bind="$props" v-model="value"      
+        :options="options" @clear="clear" @selectNewLabel="selectNewLabel"
+      />
+    </WizHStack>
+  `,
+});
