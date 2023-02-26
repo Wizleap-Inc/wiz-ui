@@ -10,26 +10,28 @@
       :style="{ width: computedWidth }"
     >
       <div :class="selectBoxInnerBoxStyle" @click="toggleSelectBox">
-        <WizHStack align="center" justify="between" height="100%">
+        <WizHStack align="center" justify="between" height="100%" gap="xs">
           <span
             v-if="selectedItem !== undefined"
             :class="selectBoxInnerBoxSelectedValueStyle"
-            :style="{ width: '100%' }"
-            @click="onClear()"
           >
             {{ selectedItem }}
+            <span @click="onClear()">
+              <WizIcon
+                v-if="selectedItem !== undefined"
+                :icon="WizIClose"
+                :class="selectBoxInnerBoxCloseStyle"
+                :size="'xs'"
+                :color="'gray.500'"
+              />
+            </span>
           </span>
-          <span :class="selectBoxPlaceholderStyle">
+          <span
+            v-if="multiSelectable || !isValueMatched"
+            :class="selectBoxPlaceholderStyle"
+          >
             <input
-              :class="selectBoxPlaceholderStyle"
-              :style="{
-                // TODO: style input
-                border: 'none',
-                outline: 'none',
-                padding: 0,
-                flexGrow: 1,
-                fontSize: '0.875rem',
-              }"
+              :class="selectBoxSearchInputStyle"
               v-model="searchValue"
               :placeholder="!isValueMatched ? placeholder : undefined"
             />
@@ -54,13 +56,21 @@
           <div
             :class="selectBoxSelectorOptionStyle"
             @click="() => onCreate(searchValue)"
+            @mousedown="() => (addableOptionIsClicking = true)"
+            @mouseup="() => (addableOptionIsClicking = false)"
             v-if="
               searchValue !== '' &&
               !filteredOptions.some((v) => v.label === searchValue)
             "
           >
-            <span>
+            <!-- // TODO: Icon変更 -->
+            <span :class="selectBoxAddStyle">
               {{ searchValue }}
+              <WizIcon
+                :icon="WizIAdd"
+                :size="'sm'"
+                :color="addableOptionIsClicking ? 'white.800' : 'green.800'"
+              />
             </span>
           </div>
           <div
@@ -90,17 +100,25 @@ import {
   selectBoxCursorStyle,
   selectBoxInnerBoxStyle,
   selectBoxInnerBoxSelectedValueStyle,
+  selectBoxInnerBoxCloseStyle,
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
   selectBoxPlaceholderStyle,
+  selectBoxSearchInputStyle,
+  selectBoxAddStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
 
 import { WizPopupContainer, WizPopup, WizIcon } from "@/components";
-import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+import {
+  WizIExpandLess,
+  WizIExpandMore,
+  WizIClose,
+  WizIAdd,
+} from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizHStack, WizVStack } from "../../stack";
@@ -140,10 +158,16 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
+  multiSelectable: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const openSelectBox = ref(false);
 const searchValue = ref("");
+const addableOptionIsClicking = ref(false);
 
 const deepCopy = <T>(ary: T[]): T[] => JSON.parse(JSON.stringify(ary));
 

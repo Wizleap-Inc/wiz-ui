@@ -32,17 +32,24 @@ export const selectBoxInnerBoxStyle = style({
 });
 
 export const selectBoxInnerBoxSelectedValueStyle = style({
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
-  padding: THEME.spacing.xs2,
+  display: "flex",
+  flexDirection: "row",
   alignItems: "center",
-  color: THEME.color.gray["700"],
-  backgroundColor: THEME.color.white["500"],
-  border: "1px",
-  borderStyle: "solid",
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
+  gap: THEME.spacing.xs,
+
+  background: THEME.color.gray["300"],
+  border: `1px solid ${THEME.color.gray["400"]}`,
   borderRadius: THEME.spacing.xs2,
-  borderColor: THEME.color.gray["400"],
+
+  color: THEME.color.gray["700"],
+
+  flex: "none",
+});
+
+export const selectBoxInnerBoxCloseStyle = style({
+  fill: THEME.color.gray["500"],
+  fontSize: THEME.spacing.xs,
 });
 
 export const selectBoxInnerBoxLessStyle = style({
@@ -88,4 +95,20 @@ export const selectBoxPlaceholderStyle = style({
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+});
+
+export const selectBoxSearchInputStyle = style({
+  border: "none",
+  outline: "none",
+  padding: 0,
+  flexGrow: 1,
+  fontSize: THEME.fontSize.sm,
+  color: THEME.color.gray["500"],
+});
+
+export const selectBoxAddStyle = style({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  flex: "none",
 });
