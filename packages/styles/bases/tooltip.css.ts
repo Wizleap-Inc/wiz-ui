@@ -2,7 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const tooltipStyle = style({
-  width: "max-content",
+  display: "inline-block",
   position: "relative",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[800],
@@ -20,7 +20,7 @@ export const tooltipPopupStyle = style({
 
 export const tooltipContentStyle = style({
   backgroundColor: THEME.color.gray[800],
-  borderRadius: THEME.spacing.xs,
+  borderRadius: THEME.spacing.xs2,
   padding: THEME.spacing.xs,
   whiteSpace: "pre-wrap",
   boxSizing: "border-box",
