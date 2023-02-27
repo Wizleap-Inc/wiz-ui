@@ -200,7 +200,7 @@ const computedStyle = computed(() => {
     style.overflow = "scroll";
   }
   if (props.backdropBlur)
-    style.backdropFilter = getSpacingCss(props.backdropBlur);
+    style.backdropFilter = `blur(${getSpacingCss(props.backdropBlur)})`;
 
   return style;
 });
