@@ -41,7 +41,7 @@ export default {
 const Template: StoryFn<typeof WizTinyButton> = (args) => ({
   components: { WizTinyButton },
   setup: () => ({ args }),
-  template: `<WizTinyButton v-bind="args" @click="() => args.click">{{ "保存する" }}</WizTinyButton>`,
+  template: `<WizTinyButton v-bind="args" @click="args.click">{{ "保存する" }}</WizTinyButton>`,
 });
 
 export const Default = Template.bind({});
@@ -61,7 +61,7 @@ Clickable.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton disabled @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },
@@ -83,7 +83,7 @@ Active.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton disabled @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },
@@ -106,7 +106,7 @@ Icon.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton :icon="WizIAdd" @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton :icon="WizIAdd" @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },
@@ -133,7 +133,7 @@ IconPosition.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton :icon="WizIAdd" iconPosition="right" @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton :icon="WizIAdd" iconPosition="right" @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },

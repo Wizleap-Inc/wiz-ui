@@ -5,7 +5,7 @@
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
     ]"
-    :disabled="props.clickable"
+    :disabled="!clickable"
     @click="onClick"
   >
     <WizHStack

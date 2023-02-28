@@ -1,5 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 
+import { WizText } from "@/components";
+
 import WizTooltip from "./tooltip.vue";
 
 export default {
@@ -87,6 +89,72 @@ Direction.parameters = {
       code: `
 <WizTooltip direction="right">
   保険見直し、つみ...
+  <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+</WizTooltip>
+`,
+    },
+  },
+};
+
+export const LongTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizTooltip, WizText },
+  template: `
+    <div style="width: 700px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;">
+      <div style="width: 200px;">
+        <WizTooltip v-bind="$props">
+          <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
+          <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+        </WizTooltip>
+      </div>
+    </div>
+  `,
+});
+LongTextFixedOutBox.args = {
+  hover: true,
+};
+LongTextFixedOutBox.parameters = {
+  docs: {
+    description: {
+      story: `親要素の幅が固定されている状態で、その中に長いinline要素がある場合、適切な位置で折り返すことができる`,
+    },
+    source: {
+      code: `
+<WizTooltip hover>
+  <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
+  <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+</WizTooltip>
+`,
+    },
+  },
+};
+
+export const ShortTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizTooltip, WizText },
+  template: `
+    <div style="width: 700px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;">
+      <div style="width: 200px;">
+        <WizTooltip v-bind="$props">
+          <WizText size="xs2">保険見直し</WizText>
+          <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+        </WizTooltip>
+      </div>
+    </div>
+  `,
+});
+ShortTextFixedOutBox.args = {
+  hover: true,
+};
+ShortTextFixedOutBox.parameters = {
+  docs: {
+    description: {
+      story: `親要素の幅が固定されている状態で、その中に短いinline要素がある場合、そのインライン要素の幅に合わせてTooltipの位置が決まる`,
+    },
+    source: {
+      code: `
+<WizTooltip hover>
+  <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
 `,
