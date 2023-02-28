@@ -5,7 +5,7 @@
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
     ]"
-    :disabled="props.clickable"
+    :disabled="!clickable"
     @click="onClick"
   >
     <WizHStack
@@ -63,7 +63,7 @@ const props = defineProps({
 
 const emit = defineEmits<Emits>();
 
-const onClick = () => props.clickable || emit("click");
+const onClick = () => props.clickable && emit("click");
 const tinyButtonState = computed(() => {
   const selectable = props.clickable ? "clickable" : "unclickable";
   const active = props.active ? "active" : "inactive";
