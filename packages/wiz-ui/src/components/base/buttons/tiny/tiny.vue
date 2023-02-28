@@ -4,6 +4,9 @@
       tinyButtonBaseStyle,
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
+      p && paddingStyle[p],
+      px && paddingXStyle[px],
+      py && paddingYStyle[py],
     ]"
     :disabled="!clickable"
     @click="onClick"
@@ -12,9 +15,6 @@
       align="center"
       justify="center"
       gap="xs2"
-      :p="p"
-      :px="px"
-      :py="py"
       :reverse="iconPosition === 'right'"
     >
       <WizIcon v-if="icon" :icon="icon" color="white.800" size="xs" />
@@ -30,6 +30,11 @@ import {
   tinyButtonSizeStyle,
   tinyButtonVaraiantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
+import {
+  paddingStyle,
+  paddingXStyle,
+  paddingYStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
