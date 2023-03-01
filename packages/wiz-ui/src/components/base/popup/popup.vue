@@ -1,8 +1,7 @@
 <template>
   <MountingPortal mountTo="body" append>
     <div
-      v-if="isOpen"
-      :class="[popupStyle, zIndexStyle[layer]]"
+      :class="[popupStyle, zIndexStyle[layer], !isOpen && popupHiddenStyle]"
       :style="{
         inset,
         transform: popupTranslate,
@@ -21,7 +20,10 @@ import {
   SpacingKeys,
   ZIndexKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import { popupStyle } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
+import {
+  popupStyle,
+  popupHiddenStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { MountingPortal } from "portal-vue";
 import { computed, watch, inject, PropType, ref, nextTick } from "vue";
@@ -84,11 +86,7 @@ const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
 watch(
   () => props.isOpen,
-  (newValue) => {
-    if (newValue) {
-      nextTick(updateBodyPxInfo);
-    }
-  }
+  (newValue) => newValue && nextTick(updateBodyPxInfo)
 );
 
 // popup-containerの外をクリックしたときにハンドラ発火
