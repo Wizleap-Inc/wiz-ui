@@ -54,7 +54,7 @@ const props = defineProps({
   layer: {
     type: String as PropType<Exclude<ZIndexKeys, "base" | "dialog">>,
     required: false,
-    default: "floating",
+    default: "popover",
   },
   gap: {
     type: String as PropType<SpacingKeys>,
