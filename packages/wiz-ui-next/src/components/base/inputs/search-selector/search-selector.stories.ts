@@ -11,7 +11,7 @@ export default {
   title: "Base/Input/SearchSelector",
   component: WizSearchSelector,
   argTypes: {
-    value: {
+    modelValue: {
       control: {
         type: "text",
       },
@@ -20,6 +20,9 @@ export default {
       action: "input",
     },
     expand: {
+      control: { type: "boolean" },
+    },
+    multiSelectable: {
       control: { type: "boolean" },
     },
   },
@@ -37,25 +40,29 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
 export const Template: StoryFn<typeof WizSearchSelector> = (args) => ({
   components: { WizSearchSelector, WizHStack },
   setup() {
-    const initValue = 0;
+    const initValue: number[] = [];
     const currentValue = ref(initValue);
     const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const clear = () => {
-      currentValue.value = initValue;
+    const clear = (n: number) => {
+      currentValue.value = currentValue.value.filter((v) => v !== n);
     };
     const selectNewLabel = (label: string) => {
       options.value.push({
         label: label,
         value: options.value.length + 1,
       });
-      currentValue.value = options.value.length;
+      currentValue.value.push(options.value.length);
     };
-    return { currentValue, args, options, selectNewLabel, clear };
+    const select = (n: number) => {
+      console.log(n);
+      currentValue.value.push(n);
+    };
+    return { currentValue, args, options, selectNewLabel, clear, select };
   },
   template: `
     <WizHStack>
       <WizSearchSelector 
-        v-bind="args" v-model="currentValue"
+        v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
         :options="options" 
         @clear="clear" @selectNewLabel="selectNewLabel"
       />
@@ -66,28 +73,69 @@ export const Template: StoryFn<typeof WizSearchSelector> = (args) => ({
 export const Selecting: StoryFn<typeof WizSearchSelector> = (args) => ({
   components: { WizSearchSelector, WizHStack },
   setup() {
-    const initValue = 1;
+    const initValue: number[] = [1];
     const currentValue = ref(initValue);
     const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const clear = () => {
-      currentValue.value = initValue;
+    const clear = (n: number) => {
+      currentValue.value = currentValue.value.filter((v) => v !== n);
     };
     const selectNewLabel = (label: string) => {
       options.value.push({
         label: label,
         value: options.value.length + 1,
       });
-      currentValue.value = options.value.length;
+      currentValue.value.push(options.value.length);
     };
-    return { currentValue, args, options, selectNewLabel, clear };
+    const select = (n: number) => {
+      console.log(n);
+      currentValue.value.push(n);
+    };
+    return { currentValue, args, options, selectNewLabel, clear, select };
   },
   template: `
     <WizHStack>
       <WizSearchSelector 
-        v-bind="args" v-model="currentValue"
+        v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
         :options="options" 
         @clear="clear" @selectNewLabel="selectNewLabel"
       />
     </WizHStack>
   `,
 });
+
+export const MultiSelecting: StoryFn<typeof WizSearchSelector> = (args) => ({
+  components: { WizSearchSelector, WizHStack },
+  setup() {
+    const initValue: number[] = [1, 2, 3];
+    const currentValue = ref(initValue);
+    const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
+    const clear = (n: number) => {
+      currentValue.value = currentValue.value.filter((v) => v !== n);
+    };
+    const selectNewLabel = (label: string) => {
+      options.value.push({
+        label: label,
+        value: options.value.length + 1,
+      });
+      currentValue.value.push(options.value.length);
+    };
+    const select = (n: number) => {
+      console.log(n);
+      currentValue.value.push(n);
+    };
+    return { currentValue, args, options, selectNewLabel, clear, select };
+  },
+  template: `
+    <WizHStack>
+      <WizSearchSelector 
+        v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
+        :options="options"  width="300px"
+        @clear="clear" @selectNewLabel="selectNewLabel"
+      />
+    </WizHStack>
+  `,
+});
+
+MultiSelecting.args = {
+  multiSelectable: true,
+};
