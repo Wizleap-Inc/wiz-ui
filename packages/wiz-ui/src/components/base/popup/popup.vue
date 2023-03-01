@@ -1,7 +1,7 @@
 <template>
   <MountingPortal mountTo="body" append>
     <div
-      v-if="isPopupOpen"
+      v-if="isOpen"
       :class="[popupStyle, zIndexStyle[layer]]"
       :style="{
         inset,
@@ -24,18 +24,33 @@ import {
 import { popupStyle } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { MountingPortal } from "portal-vue";
-import { computed, inject, PropType, ref } from "vue";
+import { computed, watch, inject, PropType, ref, nextTick } from "vue";
+
+import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { POPUP_KEY } from "./provider";
 
 type Direction = "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb";
 type DirectionChar = Direction extends `${infer X}${infer Y}` ? X | Y : never;
 
+interface Emits {
+  (event: "onClose", isOpen: boolean): void;
+}
+
 defineOptions({
   name: ComponentName.Popup,
 });
 
 const props = defineProps({
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
+  closeOnBlur: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
   layer: {
     type: String as PropType<Exclude<ZIndexKeys, "base" | "dialog">>,
     required: false,
@@ -53,7 +68,9 @@ const props = defineProps({
   },
 });
 
-const popupRef = ref<HTMLDivElement | undefined>();
+const emit = defineEmits<Emits>();
+
+const popupRef = ref<HTMLElement | undefined>();
 
 const injected = inject(POPUP_KEY);
 
@@ -63,7 +80,24 @@ if (!injected) {
   );
 }
 
-const { isPopupOpen, bodyPxInfo } = injected;
+const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
+
+watch(
+  () => props.isOpen,
+  (newValue) => {
+    if (newValue) {
+      nextTick(updateBodyPxInfo);
+    }
+  }
+);
+
+// popup-containerの外をクリックしたときにハンドラ発火
+// クリックした対象がpopup以外で、かつcloseOnBlurがtrueのときはpopupを閉じる
+useClickOutside(containerRef, (e) => {
+  if (!popupRef.value?.contains(e.target as Node) && props.closeOnBlur) {
+    emit("onClose", false);
+  }
+});
 
 const popupRect = computed(() => {
   const popupWidth = popupRef.value?.offsetWidth ?? 0;

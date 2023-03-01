@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer v-model="openDatepicker">
+  <WizPopupContainer>
     <div
       :class="[
         datePickerStyle,
@@ -22,7 +22,11 @@
           <span>{{ parseValue(calendarValue) || placeholder }}</span>
         </WizHStack>
       </div>
-      <WizPopup layer="popover" gap="xs">
+      <WizPopup
+        :isOpen="openDatepicker"
+        @onClose="openDatepicker = false"
+        gap="xs"
+      >
         <div :class="datePickerSelectorStyle">
           <WizHStack align="center" my="xs2" px="xs" justify="between">
             <WizText as="span" fontSize="xs" color="gray.700">{{

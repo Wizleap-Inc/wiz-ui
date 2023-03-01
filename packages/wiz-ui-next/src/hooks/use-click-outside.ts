@@ -1,19 +1,16 @@
-import { onMounted, onBeforeUnmount, watch, Ref } from "vue";
+import { onMounted, onBeforeUnmount, Ref } from "vue";
 
 export const useClickOutside = (
   elementRef: Ref<HTMLElement | undefined>,
   cb: (event: MouseEvent) => void
 ) => {
-  let el: HTMLElement | undefined = undefined;
   const handleDocumentClick = (event: Event) => {
     if (!(event instanceof MouseEvent)) return;
 
-    if (el && !el.contains(event.target as Node)) {
+    if (elementRef.value && !elementRef.value.contains(event.target as Node)) {
       cb(event);
     }
   };
-
-  watch(elementRef, () => (el = elementRef.value));
 
   onMounted(() => {
     document.addEventListener("mousedown", handleDocumentClick);
