@@ -37,3 +37,7 @@ export const tinyButtonSizeStyle = style({
   fontWeight: "bold",
   fontSize: THEME.fontSize.xs,
 });
+
+export const tinyButtonHoverStyle = style({
+  opacity: 0.9,
+});

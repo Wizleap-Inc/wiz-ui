@@ -4,10 +4,8 @@
       tinyButtonBaseStyle,
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
+      clickable && (isHover || hover) && tinyButtonHoverStyle,
     ]"
-    :style="{
-      opacity: clickable ? (isHover || hover ? 0.9 : 1) : undefined,
-    }"
     :disabled="!props.clickable"
     @click="onClick"
     @mouseenter="isHover = true"
@@ -29,6 +27,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   tinyButtonBaseStyle,
+  tinyButtonHoverStyle,
   tinyButtonSizeStyle,
   tinyButtonVaraiantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
