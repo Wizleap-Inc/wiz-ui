@@ -24,16 +24,22 @@ export const selectBoxCursorStyle = styleVariants({
 
 export const selectBoxInnerBoxStyle = style({
   height: "100%",
-  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
+  padding: `${THEME.spacing.xs} ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
   width: "100%",
   boxSizing: "border-box",
+  display: "inline-block",
 });
 
-export const selectBoxInnerBoxSelectedValueStyle = style({
+export const selectBoxInnerBoxSelectedItemStyle = style({
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+
   display: "flex",
   flexDirection: "row",
+  float: "left",
   alignItems: "center",
   padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
   gap: THEME.spacing.xs,
@@ -43,8 +49,12 @@ export const selectBoxInnerBoxSelectedValueStyle = style({
   borderRadius: THEME.spacing.xs2,
 
   color: THEME.color.gray["700"],
+});
 
-  flex: "none",
+export const selectBoxInnerBoxSelectedLabelStyle = style({
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 });
 
 export const selectBoxInnerBoxCloseStyle = style({
@@ -91,17 +101,13 @@ export const selectBoxSelectorOptionStyle = style({
   },
 });
 
-export const selectBoxPlaceholderStyle = style({
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
-});
-
 export const selectBoxSearchInputStyle = style({
+  width: "fit-content",
   border: "none",
   outline: "none",
-  padding: 0,
-  flexGrow: 1,
+  lineHeight: THEME.fontSize.lg,
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`, //THEME.spacing.no,
+  flexGrow: 0,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
 });
@@ -111,4 +117,24 @@ export const selectBoxAddStyle = style({
   flexDirection: "row",
   alignItems: "center",
   flex: "none",
+});
+
+export const selectBoxExpandIconStyle = style({
+  position: "absolute",
+  right: THEME.spacing.xs,
+  top: "0",
+  bottom: "0",
+  margin: "auto",
+  cursor: "pointer",
+  display: "flex",
+  background: "none",
+  border: "none",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: THEME.fontSize.xl2,
+  lineHeight: THEME.fontSize.xl2,
+  width: THEME.fontSize.xl2,
+  height: THEME.fontSize.xl2,
+  padding: THEME.spacing.no,
+  fill: THEME.color.gray["400"],
 });

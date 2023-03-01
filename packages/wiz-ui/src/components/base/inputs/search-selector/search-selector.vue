@@ -7,18 +7,24 @@
         disabled && selectBoxDisabledStyle,
         selectBoxCursorStyle[selectBoxCursor],
       ]"
-      :style="{ width: computedWidth }"
+      :style="{ width: computedWidth, height: 'auto' }"
     >
-      <div :class="selectBoxInnerBoxStyle" @click="toggleSelectBox">
-        <WizHStack align="center" justify="between" height="100%" gap="xs">
+      <div :class="selectBoxInnerBoxStyle" @click="() => focusInput()">
+        <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
-            v-if="selectedItem !== undefined"
-            :class="selectBoxInnerBoxSelectedValueStyle"
+            v-for="(item, key) in selectedItem"
+            :class="selectBoxInnerBoxSelectedItemStyle"
           >
-            {{ selectedItem }}
-            <span @click="onClear()">
+            <span :class="selectBoxInnerBoxSelectedLabelStyle">
+              {{ item.label }}
+            </span>
+
+            <span
+              @click="onClear(item.value)"
+              :tabindex="0"
+              @keypress.enter="onClear(item.value)"
+            >
               <WizIcon
-                v-if="selectedItem !== undefined"
                 :icon="WizIClose"
                 :class="selectBoxInnerBoxCloseStyle"
                 :size="'xs'"
@@ -26,32 +32,44 @@
               />
             </span>
           </span>
-          <span
+          <input
             v-if="multiSelectable || !isValueMatched"
-            :class="selectBoxPlaceholderStyle"
-          >
-            <input
-              :class="selectBoxSearchInputStyle"
-              v-model="searchValue"
-              :placeholder="!isValueMatched ? placeholder : undefined"
-            />
-          </span>
-          <WizIcon
-            v-if="openSelectBox"
-            :icon="WizIExpandLess"
-            :class="selectBoxInnerBoxLessStyle"
+            :class="selectBoxSearchInputStyle"
+            v-model="searchValue"
+            :placeholder="placeholder"
+            ref="inputRef"
           />
 
-          <WizIcon
-            v-else-if="!openSelectBox"
-            :icon="WizIExpandMore"
-            :class="selectBoxInnerBoxMoreStyle"
-          />
+          <span
+            :class="selectBoxExpandIconStyle"
+            @click="toggleSelectBox"
+            :tabindex="0"
+          >
+            <WizIcon
+              v-if="openSelectBox"
+              :icon="WizIExpandLess"
+              :class="selectBoxInnerBoxLessStyle"
+              :color="!openSelectBox ? 'white.800' : 'green.800'"
+            />
+
+            <WizIcon
+              v-else-if="!openSelectBox"
+              :icon="WizIExpandMore"
+              :class="selectBoxInnerBoxMoreStyle"
+            />
+          </span>
         </WizHStack>
       </div>
     </div>
     <WizPopup layer="popover">
-      <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
+      <div
+        :class="selectBoxSelectorStyle"
+        :style="{ minWidth: width }"
+        v-if="
+          filteredOptions.length > 0 ||
+          (searchValue !== '' && !options.some((v) => v.label === searchValue))
+        "
+      >
         <WizVStack gap="xs2">
           <div
             :class="selectBoxSelectorOptionStyle"
@@ -60,8 +78,10 @@
             @mouseup="() => (addableOptionIsClicking = false)"
             v-if="
               searchValue !== '' &&
-              !filteredOptions.some((v) => v.label === searchValue)
+              !options.some((v) => v.label === searchValue)
             "
+            @keypress.enter="onCreate(searchValue)"
+            :tabindex="0"
           >
             <!-- // TODO: Icon変更 -->
             <span :class="selectBoxAddStyle">
@@ -78,6 +98,8 @@
             v-for="(option, key) in filteredOptions"
             :key="'option' + key"
             @click="onSelect(option.value)"
+            @keypress.enter="onSelect(option.value)"
+            :tabindex="0"
           >
             <span>
               {{ option.label }}
@@ -99,15 +121,16 @@ import {
   selectBoxDisabledStyle,
   selectBoxCursorStyle,
   selectBoxInnerBoxStyle,
-  selectBoxInnerBoxSelectedValueStyle,
   selectBoxInnerBoxCloseStyle,
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
-  selectBoxPlaceholderStyle,
   selectBoxSearchInputStyle,
   selectBoxAddStyle,
+  selectBoxExpandIconStyle,
+  selectBoxInnerBoxSelectedItemStyle,
+  selectBoxInnerBoxSelectedLabelStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
@@ -136,7 +159,7 @@ const props = defineProps({
     required: true,
   },
   value: {
-    type: Number,
+    type: Array as PropType<number[]>,
     required: true,
   },
   placeholder: {
@@ -161,13 +184,19 @@ const props = defineProps({
   multiSelectable: {
     type: Boolean,
     required: false,
-    default: false,
+    default: true,
   },
 });
 
 const openSelectBox = ref(false);
 const searchValue = ref("");
 const addableOptionIsClicking = ref(false);
+
+const inputRef = ref<HTMLElement | undefined>();
+const focusInput = () => {
+  openSelectBox.value = true;
+  inputRef.value?.focus();
+};
 
 const deepCopy = <T>(ary: T[]): T[] => JSON.parse(JSON.stringify(ary));
 
@@ -179,39 +208,40 @@ const sortByLevenshtein = (options: SelectBoxOption[], target: string) => {
   return options.sort((a, b) => dist[a.label] - dist[b.label]);
 };
 
+const selectedItem = computed(() => {
+  return props.options.filter((v) => props.value.includes(v.value));
+});
+
 const filteredOptions = computed(() =>
-  searchValue.value.length === 0
+  (searchValue.value.length === 0
     ? props.options
     : sortByLevenshtein(deepCopy(props.options), searchValue.value)
+  ).filter((v) => !selectedItem.value.some((opt) => opt.value === v.value))
 );
 
-const selectedItem = computed(() => {
-  const option = props.options.find((v) => v.value === props.value);
-  return option?.label;
-});
 const toggleSelectBox = () => {
   if (!props.disabled) openSelectBox.value = !openSelectBox.value;
 };
 
 interface Emit {
   (e: "input", value: number): void;
-  (e: "clear"): void;
+  (e: "clear", value: number): void;
   (e: "selectNewLabel", label: string): void;
 }
 const emit = defineEmits<Emit>();
 
-const onClear = () => {
-  emit("clear");
+const onClear = (n: number) => {
+  emit("clear", n);
 };
 const onSelect = (value: number) => {
-  const option = selectedItem.value;
-  if (typeof option === undefined) {
-    onClear();
-  } else {
-    searchValue.value = "";
+  if (!props.multiSelectable) {
     toggleSelectBox();
-    emit("input", value);
+    props.value.forEach((v, _) => {
+      onClear(v);
+    });
   }
+  searchValue.value = "";
+  emit("input", value);
 };
 const onCreate = (label: string) => {
   emit("selectNewLabel", label);
@@ -235,6 +265,6 @@ const state = computed(() => {
 });
 
 const isValueMatched = computed(() => {
-  return props.options.some((option) => option.value === props.value);
+  return props.value.length > 0;
 });
 </script>
