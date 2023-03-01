@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <WizPopupContainer>
     <div :class="searchStyle">
       <input
         type="text"
@@ -23,8 +23,8 @@
       />
       <WizISearch :class="searchInputIconStyle" />
     </div>
-    <WizPopupContainer v-model="openPopup">
-      <WizPopup layer="floating" :class="searchPopupStyle">
+    <WizPopup :isOpen="openPopup" @onClose="openPopup = false">
+      <WizHStack>
         <div
           :class="[
             searchBlockStyle,
@@ -101,10 +101,10 @@
           :options="options"
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
-        ></WizSearchPopup>
-      </WizPopup>
-    </WizPopupContainer>
-  </div>
+        />
+      </WizHStack>
+    </WizPopup>
+  </WizPopupContainer>
 </template>
 
 <script setup lang="ts">
@@ -114,7 +114,6 @@ import {
   searchInputStyle,
   searchInputIconStyle,
   searchInputDisabledStyle,
-  searchPopupStyle,
   searchBlockStyle,
   searchBlockBorderStyle,
   searchBlockBorderRadiusStyle,
@@ -131,6 +130,7 @@ import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, watch, PropType, onMounted } from "vue";
 
 import {
+  WizHStack,
   WizDivider,
   WizISearch,
   WizPopupContainer,

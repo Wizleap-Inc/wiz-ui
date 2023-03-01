@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <WizPopupContainer v-model="openPopup">
     <div :class="searchStyle">
       <input
         type="text"
@@ -20,8 +20,8 @@
       />
       <WizISearch :class="searchInputIconStyle" />
     </div>
-    <WizPopupContainer v-model="openPopup">
-      <WizPopup layer="floating" :class="searchPopupStyle">
+    <WizPopup :isOpen="openPopup" @onClose="openPopup = false">
+      <WizHStack>
         <div
           :class="[
             searchBlockStyle,
@@ -99,10 +99,10 @@
           :options="options"
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
-        ></WizSearchPopup>
-      </WizPopup>
-    </WizPopupContainer>
-  </div>
+        />
+      </WizHStack>
+    </WizPopup>
+  </WizPopupContainer>
 </template>
 
 <script setup lang="ts">
@@ -112,7 +112,6 @@ import {
   searchInputStyle,
   searchInputIconStyle,
   searchInputDisabledStyle,
-  searchPopupStyle,
   searchBlockStyle,
   searchBlockBorderStyle,
   searchBlockBorderRadiusStyle,
@@ -188,9 +187,7 @@ const emit = defineEmits<{
 
 const checkValues = computed({
   get: () => props.modelValue,
-  set: (value) => {
-    emit("update:modelValue", value);
-  },
+  set: (value: number[]) => emit("update:modelValue", value),
 });
 
 const searchValue = ref("");
