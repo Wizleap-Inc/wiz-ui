@@ -13,8 +13,9 @@ export const calendarCellStyle = style({
 export const calendarItemCommonStyle = style({
   border: "none",
   width: "100%",
-  padding: `calc((${THEME.spacing.xs2} + ${THEME.spacing.xs}) / 2) 0`,
+  padding: `${THEME.spacing.xs2} 0`,
   fontSize: THEME.fontSize.xs2,
+  lineHeight: THEME.fontSize.xs,
 });
 
 export const calendarItemStyle = styleVariants({
