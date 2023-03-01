@@ -4,6 +4,9 @@
       tinyButtonBaseStyle,
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
+      p && paddingStyle[p],
+      px && paddingXStyle[px],
+      py && paddingYStyle[py],
     ]"
     :disabled="!clickable"
     @click="onClick"
@@ -21,12 +24,17 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   tinyButtonBaseStyle,
   tinyButtonSizeStyle,
   tinyButtonVaraiantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
+import {
+  paddingStyle,
+  paddingXStyle,
+  paddingYStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
@@ -50,6 +58,9 @@ const props = defineProps({
     required: false,
     default: true,
   },
+  p: { type: String as PropType<SpacingKeys>, required: false },
+  px: { type: String as PropType<SpacingKeys>, required: false },
+  py: { type: String as PropType<SpacingKeys>, required: false },
   icon: {
     type: Object as PropType<TIcon>,
     required: false,
