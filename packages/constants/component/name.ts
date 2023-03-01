@@ -24,6 +24,7 @@ const IconComponentName = {
   INotification: "WizINotification",
   IMenu: "WizIMenu",
   ISchedule: "WizISchedule",
+  IAddCircle: "WizIAddCircle",
   IAdd: "WizIAdd",
   IRemove: "WizIRemove",
   IOpenInNew: "WizIOpenInNew",
