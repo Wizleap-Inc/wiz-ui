@@ -53,7 +53,7 @@ const props = defineProps({
   layer: {
     type: String as PropType<Exclude<ZIndexKeys, "base" | "dialog">>,
     required: false,
-    default: "floating",
+    default: "popover",
   },
   gap: {
     type: String as PropType<SpacingKeys>,
@@ -97,6 +97,9 @@ useClickOutside(containerRef, (e) => {
     emit("onClose", false);
   }
 });
+
+const observer = new ResizeObserver(updateBodyPxInfo);
+observer.observe(document.body);
 
 const popupRect = computed(() => {
   const popupWidth = popupRef.value?.offsetWidth ?? 0;
