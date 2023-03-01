@@ -21,7 +21,9 @@
         />
       </WizHStack>
     </div>
-    <template v-if="fileList.length">
+    <template
+      v-if="(multiple && fileList.length) || (!multiple && !isUploading)"
+    >
       <div
         :class="[
           uploadDisplayStyle,
@@ -65,6 +67,7 @@ interface Props {
   progress: number;
   isUploaded: boolean;
   isUploading: boolean;
+  multiple: boolean;
 }
 const props = defineProps<Props>();
 

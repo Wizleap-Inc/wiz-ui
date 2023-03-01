@@ -21,6 +21,7 @@
       :isUploaded="isUploaded"
       :isUploading="isUploading"
       :uploadingFileCount="uploadingFileCount"
+      :multiple="multiple"
     ></WizUploadDisplay>
   </WizVStack>
 </template>

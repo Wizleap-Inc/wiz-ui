@@ -1,8 +1,18 @@
 import { Meta, StoryFn } from "@storybook/vue";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizIAdd } from "@/components/icons";
 
 import WizTinyButton from "./tiny.vue";
+
+const spacingKeys = ["p", "px", "py"];
+const spacingControls = spacingKeys.reduce((acc, key) => {
+  acc[key] = {
+    control: { type: "select" },
+    options: SPACING_ACCESSORS,
+  };
+  return acc;
+}, {} as Record<string, any>);
 
 export default {
   title: "Base/Buttons/Tiny",
@@ -27,6 +37,7 @@ export default {
     click: {
       action: "click",
     },
+    ...spacingControls,
   },
 } as Meta<typeof WizTinyButton>;
 
