@@ -8,7 +8,11 @@
       {{ row }}
     </td>
     <tr v-for="(week, row) in calendars" :key="[week, row].join('-')">
-      <td v-for="(day, col) in week" :key="[day, col].join('-')">
+      <td
+        v-for="(day, col) in week"
+        :key="[day, col].join('-')"
+        :class="calendarCellStyle"
+      >
         <button
           v-if="day"
           :class="[
@@ -18,6 +22,7 @@
           :aria-label="`${modelValue.getFullYear()}年${
             modelValue.getMonth() + 1
           }月${day}日`"
+          :disabled="getDateState(row, col) !== 'inCurrentMonth'"
           @click="updateSelectedDate(row, col, day)"
         >
           {{ day }}
@@ -31,6 +36,7 @@
 import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
 import {
   calendarStyle,
+  calendarCellStyle,
   calendarItemStyle,
   calendarItemCommonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";

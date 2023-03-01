@@ -3,30 +3,35 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const calendarStyle = style({
   fontSize: THEME.fontSize.xs2,
+  width: "200px",
+  borderSpacing: 0,
+});
+
+export const calendarCellStyle = style({
+  padding: 0,
 });
 
 export const calendarItemCommonStyle = style({
   border: "none",
   width: "100%",
+  paddingTop: THEME.spacing.xs2,
+  paddingBottom: THEME.spacing.xs2,
 });
 
 export const calendarItemStyle = styleVariants({
   dayOfWeek: {
     background: "none",
     color: THEME.color.gray[600],
-    padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
     textAlign: "center",
   },
   selected: {
     color: THEME.color.white[800],
-    padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
     textAlign: "center",
     background: THEME.color.green[800],
     borderRadius: THEME.spacing.xs2,
   },
   inCurrentMonth: {
     color: THEME.color.gray[700],
-    padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
     textAlign: "center",
     borderRadius: THEME.spacing.xs2,
     cursor: "pointer",
@@ -44,9 +49,7 @@ export const calendarItemStyle = styleVariants({
   outOfCurrentMonth: {
     background: "none",
     color: THEME.color.gray[500],
-    padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
     textAlign: "center",
     borderRadius: THEME.spacing.xs2,
-    cursor: "pointer",
   },
 });
