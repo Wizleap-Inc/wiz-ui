@@ -24,7 +24,9 @@ export default {
     active: {
       control: { type: "boolean" },
     },
-
+    hover: {
+      control: { type: "boolean" },
+    },
     icon: {
       control: { type: "object" },
     },
@@ -43,6 +45,22 @@ const Template: StoryFn<typeof WizTinyButton> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizTinyButton },
   template: `<WizTinyButton v-bind="$props" @click="click">{{ "保存する" }}</WizTinyButton>`,
+});
+
+const MultipleTemplate: StoryFn<typeof WizTinyButton> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizTinyButton },
+  template: `
+  <table>
+    <tr v-for="(pattern, i) in patterns" :key="pattern[main]">
+      <td style="padding: 1rem;"> {{"clickable="}}{{ pattern.clickable ? "true" : "false"}} </td>
+      <td style="padding: 1rem;"> {{"active="}}{{ pattern.active ? "true" : "false"}} </td>
+      <td style="padding: 1rem;"> 
+        <WizTinyButton v-bind="pattern" @click="click">{{ "保存する" }}</WizTinyButton>
+      </td>
+    </tr>
+  </table>
+  `,
 });
 
 export const Default = Template.bind({});
@@ -68,7 +86,6 @@ Clickable.parameters = {
     },
   },
 };
-
 export const Active = Template.bind({});
 Active.args = {
   clickable: false,
@@ -87,6 +104,25 @@ Active.parameters = {
   <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
+    },
+  },
+};
+
+export const Hover = MultipleTemplate.bind({});
+Hover.args = {
+  main: "hover",
+  patterns: [
+    { hover: true, clickable: true, active: true },
+    { hover: true, clickable: true, active: false },
+    { hover: true, clickable: false, active: true },
+    { hover: true, clickable: false, active: false },
+  ],
+};
+Hover.parameters = {
+  docs: {
+    description: {
+      story:
+        "hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。",
     },
   },
 };
