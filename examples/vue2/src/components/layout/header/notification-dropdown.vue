@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer v-model="isNotificationOpen">
+  <WizPopupContainer>
     <WizIconButton
       :icon="WizINotification"
       size="xl"
@@ -7,7 +7,12 @@
       color="gray.700"
       @click="toggleNotificationOpen"
     />
-    <WizPopup layer="floating" gap="md">
+    <WizPopup
+      :isOpen="isNotificationOpen"
+      @onClose="isNotificationOpen = false"
+      layer="floating"
+      gap="md"
+    >
       <WizBox width="300px">
         <WizNotification
           :notifications="notificationItems"
@@ -29,8 +34,10 @@ import {
   WizBox,
   WizNotification,
 } from "@wizleap-inc/wiz-ui";
-import { NotificationTabItem } from "@wizleap-inc/wiz-ui/dist/components/custom/notification/types";
-import { NotificationItem } from "@wizleap-inc/wiz-ui/dist/components/custom/notification/types";
+import {
+  NotificationTabItem,
+  NotificationItem,
+} from "@wizleap-inc/wiz-ui/dist/components/custom/notification/types";
 import { ref } from "vue";
 
 const isNotificationOpen = ref(false);
