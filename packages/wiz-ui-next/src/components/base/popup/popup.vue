@@ -98,6 +98,9 @@ useClickOutside(containerRef, (e) => {
   }
 });
 
+const observer = new ResizeObserver(updateBodyPxInfo);
+observer.observe(document.body);
+
 const popupRect = computed(() => {
   const popupWidth = popupRef.value?.offsetWidth ?? 0;
   const popupHeight = popupRef.value?.offsetHeight ?? 0;
