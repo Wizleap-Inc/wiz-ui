@@ -5,8 +5,14 @@ export const calendarStyle = style({
   fontSize: THEME.fontSize.xs2,
 });
 
+export const calendarItemCommonStyle = style({
+  border: "none",
+  width: "100%",
+});
+
 export const calendarItemStyle = styleVariants({
   dayOfWeek: {
+    background: "none",
     color: THEME.color.gray[600],
     padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
     textAlign: "center",
@@ -24,6 +30,7 @@ export const calendarItemStyle = styleVariants({
     textAlign: "center",
     borderRadius: THEME.spacing.xs2,
     cursor: "pointer",
+    background: "none",
 
     ":hover": {
       backgroundColor: THEME.color.green[300],
@@ -35,6 +42,7 @@ export const calendarItemStyle = styleVariants({
     },
   },
   outOfCurrentMonth: {
+    background: "none",
     color: THEME.color.gray[500],
     padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
     textAlign: "center",
