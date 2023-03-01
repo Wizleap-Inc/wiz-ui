@@ -2,7 +2,6 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const calendarStyle = style({
-  fontSize: THEME.fontSize.xs2,
   width: "200px",
   borderSpacing: 0,
 });

@@ -1,11 +1,9 @@
 <template>
   <table :class="calendarStyle">
-    <td
-      v-for="row in WEEK_LIST_JP"
-      :class="calendarItemStyle['dayOfWeek']"
-      :key="row"
-    >
-      {{ row }}
+    <td v-for="row in WEEK_LIST_JP" :class="calendarCellStyle" :key="row">
+      <div :class="[calendarItemCommonStyle, calendarItemStyle['dayOfWeek']]">
+        {{ row }}
+      </div>
     </td>
     <tr v-for="(week, row) in calendars" :key="[week, row].join('-')">
       <td
