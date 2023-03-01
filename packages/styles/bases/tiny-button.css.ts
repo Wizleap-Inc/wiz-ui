@@ -6,11 +6,6 @@ export const tinyButtonBaseStyle = style({
   width: "fit-content",
   color: THEME.color.white[800],
   border: "none",
-  selectors: {
-    "&:hover:not(:disabled)": {
-      opacity: 0.9,
-    },
-  },
 });
 
 export const tinyButtonVaraiantStyle = styleVariants({
@@ -41,4 +36,8 @@ export const tinyButtonSizeStyle = style({
   padding: `${THEME.spacing["xs2"]} ${THEME.spacing["sm"]}`,
   fontWeight: "bold",
   fontSize: THEME.fontSize.xs,
+});
+
+export const tinyButtonHoverStyle = style({
+  opacity: 0.9,
 });

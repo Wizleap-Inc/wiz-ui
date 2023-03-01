@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer v-model="openTimepicker">
+  <WizPopupContainer>
     <div
       :class="[
         timePickerStyle,
@@ -21,7 +21,11 @@
           <span>{{ modelValue || placeholder }}</span>
         </WizHStack>
       </div>
-      <WizPopup layer="popover" gap="xs">
+      <WizPopup
+        :isOpen="openTimepicker"
+        @onClose="openTimepicker = false"
+        gap="xs"
+      >
         <div :class="timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">
             <WizVStack

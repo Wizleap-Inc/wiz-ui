@@ -20,7 +20,7 @@ export const tooltipPopupStyle = style({
 
 export const tooltipContentStyle = style({
   backgroundColor: THEME.color.gray[800],
-  borderRadius: THEME.spacing.xs,
+  borderRadius: THEME.spacing.xs2,
   padding: THEME.spacing.xs,
   whiteSpace: "pre-wrap",
   boxSizing: "border-box",

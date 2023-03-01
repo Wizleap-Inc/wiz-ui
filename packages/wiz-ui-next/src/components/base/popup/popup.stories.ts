@@ -15,7 +15,9 @@ export default {
   argTypes: {
     layer: {
       control: { type: "select" },
-      options: Z_INDEX_ACCESSORS,
+      options: Z_INDEX_ACCESSORS.filter(
+        (key) => key !== "base" && key !== "dialog"
+      ),
     },
     gap: {
       control: { type: "select" },
@@ -24,6 +26,9 @@ export default {
     direction: {
       control: { type: "select" },
       options: ["tl", "tr", "bl", "br", "lt", "lb", "rt", "rb"],
+    },
+    closeOnBlur: {
+      control: { type: "boolean" },
     },
   },
   parameters: {
@@ -48,22 +53,22 @@ export const Direction: StoryFn<typeof WizPopup> = (args) => ({
       args,
       main: "direction",
       patterns: [
-        { layer: "base", direction: "bl" },
-        { layer: "base", direction: "br" },
-        { layer: "base", direction: "tl" },
-        { layer: "base", direction: "tr" },
-        { layer: "base", direction: "lt" },
-        { layer: "base", direction: "lb" },
-        { layer: "base", direction: "rt" },
-        { layer: "base", direction: "rb" },
+        { direction: "bl" },
+        { direction: "br" },
+        { direction: "tl" },
+        { direction: "tr" },
+        { direction: "lt" },
+        { direction: "lb" },
+        { direction: "rt" },
+        { direction: "rb" },
       ],
     };
   },
   template: `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
-      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :modelValue="isOpenIndex === i" @update:modelValue="changeIsOpenIndex(i)">
+      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]">
         <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
-        <wiz-popup v-bind="pattern">
+        <wiz-popup :isOpen="isOpenIndex === i" :direction="pattern.direction" @onClose="changeIsOpenIndex(i)">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content {{ pattern[main] }}</p>
           </div>
@@ -90,24 +95,24 @@ export const Gap: StoryFn<typeof WizPopup> = (args) => ({
       args,
       main: "gap",
       patterns: [
-        { layer: "base", direction: "rt", gap: "no", value: true },
-        { layer: "base", direction: "rt", gap: "xs2", value: true },
-        { layer: "base", direction: "rt", gap: "xs", value: true },
-        { layer: "base", direction: "rt", gap: "sm", value: true },
-        { layer: "base", direction: "rt", gap: "md", value: true },
-        { layer: "base", direction: "rt", gap: "lg", value: true },
-        { layer: "base", direction: "rt", gap: "xl", value: true },
-        { layer: "base", direction: "rt", gap: "xl2", value: true },
-        { layer: "base", direction: "rt", gap: "xl3", value: true },
-        { layer: "base", direction: "rt", gap: "xl4", value: true },
+        { direction: "rt", gap: "no" },
+        { direction: "rt", gap: "xs2" },
+        { direction: "rt", gap: "xs" },
+        { direction: "rt", gap: "sm" },
+        { direction: "rt", gap: "md" },
+        { direction: "rt", gap: "lg" },
+        { direction: "rt", gap: "xl" },
+        { direction: "rt", gap: "xl2" },
+        { direction: "rt", gap: "xl3" },
+        { direction: "rt", gap: "xl4" },
       ],
     };
   },
   template: `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
-      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" :modelValue="isOpenIndex === i" @update:modelValue="changeIsOpenIndex(i)">
+      <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]">
         <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
-        <wiz-popup v-bind="pattern">
+        <wiz-popup v-bind="pattern" :isOpen="isOpenIndex === i" @onClose="changeIsOpenIndex(i)">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content {{ pattern[main] }}</p>
           </div>
@@ -122,6 +127,7 @@ export const Playground: StoryFn<typeof WizPopup> = (args) => ({
   setup() {
     const isOpen = ref(false);
     const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
     const x = ref(0);
     const y = ref(0);
     const maxX = ref(0);
@@ -136,14 +142,14 @@ export const Playground: StoryFn<typeof WizPopup> = (args) => ({
       updateMax();
       window.addEventListener("resize", updateMax);
     });
-    return { x, y, isOpen, toggle, maxX, maxY, args };
+    return { x, y, isOpen, toggle, close, maxX, maxY, args };
   },
   template: `
   <div style="height: 100vh; width: 100vw; position: relative;">
     <div :style="{ position: 'absolute', top: y+'px', left: x+'px' }">
-      <wiz-popup-container v-model="isOpen">
+      <wiz-popup-container>
         <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-        <wiz-popup v-bind="args" layer="base">
+        <wiz-popup :closeOnBlur="args.closeOnBlur" :isOpen="isOpen" @onClose="close">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <span>Popup content</span>
           </div>
