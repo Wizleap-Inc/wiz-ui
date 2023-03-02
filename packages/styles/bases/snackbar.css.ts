@@ -2,13 +2,16 @@ import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const snackbarStyle = style({
-  position: "fixed",
   maxWidth: "300px",
   width: "fit-content",
   backgroundColor: THEME.color.green["800"],
   borderRadius: THEME.spacing.xs2,
   transitionDuration: "0.2s",
   boxShadow: THEME.shadow.sm,
+});
+
+export const snackbarFixedStyle = style({
+  position: "fixed",
 });
 
 export const snackbarContainerStyle = style({

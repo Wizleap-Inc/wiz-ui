@@ -1,6 +1,10 @@
 <template>
   <div
-    :class="[snackbarStyle, isHidden && snackbarHiddenStyle]"
+    :class="[
+      snackbarStyle,
+      !isStatic && snackbarFixedStyle,
+      isHidden && snackbarHiddenStyle,
+    ]"
     :style="{
       bottom: `${bottom}`,
       left: `${left}`,
@@ -23,6 +27,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   snackbarStyle,
+  snackbarFixedStyle,
   snackbarContainerStyle,
   snackbarHiddenStyle,
   snackbarMessageStyle,
@@ -45,11 +50,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  visible: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
   bottom: {
     type: String,
     required: false,
@@ -60,19 +60,24 @@ const props = defineProps({
     required: false,
     default: "0",
   },
+  isStatic: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emits = defineEmits<Emits>();
 
 const snackbarRef = ref<HTMLElement | undefined>();
-const isHidden = ref(props.visible ? false : true);
+const isHidden = ref(props.isStatic ? false : true);
 
 const onDelete = () => {
   isHidden.value = true;
   setTimeout(() => emits("delete"), 500);
 };
 
-if (!props.visible) {
+if (!props.isStatic) {
   setTimeout(onDelete, 3000);
 }
 

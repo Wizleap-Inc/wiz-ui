@@ -25,7 +25,7 @@ export const Snackbar: StoryFn<typeof WizSnackbar> = (args) => ({
   setup() {
     return { args };
   },
-  template: `<WizSnackbar :message="args.message" :visible="true" />`,
+  template: `<WizSnackbar :message="args.message" :isStatic="true" />`,
 });
 
 export const UseSnackbar: StoryFn<typeof WizSnackbar> = () => ({
