@@ -64,7 +64,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     <div :style="{ position: 'absolute', top: y+'px', left: x+'px' }">
       <wiz-popup-container>
         <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-        <wiz-popup :closeOnBlur="closeOnBlur" :isOpen="isOpen" @onClose="close">
+        <wiz-popup :direction="direction" :gap="gap" :closeOnBlur="closeOnBlur" :isOpen="isOpen" @onClose="close">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <span>Popup content</span>
           </div>

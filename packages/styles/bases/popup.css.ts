@@ -16,3 +16,7 @@ export const popupContainerStyle = styleVariants({
     width: "100%",
   },
 });
+
+export const popupHiddenStyle = style({
+  display: "none",
+});
