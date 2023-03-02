@@ -1,6 +1,10 @@
 <template>
   <div
     :class="[snackbarStyle, isHidden && snackbarHiddenStyle]"
+    :style="{
+      bottom: `${bottom}`,
+      left: `${left}`,
+    }"
     ref="snackbarRef"
   >
     <div :class="snackbarContainerStyle">
@@ -45,6 +49,16 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  bottom: {
+    type: String,
+    required: false,
+    default: "0",
+  },
+  left: {
+    type: String,
+    required: false,
+    default: "0",
   },
 });
 
