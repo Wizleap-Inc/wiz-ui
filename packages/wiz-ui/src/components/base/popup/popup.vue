@@ -26,7 +26,15 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { MountingPortal } from "portal-vue";
-import { computed, watch, inject, PropType, ref, nextTick } from "vue";
+import {
+  computed,
+  watch,
+  inject,
+  PropType,
+  ref,
+  reactive,
+  nextTick,
+} from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
 
@@ -73,6 +81,10 @@ const props = defineProps({
 const emit = defineEmits<Emits>();
 
 const popupRef = ref<HTMLElement | undefined>();
+const popupSize = reactive({
+  width: 0,
+  height: 0,
+});
 
 const injected = inject(POPUP_KEY);
 
@@ -86,7 +98,18 @@ const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
 watch(
   () => props.isOpen,
-  (newValue) => newValue && nextTick(updateBodyPxInfo)
+  (newValue) => {
+    if (newValue) {
+      nextTick(() => {
+        updateBodyPxInfo();
+        // vue2の場合、display: noneを解除した後にoffsetWidth等が取れるまでほんの少しだけ時間がかかる
+        setTimeout(() => {
+          popupSize.width = popupRef.value?.offsetWidth ?? 0;
+          popupSize.height = popupRef.value?.offsetHeight ?? 0;
+        }, 1);
+      });
+    }
+  }
 );
 
 // popup-containerの外をクリックしたときにハンドラ発火
@@ -101,21 +124,18 @@ const observer = new ResizeObserver(updateBodyPxInfo);
 observer.observe(document.body);
 
 const popupRect = computed(() => {
-  const popupWidth = popupRef.value?.offsetWidth ?? 0;
-  const popupHeight = popupRef.value?.offsetHeight ?? 0;
-
   const popupLeft = (() => {
     if (props.direction === "tl" || props.direction === "bl") {
       return bodyPxInfo.left;
     }
     if (props.direction === "tr" || props.direction === "br") {
-      return bodyPxInfo.right - popupWidth;
+      return bodyPxInfo.right - popupSize.width;
     }
     if (props.direction === "rt" || props.direction === "rb") {
       return bodyPxInfo.right;
     }
     if (props.direction === "lt" || props.direction === "lb") {
-      return bodyPxInfo.left - popupWidth;
+      return bodyPxInfo.left - popupSize.width;
     }
     return 0;
   })();
@@ -125,10 +145,10 @@ const popupRect = computed(() => {
       return bodyPxInfo.top;
     }
     if (props.direction === "bl" || props.direction === "br") {
-      return bodyPxInfo.bottom - popupHeight;
+      return bodyPxInfo.bottom - popupSize.height;
     }
     if (props.direction === "rt" || props.direction === "lt") {
-      return bodyPxInfo.top - popupHeight;
+      return bodyPxInfo.top - popupSize.height;
     }
     if (props.direction === "rb" || props.direction === "lb") {
       return bodyPxInfo.bottom;
@@ -137,38 +157,38 @@ const popupRect = computed(() => {
   })();
 
   return {
-    width: popupWidth,
-    height: popupHeight,
+    width: popupSize.width,
+    height: popupSize.height,
     left: popupLeft,
     top: popupTop,
-    right: popupLeft + popupWidth,
-    bottom: popupTop + popupHeight,
+    right: popupLeft + popupSize.width,
+    bottom: popupTop + popupSize.height,
   };
 });
 
 const spaceBetweenPopupAndWindow = computed(() => {
   const { top, right, bottom, left } = popupRect.value;
-  const { scrollHeight, scrollWidth } = document.documentElement;
+  const { clientHeight, clientWidth } = document.documentElement;
   if (props.direction === "bl") {
-    return { x: scrollWidth - right, y: scrollHeight - bottom };
+    return { x: clientWidth - right, y: clientHeight - bottom };
   }
   if (props.direction === "br") {
-    return { x: left, y: scrollHeight - bottom };
+    return { x: left, y: clientHeight - bottom };
   }
   if (props.direction === "tl") {
-    return { x: scrollWidth - right, y: top };
+    return { x: clientWidth - right, y: top };
   }
   if (props.direction === "tr") {
     return { x: left, y: top };
   }
   if (props.direction === "rt") {
-    return { x: scrollWidth - right, y: scrollHeight - bottom };
+    return { x: clientWidth - right, y: clientHeight - bottom };
   }
   if (props.direction === "rb") {
-    return { x: scrollWidth - right, y: top };
+    return { x: clientWidth - right, y: top };
   }
   if (props.direction === "lt") {
-    return { x: left, y: scrollHeight - bottom };
+    return { x: left, y: clientHeight - bottom };
   }
   if (props.direction === "lb") {
     return { x: left, y: top };

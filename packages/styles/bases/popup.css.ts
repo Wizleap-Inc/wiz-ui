@@ -18,5 +18,5 @@ export const popupContainerStyle = styleVariants({
 });
 
 export const popupHiddenStyle = style({
-  visibility: "hidden",
+  display: "none",
 });
