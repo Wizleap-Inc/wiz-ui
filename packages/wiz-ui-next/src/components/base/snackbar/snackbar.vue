@@ -74,7 +74,7 @@ const isHidden = ref(props.isStatic ? false : true);
 
 const onDelete = () => {
   isHidden.value = true;
-  setTimeout(() => emits("delete"), 500);
+  setTimeout(() => emits("delete"), 200);
 };
 
 if (!props.isStatic) {
