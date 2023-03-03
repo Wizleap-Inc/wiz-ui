@@ -30,7 +30,6 @@ export const snackbarHiddenStyle = style({
 
 export const snackbarMessageStyle = style({
   width: "100%",
-  textAlign: "left",
 });
 
 export const snackbarCloseButtonStyle = style({
