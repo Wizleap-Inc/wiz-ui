@@ -12,7 +12,6 @@ export default {
       control: {
         type: "text",
       },
-      defaultValue: "Hello World Hello World Hello World Hello World",
     },
   },
   parameters: {
@@ -27,6 +26,9 @@ export const Snackbar: StoryFn<typeof WizSnackbar> = (args) => ({
   },
   template: `<WizSnackbar :message="args.message" :isStatic="true" />`,
 });
+Snackbar.args = {
+  message: "Hello World Hello World Hello World Hello World",
+};
 
 export const UseSnackbar: StoryFn<typeof WizSnackbar> = () => ({
   setup() {
