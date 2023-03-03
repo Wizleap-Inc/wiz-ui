@@ -124,5 +124,6 @@ export const ComponentName = {
   TransitionGraph: "WizTransitionGraph",
   MeterGraph: "WizMeterGraph",
   LineGraph: "WizLineGraph",
+  SnackBar: "WizSnackBar",
   ...IconComponentName,
 } as const;
