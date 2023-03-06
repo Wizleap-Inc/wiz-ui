@@ -90,7 +90,7 @@
               {{ searchValue }}
               <WizIcon
                 :icon="WizIAddCircle"
-                :size="'sm'"
+                size="md"
                 :color="addableOptionIsClicking ? 'white.800' : 'green.800'"
               />
             </span>
