@@ -41,9 +41,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
 import { PropType } from "vue";
 
-import { WizText } from "@/components/base/text";
-
-import { WizVStack } from "../stack";
+import { WizText, WizVStack } from "@/components";
 
 import { WizStepPoint, WizStepLine } from ".";
 

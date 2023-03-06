@@ -18,9 +18,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
 import { PropType } from "vue";
 
-import { WizICircleCheck } from "@/components/icons";
-
-import { WizIcon } from "../icon";
+import { WizIcon, WizICircleCheck } from "@/components";
 
 import type { StepStatus } from "./types";
 
