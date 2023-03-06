@@ -44,7 +44,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const initValue: number[] = [];
     const value = ref(initValue);
     const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const clear = (n: number) => {
+    const unselect = (n: number) => {
       value.value = value.value.filter((v) => v !== n);
     };
     const selectNewLabel = (label: string) => {
@@ -57,13 +57,13 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const select = (n: number) => {
       value.value.push(n);
     };
-    return { value, options, selectNewLabel, clear, select };
+    return { value, options, selectNewLabel, unselect, select };
   },
   template: `
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props"  :value="value" @input="select"   
-        :options="options" @clear="clear" @add="selectNewLabel"
+        :options="options" @unselect="unselect" @add="selectNewLabel"
       />
     </WizHStack>
   `,
@@ -78,7 +78,7 @@ export const SingleSelecting: StoryFn = (_, { argTypes }) => ({
     const initValue: number[] = [1];
     const value = ref(initValue);
     const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const clear = (n: number) => {
+    const unselect = (n: number) => {
       value.value = value.value.filter((v) => v !== n);
     };
     const selectNewLabel = (label: string) => {
@@ -91,13 +91,13 @@ export const SingleSelecting: StoryFn = (_, { argTypes }) => ({
     const select = (n: number) => {
       value.value.push(n);
     };
-    return { value, options, selectNewLabel, clear, select };
+    return { value, options, selectNewLabel, unselect, select };
   },
   template: `
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props" :value="value" @input="select"    
-        :options="options" @clear="clear" @add="selectNewLabel"
+        :options="options" @unselect="unselect" @add="selectNewLabel"
       />
     </WizHStack>
   `,
@@ -113,7 +113,7 @@ export const MultiSelecting: StoryFn = (_, { argTypes }) => ({
     const initValue: number[] = [1, 2, 3];
     const value = ref(initValue);
     const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const clear = (n: number) => {
+    const unselect = (n: number) => {
       value.value = value.value.filter((v) => v !== n);
     };
     const selectNewLabel = (label: string) => {
@@ -126,13 +126,13 @@ export const MultiSelecting: StoryFn = (_, { argTypes }) => ({
     const select = (n: number) => {
       value.value.push(n);
     };
-    return { value, options, selectNewLabel, clear, select };
+    return { value, options, selectNewLabel, unselect, select };
   },
   template: `
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props"  :value="value" @input="select" width="300px"
-        :options="options" @clear="clear" @add="selectNewLabel"
+        :options="options" @unselect="unselect" @add="selectNewLabel"
       />
     </WizHStack>
   `,

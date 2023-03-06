@@ -83,8 +83,7 @@
             "
             :class="selectBoxSelectorOptionStyle"
             @click="onCreate(searchValue)"
-            @mousedown="addableOptionIsClicking = true"
-            @mouseup="addableOptionIsClicking = false"
+            @mousedown="onHoldClick()"
             @keypress.enter="onCreate(searchValue)"
             :tabindex="0"
           >
@@ -202,6 +201,15 @@ const openSelectBox = ref(false);
 const searchValue = ref("");
 const addableOptionIsClicking = ref(false);
 
+const onHoldClick = () => {
+  addableOptionIsClicking.value = true;
+  const mouseup = () => {
+    addableOptionIsClicking.value = false;
+    document.removeEventListener("mouseup", mouseup);
+  };
+  document.addEventListener("mouseup", mouseup);
+};
+
 const inputRef = ref<HTMLElement | undefined>();
 const focusInput = () => {
   openSelectBox.value = true;
@@ -241,13 +249,13 @@ const toggleSelectBox = () => {
 
 interface Emit {
   (e: "update:modelValue", modelValue: number): void;
-  (e: "clear", value: number): void;
+  (e: "unselect", value: number): void;
   (e: "add", label: string): void;
 }
 const emit = defineEmits<Emit>();
 
 const onClear = (n: number) => {
-  emit("clear", n);
+  emit("unselect", n);
 };
 const onSelect = (value: number) => {
   if (!props.multiSelectable) {

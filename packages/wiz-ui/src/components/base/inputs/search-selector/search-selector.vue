@@ -235,13 +235,13 @@ const toggleSelectBox = () => {
 
 interface Emit {
   (e: "input", value: number): void;
-  (e: "clear", value: number): void;
+  (e: "unselect", value: number): void;
   (e: "add", label: string): void;
 }
 const emit = defineEmits<Emit>();
 
 const onClear = (n: number) => {
-  emit("clear", n);
+  emit("unselect", n);
 };
 const onSelect = (value: number) => {
   if (!props.multiSelectable) {
