@@ -12,7 +12,8 @@
       <div :class="selectBoxInnerBoxStyle" @click="focusInput">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
-            v-for="(item, key) in selectedItem"
+            v-for="item in selectedItem"
+            :key="`${item.label}-${item.value}`"
             :class="selectBoxInnerBoxSelectedItemStyle"
           >
             <span :class="selectBoxInnerBoxSelectedLabelStyle">
@@ -96,9 +97,9 @@
             </span>
           </div>
           <div
+            v-for="option in filteredOptions"
+            :key="`${option.label}-${option.value}`"
             :class="selectBoxSelectorOptionStyle"
-            v-for="(option, key) in filteredOptions"
-            :key="'option' + key"
             @click="onSelect(option.value)"
             @keypress.enter="onSelect(option.value)"
             :tabindex="0"
