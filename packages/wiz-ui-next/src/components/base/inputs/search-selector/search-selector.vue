@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer v-model="openSelectBox" :expand="expand">
+  <WizPopupContainer :expand="expand">
     <div
       :class="[
         selectBoxStyle,
