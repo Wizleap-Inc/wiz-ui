@@ -87,7 +87,9 @@
             @keypress.enter="onCreate(searchValue)"
             :tabindex="0"
           >
-            <span :class="selectBoxAddStyle">
+            <span
+              :class="[selectBoxSelectorOptionLabelStyle, selectBoxAddStyle]"
+            >
               {{ searchValue }}
               <WizIcon
                 :icon="WizIAddCircle"
@@ -104,10 +106,13 @@
             @keypress.enter="onSelect(option.value)"
             :tabindex="0"
           >
-            <span>
+            <span :class="selectBoxSelectorOptionLabelStyle">
               {{ option.label }}
             </span>
-            <span v-if="option.exLabel">
+            <span
+              :class="selectBoxSelectorOptionLabelStyle"
+              v-if="option.exLabel"
+            >
               {{ option.exLabel }}
             </span>
           </div>
@@ -129,6 +134,7 @@ import {
   selectBoxInnerBoxMoreStyle,
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
+  selectBoxSelectorOptionLabelStyle,
   selectBoxSearchInputStyle,
   selectBoxAddStyle,
   selectBoxExpandIconStyle,

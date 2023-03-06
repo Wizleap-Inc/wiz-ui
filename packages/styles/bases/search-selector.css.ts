@@ -51,6 +51,7 @@ export const selectBoxInnerBoxSelectedItemStyle = style({
 });
 
 export const selectBoxInnerBoxSelectedLabelStyle = style({
+  lineHeight: "100%",
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
@@ -106,6 +107,10 @@ export const selectBoxSelectorOptionStyle = style({
     color: THEME.color.white["800"],
     background: THEME.color.green["800"],
   },
+});
+
+export const selectBoxSelectorOptionLabelStyle = style({
+  lineHeight: "130%",
 });
 
 export const selectBoxSearchInputStyle = style({
