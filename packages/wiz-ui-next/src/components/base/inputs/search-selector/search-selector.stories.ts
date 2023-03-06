@@ -37,7 +37,94 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   return options;
 };
 
-export const Template: StoryFn<typeof WizSearchSelector> = (args) => ({
+export const Default: StoryFn<typeof WizSearchSelector> = (args) => ({
+  components: { WizSearchSelector, WizHStack },
+  setup() {
+    const initValue: number[] = [];
+    const currentValue = ref(initValue);
+    const unselect = (n: number) => {
+      currentValue.value = currentValue.value.filter((v) => v !== n);
+    };
+    const select = (n: number) => {
+      currentValue.value.push(n);
+    };
+    return { currentValue, args, unselect, select };
+  },
+  template: `
+    <WizHStack>
+      <WizSearchSelector 
+        v-bind="args"
+        :modelValue="currentValue"
+        @update:modelValue="select"
+        @unselect="unselect"
+      />
+    </WizHStack>
+  `,
+});
+Default.args = {
+  options: _getDummyOptions("test", 3),
+};
+
+export const Selecting: StoryFn<typeof WizSearchSelector> = (args) => ({
+  components: { WizSearchSelector, WizHStack },
+  setup() {
+    const initValue: number[] = [1];
+    const currentValue = ref(initValue);
+    const unselect = (n: number) => {
+      currentValue.value = currentValue.value.filter((v) => v !== n);
+    };
+    const select = (n: number) => {
+      currentValue.value.push(n);
+    };
+    return { currentValue, args, unselect, select };
+  },
+  template: `
+    <WizHStack>
+      <WizSearchSelector 
+        v-bind="args"
+        :modelValue="currentValue"
+        @update:modelValue="select"
+        @unselect="unselect"
+      />
+    </WizHStack>
+  `,
+});
+Selecting.args = {
+  options: _getDummyOptions("test", 3),
+};
+
+export const MultiSelecting: StoryFn<typeof WizSearchSelector> = (args) => ({
+  components: { WizSearchSelector, WizHStack },
+  setup() {
+    const initValue: number[] = [1, 2, 3];
+    const currentValue = ref(initValue);
+    const unselect = (n: number) => {
+      currentValue.value = currentValue.value.filter((v) => v !== n);
+    };
+    const select = (n: number) => {
+      currentValue.value.push(n);
+    };
+    return { currentValue, args, unselect, select };
+  },
+  template: `
+    <WizHStack>
+      <WizSearchSelector 
+        v-bind="args"
+        :modelValue="currentValue"
+        @update:modelValue="select"
+        width="300px"
+        @unselect="unselect"
+      />
+    </WizHStack>
+  `,
+});
+
+MultiSelecting.args = {
+  multiSelectable: true,
+  options: _getDummyOptions("test", 3),
+};
+
+export const Addable: StoryFn<typeof WizSearchSelector> = (args) => ({
   components: { WizSearchSelector, WizHStack },
   setup() {
     const initValue: number[] = [];
@@ -61,78 +148,16 @@ export const Template: StoryFn<typeof WizSearchSelector> = (args) => ({
   template: `
     <WizHStack>
       <WizSearchSelector 
-        v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
-        :options="options" 
-        @unselect="unselect" @add="selectNewLabel"
+        v-bind="args"
+        :modelValue="currentValue"
+        :options="options"
+        @update:modelValue="select"
+        @unselect="unselect"
+        @add="selectNewLabel"
       />
     </WizHStack>
   `,
 });
-
-export const Selecting: StoryFn<typeof WizSearchSelector> = (args) => ({
-  components: { WizSearchSelector, WizHStack },
-  setup() {
-    const initValue: number[] = [1];
-    const currentValue = ref(initValue);
-    const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const unselect = (n: number) => {
-      currentValue.value = currentValue.value.filter((v) => v !== n);
-    };
-    const selectNewLabel = (label: string) => {
-      options.value.push({
-        label: label,
-        value: options.value.length + 1,
-      });
-      currentValue.value.push(options.value.length);
-    };
-    const select = (n: number) => {
-      currentValue.value.push(n);
-    };
-    return { currentValue, args, options, selectNewLabel, unselect, select };
-  },
-  template: `
-    <WizHStack>
-      <WizSearchSelector 
-        v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
-        :options="options" 
-        @unselect="unselect" @add="selectNewLabel"
-      />
-    </WizHStack>
-  `,
-});
-
-export const MultiSelecting: StoryFn<typeof WizSearchSelector> = (args) => ({
-  components: { WizSearchSelector, WizHStack },
-  setup() {
-    const initValue: number[] = [1, 2, 3];
-    const currentValue = ref(initValue);
-    const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const unselect = (n: number) => {
-      currentValue.value = currentValue.value.filter((v) => v !== n);
-    };
-    const selectNewLabel = (label: string) => {
-      options.value.push({
-        label: label,
-        value: options.value.length + 1,
-      });
-      currentValue.value.push(options.value.length);
-    };
-    const select = (n: number) => {
-      currentValue.value.push(n);
-    };
-    return { currentValue, args, options, selectNewLabel, unselect, select };
-  },
-  template: `
-    <WizHStack>
-      <WizSearchSelector 
-        v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
-        :options="options"  width="300px"
-        @unselect="unselect" @add="selectNewLabel"
-      />
-    </WizHStack>
-  `,
-});
-
-MultiSelecting.args = {
-  multiSelectable: true,
+Addable.args = {
+  addable: true,
 };
