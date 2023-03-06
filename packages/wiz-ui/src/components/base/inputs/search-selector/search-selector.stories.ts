@@ -66,6 +66,36 @@ Default.args = {
   options: _getDummyOptions("test", 3),
 };
 
+export const Disabled: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizSearchSelector, WizHStack },
+  setup() {
+    const initValue: number[] = [];
+    const value = ref(initValue);
+    const unselect = (n: number) => {
+      value.value = value.value.filter((v) => v !== n);
+    };
+    const select = (n: number) => {
+      value.value.push(n);
+    };
+    return { value, unselect, select };
+  },
+  template: `
+    <WizHStack>
+      <WizSearchSelector
+        v-bind="$props"
+        :value="value"
+        @input="select"
+        @unselect="unselect"
+      />
+    </WizHStack>
+  `,
+});
+Disabled.args = {
+  disabled: true,
+  options: _getDummyOptions("test", 3),
+};
+
 export const Selecting: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizSearchSelector, WizHStack },
