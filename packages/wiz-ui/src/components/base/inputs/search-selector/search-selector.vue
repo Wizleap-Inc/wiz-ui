@@ -39,13 +39,14 @@
             v-model="searchValue"
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
+            :disabled="disabled"
           />
         </WizHStack>
       </div>
-      <div
+      <button
         :class="selectBoxExpandIconStyle"
         @click="toggleSelectBox"
-        :tabindex="0"
+        :disabled="disabled"
       >
         <WizIcon
           v-if="openSelectBox"
@@ -59,7 +60,7 @@
           :icon="WizIExpandMore"
           :class="selectBoxInnerBoxMoreStyle"
         />
-      </div>
+      </button>
     </div>
     <WizPopup
       layer="popover"
@@ -218,6 +219,7 @@ const onHoldClick = () => {
 
 const inputRef = ref<HTMLElement | undefined>();
 const focusInput = () => {
+  if (props.disabled) return;
   openSelectBox.value = true;
   inputRef.value?.focus();
 };

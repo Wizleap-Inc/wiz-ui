@@ -124,6 +124,10 @@ export const selectBoxSearchInputStyle = style({
   color: THEME.color.gray["500"],
   "::placeholder": {
     color: THEME.color.gray["500"],
+    userSelect: "none",
+  },
+  ":disabled": {
+    cursor: "not-allowed",
   },
 });
 
@@ -152,4 +156,7 @@ export const selectBoxExpandIconStyle = style({
   height: THEME.fontSize.xl2,
   padding: THEME.spacing.no,
   fill: THEME.color.gray["400"],
+  ":disabled": {
+    cursor: "not-allowed",
+  },
 });
