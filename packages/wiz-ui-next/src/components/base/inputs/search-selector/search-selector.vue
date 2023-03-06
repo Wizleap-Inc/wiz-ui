@@ -76,14 +76,15 @@
       >
         <WizVStack gap="xs2">
           <div
+            v-if="
+              addable &&
+              searchValue !== '' &&
+              !options.some((v) => v.label === searchValue)
+            "
             :class="selectBoxSelectorOptionStyle"
             @click="onCreate(searchValue)"
             @mousedown="addableOptionIsClicking = true"
             @mouseup="addableOptionIsClicking = false"
-            v-if="
-              searchValue !== '' &&
-              !options.some((v) => v.label === searchValue)
-            "
             @keypress.enter="onCreate(searchValue)"
             :tabindex="0"
           >
@@ -189,6 +190,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  addable: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
 });
 
