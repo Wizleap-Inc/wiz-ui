@@ -32,19 +32,16 @@ export const stepBarItemStyle = styleVariants({
   ],
 });
 
+const PROGRESS_POINT_SIZE = THEME.fontSize.xl6;
+
 export const progressBarItemLabelStyle = style({
   position: "absolute",
-  bottom: `calc(${THEME.spacing.md} * -1)`,
-  left: "50%",
-  transform: "translateX(-50%)",
+  top: `calc(${PROGRESS_POINT_SIZE} * 1.17)`,
 });
-
-const PROGRESS_POINT_SIZE = THEME.fontSize.md;
-
 export const stepLineStyle = style({
   position: "absolute",
-  top: `calc(${PROGRESS_POINT_SIZE} * 0.5)`,
-  right: `calc(${PROGRESS_POINT_SIZE} * 0.5)`,
+  top: `calc(${PROGRESS_POINT_SIZE} * 0.75 * 0.5)`,
+  right: `calc(${PROGRESS_POINT_SIZE} * 0.75  * 0.5)`,
   height: "1px",
 });
 
@@ -72,10 +69,10 @@ export const stepPointStyle = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: PROGRESS_POINT_SIZE,
-  height: PROGRESS_POINT_SIZE,
+  width: `calc(${PROGRESS_POINT_SIZE} * 0.75)`,
+  height: `calc(${PROGRESS_POINT_SIZE} * 0.75)`,
   borderRadius: "50%",
-  color: THEME.color.white[800],
+  backgroundColor: THEME.color.white[800],
   borderWidth: "2px",
   boxSizing: "border-box",
   fontWeight: "bold",
@@ -98,5 +95,4 @@ export const stepPointValueStyle = style({
   zIndex: 2,
   fontSize: THEME.fontSize.xl6,
   position: "relative",
-  backgroundColor: "white",
 });

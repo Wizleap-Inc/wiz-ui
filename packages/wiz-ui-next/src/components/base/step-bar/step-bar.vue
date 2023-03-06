@@ -5,27 +5,27 @@
       :key="i"
       :class="stepBarItemStyle[i === 0 ? 'first' : 'default']"
     >
-      <WizVStack align="center" gap="xl">
+      <WizVStack align="center" gap="no" height="100%">
         <WizStepPoint :status="content.status" />
-        <WizVStack align="center" gap="xs2">
-          <!-- <span :class="progressBarItemLabelStyle"> -->
-          <WizText
-            fontSize="xs2"
-            whiteSpace="nowrap"
-            :bold="true"
-            :color="content.status === 'done' ? 'green.800' : 'gray.800'"
-          >
-            {{ content.label }}
-          </WizText>
-          <WizText
-            fontSize="xs2"
-            whiteSpace="nowrap"
-            :color="content.status === 'done' ? 'green.800' : 'gray.800'"
-          >
-            {{ content.description }}
-          </WizText>
-          <!-- </span> -->
-        </WizVStack>
+        <span :class="progressBarItemLabelStyle">
+          <WizVStack align="center" gap="xs2">
+            <WizText
+              fontSize="sm"
+              whiteSpace="nowrap"
+              :bold="true"
+              :color="content.status === 'done' ? 'green.800' : 'gray.800'"
+            >
+              {{ content.label }}
+            </WizText>
+            <WizText
+              fontSize="xs"
+              whiteSpace="nowrap"
+              :color="content.status === 'done' ? 'green.800' : 'gray.800'"
+            >
+              {{ content.description }}
+            </WizText>
+          </WizVStack>
+        </span>
       </WizVStack>
       <WizStepLine :active="content.progress" :isFirst="i === 0" />
     </div>
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  // progressBarItemLabelStyle,
+  progressBarItemLabelStyle,
   stepBarStyle,
   stepBarItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
