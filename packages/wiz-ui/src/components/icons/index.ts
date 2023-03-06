@@ -1,3 +1,4 @@
+import { default as WizIAddCircle } from "./add-circle.vue";
 import { default as WizIAdd } from "./add.vue";
 import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
@@ -45,6 +46,7 @@ import { default as WizITask } from "./task.vue";
 import { default as WizIUpload } from "./upload.vue";
 
 export type TIcon =
+  | typeof WizIAddCircle
   | typeof WizIAdd
   | typeof WizIArrowRight
   | typeof WizIAssignmentAdd
@@ -92,6 +94,7 @@ export type TIcon =
   | typeof WizIStoreFront;
 
 export {
+  WizIAddCircle,
   WizIAdd,
   WizIArrowRight,
   WizIAssignmentAdd,

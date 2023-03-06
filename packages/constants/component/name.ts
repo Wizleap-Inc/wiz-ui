@@ -24,6 +24,7 @@ const IconComponentName = {
   INotification: "WizINotification",
   IMenu: "WizIMenu",
   ISchedule: "WizISchedule",
+  IAddCircle: "WizIAddCircle",
   IAdd: "WizIAdd",
   IRemove: "WizIRemove",
   IOpenInNew: "WizIOpenInNew",
@@ -125,5 +126,8 @@ export const ComponentName = {
   MeterGraph: "WizMeterGraph",
   LineGraph: "WizLineGraph",
   SnackBar: "WizSnackBar",
+  StepBar: "WizStepBar",
+  StepPoint: "WizStepPoint",
+  StepLine: "WizStepLine",
   ...IconComponentName,
 } as const;

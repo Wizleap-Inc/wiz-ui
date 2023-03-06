@@ -37,6 +37,7 @@ export const snackbarCloseButtonStyle = style({
   outline: "none",
   backgroundColor: "transparent",
   cursor: "pointer",
+  padding: 0,
 });
 
 export const snackbarControllerStyle = style({

@@ -13,7 +13,7 @@ export const install = (app: App) => {
   });
 };
 
-export const version = "0.7.2";
+export const version = "0.7.3";
 
 export default {
   install,
