@@ -76,9 +76,9 @@
         <WizVStack gap="xs2">
           <div
             :class="selectBoxSelectorOptionStyle"
-            @click="() => onCreate(searchValue)"
-            @mousedown="() => (addableOptionIsClicking = true)"
-            @mouseup="() => (addableOptionIsClicking = false)"
+            @click="onCreate(searchValue)"
+            @mousedown="addableOptionIsClicking = true"
+            @mouseup="addableOptionIsClicking = false"
             v-if="
               searchValue !== '' &&
               !options.some((v) => v.label === searchValue)
