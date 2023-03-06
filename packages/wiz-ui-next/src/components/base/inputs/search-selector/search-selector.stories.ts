@@ -54,7 +54,6 @@ export const Template: StoryFn<typeof WizSearchSelector> = (args) => ({
       currentValue.value.push(options.value.length);
     };
     const select = (n: number) => {
-      console.log(n);
       currentValue.value.push(n);
     };
     return { currentValue, args, options, selectNewLabel, clear, select };
@@ -87,7 +86,6 @@ export const Selecting: StoryFn<typeof WizSearchSelector> = (args) => ({
       currentValue.value.push(options.value.length);
     };
     const select = (n: number) => {
-      console.log(n);
       currentValue.value.push(n);
     };
     return { currentValue, args, options, selectNewLabel, clear, select };
@@ -120,7 +118,6 @@ export const MultiSelecting: StoryFn<typeof WizSearchSelector> = (args) => ({
       currentValue.value.push(options.value.length);
     };
     const select = (n: number) => {
-      console.log(n);
       currentValue.value.push(n);
     };
     return { currentValue, args, options, selectNewLabel, clear, select };
