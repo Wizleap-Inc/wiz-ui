@@ -199,7 +199,7 @@ const props = defineProps({
   addable: {
     type: Boolean,
     required: false,
-    default: true,
+    default: false,
   },
 });
 
