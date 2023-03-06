@@ -202,7 +202,7 @@ const focusInput = () => {
   inputRef.value?.focus();
 };
 
-const deepCopy = <T>(ary: T[]): T[] => JSON.parse(JSON.stringify(ary));
+const deepCopy = <T>(ary: T): T => JSON.parse(JSON.stringify(ary));
 
 const sortByLevenshtein = (options: SelectBoxOption[], target: string) => {
   const dist = options.reduce((acc, str) => {
