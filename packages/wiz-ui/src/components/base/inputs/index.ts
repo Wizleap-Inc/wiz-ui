@@ -9,3 +9,4 @@ export * from "./panel-switch";
 export * from "./timepicker";
 export * from "./datepicker";
 export * from "./upload";
+export * from "./search";

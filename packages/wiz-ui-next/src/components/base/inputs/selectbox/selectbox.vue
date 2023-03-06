@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer v-model="openSelectBox" :expand="expand">
+  <WizPopupContainer :expand="expand">
     <div
       :class="[
         selectBoxStyle,
@@ -33,7 +33,7 @@
         </WizHStack>
       </div>
     </div>
-    <WizPopup layer="popover">
+    <WizPopup :isOpen="openSelectBox" @onClose="openSelectBox = false">
       <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
         <WizVStack gap="xs2">
           <div

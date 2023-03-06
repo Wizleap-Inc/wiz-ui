@@ -1,47 +1,70 @@
 <template>
-  <div
-    v-show="isPopupOpen"
-    :class="[
-      popupStyle,
-      popupDirectionStyle[computedDirection],
-      ['tl', 'tr', 'bl', 'br'].includes(direction)
-        ? marginYStyle[gap]
-        : marginXStyle[gap],
-      zIndexStyle[layer],
-    ]"
-    ref="popupRef"
-  >
-    <slot />
-  </div>
+  <MountingPortal mountTo="body" append>
+    <div
+      :class="[popupStyle, zIndexStyle[layer], !isOpen && popupHiddenStyle]"
+      :style="{
+        inset,
+        transform: popupTranslate,
+      }"
+      ref="popupRef"
+    >
+      <slot />
+    </div>
+  </MountingPortal>
 </template>
 
 <script setup lang="ts">
 import {
   ComponentName,
+  getSpacingCss,
   SpacingKeys,
   ZIndexKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   popupStyle,
-  popupDirectionStyle,
+  popupHiddenStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
+import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { MountingPortal } from "portal-vue";
 import {
-  zIndexStyle,
-  marginXStyle,
-  marginYStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, inject, ref, PropType } from "vue";
+  computed,
+  watch,
+  inject,
+  PropType,
+  ref,
+  reactive,
+  nextTick,
+} from "vue";
+
+import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { POPUP_KEY } from "./provider";
+
+type Direction = "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb";
+type DirectionChar = Direction extends `${infer X}${infer Y}` ? X | Y : never;
+
+interface Emits {
+  (event: "onClose", isOpen: boolean): void;
+}
 
 defineOptions({
   name: ComponentName.Popup,
 });
 
 const props = defineProps({
-  layer: {
-    type: String as PropType<ZIndexKeys>,
+  isOpen: {
+    type: Boolean,
     required: true,
+  },
+  closeOnBlur: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  layer: {
+    type: String as PropType<Exclude<ZIndexKeys, "base" | "dialog">>,
+    required: false,
+    default: "popover",
   },
   gap: {
     type: String as PropType<SpacingKeys>,
@@ -49,15 +72,19 @@ const props = defineProps({
     default: "no",
   },
   direction: {
-    type: String as PropType<
-      "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb"
-    >,
+    type: String as PropType<Direction>,
     required: false,
     default: "bl",
   },
 });
 
+const emit = defineEmits<Emits>();
+
 const popupRef = ref<HTMLElement | undefined>();
+const popupSize = reactive({
+  width: 0,
+  height: 0,
+});
 
 const injected = inject(POPUP_KEY);
 
@@ -67,24 +94,48 @@ if (!injected) {
   );
 }
 
-const { isPopupOpen, bodyPxInfo } = injected;
+const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
+
+watch(
+  () => props.isOpen,
+  (newValue) => {
+    if (newValue) {
+      nextTick(() => {
+        updateBodyPxInfo();
+        // vue2の場合、display: noneを解除した後にoffsetWidth等が取れるまでほんの少しだけ時間がかかる
+        setTimeout(() => {
+          popupSize.width = popupRef.value?.offsetWidth ?? 0;
+          popupSize.height = popupRef.value?.offsetHeight ?? 0;
+        }, 1);
+      });
+    }
+  }
+);
+
+// popup-containerの外をクリックしたときにハンドラ発火
+// クリックした対象がpopup以外で、かつcloseOnBlurがtrueのときはpopupを閉じる
+useClickOutside(containerRef, (e) => {
+  if (!popupRef.value?.contains(e.target as Node) && props.closeOnBlur) {
+    emit("onClose", false);
+  }
+});
+
+const observer = new ResizeObserver(updateBodyPxInfo);
+observer.observe(document.body);
 
 const popupRect = computed(() => {
-  const popupWidth = popupRef.value?.offsetWidth ?? 0;
-  const popupHeight = popupRef.value?.offsetHeight ?? 0;
-
   const popupLeft = (() => {
     if (props.direction === "tl" || props.direction === "bl") {
       return bodyPxInfo.left;
     }
     if (props.direction === "tr" || props.direction === "br") {
-      return bodyPxInfo.right - popupWidth;
+      return bodyPxInfo.right - popupSize.width;
     }
     if (props.direction === "rt" || props.direction === "rb") {
       return bodyPxInfo.right;
     }
     if (props.direction === "lt" || props.direction === "lb") {
-      return bodyPxInfo.left - popupWidth;
+      return bodyPxInfo.left - popupSize.width;
     }
     return 0;
   })();
@@ -94,10 +145,10 @@ const popupRect = computed(() => {
       return bodyPxInfo.top;
     }
     if (props.direction === "bl" || props.direction === "br") {
-      return bodyPxInfo.bottom - popupHeight;
+      return bodyPxInfo.bottom - popupSize.height;
     }
     if (props.direction === "rt" || props.direction === "lt") {
-      return bodyPxInfo.top - popupHeight;
+      return bodyPxInfo.top - popupSize.height;
     }
     if (props.direction === "rb" || props.direction === "lb") {
       return bodyPxInfo.bottom;
@@ -106,38 +157,38 @@ const popupRect = computed(() => {
   })();
 
   return {
-    width: popupWidth,
-    height: popupHeight,
+    width: popupSize.width,
+    height: popupSize.height,
     left: popupLeft,
     top: popupTop,
-    right: popupLeft + popupWidth,
-    bottom: popupTop + popupHeight,
+    right: popupLeft + popupSize.width,
+    bottom: popupTop + popupSize.height,
   };
 });
 
 const spaceBetweenPopupAndWindow = computed(() => {
   const { top, right, bottom, left } = popupRect.value;
-  const { innerHeight, innerWidth } = window;
+  const { clientHeight, clientWidth } = document.documentElement;
   if (props.direction === "bl") {
-    return { x: innerWidth - right, y: innerHeight - bottom };
+    return { x: clientWidth - right, y: clientHeight - bottom };
   }
   if (props.direction === "br") {
-    return { x: left, y: innerHeight - bottom };
+    return { x: left, y: clientHeight - bottom };
   }
   if (props.direction === "tl") {
-    return { x: innerWidth - right, y: top };
+    return { x: clientWidth - right, y: top };
   }
   if (props.direction === "tr") {
     return { x: left, y: top };
   }
   if (props.direction === "rt") {
-    return { x: innerWidth - right, y: innerHeight - bottom };
+    return { x: clientWidth - right, y: clientHeight - bottom };
   }
   if (props.direction === "rb") {
-    return { x: innerWidth - right, y: top };
+    return { x: clientWidth - right, y: top };
   }
   if (props.direction === "lt") {
-    return { x: left, y: innerHeight - bottom };
+    return { x: left, y: clientHeight - bottom };
   }
   if (props.direction === "lb") {
     return { x: left, y: top };
@@ -145,50 +196,78 @@ const spaceBetweenPopupAndWindow = computed(() => {
   return { x: 0, y: 0 };
 });
 
+const isDirectionChar = (char: string): char is DirectionChar => {
+  return ["t", "b", "l", "r"].includes(char);
+};
+
+const directionToTuple = (
+  direction: Direction
+): [DirectionChar, DirectionChar] => {
+  const [x, y] = direction.split("");
+  if (!isDirectionChar(x) || !isDirectionChar(y)) {
+    throw new Error("Invalid direction");
+  }
+  return [x, y];
+};
+
+const convertDirection = (char: DirectionChar) => {
+  if (char === "t") return "b";
+  if (char === "b") return "t";
+  if (char === "l") return "r";
+  if (char === "r") return "l";
+  return char;
+};
+
 const computedDirection = computed(() => {
+  const chars = directionToTuple(props.direction);
   const { x, y } = spaceBetweenPopupAndWindow.value;
   const height = popupRect.value.height;
   const width = popupRect.value.width;
-  if (props.direction === "bl") {
-    if (x < 0 && y < height) return "tr";
-    if (x < 0) return "br";
-    if (y < height) return "tl";
-  }
-  if (props.direction === "tl") {
-    if (x < 0 && y < height) return "br";
-    if (x < 0) return "tr";
-    if (y < height) return "bl";
-  }
-  if (props.direction === "br") {
-    if (x < 0 && y < height) return "tl";
-    if (x < 0) return "bl";
-    if (y < height) return "tr";
-  }
-  if (props.direction === "tr") {
-    if (x < 0 && y < height) return "bl";
-    if (x < 0) return "tl";
-    if (y < height) return "br";
-  }
-  if (props.direction === "rt") {
-    if (x < width && y < height) return "lb";
-    if (x < width) return "lt";
-    if (y < height) return "rb";
-  }
-  if (props.direction === "rb") {
-    if (x < width && y < height) return "lt";
-    if (x < width) return "lb";
-    if (y < height) return "rt";
-  }
-  if (props.direction === "lt") {
-    if (x < width && y < height) return "rb";
-    if (x < width) return "rt";
-    if (y < height) return "lb";
-  }
-  if (props.direction === "lb") {
-    if (x < width && y < height) return "rt";
-    if (x < width) return "rb";
-    if (y < height) return "lt";
-  }
-  return props.direction;
+  return chars
+    .map((char) => {
+      if (char === "t" && y < height) return convertDirection(char);
+      if (char === "b" && y < height) return convertDirection(char);
+      if (char === "l" && x < width) return convertDirection(char);
+      if (char === "r" && x < width) return convertDirection(char);
+      return char;
+    })
+    .join("") as Direction;
+});
+
+const inset = computed(() => {
+  const firstBTop = bodyPxInfo.top + bodyPxInfo.height;
+  const secondBTop =
+    bodyPxInfo.top - popupRect.value.height + bodyPxInfo.height;
+  const firstTTop = bodyPxInfo.top - popupRect.value.height;
+  const secondTTop = bodyPxInfo.top;
+  const firstRLeft = bodyPxInfo.left + bodyPxInfo.width;
+  const secondRLeft =
+    bodyPxInfo.left - popupRect.value.width + bodyPxInfo.width;
+  const firstLLeft = bodyPxInfo.left - popupRect.value.width;
+  const secondLLeft = bodyPxInfo.left;
+
+  const [top, left] = (() => {
+    if (computedDirection.value === "bl") return [firstBTop, secondLLeft];
+    if (computedDirection.value === "br") return [firstBTop, secondRLeft];
+    if (computedDirection.value === "tl") return [firstTTop, secondLLeft];
+    if (computedDirection.value === "tr") return [firstTTop, secondRLeft];
+    if (computedDirection.value === "rt") return [secondTTop, firstRLeft];
+    if (computedDirection.value === "rb") return [secondBTop, firstRLeft];
+    if (computedDirection.value === "lt") return [secondTTop, firstLLeft];
+    if (computedDirection.value === "lb") return [secondBTop, firstLLeft];
+    return [0, 0];
+  })();
+
+  return `${top}px auto auto ${left}px`;
+});
+
+const popupTranslate = computed(() => {
+  const gap = getSpacingCss(props.gap) ?? "0";
+  const [firstChar] = directionToTuple(computedDirection.value);
+  if (firstChar === "t") return `translate(0, -${gap})`;
+  if (firstChar === "b") return `translate(0, ${gap})`;
+  if (firstChar === "l") return `translate(-${gap}, 0)`;
+  if (firstChar === "r") return `translate(${gap}, 0)`;
+  return "translate(0, 0)";
 });
 </script>

@@ -1,8 +1,18 @@
 import { StoryFn, Meta } from "@storybook/vue3";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizIAdd } from "@/components/icons";
 
 import WizTinyButton from "./tiny.vue";
+
+const spacingKeys = ["p", "px", "py"];
+const spacingControls = spacingKeys.reduce((acc, key) => {
+  acc[key] = {
+    control: { type: "select" },
+    options: SPACING_ACCESSORS,
+  };
+  return acc;
+}, {} as Record<string, any>);
 
 export default {
   title: "Base/Buttons/Tiny",
@@ -12,6 +22,9 @@ export default {
       control: { type: "boolean" },
     },
     active: {
+      control: { type: "boolean" },
+    },
+    hover: {
       control: { type: "boolean" },
     },
     icon: {
@@ -24,13 +37,14 @@ export default {
     click: {
       action: "click",
     },
+    ...spacingControls,
   },
 } as Meta<typeof WizTinyButton>;
 
 const Template: StoryFn<typeof WizTinyButton> = (args) => ({
   components: { WizTinyButton },
   setup: () => ({ args }),
-  template: `<WizTinyButton v-bind="args" @click="() => args.click">{{ "保存する" }}</WizTinyButton>`,
+  template: `<WizTinyButton v-bind="args" @click="args.click">{{ "保存する" }}</WizTinyButton>`,
 });
 
 export const Default = Template.bind({});
@@ -50,7 +64,7 @@ Clickable.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton disabled @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },
@@ -72,9 +86,45 @@ Active.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton disabled @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton disabled @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
+    },
+  },
+};
+
+export const Hover: StoryFn<typeof WizTinyButton> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizTinyButton },
+  setup() {
+    return {
+      main: "hover",
+      patterns: [
+        { hover: true, clickable: true, active: true },
+        { hover: true, clickable: true, active: false },
+        { hover: true, clickable: false, active: true },
+        { hover: true, clickable: false, active: false },
+      ],
+    };
+  },
+  template: `
+  <table>
+    <tr v-for="(pattern, i) in patterns" :key="pattern[main]">
+      <td style="padding: 1rem;"> {{"clickable="}}{{ pattern.clickable ? "true" : "false"}} </td>
+      <td style="padding: 1rem;"> {{"active="}}{{ pattern.active ? "true" : "false"}} </td>
+      <td style="padding: 1rem;"> 
+        <WizTinyButton v-bind="pattern" @click="click">{{ "保存する" }}</WizTinyButton>
+      </td>
+    </tr>
+  </table>
+  `,
+});
+
+Hover.parameters = {
+  docs: {
+    description: {
+      story:
+        "hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。",
     },
   },
 };
@@ -95,7 +145,7 @@ Icon.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton :icon="WizIAdd" @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton :icon="WizIAdd" @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },
@@ -122,7 +172,7 @@ IconPosition.parameters = {
     source: {
       code: `
 <template>
-  <WizTinyButton :icon="WizIAdd" iconPosition="right" @click="click">{{ "保存する" }}</WizTinyButton>
+  <WizTinyButton :icon="WizIAdd" iconPosition="right" @click="args.click">{{ "保存する" }}</WizTinyButton>
 </template>
       `,
     },

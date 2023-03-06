@@ -4,9 +4,15 @@
       tinyButtonBaseStyle,
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
+      clickable && (isHover || hover) && tinyButtonHoverStyle,
+      p && paddingStyle[p],
+      px && paddingXStyle[px],
+      py && paddingYStyle[py],
     ]"
-    :disabled="props.clickable"
+    :disabled="!clickable"
     @click="onClick"
+    @mouseenter="isHover = true"
+    @mouseleave="isHover = false"
   >
     <WizHStack
       align="center"
@@ -21,13 +27,19 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   tinyButtonBaseStyle,
+  tinyButtonHoverStyle,
   tinyButtonSizeStyle,
   tinyButtonVaraiantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
-import { computed, PropType } from "vue";
+import {
+  paddingStyle,
+  paddingXStyle,
+  paddingYStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
+import { computed, PropType, ref } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -38,6 +50,8 @@ defineOptions({
 interface Emits {
   (e: "click"): void;
 }
+
+const isHover = ref(false);
 
 const props = defineProps({
   clickable: {
@@ -50,6 +64,14 @@ const props = defineProps({
     required: false,
     default: true,
   },
+  hover: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  p: { type: String as PropType<SpacingKeys>, required: false },
+  px: { type: String as PropType<SpacingKeys>, required: false },
+  py: { type: String as PropType<SpacingKeys>, required: false },
   icon: {
     type: Object as PropType<TIcon>,
     required: false,

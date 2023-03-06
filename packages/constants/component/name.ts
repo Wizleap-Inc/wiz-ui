@@ -105,6 +105,8 @@ export const ComponentName = {
   Notification: "WizNotification",
   NotificationList: "WizNotificationList",
   NotificationPanel: "WizNotificationPanel",
+  SearchInput: "WizSearchInput",
+  SearchPopup: "WizSearchPopup",
   Stack: "WizStack",
   Skeleton: "WizSkeleton",
   SkeletonText: "WizSkeletonText",
@@ -123,5 +125,6 @@ export const ComponentName = {
   TransitionGraph: "WizTransitionGraph",
   MeterGraph: "WizMeterGraph",
   LineGraph: "WizLineGraph",
+  SnackBar: "WizSnackBar",
   ...IconComponentName,
 } as const;
