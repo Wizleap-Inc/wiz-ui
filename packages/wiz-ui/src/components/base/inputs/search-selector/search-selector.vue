@@ -236,7 +236,7 @@ const toggleSelectBox = () => {
 interface Emit {
   (e: "input", value: number): void;
   (e: "clear", value: number): void;
-  (e: "selectNewLabel", label: string): void;
+  (e: "add", label: string): void;
 }
 const emit = defineEmits<Emit>();
 
@@ -255,7 +255,7 @@ const onSelect = (value: number) => {
   focusInput();
 };
 const onCreate = (label: string) => {
-  emit("selectNewLabel", label);
+  emit("add", label);
   searchValue.value = "";
 };
 

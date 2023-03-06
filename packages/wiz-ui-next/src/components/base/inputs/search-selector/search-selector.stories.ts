@@ -63,7 +63,7 @@ export const Template: StoryFn<typeof WizSearchSelector> = (args) => ({
       <WizSearchSelector 
         v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
         :options="options" 
-        @clear="clear" @selectNewLabel="selectNewLabel"
+        @clear="clear" @add="selectNewLabel"
       />
     </WizHStack>
   `,
@@ -95,7 +95,7 @@ export const Selecting: StoryFn<typeof WizSearchSelector> = (args) => ({
       <WizSearchSelector 
         v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
         :options="options" 
-        @clear="clear" @selectNewLabel="selectNewLabel"
+        @clear="clear" @add="selectNewLabel"
       />
     </WizHStack>
   `,
@@ -127,7 +127,7 @@ export const MultiSelecting: StoryFn<typeof WizSearchSelector> = (args) => ({
       <WizSearchSelector 
         v-bind="args" :modelValue="currentValue" @update:modelValue="select"   
         :options="options"  width="300px"
-        @clear="clear" @selectNewLabel="selectNewLabel"
+        @clear="clear" @add="selectNewLabel"
       />
     </WizHStack>
   `,

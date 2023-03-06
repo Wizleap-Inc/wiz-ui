@@ -63,7 +63,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props"  :value="value" @input="select"   
-        :options="options" @clear="clear" @selectNewLabel="selectNewLabel"
+        :options="options" @clear="clear" @add="selectNewLabel"
       />
     </WizHStack>
   `,
@@ -97,7 +97,7 @@ export const SingleSelecting: StoryFn = (_, { argTypes }) => ({
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props" :value="value" @input="select"    
-        :options="options" @clear="clear" @selectNewLabel="selectNewLabel"
+        :options="options" @clear="clear" @add="selectNewLabel"
       />
     </WizHStack>
   `,
@@ -132,7 +132,7 @@ export const MultiSelecting: StoryFn = (_, { argTypes }) => ({
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props"  :value="value" @input="select" width="300px"
-        :options="options" @clear="clear" @selectNewLabel="selectNewLabel"
+        :options="options" @clear="clear" @add="selectNewLabel"
       />
     </WizHStack>
   `,
