@@ -102,12 +102,13 @@ export const selectBoxSelectorOptionStyle = style({
 });
 
 export const selectBoxSearchInputStyle = style({
-  width: "fit-content",
+  width: 0,
+  minWidth: "30%",
   border: "none",
   outline: "none",
   lineHeight: THEME.fontSize.lg,
-  padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`, //THEME.spacing.no,
-  flexGrow: 0,
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`,
+  flexGrow: 1,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
 });
