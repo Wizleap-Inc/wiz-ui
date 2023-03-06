@@ -47,7 +47,7 @@ export const stepLineStyle = style({
 
 export const stepLineBackgroundStyle = styleVariants({
   inactive: {
-    background: THEME.color.gray[300],
+    background: THEME.color.gray[500],
   },
   active: {
     background: THEME.color.green[800],
