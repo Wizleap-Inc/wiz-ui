@@ -243,12 +243,19 @@ const selectedItem = computed(() => {
   return props.modelValue.map((v) => valueToOption.value[v]);
 });
 
-const filteredOptions = computed(() =>
-  (searchValue.value.length === 0
-    ? props.options
-    : sortByLevenshtein(deepCopy(props.options), searchValue.value)
-  ).filter((v) => !selectedItem.value.some((opt) => opt.value === v.value))
-);
+const filteredOptions = computed(() => {
+  const sortedOptions =
+    searchValue.value.length !== 0
+      ? sortByLevenshtein(deepCopy(props.options), searchValue.value)
+      : props.options;
+  const removeSelectedOptions = (options: SelectBoxOption[]) => {
+    return options.filter((v) => {
+      return !selectedItem.value.some((item) => item.value === v.value);
+    });
+  };
+  return removeSelectedOptions(sortedOptions);
+});
+
 const toggleSelectBox = () => {
   if (!props.disabled) openSelectBox.value = !openSelectBox.value;
 };
