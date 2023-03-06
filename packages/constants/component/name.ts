@@ -126,5 +126,8 @@ export const ComponentName = {
   MeterGraph: "WizMeterGraph",
   LineGraph: "WizLineGraph",
   SnackBar: "WizSnackBar",
+  StepBar: "WizStepBar",
+  StepPoint: "WizStepPoint",
+  StepLine: "WizStepLine",
   ...IconComponentName,
 } as const;
