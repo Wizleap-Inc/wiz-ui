@@ -40,25 +40,25 @@
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
           />
-          <span
-            :class="selectBoxExpandIconStyle"
-            @click="toggleSelectBox"
-            :tabindex="0"
-          >
-            <WizIcon
-              v-if="openSelectBox"
-              :icon="WizIExpandLess"
-              :class="selectBoxInnerBoxLessStyle"
-              :color="!openSelectBox ? 'white.800' : 'green.800'"
-            />
-
-            <WizIcon
-              v-else-if="!openSelectBox"
-              :icon="WizIExpandMore"
-              :class="selectBoxInnerBoxMoreStyle"
-            />
-          </span>
         </WizHStack>
+      </div>
+      <div
+        :class="selectBoxExpandIconStyle"
+        @click="toggleSelectBox"
+        :tabindex="0"
+      >
+        <WizIcon
+          v-if="openSelectBox"
+          :icon="WizIExpandLess"
+          :class="selectBoxInnerBoxLessStyle"
+          :color="!openSelectBox ? 'white.800' : 'green.800'"
+        />
+
+        <WizIcon
+          v-else-if="!openSelectBox"
+          :icon="WizIExpandMore"
+          :class="selectBoxInnerBoxMoreStyle"
+        />
       </div>
     </div>
     <WizPopup
