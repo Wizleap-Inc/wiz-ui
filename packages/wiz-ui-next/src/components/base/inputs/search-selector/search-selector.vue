@@ -9,7 +9,7 @@
       ]"
       :style="{ width: computedWidth }"
     >
-      <div :class="selectBoxInnerBoxStyle" @click="focusInput">
+      <div :class="selectBoxInnerBoxStyle" @click="toggleDropdown">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
             v-for="item in selectedItem"
@@ -49,14 +49,14 @@
         :disabled="disabled"
       >
         <WizIcon
-          v-if="openSelectBox"
+          v-if="isOpenDropdown"
           :icon="WizIExpandLess"
           :class="selectBoxInnerBoxLessStyle"
-          :color="!openSelectBox ? 'white.800' : 'green.800'"
+          :color="!isOpenDropdown ? 'white.800' : 'green.800'"
         />
 
         <WizIcon
-          v-else-if="!openSelectBox"
+          v-else-if="!isOpenDropdown"
           :icon="WizIExpandMore"
           :class="selectBoxInnerBoxMoreStyle"
         />
@@ -64,8 +64,8 @@
     </div>
     <WizPopup
       layer="popover"
-      :isOpen="openSelectBox"
-      @onClose="openSelectBox = false"
+      :isOpen="isOpenDropdown"
+      @onClose="isOpenDropdown = false"
     >
       <div
         :class="selectBoxSelectorStyle"
@@ -204,7 +204,7 @@ const props = defineProps({
   },
 });
 
-const openSelectBox = ref(false);
+const isOpenDropdown = ref(false);
 const searchValue = ref("");
 const addableOptionIsClicking = ref(false);
 
@@ -218,9 +218,16 @@ const onHoldClick = () => {
 };
 
 const inputRef = ref<HTMLElement | undefined>();
-const focusInput = () => {
+const toggleDropdown = () => {
   if (props.disabled) return;
-  openSelectBox.value = true;
+  if (
+    !props.multiSelectable &&
+    props.modelValue.length > 0 &&
+    isOpenDropdown.value
+  ) {
+    return (isOpenDropdown.value = false);
+  }
+  isOpenDropdown.value = true;
   inputRef.value?.focus();
 };
 
@@ -259,7 +266,7 @@ const filteredOptions = computed(() => {
 });
 
 const toggleSelectBox = () => {
-  if (!props.disabled) openSelectBox.value = !openSelectBox.value;
+  if (!props.disabled) isOpenDropdown.value = !isOpenDropdown.value;
 };
 
 interface Emit {
@@ -281,16 +288,19 @@ const onSelect = (value: number) => {
   }
   searchValue.value = "";
   emit("update:modelValue", value);
-  focusInput();
+  toggleDropdown();
 };
 const onCreate = (label: string) => {
   emit("add", label);
   searchValue.value = "";
 };
 
-const selectBoxCursor = computed(() =>
-  props.disabled ? "disabled" : "default"
-);
+const selectBoxCursor = computed(() => {
+  if (props.disabled) return "disabled";
+  if (!props.multiSelectable && props.modelValue.length > 0)
+    return "singleSelected";
+  return "default";
+});
 
 // Form Control
 const form = inject(formControlKey);
@@ -300,7 +310,7 @@ const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 const state = computed(() => {
   if (isError.value) return "error";
-  if (openSelectBox.value) return "active";
+  if (isOpenDropdown.value) return "active";
   return "default";
 });
 

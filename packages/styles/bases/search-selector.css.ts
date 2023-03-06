@@ -16,6 +16,9 @@ export const selectBoxCursorStyle = styleVariants({
   default: {
     cursor: "text",
   },
+  singleSelected: {
+    cursor: "pointer",
+  },
   disabled: {
     cursor: "not-allowed",
   },
