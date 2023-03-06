@@ -118,7 +118,6 @@ export const selectBoxSearchInputStyle = style({
   minWidth: "30%",
   border: "none",
   outline: "none",
-  lineHeight: THEME.fontSize.lg,
   padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`,
   flexGrow: 1,
   fontSize: THEME.fontSize.sm,
