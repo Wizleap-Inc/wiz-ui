@@ -118,6 +118,9 @@ export const selectBoxSearchInputStyle = style({
   flexGrow: 1,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
+  "::placeholder": {
+    color: THEME.color.gray["500"],
+  },
 });
 
 export const selectBoxAddStyle = style({
