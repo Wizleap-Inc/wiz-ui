@@ -9,7 +9,7 @@
       ]"
       :style="{ width: computedWidth, height: 'auto' }"
     >
-      <div :class="selectBoxInnerBoxStyle" @click="() => focusInput()">
+      <div :class="selectBoxInnerBoxStyle" @click="focusInput">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
             v-for="(item, key) in selectedItem"
@@ -36,7 +36,7 @@
             v-if="multiSelectable || !isValueMatched"
             :class="selectBoxSearchInputStyle"
             v-model="searchValue"
-            :placeholder="placeholder"
+            :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
           />
           <span
@@ -60,7 +60,11 @@
         </WizHStack>
       </div>
     </div>
-    <WizPopup layer="popover">
+    <WizPopup
+      layer="popover"
+      :isOpen="openSelectBox"
+      @onClose="openSelectBox = false"
+    >
       <div
         :class="selectBoxSelectorStyle"
         :style="{ minWidth: width }"
@@ -82,11 +86,10 @@
             @keypress.enter="onCreate(searchValue)"
             :tabindex="0"
           >
-            <!-- // TODO: Icon変更 -->
             <span :class="selectBoxAddStyle">
               {{ searchValue }}
               <WizIcon
-                :icon="WizIAdd"
+                :icon="WizIAddCircle"
                 :size="'sm'"
                 :color="addableOptionIsClicking ? 'white.800' : 'green.800'"
               />
@@ -139,7 +142,7 @@ import {
   WizIExpandLess,
   WizIExpandMore,
   WizIClose,
-  WizIAdd,
+  WizIAddCircle,
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
@@ -207,8 +210,15 @@ const sortByLevenshtein = (options: SelectBoxOption[], target: string) => {
   return options.sort((a, b) => dist[a.label] - dist[b.label]);
 };
 
+const valueToOption = computed(() =>
+  props.options.reduce((acc, item) => {
+    acc[item.value] = item;
+    return acc;
+  }, {} as { [value: number]: SelectBoxOption })
+);
+
 const selectedItem = computed(() => {
-  return props.options.filter((v) => props.modelValue.includes(v.value));
+  return props.modelValue.map((v) => valueToOption.value[v]);
 });
 
 const filteredOptions = computed(() =>
@@ -240,6 +250,7 @@ const onSelect = (value: number) => {
   }
   searchValue.value = "";
   emit("update:modelValue", value);
+  focusInput();
 };
 const onCreate = (label: string) => {
   emit("selectNewLabel", label);
