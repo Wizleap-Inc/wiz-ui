@@ -20,10 +20,10 @@
               {{ item.label }}
             </span>
 
-            <span
+            <button
               @click="onClear(item.value)"
-              :tabindex="0"
               @keypress.enter="onClear(item.value)"
+              :class="selectBoxInnerBoxCloseButtonStyle"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -31,7 +31,7 @@
                 :size="'xs'"
                 :color="'gray.500'"
               />
-            </span>
+            </button>
           </span>
           <input
             v-if="multiSelectable || !isValueMatched"
@@ -134,6 +134,7 @@ import {
   selectBoxExpandIconStyle,
   selectBoxInnerBoxSelectedItemStyle,
   selectBoxInnerBoxSelectedLabelStyle,
+  selectBoxInnerBoxCloseButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";

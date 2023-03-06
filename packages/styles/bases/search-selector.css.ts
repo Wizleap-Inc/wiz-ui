@@ -15,7 +15,7 @@ export const selectBoxDisabledStyle = style({
 
 export const selectBoxCursorStyle = styleVariants({
   default: {
-    cursor: "pointer",
+    cursor: "text",
   },
   disabled: {
     cursor: "not-allowed",
@@ -55,11 +55,19 @@ export const selectBoxInnerBoxSelectedLabelStyle = style({
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+  userSelect: "none",
 });
 
 export const selectBoxInnerBoxCloseStyle = style({
   fill: THEME.color.gray["500"],
   fontSize: THEME.spacing.xs,
+});
+
+export const selectBoxInnerBoxCloseButtonStyle = style({
+  border: "none",
+  background: "none",
+  padding: 0,
+  cursor: "pointer",
 });
 
 export const selectBoxInnerBoxLessStyle = style({
