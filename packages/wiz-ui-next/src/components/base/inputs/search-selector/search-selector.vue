@@ -273,7 +273,7 @@ const onClear = (n: number) => {
 const onSelect = (value: number) => {
   if (!props.multiSelectable) {
     toggleSelectBox();
-    props.modelValue.forEach((v, _) => {
+    props.modelValue.forEach((v) => {
       onClear(v);
     });
   }
