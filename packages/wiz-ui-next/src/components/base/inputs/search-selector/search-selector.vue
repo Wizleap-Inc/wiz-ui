@@ -7,7 +7,7 @@
         disabled && selectBoxDisabledStyle,
         selectBoxCursorStyle[selectBoxCursor],
       ]"
-      :style="{ width: computedWidth, height: 'auto' }"
+      :style="{ width: computedWidth }"
     >
       <div :class="selectBoxInnerBoxStyle" @click="focusInput">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
