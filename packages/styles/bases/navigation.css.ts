@@ -10,6 +10,7 @@ export const navigationContainerStyle = style({
   height: "100%",
   transition: "width 0.2s ease-in-out",
   overflow: "hidden",
+  zIndex: THEME.zIndex.floating,
 });
 
 export const navigationContainerItemsStyle = style({
