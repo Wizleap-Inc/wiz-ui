@@ -83,7 +83,7 @@ export const navigationItemIconActiveStyle = style({
 });
 
 export const navigationItemIconDisabledStyle = style({
-  fill: THEME.color.gray["600"],
+  fill: THEME.color.gray["500"],
 });
 
 export const navigationItemTextStyle = style({
