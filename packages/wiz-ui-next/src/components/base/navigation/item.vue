@@ -1,16 +1,23 @@
 <template>
   <component
-    :is="isExternalLink ? 'a' : 'router-link'"
-    :to="!isExternalLink ? to : undefined"
-    :href="isExternalLink ? to : undefined"
-    :target="isExternalLink ? '_blank' : undefined"
-    :class="[navigationItemStyle, active && navigationItemActiveStyle]"
+    :is="!disabled && isExternalLink ? 'a' : 'router-link'"
+    :to="!disabled && !isExternalLink ? to : undefined"
+    :href="!disabled && isExternalLink ? to : undefined"
+    :target="!disabled && isExternalLink ? '_blank' : undefined"
+    :class="[
+      navigationItemStyle,
+      disabled
+        ? navigationItemDisabledStyle
+        : active && navigationItemActiveStyle,
+    ]"
   >
     <component
       :is="icon"
       :class="[
         navigationItemIconStyle,
-        active && navigationItemIconActiveStyle,
+        disabled
+          ? navigationItemIconDisabledStyle
+          : active && navigationItemIconActiveStyle,
       ]"
     />
     <div
@@ -33,6 +40,8 @@ import {
   navigationItemIconActiveStyle,
   navigationItemTextStyle,
   navigationItemTextActiveStyle,
+  navigationItemDisabledStyle,
+  navigationItemIconDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, PropType } from "vue";
 import { RouterLinkProps } from "vue-router";
@@ -59,6 +68,11 @@ const props = defineProps({
   to: {
     type: [Object, String] as PropType<RouterLinkProps["to"]>,
     required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

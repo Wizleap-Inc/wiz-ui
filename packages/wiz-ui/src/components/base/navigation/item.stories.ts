@@ -73,3 +73,11 @@ External.args = {
   label: "Home",
   to: "https://wizleap.co.jp",
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  icon: WizIDashboard,
+  label: "Home",
+  to: "/home",
+  disabled: true,
+};
