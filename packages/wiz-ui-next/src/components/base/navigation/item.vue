@@ -1,34 +1,39 @@
 <template>
-  <component
-    :is="!disabled && isExternalLink ? 'a' : 'router-link'"
-    :to="!disabled && !isExternalLink ? to : undefined"
-    :href="!disabled && isExternalLink ? to : undefined"
-    :target="!disabled && isExternalLink ? '_blank' : undefined"
-    :class="[
-      navigationItemStyle,
-      disabled
-        ? navigationItemDisabledStyle
-        : active && navigationItemActiveStyle,
-    ]"
-  >
+  <WizTooltip>
     <component
-      :is="icon"
+      :is="disabled || isExternalLink ? 'a' : 'router-link'"
+      :to="!disabled && !isExternalLink ? to : undefined"
+      :href="!disabled && isExternalLink ? to : undefined"
+      :target="!disabled && isExternalLink ? '_blank' : undefined"
       :class="[
-        navigationItemIconStyle,
+        navigationItemStyle,
         disabled
-          ? navigationItemIconDisabledStyle
-          : active && navigationItemIconActiveStyle,
-      ]"
-    />
-    <div
-      :class="[
-        navigationItemTextStyle,
-        active && navigationItemTextActiveStyle,
+          ? navigationItemDisabledStyle
+          : active && navigationItemActiveStyle,
       ]"
     >
-      {{ label }}
-    </div>
-  </component>
+      <component
+        :is="icon"
+        :class="[
+          navigationItemIconStyle,
+          disabled
+            ? navigationItemIconDisabledStyle
+            : active && navigationItemIconActiveStyle,
+        ]"
+      />
+      <div
+        :class="[
+          navigationItemTextStyle,
+          !disabled && active && navigationItemTextActiveStyle,
+        ]"
+      >
+        {{ label }}
+      </div>
+    </component>
+    <template #content v-if="tooltipText">
+      {{ tooltipText }}
+    </template>
+  </WizTooltip>
 </template>
 
 <script setup lang="ts">
@@ -47,6 +52,8 @@ import { computed, PropType } from "vue";
 import { RouterLinkProps } from "vue-router";
 
 import type { TIcon } from "@/components/icons";
+
+import { WizTooltip } from "../tooltip";
 
 defineOptions({
   name: ComponentName.NavigationItem,
@@ -73,6 +80,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  tooltipText: {
+    type: String,
+    required: false,
+    default: null,
   },
 });
 

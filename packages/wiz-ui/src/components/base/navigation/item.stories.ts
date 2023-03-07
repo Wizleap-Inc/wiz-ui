@@ -81,3 +81,11 @@ Disabled.args = {
   to: "/home",
   disabled: true,
 };
+
+export const WithToolTip = Template.bind({});
+WithToolTip.args = {
+  icon: WizIDashboard,
+  label: "Home",
+  to: "/home",
+  tooltipText: "これはヒントです。",
+};
