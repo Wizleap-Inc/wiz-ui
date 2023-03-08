@@ -9,4 +9,4 @@ export interface SelectBoxOption {
 
 export type Item =
   | { kind: "button"; option: SelectBoxOption }
-  | { kind: "group"; title: string; items: Item[] }; // divider: boolean?
+  | { kind: "group"; title: string; items: Item[]; showDivider: boolean };

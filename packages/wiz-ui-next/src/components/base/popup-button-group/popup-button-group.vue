@@ -13,8 +13,8 @@
         <span :class="popupButtonGroupTitleStyle"> {{ item.item.title }}</span>
         <WizPopupButtonGroup
           :options="item.item.items"
-          :divider="divider"
           :class="popupButtonGroupNestedStyle"
+          :showDivider="item.item.showDivider"
         />
       </div>
       <div v-else-if="item.item.kind === 'button'">
@@ -102,7 +102,7 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
-  divider: {
+  showDivider: {
     type: Boolean,
     required: false,
     default: false,
@@ -114,15 +114,15 @@ type ItemElement = { kind: "divider" } | { kind: "item"; item: Item };
 const items: ComputedRef<ItemElement[]> = computed(() => {
   const d: ItemElement = { kind: "divider" };
   const t = props.options
-    .map((opt) => {
+    .map((opt, i) => {
       const o: ItemElement = {
         kind: "item",
         item: opt,
       };
-      return props.divider ? [o, d] : [o];
+      if (!props.showDivider || i + 1 === props.options.length) return [o];
+      return props.options[i + 1].kind !== "group" ? [o, d] : [o];
     })
     .flat();
-  if (props.divider) t.pop();
   return t;
 });
 
