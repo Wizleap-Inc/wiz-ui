@@ -1,59 +1,61 @@
 <template>
-  <div :class="popupButtonGroupStyle" :style="{ minWidth: computedWidth }">
-    <WizVStack gap="no">
-      <div v-for="item in items">
-        <div v-if="item.kind === 'divider'">
-          <hr :class="popupButtonGroupDividerStyle" />
-        </div>
-        <div v-if="item.kind === 'item'">
-          <div v-if="item.item.kind === 'group'">
-            <span :class="popupButtonGroupTitleStyle">
-              {{ item.item.title }}</span
-            >
-            <WizPopupButtonGroup
-              :options="item.item.items"
-              :divider="divider"
-            />
-          </div>
-          <div v-if="item.item.kind === 'button'">
-            <div
-              :class="[popupButtonGroupOptionStyle]"
-              @mousedown="
-                () => {
-                  if (item.item.kind === 'button') {
-                    item.item.option.onClick();
-                    onHoldClick(item.item.option.value);
-                  }
-                }
-              "
-            >
-              <span>
-                {{ item.item.option.label }}
-              </span>
-              <span v-if="item.item.option.exLabel">
-                {{ item.item.option.exLabel }}
-              </span>
-              <div v-if="item.item.option.icon">
-                <WizIcon
-                  :icon="
-                    item.item.option.icon === 'openNew'
-                      ? WizIOpenInNew
-                      : WizIAddCircle
-                  "
-                  :color="
-                    item.item.option.value === isClicking
-                      ? 'white.800'
-                      : 'green.800'
-                  "
-                  size="md"
-                />
-              </div>
+  <WizVStack
+    gap="no"
+    :class="popupButtonGroupStyle"
+    :style="{ minWidth: computedWidth }"
+  >
+    <div v-for="item in items">
+      <hr
+        v-if="item.kind === 'divider'"
+        :class="popupButtonGroupDividerStyle"
+      />
+      <div v-else-if="item.item.kind === 'group'">
+        <span :class="popupButtonGroupTitleStyle"> {{ item.item.title }}</span>
+        <WizPopupButtonGroup
+          :options="item.item.items"
+          :divider="divider"
+          :class="popupButtonGroupNestedStyle"
+        />
+      </div>
+      <div v-else-if="item.item.kind === 'button'">
+        <div
+          :class="popupButtonGroupOptionStyle"
+          @mousedown="
+            () => {
+              if (item.item.kind === 'button') {
+                item.item.option.onClick();
+                onHoldClick(item.item.option.value);
+              }
+            }
+          "
+        >
+          <WizHStack gap="xs">
+            <span>
+              {{ item.item.option.label }}
+            </span>
+            <span v-if="item.item.option.exLabel">
+              {{ item.item.option.exLabel }}
+            </span>
+            <div v-if="item.item.option.icon">
+              <WizIcon
+                :icon="
+                  item.item.option.icon === 'openNew'
+                    ? WizIOpenInNew
+                    : WizIAddCircle
+                "
+                :color="
+                  item.item.option.value === isClicking
+                    ? 'white.800'
+                    : 'green.800'
+                "
+                size="md"
+              />
             </div>
-          </div>
+          </WizHStack>
         </div>
       </div>
-    </WizVStack>
-  </div>
+    </div>
+  </WizVStack>
 </template>
 
 <script setup lang="ts">
@@ -63,6 +65,7 @@ import {
   popupButtonGroupOptionStyle,
   popupButtonGroupTitleStyle,
   popupButtonGroupDividerStyle,
+  popupButtonGroupNestedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, ComputedRef, inject, PropType, ref } from "vue";
 
@@ -70,7 +73,7 @@ import { WizIcon } from "@/components";
 import { WizIOpenInNew, WizIAddCircle } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-import { WizVStack } from "../stack";
+import { WizVStack, WizHStack } from "../stack";
 
 import { Item } from "./types";
 
@@ -117,7 +120,6 @@ const items: ComputedRef<ItemElement[]> = computed(() => {
         item: opt,
       };
       return props.divider ? [o, d] : [o];
-      // return [o,d ]
     })
     .flat();
   if (props.divider) t.pop();

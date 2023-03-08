@@ -10,13 +10,14 @@ export const selectBoxStyle = style({
 });
 
 export const popupButtonGroupStyle = style({
-  paddingRight: THEME.spacing.xs,
-  paddingLeft: THEME.spacing.sm,
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   maxHeight: "25rem",
-  // overflowY: "auto",
+});
+
+export const popupButtonGroupNestedStyle = style({
+  paddingLeft: THEME.spacing.lg,
 });
 
 export const popupButtonGroupOptionStyle = style({
@@ -24,7 +25,10 @@ export const popupButtonGroupOptionStyle = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
+  paddingTop: THEME.spacing.xs,
+  paddingBottom: THEME.spacing.xs,
+  paddingLeft: THEME.spacing.xs2,
+  // padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["700"],
   boxSizing: "border-box",
