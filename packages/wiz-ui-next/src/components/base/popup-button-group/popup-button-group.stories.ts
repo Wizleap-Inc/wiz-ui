@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from "@storybook/vue3";
-import { ref } from "vue";
 
 import { WizHStack, WizPopupContainer, WizPopup } from "@/components";
 
@@ -14,7 +13,7 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
-    divider: {
+    showDivider: {
       control: { type: "boolean" },
     },
   },
@@ -52,7 +51,12 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
 const _getDummyItems = (): Item[] => {
   const f = (n: number) => () => console.log("clicked!", n);
   return [
-    { kind: "group", title: "タイトル", items: _getDummyOptions("ラベル", 3) },
+    {
+      kind: "group",
+      title: "タイトル",
+      items: _getDummyOptions("ラベル", 3),
+      showDivider: false,
+    },
     { kind: "button", option: { label: "label 1", value: 4, onClick: f(4) } },
     { kind: "button", option: { label: "label 2", value: 5, onClick: f(5) } },
   ];
@@ -68,12 +72,14 @@ const _getDummyItems2 = (): Item[] => {
     {
       kind: "group",
       title: "タイトル1",
+      showDivider: true,
       items: [
         ..._getDummyOptions("test", 3),
         {
           kind: "group",
           title: "タイトル2",
           items: [createButton(4), createButton(5)],
+          showDivider: false,
         },
       ],
     },
@@ -85,7 +91,6 @@ const _getDummyItems2 = (): Item[] => {
 const Template: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup },
   setup() {
-    const value = ref(0);
     return { args };
   },
   template: `
@@ -98,13 +103,12 @@ export const Default = Template.bind({});
 
 Default.args = {
   options: _getDummyItems2(), //_getDummyOptions("test", 3),
-  divider: true,
+  showDivider: true,
 };
 
 export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup, WizHStack, WizPopupContainer, WizPopup },
   setup() {
-    const value = ref(0);
     return { args };
   },
   template: `

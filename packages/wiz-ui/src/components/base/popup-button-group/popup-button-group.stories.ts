@@ -13,7 +13,7 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
-    divider: {
+    showDivider: {
       control: { type: "boolean" },
     },
   },
@@ -67,12 +67,14 @@ const _getDummyItems2 = (): Item[] => {
     {
       kind: "group",
       title: "タイトル1",
+      showDivider: true,
       items: [
         ..._getDummyOptions("test", 3),
         {
           kind: "group",
           title: "タイトル2",
           items: [createButton(4), createButton(5)],
+          showDivider: false,
         },
       ],
     },
@@ -97,7 +99,7 @@ export const Default = Template.bind({});
 
 Default.args = {
   options: _getDummyItems2(), //_getDummyOptions("test", 3),
-  divider: true,
+  showDivider: true,
 };
 
 export const Popup: StoryFn = (_, { argTypes }) => ({
