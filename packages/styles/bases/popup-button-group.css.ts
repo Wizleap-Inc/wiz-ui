@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const selectBoxStyle = style({
@@ -7,46 +7,6 @@ export const selectBoxStyle = style({
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-});
-
-export const selectBoxDisabledStyle = style({
-  color: THEME.color.gray["700"],
-  backgroundColor: THEME.color.gray["300"],
-});
-
-export const selectBoxCursorStyle = styleVariants({
-  default: {
-    cursor: "pointer",
-  },
-  disabled: {
-    cursor: "not-allowed",
-  },
-});
-
-export const selectBoxInnerBoxStyle = style({
-  height: "100%",
-  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
-  fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray["500"],
-  width: "100%",
-  boxSizing: "border-box",
-});
-
-export const selectBoxInnerBoxSelectedValueStyle = style({
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
-  color: THEME.color.gray["700"],
-});
-
-export const selectBoxInnerBoxLessStyle = style({
-  fill: THEME.color.green["800"],
-  fontSize: THEME.spacing.xl,
-});
-
-export const selectBoxInnerBoxMoreStyle = style({
-  fill: THEME.color.gray["500"],
-  fontSize: THEME.spacing.xl,
 });
 
 export const popupButtonGroupStyle = style({
@@ -87,11 +47,11 @@ export const popupButtonGroupTitleStyle = style({
   lineHeight: THEME.fontSize.xl,
   color: THEME.color.gray["700"],
 
-  // justifyContent: "space-between",
-  // alignItems: "center",
+  justifyContent: "space-between",
+  alignItems: "center",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
-  // boxSizing: "border-box",
-  // cursor: "pointer",
+  boxSizing: "border-box",
+  cursor: "pointer",
 });
 
 export const popupButtonGroupDividerStyle = style({
@@ -99,10 +59,4 @@ export const popupButtonGroupDividerStyle = style({
   border: "none",
   margin: "0 0",
   backgroundColor: THEME.color.gray[300],
-});
-
-export const selectBoxPlaceholderStyle = style({
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
 });
