@@ -19,7 +19,7 @@
       </div>
       <div v-else-if="item.item.kind === 'button'">
         <div
-          :class="popupButtonGroupOptionStyle"
+          :class="popupButtonGroupButtonStyle"
           @mousedown="
             () => {
               if (item.item.kind === 'button') {
@@ -62,7 +62,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   popupButtonGroupStyle,
-  popupButtonGroupOptionStyle,
+  popupButtonGroupButtonStyle,
   popupButtonGroupTitleStyle,
   popupButtonGroupDividerStyle,
   popupButtonGroupNestedStyle,

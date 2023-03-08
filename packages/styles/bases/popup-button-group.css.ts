@@ -20,7 +20,7 @@ export const popupButtonGroupNestedStyle = style({
   paddingLeft: THEME.spacing.lg,
 });
 
-export const popupButtonGroupOptionStyle = style({
+export const popupButtonGroupButtonStyle = style({
   width: "100%",
   display: "flex",
   justifyContent: "space-between",
@@ -28,7 +28,6 @@ export const popupButtonGroupOptionStyle = style({
   paddingTop: THEME.spacing.xs,
   paddingBottom: THEME.spacing.xs,
   paddingLeft: THEME.spacing.xs2,
-  // padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["700"],
   boxSizing: "border-box",
@@ -41,6 +40,7 @@ export const popupButtonGroupOptionStyle = style({
     color: THEME.color.white["800"],
     background: THEME.color.green["800"],
   },
+  userSelect: "none",
 });
 
 export const popupButtonGroupTitleStyle = style({
@@ -55,7 +55,7 @@ export const popupButtonGroupTitleStyle = style({
   alignItems: "center",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   boxSizing: "border-box",
-  cursor: "pointer",
+  cursor: "text",
 });
 
 export const popupButtonGroupDividerStyle = style({
