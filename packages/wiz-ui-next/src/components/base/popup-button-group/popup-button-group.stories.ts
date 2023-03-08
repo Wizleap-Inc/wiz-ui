@@ -22,18 +22,25 @@ export default {
 
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   const options: SelectBoxOption[] = [];
+  const createIcon = (i: number) => {
+    if (i % 3 === 0) {
+      return undefined;
+    }
+    return i % 3 === 1
+      ? { icon: "openNew" as const, iconDefaultColor: "gray.500" as const }
+      : {
+          icon: "addCircle" as const,
+          iconDefaultColor: "green.800" as const,
+        };
+  };
   for (let i = 1; i <= count; i++) {
-    const m =
-      i % 3 === 0
-        ? undefined
-        : i % 3 === 1
-        ? ("openNew" as const)
-        : ("addCircle" as const);
+    const icon = createIcon(i);
     options.push({
       label: label + i,
       value: i,
       exLabel: exLabel,
-      icon: m,
+      icon: icon?.icon,
+      iconDefaultColor: icon?.iconDefaultColor,
       onClick: () => {
         console.log("clicked! ", i);
       },
