@@ -3,6 +3,7 @@ export interface SelectBoxOption {
   value: number;
   exLabel?: string;
   icon?: "openNew" | "addCircle";
+  iconDefaultColor?: "green.800" | "gray.500";
   onClick: () => void;
 }
 

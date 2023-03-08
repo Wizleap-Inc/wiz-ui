@@ -46,7 +46,7 @@
                 :color="
                   item.item.option.value === isClicking
                     ? 'white.800'
-                    : 'green.800'
+                    : item.item.option.iconDefaultColor ?? 'gray.500'
                 "
                 size="md"
               />
