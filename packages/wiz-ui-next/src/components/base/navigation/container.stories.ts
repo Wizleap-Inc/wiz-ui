@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/vue3";
-import { provide } from "vue";
+import { provide, ref } from "vue";
 
 import {
   WizIDashboard,
@@ -12,6 +12,8 @@ import {
   globalKey,
   useGlobalProvider,
 } from "@/hooks/use-global-provider";
+
+import { Item } from "../popup-button-group/types";
 
 import { WizNavItem, WizNavContainer } from ".";
 
@@ -179,6 +181,47 @@ export const Fixed: StoryFn = (_, { argTypes }) => ({
         <h5>Footer</h5>
         <h6>Footer</h6>
       </template>
+    </WizNavContainer>
+  </div>
+  `,
+});
+
+export const Popup: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizNavContainer, WizNavItem },
+  setup() {
+    const lockingPopup = ref(false);
+    const setLock = (isLock: boolean) => {
+      lockingPopup.value = isLock;
+    };
+    const createButton = (n: number): Item => ({
+      kind: "button",
+      option: {
+        label: `label ${n}`,
+        value: n,
+        onClick: () => {
+          console.log(`clicked ${n}`);
+        },
+      },
+    });
+
+    return {
+      WizIDashboard,
+      WizIAssignment,
+      WizIBusinessCenter,
+      WizIHelp,
+      lockingPopup,
+      setLock,
+      createButton,
+    };
+  },
+  template: `
+  <div style="display: flex; height: 100vh;">
+    <WizNavContainer>
+      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0)]" :icon="WizIDashboard" label="Home" to="/" :active="false" />
+      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1), createButton(2)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3), createButton(4)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(5), createButton(6)]" :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
     </WizNavContainer>
   </div>
   `,
