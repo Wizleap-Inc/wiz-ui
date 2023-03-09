@@ -75,7 +75,17 @@ Disabled.args = {
   disabled: true,
 };
 
-export const WithToolTip = Template.bind({});
+const TooltipTemplate: StoryFn<typeof WizNavItem> = (args) => ({
+  components: { WizNavItem },
+  setup: () => ({ args }),
+  template: `
+  <div style="margin-top: 48px">
+    <WizNavItem v-bind="args" />
+  </div>
+  `,
+});
+
+export const WithToolTip = TooltipTemplate.bind({});
 WithToolTip.args = {
   icon: WizIDashboard,
   label: "Home",
