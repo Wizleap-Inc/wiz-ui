@@ -65,6 +65,7 @@ export const navigationItemActiveStyle = style({
 
 export const navigationItemDisabledStyle = style({
   color: THEME.color.gray["500"],
+  cursor: "not-allowed",
   selectors: {
     "&:hover::before": {
       backgroundColor: "transparent",
