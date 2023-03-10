@@ -10,3 +10,7 @@ export const iconSizeStyle = styleVariants(FONT_SIZE_MAP, (fontSize) => ({
   width: fontSize,
   height: fontSize,
 }));
+
+export const iconDefaultStyle = style({
+  color: "currentColor",
+});
