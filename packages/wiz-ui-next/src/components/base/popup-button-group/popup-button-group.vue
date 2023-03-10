@@ -56,7 +56,7 @@ import {
   popupButtonGroupDividerStyle,
   popupButtonGroupNestedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
-import { computed, ComputedRef, inject, PropType, ref } from "vue";
+import { computed, inject, PropType, ref } from "vue";
 
 import {
   WizIcon,
@@ -100,19 +100,23 @@ const props = defineProps({
 
 type ItemElement = { kind: "divider" } | { kind: "item"; item: Item };
 
-const items: ComputedRef<ItemElement[]> = computed(() => {
-  const d: ItemElement = { kind: "divider" };
-  const t = props.options
+const items = computed(() => {
+  const divider: ItemElement = { kind: "divider" };
+  const items = props.options
     .map((opt, i) => {
-      const o: ItemElement = {
+      const optionItem: ItemElement = {
         kind: "item",
         item: opt,
       };
-      if (!props.showDivider || i + 1 === props.options.length) return [o];
-      return props.options[i + 1].kind !== "group" ? [o, d] : [o];
+      if (!props.showDivider || i + 1 === props.options.length) {
+        return [optionItem];
+      }
+      return props.options[i + 1].kind !== "group"
+        ? [optionItem, divider]
+        : [optionItem];
     })
     .flat();
-  return t;
+  return items;
 });
 
 const isClicking = ref<number | undefined>(undefined);
