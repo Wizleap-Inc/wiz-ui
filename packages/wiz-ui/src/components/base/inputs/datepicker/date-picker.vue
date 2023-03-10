@@ -9,9 +9,10 @@
       :style="{
         width,
       }"
+      :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       @click="toggleDatepicker"
     >
-      <WizHStack gap="sm" align="center" height="100%">
+      <WizHStack gap="xs" align="center" height="100%">
         <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         <span>{{ parseValue(calendarValue) || placeholder }}</span>
       </WizHStack>
@@ -28,14 +29,14 @@
           }}</WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
-              :area-label="AREA_LABELS.MONTH_SELECTOR_PREV"
+              :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToPreviousMonth"
             >
               <WizIcon size="md" color="inherit" :icon="WizIChevronLeft" />
             </button>
             <button
-              :area-label="AREA_LABELS.MONTH_SELECTOR_NEXT"
+              :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToNextMonth"
             >
@@ -44,12 +45,16 @@
           </div>
         </WizHStack>
         <WizCalendar
-          :activeDates="[
-            {
-              date: calendarValue,
-              state: 'primary',
-            },
-          ]"
+          :activeDates="
+            calendarValue
+              ? [
+                  {
+                    date: calendarValue,
+                    state: 'primary',
+                  },
+                ]
+              : []
+          "
           @click="(date) => (calendarValue = date)"
           :currentMonth="currentMonth"
           filledWeeks
@@ -60,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { AREA_LABELS } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   datePickerStyle,
   datePickerVariantStyle,
@@ -69,7 +74,7 @@ import {
   datePickerMonthSelectorItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject } from "vue";
+import { ref, computed, inject, PropType } from "vue";
 
 import {
   WizIcon,
@@ -92,7 +97,7 @@ interface Emit {
 
 const props = defineProps({
   value: {
-    type: Date,
+    type: [Date, null] as PropType<Date | null>,
     required: true,
   },
   placeholder: {
@@ -139,7 +144,8 @@ const clickToPreviousMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const parseValue = (inputValue?: Date) => {
+const parseValue = (inputValue: Date | null) => {
+  if (inputValue === null) return undefined;
   const value = inputValue ?? new Date();
   return `${value.getFullYear()}/${value.getMonth() + 1}/${value.getDate()}`;
 };
@@ -152,7 +158,7 @@ const currentDateTitle = computed(() => {
 
 const calendarValue = computed({
   get: () => props.value,
-  set: (value) => emit("input", value),
+  set: (value) => value && emit("input", value),
 });
 
 // Form Control
