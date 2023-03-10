@@ -20,14 +20,7 @@
       <div v-else-if="item.item.kind === 'button'">
         <div
           :class="popupButtonGroupButtonStyle"
-          @mousedown="
-            () => {
-              if (item.item.kind === 'button') {
-                item.item.option.onClick();
-                onHoldClick(item.item.option.value);
-              }
-            }
-          "
+          @mousedown="popupButtonMouseDown(item.item)"
         >
           <WizHStack gap="xs">
             <span>
@@ -131,6 +124,13 @@ const onHoldClick = (n: number) => {
     document.removeEventListener("mouseup", mouseup);
   };
   document.addEventListener("mouseup", mouseup);
+};
+
+const popupButtonMouseDown = (item: Item) => {
+  if (item.kind === "button") {
+    item.option.onClick();
+    onHoldClick(item.option.value);
+  }
 };
 
 // Form Control
