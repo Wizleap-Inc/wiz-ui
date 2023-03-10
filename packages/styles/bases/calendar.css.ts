@@ -24,11 +24,18 @@ export const calendarItemStyle = styleVariants({
     color: THEME.color.gray[600],
     textAlign: "center",
   },
-  selected: {
+  primary: {
     color: THEME.color.white[800],
     textAlign: "center",
     background: THEME.color.green[800],
     borderRadius: THEME.spacing.xs2,
+  },
+  secondary: {
+    color: THEME.color.green[800],
+    textAlign: "center",
+    background: THEME.color.green[300],
+    borderRadius: THEME.spacing.xs2,
+    cursor: "pointer",
   },
   inCurrentMonth: {
     color: THEME.color.gray[700],

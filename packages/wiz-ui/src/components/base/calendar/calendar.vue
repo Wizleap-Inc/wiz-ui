@@ -17,10 +17,13 @@
             calendarItemCommonStyle,
             calendarItemStyle[getDateState(row, col)],
           ]"
-          :aria-label="`${value.getFullYear()}年${
-            value.getMonth() + 1
+          :aria-label="`${currentMonth.getFullYear()}年${
+            currentMonth.getMonth() + 1
           }月${day}日`"
-          :disabled="getDateState(row, col) !== 'inCurrentMonth'"
+          :disabled="
+            getDateState(row, col) === 'inCurrentMonth' ||
+            getDateState(row, col) === 'primary'
+          "
           @click="updateSelectedDate(row, col, day)"
         >
           {{ day }}
@@ -41,18 +44,27 @@ import {
 import { computed, PropType } from "vue";
 
 interface Emit {
-  (e: "input", value: Date): void;
+  (e: "click", value: Date): void;
 }
 const emits = defineEmits<Emit>();
 
+type State = "primary" | "secondary";
+
+interface DateState {
+  state: State;
+  date: Date;
+}
+
 const props = defineProps({
   currentMonth: {
-    type: Object as PropType<Date>,
-    required: true,
+    type: Date as PropType<Date>,
+    required: false,
+    default: new Date(),
   },
-  value: {
-    type: Object as PropType<Date>,
-    required: true,
+  activeDates: {
+    type: Array as PropType<DateState[]>,
+    required: false,
+    default: [],
   },
   filledWeeks: {
     type: Boolean,
@@ -141,7 +153,6 @@ const isCurrentMonth = (row: number, col: number) => {
   );
 };
 
-// class の定義
 const getDateState = computed(() => (row: number, col: number) => {
   const pickedUpDate = new Date(
     props.currentMonth.getFullYear(),
@@ -149,7 +160,15 @@ const getDateState = computed(() => (row: number, col: number) => {
     Number(calendars.value[row][col])
   );
   if (!isCurrentMonth(row, col)) return "outOfCurrentMonth";
-  if (pickedUpDate.toString() === props.value.toString()) return "selected";
+  const hitDate = props.activeDates.find(
+    (dateState) =>
+      dateState.date.getFullYear() === pickedUpDate.getFullYear() &&
+      dateState.date.getMonth() === pickedUpDate.getMonth() &&
+      dateState.date.getDate() === pickedUpDate.getDate()
+  );
+  if (hitDate) {
+    return hitDate.state;
+  }
   return "inCurrentMonth";
 });
 
@@ -160,7 +179,7 @@ const updateSelectedDate = (row: number, col: number, day: string) => {
       props.currentMonth.getMonth(),
       Number(day)
     );
-    emits("input", selectedValue);
+    emits("click", selectedValue);
   }
 };
 </script>
