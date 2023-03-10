@@ -1,14 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const selectBoxStyle = style({
-  position: "relative",
-  height: THEME.spacing.xl3,
-  background: THEME.color.white["800"],
-  borderRadius: THEME.spacing.xs2,
-  boxSizing: "border-box",
-});
-
 export const popupButtonGroupStyle = style({
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
