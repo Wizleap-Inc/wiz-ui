@@ -61,7 +61,7 @@ const props = defineProps({
     default: true,
   },
   layer: {
-    type: String as PropType<Exclude<ZIndexKeys, "base" | "dialog">>,
+    type: String as PropType<Exclude<ZIndexKeys, "dialog">>,
     required: false,
     default: "popover",
   },
