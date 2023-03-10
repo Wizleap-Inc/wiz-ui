@@ -166,11 +166,11 @@ Test.play = async ({ canvasElement }) => {
   const body = within(canvasElement.ownerDocument.body);
   const clickDate = new Date(date.getFullYear(), date.getMonth(), 15);
   const pastClickDate = new Date(date.getFullYear(), date.getMonth() - 1, 15);
-  const day = body.getByLabelText(_formatDateJp(clickDate));
-  await userEvent.click(day);
+  const clickDateEl = body.getByLabelText(_formatDateJp(clickDate));
+  await userEvent.click(clickDateEl);
   // 選択済みというラベルがついていることを確認
   await waitFor(() =>
-    expect(clickDate).toHaveAttribute(
+    expect(clickDateEl).toHaveAttribute(
       "aria-label",
       `${_formatDateJp(clickDate)}-選択済み`
     )
@@ -185,7 +185,9 @@ Test.play = async ({ canvasElement }) => {
     ARIA_LABELS.MONTH_SELECTOR_PREV
   );
   await userEvent.click(monthSelectorPrev);
-  const pastMonthDisplay = body.findByText(_formatDateJpMonth(pastClickDate));
+  const pastMonthDisplay = await body.findByText(
+    _formatDateJpMonth(pastClickDate)
+  );
   await waitFor(() => expect(pastMonthDisplay).toBeTruthy());
 
   // その月の15日を選択
@@ -209,6 +211,8 @@ Test.play = async ({ canvasElement }) => {
     ARIA_LABELS.MONTH_SELECTOR_NEXT
   );
   await userEvent.click(monthSelectorNext);
-  const currentMonthDisplay = body.findByText(_formatDateJpMonth(clickDate));
+  const currentMonthDisplay = await body.findByText(
+    _formatDateJpMonth(clickDate)
+  );
   await waitFor(() => expect(currentMonthDisplay).toBeTruthy());
 };
