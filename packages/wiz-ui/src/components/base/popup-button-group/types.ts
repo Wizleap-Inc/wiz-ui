@@ -8,6 +8,11 @@ export interface SelectBoxOption {
   onClick: () => void;
 }
 
-export type Item =
+export type ButtonGroupItem =
   | { kind: "button"; option: SelectBoxOption }
-  | { kind: "group"; title: string; items: Item[]; showDivider?: boolean };
+  | {
+      kind: "group";
+      title: string;
+      items: ButtonGroupItem[];
+      showDivider?: boolean;
+    };

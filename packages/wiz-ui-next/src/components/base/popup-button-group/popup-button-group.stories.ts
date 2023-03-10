@@ -9,7 +9,7 @@ import {
   WizPopupButtonGroup,
 } from "@/components";
 
-import { SelectBoxOption, Item } from "./types";
+import { SelectBoxOption, ButtonGroupItem } from "./types";
 
 export default {
   title: "Base/PopupButtonGroup",
@@ -51,10 +51,12 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
       },
     });
   });
-  return options.map((opt) => ({ kind: "button", option: opt } as Item));
+  return options.map(
+    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem)
+  );
 };
 
-const _getDummyItems = (): Item[] => {
+const _getDummyItems = (): ButtonGroupItem[] => {
   const f = (n: number) => () => console.log("clicked!", n);
   return [
     {
@@ -68,9 +70,9 @@ const _getDummyItems = (): Item[] => {
   ];
 };
 
-const _getDummyItems2 = (): Item[] => {
+const _getDummyItems2 = (): ButtonGroupItem[] => {
   const f = (n: number) => () => console.log("clicked!", n);
-  const createButton = (n: number): Item => ({
+  const createButton = (n: number): ButtonGroupItem => ({
     kind: "button",
     option: { label: `item ${n}`, value: n, onClick: f(n) },
   });

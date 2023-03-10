@@ -71,7 +71,7 @@ import {
 } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-import { Item } from "./types";
+import { ButtonGroupItem } from "./types";
 
 defineOptions({
   name: ComponentName.SelectBox,
@@ -79,7 +79,7 @@ defineOptions({
 
 const props = defineProps({
   options: {
-    type: Array as PropType<Item[]>,
+    type: Array as PropType<ButtonGroupItem[]>,
     required: true,
   },
   width: {
@@ -108,7 +108,9 @@ const props = defineProps({
   },
 });
 
-type ItemElement = { kind: "divider" } | { kind: "item"; item: Item };
+type ItemElement =
+  | { kind: "divider" }
+  | { kind: "item"; item: ButtonGroupItem };
 
 const items = computed(() => {
   const divider: ItemElement = { kind: "divider" };
@@ -140,7 +142,7 @@ const onHoldClick = (n: number) => {
   document.addEventListener("mouseup", mouseup);
 };
 
-const popupButtonMouseDown = (item: Item) => {
+const popupButtonMouseDown = (item: ButtonGroupItem) => {
   if (item.kind === "button") {
     item.option.onClick();
     onHoldClick(item.option.value);
