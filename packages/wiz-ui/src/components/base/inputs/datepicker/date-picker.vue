@@ -28,16 +28,18 @@
           }}</WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
+              :area-label="AREA_LABELS.MONTH_SELECTOR_PREV"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToPreviousMonth"
             >
-              <WizIcon size="md" :icon="WizIChevronLeft" />
+              <WizIcon size="md" color="inherit" :icon="WizIChevronLeft" />
             </button>
             <button
+              :area-label="AREA_LABELS.MONTH_SELECTOR_NEXT"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToNextMonth"
             >
-              <WizIcon size="md" :icon="WizIChevronRight" />
+              <WizIcon size="md" color="inherit" :icon="WizIChevronRight" />
             </button>
           </div>
         </WizHStack>
@@ -58,6 +60,7 @@
 </template>
 
 <script setup lang="ts">
+import { AREA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   datePickerStyle,
   datePickerVariantStyle,

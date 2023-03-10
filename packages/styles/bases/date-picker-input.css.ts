@@ -50,6 +50,7 @@ export const datePickerMonthSelectorItemStyle = style({
   borderRadius: THEME.spacing.xs2,
   border: "none",
   background: "transparent",
+  fill: THEME.color.gray["700"],
 
   ":hover": {
     backgroundColor: THEME.color.green["300"],
