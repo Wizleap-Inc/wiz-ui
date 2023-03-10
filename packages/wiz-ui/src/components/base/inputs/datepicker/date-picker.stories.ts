@@ -150,7 +150,7 @@ export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   },
   template: `
     <div>
-      <WizDatepicker v-model="date" @update:modelValue="args.onClick"/>
+      <WizDatepicker v-model="date" @input="input"/>
     </div>
   `,
 });
@@ -182,7 +182,7 @@ Test.play = async ({ canvasElement }) => {
     ARIA_LABELS.MONTH_SELECTOR_PREV
   );
   await userEvent.click(monthSelectorPrev);
-  const pastMonthDisplay = body.getByText(_formatDateJpMonth(pastClickDate));
+  const pastMonthDisplay = body.findByText(_formatDateJpMonth(pastClickDate));
   await waitFor(() => expect(pastMonthDisplay).toBeTruthy());
 
   // その月の15日を選択
@@ -203,6 +203,6 @@ Test.play = async ({ canvasElement }) => {
     ARIA_LABELS.MONTH_SELECTOR_NEXT
   );
   await userEvent.click(monthSelectorNext);
-  const currentMonthDisplay = body.getByText(_formatDateJpMonth(clickDate));
+  const currentMonthDisplay = body.findByText(_formatDateJpMonth(clickDate));
   await waitFor(() => expect(currentMonthDisplay).toBeTruthy());
 };
