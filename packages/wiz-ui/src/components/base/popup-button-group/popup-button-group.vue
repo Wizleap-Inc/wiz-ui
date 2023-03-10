@@ -1,7 +1,7 @@
 <template>
   <WizVStack
     gap="no"
-    :class="popupButtonGroupStyle"
+    :class="[popupButtonGroupStyle]"
     :style="{ minWidth: computedWidth }"
   >
     <div v-for="item in items">
@@ -10,22 +10,26 @@
         :class="popupButtonGroupDividerStyle"
       />
       <div v-else-if="item.item.kind === 'group'">
-        <span :class="popupButtonGroupTitleStyle"> {{ item.item.title }}</span>
+        <span
+          :class="popupButtonGroupTitleStyle"
+          :style="{ paddingLeft: `calc(${depth} * ${THEME.spacing.lg})` }"
+        >
+          {{ item.item.title }}</span
+        >
         <WizPopupButtonGroup
           :options="item.item.items"
-          :class="popupButtonGroupNestedStyle"
           :showDivider="item.item.showDivider"
+          :depth="depth + 1"
         />
       </div>
       <div v-else-if="item.item.kind === 'button'">
         <div
           :class="popupButtonGroupButtonStyle"
+          :style="{ paddingLeft: `calc(${depth} * ${THEME.spacing.lg})` }"
           @mousedown="popupButtonMouseDown(item.item)"
         >
           <WizHStack gap="xs">
-            <span>
-              {{ item.item.option.label }}
-            </span>
+            <span>{{ item.item.option.label }} </span>
             <span v-if="item.item.option.exLabel">
               {{ item.item.option.exLabel }}
             </span>
@@ -48,13 +52,12 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   popupButtonGroupStyle,
   popupButtonGroupButtonStyle,
   popupButtonGroupTitleStyle,
   popupButtonGroupDividerStyle,
-  popupButtonGroupNestedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
 
@@ -95,6 +98,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  depth: {
+    type: Number,
+    required: false,
+    default: 0,
   },
 });
 

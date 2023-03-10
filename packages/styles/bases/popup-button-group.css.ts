@@ -8,10 +8,6 @@ export const popupButtonGroupStyle = style({
   maxHeight: "25rem",
 });
 
-export const popupButtonGroupNestedStyle = style({
-  paddingLeft: THEME.spacing.lg,
-});
-
 export const popupButtonGroupButtonStyle = style({
   width: "100%",
   display: "flex",
