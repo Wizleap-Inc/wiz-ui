@@ -21,7 +21,7 @@
             currentMonth.getMonth() + 1
           }月${day}日`"
           :disabled="
-            getDateState(row, col) === 'inCurrentMonth' ||
+            getDateState(row, col) === 'outOfCurrentMonth' ||
             getDateState(row, col) === 'primary'
           "
           @click="updateSelectedDate(row, col, day)"
@@ -64,7 +64,7 @@ const props = defineProps({
   activeDates: {
     type: Array as PropType<DateState[]>,
     required: false,
-    default: [],
+    default: () => [],
   },
   filledWeeks: {
     type: Boolean,
