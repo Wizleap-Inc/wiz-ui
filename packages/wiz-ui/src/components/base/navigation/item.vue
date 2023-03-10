@@ -30,7 +30,12 @@
       </component>
     </div>
     <div v-if="existPopup" @mouseenter="popupMouseEnter">
-      <WizPopup :isOpen="isOpenDropdown" @onClose="popupOnClose" direction="rt">
+      <WizPopup
+        :isOpen="isOpenDropdown"
+        @onClose="popupOnClose"
+        direction="rt"
+        layer="base"
+      >
         <WizPopupButtonGroup
           :options="buttons ?? []"
           :class="navigationPopupContainerStyle"
