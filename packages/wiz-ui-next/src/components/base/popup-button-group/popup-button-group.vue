@@ -121,7 +121,7 @@ const items = computed(() => {
       if (!props.showDivider || i + 1 === props.options.length) {
         return [optionItem];
       }
-      return props.options[i + 1].kind !== "group"
+      return props.options[i].kind === "group"
         ? [optionItem, divider]
         : [optionItem];
     })
