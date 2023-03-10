@@ -6,11 +6,10 @@ import {
   WizPopup,
   WizIOpenInNew,
   WizIAddCircle,
+  WizPopupButtonGroup,
 } from "@/components";
 
 import { SelectBoxOption, Item } from "./types";
-
-import { WizPopupButtonGroup } from ".";
 
 export default {
   title: "Base/PopupButtonGroup",

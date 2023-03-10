@@ -65,14 +65,15 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, ComputedRef, inject, PropType, ref } from "vue";
 
-import { WizIcon } from "@/components";
+import {
+  WizIcon,
+  WizPopupButtonGroup,
+  WizVStack,
+  WizHStack,
+} from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-import { WizVStack, WizHStack } from "../stack";
-
 import { Item } from "./types";
-
-import { WizPopupButtonGroup } from ".";
 
 defineOptions({
   name: ComponentName.SelectBox,
