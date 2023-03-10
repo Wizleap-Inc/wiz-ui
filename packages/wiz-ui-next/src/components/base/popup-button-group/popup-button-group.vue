@@ -119,12 +119,12 @@ const items = computed(() => {
   return items;
 });
 
-const isClicking = ref<number | undefined>(undefined);
+const isClicking = ref<number | null>(null);
 
 const onHoldClick = (n: number) => {
   isClicking.value = n;
   const mouseup = () => {
-    isClicking.value = undefined;
+    isClicking.value = null;
     document.removeEventListener("mouseup", mouseup);
   };
   document.addEventListener("mouseup", mouseup);
