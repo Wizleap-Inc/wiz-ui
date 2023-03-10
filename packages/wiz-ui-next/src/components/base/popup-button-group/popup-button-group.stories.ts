@@ -1,6 +1,12 @@
 import { Meta, StoryFn } from "@storybook/vue3";
 
-import { WizHStack, WizPopupContainer, WizPopup } from "@/components";
+import {
+  WizHStack,
+  WizPopupContainer,
+  WizPopup,
+  WizIOpenInNew,
+  WizIAddCircle,
+} from "@/components";
 
 import { SelectBoxOption, Item } from "./types";
 
@@ -26,9 +32,9 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
       return undefined;
     }
     return i % 3 === 1
-      ? { icon: "openNew" as const, iconDefaultColor: "gray.500" as const }
+      ? { icon: WizIOpenInNew, iconDefaultColor: "gray.500" as const }
       : {
-          icon: "addCircle" as const,
+          icon: WizIAddCircle,
           iconDefaultColor: "green.800" as const,
         };
   };
