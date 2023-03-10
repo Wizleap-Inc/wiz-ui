@@ -1,6 +1,7 @@
 <template>
   <WizPopupContainer :style="{ width: '100%' }">
     <div
+      ref="navItemRef"
       @click="navItemOnClick"
       @mouseenter="navItemMouseEnter"
       @mouseleave="navItemMouseLeave"
@@ -29,7 +30,11 @@
         </div>
       </component>
     </div>
-    <div v-if="existPopup" @mouseenter="popupMouseEnter">
+    <div
+      v-if="existPopup"
+      @mouseleave="popupMouseLeave"
+      ref="popupContainerRef"
+    >
       <WizPopup
         :isOpen="isOpenDropdown"
         @onClose="popupOnClose"
@@ -106,6 +111,9 @@ interface Emit {
 const emit = defineEmits<Emit>();
 
 const isOpenDropdown = ref(false);
+const navItemRef = ref<HTMLElement>();
+const popupContainerRef = ref<HTMLElement>();
+
 const existPopup = computed(() => props.buttons && props.buttons?.length > 0);
 const navItemOnClick = () => {
   isOpenDropdown.value = true;
@@ -114,14 +122,21 @@ const navItemOnClick = () => {
 const navItemMouseEnter = () => {
   if (!props.lockingPopup) isOpenDropdown.value = true;
 };
-const navItemMouseLeave = () => {
-  if (!props.lockingPopup) isOpenDropdown.value = false;
+const navItemMouseLeave = (event: MouseEvent) => {
+  const x = navItemRef.value?.getBoundingClientRect().right ?? 0;
+  if (event.clientX < x && !props.lockingPopup) isOpenDropdown.value = false;
 };
 const popupOnClose = () => {
   isOpenDropdown.value = false;
   emit("setLock", false);
 };
-const popupMouseEnter = () => {
-  console.log("aaaaaaa");
+const popupMouseLeave = (event: MouseEvent) => {
+  console.log("popupMouseLeave");
+  const [cx, cy] = [event.clientX, event.clientY];
+  const left = popupContainerRef.value?.getBoundingClientRect().left ?? 0;
+  const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
+  const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
+  if (cx < left && top < cy && cy < bottom) return;
+  if (!props.lockingPopup) isOpenDropdown.value = false;
 };
 </script>
