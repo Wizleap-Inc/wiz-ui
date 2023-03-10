@@ -37,19 +37,20 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
           iconDefaultColor: "green.800" as const,
         };
   };
-  for (let i = 1; i <= count; i++) {
-    const icon = createIcon(i);
+  Array.from({ length: count }).forEach((_, i) => {
+    const n = i + 1;
+    const icon = createIcon(n);
     options.push({
-      label: label + i,
-      value: i,
+      label: label + n,
+      value: n,
       exLabel: exLabel,
       icon: icon?.icon,
       iconDefaultColor: icon?.iconDefaultColor,
       onClick: () => {
-        console.log("clicked! ", i);
+        console.log("clicked! ", n);
       },
     });
-  }
+  });
   return options.map((opt) => ({ kind: "button", option: opt } as Item));
 };
 
