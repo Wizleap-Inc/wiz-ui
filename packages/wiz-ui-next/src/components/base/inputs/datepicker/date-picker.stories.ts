@@ -167,9 +167,12 @@ Test.play = async ({ canvasElement }) => {
   const pastClickDate = new Date(date.getFullYear(), date.getMonth() - 1, 15);
   const day = body.getByLabelText(_formatDateJp(clickDate));
   await userEvent.click(day);
-  // そのボタンのaria-selectedがtrueになることを確認
+  // 選択済みというラベルがついていることを確認
   await waitFor(() =>
-    expect(day.attributes.getNamedItem("aria-selected")).toBeTruthy()
+    expect(clickDate).toHaveAttribute(
+      "aria-label",
+      `${_formatDateJp(clickDate)}-選択済み`
+    )
   );
   // Input内が選択した日付になることを確認
   await waitFor(() =>
@@ -187,9 +190,12 @@ Test.play = async ({ canvasElement }) => {
   // その月の15日を選択
   const pastDay = body.getByLabelText(_formatDateJp(pastClickDate));
   await userEvent.click(pastDay);
-  // そのボタンのaria-selectedがtrueになることを確認
+  // 選択済みというラベルがついていることを確認
   await waitFor(() =>
-    expect(pastDay.attributes.getNamedItem("aria-selected")).toBeTruthy()
+    expect(pastDay).toHaveAttribute(
+      "aria-label",
+      `${_formatDateJp(pastClickDate)}-選択済み`
+    )
   );
 
   // Input内が選択した日付になることを確認

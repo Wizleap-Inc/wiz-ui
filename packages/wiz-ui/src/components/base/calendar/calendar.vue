@@ -19,14 +19,15 @@
           ]"
           :aria-label="`${currentMonth.getFullYear()}年${
             currentMonth.getMonth() + 1
-          }月${day}日`"
+          }月${day}日${
+            getDateState(row, col) === 'primary' ||
+            getDateState(row, col) === 'secondary'
+              ? '-選択済み'
+              : ''
+          }`"
           :disabled="
             getDateState(row, col) === 'outOfCurrentMonth' ||
             getDateState(row, col) === 'primary'
-          "
-          :aria-selected="
-            getDateState(row, col) === 'primary' ||
-            getDateState(row, col) === 'secondary'
           "
           @click="updateSelectedDate(row, col, day)"
         >
