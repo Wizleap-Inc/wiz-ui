@@ -24,6 +24,10 @@
             getDateState(row, col) === 'outOfCurrentMonth' ||
             getDateState(row, col) === 'primary'
           "
+          :aria-selected="
+            getDateState(row, col) === 'primary' ||
+            getDateState(row, col) === 'secondary'
+          "
           @click="updateSelectedDate(row, col, day)"
         >
           {{ day }}
