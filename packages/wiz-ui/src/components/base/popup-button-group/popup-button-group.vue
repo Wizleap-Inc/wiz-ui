@@ -38,11 +38,7 @@
             </span>
             <div v-if="item.item.option.icon">
               <WizIcon
-                :icon="
-                  item.item.option.icon === 'openNew'
-                    ? WizIOpenInNew
-                    : WizIAddCircle
-                "
+                :icon="item.item.option.icon"
                 :color="
                   item.item.option.value === isClicking
                     ? 'white.800'
@@ -70,7 +66,6 @@ import {
 import { computed, ComputedRef, inject, PropType, ref } from "vue";
 
 import { WizIcon } from "@/components";
-import { WizIOpenInNew, WizIAddCircle } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizVStack, WizHStack } from "../stack";

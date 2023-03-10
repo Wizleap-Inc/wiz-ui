@@ -1,8 +1,9 @@
+import { TIcon } from "@/components";
 export interface SelectBoxOption {
   label: string;
   value: number;
   exLabel?: string;
-  icon?: "openNew" | "addCircle";
+  icon?: TIcon;
   iconDefaultColor?: "green.800" | "gray.500";
   onClick: () => void;
 }
