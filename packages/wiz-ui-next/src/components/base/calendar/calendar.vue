@@ -47,17 +47,12 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import { computed, PropType } from "vue";
 
+import { DateStatus } from "./types";
+
 interface Emit {
   (e: "click", value: Date): void;
 }
 const emits = defineEmits<Emit>();
-
-type State = "primary" | "secondary";
-
-interface DateState {
-  state: State;
-  date: Date;
-}
 
 const props = defineProps({
   currentMonth: {
@@ -66,7 +61,7 @@ const props = defineProps({
     default: new Date(),
   },
   activeDates: {
-    type: Array as PropType<DateState[]>,
+    type: Array as PropType<DateStatus[]>,
     required: false,
     default: () => [],
   },
