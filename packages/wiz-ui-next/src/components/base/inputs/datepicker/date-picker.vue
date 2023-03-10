@@ -1,72 +1,69 @@
 <template>
   <WizPopupContainer>
-    <div
+    <button
       :class="[
         datePickerStyle,
-        inputBorderStyle[state],
-        disabled && datePickerDisabledStyle,
+        datePickerVariantStyle[variant],
+        inputBorderStyle[borderState],
       ]"
+      :style="{
+        width,
+      }"
+      @click="toggleDatepicker"
     >
-      <div
-        :class="[
-          datePickerBoxStyle,
-          datePickerBoxColorStyle[datePickerBoxColor],
-        ]"
-        :style="{
-          width,
-        }"
-        @click="toggleDatepicker"
-      >
-        <WizHStack gap="sm" align="center" height="100%">
-          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
-          <span>{{ parseValue(calendarValue) || placeholder }}</span>
+      <WizHStack gap="sm" align="center" height="100%">
+        <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        <span>{{ parseValue(calendarValue) || placeholder }}</span>
+      </WizHStack>
+    </button>
+    <WizPopup
+      :isOpen="openDatepicker"
+      @onClose="openDatepicker = false"
+      gap="xs"
+    >
+      <div :class="datePickerSelectorStyle">
+        <WizHStack align="center" my="xs2" px="xs" justify="between">
+          <WizText as="span" fontSize="xs" color="gray.700">{{
+            currentDateTitle
+          }}</WizText>
+          <div :class="datePickerMonthSelectorStyle">
+            <button
+              :class="datePickerMonthSelectorItemStyle"
+              @click="clickToPreviousMonth"
+            >
+              <WizIcon size="md" :icon="WizIChevronLeft" />
+            </button>
+            <button
+              :class="datePickerMonthSelectorItemStyle"
+              @click="clickToNextMonth"
+            >
+              <WizIcon size="md" :icon="WizIChevronRight" />
+            </button>
+          </div>
         </WizHStack>
+        <WizCalendar
+          :activeDates="[
+            {
+              date: calendarValue,
+              state: 'primary',
+            },
+          ]"
+          @click="(date) => (calendarValue = date)"
+          :currentMonth="currentMonth"
+          filledWeeks
+        />
       </div>
-      <WizPopup
-        :isOpen="openDatepicker"
-        @onClose="openDatepicker = false"
-        gap="xs"
-      >
-        <div :class="datePickerSelectorStyle">
-          <WizHStack align="center" my="xs2" px="xs" justify="between">
-            <WizText as="span" fontSize="xs" color="gray.700">{{
-              currentDateTitle
-            }}</WizText>
-            <div :class="datePickerButtonBoxStyle">
-              <div
-                :class="datePickerButtonBoxItemStyle"
-                @click="clickToPreviousMonth"
-              >
-                <WizIcon size="md" :icon="WizIChevronLeft" />
-              </div>
-              <div
-                :class="datePickerButtonBoxItemStyle"
-                @click="clickToNextMonth"
-              >
-                <WizIcon size="md" :icon="WizIChevronRight" />
-              </div>
-            </div>
-          </WizHStack>
-          <WizCalendar
-            v-model="calendarValue"
-            :currentMonth="currentMonth"
-            filledWeeks
-          />
-        </div>
-      </WizPopup>
-    </div>
+    </WizPopup>
   </WizPopupContainer>
 </template>
 
 <script setup lang="ts">
 import {
   datePickerStyle,
-  datePickerDisabledStyle,
-  datePickerBoxStyle,
-  datePickerBoxColorStyle,
+  datePickerVariantStyle,
   datePickerSelectorStyle,
-  datePickerButtonBoxStyle,
-  datePickerButtonBoxItemStyle,
+  datePickerMonthSelectorStyle,
+  datePickerMonthSelectorItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject } from "vue";
@@ -155,17 +152,19 @@ const calendarValue = computed({
   set: (value) => emit("update:modelValue", value),
 });
 
-const datePickerBoxColor = computed(() =>
-  calendarValue.value ? "selected" : "default"
-);
-
 // Form Control
 const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
 
-const state = computed(() => {
+const borderState = computed(() => {
   if (isError.value) return "error";
   if (openDatepicker.value) return "active";
+  return "default";
+});
+
+const variant = computed(() => {
+  if (props.disabled) return "disabled";
+  if (calendarValue.value) return "selected";
   return "default";
 });
 </script>
