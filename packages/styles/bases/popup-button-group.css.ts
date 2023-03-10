@@ -43,7 +43,7 @@ export const popupButtonGroupTitleStyle = style({
   alignItems: "center",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   boxSizing: "border-box",
-  cursor: "text",
+  userSelect: "none",
 });
 
 export const popupButtonGroupDividerStyle = style({
