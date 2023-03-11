@@ -3,6 +3,7 @@ import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import {
+  WizRangeDatePicker,
   WizTextInput,
   WizPasswordInput,
   WizSelectBox,
@@ -14,6 +15,10 @@ import {
 } from "@/components";
 import { CheckBoxOption } from "@/components/base/inputs/checkbox/types";
 import { RadioOption } from "@/components/base/inputs/radio/types";
+import {
+  DateRange,
+  RangeDatePickerSelectBoxOption,
+} from "@/components/base/inputs/range-datepicker/types";
 import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
 import { WizFormGroup, WizFormControl } from ".";
@@ -151,12 +156,13 @@ export const AllInput: StoryFn = () => ({
     WizTextArea,
     WizDatePicker,
     WizTimePicker,
+    WizRangeDatePicker,
   },
   setup() {
     const textInput = ref("");
     const passwordInput = ref("");
     const textareaInput = ref("");
-    const selectOptions: SelectBoxOption[] = SELECT_BOX_CHOICES;
+    const SELECT_OPTIONS: SelectBoxOption[] = SELECT_BOX_CHOICES;
     const selectInput = ref<string | null>(null);
     const checkBoxOptions: CheckBoxOption[] = [
       {
@@ -186,18 +192,31 @@ export const AllInput: StoryFn = () => ({
     const radioInput = ref<number | null>(null);
     const datePickerInput = ref(new Date(2021, 0, 1));
     const timePickerInput = ref("");
+    const dateRangeInput = ref<DateRange>({
+      start: null,
+      end: null,
+    });
+    const selectBoxOptions = ref<RangeDatePickerSelectBoxOption[]>([
+      { label: "選択肢1", value: "1" },
+      { label: "選択肢2", value: "2" },
+      { label: "選択肢3", value: "3" },
+    ]);
+    const selectBoxInput = ref("");
     return {
       textInput,
       passwordInput,
       textareaInput,
       selectInput,
-      selectOptions,
+      SELECT_OPTIONS,
       checkboxInput,
       checkBoxOptions,
       radioInput,
       radioOptions,
       datePickerInput,
       timePickerInput,
+      dateRangeInput,
+      selectBoxOptions,
+      selectBoxInput,
     };
   },
   template: `
@@ -209,7 +228,7 @@ export const AllInput: StoryFn = () => ({
         <WizPasswordInput v-model="passwordInput" name="passwordInput" placeholder="入力してください" />
       </WizFormControl>
       <WizFormControl label="WizSelectBox">
-        <WizSelectBox v-model="selectInput" name="selectInput" placeholder="選択してください" :options="selectOptions" />
+        <WizSelectBox v-model="selectInput" name="selectInput" placeholder="選択してください" :options="SELECT_OPTIONS" />
       </WizFormControl>
       <WizFormControl label="WizCheckBox">
         <WizCheckBox v-model="checkboxInput" name="checkboxInput" :options="checkBoxOptions" />
@@ -225,6 +244,9 @@ export const AllInput: StoryFn = () => ({
       </WizFormControl>
       <WizFormControl label="WizTextArea">
         <WizTextArea v-model="textareaInput" name="textareaInput" placeholder="入力してください" />
+      </WizFormControl>
+      <WizFormControl label="WizRangeDatePicker">
+        <WizRangeDatePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxInput" @update:selectBoxValue="selectBoxInput = $event" />
       </WizFormControl>
     </WizFormGroup>
   `,
@@ -242,6 +264,7 @@ export const AllInputError: StoryFn = () => ({
     WizTextArea,
     WizDatePicker,
     WizTimePicker,
+    WizRangeDatePicker,
   },
   setup() {
     const textInput = ref("");
@@ -277,6 +300,16 @@ export const AllInputError: StoryFn = () => ({
     const radioInput = ref(0);
     const datePickerInput = ref(new Date(2021, 0, 1));
     const timePickerInput = ref("");
+    const dateRangeInput = ref<DateRange>({
+      start: null,
+      end: null,
+    });
+    const selectBoxOptions = ref<RangeDatePickerSelectBoxOption[]>([
+      { label: "選択肢1", value: "1" },
+      { label: "選択肢2", value: "2" },
+      { label: "選択肢3", value: "3" },
+    ]);
+    const selectBoxInput = ref("");
     return {
       textInput,
       passwordInput,
@@ -289,6 +322,9 @@ export const AllInputError: StoryFn = () => ({
       radioOptions,
       datePickerInput,
       timePickerInput,
+      dateRangeInput,
+      selectBoxOptions,
+      selectBoxInput,
     };
   },
   template: `
@@ -316,6 +352,9 @@ export const AllInputError: StoryFn = () => ({
       </WizFormControl>
       <WizFormControl label="WizTextArea" error="エラーが発生しました">
         <WizTextArea v-model="textareaInput" name="textareaInput" placeholder="入力してください" />
+      </WizFormControl>
+      <WizFormControl label="WizRangeDatePicker" error="エラーが発生しました">
+        <WizRangeDatePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxInput" @update:selectBoxValue="selectBoxInput = $event" />
       </WizFormControl>
     </WizFormGroup>
   `,
