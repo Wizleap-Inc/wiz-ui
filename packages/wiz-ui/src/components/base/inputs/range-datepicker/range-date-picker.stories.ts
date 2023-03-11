@@ -40,10 +40,11 @@ export default {
   },
   parameters: {
     screenshot: {
-      viewport: {
-        width: 1024,
-        height: 768,
-        deviceScaleFactor: 2,
+      viewports: {
+        large: {
+          width: 1024,
+          height: 768,
+        },
       },
     },
   },
