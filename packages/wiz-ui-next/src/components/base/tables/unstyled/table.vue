@@ -5,6 +5,9 @@
       spaceY && borderSpacingYStyle[spaceY],
       !spaceX && !spaceY && borderSpacingStyle[space],
     ]"
+    :style="{
+      'table-layout': fixed ? 'fixed' : 'auto',
+    }"
   >
     <slot />
   </table>
@@ -36,6 +39,11 @@ defineProps({
   spaceY: {
     type: String as PropType<SpacingKeys>,
     required: false,
+  },
+  fixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 </script>

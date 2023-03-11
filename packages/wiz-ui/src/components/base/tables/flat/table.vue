@@ -1,5 +1,10 @@
 <template>
-  <table :class="flatTableStyle">
+  <table
+    :class="flatTableStyle"
+    :style="{
+      'table-layout': fixed ? 'fixed' : 'auto',
+    }"
+  >
     <slot />
   </table>
 </template>
@@ -10,5 +15,13 @@ import { flatTableStyle } from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css"
 
 defineOptions({
   name: ComponentName.FlatTable,
+});
+
+defineProps({
+  fixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 </script>

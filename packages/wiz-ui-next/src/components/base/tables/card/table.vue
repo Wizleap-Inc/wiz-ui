@@ -1,5 +1,10 @@
 <template>
-  <table :class="cardTableStyle">
+  <table
+    :class="cardTableStyle"
+    :style="{
+      'table-layout': fixed ? 'fixed' : 'auto',
+    }"
+  >
     <slot />
   </table>
 </template>
@@ -10,5 +15,13 @@ import { cardTableStyle } from "@wizleap-inc/wiz-ui-styles/bases/card-table.css"
 
 defineOptions({
   name: ComponentName.CardTable,
+});
+
+defineProps({
+  fixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 </script>
