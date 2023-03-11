@@ -67,6 +67,63 @@ export const rangeDatePickerPopupStyle = style({
   flexDirection: "column",
 });
 
+export const rangeDatePickerPopupHeaderStyle = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  borderBottom: `1px solid ${THEME.color.gray["300"]}`,
+  padding: THEME.spacing.xs,
+});
+
+export const rangeDatePickerPopupHeaderSelectBoxContainerStyle = style({
+  position: "relative",
+});
+
+export const rangeDatePickerPopupHeaderSelectBoxStyle = style({
+  border: `1px solid ${THEME.color.gray["300"]}`,
+  borderRadius: THEME.spacing.xs2,
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  background: THEME.color.white["800"],
+  gap: THEME.spacing.xs,
+  cursor: "pointer",
+  color: THEME.color.gray["700"],
+});
+
+export const rangeDatePickerPopupHeaderSelectBoxOptionsStyle = style({
+  position: "absolute",
+  top: "calc(100% + 1rem)",
+  right: 0,
+  zIndex: 1,
+  width: "max-content",
+  background: THEME.color.white["800"],
+  borderRadius: THEME.spacing.xs2,
+  boxShadow: THEME.shadow.sm,
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  gap: THEME.spacing.xs2,
+  padding: THEME.spacing.xs2,
+});
+
+export const rangeDatePickerPopupHeaderSelectBoxOptionStyle = style({
+  border: "none",
+  cursor: "pointer",
+  background: "transparent",
+  color: THEME.color.gray["700"],
+
+  ":hover": {
+    backgroundColor: THEME.color.green["300"],
+    color: THEME.color.green["800"],
+  },
+  ":active": {
+    backgroundColor: THEME.color.green["800"],
+    color: THEME.color.white["800"],
+  },
+});
+
 export const rangeDatePickerPopupCalendarsStyle = style({
   display: "flex",
 });
@@ -77,22 +134,17 @@ const rangeDatePickerPopupCalendarContainerBaseStyle = style({
   alignItems: "center",
   justifyContent: "flex-start",
   gap: THEME.spacing.xs2,
+  padding: THEME.spacing.xs,
 });
 
 export const rangeDatePickerPopupCalendarContainerStyle = styleVariants({
   left: [
     rangeDatePickerPopupCalendarContainerBaseStyle,
     {
-      paddingRight: THEME.spacing.xs,
       borderRight: `1px solid ${THEME.color.gray["300"]}`,
     },
   ],
-  right: [
-    rangeDatePickerPopupCalendarContainerBaseStyle,
-    {
-      paddingLeft: THEME.spacing.xs,
-    },
-  ],
+  right: [rangeDatePickerPopupCalendarContainerBaseStyle],
 });
 
 export const rangeDatePickerPopupCalendarHeaderStyle = style({

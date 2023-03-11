@@ -30,8 +30,44 @@
       >
     </button>
     <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false" gap="xs">
-      <WizCard p="xs">
+      <WizCard p="no">
         <div :class="rangeDatePickerPopupStyle">
+          <div v-if="selectBoxOptions" :class="rangeDatePickerPopupHeaderStyle">
+            <div
+              :class="rangeDatePickerPopupHeaderSelectBoxContainerStyle"
+              ref="selectBoxContainerRef"
+            >
+              <button
+                :class="[
+                  rangeDatePickerPopupHeaderSelectBoxStyle,
+                  inputBorderStyle[isSelectBoxOpen ? 'active' : 'default'],
+                ]"
+                :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_SELECT_BOX_INPUT"
+                @click="toggleSelectBoxOpen"
+              >
+                {{ selectedOption?.label || "未選択" }}
+                <WizIcon
+                  size="xl"
+                  color="gray.400"
+                  :icon="isSelectBoxOpen ? WizIExpandLess : WizIExpandMore"
+                />
+              </button>
+              <div
+                v-if="isSelectBoxOpen"
+                :class="rangeDatePickerPopupHeaderSelectBoxOptionsStyle"
+              >
+                <button
+                  v-for="(option, index) in selectBoxOptions"
+                  :key="index"
+                  :class="rangeDatePickerPopupHeaderSelectBoxOptionStyle"
+                  :aria-label="option.label"
+                  @click="handleSelectBoxOptionClick(option.value)"
+                >
+                  {{ option.label }}
+                </button>
+              </div>
+            </div>
+          </div>
           <div :class="rangeDatePickerPopupCalendarsStyle">
             <div :class="rangeDatePickerPopupCalendarContainerStyle['left']">
               <div :class="rangeDatePickerPopupCalendarHeaderStyle">
@@ -90,7 +126,12 @@ import {
   rangeDatePickerStyle,
   rangeDatePickerWidthStyle,
   rangeDatePickerSeparatorStyle,
+  rangeDatePickerPopupHeaderStyle,
   rangeDatePickerInputTextStyle,
+  rangeDatePickerPopupHeaderSelectBoxContainerStyle,
+  rangeDatePickerPopupHeaderSelectBoxStyle,
+  rangeDatePickerPopupHeaderSelectBoxOptionsStyle,
+  rangeDatePickerPopupHeaderSelectBoxOptionStyle,
   rangeDatePickerPopupCalendarContainerStyle,
   rangeDatePickerPopupCalendarHeaderStyle,
   rangeDatePickerPopupStyle,
@@ -110,17 +151,21 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
   WizIcon,
+  WizIExpandLess,
+  WizIExpandMore,
   WizPopup,
   WizPopupContainer,
 } from "@/components";
+import { useClickOutside } from "@/hooks/use-click-outside";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { DateStatus } from "../../calendar/types";
 
-import { DateRange } from "./types";
+import { RangeDatePickerSelectBoxOption, DateRange } from "./types";
 
 interface Emit {
   (e: "update:modelValue", value: DateRange): void;
+  (e: "update:selectBoxValue", value: string): void;
 }
 
 const props = defineProps({
@@ -138,6 +183,14 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  selectBoxOptions: {
+    type: Array as PropType<RangeDatePickerSelectBoxOption[]>,
+    required: false,
+  },
+  selectBoxValue: {
+    type: String,
+    required: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -145,6 +198,8 @@ const emit = defineEmits<Emit>();
 type SelectState = "selecting" | "selected" | "none";
 
 const isPopupOpen = ref(false);
+const isSelectBoxOpen = ref(false);
+const selectBoxContainerRef = ref<HTMLElement>();
 const rightCalendarDate = ref(new Date());
 const leftCalendarDate = computed(() => {
   const date = new Date(rightCalendarDate.value);
@@ -216,6 +271,26 @@ const handleDayClick = (date: Date) => {
     state: "primary",
   });
 };
+
+const toggleSelectBoxOpen = () => {
+  isSelectBoxOpen.value = !isSelectBoxOpen.value;
+};
+
+const selectedOption = computed(() => {
+  if (!props.selectBoxOptions) return undefined;
+  return props.selectBoxOptions.find(
+    (option) => option.value === props.selectBoxValue
+  );
+});
+
+const handleSelectBoxOptionClick = (value: string) => {
+  emit("update:selectBoxValue", value);
+};
+
+// popup-containerの外をクリックしたときにハンドラ発火
+useClickOutside(selectBoxContainerRef, () => {
+  isSelectBoxOpen.value = false;
+});
 
 // Form Control
 const form = inject(formControlKey);

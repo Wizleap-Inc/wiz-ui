@@ -26,8 +26,16 @@ export default {
         type: "boolean",
       },
     },
+    selectBoxOptions: {
+      control: {
+        type: "array",
+      },
+    },
     onClick: {
       action: "update:modelValue",
+    },
+    onSelectBoxValueChange: {
+      action: "update:selectBoxValue",
     },
   },
 } as Meta<typeof WizRangeDatePicker>;
@@ -37,7 +45,7 @@ const Template: StoryFn<typeof WizRangeDatePicker> = (args) => ({
   setup: () => ({ args }),
   template: `
     <div>
-      <WizRangeDatePicker v-bind="args" @update:modelValue="args.onClick"/>
+      <WizRangeDatePicker v-bind="args" @update:modelValue="args.onClick" @update:selectBoxValue="args.onSelectBoxValueChange"/>
     </div>
   `,
 });
@@ -45,22 +53,39 @@ const Template: StoryFn<typeof WizRangeDatePicker> = (args) => ({
 interface Props {
   disabled: boolean;
   expand: boolean;
+  selectBoxOptions: boolean;
 }
 
 const CODE_TEMPLATE = (props: Partial<Props>) => `
 <script setup lang="ts">
 import { ref } from "vue";
-import { WizRangeDatePicker } from "@wizleap-inc/wiz-ui";
+import { WizRangeDatePicker } from "@wizleap-inc/wiz-ui-next";
+import { DateRange, RangeDatePickerSelectBoxOption } from "@wizleap-inc/wiz-ui-next/dist/components/base/inputs/range-datepicker/types";
 
 const dateRange = ref<DateRange>({
   start: null,
   end: null,
 });
+${
+  props.selectBoxOptions
+    ? `const selectBoxOptions = ref<RangeDatePickerSelectBoxOption[]>([
+  { label: '選択肢1', value: '1' },
+  { label: '選択肢2', value: '2' },
+  { label: '選択肢3', value: '3' },
+]);
+
+const selectBoxValue = ref('');
+`
+    : ""
+}
 </script>
 <template>
-  <WizRangeDatePicker :modelValue="dateRange"${
-    (props.disabled ? ' :disabled="true"' : "") +
-    (props.expand ? " expand" : "")
+  <WizRangeDatePicker v-model="dateRange"${
+    (props.disabled ? " disabled" : "") +
+    (props.expand ? " expand" : "") +
+    (props.selectBoxOptions
+      ? ' :selectBoxOptions="selectBoxOptions" v-model:selectBoxValue="selectBoxValue"'
+      : "")
   }/>
 </template>
 `;
@@ -127,12 +152,42 @@ Expand.parameters = {
   },
 };
 
+export const SelectBoxOptions = Template.bind({});
+SelectBoxOptions.args = {
+  modelValue: {
+    start: null,
+    end: null,
+  },
+  selectBoxOptions: [
+    { label: "選択肢1", value: "1" },
+    { label: "選択肢2", value: "2" },
+    { label: "選択肢3", value: "3" },
+  ],
+};
+SelectBoxOptions.parameters = {
+  docs: {
+    description: {
+      story:
+        "selectBoxOptionsを渡すと、セレクトボックスを使った入力日の種類の切り替えができます。",
+    },
+    source: {
+      code: CODE_TEMPLATE({ selectBoxOptions: true }),
+    },
+  },
+};
+
 const _formatDateJp = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}年${month}月${day}日`;
 };
+
+const selectBoxOptions = [
+  { label: "選択肢1選択肢1", value: "1" },
+  { label: "選択肢2選択肢2", value: "2" },
+  { label: "選択肢3選択肢3", value: "3" },
+];
 
 export const Test: StoryFn<typeof WizRangeDatePicker> = (args) => ({
   components: { WizRangeDatePicker },
@@ -141,11 +196,12 @@ export const Test: StoryFn<typeof WizRangeDatePicker> = (args) => ({
       start: null,
       end: null,
     });
-    return { dateRange, args };
+    const selectBoxValue = ref<string>();
+    return { dateRange, selectBoxValue, selectBoxOptions, args };
   },
   template: `
     <div>
-      <WizRangeDatePicker v-model="dateRange" @update:modelValue="args.onClick"/>
+      <WizRangeDatePicker v-model="dateRange" v-model:selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @update:modelValue="args.onClick" @update:selectBoxValue="args.onSelectBoxValueChange"/>
     </div>
   `,
 });
