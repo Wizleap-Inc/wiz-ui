@@ -38,6 +38,15 @@ export default {
       action: "update:selectBoxValue",
     },
   },
+  parameters: {
+    screenshot: {
+      viewport: {
+        width: 1024,
+        height: 768,
+        deviceScaleFactor: 2,
+      },
+    },
+  },
 } as Meta<typeof WizRangeDatePicker>;
 
 const Template: StoryFn<typeof WizRangeDatePicker> = (args) => ({
