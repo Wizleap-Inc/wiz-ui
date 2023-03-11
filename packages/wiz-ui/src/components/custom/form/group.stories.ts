@@ -246,7 +246,7 @@ export const AllInput: StoryFn = () => ({
         <WizTextArea v-model="textareaInput" name="textareaInput" placeholder="入力してください" />
       </WizFormControl>
       <WizFormControl label="WizRangeDatePicker">
-        <WizRangeDatePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxInput" @update:selectBoxValue="selectBoxInput = $event" />
+        <WizRangeDatePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxInput" @updateSelectBoxValue="selectBoxInput = $event" />
       </WizFormControl>
     </WizFormGroup>
   `,
@@ -354,7 +354,7 @@ export const AllInputError: StoryFn = () => ({
         <WizTextArea v-model="textareaInput" name="textareaInput" placeholder="入力してください" />
       </WizFormControl>
       <WizFormControl label="WizRangeDatePicker" error="エラーが発生しました">
-        <WizRangeDatePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxInput" @update:selectBoxValue="selectBoxInput = $event" />
+        <WizRangeDatePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxInput" @updateSelectBoxValue="selectBoxInput = $event" />
       </WizFormControl>
     </WizFormGroup>
   `,

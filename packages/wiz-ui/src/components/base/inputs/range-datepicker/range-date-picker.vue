@@ -161,7 +161,7 @@ import { RangeDatePickerSelectBoxOption, DateRange } from "./types";
 
 interface Emit {
   (e: "input", value: DateRange): void;
-  (e: "update:selectBoxValue", value: string): void;
+  (e: "updateSelectBoxValue", value: string): void;
 }
 
 const props = defineProps({
@@ -280,7 +280,7 @@ const selectedOption = computed(() => {
 });
 
 const handleSelectBoxOptionClick = (value: string) => {
-  emit("update:selectBoxValue", value);
+  emit("updateSelectBoxValue", value);
 };
 
 // popup-containerの外をクリックしたときにハンドラ発火

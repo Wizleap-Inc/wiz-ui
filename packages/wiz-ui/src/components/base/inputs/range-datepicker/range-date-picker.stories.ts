@@ -35,7 +35,7 @@ export default {
       action: "update:value",
     },
     onSelectBoxValueChange: {
-      action: "update:selectBoxValue",
+      action: "updateSelectBoxValue",
     },
   },
 } as Meta<typeof WizRangeDatePicker>;
@@ -45,7 +45,7 @@ const Template: StoryFn<typeof WizRangeDatePicker> = (_, { argTypes }) => ({
   components: { WizRangeDatePicker },
   template: `
     <div>
-      <WizRangeDatePicker v-bind="$props" @input="onInput" @update:selectBoxValue="onSelectBoxValueChange"/>
+      <WizRangeDatePicker v-bind="$props" @input="onInput" @updateSelectBoxValue="onSelectBoxValueChange"/>
     </div>
   `,
 });
@@ -84,7 +84,7 @@ const selectBoxValue = ref('');
     (props.disabled ? " disabled" : "") +
     (props.expand ? " expand" : "") +
     (props.selectBoxOptions
-      ? ' :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxValue" @update:selectBoxValue="selectBoxValue = $event"'
+      ? ' :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxValue" @updateSelectBoxValue="selectBoxValue = $event"'
       : "")
   }/>
 </template>
@@ -214,7 +214,7 @@ export const Test: StoryFn<typeof WizRangeDatePicker> = (
   },
   template: `
     <div>
-      <WizRangeDatePicker v-model="dateRange" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onInput" @update:selectBoxValue="handleSelectBoxValueChange" />
+      <WizRangeDatePicker v-model="dateRange" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onInput" @updateSelectBoxValue="handleSelectBoxValueChange" />
     </div>
   `,
 });
