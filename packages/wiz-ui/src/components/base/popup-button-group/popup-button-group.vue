@@ -20,7 +20,8 @@
         >
         <WizPopupButtonGroup
           :options="item.item.items"
-          :showDivider="item.item.showDivider"
+          :groupDivider="item.item.groupDivider"
+          :buttonDivider="item.item.buttonDivider"
           :depth="depth + 1"
         />
       </div>
@@ -98,7 +99,12 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
-  showDivider: {
+  groupDivider: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  buttonDivider: {
     type: Boolean,
     required: false,
     default: false,
@@ -122,12 +128,17 @@ const items = computed(() => {
         kind: "item",
         item: opt,
       };
-      if (!props.showDivider || i + 1 === props.options.length) {
-        return [optionItem];
+      if (i + 1 === props.options.length) return [optionItem];
+      switch (props.options[i].kind) {
+        case "group": {
+          return props.groupDivider ? [optionItem, divider] : [optionItem];
+        }
+        case "button": {
+          return props.buttonDivider && props.options[i + 1].kind === "button"
+            ? [optionItem, divider]
+            : [optionItem];
+        }
       }
-      return props.options[i].kind === "group"
-        ? [optionItem, divider]
-        : [optionItem];
     })
     .flat();
   return items;
