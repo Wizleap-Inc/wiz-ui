@@ -1,7 +1,7 @@
 <template>
   <WizVStack
     gap="no"
-    :class="popupButtonGroupStyle"
+    :class="[popupButtonGroupStyle]"
     :style="{ minWidth: computedWidth }"
   >
     <div v-for="item in items">
@@ -10,39 +10,32 @@
         :class="popupButtonGroupDividerStyle"
       />
       <div v-else-if="item.item.kind === 'group'">
-        <span :class="popupButtonGroupTitleStyle"> {{ item.item.title }}</span>
+        <span
+          :class="popupButtonGroupTitleStyle"
+          :style="{ paddingLeft: `calc(${depth} * ${THEME.spacing.lg})` }"
+        >
+          {{ item.item.title }}</span
+        >
         <WizPopupButtonGroup
           :options="item.item.items"
-          :class="popupButtonGroupNestedStyle"
           :showDivider="item.item.showDivider"
+          :depth="depth + 1"
         />
       </div>
       <div v-else-if="item.item.kind === 'button'">
         <div
           :class="popupButtonGroupButtonStyle"
-          @mousedown="
-            () => {
-              if (item.item.kind === 'button') {
-                item.item.option.onClick();
-                onHoldClick(item.item.option.value);
-              }
-            }
-          "
+          :style="{ paddingLeft: `calc(${depth} * ${THEME.spacing.lg})` }"
+          @mousedown="popupButtonMouseDown(item.item)"
         >
           <WizHStack gap="xs">
-            <span>
-              {{ item.item.option.label }}
-            </span>
+            <span>{{ item.item.option.label }} </span>
             <span v-if="item.item.option.exLabel">
               {{ item.item.option.exLabel }}
             </span>
             <div v-if="item.item.option.icon">
               <WizIcon
-                :icon="
-                  item.item.option.icon === 'openNew'
-                    ? WizIOpenInNew
-                    : WizIAddCircle
-                "
+                :icon="item.item.option.icon"
                 :color="
                   item.item.option.value === isClicking
                     ? 'white.800'
@@ -59,25 +52,24 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   popupButtonGroupStyle,
   popupButtonGroupButtonStyle,
   popupButtonGroupTitleStyle,
   popupButtonGroupDividerStyle,
-  popupButtonGroupNestedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
-import { computed, ComputedRef, inject, PropType, ref } from "vue";
+import { computed, inject, PropType, ref } from "vue";
 
-import { WizIcon } from "@/components";
-import { WizIOpenInNew, WizIAddCircle } from "@/components/icons";
+import {
+  WizIcon,
+  WizPopupButtonGroup,
+  WizVStack,
+  WizHStack,
+} from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-import { WizVStack, WizHStack } from "../stack";
-
-import { Item } from "./types";
-
-import { WizPopupButtonGroup } from ".";
+import { ButtonGroupItem } from "./types";
 
 defineOptions({
   name: ComponentName.SelectBox,
@@ -85,7 +77,7 @@ defineOptions({
 
 const props = defineProps({
   options: {
-    type: Array as PropType<Item[]>,
+    type: Array as PropType<ButtonGroupItem[]>,
     required: true,
   },
   width: {
@@ -107,34 +99,52 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  depth: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
-type ItemElement = { kind: "divider" } | { kind: "item"; item: Item };
+type ItemElement =
+  | { kind: "divider" }
+  | { kind: "item"; item: ButtonGroupItem };
 
-const items: ComputedRef<ItemElement[]> = computed(() => {
-  const d: ItemElement = { kind: "divider" };
-  const t = props.options
+const items = computed(() => {
+  const divider: ItemElement = { kind: "divider" };
+  const items = props.options
     .map((opt, i) => {
-      const o: ItemElement = {
+      const optionItem: ItemElement = {
         kind: "item",
         item: opt,
       };
-      if (!props.showDivider || i + 1 === props.options.length) return [o];
-      return props.options[i + 1].kind !== "group" ? [o, d] : [o];
+      if (!props.showDivider || i + 1 === props.options.length) {
+        return [optionItem];
+      }
+      return props.options[i].kind === "group"
+        ? [optionItem, divider]
+        : [optionItem];
     })
     .flat();
-  return t;
+  return items;
 });
 
-const isClicking = ref<number | undefined>(undefined);
+const isClicking = ref<number | null>(null);
 
 const onHoldClick = (n: number) => {
   isClicking.value = n;
   const mouseup = () => {
-    isClicking.value = undefined;
+    isClicking.value = null;
     document.removeEventListener("mouseup", mouseup);
   };
   document.addEventListener("mouseup", mouseup);
+};
+
+const popupButtonMouseDown = (item: ButtonGroupItem) => {
+  if (item.kind === "button") {
+    item.option.onClick();
+    onHoldClick(item.option.value);
+  }
 };
 
 // Form Control

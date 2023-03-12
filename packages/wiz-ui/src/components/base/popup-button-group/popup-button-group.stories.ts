@@ -1,10 +1,15 @@
 import { StoryFn } from "@storybook/vue";
 
-import { WizHStack, WizPopupContainer, WizPopup } from "@/components";
+import {
+  WizHStack,
+  WizPopupContainer,
+  WizPopup,
+  WizIOpenInNew,
+  WizIAddCircle,
+  WizPopupButtonGroup,
+} from "@/components";
 
-import { SelectBoxOption, Item } from "./types";
-
-import { WizPopupButtonGroup } from ".";
+import { SelectBoxOption, ButtonGroupItem } from "./types";
 
 export default {
   title: "Base/PopupButtonGroup",
@@ -26,29 +31,32 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
       return undefined;
     }
     return i % 3 === 1
-      ? { icon: "openNew" as const, iconDefaultColor: "gray.500" as const }
+      ? { icon: WizIOpenInNew, iconDefaultColor: "gray.500" as const }
       : {
-          icon: "addCircle" as const,
+          icon: WizIAddCircle,
           iconDefaultColor: "green.800" as const,
         };
   };
-  for (let i = 1; i <= count; i++) {
-    const icon = createIcon(i);
+  Array.from({ length: count }).forEach((_, i) => {
+    const n = i + 1;
+    const icon = createIcon(n);
     options.push({
-      label: label + i,
-      value: i,
+      label: label + n,
+      value: n,
       exLabel: exLabel,
       icon: icon?.icon,
       iconDefaultColor: icon?.iconDefaultColor,
       onClick: () => {
-        console.log("clicked! ", i);
+        console.log("clicked! ", n);
       },
     });
-  }
-  return options.map((opt) => ({ kind: "button", option: opt } as Item));
+  });
+  return options.map(
+    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem)
+  );
 };
 
-const _getDummyItems = (): Item[] => {
+const _getDummyItems = (): ButtonGroupItem[] => {
   const f = (n: number) => () => console.log("clicked!", n);
   return [
     { kind: "group", title: "タイトル", items: _getDummyOptions("ラベル", 3) },
@@ -57,9 +65,9 @@ const _getDummyItems = (): Item[] => {
   ];
 };
 
-const _getDummyItems2 = (): Item[] => {
+const _getDummyItems2 = (): ButtonGroupItem[] => {
   const f = (n: number) => () => console.log("clicked!", n);
-  const createButton = (n: number): Item => ({
+  const createButton = (n: number): ButtonGroupItem => ({
     kind: "button",
     option: { label: `item ${n}`, value: n, onClick: f(n) },
   });

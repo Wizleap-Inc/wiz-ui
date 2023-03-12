@@ -1,23 +1,11 @@
 import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const selectBoxStyle = style({
-  position: "relative",
-  height: THEME.spacing.xl3,
-  background: THEME.color.white["800"],
-  borderRadius: THEME.spacing.xs2,
-  boxSizing: "border-box",
-});
-
 export const popupButtonGroupStyle = style({
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   maxHeight: "25rem",
-});
-
-export const popupButtonGroupNestedStyle = style({
-  paddingLeft: THEME.spacing.lg,
 });
 
 export const popupButtonGroupButtonStyle = style({
@@ -55,7 +43,7 @@ export const popupButtonGroupTitleStyle = style({
   alignItems: "center",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   boxSizing: "border-box",
-  cursor: "text",
+  userSelect: "none",
 });
 
 export const popupButtonGroupDividerStyle = style({
