@@ -1,7 +1,8 @@
 import { Meta, StoryFn } from "@storybook/vue";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
+import { ref } from "vue";
 
 import {
-  WizHStack,
   WizPopupContainer,
   WizPopup,
   WizIOpenInNew,
@@ -15,6 +16,14 @@ export default {
   title: "Base/PopupButtonGroup",
   component: WizPopupButtonGroup,
   argTypes: {
+    width: {
+      control: { type: "string" },
+      default: "10rem",
+    },
+    p: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
     expand: {
       control: { type: "boolean" },
     },
@@ -101,9 +110,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     return {};
   },
   template: `
-  <WizHStack>
-    <WizPopupButtonGroup v-bind="$props"/>
-  </WizHStack>
+  <WizPopupButtonGroup v-bind="$props"/>
   `,
 });
 export const Default = Template.bind({});
@@ -114,25 +121,28 @@ Default.args = {
 
 export const Popup: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizPopupButtonGroup, WizHStack, WizPopupContainer, WizPopup },
+  components: { WizPopupButtonGroup, WizPopupContainer, WizPopup },
   setup() {
-    return {};
+    const isOpen = ref(true);
+    const onClick = () => {
+      isOpen.value = !isOpen.value;
+      console.log(isOpen);
+    };
+    return { isOpen, onClick };
   },
   template: `
-  <WizHStack>
-    <WizPopupContainer :expand="expand">
-      <WizPopup :isOpen="true">
-        <WizHStack>
-          <WizPopupButtonGroup v-bind="$props"/>
-        </WizHStack>
-      </WizPopup>
-    </WizPopupContainer>
-  </WizHStack>
+  <WizPopupContainer :expand="expand" >
+    <button @click="onClick"> open/close </button>
+    <WizPopup :isOpen="isOpen">
+      <WizPopupButtonGroup v-bind="$props"/>
+    </WizPopup>
+  </WizPopupContainer>
   `,
 });
 
 Popup.args = {
   options: _getDummyItems2(), //_getDummyOptions("test", 3),
+  p: "xs",
 };
 
 // export const Disabled = Template.bind({});
