@@ -14,5 +14,6 @@ export type ButtonGroupItem =
       kind: "group";
       title: string;
       items: ButtonGroupItem[];
-      showDivider: boolean;
+      groupDivider?: boolean;
+      buttonDivider?: boolean;
     };

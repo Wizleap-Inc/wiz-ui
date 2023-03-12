@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/vue";
+import { Meta, StoryFn } from "@storybook/vue";
 
 import {
   WizHStack,
@@ -18,11 +18,14 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
-    showDivider: {
+    groupDivider: {
+      control: { type: "boolean" },
+    },
+    buttonDivider: {
       control: { type: "boolean" },
     },
   },
-};
+} as Meta<typeof WizPopupButtonGroup>;
 
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   const options: SelectBoxOption[] = [];
@@ -75,14 +78,14 @@ const _getDummyItems2 = (): ButtonGroupItem[] => {
     {
       kind: "group",
       title: "タイトル1",
-      showDivider: true,
+      groupDivider: true,
+      buttonDivider: true,
       items: [
         ..._getDummyOptions("test", 3),
         {
           kind: "group",
           title: "タイトル2",
           items: [createButton(4), createButton(5)],
-          showDivider: false,
         },
       ],
     },
@@ -107,7 +110,6 @@ export const Default = Template.bind({});
 
 Default.args = {
   options: _getDummyItems2(), //_getDummyOptions("test", 3),
-  showDivider: true,
 };
 
 export const Popup: StoryFn = (_, { argTypes }) => ({
