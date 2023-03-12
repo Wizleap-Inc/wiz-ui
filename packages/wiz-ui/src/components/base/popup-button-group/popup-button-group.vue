@@ -3,6 +3,7 @@
     gap="no"
     :class="[popupButtonGroupStyle]"
     :style="{ minWidth: computedWidth }"
+    :p="depth === 0 ? p : 'no'"
   >
     <div v-for="item in items">
       <hr
@@ -57,7 +58,11 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ComponentName,
+  SpacingKeys,
+  THEME,
+} from "@wizleap-inc/wiz-ui-constants";
 import {
   popupButtonGroupStyle,
   popupButtonGroupButtonStyle,
@@ -89,6 +94,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: "10rem",
+  },
+  p: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
   },
   // disabled: {
   //   type: Boolean,
