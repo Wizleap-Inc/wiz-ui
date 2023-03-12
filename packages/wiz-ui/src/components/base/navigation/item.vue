@@ -44,6 +44,7 @@
         <WizPopupButtonGroup
           :options="buttons ?? []"
           :class="navigationPopupContainerStyle"
+          p="xs"
         />
       </WizPopup>
     </div>
