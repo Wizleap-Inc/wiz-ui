@@ -67,7 +67,7 @@ import { RouterLinkProps } from "vue-router/types/router";
 import { WizPopupContainer, WizPopup, WizPopupButtonGroup } from "@/components";
 import type { TIcon } from "@/components/icons";
 
-import { Item } from "../popup-button-group/types";
+import { ButtonGroupItem } from "../popup-button-group/types";
 
 defineOptions({
   name: ComponentName.NavigationItem,
@@ -96,7 +96,7 @@ const props = defineProps({
     default: true,
   },
   buttons: {
-    type: Array as PropType<Item[]>,
+    type: Array as PropType<ButtonGroupItem[]>,
     required: false,
   },
 });

@@ -14,7 +14,7 @@ import {
   useGlobalProvider,
 } from "@/hooks/use-global-provider";
 
-import { Item } from "../popup-button-group/types";
+import { ButtonGroupItem } from "../popup-button-group/types";
 
 import { WizNavItem, WizNavContainer } from ".";
 
@@ -220,7 +220,7 @@ export const Popup: StoryFn = (_, { argTypes }) => ({
     const setLock = (isLock: boolean) => {
       lockingPopup.value = isLock;
     };
-    const createButton = (n: number): Item => ({
+    const createButton = (n: number): ButtonGroupItem => ({
       kind: "button",
       option: {
         label: `label ${n}`,
@@ -262,7 +262,7 @@ export const PopupSticky: StoryFn = (_, { argTypes }) => ({
     const setLock = (isLock: boolean) => {
       lockingPopup.value = isLock;
     };
-    const createButton = (n: number): Item => ({
+    const createButton = (n: number): ButtonGroupItem => ({
       kind: "button",
       option: {
         label: `label ${n}`,
