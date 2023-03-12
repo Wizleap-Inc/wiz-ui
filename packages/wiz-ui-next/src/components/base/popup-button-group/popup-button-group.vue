@@ -12,7 +12,9 @@
       <div v-else-if="item.item.kind === 'group'">
         <span
           :class="popupButtonGroupTitleStyle"
-          :style="{ paddingLeft: `calc(${depth} * ${THEME.spacing.lg})` }"
+          :style="{
+            paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
+          }"
         >
           {{ item.item.title }}</span
         >
@@ -25,7 +27,9 @@
       <div v-else-if="item.item.kind === 'button'">
         <div
           :class="popupButtonGroupButtonStyle"
-          :style="{ paddingLeft: `calc(${depth} * ${THEME.spacing.lg})` }"
+          :style="{
+            paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
+          }"
           @mousedown="popupButtonMouseDown(item.item)"
         >
           <WizHStack gap="xs">

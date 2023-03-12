@@ -15,7 +15,6 @@ export const popupButtonGroupButtonStyle = style({
   alignItems: "center",
   paddingTop: THEME.spacing.xs,
   paddingBottom: THEME.spacing.xs,
-  paddingLeft: THEME.spacing.xs2,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["700"],
   boxSizing: "border-box",
@@ -41,7 +40,8 @@ export const popupButtonGroupTitleStyle = style({
 
   justifyContent: "space-between",
   alignItems: "center",
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
+  paddingTop: THEME.spacing.xs,
+  paddingBottom: THEME.spacing.xs,
   boxSizing: "border-box",
   userSelect: "none",
 });
