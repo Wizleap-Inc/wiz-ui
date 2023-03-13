@@ -37,7 +37,7 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   return options;
 };
 
-export const Default: StoryFn = (_, { argTypes }) => ({
+export const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizSearchSelector, WizHStack },
   setup() {
@@ -62,8 +62,15 @@ export const Default: StoryFn = (_, { argTypes }) => ({
     </WizHStack>
   `,
 });
+
+export const Default = Template.bind({});
 Default.args = {
   options: _getDummyOptions("test", 3),
+};
+
+export const LongWordSelector = Template.bind({});
+LongWordSelector.args = {
+  options: _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3),
 };
 
 export const Disabled: StoryFn = (_, { argTypes }) => ({
