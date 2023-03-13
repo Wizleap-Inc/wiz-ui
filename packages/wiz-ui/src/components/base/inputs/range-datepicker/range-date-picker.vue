@@ -280,6 +280,7 @@ const selectedOption = computed(() => {
 });
 
 const handleSelectBoxOptionClick = (value: string) => {
+  isSelectBoxOpen.value = false;
   emit("updateSelectBoxValue", value);
 };
 

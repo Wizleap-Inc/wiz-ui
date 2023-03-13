@@ -284,6 +284,7 @@ const selectedOption = computed(() => {
 });
 
 const handleSelectBoxOptionClick = (value: string) => {
+  isSelectBoxOpen.value = false;
   emit("update:selectBoxValue", value);
 };
 
