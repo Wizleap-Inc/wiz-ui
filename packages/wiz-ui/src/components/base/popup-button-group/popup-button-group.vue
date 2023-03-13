@@ -1,6 +1,6 @@
 <template>
   <WizVStack
-    gap="no"
+    gap="xs2"
     :class="[
       popupButtonGroupStyle,
       depth === 0 && borderRadiusStyle[borderRadius],
