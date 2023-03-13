@@ -37,23 +37,20 @@
           }"
           @mousedown="popupButtonMouseDown(item.item)"
         >
-          <WizHStack gap="xs2">
-            <span>{{ item.item.option.label }} </span>
-            <span v-if="item.item.option.exLabel">
-              {{ item.item.option.exLabel }}
-            </span>
-            <div v-if="item.item.option.icon">
-              <WizIcon
-                :icon="item.item.option.icon"
-                :color="
-                  item.item.option.value === isClicking
-                    ? 'white.800'
-                    : item.item.option.iconDefaultColor ?? 'gray.500'
-                "
-                size="md"
-              />
-            </div>
-          </WizHStack>
+          <span :class="popupButtonGroupInnerContainerStyle">
+            <span>{{ item.item.option.label }}</span>
+
+            <WizIcon
+              v-if="item.item.option.icon"
+              :icon="item.item.option.icon"
+              :color="
+                item.item.option.value === isClicking
+                  ? 'white.800'
+                  : item.item.option.iconDefaultColor ?? 'gray.500'
+              "
+              size="md"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -71,16 +68,12 @@ import {
   popupButtonGroupButtonStyle,
   popupButtonGroupTitleStyle,
   popupButtonGroupDividerStyle,
+  popupButtonGroupInnerContainerStyle,
   borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
 
-import {
-  WizIcon,
-  WizPopupButtonGroup,
-  WizVStack,
-  WizHStack,
-} from "@/components";
+import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { ButtonGroupItem } from "./types";

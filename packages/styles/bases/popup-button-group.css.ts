@@ -55,3 +55,12 @@ export const popupButtonGroupDividerStyle = style({
   margin: "0 0",
   backgroundColor: THEME.color.gray[300],
 });
+
+export const popupButtonGroupInnerContainerStyle = style({
+  lineHeight: "130%",
+  gap: THEME.spacing.xs2,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  flex: "none",
+});
