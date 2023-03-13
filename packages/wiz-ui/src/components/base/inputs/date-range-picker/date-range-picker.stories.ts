@@ -224,7 +224,7 @@ export const Test: StoryFn<typeof WizDateRangePicker> = (
   },
   template: `
     <div>
-      <WizDateRangePicker v-model="dateRange" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onInput" @updateSelectBoxValue="handleSelectBoxValueChange" />
+      <WizDateRangePicker v-model="dateRange" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
     </div>
   `,
 });
