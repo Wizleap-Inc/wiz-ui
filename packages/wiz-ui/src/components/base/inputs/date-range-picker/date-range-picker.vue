@@ -2,8 +2,8 @@
   <WizPopupContainer :expand="expand">
     <button
       :class="[
-        rangeDatePickerStyle[disabled ? 'disabled' : 'active'],
-        rangeDatePickerWidthStyle[expand ? 'expanded' : 'default'],
+        styles.bodyStyle[disabled ? 'disabled' : 'active'],
+        styles.widthStyle[expand ? 'expanded' : 'default'],
         inputBorderStyle[borderState],
       ]"
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
@@ -12,30 +12,26 @@
     >
       <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
       <span
-        :class="
-          rangeDatePickerInputTextStyle[value.start ? 'selected' : 'default']
-        "
+        :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
         >{{ value.start ? formatDateToMD(value.start) : "開始日" }}</span
       >
-      <span :class="rangeDatePickerSeparatorStyle">-</span>
+      <span :class="styles.separatorStyle">-</span>
       <span
-        :class="
-          rangeDatePickerInputTextStyle[value.end ? 'selected' : 'default']
-        "
+        :class="styles.inputTextStyle[value.end ? 'selected' : 'default']"
         >{{ value.end ? formatDateToMD(value.end) : "終了日" }}</span
       >
     </button>
     <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false" gap="xs">
       <WizCard p="no">
-        <div :class="rangeDatePickerPopupStyle">
-          <div v-if="selectBoxOptions" :class="rangeDatePickerPopupHeaderStyle">
+        <div :class="styles.popupStyle">
+          <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
             <div
-              :class="rangeDatePickerPopupHeaderSelectBoxContainerStyle"
+              :class="styles.popupHeaderSelectBoxContainerStyle"
               ref="selectBoxContainerRef"
             >
               <button
                 :class="[
-                  rangeDatePickerPopupHeaderSelectBoxStyle,
+                  styles.popupHeaderSelectBoxStyle,
                   inputBorderStyle[isSelectBoxOpen ? 'active' : 'default'],
                 ]"
                 :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_SELECT_BOX_INPUT"
@@ -50,12 +46,12 @@
               </button>
               <div
                 v-if="isSelectBoxOpen"
-                :class="rangeDatePickerPopupHeaderSelectBoxOptionsStyle"
+                :class="styles.popupHeaderSelectBoxOptionsStyle"
               >
                 <button
                   v-for="(option, index) in selectBoxOptions"
                   :key="index"
-                  :class="rangeDatePickerPopupHeaderSelectBoxOptionStyle"
+                  :class="styles.popupHeaderSelectBoxOptionStyle"
                   :aria-label="option.label"
                   @click="handleSelectBoxOptionClick(option.value)"
                 >
@@ -64,22 +60,22 @@
               </div>
             </div>
           </div>
-          <div :class="rangeDatePickerPopupCalendarsStyle">
-            <div :class="rangeDatePickerPopupCalendarContainerStyle['left']">
-              <div :class="rangeDatePickerPopupCalendarHeaderStyle">
+          <div :class="styles.popupCalendarsStyle">
+            <div :class="styles.popupCalendarContainerStyle['left']">
+              <div :class="styles.popupCalendarHeaderStyle">
                 <button
-                  :class="rangeDatePickerPopupCalendarHeaderButtonStyle"
+                  :class="styles.popupCalendarHeaderButtonStyle"
                   :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
                   @click="moveToPrevMonth"
                 >
                   <WizIcon size="md" color="inherit" :icon="WizIChevronLeft" />
                 </button>
-                <span :class="rangeDatePickerPopupCalendarMonthStyle">
+                <span :class="styles.popupCalendarMonthStyle">
                   {{ leftCalendarDate.getFullYear() }}年{{
                     leftCalendarDate.getMonth() + 1
                   }}月
                 </span>
-                <div :class="rangeDatePickerPopupCalendarHeaderSpacerStyle" />
+                <div :class="styles.popupCalendarHeaderSpacerStyle" />
               </div>
               <WizCalendar
                 :currentMonth="leftCalendarDate"
@@ -87,16 +83,16 @@
                 @click="handleDayClick"
               />
             </div>
-            <div :class="rangeDatePickerPopupCalendarContainerStyle['right']">
-              <div :class="rangeDatePickerPopupCalendarHeaderStyle">
-                <div :class="rangeDatePickerPopupCalendarHeaderSpacerStyle" />
-                <span :class="rangeDatePickerPopupCalendarMonthStyle">
+            <div :class="styles.popupCalendarContainerStyle['right']">
+              <div :class="styles.popupCalendarHeaderStyle">
+                <div :class="styles.popupCalendarHeaderSpacerStyle" />
+                <span :class="styles.popupCalendarMonthStyle">
                   {{ rightCalendarDate.getFullYear() }}年{{
                     rightCalendarDate.getMonth() + 1
                   }}月
                 </span>
                 <button
-                  :class="rangeDatePickerPopupCalendarHeaderButtonStyle"
+                  :class="styles.popupCalendarHeaderButtonStyle"
                   :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
                   @click="moveToNextMonth"
                 >
@@ -118,24 +114,7 @@
 
 <script setup lang="ts">
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
-import {
-  rangeDatePickerStyle,
-  rangeDatePickerWidthStyle,
-  rangeDatePickerSeparatorStyle,
-  rangeDatePickerPopupHeaderStyle,
-  rangeDatePickerInputTextStyle,
-  rangeDatePickerPopupHeaderSelectBoxContainerStyle,
-  rangeDatePickerPopupHeaderSelectBoxStyle,
-  rangeDatePickerPopupHeaderSelectBoxOptionsStyle,
-  rangeDatePickerPopupHeaderSelectBoxOptionStyle,
-  rangeDatePickerPopupCalendarContainerStyle,
-  rangeDatePickerPopupCalendarHeaderStyle,
-  rangeDatePickerPopupStyle,
-  rangeDatePickerPopupCalendarsStyle,
-  rangeDatePickerPopupCalendarMonthStyle,
-  rangeDatePickerPopupCalendarHeaderButtonStyle,
-  rangeDatePickerPopupCalendarHeaderSpacerStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, ref, inject, computed } from "vue";

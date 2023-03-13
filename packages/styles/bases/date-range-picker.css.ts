@@ -1,7 +1,7 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-const rangeDatePickerBaseStyle = style({
+const baseBodyStyle = style({
   height: THEME.spacing.xl3,
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
@@ -12,16 +12,16 @@ const rangeDatePickerBaseStyle = style({
   justifyContent: "space-between",
 });
 
-export const rangeDatePickerStyle = styleVariants({
+export const bodyStyle = styleVariants({
   active: [
-    rangeDatePickerBaseStyle,
+    baseBodyStyle,
     {
       background: THEME.color.white["800"],
       cursor: "pointer",
     },
   ],
   disabled: [
-    rangeDatePickerBaseStyle,
+    baseBodyStyle,
     {
       background: THEME.color.gray["300"],
       cursor: "not-allowed",
@@ -29,7 +29,7 @@ export const rangeDatePickerStyle = styleVariants({
   ],
 });
 
-export const rangeDatePickerWidthStyle = styleVariants({
+export const widthStyle = styleVariants({
   default: {
     width: "10rem",
   },
@@ -38,36 +38,36 @@ export const rangeDatePickerWidthStyle = styleVariants({
   },
 });
 
-export const rangeDatePickerSeparatorStyle = style({
+export const separatorStyle = style({
   color: THEME.color.gray["500"],
 });
 
-const rangeDatePickerInputTextBaseStyle = style({
+const inputTextBaseStyle = style({
   fontSize: THEME.fontSize.sm,
   width: "100%",
 });
 
-export const rangeDatePickerInputTextStyle = styleVariants({
+export const inputTextStyle = styleVariants({
   default: [
-    rangeDatePickerInputTextBaseStyle,
+    inputTextBaseStyle,
     {
       color: THEME.color.gray["500"],
     },
   ],
   selected: [
-    rangeDatePickerInputTextBaseStyle,
+    inputTextBaseStyle,
     {
       color: THEME.color.gray["700"],
     },
   ],
 });
 
-export const rangeDatePickerPopupStyle = style({
+export const popupStyle = style({
   display: "flex",
   flexDirection: "column",
 });
 
-export const rangeDatePickerPopupHeaderStyle = style({
+export const popupHeaderStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
@@ -75,11 +75,11 @@ export const rangeDatePickerPopupHeaderStyle = style({
   padding: THEME.spacing.xs,
 });
 
-export const rangeDatePickerPopupHeaderSelectBoxContainerStyle = style({
+export const popupHeaderSelectBoxContainerStyle = style({
   position: "relative",
 });
 
-export const rangeDatePickerPopupHeaderSelectBoxStyle = style({
+export const popupHeaderSelectBoxStyle = style({
   border: `1px solid ${THEME.color.gray["300"]}`,
   borderRadius: THEME.spacing.xs2,
   padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
@@ -92,7 +92,7 @@ export const rangeDatePickerPopupHeaderSelectBoxStyle = style({
   color: THEME.color.gray["700"],
 });
 
-export const rangeDatePickerPopupHeaderSelectBoxOptionsStyle = style({
+export const popupHeaderSelectBoxOptionsStyle = style({
   position: "absolute",
   top: "calc(100% + 1rem)",
   right: 0,
@@ -108,7 +108,7 @@ export const rangeDatePickerPopupHeaderSelectBoxOptionsStyle = style({
   padding: THEME.spacing.xs2,
 });
 
-export const rangeDatePickerPopupHeaderSelectBoxOptionStyle = style({
+export const popupHeaderSelectBoxOptionStyle = style({
   border: "none",
   cursor: "pointer",
   background: "transparent",
@@ -124,11 +124,11 @@ export const rangeDatePickerPopupHeaderSelectBoxOptionStyle = style({
   },
 });
 
-export const rangeDatePickerPopupCalendarsStyle = style({
+export const popupCalendarsStyle = style({
   display: "flex",
 });
 
-const rangeDatePickerPopupCalendarContainerBaseStyle = style({
+const popupCalendarContainerBaseStyle = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -137,17 +137,17 @@ const rangeDatePickerPopupCalendarContainerBaseStyle = style({
   padding: THEME.spacing.xs,
 });
 
-export const rangeDatePickerPopupCalendarContainerStyle = styleVariants({
+export const popupCalendarContainerStyle = styleVariants({
   left: [
-    rangeDatePickerPopupCalendarContainerBaseStyle,
+    popupCalendarContainerBaseStyle,
     {
       borderRight: `1px solid ${THEME.color.gray["300"]}`,
     },
   ],
-  right: [rangeDatePickerPopupCalendarContainerBaseStyle],
+  right: [popupCalendarContainerBaseStyle],
 });
 
-export const rangeDatePickerPopupCalendarHeaderStyle = style({
+export const popupCalendarHeaderStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -155,12 +155,12 @@ export const rangeDatePickerPopupCalendarHeaderStyle = style({
   width: "100%",
 });
 
-export const rangeDatePickerPopupCalendarMonthStyle = style({
+export const popupCalendarMonthStyle = style({
   fontSize: THEME.fontSize.xs,
   color: THEME.color.gray["700"],
 });
 
-export const rangeDatePickerPopupCalendarHeaderButtonStyle = style({
+export const popupCalendarHeaderButtonStyle = style({
   cursor: "pointer",
   padding: THEME.spacing.xs2,
   borderRadius: THEME.spacing.xs2,
@@ -177,7 +177,7 @@ export const rangeDatePickerPopupCalendarHeaderButtonStyle = style({
   },
 });
 
-export const rangeDatePickerPopupCalendarHeaderSpacerStyle = style({
+export const popupCalendarHeaderSpacerStyle = style({
   width: THEME.spacing.xl,
   height: THEME.spacing.xl,
 });
