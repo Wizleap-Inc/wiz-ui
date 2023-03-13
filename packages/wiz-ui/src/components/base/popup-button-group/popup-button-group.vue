@@ -39,6 +39,7 @@
           @mousedown="onHoldClick(item.item)"
           @keypress.enter="popupButtonKeyPressEnter(item.item)"
           :tabIndex="0"
+          :key="`${item.item.option.label}-${item.item.option.value}`"
         >
           <span :class="popupButtonGroupInnerContainerStyle">
             <span>{{ item.item.option.label }}</span>
