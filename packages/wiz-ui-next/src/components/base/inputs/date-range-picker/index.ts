@@ -1,1 +1,1 @@
-export { default as WizRangeDatePicker } from "./range-date-picker.vue";
+export { default as WizDateRangePicker } from "./date-range-picker.vue";
