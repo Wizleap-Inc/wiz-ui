@@ -100,6 +100,37 @@ export const onClick = (text: string) => {
   },
 };
 
+export const Fixed: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizCardTable,
+    WizCardThead,
+    WizCardTbody,
+    WizCardTr,
+    WizCardTh,
+    WizCardTd,
+    WizVStack,
+  },
+  template: `
+  <template>
+    <div style="width: 300px">
+      <WizCardTable>
+        <WizCardThead>
+          <WizCardTr>
+            <WizCardTh v-for="i in 3" :key="i">Column {{ i }}</WizCardTh>
+          </WizCardTr>
+        </WizCardThead>
+        <WizCardTbody>
+          <WizCardTr v-for="i in 3" @click="onClick('Row ' + i)">
+            <WizCardTd v-for="j in 3" :key="j">Row {{ i }}</WizCardTd>
+          </WizCardTr>
+        </WizCardTbody>
+      </WizCardTable>
+    </div>
+  </template>
+  `,
+});
+
 export const UnionColumn: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
@@ -125,6 +156,7 @@ export const UnionColumn: StoryFn = (_, { argTypes }) => ({
     </WizCardTable>
   `,
 });
+
 UnionColumn.parameters = {
   docs: {
     description: {

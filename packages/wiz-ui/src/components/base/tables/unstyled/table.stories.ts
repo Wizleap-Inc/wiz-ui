@@ -35,6 +35,9 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    fixed: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -50,6 +53,32 @@ export const Default: StoryFn = (_, { argTypes }) => ({
   },
   template: `
     <WizUnstyledTable v-bind="$props">
+      <WizUnstyledThead>
+        <WizUnstyledTr>
+          <WizUnstyledTh v-for="i in 3" :key="i">Column {{ i }}</WizUnstyledTh>
+        </WizUnstyledTr>
+      </WizUnstyledThead>
+      <WizUnstyledTbody>
+        <WizUnstyledTr v-for="i in 3">
+          <WizUnstyledTd v-for="j in 3" :key="j">Row {{ i }}</WizUnstyledTd>
+        </WizUnstyledTr>
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  `,
+});
+
+export const Fixed: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizUnstyledTable,
+    WizUnstyledThead,
+    WizUnstyledTbody,
+    WizUnstyledTr,
+    WizUnstyledTh,
+    WizUnstyledTd,
+  },
+  template: `
+    <WizUnstyledTable fixed>
       <WizUnstyledThead>
         <WizUnstyledTr>
           <WizUnstyledTh v-for="i in 3" :key="i">Column {{ i }}</WizUnstyledTh>
