@@ -31,7 +31,7 @@ export default {
         type: "array",
       },
     },
-    onClick: {
+    onDateSelected: {
       action: "update:modelValue",
     },
     onSelectBoxValueChange: {
@@ -55,7 +55,7 @@ const Template: StoryFn<typeof WizRangeDatePicker> = (args) => ({
   setup: () => ({ args }),
   template: `
     <div>
-      <WizRangeDatePicker v-bind="args" @update:modelValue="args.onClick" @update:selectBoxValue="args.onSelectBoxValueChange"/>
+      <WizRangeDatePicker v-bind="args" @update:modelValue="args.onDateSelected" @update:selectBoxValue="args.onSelectBoxValueChange"/>
     </div>
   `,
 });
