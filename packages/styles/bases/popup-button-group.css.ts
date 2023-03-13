@@ -1,12 +1,15 @@
-import { style } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { style, styleVariants } from "@vanilla-extract/css";
+import { THEME, SPACING_MAP } from "@wizleap-inc/wiz-ui-constants";
 
 export const popupButtonGroupStyle = style({
   background: THEME.color.white["800"],
-  borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   maxHeight: "25rem",
 });
+
+export const borderRadiusStyle = styleVariants(SPACING_MAP, (borderRadius) => ({
+  borderRadius,
+}));
 
 export const popupButtonGroupButtonStyle = style({
   width: "100%",

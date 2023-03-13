@@ -1,7 +1,10 @@
 <template>
   <WizVStack
     gap="no"
-    :class="[popupButtonGroupStyle]"
+    :class="[
+      popupButtonGroupStyle,
+      depth === 0 && borderRadiusStyle[borderRadius],
+    ]"
     :style="{ minWidth: computedWidth }"
     :p="depth === 0 ? p : 'no'"
   >
@@ -68,6 +71,7 @@ import {
   popupButtonGroupButtonStyle,
   popupButtonGroupTitleStyle,
   popupButtonGroupDividerStyle,
+  borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
 
@@ -96,6 +100,11 @@ const props = defineProps({
     default: "10rem",
   },
   p: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  borderRadius: {
     type: String as PropType<SpacingKeys>,
     required: false,
     default: "no",
