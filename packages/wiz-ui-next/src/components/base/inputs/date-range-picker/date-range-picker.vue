@@ -161,7 +161,7 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { DateStatus } from "../../calendar/types";
 
-import { RangeDatePickerSelectBoxOption, DateRange } from "./types";
+import { DateRangePickerSelectBoxOption, DateRange } from "./types";
 
 interface Emit {
   (e: "update:modelValue", value: DateRange): void;
@@ -184,7 +184,7 @@ const props = defineProps({
     default: false,
   },
   selectBoxOptions: {
-    type: Array as PropType<RangeDatePickerSelectBoxOption[]>,
+    type: Array as PropType<DateRangePickerSelectBoxOption[]>,
     required: false,
   },
   selectBoxValue: {

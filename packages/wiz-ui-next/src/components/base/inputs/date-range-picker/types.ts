@@ -3,7 +3,7 @@ export interface DateRange {
   end: Date | null;
 }
 
-export interface RangeDatePickerSelectBoxOption {
+export interface DateRangePickerSelectBoxOption {
   label: string;
   value: string;
 }

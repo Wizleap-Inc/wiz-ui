@@ -70,7 +70,7 @@ const CODE_TEMPLATE = (props: Partial<Props>) => `
 <script setup lang="ts">
 import { ref } from "vue";
 import { WizRangeDatePicker } from "@wizleap-inc/wiz-ui-next";
-import { DateRange, RangeDatePickerSelectBoxOption } from "@wizleap-inc/wiz-ui-next/dist/components/base/inputs/range-datepicker/types";
+import { DateRange, DateRangePickerSelectBoxOption } from "@wizleap-inc/wiz-ui-next/dist/components/base/inputs/range-datepicker/types";
 
 const dateRange = ref<DateRange>({
   start: null,
@@ -78,7 +78,7 @@ const dateRange = ref<DateRange>({
 });
 ${
   props.selectBoxOptions
-    ? `const selectBoxOptions = ref<RangeDatePickerSelectBoxOption[]>([
+    ? `const selectBoxOptions = ref<DateRangePickerSelectBoxOption[]>([
   { label: '選択肢1', value: '1' },
   { label: '選択肢2', value: '2' },
   { label: '選択肢3', value: '3' },
