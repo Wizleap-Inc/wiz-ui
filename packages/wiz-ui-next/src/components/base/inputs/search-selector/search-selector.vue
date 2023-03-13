@@ -76,25 +76,11 @@
         "
       >
         <WizVStack gap="xs2">
-          <WizPopupButtonGroup v-if="addButtonEnabled" :options="[addButton]" />
-          <div
-            v-for="option in filteredOptions"
-            :key="`${option.label}-${option.value}`"
-            :class="selectBoxSelectorOptionStyle"
-            @click="onSelect(option.value)"
-            @keypress.enter="onSelect(option.value)"
-            :tabindex="0"
-          >
-            <span :class="selectBoxSelectorOptionLabelStyle">
-              {{ option.label }}
-            </span>
-            <span
-              :class="selectBoxSelectorOptionLabelStyle"
-              v-if="option.exLabel"
-            >
-              {{ option.exLabel }}
-            </span>
-          </div>
+          <WizPopupButtonGroup
+            :options="
+              addButtonEnabled ? [addButton, ...selectButtons] : selectButtons
+            "
+          />
         </WizVStack>
       </div>
     </WizPopup>
@@ -112,8 +98,6 @@ import {
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
   selectBoxSelectorStyle,
-  selectBoxSelectorOptionStyle,
-  selectBoxSelectorOptionLabelStyle,
   selectBoxSearchInputStyle,
   selectBoxExpandIconStyle,
   selectBoxInnerBoxSelectedItemStyle,
@@ -322,5 +306,19 @@ const addButton = computed(() => {
     },
   };
   return option;
+});
+
+const selectButtons = computed(() => {
+  return filteredOptions.value.map((opt, i) => {
+    const option: ButtonGroupItem = {
+      kind: "button",
+      option: {
+        label: opt.label,
+        value: opt.value,
+        onClick: () => onSelect(opt.value),
+      },
+    };
+    return option;
+  });
 });
 </script>
