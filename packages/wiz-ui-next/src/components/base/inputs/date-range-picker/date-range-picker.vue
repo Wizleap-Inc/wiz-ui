@@ -139,7 +139,7 @@ import {
   rangeDatePickerPopupCalendarMonthStyle,
   rangeDatePickerPopupCalendarHeaderButtonStyle,
   rangeDatePickerPopupCalendarHeaderSpacerStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/range-date-picker.css";
+} from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, ref, inject, computed } from "vue";

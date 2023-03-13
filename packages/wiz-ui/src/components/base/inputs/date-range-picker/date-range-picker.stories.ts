@@ -4,12 +4,12 @@ import { StoryFn, Meta } from "@storybook/vue";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
-import WizRangeDatePicker from "./range-date-picker.vue";
+import WizDateRangePicker from "./date-range-picker.vue";
 import { DateRange } from "./types";
 
 export default {
-  title: "Base/Input/RangeDatePicker",
-  component: WizRangeDatePicker,
+  title: "Base/Input/DateRangePicker",
+  component: WizDateRangePicker,
   argTypes: {
     value: {
       control: {
@@ -48,14 +48,14 @@ export default {
       },
     },
   },
-} as Meta<typeof WizRangeDatePicker>;
+} as Meta<typeof WizDateRangePicker>;
 
-const Template: StoryFn<typeof WizRangeDatePicker> = (_, { argTypes }) => ({
+const Template: StoryFn<typeof WizDateRangePicker> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizRangeDatePicker },
+  components: { WizDateRangePicker },
   template: `
     <div>
-      <WizRangeDatePicker v-bind="$props" @input="onDateSelected" @updateSelectBoxValue="onSelectBoxValueChange"/>
+      <WizDateRangePicker v-bind="$props" @input="onDateSelected" @updateSelectBoxValue="onSelectBoxValueChange"/>
     </div>
   `,
 });
@@ -69,7 +69,7 @@ interface Props {
 const CODE_TEMPLATE = (props: Partial<Props>) => `
 <script setup lang="ts">
 import { ref } from "vue";
-import { WizRangeDatePicker } from "@wizleap-inc/wiz-ui";
+import { WizDateRangePicker } from "@wizleap-inc/wiz-ui";
 import { DateRange, DateRangePickerSelectBoxOption } from "@wizleap-inc/wiz-ui/dist/components/base/inputs/range-datepicker/types";
 
 const dateRange = ref<DateRange>({
@@ -90,7 +90,7 @@ const selectBoxValue = ref('');
 }
 </script>
 <template>
-  <WizRangeDatePicker v-model="dateRange"${
+  <WizDateRangePicker v-model="dateRange"${
     (props.disabled ? " disabled" : "") +
     (props.expand ? " expand" : "") +
     (props.selectBoxOptions
@@ -111,7 +111,7 @@ Default.parameters = {
   docs: {
     description: {
       component: `
-### WizRangeDatePicker
+### WizDateRangePicker
 DatePickerを拡張して、開始日と終了日を選択できるようにしたコンポーネントです。
 v-modelにはDateRange型の値を渡します。初期値はstartとendともにnullであることを推奨します。
 
@@ -199,12 +199,12 @@ const selectBoxOptions = [
   { label: "選択肢3選択肢3", value: "3" },
 ];
 
-export const Test: StoryFn<typeof WizRangeDatePicker> = (
+export const Test: StoryFn<typeof WizDateRangePicker> = (
   args,
   { argTypes }
 ) => ({
   props: Object.keys(argTypes),
-  components: { WizRangeDatePicker },
+  components: { WizDateRangePicker },
   setup() {
     const dateRange = ref<DateRange>({
       start: null,
@@ -224,7 +224,7 @@ export const Test: StoryFn<typeof WizRangeDatePicker> = (
   },
   template: `
     <div>
-      <WizRangeDatePicker v-model="dateRange" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onInput" @updateSelectBoxValue="handleSelectBoxValueChange" />
+      <WizDateRangePicker v-model="dateRange" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onInput" @updateSelectBoxValue="handleSelectBoxValueChange" />
     </div>
   `,
 });
