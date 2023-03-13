@@ -14,11 +14,11 @@ import {
   WizTimePicker,
 } from "@/components";
 import { CheckBoxOption } from "@/components/base/inputs/checkbox/types";
-import { RadioOption } from "@/components/base/inputs/radio/types";
 import {
   DateRange,
   RangeDatePickerSelectBoxOption,
-} from "@/components/base/inputs/range-datepicker/types";
+} from "@/components/base/inputs/date-range-picker/types";
+import { RadioOption } from "@/components/base/inputs/radio/types";
 import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
 import { WizFormGroup, WizFormControl } from ".";

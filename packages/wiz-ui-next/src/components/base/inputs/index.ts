@@ -9,4 +9,4 @@ export * from "./timepicker";
 export * from "./date-picker";
 export * from "./upload";
 export * from "./search";
-export * from "./range-datepicker";
+export * from "./date-range-picker";
