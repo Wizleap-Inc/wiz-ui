@@ -76,29 +76,8 @@
         "
       >
         <WizVStack gap="xs2">
-          <div
-            v-if="
-              addable &&
-              searchValue !== '' &&
-              !options.some((v) => v.label === searchValue)
-            "
-            :class="selectBoxSelectorOptionStyle"
-            @click="onCreate(searchValue)"
-            @mousedown="onHoldClick()"
-            @keypress.enter="onCreate(searchValue)"
-            :tabindex="0"
-          >
-            <span
-              :class="[selectBoxSelectorOptionLabelStyle, selectBoxAddStyle]"
-            >
-              {{ searchValue }}
-              <WizIcon
-                :icon="WizIAddCircle"
-                size="md"
-                :color="addableOptionIsClicking ? 'white.800' : 'green.800'"
-              />
-            </span>
-          </div>
+          <WizPopupButtonGroup v-if="addButtonEnabled" :options="[addButton]" />
+
           <div
             v-for="option in filteredOptions"
             :key="`${option.label}-${option.value}`"
@@ -137,7 +116,6 @@ import {
   selectBoxSelectorOptionStyle,
   selectBoxSelectorOptionLabelStyle,
   selectBoxSearchInputStyle,
-  selectBoxAddStyle,
   selectBoxExpandIconStyle,
   selectBoxInnerBoxSelectedItemStyle,
   selectBoxInnerBoxSelectedLabelStyle,
@@ -146,7 +124,12 @@ import {
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
 
-import { WizPopupContainer, WizPopup, WizIcon } from "@/components";
+import {
+  WizPopupContainer,
+  WizPopup,
+  WizIcon,
+  WizPopupButtonGroup,
+} from "@/components";
 import {
   WizIExpandLess,
   WizIExpandMore,
@@ -155,6 +138,7 @@ import {
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
+import { ButtonGroupItem } from "../../popup-button-group/types";
 import { WizHStack, WizVStack } from "../../stack";
 
 import { levenshteinDistance } from "./levenshtein-distance";
@@ -315,5 +299,28 @@ const state = computed(() => {
 
 const isValueMatched = computed(() => {
   return props.value.length > 0;
+});
+
+const addButtonEnabled = computed(
+  () =>
+    props.addable &&
+    searchValue.value !== "" &&
+    !props.options.some((v) => v.label === searchValue.value)
+);
+
+const addButton = computed(() => {
+  const option: ButtonGroupItem = {
+    kind: "button",
+    option: {
+      label: searchValue.value,
+      icon: addButtonEnabled.value ? WizIAddCircle : undefined,
+      iconDefaultColor: "green.800",
+      value: -1,
+      onClick: () => {
+        onCreate(searchValue.value);
+      },
+    },
+  };
+  return option;
 });
 </script>
