@@ -36,6 +36,8 @@
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           @mousedown="popupButtonMouseDown(item.item)"
+          @keypress.enter="popupButtonKeyPressEnter(item.item)"
+          :tabIndex="0"
         >
           <span :class="popupButtonGroupInnerContainerStyle">
             <span>{{ item.item.option.label }}</span>
@@ -174,6 +176,11 @@ const popupButtonMouseDown = (item: ButtonGroupItem) => {
   }
 };
 
+const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
+  if (item.kind === "button") {
+    item.option.onClick();
+  }
+};
 // Form Control
 const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
