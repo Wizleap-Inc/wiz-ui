@@ -34,7 +34,7 @@
           }"
           @mousedown="popupButtonMouseDown(item.item)"
         >
-          <WizHStack gap="xs">
+          <WizHStack gap="xs2">
             <span>
               {{ item.item.option.label }}
             </span>
