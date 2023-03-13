@@ -36,6 +36,7 @@
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           @click="popupButtonMouseDown(item.item)"
+          @mousedown="onHoldClick(item.item)"
           @keypress.enter="popupButtonKeyPressEnter(item.item)"
           :tabIndex="0"
         >
@@ -160,19 +161,20 @@ const items = computed(() => {
 
 const isClicking = ref<number | null>(null);
 
-const onHoldClick = (n: number) => {
-  isClicking.value = n;
-  const mouseup = () => {
-    isClicking.value = null;
-    document.removeEventListener("mouseup", mouseup);
-  };
-  document.addEventListener("mouseup", mouseup);
+const onHoldClick = (item: ButtonGroupItem) => {
+  if (item.kind === "button") {
+    isClicking.value = item.option.value;
+    const mouseup = () => {
+      isClicking.value = null;
+      document.removeEventListener("mouseup", mouseup);
+    };
+    document.addEventListener("mouseup", mouseup);
+  }
 };
 
 const popupButtonMouseDown = (item: ButtonGroupItem) => {
   if (item.kind === "button") {
     item.option.onClick();
-    onHoldClick(item.option.value);
   }
 };
 
