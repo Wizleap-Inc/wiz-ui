@@ -24,7 +24,7 @@ export const rangeDatePickerStyle = styleVariants({
     rangeDatePickerBaseStyle,
     {
       background: THEME.color.gray["300"],
-      cursor: "default",
+      cursor: "not-allowed",
     },
   ],
 });
