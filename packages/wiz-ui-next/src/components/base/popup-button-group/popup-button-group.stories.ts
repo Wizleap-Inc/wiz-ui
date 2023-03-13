@@ -24,6 +24,10 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    borderRadius: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
     expand: {
       control: { type: "boolean" },
     },
@@ -36,7 +40,7 @@ export default {
   },
 } as Meta<typeof WizPopupButtonGroup>;
 
-const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
+const _getDummyOptions = (count: number, exLabel?: string) => {
   const options: SelectBoxOption[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
@@ -53,7 +57,7 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
     const n = i + 1;
     const icon = createIcon(n);
     options.push({
-      label: label + n,
+      label: (n % 2 === 0 ? "test" : " テスト") + n,
       value: n,
       exLabel: exLabel,
       icon: icon?.icon,
@@ -71,7 +75,7 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
 const _getDummyItems = (): ButtonGroupItem[] => {
   const f = (n: number) => () => console.log("clicked!", n);
   return [
-    { kind: "group", title: "タイトル", items: _getDummyOptions("ラベル", 3) },
+    { kind: "group", title: "タイトル", items: _getDummyOptions(3) },
     { kind: "button", option: { label: "label 1", value: 4, onClick: f(4) } },
     { kind: "button", option: { label: "label 2", value: 5, onClick: f(5) } },
   ];
@@ -90,7 +94,7 @@ const _getDummyItems2 = (): ButtonGroupItem[] => {
       groupDivider: true,
       buttonDivider: true,
       items: [
-        ..._getDummyOptions("test", 3),
+        ..._getDummyOptions(3),
         {
           kind: "group",
           title: "タイトル2",
@@ -141,6 +145,7 @@ export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
 Popup.args = {
   options: _getDummyItems2(), //_getDummyOptions("test", 3),
   p: "xs",
+  borderRadius: "xs2",
 };
 
 // export const Disabled = Template.bind({});
