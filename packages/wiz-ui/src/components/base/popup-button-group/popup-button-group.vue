@@ -35,7 +35,7 @@
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
-          @mousedown="popupButtonMouseDown(item.item)"
+          @click="popupButtonMouseDown(item.item)"
           @keypress.enter="popupButtonKeyPressEnter(item.item)"
           :tabIndex="0"
         >
