@@ -63,7 +63,7 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
       icon: icon?.icon,
       iconDefaultColor: icon?.iconDefaultColor,
       onClick: () => {
-        console.log("clicked! ", n);
+        // console.log("clicked! ", n);
       },
     });
   });
@@ -73,15 +73,6 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
 };
 
 const _getDummyItems = (): ButtonGroupItem[] => {
-  const f = (n: number) => () => console.log("clicked!", n);
-  return [
-    { kind: "group", title: "タイトル", items: _getDummyOptions(3) },
-    { kind: "button", option: { label: "label 1", value: 4, onClick: f(4) } },
-    { kind: "button", option: { label: "label 2", value: 5, onClick: f(5) } },
-  ];
-};
-
-const _getDummyItems2 = (): ButtonGroupItem[] => {
   const f = (n: number) => () => console.log("clicked!", n);
   const createButton = (n: number): ButtonGroupItem => ({
     kind: "button",
@@ -119,7 +110,7 @@ const Template: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
 export const Default = Template.bind({});
 
 Default.args = {
-  options: _getDummyItems2(), //_getDummyOptions("test", 3),
+  options: _getDummyItems(),
 };
 
 export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
@@ -128,7 +119,6 @@ export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
     const isOpen = ref(true);
     const onClick = () => {
       isOpen.value = !isOpen.value;
-      console.log(isOpen);
     };
     return { args, isOpen, onClick };
   },
@@ -143,49 +133,7 @@ export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
 });
 
 Popup.args = {
-  options: _getDummyItems2(), //_getDummyOptions("test", 3),
+  options: _getDummyItems(),
   p: "xs",
   borderRadius: "xs2",
 };
-
-// export const Disabled = Template.bind({});
-// Disabled.args = {
-//   options: [],
-//   disabled: true,
-// };
-
-// const MultiTemplate: StoryFn = (_, { argTypes }) => ({
-//   props: Object.keys(argTypes),
-//   components: { WizPopupButtonGroup, WizHStack },
-//   setup() {
-//     const value = ref(0);
-//     return { value };
-//   },
-//   template: `
-//     <WizHStack>
-//       <WizPopupButtonGroup v-bind="$props"  v-model="value" @input="input"/>
-//       <WizPopupButtonGroup v-bind="$props"  v-model="value" @input="input"/>
-//     </WizHStack>
-//   `,
-// });
-
-// export const LongLabel = MultiTemplate.bind({});
-// LongLabel.args = {
-//   options: _getDummyOptions("ThisIsTooLongLabelThisIsTooLongLabel", 3),
-// };
-
-// export const Expand = Template.bind({});
-// Expand.args = {
-//   options: _getDummyOptions("test", 1),
-//   expand: true,
-// };
-
-// export const ManyOptions = Template.bind({});
-// ManyOptions.args = {
-//   options: _getDummyOptions("test", 15),
-// };
-
-// export const ExtraLabel = Template.bind({});
-// ExtraLabel.args = {
-//   options: _getDummyOptions("test", 3, "(10)"),
-// };
