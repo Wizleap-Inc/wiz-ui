@@ -1,21 +1,78 @@
 <template>
-  <details>
-    <summary>{{ summary }}</summary>
+  <details
+    :style="{ width: width }"
+    :class="[AccordionDetailsStyle[backgroundColor]]"
+  >
+    <summary
+      :style="{
+        display: 'flex',
+        justifyContent: 'center',
+      }"
+      @click="isOpen = !isOpen"
+    >
+      <WizHStack
+        align="center"
+        justify="between"
+        gap="xs2"
+        :class="AccordionMessageVariantStyle[backgroundColor]"
+      >
+        <div>
+          {{ isOpen ? closeMessage : openMessage }}
+        </div>
+        <WizIcon
+          v-if="!isOpen"
+          size="xl2"
+          :icon="WizIExpandMore"
+          :color="iconColor"
+        />
+        <WizIcon v-else size="xl2" :icon="WizIExpandLess" :color="iconColor" />
+      </WizHStack>
+    </summary>
     <slot />
   </details>
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  AccordionMessageVariantStyle,
+  AccordionDetailsStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
+import { ref, computed, PropType } from "vue";
 
-defineOptions({
-  name: ComponentName.Accordion,
+import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+
+import { WizHStack, WizIcon } from "../";
+
+const props = defineProps({
+  openMessage: {
+    type: String,
+    required: false,
+    default: "もっと見る",
+  },
+  closeMessage: {
+    type: String,
+    required: false,
+    default: "閉じる",
+  },
+  backgroundColor: {
+    type: String as PropType<"gray" | "white">,
+    requried: false,
+    default: "white",
+  },
+
+  width: {
+    type: String,
+    required: false,
+    default: "20rem",
+  },
 });
 
-defineProps({
-  summary: {
-    type: String,
-    requried: true,
-  },
+const isOpen = ref(false);
+
+const width = computed(() => props.width);
+
+const iconColor = computed((): ColorKeys => {
+  return props.backgroundColor === "gray" ? "green.800" : "gray.500";
 });
 </script>
