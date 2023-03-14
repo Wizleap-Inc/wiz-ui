@@ -6,6 +6,10 @@ export const cardTableStyle = style({
   borderSpacing: `0 calc(${THEME.spacing.xs2} + ${THEME.spacing.xs} * 2)`,
 });
 
+export const cardTableFixedStyle = style({
+  tableLayout: "fixed",
+});
+
 export const cardTdStyle = style({
   padding: `${THEME.spacing.xs2} ${THEME.spacing.sm}`,
   borderLeft: `1px solid ${THEME.color.gray[300]}`,

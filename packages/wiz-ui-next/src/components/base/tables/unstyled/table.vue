@@ -4,10 +4,8 @@
       spaceX && borderSpacingXStyle[spaceX],
       spaceY && borderSpacingYStyle[spaceY],
       !spaceX && !spaceY && borderSpacingStyle[space],
+      fixed && unstyledTableFixedStyle,
     ]"
-    :style="{
-      'table-layout': fixed ? 'fixed' : 'auto',
-    }"
   >
     <slot />
   </table>
@@ -15,6 +13,7 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { unstyledTableFixedStyle } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 import {
   borderSpacingStyle,
   borderSpacingXStyle,

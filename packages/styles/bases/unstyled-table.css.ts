@@ -1,6 +1,10 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
+export const unstyledTableFixedStyle = style({
+  tableLayout: "fixed",
+});
+
 export const unstyledTdStyle = style({
   fontSize: THEME.fontSize.sm,
   padding: 0,

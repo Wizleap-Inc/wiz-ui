@@ -5,6 +5,10 @@ export const flatTableStyle = style({
   borderSpacing: 0,
 });
 
+export const flatTableFixedStyle = style({
+  tableLayout: "fixed",
+});
+
 export const flatTdStyle = style({
   fontSize: THEME.fontSize.sm,
   padding: THEME.spacing.sm,
