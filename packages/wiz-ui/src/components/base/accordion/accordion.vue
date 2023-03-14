@@ -19,13 +19,22 @@
         <div>
           {{ isOpen ? closeMessage : openMessage }}
         </div>
-        <WizIcon
-          v-if="!isOpen"
-          size="xl2"
-          :icon="WizIExpandMore"
-          :color="iconColor"
-        />
-        <WizIcon v-else size="xl2" :icon="WizIExpandLess" :color="iconColor" />
+        <div @click="canSpin = true">
+          <WizIcon
+            v-if="!isOpen"
+            size="xl2"
+            :icon="WizIExpandMore"
+            :color="iconColor"
+            :class="[canSpin && openSpin]"
+          />
+          <WizIcon
+            v-else
+            size="xl2"
+            :icon="WizIExpandLess"
+            :color="iconColor"
+            :class="[canSpin && closeSpin]"
+          />
+        </div>
       </WizHStack>
     </summary>
     <slot />
@@ -37,6 +46,8 @@ import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   AccordionMessageVariantStyle,
   AccordionDetailsStyle,
+  openSpin,
+  closeSpin,
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
 import { ref, computed, PropType } from "vue";
 
@@ -69,6 +80,8 @@ const props = defineProps({
 });
 
 const isOpen = ref(false);
+
+const canSpin = ref(false);
 
 const width = computed(() => props.width);
 

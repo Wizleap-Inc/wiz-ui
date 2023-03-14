@@ -1,4 +1,4 @@
-import { styleVariants } from "@vanilla-extract/css";
+import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const AccordionDetailsStyle = styleVariants({
@@ -27,4 +27,24 @@ export const AccordionMessageVariantStyle = styleVariants({
     lineHeight: "130%",
     alignItems: "center",
   },
+});
+
+const openRotate = keyframes({
+  "0%": { transform: "rotate(180deg)" },
+  "100%": { transform: "rotate(0deg)" },
+});
+
+const closeRotate = keyframes({
+  "0%": { transform: "rotate(-180deg)" },
+  "100%": { transform: "rotate(0deg)" },
+});
+
+export const openSpin = style({
+  animationName: openRotate,
+  animationDuration: "1s",
+});
+
+export const closeSpin = style({
+  animationName: closeRotate,
+  animationDuration: "1s",
 });
