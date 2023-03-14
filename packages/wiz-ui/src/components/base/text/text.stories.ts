@@ -43,6 +43,9 @@ export default {
       control: { type: "select" },
       options: ["start", "end", "left", "right", "center"],
     },
+    lineThrough: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -95,6 +98,13 @@ textAlign.args = {
   as: "p",
   slot: "これはテキストです。",
   textAlign: "start",
+};
+
+export const lineThrough = Template.bind({});
+lineThrough.args = {
+  as: "p",
+  slot: "これはテキストです。",
+  lineThrough: true,
 };
 
 const MaxLinesTemplate: StoryFn = (_, { argTypes }) => ({
