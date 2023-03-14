@@ -1,9 +1,7 @@
 <template>
   <table
-    :class="cardTableStyle"
-    :style="{
-      'table-layout': fixed ? 'fixed' : 'auto',
-    }"
+    :class="[cardTableStyle, fixed && cardTableFixedStyle]"
+    :style="{ width }"
   >
     <slot />
   </table>
@@ -11,7 +9,10 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { cardTableStyle } from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import {
+  cardTableStyle,
+  cardTableFixedStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
 
 defineOptions({
   name: ComponentName.CardTable,
@@ -22,6 +23,10 @@ defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  width: {
+    type: String,
+    required: false,
   },
 });
 </script>

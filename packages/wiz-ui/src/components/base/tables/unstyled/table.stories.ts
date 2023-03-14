@@ -38,6 +38,9 @@ export default {
     fixed: {
       control: { type: "boolean" },
     },
+    width: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -78,10 +81,12 @@ export const Fixed: StoryFn = (_, { argTypes }) => ({
     WizUnstyledTd,
   },
   template: `
-    <WizUnstyledTable fixed>
+    <WizUnstyledTable v-bind="$props">
       <WizUnstyledThead>
         <WizUnstyledTr>
-          <WizUnstyledTh v-for="i in 3" :key="i">Column {{ i }}</WizUnstyledTh>
+          <WizUnstyledTh v-for="i in 3" :key="i" :width="'calc(100px * ' + i + ')'">
+            Column {{ i }}
+          </WizUnstyledTh>
         </WizUnstyledTr>
       </WizUnstyledThead>
       <WizUnstyledTbody>
@@ -92,6 +97,10 @@ export const Fixed: StoryFn = (_, { argTypes }) => ({
     </WizUnstyledTable>
   `,
 });
+Fixed.args = {
+  fixed: true,
+  width: "600px",
+};
 
 export const WithRowHeader: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
