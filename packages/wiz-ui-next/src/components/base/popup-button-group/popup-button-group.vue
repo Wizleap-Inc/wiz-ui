@@ -1,7 +1,10 @@
 <template>
   <WizVStack
-    gap="no"
-    :class="popupButtonGroupStyle"
+    gap="xs2"
+    :class="[
+      popupButtonGroupStyle,
+      depth === 0 && borderRadiusStyle[borderRadius],
+    ]"
     :style="{ minWidth: computedWidth }"
     :p="depth === 0 ? p : 'no'"
   >
@@ -32,27 +35,26 @@
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
-          @mousedown="popupButtonMouseDown(item.item)"
+          @click="popupButtonMouseDown(item.item)"
+          @mousedown="onHoldClick(item.item)"
+          @keypress.enter="popupButtonKeyPressEnter(item.item)"
+          :tabIndex="0"
+          :key="`${item.item.option.label}-${item.item.option.value}`"
         >
-          <WizHStack gap="xs">
-            <span>
-              {{ item.item.option.label }}
-            </span>
-            <span v-if="item.item.option.exLabel">
-              {{ item.item.option.exLabel }}
-            </span>
-            <div v-if="item.item.option.icon">
-              <WizIcon
-                :icon="item.item.option.icon"
-                :color="
-                  item.item.option.value === isClicking
-                    ? 'white.800'
-                    : item.item.option.iconDefaultColor ?? 'gray.500'
-                "
-                size="md"
-              />
-            </div>
-          </WizHStack>
+          <span :class="popupButtonGroupInnerContainerStyle">
+            <span>{{ item.item.option.label }}</span>
+
+            <WizIcon
+              v-if="item.item.option.icon"
+              :icon="item.item.option.icon"
+              :color="
+                item.item.option.value === isClicking
+                  ? 'white.800'
+                  : item.item.option.iconDefaultColor ?? 'gray.500'
+              "
+              size="md"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -70,15 +72,12 @@ import {
   popupButtonGroupButtonStyle,
   popupButtonGroupTitleStyle,
   popupButtonGroupDividerStyle,
+  popupButtonGroupInnerContainerStyle,
+  borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
 
-import {
-  WizIcon,
-  WizPopupButtonGroup,
-  WizVStack,
-  WizHStack,
-} from "@/components";
+import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { ButtonGroupItem } from "./types";
@@ -98,6 +97,11 @@ const props = defineProps({
     default: "10rem",
   },
   p: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  borderRadius: {
     type: String as PropType<SpacingKeys>,
     required: false,
     default: "no",
@@ -158,22 +162,28 @@ const items = computed(() => {
 
 const isClicking = ref<number | null>(null);
 
-const onHoldClick = (n: number) => {
-  isClicking.value = n;
-  const mouseup = () => {
-    isClicking.value = null;
-    document.removeEventListener("mouseup", mouseup);
-  };
-  document.addEventListener("mouseup", mouseup);
+const onHoldClick = (item: ButtonGroupItem) => {
+  if (item.kind === "button") {
+    isClicking.value = item.option.value;
+    const mouseup = () => {
+      isClicking.value = null;
+      document.removeEventListener("mouseup", mouseup);
+    };
+    document.addEventListener("mouseup", mouseup);
+  }
 };
 
 const popupButtonMouseDown = (item: ButtonGroupItem) => {
   if (item.kind === "button") {
     item.option.onClick();
-    onHoldClick(item.option.value);
   }
 };
 
+const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
+  if (item.kind === "button") {
+    item.option.onClick();
+  }
+};
 // Form Control
 const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
