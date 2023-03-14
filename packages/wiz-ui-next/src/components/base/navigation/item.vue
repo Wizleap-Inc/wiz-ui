@@ -30,14 +30,11 @@
         </div>
       </component>
     </div>
-    <div
-      v-if="existPopup"
-      @mouseleave="popupMouseLeave"
-      ref="popupContainerRef"
-    >
+    <div v-if="existPopup" ref="popupContainerRef">
       <WizPopup
         :isOpen="isOpenDropdown"
         @onClose="popupOnClose"
+        @mouseLeave="popupMouseLeave"
         direction="rt"
         layer="base"
       >
@@ -124,15 +121,18 @@ const navItemMouseEnter = () => {
   if (!props.lockingPopup) isOpenDropdown.value = true;
 };
 const navItemMouseLeave = (event: MouseEvent) => {
-  const x = navItemRef.value?.getBoundingClientRect().right ?? 0;
-  if (event.clientX < x && !props.lockingPopup) isOpenDropdown.value = false;
+  const [cx, cy] = [event.clientX, event.clientY];
+  const right = navItemRef.value?.getBoundingClientRect().right ?? 0;
+  const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
+  const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
+  if (right < cx && top < cy && cy < bottom) return;
+  if (!props.lockingPopup) isOpenDropdown.value = false;
 };
 const popupOnClose = () => {
   isOpenDropdown.value = false;
   emit("setLock", false);
 };
 const popupMouseLeave = (event: MouseEvent) => {
-  console.log("popupMouseLeave");
   const [cx, cy] = [event.clientX, event.clientY];
   const left = popupContainerRef.value?.getBoundingClientRect().left ?? 0;
   const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
