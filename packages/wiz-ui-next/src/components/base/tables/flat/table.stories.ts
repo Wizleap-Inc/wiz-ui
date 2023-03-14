@@ -12,6 +12,14 @@ import {
 export default {
   title: "Base/Tables/Flat",
   component: WizFlatTable,
+  argTypes: {
+    fixed: {
+      control: { type: "boolean" },
+    },
+    width: {
+      control: { type: "text" },
+    },
+  },
 } as Meta<typeof WizFlatTable>;
 
 export const Default: StoryFn<typeof WizFlatTable> = (args) => ({
@@ -51,22 +59,26 @@ export const Fixed: StoryFn<typeof WizFlatTable> = (args) => ({
     WizFlatTd,
   },
   template: `
-    <div style="width: 300px">
-      <WizFlatTable fixed>
-        <WizFlatThead>
-          <WizFlatTr>
-            <WizFlatTh v-for="i in 3" :key="i">Column {{ i }}</WizFlatTh>
-          </WizFlatTr>
-        </WizFlatThead>
-        <WizFlatTbody>
-          <WizFlatTr v-for="i in 3">
-            <WizFlatTd v-for="j in 3" :key="j">Row {{ i }}</WizFlatTd>
-          </WizFlatTr>
-        </WizFlatTbody>
-      </WizFlatTable>
-    </div>
+    <WizFlatTable v-bind="args">
+      <WizFlatThead>
+        <WizFlatTr>
+          <WizFlatTh v-for="i in 3" :key="i" :width="'calc(100px * ' + i + ')'">
+            Column {{ i }}
+          </WizFlatTh>
+        </WizFlatTr>
+      </WizFlatThead>
+      <WizFlatTbody>
+        <WizFlatTr v-for="i in 3">
+          <WizFlatTd v-for="j in 3" :key="j">Row {{ i }}</WizFlatTd>
+        </WizFlatTr>
+      </WizFlatTbody>
+    </WizFlatTable>
   `,
 });
+Fixed.args = {
+  fixed: true,
+  width: "600px",
+};
 
 export const WithRowHeader: StoryFn<typeof WizFlatTable> = (args) => ({
   setup: () => ({ args }),

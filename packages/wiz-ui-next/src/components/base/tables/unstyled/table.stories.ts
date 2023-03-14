@@ -35,6 +35,12 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    fixed: {
+      control: { type: "boolean" },
+    },
+    width: {
+      control: { type: "text" },
+    },
   },
 } as Meta<typeof WizUnstyledTable>;
 
@@ -75,10 +81,12 @@ export const Fixed: StoryFn<typeof WizUnstyledTable> = (args) => ({
     WizUnstyledTd,
   },
   template: `
-    <WizUnstyledTable fixed>
+    <WizUnstyledTable v-bind="args">
       <WizUnstyledThead>
         <WizUnstyledTr>
-          <WizUnstyledTh v-for="i in 3" :key="i">Column {{ i }}</WizUnstyledTh>
+          <WizUnstyledTh v-for="i in 3" :key="i" :width="'calc(100px * ' + i + ')'">
+            Column {{ i }}
+          </WizUnstyledTh>
         </WizUnstyledTr>
       </WizUnstyledThead>
       <WizUnstyledTbody>
@@ -89,6 +97,10 @@ export const Fixed: StoryFn<typeof WizUnstyledTable> = (args) => ({
     </WizUnstyledTable>
   `,
 });
+Fixed.args = {
+  fixed: true,
+  width: "600px",
+};
 
 export const WithRowHeader: StoryFn<typeof WizUnstyledTable> = (args) => ({
   setup: () => ({ args }),
