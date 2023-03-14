@@ -107,6 +107,12 @@ DummyValue.args = {
   dummyValue: "ABCDEFG",
 };
 
+export const lineThrough = Template.bind({});
+lineThrough.args = {
+  as: "p",
+  lineThrough: true,
+};
+
 const MaxLinesTemplate: StoryFn = (args) => ({
   setup: () => ({ args }),
   components: { WizText },
