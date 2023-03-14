@@ -73,7 +73,7 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
 };
 
 const _getDummyItems = (): ButtonGroupItem[] => {
-  const f = (n: number) => () => console.log("clicked!", n);
+  const f = (n: number) => () => {}; //console.log("clicked!", n);
   const createButton = (n: number): ButtonGroupItem => ({
     kind: "button",
     option: { label: `item ${n}`, value: n, onClick: f(n) },
