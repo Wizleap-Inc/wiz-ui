@@ -1,5 +1,8 @@
 <template>
-  <table :class="[cardTableStyle, fixed && cardTableFixedStyle]">
+  <table
+    :class="[cardTableStyle, fixed && cardTableFixedStyle]"
+    :style="{ width }"
+  >
     <slot />
   </table>
 </template>
@@ -20,6 +23,10 @@ defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  width: {
+    type: String,
+    required: false,
   },
 });
 </script>

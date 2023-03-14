@@ -6,6 +6,7 @@
       !spaceX && !spaceY && borderSpacingStyle[space],
       fixed && unstyledTableFixedStyle,
     ]"
+    :style="{ width }"
   >
     <slot />
   </table>
@@ -43,6 +44,10 @@ defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  width: {
+    type: String,
+    required: false,
   },
 });
 </script>

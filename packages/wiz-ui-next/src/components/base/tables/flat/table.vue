@@ -1,5 +1,8 @@
 <template>
-  <table :class="[flatTableStyle, fixed && flatTableFixedStyle]">
+  <table
+    :class="[flatTableStyle, fixed && flatTableFixedStyle]"
+    :style="{ width }"
+  >
     <slot />
   </table>
 </template>
@@ -20,6 +23,10 @@ defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  width: {
+    type: String,
+    required: false,
   },
 });
 </script>
