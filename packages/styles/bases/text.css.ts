@@ -43,3 +43,7 @@ export const textWordBreakStyle = style({
 export const textDummyStyle = style({
   filter: `blur(${THEME.spacing.xs2})`,
 });
+
+export const textLineThroughStyle = style({
+  textDecoration: "line-through",
+});
