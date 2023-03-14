@@ -5,11 +5,7 @@ import WizAccordion from "./accordion.vue";
 export default {
   title: "Base/Accordion",
   component: WizAccordion,
-  argTypes: {
-    summary: {
-      control: { type: "text" },
-    },
-  },
+  argTypes: {},
 } as Meta<typeof WizAccordion>;
 
 const Template: StoryFn<typeof WizAccordion> = (args) => ({
@@ -19,6 +15,4 @@ const Template: StoryFn<typeof WizAccordion> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  summary: "概要",
-};
+Default.args = {};
