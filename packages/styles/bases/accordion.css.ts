@@ -41,10 +41,10 @@ const closeRotate = keyframes({
 
 export const openSpin = style({
   animationName: openRotate,
-  animationDuration: "1s",
+  animationDuration: "0.4s",
 });
 
 export const closeSpin = style({
   animationName: closeRotate,
-  animationDuration: "1s",
+  animationDuration: "0.4s",
 });
