@@ -10,6 +10,7 @@ export interface SelectBoxOption {
 
 export type ButtonGroupItem =
   | { kind: "button"; option: SelectBoxOption }
+  | { kind: "divider" }
   | {
       kind: "group";
       title: string;
