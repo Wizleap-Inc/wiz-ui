@@ -1,11 +1,12 @@
-import { h, render, ref } from "vue";
+import { h, render, ref, VNode } from "vue";
 
 import WizSnackbarController from "@/components/base/snackbar/snackbar-controller.vue";
 import { SnackbarOption } from "@/components/base/snackbar/types";
 
-export const useSnackbar = () => {
-  const options = ref<SnackbarOption[]>([]);
+const options = ref<SnackbarOption[]>([]);
+let snackbar: VNode | null = null;
 
+export const useSnackbar = () => {
   const show = (message: string) => {
     const created = new Date().toISOString();
     const deleteSnackbar = () => {
@@ -20,8 +21,10 @@ export const useSnackbar = () => {
     });
   };
 
-  const snackbar = h(WizSnackbarController, { options });
-  render(snackbar, document.body);
+  if (!snackbar) {
+    snackbar = h(WizSnackbarController, { options });
+    render(snackbar, document.body);
+  }
 
   return show;
 };
