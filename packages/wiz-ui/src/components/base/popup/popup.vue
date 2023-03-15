@@ -5,6 +5,7 @@
       :style="{
         inset,
         transform: popupTranslate,
+        borderLeft: `solid ${transparentBorderLeftWidth} transparent`,
       }"
       ref="popupRef"
       @mouseleave="mouseLeave"
@@ -77,6 +78,11 @@ const props = defineProps({
     type: String as PropType<Direction>,
     required: false,
     default: "bl",
+  },
+  transparentBorderLeftWidth: {
+    type: String,
+    required: false,
+    default: "0px",
   },
 });
 
