@@ -1,7 +1,7 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn, Meta } from "@storybook/vue3";
-import { AREA_LABELS } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import WizPasswordInput from "./password.vue";
@@ -70,7 +70,7 @@ Test.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const input = canvas.getByPlaceholderText("パスワードを入力");
   const visibleToggle = canvas.getByLabelText(
-    AREA_LABELS.PASSWORD_VISIBLE_TOGGLE
+    ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE
   );
 
   await userEvent.click(input);

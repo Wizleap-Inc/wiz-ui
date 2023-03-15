@@ -82,3 +82,19 @@ export const formatDateToMonthDayWeek = (
     .join("/")
     .concat(`(${week})`);
 };
+
+/**
+ * formatDateToMD
+ * ```ts
+ * const input = new Date('2021-01-01');
+ * const output = '1/1';
+ * assert.equal(formatDateToMD(input), output);
+ * ```
+ * @param date
+ * @returns string
+ */
+export const formatDateToMD = (date: Date): string => {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return [month, day].join("/");
+};
