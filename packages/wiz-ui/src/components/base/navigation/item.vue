@@ -36,7 +36,8 @@
         @onClose="popupOnClose"
         @mouseLeave="popupMouseLeave"
         direction="rt"
-        layer="base"
+        layer="popover"
+        transparentBorderLeftWidth="1px"
       >
         <WizPopupButtonGroup
           :options="buttons ?? []"
