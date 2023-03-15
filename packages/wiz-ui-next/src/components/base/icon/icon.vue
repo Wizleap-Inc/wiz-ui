@@ -1,6 +1,12 @@
 <template>
   <div :class="[iconStyle, iconSizeStyle[size]]">
-    <component :is="icon" :class="[fontSizeStyle[size], fillStyle[color]]" />
+    <component
+      :is="icon"
+      :class="[
+        fontSizeStyle[size],
+        color === 'inherit' ? iconDefaultStyle : fillStyle[color],
+      ]"
+    />
   </div>
 </template>
 
@@ -13,6 +19,7 @@ import {
 import {
   iconStyle,
   iconSizeStyle,
+  iconDefaultStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/icon.css";
 import { fillStyle, fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
@@ -29,7 +36,7 @@ defineProps({
     required: true,
   },
   color: {
-    type: String as PropType<ColorKeys>,
+    type: String as PropType<ColorKeys | "inherit">,
     required: false,
     default: "gray.700",
   },

@@ -73,3 +73,33 @@ External.args = {
   label: "Home",
   to: "https://wizleap.co.jp",
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  icon: WizIDashboard,
+  label: "Home",
+  to: "/home",
+  disabled: true,
+};
+
+const TooltipTemplate: StoryFn = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizNavItem },
+  setup() {
+    return { args };
+  },
+  template: `
+  <div style="margin-top: 48px">
+    <WizNavItem v-bind="$props" :active="$route.path === '/home'" />
+    <router-view />
+  </div>
+  `,
+});
+
+export const WithToolTip = TooltipTemplate.bind({});
+WithToolTip.args = {
+  icon: WizIDashboard,
+  label: "Home",
+  to: "/home",
+  tooltipText: "これはヒントです。",
+};

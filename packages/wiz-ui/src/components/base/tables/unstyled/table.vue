@@ -4,7 +4,9 @@
       spaceX && borderSpacingXStyle[spaceX],
       spaceY && borderSpacingYStyle[spaceY],
       !spaceX && !spaceY && borderSpacingStyle[space],
+      fixed && unstyledTableFixedStyle,
     ]"
+    :style="{ width }"
   >
     <slot />
   </table>
@@ -12,6 +14,7 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { unstyledTableFixedStyle } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 import {
   borderSpacingStyle,
   borderSpacingXStyle,
@@ -35,6 +38,15 @@ defineProps({
   },
   spaceY: {
     type: String as PropType<SpacingKeys>,
+    required: false,
+  },
+  fixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  width: {
+    type: String,
     required: false,
   },
 });

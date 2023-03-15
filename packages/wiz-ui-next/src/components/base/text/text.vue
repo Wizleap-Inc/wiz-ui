@@ -10,6 +10,7 @@
       fontSizeStyle[fontSize],
       colorStyle[color],
       whiteSpaceStyle[whiteSpace],
+      lineThrough && textLineThroughStyle,
     ]"
     :for="htmlFor"
     :style="overflowStyles"
@@ -33,6 +34,7 @@ import {
   textFontWeightStyle,
   textWordBreakStyle,
   textAlignStyle,
+  textLineThroughStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text.css";
 import {
   lineHeightStyle,
@@ -95,6 +97,11 @@ const props = defineProps({
     type: String as PropType<"start" | "end" | "left" | "right" | "center">,
     required: false,
     default: "start",
+  },
+  lineThrough: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

@@ -63,6 +63,16 @@ export const navigationItemActiveStyle = style({
   },
 });
 
+export const navigationItemDisabledStyle = style({
+  color: THEME.color.gray["500"],
+  cursor: "not-allowed",
+  selectors: {
+    "&:hover::before": {
+      backgroundColor: "transparent",
+    },
+  },
+});
+
 export const navigationItemIconStyle = style({
   fontSize: THEME.fontSize.xl2,
   fill: THEME.color.gray["700"],
@@ -71,6 +81,10 @@ export const navigationItemIconStyle = style({
 
 export const navigationItemIconActiveStyle = style({
   fill: THEME.color.green["800"],
+});
+
+export const navigationItemIconDisabledStyle = style({
+  fill: THEME.color.gray["500"],
 });
 
 export const navigationItemTextStyle = style({
