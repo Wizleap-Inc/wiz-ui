@@ -15,6 +15,12 @@ export default {
   title: "Base/Tables/Card",
   component: WizCardTable,
   argTypes: {
+    fixed: {
+      control: { type: "boolean" },
+    },
+    width: {
+      control: { type: "text" },
+    },
     onClick: {
       action: "onClick",
     },
@@ -100,6 +106,39 @@ export const onClick = (text: string) => {
   },
 };
 
+export const Fixed: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizCardTable,
+    WizCardThead,
+    WizCardTbody,
+    WizCardTr,
+    WizCardTh,
+    WizCardTd,
+    WizVStack,
+  },
+  template: `
+    <WizCardTable v-bind="$props">
+      <WizCardThead>
+        <WizCardTr>
+          <WizCardTh v-for="i in 3" :key="i" :width="'calc(100px * ' + i + ')'">
+            Column {{ i }}
+          </WizCardTh>
+        </WizCardTr>
+      </WizCardThead>
+      <WizCardTbody>
+        <WizCardTr v-for="i in 3" @click="onClick('Row ' + i)">
+          <WizCardTd v-for="j in 3" :key="j">Row {{ i }}</WizCardTd>
+        </WizCardTr>
+      </WizCardTbody>
+    </WizCardTable>
+  `,
+});
+Fixed.args = {
+  fixed: true,
+  width: "600px",
+};
+
 export const UnionColumn: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
@@ -125,6 +164,7 @@ export const UnionColumn: StoryFn = (_, { argTypes }) => ({
     </WizCardTable>
   `,
 });
+
 UnionColumn.parameters = {
   docs: {
     description: {
