@@ -12,7 +12,7 @@ export const install = (vue: typeof Vue) => {
   });
 };
 
-export const version = "0.7.4";
+export const version = "0.7.5";
 
 export default {
   install,
