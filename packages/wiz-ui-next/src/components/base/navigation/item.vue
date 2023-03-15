@@ -41,6 +41,7 @@
           :options="buttons ?? []"
           :class="navigationPopupContainerStyle"
           p="xs"
+          borderRadius="xs2"
         />
       </WizPopup>
     </div>
