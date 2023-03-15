@@ -1,36 +1,35 @@
 <template>
-  <WizPopupContainer :style="{ width: '100%' }">
-    <div
+  <WizPopupContainer
+    :style="{ width: '100%' }"
+    @click="navItemOnClick"
+    @mouseenter="navItemMouseEnter"
+    @mouseleave="navItemMouseLeave"
+  >
+    <component
+      :is="isExternalLink ? 'a' : 'router-link'"
+      :to="!isExternalLink ? to : undefined"
+      :href="isExternalLink ? to : undefined"
+      :target="isExternalLink ? '_blank' : undefined"
+      :class="[navigationItemStyle, active && navigationItemActiveStyle]"
       ref="navItemRef"
-      @click="navItemOnClick"
-      @mouseenter="navItemMouseEnter"
-      @mouseleave="navItemMouseLeave"
     >
       <component
-        :is="isExternalLink ? 'a' : 'router-link'"
-        :to="!isExternalLink ? to : undefined"
-        :href="isExternalLink ? to : undefined"
-        :target="isExternalLink ? '_blank' : undefined"
-        :class="[navigationItemStyle, active && navigationItemActiveStyle]"
+        :is="icon"
+        :class="[
+          navigationItemIconStyle,
+          active && navigationItemIconActiveStyle,
+        ]"
+      />
+      <div
+        :class="[
+          navigationItemTextStyle,
+          active && navigationItemTextActiveStyle,
+        ]"
       >
-        <component
-          :is="icon"
-          :class="[
-            navigationItemIconStyle,
-            active && navigationItemIconActiveStyle,
-          ]"
-        />
-        <div
-          :class="[
-            navigationItemTextStyle,
-            active && navigationItemTextActiveStyle,
-          ]"
-        >
-          {{ label }}
-        </div>
-      </component>
-    </div>
-    <div v-if="existPopup" ref="popupContainerRef">
+        {{ label }}
+      </div>
+    </component>
+    <div v-if="existPopup">
       <WizPopup
         :isOpen="isOpenDropdown"
         @onClose="popupOnClose"
@@ -110,7 +109,6 @@ const emit = defineEmits<Emit>();
 
 const isOpenDropdown = ref(false);
 const navItemRef = ref<HTMLElement>();
-const popupContainerRef = ref<HTMLElement>();
 
 const existPopup = computed(() => props.buttons && props.buttons?.length > 0);
 const navItemOnClick = () => {
@@ -120,12 +118,13 @@ const navItemOnClick = () => {
 const navItemMouseEnter = () => {
   if (!props.lockingPopup) isOpenDropdown.value = true;
 };
+
 const navItemMouseLeave = (event: MouseEvent) => {
   const [cx, cy] = [event.clientX, event.clientY];
   const right = navItemRef.value?.getBoundingClientRect().right ?? 0;
   const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
   const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
-  if (right < cx && top < cy && cy < bottom) return;
+  if (right <= cx && top < cy && cy < bottom) return;
   if (!props.lockingPopup) isOpenDropdown.value = false;
 };
 const popupOnClose = () => {
@@ -134,10 +133,10 @@ const popupOnClose = () => {
 };
 const popupMouseLeave = (event: MouseEvent) => {
   const [cx, cy] = [event.clientX, event.clientY];
-  const left = popupContainerRef.value?.getBoundingClientRect().left ?? 0;
+  const right = navItemRef.value?.getBoundingClientRect().right ?? 0;
   const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
   const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
-  if (cx < left && top < cy && cy < bottom) return;
+  if (cx <= right && top < cy && cy < bottom) return;
   if (!props.lockingPopup) isOpenDropdown.value = false;
 };
 </script>
