@@ -29,6 +29,15 @@ export const AccordionMessageVariantStyle = styleVariants({
   },
 });
 
+export const AccordionSummaryStyle = style({
+  display: "flex",
+  justifyContent: "center",
+});
+
+export const AccordionContentStyle = style({
+  overflow: "hidden",
+});
+
 const openRotate = keyframes({
   "0%": { transform: "rotate(180deg)" },
   "100%": { transform: "rotate(0deg)" },

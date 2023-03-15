@@ -1,20 +1,15 @@
 <template>
   <details
     :style="{ width: width }"
-    :class="[AccordionDetailsStyle[backgroundColor]]"
+    :class="AccordionDetailsStyle[backgroundColor]"
+    :open="isOpen || isAnimating"
   >
-    <summary
-      :style="{
-        display: 'flex',
-        justifyContent: 'center',
-      }"
-      @click="isOpen = !isOpen"
-    >
+    <summary :class="AccordionSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
         gap="xs2"
-        :class="AccordionMessageVariantStyle[backgroundColor]"
+        :class="[AccordionMessageVariantStyle[backgroundColor]]"
       >
         <div>
           {{ isOpen ? closeMessage : openMessage }}
@@ -37,7 +32,9 @@
         </div>
       </WizHStack>
     </summary>
-    <slot />
+    <div ref="contentRef" :class="AccordionContentStyle">
+      <slot />
+    </div>
   </details>
 </template>
 
@@ -46,14 +43,21 @@ import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   AccordionMessageVariantStyle,
   AccordionDetailsStyle,
+  AccordionContentStyle,
+  AccordionSummaryStyle,
   openSpin,
   closeSpin,
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
 import { ref, computed, PropType } from "vue";
 
+import { WizHStack, WizIcon } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
 
-import { WizHStack, WizIcon } from "../";
+import {
+  animationConfiguration,
+  closingAnimationKeyframes,
+  openingAnimationKeyframes,
+} from "./animation-configuration";
 
 const props = defineProps({
   openMessage: {
@@ -68,10 +72,9 @@ const props = defineProps({
   },
   backgroundColor: {
     type: String as PropType<"gray" | "white">,
-    requried: false,
+    required: false,
     default: "white",
   },
-
   width: {
     type: String,
     required: false,
@@ -81,6 +84,8 @@ const props = defineProps({
 
 const isOpen = ref(false);
 
+const isAnimating = ref(false);
+
 const canSpin = ref(false);
 
 const width = computed(() => props.width);
@@ -88,4 +93,33 @@ const width = computed(() => props.width);
 const iconColor = computed((): ColorKeys => {
   return props.backgroundColor === "gray" ? "green.800" : "gray.500";
 });
+
+const contentRef = ref();
+
+const onClick = (event: MouseEvent) => {
+  event.preventDefault();
+  const content = contentRef.value;
+  if (isAnimating.value) return;
+  if (isOpen.value) {
+    isOpen.value = false;
+    isAnimating.value = true;
+    const closingAnimation = content.animate(
+      closingAnimationKeyframes(content),
+      animationConfiguration
+    );
+    closingAnimation.onfinish = () => {
+      isAnimating.value = false;
+    };
+  } else {
+    isOpen.value = true;
+    isAnimating.value = true;
+    const openingAnimation = content.animate(
+      openingAnimationKeyframes(content),
+      animationConfiguration
+    );
+    openingAnimation.onfinish = () => {
+      isAnimating.value = false;
+    };
+  }
+};
 </script>
