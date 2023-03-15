@@ -72,12 +72,13 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
   );
 };
 
+const click = (n: number) => () => {}; //console.log("clicked!", n);
+const createButton = (n: number): ButtonGroupItem => ({
+  kind: "button",
+  option: { label: `item ${n}`, value: n, onClick: click(n) },
+});
+
 const _getDummyItems = (): ButtonGroupItem[] => {
-  const f = (n: number) => () => {}; //console.log("clicked!", n);
-  const createButton = (n: number): ButtonGroupItem => ({
-    kind: "button",
-    option: { label: `item ${n}`, value: n, onClick: f(n) },
-  });
   return [
     {
       kind: "group",
@@ -136,4 +137,23 @@ Popup.args = {
   options: _getDummyItems(),
   p: "xs",
   borderRadius: "xs2",
+};
+
+export const Divider: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
+  components: { WizPopupButtonGroup },
+  setup() {
+    return { args };
+  },
+  template: `
+  <WizPopupButtonGroup v-bind="args"/>
+  `,
+});
+Divider.args = {
+  options: [
+    createButton(1),
+    createButton(2),
+    { kind: "divider" },
+    createButton(3),
+    createButton(4),
+  ],
 };
