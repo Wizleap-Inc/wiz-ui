@@ -12,18 +12,19 @@
       <div :class="selectBoxInnerBoxStyle" @click="toggleDropdown">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
-            v-for="item in selectedItem"
+            v-for="(item, i) in selectedItem"
             :key="`${item.label}-${item.value}`"
             :class="selectBoxInnerBoxSelectedItemStyle"
           >
             <span :class="selectBoxInnerBoxSelectedLabelStyle">
               {{ item.label }}
             </span>
-
             <button
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
+              @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
               :class="selectBoxInnerBoxCloseButtonStyle"
+              :ref="setUnselectableRef(i)"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -40,7 +41,7 @@
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
             :disabled="disabled"
-            @keydown="onKeydownBackspace"
+            @keydown="onKeydownBackspace.focus"
           />
         </WizHStack>
       </div>
@@ -219,6 +220,8 @@ const onHoldClick = () => {
 };
 
 const inputRef = ref<HTMLElement | undefined>();
+const backspaceUnselectableRef = ref();
+
 const toggleDropdown = () => {
   if (props.disabled) return;
   if (
@@ -253,6 +256,12 @@ const selectedItem = computed(() => {
   return props.modelValue.map((v) => valueToOption.value[v]);
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const setUnselectableRef = (index: number) => (el: any) => {
+  if (index === selectedItem.value.length - 1)
+    backspaceUnselectableRef.value = el;
+};
+
 const filteredOptions = computed(() => {
   const sortedOptions =
     searchValue.value.length !== 0
@@ -279,17 +288,24 @@ const emit = defineEmits<Emit>();
 
 const onClear = (n: number) => {
   emit("unselect", n);
+  inputRef.value?.focus();
 };
 
-const onKeydownBackspace = (event: KeyboardEvent) => {
-  if (
-    searchValue.value === "" &&
-    event.key === "Backspace" &&
-    props.modelValue.length > 0
-  ) {
-    const id = props.modelValue[props.modelValue.length - 1];
-    emit("unselect", id);
-  }
+const onKeydownBackspace = {
+  focus: (event: KeyboardEvent) => {
+    if (
+      event.key === "Backspace" &&
+      searchValue.value === "" &&
+      props.modelValue.length > 0
+    ) {
+      backspaceUnselectableRef.value?.focus();
+    }
+  },
+  unselect: (n: number, event: KeyboardEvent) => {
+    if (event.key === "Backspace") {
+      onClear(n);
+    }
+  },
 };
 
 const onSelect = (value: number) => {
