@@ -83,7 +83,7 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 import { ButtonGroupItem } from "./types";
 
 defineOptions({
-  name: ComponentName.SelectBox,
+  name: ComponentName.PopupButtonGroup,
 });
 
 const props = defineProps({
@@ -134,12 +134,15 @@ const props = defineProps({
 
 type ItemElement =
   | { kind: "divider" }
-  | { kind: "item"; item: ButtonGroupItem };
+  | { kind: "item"; item: Exclude<ButtonGroupItem, { kind: "divider" }> };
 
 const items = computed(() => {
   const divider: ItemElement = { kind: "divider" };
   const items = props.options
     .map((opt, i) => {
+      if (opt.kind === "divider") {
+        return [divider];
+      }
       const optionItem: ItemElement = {
         kind: "item",
         item: opt,
@@ -154,12 +157,14 @@ const items = computed(() => {
             ? [optionItem, divider]
             : [optionItem];
         }
+        case "divider": {
+          return [];
+        }
       }
     })
     .flat();
   return items;
 });
-
 const isClicking = ref<number | null>(null);
 
 const onHoldClick = (item: ButtonGroupItem) => {

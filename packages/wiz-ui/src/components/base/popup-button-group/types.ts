@@ -1,5 +1,5 @@
 import { TIcon } from "@/components";
-export interface SelectBoxOption {
+export interface PopupButtonOption {
   label: string;
   value: number;
   exLabel?: string;
@@ -9,7 +9,8 @@ export interface SelectBoxOption {
 }
 
 export type ButtonGroupItem =
-  | { kind: "button"; option: SelectBoxOption }
+  | { kind: "button"; option: PopupButtonOption }
+  | { kind: "divider" }
   | {
       kind: "group";
       title: string;
