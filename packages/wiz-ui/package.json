@@ -64,7 +64,7 @@
     "type": "git",
     "url": "git://github.com/wizleap-inc/wiz-ui.git"
   },
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "author": "Wizleap Inc.",
   "files": [
     "dist"
