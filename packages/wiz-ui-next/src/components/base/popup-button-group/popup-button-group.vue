@@ -83,7 +83,7 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 import { ButtonGroupItem } from "./types";
 
 defineOptions({
-  name: ComponentName.SelectBox,
+  name: ComponentName.PopupButtonGroup,
 });
 
 const props = defineProps({
