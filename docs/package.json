@@ -7,7 +7,7 @@
     "dev": "vuepress dev src",
     "build": "vuepress build src"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@wizleap-inc/vuepress-plugin-wiz-ui": "file:../packages/vuepress-plugin-wiz-ui",
     "vuepress": "^1.5.3",
