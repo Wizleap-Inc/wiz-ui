@@ -37,10 +37,17 @@ export default {
     buttonDivider: {
       control: { type: "boolean" },
     },
+    click: {
+      action: "click",
+    },
   },
 } as Meta<typeof WizPopupButtonGroup>;
 
-const _getDummyOptions = (count: number, exLabel?: string) => {
+const _getDummyOptions = (
+  count: number,
+  click: (n: number) => void,
+  exLabel?: string
+) => {
   const options: SelectBoxOption[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
@@ -62,9 +69,7 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
       exLabel: exLabel,
       icon: icon?.icon,
       iconDefaultColor: icon?.iconDefaultColor,
-      onClick: () => {
-        // console.log("clicked! ", n);
-      },
+      onClick: () => click(n),
     });
   });
   return options.map(
@@ -72,47 +77,46 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
   );
 };
 
-const click = (n: number) => () => {}; //console.log("clicked!", n);
-const createButton = (n: number): ButtonGroupItem => ({
+const createButton = (
+  n: number,
+  click: (n: number) => void
+): ButtonGroupItem => ({
   kind: "button",
-  option: { label: `item ${n}`, value: n, onClick: click(n) },
+  option: { label: `item ${n}`, value: n, onClick: () => click(n) },
 });
 
-const _getDummyItems = (): ButtonGroupItem[] => {
-  return [
-    {
-      kind: "group",
-      title: "タイトル1",
-      groupDivider: true,
-      buttonDivider: true,
-      items: [
-        ..._getDummyOptions(3),
-        {
-          kind: "group",
-          title: "タイトル2",
-          items: [createButton(4), createButton(5)],
-        },
-      ],
-    },
-    createButton(6),
-    createButton(7),
-  ];
-};
+const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
+  {
+    kind: "group",
+    title: "タイトル1",
+    groupDivider: true,
+    buttonDivider: true,
+    items: [
+      ..._getDummyOptions(3, click),
+      {
+        kind: "group",
+        title: "タイトル2",
+        items: [createButton(4, click), createButton(5, click)],
+      },
+    ],
+  },
+  createButton(6, click),
+  createButton(7, click),
+];
 
 const Template: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup },
   setup() {
-    return { args };
+    const createOptions = _getDummyItems;
+    return { args, createOptions };
   },
-  template: `
-  <WizPopupButtonGroup v-bind="args"/>
+  template: ` 
+  <WizPopupButtonGroup v-bind="args" :options="createOptions(args.click)" />
   `,
 });
 export const Default = Template.bind({});
 
-Default.args = {
-  options: _getDummyItems(),
-};
+Default.args = {};
 
 export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup, WizPopupContainer, WizPopup },
@@ -121,20 +125,20 @@ export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
     const onClick = () => {
       isOpen.value = !isOpen.value;
     };
-    return { args, isOpen, onClick };
+    const createOptions = _getDummyItems;
+    return { args, isOpen, onClick, createOptions };
   },
   template: `
   <WizPopupContainer :expand="expand" >
     <button @click="onClick"> open/close </button>
     <WizPopup :isOpen="isOpen">
-      <WizPopupButtonGroup v-bind="args"/>
+      <WizPopupButtonGroup v-bind="args" :options="createOptions(args.click)" />
     </WizPopup>
   </WizPopupContainer>
   `,
 });
 
 Popup.args = {
-  options: _getDummyItems(),
   p: "xs",
   borderRadius: "xs2",
 };
@@ -142,18 +146,17 @@ Popup.args = {
 export const Divider: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup },
   setup() {
-    return { args };
+    const createOptions = (click: (arg: number) => void): ButtonGroupItem[] => [
+      createButton(1, click),
+      createButton(2, click),
+      { kind: "divider" },
+      createButton(3, click),
+      createButton(4, click),
+    ];
+    return { args, createOptions };
   },
   template: `
-  <WizPopupButtonGroup v-bind="args"/>
+  <WizPopupButtonGroup v-bind="args" :options="createOptions(args.click)" />
   `,
 });
-Divider.args = {
-  options: [
-    createButton(1),
-    createButton(2),
-    { kind: "divider" },
-    createButton(3),
-    createButton(4),
-  ],
-};
+Divider.args = {};
