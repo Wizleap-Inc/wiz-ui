@@ -10,7 +10,7 @@ import {
   WizPopupButtonGroup,
 } from "@/components";
 
-import { SelectBoxOption, ButtonGroupItem } from "./types";
+import { PopupButtonOption, ButtonGroupItem } from "./types";
 
 export default {
   title: "Base/PopupButtonGroup",
@@ -44,7 +44,7 @@ const _getDummyOptions = (
   click: (n: number) => void,
   exLabel?: string
 ) => {
-  const options: SelectBoxOption[] = [];
+  const options: PopupButtonOption[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
       return undefined;
