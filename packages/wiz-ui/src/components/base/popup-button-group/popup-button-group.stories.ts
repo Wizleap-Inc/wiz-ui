@@ -10,7 +10,7 @@ import {
   WizPopupButtonGroup,
 } from "@/components";
 
-import { SelectBoxOption, ButtonGroupItem } from "./types";
+import { PopupButtonOption, ButtonGroupItem } from "./types";
 
 export default {
   title: "Base/PopupButtonGroup",
@@ -33,11 +33,18 @@ export default {
     buttonDivider: {
       control: { type: "boolean" },
     },
+    click: {
+      action: "click",
+    },
   },
 } as Meta<typeof WizPopupButtonGroup>;
 
-const _getDummyOptions = (count: number, exLabel?: string) => {
-  const options: SelectBoxOption[] = [];
+const _getDummyOptions = (
+  count: number,
+  click: (n: number) => void,
+  exLabel?: string
+) => {
+  const options: PopupButtonOption[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
       return undefined;
@@ -58,9 +65,7 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
       exLabel: exLabel,
       icon: icon?.icon,
       iconDefaultColor: icon?.iconDefaultColor,
-      onClick: () => {
-        console.log("clicked! ", n);
-      },
+      onClick: () => click(n),
     });
   });
   return options.map(
@@ -68,122 +73,89 @@ const _getDummyOptions = (count: number, exLabel?: string) => {
   );
 };
 
-const _getDummyItems = (): ButtonGroupItem[] => {
-  const f = (n: number) => () => console.log("clicked!", n);
-  return [
-    { kind: "group", title: "タイトル", items: _getDummyOptions(3) },
-    { kind: "button", option: { label: "label 1", value: 4, onClick: f(4) } },
-    { kind: "button", option: { label: "label 2", value: 5, onClick: f(5) } },
-  ];
-};
+const createButton = (
+  n: number,
+  click: (n: number) => void
+): ButtonGroupItem => ({
+  kind: "button",
+  option: { label: `item ${n}`, value: n, onClick: () => click(n) },
+});
 
-const _getDummyItems2 = (): ButtonGroupItem[] => {
-  const f = (n: number) => () => console.log("clicked!", n);
-  const createButton = (n: number): ButtonGroupItem => ({
-    kind: "button",
-    option: { label: `item ${n}`, value: n, onClick: f(n) },
-  });
-  return [
-    {
-      kind: "group",
-      title: "タイトル1",
-      groupDivider: true,
-      buttonDivider: true,
-      items: [
-        ..._getDummyOptions(3),
-        {
-          kind: "group",
-          title: "タイトル2",
-          items: [createButton(4), createButton(5)],
-        },
-      ],
-    },
-    createButton(6),
-    createButton(7),
-  ];
-};
+const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
+  {
+    kind: "group",
+    title: "タイトル1",
+    groupDivider: true,
+    buttonDivider: true,
+    items: [
+      ..._getDummyOptions(3, click),
+      {
+        kind: "group",
+        title: "タイトル2",
+        items: [createButton(4, click), createButton(5, click)],
+      },
+    ],
+  },
+  createButton(6, click),
+  createButton(7, click),
+];
 
-const Template: StoryFn = (_, { argTypes }) => ({
+const Template: StoryFn<typeof WizPopupButtonGroup> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPopupButtonGroup },
   setup() {
-    return {};
+    const createOptions = _getDummyItems;
+    return { createOptions };
   },
-  template: `
-  <WizPopupButtonGroup v-bind="$props"/>
+  template: ` 
+  <WizPopupButtonGroup v-bind="$props" :options="createOptions(click)" />
   `,
 });
 export const Default = Template.bind({});
 
-Default.args = {
-  options: _getDummyItems2(), //_getDummyOptions("test", 3),
-};
+Default.args = {};
 
 export const Popup: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPopupButtonGroup, WizPopupContainer, WizPopup },
   setup() {
     const isOpen = ref(true);
-    const onClick = () => {
+    const buttonClick = () => {
       isOpen.value = !isOpen.value;
-      console.log(isOpen);
     };
-    return { isOpen, onClick };
+    const createOptions = _getDummyItems;
+    return { isOpen, buttonClick, createOptions };
   },
   template: `
   <WizPopupContainer :expand="expand" >
-    <button @click="onClick"> open/close </button>
+    <button @click="buttonClick"> open/close </button>
     <WizPopup :isOpen="isOpen">
-      <WizPopupButtonGroup v-bind="$props"/>
+      <WizPopupButtonGroup v-bind="$props" :options="createOptions(click)" />
     </WizPopup>
   </WizPopupContainer>
   `,
 });
 
 Popup.args = {
-  options: _getDummyItems2(), //_getDummyOptions("test", 3),
   p: "xs",
   borderRadius: "xs2",
 };
 
-// export const Disabled = Template.bind({});
-// Disabled.args = {
-//   options: [],
-//   disabled: true,
-// };
-
-// const MultiTemplate: StoryFn = (_, { argTypes }) => ({
-//   props: Object.keys(argTypes),
-//   components: { WizPopupButtonGroup, WizHStack },
-//   setup() {
-//     const value = ref(0);
-//     return { value };
-//   },
-//   template: `
-//     <WizHStack>
-//       <WizPopupButtonGroup v-bind="$props"  v-model="value" @input="input"/>
-//       <WizPopupButtonGroup v-bind="$props"  v-model="value" @input="input"/>
-//     </WizHStack>
-//   `,
-// });
-
-// export const LongLabel = MultiTemplate.bind({});
-// LongLabel.args = {
-//   options: _getDummyOptions("ThisIsTooLongLabelThisIsTooLongLabel", 3),
-// };
-
-// export const Expand = Template.bind({});
-// Expand.args = {
-//   options: _getDummyOptions("test", 1),
-//   expand: true,
-// };
-
-// export const ManyOptions = Template.bind({});
-// ManyOptions.args = {
-//   options: _getDummyOptions("test", 15),
-// };
-
-// export const ExtraLabel = Template.bind({});
-// ExtraLabel.args = {
-//   options: _getDummyOptions("test", 3, "(10)"),
-// };
+export const Divider: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizPopupButtonGroup },
+  setup() {
+    const createOptions = (click: (arg: number) => void): ButtonGroupItem[] => [
+      createButton(1, click),
+      createButton(2, click),
+      { kind: "divider" },
+      createButton(3, click),
+      createButton(4, click),
+    ];
+    return { createOptions };
+  },
+  template: `
+  <WizPopupButtonGroup v-bind="$props" :options="createOptions(click)" />
+  `,
+});
+Divider.args = {};
