@@ -40,6 +40,7 @@
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
             :disabled="disabled"
+            @keydown="onKeydownBackspace"
           />
         </WizHStack>
       </div>
@@ -279,6 +280,18 @@ const emit = defineEmits<Emit>();
 const onClear = (n: number) => {
   emit("unselect", n);
 };
+
+const onKeydownBackspace = (event: KeyboardEvent) => {
+  if (
+    searchValue.value === "" &&
+    event.key === "Backspace" &&
+    props.value.length > 0
+  ) {
+    const id = props.value[props.value.length - 1];
+    emit("unselect", id);
+  }
+};
+
 const onSelect = (value: number) => {
   if (!props.multiSelectable) {
     toggleSelectBox();
