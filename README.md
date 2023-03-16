@@ -40,3 +40,6 @@ yarn dev # for launching all dev servers
 yarn dev:wiz-ui # for launching wiz-ui dev server
 yarn dev:wiz-ui-next # for launching wiz-ui-next dev server
 ```
+
+## License
+Apache 2.0
