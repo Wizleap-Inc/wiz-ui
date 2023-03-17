@@ -203,3 +203,14 @@ gapを指定すると、チェックボックスの間に余白を設定でき�
     },
   },
 };
+
+export const StrikeThrough = Template.bind({});
+StrikeThrough.args = {
+  options: [
+    { label: "test1", value: 1, key: "gap1" },
+    { label: "test2", value: 2, key: "gap2" },
+    { label: "test3", value: 3, key: "gap3" },
+    { label: "test4", value: 4, key: "gap4" },
+  ],
+  strikeThrough: true,
+};
