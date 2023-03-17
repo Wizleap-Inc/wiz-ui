@@ -28,3 +28,4 @@ export * from "./textarea";
 export * from "./tooltip";
 export * from "./graphs";
 export * from "./snackbar";
+export * from "./popup-button-group";

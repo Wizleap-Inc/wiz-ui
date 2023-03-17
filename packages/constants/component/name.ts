@@ -129,5 +129,6 @@ export const ComponentName = {
   StepBar: "WizStepBar",
   StepPoint: "WizStepPoint",
   StepLine: "WizStepLine",
+  PopupButtonGroup: "WizPopupButtonGroup",
   ...IconComponentName,
 } as const;
