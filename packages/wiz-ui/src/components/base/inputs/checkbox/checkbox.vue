@@ -27,6 +27,9 @@
           <span
             :class="[
               checkboxValue.includes(option.value) && checkboxBlockCheckedStyle,
+              strikeThrough &&
+                checkboxValue.includes(option.value) &&
+                checkboxLabelStrikeThrough,
             ]"
             >{{ option.label }}</span
           >
@@ -47,6 +50,7 @@ import {
   checkboxLabelCursorStyle,
   checkboxIconStyle,
   checkboxBlockCheckedStyle,
+  checkboxLabelStrikeThrough,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import { computed, PropType } from "vue";
 
@@ -77,6 +81,11 @@ const props = defineProps({
     type: String as PropType<SpacingKeys>,
     required: false,
     default: "xl",
+  },
+  strikeThrough: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
