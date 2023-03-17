@@ -173,16 +173,6 @@ const props = defineProps({
 
 const isOpenDropdown = ref(false);
 const searchValue = ref("");
-const addableOptionIsClicking = ref(false);
-
-const onHoldClick = () => {
-  addableOptionIsClicking.value = true;
-  const mouseup = () => {
-    addableOptionIsClicking.value = false;
-    document.removeEventListener("mouseup", mouseup);
-  };
-  document.addEventListener("mouseup", mouseup);
-};
 
 const inputRef = ref<HTMLElement | undefined>();
 const toggleDropdown = () => {
@@ -308,7 +298,7 @@ const addButton = computed(() => {
 });
 
 const selectButtons = computed(() => {
-  return filteredOptions.value.map((opt, i) => {
+  return filteredOptions.value.map((opt) => {
     const option: ButtonGroupItem = {
       kind: "button",
       option: {
