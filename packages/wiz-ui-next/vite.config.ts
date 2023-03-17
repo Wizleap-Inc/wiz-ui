@@ -2,6 +2,7 @@ import path from "path";
 
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import Vue from "@vitejs/plugin-vue";
+import copy from "rollup-plugin-copy";
 import { visualizer } from "rollup-plugin-visualizer";
 import DefineOptions from "unplugin-vue-define-options/vite";
 import { defineConfig } from "vite";
@@ -16,6 +17,16 @@ export default defineConfig({
     DefineOptions(),
     vanillaExtractPlugin(),
     visualizer(),
+    copy({
+      targets: [
+        {
+          src: path.resolve(__dirname, "../../third-parties"),
+          dest: path.resolve(__dirname, "dist"),
+        },
+      ],
+      hook: "writeBundle",
+      copyOnce: true,
+    }),
   ],
   resolve: {
     alias: {
