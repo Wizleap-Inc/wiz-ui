@@ -1,18 +1,20 @@
-The wiz-ui uses a modified version of Material Icons for icons.
-Material Icons is released under Apache License 2.0.
+The wiz-ui uses a modified version of Material Symbols for icons.
+Material Symbols is released the Apache License Version 2.0.
 
 The modifications and how to modify them are as follows.
 
-- Download the icons in svg format from https://fonts.google.com/icons with the
-  following settings.
+- Download the icons in svg format from https://fonts.google.com/icons with
+  the following settings.
     - rounded
     - fill: 0
     - weight: 200
     - grade: 0
     - optical size: 24
-- Stick the downloaded file into the (icon-name).vue file.
-- Change the height and width to "1rem" respectively.
-- Add 'viewBox="0 0 24 24"' to the svg tag attributes
+- Modify the downloaded svg file as follows.
+    - Change the height and width to "1rem" respectively.
+    - Add 'viewBox="0 0 24 24"' to the svg tag attributes
+- Paste the modified svg file into the following file.
+    - packages/(wiz-ui|wiz-ui-next)/src/components/icons/(icon-name).vue
 
 =====================================================================================
 
