@@ -63,6 +63,7 @@
     "playwright": "^1.27.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-visualizer": "^5.9.0"
   }
 }
