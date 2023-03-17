@@ -12,7 +12,7 @@
       space-type="right"
     />
     <button
-      :aria-label="AREA_LABELS.PASSWORD_VISIBLE_TOGGLE"
+      :aria-label="ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE"
       :class="passwordVisibleIconStyle"
       @click="isPasswordVisible = !isPasswordVisible"
     >
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { AREA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   passwordStyle,
   passwordExpandStyle,

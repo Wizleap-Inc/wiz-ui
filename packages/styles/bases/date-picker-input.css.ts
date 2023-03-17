@@ -3,32 +3,28 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const datePickerStyle = style({
   width: "max-content",
-  padding: `${THEME.spacing.no} ${THEME.spacing.xs2}`,
   height: THEME.spacing.xl3,
-  background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-  cursor: "pointer",
-});
-
-export const datePickerDisabledStyle = style({
-  color: THEME.color.gray["700"],
-  backgroundColor: THEME.color.gray["300"],
-  cursor: "not-allowed",
-});
-
-export const datePickerBoxStyle = style({
-  height: "100%",
   padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
 });
 
-export const datePickerBoxColorStyle = styleVariants({
+export const datePickerVariantStyle = styleVariants({
   default: {
     color: THEME.color.gray["500"],
+    background: THEME.color.white["800"],
+    cursor: "pointer",
   },
   selected: {
     color: THEME.color.gray["700"],
+    background: THEME.color.white["800"],
+    cursor: "pointer",
+  },
+  disabled: {
+    color: THEME.color.gray["700"],
+    background: THEME.color.gray["300"],
+    cursor: "not-allowed",
   },
 });
 
@@ -39,25 +35,29 @@ export const datePickerSelectorStyle = style({
   width: "auto",
   padding: THEME.spacing.xs,
   background: THEME.color.white["800"],
-  borderRadius: THEME.spacing.xs,
+  borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
 });
 
-export const datePickerButtonBoxStyle = style({
+export const datePickerMonthSelectorStyle = style({
   gap: THEME.spacing.xs,
   display: "flex",
 });
 
-export const datePickerButtonBoxItemStyle = style({
+export const datePickerMonthSelectorItemStyle = style({
   cursor: "pointer",
-  padding: THEME.spacing.xs,
-  borderRadius: THEME.spacing.xs,
+  padding: THEME.spacing.xs2,
+  borderRadius: THEME.spacing.xs2,
+  border: "none",
+  background: "transparent",
+  fill: THEME.color.gray["700"],
+
   ":hover": {
     backgroundColor: THEME.color.green["300"],
-    color: THEME.color.green["800"],
+    fill: THEME.color.green["800"],
   },
   ":active": {
     backgroundColor: THEME.color.green["800"],
-    color: THEME.color.white["800"],
+    fill: THEME.color.white["800"],
   },
 });
