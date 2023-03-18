@@ -1,12 +1,12 @@
 <template>
-  <WizPopupContainer :style="{ width: '100%' }">
-    <div
-      ref="navItemRef"
-      @click="navItemOnClick"
-      @mouseenter="navItemMouseEnter"
-      @mouseleave="navItemMouseLeave"
-    >
-      <WizTooltip>
+  <WizTooltip>
+    <WizPopupContainer :style="{ width: '100%' }">
+      <div
+        ref="navItemRef"
+        @click="navItemOnClick"
+        @mouseenter="navItemMouseEnter"
+        @mouseleave="navItemMouseLeave"
+      >
         <component
           :is="disabled || isExternalLink ? 'a' : 'router-link'"
           :to="!disabled && !isExternalLink ? to : undefined"
@@ -37,29 +37,29 @@
             {{ label }}
           </div>
         </component>
-        <template #content v-if="tooltipText">
-          {{ tooltipText }}
-        </template>
-      </WizTooltip>
-    </div>
-    <div v-if="existPopup" @mouseleave="popupMouseLeave">
-      <WizPopup
-        :isOpen="isOpenDropdown"
-        @onClose="popupOnClose"
-        @mouseLeave="popupMouseLeave"
-        direction="rt"
-        layer="popover"
-        transparentBorderLeftWidth="1px"
-      >
-        <WizPopupButtonGroup
-          :options="buttons ?? []"
-          :class="navigationPopupContainerStyle"
-          p="xs"
-          borderRadius="xs2"
-        />
-      </WizPopup>
-    </div>
-  </WizPopupContainer>
+      </div>
+      <div v-if="existPopup" @mouseleave="popupMouseLeave">
+        <WizPopup
+          :isOpen="isOpenDropdown"
+          @onClose="popupOnClose"
+          @mouseLeave="popupMouseLeave"
+          direction="rt"
+          layer="popover"
+          transparentBorderLeftWidth="1px"
+        >
+          <WizPopupButtonGroup
+            :options="buttons ?? []"
+            :class="navigationPopupContainerStyle"
+            p="xs"
+            borderRadius="xs2"
+          />
+        </WizPopup>
+      </div>
+    </WizPopupContainer>
+    <template #content v-if="tooltipText">
+      {{ tooltipText }}
+    </template>
+  </WizTooltip>
 </template>
 
 <script setup lang="ts">
