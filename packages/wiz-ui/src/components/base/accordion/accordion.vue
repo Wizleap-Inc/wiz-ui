@@ -1,6 +1,6 @@
 <template>
   <details
-    :style="{ width: width }"
+    :width="width"
     :class="AccordionDetailsStyle[backgroundColor]"
     :open="isOpen || isAnimating"
   >
@@ -87,8 +87,6 @@ const isOpen = ref(false);
 const isAnimating = ref(false);
 
 const canSpin = ref(false);
-
-const width = computed(() => props.width);
 
 const iconColor = computed((): ColorKeys => {
   return props.backgroundColor === "gray" ? "green.800" : "gray.500";
