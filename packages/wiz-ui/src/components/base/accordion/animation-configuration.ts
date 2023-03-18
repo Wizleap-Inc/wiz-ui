@@ -3,8 +3,7 @@ export const ANIMATION_CONFIGURATION = {
   easing: "ease-out",
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const closingAnimationKeyframes = (content: any) => [
+export const closingAnimationKeyframes = (content: HTMLElement) => [
   {
     height: content.offsetHeight + "px",
     opacity: 1,
@@ -15,8 +14,7 @@ export const closingAnimationKeyframes = (content: any) => [
   },
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const openingAnimationKeyframes = (content: any) => [
+export const openingAnimationKeyframes = (content: HTMLElement) => [
   {
     height: 0,
     opacity: 0,

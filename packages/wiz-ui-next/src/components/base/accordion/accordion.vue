@@ -100,23 +100,25 @@ const onClick = (event: MouseEvent) => {
   if (isOpen.value) {
     isOpen.value = false;
     isAnimating.value = true;
-    const closingAnimation = content.animate(
+    const closingAnimation = content?.animate(
       closingAnimationKeyframes(content),
       ANIMATION_CONFIGURATION
     );
-    closingAnimation.onfinish = () => {
-      isAnimating.value = false;
-    };
+    if (closingAnimation)
+      closingAnimation.onfinish = () => {
+        isAnimating.value = false;
+      };
   } else {
     isOpen.value = true;
     isAnimating.value = true;
-    const openingAnimation = content.animate(
+    const openingAnimation = content?.animate(
       openingAnimationKeyframes(content),
       ANIMATION_CONFIGURATION
     );
-    openingAnimation.onfinish = () => {
-      isAnimating.value = false;
-    };
+    if (openingAnimation)
+      openingAnimation.onfinish = () => {
+        isAnimating.value = false;
+      };
   }
 };
 </script>
