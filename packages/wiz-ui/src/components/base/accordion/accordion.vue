@@ -14,22 +14,20 @@
         <div>
           {{ isOpen ? closeMessage : openMessage }}
         </div>
-        <div @click="canSpin = true">
-          <WizIcon
-            v-if="!isOpen"
-            size="xl2"
-            :icon="WizIExpandMore"
-            :color="iconColor"
-            :class="[canSpin && openSpin]"
-          />
-          <WizIcon
-            v-else
-            size="xl2"
-            :icon="WizIExpandLess"
-            :color="iconColor"
-            :class="[canSpin && closeSpin]"
-          />
-        </div>
+        <WizIcon
+          v-if="!isOpen"
+          size="xl2"
+          :icon="WizIExpandMore"
+          :color="iconColor"
+          :class="[canSpin && openSpin]"
+        />
+        <WizIcon
+          v-else
+          size="xl2"
+          :icon="WizIExpandLess"
+          :color="iconColor"
+          :class="[canSpin && closeSpin]"
+        />
       </WizHStack>
     </summary>
     <div ref="contentRef" :class="AccordionContentStyle">
@@ -95,6 +93,7 @@ const iconColor = computed((): ColorKeys => {
 const contentRef = ref();
 
 const onClick = (event: MouseEvent) => {
+  canSpin.value = true;
   event.preventDefault();
   const content = contentRef.value;
   if (isAnimating.value) return;
