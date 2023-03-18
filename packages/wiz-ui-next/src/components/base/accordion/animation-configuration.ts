@@ -10,14 +10,14 @@ export const closingAnimationKeyframes = (content: HTMLElement) => [
   },
   {
     height: 0,
-    opacity: 0,
+    opacity: 1,
   },
 ];
 
 export const openingAnimationKeyframes = (content: HTMLElement) => [
   {
     height: 0,
-    opacity: 0,
+    opacity: 1,
   },
   {
     height: content.offsetHeight + "px",
