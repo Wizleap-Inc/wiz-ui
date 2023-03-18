@@ -76,47 +76,11 @@
         "
       >
         <WizVStack gap="xs2">
-          <div
-            v-if="
-              addable &&
-              searchValue !== '' &&
-              !options.some((v) => v.label === searchValue)
+          <WizPopupButtonGroup
+            :options="
+              addButtonEnabled ? [addButton, ...selectButtons] : selectButtons
             "
-            :class="selectBoxSelectorOptionStyle"
-            @click="onCreate(searchValue)"
-            @mousedown="onHoldClick()"
-            @keypress.enter="onCreate(searchValue)"
-            :tabindex="0"
-          >
-            <span
-              :class="[selectBoxSelectorOptionLabelStyle, selectBoxAddStyle]"
-            >
-              {{ searchValue }}
-              <WizIcon
-                :icon="WizIAddCircle"
-                size="md"
-                :color="addableOptionIsClicking ? 'white.800' : 'green.800'"
-              />
-            </span>
-          </div>
-          <div
-            v-for="option in filteredOptions"
-            :key="`${option.label}-${option.value}`"
-            :class="selectBoxSelectorOptionStyle"
-            @click="onSelect(option.value)"
-            @keypress.enter="onSelect(option.value)"
-            :tabindex="0"
-          >
-            <span :class="selectBoxSelectorOptionLabelStyle">
-              {{ option.label }}
-            </span>
-            <span
-              :class="selectBoxSelectorOptionLabelStyle"
-              v-if="option.exLabel"
-            >
-              {{ option.exLabel }}
-            </span>
-          </div>
+          />
         </WizVStack>
       </div>
     </WizPopup>
@@ -134,10 +98,7 @@ import {
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
   selectBoxSelectorStyle,
-  selectBoxSelectorOptionStyle,
-  selectBoxSelectorOptionLabelStyle,
   selectBoxSearchInputStyle,
-  selectBoxAddStyle,
   selectBoxExpandIconStyle,
   selectBoxInnerBoxSelectedItemStyle,
   selectBoxInnerBoxSelectedLabelStyle,
@@ -146,7 +107,12 @@ import {
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
 
-import { WizPopupContainer, WizPopup, WizIcon } from "@/components";
+import {
+  WizPopupContainer,
+  WizPopup,
+  WizIcon,
+  WizPopupButtonGroup,
+} from "@/components";
 import {
   WizIExpandLess,
   WizIExpandMore,
@@ -155,6 +121,7 @@ import {
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
+import { ButtonGroupItem } from "../../popup-button-group/types";
 import { WizHStack, WizVStack } from "../../stack";
 
 import { levenshteinDistance } from "./levenshtein-distance";
@@ -206,16 +173,6 @@ const props = defineProps({
 
 const isOpenDropdown = ref(false);
 const searchValue = ref("");
-const addableOptionIsClicking = ref(false);
-
-const onHoldClick = () => {
-  addableOptionIsClicking.value = true;
-  const mouseup = () => {
-    addableOptionIsClicking.value = false;
-    document.removeEventListener("mouseup", mouseup);
-  };
-  document.addEventListener("mouseup", mouseup);
-};
 
 const inputRef = ref<HTMLElement | undefined>();
 const toggleDropdown = () => {
@@ -315,5 +272,42 @@ const state = computed(() => {
 
 const isValueMatched = computed(() => {
   return props.value.length > 0;
+});
+
+const addButtonEnabled = computed(
+  () =>
+    props.addable &&
+    searchValue.value !== "" &&
+    !props.options.some((v) => v.label === searchValue.value)
+);
+
+const addButton = computed(() => {
+  const option: ButtonGroupItem = {
+    kind: "button",
+    option: {
+      label: searchValue.value,
+      icon: addButtonEnabled.value ? WizIAddCircle : undefined,
+      iconDefaultColor: "green.800",
+      value: -1,
+      onClick: () => {
+        onCreate(searchValue.value);
+      },
+    },
+  };
+  return option;
+});
+
+const selectButtons = computed(() => {
+  return filteredOptions.value.map((opt) => {
+    const option: ButtonGroupItem = {
+      kind: "button",
+      option: {
+        label: opt.label,
+        value: opt.value,
+        onClick: () => onSelect(opt.value),
+      },
+    };
+    return option;
+  });
 });
 </script>

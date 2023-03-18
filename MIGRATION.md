@@ -8,3 +8,5 @@ Vue2では、`v-model`を複数の要素に付与することができません�
 
 - `WizChatCard`
   - Vue2では`:status`と`@updateStatus`を使用していましたが、Vue3では`v-model:status`を使用するようになりました。
+- `WizDateRangePicker`
+  - Vue2では`:selectBoxValue`と`@updateSelectBoxValue`を使用していましたが、Vue3では`v-model:selectBoxValue`を使用するようになりました。

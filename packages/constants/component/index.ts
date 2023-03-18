@@ -1,2 +1,2 @@
 export * from "./name";
-export * from "./area-label";
+export * from "./aria-label";

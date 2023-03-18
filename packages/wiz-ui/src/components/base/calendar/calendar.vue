@@ -1,20 +1,38 @@
 <template>
   <table :class="calendarStyle">
-    <td
-      v-for="row in WEEK_LIST_JP"
-      :class="calendarItemStyle['dayOfWeek']"
-      :key="row"
-    >
-      {{ row }}
+    <td v-for="row in WEEK_LIST_JP" :class="calendarCellStyle" :key="row">
+      <div :class="[calendarItemCommonStyle, calendarItemStyle['dayOfWeek']]">
+        {{ row }}
+      </div>
     </td>
     <tr v-for="(week, row) in calendars" :key="[week, row].join('-')">
       <td
         v-for="(day, col) in week"
         :key="[day, col].join('-')"
-        :class="calendarItemStyle[getDateState(row, col)]"
-        @click="updateSelectedDate(row, col, day)"
+        :class="calendarCellStyle"
       >
-        {{ day }}
+        <button
+          v-if="day"
+          :class="[
+            calendarItemCommonStyle,
+            calendarItemStyle[getDateState(row, col)],
+          ]"
+          :aria-label="`${currentMonth.getFullYear()}年${
+            currentMonth.getMonth() + 1
+          }月${day}日${
+            getDateState(row, col) === 'primary' ||
+            getDateState(row, col) === 'secondary'
+              ? '-選択済み'
+              : ''
+          }`"
+          :disabled="
+            getDateState(row, col) === 'outOfCurrentMonth' ||
+            getDateState(row, col) === 'primary'
+          "
+          @click="updateSelectedDate(row, col, day)"
+        >
+          {{ day }}
+        </button>
       </td>
     </tr>
   </table>
@@ -24,23 +42,29 @@
 import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
 import {
   calendarStyle,
+  calendarCellStyle,
   calendarItemStyle,
+  calendarItemCommonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import { computed, PropType } from "vue";
 
+import { DateStatus } from "./types";
+
 interface Emit {
-  (e: "input", value: Date): void;
+  (e: "click", value: Date): void;
 }
 const emits = defineEmits<Emit>();
 
 const props = defineProps({
   currentMonth: {
-    type: Object as PropType<Date>,
-    required: true,
+    type: Date as PropType<Date>,
+    required: false,
+    default: new Date(),
   },
-  value: {
-    type: Object as PropType<Date>,
-    required: true,
+  activeDates: {
+    type: Array as PropType<DateStatus[]>,
+    required: false,
+    default: () => [],
   },
   filledWeeks: {
     type: Boolean,
@@ -129,7 +153,6 @@ const isCurrentMonth = (row: number, col: number) => {
   );
 };
 
-// class の定義
 const getDateState = computed(() => (row: number, col: number) => {
   const pickedUpDate = new Date(
     props.currentMonth.getFullYear(),
@@ -137,7 +160,15 @@ const getDateState = computed(() => (row: number, col: number) => {
     Number(calendars.value[row][col])
   );
   if (!isCurrentMonth(row, col)) return "outOfCurrentMonth";
-  if (pickedUpDate.toString() === props.value.toString()) return "selected";
+  const hitDate = props.activeDates.find(
+    (dateState) =>
+      dateState.date.getFullYear() === pickedUpDate.getFullYear() &&
+      dateState.date.getMonth() === pickedUpDate.getMonth() &&
+      dateState.date.getDate() === pickedUpDate.getDate()
+  );
+  if (hitDate) {
+    return hitDate.state;
+  }
   return "inCurrentMonth";
 });
 
@@ -148,7 +179,7 @@ const updateSelectedDate = (row: number, col: number, day: string) => {
       props.currentMonth.getMonth(),
       Number(day)
     );
-    emits("input", selectedValue);
+    emits("click", selectedValue);
   }
 };
 </script>

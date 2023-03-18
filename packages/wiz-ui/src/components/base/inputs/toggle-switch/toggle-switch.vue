@@ -3,7 +3,7 @@
     <input
       :class="toggleSwitchInputStyle"
       type="checkbox"
-      :area-label="label"
+      :aria-label="label"
       v-model="switchValue"
     />
     <span

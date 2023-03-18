@@ -6,29 +6,41 @@
       @mouseenter="navItemMouseEnter"
       @mouseleave="navItemMouseLeave"
     >
-      <component
-        :is="isExternalLink ? 'a' : 'router-link'"
-        :to="!isExternalLink ? to : undefined"
-        :href="isExternalLink ? to : undefined"
-        :target="isExternalLink ? '_blank' : undefined"
-        :class="[navigationItemStyle, active && navigationItemActiveStyle]"
-      >
+      <WizTooltip>
         <component
-          :is="icon"
+          :is="disabled || isExternalLink ? 'a' : 'router-link'"
+          :to="!disabled && !isExternalLink ? to : undefined"
+          :href="!disabled && isExternalLink ? to : undefined"
+          :target="!disabled && isExternalLink ? '_blank' : undefined"
           :class="[
-            navigationItemIconStyle,
-            active && navigationItemIconActiveStyle,
-          ]"
-        />
-        <div
-          :class="[
-            navigationItemTextStyle,
-            active && navigationItemTextActiveStyle,
+            navigationItemStyle,
+            disabled
+              ? navigationItemDisabledStyle
+              : active && navigationItemActiveStyle,
           ]"
         >
-          {{ label }}
-        </div>
-      </component>
+          <component
+            :is="icon"
+            :class="[
+              navigationItemIconStyle,
+              disabled
+                ? navigationItemIconDisabledStyle
+                : active && navigationItemIconActiveStyle,
+            ]"
+          />
+          <div
+            :class="[
+              navigationItemTextStyle,
+              !disabled && active && navigationItemTextActiveStyle,
+            ]"
+          >
+            {{ label }}
+          </div>
+        </component>
+        <template #content v-if="tooltipText">
+          {{ tooltipText }}
+        </template>
+      </WizTooltip>
     </div>
     <div v-if="existPopup" @mouseleave="popupMouseLeave">
       <WizPopup
@@ -59,6 +71,8 @@ import {
   navigationItemIconActiveStyle,
   navigationItemTextStyle,
   navigationItemTextActiveStyle,
+  navigationItemDisabledStyle,
+  navigationItemIconDisabledStyle,
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, PropType, ref } from "vue";
@@ -68,7 +82,7 @@ import { WizPopupContainer, WizPopup, WizPopupButtonGroup } from "@/components";
 import type { TIcon } from "@/components/icons";
 
 import { ButtonGroupItem } from "../popup-button-group/types";
-
+import { WizTooltip } from "../tooltip";
 defineOptions({
   name: ComponentName.NavigationItem,
 });
@@ -89,6 +103,16 @@ const props = defineProps({
   to: {
     type: [Object, String] as PropType<RouterLinkProps["to"]>,
     required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  tooltipText: {
+    type: String,
+    required: false,
+    default: null,
   },
   lockingPopup: {
     type: Boolean,

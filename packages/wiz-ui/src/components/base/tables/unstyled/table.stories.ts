@@ -35,6 +35,12 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    fixed: {
+      control: { type: "boolean" },
+    },
+    width: {
+      control: { type: "text" },
+    },
   },
 };
 
@@ -63,6 +69,38 @@ export const Default: StoryFn = (_, { argTypes }) => ({
     </WizUnstyledTable>
   `,
 });
+
+export const Fixed: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizUnstyledTable,
+    WizUnstyledThead,
+    WizUnstyledTbody,
+    WizUnstyledTr,
+    WizUnstyledTh,
+    WizUnstyledTd,
+  },
+  template: `
+    <WizUnstyledTable v-bind="$props">
+      <WizUnstyledThead>
+        <WizUnstyledTr>
+          <WizUnstyledTh v-for="i in 3" :key="i" :width="'calc(100px * ' + i + ')'">
+            Column {{ i }}
+          </WizUnstyledTh>
+        </WizUnstyledTr>
+      </WizUnstyledThead>
+      <WizUnstyledTbody>
+        <WizUnstyledTr v-for="i in 3">
+          <WizUnstyledTd v-for="j in 3" :key="j">Row {{ i }}</WizUnstyledTd>
+        </WizUnstyledTr>
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  `,
+});
+Fixed.args = {
+  fixed: true,
+  width: "600px",
+};
 
 export const WithRowHeader: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),

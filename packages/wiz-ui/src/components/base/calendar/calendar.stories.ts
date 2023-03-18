@@ -1,5 +1,4 @@
 import { StoryFn } from "@storybook/vue";
-import { ref } from "vue";
 
 import WizCalendar from "./calendar.vue";
 
@@ -7,13 +6,23 @@ export default {
   title: "Base/Calendar",
   component: WizCalendar,
   argTypes: {
-    value: {
+    currentMonth: {
       control: {
-        type: "text",
+        type: "date",
       },
     },
-    input: {
-      action: "input",
+    activeDates: {
+      control: {
+        type: "array",
+      },
+    },
+    filledWeeks: {
+      control: {
+        type: "boolean",
+      },
+    },
+    onClick: {
+      action: "click",
     },
   },
 };
@@ -21,26 +30,135 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCalendar },
-  setup() {
-    const defaultValue = new Date("2021-01-01T00:00:00.000Z");
-    const value = ref(new Date(defaultValue));
-
-    const currentMonth = ref(new Date(defaultValue));
-    return { value, currentMonth };
-  },
   template: `
   <div>
-    <p>{{value.getFullYear()}}年 {{value.getMonth()+1}}月 {{value.getDate()}}日</p>
-    <WizCalendar v-bind="$props" v-model="value" :currentMonth="currentMonth" @input="input"/>
+    <p>表示している月: {{ currentMonth.getFullYear() }}年{{ currentMonth.getMonth() + 1 }}月</p>
+    <WizCalendar v-bind="$props" @click="onClick"/>
   </div>
   `,
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  currentMonth: new Date("2023-03"),
+};
+Default.parameters = {
+  docs: {
+    description: {
+      component: `
+### カレンダー
+カレンダーを表示します。 \`activeDates\` には \`date\` と \`state\` を持つオブジェクトの配列を渡します。 \`state\` には \`primary\` と \`secondary\` を指定できます。
+差分を固定するため、currentMonthはUnRequiredですが初期値を設定しています。
+      `,
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizCalendar />
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
+export const CurrentMonth = Template.bind({});
+CurrentMonth.args = {
+  currentMonth: new Date("2021-01"),
+};
+CurrentMonth.parameters = {
+  docs: {
+    description: {
+      story: "`currentMonth` を指定すると、その月のカレンダーを表示します。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizCalendar :currentMonth="new Date('2021-01')" />
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
+export const ActiveDates = Template.bind({});
+ActiveDates.args = {
+  currentMonth: new Date("2021-01"),
+  activeDates: [
+    {
+      date: new Date("2021-01-11"),
+      state: "primary",
+    },
+    {
+      date: new Date("2021-01-12"),
+      state: "secondary",
+    },
+    {
+      date: new Date("2021-01-13"),
+      state: "secondary",
+    },
+    {
+      date: new Date("2021-01-14"),
+      state: "secondary",
+    },
+    {
+      date: new Date("2021-01-15"),
+      state: "primary",
+    },
+  ],
+};
+ActiveDates.parameters = {
+  docs: {
+    description: {
+      story:
+        "`activeDates` には `date` と `state` を持つオブジェクトの配列を渡します。 `state` には `primary` と `secondary` を指定できます。",
+    },
+    source: {
+      code: `
+<script setup lang="ts">
+import { ref } from "vue";
+import WizCalendar from "./calendar.vue";
+
+const activeDates = ref([
+  {
+    date: new Date("2021-01-11"),
+    state: "primary",
+  },
+  {
+    date: new Date("2021-01-12"),
+    state: "secondary",
+  },
+  {
+    date: new Date("2021-01-13"),
+    state: "secondary",
+  },
+  {
+    date: new Date("2021-01-14"),
+    state: "secondary",
+  },
+  {
+    date: new Date("2021-01-15"),
+    state: "primary",
+  },
+]);
+</script>
+
+<template>
+  <div>
+    <WizCalendar :activeDates="activeDates" />
+  </div>
+</template>
+      `,
+    },
+  },
+};
 
 export const FilledWeeks = Template.bind({});
 FilledWeeks.args = {
+  currentMonth: new Date("2023-03"),
   filledWeeks: true,
 };
 
@@ -48,14 +166,13 @@ FilledWeeks.parameters = {
   docs: {
     description: {
       story:
-        "指定すると該当しない月の日付を表示するようにします。default では `false` になります。",
+        "`filledWeeks` を `true` にすると、月の最初の日と最後の日の前後に空白の日付を表示します。",
     },
     source: {
       code: `
 <template>
   <div>
-    <p>{{value.getFullYear()}}年 {{value.getMonth()+1}}月 {{value.getDate()}}日</p>
-    <WizCalendar filledWeeks v-model="value" :currentMonth="currentMonth" @input="input"/>
+    <WizCalendar filledWeeks />
   </div>
 </template>
       `,
