@@ -30,6 +30,11 @@ Default.args = {
   backgroundColor: "gray",
 };
 
+export const BackgroundColor = Template.bind({});
+BackgroundColor.args = {
+  backgroundColor: "white",
+};
+
 const MultipleTemplate: StoryFn<typeof WizAccordion> = (args) => ({
   setup: () => ({ args }),
   components: { WizAccordion },
