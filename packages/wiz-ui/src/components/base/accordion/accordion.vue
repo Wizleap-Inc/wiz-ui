@@ -52,7 +52,7 @@ import { WizHStack, WizIcon } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
 
 import {
-  animationConfiguration,
+  ANIMATION_CONFIGURATION,
   closingAnimationKeyframes,
   openingAnimationKeyframes,
 } from "./animation-configuration";
@@ -102,7 +102,7 @@ const onClick = (event: MouseEvent) => {
     isAnimating.value = true;
     const closingAnimation = content.animate(
       closingAnimationKeyframes(content),
-      animationConfiguration
+      ANIMATION_CONFIGURATION
     );
     closingAnimation.onfinish = () => {
       isAnimating.value = false;
@@ -112,7 +112,7 @@ const onClick = (event: MouseEvent) => {
     isAnimating.value = true;
     const openingAnimation = content.animate(
       openingAnimationKeyframes(content),
-      animationConfiguration
+      ANIMATION_CONFIGURATION
     );
     openingAnimation.onfinish = () => {
       isAnimating.value = false;

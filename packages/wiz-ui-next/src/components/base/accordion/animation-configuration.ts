@@ -1,4 +1,4 @@
-export const animationConfiguration = {
+export const ANIMATION_CONFIGURATION = {
   duration: 400,
   easing: "ease-out",
 };
