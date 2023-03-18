@@ -1,10 +1,11 @@
 <template>
-  <details
-    :style="{ width }"
-    :class="AccordionDetailsStyle[backgroundColor]"
-    :open="isOpen || isAnimating"
-  >
-    <summary :class="AccordionSummaryStyle" @click="onClick">
+  <WizVStack :width="width" :class="AccordionDetailsStyle[backgroundColor]">
+    <slot
+      ref="contentRef"
+      :class="AccordionContentStyle"
+      v-if="isOpen && !expandDown"
+    />
+    <div :class="AccordionSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
@@ -15,7 +16,7 @@
           {{ isOpen ? closeMessage : openMessage }}
         </div>
         <WizIcon
-          v-if="!isOpen"
+          v-if="expandDown ? isOpen : !isOpen"
           size="xl2"
           :icon="WizIExpandMore"
           :color="iconColor"
@@ -29,11 +30,13 @@
           :class="[canSpin && closeSpin]"
         />
       </WizHStack>
-    </summary>
-    <div ref="contentRef" :class="AccordionContentStyle">
-      <slot />
     </div>
-  </details>
+    <slot
+      ref="contentRef"
+      :class="AccordionContentStyle"
+      v-if="isOpen && expandDown"
+    />
+  </WizVStack>
 </template>
 
 <script setup lang="ts">
@@ -48,16 +51,14 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
 import { ref, computed, PropType } from "vue";
 
-import { WizHStack, WizIcon } from "@/components";
+import { WizHStack, WizIcon, WizVStack } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
 
-import {
-  ANIMATION_CONFIGURATION,
-  closingAnimationKeyframes,
-  openingAnimationKeyframes,
-} from "./animation-configuration";
-
 const props = defineProps({
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
   openMessage: {
     type: String,
     required: false,
@@ -85,9 +86,10 @@ const props = defineProps({
   },
 });
 
-const isOpen = ref(false);
-
-const isAnimating = ref(false);
+interface Emit {
+  (e: "toggle"): void;
+}
+const emit = defineEmits<Emit>();
 
 const canSpin = ref(false);
 
@@ -99,31 +101,7 @@ const contentRef = ref<HTMLElement | undefined>();
 
 const onClick = (event: MouseEvent) => {
   canSpin.value = true;
+  emit("toggle");
   event.preventDefault();
-  const content = contentRef.value;
-  if (isAnimating.value) return;
-  if (isOpen.value) {
-    isOpen.value = false;
-    isAnimating.value = true;
-    const closingAnimation = content?.animate(
-      closingAnimationKeyframes(content),
-      ANIMATION_CONFIGURATION
-    );
-    if (closingAnimation)
-      closingAnimation.onfinish = () => {
-        isAnimating.value = false;
-      };
-  } else {
-    isOpen.value = true;
-    isAnimating.value = true;
-    const openingAnimation = content?.animate(
-      openingAnimationKeyframes(content),
-      ANIMATION_CONFIGURATION
-    );
-    if (openingAnimation)
-      openingAnimation.onfinish = () => {
-        isAnimating.value = false;
-      };
-  }
 };
 </script>
