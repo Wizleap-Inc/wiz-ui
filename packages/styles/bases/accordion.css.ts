@@ -32,6 +32,8 @@ export const AccordionMessageVariantStyle = styleVariants({
 export const AccordionSummaryStyle = style({
   display: "flex",
   justifyContent: "center",
+  cursor: "pointer",
+  userSelect: "none",
 });
 
 export const AccordionContentStyle = style({
