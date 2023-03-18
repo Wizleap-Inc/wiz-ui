@@ -81,7 +81,7 @@ const props = defineProps({
   expandDown: {
     type: Boolean,
     required: false,
-    default: false,
+    default: true,
   },
 });
 

@@ -78,6 +78,11 @@ const props = defineProps({
     required: false,
     default: "20rem",
   },
+  expandDown: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
 });
 
 const isOpen = ref(false);
