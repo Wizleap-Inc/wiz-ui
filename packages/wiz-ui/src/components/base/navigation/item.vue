@@ -78,11 +78,15 @@ import {
 import { computed, PropType, ref } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
-import { WizPopupContainer, WizPopup, WizPopupButtonGroup } from "@/components";
+import {
+  WizPopupContainer,
+  WizPopup,
+  WizPopupButtonGroup,
+  WizTooltip,
+} from "@/components";
 import type { TIcon } from "@/components/icons";
 
 import { ButtonGroupItem } from "../popup-button-group/types";
-import { WizTooltip } from "../tooltip";
 defineOptions({
   name: ComponentName.NavigationItem,
 });
