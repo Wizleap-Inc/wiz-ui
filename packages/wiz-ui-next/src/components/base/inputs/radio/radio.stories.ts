@@ -204,7 +204,23 @@ gapを指定すると、チェックボックスの間に余白を設定でき�
   },
 };
 
-export const StrikeThrough = Template.bind({});
+const StrikeThroughTemplate: StoryFn<typeof WizRadio> = (args) => ({
+  components: { WizRadio },
+  setup() {
+    const value = ref(0);
+    const value2 = ref(1);
+    return { value, value2, args };
+  },
+  template: `
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizRadio v-bind="args" v-model="value" @update:modelValue="args.input" />
+    <WizRadio v-bind="args" disabled v-model="value2" @update:modelValue="args.input" />
+  </div>
+`,
+});
+
+export const StrikeThrough = StrikeThroughTemplate.bind({});
 StrikeThrough.args = {
   options: [
     { label: "test1", value: 1, key: "gap1" },
