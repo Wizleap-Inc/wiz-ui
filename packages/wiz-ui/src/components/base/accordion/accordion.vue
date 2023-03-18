@@ -1,6 +1,6 @@
 <template>
   <details
-    :width="width"
+    :style="{ width }"
     :class="AccordionDetailsStyle[backgroundColor]"
     :open="isOpen || isAnimating"
   >
@@ -77,6 +77,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: "20rem",
+  },
+  expandDown: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

@@ -1,6 +1,6 @@
 <template>
   <details
-    :width="width"
+    :style="{ width }"
     :class="AccordionDetailsStyle[backgroundColor]"
     :open="isOpen || isAnimating"
   >
