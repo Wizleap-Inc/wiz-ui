@@ -1,7 +1,17 @@
 import { StoryFn, Meta } from "@storybook/vue3";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import WizAccordion from "./accordion.vue";
+
+const spacingKeys = ["p", "pt", "pr", "pb", "pl", "px", "py"];
+const spacingControls = spacingKeys.reduce((acc, key) => {
+  acc[key] = {
+    control: { type: "select" },
+    options: SPACING_ACCESSORS,
+  };
+  return acc;
+}, {} as Record<string, any>);
 
 export default {
   title: "Base/Accordion",
@@ -11,6 +21,7 @@ export default {
       control: { type: "select" },
       options: ["white", "gray"],
     },
+    ...spacingControls,
   },
 } as Meta<typeof WizAccordion>;
 
@@ -35,6 +46,12 @@ const Template: StoryFn<typeof WizAccordion> = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   backgroundColor: "gray",
+};
+
+export const Padding = Template.bind({});
+Padding.args = {
+  backgroundColor: "gray",
+  p: "sm",
 };
 
 export const BackgroundColor = Template.bind({});
