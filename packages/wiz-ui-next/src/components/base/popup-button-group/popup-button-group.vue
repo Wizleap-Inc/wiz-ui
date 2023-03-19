@@ -3,6 +3,7 @@
     gap="xs2"
     :class="[
       popupButtonGroupStyle,
+      disabled && popupButtonGroupDisabledCursorStyle,
       depth === 0 && borderRadiusStyle[borderRadius],
     ]"
     :style="{ minWidth: computedWidth }"
@@ -15,7 +16,12 @@
       />
       <div v-else-if="item.item.kind === 'group'">
         <span
-          :class="popupButtonGroupTitleStyle"
+          :class="[
+            popupButtonGroupTitleBaseStyle,
+            disabled
+              ? popupButtonGroupTitleVariantStyle['disabled']
+              : popupButtonGroupTitleVariantStyle['enabled'],
+          ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
@@ -26,12 +32,19 @@
           :options="item.item.items"
           :groupDivider="item.item.groupDivider"
           :buttonDivider="item.item.buttonDivider"
+          :disabled="disabled"
           :depth="depth + 1"
         />
       </div>
       <div v-else-if="item.item.kind === 'button'">
         <div
-          :class="popupButtonGroupButtonStyle"
+          :class="[
+            popupButtonGroupButtonBaseStyle,
+            disabled || item.item.option.disabled
+              ? popupButtonGroupButtonVariantStyle['disabled']
+              : popupButtonGroupButtonVariantStyle['enabled'],
+            item.item.option.disabled && popupButtonGroupDisabledCursorStyle,
+          ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
@@ -50,6 +63,8 @@
               :color="
                 item.item.option.value === isClicking
                   ? 'white.800'
+                  : disabled || item.item.option.disabled
+                  ? 'gray.400'
                   : item.item.option.iconDefaultColor ?? 'gray.500'
               "
               size="md"
@@ -69,10 +84,13 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   popupButtonGroupStyle,
-  popupButtonGroupButtonStyle,
-  popupButtonGroupTitleStyle,
+  popupButtonGroupDisabledCursorStyle,
+  popupButtonGroupButtonBaseStyle,
+  popupButtonGroupTitleBaseStyle,
   popupButtonGroupDividerStyle,
   popupButtonGroupInnerContainerStyle,
+  popupButtonGroupTitleVariantStyle,
+  popupButtonGroupButtonVariantStyle,
   borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
@@ -106,11 +124,11 @@ const props = defineProps({
     required: false,
     default: "no",
   },
-  // disabled: {
-  //   type: Boolean,
-  //   required: false,
-  //   default: false,
-  // },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
   expand: {
     type: Boolean,
     required: false,
@@ -169,7 +187,8 @@ const items = computed(() => {
 const isClicking = ref<number | null>(null);
 
 const onHoldClick = (item: ButtonGroupItem) => {
-  if (item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     isClicking.value = item.option.value;
     const mouseup = () => {
       isClicking.value = null;
@@ -180,16 +199,19 @@ const onHoldClick = (item: ButtonGroupItem) => {
 };
 
 const popupButtonMouseDown = (item: ButtonGroupItem) => {
-  if (item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };
 
 const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
-  if (item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };
+
 // Form Control
 const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
