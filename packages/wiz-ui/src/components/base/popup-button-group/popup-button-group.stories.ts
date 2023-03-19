@@ -8,6 +8,7 @@ import {
   WizIOpenInNew,
   WizIAddCircle,
   WizPopupButtonGroup,
+  TIcon,
 } from "@/components";
 
 import { PopupButtonOption, ButtonGroupItem } from "./types";
@@ -75,10 +76,19 @@ const _getDummyOptions = (
 
 const createButton = (
   n: number,
-  click: (n: number) => void
+  click: (n: number) => void,
+  disabled?: boolean,
+  icon?: TIcon
 ): ButtonGroupItem => ({
   kind: "button",
-  option: { label: `item ${n}`, value: n, onClick: () => click(n) },
+  option: {
+    label: `item ${n}`,
+    value: n,
+    onClick: () => click(n),
+    disabled: disabled,
+    icon: icon,
+    iconDefaultColor: "gray.500",
+  },
 });
 
 const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
@@ -119,6 +129,26 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
 };
+
+export const DisabledButton: StoryFn<typeof WizPopupButtonGroup> = (
+  _,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizPopupButtonGroup },
+  setup() {
+    const createOptions = (click: (arg: number) => void): ButtonGroupItem[] => [
+      createButton(1, click, true, WizIOpenInNew),
+      createButton(2, click, false, WizIOpenInNew),
+      createButton(3, click, true),
+      createButton(4, click, false),
+    ];
+    return { createOptions };
+  },
+  template: `
+  <WizPopupButtonGroup v-bind="$props" :options="createOptions(click)" />
+  `,
+});
 
 export const Popup: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
