@@ -114,9 +114,14 @@ const Template: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   <WizPopupButtonGroup v-bind="args" :options="createOptions(args.click)" />
   `,
 });
-export const Default = Template.bind({});
 
+export const Default = Template.bind({});
 Default.args = {};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};
 
 export const Popup: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup, WizPopupContainer, WizPopup },
