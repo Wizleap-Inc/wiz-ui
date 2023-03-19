@@ -38,7 +38,7 @@
           </div>
         </component>
       </div>
-      <div v-if="!disabled && existPopup" @mouseleave="popupMouseLeave">
+      <div v-if="existPopup" @mouseleave="popupMouseLeave">
         <WizPopup
           :isOpen="isOpenDropdown"
           @onClose="popupOnClose"
@@ -52,6 +52,7 @@
             :class="navigationPopupContainerStyle"
             p="xs"
             borderRadius="xs2"
+            :disabled="disabled"
           />
         </WizPopup>
       </div>
