@@ -5,6 +5,7 @@ export interface PopupButtonOption {
   exLabel?: string;
   icon?: TIcon;
   iconDefaultColor?: "green.800" | "gray.500";
+  disabled?: boolean;
   onClick: () => void;
 }
 

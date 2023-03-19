@@ -40,9 +40,10 @@
         <div
           :class="[
             popupButtonGroupButtonBaseStyle,
-            disabled
+            disabled || item.item.option.disabled
               ? popupButtonGroupButtonVariantStyle['disabled']
               : popupButtonGroupButtonVariantStyle['enabled'],
+            item.item.option.disabled && popupButtonGroupDisabledCursorStyle,
           ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
@@ -62,7 +63,7 @@
               :color="
                 item.item.option.value === isClicking
                   ? 'white.800'
-                  : disabled
+                  : disabled || item.item.option.disabled
                   ? 'gray.400'
                   : item.item.option.iconDefaultColor ?? 'gray.500'
               "
@@ -186,7 +187,8 @@ const items = computed(() => {
 const isClicking = ref<number | null>(null);
 
 const onHoldClick = (item: ButtonGroupItem) => {
-  if (!props.disabled && item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     isClicking.value = item.option.value;
     const mouseup = () => {
       isClicking.value = null;
@@ -197,13 +199,15 @@ const onHoldClick = (item: ButtonGroupItem) => {
 };
 
 const popupButtonMouseDown = (item: ButtonGroupItem) => {
-  if (!props.disabled && item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };
 
 const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
-  if (!props.disabled && item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };
