@@ -1,7 +1,7 @@
 import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const AccordionDetailsStyle = styleVariants({
+export const accordionDetailsStyle = styleVariants({
   white: {
     borderRadius: THEME.spacing.xs,
     backgroundColor: THEME.color.white[800],
@@ -12,7 +12,7 @@ export const AccordionDetailsStyle = styleVariants({
   },
 });
 
-export const AccordionMessageVariantStyle = styleVariants({
+export const accordionMessageVariantStyle = styleVariants({
   white: {
     color: THEME.color.gray[600],
     fontWeight: THEME.fontWeight.normal,
@@ -29,14 +29,14 @@ export const AccordionMessageVariantStyle = styleVariants({
   },
 });
 
-export const AccordionSummaryStyle = style({
+export const accordionSummaryStyle = style({
   display: "flex",
   justifyContent: "center",
   cursor: "pointer",
   userSelect: "none",
 });
 
-export const AccordionContentStyle = style({
+export const accordionContentStyle = style({
   overflow: "hidden",
 });
 

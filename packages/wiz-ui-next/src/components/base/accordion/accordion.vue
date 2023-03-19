@@ -1,18 +1,18 @@
 <template>
-  <WizVStack :width="width" :class="AccordionDetailsStyle[backgroundColor]">
+  <WizVStack :width="width" :class="accordionDetailsStyle[backgroundColor]">
     <div
       v-if="isOpen && !expandDown"
       ref="contentRef"
-      :class="[AccordionContentStyle, ...computedPadding]"
+      :class="[accordionContentStyle, ...computedPadding]"
     >
       <slot />
     </div>
-    <div :class="AccordionSummaryStyle" @click="onClick">
+    <div :class="accordionSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
         gap="xs2"
-        :class="[AccordionMessageVariantStyle[backgroundColor]]"
+        :class="[accordionMessageVariantStyle[backgroundColor]]"
       >
         <div>
           {{ isOpen ? closeMessage : openMessage }}
@@ -36,7 +36,7 @@
     <div
       v-if="isOpen && expandDown"
       ref="contentRef"
-      :class="[AccordionContentStyle, ...computedPadding]"
+      :class="[accordionContentStyle, ...computedPadding]"
     >
       <slot />
     </div>
@@ -46,10 +46,10 @@
 <script setup lang="ts">
 import { ColorKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  AccordionMessageVariantStyle,
-  AccordionDetailsStyle,
-  AccordionContentStyle,
-  AccordionSummaryStyle,
+  accordionMessageVariantStyle,
+  accordionDetailsStyle,
+  accordionContentStyle,
+  accordionSummaryStyle,
   openSpin,
   closeSpin,
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
