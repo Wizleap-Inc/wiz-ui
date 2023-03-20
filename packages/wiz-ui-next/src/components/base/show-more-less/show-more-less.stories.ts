@@ -1,12 +1,12 @@
-import { StoryFn, Meta } from "@storybook/vue";
+import { StoryFn, Meta } from "@storybook/vue3";
 import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
-import WizAccordion from "./accordion.vue";
+import WizShowMoreLess from "./show-more-less.vue";
 
 export default {
-  title: "Base/Accordion",
-  component: WizAccordion,
+  title: "Base/ShowMoreLess",
+  component: WizShowMoreLess,
   argTypes: {
     bgColor: {
       control: { type: "select" },
@@ -17,24 +17,23 @@ export default {
       options: COLOR_MAP_ACCESSORS,
     },
   },
-} as Meta<typeof WizAccordion>;
+} as Meta<typeof WizShowMoreLess>;
 
-const Template: StoryFn<typeof WizAccordion> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizAccordion },
+const Template: StoryFn<typeof WizShowMoreLess> = (args) => ({
   setup: () => {
     const isOpen = ref(false);
     const toggle = () => {
       isOpen.value = !isOpen.value;
     };
-    return { isOpen, toggle };
+    return { args, isOpen, toggle };
   },
+  components: { WizShowMoreLess },
   template: `
-  <WizAccordion v-bind="$props" :isOpen="isOpen" @toggle="toggle">
+  <WizShowMoreLess v-bind="args" :isOpen="isOpen" @toggle="toggle">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
-  </WizAccordion>
+  </WizShowMoreLess>
   `,
 });
 
@@ -46,28 +45,25 @@ Color.args = {
   fontColor: "green.800",
 };
 
-export const Open: StoryFn<typeof WizAccordion> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizAccordion },
+export const Open: StoryFn<typeof WizShowMoreLess> = (args) => ({
   setup: () => {
     const isOpen = ref(true);
     const toggle = () => {
       isOpen.value = !isOpen.value;
     };
-    return { isOpen, toggle };
+    return { args, isOpen, toggle };
   },
+  components: { WizShowMoreLess },
   template: `
-  <WizAccordion v-bind="$props" :isOpen="isOpen" @toggle="toggle">
+  <WizShowMoreLess v-bind="args" :isOpen="isOpen" @toggle="toggle">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
-  </WizAccordion>
+  </WizShowMoreLess>
   `,
 });
 
-const MultipleTemplate: StoryFn<typeof WizAccordion> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizAccordion },
+const MultipleTemplate: StoryFn<typeof WizShowMoreLess> = (args) => ({
   setup: () => {
     const isOpens = ref([true, false, false]);
     const toggles = (index: number) => {
@@ -75,26 +71,25 @@ const MultipleTemplate: StoryFn<typeof WizAccordion> = (_, { argTypes }) => ({
         i === index ? !isOpen : isOpen
       );
     };
-    return { isOpens, toggles };
+    return { args, isOpens, toggles };
   },
+  components: { WizShowMoreLess },
   template: `
-  <div>
-  <WizAccordion v-bind="$props" :isOpen="isOpens[0]" @toggle="toggles(0)">
+  <WizShowMoreLess v-bind="args" :isOpen="isOpens[0]" @toggle="toggles(0)">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
-  </WizAccordion>
-  <WizAccordion v-bind="$props" :isOpen="isOpens[1]" @toggle="toggles(1)">
+  </WizShowMoreLess>
+  <WizShowMoreLess v-bind="args" :isOpen="isOpens[1]" @toggle="toggles(1)">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
-  </WizAccordion>
-  <WizAccordion v-bind="$props" :isOpen="isOpens[2]" @toggle="toggles(2)">
+  </WizShowMoreLess>
+  <WizShowMoreLess v-bind="args" :isOpen="isOpens[2]" @toggle="toggles(2)">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
-  </WizAccordion>
-</div>
+  </WizShowMoreLess>
   `,
 });
 
