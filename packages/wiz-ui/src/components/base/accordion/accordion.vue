@@ -1,13 +1,10 @@
 <template>
-  <WizVStack :width="width" :class="accordionDetailsStyle[backgroundColor]">
-    <div
-      v-if="isOpen && !expandDown"
-      ref="contentRef"
-      :class="[accordionContentStyle, ...computedPadding]"
-    >
-      <slot />
-    </div>
-    <div :class="accordionSummaryStyle" @click="onClick">
+  <details
+    :class="accordionDetailsStyle[backgroundColor]"
+    :style="{ width }"
+    :open="isOpen || isAnimating"
+  >
+    <summary :class="accordionSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
@@ -18,54 +15,42 @@
           {{ isOpen ? closeMessage : openMessage }}
         </div>
         <WizIcon
-          v-if="expandDown ? isOpen : !isOpen"
           size="xl2"
           :icon="WizIExpandMore"
           :color="iconColor"
-          :class="[canSpin && openSpin]"
-        />
-        <WizIcon
-          v-else
-          size="xl2"
-          :icon="WizIExpandLess"
-          :color="iconColor"
-          :class="[canSpin && closeSpin]"
+          :class="[
+            accordionExpandIconStyle,
+            isOpen && accordionRotateIconStyle,
+          ]"
         />
       </WizHStack>
-    </div>
-    <div
-      v-if="isOpen && expandDown"
-      ref="contentRef"
-      :class="[accordionContentStyle, ...computedPadding]"
-    >
+    </summary>
+    <div ref="contentRef" :class="[accordionContentStyle]">
       <slot />
     </div>
-  </WizVStack>
+  </details>
 </template>
 
 <script setup lang="ts">
-import { ColorKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   accordionMessageVariantStyle,
   accordionDetailsStyle,
   accordionContentStyle,
   accordionSummaryStyle,
-  openSpin,
-  closeSpin,
+  accordionExpandIconStyle,
+  accordionRotateIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
-import {
-  paddingStyle,
-  paddingXStyle,
-  paddingYStyle,
-  paddingTopStyle,
-  paddingRightStyle,
-  paddingBottomStyle,
-  paddingLeftStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, PropType } from "vue";
 
-import { WizHStack, WizIcon, WizVStack } from "@/components";
-import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
+import { WizHStack, WizIcon } from "@/components";
+import { WizIExpandMore } from "@/components/icons";
+
+import {
+  ANIMATION_CONFIGURATION,
+  closingAnimationKeyframes,
+  openingAnimationKeyframes,
+} from "./animation-configuration";
 
 const props = defineProps({
   isOpen: {
@@ -92,18 +77,6 @@ const props = defineProps({
     required: false,
     default: "20rem",
   },
-  expandDown: {
-    type: Boolean,
-    required: false,
-    default: true,
-  },
-  p: { type: String as PropType<SpacingKeys>, required: false },
-  pt: { type: String as PropType<SpacingKeys>, required: false },
-  pr: { type: String as PropType<SpacingKeys>, required: false },
-  pb: { type: String as PropType<SpacingKeys>, required: false },
-  pl: { type: String as PropType<SpacingKeys>, required: false },
-  px: { type: String as PropType<SpacingKeys>, required: false },
-  py: { type: String as PropType<SpacingKeys>, required: false },
 });
 
 interface Emit {
@@ -111,27 +84,37 @@ interface Emit {
 }
 const emit = defineEmits<Emit>();
 
-const canSpin = ref(false);
-
 const iconColor = computed((): ColorKeys => {
   return props.backgroundColor === "gray" ? "green.800" : "gray.500";
 });
 
 const contentRef = ref<HTMLElement | undefined>();
+const isAnimating = ref(false);
 
 const onClick = (event: MouseEvent) => {
-  canSpin.value = true;
-  emit("toggle");
   event.preventDefault();
-};
+  if (contentRef.value === undefined) return;
+  if (isAnimating.value) return;
 
-const computedPadding = computed(() => [
-  props.px && paddingXStyle[props.px],
-  props.py && paddingYStyle[props.py],
-  !props.px && !props.py && props.p && paddingStyle[props.p],
-  props.pt && paddingTopStyle[props.pt],
-  props.pr && paddingRightStyle[props.pr],
-  props.pb && paddingBottomStyle[props.pb],
-  props.pl && paddingLeftStyle[props.pl],
-]);
+  isAnimating.value = true;
+  const content = contentRef.value;
+  if (props.isOpen) {
+    const closingAnimation = content.animate(
+      closingAnimationKeyframes(content),
+      ANIMATION_CONFIGURATION
+    );
+    closingAnimation.onfinish = () => {
+      isAnimating.value = false;
+    };
+  } else {
+    const openingAnimation = content.animate(
+      openingAnimationKeyframes(content),
+      ANIMATION_CONFIGURATION
+    );
+    openingAnimation.onfinish = () => {
+      isAnimating.value = false;
+    };
+  }
+  emit("toggle");
+};
 </script>
