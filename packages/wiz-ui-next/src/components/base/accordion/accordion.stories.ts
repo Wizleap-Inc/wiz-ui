@@ -1,17 +1,7 @@
 import { StoryFn, Meta } from "@storybook/vue3";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import WizAccordion from "./accordion.vue";
-
-const spacingKeys = ["p", "pt", "pr", "pb", "pl", "px", "py"];
-const spacingControls = spacingKeys.reduce((acc, key) => {
-  acc[key] = {
-    control: { type: "select" },
-    options: SPACING_ACCESSORS,
-  };
-  return acc;
-}, {} as Record<string, any>);
 
 export default {
   title: "Base/Accordion",
@@ -21,7 +11,6 @@ export default {
       control: { type: "select" },
       options: ["white", "gray"],
     },
-    ...spacingControls,
   },
 } as Meta<typeof WizAccordion>;
 
@@ -48,21 +37,9 @@ Default.args = {
   backgroundColor: "gray",
 };
 
-export const Padding = Template.bind({});
-Padding.args = {
-  backgroundColor: "gray",
-  p: "sm",
-};
-
 export const BackgroundColor = Template.bind({});
 BackgroundColor.args = {
   backgroundColor: "white",
-};
-
-export const ExpandDirection = Template.bind({});
-ExpandDirection.args = {
-  backgroundColor: "gray",
-  expandDown: false,
 };
 
 export const Open: StoryFn<typeof WizAccordion> = (args) => ({
@@ -88,7 +65,7 @@ Open.args = {
 
 const MultipleTemplate: StoryFn<typeof WizAccordion> = (args) => ({
   setup: () => {
-    const isOpens = [ref(false), ref(false), ref(false)];
+    const isOpens = [ref(true), ref(false), ref(false)];
     const toggles = isOpens.map(
       (isOpen) => () => (isOpen.value = !isOpen.value)
     );
