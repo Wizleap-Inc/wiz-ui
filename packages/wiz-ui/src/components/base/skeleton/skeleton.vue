@@ -1,6 +1,12 @@
 <template>
   <div
-    :class="isLoading && [skeletonStyle, normalSkeletonStyle]"
+    :class="
+      isLoading && [
+        skeletonStyle,
+        normalSkeletonStyle,
+        borderRadiusStyle[borderRadius],
+      ]
+    "
     :style="{ width, height }"
   >
     <slot />
@@ -8,10 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   skeletonStyle,
   normalSkeletonStyle,
+  borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import { PropType } from "vue";
 
@@ -29,6 +36,11 @@ defineProps({
     type: String as PropType<string>,
     default: "100%",
     required: false,
+  },
+  borderRadius: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
   },
   isLoading: {
     type: Boolean as PropType<boolean>,
