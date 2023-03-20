@@ -65,25 +65,27 @@ Open.args = {
 
 const MultipleTemplate: StoryFn<typeof WizAccordion> = (args) => ({
   setup: () => {
-    const isOpens = [ref(true), ref(false), ref(false)];
-    const toggles = isOpens.map(
-      (isOpen) => () => (isOpen.value = !isOpen.value)
-    );
+    const isOpens = ref([true, false, false]);
+    const toggles = (index: number) => {
+      isOpens.value = isOpens.value.map((isOpen, i) =>
+        i === index ? !isOpen : isOpen
+      );
+    };
     return { args, isOpens, toggles };
   },
   components: { WizAccordion },
   template: `
-  <WizAccordion v-bind="args" :isOpen="isOpens[0].value" @toggle="toggles[0]">
+  <WizAccordion v-bind="args" :isOpen="isOpens[0]" @toggle="toggles(0)">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
   </WizAccordion>
-  <WizAccordion v-bind="args" :isOpen="isOpens[1].value" @toggle="toggles[1]">
+  <WizAccordion v-bind="args" :isOpen="isOpens[1]" @toggle="toggles(1)">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
   </WizAccordion>
-  <WizAccordion v-bind="args" :isOpen="isOpens[2].value" @toggle="toggles[2]">
+  <WizAccordion v-bind="args" :isOpen="isOpens[2]" @toggle="toggles(2)">
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
     <p>折りたたまれている部分です．</p>
