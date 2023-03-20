@@ -48,6 +48,7 @@ const IconComponentName = {
 };
 
 export const ComponentName = {
+  Accordion: "WizAccordion",
   Anchor: "WizAnchor",
   Avatar: "WizAvatar",
   Box: "WizBox",
@@ -129,5 +130,6 @@ export const ComponentName = {
   StepBar: "WizStepBar",
   StepPoint: "WizStepPoint",
   StepLine: "WizStepLine",
+  PopupButtonGroup: "WizPopupButtonGroup",
   ...IconComponentName,
 } as const;

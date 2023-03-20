@@ -89,6 +89,7 @@ export const selectBoxSelectorStyle = style({
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   maxHeight: "25rem",
+  maxWidth: "15rem",
   overflowY: "auto",
 });
 
@@ -114,6 +115,9 @@ export const selectBoxSelectorOptionStyle = style({
 
 export const selectBoxSelectorOptionLabelStyle = style({
   lineHeight: "130%",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 });
 
 export const selectBoxSearchInputStyle = style({
