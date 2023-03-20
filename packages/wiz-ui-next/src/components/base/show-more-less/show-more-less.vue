@@ -1,6 +1,6 @@
 <template>
   <WizVStack
-    :class="accordionDetailsStyle[backgroundColor]"
+    :class="[accordionDetailsStyle, bgColor && backgroundStyle[bgColor]]"
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
@@ -18,7 +18,11 @@
         align="center"
         justify="between"
         gap="xs2"
-        :class="[accordionMessageVariantStyle[backgroundColor]]"
+        :class="[
+          accordionMessageStyle,
+          bgColor && backgroundStyle[bgColor],
+          colorStyle[fontColor],
+        ]"
       >
         <div>
           {{ isOpen ? closeMessage : openMessage }}
@@ -26,7 +30,7 @@
         <WizIcon
           size="xl2"
           :icon="WizIExpandMore"
-          :color="iconColor"
+          :color="fontColor"
           :class="[
             accordionExpandIconStyle,
             isOpen && accordionRotateIconStyle,
@@ -40,19 +44,23 @@
 <script setup lang="ts">
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  accordionMessageVariantStyle,
+  accordionMessageStyle,
   accordionDetailsStyle,
   accordionContentStyle,
   accordionSummaryStyle,
   accordionExpandIconStyle,
   accordionRotateIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
+import {
+  backgroundStyle,
+  colorStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, PropType } from "vue";
 
 import { WizHStack, WizVStack, WizIcon } from "@/components";
 import { WizIExpandMore } from "@/components/icons";
 
-const props = defineProps({
+defineProps({
   isOpen: {
     type: Boolean,
     required: true,
@@ -67,15 +75,19 @@ const props = defineProps({
     required: false,
     default: "閉じる",
   },
-  backgroundColor: {
-    type: String as PropType<"gray" | "white">,
-    required: false,
-    default: "white",
-  },
   width: {
     type: String,
     required: false,
     default: "20rem",
+  },
+  bgColor: {
+    type: String as PropType<ColorKeys | undefined>,
+    required: false,
+  },
+  fontColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "gray.600",
   },
 });
 
@@ -83,10 +95,6 @@ interface Emit {
   (e: "toggle"): void;
 }
 const emit = defineEmits<Emit>();
-
-const iconColor = computed((): ColorKeys => {
-  return props.backgroundColor === "gray" ? "green.800" : "gray.500";
-});
 
 const contentRef = ref<HTMLElement | undefined>();
 const isAnimating = ref(false);
