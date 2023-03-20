@@ -4,7 +4,7 @@ import {
   styleVariants,
   globalStyle,
 } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { SPACING_MAP, THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const skeletonAnimation = keyframes({
   "0%": {
@@ -43,3 +43,7 @@ export const textSkeletonStyle = styleVariants({
 export const circleSkeletonStyle = style({
   borderRadius: "50%",
 });
+
+export const borderRadiusStyle = styleVariants(SPACING_MAP, (borderRadius) => ({
+  borderRadius,
+}));
