@@ -1,18 +1,27 @@
 <template>
-  <details
-    :class="[accordionDetailsStyle, bgColor && backgroundStyle[bgColor]]"
+  <WizVStack
+    :class="[showMoreLessDetailsStyle, bgColor && backgroundStyle[bgColor]]"
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
-    <summary :class="accordionSummaryStyle" @click="onClick">
+    <div
+      ref="contentRef"
+      :class="[showMoreLessContentStyle]"
+      :style="{
+        maxHeight: isOpen ? toggleHeight : 0,
+      }"
+    >
+      <slot />
+    </div>
+    <div :class="showMoreLessSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
         gap="xs2"
         :class="[
-          accordionMessageStyle,
-          colorStyle[fontColor],
+          showMoreLessMessageStyle,
           bgColor && backgroundStyle[bgColor],
+          colorStyle[fontColor],
         ]"
       >
         <div>
@@ -23,44 +32,35 @@
           :icon="WizIExpandMore"
           :color="fontColor"
           :class="[
-            accordionExpandIconStyle,
-            isOpen && accordionRotateIconStyle,
+            showMoreLessExpandIconStyle,
+            isOpen && showMoreLessRotateIconStyle,
           ]"
         />
       </WizHStack>
-    </summary>
-    <div ref="contentRef" :class="[accordionContentStyle]">
-      <slot />
     </div>
-  </details>
+  </WizVStack>
 </template>
 
 <script setup lang="ts">
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  accordionMessageStyle,
-  accordionDetailsStyle,
-  accordionContentStyle,
-  accordionSummaryStyle,
-  accordionExpandIconStyle,
-  accordionRotateIconStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
+  showMoreLessMessageStyle,
+  showMoreLessDetailsStyle,
+  showMoreLessContentStyle,
+  showMoreLessSummaryStyle,
+  showMoreLessExpandIconStyle,
+  showMoreLessRotateIconStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
 import {
   backgroundStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, PropType } from "vue";
+import { ref, computed, PropType } from "vue";
 
-import { WizHStack, WizIcon } from "@/components";
+import { WizHStack, WizVStack, WizIcon } from "@/components";
 import { WizIExpandMore } from "@/components/icons";
 
-import {
-  ANIMATION_CONFIGURATION,
-  closingAnimationKeyframes,
-  openingAnimationKeyframes,
-} from "./animation-configuration";
-
-const props = defineProps({
+defineProps({
   isOpen: {
     type: Boolean,
     required: true,
@@ -99,30 +99,13 @@ const emit = defineEmits<Emit>();
 const contentRef = ref<HTMLElement | undefined>();
 const isAnimating = ref(false);
 
-const onClick = (event: MouseEvent) => {
-  event.preventDefault();
-  if (contentRef.value === undefined) return;
-  if (isAnimating.value) return;
-
-  isAnimating.value = true;
+const toggleHeight = computed(() => {
   const content = contentRef.value;
-  if (props.isOpen) {
-    const closingAnimation = content.animate(
-      closingAnimationKeyframes(content),
-      ANIMATION_CONFIGURATION
-    );
-    closingAnimation.onfinish = () => {
-      isAnimating.value = false;
-    };
-  } else {
-    const openingAnimation = content.animate(
-      openingAnimationKeyframes(content),
-      ANIMATION_CONFIGURATION
-    );
-    openingAnimation.onfinish = () => {
-      isAnimating.value = false;
-    };
-  }
+  return content?.scrollHeight + "px";
+});
+
+const onClick = (event: MouseEvent) => {
   emit("toggle");
+  event.preventDefault();
 };
 </script>

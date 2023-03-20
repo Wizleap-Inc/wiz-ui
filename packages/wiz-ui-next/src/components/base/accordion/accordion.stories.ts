@@ -1,4 +1,5 @@
 import { StoryFn, Meta } from "@storybook/vue3";
+import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import WizAccordion from "./accordion.vue";
@@ -7,9 +8,13 @@ export default {
   title: "Base/Accordion",
   component: WizAccordion,
   argTypes: {
-    backgroundColor: {
+    bgColor: {
       control: { type: "select" },
-      options: ["white", "gray"],
+      options: COLOR_MAP_ACCESSORS,
+    },
+    fontColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
     },
   },
 } as Meta<typeof WizAccordion>;
@@ -33,13 +38,11 @@ const Template: StoryFn<typeof WizAccordion> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  backgroundColor: "gray",
-};
 
-export const BackgroundColor = Template.bind({});
-BackgroundColor.args = {
-  backgroundColor: "white",
+export const Color = Template.bind({});
+Color.args = {
+  bgColor: "gray.300",
+  fontColor: "green.800",
 };
 
 export const Open: StoryFn<typeof WizAccordion> = (args) => ({
@@ -59,9 +62,6 @@ export const Open: StoryFn<typeof WizAccordion> = (args) => ({
   </WizAccordion>
   `,
 });
-Open.args = {
-  backgroundColor: "gray",
-};
 
 const MultipleTemplate: StoryFn<typeof WizAccordion> = (args) => ({
   setup: () => {
@@ -94,6 +94,3 @@ const MultipleTemplate: StoryFn<typeof WizAccordion> = (args) => ({
 });
 
 export const Multiple = MultipleTemplate.bind({});
-Multiple.args = {
-  backgroundColor: "gray",
-};
