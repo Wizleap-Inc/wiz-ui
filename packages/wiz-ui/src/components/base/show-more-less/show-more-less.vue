@@ -1,25 +1,25 @@
 <template>
   <WizVStack
-    :class="[accordionDetailsStyle, bgColor && backgroundStyle[bgColor]]"
+    :class="[showMoreLessDetailsStyle, bgColor && backgroundStyle[bgColor]]"
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
     <div
       ref="contentRef"
-      :class="[accordionContentStyle]"
+      :class="[showMoreLessContentStyle]"
       :style="{
         maxHeight: isOpen ? toggleHeight : 0,
       }"
     >
       <slot />
     </div>
-    <div :class="accordionSummaryStyle" @click="onClick">
+    <div :class="showMoreLessSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
         gap="xs2"
         :class="[
-          accordionMessageStyle,
+          showMoreLessMessageStyle,
           bgColor && backgroundStyle[bgColor],
           colorStyle[fontColor],
         ]"
@@ -32,8 +32,8 @@
           :icon="WizIExpandMore"
           :color="fontColor"
           :class="[
-            accordionExpandIconStyle,
-            isOpen && accordionRotateIconStyle,
+            showMoreLessExpandIconStyle,
+            isOpen && showMoreLessRotateIconStyle,
           ]"
         />
       </WizHStack>
@@ -44,12 +44,12 @@
 <script setup lang="ts">
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  accordionMessageStyle,
-  accordionDetailsStyle,
-  accordionContentStyle,
-  accordionSummaryStyle,
-  accordionExpandIconStyle,
-  accordionRotateIconStyle,
+  showMoreLessMessageStyle,
+  showMoreLessDetailsStyle,
+  showMoreLessContentStyle,
+  showMoreLessSummaryStyle,
+  showMoreLessExpandIconStyle,
+  showMoreLessRotateIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
 import {
   backgroundStyle,
