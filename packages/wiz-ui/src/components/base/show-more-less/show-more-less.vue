@@ -4,7 +4,13 @@
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
-    <div v-if="isOpen" ref="contentRef" :class="[accordionContentStyle]">
+    <div
+      ref="contentRef"
+      :class="[accordionContentStyle]"
+      :style="{
+        maxHeight: isOpen ? toggleHeight : 0,
+      }"
+    >
       <slot />
     </div>
     <div :class="accordionSummaryStyle" @click="onClick">
@@ -46,12 +52,6 @@ import { ref, computed, PropType } from "vue";
 import { WizHStack, WizVStack, WizIcon } from "@/components";
 import { WizIExpandMore } from "@/components/icons";
 
-import {
-  ANIMATION_CONFIGURATION,
-  closingAnimationKeyframes,
-  openingAnimationKeyframes,
-} from "./animation-configuration";
-
 const props = defineProps({
   isOpen: {
     type: Boolean,
@@ -91,35 +91,13 @@ const iconColor = computed((): ColorKeys => {
 const contentRef = ref<HTMLElement | undefined>();
 const isAnimating = ref(false);
 
+const toggleHeight = computed(() => {
+  const content = contentRef.value;
+  return content?.scrollHeight + "px";
+});
+
 const onClick = (event: MouseEvent) => {
   emit("toggle");
   event.preventDefault();
-};
-
-const onClickAnimation = (event: MouseEvent) => {
-  event.preventDefault();
-  if (contentRef.value === undefined) return;
-  if (isAnimating.value) return;
-
-  isAnimating.value = true;
-  const content = contentRef.value;
-  if (props.isOpen) {
-    const closingAnimation = content.animate(
-      closingAnimationKeyframes(content),
-      ANIMATION_CONFIGURATION
-    );
-    closingAnimation.onfinish = () => {
-      isAnimating.value = false;
-    };
-  } else {
-    const openingAnimation = content.animate(
-      openingAnimationKeyframes(content),
-      ANIMATION_CONFIGURATION
-    );
-    openingAnimation.onfinish = () => {
-      isAnimating.value = false;
-    };
-  }
-  emit("toggle");
 };
 </script>

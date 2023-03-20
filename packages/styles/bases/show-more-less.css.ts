@@ -38,6 +38,8 @@ export const accordionSummaryStyle = style({
 
 export const accordionContentStyle = style({
   overflow: "hidden",
+  maxHeight: 0,
+  transition: "max-height 0.4s ease-in-out",
 });
 
 export const accordionExpandIconStyle = style({
@@ -47,5 +49,3 @@ export const accordionExpandIconStyle = style({
 export const accordionRotateIconStyle = style({
   transform: "rotate(180deg)",
 });
-
-export const showMoreLessExpandStyle = style({});
