@@ -112,6 +112,7 @@ export const ComponentName = {
   Skeleton: "WizSkeleton",
   SkeletonText: "WizSkeletonText",
   SkeletonCircle: "WizSkeletonCircle",
+  ShowMoreLess: "WizShowMoreLess",
   Icon: "WizIcon",
   PanelSwitch: "WizPanelSwitch",
   PasswordInput: "WizPasswordInput",
