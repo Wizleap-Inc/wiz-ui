@@ -209,7 +209,7 @@ const StrikeThroughTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizRadio },
   setup() {
-    const value = ref(0);
+    const value = ref(1);
     const value2 = ref(1);
     return { value, value2 };
   },
@@ -217,6 +217,7 @@ const StrikeThroughTemplate: StoryFn = (_, { argTypes }) => ({
   <div>
     <p>入力値：{{ value }}</p>
     <WizRadio v-bind="$props" v-model="value" @update:modelValue="input" />
+    <p>入力値：{{ value2 }}</p>
     <WizRadio v-bind="$props" disabled v-model="value2" @update:modelValue="input" />
   </div>
 `,
