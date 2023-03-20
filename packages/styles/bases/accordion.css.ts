@@ -1,4 +1,4 @@
-import { keyframes, style, styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const accordionDetailsStyle = styleVariants({
@@ -40,22 +40,10 @@ export const accordionContentStyle = style({
   overflow: "hidden",
 });
 
-const openRotate = keyframes({
-  "0%": { transform: "rotate(180deg)" },
-  "100%": { transform: "rotate(0deg)" },
+export const accordionExpandIconStyle = style({
+  transition: "0.4s",
 });
 
-const closeRotate = keyframes({
-  "0%": { transform: "rotate(-180deg)" },
-  "100%": { transform: "rotate(0deg)" },
-});
-
-export const openSpin = style({
-  animationName: openRotate,
-  animationDuration: "0.4s",
-});
-
-export const closeSpin = style({
-  animationName: closeRotate,
-  animationDuration: "0.4s",
+export const accordionRotateIconStyle = style({
+  transform: "rotate(180deg)",
 });
