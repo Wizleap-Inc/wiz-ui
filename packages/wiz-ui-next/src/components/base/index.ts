@@ -1,3 +1,4 @@
+export * from "./accordion";
 export * from "./anchor";
 export * from "./avatar";
 export * from "./badge";
