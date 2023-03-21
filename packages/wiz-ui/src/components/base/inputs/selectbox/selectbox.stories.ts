@@ -64,22 +64,7 @@ Disabled.args = {
   disabled: true,
 };
 
-const MultiTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizSelectBox, WizHStack },
-  setup() {
-    const value = ref(0);
-    return { value };
-  },
-  template: `
-    <WizHStack>
-      <WizSelectBox v-bind="$props"  v-model="value" @input="input"/>
-      <WizSelectBox v-bind="$props"  v-model="value" @input="input"/>
-    </WizHStack>
-  `,
-});
-
-export const LongLabel = MultiTemplate.bind({});
+export const LongLabel = Template.bind({});
 LongLabel.args = {
   options: _getDummyOptions("ThisIsTooLongLabelThisIsTooLongLabel", 3),
   isOpen: true,
