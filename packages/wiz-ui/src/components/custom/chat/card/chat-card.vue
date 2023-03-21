@@ -8,7 +8,7 @@
     "
     right="1.5rem"
     width="20rem"
-    :transition="canAnimate ? 'bottom 0.3s ease-in-out' : undefined"
+    :transition="`bottom ${canAnimate ? '0.3s' : '0s'} ease-in-out`"
     ref="floatChatCardRef"
     zIndex="floating"
   >
@@ -181,13 +181,14 @@ const floatChatCardHeight = ref(0);
 const floatChatCardRef = ref<InstanceType<typeof WizBox>>();
 const chatListRef = ref<InstanceType<typeof WizVStack>>();
 
-onMounted(() => {
+const updateFloatChatCardHeight = () => {
   if (floatChatCardRef.value) {
     floatChatCardHeight.value = floatChatCardRef.value.$el.clientHeight;
   }
-  setTimeout(() => {
-    canAnimate.value = true;
-  }, 0);
+};
+
+onMounted(() => {
+  updateFloatChatCardHeight();
   if (chatListRef.value) {
     chatListRef.value.$el.scrollTo(0, chatListRef.value.$el.scrollHeight);
   }
@@ -223,6 +224,9 @@ watch(props.messages, () => {
     }
   });
 });
+watch(props, () => {
+  nextTick(updateFloatChatCardHeight);
+});
 
 const textValue = computed({
   get: () => props.value,
@@ -236,5 +240,9 @@ const statusValue = computed({
 
 const onSubmit = () => emits("submit");
 
-const toggleDisplay = () => emits("toggleDisplay");
+const toggleDisplay = () => {
+  canAnimate.value = true;
+  emits("toggleDisplay");
+  nextTick(() => (canAnimate.value = false));
+};
 </script>
