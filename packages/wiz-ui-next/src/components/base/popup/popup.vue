@@ -36,6 +36,7 @@ import {
 } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
+import { useScroll } from "@/hooks/use-scroll";
 
 import { POPUP_KEY } from "./provider";
 
@@ -95,15 +96,20 @@ if (!injected) {
 
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
+let removeScrollHandler: (() => void) | null = null;
 watch(
   () => props.isOpen,
   (newValue) => {
     if (newValue) {
+      removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
       nextTick(() => {
         popupSize.width = popupRef.value?.offsetWidth ?? 0;
         popupSize.height = popupRef.value?.offsetHeight ?? 0;
         updateBodyPxInfo();
       });
+    } else {
+      if (removeScrollHandler) removeScrollHandler();
+      removeScrollHandler = null;
     }
   }
 );
