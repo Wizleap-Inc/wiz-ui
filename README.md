@@ -40,3 +40,7 @@ yarn dev # for launching all dev servers
 yarn dev:wiz-ui # for launching wiz-ui dev server
 yarn dev:wiz-ui-next # for launching wiz-ui-next dev server
 ```
+
+## License
+
+wiz-ui is released under a modified MIT license that prohibits unauthorized commercial use.
