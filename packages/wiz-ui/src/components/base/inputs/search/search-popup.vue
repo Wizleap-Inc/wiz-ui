@@ -109,7 +109,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { ref, computed, PropType } from "vue";
 
-import { WizDivider, WizIcon, WizSearchPopup } from "@/components";
+import { WizDivider, WizIcon } from "@/components";
 import { WizIChevronRight, WizICheck } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
