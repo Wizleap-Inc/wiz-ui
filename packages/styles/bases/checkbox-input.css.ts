@@ -41,6 +41,10 @@ export const checkboxLabelDisabledStyle = style({
   opacity: 0.5,
 });
 
+export const checkboxLabelStrikeThrough = style({
+  textDecorationLine: "line-through",
+});
+
 export const checkboxLabelCursorStyle = styleVariants({
   default: {
     cursor: "pointer",

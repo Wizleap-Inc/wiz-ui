@@ -37,6 +37,7 @@ import {
 } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
+import { useScroll } from "@/hooks/use-scroll";
 
 import { POPUP_KEY } from "./provider";
 
@@ -96,11 +97,13 @@ if (!injected) {
 
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
+let removeScrollHandler: (() => void) | null = null;
 watch(
   () => props.isOpen,
   (newValue) => {
     if (newValue) {
       nextTick(() => {
+        removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
         updateBodyPxInfo();
         // vue2の場合、display: noneを解除した後にoffsetWidth等が取れるまでほんの少しだけ時間がかかる
         setTimeout(() => {
@@ -108,6 +111,9 @@ watch(
           popupSize.height = popupRef.value?.offsetHeight ?? 0;
         }, 1);
       });
+    } else {
+      if (removeScrollHandler) removeScrollHandler();
+      removeScrollHandler = null;
     }
   }
 );
