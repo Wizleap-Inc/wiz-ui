@@ -185,3 +185,31 @@ export const UseAsForm: StoryFn = (_, { argTypes }) => ({
     </WizUnstyledTable>
   `,
 });
+
+export const Divider: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizUnstyledTable,
+    WizUnstyledThead,
+    WizUnstyledTbody,
+    WizUnstyledTr,
+    WizUnstyledTh,
+    WizUnstyledTd,
+  },
+  template: `
+    <WizUnstyledTable v-bind="$props" borderCollapse="collapse">
+      <WizUnstyledThead :divider="true">
+        <WizUnstyledTr>
+          <WizUnstyledTh v-for="i in 3" :key="i">
+            Column {{ i }}
+          </WizUnstyledTh>
+        </WizUnstyledTr>
+      </WizUnstyledThead>
+      <WizUnstyledTbody>
+        <WizUnstyledTr v-for="i in 3" :divider="true">
+          <WizUnstyledTd v-for="j in 3" :key="j">Row {{ i }}</WizUnstyledTd>
+        </WizUnstyledTr>
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  `,
+});
