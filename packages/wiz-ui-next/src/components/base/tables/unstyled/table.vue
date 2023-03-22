@@ -5,6 +5,7 @@
       spaceY && borderSpacingYStyle[spaceY],
       !spaceX && !spaceY && borderSpacingStyle[space],
       fixed && unstyledTableFixedStyle,
+      borderCollapse && unstyledTableBorderCollapseStyle[borderCollapse],
     ]"
     :style="{ width }"
   >
@@ -14,7 +15,10 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import { unstyledTableFixedStyle } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import {
+  unstyledTableBorderCollapseStyle,
+  unstyledTableFixedStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 import {
   borderSpacingStyle,
   borderSpacingXStyle,
@@ -47,6 +51,10 @@ defineProps({
   },
   width: {
     type: String,
+    required: false,
+  },
+  borderCollapse: {
+    type: String as PropType<"collapse" | "separate">,
     required: false,
   },
 });
