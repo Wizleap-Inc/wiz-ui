@@ -40,7 +40,19 @@ import { useScroll } from "@/hooks/use-scroll";
 
 import { POPUP_KEY } from "./provider";
 
-type Direction = "tl" | "tr" | "bl" | "br" | "rt" | "rb" | "lt" | "lb";
+type Direction =
+  | "tl"
+  | "tr"
+  | "tc"
+  | "bl"
+  | "br"
+  | "bc"
+  | "rt"
+  | "rb"
+  | "rc"
+  | "lt"
+  | "lb"
+  | "lc";
 type DirectionChar = Direction extends `${infer X}${infer Y}` ? X | Y : never;
 
 interface Emits {
@@ -133,27 +145,49 @@ const popupRect = computed(() => {
     if (props.direction === "tr" || props.direction === "br") {
       return bodyPxInfo.right - popupSize.width;
     }
-    if (props.direction === "rt" || props.direction === "rb") {
+    if (
+      props.direction === "rt" ||
+      props.direction === "rb" ||
+      props.direction === "rc"
+    ) {
       return bodyPxInfo.right;
     }
-    if (props.direction === "lt" || props.direction === "lb") {
+    if (
+      props.direction === "lt" ||
+      props.direction === "lb" ||
+      props.direction === "lc"
+    ) {
       return bodyPxInfo.left - popupSize.width;
+    }
+    if (props.direction === "tc" || props.direction === "bc") {
+      return bodyPxInfo.left - (popupSize.width - bodyPxInfo.width) / 2;
     }
     return 0;
   })();
 
   const popupTop = (() => {
-    if (props.direction === "tl" || props.direction === "tr") {
-      return bodyPxInfo.top;
-    }
-    if (props.direction === "bl" || props.direction === "br") {
-      return bodyPxInfo.bottom - popupSize.height;
-    }
-    if (props.direction === "rt" || props.direction === "lt") {
+    if (
+      props.direction === "tl" ||
+      props.direction === "tr" ||
+      props.direction === "tc"
+    ) {
       return bodyPxInfo.top - popupSize.height;
     }
-    if (props.direction === "rb" || props.direction === "lb") {
+    if (
+      props.direction === "bl" ||
+      props.direction === "br" ||
+      props.direction === "bc"
+    ) {
       return bodyPxInfo.bottom;
+    }
+    if (props.direction === "rt" || props.direction === "lt") {
+      return bodyPxInfo.top;
+    }
+    if (props.direction === "rb" || props.direction === "lb") {
+      return bodyPxInfo.top - (popupSize.height - bodyPxInfo.height);
+    }
+    if (props.direction === "rc" || props.direction === "lc") {
+      return bodyPxInfo.top - (popupSize.height - bodyPxInfo.height) / 2;
     }
     return 0;
   })();
@@ -171,35 +205,16 @@ const popupRect = computed(() => {
 const spaceBetweenPopupAndWindow = computed(() => {
   const { top, right, bottom, left } = popupRect.value;
   const { clientHeight, clientWidth } = document.documentElement;
-  if (props.direction === "bl") {
-    return { x: clientWidth - right, y: clientHeight - bottom };
-  }
-  if (props.direction === "br") {
-    return { x: left, y: clientHeight - bottom };
-  }
-  if (props.direction === "tl") {
-    return { x: clientWidth - right, y: top };
-  }
-  if (props.direction === "tr") {
-    return { x: left, y: top };
-  }
-  if (props.direction === "rt") {
-    return { x: clientWidth - right, y: clientHeight - bottom };
-  }
-  if (props.direction === "rb") {
-    return { x: clientWidth - right, y: top };
-  }
-  if (props.direction === "lt") {
-    return { x: left, y: clientHeight - bottom };
-  }
-  if (props.direction === "lb") {
-    return { x: left, y: top };
-  }
-  return { x: 0, y: 0 };
+  return {
+    top: top,
+    right: clientWidth - right,
+    bottom: clientHeight - bottom,
+    left: left,
+  };
 });
 
 const isDirectionChar = (char: string): char is DirectionChar => {
-  return ["t", "b", "l", "r"].includes(char);
+  return ["t", "b", "l", "r", "c"].includes(char);
 };
 
 const directionToTuple = (
@@ -222,18 +237,38 @@ const convertDirection = (char: DirectionChar) => {
 
 const computedDirection = computed(() => {
   const chars = directionToTuple(props.direction);
-  const { x, y } = spaceBetweenPopupAndWindow.value;
-  const height = popupRect.value.height;
-  const width = popupRect.value.width;
-  return chars
-    .map((char) => {
-      if (char === "t" && y < height) return convertDirection(char);
-      if (char === "b" && y < height) return convertDirection(char);
-      if (char === "l" && x < width) return convertDirection(char);
-      if (char === "r" && x < width) return convertDirection(char);
-      return char;
-    })
-    .join("") as Direction;
+  const { top, left, bottom, right } = spaceBetweenPopupAndWindow.value;
+
+  if (chars[1] === "c") {
+    if (chars[0] === "t" || chars[0] === "b") {
+      if (top < 0 || bottom < 0) chars[0] = convertDirection(chars[0]);
+      if (left < 0) chars[1] = "l";
+      if (right < 0) chars[1] = "r";
+    } else if (chars[0] === "l" || chars[0] === "r") {
+      if (left < 0 || right < 0) chars[0] = convertDirection(chars[0]);
+      if (top < 0) chars[1] = "t";
+      if (bottom < 0) chars[1] = "b";
+    }
+    return chars.join("") as Direction;
+  }
+
+  if (chars[0] === "t" || chars[0] === "b") {
+    if ((chars[0] === "t" && top < 0) || (chars[0] === "b" && bottom < 0)) {
+      chars[0] = convertDirection(chars[0]);
+    }
+    if ((chars[1] === "l" && right < 0) || (chars[1] === "r" && left < 0)) {
+      chars[1] = convertDirection(chars[1]);
+    }
+  } else if (chars[0] === "l" || chars[0] === "r") {
+    if ((chars[1] === "t" && bottom < 0) || (chars[1] === "b" && top < 0)) {
+      chars[1] = convertDirection(chars[1]);
+    }
+    if ((chars[0] === "l" && left < 0) || (chars[0] === "r" && right < 0)) {
+      chars[0] = convertDirection(chars[0]);
+    }
+  }
+
+  return chars.join("") as Direction;
 });
 
 const inset = computed(() => {
@@ -247,16 +282,24 @@ const inset = computed(() => {
     bodyPxInfo.left - popupRect.value.width + bodyPxInfo.width;
   const firstLLeft = bodyPxInfo.left - popupRect.value.width;
   const secondLLeft = bodyPxInfo.left;
+  const cLeft =
+    bodyPxInfo.left + (bodyPxInfo.width - popupRect.value.width) / 2;
+  const cTop =
+    bodyPxInfo.top + (bodyPxInfo.height - popupRect.value.height) / 2;
 
   const [top, left] = (() => {
     if (computedDirection.value === "bl") return [firstBTop, secondLLeft];
     if (computedDirection.value === "br") return [firstBTop, secondRLeft];
+    if (computedDirection.value === "bc") return [firstBTop, cLeft];
     if (computedDirection.value === "tl") return [firstTTop, secondLLeft];
     if (computedDirection.value === "tr") return [firstTTop, secondRLeft];
+    if (computedDirection.value === "tc") return [firstTTop, cLeft];
     if (computedDirection.value === "rt") return [secondTTop, firstRLeft];
     if (computedDirection.value === "rb") return [secondBTop, firstRLeft];
+    if (computedDirection.value === "rc") return [cTop, firstRLeft];
     if (computedDirection.value === "lt") return [secondTTop, firstLLeft];
     if (computedDirection.value === "lb") return [secondBTop, firstLLeft];
+    if (computedDirection.value === "lc") return [cTop, firstLLeft];
     return [0, 0];
   })();
 
