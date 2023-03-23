@@ -43,6 +43,12 @@ export default {
     closeOnBlur: {
       control: { type: "boolean" },
     },
+    shadow: {
+      control: { type: "boolean" },
+    },
+    animation: {
+      control: { type: "boolean" },
+    },
   },
   parameters: {
     layout: "fullscreen",
@@ -77,7 +83,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     <div :style="{ position: 'absolute', top: y+'px', left: x+'px' }">
       <wiz-popup-container>
         <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-        <wiz-popup :direction="direction" :gap="gap" :closeOnBlur="closeOnBlur" :isOpen="isOpen" @onClose="close">
+        <wiz-popup :direction="direction" :gap="gap" :closeOnBlur="closeOnBlur" :isOpen="isOpen" :animation="$props.animation" :shadow="$props.shadow" @onClose="close">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <span>Popup content</span>
           </div>
@@ -108,7 +114,7 @@ const MultipleTemplate: StoryFn = (_, { argTypes }) => ({
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10rem;">
       <wiz-popup-container v-for="(pattern, i) in patterns" :key="pattern[main]" >
         <wiz-text-button @click="changeIsOpenIndex(i)">Toggle Popup {{ pattern[main] }}</wiz-text-button>
-        <wiz-popup :direction="pattern.direction" :gap="pattern.gap" :isOpen="isOpenIndex === i" @onClose="changeIsOpenIndex(i)">
+        <wiz-popup :direction="pattern.direction" :gap="pattern.gap" :isOpen="isOpenIndex === i" :animation="$props.animation" :shadow="$props.shadow" @onClose="changeIsOpenIndex(i)">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content {{ pattern[main] }}</p>
           </div>
@@ -157,8 +163,7 @@ Gap.args = {
 export const Shadow: StoryFn<typeof WizPopup> = (args) => ({
   components: { WizPopup, WizTextButton, WizPopupContainer },
   setup() {
-    const isOpen = ref(true);
-    return { isOpen, args };
+    return { args };
   },
   template: `
     <div style="display: flex; flex-direction: column; gap: 100px">
@@ -166,7 +171,7 @@ export const Shadow: StoryFn<typeof WizPopup> = (args) => ({
         <div style="display: flex; width: 150px;">
           <span>shadow: true</span>
         </div>
-        <wiz-popup :isOpen="isOpen" :closeOnBlur="false" direction="rt">
+        <wiz-popup :isOpen="true" :closeOnBlur="false" :animation="$props.animation" direction="rt">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content</p>
           </div>
@@ -176,7 +181,7 @@ export const Shadow: StoryFn<typeof WizPopup> = (args) => ({
         <div style="display: flex; width: 150px;">
           <span>shadow: false</span>
         </div>
-        <wiz-popup :isOpen="isOpen" :shadow="false" :closeOnBlur="false" direction="rt">
+        <wiz-popup :isOpen="true" :shadow="false" :closeOnBlur="false" :animation="$props.animation" direction="rt">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <p>This is a popup content</p>
           </div>
@@ -263,23 +268,17 @@ export const Playground2: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
     return { isOpen, toggle, close, absolutePositions };
   },
   template: `
-  <div style="height: 100vh; width: 100vw; position: relative; overflow">
-    <div v-for="(pos, key) in absolutePositions" :key="key" :style="{ position: 'absolute', ...pos }">
-      <wiz-popup-container>
-        <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-        <wiz-popup :direction="$props.direction" :gap="$props.gap" :closeOnBlur="$props.closeOnBlur" :isOpen="isOpen" @onClose="close">
-          <div style="padding: 16px; background-color: white; border-radius: 4px;">
-            <span>Popup content</span>
-          </div>
-        </wiz-popup>
-      </wiz-popup-container>
-          </div>
-          </div>
-        </wiz-popup>
-      </wiz-popup-container>
+    <div style="height: 100vh; width: 100vw; position: relative; overflow">
+      <div v-for="(pos, key) in absolutePositions" :key="key" :style="{ position: 'absolute', ...pos }">
+        <wiz-popup-container>
+          <wiz-text-button @click="toggle">Toggle</wiz-text-button>
+          <wiz-popup :direction="$props.direction" :gap="$props.gap" :closeOnBlur="$props.closeOnBlur" :isOpen="isOpen" :animation="$props.animation" :shadow="$props.shadow" @onClose="close">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <span>Popup content</span>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container>
+      </div>
     </div>
-        </wiz-popup>
-      </wiz-popup-container>
-  </div>
   `,
 });
