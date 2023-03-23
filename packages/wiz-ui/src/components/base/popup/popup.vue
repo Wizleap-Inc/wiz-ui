@@ -5,7 +5,7 @@
         popupStyle,
         shadow && popupShadowStyle,
         zIndexStyle[layer],
-        !isOpen && popupHiddenStyle,
+        !isActuallyOpen && popupHiddenStyle,
       ]"
       :style="{
         inset,
@@ -100,10 +100,16 @@ const props = defineProps({
     required: false,
     default: true,
   },
+  animation: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emits>();
 
+const isActuallyOpen = ref(props.isOpen);
 const popupRef = ref<HTMLElement | undefined>();
 const popupSize = reactive({
   width: 0,
@@ -120,11 +126,32 @@ if (!injected) {
 
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
+const togglePopup = (newValue: boolean) => {
+  if (!popupRef.value) return;
+  if (!props.animation) return (isActuallyOpen.value = newValue);
+  if (newValue) {
+    isActuallyOpen.value = true;
+    popupRef.value.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 200,
+      easing: "ease-in-out",
+    });
+  } else {
+    const animation = popupRef.value.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 200,
+      easing: "ease-in-out",
+    });
+    animation.onfinish = () => {
+      isActuallyOpen.value = false;
+    };
+  }
+};
+
 let removeScrollHandler: (() => void) | null = null;
 watch(
   () => props.isOpen,
   (newValue) => {
     if (newValue) {
+      togglePopup(true);
       nextTick(() => {
         removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
         updateBodyPxInfo();
@@ -135,6 +162,7 @@ watch(
         }, 1);
       });
     } else {
+      togglePopup(false);
       if (removeScrollHandler) removeScrollHandler();
       removeScrollHandler = null;
     }
