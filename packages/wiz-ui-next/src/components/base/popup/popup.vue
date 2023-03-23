@@ -1,7 +1,12 @@
 <template>
   <teleport to="body">
     <div
-      :class="[popupStyle, zIndexStyle[layer], !isOpen && popupHiddenStyle]"
+      :class="[
+        popupStyle,
+        shadow && popupShadowStyle,
+        zIndexStyle[layer],
+        !isOpen && popupHiddenStyle,
+      ]"
       :style="{
         inset,
         transform: popupTranslate,
@@ -22,6 +27,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   popupStyle,
+  popupShadowStyle,
   popupHiddenStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
@@ -87,6 +93,11 @@ const props = defineProps({
     type: String as PropType<Direction>,
     required: false,
     default: "bl",
+  },
+  shadow: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
 });
 

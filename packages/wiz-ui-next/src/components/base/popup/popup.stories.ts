@@ -139,6 +139,38 @@ export const Gap: StoryFn<typeof WizPopup> = (args) => ({
   `,
 });
 
+export const Shadow: StoryFn<typeof WizPopup> = (args) => ({
+  components: { WizPopup, WizTextButton, WizPopupContainer },
+  setup() {
+    const isOpen = ref(true);
+    return { isOpen, args };
+  },
+  template: `
+    <div style="display: flex; flex-direction: column; gap: 100px">
+      <wiz-popup-container>
+        <div style="display: flex; width: 150px;">
+          <span>shadow: true</span>
+        </div>
+        <wiz-popup :isOpen="isOpen" :closeOnBlur="false" direction="rt">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <p>This is a popup content</p>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+      <wiz-popup-container>
+        <div style="display: flex; width: 150px;">
+          <span>shadow: false</span>
+        </div>
+        <wiz-popup :isOpen="isOpen" :shadow="false" :closeOnBlur="false" direction="rt">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <p>This is a popup content</p>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div>
+  `,
+});
+
 export const Playground: StoryFn<typeof WizPopup> = (args) => ({
   components: { WizPopup, WizPopupContainer, WizTextButton, WizHStack },
   setup() {
