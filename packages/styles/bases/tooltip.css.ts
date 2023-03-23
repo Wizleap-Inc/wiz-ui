@@ -2,14 +2,11 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const tooltipStyle = style({
-  display: "inline-block",
-  position: "relative",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[800],
 });
 
 export const tooltipPopupStyle = style({
-  position: "absolute",
   transition: "opacity 0.2s",
   display: "flex",
   gap: `calc(${THEME.spacing.xs} * -1)`,
@@ -50,31 +47,17 @@ export const tooltipIconDirectionStyle = styleVariants({
   },
 });
 
-const POPUP_GAP = THEME.spacing.xs;
-
 export const tooltipPositionStyle = styleVariants({
   top: {
-    bottom: `calc(100% + ${POPUP_GAP})`,
-    left: "50%",
-    transform: "translateX(-50%)",
     flexDirection: "column",
   },
   bottom: {
-    top: `calc(100% + ${POPUP_GAP})`,
-    left: "50%",
-    transform: "translateX(-50%)",
     flexDirection: "column-reverse",
   },
   left: {
-    right: `calc(100% + ${POPUP_GAP})`,
-    top: "50%",
-    transform: "translateY(-50%)",
     flexDirection: "row",
   },
   right: {
-    left: `calc(100% + ${POPUP_GAP})`,
-    top: "50%",
-    transform: "translateY(-50%)",
     flexDirection: "row-reverse",
   },
 });
