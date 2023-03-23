@@ -40,6 +40,7 @@ import {
   ref,
   reactive,
   nextTick,
+  onMounted,
 } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
@@ -127,8 +128,8 @@ if (!injected) {
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
 const togglePopup = () => {
-  if (!popupRef.value) return;
   if (!props.animation) return (isActuallyOpen.value = props.isOpen);
+  if (!popupRef.value) return;
   if (props.isOpen) {
     isActuallyOpen.value = props.isOpen;
     popupRef.value.animate([{ opacity: 0 }, { opacity: 1 }], {
@@ -147,27 +148,26 @@ const togglePopup = () => {
 };
 
 let removeScrollHandler: (() => void) | null = null;
-watch(
-  () => props.isOpen,
-  (newValue) => {
-    if (newValue) {
-      togglePopup();
-      nextTick(() => {
-        removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
-        updateBodyPxInfo();
-        // vue2の場合、display: noneを解除した後にoffsetWidth等が取れるまでほんの少しだけ時間がかかる
-        setTimeout(() => {
-          popupSize.width = popupRef.value?.offsetWidth ?? 0;
-          popupSize.height = popupRef.value?.offsetHeight ?? 0;
-        }, 1);
-      });
-    } else {
-      togglePopup();
-      if (removeScrollHandler) removeScrollHandler();
-      removeScrollHandler = null;
-    }
+const onChangeIsOpen = (newValue: boolean) => {
+  if (newValue) {
+    togglePopup();
+    nextTick(() => {
+      removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
+      updateBodyPxInfo();
+      // vue2の場合、display: noneを解除した後にoffsetWidth等が取れるまでほんの少しだけ時間がかかる
+      setTimeout(() => {
+        popupSize.width = popupRef.value?.offsetWidth ?? 0;
+        popupSize.height = popupRef.value?.offsetHeight ?? 0;
+      }, 1);
+    });
+  } else {
+    togglePopup();
+    if (removeScrollHandler) removeScrollHandler();
+    removeScrollHandler = null;
   }
-);
+};
+watch(() => props.isOpen, onChangeIsOpen);
+onMounted(() => onChangeIsOpen(props.isOpen));
 
 // popup-containerの外をクリックしたときにハンドラ発火
 // クリックした対象がpopup以外で、かつcloseOnBlurがtrueのときはpopupを閉じる
