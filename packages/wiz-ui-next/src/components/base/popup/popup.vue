@@ -125,11 +125,11 @@ if (!injected) {
 
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
-const togglePopup = (newValue: boolean) => {
+const togglePopup = () => {
   if (!popupRef.value) return;
-  if (!props.animation) return (isActuallyOpen.value = newValue);
-  if (newValue) {
-    isActuallyOpen.value = true;
+  if (!props.animation) return (isActuallyOpen.value = props.isOpen);
+  if (props.isOpen) {
+    isActuallyOpen.value = props.isOpen;
     popupRef.value.animate([{ opacity: 0 }, { opacity: 1 }], {
       duration: 200,
       easing: "ease-in-out",
@@ -140,7 +140,7 @@ const togglePopup = (newValue: boolean) => {
       easing: "ease-in-out",
     });
     animation.onfinish = () => {
-      isActuallyOpen.value = false;
+      isActuallyOpen.value = props.isOpen;
     };
   }
 };
@@ -150,7 +150,7 @@ watch(
   () => props.isOpen,
   (newValue) => {
     if (newValue) {
-      togglePopup(true);
+      togglePopup();
       removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
       nextTick(() => {
         popupSize.width = popupRef.value?.offsetWidth ?? 0;
@@ -158,7 +158,7 @@ watch(
         updateBodyPxInfo();
       });
     } else {
-      togglePopup(false);
+      togglePopup();
       if (removeScrollHandler) removeScrollHandler();
       removeScrollHandler = null;
     }
