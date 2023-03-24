@@ -4,7 +4,7 @@ import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
-import { default as WizIAutoRenew } from "./autorenew.vue";
+import { default as WizIAutoRenew } from "./auto-renew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICamera } from "./camera.vue";
@@ -52,46 +52,46 @@ export type TIcon =
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
   | typeof WizIAttachFile
+  | typeof WizIAutoRenew
   | typeof WizIBusinessCenter
+  | typeof WizICalendar
+  | typeof WizICamera
   | typeof WizIChangeHistory
   | typeof WizIChat
   | typeof WizICheck
-  | typeof WizIChevronRight
   | typeof WizIChevronLeft
+  | typeof WizIChevronRight
   | typeof WizICircleCheck
   | typeof WizIClose
+  | typeof WizIContentCopy
   | typeof WizIDashboard
+  | typeof WizIDescription
+  | typeof WizIDownload
   | typeof WizIEditNote
   | typeof WizIExpandLess
   | typeof WizIExpandMore
   | typeof WizIEye
   | typeof WizIGroups
   | typeof WizIHelp
+  | typeof WizIHome
   | typeof WizIInfo
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
   | typeof WizIMoreVert
+  | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
+  | typeof WizIPinDrop
+  | typeof WizIPublic
   | typeof WizIRemove
   | typeof WizISchedule
-  | typeof WizISend
-  | typeof WizITab
-  | typeof WizICalendar
-  | typeof WizINoteAdd
-  | typeof WizITask
-  | typeof WizIAutoRenew
-  | typeof WizIUpload
-  | typeof WizIDownload
-  | typeof WizIPinDrop
-  | typeof WizIContentCopy
-  | typeof WizIDescription
   | typeof WizISearch
-  | typeof WizICamera
-  | typeof WizIHome
-  | typeof WizIPublic
-  | typeof WizIStoreFront;
+  | typeof WizISend
+  | typeof WizIStoreFront
+  | typeof WizITab
+  | typeof WizITask
+  | typeof WizIUpload;
 
 export {
   WizIAddCircle,
@@ -100,44 +100,44 @@ export {
   WizIAssignmentAdd,
   WizIAssignment,
   WizIAttachFile,
+  WizIAutoRenew,
   WizIBusinessCenter,
+  WizICalendar,
+  WizICamera,
   WizIChangeHistory,
   WizIChat,
   WizICheck,
-  WizIChevronRight,
   WizIChevronLeft,
+  WizIChevronRight,
   WizICircleCheck,
   WizIClose,
+  WizIContentCopy,
   WizIDashboard,
+  WizIDescription,
+  WizIDownload,
   WizIEditNote,
   WizIExpandLess,
   WizIExpandMore,
   WizIEye,
   WizIGroups,
   WizIHelp,
+  WizIHome,
   WizIInfo,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
   WizIMoreVert,
+  WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
+  WizIPinDrop,
+  WizIPublic,
   WizIRemove,
   WizISchedule,
-  WizISend,
-  WizITab,
-  WizICalendar,
-  WizINoteAdd,
-  WizITask,
-  WizIAutoRenew,
-  WizIUpload,
-  WizIDownload,
-  WizIPinDrop,
-  WizIContentCopy,
-  WizIDescription,
   WizISearch,
-  WizICamera,
-  WizIHome,
-  WizIPublic,
+  WizISend,
   WizIStoreFront,
+  WizITab,
+  WizITask,
+  WizIUpload,
 };
