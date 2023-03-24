@@ -17,6 +17,7 @@
     "build:lib": "run-p build:lib:*",
     "build:lib:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:lib",
     "build:lib:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:lib",
+    "build:icons": "node packages/icons/build && prettier --write 'packages/**/*.{ts, vue}'",
     "dev": "run-p dev:*",
     "dev:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 dev",
     "dev:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui dev",
