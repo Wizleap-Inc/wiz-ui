@@ -22,15 +22,14 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 defineOptions({
   name: ComponentName.I${component},
 });
-</script>`;
+</script>
+`;
 
 const SVG_DIR = path.join(__dirname, ".");
-const DIST_DIR = path.join(__dirname, "./dist");
 const CONSTANTS_DIR = path.join(__dirname, "../constants/");
 const ICON_DIRS = [
-  DIST_DIR,
-  // path.join(__dirname, '../wiz-ui/src/icons'),
-  // path.join(__dirname, '../wiz-ui-next/src/icons'),
+  path.join(__dirname, "../wiz-ui/src/components/icons"),
+  path.join(__dirname, "../wiz-ui-next/src/components/icons"),
 ];
 
 const components = [];
@@ -61,6 +60,7 @@ export type TIcon =
 export {
   ${components.map((component) => `WizI${component.name}`).join(",")}
 };`;
+
 ICON_DIRS.forEach((dir) => {
   components.forEach((component) => {
     fs.writeFileSync(
