@@ -2,6 +2,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const rimraf = require("rimraf");
+
 const getSVGFiles = (dir) =>
   fs
     .readdirSync(dir)
@@ -62,6 +64,8 @@ export {
 };`;
 
 ICON_DIRS.forEach((dir) => {
+  rimraf.sync(`${dir}/**/*.vue`);
+
   components.forEach((component) => {
     fs.writeFileSync(
       path.join(dir, component.fileName) + ".vue",
