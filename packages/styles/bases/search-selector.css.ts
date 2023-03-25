@@ -125,6 +125,10 @@ export const selectBoxSelectorOptionLabelStyle = style({
 });
 
 const BORDER_WIDTH = "1px";
+export const selectBoxSelectorOptionSelectStyle = style({
+  color: THEME.color.green["800"],
+  background: THEME.color.green["300"],
+});
 
 export const selectBoxSearchInputStyle = style({
   width: 0,

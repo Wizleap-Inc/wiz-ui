@@ -89,3 +89,8 @@ export const selectBoxPlaceholderStyle = style({
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
 });
+
+export const selectBoxSelectorOptionSelectStyle = style({
+  color: THEME.color.green["800"],
+  background: THEME.color.green["300"],
+});

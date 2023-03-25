@@ -1,6 +1,11 @@
 <template>
   <WizPopupContainer :expand="expand">
     <div
+      :tabIndex="0"
+      @keyup.up="onKeyUp"
+      @keyup.down="onKeyDown"
+      @blur="onBlur"
+      @keyup.enter="onSelect(currentSelectOption + 1)"
       :class="[
         selectBoxStyle,
         inputBorderStyle[state],
@@ -41,7 +46,10 @@
       <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
         <WizVStack gap="xs2">
           <div
-            :class="selectBoxSelectorOptionStyle"
+            :class="[
+              selectBoxSelectorOptionStyle,
+              currentSelectOption === key && selectBoxSelectorOptionSelectStyle,
+            ]"
             v-for="(option, key) in options"
             :key="'option' + key"
             @click="onSelect(option.value)"
@@ -72,6 +80,7 @@ import {
   selectBoxSelectorStyle,
   selectBoxSelectorOptionStyle,
   selectBoxPlaceholderStyle,
+  selectBoxSelectorOptionSelectStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
@@ -129,6 +138,8 @@ const props = defineProps({
 });
 
 const openSelectBox = ref(props.isOpen);
+const currentSelectOption = ref(-1);
+
 const toggleSelectBox = () => {
   if (props.disabled) {
     return;
@@ -143,7 +154,21 @@ const emit = defineEmits<Emit>();
 
 const onSelect = (value: number) => {
   toggleSelectBox();
+  if (value < 0) return;
   emit("input", value);
+};
+
+const onKeyUp = () => {
+  if (currentSelectOption.value > 0) currentSelectOption.value--;
+};
+
+const onKeyDown = () => {
+  if (currentSelectOption.value < props.options.length - 1)
+    currentSelectOption.value++;
+};
+
+const onBlur = () => {
+  currentSelectOption.value = -1;
 };
 
 const selectBoxCursor = computed(() =>
