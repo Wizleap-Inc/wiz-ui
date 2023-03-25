@@ -37,38 +37,51 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   return options;
 };
 
-const Template: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizSearchSelector, WizHStack },
-  setup() {
-    const initValue: number[] = [];
-    const value = ref(initValue);
-    const unselect = (n: number) => {
-      value.value = value.value.filter((v) => v !== n);
-    };
-    const select = (n: number) => {
-      value.value.push(n);
-    };
-    return { value, unselect, select };
-  },
-  template: `
+const Template =
+  (open: boolean): StoryFn =>
+  (_, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { WizSearchSelector, WizHStack },
+    setup() {
+      const initValue: number[] = [];
+      const value = ref(initValue);
+      const unselect = (n: number) => {
+        value.value = value.value.filter((v) => v !== n);
+      };
+      const select = (n: number) => {
+        value.value.push(n);
+      };
+      const isOpen = ref(open);
+      const toggle = (value: boolean) => {
+        isOpen.value = value;
+      };
+      return { value, unselect, select, isOpen, toggle };
+    },
+    template: `
     <WizHStack>
       <WizSearchSelector
         v-bind="$props"
         :value="value"
+        :isOpen=isOpen
+        @toggle="toggle"
         @input="select"
         @unselect="unselect"
       />
     </WizHStack>
   `,
-});
+  });
 
-export const Default = Template.bind({});
+export const Default = Template(false).bind({});
 Default.args = {
   options: _getDummyOptions("test", 3),
 };
 
-export const LongWordSelector = Template.bind({});
+export const Open = Template(true).bind({});
+Open.args = {
+  options: _getDummyOptions("test", 3),
+};
+
+export const LongWordSelector = Template(true).bind({});
 LongWordSelector.args = {
   options: _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3),
 };
@@ -85,13 +98,19 @@ export const Disabled: StoryFn = (_, { argTypes }) => ({
     const select = (n: number) => {
       value.value.push(n);
     };
-    return { value, unselect, select };
+    const isOpen = ref(false);
+    const toggle = (value: boolean) => {
+      isOpen.value = value;
+    };
+    return { value, unselect, select, isOpen, toggle };
   },
   template: `
     <WizHStack>
       <WizSearchSelector
         v-bind="$props"
         :value="value"
+        :isOpen=isOpen
+        @toggle="toggle"
         @input="select"
         @unselect="unselect"
       />
@@ -115,13 +134,19 @@ export const Selecting: StoryFn = (_, { argTypes }) => ({
     const select = (n: number) => {
       value.value.push(n);
     };
-    return { value, unselect, select };
+    const isOpen = ref(false);
+    const toggle = (value: boolean) => {
+      isOpen.value = value;
+    };
+    return { value, unselect, select, isOpen, toggle };
   },
   template: `
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props"
         :value="value"
+        :isOpen=isOpen
+        @toggle="toggle"
         @input="select"
         @unselect="unselect"
       />
@@ -145,13 +170,19 @@ export const MultiSelecting: StoryFn = (_, { argTypes }) => ({
     const select = (n: number) => {
       value.value.push(n);
     };
-    return { value, unselect, select };
+    const isOpen = ref(false);
+    const toggle = (value: boolean) => {
+      isOpen.value = value;
+    };
+    return { value, unselect, select, isOpen, toggle };
   },
   template: `
     <WizHStack>
       <WizSearchSelector 
         v-bind="$props"
         :value="value"
+        :isOpen=isOpen
+        @toggle="toggle"
         @input="select"
         width="300px"
         @unselect="unselect"
@@ -184,7 +215,11 @@ export const Addable: StoryFn = (_, { argTypes }) => ({
     const select = (n: number) => {
       value.value.push(n);
     };
-    return { value, options, selectNewLabel, unselect, select };
+    const isOpen = ref(false);
+    const toggle = (value: boolean) => {
+      isOpen.value = value;
+    };
+    return { value, options, selectNewLabel, unselect, select, isOpen, toggle };
   },
   template: `
     <WizHStack>
@@ -192,6 +227,8 @@ export const Addable: StoryFn = (_, { argTypes }) => ({
         v-bind="$props"
         :value="value"
         :options="options"
+        :isOpen=isOpen
+        @toggle="toggle"
         @input="select"
         @unselect="unselect"
         @add="selectNewLabel"
