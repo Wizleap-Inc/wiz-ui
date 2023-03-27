@@ -27,11 +27,11 @@ defineOptions({
 </script>
 `;
 
-const SVG_DIR = path.join(__dirname, ".");
-const CONSTANTS_DIR = path.join(__dirname, "../constants/");
+const SVG_DIR = path.join(__dirname, "../assets/");
+const CONSTANTS_DIR = path.join(__dirname, "../../constants/");
 const ICON_DIRS = [
-  path.join(__dirname, "../wiz-ui/src/components/icons"),
-  path.join(__dirname, "../wiz-ui-next/src/components/icons"),
+  path.join(__dirname, "../../wiz-ui/src/components/icons"),
+  path.join(__dirname, "../../wiz-ui-next/src/components/icons"),
 ];
 
 const components = [];
