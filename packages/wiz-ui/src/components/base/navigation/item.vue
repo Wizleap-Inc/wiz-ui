@@ -40,7 +40,7 @@
       </div>
       <div v-if="existPopup" @mouseleave="popupMouseLeave">
         <WizPopup
-          :isOpen="isOpenDropdown"
+          :isOpen="isOpen"
           @onClose="popupOnClose"
           @mouseLeave="popupMouseLeave"
           direction="rt"
@@ -128,7 +128,12 @@ const props = defineProps({
     type: Array as PropType<ButtonGroupItem[]>,
     required: false,
   },
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
 });
+
 const isExternalLink = computed(
   () => typeof props.to === "string" && props.to.startsWith("http")
 );
@@ -136,19 +141,19 @@ const isExternalLink = computed(
 interface Emit {
   (e: "setLock", isLocking: boolean): void;
   (e: "unlock"): void;
+  (e: "toggle", value: boolean): void;
 }
 const emit = defineEmits<Emit>();
 
-const isOpenDropdown = ref(false);
 const navItemRef = ref<HTMLElement>();
 
 const existPopup = computed(() => props.buttons && props.buttons?.length > 0);
 const navItemOnClick = () => {
-  isOpenDropdown.value = true;
+  emit("toggle", true);
   if (existPopup) emit("setLock", true);
 };
 const navItemMouseEnter = () => {
-  if (!props.lockingPopup) isOpenDropdown.value = true;
+  if (!props.lockingPopup) emit("toggle", true);
 };
 const navItemMouseLeave = (event: MouseEvent) => {
   const [cx, cy] = [event.clientX, event.clientY];
@@ -156,10 +161,10 @@ const navItemMouseLeave = (event: MouseEvent) => {
   const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
   const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
   if (right <= cx && top < cy && cy < bottom) return;
-  if (!props.lockingPopup) isOpenDropdown.value = false;
+  if (!props.lockingPopup) emit("toggle", false);
 };
 const popupOnClose = () => {
-  isOpenDropdown.value = false;
+  emit("toggle", false);
   emit("setLock", false);
 };
 const popupMouseLeave = (event: MouseEvent) => {
@@ -168,6 +173,6 @@ const popupMouseLeave = (event: MouseEvent) => {
   const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
   const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
   if (cx <= right && top < cy && cy < bottom) return;
-  if (!props.lockingPopup) isOpenDropdown.value = false;
+  if (!props.lockingPopup) emit("toggle", false);
 };
 </script>
