@@ -76,8 +76,6 @@ const computedDirection = computed(() => {
 });
 
 const turnPopup = (direction: string) => {
-  console.log("direction", direction);
-
   if (direction === "tc") actuallyDirection.value = "top";
   if (direction === "bc") actuallyDirection.value = "bottom";
   if (direction === "lc") actuallyDirection.value = "left";
