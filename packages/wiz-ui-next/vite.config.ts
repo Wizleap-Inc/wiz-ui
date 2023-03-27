@@ -23,6 +23,10 @@ export default defineConfig({
           src: path.resolve(__dirname, "../../third-parties"),
           dest: path.resolve(__dirname, "dist"),
         },
+        {
+          src: path.resolve(__dirname, "../../LICENSE"),
+          dest: path.resolve(__dirname, "dist"),
+        },
       ],
       hook: "writeBundle",
       copyOnce: true,
