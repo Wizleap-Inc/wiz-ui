@@ -160,11 +160,9 @@ Gap.args = {
   ],
 };
 
-export const Shadow: StoryFn<typeof WizPopup> = (args) => ({
+export const Shadow: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { WizPopup, WizTextButton, WizPopupContainer },
-  setup() {
-    return { args };
-  },
   template: `
     <div style="display: flex; flex-direction: column; gap: 100px">
       <wiz-popup-container>
