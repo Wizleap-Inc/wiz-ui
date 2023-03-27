@@ -12,7 +12,7 @@
         :direction="computedDirection"
         :shadow="false"
         :animation="true"
-        gap="xs2"
+        gap="xs"
       >
         <div :class="[tooltipPositionStyle[direction], tooltipPopupStyle]">
           <div :class="tooltipContentStyle">
