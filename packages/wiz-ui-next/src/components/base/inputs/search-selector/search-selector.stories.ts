@@ -74,7 +74,27 @@ export const Default = Template(false).bind({});
 Default.args = {
   options: _getDummyOptions("test", 3),
 };
+Default.parameters = {
+  docs: {
+    description: {
+      component: `
+### WizSearchSelector
+WizSearchSelectorは、検索・新規追加可能なセレクタコンポーネントです。
+v-modelには選択中のアイテムを渡します。
 
+このコンポーネントを使用する場合には、以下のEmitを登録してください。
+- update:modelValue
+  - 選択したアイテムを追加する関数です。引数は追加するアイテムのvalue(id)です。
+- unselect
+  - 選択中のアイテムを解除する関数です。引数は解除するアイテムのvalue(id)です。
+- add
+  - オプションを追加するための関数です。addable=trueのとき必須となります。引数は追加するアイテムの文字列です。
+- toggle
+  - popupの開閉制御を行う関数です。isOpenのtrue/falseを切り替えます。
+`,
+    },
+  },
+};
 export const Open = Template(true).bind({});
 Open.args = {
   options: _getDummyOptions("test", 3),
