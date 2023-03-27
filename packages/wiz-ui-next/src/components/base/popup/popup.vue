@@ -64,6 +64,7 @@ type DirectionChar = Direction extends `${infer X}${infer Y}` ? X | Y : never;
 
 interface Emits {
   (event: "onClose", isOpen: boolean): void;
+  (event: "onTurn", direction: Direction): void;
 }
 
 defineOptions({
@@ -310,6 +311,12 @@ const computedDirection = computed(() => {
 
   return chars.join("") as Direction;
 });
+watch(
+  () => computedDirection.value,
+  (newVal) => {
+    emit("onTurn", newVal);
+  }
+);
 
 const inset = computed(() => {
   const firstBTop = bodyPxInfo.top + bodyPxInfo.height;

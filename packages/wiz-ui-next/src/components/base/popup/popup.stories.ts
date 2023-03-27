@@ -49,6 +49,9 @@ export default {
     animation: {
       control: { type: "boolean" },
     },
+    onTurn: {
+      action: "onTurn",
+    },
   },
   parameters: {
     layout: "fullscreen",
@@ -203,7 +206,7 @@ export const Playground: StoryFn<typeof WizPopup> = (args) => ({
     <div :style="{ position: 'absolute', top: y+'px', left: x+'px' }">
       <wiz-popup-container>
         <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-        <wiz-popup :direction="args.direction" :gap="args.gap" :closeOnBlur="args.closeOnBlur" :isOpen="isOpen" :animation="args.animation" :shadow="args.shadow" @onClose="close">
+        <wiz-popup :direction="args.direction" :gap="args.gap" :closeOnBlur="args.closeOnBlur" :isOpen="isOpen" :animation="args.animation" :shadow="args.shadow" @onClose="close" @onTurn="onTurn">
           <div style="padding: 16px; background-color: white; border-radius: 4px;">
             <span>Popup content</span>
           </div>
