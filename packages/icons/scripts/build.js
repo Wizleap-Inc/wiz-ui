@@ -4,6 +4,13 @@ const path = require("path");
 
 const rimraf = require("rimraf");
 
+const kebab2pascal = (str) =>
+  str
+    .split("-")
+    .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
+    .join("");
+
+// icons/assets配下のsvgファイルを取得
 const getSVGFiles = (dir) =>
   fs
     .readdirSync(dir)
@@ -13,6 +20,7 @@ const getSVGFiles = (dir) =>
       svg: fs.readFileSync(path.join(dir, file), "utf-8"),
     }));
 
+// Vueコンポーネントを生成
 const createIconVueFile = (svg, component) => `
 <template>
 ${svg}
@@ -34,20 +42,28 @@ const ICON_DIRS = [
   path.join(__dirname, "../../wiz-ui-next/src/components/icons"),
 ];
 
-const components = [];
-getSVGFiles(SVG_DIR).forEach((file) => {
-  const name = file.fileName
-    .split("-")
-    .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-    .join("");
-  const vueFile = createIconVueFile(file.svg, name);
-  components.push({
+const components = getSVGFiles(SVG_DIR).map((file) => {
+  const name = kebab2pascal(file.fileName);
+  return {
     fileName: file.fileName,
     name: name,
-    vueFile: vueFile,
-  });
+    vueFile: createIconVueFile(file.svg, name),
+  };
 });
 
+// constants/component/icon-name.tsを生成する
+const iconComponentName = `
+export const IconComponentName = {
+  ${components
+    .map((component) => `I${component.name}: "WizI${component.name}"`)
+    .join(",")}
+}`;
+fs.writeFileSync(
+  path.join(CONSTANTS_DIR, "component/icon-name.ts"),
+  iconComponentName
+);
+
+// src/icons/index.tsを生成する
 const indexFile = `
   ${components
     .map(
@@ -64,7 +80,7 @@ export {
 };`;
 
 ICON_DIRS.forEach((dir) => {
-  rimraf.sync(`${dir}/**/*.vue`);
+  rimraf.sync(`${dir}/**/*.vue`); // src/icons/*.vueをクリアする
 
   components.forEach((component) => {
     fs.writeFileSync(
@@ -75,14 +91,3 @@ ICON_DIRS.forEach((dir) => {
 
   fs.writeFileSync(path.join(dir, "index.ts"), indexFile);
 });
-
-const iconComponentName = `
-export const IconComponentName = {
-  ${components
-    .map((component) => `I${component.name}: "WizI${component.name}"`)
-    .join(",")}
-}`;
-fs.writeFileSync(
-  path.join(CONSTANTS_DIR, "component/icon-name.ts"),
-  iconComponentName
-);
