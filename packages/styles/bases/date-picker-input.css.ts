@@ -29,9 +29,6 @@ export const datePickerVariantStyle = styleVariants({
 });
 
 export const datePickerSelectorStyle = style({
-  position: "absolute",
-  top: "calc(100% + 2px)",
-  left: "0",
   width: "auto",
   padding: THEME.spacing.xs,
   background: THEME.color.white["800"],
