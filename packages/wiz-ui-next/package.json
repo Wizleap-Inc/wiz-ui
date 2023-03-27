@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-next",
-  "version": "0.7.9",
+  "version": "1.0.0",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
@@ -45,7 +45,7 @@
     "type": "git",
     "url": "git://github.com/wizleap-inc/wiz-ui.git"
   },
-  "license": "UNLICENSED",
+  "license": "CC-BY-NC-SA-4.0",
   "author": "Wizleap Inc.",
   "files": [
     "dist"

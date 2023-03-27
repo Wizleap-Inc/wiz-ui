@@ -88,7 +88,7 @@ Direction.parameters = {
     source: {
       code: `
 <WizTooltip direction="right">
-  保険見直し、つみ...
+  <WizText size="xs2">保険見直し、つみ...</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
 `,

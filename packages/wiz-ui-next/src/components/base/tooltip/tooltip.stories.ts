@@ -1,24 +1,28 @@
 import { StoryFn, Meta } from "@storybook/vue3";
 
+import { WizText } from "@/components";
+
 import WizTooltip from "./tooltip.vue";
 
 export default {
   title: "Base/Tooltip",
   component: WizTooltip,
   argTypes: {
-    content: {
-      control: { type: "text" },
+    direction: {
+      control: { type: "select" },
+      options: ["top", "bottom", "left", "right"],
     },
+    hover: { control: { type: "boolean" } },
   },
 } as Meta<typeof WizTooltip>;
 
 const Template: StoryFn<typeof WizTooltip> = (args) => ({
   setup: () => ({ args }),
-  components: { WizTooltip },
+  components: { WizTooltip, WizText },
   template: `
     <div style="width: 700px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;">
       <WizTooltip v-bind="args">
-        保険見直し、つみ…
+        <WizText size="xs2">保険見直し、つみ...</WizText>
         <template #content>保険見直し、つみたて・投資、ライフプラン</template>
       </WizTooltip>
     </div>`,
