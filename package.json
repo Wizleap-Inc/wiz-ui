@@ -17,7 +17,7 @@
     "build:lib": "run-p build:lib:*",
     "build:lib:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:lib",
     "build:lib:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:lib",
-    "build:icons": "node packages/icons/scripts/build && run-p build:icons:format:*",
+    "build:icons": "yarn workspace @wizleap-inc/wiz-ui-icons build && run-p build:icons:format:*",
     "build:icons:format:constants": "prettier --write 'packages/constants/component/icon-name.ts'",
     "build:icons:format:wiz-ui": "prettier --write 'packages/wiz-ui/src/components/icons/**/*.{ts,vue}'",
     "build:icons:format:wiz-ui-next": "prettier --write 'packages/wiz-ui-next/src/components/icons/**/*.{ts,vue}'",
