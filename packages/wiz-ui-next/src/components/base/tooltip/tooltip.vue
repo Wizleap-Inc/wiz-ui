@@ -12,14 +12,20 @@
         :direction="computedDirection"
         :shadow="false"
         :animation="true"
+        @onTurn="turnPopup"
         gap="xs2"
       >
-        <div :class="[tooltipPositionStyle[direction], tooltipPopupStyle]">
+        <div
+          :class="[tooltipPositionStyle[actuallyDirection], tooltipPopupStyle]"
+        >
           <div :class="tooltipContentStyle">
             <slot name="content" />
           </div>
           <WizIChangeHistory
-            :class="[tooltipIconStyle, tooltipIconDirectionStyle[direction]]"
+            :class="[
+              tooltipIconStyle,
+              tooltipIconDirectionStyle[actuallyDirection],
+            ]"
           />
         </div>
       </WizPopup>
@@ -59,6 +65,7 @@ const props = defineProps({
 });
 
 const isHover = ref(false);
+const actuallyDirection = ref(props.direction);
 
 const computedDirection = computed(() => {
   if (props.direction === "top") return "tc";
@@ -67,4 +74,11 @@ const computedDirection = computed(() => {
   if (props.direction === "right") return "rc";
   return "tc";
 });
+
+const turnPopup = (direction: string) => {
+  if (direction === "tc") actuallyDirection.value = "top";
+  if (direction === "bc") actuallyDirection.value = "bottom";
+  if (direction === "lc") actuallyDirection.value = "left";
+  if (direction === "rc") actuallyDirection.value = "right";
+};
 </script>
