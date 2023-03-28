@@ -24,6 +24,7 @@
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
               :class="selectBoxInnerBoxCloseButtonStyle"
+              aria-label="unselect"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -47,6 +48,7 @@
         :class="selectBoxExpandIconStyle"
         @click="toggleSelectBox"
         :disabled="disabled"
+        aria-label="expand"
       >
         <WizIcon
           v-if="isOpenDropdown"
