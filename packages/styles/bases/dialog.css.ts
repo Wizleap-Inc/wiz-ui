@@ -34,4 +34,5 @@ export const dialogMaskStyle = style({
 export const dialogBlockScrollStyle = style({
   position: "fixed",
   overflowY: "scroll",
+  width: "100%",
 });
