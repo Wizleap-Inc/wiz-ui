@@ -25,6 +25,9 @@ export default {
     src: {
       control: { type: "text" },
     },
+    label: {
+      control: { type: "text" },
+    },
     alt: {
       control: { type: "text" },
     },
@@ -49,6 +52,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
 export const HaveImage = Template.bind({});
 HaveImage.args = {
   src: "./public/images/avatar-1.png",
+  label: "avatar",
   alt: "avatar",
 };
 
@@ -70,6 +74,7 @@ HaveImage.parameters = {
 export const FailToLoadImage = Template.bind({});
 FailToLoadImage.args = {
   src: "./public/images/avatar-0.png",
+  label: "avatar",
   alt: "avatar",
 };
 
@@ -92,6 +97,7 @@ FailToLoadImage.parameters = {
 export const FailToLoadImageWithFallback = Template.bind({});
 FailToLoadImageWithFallback.args = {
   src: "./public/images/avatar-0.png",
+  label: "avatar",
   alt: "avatar",
   fallback: "田",
 };
@@ -115,6 +121,7 @@ FailToLoadImageWithFallback.parameters = {
 export const Clickable = Template.bind({});
 Clickable.args = {
   src: "./public/images/avatar-1.png",
+  label: "avatar",
   alt: "avatar",
   clickable: true,
 };
