@@ -11,6 +11,7 @@
           ? navigationItemDisabledStyle
           : active && navigationItemActiveStyle,
       ]"
+      :aria-label="label"
     >
       <component
         :is="icon"
