@@ -1,6 +1,6 @@
 <template>
   <WizTooltip :expand="true">
-    <WizPopupContainer>
+    <WizPopupContainer :expand="true">
       <div
         ref="navItemRef"
         @click="navItemOnClick"
