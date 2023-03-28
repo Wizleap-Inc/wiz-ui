@@ -50,6 +50,10 @@ export const radioLabelDisabledStyle = style({
   opacity: 0.5,
 });
 
+export const radioLabelStrikeThrough = style({
+  textDecorationLine: "line-through",
+});
+
 export const radioLabelColorStyle = styleVariants({
   default: {
     color: THEME.color.gray["600"],

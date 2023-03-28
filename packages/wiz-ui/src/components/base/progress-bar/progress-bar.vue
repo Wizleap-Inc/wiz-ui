@@ -9,17 +9,19 @@
         <template #content v-if="content.tooltip">
           {{ content.status === "none" ? undefined : content.tooltip }}
         </template>
-        <span :class="progressBarItemAnnotationStyle">
-          <WizText fontSize="xs2" color="red.800" whiteSpace="nowrap">
-            {{ content.annotation }}
-          </WizText>
-        </span>
-        <WizProgressPoint :status="content.status" :value="content.value" />
-        <span :class="progressBarItemLabelStyle">
-          <WizText fontSize="xs2" color="gray.600" whiteSpace="nowrap">
-            {{ content.label }}
-          </WizText>
-        </span>
+        <div :class="progressBarPointWrapperStyle">
+          <span :class="progressBarItemAnnotationStyle">
+            <WizText fontSize="xs2" color="red.800" whiteSpace="nowrap">
+              {{ content.annotation }}
+            </WizText>
+          </span>
+          <WizProgressPoint :status="content.status" :value="content.value" />
+          <span :class="progressBarItemLabelStyle">
+            <WizText fontSize="xs2" color="gray.600" whiteSpace="nowrap">
+              {{ content.label }}
+            </WizText>
+          </span>
+        </div>
       </WizTooltip>
       <WizProgressLine :active="content.progress" :isFirst="i === 0" />
     </div>
@@ -33,6 +35,7 @@ import {
   progressBarItemStyle,
   progressBarItemLabelStyle,
   progressBarItemAnnotationStyle,
+  progressBarPointWrapperStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
 import { PropType } from "vue";
 

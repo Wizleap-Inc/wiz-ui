@@ -112,9 +112,14 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
+  isOpen: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
-const openSelectBox = ref(false);
+const openSelectBox = ref(props.isOpen);
 const toggleSelectBox = () => {
   if (props.disabled) {
     return;

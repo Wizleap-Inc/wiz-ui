@@ -25,7 +25,7 @@
         >{{ modelValue.end ? formatDateToMD(modelValue.end) : "終了日" }}</span
       >
     </button>
-    <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false" gap="xs">
+    <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false">
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">

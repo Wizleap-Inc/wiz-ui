@@ -18,6 +18,9 @@
             (disabled || option.disabled) && radioLabelDisabledStyle,
             radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
             radioLabelCursorStyle[radioLabelCursor(option.disabled)],
+            strikeThrough &&
+              radioValue === option.value &&
+              radioLabelStrikeThrough,
           ]"
           :for="option.key"
         >
@@ -38,6 +41,7 @@ import {
   radioLabelDisabledStyle,
   radioLabelColorStyle,
   radioLabelCursorStyle,
+  radioLabelStrikeThrough,
 } from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import { computed, PropType } from "vue";
 
@@ -68,6 +72,11 @@ const props = defineProps({
     type: String as PropType<SpacingKeys>,
     required: false,
     default: "xl",
+  },
+  strikeThrough: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

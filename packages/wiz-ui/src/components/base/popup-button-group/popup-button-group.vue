@@ -95,7 +95,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
 
-import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
+import { WizIcon, WizVStack } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { ButtonGroupItem } from "./types";

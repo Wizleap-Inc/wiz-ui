@@ -32,6 +32,10 @@ export const progressBarItemStyle = styleVariants({
   ],
 });
 
+export const progressBarPointWrapperStyle = style({
+  position: "relative",
+});
+
 export const progressBarItemLabelStyle = style({
   position: "absolute",
   bottom: `calc(${THEME.spacing.md} * -1)`,
