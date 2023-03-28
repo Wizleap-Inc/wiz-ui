@@ -88,7 +88,11 @@
         </WizVStack>
       </template>
     </WizCard>
-    <button :class="chatCardOpenButtonStyle" @click="toggleDisplay" />
+    <button
+      :class="chatCardOpenButtonStyle"
+      @click="toggleDisplay"
+      aria-label="expand"
+    />
   </WizBox>
 </template>
 
