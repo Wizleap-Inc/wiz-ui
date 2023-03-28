@@ -9,6 +9,7 @@
           :icon="WizIMenu"
           size="lg"
           variant="transparent"
+          label="menu"
           @click="toggleMenuOpen"
         />
         <slot name="left" />
