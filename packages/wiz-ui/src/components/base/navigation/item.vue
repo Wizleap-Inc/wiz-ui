@@ -1,5 +1,5 @@
 <template>
-  <WizTooltip>
+  <WizTooltip :expand="true">
     <component
       :is="disabled || isExternalLink ? 'a' : 'router-link'"
       :to="!disabled && !isExternalLink ? to : undefined"
