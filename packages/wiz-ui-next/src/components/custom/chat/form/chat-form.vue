@@ -9,7 +9,12 @@
       expand
     />
     <div>
-      <WizIconButton :icon="WizISend" :disabled="disabled" @click="onSubmit" />
+      <WizIconButton
+        :icon="WizISend"
+        :disabled="disabled"
+        @click="onSubmit"
+        label="send"
+      />
     </div>
   </WizHStack>
 </template>
