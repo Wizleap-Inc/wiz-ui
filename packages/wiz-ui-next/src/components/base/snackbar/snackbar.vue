@@ -16,7 +16,11 @@
       <div :class="snackbarMessageStyle">
         <WizText color="white.800" fontSize="sm">{{ message }}</WizText>
       </div>
-      <button :class="snackbarCloseButtonStyle" @click="onDelete">
+      <button
+        :class="snackbarCloseButtonStyle"
+        @click="onDelete"
+        aria-label="close"
+      >
         <WizIcon color="white.800" :icon="WizIClose" />
       </button>
     </div>
