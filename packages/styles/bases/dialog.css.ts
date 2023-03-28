@@ -30,3 +30,8 @@ export const dialogMaskStyle = style({
   alignItems: "center",
   justifyContent: "center",
 });
+
+export const dialogBlockScrollStyle = style({
+  position: "fixed",
+  overflowY: "scroll",
+});
