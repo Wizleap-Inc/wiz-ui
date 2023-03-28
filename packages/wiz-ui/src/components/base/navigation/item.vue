@@ -1,6 +1,6 @@
 <template>
   <WizTooltip>
-    <WizPopupContainer :style="{ width: '100%' }">
+    <WizPopupContainer>
       <div
         ref="navItemRef"
         @click="navItemOnClick"
