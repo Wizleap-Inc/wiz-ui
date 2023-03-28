@@ -319,20 +319,21 @@ watch(
 );
 
 const inset = computed(() => {
-  const firstBTop = bodyPxInfo.top + bodyPxInfo.height;
+  const { scrollX, scrollY } = window;
+  const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
-    bodyPxInfo.top - popupRect.value.height + bodyPxInfo.height;
-  const firstTTop = bodyPxInfo.top - popupRect.value.height;
-  const secondTTop = bodyPxInfo.top;
-  const firstRLeft = bodyPxInfo.left + bodyPxInfo.width;
+    bodyPxInfo.top + scrollY - popupRect.value.height + bodyPxInfo.height;
+  const firstTTop = bodyPxInfo.top + scrollY - popupRect.value.height;
+  const secondTTop = bodyPxInfo.top + scrollY;
+  const firstRLeft = bodyPxInfo.left + scrollX + bodyPxInfo.width;
   const secondRLeft =
-    bodyPxInfo.left - popupRect.value.width + bodyPxInfo.width;
-  const firstLLeft = bodyPxInfo.left - popupRect.value.width;
-  const secondLLeft = bodyPxInfo.left;
+    bodyPxInfo.left + scrollX - popupRect.value.width + bodyPxInfo.width;
+  const firstLLeft = bodyPxInfo.left + scrollX - popupRect.value.width;
+  const secondLLeft = bodyPxInfo.left + scrollX;
   const cLeft =
-    bodyPxInfo.left + (bodyPxInfo.width - popupRect.value.width) / 2;
+    bodyPxInfo.left + scrollX + (bodyPxInfo.width - popupRect.value.width) / 2;
   const cTop =
-    bodyPxInfo.top + (bodyPxInfo.height - popupRect.value.height) / 2;
+    bodyPxInfo.top + scrollY + (bodyPxInfo.height - popupRect.value.height) / 2;
 
   const [top, left] = (() => {
     if (computedDirection.value === "bl") return [firstBTop, secondLLeft];
