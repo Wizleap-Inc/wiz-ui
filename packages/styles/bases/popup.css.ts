@@ -12,8 +12,8 @@ export const popupShadowStyle = style({
 
 export const popupContainerStyle = styleVariants({
   default: {
-    width: "fit-content",
-    height: "fit-content",
+    width: "auto",
+    height: "auto",
   },
   expanded: {
     width: "100%",
