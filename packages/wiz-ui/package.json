@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Vue2 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
@@ -53,7 +53,7 @@
     "storybook-vue-router": "^1.0.7",
     "storycap": "^4.0.0",
     "typescript": "^4.6.4",
-    "unplugin-vue-define-options": "^1.0.1",
+    "unplugin-vue-define-options": "^1.0.2",
     "vite": "^3.2.2",
     "vite-plugin-dts": "^1.4.1",
     "vitest": "^0.24.5",
