@@ -12,6 +12,7 @@
           <template #subHeaderArea>
             <WizIconButton
               :icon="WizIClose"
+              label="close"
               @click="close"
               variant="transparent"
             />
