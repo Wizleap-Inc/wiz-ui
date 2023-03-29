@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui",
-  "version": "1.0.4",
+  "version": "1.0.3",
   "description": "A Vue2 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
