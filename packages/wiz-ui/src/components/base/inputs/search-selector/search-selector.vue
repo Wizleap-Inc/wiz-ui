@@ -49,24 +49,20 @@
         :disabled="disabled"
       >
         <WizIcon
-          v-if="isOpenDropdown"
+          v-if="isOpen"
           :icon="WizIExpandLess"
           :class="selectBoxInnerBoxLessStyle"
-          :color="!isOpenDropdown ? 'white.800' : 'green.800'"
+          :color="!isOpen ? 'white.800' : 'green.800'"
         />
 
         <WizIcon
-          v-else-if="!isOpenDropdown"
+          v-else-if="!isOpen"
           :icon="WizIExpandMore"
           :class="selectBoxInnerBoxMoreStyle"
         />
       </button>
     </div>
-    <WizPopup
-      layer="popover"
-      :isOpen="isOpenDropdown"
-      @onClose="isOpenDropdown = false"
-    >
+    <WizPopup layer="popover" :isOpen="isOpen" @onClose="emit('toggle', false)">
       <div
         :class="selectBoxSelectorStyle"
         :style="{ minWidth: width }"
@@ -131,6 +127,13 @@ defineOptions({
   name: ComponentName.SelectBox,
 });
 
+interface Emit {
+  (e: "input", value: number): void;
+  (e: "unselect", value: number): void;
+  (e: "add", label: string): void;
+  (e: "toggle", value: boolean): void;
+}
+
 const props = defineProps({
   options: {
     type: Array as PropType<SelectBoxOption[]>,
@@ -169,22 +172,23 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
 });
 
-const isOpenDropdown = ref(false);
+const emit = defineEmits<Emit>();
+
 const searchValue = ref("");
 
 const inputRef = ref<HTMLElement | undefined>();
 const toggleDropdown = () => {
   if (props.disabled) return;
-  if (
-    !props.multiSelectable &&
-    props.value.length > 0 &&
-    isOpenDropdown.value
-  ) {
-    return (isOpenDropdown.value = false);
+  if (!props.multiSelectable && props.value.length > 0 && props.isOpen) {
+    return emit("toggle", false);
   }
-  isOpenDropdown.value = true;
+  emit("toggle", true);
   inputRef.value?.focus();
 };
 
@@ -223,15 +227,8 @@ const filteredOptions = computed(() => {
 });
 
 const toggleSelectBox = () => {
-  if (!props.disabled) isOpenDropdown.value = !isOpenDropdown.value;
+  if (!props.disabled) emit("toggle", !props.isOpen);
 };
-
-interface Emit {
-  (e: "input", value: number): void;
-  (e: "unselect", value: number): void;
-  (e: "add", label: string): void;
-}
-const emit = defineEmits<Emit>();
 
 const onClear = (n: number) => {
   emit("unselect", n);
@@ -266,7 +263,7 @@ const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 const state = computed(() => {
   if (isError.value) return "error";
-  if (isOpenDropdown.value) return "active";
+  if (props.isOpen) return "active";
   return "default";
 });
 

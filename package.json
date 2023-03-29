@@ -8,6 +8,7 @@
     "prepare": "husky install && yarn resolve-deps",
     "prebuild": "yarn resolve-deps",
     "resolve-deps": "rimraf ./node_modules/@types/react",
+    "release": "changeset publish",
     "build": "run-p build:*",
     "build:docs": "yarn workspace @wizleap-inc/wiz-ui-docs build",
     "build:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 build",

@@ -1,12 +1,14 @@
-name: Publish check Wiz-UI library (Vue 2)
+name: Publish Wiz-UI library
+
+env:
+  YARN_CACHE_FOLDER: .cache/yarn
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-env:
-  CI: true
-  YARN_CACHE_FOLDER: .cache/yarn
+    tags:
+      - "!*"
 
 jobs:
   publish:
@@ -27,7 +29,14 @@ jobs:
           node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
           yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
 
-      - name: publish
-        run: yarn workspace @wizleap-inc/wiz-ui check:lib-publish
+      - name: build
+        run: yarn build:lib
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn release
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
