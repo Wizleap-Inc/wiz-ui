@@ -1,0 +1,21 @@
+{
+  "name": "@wizleap-inc/wiz-ui-react",
+  "version": "0.0.0",
+  "description": "A React UI Framework for Wizleap Inc.",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wizleap-inc/wiz-ui.git"
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "author": "Wizleap Inc.",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/wiz-ui.umd.js",
+  "module": "./dist/wiz-ui.es.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
