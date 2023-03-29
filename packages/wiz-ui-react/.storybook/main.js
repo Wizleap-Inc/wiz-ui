@@ -10,7 +10,10 @@ module.exports = {
     "@storybook/addon-a11y",
     "storycap",
   ],
-  framework: "@storybook/react-vite",
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
+  },
   features: {
     interactionsDebugger: true,
   },
