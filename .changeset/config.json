@@ -1,6 +1,9 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "<org>/<repo>" }],
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "Wizleap-Inc/wiz-ui" }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],
