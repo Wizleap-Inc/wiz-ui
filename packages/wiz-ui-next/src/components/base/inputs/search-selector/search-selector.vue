@@ -146,7 +146,7 @@ import {
   selectBoxInnerBoxCloseButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType } from "vue";
+import { ref, computed, inject, PropType, ComponentPublicInstance } from "vue";
 
 import { WizPopupContainer, WizPopup, WizIcon } from "@/components";
 import {
@@ -256,11 +256,11 @@ const selectedItem = computed(() => {
   return props.modelValue.map((v) => valueToOption.value[v]);
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const setUnselectableRef = (index: number) => (el: any) => {
-  if (index === selectedItem.value.length - 1)
-    backspaceUnselectableRef.value = el;
-};
+const setUnselectableRef =
+  (index: number) => (el: ComponentPublicInstance | Element | null) => {
+    if (el && index === selectedItem.value.length - 1)
+      backspaceUnselectableRef.value = el;
+  };
 
 const filteredOptions = computed(() => {
   const sortedOptions =
