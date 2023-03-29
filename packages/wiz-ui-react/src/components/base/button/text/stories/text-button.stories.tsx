@@ -1,8 +1,8 @@
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import { WizTextButton } from "../components/text-button";
 
-export default {
+const meta: Meta<typeof WizTextButton> = {
   title: "Base/Buttons/Text",
   component: WizTextButton,
   argTypes: {
@@ -12,15 +12,14 @@ export default {
     },
     onClick: { action: "clicked" },
   },
-} as Meta<typeof WizTextButton>;
+};
 
-const Template: StoryFn<typeof WizTextButton> = (args) => (
-  <WizTextButton {...args}>
-    <span>Text Button</span>
-  </WizTextButton>
-);
+export default meta;
+type Story = StoryObj<typeof WizTextButton>;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  variant: "primary",
+export const Primary: Story = {
+  render: (args) => <WizTextButton {...args}>Submit</WizTextButton>,
+  args: {
+    variant: "primary",
+  },
 };
