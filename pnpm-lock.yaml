@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@changesets/changelog-github': ^0.4.8
       '@changesets/cli': ^2.26.1
+      '@types/testing-library__jest-dom': ^5.14.5
       '@typescript-eslint/eslint-plugin': ^5.42.1
       '@typescript-eslint/parser': ^5.42.1
       can-npm-publish: ^1.3.6
@@ -22,9 +23,12 @@ importers:
       rimraf: ^3.0.2
       rollup-plugin-copy: ^3.4.0
       rollup-plugin-visualizer: ^5.9.0
+      turbo: ^1.8.7
+      vue-tsc: ^1.0.9
     devDependencies:
       '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.1
+      '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.57.0_2niwd2uqke2jpnohndnwvllrkm
       '@typescript-eslint/parser': 5.57.0_eslint@8.37.0
       can-npm-publish: 1.3.6
@@ -41,26 +45,33 @@ importers:
       rimraf: 3.0.2
       rollup-plugin-copy: 3.4.0
       rollup-plugin-visualizer: 5.9.0
+      turbo: 1.8.7
+      vue-tsc: 1.2.0
 
   docs:
     specifiers:
-      '@wizleap-inc/vuepress-plugin-wiz-ui': file:../packages/vuepress-plugin-wiz-ui
+      '@wizleap-inc/vuepress-plugin-wiz-ui': '*'
+      '@wizleap-inc/wiz-ui': '*'
       vuepress: ^1.5.3
       vuepress-plugin-copy-code1: ^1.31.0-beta.1
+    dependencies:
+      '@wizleap-inc/vuepress-plugin-wiz-ui': link:../packages/vuepress-plugin-wiz-ui
+      '@wizleap-inc/wiz-ui': 1.0.4
     devDependencies:
-      '@wizleap-inc/vuepress-plugin-wiz-ui': file:packages/vuepress-plugin-wiz-ui
       vuepress: 1.9.9
       vuepress-plugin-copy-code1: 1.31.0-beta.1_vuepress@1.9.9
 
   examples/vue2:
     specifiers:
       '@vitejs/plugin-vue2': ^2.0.1
+      '@wizleap-inc/wiz-ui': '*'
       typescript: ^4.6.4
       vite: ^3.2.3
       vue: ^2.7.14
       vue-router: ^3.6.5
       vue-tsc: ^1.0.9
     dependencies:
+      '@wizleap-inc/wiz-ui': 1.0.4_vite@3.2.5
       vue: 2.7.14
     devDependencies:
       '@vitejs/plugin-vue2': 2.2.0_vite@3.2.5+vue@2.7.14
@@ -72,12 +83,14 @@ importers:
   examples/vue3:
     specifiers:
       '@vitejs/plugin-vue': ^3.2.0
+      '@wizleap-inc/wiz-ui-next': '*'
       typescript: ^4.6.4
       vite: ^3.2.3
       vue: ^3.2.45
       vue-router: ^4.1.6
       vue-tsc: ^1.0.9
     dependencies:
+      '@wizleap-inc/wiz-ui-next': 1.0.4
       vue: 3.2.47
     devDependencies:
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.47
@@ -92,6 +105,9 @@ importers:
   packages/styles:
     specifiers:
       '@vanilla-extract/css': ^1.9.2
+      '@wizleap-inc/wiz-ui-constants': '*'
+    dependencies:
+      '@wizleap-inc/wiz-ui-constants': link:../constants
     devDependencies:
       '@vanilla-extract/css': 1.11.0
 
@@ -100,11 +116,11 @@ importers:
 
   packages/vuepress-plugin-wiz-ui:
     specifiers:
-      '@wizleap-inc/wiz-ui': file:../wiz-ui
+      '@wizleap-inc/wiz-ui': '*'
       markdown-it-container: ^2.0.0
       vuepress: ^1.5.3
     dependencies:
-      '@wizleap-inc/wiz-ui': file:packages/wiz-ui
+      '@wizleap-inc/wiz-ui': 1.0.4
       markdown-it-container: 2.0.0
     devDependencies:
       vuepress: 1.9.9
@@ -126,11 +142,13 @@ importers:
       '@storybook/theming': ^7.0.0-beta.19
       '@storybook/vue': 7.0.0-beta.19
       '@storybook/vue-vite': ^7.0.0-beta.19
-      '@testing-library/jest-dom': ^5.16.5
       '@testing-library/vue': ^5.8.3
       '@vanilla-extract/vite-plugin': ^3.7.0
       '@vitejs/plugin-vue2': ^1.1.2
       '@vitest/coverage-c8': ^0.24.5
+      '@wizleap-inc/wiz-ui-constants': '*'
+      '@wizleap-inc/wiz-ui-styles': '*'
+      '@wizleap-inc/wiz-ui-utils': '*'
       babel-loader: ^8.2.5
       concurrently: ^7.5.0
       http-server: ^14.1.1
@@ -157,6 +175,9 @@ importers:
       wait-on: ^6.0.1
     dependencies:
       '@vanilla-extract/vite-plugin': 3.8.0_sass@1.60.0+vite@3.2.5
+      '@wizleap-inc/wiz-ui-constants': link:../constants
+      '@wizleap-inc/wiz-ui-styles': link:../styles
+      '@wizleap-inc/wiz-ui-utils': link:../utils
       portal-vue: 2.1.7_vue@2.7.14
       vue: 2.7.14
       vue-router: 3.6.5_vue@2.7.14
@@ -176,7 +197,6 @@ importers:
       '@storybook/theming': 7.0.0-rc.10_biqbaboplfbrettd7655fr4n2y
       '@storybook/vue': 7.0.0-beta.19_tt3yfh5rbhm43cdjunnh3bfbta
       '@storybook/vue-vite': 7.0.0-rc.10_ul6wtkhlxpen2yiju22525mav4
-      '@testing-library/jest-dom': 5.16.5
       '@testing-library/vue': 5.9.0_vue@2.7.14
       '@vitejs/plugin-vue2': 1.1.2_vite@3.2.5+vue@2.7.14
       '@vitest/coverage-c8': 0.24.5_jsdom@20.0.3+sass@1.60.0
@@ -217,6 +237,9 @@ importers:
       '@storybook/vue3-vite': ^7.0.0-beta.19
       '@vanilla-extract/vite-plugin': ^3.7.0
       '@vitejs/plugin-vue': ^3.2.0
+      '@wizleap-inc/wiz-ui-constants': '*'
+      '@wizleap-inc/wiz-ui-styles': '*'
+      '@wizleap-inc/wiz-ui-utils': '*'
       concurrently: ^7.6.0
       http-server: ^14.1.1
       react: ^18.2.0
@@ -230,6 +253,9 @@ importers:
       vue-router: ^4.1.6
       wait-on: ^7.0.1
     dependencies:
+      '@wizleap-inc/wiz-ui-constants': link:../constants
+      '@wizleap-inc/wiz-ui-styles': link:../styles
+      '@wizleap-inc/wiz-ui-utils': link:../utils
       vue: 3.2.47
       vue-router: 4.1.6_vue@3.2.47
     devDependencies:
@@ -5635,6 +5661,7 @@ packages:
       - supports-color
       - terser
       - ts-node
+    dev: false
 
   /@vanilla-extract/vite-plugin/3.8.0_sass@1.60.0+vite@3.2.5:
     resolution: {integrity: sha512-HBCecR4eTbweo7wQPq9g/HBvxUi6Cua8O4Xk6t1by4W/imgEsHbRCCa9SowzZwg8lub7uJHBAdzWWpqY+LdH0w==}
@@ -5676,7 +5703,6 @@ packages:
       - supports-color
       - terser
       - ts-node
-    dev: true
 
   /@vitejs/plugin-vue/3.2.0_vite@3.2.5+vue@3.2.47:
     resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
@@ -6481,6 +6507,51 @@ packages:
       '@webassemblyjs/wast-parser': 1.9.0
       '@xtuc/long': 4.2.2
     dev: true
+
+  /@wizleap-inc/wiz-ui-next/1.0.4:
+    resolution: {integrity: sha512-S9NmELoG1+Zk1NtvjnFkIcMkG3cNk990yA/zcIysuuna9tMZUg/gk6WPU0PmQktLWgXK+a9MvxocD1MfdMtX7w==}
+    dependencies:
+      vue: 3.2.47
+      vue-router: 4.1.6_vue@3.2.47
+    dev: false
+
+  /@wizleap-inc/wiz-ui/1.0.4:
+    resolution: {integrity: sha512-Yd+hbgK9PES/Wdlf54i50ZNaii31h41Y5QrfvP4OUsbwq+D8L3cNne8sLXLnjAbaMvZXrafxUTXiQUm0eNiBmQ==}
+    dependencies:
+      '@vanilla-extract/vite-plugin': 3.8.0
+      portal-vue: 2.1.7_vue@2.7.14
+      vue: 2.7.14
+      vue-router: 3.6.5_vue@2.7.14
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - ts-node
+      - vite
+    dev: false
+
+  /@wizleap-inc/wiz-ui/1.0.4_vite@3.2.5:
+    resolution: {integrity: sha512-Yd+hbgK9PES/Wdlf54i50ZNaii31h41Y5QrfvP4OUsbwq+D8L3cNne8sLXLnjAbaMvZXrafxUTXiQUm0eNiBmQ==}
+    dependencies:
+      '@vanilla-extract/vite-plugin': 3.8.0_vite@3.2.5
+      portal-vue: 2.1.7_vue@2.7.14
+      vue: 2.7.14
+      vue-router: 3.6.5_vue@2.7.14
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - ts-node
+      - vite
+    dev: false
 
   /@xtuc/ieee754/1.2.0:
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -16442,6 +16513,7 @@ packages:
       vue: ^2.5.18
     dependencies:
       vue: 2.7.14
+    dev: false
 
   /portfinder/1.0.32:
     resolution: {integrity: sha512-on2ZJVVDXRADWE6jnQaX0ioEylzgBpQk8r55NE4wjXW1ZxO+BgDlY6DXwj20i0V8eB4SenDQ00WEaxfiIQPcxg==}
@@ -19661,6 +19733,67 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
+  /turbo-darwin-64/1.8.7:
+    resolution: {integrity: sha512-QOa7SI1sv8IH9biO4qThmyz0w2WNlQMJ8CmJ9NmyujlqQYdcP3r2JJY6GlJkUk2PdX9YV3mBVrOePicBy3gcjA==}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /turbo-darwin-arm64/1.8.7:
+    resolution: {integrity: sha512-q2pvkuZBoP1iljSZC+vtIObkgFZeo9kDdOJvj+bloLIEkkksBWNGvgabVWBAzJyNnoUHCQVxKPIstEhfmzW3eA==}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /turbo-linux-64/1.8.7:
+    resolution: {integrity: sha512-xlNS6cFCLDcQeuHFINn+p4Z5H880v3/KSdYKiuIpxAwijhLq5ZTTpGQegNiOXrct3cotKUI7lWgDPn6Y2G/A8Q==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /turbo-linux-arm64/1.8.7:
+    resolution: {integrity: sha512-lmQ09jHGOyMqmA66a/Hcm6Ox9ZqVFIIFFZHEiO1L4dRtl2PNCzzgp+DoNP1VEvVOgRTxy71MU5Z3APOLjmC05A==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /turbo-windows-64/1.8.7:
+    resolution: {integrity: sha512-XcHNYAzCWESpqULDU0USXidfOXmkoLzYzTrUWhmXUdTNL4pcUysFn+CHKbiYU8nSBFcZacJnHQ/kEjduqRoJ9g==}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /turbo-windows-arm64/1.8.7:
+    resolution: {integrity: sha512-Ly1mksTC94lrK3/MxKKBmyf4roVYoeo43Rj+kv9qtx20+2Fzf3Iclw8H5/eGucnOOoxeinfdz4tjzhAHdNRwfA==}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /turbo/1.8.7:
+    resolution: {integrity: sha512-0EtA4OfLSPpcErAQBKArDueQ/EoYPiPlRAWidHV8l030aVFY3B05dDd3CcfTM41IFSSgqk9n4R8DgesC8fVrDA==}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      turbo-darwin-64: 1.8.7
+      turbo-darwin-arm64: 1.8.7
+      turbo-linux-64: 1.8.7
+      turbo-linux-arm64: 1.8.7
+      turbo-windows-64: 1.8.7
+      turbo-windows-arm64: 1.8.7
+    dev: true
+
   /tweetnacl/0.14.5:
     resolution: {integrity: sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==}
     dev: true
@@ -20828,6 +20961,16 @@ packages:
     resolution: {integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==}
     dev: true
 
+  /vue-tsc/1.2.0:
+    resolution: {integrity: sha512-rIlzqdrhyPYyLG9zxsVRa+JEseeS9s8F2BbVVVWRRsTZvJO2BbhLEb2HW3MY+DFma0378tnIqs+vfTzbcQtRFw==}
+    hasBin: true
+    peerDependencies:
+      typescript: '*'
+    dependencies:
+      '@volar/vue-language-core': 1.2.0
+      '@volar/vue-typescript': 1.2.0
+    dev: true
+
   /vue-tsc/1.2.0_typescript@4.9.5:
     resolution: {integrity: sha512-rIlzqdrhyPYyLG9zxsVRa+JEseeS9s8F2BbVVVWRRsTZvJO2BbhLEb2HW3MY+DFma0378tnIqs+vfTzbcQtRFw==}
     hasBin: true
@@ -21730,42 +21873,3 @@ packages:
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: true
-
-  file:packages/vuepress-plugin-wiz-ui:
-    resolution: {directory: packages/vuepress-plugin-wiz-ui, type: directory}
-    name: '@wizleap-inc/vuepress-plugin-wiz-ui'
-    version: 0.0.0
-    dependencies:
-      '@wizleap-inc/wiz-ui': file:packages/wiz-ui
-      markdown-it-container: 2.0.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - ts-node
-      - vite
-    dev: true
-
-  file:packages/wiz-ui:
-    resolution: {directory: packages/wiz-ui, type: directory}
-    name: '@wizleap-inc/wiz-ui'
-    version: 1.0.3
-    dependencies:
-      '@vanilla-extract/vite-plugin': 3.8.0
-      portal-vue: 2.1.7_vue@2.7.14
-      vue: 2.7.14
-      vue-router: 3.6.5_vue@2.7.14
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - ts-node
-      - vite
