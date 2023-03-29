@@ -163,7 +163,7 @@ import { levenshteinDistance } from "./levenshtein-distance";
 import { SelectBoxOption } from "./types";
 
 defineOptions({
-  name: ComponentName.SelectBox,
+  name: ComponentName.SearchSelector,
 });
 
 const props = defineProps({
