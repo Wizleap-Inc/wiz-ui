@@ -181,8 +181,11 @@ const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();
 const rightCalendarDate = ref(new Date());
 const leftCalendarDate = computed(() => {
-  const date = new Date(rightCalendarDate.value);
-  date.setMonth(date.getMonth() - 1);
+  const date = new Date(
+    rightCalendarDate.value.getFullYear(),
+    rightCalendarDate.value.getMonth() - 1,
+    1
+  );
   return date;
 });
 const selectedState = ref<SelectState>("none");
