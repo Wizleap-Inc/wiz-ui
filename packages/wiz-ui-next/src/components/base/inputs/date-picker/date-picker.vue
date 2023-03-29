@@ -127,15 +127,19 @@ const toggleDatepicker = () => {
 };
 
 const clickToNextMonth = () => {
-  const setDateTime = currentMonth.value.setMonth(
-    currentMonth.value.getMonth() + 1
+  const setDateTime = new Date(
+    currentMonth.value.getFullYear(),
+    currentMonth.value.getMonth() + 1,
+    1
   );
   currentMonth.value = new Date(setDateTime);
 };
 
 const clickToPreviousMonth = () => {
-  const setDateTime = currentMonth.value.setMonth(
-    currentMonth.value.getMonth() - 1
+  const setDateTime = new Date(
+    currentMonth.value.getFullYear(),
+    currentMonth.value.getMonth() - 1,
+    1
   );
   currentMonth.value = new Date(setDateTime);
 };
