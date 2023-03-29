@@ -36,19 +36,6 @@
       "prettier --write"
     ]
   },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "examples/*",
-      "docs"
-    ],
-    "nohoist": [
-      "**/@wizleap-inc/wiz-ui",
-      "**/@wizleap-inc/wiz-ui/**",
-      "**/@wizleap-inc/wiz-ui-next",
-      "**/@wizleap-inc/wiz-ui-next/**"
-    ]
-  },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.1",
@@ -68,5 +55,11 @@
     "rimraf": "^3.0.2",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-visualizer": "^5.9.0"
+  },
+  "packageManager": "pnpm@7.28.0",
+  "engines": {
+    "npm": "use pnpm please!",
+    "yarn": "use pnpm please!",
+    "node": ">=7.28.0"
   }
 }
