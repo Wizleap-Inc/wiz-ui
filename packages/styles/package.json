@@ -5,5 +5,8 @@
   "main": "index.ts",
   "devDependencies": {
     "@vanilla-extract/css": "^1.9.2"
+  },
+  "dependencies": {
+    "@wizleap-inc/wiz-ui-constants": "*"
   }
 }

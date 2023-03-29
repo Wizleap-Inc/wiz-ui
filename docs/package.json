@@ -8,8 +8,11 @@
     "build": "vuepress build src"
   },
   "license": "MIT",
+  "dependencies": {
+    "@wizleap-inc/vuepress-plugin-wiz-ui": "*",
+    "@wizleap-inc/wiz-ui": "*"
+  },
   "devDependencies": {
-    "@wizleap-inc/vuepress-plugin-wiz-ui": "file:../packages/vuepress-plugin-wiz-ui",
     "vuepress": "^1.5.3",
     "vuepress-plugin-copy-code1": "^1.31.0-beta.1"
   }

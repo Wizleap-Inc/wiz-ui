@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^2.7.14"
+    "vue": "^2.7.14",
+    "@wizleap-inc/wiz-ui": "*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue2": "^2.0.1",

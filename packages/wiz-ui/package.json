@@ -34,7 +34,6 @@
     "@storybook/theming": "^7.0.0-beta.19",
     "@storybook/vue": "7.0.0-beta.19",
     "@storybook/vue-vite": "^7.0.0-beta.19",
-    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/vue": "^5.8.3",
     "@vitejs/plugin-vue2": "^1.1.2",
     "@vitest/coverage-c8": "^0.24.5",
@@ -73,6 +72,9 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@wizleap-inc/wiz-ui-constants": "*",
+    "@wizleap-inc/wiz-ui-styles": "*",
+    "@wizleap-inc/wiz-ui-utils": "*",
     "@vanilla-extract/vite-plugin": "^3.7.0",
     "portal-vue": "^2.1.7",
     "vue": "^2.7.13",
