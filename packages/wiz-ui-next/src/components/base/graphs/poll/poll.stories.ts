@@ -23,11 +23,20 @@ export default {
   },
 } as Meta<typeof WizPollGraph>;
 
+const LABELS = ["2022/5", "2022/4", "2022/3", "2022/2", "2022/1", "2021/12"];
+const PERCENTAGES = [50, 85, 40, 20, 50, 50];
+
+const DUMMY_DATA: PollGraphData[] = Array.from({ length: 6 }).map((_, i) => ({
+  label: LABELS[i],
+  innerLabel: `${PERCENTAGES[i]}%`,
+  percentage: PERCENTAGES[i],
+}));
+
 const Template: StoryFn<typeof WizPollGraph> = (args) => ({
-  setup: () => ({ args }),
+  setup: () => ({ args, data: DUMMY_DATA }),
   components: { WizPollGraph },
   template: `
-    <WizPollGraph v-bind="args"/>
+    <WizPollGraph v-bind="args" :data="data"/>
   `,
 });
 
@@ -67,18 +76,8 @@ const data: PollGraphData[] = [
 </template>
 `;
 
-const LABELS = ["2022/5", "2022/4", "2022/3", "2022/2", "2022/1", "2021/12"];
-const PERCENTAGES = [50, 85, 40, 20, 50, 50];
-
-const DUMMY_DATA: PollGraphData[] = Array.from({ length: 6 }).map((_, i) => ({
-  label: LABELS[i],
-  innerLabel: `${PERCENTAGES[i]}%`,
-  percentage: PERCENTAGES[i],
-}));
-
 export const Default = Template.bind({});
 Default.args = {
-  data: DUMMY_DATA,
   isColorFixed: false,
 };
 Default.parameters = {
@@ -98,7 +97,6 @@ Default.parameters = {
 
 export const ColorFixed = Template.bind({});
 ColorFixed.args = {
-  data: DUMMY_DATA,
   isColorFixed: true,
 };
 ColorFixed.parameters = {
@@ -114,7 +112,6 @@ ColorFixed.parameters = {
 
 export const RowCount = Template.bind({});
 RowCount.args = {
-  data: DUMMY_DATA,
   rowCount: 10,
 };
 RowCount.parameters = {
@@ -130,7 +127,6 @@ RowCount.parameters = {
 
 export const LabelWidth = Template.bind({});
 LabelWidth.args = {
-  data: DUMMY_DATA,
   labelWidth: "10rem",
 };
 LabelWidth.parameters = {
@@ -152,9 +148,16 @@ const DUMMY_DATA_NL: PollGraphData[] = Array.from({ length: 6 }).map(
   })
 );
 
-export const NewLine = Template.bind({});
+const TemplateNL: StoryFn<typeof WizPollGraph> = (args) => ({
+  setup: () => ({ args, data: DUMMY_DATA_NL }),
+  components: { WizPollGraph },
+  template: `
+    <WizPollGraph v-bind="args" :data="data"/>
+  `,
+});
+
+export const NewLine = TemplateNL.bind({});
 NewLine.args = {
-  data: DUMMY_DATA_NL,
   isColorFixed: false,
 };
 NewLine.parameters = {

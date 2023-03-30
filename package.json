@@ -1,78 +1,75 @@
 {
   "private": true,
   "scripts": {
-    "format:packages": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,md,mdx}'",
-    "format": "yarn format:packages",
-    "lint:packages": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
-    "lint": "yarn lint:packages",
-    "prepare": "husky install && yarn resolve-deps",
-    "prebuild": "yarn resolve-deps",
-    "resolve-deps": "rimraf ./node_modules/@types/react",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,vue,md,json}'",
+    "lint": "eslint --ext .js,.ts,.jsx,.tsx,.vue .",
+    "prepare": "husky install",
     "release": "changeset publish",
-    "build": "run-p build:*",
-    "build:docs": "yarn workspace @wizleap-inc/wiz-ui-docs build",
-    "build:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 build",
-    "build:sb": "run-p build:sb:*",
-    "build:sb:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:storybook",
-    "build:sb:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:storybook",
-    "build:sb:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react build:storybook",
-    "build:lib": "run-p build:lib:*",
-    "build:lib:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:lib",
-    "build:lib:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:lib",
-    "build:lib:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react build:lib",
-    "dev": "run-p dev:*",
-    "dev:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 dev",
-    "dev:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui dev",
-    "dev:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next dev",
-    "dev:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react dev",
-    "dev:docs": "yarn workspace @wizleap-inc/wiz-ui-docs dev",
-    "test": "run-p test:*",
-    "test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui test",
-    "test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next test",
-    "test:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react test",
-    "ci:test": "run-p ci:test:*",
-    "ci:test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui ci:test",
-    "ci:test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next ci:test",
-    "ci:test:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react ci:test"
+    "build": "turbo build",
+    "dev": "turbo dev --parallel",
+    "test": "turbo test"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "examples/*",
-      "docs"
+    "*.{js,ts,jsx,tsx,vue}": [
+      "eslint --fix"
     ],
-    "nohoist": [
-      "**/@wizleap-inc/wiz-ui",
-      "**/@wizleap-inc/wiz-ui/**",
-      "**/@wizleap-inc/wiz-ui-next",
-      "**/@wizleap-inc/wiz-ui-next/**",
-      "**/@wizleap-inc/wiz-ui-react/**"
+    "*.{js,ts,jsx,tsx,vue,md,json}": [
+      "prettier --write"
     ]
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.1",
+    "@storybook/addon-a11y": "^7.0.0-rc.9",
+    "@storybook/addon-essentials": "^7.0.0-rc.9",
+    "@storybook/addon-interactions": "^7.0.0-rc.9",
+    "@storybook/addon-links": "^7.0.0-rc.9",
+    "@storybook/blocks": "^7.0.0-rc.9",
+    "@storybook/builder-vite": "^7.0.0-rc.9",
+    "@storybook/jest": "^0.0.10",
+    "@storybook/test-runner": "^0.9.2",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
+    "@vanilla-extract/css": "^1.11.0",
+    "@vanilla-extract/vite-plugin": "^3.7.0",
     "can-npm-publish": "^1.3.6",
+    "concurrently": "^7.6.0",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.7.0",
+    "http-server": "^14.1.1",
     "husky": "^8.0.2",
+    "jsdom": "^21.1.1",
     "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
     "playwright": "^1.27.1",
     "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reg-keygen-git-hash-plugin": "^0.12.1",
+    "reg-notify-github-plugin": "^0.12.1",
+    "reg-publish-s3-plugin": "^0.12.1",
+    "reg-suit": "^0.12.1",
     "rimraf": "^3.0.2",
     "rollup-plugin-copy": "^3.4.0",
-    "rollup-plugin-visualizer": "^5.9.0"
+    "rollup-plugin-visualizer": "^5.9.0",
+    "storybook": "^7.0.0-rc.9",
+    "storycap": "^4.0.0",
+    "turbo": "^1.8.7",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.1",
+    "vite-plugin-dts": "^1.7.1",
+    "vitest": "^0.29.8",
+    "wait-on": "^7.0.1"
+  },
+  "packageManager": "pnpm@7.28.0",
+  "engines": {
+    "npm": "use pnpm please!",
+    "yarn": "use pnpm please!",
+    "node": ">=7.28.0"
   }
 }
