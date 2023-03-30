@@ -6,7 +6,6 @@ env:
   REG_NOTICE_CLIENT_ID: ${{ secrets.REG_NOTICE_CLIENT_ID }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   build:
@@ -17,18 +16,17 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: ./.github/composite/prepare_node
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          runs-on: ${{ matrix.runs-on }}
-          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
-          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
 
+      - name: 📥 Monorepo install
+        uses: ./.github/composite/prepare_node
       - name: Install fonts
         run: sudo apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
 

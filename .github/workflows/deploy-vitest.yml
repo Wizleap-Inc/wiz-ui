@@ -22,7 +22,6 @@ env:
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COVERAGE_FRONTEND_WORKFLOW_URL }}
   DEPLOY_URL_POSTFIX: /index.html
   BUILD_COMMAND: yarn workspace @wizleap-inc/wiz-ui test:coverage
-  YARN_CACHE_FOLDER: .cache/yarn
 
 jobs:
   build-and-deploy:
@@ -33,16 +32,17 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 2
 
-      - uses: ./.github/composite/prepare_node
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          runs-on: ${{ matrix.runs-on }}
-          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
-          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
+
+      - name: 📥 Monorepo install
+        uses: ./.github/composite/prepare_node
 
       - name: Build ${{ env.DEPLOY_TYPE }}
         run: ${{ env.BUILD_COMMAND }}
