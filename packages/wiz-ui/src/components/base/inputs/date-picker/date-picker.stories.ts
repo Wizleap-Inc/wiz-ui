@@ -40,7 +40,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  modelValue: null,
+  value: null,
 };
 Default.parameters = {
   docs: {
@@ -71,7 +71,7 @@ const date = ref<Date | null>(null);
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
-  modelValue: null,
+  value: null,
   placeholder: "(例) 2000/1/1",
 };
 Placeholder.parameters = {
@@ -97,7 +97,7 @@ const date = ref<Date | null>(null);
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  modelValue: null,
+  value: null,
   disabled: true,
 };
 Disabled.parameters = {

@@ -1,14 +1,14 @@
-# 開発Tips
+# 開発 Tips
 
 ## Storybook
 
-Vueでstorybookを書くにあたっては、VueのString Templateを使用することが多いです。
-JSXだと書きやすいのですが、まだVue2ではJSXがネィティブにサポートされていないため、どうしてもCSFで書くにはString Templateの知識が必要になります。
+Vue で storybook を書くにあたっては、Vue の String Template を使用することが多いです。
+JSX だと書きやすいのですが、まだ Vue2 では JSX がネィティブにサポートされていないため、どうしても CSF で書くには String Template の知識が必要になります。
 
 ### String Template
 
-我々がよく使うSFC(Single File Component)のフォーマットでは1つのファイルに1つのコンポーネントしか書けないため、Storybookのような複数のVariantを持つコンポーネントを書くのに不便です。
-そこで、String Templateを使用することで、1つのファイルに複数のコンポーネントを書くことができます。
+我々がよく使う SFC(Single File Component)のフォーマットでは 1 つのファイルに 1 つのコンポーネントしか書けないため、Storybook のような複数の Variant を持つコンポーネントを書くのに不便です。
+そこで、String Template を使用することで、1 つのファイルに複数のコンポーネントを書くことができます。
 
 ```vue
 <template>
@@ -18,7 +18,7 @@ JSXだと書きやすいのですが、まだVue2ではJSXがネィティブに�
 </template>
 
 <script setup lang="ts">
-const msg = 'Hello World'
+const msg = "Hello World";
 </script>
 
 <style scoped lang="scss">
@@ -38,58 +38,58 @@ const HelloWorld = Vue.component({
     </div>
   `,
   setup() {
-    const msg = 'Hello World'
-    return { msg }
+    const msg = "Hello World";
+    return { msg };
   },
   style: `
     p {
       color: red;
     }
   `,
-})
+});
 ```
 
 これを使えば`*.stories.ts`に複数のコンポーネントを書くことができます。
 
 ```ts
-import HelloWorld from './HelloWorld.vue'
-import { StoryFn } from '@storybook/vue'
+import HelloWorld from "./HelloWorld.vue";
+import { StoryFn } from "@storybook/vue";
 
 export default {
-  title: 'HelloWorld',
+  title: "HelloWorld",
   component: HelloWorld,
   argTypes: {
     disabled: {
-      control: { type: 'boolean' }
+      control: { type: "boolean" },
     },
     variant: {
-      control: { type: 'select' },
-      options: ['primary', 'secondary']
+      control: { type: "select" },
+      options: ["primary", "secondary"],
     },
   },
-}
+};
 
 const Template: StoryFn = ({ args }, { argTypes }) => ({
   components: { HelloWorld },
   template: `
     <HelloWorld v-bind="$props" />
   `,
-})
+});
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 
-export const Disabled = Template.bind({})
+export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true, // <HelloWorld disabled />
-}
+};
 
-export const Primary = Template.bind({})
+export const Primary = Template.bind({});
 Primary.args = {
-  variant: 'primary', // <HelloWorld variant="primary" />
-}
+  variant: "primary", // <HelloWorld variant="primary" />
+};
 
-export const Secondary = Template.bind({})
+export const Secondary = Template.bind({});
 Secondary.args = {
-  variant: 'secondary', // <HelloWorld variant="secondary" />
-}
+  variant: "secondary", // <HelloWorld variant="secondary" />
+};
 ```

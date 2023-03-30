@@ -21,7 +21,7 @@
         >{{ value.end ? formatDateToMD(value.end) : "終了日" }}</span
       >
     </button>
-    <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false" gap="xs">
+    <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false">
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
@@ -177,8 +177,11 @@ const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();
 const rightCalendarDate = ref(new Date());
 const leftCalendarDate = computed(() => {
-  const date = new Date(rightCalendarDate.value);
-  date.setMonth(date.getMonth() - 1);
+  const date = new Date(
+    rightCalendarDate.value.getFullYear(),
+    rightCalendarDate.value.getMonth() - 1,
+    1
+  );
   return date;
 });
 const selectedState = ref<SelectState>("none");

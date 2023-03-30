@@ -80,6 +80,7 @@ export const ComponentName = {
   TransitionGraph: "WizTransitionGraph",
   MeterGraph: "WizMeterGraph",
   LineGraph: "WizLineGraph",
+  SearchSelector: "WizSearchSelector",
   SnackBar: "WizSnackBar",
   StepBar: "WizStepBar",
   StepPoint: "WizStepPoint",

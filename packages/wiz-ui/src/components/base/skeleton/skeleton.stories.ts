@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from "@storybook/vue";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizSkeleton } from ".";
 
@@ -11,6 +12,10 @@ export default {
     },
     height: {
       control: { type: "text" },
+    },
+    borderRadius: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
     },
     isLoading: {
       control: { type: "boolean" },
@@ -87,6 +92,27 @@ WidthHeight.parameters = {
   </div>
 </template>
 `,
+    },
+  },
+};
+export const Radius: StoryFn<typeof WizSkeleton> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizSkeleton },
+  template: `
+  <div style="width: 20vw; height: 10vh;">
+    <WizSkeleton v-bind="$props" />
+  </div>
+`,
+});
+Radius.args = {
+  borderRadius: "xl",
+  isLoading: true,
+};
+
+Radius.parameters = {
+  docs: {
+    description: {
+      story: `borderRadiusを指定することで、角の丸さを制御できます。`,
     },
   },
 };

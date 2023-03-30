@@ -73,7 +73,9 @@ Default.parameters = {
     `,
     },
     source: {
-      code: CODE_TEMPLATE(Default.args),
+      code: CODE_TEMPLATE({
+        label: "Label",
+      }),
     },
   },
 };
@@ -81,7 +83,7 @@ Default.parameters = {
 export const HtmlFor = Template.bind({});
 HtmlFor.args = {
   label: "Label",
-  htmlFor: "hogefuga",
+  htmlFor: "hogehoge",
 };
 HtmlFor.parameters = {
   docs: {
@@ -92,7 +94,9 @@ HtmlFor.parameters = {
     `,
     },
     source: {
-      code: CODE_TEMPLATE(HtmlFor.args),
+      code: CODE_TEMPLATE({
+        label: "Label",
+      }),
     },
   },
 };
@@ -108,7 +112,10 @@ Required.parameters = {
       story: "requiredを指定するとlabelの横に**WizTag**で必須と表示されます。",
     },
     source: {
-      code: CODE_TEMPLATE(Required.args),
+      code: CODE_TEMPLATE({
+        label: "Label",
+        required: true,
+      }),
     },
   },
 };
@@ -124,7 +131,10 @@ Error.parameters = {
       story: "errorを指定するとエラーメッセージが表示されます。",
     },
     source: {
-      code: CODE_TEMPLATE(Error.args),
+      code: CODE_TEMPLATE({
+        label: "Label",
+        error: "空白にはできません",
+      }),
     },
   },
 };

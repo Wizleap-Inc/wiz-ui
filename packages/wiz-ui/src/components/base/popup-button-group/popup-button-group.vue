@@ -3,6 +3,7 @@
     gap="xs2"
     :class="[
       popupButtonGroupStyle,
+      disabled && popupButtonGroupDisabledCursorStyle,
       depth === 0 && borderRadiusStyle[borderRadius],
     ]"
     :style="{ minWidth: computedWidth }"
@@ -15,7 +16,12 @@
       />
       <div v-else-if="item.item.kind === 'group'">
         <span
-          :class="popupButtonGroupTitleStyle"
+          :class="[
+            popupButtonGroupTitleBaseStyle,
+            disabled
+              ? popupButtonGroupTitleVariantStyle['disabled']
+              : popupButtonGroupTitleVariantStyle['enabled'],
+          ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
@@ -26,17 +32,26 @@
           :options="item.item.items"
           :groupDivider="item.item.groupDivider"
           :buttonDivider="item.item.buttonDivider"
+          :disabled="disabled"
           :depth="depth + 1"
         />
       </div>
       <div v-else-if="item.item.kind === 'button'">
         <div
-          :class="popupButtonGroupButtonStyle"
+          :class="[
+            popupButtonGroupButtonBaseStyle,
+            disabled || item.item.option.disabled
+              ? popupButtonGroupButtonVariantStyle['disabled']
+              : popupButtonGroupButtonVariantStyle['enabled'],
+            item.item.option.disabled && popupButtonGroupDisabledCursorStyle,
+          ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           @click="popupButtonMouseDown(item.item)"
           @mousedown="onHoldClick(item.item)"
+          @mouseover="popupButtonMouseOver(item.item)"
+          @mouseout="popupButtonMouseOut(item.item)"
           @keypress.enter="popupButtonKeyPressEnter(item.item)"
           :tabIndex="0"
           :key="`${item.item.option.label}-${item.item.option.value}`"
@@ -50,6 +65,10 @@
               :color="
                 item.item.option.value === isClicking
                   ? 'white.800'
+                  : disabled || item.item.option.disabled
+                  ? 'gray.400'
+                  : item.item.option.value === isHover
+                  ? 'green.800'
                   : item.item.option.iconDefaultColor ?? 'gray.500'
               "
               size="md"
@@ -69,15 +88,18 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   popupButtonGroupStyle,
-  popupButtonGroupButtonStyle,
-  popupButtonGroupTitleStyle,
+  popupButtonGroupDisabledCursorStyle,
+  popupButtonGroupButtonBaseStyle,
+  popupButtonGroupTitleBaseStyle,
   popupButtonGroupDividerStyle,
   popupButtonGroupInnerContainerStyle,
+  popupButtonGroupTitleVariantStyle,
+  popupButtonGroupButtonVariantStyle,
   borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
 
-import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
+import { WizIcon, WizVStack } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { ButtonGroupItem } from "./types";
@@ -106,11 +128,11 @@ const props = defineProps({
     required: false,
     default: "no",
   },
-  // disabled: {
-  //   type: Boolean,
-  //   required: false,
-  //   default: false,
-  // },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
   expand: {
     type: Boolean,
     required: false,
@@ -165,10 +187,13 @@ const items = computed(() => {
     .flat();
   return items;
 });
+
 const isClicking = ref<number | null>(null);
+const isHover = ref<number | null>(null);
 
 const onHoldClick = (item: ButtonGroupItem) => {
-  if (item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     isClicking.value = item.option.value;
     const mouseup = () => {
       isClicking.value = null;
@@ -179,13 +204,29 @@ const onHoldClick = (item: ButtonGroupItem) => {
 };
 
 const popupButtonMouseDown = (item: ButtonGroupItem) => {
-  if (item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };
 
+const popupButtonMouseOver = (item: ButtonGroupItem) => {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
+    isHover.value = item.option.value;
+  }
+};
+
+const popupButtonMouseOut = (item: ButtonGroupItem) => {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
+    isHover.value = null;
+  }
+};
+
 const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
-  if (item.kind === "button") {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };

@@ -1,42 +1,41 @@
-name: Prepare Node.js Environment
-description: Prepare Node.js environment for the job, this is a composite action for reusability
-inputs:
-  node-version:
-    description: "Node.js version to use"
-    required: false
-    default: "16.x"
-  runs-on:
-    description: "Operating system to use"
-    required: false
-    default: "ubuntu-20.04"
-  node-auth-token:
-    description: "Node auth token to publish to npm"
-    required: true
-    default: ""
-  yarn-cache-folder:
-    description: "Yarn cache folder, input this from environment variable"
-    required: true
-    default: ".cache/yarn"
+name: "Monorepo install (pnpm)"
+description: "Run pnpm install"
 
 runs:
-  using: "Composite"
-  steps:
-    - name: Use Node.js ${{ inputs.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ inputs.node-version }}
-        registry-url: "https://registry.npmjs.org"
-        scope: "@wizleap-inc"
-        always-auth: true
-      env:
-        NODE_AUTH_TOKEN: ${{ inputs.node-auth-token }}
+  using: "composite"
 
-    - name: Cache Yarn
-      uses: actions/cache@v2
+  steps:
+    - uses: pnpm/action-setup@v2.2.4
+
+    - name: Expose pnpm config(s) through "$GITHUB_OUTPUT"
+      id: pnpm-config
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+    - name: Cache rotation keys
+      id: cache-rotation
+      shell: bash
+      run: |
+        echo "YEAR_MONTH=$(/bin/date -u "+%Y%m")" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v3
+      name: Setup pnpm cache
       with:
-        path: ${{ inputs.yarn-cache-folder }}
-        key: ${{ runner.os }}-yarn-cache-v1
+        path: ${{ steps.pnpm-config.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-cache-${{ steps.cache-rotation.outputs.YEAR_MONTH }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-cache-${{ steps.cache-rotation.outputs.YEAR_MONTH }}-
+
+    # Prevent store to grow over time (not needed with yarn)
+    # Note: not perfect as it prune too much in monorepos so the idea
+    #       is to use cache-rotation as above. In the future this might work better.
+    #- name: Prune pnpm store
+    #  shell: bash
+    #  run: pnpm prune store
 
     - name: Install dependencies
       shell: bash
-      run: yarn install
+      run: pnpm install --frozen-lockfile --prefer-offline
+      env:
+        HUSKY: "0" # By default do not run HUSKY install

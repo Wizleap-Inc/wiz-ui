@@ -47,9 +47,10 @@ import {
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType } from "vue";
-import { RouterLinkProps } from "vue-router/types/router";
 
 import { WizIcon, TIcon } from "@/components";
+
+import type { RouterLinkProps } from "vue-router/types/router";
 
 defineOptions({
   name: ComponentName.Anchor,
