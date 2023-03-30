@@ -12,18 +12,19 @@
       <div :class="selectBoxInnerBoxStyle" @click="toggleDropdown">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
-            v-for="item in selectedItem"
+            v-for="(item, i) in selectedItem"
             :key="`${item.label}-${item.value}`"
             :class="selectBoxInnerBoxSelectedItemStyle"
           >
             <span :class="selectBoxInnerBoxSelectedLabelStyle">
               {{ item.label }}
             </span>
-
             <button
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
+              @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
               :class="selectBoxInnerBoxCloseButtonStyle"
+              :ref="setUnselectableRef(i)"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -40,6 +41,7 @@
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
             :disabled="disabled"
+            @keydown="onKeydownBackspace.focus"
           />
         </WizHStack>
       </div>
@@ -101,7 +103,7 @@ import {
   selectBoxInnerBoxCloseButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType } from "vue";
+import { ref, computed, inject, PropType, ComponentPublicInstance } from "vue";
 
 import {
   WizPopupContainer,
@@ -124,7 +126,7 @@ import { levenshteinDistance } from "./levenshtein-distance";
 import { SelectBoxOption } from "./types";
 
 defineOptions({
-  name: ComponentName.SelectBox,
+  name: ComponentName.SearchSelector,
 });
 
 interface Emit {
@@ -183,6 +185,8 @@ const emit = defineEmits<Emit>();
 const searchValue = ref("");
 
 const inputRef = ref<HTMLElement | undefined>();
+const backspaceUnselectableRef = ref();
+
 const toggleDropdown = () => {
   if (props.disabled) return;
   if (!props.multiSelectable && props.modelValue.length > 0 && props.isOpen) {
@@ -213,6 +217,12 @@ const selectedItem = computed(() => {
   return props.modelValue.map((v) => valueToOption.value[v]);
 });
 
+const setUnselectableRef =
+  (index: number) => (el: ComponentPublicInstance | Element | null) => {
+    if (el && index === selectedItem.value.length - 1)
+      backspaceUnselectableRef.value = el;
+  };
+
 const filteredOptions = computed(() => {
   const sortedOptions =
     searchValue.value.length !== 0
@@ -232,7 +242,26 @@ const toggleSelectBox = () => {
 
 const onClear = (n: number) => {
   emit("unselect", n);
+  inputRef.value?.focus();
 };
+
+const onKeydownBackspace = {
+  focus: (event: KeyboardEvent) => {
+    if (
+      event.key === "Backspace" &&
+      searchValue.value === "" &&
+      props.modelValue.length > 0
+    ) {
+      backspaceUnselectableRef.value?.focus();
+    }
+  },
+  unselect: (n: number, event: KeyboardEvent) => {
+    if (event.key === "Backspace") {
+      onClear(n);
+    }
+  },
+};
+
 const onSelect = (value: number) => {
   if (!props.multiSelectable) {
     toggleSelectBox();
