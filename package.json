@@ -1,22 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "format:packages": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,md,mdx}'",
-    "format": "yarn format:packages",
-    "lint:packages": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
-    "lint": "yarn lint:packages",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,vue,md,json}'",
+    "lint": "eslint --ext .js,.ts,.jsx,.tsx,.vue .",
     "prepare": "husky install && pnpm resolve-deps",
     "prebuild": "yarn resolve-deps",
     "resolve-deps": "rimraf ./node_modules/@types/react",
     "release": "changeset publish",
     "build": "turbo build",
-    "dev": "turbo dev",
-    "test": "run-p test:*",
-    "test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui test",
-    "test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next test",
-    "ci:test": "run-p ci:test:*",
-    "ci:test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui ci:test",
-    "ci:test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next ci:test"
+    "dev": "turbo dev --parallel",
+    "test": "turbo test"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
