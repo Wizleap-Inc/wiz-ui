@@ -4,6 +4,10 @@
   "version": "0.0.0",
   "main": "index.ts",
   "scripts": {
-    "build": "node ./scripts/build"
+    "build": "run-s build:icon format",
+    "build:icon": "node ./scripts/build",
+    "format": "run-p format:icon format:constants",
+    "format:icon": "prettier --write \"../{wiz-ui,wiz-ui-next}/src/components/icons/*.{ts,vue}\"",
+    "format:constants": "prettier --write \"../constants/component/icon-name.ts\""
   }
 }
