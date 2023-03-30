@@ -28,6 +28,7 @@
     "@storybook/react-vite": "^7.0.0-rc.9",
     "@storybook/test-runner": "^0.9.2",
     "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.31",
     "@vanilla-extract/vite-plugin": "^3.7.0",
     "@vitejs/plugin-react": "^3.1.0",
     "concurrently": "^7.6.0",
