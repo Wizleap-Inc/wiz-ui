@@ -22,4 +22,4 @@ jobs:
         uses: ./.github/composite/prepare_node
 
       - name: lint
-        run: yarn lint
+        run: pnpm lint

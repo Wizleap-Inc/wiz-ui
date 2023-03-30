@@ -25,4 +25,4 @@ jobs:
         uses: ./.github/composite/prepare_node
 
       - name: build check
-        run: yarn build:lib
+        run: pnpm build

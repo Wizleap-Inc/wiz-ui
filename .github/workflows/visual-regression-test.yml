@@ -35,10 +35,10 @@ jobs:
           git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
 
       - name: run storybook generate
-        run: yarn workspace @wizleap-inc/wiz-ui build:storybook
+        run: pnpm --filter @wizleap-inc/wiz-ui build:storybook
 
       - name: run storycap
-        run: yarn workspace @wizleap-inc/wiz-ui ci:storycap
+        run: pnpm --filter @wizleap-inc/wiz-ui ci:storycap
 
       - name: run reg-suit
-        run: yarn workspace @wizleap-inc/wiz-ui ci:vrt
+        run: pnpm --filter @wizleap-inc/wiz-ui ci:vrt

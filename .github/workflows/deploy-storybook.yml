@@ -16,7 +16,7 @@ env:
   DEPLOY_TYPE: storybook
   NOTIFICATION_WEBHOOK_URL: ${{ secrets.SLACK_COMPONENT_STORY_WORKFLOW_URL }}
   DEPLOY_URL_POSTFIX: /index.html
-  BUILD_COMMAND: yarn build:sb
+  BUILD_COMMAND: pnpm --filter @wizleap-inc/wiz-ui build:storybook
 
 jobs:
   build-and-deploy:

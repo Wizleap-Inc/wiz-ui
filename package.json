@@ -10,8 +10,10 @@
     "test": "turbo test"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": [
-      "eslint --fix",
+    "*.{js,ts,jsx,tsx,vue}": [
+      "eslint --fix"
+    ],
+    "*.{js,ts,jsx,tsx,vue,md,json}": [
       "prettier --write"
     ]
   },

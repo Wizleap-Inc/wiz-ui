@@ -27,13 +27,13 @@ jobs:
         uses: ./.github/composite/prepare_node
 
       - name: build
-        run: yarn build:lib
+        run: pnpm build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
