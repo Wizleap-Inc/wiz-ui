@@ -1,20 +1,20 @@
 {
-  "name": "@wizleap-inc/wiz-ui-next",
-  "version": "1.0.3",
-  "description": "A Vue3 UI Framework for Wizleap Inc.",
+  "name": "@wizleap-inc/wiz-ui-react",
+  "version": "0.0.0",
+  "description": "A React UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
-    "build:lib": "vue-tsc --noEmit && vite build",
+    "build:lib": "tsc --noEmit && vite build",
     "build:storybook": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
     "check:lib-publish": "can-npm-publish --verbose",
     "dev": "run-p dev:*",
-    "dev:storybook": "storybook dev -p 6007",
+    "dev:storybook": "storybook dev -p 6008",
     "test": "run-p test:unit test:storybook",
-    "test:storybook": "test-storybook --url http://localhost:6007",
+    "test:storybook": "test-storybook --url http://localhost:6008",
     "ci:test": "run-p ci:test:storybook",
-    "ci:test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6007 --silent\" \"wait-on tcp:6007 && yarn test:storybook\"",
+    "ci:test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6008 --silent\" \"wait-on tcp:6008 && yarn test:storybook\"",
     "ci:vrt": "reg-suit run",
-    "ci:storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6007' http://localhost:6007"
+    "ci:storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6008' http://localhost:6008"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^7.0.0-rc.9",
@@ -24,19 +24,18 @@
     "@storybook/blocks": "^7.0.0-rc.9",
     "@storybook/builder-vite": "^7.0.0-rc.9",
     "@storybook/jest": "^0.0.10",
+    "@storybook/react": "^7.0.0-rc.9",
+    "@storybook/react-vite": "^7.0.0-rc.9",
     "@storybook/test-runner": "^0.9.2",
     "@storybook/testing-library": "^0.0.13",
-    "@storybook/vue3": "^7.0.0-rc.9",
-    "@storybook/vue3-vite": "^7.0.0-rc.9",
+    "@types/react": "^18.0.31",
     "@vanilla-extract/vite-plugin": "^3.7.0",
-    "@vitejs/plugin-vue": "^3.2.0",
+    "@vitejs/plugin-react": "^3.1.0",
     "concurrently": "^7.6.0",
     "http-server": "^14.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "storybook": "^7.0.0-rc.9",
     "storycap": "^4.0.0",
-    "unplugin-vue-define-options": "^1.1.1",
+    "typescript": "^5.0.2",
     "vite": "^3.2.2",
     "vite-plugin-dts": "^1.7.1",
     "wait-on": "^7.0.1"
@@ -54,7 +53,7 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
