@@ -43,10 +43,13 @@
     "eslint-plugin-vue": "^9.7.0",
     "http-server": "^14.1.1",
     "husky": "^8.0.2",
+    "jsdom": "^21.1.1",
     "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
     "playwright": "^1.27.1",
     "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "reg-keygen-git-hash-plugin": "^0.12.1",
     "reg-notify-github-plugin": "^0.12.1",
     "reg-publish-s3-plugin": "^0.12.1",
@@ -61,9 +64,7 @@
     "vite": "^4.2.1",
     "vite-plugin-dts": "^1.7.1",
     "vitest": "^0.29.8",
-    "wait-on": "^7.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "wait-on": "^7.0.1"
   },
   "packageManager": "pnpm@7.28.0",
   "engines": {
