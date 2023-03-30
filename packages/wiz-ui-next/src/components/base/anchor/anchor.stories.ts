@@ -9,13 +9,6 @@ import WizIArrowRight from "../../icons/arrow-right.vue";
 
 import WizAnchor from "./anchor.vue";
 
-const Home = {
-  template: "<div>Home</div>",
-};
-const About = {
-  template: "<div>About</div>",
-};
-
 export default {
   title: "Base/Anchor",
   component: WizAnchor,

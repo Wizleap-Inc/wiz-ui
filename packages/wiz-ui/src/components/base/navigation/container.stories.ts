@@ -1,5 +1,4 @@
 import { StoryFn } from "@storybook/vue";
-import StoryRouter from "storybook-vue-router";
 import { provide } from "vue";
 
 import {
@@ -16,19 +15,6 @@ import {
 
 import { WizNavItem, WizNavContainer } from ".";
 
-const Home = {
-  template: "<div>Home</div>",
-};
-const Page1 = {
-  template: "<div>Page1</div>",
-};
-const Page2 = {
-  template: "<div>Page2</div>",
-};
-const Page3 = {
-  template: "<div>Page3</div>",
-};
-
 export default {
   title: "Base/Navigation/Container",
   component: WizNavContainer,
@@ -41,12 +27,6 @@ export default {
     },
   },
   decorators: [
-    StoryRouter([
-      { path: "/", name: "home", component: Home },
-      { path: "/page1", name: "page1", component: Page1 },
-      { path: "/page2", name: "page2", component: Page2 },
-      { path: "/page3", name: "page3", component: Page3 },
-    ]),
     (story: StoryFn) => ({
       components: { story },
       setup() {
