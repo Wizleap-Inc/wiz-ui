@@ -15,13 +15,13 @@ pnpm add @wizleap-inc/wiz-ui
 import stylesheet in your main.js
 
 ```js
-import '@wizleap-inc/wiz-ui/dist/style.css'
+import "@wizleap-inc/wiz-ui/dist/style.css";
 ```
 
 import components in your component
 
 ```js
-import { WizTextButton } from '@wizleap-inc/wiz-ui'
+import { WizTextButton } from "@wizleap-inc/wiz-ui";
 ```
 
 ## Contributing
