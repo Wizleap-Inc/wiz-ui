@@ -42,8 +42,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
   },
   template: `
   <div>
-    <WizNavItem v-bind="$props" :active="$route.path === '/home'" />
-    <router-view />
+    <WizNavItem v-bind="$props" />
   </div>
   `,
 });
@@ -78,8 +77,7 @@ const TooltipTemplate: StoryFn = (args, { argTypes }) => ({
   },
   template: `
   <div style="margin-top: 48px">
-    <WizNavItem v-bind="$props" :active="$route.path === '/home'" />
-    <router-view />
+    <WizNavItem v-bind="$props"/>
   </div>
   `,
 });

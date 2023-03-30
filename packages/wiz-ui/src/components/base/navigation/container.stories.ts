@@ -54,10 +54,10 @@ export const Overview: StoryFn = (_, { argTypes }) => ({
   template: `
   <div style="display: flex; height: 100vh;">
     <WizNavContainer>
-      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="$route.path === '/'" />
-      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="$route.path === '/page1'" />
-      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="$route.path === '/page2'" />
-      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="$route.path === '/page3'" />
+      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="false" />
+      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
     </WizNavContainer>
     <router-view />
   </div>
@@ -78,10 +78,10 @@ export const WithFooter: StoryFn = (_, { argTypes }) => ({
   template: `
   <div style="display: flex; height: 100vh;">
     <WizNavContainer>
-      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="$route.path === '/'" />
-      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="$route.path === '/page1'" />
-      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="$route.path === '/page2'" />
-      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="$route.path === '/page3'" />
+      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="false" />
+      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
       <template #footer>
         <h4>Footer</h4>
         <h5>Footer</h5>
@@ -109,10 +109,10 @@ export const Close: StoryFn = (_, { argTypes }) => ({
   template: `
   <div style="display: flex; height: 100vh;">
     <WizNavContainer :close="true">
-      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="$route.path === '/'" />
-      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="$route.path === '/page1'" />
-      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="$route.path === '/page2'" />
-      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="$route.path === '/page3'" />
+      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="false" />
+      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
       <template #footer>
         <h4>Footer</h4>
         <h5>Footer</h5>
@@ -142,10 +142,10 @@ export const Playground: StoryFn = (_, { argTypes }) => ({
   template: `
   <div style="display: flex; height: 100vh;">
     <WizNavContainer :close="true">
-      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="$route.path === '/'" />
-      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="$route.path === '/page1'" />
-      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="$route.path === '/page2'" />
-      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="$route.path === '/page3'" />
+      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="false" />
+      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
       <template #footer>
         <h4>Footer</h4>
         <h5>Footer</h5>
@@ -175,10 +175,10 @@ export const Fixed: StoryFn = (_, { argTypes }) => ({
   template: `
   <div style="display: flex; height: 100vh;">
     <WizNavContainer sticky>
-      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="$route.path === '/'" />
-      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="$route.path === '/page1'" />
-      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="$route.path === '/page2'" />
-      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="$route.path === '/page3'" />
+      <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="false" />
+      <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+      <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+      <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
       <template #footer>
         <h4>Footer</h4>
         <h5>Footer</h5>
