@@ -52,44 +52,39 @@ Default.args = {
   options: _getDummyOptions("test", 3),
 };
 
+export const Open = Template.bind({});
+Open.args = {
+  options: _getDummyOptions("test", 3),
+  isOpen: true,
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   options: [],
   disabled: true,
 };
 
-const MultiTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { WizSelectBox, WizHStack },
-  setup() {
-    const value = ref(0);
-    return { value };
-  },
-  template: `
-    <WizHStack>
-      <WizSelectBox v-bind="$props"  v-model="value" @input="input"/>
-      <WizSelectBox v-bind="$props"  v-model="value" @input="input"/>
-    </WizHStack>
-  `,
-});
-
-export const LongLabel = MultiTemplate.bind({});
+export const LongLabel = Template.bind({});
 LongLabel.args = {
   options: _getDummyOptions("ThisIsTooLongLabelThisIsTooLongLabel", 3),
+  isOpen: true,
 };
 
 export const Expand = Template.bind({});
 Expand.args = {
   options: _getDummyOptions("test", 1),
   expand: true,
+  isOpen: true,
 };
 
 export const ManyOptions = Template.bind({});
 ManyOptions.args = {
   options: _getDummyOptions("test", 15),
+  isOpen: true,
 };
 
 export const ExtraLabel = Template.bind({});
 ExtraLabel.args = {
   options: _getDummyOptions("test", 3, "(10)"),
+  isOpen: true,
 };

@@ -203,3 +203,28 @@ gapを指定すると、チェックボックスの間に余白を設定でき�
     },
   },
 };
+
+const StrikeThroughTemplate: StoryFn<typeof WizCheckBox> = (args) => ({
+  components: { WizCheckBox },
+  setup() {
+    const value = ref([1, 2]);
+    return { value, args };
+  },
+  template: `
+  <div>
+    <p>入力値：{{ value }}</p>
+    <WizCheckBox v-bind="args" v-model="value" @input="args.input"/>
+  </div>
+`,
+});
+
+export const StrikeThrough = StrikeThroughTemplate.bind({});
+StrikeThrough.args = {
+  options: [
+    { label: "test1", value: 1, key: "test1" },
+    { label: "test2", value: 2, key: "test2", disabled: true },
+    { label: "test3", value: 3, key: "test3" },
+    { label: "test4", value: 4, key: "test4", disabled: true },
+  ],
+  strikeThrough: true,
+};

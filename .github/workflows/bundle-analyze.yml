@@ -17,4 +17,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           build-script: build:lib
-          pattern: "./packages/{wiz-ui,wiz-ui-next}/dist/{wiz-ui.es.js,wiz-ui.umd.js,style.css}"
+          pattern: "./packages/{wiz-ui,wiz-ui-next,wiz-ui-react}/dist/{wiz-ui.es.js,wiz-ui.umd.js,style.css}"

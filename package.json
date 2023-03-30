@@ -8,26 +8,32 @@
     "prepare": "husky install && yarn resolve-deps",
     "prebuild": "yarn resolve-deps",
     "resolve-deps": "rimraf ./node_modules/@types/react",
+    "release": "changeset publish",
     "build": "run-p build:*",
     "build:docs": "yarn workspace @wizleap-inc/wiz-ui-docs build",
     "build:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 build",
     "build:sb": "run-p build:sb:*",
     "build:sb:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:storybook",
     "build:sb:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:storybook",
+    "build:sb:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react build:storybook",
     "build:lib": "run-p build:lib:*",
     "build:lib:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui build:lib",
     "build:lib:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next build:lib",
+    "build:lib:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react build:lib",
     "dev": "run-p dev:*",
     "dev:examples": "yarn workspace @wizleap-inc/wiz-ui-example-vue2 dev",
     "dev:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui dev",
     "dev:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next dev",
+    "dev:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react dev",
     "dev:docs": "yarn workspace @wizleap-inc/wiz-ui-docs dev",
     "test": "run-p test:*",
     "test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui test",
     "test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next test",
+    "test:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react test",
     "ci:test": "run-p ci:test:*",
     "ci:test:wiz-ui": "yarn workspace @wizleap-inc/wiz-ui ci:test",
-    "ci:test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next ci:test"
+    "ci:test:wiz-ui-next": "yarn workspace @wizleap-inc/wiz-ui-next ci:test",
+    "ci:test:wiz-ui-react": "yarn workspace @wizleap-inc/wiz-ui-react ci:test"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
@@ -45,10 +51,13 @@
       "**/@wizleap-inc/wiz-ui",
       "**/@wizleap-inc/wiz-ui/**",
       "**/@wizleap-inc/wiz-ui-next",
-      "**/@wizleap-inc/wiz-ui-next/**"
+      "**/@wizleap-inc/wiz-ui-next/**",
+      "**/@wizleap-inc/wiz-ui-react/**"
     ]
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.1",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
     "can-npm-publish": "^1.3.6",
@@ -63,6 +72,7 @@
     "playwright": "^1.27.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-visualizer": "^5.9.0"
   }
 }

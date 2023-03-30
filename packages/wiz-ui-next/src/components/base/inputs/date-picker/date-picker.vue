@@ -17,11 +17,7 @@
         <span>{{ parseValue(calendarValue) || placeholder }}</span>
       </WizHStack>
     </button>
-    <WizPopup
-      :isOpen="openDatepicker"
-      @onClose="openDatepicker = false"
-      gap="xs"
-    >
+    <WizPopup :isOpen="openDatepicker" @onClose="openDatepicker = false">
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizText as="span" fontSize="xs" color="gray.700">{{
@@ -131,15 +127,19 @@ const toggleDatepicker = () => {
 };
 
 const clickToNextMonth = () => {
-  const setDateTime = currentMonth.value.setMonth(
-    currentMonth.value.getMonth() + 1
+  const setDateTime = new Date(
+    currentMonth.value.getFullYear(),
+    currentMonth.value.getMonth() + 1,
+    1
   );
   currentMonth.value = new Date(setDateTime);
 };
 
 const clickToPreviousMonth = () => {
-  const setDateTime = currentMonth.value.setMonth(
-    currentMonth.value.getMonth() - 1
+  const setDateTime = new Date(
+    currentMonth.value.getFullYear(),
+    currentMonth.value.getMonth() - 1,
+    1
   );
   currentMonth.value = new Date(setDateTime);
 };
