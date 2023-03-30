@@ -51,7 +51,8 @@
       "**/@wizleap-inc/wiz-ui",
       "**/@wizleap-inc/wiz-ui/**",
       "**/@wizleap-inc/wiz-ui-next",
-      "**/@wizleap-inc/wiz-ui-next/**"
+      "**/@wizleap-inc/wiz-ui-next/**",
+      "**/@wizleap-inc/wiz-ui-react/**"
     ]
   },
   "devDependencies": {
