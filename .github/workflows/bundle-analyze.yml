@@ -13,6 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 📥 Monorepo install
+        uses: ./.github/composite/prepare_node
+
       - uses: preactjs/compressed-size-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
