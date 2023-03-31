@@ -49,11 +49,13 @@ import {
   navigationItemIconDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, PropType } from "vue";
-import { RouterLinkProps } from "vue-router/types/router";
 
 import type { TIcon } from "@/components/icons";
 
 import { WizTooltip } from "../tooltip";
+
+import type { RouterLinkProps } from "vue-router/types/router";
+
 defineOptions({
   name: ComponentName.NavigationItem,
 });

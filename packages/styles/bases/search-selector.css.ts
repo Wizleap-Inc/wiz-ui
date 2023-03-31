@@ -135,6 +135,7 @@ export const selectBoxSearchInputStyle = style({
   },
   ":disabled": {
     cursor: "not-allowed",
+    backgroundColor: THEME.color.gray["300"],
   },
 });
 

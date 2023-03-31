@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  YARN_CACHE_FOLDER: .cache/yarn
-
 jobs:
   lint:
     runs-on: ubuntu-20.04
@@ -17,15 +14,15 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: ./.github/composite/prepare_node
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          runs-on: ${{ matrix.runs-on }}
-          node-auth-token: ${{ secrets.NODE_AUTH_TOKEN }}
-          yarn-cache-folder: ${{ env.YARN_CACHE_FOLDER }}
+
+      - name: 📥 Monorepo install
+        uses: ./.github/composite/prepare_node
 
       - name: build check
-        run: yarn build:lib
+        run: pnpm build
