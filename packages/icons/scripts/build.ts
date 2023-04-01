@@ -4,7 +4,7 @@ import path from "path";
 import { rimrafSync } from "rimraf";
 
 import { CURRENT_DIR, WIZ_UI_CONSTANTS_DIR, WIZ_UI_SVG_DIR } from "./constants";
-import { Component } from "./types";
+import { Component, SVG } from "./types";
 import {
   createIcon,
   iconComponentName,
@@ -13,7 +13,7 @@ import {
 } from "./utils";
 
 // SVGファイルを取得
-const SVGs = fs
+const SVGs: SVG[] = fs
   .readdirSync(WIZ_UI_SVG_DIR)
   .filter((file) => path.extname(file) === ".svg")
   .map((file) => ({
