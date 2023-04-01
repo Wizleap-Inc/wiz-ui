@@ -1,6 +1,6 @@
 import { SVG } from "./types";
 
-/** ケバブケースをキャメルケースに変換する */
+/** ケバブケースをパスカルケースに変換する */
 export const kebab2pascal = (str: string) =>
   str
     .split("-")
