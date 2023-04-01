@@ -12,18 +12,19 @@
       <div :class="selectBoxInnerBoxStyle" @click="toggleDropdown">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
-            v-for="item in selectedItem"
+            v-for="(item, i) in selectedItem"
             :key="`${item.label}-${item.value}`"
             :class="selectBoxInnerBoxSelectedItemStyle"
           >
             <span :class="selectBoxInnerBoxSelectedLabelStyle">
               {{ item.label }}
             </span>
-
             <button
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
+              @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
               :class="selectBoxInnerBoxCloseButtonStyle"
+              :ref="setUnselectableRef(i)"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -40,6 +41,7 @@
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
             :disabled="disabled"
+            @keydown="onKeydownBackspace.focus"
           />
         </WizHStack>
       </div>
@@ -49,24 +51,20 @@
         :disabled="disabled"
       >
         <WizIcon
-          v-if="isOpenDropdown"
+          v-if="isOpen"
           :icon="WizIExpandLess"
           :class="selectBoxInnerBoxLessStyle"
-          :color="!isOpenDropdown ? 'white.800' : 'green.800'"
+          :color="!isOpen ? 'white.800' : 'green.800'"
         />
 
         <WizIcon
-          v-else-if="!isOpenDropdown"
+          v-else-if="!isOpen"
           :icon="WizIExpandMore"
           :class="selectBoxInnerBoxMoreStyle"
         />
       </button>
     </div>
-    <WizPopup
-      layer="popover"
-      :isOpen="isOpenDropdown"
-      @onClose="isOpenDropdown = false"
-    >
+    <WizPopup layer="popover" :isOpen="isOpen" @onClose="emit('toggle', false)">
       <div
         :class="selectBoxSelectorStyle"
         :style="{ minWidth: width }"
@@ -105,7 +103,7 @@ import {
   selectBoxInnerBoxCloseButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType } from "vue";
+import { ref, computed, inject, PropType, ComponentPublicInstance } from "vue";
 
 import {
   WizPopupContainer,
@@ -128,8 +126,15 @@ import { levenshteinDistance } from "./levenshtein-distance";
 import { SelectBoxOption } from "./types";
 
 defineOptions({
-  name: ComponentName.SelectBox,
+  name: ComponentName.SearchSelector,
 });
+
+interface Emit {
+  (e: "update:modelValue", modelValue: number): void;
+  (e: "unselect", value: number): void;
+  (e: "add", label: string): void;
+  (e: "toggle", value: boolean): void;
+}
 
 const props = defineProps({
   options: {
@@ -169,22 +174,25 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
 });
 
-const isOpenDropdown = ref(false);
+const emit = defineEmits<Emit>();
+
 const searchValue = ref("");
 
 const inputRef = ref<HTMLElement | undefined>();
+const backspaceUnselectableRef = ref();
+
 const toggleDropdown = () => {
   if (props.disabled) return;
-  if (
-    !props.multiSelectable &&
-    props.modelValue.length > 0 &&
-    isOpenDropdown.value
-  ) {
-    return (isOpenDropdown.value = false);
+  if (!props.multiSelectable && props.modelValue.length > 0 && props.isOpen) {
+    return emit("toggle", false);
   }
-  isOpenDropdown.value = true;
+  emit("toggle", true);
   inputRef.value?.focus();
 };
 
@@ -209,6 +217,12 @@ const selectedItem = computed(() => {
   return props.modelValue.map((v) => valueToOption.value[v]);
 });
 
+const setUnselectableRef =
+  (index: number) => (el: ComponentPublicInstance | Element | null) => {
+    if (el && index === selectedItem.value.length - 1)
+      backspaceUnselectableRef.value = el;
+  };
+
 const filteredOptions = computed(() => {
   const sortedOptions =
     searchValue.value.length !== 0
@@ -223,19 +237,31 @@ const filteredOptions = computed(() => {
 });
 
 const toggleSelectBox = () => {
-  if (!props.disabled) isOpenDropdown.value = !isOpenDropdown.value;
+  if (!props.disabled) emit("toggle", !props.isOpen);
 };
-
-interface Emit {
-  (e: "update:modelValue", modelValue: number): void;
-  (e: "unselect", value: number): void;
-  (e: "add", label: string): void;
-}
-const emit = defineEmits<Emit>();
 
 const onClear = (n: number) => {
   emit("unselect", n);
+  inputRef.value?.focus();
 };
+
+const onKeydownBackspace = {
+  focus: (event: KeyboardEvent) => {
+    if (
+      event.key === "Backspace" &&
+      searchValue.value === "" &&
+      props.modelValue.length > 0
+    ) {
+      backspaceUnselectableRef.value?.focus();
+    }
+  },
+  unselect: (n: number, event: KeyboardEvent) => {
+    if (event.key === "Backspace") {
+      onClear(n);
+    }
+  },
+};
+
 const onSelect = (value: number) => {
   if (!props.multiSelectable) {
     toggleSelectBox();
@@ -267,7 +293,7 @@ const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 const state = computed(() => {
   if (isError.value) return "error";
-  if (isOpenDropdown.value) return "active";
+  if (props.isOpen) return "active";
   return "default";
 });
 

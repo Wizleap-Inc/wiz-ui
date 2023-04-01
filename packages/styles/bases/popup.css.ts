@@ -3,8 +3,11 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const popupStyle = style({
   position: "absolute",
-  filter: `drop-shadow(${THEME.shadow.sm})`,
   width: "max-content",
+});
+
+export const popupShadowStyle = style({
+  filter: `drop-shadow(${THEME.shadow.sm})`,
 });
 
 export const popupContainerStyle = styleVariants({

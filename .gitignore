@@ -4,3 +4,5 @@ coverage
 dist
 __screenshots__
 stats.html
+.turbo
+

@@ -4,22 +4,32 @@
     @mouseenter="isHover = true"
     @mouseleave="isHover = false"
   >
-    <slot />
-    <div
-      :class="[tooltipPopupStyle, tooltipPositionStyle[direction]]"
-      :style="{
-        opacity: isHover || hover ? 1 : 0,
-        pointerEvents: isHover || hover ? 'auto' : 'none',
-      }"
-      v-if="$slots.content"
-    >
-      <div :class="tooltipContentStyle">
-        <slot name="content" />
-      </div>
-      <WizIChangeHistory
-        :class="[tooltipIconStyle, tooltipIconDirectionStyle[direction]]"
-      />
-    </div>
+    <WizPopupContainer>
+      <slot />
+      <WizPopup
+        v-if="$slots.content"
+        :isOpen="isHover || hover"
+        :direction="computedDirection"
+        :shadow="false"
+        :animation="true"
+        @onTurn="turnPopup"
+        gap="xs"
+      >
+        <div
+          :class="[tooltipPositionStyle[actuallyDirection], tooltipPopupStyle]"
+        >
+          <div :class="tooltipContentStyle">
+            <slot name="content" />
+          </div>
+          <WizIChangeHistory
+            :class="[
+              tooltipIconStyle,
+              tooltipIconDirectionStyle[actuallyDirection],
+            ]"
+          />
+        </div>
+      </WizPopup>
+    </WizPopupContainer>
   </div>
 </template>
 
@@ -33,17 +43,15 @@ import {
   tooltipPositionStyle,
   tooltipPopupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
-import { PropType, ref } from "vue";
+import { PropType, ref, computed } from "vue";
 
-import { WizIChangeHistory } from "@/components/icons";
+import { WizIChangeHistory, WizPopup, WizPopupContainer } from "@/components";
 
 defineOptions({
   name: ComponentName.Tooltip,
 });
 
-const isHover = ref(false);
-
-defineProps({
+const props = defineProps({
   direction: {
     type: String as PropType<"top" | "bottom" | "left" | "right">,
     required: false,
@@ -55,4 +63,22 @@ defineProps({
     default: false,
   },
 });
+
+const isHover = ref(false);
+const actuallyDirection = ref(props.direction);
+
+const computedDirection = computed(() => {
+  if (props.direction === "top") return "tc";
+  if (props.direction === "bottom") return "bc";
+  if (props.direction === "left") return "lc";
+  if (props.direction === "right") return "rc";
+  return "tc";
+});
+
+const turnPopup = (direction: string) => {
+  if (direction[0] === "t") actuallyDirection.value = "top";
+  if (direction[0] === "b") actuallyDirection.value = "bottom";
+  if (direction[0] === "l") actuallyDirection.value = "left";
+  if (direction[0] === "r") actuallyDirection.value = "right";
+};
 </script>

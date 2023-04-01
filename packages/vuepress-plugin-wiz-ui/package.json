@@ -2,12 +2,8 @@
   "name": "@wizleap-inc/vuepress-plugin-wiz-ui",
   "version": "0.0.0",
   "main": "src/index.js",
-  "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
-  },
   "dependencies": {
-    "@wizleap-inc/wiz-ui": "file:../wiz-ui",
+    "@wizleap-inc/wiz-ui": "*",
     "markdown-it-container": "^2.0.0"
   },
   "devDependencies": {

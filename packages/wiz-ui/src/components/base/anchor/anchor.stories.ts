@@ -4,18 +4,10 @@ import {
   FONT_SIZE_ACCESSORS,
   FONT_WEIGHT_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
-import StoryRouter from "storybook-vue-router";
 
 import WizIArrowRight from "../../icons/arrow-right.vue";
 
 import WizAnchor from "./anchor.vue";
-
-const Home = {
-  template: "<div>Home</div>",
-};
-const About = {
-  template: "<div>About</div>",
-};
 
 export default {
   title: "Base/Anchor",
@@ -67,12 +59,6 @@ export default {
       defaultValue: false,
     },
   },
-  decorators: [
-    StoryRouter([
-      { path: "/", name: "home", component: Home },
-      { path: "/about", name: "about", component: About },
-    ]),
-  ],
 };
 
 const Template: StoryFn = (_, { argTypes }) => ({

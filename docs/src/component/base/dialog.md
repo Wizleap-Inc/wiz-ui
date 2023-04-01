@@ -21,5 +21,4 @@ import { ref } from "vue";
 const isOpen = ref(false);
 ```
 
-
 <dialog-default />
