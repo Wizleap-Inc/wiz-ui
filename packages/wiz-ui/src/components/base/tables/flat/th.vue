@@ -1,5 +1,10 @@
 <template>
-  <th :class="[flatTh, flatThVariantStyle[scope]]" :style="{ width }">
+  <th
+    :class="[flatTh, flatThVariantStyle[scope]]"
+    :style="{ width }"
+    :rowSpan="rowSpan"
+    :colSpan="colSpan"
+  >
     <slot />
   </th>
 </template>
@@ -26,6 +31,14 @@ defineProps({
     type: String as PropType<"col" | "row">,
     required: false,
     default: "col",
+  },
+  rowSpan: {
+    type: Number,
+    required: false,
+  },
+  colSpan: {
+    type: Number,
+    required: false,
   },
 });
 </script>
