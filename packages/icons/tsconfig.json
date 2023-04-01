@@ -1,11 +1,5 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./scripts/*"]
-    }
-  },
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"
