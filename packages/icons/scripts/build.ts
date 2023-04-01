@@ -1,17 +1,17 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const rimraf = require("rimraf");
+import { rimrafSync } from "rimraf";
 
-const kebab2pascal = (str) =>
+const kebab2pascal = (str: string) =>
   str
     .split("-")
     .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
     .join("");
 
 // icons/assets配下のsvgファイルを取得
-const getSVGFiles = (dir) =>
+const getSVGFiles = (dir: string) =>
   fs
     .readdirSync(dir)
     .filter((file) => path.extname(file) === ".svg")
@@ -22,7 +22,7 @@ const getSVGFiles = (dir) =>
 
 // Iconコンポーネントをフレームワークにあわせて生成
 const createIcon = {
-  vue: (svg, component) => `
+  vue: (svg: string, component: string) => `
     <template>
     ${svg}
     </template>
@@ -36,6 +36,10 @@ const createIcon = {
     </script>
   `,
 };
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const SVG_DIR = path.join(__dirname, "../assets/");
 const CONSTANTS_DIR = path.join(__dirname, "../../constants/");
 const ICON_DIRS = [
@@ -73,7 +77,7 @@ const indexFile = `
     )
     .join("")}
 
-  export type TIcon = 
+  export type TIcon =
     ${components.map((component) => `| typeof WizI${component.name}`).join("")};
 
   export {
@@ -81,7 +85,11 @@ const indexFile = `
   };`;
 
 ICON_DIRS.forEach((dir) => {
-  rimraf.sync(`${dir}/**/*.vue`); // src/icons/*.vueをクリアする
+  fs.readdirSync(dir)
+    .filter((file) => path.extname(file) === ".vue")
+    .forEach((file) => {
+      rimrafSync(path.join(dir, file));
+    });
 
   components.forEach((component) => {
     fs.writeFileSync(
