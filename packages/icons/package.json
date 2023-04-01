@@ -5,7 +5,6 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "dev": "ts-node index.ts",
     "build": "run-s build:icon format",
     "build:icon": "ts-node ./scripts/build.ts",
     "format": "run-p format:icon format:constants",
