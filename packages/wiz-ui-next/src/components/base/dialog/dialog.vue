@@ -33,8 +33,9 @@ import {
   dialogStyle,
   dialogVisibleStyle,
   dialogMaskStyle,
+  dialogBlockScrollStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/dialog.css";
-import { computed, PropType } from "vue";
+import { computed, PropType, watch } from "vue";
 
 import { WizIconButton } from "@/components/base/buttons";
 import { WizCard } from "@/components/base/card";
@@ -79,4 +80,25 @@ const visible = computed({
 const close = () => (visible.value = false);
 
 const { currentZIndex } = useZIndex(THEME.zIndex.dialog);
+
+let scrollY = 0;
+
+watch(
+  () => visible.value,
+  (value) => {
+    if (value) {
+      // スクロールバーが表示されている場合
+      if (document.body.scrollHeight > window.innerHeight) {
+        scrollY = window.scrollY;
+        document.body.style.top = `-${scrollY}px`;
+        document.body.classList.add(dialogBlockScrollStyle);
+      }
+    } else {
+      document.body.classList.remove(dialogBlockScrollStyle);
+      document.body.style.top = "";
+      window.scrollTo(0, scrollY);
+      scrollY = 0;
+    }
+  }
+);
 </script>

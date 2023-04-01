@@ -14,14 +14,6 @@ export default {
   },
 } as Meta<typeof WizTransitionGraph>;
 
-const Template: StoryFn<typeof WizTransitionGraph> = (args) => ({
-  setup: () => ({ args }),
-  components: { WizTransitionGraph },
-  template: `
-    <WizTransitionGraph v-bind="args"/>
-  `,
-});
-
 const DUMMY_DATA: TransitionGraphData[] = [
   {
     label: "2022/5",
@@ -36,6 +28,28 @@ const DUMMY_DATA: TransitionGraphData[] = [
     frequency: 25,
   },
 ];
+
+const Template: StoryFn<typeof WizTransitionGraph> = (args) => ({
+  setup: () => ({
+    args,
+    data: DUMMY_DATA,
+  }),
+  components: { WizTransitionGraph },
+  template: `
+    <WizTransitionGraph v-bind="args" :data="data"/>
+  `,
+});
+
+const ReverseTemplate: StoryFn<typeof WizTransitionGraph> = (args) => ({
+  setup: () => ({
+    args,
+    data: [...DUMMY_DATA].reverse(),
+  }),
+  components: { WizTransitionGraph },
+  template: `
+    <WizTransitionGraph v-bind="args" :data="data"/>
+  `,
+});
 
 interface Option {
   slot: string;
@@ -63,9 +77,6 @@ const data: TransitionGraphData[] = [
 `;
 
 export const Default = Template.bind({});
-Default.args = {
-  data: DUMMY_DATA,
-};
 Default.parameters = {
   docs: {
     description: {
@@ -80,10 +91,7 @@ frequencyの値が一番大きいdataが最大値となるようにグラフが�
   },
 };
 
-export const Gain = Template.bind({});
-Gain.args = {
-  data: [...DUMMY_DATA].reverse(),
-};
+export const Gain = ReverseTemplate.bind({});
 Gain.parameters = {
   docs: {
     description: {
@@ -96,17 +104,14 @@ Gain.parameters = {
 };
 
 export const Slot: StoryFn<typeof WizTransitionGraph> = (args) => ({
-  setup: () => ({ args }),
+  setup: () => ({ args, data: DUMMY_DATA }),
   components: { WizTransitionGraph },
   template: `
-    <WizTransitionGraph v-bind="args">
+    <WizTransitionGraph v-bind="args" :data="data">
       <span>ここは<br />スロットです</span>
     </WizTransitionGraph>
   `,
 });
-Slot.args = {
-  data: DUMMY_DATA,
-};
 Slot.parameters = {
   docs: {
     description: {

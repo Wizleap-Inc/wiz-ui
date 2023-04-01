@@ -19,16 +19,6 @@ export default {
   },
 } as Meta<typeof WizCircleGraph>;
 
-const Template: StoryFn<typeof WizCircleGraph> = (args) => ({
-  setup: () => ({ args }),
-  components: { WizCircleGraph },
-  template: `
-  <div style="height: 216px;">
-    <WizCircleGraph v-bind="args"/>
-  </div>
-  `,
-});
-
 const DUMMY_DATA: CircleGraphData[] = [
   {
     label: "60分",
@@ -47,11 +37,17 @@ const DUMMY_DATA: CircleGraphData[] = [
     percentage: 10,
   },
 ];
+const Template: StoryFn<typeof WizCircleGraph> = (args) => ({
+  setup: () => ({ args, data: DUMMY_DATA }),
+  components: { WizCircleGraph },
+  template: `
+  <div style="height: 216px;">
+    <WizCircleGraph v-bind="args" :data="data"/>
+  </div>
+  `,
+});
 
 export const Default = Template.bind({});
-Default.args = {
-  data: DUMMY_DATA,
-};
 Default.parameters = {
   docs: {
     description: {
@@ -98,7 +94,6 @@ const data: CircleGraphData[] = [
 
 export const OtherLabel = Template.bind({});
 OtherLabel.args = {
-  data: DUMMY_DATA,
   otherLabel: "OTEHR",
 };
 OtherLabel.parameters = {
