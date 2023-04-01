@@ -1,102 +1,72 @@
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
 import { rimrafSync } from "rimraf";
 
-const kebab2pascal = (str: string) =>
-  str
-    .split("-")
-    .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-    .join("");
+import { CURRENT_DIR, WIZ_UI_CONSTANTS_DIR, WIZ_UI_SVG_DIR } from "./constants";
+import { Component } from "./types";
+import {
+  createIcon,
+  iconComponentName,
+  indexFile,
+  kebab2pascal,
+} from "./utils";
 
-// icons/assets配下のsvgファイルを取得
-const getSVGFiles = (dir: string) =>
-  fs
-    .readdirSync(dir)
-    .filter((file) => path.extname(file) === ".svg")
-    .map((file) => ({
-      fileName: file.split(".")[0],
-      svg: fs.readFileSync(path.join(dir, file), "utf-8"),
-    }));
+// SVGファイルを取得
+const SVGs = fs
+  .readdirSync(WIZ_UI_SVG_DIR)
+  .filter((file) => path.extname(file) === ".svg")
+  .map((file) => ({
+    kebabName: file.split(".")[0],
+    pascalName: kebab2pascal(file.split(".")[0]),
+    svgFile: fs.readFileSync(path.join(WIZ_UI_SVG_DIR, file), "utf-8"),
+  }));
 
-// Iconコンポーネントをフレームワークにあわせて生成
-const createIcon = {
-  vue: (svg: string, component: string) => `
-    <template>
-    ${svg}
-    </template>
-    
-    <script setup lang="ts">
-    import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-    
-    defineOptions({
-      name: ComponentName.I${component},
-    });
-    </script>
-  `,
-};
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const SVG_DIR = path.join(__dirname, "../assets/");
-const CONSTANTS_DIR = path.join(__dirname, "../../constants/");
-const ICON_DIRS = [
-  path.join(__dirname, "../../wiz-ui/src/components/icons"),
-  path.join(__dirname, "../../wiz-ui-next/src/components/icons"),
-];
-
-const components = getSVGFiles(SVG_DIR).map((file) => {
-  const name = kebab2pascal(file.fileName);
-  return {
-    fileName: file.fileName,
-    name: name,
-    vueFile: createIcon.vue(file.svg, name),
-  };
-});
-
-// constants/component/icon-name.tsを生成する
-const iconComponentName = `
-  export const IconComponentName = {
-    ${components
-      .map((component) => `I${component.name}: "WizI${component.name}"`)
-      .join(",")}
-  }`;
 fs.writeFileSync(
-  path.join(CONSTANTS_DIR, "component/icon-name.ts"),
-  iconComponentName
+  path.join(WIZ_UI_CONSTANTS_DIR, "component/icon-name.ts"),
+  iconComponentName(SVGs)
 );
 
-// src/icons/index.tsを生成する
-const indexFile = `
-  ${components
-    .map(
-      (component) =>
-        `import { default as WizI${component.name} } from "./${component.fileName}.vue";`
+// Vue用のコンポーネントを生成
+const vueComponents: Component[] = SVGs.map((svg) => ({
+  svg: svg,
+  componentFile: createIcon.vue(svg.svgFile, svg.pascalName),
+  framework: "vue",
+}));
+
+const icons: { dist: string; components: Component[] }[] = [
+  {
+    dist: path.join(CURRENT_DIR, "../../wiz-ui/src/components/icons"),
+    components: vueComponents,
+  },
+  {
+    dist: path.join(CURRENT_DIR, "../../wiz-ui-next/src/components/icons"),
+    components: vueComponents,
+  },
+];
+
+icons.forEach((icon) => {
+  // 既存のファイルを削除
+  fs.readdirSync(icon.dist)
+    .filter((file) =>
+      [".vue", ".tsx", "ts"].some((ext) => path.extname(file) === ext)
     )
-    .join("")}
-
-  export type TIcon =
-    ${components.map((component) => `| typeof WizI${component.name}`).join("")};
-
-  export {
-    ${components.map((component) => `WizI${component.name}`).join(",")}
-  };`;
-
-ICON_DIRS.forEach((dir) => {
-  fs.readdirSync(dir)
-    .filter((file) => path.extname(file) === ".vue")
     .forEach((file) => {
-      rimrafSync(path.join(dir, file));
+      rimrafSync(path.join(icon.dist, file));
     });
 
-  components.forEach((component) => {
+  // 新しいIconファイルを生成
+  icon.components.forEach((component) => {
+    const ext = component.framework === "vue" ? ".vue" : ".tsx";
     fs.writeFileSync(
-      path.join(dir, component.fileName) + ".vue",
-      component.vueFile
+      path.join(icon.dist, component.svg.kebabName) + ext,
+      component.componentFile
     );
   });
 
-  fs.writeFileSync(path.join(dir, "index.ts"), indexFile);
+  // index.tsを生成
+  fs.writeFileSync(
+    path.join(icon.dist, "index.ts"),
+    indexFile(icon.components.map((component) => component.svg))
+  );
 });
