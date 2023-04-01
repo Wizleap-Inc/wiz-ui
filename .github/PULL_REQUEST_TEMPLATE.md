@@ -1,5 +1,5 @@
 # タスク
 
-resolve: #[issue番号(必須)]
+resolve: #[issue 番号(必須)]
 
 <!-- reviewerにオーナーを追加してください-->

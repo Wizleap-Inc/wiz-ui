@@ -49,6 +49,8 @@
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           @click="popupButtonMouseDown(item.item)"
+          @mouseover="popupButtonMouseOver(item.item)"
+          @mouseout="popupButtonMouseOut(item.item)"
           @mousedown="onHoldClick(item.item)"
           @keypress.enter="popupButtonKeyPressEnter(item.item)"
           :tabIndex="0"
@@ -65,6 +67,8 @@
                   ? 'white.800'
                   : disabled || item.item.option.disabled
                   ? 'gray.400'
+                  : item.item.option.value === isHover
+                  ? 'green.800'
                   : item.item.option.iconDefaultColor ?? 'gray.500'
               "
               size="md"
@@ -185,6 +189,7 @@ const items = computed(() => {
 });
 
 const isClicking = ref<number | null>(null);
+const isHover = ref<number | null>(null);
 
 const onHoldClick = (item: ButtonGroupItem) => {
   if (props.disabled) return;
@@ -202,6 +207,20 @@ const popupButtonMouseDown = (item: ButtonGroupItem) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
+  }
+};
+
+const popupButtonMouseOver = (item: ButtonGroupItem) => {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
+    isHover.value = item.option.value;
+  }
+};
+
+const popupButtonMouseOut = (item: ButtonGroupItem) => {
+  if (props.disabled) return;
+  if (item.kind === "button" && !item.option.disabled) {
+    isHover.value = null;
   }
 };
 

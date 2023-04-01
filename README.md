@@ -15,13 +15,13 @@ pnpm add @wizleap-inc/wiz-ui
 import stylesheet in your main.js
 
 ```js
-import '@wizleap-inc/wiz-ui/dist/style.css'
+import "@wizleap-inc/wiz-ui/dist/style.css";
 ```
 
 import components in your component
 
 ```js
-import { WizTextButton } from '@wizleap-inc/wiz-ui'
+import { WizTextButton } from "@wizleap-inc/wiz-ui";
 ```
 
 ## Contributing
@@ -29,21 +29,22 @@ import { WizTextButton } from '@wizleap-inc/wiz-ui'
 ### Prepare
 
 ```bash
-yarn
-yarn build:lib
+pnpm install
+pnpm build
 ```
 
 ### Development
 
 ```bash
-yarn dev # for launching all dev servers
-yarn dev:wiz-ui # for launching wiz-ui dev server
-yarn dev:wiz-ui-next # for launching wiz-ui-next dev server
+pnpm dev --filter @wizleap-inc/wiz-ui-docs # start docs dev server
+pnpm dev --filter @wizleap-inc/wiz-ui # start wiz-ui dev server(Storybook)
+pnpm dev --filter @wizleap-inc/wiz-ui-next # start wiz-ui-next dev server(Storybook)
+pnpm dev --filter "@wizleap-inc/wiz-ui-example*" # start examples dev server
 ```
 
 ## License
 
-[![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)  
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 Wiz UI is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 See [LICENSE](./LICENSE) for details.

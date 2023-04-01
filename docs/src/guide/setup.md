@@ -8,28 +8,30 @@ cd wiz-ui
 ## 基本
 
 ```bash
-yarn # install dependencies
-yarn dev # start all dev server
+pnpm install # install all dependencies
+pnpm dev # start all dev server
 ```
 
 ## 特定ワークスペースのみ立ち上げ
 
 ```bash
-yarn dev:docs # start docs dev server
-yarn dev:wiz-ui # start wiz-ui dev server(Storybook)
-yarn dev:examples # start examples dev server
+pnpm dev --filter @wizleap-inc/wiz-ui-docs # start docs dev server
+pnpm dev --filter @wizleap-inc/wiz-ui # start wiz-ui dev server(Storybook)
+pnpm dev --filter @wizleap-inc/wiz-ui-next # start wiz-ui-next dev server(Storybook)
+pnpm dev --filter "@wizleap-inc/wiz-ui-example*" # start examples dev server
 ```
 
 ## ビルド
 
 ```bash
-yarn build # build all packages
+pnpm build # build all packages
 ```
 
 ## 特定ワークスペースのみビルド
 
 ```bash
-yarn build:docs # build docs
-yarn build:wiz-ui # build wiz-ui
-yarn build:examples # build examples
+pnpm build --filter @wizleap-inc/wiz-ui-docs # build docs
+pnpm build --filter @wizleap-inc/wiz-ui # build wiz-ui
+pnpm build --filter @wizleap-inc/wiz-ui-next # build wiz-ui-next
+pnpm build --filter "@wizleap-inc/wiz-ui-example*" # build examples
 ```
