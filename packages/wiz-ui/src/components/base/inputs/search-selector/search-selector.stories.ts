@@ -115,16 +115,95 @@ const Template =
   `,
   });
 
+const code = (
+  initValue: number[],
+  open: boolean,
+  initOptions: SelectBoxOption[],
+  initSearchValue: string,
+  opts?: {
+    disabled?: boolean;
+    addable?: boolean;
+    multiSelectable?: boolean;
+  }
+) => `
+<script setup lang="ts">
+import { ref } from "vue";
+import { WizHStack } from "@/components"; 
+import { WizSearchSelector } from ".";
+import { SelectBoxOption } from "./types";
+
+const value = ref(${initValue});
+const isOpen = ref(${open});
+const searchValue = ref(${initSearchValue});
+const options = ref<SelectBoxOption[]>([]);
+
+const emits = {
+  select: (n: number) => {
+    value.value.push(n);
+  },
+  unselect: (n: number) => {
+    value.value = value.value.filter((v) => v !== n);
+  },
+  toggle: (value: boolean) => {
+    isOpen.value = value;
+  },
+  setSearchValue: (value: string) => {
+    searchValue.value = value;
+  },
+  add: (label: string) => {
+    options.value.push({
+      label: label,
+      value: options.value.length + 1,
+    });
+    value.value.push(options.value.length);
+  },
+};
+
+</script>
+<template>
+  <WizHStack>
+    <WizSearchSelector
+      :value="value"
+      :options="options"
+      :searchValue="searchValue"
+      :isOpen=isOpen
+      :disabled=${opts?.disabled ? "true" : "false" ?? "false"}
+      :multiSelectable=${opts?.multiSelectable ? "true" : "false" ?? "false"}
+      :addable=${opts?.addable ? "true" : "false" ?? "false"}
+      @toggle="emits.toggle"
+      @input="emits.select"
+      @unselect="emits.unselect"
+      @setSearchValue="emits.setSearchValue"
+      @add="emits.add"
+    />
+  </WizHStack>
+</template>
+`;
+
 export const Default = Template(
   [],
   false,
   _getDummyOptions("test", 3),
   ""
 ).bind({});
+Default.parameters = {
+  docs: {
+    source: {
+      code: code([], false, _getDummyOptions("test", 3), ""),
+    },
+  },
+};
 
 export const Open = Template([], true, _getDummyOptions("test", 3), "").bind(
   {}
 );
+Open.parameters = {
+  docs: {
+    source: {
+      code: code([], true, _getDummyOptions("test", 3), ""),
+    },
+  },
+};
 
 export const LongWordSelector = Template(
   [],
@@ -132,6 +211,18 @@ export const LongWordSelector = Template(
   _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3),
   ""
 ).bind({});
+LongWordSelector.parameters = {
+  docs: {
+    source: {
+      code: code(
+        [],
+        true,
+        _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3),
+        ""
+      ),
+    },
+  },
+};
 
 export const Disabled = Template(
   [],
@@ -142,6 +233,15 @@ export const Disabled = Template(
 Disabled.args = {
   disabled: true,
 };
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: code([], false, _getDummyOptions("test", 3), "", {
+        disabled: true,
+      }),
+    },
+  },
+};
 
 export const Selecting = Template(
   [1],
@@ -151,6 +251,15 @@ export const Selecting = Template(
 ).bind({});
 Selecting.args = {
   multiSelectable: false,
+};
+Selecting.parameters = {
+  docs: {
+    source: {
+      code: code([1], false, _getDummyOptions("test", 3), "", {
+        multiSelectable: false,
+      }),
+    },
+  },
 };
 
 export const MultiSelecting = Template(
@@ -163,6 +272,15 @@ MultiSelecting.args = {
   multiSelectable: true,
   width: "300px",
 };
+MultiSelecting.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
+        multiSelectable: true,
+      }),
+    },
+  },
+};
 
 export const Addable = Template(
   [],
@@ -172,4 +290,13 @@ export const Addable = Template(
 ).bind({});
 Addable.args = {
   addable: true,
+};
+Addable.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
+        addable: true,
+      }),
+    },
+  },
 };
