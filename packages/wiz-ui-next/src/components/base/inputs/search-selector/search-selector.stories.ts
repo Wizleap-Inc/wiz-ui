@@ -26,6 +26,28 @@ export default {
       control: { type: "boolean" },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### WizSearchSelector
+WizSearchSelectorは、検索・新規追加可能なセレクタコンポーネントです。
+v-modelには選択中のアイテムを渡します。
+
+このコンポーネントを使用する場合には、以下のEmitを登録してください。
+- update:modelValue
+  - 選択したアイテムを追加する関数です。引数は追加するアイテムのvalue(id)です。
+- unselect
+  - 選択中のアイテムを解除する関数です。引数は解除するアイテムのvalue(id)です。
+- add
+  - オプションを追加するための関数です。addable=trueのとき必須となります。引数は追加するアイテムの文字列です。
+- toggle
+  - popupの開閉制御を行う関数です。isOpenのtrue/falseを切り替えます。
+- setSearchValue
+  - 検索する文字列を編集する関数です。searchValueの値を変更します。`,
+      },
+    },
+  },
 } as Meta<typeof WizSearchSelector>;
 
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
@@ -38,42 +60,67 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
 };
 
 const Template =
-  (open: boolean): StoryFn<typeof WizSearchSelector> =>
+  (
+    initValue: number[],
+    open: boolean,
+    initOptions: SelectBoxOption[],
+    initSearchValue: string
+  ): StoryFn<typeof WizSearchSelector> =>
   (args) => ({
     components: { WizSearchSelector, WizHStack },
     setup() {
-      const initValue: number[] = [];
       const currentValue = ref(initValue);
-      const unselect = (n: number) => {
-        currentValue.value = currentValue.value.filter((v) => v !== n);
-      };
-      const select = (n: number) => {
-        currentValue.value.push(n);
-      };
       const isOpen = ref(open);
-      const toggle = (value: boolean) => {
-        isOpen.value = value;
+      const searchValue = ref(initSearchValue);
+      const options = ref<SelectBoxOption[]>(initOptions);
+      const emits = {
+        select: (n: number) => {
+          currentValue.value.push(n);
+        },
+        unselect: (n: number) => {
+          currentValue.value = currentValue.value.filter((v) => v !== n);
+        },
+        toggle: (value: boolean) => {
+          isOpen.value = value;
+        },
+        setSearchValue: (text: string) => {
+          searchValue.value = text;
+        },
+        add: (label: string) => {
+          options.value.push({
+            label: label,
+            value: options.value.length + 1,
+          });
+          currentValue.value.push(options.value.length);
+        },
       };
-      return { currentValue, args, unselect, select, isOpen, toggle };
+      return { args, currentValue, options, searchValue, isOpen, emits };
     },
     template: `
     <WizHStack>
       <WizSearchSelector 
         v-bind="args"
         :modelValue="currentValue"
-        :isOpen=isOpen
-        @toggle="toggle"
-        @update:modelValue="select"
-        @unselect="unselect"
+        :options="options"
+        :isOpen="isOpen"
+        :searchValue="searchValue"
+        @toggle="emits.toggle"
+        @update:modelValue="emits.select"
+        @unselect="emits.unselect"
+        @setSearchValue="emits.setSearchValue"
+        @add="emits.add"
       />
     </WizHStack>
   `,
   });
 
-export const Default = Template(false).bind({});
-Default.args = {
-  options: _getDummyOptions("test", 3),
-};
+export const Default = Template(
+  [],
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
+
 Default.parameters = {
   docs: {
     description: {
@@ -91,175 +138,59 @@ v-modelには選択中のアイテムを渡します。
   - オプションを追加するための関数です。addable=trueのとき必須となります。引数は追加するアイテムの文字列です。
 - toggle
   - popupの開閉制御を行う関数です。isOpenのtrue/falseを切り替えます。
+- setSearchValue
+  - 検索する文字列を編集する関数です。searchValueの値を変更します。
 `,
     },
   },
 };
-export const Open = Template(true).bind({});
-Open.args = {
-  options: _getDummyOptions("test", 3),
-};
+export const Open = Template([], true, _getDummyOptions("test", 3), "").bind(
+  {}
+);
+export const LongWordSelector = Template(
+  [],
+  true,
+  _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3),
+  ""
+).bind({});
 
-export const LongWordSelector = Template(true).bind({});
-LongWordSelector.args = {
-  options: _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3),
-};
-
-export const Disabled: StoryFn<typeof WizSearchSelector> = (args) => ({
-  components: { WizSearchSelector, WizHStack },
-  setup() {
-    const initValue: number[] = [];
-    const currentValue = ref(initValue);
-    const unselect = (n: number) => {
-      currentValue.value = currentValue.value.filter((v) => v !== n);
-    };
-    const select = (n: number) => {
-      currentValue.value.push(n);
-    };
-    const isOpen = ref(false);
-    const toggle = (value: boolean) => {
-      isOpen.value = value;
-    };
-    return { currentValue, args, unselect, select, isOpen, toggle };
-  },
-  template: `
-    <WizHStack>
-      <WizSearchSelector 
-        v-bind="args"
-        :modelValue="currentValue"
-        :isOpen=isOpen
-        @toggle="toggle"
-        @update:modelValue="select"
-        @unselect="unselect"
-      />
-    </WizHStack>
-  `,
-});
+export const Disabled = Template(
+  [],
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
 Disabled.args = {
   disabled: true,
-  options: _getDummyOptions("test", 3),
 };
 
-export const Selecting: StoryFn<typeof WizSearchSelector> = (args) => ({
-  components: { WizSearchSelector, WizHStack },
-  setup() {
-    const initValue: number[] = [1];
-    const currentValue = ref(initValue);
-    const unselect = (n: number) => {
-      currentValue.value = currentValue.value.filter((v) => v !== n);
-    };
-    const select = (n: number) => {
-      currentValue.value.push(n);
-    };
-    const isOpen = ref(false);
-    const toggle = (value: boolean) => {
-      isOpen.value = value;
-    };
-    return { currentValue, args, unselect, select, isOpen, toggle };
-  },
-  template: `
-    <WizHStack>
-      <WizSearchSelector 
-        v-bind="args"
-        :modelValue="currentValue"
-        :isOpen=isOpen
-        @toggle="toggle"
-        @update:modelValue="select"
-        @unselect="unselect"
-      />
-    </WizHStack>
-  `,
-});
+export const Selecting = Template(
+  [1],
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
 Selecting.args = {
-  options: _getDummyOptions("test", 3),
+  multiSelectable: false,
 };
 
-export const MultiSelecting: StoryFn<typeof WizSearchSelector> = (args) => ({
-  components: { WizSearchSelector, WizHStack },
-  setup() {
-    const initValue: number[] = [1, 2, 3];
-    const currentValue = ref(initValue);
-    const unselect = (n: number) => {
-      currentValue.value = currentValue.value.filter((v) => v !== n);
-    };
-    const select = (n: number) => {
-      currentValue.value.push(n);
-    };
-    const isOpen = ref(false);
-    const toggle = (value: boolean) => {
-      isOpen.value = value;
-    };
-    return { currentValue, args, unselect, select, isOpen, toggle };
-  },
-  template: `
-    <WizHStack>
-      <WizSearchSelector 
-        v-bind="args"
-        :modelValue="currentValue"
-        :isOpen=isOpen
-        @toggle="toggle"
-        @update:modelValue="select"
-        width="300px"
-        @unselect="unselect"
-      />
-    </WizHStack>
-  `,
-});
-
+export const MultiSelecting = Template(
+  [1, 2, 3],
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
 MultiSelecting.args = {
   multiSelectable: true,
-  options: _getDummyOptions("test", 3),
+  width: "300px",
 };
 
-export const Addable: StoryFn<typeof WizSearchSelector> = (args) => ({
-  components: { WizSearchSelector, WizHStack },
-  setup() {
-    const initValue: number[] = [];
-    const currentValue = ref(initValue);
-    const options = ref<SelectBoxOption[]>(_getDummyOptions("test", 3));
-    const unselect = (n: number) => {
-      currentValue.value = currentValue.value.filter((v) => v !== n);
-    };
-    const selectNewLabel = (label: string) => {
-      options.value.push({
-        label: label,
-        value: options.value.length + 1,
-      });
-      currentValue.value.push(options.value.length);
-    };
-    const select = (n: number) => {
-      currentValue.value.push(n);
-    };
-    const isOpen = ref(false);
-    const toggle = (value: boolean) => {
-      isOpen.value = value;
-    };
-    return {
-      currentValue,
-      args,
-      options,
-      selectNewLabel,
-      unselect,
-      select,
-      isOpen,
-      toggle,
-    };
-  },
-  template: `
-    <WizHStack>
-      <WizSearchSelector 
-        v-bind="args"
-        :modelValue="currentValue"
-        :options="options"
-        :isOpen=isOpen
-        @toggle="toggle"
-        @update:modelValue="select"
-        @unselect="unselect"
-        @add="selectNewLabel"
-      />
-    </WizHStack>
-  `,
-});
+export const Addable = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3),
+  "new option"
+).bind({});
 Addable.args = {
   addable: true,
 };
