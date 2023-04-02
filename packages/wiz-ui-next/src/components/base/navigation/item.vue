@@ -77,7 +77,7 @@ import {
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, PropType, ref } from "vue";
-import { RouterLinkProps } from "vue-router/types/router";
+import { RouterLinkProps } from "vue-router";
 
 import {
   WizPopupContainer,
@@ -88,6 +88,7 @@ import {
 import type { TIcon } from "@/components/icons";
 
 import { ButtonGroupItem } from "../popup-button-group/types";
+
 defineOptions({
   name: ComponentName.NavigationItem,
 });
