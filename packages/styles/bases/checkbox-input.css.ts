@@ -51,6 +51,7 @@ export const checkboxLabelCursorStyle = styleVariants({
 export const checkboxIconBaseStyle = style({
   boxSizing: "border-box",
   fill: THEME.color.transparent,
+  fontSize: THEME.fontSize.sm,
   borderRadius: `calc(${THEME.spacing.xs2} / 2)`,
 });
 
