@@ -131,7 +131,7 @@ const props = defineProps({
   },
   isOpen: {
     type: Boolean,
-    required: true,
+    required: false,
   },
 });
 
