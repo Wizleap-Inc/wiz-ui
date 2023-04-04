@@ -2,15 +2,6 @@
   <div :class="checkboxStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
       <div v-for="option in options" :key="option.key">
-        <input
-          :class="checkboxInputStyle"
-          type="checkbox"
-          :id="option.key"
-          :name="option.key"
-          :value="option.value"
-          v-model="checkboxValue"
-          :disabled="disabled || option.disabled"
-        />
         <label
           :class="[
             checkboxLabelStyle,
@@ -19,11 +10,34 @@
             checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
           :for="option.key"
+          @mouseenter="mouseOver = option.value"
+          @mouseleave="mouseOver = null"
         >
-          <WizICheck
-            v-if="checkboxValue.includes(option.value)"
-            :class="checkboxIconStyle"
+          <input
+            :class="checkboxInputStyle"
+            type="checkbox"
+            :id="option.key"
+            :name="option.key"
+            :value="option.value"
+            v-model="checkboxValue"
+            :disabled="disabled || option.disabled"
+            @focus="focusOption = option.value"
+            @blur="focusOption = null"
           />
+          <span :class="checkboxIconContainerStyle">
+            <WizICheck
+              :class="[
+                checkboxIconBaseStyle,
+                checkboxValue.includes(option.value)
+                  ? checkboxIconVariantStyle['checked']
+                  : checkboxIconVariantStyle['default'],
+                (mouseOver === option.value || focusOption === option.value) &&
+                  (checkboxValue.includes(option.value)
+                    ? checkboxIconFocusedColorStyle['checked']
+                    : checkboxIconFocusedColorStyle['default']),
+              ]"
+            />
+          </span>
           <span
             :class="[
               checkboxValue.includes(option.value) && checkboxBlockCheckedStyle,
@@ -40,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   checkboxStyle,
   checkboxInputStyle,
@@ -48,13 +62,16 @@ import {
   checkboxLabelCheckedStyle,
   checkboxLabelDisabledStyle,
   checkboxLabelCursorStyle,
-  checkboxIconStyle,
+  checkboxIconBaseStyle,
   checkboxBlockCheckedStyle,
   checkboxLabelStrikeThrough,
+  checkboxIconVariantStyle,
+  checkboxIconFocusedColorStyle,
+  checkboxIconContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
-import { computed, PropType } from "vue";
+import { computed, PropType, ref } from "vue";
 
-import WizStack from "@/components/base/stack/stack.vue";
+import { WizStack } from "@/components";
 import { WizICheck } from "@/components/icons";
 
 import { CheckBoxOption } from "./types";
@@ -101,4 +118,7 @@ const checkboxValue = computed({
 
 const labelPointer = (optionDisabled?: boolean) =>
   props.disabled || optionDisabled ? "disabled" : "default";
+
+const focusOption = ref<number | null>(null);
+const mouseOver = ref<number | null>(null);
 </script>

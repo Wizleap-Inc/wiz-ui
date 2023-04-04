@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
+const focusedBorderWidth = "2px";
 
 export const checkboxStyle = style({
   width: "fit-content",
@@ -9,8 +10,10 @@ export const checkboxStyle = style({
 });
 
 export const checkboxInputStyle = style({
-  display: "none",
   cursor: "pointer",
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  position: "absolute",
 });
 
 export const checkboxLabelStyle = style({
@@ -20,15 +23,6 @@ export const checkboxLabelStyle = style({
   color: THEME.color.gray["600"],
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
-  ":before": {
-    content: "",
-    border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
-    borderRadius: `calc(${THEME.spacing.xs2} / 2)`,
-    width: THEME.spacing.md,
-    height: THEME.spacing.md,
-    boxSizing: "border-box",
-    display: "inline-block",
-  },
 });
 
 export const checkboxLabelCheckedStyle = style({
@@ -54,11 +48,37 @@ export const checkboxLabelCursorStyle = styleVariants({
   },
 });
 
-export const checkboxIconStyle = style({
-  position: "absolute",
-  top: `${borderWidth}`,
-  left: `${borderWidth}`,
-  fill: THEME.color.green["800"],
+export const checkboxIconBaseStyle = style({
+  boxSizing: "border-box",
+  fill: THEME.color.transparent,
+  borderRadius: `calc(${THEME.spacing.xs2} / 2)`,
+});
+
+export const checkboxIconVariantStyle = styleVariants({
+  default: {
+    border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+  },
+  checked: {
+    fill: THEME.color.green["800"],
+    border: `${borderWidth} solid ${THEME.color.green["800"]}`,
+  },
+});
+
+export const checkboxIconContainerStyle = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100%",
+});
+
+export const checkboxIconFocusedColorStyle = styleVariants({
+  default: {
+    border: `${focusedBorderWidth} solid ${THEME.color.gray[800]}`,
+  },
+  checked: {
+    fill: THEME.color.green["800"],
+    border: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
+  },
 });
 
 export const checkboxBlockCheckedStyle = style({
