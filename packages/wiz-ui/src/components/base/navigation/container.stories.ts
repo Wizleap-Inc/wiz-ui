@@ -1,5 +1,4 @@
 import { StoryFn } from "@storybook/vue";
-import StoryRouter from "storybook-vue-router";
 import { provide, ref } from "vue";
 
 import {
