@@ -45,7 +45,6 @@
           @mouseLeave="popupMouseLeave"
           direction="rt"
           layer="popover"
-          transparentBorderLeftWidth="1px"
         >
           <div @mouseenter="popupMouseEnter">
             <WizPopupButtonGroup

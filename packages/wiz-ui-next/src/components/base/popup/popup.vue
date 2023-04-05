@@ -10,7 +10,6 @@
       :style="{
         inset,
         transform: popupTranslate,
-        borderLeft: `solid ${transparentBorderLeftWidth} transparent`,
       }"
       ref="popupRef"
       @mouseleave="mouseLeave"
@@ -108,11 +107,6 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
-  },
-  transparentBorderLeftWidth: {
-    type: String,
-    required: false,
-    default: "0px",
   },
 });
 
