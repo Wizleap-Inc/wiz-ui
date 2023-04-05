@@ -5,11 +5,14 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "build": "run-s build:icon format",
+    "build": "run-s build:icon format lint:*",
     "build:icon": "ts-node ./scripts/build.ts",
     "format": "run-p format:icon format:constants",
     "format:icon": "prettier --write \"../{wiz-ui,wiz-ui-next,wiz-ui-react}/src/components/icons/*.{ts,vue,tsx}\"",
-    "format:constants": "prettier --write \"../constants/component/icon-name.ts\""
+    "format:constants": "prettier --write \"../constants/component/icon-name.ts\"",
+    "lint:react": "eslint --fix ../wiz-ui-react/src/components/icons/*.{ts,tsx,vue}",
+    "lint:vue2": "eslint --fix ../wiz-ui/src/components/icons/*.{ts,tsx,vue}",
+    "lint:vue3": "eslint --fix ../wiz-ui-next/src/components/icons/*.{ts,tsx,vue}"
   },
   "dependencies": {
     "@types/rimraf": "^4.0.5",

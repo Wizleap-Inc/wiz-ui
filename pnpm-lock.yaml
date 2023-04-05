@@ -204,9 +204,6 @@ importers:
 
   packages/icons:
     dependencies:
-      '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
       '@types/rimraf':
         specifier: ^4.0.5
         version: 4.0.5
@@ -219,6 +216,10 @@ importers:
       typescript:
         specifier: ^5.0.2
         version: 5.0.2
+    devDependencies:
+      '@types/node':
+        specifier: ^18.15.11
+        version: 18.15.11
 
   packages/styles:
     dependencies:
