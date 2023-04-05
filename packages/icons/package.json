@@ -8,14 +8,16 @@
     "build": "run-s build:icon format",
     "build:icon": "ts-node ./scripts/build.ts",
     "format": "run-p format:icon format:constants",
-    "format:icon": "prettier --write \"../{wiz-ui,wiz-ui-next}/src/components/icons/*.{ts,vue}\"",
+    "format:icon": "prettier --write \"../{wiz-ui,wiz-ui-next,wiz-ui-react}/src/components/icons/*.{ts,vue,tsx}\"",
     "format:constants": "prettier --write \"../constants/component/icon-name.ts\""
   },
   "dependencies": {
-    "@types/node": "^18.15.11",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.2",
     "@types/rimraf": "^4.0.5",
-    "rimraf": "^4.4.1"
+    "rimraf": "^4.4.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11"
   }
 }
