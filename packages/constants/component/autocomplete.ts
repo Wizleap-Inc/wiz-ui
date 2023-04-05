@@ -47,9 +47,6 @@ const AUTO_COMPLETE_MAP = {
   /**企業または団体の名前です。*/
   organization: "organization",
 
-  /**や"GirlScoutsofAmerica"など。*/
-  AcmeWidgetCompany: "AcmeWidgetCompany",
-
   /**住所。複数行のテキストが使用でき、第2行政レベル(普通は市町村)の中で完全に住所を識別できるものですが、市町村名、郵便番号、国名は含めるべきではありません。*/
   streetAddress: "street-address",
 
@@ -142,9 +139,6 @@ const AUTO_COMPLETE_MAP = {
 
   /**国番号以外の部分の電話番号全体で、市外局番の接頭辞(日本では0)を含みます。*/
   telNational: "tel-national",
-
-  // /**という電話番号については、このフィールドの値は"855-555-6502"となります。*/
-  // 1-855-5556502: "1-855-555-6502",
 
   /**市外局番で、必要に応じて市外局番の接頭辞(日本では0)を含みます。*/
   telAreaCode: "tel-area-code",
