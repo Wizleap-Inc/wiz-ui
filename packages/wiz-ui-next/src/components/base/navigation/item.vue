@@ -38,7 +38,7 @@
           </div>
         </component>
       </div>
-      <div v-if="existPopup" @mouseleave="popupMouseLeave">
+      <div v-if="existPopup">
         <WizPopup
           :isOpen="isOpen"
           @onClose="popupOnClose"
@@ -47,13 +47,15 @@
           layer="popover"
           transparentBorderLeftWidth="1px"
         >
-          <WizPopupButtonGroup
-            :options="buttons ?? []"
-            :class="navigationPopupContainerStyle"
-            p="xs"
-            borderRadius="xs2"
-            :disabled="disabled"
-          />
+          <div @mouseenter="popupMouseEnter">
+            <WizPopupButtonGroup
+              :options="buttons ?? []"
+              :class="navigationPopupContainerStyle"
+              p="xs"
+              borderRadius="xs2"
+              :disabled="disabled"
+            />
+          </div>
         </WizPopup>
       </div>
     </WizPopupContainer>
@@ -153,27 +155,25 @@ const navItemOnClick = () => {
   emit("toggle", true);
   if (existPopup) emit("setLock", true);
 };
+
 const navItemMouseEnter = () => {
   if (!props.lockingPopup) emit("toggle", true);
 };
-const navItemMouseLeave = (event: MouseEvent) => {
-  const [cx, cy] = [event.clientX, event.clientY];
-  const right = navItemRef.value?.getBoundingClientRect().right ?? 0;
-  const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
-  const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
-  if (right <= cx && top < cy && cy < bottom) return;
+
+const navItemMouseLeave = () => {
   if (!props.lockingPopup) emit("toggle", false);
 };
+
 const popupOnClose = () => {
   emit("toggle", false);
   emit("setLock", false);
 };
-const popupMouseLeave = (event: MouseEvent) => {
-  const [cx, cy] = [event.clientX, event.clientY];
-  const right = navItemRef.value?.getBoundingClientRect().right ?? 0;
-  const top = navItemRef.value?.getBoundingClientRect().top ?? 0;
-  const bottom = navItemRef.value?.getBoundingClientRect().bottom ?? 0;
-  if (cx <= right && top < cy && cy < bottom) return;
+
+const popupMouseEnter = () => {
+  if (!props.lockingPopup) emit("toggle", true);
+};
+
+const popupMouseLeave = () => {
   if (!props.lockingPopup) emit("toggle", false);
 };
 </script>
