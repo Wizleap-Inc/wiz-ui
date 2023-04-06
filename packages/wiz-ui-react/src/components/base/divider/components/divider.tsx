@@ -16,11 +16,11 @@ const _Divider = ({
   direction = "horizontal",
 }: Props) => (
   <hr
-    className={clsx([
+    className={clsx(
       styles.dividerStyle[variant],
       styles.dividerDirectionStyle[direction],
-      borderColorStyle[color],
-    ])}
+      borderColorStyle[color]
+    )}
   />
 );
 
