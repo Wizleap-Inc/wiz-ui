@@ -6,7 +6,7 @@
       fontSizeStyle[getRelativeFontSize(size, 3)],
     ]"
     :disabled="disabled"
-    :aria-label="label"
+    :aria-label="ariaLabel"
     @click="onClick"
   >
     <component :is="icon" :class="iconButtonSVGStyle[variant]" />
@@ -41,7 +41,7 @@ const props = defineProps({
     type: Object as PropType<TIcon>,
     required: true,
   },
-  label: {
+  ariaLabel: {
     type: String,
     required: true,
   },
