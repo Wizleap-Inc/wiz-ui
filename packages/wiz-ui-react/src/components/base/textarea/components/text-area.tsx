@@ -1,5 +1,6 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { clsx } from "clsx";
 import { memo, useMemo, useState } from "react";
 
 import { useFormControl } from "@/hooks/use-form-control-provider";
@@ -38,11 +39,12 @@ const _TextArea = ({
       id={id}
       disabled={disabled}
       rows={rows}
-      className={`
-        ${styles.textAreaStyle} ,
-        ${styles.textAreaVariantStyle[disabled ? "disabled" : "default"]}
-        ${expand && styles.textAreaExpandStyle}
-        ${inputBorderStyle[state]} `}
+      className={clsx(
+        styles.textAreaStyle,
+        styles.textAreaVariantStyle[disabled ? "disabled" : "default"],
+        expand && styles.textAreaExpandStyle,
+        inputBorderStyle[state]
+      )}
       onFocus={() => setHasFocus(true)}
       onBlur={() => setHasFocus(false)}
       onChange={(e) => props.onChange(e.target.value)}
