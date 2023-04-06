@@ -1,6 +1,6 @@
 name: Lint check All libraries
 
-on: push
+on: [pull_request]
 
 jobs:
   lint:
