@@ -2,6 +2,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { memo, useMemo, useState } from "react";
 
+import { useFormControl } from "@/hooks/use-form-control-provider";
+
 export type Props = {
   id?: string;
   value?: string;
@@ -21,12 +23,13 @@ const _TextArea = ({
   rows = 3,
   ...props
 }: Props) => {
-  // TODO : useFormControlProvider
+  const { isError } = useFormControl();
   const [hasFocus, setHasFocus] = useState(false);
-  const state = useMemo<"default" | "active" | "error">(() => {
+  const state = useMemo(() => {
+    if (isError) return "error";
     if (hasFocus) return "active";
     return "default";
-  }, [hasFocus]);
+  }, [isError, hasFocus]);
 
   return (
     <textarea
