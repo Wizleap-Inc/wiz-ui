@@ -5,6 +5,11 @@ export const ARIA_LABELS = {
   DATE_PICKER_INPUT: "日付を選択",
   RANGE_DATE_PICKER_INPUT: "日付の範囲を選択",
   RANGE_DATE_PICKER_SELECT_BOX_INPUT: "日付の種類を選択",
+  DIALOG: {
+    CLOSE: "ダイアログを閉じる",
+  },
+  MENU: "メニュー",
+
   SEARCH_SELECTOR: {
     UNSELECT: "選択を解除する",
     EXPAND: "開閉する",
@@ -14,5 +19,8 @@ export const ARIA_LABELS = {
   },
   CHAT_CARD: {
     EXPAND: "チャット画面を開閉する",
+  },
+  CHAT_FORM: {
+    SEND: "送信する",
   },
 } as const;
