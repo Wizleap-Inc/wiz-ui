@@ -2,6 +2,7 @@
   <WizPopupContainer>
     <WizIconButton
       :icon="WizINotification"
+      ariaLabel="Notification"
       size="xl"
       variant="transparent"
       color="gray.700"
@@ -50,13 +51,13 @@ const onNotificationPanelClick = (nid: NotificationItem["id"]) =>
 
 const notificationTabs: NotificationTabItem[] = [
   {
-    label: "タブ1",
+    ariaLabel: "タブ1",
     name: "tab1",
     notificationCount: 3,
     variant: "primary",
   },
   {
-    label: "タブ2",
+    ariaLabel: "タブ2",
     name: "tab2",
     notificationCount: 0,
     variant: "secondary",

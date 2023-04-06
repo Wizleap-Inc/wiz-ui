@@ -2,6 +2,7 @@
   <WizPopupContainer>
     <WizIconButton
       :icon="WizINotification"
+      ariaLabel="Notification"
       size="xl"
       variant="transparent"
       color="gray.700"
