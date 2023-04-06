@@ -51,13 +51,13 @@ const onNotificationPanelClick = (nid: NotificationItem["id"]) =>
 
 const notificationTabs: NotificationTabItem[] = [
   {
-    ariaLabel: "タブ1",
+    label: "タブ1",
     name: "tab1",
     notificationCount: 3,
     variant: "primary",
   },
   {
-    ariaLabel: "タブ2",
+    label: "タブ2",
     name: "tab2",
     notificationCount: 0,
     variant: "secondary",
