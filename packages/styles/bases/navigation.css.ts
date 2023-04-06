@@ -96,3 +96,11 @@ export const navigationItemTextStyle = style({
 export const navigationItemTextActiveStyle = style({
   fontWeight: "bold",
 });
+
+export const navigationPopupContainerStyle = style({
+  background: THEME.color.white["800"],
+  borderRadius: THEME.spacing.xs2,
+  boxSizing: "border-box",
+  maxHeight: "25rem",
+  overflowY: "auto",
+});
