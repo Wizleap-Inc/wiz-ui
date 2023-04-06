@@ -19,6 +19,7 @@ import {
   paddingBottomStyle,
   paddingLeftStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import clsx from "clsx";
 import { ReactNode, memo } from "react";
 
 export type Props = {
@@ -90,31 +91,31 @@ const _Stack = ({
       }
     }
   })();
-  const stackStyle = `
-    ${styles.stackStyle}
-    ${styles.stackDirectionStyle[dir]}
-    ${styles.stackJustifyStyle[justify]}
-    ${styles.stackAlignStyle[align]}
-    ${position && styles.stackPositionStyle[position]}
-    ${wrap && styles.stackWrapStyle}
-    ${gx && gapXStyle[gx]}
-    ${gy && gapYStyle[gy]}
-    ${!gx && !gy && gap && gapStyle[gap]}
-    ${mx && marginXStyle[mx]}
-    ${my && marginYStyle[my]}
-    ${!mx && !my && m && marginStyle[m]}
-    ${mt && marginTopStyle[mt]}
-    ${mr && marginRightStyle[mr]}
-    ${mb && marginBottomStyle[mb]}
-    ${ml && marginLeftStyle[ml]}
-    ${px && paddingXStyle[px]}
-    ${py && paddingYStyle[py]}
-    ${!px && !py && p && paddingStyle[p]}
-    ${pt && paddingTopStyle[pt]}
-    ${pr && paddingRightStyle[pr]}
-    ${pb && paddingBottomStyle[pb]}
-    ${pl && paddingLeftStyle[pl]}
-  `;
+  const stackStyle = clsx(
+    styles.stackStyle,
+    styles.stackDirectionStyle[dir],
+    styles.stackJustifyStyle[justify],
+    styles.stackAlignStyle[align],
+    position && styles.stackPositionStyle[position],
+    wrap && styles.stackWrapStyle,
+    gx && gapXStyle[gx],
+    gy && gapYStyle[gy],
+    !gx && !gy && gap && gapStyle[gap],
+    mx && marginXStyle[mx],
+    my && marginYStyle[my],
+    !mx && !my && m && marginStyle[m],
+    mt && marginTopStyle[mt],
+    mr && marginRightStyle[mr],
+    mb && marginBottomStyle[mb],
+    ml && marginLeftStyle[ml],
+    px && paddingXStyle[px],
+    py && paddingYStyle[py],
+    !px && !py && p && paddingStyle[p],
+    pt && paddingTopStyle[pt],
+    pr && paddingRightStyle[pr],
+    pb && paddingBottomStyle[pb],
+    pl && paddingLeftStyle[pl]
+  );
 
   return (
     <div className={stackStyle} style={{ width, height, overflow }}>
