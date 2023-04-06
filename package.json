@@ -6,6 +6,7 @@
     "prepare": "husky install",
     "release": "changeset publish",
     "build": "turbo build",
+    "build:storybook": "turbo build:storybook",
     "dev": "turbo dev --parallel",
     "test": "turbo test",
     "vrt": "reg-suit run",
