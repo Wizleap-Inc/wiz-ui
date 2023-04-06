@@ -3,6 +3,7 @@
   "version": "1.0.5",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
+    "lint": "eslint",
     "build": "run-p build:*",
     "build:lib": "vue-tsc --noEmit && vite build",
     "build:storybook": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
