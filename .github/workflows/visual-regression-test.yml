@@ -35,10 +35,21 @@ jobs:
           git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
 
       - name: run storybook generate
-        run: pnpm --filter @wizleap-inc/wiz-ui build:storybook
+        run: pnpm build:storybook
 
       - name: run storycap
-        run: pnpm --filter @wizleap-inc/wiz-ui ci:storycap
+        run: pnpm storycap
+
+      - name: hoist screenshots
+        run: |
+          mkdir -p __screenshots__
+          for dir in ./packages/*/; do
+            if [ -d "$dir"__screenshots__ ]; then
+              package_name=$(basename "$dir")
+              mkdir -p __screenshots__/"$package_name"
+              cp -r "$dir"__screenshots__/* __screenshots__/"$package_name/"
+            fi
+          done
 
       - name: run reg-suit
-        run: pnpm --filter @wizleap-inc/wiz-ui ci:vrt
+        run: pnpm vrt
