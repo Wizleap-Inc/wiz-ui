@@ -10,6 +10,7 @@ import {
   colorStyle,
   whiteSpaceStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import clsx from "clsx";
 import { ReactNode, memo } from "react";
 
 export type Props = {
@@ -66,20 +67,19 @@ const _Text = ({
   };
   return (
     <div
-      className={`
-        ${styles.textStyle}
-        ${styles.textFontWeightStyle[bold ? "bold" : "default"]}
-        ${styles.textAlignStyle[textAlign]}      
-        ${(maxLines || breakAll) && styles.textWordBreakStyle}      
-        ${
-          lineHeight
-            ? lineHeightStyle[lineHeight]
-            : styles.textDefaultLineHeightStyle
-        }      
-        ${fontSizeStyle[fontSize]}        
-        ${colorStyle[color]}        
-        ${whiteSpaceStyle[whiteSpace]}        
-        ${lineThrough && styles.textLineThroughStyle}`}
+      className={clsx(
+        styles.textStyle,
+        styles.textFontWeightStyle[bold ? "bold" : "default"],
+        styles.textAlignStyle[textAlign],
+        (maxLines || breakAll) && styles.textWordBreakStyle,
+        lineHeight
+          ? lineHeightStyle[lineHeight]
+          : styles.textDefaultLineHeightStyle,
+        fontSizeStyle[fontSize],
+        colorStyle[color],
+        whiteSpaceStyle[whiteSpace],
+        lineThrough && styles.textLineThroughStyle
+      )}
       style={overflowStyles}
     >
       <Component>
