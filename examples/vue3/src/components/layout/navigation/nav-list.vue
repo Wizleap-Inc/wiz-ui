@@ -4,7 +4,7 @@
       v-for="(item, i) in navigationItems"
       :key="i"
       :icon="item.icon"
-      :ariaLabel="item.ariaLabel"
+      :label="item.ariaLabel"
       :to="item.to"
       :active="item.active"
     />
