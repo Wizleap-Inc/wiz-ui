@@ -25,7 +25,7 @@
               @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
               :class="selectBoxInnerBoxCloseButtonStyle"
               :ref="setUnselectableRef(i)"
-              aria-label="unselect"
+              :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -51,7 +51,7 @@
         :class="selectBoxExpandIconStyle"
         @click="toggleSelectBox"
         :disabled="disabled"
-        aria-label="expand"
+        :aria-label="ARIA_LABELS.SEARCH_SELECTOR.EXPAND"
       >
         <WizIcon
           v-if="isOpen"
@@ -89,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   selectBoxStyle,
   selectBoxDisabledStyle,
