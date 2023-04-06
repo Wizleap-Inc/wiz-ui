@@ -1,6 +1,7 @@
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/divider.css";
 import { borderColorStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { clsx } from "clsx";
 import { memo } from "react";
 
 export type Props = {
@@ -15,11 +16,11 @@ const _Divider = ({
   direction = "horizontal",
 }: Props) => (
   <hr
-    className={`
-     ${styles.dividerStyle[variant]}
-     ${styles.dividerDirectionStyle[direction]} 
-     ${borderColorStyle[color]}
-    `}
+    className={clsx([
+      styles.dividerStyle[variant],
+      styles.dividerDirectionStyle[direction],
+      borderColorStyle[color],
+    ])}
   />
 );
 
