@@ -4,7 +4,7 @@
     @mouseenter="isHover = true"
     @mouseleave="isHover = false"
   >
-    <WizPopupContainer>
+    <WizPopupContainer :expand="expand">
       <slot />
       <WizPopup
         v-if="$slots.content"
@@ -58,6 +58,11 @@ const props = defineProps({
     default: "top",
   },
   hover: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  expand: {
     type: Boolean,
     required: false,
     default: false,

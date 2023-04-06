@@ -38,7 +38,8 @@
           <input
             v-if="multiSelectable || !isValueMatched"
             :class="selectBoxSearchInputStyle"
-            v-model="searchValue"
+            :value="searchValue"
+            @input="onSetSearchValue"
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
             ref="inputRef"
             :disabled="disabled"
@@ -136,6 +137,7 @@ interface Emit {
   (e: "unselect", value: number): void;
   (e: "add", label: string): void;
   (e: "toggle", value: boolean): void;
+  (e: "setSearchValue", value: string): void;
 }
 
 const props = defineProps({
@@ -145,6 +147,10 @@ const props = defineProps({
   },
   value: {
     type: Array as PropType<number[]>,
+    required: true,
+  },
+  searchValue: {
+    type: String,
     required: true,
   },
   placeholder: {
@@ -183,8 +189,6 @@ const props = defineProps({
 });
 
 const emit = defineEmits<Emit>();
-
-const searchValue = ref("");
 
 const inputRef = ref<HTMLElement | undefined>();
 const backspaceUnselectableRef = ref();
@@ -227,8 +231,8 @@ const setUnselectableRef =
 
 const filteredOptions = computed(() => {
   const sortedOptions =
-    searchValue.value.length !== 0
-      ? sortByLevenshtein(deepCopy(props.options), searchValue.value)
+    props.searchValue.length !== 0
+      ? sortByLevenshtein(deepCopy(props.options), props.searchValue)
       : props.options;
   const removeSelectedOptions = (options: SelectBoxOption[]) => {
     return options.filter((v) => {
@@ -247,11 +251,16 @@ const onClear = (n: number) => {
   inputRef.value?.focus();
 };
 
+const onSetSearchValue = (e: Event) => {
+  const text = (e.target as HTMLInputElement).value;
+  emit("setSearchValue", text);
+};
+
 const onKeydownBackspace = {
   focus: (event: KeyboardEvent) => {
     if (
       event.key === "Backspace" &&
-      searchValue.value === "" &&
+      props.searchValue === "" &&
       props.value.length > 0
     ) {
       backspaceUnselectableRef.value?.focus();
@@ -271,13 +280,13 @@ const onSelect = (value: number) => {
       onClear(v);
     });
   }
-  searchValue.value = "";
+  emit("setSearchValue", "");
   emit("input", value);
   toggleDropdown();
 };
 const onCreate = (label: string) => {
   emit("add", label);
-  searchValue.value = "";
+  emit("setSearchValue", "");
 };
 
 const selectBoxCursor = computed(() => {
@@ -305,20 +314,20 @@ const isValueMatched = computed(() => {
 const addButtonEnabled = computed(
   () =>
     props.addable &&
-    searchValue.value !== "" &&
-    !props.options.some((v) => v.label === searchValue.value)
+    props.searchValue !== "" &&
+    !props.options.some((v) => v.label === props.searchValue)
 );
 
 const addButton = computed(() => {
   const option: ButtonGroupItem = {
     kind: "button",
     option: {
-      label: searchValue.value,
+      label: props.searchValue,
       icon: addButtonEnabled.value ? WizIAddCircle : undefined,
       iconDefaultColor: "green.800",
       value: -1,
       onClick: () => {
-        onCreate(searchValue.value);
+        onCreate(props.searchValue);
       },
     },
   };
