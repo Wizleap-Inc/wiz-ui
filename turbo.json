@@ -16,7 +16,7 @@
       "dependsOn": ["^test"]
     },
     "storycap": {
-      "dependsOn": ["^test"],
+      "dependsOn": ["^storycap"],
       "outputs": ["storybook-static/**"]
     }
   }
