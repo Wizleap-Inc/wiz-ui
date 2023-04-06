@@ -6,7 +6,7 @@
       colorStyle[color],
       clickable && avatarClickableStyle,
     ]"
-    :aria-label="label"
+    :aria-label="ariaLabel"
     @click="onClick"
   >
     <img
@@ -50,7 +50,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  label: {
+  ariaLabel: {
     type: String,
     required: true,
   },
