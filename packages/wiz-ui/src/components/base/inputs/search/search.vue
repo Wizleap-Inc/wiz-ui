@@ -16,14 +16,14 @@
         @focusin="hasFocus = true"
         @focusout="hasFocus = false"
         @click="
-          openPopup = !openPopup;
+          emit('toggle', true);
           selectedItem = [];
         "
         autocomplete="off"
       />
       <WizISearch :class="searchInputIconStyle" />
     </div>
-    <WizPopup :isOpen="openPopup" @onClose="openPopup = false">
+    <WizPopup :isOpen="openPopup" @onClose="emit('toggle', false)">
       <WizHStack>
         <div
           :class="[
@@ -180,11 +180,16 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  openPopup: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const emit = defineEmits<{
   (e: "input", value: number[]): void;
   (e: "click"): void;
+  (e: "toggle", value: boolean): void;
 }>();
 
 const checkValues = computed({
@@ -203,7 +208,6 @@ const filteredOptions = ref<SearchInputOption[]>([]);
 const selectedItem = ref<number[]>([]);
 const activeItem = ref<number | null>();
 const hasFocus = ref(false);
-const openPopup = ref(false);
 const isBorder = ref(false);
 
 const state = computed(() => {
@@ -233,7 +237,7 @@ const onMouseover = (value: number) => {
 
 watch(searchValue, () => {
   selectedItem.value = [];
-  openPopup.value = true;
+  emit("toggle", true);
   if (searchValue.value.length) {
     filteredOptions.value = props.options.filter((option) => {
       return option.label.indexOf(searchValue.value[0]) !== -1;

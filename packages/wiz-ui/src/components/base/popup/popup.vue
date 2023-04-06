@@ -12,6 +12,7 @@
         transform: popupTranslate,
       }"
       ref="popupRef"
+      @mouseleave="mouseLeave"
     >
       <slot />
     </div>
@@ -66,6 +67,7 @@ type DirectionChar = Direction extends `${infer X}${infer Y}` ? X | Y : never;
 interface Emits {
   (event: "onClose", isOpen: boolean): void;
   (event: "onTurn", direction: Direction): void;
+  (event: "mouseLeave", e: MouseEvent): void;
 }
 
 defineOptions({
@@ -83,7 +85,7 @@ const props = defineProps({
     default: true,
   },
   layer: {
-    type: String as PropType<Exclude<ZIndexKeys, "base" | "dialog">>,
+    type: String as PropType<Exclude<ZIndexKeys, "dialog">>,
     required: false,
     default: "popover",
   },
@@ -366,4 +368,6 @@ const popupTranslate = computed(() => {
   if (firstChar === "r") return `translate(${gap}, 0)`;
   return "translate(0, 0)";
 });
+
+const mouseLeave = (e: MouseEvent) => emit("mouseLeave", e);
 </script>
