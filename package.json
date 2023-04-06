@@ -8,7 +8,8 @@
     "build": "turbo build",
     "dev": "turbo dev --parallel",
     "test": "turbo test",
-    "vrt": "reg-suit run"
+    "vrt": "reg-suit run",
+    "storycap": "turbo storycap"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,vue}": [

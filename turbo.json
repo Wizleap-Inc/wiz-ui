@@ -10,6 +10,10 @@
     },
     "test": {
       "dependsOn": ["^test"]
+    },
+    "storycap": {
+      "dependsOn": ["^test"],
+      "outputs": ["storybook-static/**"]
     }
   }
 }
