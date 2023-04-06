@@ -13,14 +13,14 @@
         :icon="WizISend"
         :disabled="disabled"
         @click="onSubmit"
-        label="send"
+        :ariaLabel="ARIA_LABELS.CHAT_FORM.SEND"
       />
     </div>
   </WizHStack>
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { computed } from "vue";
 
 import { WizHStack, WizIconButton, WizTextArea, WizISend } from "@/components";
