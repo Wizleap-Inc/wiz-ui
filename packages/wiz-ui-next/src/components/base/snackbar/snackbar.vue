@@ -19,7 +19,7 @@
       <button
         :class="snackbarCloseButtonStyle"
         @click="onDelete"
-        aria-label="close"
+        :aria-label="ARIA_LABELS.SNACKBAR.CLOSE"
       >
         <WizIcon color="white.800" :icon="WizIClose" />
       </button>
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   snackbarStyle,
   snackbarFixedStyle,
