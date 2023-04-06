@@ -1,14 +1,6 @@
 name: Vue.js Storybook Deploy
 
-on:
-  push:
-    branches-ignore:
-      - "develop"
-  pull_request:
-    branches-ignore:
-      - "main"
-      - "develop"
-
+on: [pull_request]
 env:
   AWS_REGION: ap-northeast-1
   DEPLOY_PATH: packages/wiz-ui/storybook-static
