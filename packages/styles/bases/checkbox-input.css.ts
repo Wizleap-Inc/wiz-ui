@@ -74,11 +74,11 @@ export const checkboxIconContainerStyle = style({
 
 export const checkboxIconFocusedColorStyle = styleVariants({
   default: {
-    border: `${focusedBorderWidth} solid ${THEME.color.gray[800]}`,
+    outline: `${focusedBorderWidth} solid ${THEME.color.gray[800]}`,
   },
   checked: {
     fill: THEME.color.green["800"],
-    border: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
+    outline: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
   },
 });
 
