@@ -31,9 +31,13 @@ export const popupButtonGroupButtonVariantStyle = styleVariants({
   enabled: {
     color: THEME.color.gray["700"],
     cursor: "pointer",
-    ":hover": {
-      color: THEME.color.green["800"],
-      background: THEME.color.green["300"],
+    "@media": {
+      "(any-hover: hover)": {
+        ":hover": {
+          color: THEME.color.green["800"],
+          background: THEME.color.green["300"],
+        },
+      },
     },
     ":active": {
       color: THEME.color.white["800"],

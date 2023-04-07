@@ -38,9 +38,13 @@ export const paginationButtonVariantStyle = styleVariants({
   default: {
     background: THEME.color.white[500],
     color: THEME.color.gray[700],
-    ":hover": {
-      background: THEME.color.green[300],
-      color: THEME.color.green[800],
+    "@media": {
+      "(any-hover: hover)": {
+        ":hover": {
+          background: THEME.color.green[300],
+          color: THEME.color.green[800],
+        },
+      },
     },
     ":active": {
       background: THEME.color.green[800],
