@@ -15,7 +15,7 @@ export const ARIA_LABELS = {
     EXPAND: "開閉する",
   },
   SNACKBAR: {
-    CLOSE: "スナックバーを閉じる",
+    CLOSE: "通知を閉じる",
   },
   CHAT_CARD: {
     EXPAND: "チャット画面を開閉する",
