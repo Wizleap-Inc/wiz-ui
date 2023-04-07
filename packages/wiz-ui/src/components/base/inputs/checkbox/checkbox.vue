@@ -31,10 +31,7 @@
                 checkboxValue.includes(option.value)
                   ? checkboxIconVariantStyle['checked']
                   : checkboxIconVariantStyle['default'],
-                (mouseOver === option.value || focusOption === option.value) &&
-                  (checkboxValue.includes(option.value)
-                    ? checkboxIconFocusedColorStyle['checked']
-                    : checkboxIconFocusedColorStyle['default']),
+                checkboxLabelFocusStyle(option.value),
               ]"
             />
           </span>
@@ -88,6 +85,7 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     required: false,
+    default: false,
   },
   direction: {
     type: String as PropType<"horizontal" | "vertical">,
@@ -121,4 +119,18 @@ const labelPointer = (optionDisabled?: boolean) =>
 
 const focusOption = ref<number | null>(null);
 const mouseOver = ref<number | null>(null);
+
+const value2Option = computed(() =>
+  props.options.reduce((acc, option) => {
+    acc[option.value] = option;
+    return acc;
+  }, {} as Record<number, CheckBoxOption>)
+);
+const checkboxLabelFocusStyle = computed(() => (n: number) => {
+  if (props.disabled || value2Option.value[n].disabled) return;
+  if (![mouseOver.value, focusOption.value].includes(n)) return;
+  return checkboxValue.value.includes(n)
+    ? checkboxIconFocusedColorStyle["checked"]
+    : checkboxIconFocusedColorStyle["default"];
+});
 </script>
