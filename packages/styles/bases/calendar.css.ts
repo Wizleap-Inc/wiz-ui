@@ -43,10 +43,13 @@ export const calendarItemStyle = styleVariants({
     borderRadius: THEME.spacing.xs2,
     cursor: "pointer",
     background: "none",
-
-    ":hover": {
-      backgroundColor: THEME.color.green[300],
-      color: THEME.color.green[800],
+    "@media": {
+      "(any-hover: hover)": {
+        ":hover": {
+          backgroundColor: THEME.color.green[300],
+          color: THEME.color.green[800],
+        },
+      },
     },
     ":active": {
       backgroundColor: THEME.color.green[800],

@@ -114,9 +114,13 @@ export const popupHeaderSelectBoxOptionStyle = style({
   background: "transparent",
   color: THEME.color.gray["700"],
 
-  ":hover": {
-    backgroundColor: THEME.color.green["300"],
-    color: THEME.color.green["800"],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        backgroundColor: THEME.color.green["300"],
+        color: THEME.color.green["800"],
+      },
+    },
   },
   ":active": {
     backgroundColor: THEME.color.green["800"],

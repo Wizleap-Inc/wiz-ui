@@ -17,10 +17,13 @@ export const dropdownItemStyle = style({
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl,
   userSelect: "none",
-
-  ":hover": {
-    background: THEME.color.green[300],
-    color: THEME.color.green[800],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        background: THEME.color.green[300],
+        color: THEME.color.green[800],
+      },
+    },
   },
   ":active": {
     background: THEME.color.green[800],

@@ -10,9 +10,12 @@ export const anchorStyle = style([
     display: "inline-flex",
     alignItems: "center",
     wordBreak: "break-word",
-
-    ":hover": {
-      textDecoration: "underline",
+    "@media": {
+      "(any-hover: hover)": {
+        ":hover": {
+          textDecoration: "underline",
+        },
+      },
     },
   }),
 ]);
