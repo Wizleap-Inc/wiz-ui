@@ -34,6 +34,7 @@ const MULTI_COLOR_MAP = {
     "800": "#E9AD12",
   },
   gray: {
+    "200": "#FAFAFA",
     "300": "#EEF0EF",
     "400": "#D3D8D7",
     "500": "#AFB8B6",
