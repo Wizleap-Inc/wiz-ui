@@ -1,4 +1,4 @@
 {
   "root": true,
-  "extends": ["../../.eslintrc.json"]
+  "extends": ["../../.eslintrc.json", "../../.eslintrc.vue.json"]
 }
