@@ -23,6 +23,7 @@ export const checkboxLabelStyle = style({
   color: THEME.color.gray["600"],
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
+  userSelect: "none",
 });
 
 export const checkboxLabelCheckedStyle = style({
