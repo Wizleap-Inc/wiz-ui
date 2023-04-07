@@ -4,7 +4,7 @@
       v-for="(item, i) in navigationItems"
       :key="i"
       :icon="item.icon"
-      :label="item.ariaLabel"
+      :label="item.label"
       :to="item.to"
       :active="item.active"
     />
@@ -28,25 +28,25 @@ const currentPath = computed(() => route.path);
 const navigationItems = computed(() => [
   {
     icon: WizIDashboard,
-    ariaLabel: "Home",
+    label: "Home",
     to: "/",
     active: currentPath.value === "/",
   },
   {
     icon: WizIAssignment,
-    ariaLabel: "About",
+    label: "About",
     to: "/about",
     active: currentPath.value === "/about",
   },
   {
     icon: WizIBusinessCenter,
-    ariaLabel: "Contact",
+    label: "Contact",
     to: "/contact",
     active: currentPath.value === "/contact",
   },
   {
     icon: WizIHelp,
-    ariaLabel: "Help",
+    label: "Help",
     to: "/help",
     active: currentPath.value === "/help",
   },
