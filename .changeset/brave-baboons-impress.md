@@ -1,5 +1,4 @@
 ---
-"@wizleap-inc/wiz-ui-constants": patch
 "@wizleap-inc/wiz-ui": patch
 "@wizleap-inc/wiz-ui-next": patch
 "@wizleap-inc/wiz-ui-react": patch
