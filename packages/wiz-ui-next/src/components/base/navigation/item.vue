@@ -18,7 +18,7 @@
               ? navigationItemDisabledStyle
               : active && navigationItemActiveStyle,
           ]"
-          :aria-label="ariaLabel"
+          :aria-label="label"
         >
           <component
             :is="icon"
@@ -35,7 +35,7 @@
               !disabled && active && navigationItemTextActiveStyle,
             ]"
           >
-            {{ ariaLabel }}
+            {{ label }}
           </div>
         </component>
       </div>
@@ -100,7 +100,7 @@ const props = defineProps({
     type: Object as PropType<TIcon>,
     required: true,
   },
-  ariaLabel: {
+  label: {
     type: String,
     required: true,
   },

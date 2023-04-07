@@ -13,7 +13,7 @@ export default {
     icon: {
       control: { type: "object" },
     },
-    ariaLabel: {
+    label: {
       control: { type: "text" },
     },
     active: {
@@ -50,21 +50,21 @@ const Template: StoryFn = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   icon: WizIDashboard,
-  ariaLabel: "Home",
+  label: "Home",
   to: "/home",
 };
 
 export const External = Template.bind({});
 External.args = {
   icon: WizIDashboard,
-  ariaLabel: "Home",
+  label: "Home",
   to: "https://wizleap.co.jp",
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   icon: WizIDashboard,
-  ariaLabel: "Home",
+  label: "Home",
   to: "/home",
   disabled: true,
 };
@@ -85,7 +85,7 @@ const TooltipTemplate: StoryFn = (args, { argTypes }) => ({
 export const WithToolTip = TooltipTemplate.bind({});
 WithToolTip.args = {
   icon: WizIDashboard,
-  ariaLabel: "Home",
+  label: "Home",
   to: "/home",
   tooltipText: "これはヒントです。",
 };
