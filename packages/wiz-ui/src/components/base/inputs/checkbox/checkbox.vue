@@ -10,8 +10,6 @@
             checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
           :for="option.key"
-          @mouseenter="mouseOver = option.value"
-          @mouseleave="mouseOver = null"
         >
           <input
             :class="checkboxInputStyle"
@@ -118,7 +116,6 @@ const labelPointer = (optionDisabled?: boolean) =>
   props.disabled || optionDisabled ? "disabled" : "default";
 
 const focusOption = ref<number | null>(null);
-const mouseOver = ref<number | null>(null);
 
 const value2Option = computed(() =>
   props.options.reduce((acc, option) => {
@@ -128,7 +125,7 @@ const value2Option = computed(() =>
 );
 const checkboxLabelFocusStyle = computed(() => (n: number) => {
   if (props.disabled || value2Option.value[n].disabled) return;
-  if (![mouseOver.value, focusOption.value].includes(n)) return;
+  if (focusOption.value !== n) return;
   return checkboxValue.value.includes(n)
     ? checkboxIconFocusedColorStyle["checked"]
     : checkboxIconFocusedColorStyle["default"];
