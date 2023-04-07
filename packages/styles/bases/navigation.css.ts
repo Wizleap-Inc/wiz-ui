@@ -48,7 +48,11 @@ export const navigationItemStyle = style({
   },
   selectors: {
     "&:hover::before": {
-      backgroundColor: THEME.color.green["800"],
+      "@media": {
+        "(any-hover: hover)": {
+          backgroundColor: THEME.color.green["800"],
+        },
+      },
     },
   },
 });
@@ -68,7 +72,11 @@ export const navigationItemDisabledStyle = style({
   cursor: "not-allowed",
   selectors: {
     "&:hover::before": {
-      backgroundColor: "transparent",
+      "@media": {
+        "(any-hover: hover)": {
+          backgroundColor: "transparent",
+        },
+      },
     },
   },
 });
@@ -95,4 +103,12 @@ export const navigationItemTextStyle = style({
 
 export const navigationItemTextActiveStyle = style({
   fontWeight: "bold",
+});
+
+export const navigationPopupContainerStyle = style({
+  background: THEME.color.white["800"],
+  borderRadius: THEME.spacing.xs2,
+  boxSizing: "border-box",
+  maxHeight: "25rem",
+  overflowY: "auto",
 });

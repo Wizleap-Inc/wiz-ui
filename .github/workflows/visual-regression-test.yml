@@ -1,6 +1,6 @@
 name: Visual Regression Test Wiz-UI library
 
-on: [push]
+on: [pull_request]
 
 env:
   REG_NOTICE_CLIENT_ID: ${{ secrets.REG_NOTICE_CLIENT_ID }}
@@ -34,11 +34,38 @@ jobs:
         run: |
           git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
 
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "::set-output name=version::$(yarn list playwright | grep playwright | sed 's/.*@//' | tail -1)"
+
+      - uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: "~/.cache/ms-playwright"
+          key: "${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}"
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright's dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+
       - name: run storybook generate
-        run: pnpm --filter @wizleap-inc/wiz-ui build:storybook
+        run: pnpm build:storybook
 
       - name: run storycap
-        run: pnpm --filter @wizleap-inc/wiz-ui ci:storycap
+        run: pnpm storycap
+
+      - name: hoist screenshots
+        run: |
+          mkdir -p __screenshots__
+          for dir in ./packages/*/; do
+            if [ -d "$dir"__screenshots__ ]; then
+              package_name=$(basename "$dir")
+              mkdir -p __screenshots__/"$package_name"
+              cp -r "$dir"__screenshots__/* __screenshots__/"$package_name/"
+            fi
+          done
 
       - name: run reg-suit
-        run: pnpm --filter @wizleap-inc/wiz-ui ci:vrt
+        run: pnpm vrt

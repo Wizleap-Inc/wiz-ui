@@ -46,7 +46,11 @@ export const cardTrStyle = style({
       border: `1px solid ${THEME.color.gray[300]}`,
     },
     "tbody > &:hover::after": {
-      border: `2px solid ${THEME.color.green[800]}`,
+      "@media": {
+        "(any-hover: hover)": {
+          border: `2px solid ${THEME.color.green[800]}`,
+        },
+      },
     },
     "tbody > &:active::after": {
       background: THEME.color.green[300],
