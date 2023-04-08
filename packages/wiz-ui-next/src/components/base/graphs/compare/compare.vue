@@ -8,6 +8,8 @@
         :data="barData"
         :maxFrequency="maxFrequency"
         :key="i"
+        :barGap="barGap"
+        :barGroupWidth="barGroupWidth"
       />
     </div>
     <div :class="summaryLabelStyle">
@@ -36,6 +38,18 @@ const props = defineProps({
   data: {
     type: Array as PropType<CompareGraphData[]>,
     required: true,
+  },
+  /** バーの間隔に影響します。0~1の値を指定してください。 */
+  barGap: {
+    type: Number,
+    required: false,
+    default: 0.1,
+  },
+  /** バーの太さに影響します。0~1の値を指定してください。 */
+  barGroupWidth: {
+    type: Number,
+    required: false,
+    default: 0.8,
   },
 });
 
