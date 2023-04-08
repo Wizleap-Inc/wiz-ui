@@ -4,6 +4,7 @@
     <div
       v-for="bar in bars"
       :class="[graphBarItemStyle, graphBarItemIndexStyle['current']]"
+      ref="barRefs"
       :style="{
         height: `${bar.y * 100}%`,
         width: `${barWidth * (1 - barGap) * 100}%`,
@@ -13,9 +14,7 @@
       <span
         :class="graphBarNumberStyle"
         v-if="bar.y !== 0"
-        :style="{
-          padding: '8px 0',
-        }"
+        ref="barFrequencyRefs"
       >
         {{ bar.freq }}
       </span>
@@ -31,7 +30,7 @@ import {
   graphBarStyle,
   graphBarNumberStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/compare-graph.css";
-import { PropType, computed } from "vue";
+import { PropType, computed, onMounted, ref } from "vue";
 
 const props = defineProps({
   label: {
@@ -58,6 +57,42 @@ const props = defineProps({
     required: false,
     default: 0.8,
   },
+});
+
+const barRefs = ref<HTMLElement[]>();
+const barFrequencyRefs = ref<HTMLElement[]>();
+
+const updateBarItemCurrentHeight = () => {
+  const barElms = barRefs.value;
+  const barFrequencyElms = barFrequencyRefs.value;
+
+  if (!barElms || !barFrequencyElms) return;
+  Array.from({ length: barFrequencyElms.length }).forEach((_, i) => {
+    const barFrequencyElm = barFrequencyElms[i];
+    const barElm = barElms[i];
+    if (barFrequencyElm.offsetHeight + 16 < barElm.offsetHeight) {
+      barFrequencyElm.style.padding = "8px 0";
+      return;
+    }
+    barFrequencyElm.style.padding = "0";
+    if (barFrequencyElm.offsetHeight < barElm.offsetHeight) {
+      barFrequencyElm.style.top =
+        (barElm.offsetHeight - barFrequencyElm.offsetHeight) / 2 + "px";
+      return;
+    }
+    barFrequencyElm.style.top = barFrequencyElm.offsetHeight * -1 + "px";
+    barFrequencyElm.style.color = "#606166";
+  });
+};
+
+onMounted(() => {
+  const barItemCurrentResizeObserver = new ResizeObserver(() => {
+    updateBarItemCurrentHeight();
+  });
+  if (barRefs.value)
+    barRefs.value.forEach((barItemCurrentRef) => {
+      barItemCurrentResizeObserver.observe(barItemCurrentRef);
+    });
 });
 
 const barWidth = computed(() => props.barGroupWidth / props.frequencies.length);
