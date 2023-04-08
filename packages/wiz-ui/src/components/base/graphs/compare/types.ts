@@ -5,6 +5,6 @@ export interface CompareGraphData {
   data: {
     frequency: number;
     barColor?: ColorKeys;
-    textColor?: ColorKeys;
+    numberColor?: ColorKeys;
   }[];
 }

@@ -25,25 +25,25 @@ const DUMMY_DATA: CompareGraphData[] = [
   {
     label: "2022/5",
     data: [
-      { frequency: 75, barColor: "green.800", textColor: "gray.300" },
-      { frequency: 50, barColor: "green.500", textColor: "gray.700" },
-      { frequency: 25, barColor: "green.300", textColor: "gray.700" },
+      { frequency: 75, barColor: "green.800", numberColor: "gray.300" },
+      { frequency: 50, barColor: "green.500", numberColor: "gray.700" },
+      { frequency: 25, barColor: "green.300", numberColor: "gray.700" },
     ],
   },
   {
     label: "2022/6",
     data: [
-      { frequency: 40, barColor: "red.800", textColor: "gray.300" },
-      { frequency: 80, barColor: "red.500", textColor: "gray.700" },
-      { frequency: 40, barColor: "red.300", textColor: "gray.700" },
+      { frequency: 40, barColor: "red.800", numberColor: "gray.300" },
+      { frequency: 80, barColor: "red.500", numberColor: "gray.700" },
+      { frequency: 40, barColor: "red.300", numberColor: "gray.700" },
     ],
   },
   {
     label: "2022/7",
     data: [
-      { frequency: 100, barColor: "blue.800", textColor: "gray.300" },
-      { frequency: 50, barColor: "blue.500", textColor: "gray.700" },
-      { frequency: 5, barColor: "blue.300", textColor: "gray.700" },
+      { frequency: 100, barColor: "blue.800", numberColor: "gray.300" },
+      { frequency: 50, barColor: "blue.500", numberColor: "gray.700" },
+      { frequency: 5, barColor: "blue.300", numberColor: "gray.700" },
     ],
   },
 ];

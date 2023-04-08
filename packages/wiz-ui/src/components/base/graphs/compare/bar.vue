@@ -107,7 +107,7 @@ const bars = computed(() =>
       x: barWidth.value * (i + 0.5),
       y: data.frequency / props.maxFrequency,
       bgColorStyle: backgroundStyle[data.barColor ?? "green.800"],
-      numberColorStyle: colorStyle[data.textColor ?? "white.800"],
+      numberColorStyle: colorStyle[data.numberColor ?? "white.800"],
       frequency: data.frequency,
     };
   })
