@@ -11,6 +11,12 @@ export default {
     data: {
       control: { type: "array" },
     },
+    barGap: {
+      control: { type: "number" },
+    },
+    barGroupWidth: {
+      control: { type: "number" },
+    },
   },
 } as Meta<typeof WizCompareGraph>;
 
@@ -80,9 +86,39 @@ export const Default = Template.bind({});
 Default.parameters = {
   docs: {
     description: {
-      component: `
+      story: `
 frequencyの値が一番大きいdataが最大値となるようにグラフが描画されます。
       `,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const Gap = Template.bind({});
+Gap.args = {
+  barGap: 0.5,
+};
+Gap.parameters = {
+  docs: {
+    description: {
+      story: `barGapには0~1の値を設定してください。値が大きいほどバーの間隔が広くなります`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const GroupWidth = Template.bind({});
+GroupWidth.args = {
+  barGroupWidth: 0.4,
+};
+GroupWidth.parameters = {
+  docs: {
+    description: {
+      story: `barGroupWidthには0~1の値を設定してください。値が小さいほどグループの占める領域が狭くなります。`,
     },
     source: {
       code: CODE_TEMPLATE({}),

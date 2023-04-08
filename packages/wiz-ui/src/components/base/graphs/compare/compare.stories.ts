@@ -90,6 +90,38 @@ frequencyの値が一番大きいdataが最大値となるようにグラフが�
   },
 };
 
+export const Gap = Template.bind({});
+Gap.args = {
+  data: DUMMY_DATA,
+  barGap: 0.5,
+};
+Gap.parameters = {
+  docs: {
+    description: {
+      story: `barGapには0~1の値を設定してください。値が大きいほどバーの間隔が広くなります`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const GroupWidth = Template.bind({});
+GroupWidth.args = {
+  data: DUMMY_DATA,
+  barGroupWidth: 0.4,
+};
+GroupWidth.parameters = {
+  docs: {
+    description: {
+      story: `barGroupWidthには0~1の値を設定してください。値が小さいほどグループの占める領域が狭くなります。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
 export const Slot: StoryFn<typeof WizCompareGraph> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizCompareGraph },
