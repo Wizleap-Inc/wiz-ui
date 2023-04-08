@@ -21,19 +21,30 @@ const Template: StoryFn<typeof WizCompareGraph> = (_, { argTypes }) => ({
     <WizCompareGraph v-bind="$props"/>
   `,
 });
-
 const DUMMY_DATA: CompareGraphData[] = [
   {
     label: "2022/5",
-    frequencies: [75, 50, 25],
+    data: [
+      { frequency: 75, barColor: "green.800", textColor: "gray.300" },
+      { frequency: 50, barColor: "green.500", textColor: "gray.700" },
+      { frequency: 25, barColor: "green.300", textColor: "gray.700" },
+    ],
   },
   {
     label: "2022/6",
-    frequencies: [40, 80, 40],
+    data: [
+      { frequency: 40, barColor: "red.800", textColor: "gray.300" },
+      { frequency: 80, barColor: "red.500", textColor: "gray.700" },
+      { frequency: 40, barColor: "red.300", textColor: "gray.700" },
+    ],
   },
   {
     label: "2022/7",
-    frequencies: [100, 50, 5],
+    data: [
+      { frequency: 100, barColor: "blue.800", textColor: "gray.300" },
+      { frequency: 50, barColor: "blue.500", textColor: "gray.700" },
+      { frequency: 5, barColor: "blue.300", textColor: "gray.700" },
+    ],
   },
 ];
 
