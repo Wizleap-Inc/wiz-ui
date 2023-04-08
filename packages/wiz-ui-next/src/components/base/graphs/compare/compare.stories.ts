@@ -25,7 +25,7 @@ const DUMMY_DATA: CompareGraphData[] = [
   },
   {
     label: "2022/7",
-    frequencies: [100, 50, 30],
+    frequencies: [100, 50, 5],
   },
 ];
 
