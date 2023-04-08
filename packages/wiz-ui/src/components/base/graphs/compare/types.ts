@@ -1,4 +1,10 @@
+import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
+
 export interface CompareGraphData {
   label: string;
-  frequencies: number[];
+  data: {
+    frequency: number;
+    barColor?: ColorKeys;
+    textColor?: ColorKeys;
+  }[];
 }

@@ -3,7 +3,7 @@
     <span :class="graphBarLabelStyle">{{ label }}</span>
     <div
       v-for="bar in bars"
-      :class="[graphBarItemStyle, graphBarItemIndexStyle['current']]"
+      :class="[graphBarItemStyle, bar.bgColorStyle]"
       ref="barRefs"
       :style="{
         height: `${bar.y * 100}%`,
@@ -12,11 +12,11 @@
       }"
     >
       <span
-        :class="graphBarNumberStyle"
+        :class="[graphBarNumberStyle, bar.numberColorStyle]"
         v-if="bar.y !== 0"
         ref="barFrequencyRefs"
       >
-        {{ bar.freq }}
+        {{ bar.frequency }}
       </span>
     </div>
   </div>
@@ -24,21 +24,25 @@
 
 <script setup lang="ts">
 import {
-  graphBarItemIndexStyle,
   graphBarItemStyle,
   graphBarLabelStyle,
   graphBarStyle,
   graphBarNumberStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/compare-graph.css";
+import {
+  backgroundStyle,
+  colorStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, onMounted, ref } from "vue";
 
+import { CompareGraphData } from "./types";
 const props = defineProps({
   label: {
     type: String,
     required: true,
   },
-  frequencies: {
-    type: Array as PropType<number[]>,
+  data: {
+    type: Object as PropType<CompareGraphData>,
     required: true,
   },
   maxFrequency: {
@@ -95,13 +99,15 @@ onMounted(() => {
     });
 });
 
-const barWidth = computed(() => props.barGroupWidth / props.frequencies.length);
+const barWidth = computed(() => props.barGroupWidth / props.data.data.length);
 const bars = computed(() =>
-  props.frequencies.map((freq, i) => {
+  props.data.data.map((data, i) => {
     return {
       x: barWidth.value * (i + 0.5),
-      y: freq / props.maxFrequency,
-      freq: freq,
+      y: data.frequency / props.maxFrequency,
+      bgColorStyle: backgroundStyle[data.barColor ?? "green.800"],
+      numberColorStyle: colorStyle[data.textColor ?? "white.800"],
+      frequency: data.frequency,
     };
   })
 );

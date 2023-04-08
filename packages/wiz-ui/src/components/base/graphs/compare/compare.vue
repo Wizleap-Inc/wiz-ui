@@ -5,7 +5,7 @@
         v-for="(barData, i) in formattedBarData"
         :label="barData.label"
         :isFirst="i === 0"
-        :frequencies="barData.frequencies"
+        :data="barData"
         :maxFrequency="maxFrequency"
         :key="i"
       />
@@ -40,14 +40,19 @@ const props = defineProps({
 });
 
 const maxFrequency = computed(() => {
-  return Math.max(...props.data.map((item) => item.frequencies).flat());
+  return Math.max(
+    ...props.data
+      .map((item) => item.data)
+      .flat()
+      .map((item) => item.frequency)
+  );
 });
 
 const formattedBarData = computed(() =>
   props.data.map((item) => {
     return {
       label: item.label,
-      frequencies: item.frequencies,
+      data: item.data,
     };
   })
 );

@@ -121,7 +121,6 @@ export const graphBarNumberStyle = style({
   width: "max-content",
   fontSize: THEME.fontSize.xs,
   lineHeight: THEME.fontSize.md,
-  color: THEME.color.white[800],
 });
 
 export const graphBarLabelStyle = style({
