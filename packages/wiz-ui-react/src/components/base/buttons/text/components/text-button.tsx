@@ -11,7 +11,6 @@ import clsx from "clsx";
 import { ComponentProps, ReactNode, memo } from "react";
 
 type Props = {
-  onClick?: () => void;
   variant?: "primary" | "sub";
   disabled?: boolean;
   rounded?: boolean;
