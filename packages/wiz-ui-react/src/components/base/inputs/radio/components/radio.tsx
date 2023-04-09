@@ -1,14 +1,5 @@
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  radioStyle,
-  radioLabelStyle,
-  radioLabelCheckedStyle,
-  radioLabelDisabledStyle,
-  radioLabelColorStyle,
-  radioLabelCursorStyle,
-  radioLabelStrikeThrough,
-  radioInputStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import clsx from "clsx";
 import { memo } from "react";
 
@@ -40,13 +31,13 @@ export const _Radio = ({
     disabled || optionDisabled ? "disabled" : "default";
 
   return (
-    <div className={radioStyle}>
+    <div className={styles.radioStyle}>
       {/* WizStack <WizStack :gap="gap" :direction="direction" wrap> */}
       <div>
         {options.map((option) => (
           <div key={option.key}>
             <input
-              className={radioInputStyle}
+              className={styles.radioInputStyle}
               type="radio"
               name={option.key}
               id={option.key}
@@ -56,14 +47,16 @@ export const _Radio = ({
             />
             <label
               className={clsx(
-                radioLabelStyle,
-                value === option.value && radioLabelCheckedStyle,
-                (disabled || option.disabled) && radioLabelDisabledStyle,
-                radioLabelColorStyle[radioLabelColor(value === option.value)],
-                radioLabelCursorStyle[radioLabelCursor(option.disabled)],
+                styles.radioLabelStyle,
+                value === option.value && styles.radioLabelCheckedStyle,
+                (disabled || option.disabled) && styles.radioLabelDisabledStyle,
+                styles.radioLabelColorStyle[
+                  radioLabelColor(value === option.value)
+                ],
+                styles.radioLabelCursorStyle[radioLabelCursor(option.disabled)],
                 strikeThrough &&
                   value === option.value &&
-                  radioLabelStrikeThrough
+                  styles.radioLabelStrikeThrough
               )}
               htmlFor={option.key}
             >
