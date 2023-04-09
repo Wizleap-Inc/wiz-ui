@@ -1,9 +1,5 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
-import {
-  passwordStyle,
-  passwordExpandStyle,
-  passwordVisibleIconStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
 import clsx from "clsx";
 import { memo, useState } from "react";
 type Props = {
@@ -31,7 +27,12 @@ const _PasswordInput = ({
   const computedExpand = expand ? "expand" : "default";
 
   return (
-    <div className={clsx(passwordStyle, passwordExpandStyle[computedExpand])}>
+    <div
+      className={clsx(
+        styles.passwordStyle,
+        styles.passwordExpandStyle[computedExpand]
+      )}
+    >
       <input // PrivateBaseInput
         placeholder={placeholder}
         id={id}
@@ -47,7 +48,7 @@ const _PasswordInput = ({
       />
       <button
         aria-label={ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE}
-        className={passwordVisibleIconStyle}
+        className={styles.passwordVisibleIconStyle}
         onClick={() => setIsPasswordVisible(!isPasswordVisible)}
       >
         {/* <WizIEye :class="isPasswordVisible && passwordVisibleIconActiveStyle" />  */}
