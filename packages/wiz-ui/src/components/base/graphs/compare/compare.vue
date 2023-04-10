@@ -1,5 +1,5 @@
 <template>
-  <Container :maxFrequency="maxFrequency">
+  <Container :maxFrequency="maxFrequency" :annotationUnit="annotationUnit">
     <div :class="[graphBodyStyle]">
       <Bar
         v-for="(barData, i) in formattedBarData"
@@ -50,6 +50,11 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 0.8,
+  },
+  /** 単位を指定してください。 */
+  annotationUnit: {
+    type: String,
+    required: false,
   },
 });
 
