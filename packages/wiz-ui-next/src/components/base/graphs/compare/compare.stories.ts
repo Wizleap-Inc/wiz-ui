@@ -96,6 +96,23 @@ frequencyの値が一番大きいdataが最大値となるようにグラフが�
   },
 };
 
+export const AnnotationUnit = Template.bind({});
+AnnotationUnit.args = {
+  annotationUnit: "%",
+};
+AnnotationUnit.parameters = {
+  docs: {
+    description: {
+      story: `
+frequencyの値が一番大きいdataが最大値となるようにグラフが描画されます。
+      `,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
 export const Gap = Template.bind({});
 Gap.args = {
   barGap: 0.5,

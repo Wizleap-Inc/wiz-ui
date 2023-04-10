@@ -90,6 +90,22 @@ frequencyの値が一番大きいdataが最大値となるようにグラフが�
   },
 };
 
+export const AnnotationUnit = Template.bind({});
+AnnotationUnit.args = {
+  data: DUMMY_DATA,
+  annotationUnit: "%",
+};
+AnnotationUnit.parameters = {
+  docs: {
+    description: {
+      component: `表示する単位を設定できます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
 export const Gap = Template.bind({});
 Gap.args = {
   data: DUMMY_DATA,
