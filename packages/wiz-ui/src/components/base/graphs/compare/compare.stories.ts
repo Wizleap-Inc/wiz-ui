@@ -54,7 +54,7 @@ interface Option {
 
 const CODE_TEMPLATE = ({ slot }: Partial<Option>) => `
 <script setup lang="ts">
-import { WizPollGraph } from "@wizleap-inc/wiz-ui";
+import { WizCompareGraph } from "@wizleap-inc/wiz-ui";
 import { compareGraphData } from "@wizleap-inc/wiz-ui/components/base/graphs/compare/types";
 
 const data: compareGraphData[] = [
@@ -67,9 +67,9 @@ const data: compareGraphData[] = [
 </script>
 
 <template>
-  <WizPollGraph :data="data">
+  <WizCompareGraph :data="data">
     ${slot}
-  </WizPollGraph>
+  </WizCompareGraph>
 </template>
 `;
 
