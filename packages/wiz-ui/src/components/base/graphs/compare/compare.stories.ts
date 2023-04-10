@@ -106,6 +106,22 @@ AnnotationUnit.parameters = {
   },
 };
 
+export const MaxFrequency = Template.bind({});
+MaxFrequency.args = {
+  data: DUMMY_DATA,
+  maxFrequency: 150,
+};
+MaxFrequency.parameters = {
+  docs: {
+    description: {
+      component: `縦軸の最大値を設定します`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
 export const Gap = Template.bind({});
 Gap.args = {
   data: DUMMY_DATA,

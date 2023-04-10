@@ -113,6 +113,21 @@ frequencyの値が一番大きいdataが最大値となるようにグラフが�
   },
 };
 
+export const MaxFrequency = Template.bind({});
+MaxFrequency.args = {
+  maxFrequency: 150,
+};
+MaxFrequency.parameters = {
+  docs: {
+    description: {
+      component: `縦軸の最大値を設定します`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
 export const Gap = Template.bind({});
 Gap.args = {
   barGap: 0.5,
