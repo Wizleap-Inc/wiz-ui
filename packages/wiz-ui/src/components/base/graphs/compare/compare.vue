@@ -39,6 +39,11 @@ const props = defineProps({
     type: Array as PropType<CompareGraphData[]>,
     required: true,
   },
+  /** 縦軸の最大値を設定します。 */
+  maxFrequency: {
+    type: Number,
+    required: false,
+  },
   /** バーの間隔に影響します。0~1の値を指定してください。 */
   barGap: {
     type: Number,
@@ -59,6 +64,7 @@ const props = defineProps({
 });
 
 const maxFrequency = computed(() => {
+  if (props.maxFrequency) return props.maxFrequency;
   return Math.max(
     ...props.data
       .map((item) => item.data)
