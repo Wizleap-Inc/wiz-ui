@@ -85,7 +85,7 @@ export const Color: Story = {
 
 export const Icon: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     const icons = () =>
       Object.values(Icons).map((icon) => (
         <>
