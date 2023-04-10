@@ -7,7 +7,7 @@
         :isFirst="i === 0"
         :data="barData"
         :maxFrequency="maxFrequency"
-        :key="i"
+        :key="barData.label"
         :barGap="barGap"
         :barGroupWidth="barGroupWidth"
       />

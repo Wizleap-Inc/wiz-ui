@@ -3,6 +3,7 @@
     <span :class="graphBarLabelStyle">{{ label }}</span>
     <div
       v-for="bar in bars"
+      :key="bar.id"
       :class="[graphBarItemStyle, bar.bgColorStyle]"
       ref="barRefs"
       :style="{
@@ -104,6 +105,7 @@ const barWidth = computed(() => props.barGroupWidth / props.data.data.length);
 const bars = computed(() =>
   props.data.data.map((data, i) => {
     return {
+      id: data.id,
       x: barWidth.value * (i + 0.5),
       y: data.frequency / props.maxFrequency,
       bgColorStyle: backgroundStyle[data.barColor ?? "green.800"],
