@@ -1,12 +1,21 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import { WizSnackbar } from "@/components";
+import { WizSnackbar, WizProvider } from "@/components";
 import { useSnackbar } from "@/hooks/use-snackbar";
 
 export default {
   title: "Base/Snackbar",
-  component: WizSnackbar,
+  component: { WizSnackbar, WizProvider },
+  decorators: [
+    () => ({
+      components: { WizProvider },
+      template: `
+      <WizProvider> 
+        <story/>
+      </WizProvider>`,
+    }),
+  ],
   argTypes: {
     message: {
       control: {
