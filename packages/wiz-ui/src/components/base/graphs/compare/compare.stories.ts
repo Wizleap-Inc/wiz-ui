@@ -135,12 +135,12 @@ frequencyの値が一番大きいdataが最大値となるようにグラフが�
   },
 };
 
-export const AnnotationUnit = Template.bind({});
-AnnotationUnit.args = {
+export const Unit = Template.bind({});
+Unit.args = {
   data: DUMMY_DATA,
-  annotationUnit: "%",
+  unit: "%",
 };
-AnnotationUnit.parameters = {
+Unit.parameters = {
   docs: {
     description: {
       story: `単位を設定できます。`,
