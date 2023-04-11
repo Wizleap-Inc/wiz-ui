@@ -115,9 +115,13 @@ export const searchDropdownLabelStyle = style({
   color: THEME.color.gray[700],
   lineHeight: THEME.fontSize.xl,
   userSelect: "none",
-  ":hover": {
-    background: THEME.color.green[300],
-    color: THEME.color.green[800],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        background: THEME.color.green[300],
+        color: THEME.color.green[800],
+      },
+    },
   },
 });
 

@@ -16,7 +16,11 @@ export const toggleButtonStyle = style({
   color: THEME.color.green[800],
   selectors: {
     "&:hover:not(:disabled)": {
-      opacity: 0.9,
+      "@media": {
+        "(any-hover: hover)": {
+          opacity: 0.9,
+        },
+      },
     },
   },
 });

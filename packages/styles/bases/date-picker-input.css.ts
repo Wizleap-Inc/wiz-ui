@@ -48,10 +48,13 @@ export const datePickerMonthSelectorItemStyle = style({
   border: "none",
   background: "transparent",
   fill: THEME.color.gray["700"],
-
-  ":hover": {
-    backgroundColor: THEME.color.green["300"],
-    fill: THEME.color.green["800"],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        backgroundColor: THEME.color.green["300"],
+        fill: THEME.color.green["800"],
+      },
+    },
   },
   ":active": {
     backgroundColor: THEME.color.green["800"],
