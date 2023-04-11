@@ -44,6 +44,12 @@ const props = defineProps({
     type: Number,
     required: false,
   },
+  /** 縦軸の最大値をceilN桁で切り上げて設定します。 */
+  ceilN: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
   /** バーの間隔に影響します。0~1の値を指定してください。 */
   barGap: {
     type: Number,
@@ -65,12 +71,15 @@ const props = defineProps({
 
 const maxFrequency = computed(() => {
   if (props.maxFrequency) return props.maxFrequency;
-  return Math.max(
+  const maxFreq = Math.max(
     ...props.data
       .map((item) => item.data)
       .flat()
       .map((item) => item.frequency)
   );
+  const powerOfTen = Math.pow(10, props.ceilN);
+  const ceiledFreq = Math.ceil(maxFreq / powerOfTen) * powerOfTen;
+  return ceiledFreq;
 });
 
 const formattedBarData = computed(() =>
