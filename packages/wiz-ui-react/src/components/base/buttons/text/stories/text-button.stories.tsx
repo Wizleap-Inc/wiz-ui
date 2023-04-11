@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { WizIAdd } from "@/components/icons";
+
 import { WizTextButton } from "../components/text-button";
 
 const meta: Meta<typeof WizTextButton> = {
@@ -84,6 +86,40 @@ export const Expand: Story = {
     docs: {
       description: {
         story: "`expand` を指定すると、ボタンは幅いっぱいに広がります。 ",
+      },
+    },
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    icon: WizIAdd,
+  },
+  render: (args) => <WizTextButton {...args}>保存する</WizTextButton>,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "アイコンを指定することができます。`WizI`というPrefixのコンポーネントがアイコンなのでそれを渡してください。選択肢はIconsを参照してください。",
+      },
+    },
+  },
+};
+
+export const IconPosition: Story = {
+  args: {
+    icon: WizIAdd,
+    iconPosition: "right",
+  },
+  render: (args) => <WizTextButton {...args}>保存する</WizTextButton>,
+  parameters: {
+    docs: {
+      description: {
+        story: `
+アイコンの配置を指定することができます。
+- left: 左寄せ
+- right: 右寄せ
+        `,
       },
     },
   },
