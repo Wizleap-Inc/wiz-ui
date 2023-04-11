@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
+import { WizIAdd } from "@/components/icons";
+
 import { WizTinyButton } from "../components/tiny-button";
 const spacingKeys = ["p", "px", "py"];
 const spacingControls = spacingKeys.reduce((acc, key) => {
@@ -24,9 +26,9 @@ const meta: Meta<typeof WizTinyButton> = {
     hover: {
       control: { type: "boolean" },
     },
-    // icon: {
-    //   control: { type: "object" },
-    // },
+    icon: {
+      control: { type: "object" },
+    },
     iconPosition: {
       control: { type: "select" },
       options: ["left", "right"],
@@ -116,6 +118,44 @@ export const Hover: Story = {
       description: {
         story:
           "hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。",
+      },
+    },
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    icon: WizIAdd,
+    clickable: true,
+    active: true,
+  },
+  render: (args) => <WizTinyButton {...args}>保存する</WizTinyButton>,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "ボタンのOn/Offを `active`に設定できます。 default は `false` です。",
+      },
+    },
+  },
+};
+
+export const IconPosition: Story = {
+  args: {
+    icon: WizIAdd,
+    iconPosition: "right",
+    clickable: true,
+    active: true,
+  },
+  render: (args) => <WizTinyButton {...args}>保存する</WizTinyButton>,
+  parameters: {
+    docs: {
+      description: {
+        story: `
+アイコンの配置を指定することができます。
+- left: 左寄せ
+- right: 右寄せ
+`,
       },
     },
   },
