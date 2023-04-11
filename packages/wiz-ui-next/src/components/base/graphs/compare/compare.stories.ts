@@ -72,7 +72,7 @@ const DUMMY_DATA: CompareGraphData[] = [
     data: [
       {
         id: "blue_1",
-        frequency: 100,
+        frequency: 85,
         barColor: "blue.800",
         numberColor: "gray.300",
       },
@@ -148,9 +148,7 @@ AnnotationUnit.args = {
 AnnotationUnit.parameters = {
   docs: {
     description: {
-      story: `
-frequencyの値が一番大きいdataが最大値となるようにグラフが描画されます。
-      `,
+      story: `単位を設定できます。`,
     },
     source: {
       code: CODE_TEMPLATE({}),
@@ -165,7 +163,23 @@ MaxFrequency.args = {
 MaxFrequency.parameters = {
   docs: {
     description: {
-      component: `縦軸の最大値を設定します`,
+      story: `縦軸の最大値を設定します`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const Ceil = Template.bind({});
+Ceil.args = {
+  ceilN: 1,
+};
+Ceil.parameters = {
+  docs: {
+    description: {
+      story:
+        "縦軸の最大値を、データの最大値を`ceilN`桁で切り上げて設定します。defaultは0です。",
     },
     source: {
       code: CODE_TEMPLATE({}),
@@ -180,7 +194,7 @@ Gap.args = {
 Gap.parameters = {
   docs: {
     description: {
-      story: `barGapには0~1の値を設定してください。値が大きいほどバーの間隔が広くなります`,
+      story: `barGapには0~1の値を設定してください。値が大きいほどバーの間隔が広くなります。`,
     },
     source: {
       code: CODE_TEMPLATE({}),
