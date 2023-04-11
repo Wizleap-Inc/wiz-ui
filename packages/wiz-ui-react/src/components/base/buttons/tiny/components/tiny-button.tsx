@@ -9,6 +9,9 @@ import {
 import clsx from "clsx";
 import { ComponentProps, ReactNode, memo, useMemo, useState } from "react";
 
+import { WizIcon } from "@/components";
+import { TIcon } from "@/components/icons";
+
 type Props = {
   clickable?: boolean;
   active?: boolean;
@@ -16,7 +19,7 @@ type Props = {
   p?: SpacingKeys;
   px?: SpacingKeys;
   py?: SpacingKeys;
-  // icon?: TIcon;
+  icon?: TIcon;
   iconPosition?: "left" | "right";
   children: ReactNode;
 } & ComponentProps<"button">;
@@ -28,7 +31,7 @@ const _TinyButton = ({
   p,
   px,
   py,
-  // icon,
+  icon,
   iconPosition = "left",
   ...props
 }: Props) => {
@@ -64,7 +67,7 @@ const _TinyButton = ({
           ]
         )}
       >
-        {/* icon */}
+        {icon && <WizIcon icon={icon} color={"white.800"} size={"xs"} />}
         {props.children}
       </div>
     </button>
