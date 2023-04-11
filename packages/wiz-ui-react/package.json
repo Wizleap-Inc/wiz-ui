@@ -50,6 +50,7 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@types/react-dom": "^18.0.11",
     "@wizleap-inc/wiz-ui-constants": "*",
     "@wizleap-inc/wiz-ui-styles": "*",
     "@wizleap-inc/wiz-ui-utils": "*",
