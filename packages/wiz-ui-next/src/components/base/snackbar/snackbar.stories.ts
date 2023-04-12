@@ -2,7 +2,7 @@ import { StoryFn, Meta } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizSnackbar, WizProvider } from "@/components";
-import { useSnackbar } from "@/hooks/use-snackbar";
+import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
 export default {
   title: "Base/Snackbar",
@@ -42,16 +42,16 @@ Snackbar.args = {
 export const UseSnackbar: StoryFn<typeof WizSnackbar> = () => ({
   setup() {
     const message = ref("Hello World");
-    const show = useSnackbar();
+    const { snack } = globalInject(globalKey);
     return {
       message,
-      show,
+      snack,
     };
   },
   template: `
     <div style="text-align: center;">
       <input v-model="message" />
-      <button @click="show(message)">Show</button>
+      <button @click="snack(message)">Show</button>
     </div>
   `,
 });
@@ -59,7 +59,7 @@ export const UseSnackbar: StoryFn<typeof WizSnackbar> = () => ({
 UseSnackbar.parameters = {
   docs: {
     description: {
-      story: `useSnackbarからshow関数を取得し、messageを渡して実行するとSnackbarが表示されます。`,
+      story: `globalInjectでsnack関数を取得し、messageを渡して実行するとSnackbarが表示されます。`,
     },
   },
 };
