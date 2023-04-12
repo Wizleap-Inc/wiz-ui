@@ -1,11 +1,11 @@
 <template>
   <button
     :class="[
-      toggleButtonStyle,
-      toggleButtonSizeStyle[size],
-      isActive && toggleButtonActiveStyle,
-      disabled && toggleButtonDisabledStyle,
-      rounded && toggleButtonRoundedStyle,
+      styles.toggleButtonStyle,
+      styles.toggleButtonSizeStyle[size],
+      isActive && styles.toggleButtonActiveStyle,
+      disabled && styles.toggleButtonDisabledStyle,
+      rounded && styles.toggleButtonRoundedStyle,
     ]"
     :disabled="disabled"
     @click="onClick"
@@ -23,13 +23,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  toggleButtonStyle,
-  toggleButtonActiveStyle,
-  toggleButtonDisabledStyle,
-  toggleButtonRoundedStyle,
-  toggleButtonSizeStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
 import { computed, PropType } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";

@@ -1,13 +1,13 @@
 <template>
   <button
     :class="[
-      tinyButtonBaseStyle,
-      tinyButtonSizeStyle,
-      tinyButtonVaraiantStyle[tinyButtonState],
-      clickable && (isHover || hover) && tinyButtonHoverStyle,
-      p && paddingStyle[p],
-      px && paddingXStyle[px],
-      py && paddingYStyle[py],
+      styles.tinyButtonBaseStyle,
+      styles.tinyButtonSizeStyle,
+      styles.tinyButtonVaraiantStyle[tinyButtonState],
+      clickable && (isHover || hover) && styles.tinyButtonHoverStyle,
+      p && commonStyles.paddingStyle[p],
+      px && commonStyles.paddingXStyle[px],
+      py && commonStyles.paddingYStyle[py],
     ]"
     :disabled="!clickable"
     @click="onClick"
@@ -28,17 +28,8 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  tinyButtonBaseStyle,
-  tinyButtonHoverStyle,
-  tinyButtonSizeStyle,
-  tinyButtonVaraiantStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
-import {
-  paddingStyle,
-  paddingXStyle,
-  paddingYStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType, ref } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";

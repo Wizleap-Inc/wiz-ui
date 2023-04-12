@@ -1,15 +1,15 @@
 <template>
-  <div :class="badgeContainerStyle">
+  <div :class="styles.badgeContainerStyle">
     <slot />
     <div
       v-if="!hidden"
       :class="[
-        badgeStyle,
-        label && badgeSizeStyle[size],
-        colorStyle[color],
-        backgroundStyle[bgColor],
-        topStyle[offset],
-        rightStyle[offset],
+        styles.badgeStyle,
+        label && styles.badgeSizeStyle[size],
+        commonStyles.colorStyle[color],
+        commonStyles.backgroundStyle[bgColor],
+        commonStyles.topStyle[offset],
+        commonStyles.rightStyle[offset],
       ]"
     >
       {{ label }}
@@ -23,17 +23,8 @@ import {
   ComponentName,
   SpacingKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  badgeStyle,
-  badgeSizeStyle,
-  badgeContainerStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/badge.css";
-import {
-  backgroundStyle,
-  colorStyle,
-  topStyle,
-  rightStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/badge.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 
 defineOptions({

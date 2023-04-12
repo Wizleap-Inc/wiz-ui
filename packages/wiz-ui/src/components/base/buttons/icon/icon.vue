@@ -1,14 +1,14 @@
 <template>
   <button
     :class="[
-      iconButtonStyle[variant],
-      disabled && iconButtonDisabledStyle,
+      styles.iconButtonStyle[variant],
+      disabled && styles.iconButtonDisabledStyle,
       fontSizeStyle[getRelativeFontSize(size, 3)],
     ]"
     :disabled="disabled"
     @click="onClick"
   >
-    <component :is="icon" :class="iconButtonSVGStyle[variant]" />
+    <component :is="icon" :class="styles.iconButtonSVGStyle[variant]" />
   </button>
 </template>
 
@@ -17,11 +17,7 @@ import {
   ComponentName,
   getRelativeFontSize,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  iconButtonSVGStyle,
-  iconButtonStyle,
-  iconButtonDisabledStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 

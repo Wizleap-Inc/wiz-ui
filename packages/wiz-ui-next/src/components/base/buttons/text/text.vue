@@ -1,11 +1,11 @@
 <template>
   <button
     :class="[
-      textButtonStyle[variant],
-      textButtonSizeStyle[size],
-      disabled && textButtonDisabledStyle,
-      rounded && textButtonRoundStyle,
-      expand && textButtonExpandStyle,
+      styles.textButtonStyle[variant],
+      styles.textButtonSizeStyle[size],
+      disabled && styles.textButtonDisabledStyle,
+      rounded && styles.textButtonRoundStyle,
+      expand && styles.textButtonExpandStyle,
     ]"
     :disabled="disabled"
     @click="onClick"
@@ -29,13 +29,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  textButtonStyle,
-  textButtonDisabledStyle,
-  textButtonRoundStyle,
-  textButtonExpandStyle,
-  textButtonSizeStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
 import { computed, PropType } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
