@@ -1,11 +1,11 @@
 <template>
   <component
     :class="[
-      anchorStyle,
-      colorStyle[color],
-      fontSizeStyle[fontSize],
-      fontWeightStyle[fontWeight],
-      nowrap && anchorNoWrapStyle,
+      styles.anchorStyle,
+      commonStyles.colorStyle[color],
+      commonStyles.fontSizeStyle[fontSize],
+      commonStyles.fontWeightStyle[fontWeight],
+      nowrap && styles.anchorNoWrapStyle,
     ]"
     :is="isRouterLink ? 'router-link' : 'a'"
     :to="isRouterLink ? to : undefined"
@@ -37,15 +37,8 @@ import {
   getRelativeFontSize,
   FontWeightKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  anchorStyle,
-  anchorNoWrapStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/anchor.css";
-import {
-  colorStyle,
-  fontSizeStyle,
-  fontWeightStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/anchor.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType } from "vue";
 
 import { WizIcon, TIcon } from "@/components";

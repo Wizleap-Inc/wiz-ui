@@ -1,18 +1,21 @@
 <template>
   <details
-    :class="[accordionDetailsStyle, bgColor && backgroundStyle[bgColor]]"
+    :class="[
+      styles.accordionDetailsStyle,
+      bgColor && commonStyles.backgroundStyle[bgColor],
+    ]"
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
-    <summary :class="accordionSummaryStyle" @click="onClick">
+    <summary :class="styles.accordionSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
         gap="xs2"
         :class="[
-          accordionMessageStyle,
-          colorStyle[fontColor],
-          bgColor && backgroundStyle[bgColor],
+          styles.accordionMessageStyle,
+          commonStyles.colorStyle[fontColor],
+          bgColor && commonStyles.backgroundStyle[bgColor],
         ]"
       >
         <div>
@@ -23,13 +26,13 @@
           :icon="WizIExpandMore"
           :color="fontColor"
           :class="[
-            accordionExpandIconStyle,
-            isOpen && accordionRotateIconStyle,
+            styles.accordionExpandIconStyle,
+            isOpen && styles.accordionRotateIconStyle,
           ]"
         />
       </WizHStack>
     </summary>
-    <div ref="contentRef" :class="[accordionContentStyle]">
+    <div ref="contentRef" :class="[styles.accordionContentStyle]">
       <slot />
     </div>
   </details>
@@ -37,18 +40,8 @@
 
 <script setup lang="ts">
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  accordionMessageStyle,
-  accordionDetailsStyle,
-  accordionContentStyle,
-  accordionSummaryStyle,
-  accordionExpandIconStyle,
-  accordionRotateIconStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
-import {
-  backgroundStyle,
-  colorStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, PropType } from "vue";
 
 import { WizHStack, WizIcon } from "@/components";

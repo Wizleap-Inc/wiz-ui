@@ -1,21 +1,27 @@
 <template>
   <div
     :class="[
-      avatarStyle,
-      sizeStyle[size],
-      colorStyle[color],
-      clickable && avatarClickableStyle,
+      styles.avatarStyle,
+      commonStyles.sizeStyle[size],
+      commonStyles.colorStyle[color],
+      clickable && styles.avatarClickableStyle,
     ]"
     @click="onClick"
   >
     <img
-      :class="avatarImageStyle"
+      :class="styles.avatarImageStyle"
       v-if="isImgLoadSuccess"
       :src="src"
       :alt="alt"
       @error="onError"
     />
-    <div v-else :class="[avatarFallbackStyle, backgroundStyle[bgColor]]">
+    <div
+      v-else
+      :class="[
+        styles.avatarFallbackStyle,
+        commonStyles.backgroundStyle[bgColor],
+      ]"
+    >
       {{ fallback }}
     </div>
   </div>
@@ -27,17 +33,8 @@ import {
   ColorKeys,
   SpacingKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  avatarStyle,
-  avatarImageStyle,
-  avatarFallbackStyle,
-  avatarClickableStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import {
-  backgroundStyle,
-  sizeStyle,
-  colorStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, PropType } from "vue";
 
 defineOptions({
