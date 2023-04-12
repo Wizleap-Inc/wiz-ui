@@ -22,7 +22,7 @@ import {
 import clsx from "clsx";
 import { ReactNode, memo } from "react";
 
-export type Props = {
+type Props = {
   direction?: "horizontal" | "vertical";
   align?: "start" | "center" | "end" | "stretch";
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
