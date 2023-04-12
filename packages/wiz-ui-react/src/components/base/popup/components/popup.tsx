@@ -52,12 +52,14 @@ const _Popup = ({
     console.log("popup close", isOpen);
   };
   const containerRef = useRef(null);
+  const triggerRef = useRef(null);
   // useClickOutside(containerRef, closePopup);
 
   const contextValue = {
     isOpen,
     openPopup,
     closePopup,
+    triggerRef,
   };
   return (
     <PopupContext.Provider value={contextValue}>

@@ -11,8 +11,8 @@ export const WizPopupContent = (props: { children: ReactNode }) => {
   if (!popupContext)
     throw new Error("PopupContent must be used inside PopupContainer");
   const contentRef = useRef(null);
-  const { isOpen, closePopup } = popupContext;
-  useClickOutside(contentRef, closePopup);
+  const { isOpen, closePopup, triggerRef } = popupContext;
+  useClickOutside(contentRef, closePopup, triggerRef);
   return (
     <>
       {isOpen && (
