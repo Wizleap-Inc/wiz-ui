@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import { WizTextArea, Props } from "../components/text-area";
+import { WizTextArea } from "../components/text-area";
 
 const meta: Meta<typeof WizTextArea> = {
   title: "Base/TextArea",
@@ -33,33 +33,22 @@ const meta: Meta<typeof WizTextArea> = {
 export default meta;
 type Story = StoryObj<typeof WizTextArea>;
 
-const Template = (args: Props) => <WizTextArea {...args} />;
-const PlaygroundTemplate = (args: Props) => {
-  const [value, setValue] = useState("");
-  return (
-    <>
-      <p>入力値：{value}</p>
-      <WizTextArea {...args} onChange={setValue} />
-    </>
-  );
-};
-
 export const Default: Story = {
-  render: (args) => <Template {...args} />,
+  render: (args) => <WizTextArea {...args} />,
 };
 
 export const Placeholder: Story = {
   args: {
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
+  render: (args) => <WizTextArea {...args} />,
 };
 
 export const Expand: Story = {
   args: {
     expand: true,
   },
-  render: (args) => <Template {...args} />,
+  render: (args) => <WizTextArea {...args} />,
 };
 
 export const Disabled: Story = {
@@ -67,7 +56,7 @@ export const Disabled: Story = {
     disabled: true,
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
+  render: (args) => <WizTextArea {...args} />,
 };
 
 export const Row: Story = {
@@ -75,16 +64,35 @@ export const Row: Story = {
     rows: 5,
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
+  render: (args) => <WizTextArea {...args} />,
 };
 
 export const Test: Story = {
   args: {
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
+  render: (args) => <WizTextArea {...args} />,
 };
 
 export const Playground: Story = {
-  render: (args) => <PlaygroundTemplate {...args} />,
+  render: (args) => {
+    const [value, setValue] = useState("");
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+    const handleClick = () => {
+      textAreaRef.current?.focus();
+    };
+    return (
+      <>
+        <p>入力値：{value}</p>
+        <WizTextArea
+          {...args}
+          ref={textAreaRef}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <div>
+          <button onClick={handleClick}>focus</button>
+        </div>
+      </>
+    );
+  },
 };
