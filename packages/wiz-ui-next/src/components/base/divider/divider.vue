@@ -1,20 +1,17 @@
 <template>
   <hr
     :class="[
-      dividerStyle[variant],
-      dividerDirectionStyle[direction],
-      borderColorStyle[color],
+      styles.dividerStyle[variant],
+      styles.dividerDirectionStyle[direction],
+      commonStyles.borderColorStyle[color],
     ]"
   />
 </template>
 
 <script setup lang="ts">
 import { ComponentName, ColorKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  dividerStyle,
-  dividerDirectionStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/divider.css";
-import { borderColorStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/divider.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 
 defineOptions({

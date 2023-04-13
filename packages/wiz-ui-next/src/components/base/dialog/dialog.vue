@@ -1,10 +1,10 @@
 <template>
   <teleport to="body">
     <div
-      :class="[dialogStyle, visible && dialogVisibleStyle]"
+      :class="[styles.dialogStyle, visible && styles.dialogVisibleStyle]"
       :style="{ zIndex: currentZIndex }"
     >
-      <div :class="dialogMaskStyle" @click.self="close">
+      <div :class="styles.dialogMaskStyle" @click.self="close">
         <WizCard :maxWidth="maxWidth" p="xl" :title="title" :align="align">
           <template #mainHeaderArea>
             <slot v-if="!title" name="title" />
@@ -28,12 +28,7 @@
 
 <script setup lang="ts">
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  dialogStyle,
-  dialogVisibleStyle,
-  dialogMaskStyle,
-  dialogBlockScrollStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/dialog.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/dialog.css";
 import { computed, PropType, watch } from "vue";
 
 import { WizIconButton } from "@/components/base/buttons";
@@ -90,10 +85,10 @@ watch(
       if (document.body.scrollHeight > window.innerHeight) {
         scrollY = window.scrollY;
         document.body.style.top = `-${scrollY}px`;
-        document.body.classList.add(dialogBlockScrollStyle);
+        document.body.classList.add(styles.dialogBlockScrollStyle);
       }
     } else {
-      document.body.classList.remove(dialogBlockScrollStyle);
+      document.body.classList.remove(styles.dialogBlockScrollStyle);
       document.body.style.top = "";
       window.scrollTo(0, scrollY);
       scrollY = 0;
