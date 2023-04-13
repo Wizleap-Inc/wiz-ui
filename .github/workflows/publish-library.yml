@@ -32,7 +32,7 @@ jobs:
         uses: ./.github/composite/prepare_node
 
       - name: build
-        run: pnpm build
+        run: pnpm build --access public
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
