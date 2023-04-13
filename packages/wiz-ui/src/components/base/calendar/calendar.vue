@@ -1,7 +1,16 @@
 <template>
-  <table :class="calendarStyle">
-    <td v-for="row in WEEK_LIST_JP" :class="calendarCellStyle" :key="row">
-      <div :class="[calendarItemCommonStyle, calendarItemStyle['dayOfWeek']]">
+  <table :class="styles.calendarStyle">
+    <td
+      v-for="row in WEEK_LIST_JP"
+      :class="styles.calendarCellStyle"
+      :key="row"
+    >
+      <div
+        :class="[
+          styles.calendarItemCommonStyle,
+          styles.calendarItemStyle['dayOfWeek'],
+        ]"
+      >
         {{ row }}
       </div>
     </td>
@@ -9,13 +18,13 @@
       <td
         v-for="(day, col) in week"
         :key="[day, col].join('-')"
-        :class="calendarCellStyle"
+        :class="styles.calendarCellStyle"
       >
         <button
           v-if="day"
           :class="[
-            calendarItemCommonStyle,
-            calendarItemStyle[getDateState(row, col)],
+            styles.calendarItemCommonStyle,
+            styles.calendarItemStyle[getDateState(row, col)],
           ]"
           :aria-label="`${currentMonth.getFullYear()}年${
             currentMonth.getMonth() + 1
@@ -40,12 +49,7 @@
 
 <script setup lang="ts">
 import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
-import {
-  calendarStyle,
-  calendarCellStyle,
-  calendarItemStyle,
-  calendarItemCommonStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import { computed, PropType } from "vue";
 
 import { DateStatus } from "./types";

@@ -1,14 +1,14 @@
 <template>
   <div
     :class="[
-      cardStyle,
-      fit && cardFitStyle,
-      shadow && cardShadowStyle,
-      border && cardBorderStyle,
-      px && paddingXStyle[px],
-      py && paddingYStyle[py],
-      !px && !py && paddingStyle[p],
-      backgroundStyle[backgroundColor],
+      styles.cardStyle,
+      fit && styles.cardFitStyle,
+      shadow && styles.cardShadowStyle,
+      border && styles.cardBorderStyle,
+      px && commonStyles.paddingXStyle[px],
+      py && commonStyles.paddingYStyle[py],
+      !px && !py && commonStyles.paddingStyle[p],
+      commonStyles.backgroundStyle[backgroundColor],
     ]"
     :style="{ maxWidth }"
   >
@@ -18,7 +18,7 @@
           ($slots.mainHeaderArea && $slots.mainHeaderArea()) ||
           ($slots.subHeaderArea && $slots.subHeaderArea())
         "
-        :class="cardHeaderStyle"
+        :class="styles.cardHeaderStyle"
       >
         <div>
           <slot name="mainHeaderArea" />
@@ -27,7 +27,10 @@
           <slot name="subHeaderArea" />
         </div>
       </div>
-      <div v-if="$slots.default && $slots.default()" :class="cardBodyStyle">
+      <div
+        v-if="$slots.default && $slots.default()"
+        :class="styles.cardBodyStyle"
+      >
         <slot />
       </div>
       <div v-if="$slots.footer && $slots.footer()">
@@ -43,20 +46,8 @@ import {
   ColorKeys,
   SpacingKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  cardStyle,
-  cardFitStyle,
-  cardBodyStyle,
-  cardShadowStyle,
-  cardBorderStyle,
-  cardHeaderStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/card.css";
-import {
-  paddingStyle,
-  paddingXStyle,
-  paddingYStyle,
-  backgroundStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 
 import { WizVStack } from "@/components";
