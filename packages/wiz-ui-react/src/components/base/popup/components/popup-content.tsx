@@ -1,3 +1,4 @@
+import { ZIndexKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
@@ -33,13 +34,11 @@ const direction2style: Record<
     right: "0",
   },
   bl: {
-    // left: "0%",
+    left: "0%",
   },
   bc: {
-    // left: "50%",
-    // transform: "translateX(-50%)",
-
-    transform: "translateX(-30%)",
+    left: "50%",
+    transform: "translateX(-50%)",
   },
   br: {
     right: "0",
@@ -72,20 +71,38 @@ const direction2style: Record<
   },
 };
 
-export const WizPopupContent = (props: { children: ReactNode }) => {
+type Props = {
+  direction?: Direction;
+  closeOnBlur?: boolean;
+  layer?: Exclude<ZIndexKeys, "dialog">;
+  gap?: SpacingKeys;
+  shadow?: boolean;
+  animation?: boolean;
+  onMouseLeave?: () => void;
+  children: ReactNode;
+};
+
+export const WizPopupContent = ({
+  closeOnBlur = true,
+  layer = "popover",
+  gap = "no",
+  direction = "bl",
+  shadow = true,
+  animation = false,
+  ...props
+}: Props) => {
   const popupContext = useContext(PopupContext);
   if (!popupContext)
     throw new Error("PopupContent must be used inside PopupContainer");
   const contentRef = useRef(null);
   const ctx = popupContext;
   useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
-
   return (
     <div
       className={clsx(
         styles.popupStyle,
-        ctx.shadow && styles.popupShadowStyle,
-        zIndexStyle[ctx.layer],
+        shadow && styles.popupShadowStyle,
+        zIndexStyle[layer],
         !ctx.isOpen && styles.popupHiddenStyle
       )}
       ref={contentRef}
@@ -93,7 +110,7 @@ export const WizPopupContent = (props: { children: ReactNode }) => {
         position: "absolute",
         width: "max-content",
         height: "max-content",
-        ...direction2style[ctx.direction],
+        ...direction2style[direction],
       }}
     >
       {props.children}
