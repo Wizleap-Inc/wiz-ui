@@ -9,15 +9,9 @@ export const WizPopupTrigger = (props: { children: ReactNode }) => {
   const { isOpen, openPopup, closePopup, triggerRef } = popupContext;
   return (
     <div
-      onClick={() => {
-        if (isOpen) {
-          closePopup();
-        } else {
-          openPopup();
-        }
-      }}
+      onClick={isOpen ? closePopup : openPopup}
       ref={triggerRef}
-      style={{ width: "fit-content" }}
+      style={{ width: "fit-content", position: "relative" }}
     >
       {props.children}
     </div>

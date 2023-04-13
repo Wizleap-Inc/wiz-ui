@@ -4,22 +4,9 @@ import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ReactNode, memo, useRef, useState } from "react";
 
-import { PopupContext } from "./popup-context";
+import { Direction } from "../types/direction";
 
-type Direction =
-  | "tl"
-  | "tr"
-  | "tc"
-  | "bl"
-  | "br"
-  | "bc"
-  | "rt"
-  | "rb"
-  | "rc"
-  | "lt"
-  | "lb"
-  | "lc";
-type DirectionChar = Direction extends `${infer X}${infer Y}` ? X | Y : never;
+import { PopupContext } from "./popup-context";
 
 type Props = {
   // isOpen: boolean;
@@ -53,13 +40,13 @@ const _Popup = ({
   };
   const containerRef = useRef(null);
   const triggerRef = useRef(null);
-  // useClickOutside(containerRef, closePopup);
 
   const contextValue = {
     isOpen,
     openPopup,
     closePopup,
     triggerRef,
+    placement: direction,
   };
   return (
     <PopupContext.Provider value={contextValue}>
@@ -68,7 +55,9 @@ const _Popup = ({
           styles.popupStyle,
           shadow && styles.popupShadowStyle,
           zIndexStyle[layer]
+          // styles.popupHiddenStyle
         )}
+        style={{ position: "relative" }}
         onMouseLeave={props.onMouseLeave}
         ref={containerRef}
       >

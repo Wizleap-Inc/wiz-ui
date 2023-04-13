@@ -1,1 +1,6 @@
-export * from "./components";
+export {
+  WizPopup,
+  WizPopupClose,
+  WizPopupContent,
+  WizPopupTrigger,
+} from "./components";
