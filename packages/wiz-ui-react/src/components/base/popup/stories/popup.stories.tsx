@@ -40,17 +40,17 @@ export const Default: Story = {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          gap: "10rem",
+          gap: "2.5rem",
         }}
       >
         {patterns.map((pattern) => (
           <div>
             <div>aaa</div>
-            <WizPopup {...args} direction={pattern.direction}>
+            <WizPopup {...args}>
               <WizPopupTrigger>
                 <button>Click me {pattern.direction}</button>
               </WizPopupTrigger>
-              <WizPopupContent>
+              <WizPopupContent {...pattern}>
                 <div
                   style={{
                     padding: "16px",
