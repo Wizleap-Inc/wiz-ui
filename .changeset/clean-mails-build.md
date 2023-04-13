@@ -1,6 +1,6 @@
 ---
-"@wizleap-inc/wiz-ui-next": patch
-"@wizleap-inc/wiz-ui": patch
+"@wizleap-inc/wiz-ui-next": minor
+"@wizleap-inc/wiz-ui": minor
 ---
 
 WizCompareGraph を追加
