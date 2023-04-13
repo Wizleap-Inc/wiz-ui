@@ -1,5 +1,5 @@
 <template>
-  <div :class="PollGraphWrapperStyle" ref="pollWrapperRef">
+  <div :class="styles.PollGraphWrapperStyle" ref="pollWrapperRef">
     <Row
       v-for="(row, i) in data"
       :key="i"
@@ -17,9 +17,9 @@
       :labelWidth="labelWidth"
     />
     <span
-      :class="PollGraphDividerStyle"
+      :class="styles.PollGraphDividerStyle"
       :style="{
-        left: `calc(${labelWidth} - ${DIVIDER_WIDTH})`,
+        left: `calc(${labelWidth} - ${styles.DIVIDER_WIDTH})`,
         height: `${pollWrapperHeight}px`,
       }"
     />
@@ -28,11 +28,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  PollGraphWrapperStyle,
-  PollGraphDividerStyle,
-  DIVIDER_WIDTH,
-} from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
 import { onMounted, PropType, ref } from "vue";
 
 import Row from "./row.vue";

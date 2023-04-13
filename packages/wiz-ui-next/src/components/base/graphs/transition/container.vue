@@ -1,33 +1,40 @@
 <template>
-  <div :class="graphContainerStyle">
-    <div :class="graphSideStyle">
+  <div :class="styles.graphContainerStyle">
+    <div :class="styles.graphSideStyle">
       <span
         v-if="annotationUnit"
-        :class="[graphSideLabelStyle, graphSideLabelPositionStyle['unit']]"
+        :class="[
+          styles.graphSideLabelStyle,
+          styles.graphSideLabelPositionStyle['unit'],
+        ]"
       >
         ({{ annotationUnit }})
       </span>
-      <span :class="[graphSideLabelStyle, graphSideLabelPositionStyle['max']]">
+      <span
+        :class="[
+          styles.graphSideLabelStyle,
+          styles.graphSideLabelPositionStyle['max'],
+        ]"
+      >
         {{ maxFrequency }}{{ labelUnit }}
       </span>
-      <span :class="[graphSideLabelStyle, graphSideLabelPositionStyle['half']]">
+      <span
+        :class="[
+          styles.graphSideLabelStyle,
+          styles.graphSideLabelPositionStyle['half'],
+        ]"
+      >
         {{ Math.ceil(maxFrequency / 2) }}{{ labelUnit }}
       </span>
     </div>
-    <div :class="graphContainerBodyStyle">
+    <div :class="styles.graphContainerBodyStyle">
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  graphContainerStyle,
-  graphSideStyle,
-  graphSideLabelStyle,
-  graphSideLabelPositionStyle,
-  graphContainerBodyStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
 
 defineProps({
   maxFrequency: {

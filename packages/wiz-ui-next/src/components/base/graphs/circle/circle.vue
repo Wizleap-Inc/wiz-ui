@@ -1,34 +1,36 @@
 <template>
-  <div :class="CircleGraphStyle">
+  <div :class="styles.CircleGraphStyle">
     <Bar :percentages="data.map((item) => item.percentage)">
       <slot />
     </Bar>
-    <div :class="CircleGraphLabelContainerStyle">
+    <div :class="styles.CircleGraphLabelContainerStyle">
       <div
-        :class="CircleGraphLabelStyle"
+        :class="styles.CircleGraphLabelStyle"
         v-for="(label, i) in data.map((item) => item.label)"
       >
         <span
-          :class="[CircleGraphLabelIconStyle]"
+          :class="[styles.CircleGraphLabelIconStyle]"
           :style="{
             backgroundColor:
-              GRAPH_COLORS[i] || GRAPH_COLORS[GRAPH_COLORS.length - 1],
+              styles.GRAPH_COLORS[i] ||
+              styles.GRAPH_COLORS[styles.GRAPH_COLORS.length - 1],
           }"
         >
         </span>
-        <span :class="[CircleGraphLabelItemStyle]">
+        <span :class="[styles.CircleGraphLabelItemStyle]">
           {{ label }}
         </span>
       </div>
-      <div :class="CircleGraphLabelStyle">
+      <div :class="styles.CircleGraphLabelStyle">
         <span
-          :class="[CircleGraphLabelIconStyle]"
+          :class="[styles.CircleGraphLabelIconStyle]"
           :style="{
-            backgroundColor: GRAPH_COLORS[GRAPH_COLORS.length - 1],
+            backgroundColor:
+              styles.GRAPH_COLORS[styles.GRAPH_COLORS.length - 1],
           }"
         >
         </span>
-        <span :class="[CircleGraphLabelItemStyle]">
+        <span :class="[styles.CircleGraphLabelItemStyle]">
           {{ otherLabel }}
         </span>
       </div>
@@ -38,14 +40,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  CircleGraphStyle,
-  CircleGraphLabelStyle,
-  CircleGraphLabelContainerStyle,
-  CircleGraphLabelItemStyle,
-  CircleGraphLabelIconStyle,
-  GRAPH_COLORS,
-} from "@wizleap-inc/wiz-ui-styles/bases/circle-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/circle-graph.css";
 import { PropType } from "vue";
 
 import Bar from "./bar.vue";

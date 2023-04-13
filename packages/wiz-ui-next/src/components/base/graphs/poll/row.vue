@@ -1,9 +1,9 @@
 <template>
-  <div :class="PollRowStyle">
-    <span :class="PollLabelStyle" :style="{ width: labelWidth }">{{
+  <div :class="styles.PollRowStyle">
+    <span :class="styles.PollLabelStyle" :style="{ width: labelWidth }">{{
       label
     }}</span>
-    <div :class="PollStyle">
+    <div :class="styles.PollStyle">
       <Bar
         v-if="barPercentage !== undefined"
         :isColorFixed="isColorFixed"
@@ -15,11 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  PollRowStyle,
-  PollStyle,
-  PollLabelStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
 import { PropType } from "vue";
 
 import Bar from "./bar.vue";

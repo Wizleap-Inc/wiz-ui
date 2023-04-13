@@ -1,15 +1,15 @@
 <template>
-  <div :class="lineGraphBgStyle">
-    <div :class="lineGraphBarStyle" :style="{ width: `${percentage}%` }" />
+  <div :class="styles.lineGraphBgStyle">
+    <div
+      :class="styles.lineGraphBarStyle"
+      :style="{ width: `${percentage}%` }"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  lineGraphBgStyle,
-  lineGraphBarStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/line-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/line-graph.css";
 
 defineOptions({
   name: ComponentName.LineGraph,

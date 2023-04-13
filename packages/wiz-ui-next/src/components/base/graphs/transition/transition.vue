@@ -1,6 +1,6 @@
 <template>
   <Container :maxFrequency="maxFrequency">
-    <div :class="graphBodyStyle">
+    <div :class="styles.graphBodyStyle">
       <Bar
         v-for="(barData, i) in formattedBarData"
         :label="barData.label"
@@ -11,7 +11,7 @@
         :key="i"
       />
     </div>
-    <div :class="summaryLabelStyle">
+    <div :class="styles.summaryLabelStyle">
       <slot />
     </div>
   </Container>
@@ -19,10 +19,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  graphBodyStyle,
-  summaryLabelStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
 import { computed, PropType } from "vue";
 
 import Bar from "./bar.vue";

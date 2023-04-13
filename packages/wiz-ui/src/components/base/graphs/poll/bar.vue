@@ -1,13 +1,13 @@
 <template>
-  <div :class="PollGraphStyle" ref="pollRef">
+  <div :class="styles.PollGraphStyle" ref="pollRef">
     <div
       ref="barRef"
-      :class="[PollBodyStyle, backgroundStyle[barColor]]"
+      :class="[styles.PollBodyStyle, commonStyles.backgroundStyle[barColor]]"
       :style="{
         backgroundColor: barColor,
       }"
     >
-      <span :class="PollGraphInnerLabelStyle" ref="innerLabelRef">{{
+      <span :class="styles.PollGraphInnerLabelStyle" ref="innerLabelRef">{{
         innerLabel
       }}</span>
     </div>
@@ -15,12 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import {
-  PollGraphStyle,
-  PollBodyStyle,
-  PollGraphInnerLabelStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
-import { backgroundStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, ref, computed, onMounted, watch } from "vue";
 
 const props = defineProps({

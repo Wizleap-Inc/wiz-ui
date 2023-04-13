@@ -1,8 +1,8 @@
 <template>
-  <div :class="graphBarStyle" ref="barRef">
-    <span :class="graphBarLabelStyle">{{ label }}</span>
+  <div :class="styles.graphBarStyle" ref="barRef">
+    <span :class="styles.graphBarLabelStyle">{{ label }}</span>
     <div
-      :class="graphBarTransitionStyle"
+      :class="styles.graphBarTransitionStyle"
       ref="barTransitionRef"
       :style="{
         display: isFirst ? 'none' : 'block',
@@ -16,7 +16,7 @@
       }"
     >
       <div
-        :class="graphBarTransitionLineStyle"
+        :class="styles.graphBarTransitionLineStyle"
         ref="barTransitionLineRef"
         :style="{
           display: frequency === 0 && lastFrequency === 0 ? 'none' : 'block',
@@ -25,7 +25,10 @@
           top: transitionRelativeFrequency <= 0 ? '0' : '100%',
         }"
       ></div>
-      <div :class="graphBarTransitionLabelStyle" ref="barTransitionLabelRef">
+      <div
+        :class="styles.graphBarTransitionLabelStyle"
+        ref="barTransitionLabelRef"
+      >
         {{
           frequency === 0 && lastFrequency === 0
             ? "―"
@@ -36,16 +39,19 @@
       </div>
     </div>
     <div
-      :class="[graphBarItemStyle, graphBarItemIndexStyle['last']]"
+      :class="[styles.graphBarItemStyle, styles.graphBarItemIndexStyle['last']]"
       :style="{ height: `${lastAbsoluteFrequency * 100}%` }"
     ></div>
     <div
-      :class="[graphBarItemStyle, graphBarItemIndexStyle['current']]"
+      :class="[
+        styles.graphBarItemStyle,
+        styles.graphBarItemIndexStyle['current'],
+      ]"
       ref="barItemCurrentRef"
       :style="{ height: `${currentAbsoluteFrequency * 100}%` }"
     >
       <span
-        :class="graphBarNumberStyle"
+        :class="styles.graphBarNumberStyle"
         ref="barItemCurrentFrequencyRef"
         v-if="frequency !== 0"
       >
@@ -56,16 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  graphBarItemIndexStyle,
-  graphBarItemStyle,
-  graphBarLabelStyle,
-  graphBarNumberStyle,
-  graphBarStyle,
-  graphBarTransitionLabelStyle,
-  graphBarTransitionLineStyle,
-  graphBarTransitionStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
 import { computed, onMounted, ref } from "vue";
 
 const props = defineProps({

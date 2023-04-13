@@ -1,34 +1,38 @@
 <template>
-  <div :class="MeterBarContainerStyle">
+  <div :class="styles.MeterBarContainerStyle">
     <svg
-      :class="MeterBarSVGStyle"
-      :viewBox="`0 0 ${VIEW_BOX_SIZE} ${VIEW_BOX_SIZE}`"
+      :class="styles.MeterBarSVGStyle"
+      :viewBox="`0 0 ${styles.VIEW_BOX_SIZE} ${styles.VIEW_BOX_SIZE}`"
     >
       <path
-        :class="MeterBarBgStyle"
-        :stroke-dasharray="`${MAX_PERCENTAGE}, 100`"
-        :stroke-width="STROKE_WIDTH"
-        :d="`M${HALF_VIEW_BOX_SIZE} ${MARGIN_OF_CIRCLE}
-            a ${RADIUS} ${RADIUS} 0 0 1 0 ${DIAMETER}
-            a ${RADIUS} ${RADIUS} 0 0 1 0 ${-1 * DIAMETER}`"
-        :transform="`rotate(${
-          (-MAX_PERCENTAGE * 360) / 100 / 2
-        }, ${HALF_VIEW_BOX_SIZE}, ${HALF_VIEW_BOX_SIZE})`"
+        :class="styles.MeterBarBgStyle"
+        :stroke-dasharray="`${styles.MAX_PERCENTAGE}, 100`"
+        :stroke-width="styles.STROKE_WIDTH"
+        :d="`M${styles.HALF_VIEW_BOX_SIZE} ${styles.MARGIN_OF_CIRCLE}
+            a ${styles.RADIUS} ${styles.RADIUS} 0 0 1 0 ${styles.DIAMETER}
+            a ${styles.RADIUS} ${styles.RADIUS} 0 0 1 0 ${
+          -1 * styles.DIAMETER
+        }`"
+        :transform="`rotate(${(-styles.MAX_PERCENTAGE * 360) / 100 / 2}, ${
+          styles.HALF_VIEW_BOX_SIZE
+        }, ${styles.HALF_VIEW_BOX_SIZE})`"
       />
       <path
         v-if="percentage > 0"
-        :class="[MeterBarStyle, strokeStyle[meterColor]]"
-        :stroke-dasharray="`${displayPercentage * MAX_PERCENTAGE}, 100`"
-        :stroke-width="STROKE_WIDTH"
-        :d="`M${HALF_VIEW_BOX_SIZE} ${MARGIN_OF_CIRCLE}
-              a ${RADIUS} ${RADIUS} 0 0 1 0 ${DIAMETER}
-              a ${RADIUS} ${RADIUS} 0 0 1 0 ${-1 * DIAMETER}`"
-        :transform="`rotate(${
-          (-MAX_PERCENTAGE * 360) / 100 / 2
-        }, ${HALF_VIEW_BOX_SIZE}, ${HALF_VIEW_BOX_SIZE})`"
+        :class="[styles.MeterBarStyle, strokeStyle[meterColor]]"
+        :stroke-dasharray="`${displayPercentage * styles.MAX_PERCENTAGE}, 100`"
+        :stroke-width="styles.STROKE_WIDTH"
+        :d="`M${styles.HALF_VIEW_BOX_SIZE} ${styles.MARGIN_OF_CIRCLE}
+              a ${styles.RADIUS} ${styles.RADIUS} 0 0 1 0 ${styles.DIAMETER}
+              a ${styles.RADIUS} ${styles.RADIUS} 0 0 1 0 ${
+          -1 * styles.DIAMETER
+        }`"
+        :transform="`rotate(${(-styles.MAX_PERCENTAGE * 360) / 100 / 2}, ${
+          styles.HALF_VIEW_BOX_SIZE
+        }, ${styles.HALF_VIEW_BOX_SIZE})`"
       />
     </svg>
-    <div :class="MeterBarPercentageStyle">
+    <div :class="styles.MeterBarPercentageStyle">
       <slot />
     </div>
   </div>
@@ -36,20 +40,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  MeterBarBgStyle,
-  MeterBarContainerStyle,
-  MeterBarSVGStyle,
-  MeterBarPercentageStyle,
-  MeterBarStyle,
-  STROKE_WIDTH,
-  VIEW_BOX_SIZE,
-  HALF_VIEW_BOX_SIZE,
-  RADIUS,
-  DIAMETER,
-  MARGIN_OF_CIRCLE,
-  MAX_PERCENTAGE,
-} from "@wizleap-inc/wiz-ui-styles/bases/meter-graph.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/meter-graph.css";
 import { strokeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed } from "vue";
 
