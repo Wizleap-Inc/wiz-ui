@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="dropdownItemStyle"
+    :class="styles.dropdownItemStyle"
     @click="onClick"
     @mouseover="onMouseover"
     @mouseout="onMouseout"
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { dropdownItemStyle } from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
 import { computed, PropType, ref } from "vue";
 
 import { WizIcon, WizHStack } from "@/components";

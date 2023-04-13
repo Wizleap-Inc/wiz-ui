@@ -2,7 +2,12 @@
   <WizPopupContainer>
     <slot />
     <WizPopup :isOpen="modelValue" @onClose="modelValue = false" :gap="gap">
-      <div :class="[dropdownStyle, skeleton && dropdownSkeletonStyle]">
+      <div
+        :class="[
+          styles.dropdownStyle,
+          skeleton && styles.dropdownSkeletonStyle,
+        ]"
+      >
         <WizVStack p="xs" gap="xs2">
           <slot name="options" />
         </WizVStack>
@@ -13,10 +18,7 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  dropdownStyle,
-  dropdownSkeletonStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
 import { computed, PropType } from "vue";
 
 import { WizPopup, WizPopupContainer, WizVStack } from "@/components";
