@@ -1,6 +1,5 @@
 import { ZIndexKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
-import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ReactNode, memo, useRef, useState } from "react";
 
@@ -18,6 +17,7 @@ type Props = {
   animation?: boolean;
   children?: ReactNode;
   onMouseLeave?: () => void;
+  expand?: boolean;
 };
 const _Popup = ({
   // isOpen,
@@ -38,7 +38,6 @@ const _Popup = ({
     setIsOpen(false);
     console.log("popup close", isOpen);
   };
-  const containerRef = useRef(null);
   const triggerRef = useRef(null);
 
   const contextValue = {
@@ -46,20 +45,20 @@ const _Popup = ({
     openPopup,
     closePopup,
     triggerRef,
-    placement: direction,
+    direction,
+    closeOnBlur,
+    layer,
+    gap,
+    shadow,
+    animation,
   };
   return (
     <PopupContext.Provider value={contextValue}>
       <div
         className={clsx(
-          styles.popupStyle,
-          shadow && styles.popupShadowStyle,
-          zIndexStyle[layer]
-          // styles.popupHiddenStyle
+          styles.popupContainerStyle[props.expand ? "expanded" : "default"]
         )}
         style={{ position: "relative" }}
-        onMouseLeave={props.onMouseLeave}
-        ref={containerRef}
       >
         {props.children}
       </div>

@@ -1,4 +1,5 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
+import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ReactNode, useContext, useRef } from "react";
 
@@ -8,7 +9,7 @@ import { Direction } from "../types/direction";
 
 import { PopupContext } from "./popup-context";
 
-const placementMap: Record<
+const direction2style: Record<
   Direction,
   {
     bottom?: string;
@@ -32,11 +33,13 @@ const placementMap: Record<
     right: "0",
   },
   bl: {
-    left: "0%",
+    // left: "0%",
   },
   bc: {
-    left: "50%",
-    transform: "translateX(-50%)",
+    // left: "50%",
+    // transform: "translateX(-50%)",
+
+    transform: "translateX(-30%)",
   },
   br: {
     right: "0",
@@ -74,19 +77,23 @@ export const WizPopupContent = (props: { children: ReactNode }) => {
   if (!popupContext)
     throw new Error("PopupContent must be used inside PopupContainer");
   const contentRef = useRef(null);
-  const { isOpen, closePopup, triggerRef, placement } = popupContext;
-  useClickOutside(contentRef, closePopup, triggerRef);
+  const ctx = popupContext;
+  useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
 
   return (
     <div
-      className={clsx(styles.popupContainerStyle["default"])}
+      className={clsx(
+        styles.popupStyle,
+        ctx.shadow && styles.popupShadowStyle,
+        zIndexStyle[ctx.layer],
+        !ctx.isOpen && styles.popupHiddenStyle
+      )}
       ref={contentRef}
       style={{
         position: "absolute",
-        display: isOpen ? "block" : "none",
         width: "max-content",
         height: "max-content",
-        ...placementMap[placement],
+        ...direction2style[ctx.direction],
       }}
     >
       {props.children}
