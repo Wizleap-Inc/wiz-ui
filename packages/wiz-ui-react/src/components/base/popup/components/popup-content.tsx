@@ -6,69 +6,79 @@ import { ReactNode, useContext, useRef } from "react";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
 
+import { WizPortal } from "../../portal";
 import { Direction } from "../types/direction";
 
 import { PopupContext } from "./popup-context";
 
 const direction2style: Record<
   Direction,
-  {
-    bottom?: string;
-    left?: string;
-    right?: string;
-    top?: string;
+  (rect: DOMRect) => {
+    bottom?: number;
+    left?: number;
+    right?: number;
+    top?: number;
     transform?: string;
   }
 > = {
-  tl: {
-    bottom: "100%",
-    left: "0",
-  },
-  tc: {
-    bottom: "100%",
-    left: "50%",
+  tl: (rect: DOMRect) => ({
+    top: rect.y + window.scrollY,
+    left: rect.x + window.scrollX,
+    transform: "translateY(-100%)",
+  }),
+  tc: (rect: DOMRect) => ({
+    top: rect.y + window.scrollY,
+    left: rect.x + rect.width / 2 + window.scrollX,
+    transform: "translateY(-100%) translateX(-50%)",
+  }),
+  tr: (rect: DOMRect) => ({
+    top: rect.y + window.scrollY,
+    left: rect.x + rect.width + window.scrollX,
+    transform: "translateY(-100%) translateX(-100%)",
+  }),
+  bl: (rect: DOMRect) => ({
+    top: rect.y + rect.height + window.scrollY,
+    left: rect.x + window.scrollX,
+  }),
+  bc: (rect: DOMRect) => ({
+    top: rect.y + rect.height + window.scrollY,
+    left: rect.x + rect.width / 2 + window.scrollX,
     transform: "translateX(-50%)",
-  },
-  tr: {
-    bottom: "100%",
-    right: "0",
-  },
-  bl: {
-    left: "0%",
-  },
-  bc: {
-    left: "50%",
-    transform: "translateX(-50%)",
-  },
-  br: {
-    right: "0",
-  },
-  rt: {
-    left: "100%",
-    top: "0",
-  },
-  rc: {
-    left: "100%",
-    top: "50%",
+  }),
+  br: (rect: DOMRect) => ({
+    top: rect.y + rect.height + window.scrollY,
+    left: rect.x + rect.width + window.scrollX,
+    transform: "translateX(-100%)",
+  }),
+  rt: (rect: DOMRect) => ({
+    top: rect.y + window.scrollY,
+    left: rect.x + rect.width + window.scrollX,
+  }),
+  rc: (rect: DOMRect) => ({
+    top: rect.y + rect.height / 2 + window.scrollY,
+    left: rect.x + rect.width + window.scrollX,
     transform: "translateY(-50%)",
-  },
-  rb: {
-    left: "100%",
-    bottom: "0",
-  },
-  lt: {
-    top: "0%",
-    right: "100%",
-  },
-  lb: {
-    bottom: "0%",
-    right: "100%",
-  },
-  lc: {
-    top: "50%",
-    right: "100%",
-    transform: "translateY(-50%)",
-  },
+  }),
+  rb: (rect: DOMRect) => ({
+    top: rect.y + rect.height + window.scrollY,
+    left: rect.x + rect.width + window.scrollX,
+    transform: "translateY(-100%)",
+  }),
+  lt: (rect: DOMRect) => ({
+    top: rect.y + window.scrollY,
+    left: rect.x + window.scrollX,
+    transform: "translateX(-100%)",
+  }),
+  lc: (rect: DOMRect) => ({
+    top: rect.y + rect.height / 2 + window.scrollY,
+    left: rect.x + window.scrollX,
+    transform: "translateY(-50%) translateX(-100%)",
+  }),
+  lb: (rect: DOMRect) => ({
+    top: rect.y + rect.height + window.scrollY,
+    left: rect.x + window.scrollX,
+    transform: "translateY(-100%) translateX(-100%)",
+  }),
 };
 
 type Props = {
@@ -97,23 +107,23 @@ export const WizPopupContent = ({
   const contentRef = useRef(null);
   const ctx = popupContext;
   useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
-  return (
-    <div
-      className={clsx(
-        styles.popupStyle,
-        shadow && styles.popupShadowStyle,
-        zIndexStyle[layer],
-        !ctx.isOpen && styles.popupHiddenStyle
-      )}
-      ref={contentRef}
-      style={{
-        position: "absolute",
-        width: "max-content",
-        height: "max-content",
-        ...direction2style[direction],
-      }}
-    >
-      {props.children}
-    </div>
+  const rect = ctx.triggerRef.current?.getBoundingClientRect();
+  return !(ctx.isOpen && rect) ? null : (
+    <WizPortal>
+      <div
+        className={clsx(
+          styles.popupStyle,
+          shadow && styles.popupShadowStyle,
+          zIndexStyle[layer]
+        )}
+        ref={contentRef}
+        style={{
+          position: "absolute",
+          ...direction2style[direction](rect),
+        }}
+      >
+        {props.children}
+      </div>
+    </WizPortal>
   );
 };

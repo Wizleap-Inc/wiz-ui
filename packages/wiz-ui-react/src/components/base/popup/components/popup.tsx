@@ -33,7 +33,6 @@ const _Popup = ({ ...props }: Props) => {
         className={clsx(
           styles.popupContainerStyle[props.expand ? "expanded" : "default"]
         )}
-        style={{ position: "relative" }}
       >
         {props.children}
       </div>

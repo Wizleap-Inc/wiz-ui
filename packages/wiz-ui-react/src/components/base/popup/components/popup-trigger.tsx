@@ -8,11 +8,7 @@ export const WizPopupTrigger = (props: { children: ReactNode }) => {
     throw new Error("PopupTrigger must be used inside PopupContainer");
   const { isOpen, openPopup, closePopup, triggerRef } = popupContext;
   return (
-    <div
-      onClick={isOpen ? closePopup : openPopup}
-      ref={triggerRef}
-      style={{ width: "fit-content", position: "relative" }}
-    >
+    <div onClick={isOpen ? closePopup : openPopup} ref={triggerRef}>
       {props.children}
     </div>
   );
