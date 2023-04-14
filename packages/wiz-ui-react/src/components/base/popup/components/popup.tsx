@@ -1,6 +1,6 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import clsx from "clsx";
-import { ReactNode, memo, useRef, useState } from "react";
+import { ReactNode, memo, useEffect, useRef, useState } from "react";
 
 import { PopupContext } from "./popup-context";
 
@@ -26,6 +26,20 @@ const _Popup = ({ ...props }: Props) => {
     closePopup,
     triggerRef,
   };
+
+  const [_, setWindowSize] = useState({});
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <PopupContext.Provider value={contextValue}>
