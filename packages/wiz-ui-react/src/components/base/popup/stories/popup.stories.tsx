@@ -52,8 +52,8 @@ export const Default: Story = {
           gap: "2.5rem",
         }}
       >
-        {patterns.map((pattern) => (
-          <div>
+        {patterns.map((pattern, i) => (
+          <div key={i}>
             <div>aaa</div>
             <WizPopup {...args}>
               <WizPopupTrigger>
