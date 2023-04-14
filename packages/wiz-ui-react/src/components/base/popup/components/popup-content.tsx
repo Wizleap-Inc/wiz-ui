@@ -15,7 +15,7 @@ import { Direction } from "../types/direction";
 
 import { PopupContext } from "./popup-context";
 
-const direction2style: Record<
+const getPlacementStyle: Record<
   Direction,
   (
     rect: DOMRect,
@@ -118,7 +118,8 @@ export const WizPopupContent = ({
   if (closeOnBlur) useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
   const rect = ctx.triggerRef.current?.getBoundingClientRect();
   const gapRem = getSpacingCss(gap) ?? "0";
-  return !(ctx.isOpen && rect) ? null : (
+  if (!(ctx.isOpen && rect)) return null;
+  return (
     <WizPortal>
       <div
         className={clsx(
@@ -129,7 +130,7 @@ export const WizPopupContent = ({
         ref={contentRef}
         style={{
           position: "absolute",
-          ...direction2style[direction](rect, gapRem),
+          ...getPlacementStyle[direction](rect, gapRem),
         }}
       >
         {props.children}
