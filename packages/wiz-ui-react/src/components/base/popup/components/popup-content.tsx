@@ -1,4 +1,8 @@
-import { ZIndexKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ZIndexKeys,
+  SpacingKeys,
+  getSpacingCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
@@ -13,7 +17,10 @@ import { PopupContext } from "./popup-context";
 
 const direction2style: Record<
   Direction,
-  (rect: DOMRect) => {
+  (
+    rect: DOMRect,
+    gap?: string
+  ) => {
     bottom?: number;
     left?: number;
     right?: number;
@@ -21,63 +28,65 @@ const direction2style: Record<
     transform?: string;
   }
 > = {
-  tl: (rect: DOMRect) => ({
+  tl: (rect: DOMRect, gap?: string) => ({
     top: rect.y + window.scrollY,
     left: rect.x + window.scrollX,
-    transform: "translateY(-100%)",
+    transform: `translateY(-100%) translate(0, -${gap})`,
   }),
-  tc: (rect: DOMRect) => ({
+  tc: (rect: DOMRect, gap?: string) => ({
     top: rect.y + window.scrollY,
     left: rect.x + rect.width / 2 + window.scrollX,
-    transform: "translateY(-100%) translateX(-50%)",
+    transform: `translateY(-100%) translateX(-50%) translate(0, -${gap})`,
   }),
-  tr: (rect: DOMRect) => ({
+  tr: (rect: DOMRect, gap?: string) => ({
     top: rect.y + window.scrollY,
     left: rect.x + rect.width + window.scrollX,
-    transform: "translateY(-100%) translateX(-100%)",
+    transform: `translateY(-100%) translateX(-100%) translate(0, -${gap})`,
   }),
-  bl: (rect: DOMRect) => ({
+  bl: (rect: DOMRect, gap?: string) => ({
     top: rect.y + rect.height + window.scrollY,
     left: rect.x + window.scrollX,
+    transform: `translate(0, ${gap})`,
   }),
-  bc: (rect: DOMRect) => ({
+  bc: (rect: DOMRect, gap?: string) => ({
     top: rect.y + rect.height + window.scrollY,
     left: rect.x + rect.width / 2 + window.scrollX,
-    transform: "translateX(-50%)",
+    transform: `translateX(-50%) translate(0, ${gap})`,
   }),
-  br: (rect: DOMRect) => ({
+  br: (rect: DOMRect, gap?: string) => ({
     top: rect.y + rect.height + window.scrollY,
     left: rect.x + rect.width + window.scrollX,
-    transform: "translateX(-100%)",
+    transform: `translateX(-100%) translate(0, ${gap})`,
   }),
-  rt: (rect: DOMRect) => ({
+  rt: (rect: DOMRect, gap?: string) => ({
     top: rect.y + window.scrollY,
     left: rect.x + rect.width + window.scrollX,
+    transform: `translate(${gap}, 0)`,
   }),
-  rc: (rect: DOMRect) => ({
+  rc: (rect: DOMRect, gap?: string) => ({
     top: rect.y + rect.height / 2 + window.scrollY,
     left: rect.x + rect.width + window.scrollX,
-    transform: "translateY(-50%)",
+    transform: `translateY(-50%) translate(${gap}, 0)`,
   }),
-  rb: (rect: DOMRect) => ({
+  rb: (rect: DOMRect, gap?: string) => ({
     top: rect.y + rect.height + window.scrollY,
     left: rect.x + rect.width + window.scrollX,
-    transform: "translateY(-100%)",
+    transform: `translateY(-100%) translate(${gap}, 0)`,
   }),
-  lt: (rect: DOMRect) => ({
+  lt: (rect: DOMRect, gap?: string) => ({
     top: rect.y + window.scrollY,
     left: rect.x + window.scrollX,
-    transform: "translateX(-100%)",
+    transform: `translateX(-100%) translate(-${gap}, 0)`,
   }),
-  lc: (rect: DOMRect) => ({
+  lc: (rect: DOMRect, gap?: string) => ({
     top: rect.y + rect.height / 2 + window.scrollY,
     left: rect.x + window.scrollX,
-    transform: "translateY(-50%) translateX(-100%)",
+    transform: `translateY(-50%) translateX(-100%) translate(-${gap}, 0)`,
   }),
-  lb: (rect: DOMRect) => ({
+  lb: (rect: DOMRect, gap?: string) => ({
     top: rect.y + rect.height + window.scrollY,
     left: rect.x + window.scrollX,
-    transform: "translateY(-100%) translateX(-100%)",
+    transform: `translateY(-100%) translateX(-100%) translate(-${gap}, 0)`,
   }),
 };
 
@@ -108,6 +117,7 @@ export const WizPopupContent = ({
   const ctx = popupContext;
   useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
   const rect = ctx.triggerRef.current?.getBoundingClientRect();
+  const gapRem = getSpacingCss(gap) ?? "0";
   return !(ctx.isOpen && rect) ? null : (
     <WizPortal>
       <div
@@ -119,7 +129,7 @@ export const WizPopupContent = ({
         ref={contentRef}
         style={{
           position: "absolute",
-          ...direction2style[direction](rect),
+          ...direction2style[direction](rect, gapRem),
         }}
       >
         {props.children}
