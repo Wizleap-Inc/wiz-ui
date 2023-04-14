@@ -115,7 +115,7 @@ export const WizPopupContent = ({
     throw new Error("PopupContent must be used inside PopupContainer");
   const contentRef = useRef(null);
   const ctx = popupContext;
-  useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
+  if (closeOnBlur) useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
   const rect = ctx.triggerRef.current?.getBoundingClientRect();
   const gapRem = getSpacingCss(gap) ?? "0";
   return !(ctx.isOpen && rect) ? null : (
