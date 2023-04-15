@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="tooltipStyle"
+    :class="styles.tooltipStyle"
     @mouseenter="isHover = true"
     @mouseleave="isHover = false"
   >
@@ -16,15 +16,18 @@
         gap="xs"
       >
         <div
-          :class="[tooltipPositionStyle[actuallyDirection], tooltipPopupStyle]"
+          :class="[
+            styles.tooltipPositionStyle[actuallyDirection],
+            styles.tooltipPopupStyle,
+          ]"
         >
-          <div :class="tooltipContentStyle">
+          <div :class="styles.tooltipContentStyle">
             <slot name="content" />
           </div>
           <WizIChangeHistory
             :class="[
-              tooltipIconStyle,
-              tooltipIconDirectionStyle[actuallyDirection],
+              styles.tooltipIconStyle,
+              styles.tooltipIconDirectionStyle[actuallyDirection],
             ]"
           />
         </div>
@@ -35,14 +38,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  tooltipStyle,
-  tooltipContentStyle,
-  tooltipIconStyle,
-  tooltipIconDirectionStyle,
-  tooltipPositionStyle,
-  tooltipPopupStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
 import { PropType, ref, computed } from "vue";
 
 import { WizIChangeHistory, WizPopup, WizPopupContainer } from "@/components";

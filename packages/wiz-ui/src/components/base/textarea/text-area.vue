@@ -6,10 +6,10 @@
     :disabled="disabled"
     :rows="rows"
     :class="[
-      textAreaStyle,
-      textAreaVariantStyle[disabled ? 'disabled' : 'default'],
-      expand && textAreaExpandStyle,
-      inputBorderStyle[state],
+      styles.textAreaStyle,
+      styles.textAreaVariantStyle[disabled ? 'disabled' : 'default'],
+      expand && styles.textAreaExpandStyle,
+      commonStyles.inputBorderStyle[state],
     ]"
     @focusin="hasFocus = true"
     @focusout="hasFocus = false"
@@ -18,12 +18,8 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  textAreaStyle,
-  textAreaVariantStyle,
-  textAreaExpandStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, inject, ref } from "vue";
 
 import { formControlKey } from "@/hooks/use-form-control-provider";

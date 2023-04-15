@@ -2,20 +2,24 @@
   <component
     :is="as"
     :class="[
-      textStyle,
-      textFontWeightStyle[bold ? 'bold' : 'default'],
-      textAlignStyle[textAlign],
-      (maxLines || breakAll) && textWordBreakStyle,
-      lineHeight ? lineHeightStyle[lineHeight] : textDefaultLineHeightStyle,
-      fontSizeStyle[fontSize],
-      colorStyle[color],
-      whiteSpaceStyle[whiteSpace],
-      lineThrough && textLineThroughStyle,
+      styles.textStyle,
+      styles.textFontWeightStyle[bold ? 'bold' : 'default'],
+      styles.textAlignStyle[textAlign],
+      (maxLines || breakAll) && styles.textWordBreakStyle,
+      lineHeight
+        ? commonStyles.lineHeightStyle[lineHeight]
+        : styles.textDefaultLineHeightStyle,
+      commonStyles.fontSizeStyle[fontSize],
+      commonStyles.colorStyle[color],
+      commonStyles.whiteSpaceStyle[whiteSpace],
+      lineThrough && styles.textLineThroughStyle,
     ]"
     :for="htmlFor"
     :style="overflowStyles"
   >
-    <span :class="textDummyStyle" v-if="dummyValue">{{ dummyValue }}</span>
+    <span :class="styles.textDummyStyle" v-if="dummyValue">{{
+      dummyValue
+    }}</span>
     <slot v-else />
   </component>
 </template>
@@ -27,21 +31,8 @@ import {
   FontSizeKeys,
   WhiteSpaceKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  textStyle,
-  textDummyStyle,
-  textDefaultLineHeightStyle,
-  textFontWeightStyle,
-  textWordBreakStyle,
-  textAlignStyle,
-  textLineThroughStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/text.css";
-import {
-  lineHeightStyle,
-  fontSizeStyle,
-  colorStyle,
-  whiteSpaceStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType } from "vue";
 
 defineOptions({
