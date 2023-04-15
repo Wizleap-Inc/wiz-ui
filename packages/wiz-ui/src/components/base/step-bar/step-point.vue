@@ -1,6 +1,6 @@
 <template>
-  <span :class="[stepPointStyle]">
-    <span :class="stepPointValueStyle">
+  <span :class="[styles.stepPointStyle]">
+    <span :class="styles.stepPointValueStyle">
       <WizIcon
         :icon="WizICircleCheck"
         :size="'xl6'"
@@ -12,10 +12,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  stepPointStyle,
-  stepPointValueStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
 import { PropType } from "vue";
 
 import { WizIcon, WizICircleCheck } from "@/components";

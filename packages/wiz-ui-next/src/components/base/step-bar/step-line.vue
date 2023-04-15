@@ -2,20 +2,16 @@
   <span
     class="wiz-progress-line"
     :class="[
-      stepLineStyle,
-      stepLineBackgroundStyle[active ? 'active' : 'inactive'],
-      stepLineWidthStyle[isFirst ? 'first' : 'default'],
+      styles.stepLineStyle,
+      styles.stepLineBackgroundStyle[active ? 'active' : 'inactive'],
+      styles.stepLineWidthStyle[isFirst ? 'first' : 'default'],
     ]"
   />
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  stepLineStyle,
-  stepLineBackgroundStyle,
-  stepLineWidthStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
 
 defineOptions({
   name: ComponentName.ProgressLine,

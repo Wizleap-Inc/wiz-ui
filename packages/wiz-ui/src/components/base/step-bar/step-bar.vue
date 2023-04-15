@@ -1,13 +1,13 @@
 <template>
-  <div :class="stepBarStyle">
+  <div :class="styles.stepBarStyle">
     <div
       v-for="(content, i) in contents"
       :key="i"
-      :class="stepBarItemStyle[i === 0 ? 'first' : 'default']"
+      :class="styles.stepBarItemStyle[i === 0 ? 'first' : 'default']"
     >
       <WizVStack align="center" gap="xl">
         <WizStepPoint :status="content.status" />
-        <span :class="progressBarItemLabelStyle">
+        <span :class="styles.progressBarItemLabelStyle">
           <WizVStack align="center" gap="xs2">
             <WizText
               fontSize="sm"
@@ -34,11 +34,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  progressBarItemLabelStyle,
-  stepBarStyle,
-  stepBarItemStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
 import { PropType } from "vue";
 
 import { WizText, WizVStack } from "@/components";
