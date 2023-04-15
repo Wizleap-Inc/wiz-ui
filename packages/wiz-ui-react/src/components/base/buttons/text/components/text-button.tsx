@@ -1,3 +1,4 @@
+import { ColorKeys, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   textButtonStyle,
   textButtonDisabledStyle,
@@ -10,8 +11,7 @@ import { gapStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ComponentProps, ReactNode, memo } from "react";
 
-import { WizIcon } from "@/components";
-import { TIcon } from "@/components/icons";
+import { WizIcon, TIcon } from "@/components";
 
 type Props = {
   variant?: "primary" | "sub";
@@ -24,6 +24,18 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"button">;
 
+const variantColor: Record<"primary" | "sub", ColorKeys> = {
+  primary: "white.800",
+  sub: "gray.800",
+};
+
+const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
+  xs: "lg",
+  sm: "xl",
+  md: "xl2",
+  lg: "xl3",
+};
+
 const _TextButton = ({
   variant = "primary",
   disabled = false,
@@ -34,20 +46,14 @@ const _TextButton = ({
   iconPosition = "left",
   ...props
 }: Props) => {
-  const variantColor = (() => {
-    if (variant === "primary") return "white.800";
-    if (variant === "sub") return "gray.800";
-    return undefined;
-  })();
-  const iconSize = (() => {
-    if (size === "xs") return "lg";
-    if (size === "sm") return "xl";
-    if (size === "md") return "xl2";
-    if (size === "lg") return "xl3";
-    return undefined;
-  })();
   const content = [
-    icon && <WizIcon icon={icon} color={variantColor} size={iconSize} />,
+    icon && (
+      <WizIcon
+        icon={icon}
+        color={variantColor[variant]}
+        size={iconSize[size]}
+      />
+    ),
     props.children,
   ];
   return (
