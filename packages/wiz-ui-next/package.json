@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-next",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
@@ -16,8 +16,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
     "unplugin-vue-define-options": "^1.1.1",
-    "@storybook/vue3": "^7.0.0-rc.9",
-    "@storybook/vue3-vite": "^7.0.0-rc.9",
+    "@storybook/vue3": "^7.0.2",
+    "@storybook/vue3-vite": "^7.0.2",
     "vue-tsc": "^1.0.9"
   },
   "repository": {

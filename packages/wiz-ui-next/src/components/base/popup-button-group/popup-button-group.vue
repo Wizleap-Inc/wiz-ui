@@ -97,10 +97,9 @@ import {
   popupButtonGroupButtonVariantStyle,
   borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
-import { computed, inject, PropType, ref } from "vue";
+import { computed, PropType, ref } from "vue";
 
 import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
-import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { ButtonGroupItem } from "./types";
 
@@ -231,8 +230,5 @@ const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
   }
 };
 
-// Form Control
-const form = inject(formControlKey);
-const isError = computed(() => (form ? form.isError.value : false));
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 </script>
