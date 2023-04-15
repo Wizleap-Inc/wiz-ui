@@ -1,6 +1,9 @@
 <template>
   <div
-    :class="[menuItemStyle, menuItemVariantStyle[componentStatus]]"
+    :class="[
+      styles.menuItemStyle,
+      styles.menuItemVariantStyle[componentStatus],
+    ]"
     :style="{ width: width }"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
@@ -18,10 +21,7 @@
 
 <script setup lang="ts">
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  menuItemStyle,
-  menuItemVariantStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { ref, computed } from "vue";
 
 import { WizIChevronRight } from "@/components/icons";

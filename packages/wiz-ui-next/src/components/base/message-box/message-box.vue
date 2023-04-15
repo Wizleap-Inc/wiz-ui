@@ -1,18 +1,21 @@
 <template>
   <div
     :class="[
-      messageBoxStyle,
-      messageBoxWidthStyle[computedWidth],
-      messageBoxVariantStyle[variant],
+      styles.messageBoxStyle,
+      styles.messageBoxWidthStyle[computedWidth],
+      styles.messageBoxVariantStyle[variant],
     ]"
   >
     <component
       v-if="icon"
       :is="icon"
-      :class="[messageBoxIconStyle, messageBoxIconFillStyle[variant]]"
+      :class="[
+        styles.messageBoxIconStyle,
+        styles.messageBoxIconFillStyle[variant],
+      ]"
     />
     <div>
-      <div :class="messageBoxTitleStyle">{{ title }}</div>
+      <div :class="styles.messageBoxTitleStyle">{{ title }}</div>
       <slot></slot>
     </div>
   </div>
@@ -20,14 +23,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  messageBoxStyle,
-  messageBoxWidthStyle,
-  messageBoxVariantStyle,
-  messageBoxIconStyle,
-  messageBoxIconFillStyle,
-  messageBoxTitleStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
 import { computed, PropType } from "vue";
 
 import type { TIcon } from "@/components/icons";
