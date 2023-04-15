@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { WizIAdd } from "@/components/icons";
+import { WizIAdd } from "@/components";
 
 import { WizTextButton } from "../components/text-button";
 
@@ -25,9 +25,9 @@ const meta: Meta<typeof WizTextButton> = {
       control: { type: "select" },
       options: ["xs", "sm", "md", "lg"],
     },
-    // icon: {
-    //   control: { type: "object" },
-    // },
+    icon: {
+      control: { type: "object" },
+    },
     iconPosition: {
       control: { type: "select" },
       options: ["left", "right"],
