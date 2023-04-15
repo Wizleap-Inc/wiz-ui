@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="[tabPaneStyle, tabPaneVariantStyle[variant]]"
+    :class="[styles.tabPaneStyle, styles.tabPaneVariantStyle[variant]]"
     :style="{ width }"
     @click="onClick"
   >
-    <span :class="tabPaneLabelStyle">{{ label }}</span>
-    <span v-if="notificationCount" :class="tabPaneNotificationStyle">{{
+    <span :class="styles.tabPaneLabelStyle">{{ label }}</span>
+    <span v-if="notificationCount" :class="styles.tabPaneNotificationStyle">{{
       notificationCount
     }}</span>
     <slot />
@@ -14,12 +14,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  tabPaneStyle,
-  tabPaneVariantStyle,
-  tabPaneLabelStyle,
-  tabPaneNotificationStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/tab.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tab.css";
 import { computed } from "vue";
 
 defineOptions({

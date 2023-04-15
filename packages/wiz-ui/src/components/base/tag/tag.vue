@@ -1,14 +1,18 @@
 <template>
   <span
     :class="[
-      tagStyle,
-      tagColorStyle[variant],
-      fontSizeStyle[fontSize],
-      fontWeightStyle[fontWeight],
+      styles.tagStyle,
+      styles.tagColorStyle[variant],
+      commonStyles.fontSizeStyle[fontSize],
+      commonStyles.fontWeightStyle[fontWeight],
     ]"
     :style="{ width: width || 'max-content' }"
   >
-    <WizIcon v-if="icon" :icon="icon" :color="tagIconColorStyle[variant]" />
+    <WizIcon
+      v-if="icon"
+      :icon="icon"
+      :color="styles.tagIconColorStyle[variant]"
+    />
     {{ label }}
   </span>
 </template>
@@ -19,15 +23,8 @@ import {
   FontSizeKeys,
   FontWeightKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  tagStyle,
-  tagColorStyle,
-  tagIconColorStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
-import {
-  fontSizeStyle,
-  fontWeightStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 
 import { WizIcon } from "@/components/base";
