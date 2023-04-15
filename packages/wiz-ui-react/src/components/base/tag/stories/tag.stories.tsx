@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
+import { WizIClose } from "@/components";
+
 import { WizTag } from "../components/tag";
 
 const meta: Meta<typeof WizTag> = {
@@ -46,6 +48,14 @@ export const Bold: Story = {
   render: (args) => <WizTag {...args} />,
 };
 
+export const WithIcon: Story = {
+  args: {
+    label: "タグ",
+    icon: WizIClose,
+  },
+  render: (args) => <WizTag {...args} />,
+};
+
 export const Width: Story = {
   args: {
     label: "タグ",
@@ -57,6 +67,7 @@ export const Width: Story = {
 export const Variant: Story = {
   args: {
     label: "タグ",
+    icon: WizIClose,
   },
   render: (args) => (
     <div
@@ -67,14 +78,14 @@ export const Variant: Story = {
         alignItems: "center",
       }}
     >
-      <WizTag label="必須" variant="info" />
-      <div>variant="info"</div>
+      <WizTag {...args} label="必須" variant="info" />
+      <div>variant={'"info"'}</div>
       <WizTag {...args} label="自動失注" variant="error" />
-      <div>variant="error"</div>
+      <div>variant={'"error"'}</div>
       <WizTag {...args} label="申請完了" variant="success" />
-      <div>variant="success"</div>
+      <div>variant={'"success"'}</div>
       <WizTag {...args} label="11/11(月)" variant="mono" />
-      <div>variant="mono"</div>
+      <div>variant={'"mono"'}</div>
     </div>
   ),
 };
