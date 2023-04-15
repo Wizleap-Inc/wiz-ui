@@ -1,4 +1,4 @@
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
 import {
   gapStyle,
@@ -7,14 +7,21 @@ import {
   paddingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ReactNode, memo, useMemo, useState } from "react";
+import {
+  ComponentProps,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  memo,
+  useMemo,
+} from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
 type Props = {
   clickable?: boolean;
   active?: boolean;
-  hover?: boolean;
+  isHover?: boolean;
   p?: SpacingKeys;
   px?: SpacingKeys;
   py?: SpacingKeys;
@@ -23,56 +30,61 @@ type Props = {
   children: ReactNode;
 } & ComponentProps<"button">;
 
-const _TinyButton = ({
-  clickable = true,
-  active = true,
-  hover = false,
-  p,
-  px,
-  py,
-  icon,
-  iconPosition = "left",
-  ...props
-}: Props) => {
-  const [isHover, setIsHover] = useState(false);
+const _TinyButton = forwardRef(
+  (
+    {
+      clickable = true,
+      active = true,
+      isHover = false,
+      p,
+      px,
+      py,
+      icon,
+      iconPosition = "left",
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
+    const tinyButtonState = useMemo(() => {
+      const selectable = clickable ? "clickable" : "unclickable";
+      const activeState = active ? "active" : "inactive";
+      return `${selectable}+${activeState}` as const;
+    }, [clickable, active]);
 
-  const tinyButtonState = useMemo(() => {
-    const selectable = clickable ? "clickable" : "unclickable";
-    const activeState = active ? "active" : "inactive";
-    return `${selectable}+${activeState}` as const;
-  }, [clickable, active]);
-
-  return (
-    <button
-      {...props}
-      className={clsx(
-        styles.tinyButtonBaseStyle,
-        styles.tinyButtonSizeStyle,
-        styles.tinyButtonVaraiantStyle[tinyButtonState],
-        clickable && (isHover || hover) && styles.tinyButtonHoverStyle,
-        !p && !py && paddingYStyle["xs2"],
-        !p && !px && paddingXStyle["sm"],
-        p && paddingStyle[p],
-        px && paddingXStyle[px],
-        py && paddingYStyle[py]
-      )}
-      disabled={!clickable}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-    >
-      <div
+    return (
+      <button
+        ref={ref}
+        {...props}
         className={clsx(
-          gapStyle["xs2"],
-          styles.textButtonStackStyle[
-            iconPosition === "right" ? "reverse" : "default"
-          ]
+          styles.tinyButtonBaseStyle,
+          styles.tinyButtonSizeStyle,
+          styles.tinyButtonVaraiantStyle[tinyButtonState],
+          clickable && isHover && styles.tinyButtonHoverStyle,
+          !p && !py && paddingYStyle["xs2"],
+          !p && !px && paddingXStyle["sm"],
+          p && paddingStyle[p],
+          px && paddingXStyle[px],
+          py && paddingYStyle[py]
         )}
+        disabled={!clickable}
+        {...props}
       >
-        {icon && <WizIcon icon={icon} color={"white.800"} size={"xs"} />}
-        {props.children}
-      </div>
-    </button>
-  );
-};
+        <div
+          className={clsx(
+            gapStyle["xs2"],
+            styles.textButtonStackStyle[
+              iconPosition === "right" ? "reverse" : "default"
+            ]
+          )}
+        >
+          {icon && <WizIcon icon={icon} color={"white.800"} size={"xs"} />}
+          {props.children}
+        </div>
+      </button>
+    );
+  }
+);
+
+_TinyButton.displayName = ComponentName.TinyButton;
 
 export const WizTinyButton = memo(_TinyButton);
