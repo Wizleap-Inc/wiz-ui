@@ -5,25 +5,18 @@ import { ReactNode, memo, useEffect, useRef, useState } from "react";
 import { PopupContext } from "./popup-context";
 
 type Props = {
+  isOpen: boolean;
+  open: () => void;
+  close: () => void;
   expand?: boolean;
   children?: ReactNode;
 };
 const _Popup = ({ ...props }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const openPopup = () => {
-    setIsOpen(true);
-    console.log("popup open", isOpen);
-  };
-  const closePopup = () => {
-    setIsOpen(false);
-    console.log("popup close", isOpen);
-  };
   const triggerRef = useRef(null);
-
   const contextValue = {
-    isOpen,
-    openPopup,
-    closePopup,
+    isOpen: props.isOpen,
+    openPopup: props.open,
+    closePopup: props.close,
     triggerRef,
   };
 
