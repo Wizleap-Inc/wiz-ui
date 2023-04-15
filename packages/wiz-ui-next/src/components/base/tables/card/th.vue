@@ -1,12 +1,12 @@
 <template>
-  <th :class="cardThStyle" :style="{ width }" :colSpan="colSpan">
+  <th :class="styles.cardThStyle" :style="{ width }" :colSpan="colSpan">
     <slot />
   </th>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { cardThStyle } from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
 
 defineOptions({
   name: ComponentName.CardTh,

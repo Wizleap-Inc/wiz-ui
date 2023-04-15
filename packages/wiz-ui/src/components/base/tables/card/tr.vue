@@ -1,12 +1,12 @@
 <template>
-  <tr :class="cardTrStyle" @click="onClick">
+  <tr :class="styles.cardTrStyle" @click="onClick">
     <slot />
   </tr>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { cardTrStyle } from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
 
 defineOptions({
   name: ComponentName.CardTr,
