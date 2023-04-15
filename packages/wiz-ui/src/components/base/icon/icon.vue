@@ -1,10 +1,12 @@
 <template>
-  <div :class="[iconStyle, iconSizeStyle[size]]">
+  <div :class="[styles.iconStyle, styles.iconSizeStyle[size]]">
     <component
       :is="icon"
       :class="[
-        fontSizeStyle[size],
-        color === 'inherit' ? iconDefaultStyle : fillStyle[color],
+        commonStyles.fontSizeStyle[size],
+        color === 'inherit'
+          ? styles.iconDefaultStyle
+          : commonStyles.fillStyle[color],
       ]"
     />
   </div>
@@ -16,12 +18,8 @@ import {
   ColorKeys,
   FontSizeKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  iconStyle,
-  iconSizeStyle,
-  iconDefaultStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/icon.css";
-import { fillStyle, fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/icon.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 
 import type { TIcon } from "@/components/icons";
