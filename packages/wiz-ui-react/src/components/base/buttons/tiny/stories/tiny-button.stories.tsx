@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
-import { WizIAdd } from "@/components/icons";
+import { WizIAdd } from "@/components";
 
 import { WizTinyButton } from "../components/tiny-button";
 const spacingKeys = ["p", "px", "py"];
@@ -95,9 +95,9 @@ export const Hover: Story = {
 
     return (
       <table>
-        {patterns.map((pattern) => {
+        {patterns.map((pattern, i) => {
           return (
-            <tr>
+            <tr key={i}>
               <td style={{ padding: "1rem" }}>
                 clickable={pattern.clickable ? "true" : "false"}
               </td>

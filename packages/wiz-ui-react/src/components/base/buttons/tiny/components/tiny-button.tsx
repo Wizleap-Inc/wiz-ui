@@ -9,8 +9,7 @@ import {
 import clsx from "clsx";
 import { ComponentProps, ReactNode, memo, useMemo, useState } from "react";
 
-import { WizIcon } from "@/components";
-import { TIcon } from "@/components/icons";
+import { TIcon, WizIcon } from "@/components";
 
 type Props = {
   clickable?: boolean;
