@@ -1,7 +1,11 @@
-import { ColorKeys, getRelativeFontSize } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  getRelativeFontSize,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
 import clsx from "clsx";
-import { memo } from "react";
+import { ComponentProps, ForwardedRef, forwardRef, memo } from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
@@ -10,8 +14,7 @@ type Props = {
   variant?: "primary" | "sub" | "transparent" | "link";
   disabled?: boolean;
   size?: "sm" | "md" | "lg" | "xl";
-  onClick?: () => void;
-};
+} & ComponentProps<"button">;
 
 const iconSVGColor: {
   [key in "primary" | "sub" | "transparent" | "link"]: ColorKeys;
@@ -22,28 +25,38 @@ const iconSVGColor: {
   link: "blue.800",
 };
 
-const _IconButton = ({
-  icon,
-  variant = "primary",
-  disabled = false,
-  size = "md",
-  ...props
-}: Props) => {
-  return (
-    <button
-      className={clsx(
-        styles.iconButtonStyle[variant],
-        disabled && styles.iconButtonDisabledStyle
-      )}
-      disabled={disabled}
-      onClick={props.onClick}
-    >
-      <WizIcon
-        icon={icon}
-        color={iconSVGColor[variant]}
-        size={getRelativeFontSize(size, 3)}
-      />
-    </button>
-  );
-};
+const _IconButton = forwardRef(
+  (
+    {
+      icon,
+      variant = "primary",
+      disabled = false,
+      size = "md",
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
+    return (
+      <button
+        ref={ref}
+        className={clsx(
+          styles.iconButtonStyle[variant],
+          disabled && styles.iconButtonDisabledStyle
+        )}
+        disabled={disabled}
+        onClick={props.onClick}
+        {...props}
+      >
+        <WizIcon
+          icon={icon}
+          color={iconSVGColor[variant]}
+          size={getRelativeFontSize(size, 3)}
+        />
+      </button>
+    );
+  }
+);
+
+_IconButton.displayName = ComponentName.IconButton;
+
 export const WizIconButton = memo(_IconButton);
