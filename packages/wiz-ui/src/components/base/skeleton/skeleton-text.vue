@@ -4,9 +4,9 @@
       <div v-for="line in lines" :key="line">
         <div
           :class="[
-            skeletonStyle,
-            normalSkeletonStyle,
-            textSkeletonStyle[judgeOrder(line)],
+            styles.skeletonStyle,
+            styles.normalSkeletonStyle,
+            styles.textSkeletonStyle[judgeOrder(line)],
             fontSizeAsHeightStyle[fontSize],
           ]"
         />
@@ -22,11 +22,7 @@ import {
   FontSizeKeys,
   SpacingKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  skeletonStyle,
-  normalSkeletonStyle,
-  textSkeletonStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import { fontSizeAsHeightStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 

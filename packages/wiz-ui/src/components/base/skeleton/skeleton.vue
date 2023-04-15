@@ -2,9 +2,9 @@
   <div
     :class="
       isLoading && [
-        skeletonStyle,
-        normalSkeletonStyle,
-        borderRadiusStyle[borderRadius],
+        styles.skeletonStyle,
+        styles.normalSkeletonStyle,
+        styles.borderRadiusStyle[borderRadius],
       ]
     "
     :style="{ width, height }"
@@ -15,11 +15,7 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  skeletonStyle,
-  normalSkeletonStyle,
-  borderRadiusStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import { PropType } from "vue";
 
 defineOptions({

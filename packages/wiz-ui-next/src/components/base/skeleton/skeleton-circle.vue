@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="isLoading && [skeletonStyle, circleSkeletonStyle]"
+    :class="isLoading && [styles.skeletonStyle, styles.circleSkeletonStyle]"
     :style="{ width: size, height: size }"
   >
     <slot />
@@ -9,10 +9,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  skeletonStyle,
-  circleSkeletonStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import { PropType } from "vue";
 
 defineOptions({

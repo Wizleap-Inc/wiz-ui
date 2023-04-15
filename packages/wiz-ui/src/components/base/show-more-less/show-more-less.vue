@@ -1,27 +1,30 @@
 <template>
   <WizVStack
-    :class="[showMoreLessDetailsStyle, bgColor && backgroundStyle[bgColor]]"
+    :class="[
+      styles.showMoreLessDetailsStyle,
+      bgColor && commonStyles.backgroundStyle[bgColor],
+    ]"
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
     <div
       ref="contentRef"
-      :class="[showMoreLessContentStyle]"
+      :class="[styles.showMoreLessContentStyle]"
       :style="{
         maxHeight: isOpen ? toggleHeight : 0,
       }"
     >
       <slot />
     </div>
-    <div :class="showMoreLessSummaryStyle" @click="onClick">
+    <div :class="styles.showMoreLessSummaryStyle" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
         gap="xs2"
         :class="[
-          showMoreLessMessageStyle,
-          bgColor && backgroundStyle[bgColor],
-          colorStyle[fontColor],
+          styles.showMoreLessMessageStyle,
+          bgColor && commonStyles.backgroundStyle[bgColor],
+          commonStyles.colorStyle[fontColor],
         ]"
       >
         <div>
@@ -32,8 +35,8 @@
           :icon="WizIExpandMore"
           :color="fontColor"
           :class="[
-            showMoreLessExpandIconStyle,
-            isOpen && showMoreLessRotateIconStyle,
+            styles.showMoreLessExpandIconStyle,
+            isOpen && styles.showMoreLessRotateIconStyle,
           ]"
         />
       </WizHStack>
@@ -43,18 +46,8 @@
 
 <script setup lang="ts">
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  showMoreLessMessageStyle,
-  showMoreLessDetailsStyle,
-  showMoreLessContentStyle,
-  showMoreLessSummaryStyle,
-  showMoreLessExpandIconStyle,
-  showMoreLessRotateIconStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
-import {
-  backgroundStyle,
-  colorStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, PropType } from "vue";
 
 import { WizHStack, WizVStack, WizIcon } from "@/components";
