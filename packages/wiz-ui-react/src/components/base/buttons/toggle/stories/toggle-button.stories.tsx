@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { MouseEventHandler, useRef, useState } from "react";
 
 import { WizIAdd, WizIRemove } from "@/components";
 
@@ -44,11 +44,18 @@ export const Default: Story = {
   },
   render: (args) => {
     const [isActive, setIsActive] = useState(args.isActive);
-    const onClick = () => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
       setIsActive(!isActive);
+      args.onClick?.(e);
     };
     return (
-      <WizToggleButton {...args} isActive={isActive} onClick={onClick}>
+      <WizToggleButton
+        ref={buttonRef}
+        {...args}
+        isActive={isActive}
+        onClick={onClick}
+      >
         顧客データ追加
       </WizToggleButton>
     );
@@ -63,11 +70,18 @@ export const Disabled: Story = {
   },
   render: (args) => {
     const [isActive, setIsActive] = useState(args.isActive);
-    const onClick = () => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
       setIsActive(!isActive);
+      args.onClick?.(e);
     };
     return (
-      <WizToggleButton {...args} isActive={isActive} onClick={onClick}>
+      <WizToggleButton
+        ref={buttonRef}
+        {...args}
+        isActive={isActive}
+        onClick={onClick}
+      >
         顧客データ追加
       </WizToggleButton>
     );
@@ -88,11 +102,18 @@ export const Angled: Story = {
   },
   render: (args) => {
     const [isActive, setIsActive] = useState(args.isActive);
-    const onClick = () => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
       setIsActive(!isActive);
+      args.onClick?.(e);
     };
     return (
-      <WizToggleButton {...args} isActive={isActive} onClick={onClick}>
+      <WizToggleButton
+        ref={buttonRef}
+        {...args}
+        isActive={isActive}
+        onClick={onClick}
+      >
         顧客データ追加
       </WizToggleButton>
     );
@@ -112,11 +133,18 @@ export const On: Story = {
   },
   render: (args) => {
     const [isActive, setIsActive] = useState(args.isActive);
-    const onClick = () => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
       setIsActive(!isActive);
+      args.onClick?.(e);
     };
     return (
-      <WizToggleButton {...args} isActive={isActive} onClick={onClick}>
+      <WizToggleButton
+        ref={buttonRef}
+        {...args}
+        isActive={isActive}
+        onClick={onClick}
+      >
         顧客データ追加
       </WizToggleButton>
     );
@@ -136,11 +164,18 @@ export const Off: Story = {
   },
   render: (args) => {
     const [isActive, setIsActive] = useState(args.isActive);
-    const onClick = () => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
       setIsActive(!isActive);
+      args.onClick?.(e);
     };
     return (
-      <WizToggleButton {...args} isActive={isActive} onClick={onClick}>
+      <WizToggleButton
+        ref={buttonRef}
+        {...args}
+        isActive={isActive}
+        onClick={onClick}
+      >
         顧客データ追加
       </WizToggleButton>
     );
