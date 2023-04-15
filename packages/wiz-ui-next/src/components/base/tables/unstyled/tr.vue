@@ -1,12 +1,12 @@
 <template>
-  <tr :class="divider && unstyledTrDividerStyle">
+  <tr :class="divider && styles.unstyledTrDividerStyle">
     <slot />
   </tr>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { unstyledTrDividerStyle } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 
 defineOptions({
   name: ComponentName.UnstyledTr,

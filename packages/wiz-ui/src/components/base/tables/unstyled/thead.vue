@@ -1,12 +1,12 @@
 <template>
-  <thead :class="divider && unstyledTheadDividerStyle">
+  <thead :class="divider && styles.unstyledTheadDividerStyle">
     <slot />
   </thead>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { unstyledTheadDividerStyle } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 
 defineOptions({
   name: ComponentName.UnstyledThead,

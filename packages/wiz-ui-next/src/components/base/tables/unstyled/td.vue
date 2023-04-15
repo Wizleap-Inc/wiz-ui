@@ -1,15 +1,12 @@
 <template>
-  <td :class="[unstyledTdStyle, unstyledTdAlignStyle[align]]">
+  <td :class="[styles.unstyledTdStyle, styles.unstyledTdAlignStyle[align]]">
     <slot />
   </td>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  unstyledTdStyle,
-  unstyledTdAlignStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 import { PropType } from "vue";
 
 defineOptions({

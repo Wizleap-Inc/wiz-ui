@@ -1,11 +1,11 @@
 <template>
   <table
     :class="[
-      spaceX && borderSpacingXStyle[spaceX],
-      spaceY && borderSpacingYStyle[spaceY],
-      !spaceX && !spaceY && borderSpacingStyle[space],
-      fixed && unstyledTableFixedStyle,
-      borderCollapse && unstyledTableBorderCollapseStyle[borderCollapse],
+      spaceX && commonStyles.borderSpacingXStyle[spaceX],
+      spaceY && commonStyles.borderSpacingYStyle[spaceY],
+      !spaceX && !spaceY && commonStyles.borderSpacingStyle[space],
+      fixed && styles.unstyledTableFixedStyle,
+      borderCollapse && styles.unstyledTableBorderCollapseStyle[borderCollapse],
     ]"
     :style="{ width }"
   >
@@ -15,15 +15,8 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  unstyledTableBorderCollapseStyle,
-  unstyledTableFixedStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
-import {
-  borderSpacingStyle,
-  borderSpacingXStyle,
-  borderSpacingYStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 
 defineOptions({
