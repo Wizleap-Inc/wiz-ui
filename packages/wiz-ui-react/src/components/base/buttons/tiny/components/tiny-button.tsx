@@ -50,6 +50,8 @@ const _TinyButton = ({
         styles.tinyButtonSizeStyle,
         styles.tinyButtonVaraiantStyle[tinyButtonState],
         clickable && (isHover || hover) && styles.tinyButtonHoverStyle,
+        !p && !py && paddingYStyle["xs2"],
+        !p && !px && paddingXStyle["sm"],
         p && paddingStyle[p],
         px && paddingXStyle[px],
         py && paddingYStyle[py]
