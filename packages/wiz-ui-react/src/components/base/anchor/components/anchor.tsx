@@ -2,6 +2,7 @@ import {
   ColorKeys,
   FontSizeKeys,
   FontWeightKeys,
+  getRelativeFontSize,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/anchor.css";
 import {
@@ -13,12 +14,14 @@ import clsx from "clsx";
 import { ReactNode, memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 
+import { TIcon, WizIcon } from "@/components";
+
 type Props = {
   to: string;
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
-  // icon?: TIcon;
+  icon?: TIcon;
   iconPosition?: "left" | "right";
   openInNewTab?: boolean;
   nowrap?: boolean;
@@ -30,7 +33,7 @@ const _Anchor = ({
   color = "blue.800",
   fontSize = "md",
   fontWeight = "normal",
-  // icon,
+  icon,
   iconPosition = "left",
   openInNewTab = false,
   nowrap = false,
@@ -43,9 +46,21 @@ const _Anchor = ({
 
   const AnchorContent = ({ children }: { children: ReactNode }) => (
     <>
-      {/* icon left */}
+      {icon && iconPosition === "left" && (
+        <WizIcon
+          icon={icon}
+          size={getRelativeFontSize(fontSize, 3)}
+          color={color}
+        />
+      )}
       {children}
-      {/* icon right */}
+      {icon && iconPosition === "right" && (
+        <WizIcon
+          icon={icon}
+          size={getRelativeFontSize(fontSize, 3)}
+          color={color}
+        />
+      )}
     </>
   );
 
