@@ -76,6 +76,7 @@ export const ComponentName = {
   Dialog: "WizDialog",
   Provider: "WizProvider",
   CircleGraph: "WizCircleGraph",
+  CompareGraph: "WizCompareGraph",
   PollGraph: "WizPollGraph",
   TransitionGraph: "WizTransitionGraph",
   MeterGraph: "WizMeterGraph",
