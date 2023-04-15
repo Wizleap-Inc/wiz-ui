@@ -6,7 +6,7 @@ import {
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode, useContext, useRef } from "react";
+import React, { ReactNode, useContext, useRef } from "react";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
 
@@ -14,7 +14,6 @@ import { WizPortal } from "../../portal";
 import { Direction } from "../types/direction";
 
 import { PopupContext } from "./popup-context";
-
 const getPlacementStyle: Record<
   Direction,
   (
@@ -90,14 +89,15 @@ const getPlacementStyle: Record<
   }),
 };
 
-type Props = {
+type DivProps = React.HTMLAttributes<HTMLDivElement>;
+
+type Props = DivProps & {
   direction?: Direction;
   closeOnBlur?: boolean;
   layer?: Exclude<ZIndexKeys, "dialog">;
   gap?: SpacingKeys;
   shadow?: boolean;
   animation?: boolean;
-  onMouseLeave?: () => void;
   children: ReactNode;
 };
 
@@ -132,6 +132,7 @@ export const WizPopupContent = ({
           position: "absolute",
           ...getPlacementStyle[direction](rect, gapRem),
         }}
+        {...props}
       >
         {props.children}
       </div>
