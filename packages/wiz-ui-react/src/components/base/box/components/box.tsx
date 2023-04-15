@@ -9,7 +9,13 @@ import {
   getSpacingCss,
   getZIndexCss,
 } from "@wizleap-inc/wiz-ui-constants";
-import { ForwardedRef, ReactNode, forwardRef, memo } from "react";
+import {
+  ComponentProps,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  memo,
+} from "react";
 
 type Props = {
   position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
@@ -43,7 +49,7 @@ type Props = {
   snapScroll?: "none" | "x" | "y" | "block" | "inline" | "both";
   backdropBlur?: Exclude<SpacingKeys, "at">;
   children?: ReactNode;
-};
+} & ComponentProps<"div">;
 
 const _Box = forwardRef(
   (
@@ -125,7 +131,7 @@ const _Box = forwardRef(
     };
 
     return (
-      <div ref={ref} style={style}>
+      <div ref={ref} style={style} {...props}>
         {props.children}
       </div>
     );
