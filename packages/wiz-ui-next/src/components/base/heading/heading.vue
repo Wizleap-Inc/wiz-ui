@@ -2,9 +2,9 @@
   <component
     :is="headingHTML"
     :class="[
-      headingStyle,
-      fontSizeStyle[computedFontSize],
-      colorStyle[computedColor],
+      styles.headingStyle,
+      commonStyles.fontSizeStyle[computedFontSize],
+      commonStyles.colorStyle[computedColor],
     ]"
   >
     <slot />
@@ -17,8 +17,8 @@ import {
   ColorKeys,
   FontSizeKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import { headingStyle } from "@wizleap-inc/wiz-ui-styles/bases/heading.css";
-import { colorStyle, fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/heading.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType } from "vue";
 
 defineOptions({

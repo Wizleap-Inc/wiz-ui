@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[headerStyle, sticky && headerStickyStyle]"
+    :class="[styles.headerStyle, sticky && styles.headerStickyStyle]"
     :style="{ zIndex: currentZIndex }"
   >
     <WizHStack align="center" justify="between" height="100%">
@@ -26,10 +26,7 @@ import {
   SpacingKeys,
   THEME,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  headerStyle,
-  headerStickyStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/header.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/header.css";
 import { PropType } from "vue";
 
 import { WizHStack, WizIconButton, WizIMenu } from "@/components";
