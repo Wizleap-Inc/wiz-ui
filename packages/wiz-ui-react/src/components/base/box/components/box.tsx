@@ -1,5 +1,6 @@
 import {
   ColorKeys,
+  ComponentName,
   ShadowKeys,
   SpacingKeys,
   ZIndexKeys,
@@ -8,7 +9,7 @@ import {
   getSpacingCss,
   getZIndexCss,
 } from "@wizleap-inc/wiz-ui-constants";
-import { ReactNode, memo } from "react";
+import { ForwardedRef, ReactNode, forwardRef, memo } from "react";
 
 type Props = {
   position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
@@ -44,78 +45,93 @@ type Props = {
   children?: ReactNode;
 };
 
-const _Box = ({
-  position,
-  top,
-  right,
-  left,
-  bottom,
-  width,
-  minWidth,
-  maxWidth,
-  height,
-  minHeight,
-  maxHeight,
-  round,
-  roundT,
-  roundL,
-  roundR,
-  roundB,
-  zIndex,
-  bgColor,
-  shadow,
-  dropShadow,
-  overflow,
-  overflowX,
-  overflowY,
-  cursor,
-  pointerEvents,
-  transform,
-  transition,
-  opacity,
-  snapScroll,
-  backdropBlur,
-  ...props
-}: Props) => {
-  const borderRadius = (() => {
-    if (roundL) return `${getSpacingCss(roundL)} 0 0 ${getSpacingCss(roundL)}`;
-    if (roundB) return `0 0 ${getSpacingCss(roundB)} ${getSpacingCss(roundB)}`;
-    if (roundR) return `0 ${getSpacingCss(roundR)} ${getSpacingCss(roundR)} 0`;
-    if (roundT) return `${getSpacingCss(roundT)} ${getSpacingCss(roundT)} 0 0`;
-    if (round) return getSpacingCss(round);
-    return undefined;
-  })();
+const _Box = forwardRef(
+  (
+    {
+      position,
+      top,
+      right,
+      left,
+      bottom,
+      width,
+      minWidth,
+      maxWidth,
+      height,
+      minHeight,
+      maxHeight,
+      round,
+      roundT,
+      roundL,
+      roundR,
+      roundB,
+      zIndex,
+      bgColor,
+      shadow,
+      dropShadow,
+      overflow,
+      overflowX,
+      overflowY,
+      cursor,
+      pointerEvents,
+      transform,
+      transition,
+      opacity,
+      snapScroll,
+      backdropBlur,
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    const borderRadius = (() => {
+      if (roundL)
+        return `${getSpacingCss(roundL)} 0 0 ${getSpacingCss(roundL)}`;
+      if (roundB)
+        return `0 0 ${getSpacingCss(roundB)} ${getSpacingCss(roundB)}`;
+      if (roundR)
+        return `0 ${getSpacingCss(roundR)} ${getSpacingCss(roundR)} 0`;
+      if (roundT)
+        return `${getSpacingCss(roundT)} ${getSpacingCss(roundT)} 0 0`;
+      if (round) return getSpacingCss(round);
+      return undefined;
+    })();
 
-  const style = {
-    position,
-    top,
-    right,
-    left,
-    bottom,
-    width,
-    minWidth,
-    maxWidth,
-    height,
-    minHeight,
-    maxHeight,
-    borderRadius,
-    zIndex: zIndex && +getZIndexCss(zIndex),
-    backgroundColor: bgColor && getColorCss(bgColor),
-    boxShadow: shadow && getShadowCss(shadow),
-    filter: dropShadow && `drop-shadow(${getShadowCss(dropShadow)})`,
-    overflow: snapScroll ? "scroll" : overflow,
-    overflowX,
-    overflowY,
-    cursor,
-    pointerEvents,
-    transform,
-    transition,
-    opacity,
-    scrollSnapType: snapScroll && snapScroll,
-    backdropFilter: backdropBlur && `blur(${getSpacingCss(backdropBlur)})`,
-  };
+    const style = {
+      position,
+      top,
+      right,
+      left,
+      bottom,
+      width,
+      minWidth,
+      maxWidth,
+      height,
+      minHeight,
+      maxHeight,
+      borderRadius,
+      zIndex: zIndex && +getZIndexCss(zIndex),
+      backgroundColor: bgColor && getColorCss(bgColor),
+      boxShadow: shadow && getShadowCss(shadow),
+      filter: dropShadow && `drop-shadow(${getShadowCss(dropShadow)})`,
+      overflow: snapScroll ? "scroll" : overflow,
+      overflowX,
+      overflowY,
+      cursor,
+      pointerEvents,
+      transform,
+      transition,
+      opacity,
+      scrollSnapType: snapScroll && snapScroll,
+      backdropFilter: backdropBlur && `blur(${getSpacingCss(backdropBlur)})`,
+    };
 
-  return <div style={style}>{props.children}</div>;
-};
+    return (
+      <div ref={ref} style={style}>
+        {props.children}
+      </div>
+    );
+  }
+);
+
+_Box.displayName = ComponentName.Box;
 
 export const WizBox = memo(_Box);
