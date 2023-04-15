@@ -13,6 +13,15 @@ type Props = {
   onClick?: () => void;
 };
 
+const iconSVGColor: {
+  [key in "primary" | "sub" | "transparent" | "link"]: ColorKeys;
+} = {
+  primary: "white.800",
+  sub: "green.800",
+  transparent: "gray.800",
+  link: "blue.800",
+};
+
 const _IconButton = ({
   icon,
   variant = "primary",
@@ -20,14 +29,6 @@ const _IconButton = ({
   size = "md",
   ...props
 }: Props) => {
-  const iconSVGColor: {
-    [key in "primary" | "sub" | "transparent" | "link"]: ColorKeys;
-  } = {
-    primary: "white.800",
-    sub: "green.800",
-    transparent: "gray.800",
-    link: "blue.800",
-  };
   return (
     <button
       className={clsx(
