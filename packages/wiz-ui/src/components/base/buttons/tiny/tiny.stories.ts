@@ -12,6 +12,7 @@ const spacingControls = spacingKeys.reduce((acc, key) => {
     options: SPACING_ACCESSORS,
   };
   return acc;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }, {} as Record<string, any>);
 
 export default {
