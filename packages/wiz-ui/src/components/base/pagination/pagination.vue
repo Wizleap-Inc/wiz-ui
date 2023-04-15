@@ -1,23 +1,29 @@
 <template>
   <div
     :class="[
-      paginationStyle,
-      activeValue <= 1 && paginationGapStyle['left'],
-      activeValue >= length && paginationGapStyle['right'],
+      styles.paginationStyle,
+      activeValue <= 1 && styles.paginationGapStyle['left'],
+      activeValue >= length && styles.paginationGapStyle['right'],
     ]"
   >
     <div
       v-if="activeValue > 1"
-      :class="[paginationButtonStyle, paginationButtonVariantStyle['default']]"
+      :class="[
+        styles.paginationButtonStyle,
+        styles.paginationButtonVariantStyle['default'],
+      ]"
       @click="onUpdatePage(activeValue - 1)"
     >
-      <component :is="WizIChevronLeft" :class="paginationIconStyle"></component>
+      <component
+        :is="WizIChevronLeft"
+        :class="styles.paginationIconStyle"
+      ></component>
     </div>
     <div
       v-for="index in displayIndex"
       :class="[
-        paginationButtonStyle,
-        paginationButtonVariantStyle[
+        styles.paginationButtonStyle,
+        styles.paginationButtonVariantStyle[
           activeValue === index ? 'active' : 'default'
         ],
       ]"
@@ -27,25 +33,22 @@
     </div>
     <div
       v-if="activeValue < length"
-      :class="[paginationButtonStyle, paginationButtonVariantStyle['default']]"
+      :class="[
+        styles.paginationButtonStyle,
+        styles.paginationButtonVariantStyle['default'],
+      ]"
       @click="onUpdatePage(activeValue + 1)"
     >
       <component
         :is="WizIChevronRight"
-        :class="paginationIconStyle"
+        :class="styles.paginationIconStyle"
       ></component>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  paginationButtonStyle,
-  paginationButtonVariantStyle,
-  paginationIconStyle,
-  paginationStyle,
-  paginationGapStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
 import { computed, PropType } from "vue";
 
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";

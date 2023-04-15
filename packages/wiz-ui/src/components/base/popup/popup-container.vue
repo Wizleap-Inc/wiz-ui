@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="popupContainerStyle[expand ? 'expanded' : 'default']"
+    :class="styles.popupContainerStyle[expand ? 'expanded' : 'default']"
     ref="popupContainerRef"
   >
     <slot />
@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { popupContainerStyle } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { provide, ref } from "vue";
 
 import { POPUP_KEY, usePopupProvider } from "./provider";

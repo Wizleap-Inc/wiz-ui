@@ -2,10 +2,10 @@
   <MountingPortal mountTo="body" append>
     <div
       :class="[
-        popupStyle,
-        shadow && popupShadowStyle,
+        styles.popupStyle,
+        shadow && styles.popupShadowStyle,
         zIndexStyle[layer],
-        !isActuallyOpen && popupHiddenStyle,
+        !isActuallyOpen && styles.popupHiddenStyle,
       ]"
       :style="{
         inset,
@@ -26,11 +26,7 @@ import {
   SpacingKeys,
   ZIndexKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  popupStyle,
-  popupShadowStyle,
-  popupHiddenStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { MountingPortal } from "portal-vue";
 import {

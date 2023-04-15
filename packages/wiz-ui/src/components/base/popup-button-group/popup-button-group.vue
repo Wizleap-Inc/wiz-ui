@@ -2,9 +2,9 @@
   <WizVStack
     gap="xs2"
     :class="[
-      popupButtonGroupStyle,
-      disabled && popupButtonGroupDisabledCursorStyle,
-      depth === 0 && borderRadiusStyle[borderRadius],
+      styles.popupButtonGroupStyle,
+      disabled && styles.popupButtonGroupDisabledCursorStyle,
+      depth === 0 && styles.borderRadiusStyle[borderRadius],
     ]"
     :style="{ minWidth: computedWidth }"
     :p="depth === 0 ? p : 'no'"
@@ -12,15 +12,15 @@
     <div v-for="item in items">
       <hr
         v-if="item.kind === 'divider'"
-        :class="popupButtonGroupDividerStyle"
+        :class="styles.popupButtonGroupDividerStyle"
       />
       <div v-else-if="item.item.kind === 'group'">
         <span
           :class="[
-            popupButtonGroupTitleBaseStyle,
+            styles.popupButtonGroupTitleBaseStyle,
             disabled
-              ? popupButtonGroupTitleVariantStyle['disabled']
-              : popupButtonGroupTitleVariantStyle['enabled'],
+              ? styles.popupButtonGroupTitleVariantStyle['disabled']
+              : styles.popupButtonGroupTitleVariantStyle['enabled'],
           ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
@@ -39,11 +39,12 @@
       <div v-else-if="item.item.kind === 'button'">
         <div
           :class="[
-            popupButtonGroupButtonBaseStyle,
+            styles.popupButtonGroupButtonBaseStyle,
             disabled || item.item.option.disabled
-              ? popupButtonGroupButtonVariantStyle['disabled']
-              : popupButtonGroupButtonVariantStyle['enabled'],
-            item.item.option.disabled && popupButtonGroupDisabledCursorStyle,
+              ? styles.popupButtonGroupButtonVariantStyle['disabled']
+              : styles.popupButtonGroupButtonVariantStyle['enabled'],
+            item.item.option.disabled &&
+              styles.popupButtonGroupDisabledCursorStyle,
           ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
@@ -56,7 +57,7 @@
           :tabIndex="0"
           :key="`${item.item.option.label}-${item.item.option.value}`"
         >
-          <span :class="popupButtonGroupInnerContainerStyle">
+          <span :class="styles.popupButtonGroupInnerContainerStyle">
             <span>{{ item.item.option.label }}</span>
 
             <WizIcon
@@ -86,17 +87,7 @@ import {
   SpacingKeys,
   THEME,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  popupButtonGroupStyle,
-  popupButtonGroupDisabledCursorStyle,
-  popupButtonGroupButtonBaseStyle,
-  popupButtonGroupTitleBaseStyle,
-  popupButtonGroupDividerStyle,
-  popupButtonGroupInnerContainerStyle,
-  popupButtonGroupTitleVariantStyle,
-  popupButtonGroupButtonVariantStyle,
-  borderRadiusStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, inject, PropType, ref } from "vue";
 
 import { WizIcon, WizVStack } from "@/components";
