@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.1.0
+
+### Minor Changes
+
+- [`f4e080c3`](https://github.com/Wizleap-Inc/wiz-ui/commit/f4e080c3e366e184a3aeace2f485b2d1b403bf6e) Thanks [@ichi-h](https://github.com/ichi-h)! - wiz-ui-react の開発版を作成
+
+### Patch Changes
+
+- [#569](https://github.com/Wizleap-Inc/wiz-ui/pull/569) [`7dcb7118`](https://github.com/Wizleap-Inc/wiz-ui/commit/7dcb7118bf1729b20d7cac7c13ee5b75d208e090) Thanks [@sor4chi](https://github.com/sor4chi)! - gray 色に 200 の追加
+
 ## 0.0.1
 
 ### Patch Changes
