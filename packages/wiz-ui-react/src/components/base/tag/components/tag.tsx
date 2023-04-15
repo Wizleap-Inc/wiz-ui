@@ -7,9 +7,11 @@ import {
 import clsx from "clsx";
 import { memo } from "react";
 
+import { TIcon, WizIcon } from "@/components";
+
 type Props = {
   label: string;
-  // icon?: TIcon;
+  icon?: TIcon;
   variant?: "info" | "error" | "success" | "mono";
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
@@ -18,7 +20,7 @@ type Props = {
 
 const _Tag = ({
   label,
-  // icon,
+  icon,
   variant = "info",
   fontSize = "md",
   fontWeight = "normal",
@@ -37,7 +39,9 @@ const _Tag = ({
         width: width || "max-content",
       }}
     >
-      {/* <WizIcon v-if="icon" :icon="icon" :color="tagIconColorStyle[variant]" /> */}
+      {icon && (
+        <WizIcon icon={icon} color={styles.tagIconColorStyle[variant]} />
+      )}
       {label}
     </div>
   );
