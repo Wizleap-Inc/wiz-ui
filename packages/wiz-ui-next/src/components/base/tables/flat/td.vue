@@ -1,15 +1,12 @@
 <template>
-  <td :class="[flatTdStyle, flatTdAlignStyle[align]]">
+  <td :class="[styles.flatTdStyle, styles.flatTdAlignStyle[align]]">
     <slot />
   </td>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  flatTdStyle,
-  flatTdAlignStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
 import { PropType } from "vue";
 
 defineOptions({

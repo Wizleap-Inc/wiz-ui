@@ -1,15 +1,15 @@
 <template>
-  <th :class="[flatTh, flatThVariantStyle[scope]]" :style="{ width }">
+  <th
+    :class="[styles.flatTh, styles.flatThVariantStyle[scope]]"
+    :style="{ width }"
+  >
     <slot />
   </th>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  flatTh,
-  flatThVariantStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
 import { PropType } from "vue";
 
 defineOptions({
