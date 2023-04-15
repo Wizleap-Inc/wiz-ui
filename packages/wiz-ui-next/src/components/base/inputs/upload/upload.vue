@@ -1,14 +1,14 @@
 <template>
   <WizVStack gap="xl3">
     <label
-      :class="[uploadStyle, isEnter ? uploadEnterStyle : '']"
+      :class="[styles.uploadStyle, isEnter ? styles.uploadEnterStyle : '']"
       @dragenter="dragEnter"
       @dragleave="dragLeave"
       @dragover.prevent
       @drop.prevent="dropFile"
       v-if="(!multiple && !isUploaded) || multiple"
       ><input
-        :class="uploadInputStyle"
+        :class="styles.uploadInputStyle"
         @change="selectFile"
         type="file"
         :multiple="multiple"
@@ -28,11 +28,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  uploadStyle,
-  uploadInputStyle,
-  uploadEnterStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/upload.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/upload.css";
 import { ref, computed, PropType } from "vue";
 
 import { WizVStack } from "@/components";

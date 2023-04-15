@@ -2,33 +2,33 @@
   <WizPopupContainer :expand="expand">
     <div
       :class="[
-        selectBoxStyle,
-        inputBorderStyle[state],
-        disabled && selectBoxDisabledStyle,
-        selectBoxCursorStyle[selectBoxCursor],
+        styles.selectBoxStyle,
+        commonStyles.inputBorderStyle[state],
+        disabled && styles.selectBoxDisabledStyle,
+        styles.selectBoxCursorStyle[selectBoxCursor],
       ]"
       :style="{ width: computedWidth }"
     >
-      <div :class="selectBoxInnerBoxStyle" @click="toggleDropdown">
+      <div :class="styles.selectBoxInnerBoxStyle" @click="toggleDropdown">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
           <span
             v-for="(item, i) in selectedItem"
             :key="`${item.label}-${item.value}`"
-            :class="selectBoxInnerBoxSelectedItemStyle"
+            :class="styles.selectBoxInnerBoxSelectedItemStyle"
           >
-            <span :class="selectBoxInnerBoxSelectedLabelStyle">
+            <span :class="styles.selectBoxInnerBoxSelectedLabelStyle">
               {{ item.label }}
             </span>
             <button
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
               @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
-              :class="selectBoxInnerBoxCloseButtonStyle"
+              :class="styles.selectBoxInnerBoxCloseButtonStyle"
               :ref="setUnselectableRef(i)"
             >
               <WizIcon
                 :icon="WizIClose"
-                :class="selectBoxInnerBoxCloseStyle"
+                :class="styles.selectBoxInnerBoxCloseStyle"
                 :size="'xs'"
                 :color="'gray.500'"
               />
@@ -36,7 +36,7 @@
           </span>
           <input
             v-if="multiSelectable || !isValueMatched"
-            :class="selectBoxSearchInputStyle"
+            :class="styles.selectBoxSearchInputStyle"
             :value="searchValue"
             @input="onSetSearchValue"
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
@@ -47,27 +47,27 @@
         </WizHStack>
       </div>
       <button
-        :class="selectBoxExpandIconStyle"
+        :class="styles.selectBoxExpandIconStyle"
         @click="toggleSelectBox"
         :disabled="disabled"
       >
         <WizIcon
           v-if="isOpen"
           :icon="WizIExpandLess"
-          :class="selectBoxInnerBoxLessStyle"
+          :class="styles.selectBoxInnerBoxLessStyle"
           :color="!isOpen ? 'white.800' : 'green.800'"
         />
 
         <WizIcon
           v-else-if="!isOpen"
           :icon="WizIExpandMore"
-          :class="selectBoxInnerBoxMoreStyle"
+          :class="styles.selectBoxInnerBoxMoreStyle"
         />
       </button>
     </div>
     <WizPopup layer="popover" :isOpen="isOpen" @onClose="emit('toggle', false)">
       <div
-        :class="selectBoxSelectorStyle"
+        :class="styles.selectBoxSelectorStyle"
         :style="{ minWidth: width }"
         v-if="
           filteredOptions.length > 0 ||
@@ -85,25 +85,12 @@
     </WizPopup>
   </WizPopupContainer>
 </template>
+.
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  selectBoxStyle,
-  selectBoxDisabledStyle,
-  selectBoxCursorStyle,
-  selectBoxInnerBoxStyle,
-  selectBoxInnerBoxCloseStyle,
-  selectBoxInnerBoxLessStyle,
-  selectBoxInnerBoxMoreStyle,
-  selectBoxSelectorStyle,
-  selectBoxSearchInputStyle,
-  selectBoxExpandIconStyle,
-  selectBoxInnerBoxSelectedItemStyle,
-  selectBoxInnerBoxSelectedLabelStyle,
-  selectBoxInnerBoxCloseButtonStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType, ComponentPublicInstance } from "vue";
 
 import {

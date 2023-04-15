@@ -2,16 +2,16 @@
   <WizPopupContainer>
     <div
       :class="[
-        timePickerStyle,
-        inputBorderStyle[state],
-        disabled && timePickerDisabledStyle,
-        timePickerCursorStyle[timePickerCursor],
+        styles.timePickerStyle,
+        commonStyles.inputBorderStyle[state],
+        disabled && styles.timePickerDisabledStyle,
+        styles.timePickerCursorStyle[timePickerCursor],
       ]"
     >
       <div
         :class="[
-          timePickerBoxStyle,
-          timePickerBoxColorStyle[timePickerBoxColor],
+          styles.timePickerBoxStyle,
+          styles.timePickerBoxColorStyle[timePickerBoxColor],
         ]"
         :style="{ width }"
         @click="toggleTimepicker"
@@ -26,18 +26,18 @@
         @onClose="openTimepicker = false"
         gap="xs"
       >
-        <div :class="timePickerSelectorStyle">
+        <div :class="styles.timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">
             <WizVStack
-              :class="timePickerScrollStyle"
+              :class="styles.timePickerScrollStyle"
               height="8rem"
               gap="xs2"
               align="center"
               overflow="auto"
               ><div
                 :class="[
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionTypeStyle,
+                  styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionTypeStyle,
                 ]"
               >
                 時
@@ -46,11 +46,11 @@
                 v-for="(option, key) in hourOptions"
                 :key="'option' + key"
                 :class="[
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionItemStyle,
+                  styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionItemStyle,
                   option === selectedHour &&
-                    timePickerSelectorOptionItemSelectedStyle,
-                  timePickerSelectorOptionItemColorStyle[
+                    styles.timePickerSelectorOptionItemSelectedStyle,
+                  styles.timePickerSelectorOptionItemColorStyle[
                     timePickerSelectorOptionItemColor(option === selectedHour)
                   ],
                 ]"
@@ -65,8 +65,8 @@
             <WizVStack gap="xs2" align="center" justify="center">
               <div
                 :class="[
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionTypeStyle,
+                  styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionTypeStyle,
                 ]"
               >
                 分
@@ -75,11 +75,11 @@
                 v-for="(option, key) in minuteOptions"
                 :key="'option' + key"
                 :class="[
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionItemStyle,
+                  styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionItemStyle,
                   option === selectedMinute &&
-                    timePickerSelectorOptionItemSelectedStyle,
-                  timePickerSelectorOptionItemColorStyle[
+                    styles.timePickerSelectorOptionItemSelectedStyle,
+                  styles.timePickerSelectorOptionItemColorStyle[
                     timePickerSelectorOptionItemColor(option === selectedMinute)
                   ],
                 ]"
@@ -97,21 +97,8 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  timePickerStyle,
-  timePickerDisabledStyle,
-  timePickerCursorStyle,
-  timePickerBoxStyle,
-  timePickerBoxColorStyle,
-  timePickerScrollStyle,
-  timePickerSelectorStyle,
-  timePickerSelectorOptionStyle,
-  timePickerSelectorOptionTypeStyle,
-  timePickerSelectorOptionItemStyle,
-  timePickerSelectorOptionItemSelectedStyle,
-  timePickerSelectorOptionItemColorStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject } from "vue";
 
 import { WizIcon, WizDivider, WizHStack, WizVStack } from "@/components";

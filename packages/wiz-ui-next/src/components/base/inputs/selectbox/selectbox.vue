@@ -2,42 +2,44 @@
   <WizPopupContainer :expand="expand">
     <div
       :class="[
-        selectBoxStyle,
-        inputBorderStyle[state],
-        disabled && selectBoxDisabledStyle,
-        selectBoxCursorStyle[selectBoxCursor],
+        styles.selectBoxStyle,
+        commonStyles.inputBorderStyle[state],
+        disabled && styles.selectBoxDisabledStyle,
+        styles.selectBoxCursorStyle[selectBoxCursor],
       ]"
       :style="{ width: computedWidth }"
     >
-      <div :class="selectBoxInnerBoxStyle" @click="toggleSelectBox">
+      <div :class="styles.selectBoxInnerBoxStyle" @click="toggleSelectBox">
         <WizHStack align="center" justify="between" height="100%">
-          <span v-if="!isValueMatched" :class="selectBoxPlaceholderStyle">{{
-            placeholder
-          }}</span>
+          <span
+            v-if="!isValueMatched"
+            :class="styles.selectBoxPlaceholderStyle"
+            >{{ placeholder }}</span
+          >
           <span
             v-for="(option, key) in options"
             v-show="option.value === modelValue"
             :key="'selected' + key"
-            :class="selectBoxInnerBoxSelectedValueStyle"
+            :class="styles.selectBoxInnerBoxSelectedValueStyle"
           >
             {{ option.label }}
           </span>
           <WizIExpandLess
             v-if="openSelectBox"
-            :class="selectBoxInnerBoxLessStyle"
+            :class="styles.selectBoxInnerBoxLessStyle"
           />
           <WizIExpandMore
             v-else-if="!openSelectBox"
-            :class="selectBoxInnerBoxMoreStyle"
+            :class="styles.selectBoxInnerBoxMoreStyle"
           />
         </WizHStack>
       </div>
     </div>
     <WizPopup :isOpen="openSelectBox" @onClose="openSelectBox = false">
-      <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
+      <div :class="styles.selectBoxSelectorStyle" :style="{ minWidth: width }">
         <WizVStack gap="xs2">
           <div
-            :class="selectBoxSelectorOptionStyle"
+            :class="styles.selectBoxSelectorOptionStyle"
             v-for="(option, key) in options"
             :key="'option' + key"
             @click="onSelect(option.value)"
@@ -57,19 +59,8 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  selectBoxStyle,
-  selectBoxDisabledStyle,
-  selectBoxCursorStyle,
-  selectBoxInnerBoxStyle,
-  selectBoxInnerBoxSelectedValueStyle,
-  selectBoxInnerBoxLessStyle,
-  selectBoxInnerBoxMoreStyle,
-  selectBoxSelectorStyle,
-  selectBoxSelectorOptionStyle,
-  selectBoxPlaceholderStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
 
 import { WizPopupContainer, WizPopup } from "@/components";

@@ -1,9 +1,9 @@
 <template>
-  <div :class="checkboxStyle">
+  <div :class="styles.checkboxStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
       <div v-for="option in options" :key="option.key">
         <input
-          :class="checkboxInputStyle"
+          :class="styles.checkboxInputStyle"
           type="checkbox"
           :id="option.key"
           :name="option.key"
@@ -13,23 +13,25 @@
         />
         <label
           :class="[
-            checkboxLabelStyle,
-            checkboxValue.includes(option.value) && checkboxLabelCheckedStyle,
-            (disabled || option.disabled) && checkboxLabelDisabledStyle,
-            checkboxLabelCursorStyle[labelPointer(option.disabled)],
+            styles.checkboxLabelStyle,
+            checkboxValue.includes(option.value) &&
+              styles.checkboxLabelCheckedStyle,
+            (disabled || option.disabled) && styles.checkboxLabelDisabledStyle,
+            styles.checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
           :for="option.key"
         >
           <WizICheck
             v-if="checkboxValue.includes(option.value)"
-            :class="checkboxIconStyle"
+            :class="styles.checkboxIconStyle"
           />
           <span
             :class="[
-              checkboxValue.includes(option.value) && checkboxBlockCheckedStyle,
+              checkboxValue.includes(option.value) &&
+                styles.checkboxBlockCheckedStyle,
               strikeThrough &&
                 checkboxValue.includes(option.value) &&
-                checkboxLabelStrikeThrough,
+                styles.checkboxLabelStrikeThrough,
             ]"
             >{{ option.label }}</span
           >
@@ -41,17 +43,7 @@
 
 <script setup lang="ts">
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
-import {
-  checkboxStyle,
-  checkboxInputStyle,
-  checkboxLabelStyle,
-  checkboxLabelCheckedStyle,
-  checkboxLabelDisabledStyle,
-  checkboxLabelCursorStyle,
-  checkboxIconStyle,
-  checkboxBlockCheckedStyle,
-  checkboxLabelStrikeThrough,
-} from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import { computed, PropType } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";

@@ -2,9 +2,9 @@
   <WizPopupContainer>
     <button
       :class="[
-        datePickerStyle,
-        datePickerVariantStyle[variant],
-        inputBorderStyle[borderState],
+        styles.datePickerStyle,
+        styles.datePickerVariantStyle[variant],
+        commonStyles.inputBorderStyle[borderState],
       ]"
       :style="{
         width,
@@ -18,22 +18,22 @@
       </WizHStack>
     </button>
     <WizPopup :isOpen="openDatepicker" @onClose="openDatepicker = false">
-      <div :class="datePickerSelectorStyle">
+      <div :class="styles.datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizText as="span" fontSize="xs" color="gray.700">{{
             currentDateTitle
           }}</WizText>
-          <div :class="datePickerMonthSelectorStyle">
+          <div :class="styles.datePickerMonthSelectorStyle">
             <button
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
-              :class="datePickerMonthSelectorItemStyle"
+              :class="styles.datePickerMonthSelectorItemStyle"
               @click="clickToPreviousMonth"
             >
               <WizIcon size="md" color="inherit" :icon="WizIChevronLeft" />
             </button>
             <button
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
-              :class="datePickerMonthSelectorItemStyle"
+              :class="styles.datePickerMonthSelectorItemStyle"
               @click="clickToNextMonth"
             >
               <WizIcon size="md" color="inherit" :icon="WizIChevronRight" />
@@ -62,14 +62,8 @@
 
 <script setup lang="ts">
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
-import {
-  datePickerStyle,
-  datePickerVariantStyle,
-  datePickerSelectorStyle,
-  datePickerMonthSelectorStyle,
-  datePickerMonthSelectorItemStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
 
 import {

@@ -1,10 +1,10 @@
 <template>
   <input
     :class="[
-      baseInputStyle,
-      baseInputPaddingStyle[spaceType],
-      disabled && baseInputDisabledStyle,
-      inputBorderStyle[state],
+      styles.baseInputStyle,
+      styles.baseInputPaddingStyle[spaceType],
+      disabled && styles.baseInputDisabledStyle,
+      commonStyles.inputBorderStyle[state],
     ]"
     :style="{ width: computedWidth }"
     :placeholder="placeholder"
@@ -19,12 +19,8 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  baseInputStyle,
-  baseInputDisabledStyle,
-  baseInputPaddingStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, ref, PropType } from "vue";
 
 defineOptions({

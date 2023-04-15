@@ -1,5 +1,7 @@
 <template>
-  <div :class="[passwordStyle, passwordExpandStyle[computedExpand]]">
+  <div
+    :class="[styles.passwordStyle, styles.passwordExpandStyle[computedExpand]]"
+  >
     <PrivateBaseInput
       v-model="passwordValue"
       :placeholder="placeholder"
@@ -13,22 +15,19 @@
     />
     <button
       :aria-label="ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE"
-      :class="passwordVisibleIconStyle"
+      :class="styles.passwordVisibleIconStyle"
       @click="isPasswordVisible = !isPasswordVisible"
     >
-      <WizIEye :class="isPasswordVisible && passwordVisibleIconActiveStyle" />
+      <WizIEye
+        :class="isPasswordVisible && styles.passwordVisibleIconActiveStyle"
+      />
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  passwordStyle,
-  passwordExpandStyle,
-  passwordVisibleIconStyle,
-  passwordVisibleIconActiveStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
 import { computed, ref, inject } from "vue";
 
 import { WizIEye } from "@/components";

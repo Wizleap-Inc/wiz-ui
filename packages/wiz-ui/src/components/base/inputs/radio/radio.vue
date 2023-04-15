@@ -1,9 +1,9 @@
 <template>
-  <div :class="radioStyle">
+  <div :class="styles.radioStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
       <div v-for="option in options" :key="option.key">
         <input
-          :class="radioInputStyle"
+          :class="styles.radioInputStyle"
           type="radio"
           :name="option.key"
           :id="option.key"
@@ -13,14 +13,16 @@
         />
         <label
           :class="[
-            radioLabelStyle,
-            radioValue === option.value && radioLabelCheckedStyle,
-            (disabled || option.disabled) && radioLabelDisabledStyle,
-            radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
-            radioLabelCursorStyle[radioLabelCursor(option.disabled)],
+            styles.radioLabelStyle,
+            radioValue === option.value && styles.radioLabelCheckedStyle,
+            (disabled || option.disabled) && styles.radioLabelDisabledStyle,
+            styles.radioLabelColorStyle[
+              radioLabelColor(radioValue === option.value)
+            ],
+            styles.radioLabelCursorStyle[radioLabelCursor(option.disabled)],
             strikeThrough &&
               radioValue === option.value &&
-              radioLabelStrikeThrough,
+              styles.radioLabelStrikeThrough,
           ]"
           :for="option.key"
         >
@@ -33,16 +35,7 @@
 
 <script setup lang="ts">
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  radioStyle,
-  radioInputStyle,
-  radioLabelStyle,
-  radioLabelCheckedStyle,
-  radioLabelDisabledStyle,
-  radioLabelColorStyle,
-  radioLabelCursorStyle,
-  radioLabelStrikeThrough,
-} from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import { computed, PropType } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";

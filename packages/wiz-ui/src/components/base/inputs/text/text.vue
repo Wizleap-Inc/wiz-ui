@@ -1,6 +1,11 @@
 <template>
-  <div :class="[textInputStyle, textInputExpandStyle[computedExpand]]">
-    <component :class="textInputIconStyle" :is="icon" />
+  <div
+    :class="[
+      styles.textInputStyle,
+      styles.textInputExpandStyle[computedExpand],
+    ]"
+  >
+    <component :class="styles.textInputIconStyle" :is="icon" />
     <PrivateBaseInput
       v-model="textValue"
       :id="id"
@@ -17,11 +22,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  textInputStyle,
-  textInputExpandStyle,
-  textInputIconStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/text-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-input.css";
 import { computed, inject, PropType } from "vue";
 
 import { TIcon } from "@/components/icons";

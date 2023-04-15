@@ -4,7 +4,7 @@
       :class="[
         styles.bodyStyle[disabled ? 'disabled' : 'active'],
         styles.widthStyle[expand ? 'expanded' : 'default'],
-        inputBorderStyle[borderState],
+        commonStyles.inputBorderStyle[borderState],
       ]"
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
       :disabled="disabled"
@@ -32,7 +32,9 @@
               <button
                 :class="[
                   styles.popupHeaderSelectBoxStyle,
-                  inputBorderStyle[isSelectBoxOpen ? 'active' : 'default'],
+                  commonStyles.inputBorderStyle[
+                    isSelectBoxOpen ? 'active' : 'default'
+                  ],
                 ]"
                 :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_SELECT_BOX_INPUT"
                 @click="toggleSelectBoxOpen"
@@ -115,7 +117,7 @@
 <script setup lang="ts">
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, ref, inject, computed } from "vue";
 

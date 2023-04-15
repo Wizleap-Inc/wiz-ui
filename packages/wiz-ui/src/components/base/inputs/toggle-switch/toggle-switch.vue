@@ -1,15 +1,15 @@
 <template>
-  <label :class="toggleSwitchStyle">
+  <label :class="styles.toggleSwitchStyle">
     <input
-      :class="toggleSwitchInputStyle"
+      :class="styles.toggleSwitchInputStyle"
       type="checkbox"
       :aria-label="label"
       v-model="switchValue"
     />
     <span
       :class="[
-        toggleSwitchSliderStyle,
-        switchValue && toggleSwitchSliderCheckedStyle,
+        styles.toggleSwitchSliderStyle,
+        switchValue && styles.toggleSwitchSliderCheckedStyle,
       ]"
     ></span>
   </label>
@@ -17,12 +17,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  toggleSwitchStyle,
-  toggleSwitchInputStyle,
-  toggleSwitchSliderStyle,
-  toggleSwitchSliderCheckedStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import { computed } from "vue";
 
 defineOptions({

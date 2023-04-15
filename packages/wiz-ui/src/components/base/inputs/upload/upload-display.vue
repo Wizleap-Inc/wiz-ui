@@ -2,7 +2,10 @@
   <WizVStack gap="sm">
     <div
       v-if="isUploading"
-      :class="[uploadDisplayStyle, isUploaded ? uploadDisplayFadeOutStyle : '']"
+      :class="[
+        styles.uploadDisplayStyle,
+        isUploaded ? styles.uploadDisplayFadeOutStyle : '',
+      ]"
     >
       <span>{{
         isUploaded
@@ -13,10 +16,10 @@
         <WizLineGraph :percentage="progress" />
         <WizICircleCheck
           :class="[
-            circleCheckIconStyle,
+            styles.circleCheckIconStyle,
             isUploaded
-              ? circleCheckIconCompletedStyle
-              : circleCheckIconDefaultStyle,
+              ? styles.circleCheckIconCompletedStyle
+              : styles.circleCheckIconDefaultStyle,
           ]"
         />
       </WizHStack>
@@ -26,13 +29,13 @@
     >
       <div
         :class="[
-          uploadDisplayStyle,
-          isApplyFadeIn(index) ? uploadDisplayFadeInStyle : '',
+          styles.uploadDisplayStyle,
+          isApplyFadeIn(index) ? styles.uploadDisplayFadeInStyle : '',
         ]"
         v-for="(file, index) in Array.from(fileList)"
       >
         <WizHStack align="center" gap="xs2">
-          <WizIAttachFile :class="attachFileIconStyle" />
+          <WizIAttachFile :class="styles.attachFileIconStyle" />
           <span>{{ file.name }}</span>
         </WizHStack>
       </div>
@@ -42,15 +45,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  uploadDisplayStyle,
-  uploadDisplayFadeInStyle,
-  uploadDisplayFadeOutStyle,
-  circleCheckIconStyle,
-  circleCheckIconDefaultStyle,
-  circleCheckIconCompletedStyle,
-  attachFileIconStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/upload-display.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/upload-display.css";
 import { computed } from "vue";
 
 import { WizLineGraph, WizHStack, WizVStack } from "@/components";

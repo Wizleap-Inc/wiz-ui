@@ -1,21 +1,21 @@
 <template>
-  <div :class="panelSwitchStyle">
+  <div :class="styles.panelSwitchStyle">
     <label
       v-for="(item, key) in items"
       :key="key"
       :class="[
-        panelSwitchBlockStyle,
-        key !== items.length - 1 && panelSwitchBlockDividerStyle,
-        key === 0 && panelSwitchBlockLeftStyle,
-        key === items.length - 1 && panelSwitchBlockRightStyle,
-        key === switchValue - 1 && panelSwitchBlockActiveStyle,
-        panelSwitchBlockColorStyle[panelSwitchBlockColor(key)],
+        styles.panelSwitchBlockStyle,
+        key !== items.length - 1 && styles.panelSwitchBlockDividerStyle,
+        key === 0 && styles.panelSwitchBlockLeftStyle,
+        key === items.length - 1 && styles.panelSwitchBlockRightStyle,
+        key === switchValue - 1 && styles.panelSwitchBlockActiveStyle,
+        styles.panelSwitchBlockColorStyle[panelSwitchBlockColor(key)],
       ]"
       :for="`panel${key}`"
     >
       {{ item.label }}
       <input
-        :class="panelSwitchInputStyle"
+        :class="styles.panelSwitchInputStyle"
         type="radio"
         :id="`panel${key}`"
         :name="`panel${key}`"
@@ -28,16 +28,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  panelSwitchStyle,
-  panelSwitchBlockStyle,
-  panelSwitchBlockActiveStyle,
-  panelSwitchBlockDividerStyle,
-  panelSwitchBlockLeftStyle,
-  panelSwitchBlockRightStyle,
-  panelSwitchBlockColorStyle,
-  panelSwitchInputStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/panel-switch-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/panel-switch-input.css";
 import { computed, PropType } from "vue";
 
 import { panelItems } from "./types";
