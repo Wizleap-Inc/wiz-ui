@@ -1,11 +1,12 @@
-import { getRelativeFontSize } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, getRelativeFontSize } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
-import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { memo } from "react";
 
+import { TIcon, WizIcon } from "@/components";
+
 type Props = {
-  //   icon: TIcon;
+  icon: TIcon;
   variant?: "primary" | "sub" | "transparent" | "link";
   disabled?: boolean;
   size?: "sm" | "md" | "lg" | "xl";
@@ -13,28 +14,34 @@ type Props = {
 };
 
 const _IconButton = ({
-  //   icon,
+  icon,
   variant = "primary",
   disabled = false,
   size = "md",
   ...props
 }: Props) => {
+  const iconSVGColor: {
+    [key in "primary" | "sub" | "transparent" | "link"]: ColorKeys;
+  } = {
+    primary: "white.800",
+    sub: "green.800",
+    transparent: "gray.800",
+    link: "blue.800",
+  };
   return (
     <button
       className={clsx(
         styles.iconButtonStyle[variant],
-        disabled && styles.iconButtonDisabledStyle,
-        fontSizeStyle[getRelativeFontSize(size, 3)]
+        disabled && styles.iconButtonDisabledStyle
       )}
       disabled={disabled}
       onClick={props.onClick}
     >
-      <div
-        className={styles.iconButtonSVGStyle[variant]}
-        style={{ width: "1rem", height: "1rem" }}
-      >
-        {/* icon */}
-      </div>
+      <WizIcon
+        icon={icon}
+        color={iconSVGColor[variant]}
+        size={getRelativeFontSize(size, 3)}
+      />
     </button>
   );
 };
