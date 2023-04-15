@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
+import { useRef, useState } from "react";
 
 import { WizIAdd } from "@/components";
 
@@ -23,7 +24,7 @@ const meta: Meta<typeof WizTinyButton> = {
     active: {
       control: { type: "boolean" },
     },
-    hover: {
+    isHover: {
       control: { type: "boolean" },
     },
     icon: {
@@ -43,9 +44,23 @@ const meta: Meta<typeof WizTinyButton> = {
 export default meta;
 type Story = StoryObj<typeof WizTinyButton>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {},
-  render: (args) => <WizTinyButton {...args}>保存する</WizTinyButton>,
+  render: (args) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isHover, setIsHover] = useState(false);
+    return (
+      <WizTinyButton
+        ref={buttonRef}
+        {...args}
+        isHover={isHover}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        保存する
+      </WizTinyButton>
+    );
+  },
 };
 
 export const Clickable: Story = {
@@ -53,7 +68,21 @@ export const Clickable: Story = {
     clickable: true,
     active: false,
   },
-  render: (args) => <WizTinyButton {...args}>保存する</WizTinyButton>,
+  render: (args) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isHover, setIsHover] = useState(false);
+    return (
+      <WizTinyButton
+        ref={buttonRef}
+        {...args}
+        isHover={isHover}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        保存する
+      </WizTinyButton>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -69,7 +98,21 @@ export const Active: Story = {
     clickable: false,
     active: true,
   },
-  render: (args) => <WizTinyButton {...args}>保存する</WizTinyButton>,
+  render: (args) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isHover, setIsHover] = useState(false);
+    return (
+      <WizTinyButton
+        ref={buttonRef}
+        {...args}
+        isHover={isHover}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        保存する
+      </WizTinyButton>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -96,6 +139,8 @@ export const Hover: Story = {
     return (
       <table>
         {patterns.map((pattern, i) => {
+          const buttonRef = useRef<HTMLButtonElement>(null);
+          const [isHover, setIsHover] = useState(false);
           return (
             <tr key={i}>
               <td style={{ padding: "1rem" }}>
@@ -105,7 +150,15 @@ export const Hover: Story = {
                 active={pattern.active ? "true" : "false"}
               </td>
               <td style={{ padding: "1rem" }}>
-                <WizTinyButton {...pattern}>保存する</WizTinyButton>
+                <WizTinyButton
+                  {...pattern}
+                  ref={buttonRef}
+                  isHover={isHover}
+                  onMouseEnter={() => setIsHover(true)}
+                  onMouseLeave={() => setIsHover(false)}
+                >
+                  保存する
+                </WizTinyButton>
               </td>
             </tr>
           );
@@ -129,7 +182,21 @@ export const Icon: Story = {
     clickable: true,
     active: true,
   },
-  render: (args) => <WizTinyButton {...args}>保存する</WizTinyButton>,
+  render: (args) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isHover, setIsHover] = useState(false);
+    return (
+      <WizTinyButton
+        ref={buttonRef}
+        {...args}
+        isHover={isHover}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        保存する
+      </WizTinyButton>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -147,7 +214,21 @@ export const IconPosition: Story = {
     clickable: true,
     active: true,
   },
-  render: (args) => <WizTinyButton {...args}>保存する</WizTinyButton>,
+  render: (args) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isHover, setIsHover] = useState(false);
+    return (
+      <WizTinyButton
+        ref={buttonRef}
+        {...args}
+        isHover={isHover}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        保存する
+      </WizTinyButton>
+    );
+  },
   parameters: {
     docs: {
       description: {
