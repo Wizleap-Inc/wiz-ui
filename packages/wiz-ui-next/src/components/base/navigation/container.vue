@@ -1,17 +1,17 @@
 <template>
   <div
-    :class="navigationContainerStyle"
+    :class="styles.navigationContainerStyle"
     :style="{
       ...computedStickyStyle,
       width: computedWidth,
     }"
   >
-    <div :class="navigationContainerItemsStyle">
+    <div :class="styles.navigationContainerItemsStyle">
       <slot />
     </div>
     <div
       v-if="isMenuOpen && slots.footer"
-      :class="navigationContainerFooterStyle"
+      :class="styles.navigationContainerFooterStyle"
     >
       <slot name="footer" />
     </div>
@@ -20,11 +20,7 @@
 
 <script setup lang="ts">
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  navigationContainerStyle,
-  navigationContainerItemsStyle,
-  navigationContainerFooterStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, StyleValue, useSlots } from "vue";
 
 import { globalInject, globalKey } from "@/hooks/use-global-provider";

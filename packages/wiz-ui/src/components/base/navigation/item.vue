@@ -13,25 +13,25 @@
           :href="!disabled && isExternalLink ? to : undefined"
           :target="!disabled && isExternalLink ? '_blank' : undefined"
           :class="[
-            navigationItemStyle,
+            styles.navigationItemStyle,
             disabled
-              ? navigationItemDisabledStyle
-              : active && navigationItemActiveStyle,
+              ? styles.navigationItemDisabledStyle
+              : active && styles.navigationItemActiveStyle,
           ]"
         >
           <component
             :is="icon"
             :class="[
-              navigationItemIconStyle,
+              styles.navigationItemIconStyle,
               disabled
-                ? navigationItemIconDisabledStyle
-                : active && navigationItemIconActiveStyle,
+                ? styles.navigationItemIconDisabledStyle
+                : active && styles.navigationItemIconActiveStyle,
             ]"
           />
           <div
             :class="[
-              navigationItemTextStyle,
-              !disabled && active && navigationItemTextActiveStyle,
+              styles.navigationItemTextStyle,
+              !disabled && active && styles.navigationItemTextActiveStyle,
             ]"
           >
             {{ label }}
@@ -49,7 +49,7 @@
           <div @mouseenter="popupMouseEnter">
             <WizPopupButtonGroup
               :options="buttons ?? []"
-              :class="navigationPopupContainerStyle"
+              :class="styles.navigationPopupContainerStyle"
               p="xs"
               borderRadius="xs2"
               :disabled="disabled"
@@ -66,17 +66,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  navigationItemStyle,
-  navigationItemActiveStyle,
-  navigationItemIconStyle,
-  navigationItemIconActiveStyle,
-  navigationItemTextStyle,
-  navigationItemTextActiveStyle,
-  navigationItemDisabledStyle,
-  navigationItemIconDisabledStyle,
-  navigationPopupContainerStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, PropType, ref } from "vue";
 import { RouterLinkProps } from "vue-router/types/router";
 
