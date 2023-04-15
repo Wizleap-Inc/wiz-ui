@@ -3,6 +3,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import clsx from "clsx";
 import { memo } from "react";
 
+import { WizICheck } from "@/components/icons";
+
 import { CheckBoxOption } from "./types";
 
 type Props = {
@@ -43,7 +45,6 @@ const _CheckBox = ({
                 onChange={(e) => {
                   props.onChange?.(option.value, e.target.checked);
                 }}
-                // change
               />
               <label
                 className={clsx(
@@ -56,7 +57,11 @@ const _CheckBox = ({
                 )}
                 htmlFor={option.key}
               >
-                {/* icon */}
+                {value.includes(option.value) && (
+                  <div className={styles.checkboxIconStyle}>
+                    <WizICheck />
+                  </div>
+                )}
                 <span
                   className={clsx(
                     value.includes(option.value) &&
