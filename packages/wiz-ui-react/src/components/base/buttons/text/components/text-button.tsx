@@ -1,4 +1,8 @@
-import { ColorKeys, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  FontSizeKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import {
   textButtonStyle,
   textButtonDisabledStyle,
@@ -9,7 +13,13 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
 import { gapStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ReactNode, memo } from "react";
+import {
+  ComponentProps,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  memo,
+} from "react";
 
 import { WizIcon, TIcon } from "@/components";
 
@@ -36,44 +46,52 @@ const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
   lg: "xl3",
 };
 
-const _TextButton = ({
-  variant = "primary",
-  disabled = false,
-  rounded = true,
-  expand = false,
-  size = "md",
-  icon,
-  iconPosition = "left",
-  ...props
-}: Props) => {
-  const content = [
-    icon && (
-      <WizIcon
-        icon={icon}
-        color={variantColor[variant]}
-        size={iconSize[size]}
-      />
-    ),
-    props.children,
-  ];
-  return (
-    <button
-      {...props}
-      className={clsx(
-        textButtonStyle[variant],
-        textButtonSizeStyle[size],
-        disabled && textButtonDisabledStyle,
-        rounded && textButtonRoundStyle,
-        expand && textButtonExpandStyle
-      )}
-      disabled={disabled}
-      onClick={props.onClick}
-    >
-      <div className={clsx(gapStyle["xs2"], textButtonStackStyle)}>
-        {...iconPosition === "left" ? content : content.reverse()}
-      </div>
-    </button>
-  );
-};
+const _TextButton = forwardRef(
+  (
+    {
+      variant = "primary",
+      disabled = false,
+      rounded = true,
+      expand = false,
+      size = "md",
+      icon,
+      iconPosition = "left",
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
+    const content = [
+      icon && (
+        <WizIcon
+          icon={icon}
+          color={variantColor[variant]}
+          size={iconSize[size]}
+        />
+      ),
+      props.children,
+    ];
+    return (
+      <button
+        ref={ref}
+        {...props}
+        className={clsx(
+          textButtonStyle[variant],
+          textButtonSizeStyle[size],
+          disabled && textButtonDisabledStyle,
+          rounded && textButtonRoundStyle,
+          expand && textButtonExpandStyle
+        )}
+        disabled={disabled}
+        onClick={props.onClick}
+      >
+        <div className={clsx(gapStyle["xs2"], textButtonStackStyle)}>
+          {...iconPosition === "left" ? content : content.reverse()}
+        </div>
+      </button>
+    );
+  }
+);
+
+_TextButton.displayName = ComponentName.TextButton;
 
 export const WizTextButton = memo(_TextButton);
