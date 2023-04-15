@@ -1,9 +1,9 @@
 <template>
   <div
     :class="[
-      snackbarStyle,
-      !isStatic && snackbarFixedStyle,
-      isHidden && snackbarHiddenStyle,
+      styles.snackbarStyle,
+      !isStatic && styles.snackbarFixedStyle,
+      isHidden && styles.snackbarHiddenStyle,
     ]"
     :style="{
       bottom: `${bottom}`,
@@ -11,12 +11,12 @@
     }"
     ref="snackbarRef"
   >
-    <div :class="snackbarContainerStyle">
+    <div :class="styles.snackbarContainerStyle">
       <WizIcon color="white.800" :icon="WizICircleCheck" />
-      <div :class="snackbarMessageStyle">
+      <div :class="styles.snackbarMessageStyle">
         <WizText color="white.800" fontSize="sm">{{ message }}</WizText>
       </div>
-      <button :class="snackbarCloseButtonStyle" @click="onDelete">
+      <button :class="styles.snackbarCloseButtonStyle" @click="onDelete">
         <WizIcon color="white.800" :icon="WizIClose" />
       </button>
     </div>
@@ -25,14 +25,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  snackbarStyle,
-  snackbarFixedStyle,
-  snackbarContainerStyle,
-  snackbarHiddenStyle,
-  snackbarMessageStyle,
-  snackbarCloseButtonStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
 import { ref, onMounted } from "vue";
 
 import { WizText, WizIcon, WizICircleCheck, WizIClose } from "@/components";

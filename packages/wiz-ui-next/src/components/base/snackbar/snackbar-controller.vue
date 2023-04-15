@@ -1,5 +1,5 @@
 <template>
-  <div :class="snackbarControllerStyle" ref="containerRef">
+  <div :class="styles.snackbarControllerStyle" ref="containerRef">
     <WizSnackbar
       v-for="(option, i) in options.value"
       :key="option.created"
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { getSpacingCss, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import { snackbarControllerStyle } from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
 import { PropType, Ref, ref } from "vue";
 
 import { WizSnackbar } from "@/components";
