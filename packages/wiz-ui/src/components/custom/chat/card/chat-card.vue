@@ -85,13 +85,13 @@
         </WizVStack>
       </template>
     </WizCard>
-    <button :class="chatCardOpenButtonStyle" @click="toggleDisplay" />
+    <button :class="styles.chatCardOpenButtonStyle" @click="toggleDisplay" />
   </WizBox>
 </template>
 
 <script setup lang="ts">
 import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { chatCardOpenButtonStyle } from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
 import { computed, nextTick, onMounted, ref, watch, PropType } from "vue";
 
