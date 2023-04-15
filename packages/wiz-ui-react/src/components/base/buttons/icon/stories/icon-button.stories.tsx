@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { WizISend } from "@/components";
+
 import { WizIconButton } from "../components/icon-button";
 
 const meta: Meta<typeof WizIconButton> = {
@@ -23,6 +25,7 @@ export const Default: Story = {
   render: (args) => <WizIconButton {...args}>Submit</WizIconButton>,
   args: {
     variant: "primary",
+    icon: WizISend,
   },
 };
 
@@ -64,6 +67,7 @@ export const Variant: Story = {
   ),
   args: {
     variant: "primary",
+    icon: WizISend,
   },
 };
 
@@ -101,6 +105,7 @@ export const Size: Story = {
   ),
   args: {
     variant: "primary",
+    icon: WizISend,
   },
 };
 
@@ -123,24 +128,25 @@ export const Disabled: Story = {
       }}
     >
       <div>
-        <WizIconButton disabled />
+        <WizIconButton disabled {...args} />
       </div>
       <div>disabled = true, variant = primary</div>
       <div>
-        <WizIconButton disabled variant="sub" />
+        <WizIconButton disabled {...args} variant="sub" />
       </div>
       <div>disabled = true, variant = sub</div>
       <div>
-        <WizIconButton disabled variant="transparent" />
+        <WizIconButton disabled {...args} variant="transparent" />
       </div>
       <div>disabled = true, variant = transparent</div>
       <div>
-        <WizIconButton disabled variant="link" />
+        <WizIconButton disabled {...args} variant="link" />
       </div>
       <div>disabled = true, variant = link</div>
     </div>
   ),
   args: {
     variant: "primary",
+    icon: WizISend,
   },
 };
