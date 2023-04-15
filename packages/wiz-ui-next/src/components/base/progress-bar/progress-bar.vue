@@ -1,22 +1,22 @@
 <template>
-  <div :class="progressBarStyle">
+  <div :class="styles.progressBarStyle">
     <div
       v-for="(content, i) in contents"
       :key="i"
-      :class="progressBarItemStyle[i === 0 ? 'first' : 'default']"
+      :class="styles.progressBarItemStyle[i === 0 ? 'first' : 'default']"
     >
       <WizTooltip>
         <template #content v-if="content.tooltip">
           {{ content.status === "none" ? undefined : content.tooltip }}
         </template>
-        <div :class="progressBarPointWrapperStyle">
-          <span :class="progressBarItemAnnotationStyle">
+        <div :class="styles.progressBarPointWrapperStyle">
+          <span :class="styles.progressBarItemAnnotationStyle">
             <WizText fontSize="xs2" color="red.800" whiteSpace="nowrap">
               {{ content.annotation }}
             </WizText>
           </span>
           <WizProgressPoint :status="content.status" :value="content.value" />
-          <span :class="progressBarItemLabelStyle">
+          <span :class="styles.progressBarItemLabelStyle">
             <WizText fontSize="xs2" color="gray.600" whiteSpace="nowrap">
               {{ content.label }}
             </WizText>
@@ -30,13 +30,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  progressBarStyle,
-  progressBarItemStyle,
-  progressBarItemLabelStyle,
-  progressBarItemAnnotationStyle,
-  progressBarPointWrapperStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
 import { PropType } from "vue";
 
 import { WizText } from "@/components/base/text";

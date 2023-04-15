@@ -1,14 +1,14 @@
 <template>
   <span
     :class="[
-      progressPointStyle,
-      status !== 'none' && progressPointVariantStyle[status],
+      styles.progressPointStyle,
+      status !== 'none' && styles.progressPointVariantStyle[status],
     ]"
   >
     <span
       :class="[
-        progressPointValueStyle,
-        progressPointValueColorStyle[
+        styles.progressPointValueStyle,
+        styles.progressPointValueColorStyle[
           status === 'active' ? 'active' : 'inactive'
         ],
       ]"
@@ -20,12 +20,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  progressPointStyle,
-  progressPointValueColorStyle,
-  progressPointValueStyle,
-  progressPointVariantStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
 import { PropType } from "vue";
 
 import type { ProgressStatus } from "./types";
