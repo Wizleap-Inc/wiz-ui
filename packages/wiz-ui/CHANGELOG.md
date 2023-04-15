@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui
 
+## 1.1.0
+
+### Minor Changes
+
+- [#571](https://github.com/Wizleap-Inc/wiz-ui/pull/571) [`937a3e66`](https://github.com/Wizleap-Inc/wiz-ui/commit/937a3e66c049433c7c89746b6cf856bb5acd9786) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizCompareGraph を追加
+
+### Patch Changes
+
+- [#569](https://github.com/Wizleap-Inc/wiz-ui/pull/569) [`7dcb7118`](https://github.com/Wizleap-Inc/wiz-ui/commit/7dcb7118bf1729b20d7cac7c13ee5b75d208e090) Thanks [@sor4chi](https://github.com/sor4chi)! - gray 色に 200 の追加
+
 ## 1.0.5
 
 ### Patch Changes
