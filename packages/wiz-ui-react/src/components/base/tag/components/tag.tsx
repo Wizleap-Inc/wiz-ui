@@ -1,11 +1,15 @@
-import { FontSizeKeys, FontWeightKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ComponentName,
+  FontSizeKeys,
+  FontWeightKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
   fontSizeStyle,
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { memo } from "react";
+import { ComponentProps, ForwardedRef, forwardRef, memo } from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
@@ -16,34 +20,44 @@ type Props = {
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
   width?: string;
-};
+} & ComponentProps<"div">;
 
-const _Tag = ({
-  label,
-  icon,
-  variant = "info",
-  fontSize = "md",
-  fontWeight = "normal",
-  width,
-  ...props
-}: Props) => {
-  return (
-    <div
-      className={clsx(
-        styles.tagStyle,
-        styles.tagColorStyle[variant],
-        fontSizeStyle[fontSize],
-        fontWeightStyle[fontWeight]
-      )}
-      style={{
-        width: width || "max-content",
-      }}
-    >
-      {icon && (
-        <WizIcon icon={icon} color={styles.tagIconColorStyle[variant]} />
-      )}
-      {label}
-    </div>
-  );
-};
+const _Tag = forwardRef(
+  (
+    {
+      label,
+      icon,
+      variant = "info",
+      fontSize = "md",
+      fontWeight = "normal",
+      width,
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={clsx(
+          styles.tagStyle,
+          styles.tagColorStyle[variant],
+          fontSizeStyle[fontSize],
+          fontWeightStyle[fontWeight]
+        )}
+        style={{
+          width: width || "max-content",
+        }}
+        {...props}
+      >
+        {icon && (
+          <WizIcon icon={icon} color={styles.tagIconColorStyle[variant]} />
+        )}
+        {label}
+      </div>
+    );
+  }
+);
+
+_Tag.displayName = ComponentName.Tag;
+
 export const WizTag = memo(_Tag);
