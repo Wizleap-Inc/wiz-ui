@@ -1,18 +1,20 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
+import { WizIAdd, WizIRemove } from "@/components";
+
 import { WizToggleButton } from "../components/toggle-button";
 
 const meta: Meta<typeof WizToggleButton> = {
   title: "Base/Buttons/Toggle",
   component: WizToggleButton,
   argTypes: {
-    // inActiveIcon: {
-    //   control: { type: "object" },
-    // },
-    // activeIcon: {
-    //   control: { type: "object" },
-    // },
+    inActiveIcon: {
+      control: { type: "object" },
+    },
+    activeIcon: {
+      control: { type: "object" },
+    },
     disabled: {
       control: { type: "boolean" },
     },
@@ -36,6 +38,10 @@ export default meta;
 type Story = StoryObj<typeof WizToggleButton>;
 
 export const Default: Story = {
+  args: {
+    activeIcon: WizIRemove,
+    inActiveIcon: WizIAdd,
+  },
   render: (args) => {
     const [isActive, setIsActive] = useState(args.isActive);
     const onClick = () => {
@@ -51,6 +57,8 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
+    activeIcon: WizIRemove,
+    inActiveIcon: WizIAdd,
     disabled: true,
   },
   render: (args) => {
@@ -74,6 +82,8 @@ export const Disabled: Story = {
 
 export const Angled: Story = {
   args: {
+    activeIcon: WizIRemove,
+    inActiveIcon: WizIAdd,
     rounded: false,
   },
   render: (args) => {
@@ -96,6 +106,8 @@ export const Angled: Story = {
 
 export const On: Story = {
   args: {
+    activeIcon: WizIRemove,
+    inActiveIcon: WizIAdd,
     isActive: true,
   },
   render: (args) => {
@@ -118,6 +130,8 @@ export const On: Story = {
 
 export const Off: Story = {
   args: {
+    activeIcon: WizIRemove,
+    inActiveIcon: WizIAdd,
     isActive: false,
   },
   render: (args) => {
@@ -139,7 +153,10 @@ export const Off: Story = {
 };
 
 export const Size: Story = {
-  args: {},
+  args: {
+    activeIcon: WizIRemove,
+    inActiveIcon: WizIAdd,
+  },
   render: (args) => (
     <div
       style={{

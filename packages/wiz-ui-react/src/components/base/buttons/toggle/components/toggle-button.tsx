@@ -1,27 +1,27 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
 import { gapStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { ComponentProps, ReactNode, memo } from "react";
 
-type Props = {
-  // inActiveIcon ?: TIcon;
-  // activeIcon ?: TIcon;
+import { TIcon, WizIcon } from "@/components";
+
+type Props = ComponentProps<"button"> & {
   isActive: boolean;
+  inActiveIcon: TIcon;
+  activeIcon: TIcon;
   disabled?: boolean;
   rounded?: boolean;
   size?: "sm" | "md" | "lg";
   children?: ReactNode;
-  onClick?: () => void;
 };
 
-const _TextButton = ({
-  // inActiveIcon,
-  // activeIcon,
+const _ToggleButton = ({
+  inActiveIcon,
+  activeIcon,
   disabled = false,
   rounded = true,
   size = "md",
   isActive,
-  onClick,
   ...props
 }: Props) => {
   const iconSize = (() => {
@@ -40,16 +40,18 @@ const _TextButton = ({
         rounded && styles.toggleButtonRoundedStyle
       )}
       disabled={disabled}
-      onClick={() => {
-        if (!disabled) onClick?.();
-      }}
+      {...props}
     >
       <div className={clsx(gapStyle["xs2"], styles.toggleButtonStackStyle)}>
-        {/* icon */}
+        <WizIcon
+          icon={isActive ? activeIcon : inActiveIcon}
+          color={"green.800"}
+          size={iconSize}
+        />
         {props.children}
       </div>
     </button>
   );
 };
 
-export const WizToggleButton = memo(_TextButton);
+export const WizToggleButton = memo(_ToggleButton);
