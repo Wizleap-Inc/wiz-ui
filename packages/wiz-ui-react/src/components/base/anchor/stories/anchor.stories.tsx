@@ -6,6 +6,8 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import { MemoryRouter } from "react-router-dom";
 
+import { WizIArrowRight } from "@/components";
+
 import { WizAnchor } from "../components/anchor";
 
 const meta: Meta<typeof WizAnchor> = {
@@ -39,9 +41,9 @@ const meta: Meta<typeof WizAnchor> = {
       control: { type: "boolean" },
       defaultValue: false,
     },
-    // icon: {
-    //   control: { type: "object" },
-    // },
+    icon: {
+      control: { type: "object" },
+    },
     nowrap: {
       control: { type: "boolean" },
       defaultValue: false,
@@ -117,6 +119,42 @@ export const FontWeight: Story = {
   args: {
     to: "#",
     fontWeight: "bold",
+  },
+  render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
+};
+
+export const Icon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "アイコンを指定することができます。`WizI`というPrefixのコンポーネントがアイコンなのでそれを渡してください。選択肢はIconsを参照してください。",
+      },
+    },
+  },
+  args: {
+    to: "#",
+    icon: WizIArrowRight,
+  },
+  render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
+};
+
+export const IconPosition: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `
+アイコンの配置を指定することができます。
+- left: 左寄せ
+- right: 右寄せ
+      `,
+      },
+    },
+  },
+  args: {
+    to: "#",
+    icon: WizIArrowRight,
+    iconPosition: "right",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
 };
