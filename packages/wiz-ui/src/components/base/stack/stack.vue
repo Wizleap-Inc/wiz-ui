@@ -1,29 +1,29 @@
 <template>
   <div
     :class="[
-      stackStyle,
-      stackDirectionStyle[computedDirection],
-      stackJustifyStyle[justify],
-      stackAlignStyle[align],
-      position && stackPositionStyle[position],
-      wrap && stackWrapStyle,
-      gx && gapXStyle[gx],
-      gy && gapYStyle[gy],
-      !gx && !gy && gap && gapStyle[gap],
-      mx && marginXStyle[mx],
-      my && marginYStyle[my],
-      !mx && !my && m && marginStyle[m],
-      mt && marginTopStyle[mt],
-      mr && marginRightStyle[mr],
-      mb && marginBottomStyle[mb],
-      ml && marginLeftStyle[ml],
-      px && paddingXStyle[px],
-      py && paddingYStyle[py],
-      !px && !py && p && paddingStyle[p],
-      pt && paddingTopStyle[pt],
-      pr && paddingRightStyle[pr],
-      pb && paddingBottomStyle[pb],
-      pl && paddingLeftStyle[pl],
+      styles.stackStyle,
+      styles.stackDirectionStyle[computedDirection],
+      styles.stackJustifyStyle[justify],
+      styles.stackAlignStyle[align],
+      position && styles.stackPositionStyle[position],
+      wrap && styles.stackWrapStyle,
+      gx && commonStyles.gapXStyle[gx],
+      gy && commonStyles.gapYStyle[gy],
+      !gx && !gy && gap && commonStyles.gapStyle[gap],
+      mx && commonStyles.marginXStyle[mx],
+      my && commonStyles.marginYStyle[my],
+      !mx && !my && m && commonStyles.marginStyle[m],
+      mt && commonStyles.marginTopStyle[mt],
+      mr && commonStyles.marginRightStyle[mr],
+      mb && commonStyles.marginBottomStyle[mb],
+      ml && commonStyles.marginLeftStyle[ml],
+      px && commonStyles.paddingXStyle[px],
+      py && commonStyles.paddingYStyle[py],
+      !px && !py && p && commonStyles.paddingStyle[p],
+      pt && commonStyles.paddingTopStyle[pt],
+      pr && commonStyles.paddingRightStyle[pr],
+      pb && commonStyles.paddingBottomStyle[pb],
+      pl && commonStyles.paddingLeftStyle[pl],
     ]"
     :style="{
       width,
@@ -37,33 +37,8 @@
 
 <script setup lang="ts">
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import {
-  stackStyle,
-  stackDirectionStyle,
-  stackJustifyStyle,
-  stackAlignStyle,
-  stackWrapStyle,
-  stackPositionStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/stack.css";
-import {
-  gapStyle,
-  gapXStyle,
-  gapYStyle,
-  marginStyle,
-  marginXStyle,
-  marginYStyle,
-  marginTopStyle,
-  marginRightStyle,
-  marginBottomStyle,
-  marginLeftStyle,
-  paddingStyle,
-  paddingXStyle,
-  paddingYStyle,
-  paddingTopStyle,
-  paddingRightStyle,
-  paddingBottomStyle,
-  paddingLeftStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/stack.css";
+import * as commonStyles from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, PropType } from "vue";
 
 defineOptions({
