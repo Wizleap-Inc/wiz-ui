@@ -87,5 +87,6 @@ export const ComponentName = {
   StepPoint: "WizStepPoint",
   StepLine: "WizStepLine",
   PopupButtonGroup: "WizPopupButtonGroup",
+  Pagination: "WizPagination",
   ...IconComponentName,
 } as const;
