@@ -5,10 +5,10 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"tbody">;
 
-const _CardTBody = ({ ...props }: Props) => (
+const _CardTbody = ({ ...props }: Props) => (
   <tbody {...props}>{props.children}</tbody>
 );
 
-_CardTBody.displayName = ComponentName.CardTbody;
+_CardTbody.displayName = ComponentName.CardTbody;
 
-export const WizCardTBody = memo(_CardTBody);
+export const WizCardTbody = memo(_CardTbody);

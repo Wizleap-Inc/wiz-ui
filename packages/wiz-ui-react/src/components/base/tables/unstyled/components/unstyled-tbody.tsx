@@ -5,10 +5,10 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"tbody">;
 
-const _UnstyledTBody = ({ ...props }: Props) => (
+const _UnstyledTbody = ({ ...props }: Props) => (
   <tbody {...props}>{props.children}</tbody>
 );
 
-_UnstyledTBody.displayName = ComponentName.UnstyledTbody;
+_UnstyledTbody.displayName = ComponentName.UnstyledTbody;
 
-export const WizUnstyledTBody = memo(_UnstyledTBody);
+export const WizUnstyledTbody = memo(_UnstyledTbody);
