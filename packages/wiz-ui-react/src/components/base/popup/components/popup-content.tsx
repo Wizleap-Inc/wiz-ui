@@ -7,6 +7,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import React, {
+  ComponentProps,
   ReactNode,
   useContext,
   useEffect,
@@ -116,9 +117,7 @@ const fadeAnimation = {
   },
 };
 
-type DivProps = React.HTMLAttributes<HTMLDivElement>;
-
-type Props = DivProps & {
+type Props = {
   direction?: Direction;
   closeOnBlur?: boolean;
   layer?: Exclude<ZIndexKeys, "dialog">;
@@ -126,7 +125,7 @@ type Props = DivProps & {
   shadow?: boolean;
   animation?: boolean;
   children: ReactNode;
-};
+} & ComponentProps<"div">;
 
 export const WizPopupContent = ({
   closeOnBlur = true,
