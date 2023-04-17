@@ -17,6 +17,7 @@
     "@storybook/react": "^7.0.2",
     "@storybook/react-vite": "^7.0.2",
     "@types/react": "^18.0.31",
+    "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0"
   },
   "repository": {
@@ -32,7 +33,6 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@types/react-dom": "^18.0.11",
     "@wizleap-inc/wiz-ui-constants": "*",
     "@wizleap-inc/wiz-ui-styles": "*",
     "@wizleap-inc/wiz-ui-utils": "*",
