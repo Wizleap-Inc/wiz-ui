@@ -28,6 +28,7 @@ const _Popup = ({ ...props }: Props) => {
     });
   };
   useEffect(() => {
+    if (props.isOpen) handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
