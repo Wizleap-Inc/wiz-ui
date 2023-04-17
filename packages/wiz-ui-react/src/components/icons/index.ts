@@ -44,7 +44,6 @@ import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
 import { WizIUpload } from "./upload";
-import { WizIWarning } from "./warning";
 
 export type TIcon =
   | typeof WizIAddCircle
@@ -92,8 +91,7 @@ export type TIcon =
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
-  | typeof WizIUpload
-  | typeof WizIWarning;
+  | typeof WizIUpload;
 
 export {
   WizIAddCircle,
@@ -142,5 +140,4 @@ export {
   WizITab,
   WizITask,
   WizIUpload,
-  WizIWarning,
 };

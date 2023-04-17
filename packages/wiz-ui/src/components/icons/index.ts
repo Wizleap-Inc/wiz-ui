@@ -44,7 +44,6 @@ import { default as WizIStoreFront } from "./store-front.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
 import { default as WizIUpload } from "./upload.vue";
-import { default as WizIWarning } from "./warning.vue";
 
 export type TIcon =
   | typeof WizIAddCircle
@@ -92,8 +91,7 @@ export type TIcon =
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
-  | typeof WizIUpload
-  | typeof WizIWarning;
+  | typeof WizIUpload;
 
 export {
   WizIAddCircle,
@@ -142,5 +140,4 @@ export {
   WizITab,
   WizITask,
   WizIUpload,
-  WizIWarning,
 };
