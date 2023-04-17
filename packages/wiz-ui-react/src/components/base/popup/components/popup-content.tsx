@@ -113,7 +113,7 @@ export const WizPopupContent = ({
   gap = "no",
   direction = "bl",
   shadow = true,
-  animation = true,
+  animation = false,
   ...props
 }: Props) => {
   const ctx = useContext(PopupContext);
