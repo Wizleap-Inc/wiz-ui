@@ -6,17 +6,16 @@ import { PopupContext } from "./popup-context";
 
 type Props = {
   isOpen: boolean;
-  open: () => void;
-  close: () => void;
+  setIsOpen: (isOpen: boolean) => void;
   expand?: boolean;
   children?: ReactNode;
 };
 const _Popup = ({ ...props }: Props) => {
-  const triggerRef = useRef(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
   const contextValue = {
     isOpen: props.isOpen,
-    openPopup: props.open,
-    closePopup: props.close,
+    openPopup: () => props.setIsOpen(true),
+    closePopup: () => props.setIsOpen(false),
     triggerRef,
   };
 

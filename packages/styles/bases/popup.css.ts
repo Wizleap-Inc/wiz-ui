@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const popupStyle = style({
@@ -22,4 +22,13 @@ export const popupContainerStyle = styleVariants({
 
 export const popupHiddenStyle = style({
   display: "none",
+});
+
+export const popupFadeInStyle = style({
+  animationName: keyframes({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  }),
+  animationDuration: "0.2s",
+  animationTimingFunction: "ease-in-out",
 });

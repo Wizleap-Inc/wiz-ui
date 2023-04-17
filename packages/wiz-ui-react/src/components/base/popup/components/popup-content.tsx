@@ -6,7 +6,13 @@ import {
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import React, { ReactNode, useContext, useRef } from "react";
+import React, {
+  ReactNode,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
 
@@ -107,30 +113,62 @@ export const WizPopupContent = ({
   gap = "no",
   direction = "bl",
   shadow = true,
-  animation = false,
+  animation = true,
   ...props
 }: Props) => {
-  const popupContext = useContext(PopupContext);
-  if (!popupContext)
-    throw new Error("PopupContent must be used inside PopupContainer");
-  const contentRef = useRef(null);
-  const ctx = popupContext;
+  const ctx = useContext(PopupContext);
+  if (!ctx) throw new Error("PopupContent must be used inside PopupContainer");
+
+  const contentRef = useRef<HTMLDivElement>(null);
   if (closeOnBlur) useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
   const rect = ctx.triggerRef.current?.getBoundingClientRect();
   const gapRem = getSpacingCss(gap) ?? "0";
-  if (!(ctx.isOpen && rect)) return null;
+
+  const [isActuallyOpen, setIsActuallyOpen] = useState(false);
+
+  useEffect(() => {
+    if (!animation) {
+      setIsActuallyOpen(ctx.isOpen);
+      return;
+    }
+    if (ctx.isOpen) {
+      setIsActuallyOpen(true);
+      if (!contentRef.current) return; // contentRef.current is null
+      contentRef.current.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 200,
+        easing: "ease-in-out",
+        fill: "forwards",
+      });
+    } else {
+      if (!contentRef.current) return;
+      const anime = contentRef.current.animate(
+        [{ opacity: 1 }, { opacity: 0 }],
+        {
+          duration: 200,
+          fill: "forwards",
+          easing: "ease-in-out",
+        }
+      );
+      anime.onfinish = () => {
+        setIsActuallyOpen(false);
+      };
+    }
+  }, [ctx.isOpen]);
+
+  if (!isActuallyOpen) return null;
   return (
     <WizPortal>
       <div
         className={clsx(
           styles.popupStyle,
           shadow && styles.popupShadowStyle,
-          zIndexStyle[layer]
+          zIndexStyle[layer],
+          animation && ctx.isOpen && styles.popupFadeInStyle
         )}
         ref={contentRef}
         style={{
           position: "absolute",
-          ...getPlacementStyle[direction](rect, gapRem),
+          ...(rect && getPlacementStyle[direction](rect, gapRem)),
         }}
         {...props}
       >
