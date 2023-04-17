@@ -6,7 +6,7 @@ import {
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import React, {
+import {
   ComponentProps,
   ReactNode,
   useContext,
@@ -21,6 +21,7 @@ import { WizPortal } from "../../portal";
 import { Direction } from "../types/direction";
 
 import { PopupContext } from "./popup-context";
+
 const getPlacementStyle: Record<
   Direction,
   (
@@ -97,22 +98,22 @@ const getPlacementStyle: Record<
 };
 
 const fadeAnimation = {
-  open: (target: HTMLDivElement, toggleState: () => void) => {
-    toggleState();
+  open: (target: HTMLDivElement, open: () => void) => {
+    open();
     target.animate([{ opacity: 0 }, { opacity: 1 }], {
       duration: 200,
       easing: "ease-in-out",
       fill: "forwards",
     });
   },
-  close: (target: HTMLDivElement, toggleState: () => void) => {
+  close: (target: HTMLDivElement, close: () => void) => {
     const anime = target.animate([{ opacity: 1 }, { opacity: 0 }], {
       duration: 200,
       fill: "forwards",
       easing: "ease-in-out",
     });
     anime.onfinish = () => {
-      toggleState();
+      close();
     };
   },
 };
@@ -151,11 +152,10 @@ export const WizPopupContent = ({
       setIsActuallyOpen(ctx.isOpen);
       return;
     }
-    if (ctx.isOpen) {
+    if (ctx.isOpen)
       fadeAnimation.open(contentRef.current, () => setIsActuallyOpen(true));
-    } else {
+    else
       fadeAnimation.close(contentRef.current, () => setIsActuallyOpen(false));
-    }
   }, [ctx.isOpen, isActuallyOpen]);
 
   if (!isActuallyOpen) return null;
