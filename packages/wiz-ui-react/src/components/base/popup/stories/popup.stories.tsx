@@ -58,12 +58,7 @@ export const Default: Story = {
     const Popup = ({ pattern }: { pattern: Pattern }) => {
       const [isOpen, setIsOpen] = useState(true);
       return (
-        <WizPopup
-          {...args}
-          isOpen={isOpen}
-          open={() => setIsOpen(true)}
-          close={() => setIsOpen(false)}
-        >
+        <WizPopup {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
           <WizPopupTrigger>
             <button>Click me {pattern.direction}</button>
           </WizPopupTrigger>
@@ -120,8 +115,9 @@ export const Gap: Story = {
         <WizPopup
           {...args}
           isOpen={isOpen}
-          open={() => setIsOpen(true)}
-          close={() => setIsOpen(false)}
+          setIsOpen={setIsOpen}
+          // open={() => setIsOpen(true)}
+          // close={() => setIsOpen(false)}
         >
           <WizPopupTrigger>
             <button>
@@ -194,12 +190,7 @@ export const Playground: Story = {
             left: x + "px",
           }}
         >
-          <WizPopup
-            {...args}
-            isOpen={isOpen}
-            open={() => setIsOpen(true)}
-            close={() => setIsOpen(false)}
-          >
+          <WizPopup {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
             <WizPopupTrigger>
               <button>Toggle</button>
             </WizPopupTrigger>
@@ -315,12 +306,7 @@ export const Playground2: Story = {
               ...pattern,
             }}
           >
-            <WizPopup
-              {...args}
-              isOpen={isOpen}
-              open={() => setIsOpen(true)}
-              close={() => setIsOpen(false)}
-            >
+            <WizPopup {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
               <WizPopupTrigger>
                 <button>Toggle</button>
               </WizPopupTrigger>
