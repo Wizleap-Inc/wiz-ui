@@ -56,7 +56,7 @@ export const Default: Story = {
       { direction: "rb" },
     ];
     const Popup = ({ pattern }: { pattern: Pattern }) => {
-      const [isOpen, setIsOpen] = useState(false);
+      const [isOpen, setIsOpen] = useState(true);
       return (
         <WizPopup
           {...args}
@@ -115,7 +115,7 @@ export const Gap: Story = {
     ];
 
     const Popup = ({ pattern }: { pattern: Pattern }) => {
-      const [isOpen, setIsOpen] = useState(false);
+      const [isOpen, setIsOpen] = useState(true);
       return (
         <WizPopup
           {...args}
@@ -164,7 +164,7 @@ export const Gap: Story = {
 
 export const Playground: Story = {
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [maxX, setMaxX] = useState(0);
@@ -298,7 +298,7 @@ export const Playground2: Story = {
         transform: "translate(-50%, 0%)",
       },
     ];
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     return (
       <div
         style={{
