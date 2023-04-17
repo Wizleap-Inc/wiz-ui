@@ -33,9 +33,6 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@wizleap-inc/wiz-ui-constants": "*",
-    "@wizleap-inc/wiz-ui-styles": "*",
-    "@wizleap-inc/wiz-ui-utils": "*",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   }

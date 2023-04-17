@@ -34,9 +34,6 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@wizleap-inc/wiz-ui-constants": "*",
-    "@wizleap-inc/wiz-ui-styles": "*",
-    "@wizleap-inc/wiz-ui-utils": "*",
     "portal-vue": "^2.1.7",
     "vue": "^2.7.13",
     "vue-router": "^3.6.5"
