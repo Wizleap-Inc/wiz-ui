@@ -12,9 +12,9 @@ import {
 } from "../components";
 import { Direction } from "../types/direction";
 
-const meta: Meta<typeof WizPopup> = {
+const meta: Meta<typeof WizPopupContent> = {
   title: "Base/Popup",
-  component: WizPopup,
+  component: WizPopupContent,
   argTypes: {},
   decorators: [
     (Story) => (
@@ -26,7 +26,7 @@ const meta: Meta<typeof WizPopup> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof WizPopup>;
+type Story = StoryObj<typeof WizPopupContent>;
 
 type Pattern = {
   direction: Direction;
@@ -58,11 +58,11 @@ export const Default: Story = {
     const Popup = ({ pattern }: { pattern: Pattern }) => {
       const [isOpen, setIsOpen] = useState(true);
       return (
-        <WizPopup {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
+        <WizPopup isOpen={isOpen} setIsOpen={setIsOpen}>
           <WizPopupTrigger>
             <button>Click me {pattern.direction}</button>
           </WizPopupTrigger>
-          <WizPopupContent {...pattern}>
+          <WizPopupContent {...args} {...pattern}>
             <div style={popupContentStyle}>
               <p>This is a popup content {pattern.direction}</p>
               <button>
@@ -112,19 +112,13 @@ export const Gap: Story = {
     const Popup = ({ pattern }: { pattern: Pattern }) => {
       const [isOpen, setIsOpen] = useState(true);
       return (
-        <WizPopup
-          {...args}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          // open={() => setIsOpen(true)}
-          // close={() => setIsOpen(false)}
-        >
+        <WizPopup isOpen={isOpen} setIsOpen={setIsOpen}>
           <WizPopupTrigger>
             <button>
               Click me {pattern.direction} {pattern.gap}
             </button>
           </WizPopupTrigger>
-          <WizPopupContent {...pattern}>
+          <WizPopupContent {...args} {...pattern}>
             <div style={popupContentStyle}>
               <p>
                 This is a popup content {pattern.direction} {pattern.gap}
@@ -178,9 +172,10 @@ export const Playground: Story = {
     return (
       <div
         style={{
-          height: "100vh",
-          width: "100vw",
+          height: "90vh",
+          width: "90vw",
           display: "relative",
+          overflow: "hidden",
         }}
       >
         <div
@@ -190,11 +185,11 @@ export const Playground: Story = {
             left: x + "px",
           }}
         >
-          <WizPopup {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
+          <WizPopup isOpen={isOpen} setIsOpen={setIsOpen}>
             <WizPopupTrigger>
               <button>Toggle</button>
             </WizPopupTrigger>
-            <WizPopupContent>
+            <WizPopupContent {...args}>
               <div style={popupContentStyle}>
                 <p>This is a popup content</p>
                 <button>
@@ -223,6 +218,9 @@ export const Playground: Story = {
 };
 
 export const Playground2: Story = {
+  args: {
+    closeOnBlur: false,
+  },
   render: (args) => {
     const absolutePositions = [
       {
@@ -289,7 +287,6 @@ export const Playground2: Story = {
         transform: "translate(-50%, 0%)",
       },
     ];
-    const [isOpen, setIsOpen] = useState(true);
     return (
       <div
         style={{
@@ -298,31 +295,39 @@ export const Playground2: Story = {
           position: "relative",
         }}
       >
-        {absolutePositions.map((pattern, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              ...pattern,
-            }}
-          >
-            <WizPopup {...args} isOpen={isOpen} setIsOpen={setIsOpen}>
-              <WizPopupTrigger>
-                <button>Toggle</button>
-              </WizPopupTrigger>
-              <WizPopupContent {...pattern}>
-                <div style={popupContentStyle}>
-                  <p>This is a popup content</p>
-                  <button>
-                    <WizPopupClose>close </WizPopupClose>
-                  </button>
-                </div>
-              </WizPopupContent>
-            </WizPopup>
-          </div>
-        ))}
+        {absolutePositions.map((pattern, i) => {
+          const [isOpen, setIsOpen] = useState(true);
+          return (
+            <div
+              key={i}
+              style={{
+                position: "absolute",
+                ...pattern,
+              }}
+            >
+              <WizPopup isOpen={isOpen} setIsOpen={setIsOpen}>
+                <WizPopupTrigger>
+                  <button>Toggle</button>
+                </WizPopupTrigger>
+                <WizPopupContent
+                  {...args}
+                  {...pattern}
+                  bodyElement={
+                    document.getElementById("storybook-root") || undefined
+                  }
+                >
+                  <div style={popupContentStyle}>
+                    <p>This is a popup content</p>
+                    <button>
+                      <WizPopupClose>close </WizPopupClose>
+                    </button>
+                  </div>
+                </WizPopupContent>
+              </WizPopup>
+            </div>
+          );
+        })}
       </div>
     );
   },
-  args: {},
 };
