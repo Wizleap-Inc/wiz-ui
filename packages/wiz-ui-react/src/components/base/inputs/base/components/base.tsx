@@ -1,18 +1,17 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { clsx } from "clsx";
 import {
+  ComponentProps,
   ForwardedRef,
-  InputHTMLAttributes,
   forwardRef,
   memo,
   useMemo,
   useState,
 } from "react";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement>;
-
-type Props = InputProps & {
+type Props = {
   id?: string;
   value?: string;
   placeholder?: string;
@@ -22,7 +21,7 @@ type Props = InputProps & {
   width?: string;
   error?: boolean;
   spaceType?: "left" | "right" | "both" | "none";
-};
+} & ComponentProps<"input">;
 
 const _PrivateBaseInput = forwardRef(
   (
@@ -51,6 +50,7 @@ const _PrivateBaseInput = forwardRef(
     return (
       <input
         ref={ref}
+        {...props}
         className={clsx(
           styles.baseInputStyle,
           styles.baseInputPaddingStyle[spaceType],
@@ -76,5 +76,7 @@ const _PrivateBaseInput = forwardRef(
     );
   }
 );
+
+_PrivateBaseInput.displayName = ComponentName.BaseInput;
 
 export const PrivateBaseInput = memo(_PrivateBaseInput);
