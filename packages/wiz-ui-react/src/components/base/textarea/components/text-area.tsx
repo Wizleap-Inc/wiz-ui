@@ -2,8 +2,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { clsx } from "clsx";
 import {
+  ComponentProps,
   ForwardedRef,
-  TextareaHTMLAttributes,
   forwardRef,
   memo,
   useMemo,
@@ -12,16 +12,14 @@ import {
 
 import { useFormControl } from "@/hooks/use-form-control-provider";
 
-type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement>;
-
-type Props = TextAreaProps & {
+type Props = {
   id?: string;
   value?: string;
   placeholder?: string;
   disabled?: boolean;
   expand?: boolean;
   rows?: number;
-};
+} & ComponentProps<"textarea">;
 
 const _TextArea = forwardRef(
   (
@@ -38,6 +36,7 @@ const _TextArea = forwardRef(
     return (
       <textarea
         ref={ref}
+        {...props}
         value={value}
         placeholder={placeholder}
         id={id}
