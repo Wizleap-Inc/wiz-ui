@@ -97,6 +97,123 @@ const getPlacementStyle: Record<
   }),
 };
 
+const shift: Record<
+  Direction,
+  (body: DOMRect, content: DOMRect, trigger: DOMRect) => Direction
+> = {
+  bl: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const y =
+      body.height < trigger.y + trigger.height + window.scrollY ? "t" : "b";
+
+    const x =
+      body.width < trigger.x + content.width + window.scrollX ? "r" : "l";
+    return `${y}${x}` as Direction;
+  },
+  bc: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const y =
+      body.height < trigger.y + trigger.height + window.scrollY ? "t" : "b";
+    const r =
+      body.width <
+        trigger.x + (trigger.width + content.width) / 2 + window.scrollX && "r";
+    const l =
+      trigger.x - (trigger.width + content.width) / 2 + window.scrollX < 0 &&
+      "l";
+    return `${y}${l || r || "c"}` as Direction;
+  },
+  br: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const y =
+      body.height < trigger.y + trigger.height + window.scrollY ? "t" : "b";
+    const x =
+      trigger.x + trigger.width - content.width + window.scrollX < 0
+        ? "l"
+        : "r";
+    return `${y}${x}` as Direction;
+  },
+  tl: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const y = trigger.y - content.height + window.scrollY < 0 ? "b" : "t";
+    const x =
+      body.width < trigger.x + content.width + window.scrollX ? "r" : "l";
+    return `${y}${x}` as Direction;
+  },
+  tc: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const y = trigger.y - content.height + window.scrollY < 0 ? "b" : "t";
+    const r =
+      body.width <
+        trigger.x + (trigger.width + content.width) / 2 + window.scrollX && "r";
+    const l =
+      trigger.x - (trigger.width + content.width) / 2 + window.scrollX < 0 &&
+      "l";
+    return `${y}${l || r || "c"}` as Direction;
+  },
+  tr: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const y = trigger.y - content.height + window.scrollY < 0 ? "b" : "t";
+    const x =
+      trigger.x + trigger.width - content.width + window.scrollX < 0
+        ? "l"
+        : "r";
+    return `${y}${x}` as Direction;
+  },
+  rt: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const x =
+      body.width < trigger.x + trigger.width + content.width + window.scrollX
+        ? "l"
+        : "r";
+    const y =
+      body.height < trigger.y + content.height + window.scrollY ? "b" : "t";
+    return `${x}${y}` as Direction;
+  },
+  rc: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const x =
+      body.width < trigger.x + trigger.width + content.width + window.scrollX
+        ? "l"
+        : "r";
+    const b =
+      body.height <
+        trigger.y + (trigger.width + content.height) / 2 + window.scrollY &&
+      "b";
+    const t =
+      trigger.y - (trigger.width + content.height) / 2 + window.scrollY < 0 &&
+      "t";
+    return `${x}${t || b || "c"}` as Direction;
+  },
+  rb: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const x =
+      body.width < trigger.x + trigger.width + content.width + window.scrollX
+        ? "l"
+        : "r";
+    const y =
+      trigger.y + trigger.height - content.height + window.scrollY < 0
+        ? "t"
+        : "b";
+    return `${x}${y}` as Direction;
+  },
+  lt: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const x = trigger.x - content.width + window.scrollX < 0 ? "r" : "l";
+    const y =
+      body.height < trigger.y + content.height + window.scrollY ? "b" : "t";
+    return `${x}${y}` as Direction;
+  },
+  lc: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const x = trigger.x - content.width + window.scrollX < 0 ? "r" : "l";
+    const b =
+      body.height <
+        trigger.y + (trigger.width + content.height) / 2 + window.scrollY &&
+      "b";
+    const t =
+      trigger.y - (trigger.width + content.height) / 2 + window.scrollY < 0 &&
+      "t";
+    return `${x}${t || b || "c"}` as Direction;
+  },
+  lb: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+    const x = trigger.x - content.width + window.scrollX < 0 ? "r" : "l";
+    const y =
+      trigger.y + trigger.height - content.height + window.scrollY < 0
+        ? "t"
+        : "b";
+    return `${x}${y}` as Direction;
+  },
+};
+
 const fadeAnimation = {
   open: (target: HTMLDivElement, open: () => void) => {
     open();
@@ -142,11 +259,26 @@ export const WizPopupContent = ({
 
   const contentRef = useRef<HTMLDivElement>(null);
   if (closeOnBlur) useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
-  const rect = ctx.triggerRef.current?.getBoundingClientRect();
-  const gapRem = getSpacingCss(gap) ?? "0";
+
+  const placementStyle = (() => {
+    const bodyRect = document
+      .getElementById("storybook-root")
+      ?.getBoundingClientRect(); // document.body.getBoundingClientRect();
+    const contentRect = contentRef.current?.getBoundingClientRect();
+    const triggerRect = ctx.triggerRef.current?.getBoundingClientRect();
+    const gapRem = getSpacingCss(gap) ?? "0";
+
+    if (!bodyRect || !triggerRect) return;
+    if (!contentRect) return getPlacementStyle[direction](triggerRect, gapRem);
+
+    const f = shift[direction];
+    const shifted = bodyRect
+      ? f(bodyRect, contentRect, triggerRect)
+      : direction;
+    return getPlacementStyle[shifted](triggerRect, gapRem);
+  })();
 
   const [isActuallyOpen, setIsActuallyOpen] = useState(false);
-
   useEffect(() => {
     if (!animation || !contentRef.current) {
       setIsActuallyOpen(ctx.isOpen);
@@ -157,7 +289,6 @@ export const WizPopupContent = ({
     else
       fadeAnimation.close(contentRef.current, () => setIsActuallyOpen(false));
   }, [ctx.isOpen, isActuallyOpen]);
-
   if (!isActuallyOpen) return null;
   return (
     <WizPortal>
@@ -170,7 +301,7 @@ export const WizPopupContent = ({
         ref={contentRef}
         style={{
           position: "absolute",
-          ...(rect && getPlacementStyle[direction](rect, gapRem)),
+          ...placementStyle,
         }}
         {...props}
       >
