@@ -95,6 +95,27 @@ const getPlacementStyle: Record<
   }),
 };
 
+const fadeAnimation = {
+  open: (target: HTMLDivElement, toggleState: () => void) => {
+    toggleState();
+    target.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 200,
+      easing: "ease-in-out",
+      fill: "forwards",
+    });
+  },
+  close: (target: HTMLDivElement, toggleState: () => void) => {
+    const anime = target.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 200,
+      fill: "forwards",
+      easing: "ease-in-out",
+    });
+    anime.onfinish = () => {
+      toggleState();
+    };
+  },
+};
+
 type DivProps = React.HTMLAttributes<HTMLDivElement>;
 
 type Props = DivProps & {
@@ -127,33 +148,16 @@ export const WizPopupContent = ({
   const [isActuallyOpen, setIsActuallyOpen] = useState(false);
 
   useEffect(() => {
-    if (!animation) {
+    if (!animation || !contentRef.current) {
       setIsActuallyOpen(ctx.isOpen);
       return;
     }
     if (ctx.isOpen) {
-      setIsActuallyOpen(true);
-      if (!contentRef.current) return; // contentRef.current is null
-      contentRef.current.animate([{ opacity: 1 }, { opacity: 0 }], {
-        duration: 200,
-        easing: "ease-in-out",
-        fill: "forwards",
-      });
+      fadeAnimation.open(contentRef.current, () => setIsActuallyOpen(true));
     } else {
-      if (!contentRef.current) return;
-      const anime = contentRef.current.animate(
-        [{ opacity: 1 }, { opacity: 0 }],
-        {
-          duration: 200,
-          fill: "forwards",
-          easing: "ease-in-out",
-        }
-      );
-      anime.onfinish = () => {
-        setIsActuallyOpen(false);
-      };
+      fadeAnimation.close(contentRef.current, () => setIsActuallyOpen(false));
     }
-  }, [ctx.isOpen]);
+  }, [ctx.isOpen, isActuallyOpen]);
 
   if (!isActuallyOpen) return null;
   return (
@@ -162,8 +166,7 @@ export const WizPopupContent = ({
         className={clsx(
           styles.popupStyle,
           shadow && styles.popupShadowStyle,
-          zIndexStyle[layer],
-          animation && ctx.isOpen && styles.popupFadeInStyle
+          zIndexStyle[layer]
         )}
         ref={contentRef}
         style={{
