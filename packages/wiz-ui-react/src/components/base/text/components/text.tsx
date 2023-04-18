@@ -1,5 +1,6 @@
 import {
   ColorKeys,
+  ComponentName,
   FontSizeKeys,
   WhiteSpaceKeys,
 } from "@wizleap-inc/wiz-ui-constants";
@@ -98,5 +99,7 @@ const _Text = ({
     }
   }
 };
+
+_Text.displayName = ComponentName.Text;
 
 export const WizText = memo(_Text);
