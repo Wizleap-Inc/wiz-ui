@@ -299,7 +299,7 @@ export const WizPopupContent = ({
         ref={contentRef}
         style={{
           position: "absolute",
-          ...placementStyle,
+          ...getStyle(),
         }}
         {...props}
       >
