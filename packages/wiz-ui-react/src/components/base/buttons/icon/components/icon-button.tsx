@@ -16,9 +16,7 @@ type Props = {
   size?: "sm" | "md" | "lg" | "xl";
 } & ComponentProps<"button">;
 
-const iconSVGColor: {
-  [key in "primary" | "sub" | "transparent" | "link"]: ColorKeys;
-} = {
+const iconSVGColor: Record<string, ColorKeys> = {
   primary: "white.800",
   sub: "green.800",
   transparent: "gray.800",
@@ -39,13 +37,12 @@ const _IconButton = forwardRef(
     return (
       <button
         ref={ref}
+        {...props}
         className={clsx(
           styles.iconButtonStyle[variant],
           disabled && styles.iconButtonDisabledStyle
         )}
         disabled={disabled}
-        onClick={props.onClick}
-        {...props}
       >
         <WizIcon
           icon={icon}
