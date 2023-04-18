@@ -7,8 +7,9 @@ import { PanelItems } from "./type";
 type Props = {
   value: number | null;
   items: PanelItems[];
-  onClick?: (value: number) => void;
+  setValue?: (value: number) => void;
 };
+
 const _PanelSwitch = ({ value, items, ...props }: Props) => {
   const panelSwitchBlockColor = (key: number) =>
     value && key === value - 1 ? "active" : "default";
@@ -26,6 +27,11 @@ const _PanelSwitch = ({ value, items, ...props }: Props) => {
             styles.panelSwitchBlockColorStyle[panelSwitchBlockColor(index)]
           )}
           htmlFor={`panel${item.value}`}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ")
+              props.setValue?.(item.value);
+          }}
         >
           {item.label}
           <input
@@ -34,7 +40,7 @@ const _PanelSwitch = ({ value, items, ...props }: Props) => {
             id={`panel${item.value}`}
             name={`panel${item.value}`}
             value={item.value}
-            onClick={() => props.onClick?.(item.value)}
+            onClick={() => props.setValue?.(item.value)}
           />
         </label>
       ))}
