@@ -20,18 +20,15 @@ const meta: Meta<typeof WizToggleSwitch> = {
 export default meta;
 type Story = StoryObj<typeof WizToggleSwitch>;
 
-const useToggleButton = () => {
-  const [value, setValue] = useState(false);
-  const onChange = (value: boolean) => {
-    setValue(value);
-  };
-  return { value, onChange };
-};
-
 export const Default: Story = {
   args: {},
   render: (args) => {
-    const { value, onChange } = useToggleButton();
-    return <WizToggleSwitch {...args} value={value} onChange={onChange} />;
+    const [value, setValue] = useState(false);
+    return (
+      <>
+        <p>入力値: {value ? "true" : "false"}</p>
+        <WizToggleSwitch {...args} value={value} setValue={setValue} />
+      </>
+    );
   },
 };
