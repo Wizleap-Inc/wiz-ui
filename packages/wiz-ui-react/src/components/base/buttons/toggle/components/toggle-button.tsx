@@ -1,4 +1,4 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
 import { gapStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
@@ -12,7 +12,13 @@ import {
 
 import { TIcon, WizIcon } from "@/components";
 
-type Props = ComponentProps<"button"> & {
+const iconSize: Record<string, FontSizeKeys> = {
+  sm: "xl",
+  md: "xl2",
+  lg: "xl3",
+};
+
+type Props = {
   isActive: boolean;
   inActiveIcon: TIcon;
   activeIcon: TIcon;
@@ -20,7 +26,7 @@ type Props = ComponentProps<"button"> & {
   rounded?: boolean;
   size?: "sm" | "md" | "lg";
   children?: ReactNode;
-};
+} & ComponentProps<"button">;
 
 const _ToggleButton = forwardRef(
   (
@@ -34,37 +40,29 @@ const _ToggleButton = forwardRef(
       ...props
     }: Props,
     ref: ForwardedRef<HTMLButtonElement>
-  ) => {
-    const iconSize = (() => {
-      if (size === "sm") return "xl";
-      if (size === "md") return "xl2";
-      if (size === "lg") return "xl3";
-      return undefined;
-    })();
-    return (
-      <button
-        ref={ref}
-        className={clsx(
-          styles.toggleButtonStyle,
-          styles.toggleButtonSizeStyle[size],
-          isActive && styles.toggleButtonActiveStyle,
-          disabled && styles.toggleButtonDisabledStyle,
-          rounded && styles.toggleButtonRoundedStyle
-        )}
-        disabled={disabled}
-        {...props}
-      >
-        <div className={clsx(gapStyle["xs2"], styles.toggleButtonStackStyle)}>
-          <WizIcon
-            icon={isActive ? activeIcon : inActiveIcon}
-            color={"green.800"}
-            size={iconSize}
-          />
-          {props.children}
-        </div>
-      </button>
-    );
-  }
+  ) => (
+    <button
+      ref={ref}
+      {...props}
+      className={clsx(
+        styles.toggleButtonStyle,
+        styles.toggleButtonSizeStyle[size],
+        isActive && styles.toggleButtonActiveStyle,
+        disabled && styles.toggleButtonDisabledStyle,
+        rounded && styles.toggleButtonRoundedStyle
+      )}
+      disabled={disabled}
+    >
+      <div className={clsx(gapStyle["xs2"], styles.toggleButtonStackStyle)}>
+        <WizIcon
+          icon={isActive ? activeIcon : inActiveIcon}
+          color={"green.800"}
+          size={iconSize[size]}
+        />
+        {props.children}
+      </div>
+    </button>
+  )
 );
 
 _ToggleButton.displayName = ComponentName.ToggleButton;
