@@ -1,6 +1,6 @@
 ---
-"@wizleap-inc/wiz-ui-react": patch
-"@wizleap-inc/wiz-ui-styles": patch
+"@wizleap-inc/wiz-ui-react": minor
+"@wizleap-inc/wiz-ui-styles": minor
 ---
 
 WizCard の React 対応
