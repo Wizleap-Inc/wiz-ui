@@ -3,14 +3,7 @@ import {
   ComponentName,
   FontSizeKeys,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  textButtonStyle,
-  textButtonDisabledStyle,
-  textButtonRoundStyle,
-  textButtonExpandStyle,
-  textButtonSizeStyle,
-  textButtonStackStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
 import { gapStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
@@ -75,16 +68,15 @@ const _TextButton = forwardRef(
         ref={ref}
         {...props}
         className={clsx(
-          textButtonStyle[variant],
-          textButtonSizeStyle[size],
-          disabled && textButtonDisabledStyle,
-          rounded && textButtonRoundStyle,
-          expand && textButtonExpandStyle
+          styles.textButtonStyle[variant],
+          styles.textButtonSizeStyle[size],
+          disabled && styles.textButtonDisabledStyle,
+          rounded && styles.textButtonRoundStyle,
+          expand && styles.textButtonExpandStyle
         )}
         disabled={disabled}
-        onClick={props.onClick}
       >
-        <div className={clsx(gapStyle["xs2"], textButtonStackStyle)}>
+        <div className={clsx(gapStyle["xs2"], styles.textButtonStackStyle)}>
           {...iconPosition === "left" ? content : content.reverse()}
         </div>
       </button>
