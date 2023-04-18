@@ -1,4 +1,8 @@
-import { ColorKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  SpacingKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card.css";
 import {
   paddingStyle,
@@ -8,7 +12,7 @@ import {
   gapStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Props = {
   title?: string;
@@ -24,7 +28,7 @@ type Props = {
   maxWidth?: string;
   gap?: SpacingKeys;
   children?: ReactNode;
-};
+} & ComponentProps<"div">;
 
 const _CardHeader = ({ children }: { children: ReactNode }) => (
   <div className={styles.cardHeaderStyle}>
@@ -55,6 +59,7 @@ const _Card = ({
 }: Props) => {
   return (
     <div
+      {...props}
       className={clsx([
         styles.cardStyle,
         fit && styles.cardFitStyle,
@@ -84,4 +89,5 @@ _Card.Header = _CardHeader;
 _Card.Body = _CardBody;
 _Card.Footer = _CardFooter;
 
+_Card.displayName = ComponentName.Card;
 export const WizCard = _Card;
