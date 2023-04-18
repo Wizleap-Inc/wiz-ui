@@ -13,7 +13,7 @@ import {
 import clsx from "clsx";
 import { ReactNode, memo } from "react";
 
-export type Props = {
+type Props = {
   as?: "p" | "span" | "label";
   htmlFor?: string;
   color?: ColorKeys;
@@ -28,6 +28,7 @@ export type Props = {
   lineThrough?: boolean;
   children?: ReactNode;
 };
+
 const _Text = ({
   as = "p",
   htmlFor,
@@ -43,54 +44,59 @@ const _Text = ({
   lineThrough = false,
   ...props
 }: Props) => {
-  const overflowStyles = (() => {
-    if (!maxLines) return {};
-    return {
+  const style = {
+    ...(maxLines && {
       overflow: "hidden",
       display: "-webkit-box",
       webkitBoxOrient: "vertical",
       WebkitLineClamp: maxLines,
-    };
-  })();
-  const Component = (props: { children: ReactNode }) => {
-    switch (as) {
-      case "p": {
-        return <p>{props.children}</p>;
-      }
-      case "label": {
-        return <label htmlFor={htmlFor}>{props.children}</label>;
-      }
-      case "span": {
-        return <span>{props.children}</span>;
-      }
-    }
+    }),
   };
-  return (
-    <div
-      className={clsx(
-        styles.textStyle,
-        styles.textFontWeightStyle[bold ? "bold" : "default"],
-        styles.textAlignStyle[textAlign],
-        (maxLines || breakAll) && styles.textWordBreakStyle,
-        lineHeight
-          ? lineHeightStyle[lineHeight]
-          : styles.textDefaultLineHeightStyle,
-        fontSizeStyle[fontSize],
-        colorStyle[color],
-        whiteSpaceStyle[whiteSpace],
-        lineThrough && styles.textLineThroughStyle
-      )}
-      style={overflowStyles}
-    >
-      <Component>
-        {dummyValue ? (
-          <span className={styles.textDummyStyle}>{dummyValue}</span>
-        ) : (
-          props.children
-        )}
-      </Component>
-    </div>
+  const className = clsx(
+    styles.textStyle,
+    styles.textFontWeightStyle[bold ? "bold" : "default"],
+    styles.textAlignStyle[textAlign],
+    (maxLines || breakAll) && styles.textWordBreakStyle,
+    lineHeight
+      ? lineHeightStyle[lineHeight]
+      : styles.textDefaultLineHeightStyle,
+    fontSizeStyle[fontSize],
+    colorStyle[color],
+    whiteSpaceStyle[whiteSpace],
+    lineThrough && styles.textLineThroughStyle
   );
+  const Children = () => (
+    <>
+      {dummyValue ? (
+        <span className={styles.textDummyStyle}>{dummyValue}</span>
+      ) : (
+        props.children
+      )}
+    </>
+  );
+  switch (as) {
+    case "p": {
+      return (
+        <p className={className} style={style}>
+          <Children />
+        </p>
+      );
+    }
+    case "label": {
+      return (
+        <label htmlFor={htmlFor} className={className} style={style}>
+          <Children />
+        </label>
+      );
+    }
+    case "span": {
+      return (
+        <span className={className} style={style}>
+          <Children />
+        </span>
+      );
+    }
+  }
 };
 
 export const WizText = memo(_Text);
