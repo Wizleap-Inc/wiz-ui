@@ -5,7 +5,7 @@ import {
   WHITE_SPACE_MAP_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 
-import { WizText, Props } from "../components/text";
+import { WizText } from "../components/text";
 
 const meta: Meta<typeof WizText> = {
   title: "Base/Text",
@@ -53,28 +53,9 @@ const meta: Meta<typeof WizText> = {
 export default meta;
 type Story = StoryObj<typeof WizText>;
 
-const Template = (args: Props) => <WizText {...args} />;
-
-const MaxLinesTemplate = (args: Props) => (
-  <div style={{ display: "flex", gap: "1rem" }}>
-    <div style={{ width: "200px" }}>
-      <WizText {...args}>
-        これはとても長いテキストです。投稿内容に依存して高さが大きくズレるため、テキストの最大行数を指定し3点ドットで対応することにします。
-      </WizText>
-    </div>
-    <div style={{ width: "200px" }}>
-      <WizText {...args}>
-        WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.
-      </WizText>
-    </div>
-  </div>
-);
-
 export const Paragraph: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "p",
@@ -83,9 +64,7 @@ export const Paragraph: Story = {
 
 export const Span: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "span",
@@ -94,9 +73,7 @@ export const Span: Story = {
 
 export const Label: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "label",
@@ -105,9 +82,7 @@ export const Label: Story = {
 
 export const Bold: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "p",
@@ -117,9 +92,7 @@ export const Bold: Story = {
 
 export const WhiteSpace: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "p",
@@ -129,9 +102,7 @@ export const WhiteSpace: Story = {
 
 export const LineHeight: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "p",
@@ -142,9 +113,7 @@ export const LineHeight: Story = {
 
 export const FontSize: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "p",
@@ -154,9 +123,7 @@ export const FontSize: Story = {
 
 export const Color: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "p",
@@ -166,9 +133,7 @@ export const Color: Story = {
 
 export const DummyValue: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     dummyValue: "ABCDEFG",
@@ -177,9 +142,7 @@ export const DummyValue: Story = {
 
 export const lineThrough: Story = {
   render: (args) => (
-    <Template {...args}>
-      {"これはテキストです。\nこれはテキストです。"}
-    </Template>
+    <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
     as: "p",
@@ -188,7 +151,20 @@ export const lineThrough: Story = {
 };
 
 export const MaxLines: Story = {
-  render: (args) => <MaxLinesTemplate {...args} />,
+  render: (args) => (
+    <div style={{ display: "flex", gap: "1rem" }}>
+      <div style={{ width: "200px" }}>
+        <WizText {...args}>
+          これはとても長いテキストです。投稿内容に依存して高さが大きくズレるため、テキストの最大行数を指定し3点ドットで対応することにします。
+        </WizText>
+      </div>
+      <div style={{ width: "200px" }}>
+        <WizText {...args}>
+          WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.WhenMaxLinesIsSet,WizTextWillSetWordBreakToBreakAll.
+        </WizText>
+      </div>
+    </div>
+  ),
   args: {
     as: "p",
     maxLines: 5,
