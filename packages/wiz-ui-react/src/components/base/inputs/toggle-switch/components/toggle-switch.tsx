@@ -1,32 +1,31 @@
-import {
-  toggleSwitchStyle,
-  toggleSwitchInputStyle,
-  toggleSwitchSliderStyle,
-  toggleSwitchSliderCheckedStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import clsx from "clsx";
 import { memo } from "react";
 
 type Props = {
   value: boolean;
   ariaLabel: string;
-  onChange: (value: boolean) => void;
+  setValue: (value: boolean) => void;
 };
 
 const _ToggleSwitch = ({ value, ariaLabel, ...props }: Props) => (
-  <label className={toggleSwitchStyle}>
+  <label className={styles.toggleSwitchStyle}>
     <input
-      className={toggleSwitchInputStyle}
+      className={styles.toggleSwitchInputStyle}
       type="checkbox"
       aria-label={ariaLabel}
-      onChange={(e) => props.onChange(e.target.checked)}
+      onChange={(e) => props.setValue(e.target.checked)}
     />
     <span
       className={clsx(
-        toggleSwitchSliderStyle,
-        value && toggleSwitchSliderCheckedStyle
+        styles.toggleSwitchSliderStyle,
+        value && styles.toggleSwitchSliderCheckedStyle
       )}
     />
   </label>
 );
+
+_ToggleSwitch.displayName = ComponentName.ToggleSwitch;
+
 export const WizToggleSwitch = memo(_ToggleSwitch);
