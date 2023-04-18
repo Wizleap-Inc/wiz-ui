@@ -5,11 +5,7 @@ import { WizPanelSwitch } from "../components";
 const meta: Meta<typeof WizPanelSwitch> = {
   title: "Base/Input/PanelSwitch",
   component: WizPanelSwitch,
-  argTypes: {
-    onClick: {
-      action: "input",
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
@@ -29,7 +25,7 @@ export const Default: Story = {
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizPanelSwitch {...args} value={value} onClick={setValue} />
+        <WizPanelSwitch {...args} value={value} setValue={setValue} />
       </div>
     );
   },
