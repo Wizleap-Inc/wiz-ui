@@ -1,6 +1,6 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-input.css";
 import clsx from "clsx";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 
 // import { useFormControl } from "@/hooks/use-form-control-provider";
 
@@ -28,9 +28,7 @@ const _TextInput = ({
   // const { isError } = useFormControl();
   const isError = false;
 
-  const computedExpand = useMemo(() => {
-    return expand ? "expand" : "default";
-  }, [expand]);
+  const computedExpand = expand ? "expand" : "default";
 
   return (
     <div
