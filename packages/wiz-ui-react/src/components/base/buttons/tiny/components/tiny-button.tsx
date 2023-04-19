@@ -13,7 +13,6 @@ import {
   ReactNode,
   forwardRef,
   memo,
-  useMemo,
 } from "react";
 
 import { TIcon, WizIcon } from "@/components";
@@ -45,11 +44,11 @@ const _TinyButton = forwardRef(
     }: Props,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
-    const tinyButtonState = useMemo(() => {
+    const tinyButtonState = (() => {
       const selectable = clickable ? "clickable" : "unclickable";
       const activeState = active ? "active" : "inactive";
       return `${selectable}+${activeState}` as const;
-    }, [clickable, active]);
+    })();
 
     return (
       <button
