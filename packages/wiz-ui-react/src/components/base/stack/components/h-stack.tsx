@@ -2,7 +2,7 @@ import { memo } from "react";
 
 import { Props as StackProps, WizStack } from "./stack";
 
-export type Props = Omit<StackProps, "direction">;
+type Props = Omit<StackProps, "direction">;
 
 const _HStack = ({ ...props }: Props) => {
   return (
