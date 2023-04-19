@@ -6,7 +6,6 @@ import {
   ForwardedRef,
   forwardRef,
   memo,
-  useMemo,
   useState,
 } from "react";
 
@@ -28,11 +27,11 @@ const _TextArea = forwardRef(
   ) => {
     const { isError } = useFormControl();
     const [hasFocus, setHasFocus] = useState(false);
-    const state = useMemo(() => {
+    const state = (() => {
       if (isError) return "error";
       if (hasFocus) return "active";
       return "default";
-    }, [isError, hasFocus]);
+    })();
     return (
       <textarea
         ref={ref}
