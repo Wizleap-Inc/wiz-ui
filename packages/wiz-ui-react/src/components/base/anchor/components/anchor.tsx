@@ -12,7 +12,7 @@ import {
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ForwardedRef, ReactNode, forwardRef, memo, useMemo } from "react";
+import { ForwardedRef, ReactNode, forwardRef, memo } from "react";
 import { Link } from "react-router-dom";
 
 import { TIcon, WizIcon } from "@/components";
@@ -44,10 +44,10 @@ const _Anchor = forwardRef(
     }: Props,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
-    const isRouterLink = useMemo(() => {
+    const isRouterLink = (() => {
       if (openInNewTab) return false;
       return !to.startsWith("http");
-    }, []);
+    })();
 
     const AnchorContent = ({ children }: { children: ReactNode }) => (
       <>
