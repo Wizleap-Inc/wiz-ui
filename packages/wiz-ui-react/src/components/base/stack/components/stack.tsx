@@ -1,4 +1,3 @@
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/stack.css";
 import {
   gapStyle,
@@ -20,37 +19,9 @@ import {
   paddingLeftStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { memo } from "react";
 
-export type Props = {
-  direction?: "horizontal" | "vertical";
-  align?: "start" | "center" | "end" | "stretch";
-  justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
-  wrap?: boolean;
-  gap?: SpacingKeys;
-  gx?: SpacingKeys;
-  gy?: SpacingKeys;
-  p?: SpacingKeys;
-  pt?: SpacingKeys;
-  pr?: SpacingKeys;
-  pb?: SpacingKeys;
-  pl?: SpacingKeys;
-  px?: SpacingKeys;
-  py?: SpacingKeys;
-  m?: SpacingKeys;
-  mt?: SpacingKeys;
-  mr?: SpacingKeys;
-  mb?: SpacingKeys;
-  ml?: SpacingKeys;
-  mx?: SpacingKeys;
-  my?: SpacingKeys;
-  width?: string;
-  height?: string;
-  overflow?: string;
-  reverse?: string;
-  position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
-  children?: ReactNode;
-};
+import { StackProps } from "@/components/base/stack/components/types";
 
 const _Stack = ({
   direction = "horizontal",
@@ -80,7 +51,7 @@ const _Stack = ({
   reverse,
   position,
   ...props
-}: Props) => {
+}: StackProps) => {
   const dir = (() => {
     switch (direction) {
       case "horizontal": {

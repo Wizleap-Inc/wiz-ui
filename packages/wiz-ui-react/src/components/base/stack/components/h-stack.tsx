@@ -1,6 +1,7 @@
 import { memo } from "react";
 
-import { Props as StackProps, WizStack } from "./stack";
+import { WizStack } from "./stack";
+import { StackProps } from "./types";
 
 type Props = Omit<StackProps, "direction">;
 
