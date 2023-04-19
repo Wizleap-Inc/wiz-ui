@@ -228,7 +228,7 @@ importers:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
         specifier: '*'
-        version: 0.1.0
+        version: link:../constants
 
   packages/utils: {}
 
@@ -248,13 +248,13 @@ importers:
   packages/wiz-ui:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: '*'
-        version: 0.1.0
+        specifier: workspace:*
+        version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../utils
       portal-vue:
         specifier: ^2.1.7
@@ -285,13 +285,13 @@ importers:
   packages/wiz-ui-next:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: '*'
-        version: 0.1.0
+        specifier: workspace:*
+        version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../utils
       vue:
         specifier: ^3.2.45
@@ -319,13 +319,13 @@ importers:
   packages/wiz-ui-react:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: '*'
-        version: 0.1.0
+        specifier: workspace:*
+        version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../utils
       clsx:
         specifier: ^1.2.1
@@ -6265,10 +6265,6 @@ packages:
       '@webassemblyjs/wast-parser': 1.9.0
       '@xtuc/long': 4.2.2
     dev: true
-
-  /@wizleap-inc/wiz-ui-constants@0.1.0:
-    resolution: {integrity: sha512-9jtCqVmg3jWY63og9uazITq5MozWHLhN8Uxquq3cTb+ktKTU0eGlOL/HxA6AIM2WiCbC4RoJZpv7UudnWk2gEQ==}
-    dev: false
 
   /@xtuc/ieee754@1.2.0:
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
