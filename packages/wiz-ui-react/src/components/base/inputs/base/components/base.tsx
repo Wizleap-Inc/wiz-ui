@@ -7,7 +7,6 @@ import {
   ForwardedRef,
   forwardRef,
   memo,
-  useMemo,
   useState,
 } from "react";
 
@@ -41,11 +40,11 @@ const _PrivateBaseInput = forwardRef(
   ) => {
     const [hasFocus, setHasFocus] = useState(false);
 
-    const state = useMemo(() => {
+    const state = (() => {
       if (error) return "error";
       if (hasFocus) return "active";
       return "default";
-    }, [hasFocus, error]);
+    })();
 
     return (
       <input
