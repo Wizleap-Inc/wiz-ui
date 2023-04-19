@@ -45,4 +45,5 @@ export const IconComponentName = {
   ITab: "WizITab",
   ITask: "WizITask",
   IUpload: "WizIUpload",
+  IWarning: "WizIWarning",
 };
