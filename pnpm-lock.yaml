@@ -248,13 +248,13 @@ importers:
   packages/wiz-ui:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../utils
       portal-vue:
         specifier: ^2.1.7
@@ -285,13 +285,13 @@ importers:
   packages/wiz-ui-next:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../utils
       vue:
         specifier: ^3.2.45
@@ -319,13 +319,13 @@ importers:
   packages/wiz-ui-react:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../utils
       clsx:
         specifier: ^1.2.1
