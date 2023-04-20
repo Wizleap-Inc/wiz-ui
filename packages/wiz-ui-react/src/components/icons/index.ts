@@ -25,6 +25,7 @@ import { WizIExpandMore } from "./expand-more";
 import { WizIEye } from "./eye";
 import { WizIGroups } from "./groups";
 import { WizIHelp } from "./help";
+import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIInfo } from "./info";
 import { WizIManageAccounts } from "./manage-accounts";
@@ -74,6 +75,7 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIGroups
   | typeof WizIHelp
+  | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIInfo
   | typeof WizIManageAccounts
@@ -123,6 +125,7 @@ export {
   WizIEye,
   WizIGroups,
   WizIHelp,
+  WizIHistory,
   WizIHome,
   WizIInfo,
   WizIManageAccounts,
