@@ -8,6 +8,6 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "vite build"
   }
 }
