@@ -8,19 +8,14 @@ type Props = {
 };
 
 const _Portal = ({ children }: Props) => {
-  const mount = useRef(document.getElementById(PORTAL_ID));
+  const mount = document.getElementById(PORTAL_ID);
   const el = useRef(document.createElement("div"));
-
   useEffect(() => {
-    const mountNode = mount.current;
     const elNode = el.current;
-
-    if (!mountNode || !elNode) return;
-
-    mountNode.appendChild(elNode);
-
+    if (!mount || !elNode) return;
+    mount.appendChild(elNode);
     return () => {
-      mountNode.removeChild(elNode);
+      mount.removeChild(elNode);
     };
   }, [mount]);
 
