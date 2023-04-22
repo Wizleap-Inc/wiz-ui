@@ -1,12 +1,13 @@
 {
   "name": "@wizleap-inc/wiz-ui-constants",
   "version": "0.1.0",
-  "main": "./dist/index.js",
+  "main": "./dist/wiz-ui-constants.umd.js",
+  "module": "./dist/wiz-ui-constants.es.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "vite build"
   }
 }
