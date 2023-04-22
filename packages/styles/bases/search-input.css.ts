@@ -134,6 +134,7 @@ export const searchCheckboxInputStyle = style({
 });
 
 export const searchCheckboxLabelStyle = style({
+  width: "max-content",
   position: "relative",
   display: "flex",
   alignItems: "center",
