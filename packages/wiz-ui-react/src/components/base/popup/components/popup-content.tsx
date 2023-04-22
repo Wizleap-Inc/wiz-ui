@@ -9,6 +9,7 @@ import clsx from "clsx";
 import {
   ComponentProps,
   ReactNode,
+  memo,
   useContext,
   useEffect,
   useRef,
@@ -245,7 +246,7 @@ type Props = {
   children: ReactNode;
 } & ComponentProps<"div">;
 
-export const WizPopupContent = ({
+const _PopupContent = ({
   closeOnBlur = true,
   layer = "popover",
   gap = "no",
@@ -257,7 +258,7 @@ export const WizPopupContent = ({
   const ctx = useContext(PopupContext);
   if (!ctx) throw new Error("PopupContent must be used inside PopupContainer");
 
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
   if (closeOnBlur) useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);
 
   const getStyle = (): PopupPlacementStyle => {
@@ -294,15 +295,16 @@ export const WizPopupContent = ({
       fadeAnimation.open(contentRef.current, () => setIsActuallyOpen(true));
     else
       fadeAnimation.close(contentRef.current, () => setIsActuallyOpen(false));
-  }, [ctx.isOpen, isActuallyOpen, direction]);
-  if (!isActuallyOpen) return null;
+  }, [ctx.isOpen]);
+
   return (
     <WizPortal>
       <div
         className={clsx(
           styles.popupStyle,
           shadow && styles.popupShadowStyle,
-          zIndexStyle[layer]
+          zIndexStyle[layer],
+          !isActuallyOpen && styles.popupHiddenStyle
         )}
         ref={contentRef}
         style={{
@@ -316,3 +318,5 @@ export const WizPopupContent = ({
     </WizPortal>
   );
 };
+
+export const WizPopupContent = memo(_PopupContent);
