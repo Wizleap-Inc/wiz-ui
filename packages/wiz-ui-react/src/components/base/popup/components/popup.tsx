@@ -11,7 +11,7 @@ type Props = {
   children?: ReactNode;
 };
 const _Popup = ({ ...props }: Props) => {
-  const triggerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement | null>(null);
   const contextValue = {
     isOpen: props.isOpen,
     openPopup: () => props.setIsOpen(true),
