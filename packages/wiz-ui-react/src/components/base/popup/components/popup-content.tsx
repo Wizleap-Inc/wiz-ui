@@ -202,7 +202,7 @@ const adjustDirection: Record<
       "t";
     return `${x}${t || b || "c"}` as Direction;
   },
-  lb: (body: DOMRect, content: DOMRect, trigger: DOMRect) => {
+  lb: (_: DOMRect, content: DOMRect, trigger: DOMRect) => {
     const x = trigger.x - content.width + window.scrollX < 0 ? "r" : "l";
     const y =
       trigger.y + trigger.height - content.height + window.scrollY < 0
