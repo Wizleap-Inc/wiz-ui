@@ -274,10 +274,18 @@ export const WizPopupContent = ({
     return getPlacementStyle[dir](triggerRect, gapRem);
   };
 
-  const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
   const [isActuallyOpen, setIsActuallyOpen] = useState(false);
+  const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
+  const handleResize = () => setPlacementStyle(getStyle());
   useEffect(() => {
     setPlacementStyle(getStyle());
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isActuallyOpen, direction]);
+
+  useEffect(() => {
     if (!animation || !contentRef.current) {
       setIsActuallyOpen(ctx.isOpen);
       return;
@@ -299,7 +307,7 @@ export const WizPopupContent = ({
         ref={contentRef}
         style={{
           position: "absolute",
-          ...getStyle(),
+          ...placementStyle,
         }}
         {...props}
       >
