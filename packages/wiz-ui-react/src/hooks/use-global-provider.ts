@@ -14,7 +14,7 @@ export const useGlobal = () => {
   const ctx = useContext(GlobalContext);
   if (!ctx) {
     throw new Error(
-      `Global Providerは必ずApp.vue等のvueエントリーポイントファイルでprovideされている必要があります。`
+      `Global Providerは必ずApp.tsx等のreactエントリーポイントファイルでprovideされている必要があります。`
     );
   }
   return ctx;
