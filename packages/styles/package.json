@@ -1,7 +1,14 @@
 {
   "name": "@wizleap-inc/wiz-ui-styles",
   "version": "0.1.0",
-  "main": "index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "@wizleap-inc/wiz-ui-constants": "*"
   }
