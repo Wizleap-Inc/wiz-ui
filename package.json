@@ -10,7 +10,8 @@
     "dev": "turbo dev --parallel",
     "test": "turbo test",
     "vrt": "reg-suit run",
-    "storycap": "turbo storycap"
+    "storycap": "turbo storycap",
+    "postinstall": "turbo postinstall"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,vue}": [

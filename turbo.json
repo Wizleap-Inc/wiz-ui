@@ -8,6 +8,10 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "postinstall": {
+      "dependsOn": ["^postinstall"],
+      "outputs": ["dist/**"]
+    },
     "build:storybook": {
       "dependsOn": ["^build:storybook"],
       "outputs": ["storybook-static/**"]

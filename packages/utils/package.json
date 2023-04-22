@@ -1,5 +1,14 @@
 {
   "name": "@wizleap-inc/wiz-ui-utils",
   "version": "0.1.0",
-  "main": "index.ts"
+  "main": "./dist/wiz-ui-utils.umd.js",
+  "module": "./dist/wiz-ui-utils.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "postinstall": "pnpm run build"
+  }
 }
