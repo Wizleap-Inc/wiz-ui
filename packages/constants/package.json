@@ -8,6 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "postinstall": "pnpm run build"
   }
 }
