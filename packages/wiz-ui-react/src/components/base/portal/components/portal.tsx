@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import { PORTAL_ID } from "@/constants/id";
@@ -8,16 +8,23 @@ type Props = {
 };
 
 const _Portal = ({ children }: Props) => {
-  const mount = document.getElementById(PORTAL_ID);
-  const el = document.createElement("div");
-  useEffect(() => {
-    if (!mount) return; // TODO: throw error
-    mount.appendChild(el);
-    return () => {
-      mount.removeChild(el);
-    };
-  }, [el, mount]);
+  const mount = useRef(document.getElementById(PORTAL_ID));
+  const el = useRef(document.createElement("div"));
 
-  return createPortal(children, el);
+  useEffect(() => {
+    const mountNode = mount.current;
+    const elNode = el.current;
+
+    if (!mountNode || !elNode) return;
+
+    mountNode.appendChild(elNode);
+
+    return () => {
+      mountNode.removeChild(elNode);
+    };
+  }, [mount]);
+
+  return createPortal(children, el.current);
 };
+
 export const WizPortal = _Portal;
