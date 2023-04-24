@@ -75,4 +75,5 @@ export const grid = style({
   width: `calc(100% - ${TIME_COL_WIDTH})`,
   height: "100%",
   boxSizing: "border-box",
+  gap: "1px",
 });

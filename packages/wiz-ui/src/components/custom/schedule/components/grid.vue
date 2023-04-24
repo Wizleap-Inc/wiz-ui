@@ -9,12 +9,13 @@
     }"
   >
     <WizScheduleCard
-      v-for="schedule in displaySchedules"
+      v-for="schedule in schedules"
       :key="schedule.id"
       :text="schedule.text"
       :variant="schedule.variant"
-      :gridRow="schedule.gridRow"
-      :gridColumn="schedule.gridColumn"
+      :gridRow="getGridRow(schedule.start, schedule.end, schedule.text) || ''"
+      :gridColumn="`${schedule.col} / ${schedule.col + 1}`"
+      :show="getGridRow(schedule.start, schedule.end, schedule.text) !== null"
     ></WizScheduleCard>
   </div>
 </template>
@@ -25,7 +26,9 @@ import * as constants from "@wizleap-inc/wiz-ui-constants/component/custom/sched
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/schedule.css";
 import { PropType, computed } from "vue";
 
-import { Schedule, ScheduleItem } from "../types";
+import { ScheduleTime, ScheduleItem } from "../types";
+
+import { getSteppedTime } from "./time";
 
 import { WizScheduleCard } from ".";
 
@@ -42,71 +45,65 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  colsCount: {
-    type: Number,
-    required: true,
-  },
   schedules: {
-    type: Array as PropType<Schedule>,
+    type: Array as PropType<ScheduleItem[]>,
     required: true,
   },
 });
 
-interface GridProps {
-  gridRow: string;
-  gridColumn: string;
-}
-
-type DisplayScheduleItem = ScheduleItem & GridProps;
-
-const displaySchedules = computed(() => {
-  return props.schedules
-    .map((schedule) => {
-      const startHour = schedule.start.hour;
-      const endHour = schedule.end.hour;
-
-      // 設定した範囲飛び越えた瞬間削除
-      if (startHour < props.startHour || endHour > props.endHour)
-        return undefined;
-
-      const startMinute = Math.floor(schedule.start.minute / 15) * 15;
-      const endMinute = Math.floor(schedule.end.minute / 15) * 15;
-
-      // 設定した範囲飛び越えた瞬間削除
-      if (
-        startMinute < 0 ||
-        startMinute > 45 ||
-        endMinute < 0 ||
-        endMinute > 45
-      )
-        return undefined;
-
-      const startRow =
-        (startHour - props.startHour) * constants.SCHEDULE_STEPS_PER_HOUR +
-        startMinute / 15 +
-        1;
-
-      const endRow =
-        (endHour - props.startHour) * constants.SCHEDULE_STEPS_PER_HOUR +
-        endMinute / 15 +
-        1;
-
-      const day = 0;
-
-      if (startHour * 60 + startMinute > endHour * 60 + endMinute) {
-        return undefined;
-      }
-
-      const gridProps: GridProps = {
-        gridRow: `${startRow} / ${endRow}`,
-        gridColumn: `${day + 1} / ${day + 2}`,
-      };
-
-      return {
-        ...schedule,
-        ...gridProps,
-      };
-    })
-    .filter((x): x is DisplayScheduleItem => x !== undefined);
+const colsCount = computed(() => {
+  return Math.max(...props.schedules.map((schedule) => schedule.col));
 });
+
+const getRowFromTime = (time: ScheduleTime) => {
+  return (
+    time.hour * constants.SCHEDULE_STEPS_PER_HOUR +
+    (time.minute / 60) * constants.SCHEDULE_STEPS_PER_HOUR
+  );
+};
+
+const getGridRow = (start: ScheduleTime, end: ScheduleTime, name: string) => {
+  if (start.hour < props.startHour) {
+    console.warn(constants.WARN_SCHEDULE_START_HOUR(props.startHour, name));
+    return null;
+  }
+
+  if (
+    end.hour > props.endHour ||
+    (end.hour === props.endHour && end.minute > 0)
+  ) {
+    console.warn(constants.WARN_SCHEDULE_END_HOUR(props.endHour, name));
+    return null;
+  }
+
+  if (
+    start.hour > end.hour ||
+    (start.hour === end.hour && start.minute > end.minute)
+  ) {
+    console.warn(constants.WARN_SCHEDULE_START_LATER_THAN_END(name));
+    return null;
+  }
+
+  const steppedStart = getSteppedTime(start, constants.SCHEDULE_STEPS_PER_HOUR);
+  const steppedEnd = getSteppedTime(end, constants.SCHEDULE_STEPS_PER_HOUR);
+
+  const startRow =
+    getRowFromTime(steppedStart) -
+    getRowFromTime({
+      hour: props.startHour,
+      minute: 0,
+    });
+  const endRow =
+    getRowFromTime(steppedEnd) -
+    getRowFromTime({
+      hour: props.startHour,
+      minute: 0,
+    });
+
+  if (startRow === endRow) {
+    return `${startRow + 1} / ${endRow + 2}`;
+  }
+
+  return `${startRow + 1} / ${endRow + 1}`;
+};
 </script>

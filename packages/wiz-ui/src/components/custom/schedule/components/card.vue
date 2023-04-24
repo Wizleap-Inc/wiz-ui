@@ -1,5 +1,9 @@
 <template>
-  <div :class="[styles.card[variant]]" :style="{ gridRow, gridColumn }">
+  <div
+    :class="[styles.card[variant]]"
+    :style="{ gridRow, gridColumn }"
+    v-show="show"
+  >
     {{ showText ? text : "" }}
   </div>
 </template>
@@ -28,6 +32,11 @@ const props = defineProps({
   gridColumn: {
     type: String,
     required: true,
+  },
+  show: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
 });
 

@@ -4,7 +4,6 @@
     <WizScheduleGrid
       :startHour="startHour"
       :endHour="endHour"
-      :colsCount="1"
       :schedules="schedules"
     />
   </div>

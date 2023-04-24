@@ -40,6 +40,7 @@ const Template: StoryFn<typeof WizSchedule> = (_, { argTypes }) => ({
 const schedules = [
   {
     id: "1",
+    col: 1,
     start: {
       hour: 9,
       minute: 0,
@@ -53,6 +54,7 @@ const schedules = [
   },
   {
     id: "2",
+    col: 1,
     start: {
       hour: 9,
       minute: 30,
@@ -66,6 +68,7 @@ const schedules = [
   },
   {
     id: "3",
+    col: 1,
     start: {
       hour: 10,
       minute: 30,
@@ -79,6 +82,7 @@ const schedules = [
   },
   {
     id: "4",
+    col: 1,
     start: {
       hour: 12,
       minute: 0,
@@ -92,6 +96,7 @@ const schedules = [
   },
   {
     id: "5",
+    col: 1,
     start: {
       hour: 14,
       minute: 0,
@@ -105,6 +110,7 @@ const schedules = [
   },
   {
     id: "6",
+    col: 1,
     start: {
       hour: 16,
       minute: 30,
@@ -118,6 +124,7 @@ const schedules = [
   },
   {
     id: "7",
+    col: 1,
     start: {
       hour: 19,
       minute: 30,
@@ -128,6 +135,48 @@ const schedules = [
     },
     variant: "primary",
     text: "Schedule 7 (19:30 - 21:15)",
+  },
+  {
+    id: "8",
+    col: 2,
+    start: {
+      hour: 20,
+      minute: 59,
+    },
+    end: {
+      hour: 21,
+      minute: 30,
+    },
+    variant: "primary",
+    text: "Schedule 8 (20:59 - 21:30)",
+  },
+  {
+    id: "9",
+    col: 2,
+    start: {
+      hour: 8,
+      minute: 0,
+    },
+    end: {
+      hour: 21,
+      minute: 59,
+    },
+    variant: "primary",
+    text: "Schedule 9 (8:00 - 21:59)",
+  },
+  {
+    id: "10",
+    col: 3,
+    start: {
+      hour: 15,
+      minute: 13,
+    },
+    end: {
+      hour: 22,
+      minute: 0,
+    },
+    variant: "primary",
+    text: "Schedule 10 (15:28 - 22:00)",
   },
 ] satisfies Schedule;
 

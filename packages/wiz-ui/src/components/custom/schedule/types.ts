@@ -1,14 +1,18 @@
 export type ScheduleCardVariant = "primary" | "secondary" | "tertiary";
 
-export type ScheduleHourMinute = {
-  hour: number;
-  minute: number;
+type _ScheduleHour = number;
+type _ScheduleMinute = number;
+
+export type ScheduleTime = {
+  hour: _ScheduleHour;
+  minute: _ScheduleMinute;
 };
 
 export interface ScheduleItem {
   id: string;
-  start: ScheduleHourMinute;
-  end: ScheduleHourMinute;
+  col: number;
+  start: ScheduleTime;
+  end: ScheduleTime;
   text: string;
   variant?: ScheduleCardVariant;
 }
