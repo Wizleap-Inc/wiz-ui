@@ -8,8 +8,8 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "postinstall": {
-      "dependsOn": ["^postinstall"],
+    "build:tools": {
+      "dependsOn": ["^build:tools"],
       "outputs": ["dist/**"]
     },
     "build:storybook": {
