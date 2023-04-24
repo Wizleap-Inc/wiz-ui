@@ -9,7 +9,7 @@
       ]"
       :style="{
         inset,
-        transform: popupTranslate,
+        transform: `${popupTranslate} translateZ(0)`,
       }"
       ref="popupRef"
       @mouseleave="mouseLeave"
