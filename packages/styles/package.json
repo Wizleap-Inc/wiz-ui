@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "vite build",
-    "postinstall": "pnpm run build"
+    "build:tools": "pnpm run build"
   },
   "dependencies": {
     "@wizleap-inc/wiz-ui-constants": "*"

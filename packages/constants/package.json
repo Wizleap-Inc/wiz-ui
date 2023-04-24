@@ -9,6 +9,6 @@
   ],
   "scripts": {
     "build": "vite build",
-    "postinstall": "pnpm run build"
+    "build:tools": "pnpm run build"
   }
 }
