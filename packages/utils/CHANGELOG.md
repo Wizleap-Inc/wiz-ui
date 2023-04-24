@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-utils
 
+## 0.1.1
+
+### Patch Changes
+
+- [#662](https://github.com/Wizleap-Inc/wiz-ui/pull/662) [`d294e894`](https://github.com/Wizleap-Inc/wiz-ui/commit/d294e89421fd51c366e771f86b74a56a77c9a314) Thanks [@sor4chi](https://github.com/sor4chi)! - ts をビルドしたコードを提供するように修正
+
 ## 0.1.0
 
 ### Minor Changes
