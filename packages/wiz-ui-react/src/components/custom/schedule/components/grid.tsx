@@ -11,6 +11,7 @@ interface Props {
   startHour: number;
   endHour: number;
   schedules: ScheduleItem[];
+  onScheduleClick?: (id: string) => void;
 }
 
 const getRowFromTime = (time: ScheduleTime) => {
@@ -20,7 +21,12 @@ const getRowFromTime = (time: ScheduleTime) => {
   );
 };
 
-export const WizScheduleGrid = ({ startHour, endHour, schedules }: Props) => {
+export const WizScheduleGrid = ({
+  startHour,
+  endHour,
+  schedules,
+  onScheduleClick,
+}: Props) => {
   const colsCount = Math.max(...schedules.map((schedule) => schedule.col));
   const getGridRow = (start: ScheduleTime, end: ScheduleTime, name: string) => {
     if (start.hour < startHour) {
@@ -77,6 +83,7 @@ export const WizScheduleGrid = ({ startHour, endHour, schedules }: Props) => {
       {schedules.map((schedule) => (
         <WizScheduleCard
           key={schedule.id}
+          id={schedule.id}
           text={schedule.text}
           variant={schedule.variant}
           gridRow={
@@ -86,7 +93,8 @@ export const WizScheduleGrid = ({ startHour, endHour, schedules }: Props) => {
           show={
             getGridRow(schedule.start, schedule.end, schedule.text) !== null
           }
-        ></WizScheduleCard>
+          onScheduleClick={onScheduleClick}
+        />
       ))}
     </div>
   );

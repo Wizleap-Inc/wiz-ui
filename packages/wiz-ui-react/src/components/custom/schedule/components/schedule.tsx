@@ -10,12 +10,14 @@ interface Props {
   startHour?: number;
   endHour?: number;
   schedules?: Schedule;
+  onScheduleClick?: (id: string) => void;
 }
 
 export const WizSchedule = ({
   startHour = constants.DEFAULT_SCHEDULE_HOUR_START,
   endHour = constants.DEFAULT_SCHEDULE_HOUR_END,
   schedules = [],
+  onScheduleClick,
 }: Props) => {
   return (
     <div className={styles.schedule}>
@@ -24,6 +26,7 @@ export const WizSchedule = ({
         startHour={startHour}
         endHour={endHour}
         schedules={schedules}
+        onScheduleClick={onScheduleClick}
       />
     </div>
   );
