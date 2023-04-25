@@ -137,7 +137,7 @@ const schedules = [
   },
   {
     id: "9",
-    col: 2,
+    col: 3,
     start: {
       hour: 8,
       minute: 0,
@@ -151,7 +151,7 @@ const schedules = [
   },
   {
     id: "10",
-    col: 3,
+    col: 4,
     start: {
       hour: 15,
       minute: 13,
