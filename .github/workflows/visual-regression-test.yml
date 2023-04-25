@@ -30,6 +30,9 @@ jobs:
       - name: Install fonts
         run: sudo apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
 
+      - name: Set main branch as upstream
+        run: git branch --set-upstream-to=origin/main main
+
       - name: workaround for detached HEAD
         run: |
           git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
