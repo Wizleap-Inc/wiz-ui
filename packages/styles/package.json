@@ -12,6 +12,6 @@
     "build:tools": "pnpm run build"
   },
   "dependencies": {
-    "@wizleap-inc/wiz-ui-constants": "*"
+    "@wizleap-inc/wiz-ui-constants": "workspace:*"
   }
 }

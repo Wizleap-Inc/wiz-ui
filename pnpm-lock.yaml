@@ -152,10 +152,10 @@ importers:
   docs:
     dependencies:
       '@wizleap-inc/vuepress-plugin-wiz-ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../packages/vuepress-plugin-wiz-ui
       '@wizleap-inc/wiz-ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../packages/wiz-ui
     devDependencies:
       vuepress:
@@ -168,7 +168,7 @@ importers:
   examples/vue2:
     dependencies:
       '@wizleap-inc/wiz-ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/wiz-ui
       vue:
         specifier: ^2.7.14
@@ -187,7 +187,7 @@ importers:
   examples/vue3:
     dependencies:
       '@wizleap-inc/wiz-ui-next':
-        specifier: '*'
+        specifier: 'workspace:'
         version: link:../../packages/wiz-ui-next
       vue:
         specifier: ^3.2.45
@@ -227,7 +227,7 @@ importers:
   packages/styles:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../constants
 
   packages/utils: {}
@@ -235,7 +235,7 @@ importers:
   packages/vuepress-plugin-wiz-ui:
     dependencies:
       '@wizleap-inc/wiz-ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../wiz-ui
       markdown-it-container:
         specifier: ^2.0.0
@@ -11474,7 +11474,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
+    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
