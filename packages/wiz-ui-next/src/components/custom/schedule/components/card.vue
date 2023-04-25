@@ -3,6 +3,7 @@
     :class="[styles.card[variant]]"
     :style="{ gridRow, gridColumn }"
     v-show="show"
+    @click="emits('scheduleClick', id)"
   >
     {{ displayText }}
   </div>
@@ -16,6 +17,10 @@ import { PropType, computed } from "vue";
 import { ScheduleCardVariant } from "../types";
 
 const props = defineProps({
+  id: {
+    type: String,
+    required: true,
+  },
   variant: {
     type: String as PropType<ScheduleCardVariant>,
     default: "primary",
@@ -43,6 +48,12 @@ const props = defineProps({
 defineOptions({
   name: ComponentName.ScheduleCard,
 });
+
+interface Emits {
+  (e: "scheduleClick", id: string): void;
+}
+
+const emits = defineEmits<Emits>();
 
 const displayText = computed(() => {
   const [start, end] = props.gridRow

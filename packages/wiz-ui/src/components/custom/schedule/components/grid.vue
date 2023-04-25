@@ -11,11 +11,13 @@
     <WizScheduleCard
       v-for="schedule in schedules"
       :key="schedule.id"
+      :id="schedule.id"
       :text="schedule.text"
       :variant="schedule.variant"
       :gridRow="getGridRow(schedule.start, schedule.end, schedule.text) || ''"
       :gridColumn="`${schedule.col} / ${schedule.col + 1}`"
       :show="getGridRow(schedule.start, schedule.end, schedule.text) !== null"
+      @scheduleClick="emits('scheduleClick', $event)"
     ></WizScheduleCard>
   </div>
 </template>
@@ -35,6 +37,12 @@ import { WizScheduleCard } from ".";
 defineOptions({
   name: ComponentName.ScheduleGrid,
 });
+
+interface Emits {
+  (e: "scheduleClick", id: string): void;
+}
+
+const emits = defineEmits<Emits>();
 
 const props = defineProps({
   startHour: {

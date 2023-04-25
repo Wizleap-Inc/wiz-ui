@@ -5,6 +5,7 @@
       :startHour="startHour"
       :endHour="endHour"
       :schedules="schedules"
+      @scheduleClick="emits('scheduleClick', $event)"
     />
   </div>
 </template>
@@ -40,4 +41,10 @@ defineProps({
 defineOptions({
   name: ComponentName.Schedule,
 });
+
+interface Emits {
+  (e: "scheduleClick", id: string): void;
+}
+
+const emits = defineEmits<Emits>();
 </script>
