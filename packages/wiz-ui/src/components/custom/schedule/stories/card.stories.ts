@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue";
+import { StoryFn } from "@storybook/vue";
 
 import { WizScheduleCard } from "..";
 
@@ -23,7 +23,7 @@ export default {
       action: "click",
     },
   },
-} satisfies Meta<typeof WizScheduleCard>;
+};
 
 const Template: StoryFn<typeof WizScheduleCard> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),

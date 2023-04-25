@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue";
+import { StoryFn } from "@storybook/vue";
 
 import {
   WizSchedule,
@@ -27,7 +27,7 @@ export default {
       control: { type: "array" },
     },
   },
-} satisfies Meta<typeof WizSchedule>;
+};
 
 const Template: StoryFn<typeof WizSchedule> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
