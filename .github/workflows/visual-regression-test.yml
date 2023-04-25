@@ -51,7 +51,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: run storybook generate
-        run: pnpm build:storybook
+        run: pnpm storybook:build
 
       - name: run storycap
         run: pnpm storycap
