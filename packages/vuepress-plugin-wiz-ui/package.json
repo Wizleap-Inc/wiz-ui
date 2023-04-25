@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "src/index.js",
   "dependencies": {
-    "@wizleap-inc/wiz-ui": "*",
+    "@wizleap-inc/wiz-ui": "workspace:*",
     "markdown-it-container": "^2.0.0"
   },
   "devDependencies": {
