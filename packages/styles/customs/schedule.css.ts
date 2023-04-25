@@ -38,6 +38,11 @@ export const card = styleVariants({
   ],
 });
 
+export const buttonCard = style({
+  border: "none",
+  cursor: "pointer",
+});
+
 export const sheet = style({
   width: "100%",
   borderSpacing: 0,
