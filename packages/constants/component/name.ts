@@ -26,6 +26,7 @@ export const ComponentName = {
   NavigationItem: "WizNavigationItem",
   PopupContainer: "WizPopupContainer",
   Popup: "WizPopup",
+  PopupCloseButton: "WizPopupCloseButton",
   Header: "WizHeader",
   Heading: "WizHeading",
   HStack: "WizHStack",
