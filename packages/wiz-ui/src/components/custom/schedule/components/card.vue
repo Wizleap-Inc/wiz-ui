@@ -4,7 +4,7 @@
     :style="{ gridRow, gridColumn }"
     v-show="show"
   >
-    {{ showText ? text : "" }}
+    {{ displayText }}
   </div>
 </template>
 
@@ -44,11 +44,11 @@ defineOptions({
   name: ComponentName.ScheduleCard,
 });
 
-const showText = computed(() => {
+const displayText = computed(() => {
   const [start, end] = props.gridRow
     .split("/")
     .map((x) => x.trim())
     .map(Number);
-  return end - start > 2;
+  return end - start > 2 ? props.text : "";
 });
 </script>
