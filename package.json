@@ -7,10 +7,12 @@
     "release": "changeset publish",
     "build": "turbo build",
     "build:storybook": "turbo build:storybook",
+    "build:tools": "turbo build:tools",
     "dev": "turbo dev --parallel",
     "test": "turbo test",
     "vrt": "reg-suit run",
-    "storycap": "turbo storycap"
+    "storycap": "turbo storycap",
+    "postinstall": "turbo build:tools"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,vue}": [
@@ -42,6 +44,7 @@
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.7.0",
     "http-server": "^14.1.1",
@@ -60,7 +63,7 @@
     "rimraf": "^3.0.2",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-visualizer": "^5.9.0",
-    "storybook": "^7.0.0-rc.9",
+    "storybook": "^7.0.2",
     "storycap": "^4.0.0",
     "turbo": "^1.8.7",
     "typescript": "^5.0.2",

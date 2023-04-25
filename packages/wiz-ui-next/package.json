@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-next",
-  "version": "1.0.5",
+  "version": "1.2.1",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "run-p build:*",
@@ -33,9 +33,9 @@
   "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@wizleap-inc/wiz-ui-constants": "*",
-    "@wizleap-inc/wiz-ui-styles": "*",
-    "@wizleap-inc/wiz-ui-utils": "*",
+    "@wizleap-inc/wiz-ui-constants": "workspace:*",
+    "@wizleap-inc/wiz-ui-styles": "workspace:*",
+    "@wizleap-inc/wiz-ui-utils": "workspace:*",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   }
