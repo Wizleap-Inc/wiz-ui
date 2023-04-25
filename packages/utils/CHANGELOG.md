@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-utils
 
+## 0.1.2
+
+### Patch Changes
+
+- [#665](https://github.com/Wizleap-Inc/wiz-ui/pull/665) [`2868f46f`](https://github.com/Wizleap-Inc/wiz-ui/commit/2868f46f560697c1ad3049137ec943fe35649577) Thanks [@sor4chi](https://github.com/sor4chi)! - postinstall の命名を改修、使う側で npm install した時に発火しないようにした
+
 ## 0.1.1
 
 ### Patch Changes
