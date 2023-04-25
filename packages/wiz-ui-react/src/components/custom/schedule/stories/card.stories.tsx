@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { WizScheduleCard } from "..";
 
-const meta = {
+const meta: Meta<typeof WizScheduleCard> = {
   title: "Custom/Schedule/Card",
   component: WizScheduleCard,
   argTypes: {
@@ -36,9 +36,10 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof WizScheduleCard>;
+};
 
 export default meta;
+
 type Story = StoryObj<typeof WizScheduleCard>;
 
 const COMMON_ARGS = {

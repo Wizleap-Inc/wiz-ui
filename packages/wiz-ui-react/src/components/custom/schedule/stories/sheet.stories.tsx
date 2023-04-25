@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { WizScheduleSheet } from "..";
 
-const meta = {
+const meta: Meta<typeof WizScheduleSheet> = {
   title: "Custom/Schedule/Sheet",
   component: WizScheduleSheet,
   argTypes: {
@@ -13,9 +13,10 @@ const meta = {
       control: { type: "number" },
     },
   },
-} satisfies Meta<typeof WizScheduleSheet>;
+};
 
 export default meta;
+
 type Story = StoryObj<typeof WizScheduleSheet>;
 
 export const CustomRange: Story = {
