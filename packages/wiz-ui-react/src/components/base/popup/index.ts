@@ -1,6 +1,6 @@
 export {
   WizPopup,
-  WizPopupClose,
+  WizPopupCloseButton,
   WizPopupContent,
   WizPopupTrigger,
 } from "./components";
