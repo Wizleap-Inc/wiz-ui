@@ -4,7 +4,7 @@ type TPopupContext = {
   isOpen: boolean;
   openPopup: () => void;
   closePopup: () => void;
-  triggerRef: RefObject<HTMLDivElement>;
+  triggerRef: RefObject<HTMLElement>;
 };
 
 export const PopupContext = createContext<TPopupContext | null>(null);
