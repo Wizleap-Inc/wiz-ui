@@ -7,10 +7,12 @@
     "release": "changeset publish",
     "build": "turbo build",
     "build:storybook": "turbo build:storybook",
+    "build:tools": "turbo build:tools",
     "dev": "turbo dev --parallel",
     "test": "turbo test",
     "vrt": "reg-suit run",
-    "storycap": "turbo storycap"
+    "storycap": "turbo storycap",
+    "postinstall": "turbo build:tools"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,vue}": [
