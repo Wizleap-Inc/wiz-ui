@@ -139,8 +139,26 @@ export const Unit = Template.bind({});
 Unit.args = {
   data: DUMMY_DATA,
   unit: "%",
+  unitPosition: "intersection",
 };
 Unit.parameters = {
+  docs: {
+    description: {
+      story: `単位を設定できます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const UnitVerticalAxis = Template.bind({});
+UnitVerticalAxis.args = {
+  data: DUMMY_DATA,
+  unit: "%",
+  unitPosition: "vertical",
+};
+UnitVerticalAxis.parameters = {
   docs: {
     description: {
       story: `単位を設定できます。`,
