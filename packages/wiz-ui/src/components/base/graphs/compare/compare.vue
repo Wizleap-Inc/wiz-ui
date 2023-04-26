@@ -14,6 +14,8 @@
         :key="barData.label"
         :barGap="barGap"
         :barGroupWidth="barGroupWidth"
+        :label-gap="labelGap"
+        :label-rotation="labelRotation"
       />
     </div>
     <div :class="summaryLabelStyle">
@@ -23,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   graphBodyStyle,
   summaryLabelStyle,
@@ -86,6 +88,24 @@ const props = defineProps({
     type: String as PropType<"vertical" | "intersection" | "no">,
     required: false,
     default: "no",
+  },
+  /**
+   * 横軸ラベルの垂直方向の移動量を指定します。
+   * @default no
+   */
+  labelGap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  /**
+   * 横軸ラベルの回転角(°)を指定します。負の値を指定すると反時計回りに回転します。
+   * @default 0
+   */
+  labelRotation: {
+    type: Number,
+    required: false,
+    default: 0,
   },
 });
 
