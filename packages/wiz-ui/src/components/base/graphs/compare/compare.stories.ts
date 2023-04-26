@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from "@storybook/vue";
+import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { CompareGraphData } from "./types";
 
@@ -10,6 +11,14 @@ export default {
   argTypes: {
     data: {
       control: { type: "array" },
+    },
+    unitPosition: {
+      control: { type: "select" },
+      options: ["vertical", "intersection", "no"],
+    },
+    labelGap: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
     },
   },
 } as Meta<typeof WizCompareGraph>;
