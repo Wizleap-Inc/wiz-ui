@@ -12,7 +12,7 @@
       "dependsOn": ["^build:tools"],
       "outputs": ["dist/**"]
     },
-    "build:storybook": {
+    "storybook:build": {
       "dependsOn": ["^storybook:build"],
       "outputs": ["storybook-static/**"]
     },
