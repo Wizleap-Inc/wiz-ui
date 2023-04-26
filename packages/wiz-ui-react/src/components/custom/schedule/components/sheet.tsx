@@ -1,3 +1,4 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as constants from "@wizleap-inc/wiz-ui-constants/component/custom/schedule";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/schedule.css";
 import { formatNumHourToTime } from "@wizleap-inc/wiz-ui-utils";
@@ -41,3 +42,5 @@ export const WizScheduleSheet = ({ startHour, endHour }: Props) => {
     </table>
   );
 };
+
+WizScheduleSheet.displayName = ComponentName.ScheduleSheet;

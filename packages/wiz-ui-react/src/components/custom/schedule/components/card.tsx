@@ -1,3 +1,4 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/schedule.css";
 import { clsx } from "clsx";
 
@@ -53,3 +54,5 @@ export const WizScheduleCard = ({
     </button>
   );
 };
+
+WizScheduleCard.displayName = ComponentName.ScheduleCard;

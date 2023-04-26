@@ -1,3 +1,4 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as constants from "@wizleap-inc/wiz-ui-constants/component/custom/schedule";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/schedule.css";
 
@@ -99,3 +100,5 @@ export const WizScheduleGrid = ({
     </div>
   );
 };
+
+WizScheduleGrid.displayName = ComponentName.ScheduleGrid;
