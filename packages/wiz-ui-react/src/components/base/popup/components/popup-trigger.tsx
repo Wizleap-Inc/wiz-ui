@@ -1,4 +1,4 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ERROR_MESSAGES } from "@wizleap-inc/wiz-ui-constants";
 import {
   Children,
   MouseEventHandler,
@@ -18,7 +18,7 @@ type Props = {
 const _PopupTrigger = (props: Props) => {
   const popupContext = useContext(PopupContext);
   if (!popupContext)
-    throw new Error("PopupTrigger must be used inside PopupContainer");
+    throw new Error(ERROR_MESSAGES.POPUP.INVALID_POPUP_CLOSE_BUTTON_USAGE);
   const { isOpen, openPopup, closePopup, triggerRef } = popupContext;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const child: any = Children.only(props.children);

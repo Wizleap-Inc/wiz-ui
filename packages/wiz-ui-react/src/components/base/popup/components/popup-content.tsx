@@ -3,6 +3,7 @@ import {
   SpacingKeys,
   getSpacingCss,
   ComponentName,
+  ERROR_MESSAGES,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
@@ -257,7 +258,7 @@ const _PopupContent = ({
   ...props
 }: Props) => {
   const ctx = useContext(PopupContext);
-  if (!ctx) throw new Error("PopupContent must be used inside PopupContainer");
+  if (!ctx) throw new Error(ERROR_MESSAGES.POPUP.INVALID_POPUP_CONTENT_USAGE);
 
   const contentRef = useRef<HTMLDivElement | null>(null);
   if (closeOnBlur) useClickOutside(contentRef, ctx.closePopup, ctx.triggerRef);

@@ -1,4 +1,4 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ERROR_MESSAGES } from "@wizleap-inc/wiz-ui-constants";
 import {
   ComponentProps,
   ForwardedRef,
@@ -18,7 +18,7 @@ const _PopupCloseButton = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLButtonElement>) => {
     const popupContext = useContext(PopupContext);
     if (!popupContext)
-      throw new Error("PopupTrigger must be used inside PopupContainer");
+      throw new Error(ERROR_MESSAGES.POPUP.INVALID_POPUP_CLOSE_BUTTON_USAGE);
     const { closePopup } = popupContext;
     return <button {...props} ref={ref} onClick={closePopup} />;
   }

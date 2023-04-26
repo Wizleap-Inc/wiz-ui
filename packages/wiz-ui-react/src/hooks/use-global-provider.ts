@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from "@wizleap-inc/wiz-ui-constants";
 import { createContext, useContext } from "react";
 
 type TGlobalContext = {
@@ -6,16 +7,14 @@ type TGlobalContext = {
 
 export const GlobalContext = createContext<TGlobalContext | null>(null);
 
-export const useGlobalProvider = () => {
-  return {};
-};
+// export const useGlobalProvider = () => {
+//   return {};
+// };
 
 export const useGlobal = () => {
   const ctx = useContext(GlobalContext);
   if (!ctx) {
-    throw new Error(
-      `Global Providerは必ずApp.tsx等のreactエントリーポイントファイルでprovideされている必要があります。`
-    );
+    throw new Error(ERROR_MESSAGES.USE_GLOBAL.INVALID_USAGE);
   }
   return ctx;
 };
