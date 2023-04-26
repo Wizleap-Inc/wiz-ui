@@ -3,15 +3,14 @@
   "version": "0.2.1",
   "description": "A React UI Framework for Wizleap Inc.",
   "scripts": {
-    "build": "run-p build:*",
-    "build:lib": "tsc --noEmit && vite build",
-    "build:storybook": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
+    "build": "tsc --noEmit && vite build",
+    "dev": "pnpm storybook:dev",
+    "test": "run-p storybook:test",
     "check:lib-publish": "can-npm-publish --verbose",
-    "dev": "run-p dev:*",
-    "dev:storybook": "storybook dev -p 6008",
-    "test": "run-p test:storybook",
-    "test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6008 --silent\" \"wait-on tcp:6008 && test-storybook --url http://localhost:6008\"",
-    "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6008' http://localhost:6008"
+    "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6008' http://localhost:6008",
+    "storybook:build": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
+    "storybook:dev": "storybook dev -p 6008",
+    "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6008 --silent\" \"wait-on tcp:6008 && test-storybook --url http://localhost:6008\""
   },
   "devDependencies": {
     "@storybook/react": "^7.0.2",

@@ -31,8 +31,9 @@ jobs:
         run: sudo apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
 
       - name: workaround for detached HEAD
+        if: ${{ github.event_name == 'pull_request' }}
         run: |
-          git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
+          git checkout ${GITHUB_HEAD_REF#refs/heads/} || git checkout -b ${GITHUB_HEAD_REF#refs/heads/} && git pull
 
       - name: Get installed Playwright version
         id: playwright-version
@@ -51,7 +52,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: run storybook generate
-        run: pnpm build:storybook
+        run: pnpm storybook:build
 
       - name: run storycap
         run: pnpm storycap
