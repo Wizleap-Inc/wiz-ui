@@ -1,3 +1,4 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import clsx from "clsx";
 import { ReactNode, memo, useRef } from "react";
@@ -31,5 +32,7 @@ const _Popup = ({ ...props }: Props) => {
     </PopupContext.Provider>
   );
 };
+
+_Popup.displayName = ComponentName.Popup;
 
 export const WizPopup = memo(_Popup);

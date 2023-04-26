@@ -1,8 +1,10 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   Children,
   MouseEventHandler,
   ReactNode,
   cloneElement,
+  memo,
   useContext,
 } from "react";
 
@@ -13,7 +15,7 @@ type Props = {
   onClick?: MouseEventHandler;
 };
 
-export const WizPopupTrigger = (props: Props) => {
+const _PopupTrigger = (props: Props) => {
   const popupContext = useContext(PopupContext);
   if (!popupContext)
     throw new Error("PopupTrigger must be used inside PopupContainer");
@@ -30,3 +32,7 @@ export const WizPopupTrigger = (props: Props) => {
     ref: triggerRef,
   });
 };
+
+_PopupTrigger.displayName = ComponentName.PopupTrigger;
+
+export const WizPopupTrigger = memo(_PopupTrigger);

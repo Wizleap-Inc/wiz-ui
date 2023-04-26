@@ -4,6 +4,7 @@ import {
   ForwardedRef,
   ReactNode,
   forwardRef,
+  memo,
   useContext,
 } from "react";
 
@@ -25,4 +26,4 @@ const _PopupCloseButton = forwardRef(
 
 _PopupCloseButton.displayName = ComponentName.PopupCloseButton;
 
-export const WizPopupCloseButton = _PopupCloseButton;
+export const WizPopupCloseButton = memo(_PopupCloseButton);

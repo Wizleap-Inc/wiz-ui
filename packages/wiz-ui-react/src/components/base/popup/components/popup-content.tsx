@@ -2,6 +2,7 @@ import {
   ZIndexKeys,
   SpacingKeys,
   getSpacingCss,
+  ComponentName,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
@@ -318,5 +319,7 @@ const _PopupContent = ({
     </WizPortal>
   );
 };
+
+_PopupContent.displayName = ComponentName.PopupContent;
 
 export const WizPopupContent = memo(_PopupContent);
