@@ -28,7 +28,6 @@ import {
   graphSideLabelPositionStyle,
   graphContainerBodyStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/compare-graph.css";
-import { PropType } from "vue";
 
 defineProps({
   maxFrequency: {
@@ -42,11 +41,6 @@ defineProps({
   annotationUnit: {
     type: String,
     required: false,
-  },
-  unitPosition: {
-    type: String as PropType<"vertical" | "intersection" | "no">,
-    required: false,
-    default: "no",
   },
 });
 </script>
