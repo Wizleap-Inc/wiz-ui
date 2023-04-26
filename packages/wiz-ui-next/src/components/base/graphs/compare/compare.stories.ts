@@ -22,7 +22,7 @@ export default {
 
 const DUMMY_DATA: CompareGraphData[] = [
   {
-    label: "2022/5",
+    label: "dog",
     data: [
       {
         id: "green_1",
@@ -45,7 +45,7 @@ const DUMMY_DATA: CompareGraphData[] = [
     ],
   },
   {
-    label: "2022/6",
+    label: "red apple",
     data: [
       {
         id: "red_1",
@@ -68,7 +68,7 @@ const DUMMY_DATA: CompareGraphData[] = [
     ],
   },
   {
-    label: "2022/7",
+    label: "yellow banana",
     data: [
       {
         id: "blue_1",
@@ -144,11 +144,44 @@ frequencyの値が一番大きいdataが最大値となるようにグラフが�
 export const Unit = Template.bind({});
 Unit.args = {
   unit: "%",
+  unitPosition: "intersection",
 };
 Unit.parameters = {
   docs: {
     description: {
       story: `単位を設定できます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const UnitVerticalAxis = Template.bind({});
+UnitVerticalAxis.args = {
+  unit: "%",
+  unitPosition: "vertical",
+};
+UnitVerticalAxis.parameters = {
+  docs: {
+    description: {
+      story: `縦軸にラベルを設定できます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const LabelX = Template.bind({});
+LabelX.args = {
+  labelGap: "sm",
+  labelRotation: -40,
+};
+LabelX.parameters = {
+  docs: {
+    description: {
+      story: `ラベルを垂直方向に移動・回転できます。`,
     },
     source: {
       code: CODE_TEMPLATE({}),

@@ -1,6 +1,13 @@
 <template>
   <div :class="graphBarStyle">
-    <span :class="graphBarLabelStyle">{{ label }}</span>
+    <span
+      :class="graphBarLabelStyle"
+      ref="labelRef"
+      :style="{
+        transform: labelTransformStyle,
+      }"
+      >{{ label }}</span
+    >
     <div
       v-for="bar in bars"
       :key="bar.id"
@@ -24,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import { SpacingKeys, getSpacingCss } from "@wizleap-inc/wiz-ui-constants";
 import {
   graphBarItemStyle,
   graphBarLabelStyle,
@@ -41,6 +49,16 @@ const props = defineProps({
   label: {
     type: String,
     required: true,
+  },
+  labelGap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  labelRotation: {
+    type: Number,
+    required: false,
+    default: 0,
   },
   data: {
     type: Object as PropType<CompareGraphData>,
@@ -66,6 +84,7 @@ const props = defineProps({
 
 const barRefs = ref<HTMLElement[]>();
 const barFrequencyRefs = ref<HTMLElement[]>();
+const labelRef = ref<HTMLElement>();
 
 const updateBarItemCurrentHeight = () => {
   const barElms = barRefs.value;
@@ -89,6 +108,16 @@ const updateBarItemCurrentHeight = () => {
     barFrequencyElm.style.color = "#606166";
   });
 };
+
+const labelTransformStyle = computed(() => {
+  if (!labelRef.value) return;
+  const theta = Math.PI * (props.labelRotation / 180);
+  const d = labelRef.value.clientWidth / 2;
+  return `
+    translateY(${d * Math.abs(Math.sin(theta))}px) 
+    translateY(${getSpacingCss(props.labelGap)})
+    rotate(${props.labelRotation}deg)`;
+});
 
 onMounted(() => {
   const barItemCurrentResizeObserver = new ResizeObserver(() => {

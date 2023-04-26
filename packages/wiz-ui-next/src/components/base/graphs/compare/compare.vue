@@ -1,5 +1,9 @@
 <template>
-  <Container :maxFrequency="maxFrequency" :annotationUnit="unit">
+  <Container
+    :maxFrequency="maxFrequency"
+    :annotationUnit="(unitPosition === 'intersection' && unit) || undefined"
+    :label-unit="(unitPosition === 'vertical' && unit) || undefined"
+  >
     <div :class="[graphBodyStyle]">
       <Bar
         v-for="(barData, i) in formattedBarData"
@@ -10,6 +14,8 @@
         :key="barData.label"
         :barGap="barGap"
         :barGroupWidth="barGroupWidth"
+        :label-gap="labelGap"
+        :label-rotation="labelRotation"
       />
     </div>
     <div :class="summaryLabelStyle">
@@ -19,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   graphBodyStyle,
   summaryLabelStyle,
@@ -66,6 +72,38 @@ const props = defineProps({
   unit: {
     type: String,
     required: false,
+  },
+  /**
+   * ラベルの単位の表示位置を指定します。
+   * @param {String} unitPosition - ラベルの単位の表示位置を指定します。以下のいずれかの値を指定できます:
+   *   - "vertical": 縦軸の目盛に対して単位を表示します。
+   *   - "intersection": 縦軸と横軸が交わる位置に単位を表示します。
+   *   - "no": 単位を表示しません。
+   * @default "no"
+   * @required false
+   */
+  unitPosition: {
+    type: String as PropType<"vertical" | "intersection" | "no">,
+    required: false,
+    default: "no",
+  },
+  /**
+   * 横軸ラベルの垂直方向の移動量を指定します。
+   * @default no
+   */
+  labelGap: {
+    type: String as PropType<SpacingKeys>,
+    required: false,
+    default: "no",
+  },
+  /**
+   * 横軸ラベルの回転角(°)を指定します。負の値を指定すると反時計回りに回転します。
+   * @default 0
+   */
+  labelRotation: {
+    type: Number,
+    required: false,
+    default: 0,
   },
 });
 
