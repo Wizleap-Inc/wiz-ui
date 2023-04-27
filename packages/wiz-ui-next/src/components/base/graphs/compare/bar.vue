@@ -1,13 +1,6 @@
 <template>
-  <div :class="graphBarStyle">
-    <span
-      :class="graphBarLabelStyle"
-      ref="labelRef"
-      :style="{
-        transform: labelTransformStyle,
-      }"
-      >{{ label }}</span
-    >
+  <div :class="graphBarStyle" ref="graphRef">
+    <span :class="graphBarLabelStyle" ref="labelRef">{{ label }}</span>
     <div
       v-for="bar in bars"
       :key="bar.id"
@@ -31,7 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import { SpacingKeys, getSpacingCss } from "@wizleap-inc/wiz-ui-constants";
 import {
   graphBarItemStyle,
   graphBarLabelStyle,
@@ -42,7 +34,14 @@ import {
   backgroundStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, computed, onMounted, ref } from "vue";
+import {
+  PropType,
+  computed,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
 
 import { CompareGraphData } from "./types";
 const props = defineProps({
@@ -50,12 +49,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  labelGap: {
-    type: String as PropType<SpacingKeys>,
-    required: false,
-    default: "no",
-  },
-  labelRotation: {
+  rotateStrength: {
     type: Number,
     required: false,
     default: 0,
@@ -85,6 +79,24 @@ const props = defineProps({
 const barRefs = ref<HTMLElement[]>();
 const barFrequencyRefs = ref<HTMLElement[]>();
 const labelRef = ref<HTMLElement>();
+const graphRef = ref<HTMLElement>();
+
+const updateLabelTransformStyle = () => {
+  if (!labelRef.value || !graphRef.value) return;
+  const w = graphRef.value.clientWidth;
+  const theta = (() => {
+    const x = Math.atan((props.rotateStrength * 50) / w);
+    const x2 = (Math.PI / 2) * ((Math.tanh(6 * x - 3) + 1) / 2);
+    const [minThreshold, maxThreshold] = [0.05, (Math.PI / 2) * 0.5];
+    const x3 = x2 < minThreshold ? 0 : x2;
+    const x4 = maxThreshold < x3 ? maxThreshold : x3;
+    return x4;
+  })();
+  const d = labelRef.value.clientWidth / 2;
+  labelRef.value.style.transform = `
+    translateY(${d * Math.abs(Math.sin(theta))}px)
+    rotate(-${theta}rad)`;
+};
 
 const updateBarItemCurrentHeight = () => {
   const barElms = barRefs.value;
@@ -109,24 +121,25 @@ const updateBarItemCurrentHeight = () => {
   });
 };
 
-const labelTransformStyle = computed(() => {
-  if (!labelRef.value) return;
-  const theta = Math.PI * (props.labelRotation / 180);
-  const d = labelRef.value.clientWidth / 2;
-  return `
-    translateY(${d * Math.abs(Math.sin(theta))}px) 
-    translateY(${getSpacingCss(props.labelGap)})
-    rotate(${props.labelRotation}deg)`;
-});
+const barItemCurrentResizeObserver = new ResizeObserver(
+  updateBarItemCurrentHeight
+);
+
+const graphResizeObserver = new ResizeObserver(updateLabelTransformStyle);
+
+watch(() => props.rotateStrength, updateLabelTransformStyle);
 
 onMounted(() => {
-  const barItemCurrentResizeObserver = new ResizeObserver(() => {
-    updateBarItemCurrentHeight();
-  });
   if (barRefs.value)
     barRefs.value.forEach((barItemCurrentRef) => {
       barItemCurrentResizeObserver.observe(barItemCurrentRef);
     });
+  if (graphRef.value) graphResizeObserver.observe(graphRef.value);
+});
+
+onBeforeUnmount(() => {
+  barItemCurrentResizeObserver.disconnect();
+  graphResizeObserver.disconnect();
 });
 
 const barWidth = computed(() => props.barGroupWidth / props.data.data.length);
