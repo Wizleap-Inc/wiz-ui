@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from "@storybook/vue";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { CompareGraphData } from "./types";
 
@@ -16,9 +15,8 @@ export default {
       control: { type: "select" },
       options: ["vertical", "intersection", "no"],
     },
-    labelGap: {
-      control: { type: "select" },
-      options: SPACING_ACCESSORS,
+    rotateStrength: {
+      control: { type: "number" },
     },
   },
 } as Meta<typeof WizCompareGraph>;
@@ -181,8 +179,7 @@ UnitVerticalAxis.parameters = {
 export const LabelX = Template.bind({});
 LabelX.args = {
   data: DUMMY_DATA,
-  labelGap: "sm",
-  labelRotation: -40,
+  rotationStrength: 1,
 };
 LabelX.parameters = {
   docs: {
