@@ -81,10 +81,14 @@ export const timePickerSelectorOptionTypeStyle = style({
 });
 
 export const timePickerSelectorOptionItemStyle = style({
-  ":hover": {
-    color: THEME.color.green["800"],
-    background: THEME.color.green["300"],
-    borderRadius: THEME.spacing.xs2,
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        color: THEME.color.green["800"],
+        background: THEME.color.green["300"],
+        borderRadius: THEME.spacing.xs2,
+      },
+    },
   },
   ":active": {
     color: THEME.color.white["800"],

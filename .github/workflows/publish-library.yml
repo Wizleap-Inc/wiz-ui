@@ -22,6 +22,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: "https://registry.npmjs.org"
+          scope: "@wizleap-inc"
+          always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: 📥 Monorepo install
         uses: ./.github/composite/prepare_node
