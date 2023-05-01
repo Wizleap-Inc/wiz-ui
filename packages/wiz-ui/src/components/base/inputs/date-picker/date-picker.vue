@@ -20,6 +20,39 @@
     <WizPopup :isOpen="openDatepicker" @onClose="openDatepicker = false">
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
+          <WizHStack align="center" justify="between" gap="xs2">
+            <WizText as="span" fontSize="xs" line-height="lg" color="gray.700">
+              {{ currentMonth.getFullYear() }}年
+            </WizText>
+            <WizVStack>
+              <button
+                :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
+                :class="[datePickerYearSelectorItemStyle]"
+                @click="clickToNextYear"
+              >
+                <WizIArrowDropUp
+                  :class="[
+                    fillStyle['gray.700'],
+                    fontSizeStyle['xs2'],
+                    datePickerArrowIconStyle,
+                  ]"
+                />
+              </button>
+              <button
+                :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
+                :class="[datePickerYearSelectorItemStyle]"
+                @click="clickToPreviousYear"
+              >
+                <WizIArrowDropDown
+                  :class="[
+                    fillStyle['gray.700'],
+                    fontSizeStyle['xs2'],
+                    datePickerArrowIconStyle,
+                  ]"
+                />
+              </button>
+            </WizVStack>
+          </WizHStack>
           <WizText as="span" fontSize="xs" color="gray.700">{{
             currentDateTitle
           }}</WizText>
@@ -68,13 +101,20 @@ import {
   datePickerSelectorStyle,
   datePickerMonthSelectorStyle,
   datePickerMonthSelectorItemStyle,
+  datePickerYearSelectorItemStyle,
+  datePickerArrowIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import {
+  inputBorderStyle,
+  fillStyle,
+  fontSizeStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, computed, inject, PropType } from "vue";
 
 import {
   WizIcon,
   WizHStack,
+  WizVStack,
   WizCalendar,
   WizText,
   WizPopup,
@@ -84,6 +124,8 @@ import {
   WizICalendar,
   WizIChevronLeft,
   WizIChevronRight,
+  WizIArrowDropUp,
+  WizIArrowDropDown,
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
@@ -144,6 +186,24 @@ const clickToPreviousMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
+const clickToNextYear = () => {
+  const setDateTime = new Date(
+    currentMonth.value.getFullYear() + 1,
+    currentMonth.value.getMonth(),
+    1
+  );
+  currentMonth.value = new Date(setDateTime);
+};
+
+const clickToPreviousYear = () => {
+  const setDateTime = new Date(
+    currentMonth.value.getFullYear() - 1,
+    currentMonth.value.getMonth(),
+    1
+  );
+  currentMonth.value = new Date(setDateTime);
+};
+
 const parseValue = (inputValue: Date | null) => {
   if (inputValue === null) return undefined;
   const value = inputValue ?? new Date();
@@ -151,9 +211,8 @@ const parseValue = (inputValue: Date | null) => {
 };
 
 const currentDateTitle = computed(() => {
-  return `${currentMonth.value.getFullYear()}年${
-    currentMonth.value.getMonth() + 1
-  }月`;
+  // ${currentMonth.value.getFullYear()}年
+  return `${currentMonth.value.getMonth() + 1}月`;
 });
 
 const calendarValue = computed({
