@@ -225,7 +225,7 @@ export const DividerHeader: StoryFn = (_, { argTypes }) => ({
     WizUnstyledTd,
   },
   template: `
-    <WizUnstyledTable v-bind="args" borderCollapse="collapse">
+    <WizUnstyledTable v-bind="$props" borderCollapse="collapse">
       <WizUnstyledThead>
         <WizUnstyledTr>
           <WizUnstyledTh divider v-for="i in 3" :key="i">
