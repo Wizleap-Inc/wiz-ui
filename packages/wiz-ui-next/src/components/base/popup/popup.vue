@@ -108,6 +108,16 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  /**
+   * 回り込みロジックを適用するかどうかを設定します。
+   *  - true: 回り込みロジックは有効です。
+   *  - false: 回り込みロジックは無効です。
+   */
+  placementAdjustmentEnabled: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
 });
 
 const emit = defineEmits<Emits>();
@@ -279,6 +289,7 @@ const convertDirection = (char: DirectionChar) => {
 };
 
 const computedDirection = computed(() => {
+  if (!props.placementAdjustmentEnabled) return props.direction;
   const chars = directionToTuple(props.direction);
   const { top, left, bottom, right } = spaceBetweenPopupAndWindow.value;
 
