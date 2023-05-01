@@ -19,7 +19,7 @@ export default {
     },
     variant: {
       control: { type: "select" },
-      options: ["info", "error", "success", "mono"],
+      options: ["info", "error", "success", "warning", "mono"],
     },
     label: {
       control: { type: "text" },
@@ -70,6 +70,8 @@ export const Variant: StoryFn<typeof WizTag> = (args) => ({
       <div>variant="error"</div>
       <WizTag label="申請完了" variant="success" :icon="WizIClose" />
       <div>variant="success"</div>
+      <WizTag label="準備中" variant="warning" :icon="WizIClose" />
+      <div>variant="warning"</div>
       <WizTag label="11/11(月)" variant="mono" :icon="WizIClose" />
       <div>variant="mono"</div>
     </div>
