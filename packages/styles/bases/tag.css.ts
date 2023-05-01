@@ -22,6 +22,10 @@ export const tagColorStyle = styleVariants({
     backgroundColor: THEME.color.green[300],
     color: THEME.color.gray[700],
   },
+  warning: {
+    backgroundColor: THEME.color.yellow[300],
+    color: THEME.color.gray[700],
+  },
   mono: {
     backgroundColor: THEME.color.gray[300],
     color: THEME.color.gray[900],
@@ -32,5 +36,6 @@ export const tagIconColorStyle: Record<string, ColorKeys> = {
   info: "white.800",
   error: "red.800",
   success: "green.800",
+  warning: "yellow.800",
   mono: "gray.900",
 };
