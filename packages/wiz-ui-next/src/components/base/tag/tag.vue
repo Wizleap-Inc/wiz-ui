@@ -47,7 +47,9 @@ defineProps({
     required: false,
   },
   variant: {
-    type: String as PropType<"info" | "red" | "green" | "yellow" | "mono">,
+    type: String as PropType<
+      "info" | "red" | "green" | "yellow" | "blue" | "mono"
+    >,
     required: false,
     default: "info",
   },
