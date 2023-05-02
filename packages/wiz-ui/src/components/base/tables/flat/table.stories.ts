@@ -121,11 +121,11 @@ export const UnionRow: StoryFn = (_, { argTypes }) => ({
     <WizFlatTable>
       <WizFlatThead>
         <WizFlatTr>
-          <WizFlatTh v-for="i in 2" :key="i" scope="col" colSpan="2">Column {{ i }}</WizFlatTh>
+          <WizFlatTh v-for="i in 2" :key="i" scope="col" :colSpan="2">Column {{ i }}</WizFlatTh>
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
-        <WizFlatTr v-for="i in 4">
+        <WizFlatTr v-for="i in 4" :key="i">
           <WizFlatTh scope="row">Row {{ i }}</WizFlatTh>
           <WizFlatTd v-for="j in 2" :key="j">Row {{ i }}</WizFlatTd>
         </WizFlatTr>
@@ -148,22 +148,22 @@ export const UnionColumn: StoryFn = (_, { argTypes }) => ({
     <WizFlatTable>
       <WizFlatThead>
         <WizFlatTr>
-          <WizFlatTh :key="i" scope="col" colSpan="2">Column 1</WizFlatTh>
-          <WizFlatTh :key="i" scope="col" >Column 2</WizFlatTh>
+          <WizFlatTh scope="col" :colSpan="2">Column 1</WizFlatTh>
+          <WizFlatTh scope="col" >Column 2</WizFlatTh>
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
 
         <WizFlatTr >
-          <WizFlatTh scope="row" colSpan="3">Row {{ i }}</WizFlatTh>
+          <WizFlatTh scope="row" :colSpan="3">Row</WizFlatTh>
         </WizFlatTr>
         <WizFlatTr>
           <WizFlatTh scope="row">Row 1</WizFlatTh>
-          <WizFlatTd :key="j">Row 2 </WizFlatTd>
-          <WizFlatTd :key="j">Row {{ 3 }}</WizFlatTd>
+          <WizFlatTd>Row 2 </WizFlatTd>
+          <WizFlatTd>Row 3</WizFlatTd>
         </WizFlatTr>
         <WizFlatTr >
-          <WizFlatTd scope="row" colSpan="3">Row {{ i }}</WizFlatTd>
+          <WizFlatTd scope="row" :colSpan="3">Row</WizFlatTd>
         </WizFlatTr>
       </WizFlatTbody>
     </WizFlatTable>
