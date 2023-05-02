@@ -14,8 +14,8 @@ import {
 
 export default {
   title: "Base/Tables/Unstyled",
-  component: WizUnstyledTable,
-  subcomponents: {
+  components: {
+    WizUnstyledTable,
     WizUnstyledThead,
     WizUnstyledTbody,
     WizUnstyledTr,
@@ -263,13 +263,12 @@ export const UnionRow: StoryFn = (_, { argTypes }) => ({
       </WizUnstyledThead>
       <WizUnstyledTbody>
         <WizUnstyledTr :divider="true">
-          <WizUnstyledTd :key="j" :rowSpan="6">Row {{ i }}</WizUnstyledTd>
+          <WizUnstyledTd :rowSpan="6">Row</WizUnstyledTd>
         </WizUnstyledTr>
-
         <WizUnstyledTr :divider="true">
-          <WizUnstyledTh :key="j" :rowSpan="6">Row {{ i }}</WizUnstyledTh>
+          <WizUnstyledTh :rowSpan="6">Row</WizUnstyledTh>
         </WizUnstyledTr>
-        <WizUnstyledTr v-for="i in 4" :divider="true">
+        <WizUnstyledTr v-for="i in 4" :key="i" :divider="true">
           <WizUnstyledTd v-for="j in 2" :key="j">Row {{ i }}</WizUnstyledTd>
         </WizUnstyledTr>
       </WizUnstyledTbody>
@@ -291,17 +290,17 @@ export const UnionColumn: StoryFn = (_, { argTypes }) => ({
     <WizUnstyledTable v-bind="$props" borderCollapse="collapse">
       <WizUnstyledThead :divider="true">
         <WizUnstyledTr>
-          <WizUnstyledTh v-for="i in 2" :colSpan="2":key="i">
+          <WizUnstyledTh v-for="i in 2" :colSpan="2" :key="i">
             Column {{ i }}
           </WizUnstyledTh>
         </WizUnstyledTr>
       </WizUnstyledThead>
       <WizUnstyledTbody>
-        <WizUnstyledTr v-for="i in 3" :divider="true">
+        <WizUnstyledTr v-for="i in 3" :key="i" :divider="true">
           <WizUnstyledTd v-for="j in 3" :key="j">Row {{ i }}</WizUnstyledTd>
         </WizUnstyledTr>
         <WizUnstyledTr :divider="true">
-          <WizUnstyledTd colSpan="3" >Row {{ i }}</WizUnstyledTd>
+          <WizUnstyledTd :colSpan="3">Row</WizUnstyledTd>
         </WizUnstyledTr>
       </WizUnstyledTbody>
     </WizUnstyledTable>
