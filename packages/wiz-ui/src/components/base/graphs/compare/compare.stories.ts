@@ -179,7 +179,7 @@ UnitVerticalAxis.parameters = {
 export const LabelX = Template.bind({});
 LabelX.args = {
   data: DUMMY_DATA,
-  rotationStrength: 5,
+  rotateStrength: 1,
 };
 LabelX.parameters = {
   docs: {
