@@ -187,7 +187,7 @@ LabelX.args = {
 LabelX.parameters = {
   docs: {
     description: {
-      story: `ラベルを垂直方向に移動・回転できます。`,
+      story: `ラベルを回転できます。`,
     },
     source: {
       code: CODE_TEMPLATE({}),
