@@ -53,9 +53,9 @@
               </button>
             </WizVStack>
           </WizHStack>
-          <WizText as="span" fontSize="xs" color="gray.700">{{
-            currentDateTitle
-          }}</WizText>
+          <WizText as="span" fontSize="xs" color="gray.700">
+            {{ currentDateTitle }}
+          </WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
@@ -211,7 +211,6 @@ const parseValue = (inputValue: Date | null) => {
 };
 
 const currentDateTitle = computed(() => {
-  // ${currentMonth.value.getFullYear()}年
   return `${currentMonth.value.getMonth() + 1}月`;
 });
 

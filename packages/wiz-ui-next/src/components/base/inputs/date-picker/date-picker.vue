@@ -53,6 +53,9 @@
               </button>
             </WizVStack>
           </WizHStack>
+          <WizText as="span" fontSize="xs" color="gray.700">
+            {{ currentDateTitle }}
+          </WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
@@ -208,11 +211,8 @@ const parseValue = (inputValue: Date | null) => {
 };
 
 const currentDateTitle = computed(() => {
-  return `${currentMonth.value.getFullYear()}年${
-    currentMonth.value.getMonth() + 1
-  }月`;
+  return `${currentMonth.value.getMonth() + 1}月`;
 });
-
 const calendarValue = computed({
   get: () => props.modelValue,
   set: (value) => value && emit("update:modelValue", value),
