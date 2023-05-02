@@ -284,10 +284,8 @@ export const Playground2: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
   `,
 });
 
-export const Playground3: StoryFn<typeof WizPopup> = (_, {}) => ({
-  props: {
-    placementAdjustmentEnabled: false,
-  },
+export const FixDirection: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { WizPopup, WizPopupContainer, WizTextButton, WizHStack },
   setup() {
     const isOpen = ref(true);
@@ -300,7 +298,7 @@ export const Playground3: StoryFn<typeof WizPopup> = (_, {}) => ({
       <div v-for="(pos, key) in absolutePositions" :key="key" :style="{ position: 'absolute', ...pos }">
         <wiz-popup-container>
           <wiz-text-button @click="toggle">Toggle</wiz-text-button>
-          <wiz-popup :direction="$props.direction" :gap="$props.gap" :closeOnBlur="$props.closeOnBlur" :placementAdjustmentEnabled="$props.placementAdjustmentEnabled" :isOpen="isOpen" :animation="$props.animation" :shadow="$props.shadow" @onClose="close">
+          <wiz-popup v-bind="$props" :isOpen="isOpen" @onClose="close">
             <div style="padding: 16px; background-color: white; border-radius: 4px;">
               <span>Popup content</span>
             </div>
@@ -310,3 +308,7 @@ export const Playground3: StoryFn<typeof WizPopup> = (_, {}) => ({
     </div>
   `,
 });
+
+FixDirection.args = {
+  isDirectionFixed: true,
+};
