@@ -27,12 +27,12 @@
       <span
         :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
       >
-        {{ value.start ? formatDateToYYMMDD(value.start) : "開始日" }}
+        {{ value.start ? formatDateToYYMD(value.start) : "開始日" }}
       </span>
       <span :class="styles.separatorStyle">-</span>
       <span
         :class="styles.inputTextStyle[value.end ? 'selected' : 'default']"
-        >{{ value.end ? formatDateToYYMMDD(value.end) : "終了日" }}</span
+        >{{ value.end ? formatDateToYYMD(value.end) : "終了日" }}</span
       >
     </button>
     <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false">
@@ -130,7 +130,7 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
+import { formatDateToYYMD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, ref, inject, computed } from "vue";
 
 import {

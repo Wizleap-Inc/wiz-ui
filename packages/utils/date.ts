@@ -41,17 +41,15 @@ export const formatDateToYMDHM = (_date: Date): string => {
  * formatDateToYYMMDD
  * ```ts
  * const input = new Date('2021-01-01 12:34:56');
- * const output = '2021-01-01';
+ * const output = '21/1/1';
  * assert.equal(formatDateToYYMMDD(input), output);
  * ```
  */
-export const formatDateToYYMMDD = (_date: Date): string => {
+export const formatDateToYYMD = (_date: Date): string => {
   const year = _date.getFullYear() % 100;
   const month = _date.getMonth() + 1;
   const date = _date.getDate();
-  const day = [year, month, date]
-    .map((n) => String(n).padStart(2, "0"))
-    .join("/");
+  const day = [year, month, date].join("/");
   return `${day}`;
 };
 
