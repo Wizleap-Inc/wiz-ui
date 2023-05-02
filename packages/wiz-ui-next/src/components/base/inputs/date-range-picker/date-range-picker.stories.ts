@@ -211,7 +211,7 @@ export const Test: StoryFn<typeof WizDateRangePicker> = (args) => ({
   },
   template: `
     <div>
-      <WizDateRangePicker v-model="dateRange" v-model:selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @update:modelValue="args.onDateSelected" @update:selectBoxValue="args.onSelectBoxValueChange"/>
+      <WizDateRangePicker v-bind="args" v-model="dateRange" v-model:selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @update:modelValue="args.onDateSelected" @update:selectBoxValue="args.onSelectBoxValueChange"/>
     </div>
   `,
 });
@@ -237,8 +237,10 @@ Test.play = async ({ canvasElement }) => {
   );
   // Input内が選択した日付になることを確認
   await waitFor(() =>
-    expect(button.textContent).toBe(
-      `${leftClickDate.getMonth() + 1}/${leftClickDate.getDate()}-終了日`
+    expect(button.textContent?.replace(/\s+/g, "")).toBe(
+      `${leftClickDate.getFullYear() % 100}/${
+        leftClickDate.getMonth() + 1
+      }/${leftClickDate.getDate()}-終了日`
     )
   );
 
@@ -255,8 +257,10 @@ Test.play = async ({ canvasElement }) => {
   );
   // Input内が選択した日付になることを確認
   await waitFor(() =>
-    expect(button.textContent).toBe(
-      `${leftClickDate.getMonth() + 1}/${leftClickDate.getDate()}-${
+    expect(button.textContent?.replace(/\s+/g, "")).toBe(
+      `${leftClickDate.getFullYear() % 100}/${
+        leftClickDate.getMonth() + 1
+      }/${leftClickDate.getDate()}-${rightClickDate.getFullYear() % 100}/${
         rightClickDate.getMonth() + 1
       }/${rightClickDate.getDate()}`
     )
