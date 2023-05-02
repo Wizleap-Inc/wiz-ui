@@ -4,4 +4,4 @@
 "@wizleap-inc/wiz-ui": minor
 ---
 
-WizTag に黄色を指定するオプションを追加
+WizTag の variant を変更（error -> red, success -> green）、新規タグ（黄色・青色）追加
