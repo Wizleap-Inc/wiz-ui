@@ -24,7 +24,7 @@ export const tagColorStyle = styleVariants({
   },
   warning: {
     backgroundColor: THEME.color.yellow[300],
-    color: THEME.color.gray[700],
+    color: THEME.color.yellow[800],
   },
   mono: {
     backgroundColor: THEME.color.gray[300],
