@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-react",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A React UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "tsc --noEmit && vite build",
