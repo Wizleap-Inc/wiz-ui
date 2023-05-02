@@ -13,12 +13,13 @@
       <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
       <span
         :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
-        >{{ value.start ? formatDateToMD(value.start) : "開始日" }}</span
       >
+        {{ value.start ? formatDateToYYMMDD(value.start) : "開始日" }}
+      </span>
       <span :class="styles.separatorStyle">-</span>
       <span
         :class="styles.inputTextStyle[value.end ? 'selected' : 'default']"
-        >{{ value.end ? formatDateToMD(value.end) : "終了日" }}</span
+        >{{ value.end ? formatDateToYYMMDD(value.end) : "終了日" }}</span
       >
     </button>
     <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false">
@@ -116,7 +117,7 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
+import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, ref, inject, computed } from "vue";
 
 import {

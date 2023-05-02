@@ -31,7 +31,7 @@ export const bodyStyle = styleVariants({
 
 export const widthStyle = styleVariants({
   default: {
-    width: "10rem",
+    width: "12rem",
   },
   expanded: {
     width: "100%",
