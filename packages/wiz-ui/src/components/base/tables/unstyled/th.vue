@@ -2,6 +2,8 @@
   <th
     :class="[unstyledTh, divider && unstyledThDividerYStyle]"
     :style="{ width }"
+    :rowSpan="rowSpan"
+    :colSpan="colSpan"
   >
     <slot />
   </th>
@@ -28,6 +30,14 @@ defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  rowSpan: {
+    type: Number,
+    required: false,
+  },
+  colSpan: {
+    type: Number,
+    required: false,
   },
 });
 </script>
