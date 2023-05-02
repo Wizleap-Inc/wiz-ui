@@ -20,7 +20,7 @@ export const tagColorStyle = styleVariants({
   },
   green: {
     backgroundColor: THEME.color.green[300],
-    color: THEME.color.gray[700],
+    color: THEME.color.green[800],
   },
   yellow: {
     backgroundColor: THEME.color.yellow[300],
