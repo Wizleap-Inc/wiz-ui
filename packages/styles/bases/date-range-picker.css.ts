@@ -185,3 +185,22 @@ export const popupCalendarHeaderSpacerStyle = style({
   width: THEME.spacing.xl,
   height: THEME.spacing.xl,
 });
+
+export const popupCalendarCancelButtonStyle = style({
+  cursor: "pointer",
+  padding: THEME.spacing.no,
+  borderRadius: THEME.spacing.xs2,
+  border: "none",
+  background: "transparent",
+  fill: THEME.color.gray["500"],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        fill: THEME.color.green["800"],
+      },
+    },
+  },
+  ":active": {
+    backgroundColor: THEME.color.green["300"],
+  },
+});

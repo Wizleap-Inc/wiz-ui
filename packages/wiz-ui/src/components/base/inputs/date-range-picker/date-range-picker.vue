@@ -10,7 +10,20 @@
       :disabled="disabled"
       @click="togglePopupOpen"
     >
-      <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+      <span
+        v-if="!isCalenderIconHovered"
+        @mouseenter="isCalenderIconHovered = true"
+      >
+        <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+      </span>
+      <button
+        v-else
+        :class="styles.popupCalendarCancelButtonStyle"
+        @mouseleave="isCalenderIconHovered = false"
+        @click="clearInput"
+      >
+        <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
+      </button>
       <span
         :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
       >
@@ -124,6 +137,7 @@ import {
   WizCalendar,
   WizCard,
   WizICalendar,
+  WizICancel,
   WizIChevronLeft,
   WizIChevronRight,
   WizIcon,
@@ -174,6 +188,7 @@ const emit = defineEmits<Emit>();
 type SelectState = "selecting" | "selected" | "none";
 
 const isPopupOpen = ref(false);
+const isCalenderIconHovered = ref(false);
 const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();
 const rightCalendarDate = ref(new Date());
@@ -250,6 +265,12 @@ const handleDayClick = (date: Date) => {
     state: "primary",
   });
 };
+
+const clearInput = () =>
+  emit("input", {
+    start: null,
+    end: null,
+  });
 
 const toggleSelectBoxOpen = () => {
   isSelectBoxOpen.value = !isSelectBoxOpen.value;
