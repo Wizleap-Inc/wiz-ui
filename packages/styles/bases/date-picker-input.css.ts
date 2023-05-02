@@ -87,4 +87,5 @@ export const datePickerYearSelectorItemStyle = style({
 
 export const datePickerArrowIconStyle = style({
   transform: "scale(2)",
+  pointerEvents: "none",
 });
