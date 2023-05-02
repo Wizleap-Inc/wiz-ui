@@ -26,6 +26,7 @@ export const IconComponentName = {
   IEye: "WizIEye",
   IGroups: "WizIGroups",
   IHelp: "WizIHelp",
+  IHistory: "WizIHistory",
   IHome: "WizIHome",
   IInfo: "WizIInfo",
   IManageAccounts: "WizIManageAccounts",
@@ -45,4 +46,5 @@ export const IconComponentName = {
   ITab: "WizITab",
   ITask: "WizITask",
   IUpload: "WizIUpload",
+  IWarning: "WizIWarning",
 };

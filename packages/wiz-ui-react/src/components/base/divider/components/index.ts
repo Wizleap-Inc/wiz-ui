@@ -1,0 +1,1 @@
+export { WizDivider } from "./divider";

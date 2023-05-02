@@ -6,10 +6,22 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "storybook-static/**"]
+      "outputs": ["dist/**"]
+    },
+    "build:tools": {
+      "dependsOn": ["^build:tools"],
+      "outputs": ["dist/**"]
+    },
+    "storybook:build": {
+      "dependsOn": ["^storybook:build"],
+      "outputs": ["storybook-static/**"]
     },
     "test": {
       "dependsOn": ["^test"]
+    },
+    "storycap": {
+      "dependsOn": ["^storycap"],
+      "outputs": ["storybook-static/**"]
     }
   }
 }

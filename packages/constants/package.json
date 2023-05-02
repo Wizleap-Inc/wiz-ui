@@ -1,6 +1,14 @@
 {
-  "private": true,
   "name": "@wizleap-inc/wiz-ui-constants",
-  "version": "0.0.0",
-  "main": "index.ts"
+  "version": "0.2.1",
+  "main": "./dist/wiz-ui-constants.umd.js",
+  "module": "./dist/wiz-ui-constants.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "build:tools": "pnpm run build"
+  }
 }

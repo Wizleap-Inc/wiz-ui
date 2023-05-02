@@ -25,6 +25,7 @@ import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
+import { default as WizIHistory } from "./history.vue";
 import { default as WizIHome } from "./home.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
@@ -44,6 +45,7 @@ import { default as WizIStoreFront } from "./store-front.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
 import { default as WizIUpload } from "./upload.vue";
+import { default as WizIWarning } from "./warning.vue";
 
 export type TIcon =
   | typeof WizIAddCircle
@@ -73,6 +75,7 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIGroups
   | typeof WizIHelp
+  | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIInfo
   | typeof WizIManageAccounts
@@ -91,7 +94,8 @@ export type TIcon =
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
-  | typeof WizIUpload;
+  | typeof WizIUpload
+  | typeof WizIWarning;
 
 export {
   WizIAddCircle,
@@ -121,6 +125,7 @@ export {
   WizIEye,
   WizIGroups,
   WizIHelp,
+  WizIHistory,
   WizIHome,
   WizIInfo,
   WizIManageAccounts,
@@ -140,4 +145,5 @@ export {
   WizITab,
   WizITask,
   WizIUpload,
+  WizIWarning,
 };
