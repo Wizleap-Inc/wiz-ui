@@ -6,6 +6,7 @@
         shadow && popupShadowStyle,
         zIndexStyle[layer],
         !isActuallyOpen && popupHiddenStyle,
+        fixed && popupFixedStyle,
       ]"
       :style="{
         inset,
@@ -30,6 +31,7 @@ import {
   popupStyle,
   popupShadowStyle,
   popupHiddenStyle,
+  popupFixedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import {
@@ -104,6 +106,11 @@ const props = defineProps({
     default: true,
   },
   animation: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  fixed: {
     type: Boolean,
     required: false,
     default: false,
@@ -321,6 +328,7 @@ watch(
 );
 
 const inset = computed(() => {
+  if (props.fixed) return "0";
   const { scrollX, scrollY } = window;
   const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
