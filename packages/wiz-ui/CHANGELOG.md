@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui
 
+## 1.4.0
+
+### Minor Changes
+
+- [#668](https://github.com/Wizleap-Inc/wiz-ui/pull/668) [`68b7493c`](https://github.com/Wizleap-Inc/wiz-ui/commit/68b7493cc4e0c0de9e8a23845526baa02cdc49e5) Thanks [@sor4chi](https://github.com/sor4chi)! - Schedule コンポーネントの追加
+
+### Patch Changes
+
+- Updated dependencies [[`68b7493c`](https://github.com/Wizleap-Inc/wiz-ui/commit/68b7493cc4e0c0de9e8a23845526baa02cdc49e5)]:
+  - @wizleap-inc/wiz-ui-constants@0.3.0
+  - @wizleap-inc/wiz-ui-styles@0.3.0
+  - @wizleap-inc/wiz-ui-utils@0.2.0
+
 ## 1.3.0
 
 ### Minor Changes
