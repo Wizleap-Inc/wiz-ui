@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-constants",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "./dist/wiz-ui-constants.umd.js",
   "module": "./dist/wiz-ui-constants.es.js",
   "types": "./dist/index.d.ts",
