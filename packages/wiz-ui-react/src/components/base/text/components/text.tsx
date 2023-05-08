@@ -66,34 +66,30 @@ const _Text = ({
     whiteSpaceStyle[whiteSpace],
     lineThrough && styles.textLineThroughStyle
   );
-  const Children = () => (
-    <>
-      {dummyValue ? (
-        <span className={styles.textDummyStyle}>{dummyValue}</span>
-      ) : (
-        props.children
-      )}
-    </>
+  const content = dummyValue ? (
+    <span className={styles.textDummyStyle}>{dummyValue}</span>
+  ) : (
+    props.children && props.children
   );
   switch (as) {
     case "p": {
       return (
         <p className={className} style={style}>
-          <Children />
+          {content}
         </p>
       );
     }
     case "label": {
       return (
         <label htmlFor={htmlFor} className={className} style={style}>
-          <Children />
+          {content}
         </label>
       );
     }
     case "span": {
       return (
         <span className={className} style={style}>
-          <Children />
+          {content}
         </span>
       );
     }
