@@ -121,6 +121,19 @@ const date = ref<Date | null>(null);
   },
 };
 
+export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    return { args, date };
+  },
+  template: `
+    <div>
+      <WizDatepicker v-model="date" @update:modelValue="args.onClick"/>
+    </div>
+  `,
+});
+
 const _formatDateSlash = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
