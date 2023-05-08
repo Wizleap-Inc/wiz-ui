@@ -23,6 +23,7 @@ type Props = {
   bold?: boolean;
   maxLines?: number;
   whiteSpace?: WhiteSpaceKeys;
+  isDummy?: boolean;
   dummyValue?: string;
   breakAll?: boolean;
   textAlign?: "start" | "end" | "left" | "right" | "center";
@@ -39,7 +40,8 @@ const _Text = ({
   bold,
   maxLines,
   whiteSpace = "normal",
-  dummyValue,
+  isDummy = false,
+  dummyValue = "DummyValueDummyValue",
   breakAll,
   textAlign = "start",
   lineThrough = false,
@@ -66,7 +68,7 @@ const _Text = ({
     whiteSpaceStyle[whiteSpace],
     lineThrough && styles.textLineThroughStyle
   );
-  const content = dummyValue ? (
+  const content = isDummy ? (
     <span className={styles.textDummyStyle}>{dummyValue}</span>
   ) : (
     props.children && props.children
