@@ -40,6 +40,9 @@ const meta: Meta<typeof WizText> = {
       control: { type: "select" },
       options: WHITE_SPACE_MAP_ACCESSORS,
     },
+    isDummy: {
+      control: { type: "boolean" },
+    },
     dummyValue: {
       control: { type: "text" },
     },
@@ -136,6 +139,7 @@ export const DummyValue: Story = {
     <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
+    isDummy: true,
     dummyValue: "ABCDEFG",
   },
 };
