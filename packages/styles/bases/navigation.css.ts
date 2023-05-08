@@ -48,7 +48,11 @@ export const navigationItemStyle = style({
   },
   selectors: {
     "&:hover::before": {
-      backgroundColor: THEME.color.green["800"],
+      "@media": {
+        "(any-hover: hover)": {
+          backgroundColor: THEME.color.green["800"],
+        },
+      },
     },
   },
 });
@@ -68,7 +72,11 @@ export const navigationItemDisabledStyle = style({
   cursor: "not-allowed",
   selectors: {
     "&:hover::before": {
-      backgroundColor: "transparent",
+      "@media": {
+        "(any-hover: hover)": {
+          backgroundColor: "transparent",
+        },
+      },
     },
   },
 });

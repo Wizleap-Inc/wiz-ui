@@ -136,9 +136,8 @@ const _formatDateJp = (date: Date) => {
 };
 
 const _formatDateJpMonth = (date: Date) => {
-  const year = date.getFullYear();
   const month = date.getMonth() + 1;
-  return `${year}年${month}月`;
+  return `${month}月`;
 };
 
 export const Test: StoryFn<typeof WizDatepicker> = (args) => ({

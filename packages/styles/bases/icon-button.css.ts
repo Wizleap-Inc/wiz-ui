@@ -21,7 +21,11 @@ export const iconButtonStyle = styleVariants({
       border: "none",
       selectors: {
         "&:hover:not(:disabled)": {
-          opacity: 0.9,
+          "@media": {
+            "(any-hover: hover)": {
+              opacity: 0.9,
+            },
+          },
         },
       },
     },

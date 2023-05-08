@@ -48,13 +48,44 @@ export const datePickerMonthSelectorItemStyle = style({
   border: "none",
   background: "transparent",
   fill: THEME.color.gray["700"],
-
-  ":hover": {
-    backgroundColor: THEME.color.green["300"],
-    fill: THEME.color.green["800"],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        backgroundColor: THEME.color.green["300"],
+        fill: THEME.color.green["800"],
+      },
+    },
   },
   ":active": {
     backgroundColor: THEME.color.green["800"],
     fill: THEME.color.white["800"],
   },
+});
+
+export const datePickerYearSelectorItemStyle = style({
+  lineHeight: 0.2,
+  position: "relative",
+  cursor: "pointer",
+  padding: THEME.spacing.no,
+  borderRadius: THEME.spacing.xs2,
+  border: "none",
+  background: "transparent",
+  fill: THEME.color.gray["700"],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        backgroundColor: THEME.color.green["300"],
+        fill: THEME.color.green["800"],
+      },
+    },
+  },
+  ":active": {
+    backgroundColor: THEME.color.green["800"],
+    fill: THEME.color.white["800"],
+  },
+});
+
+export const datePickerArrowIconStyle = style({
+  transform: "scale(2)",
+  pointerEvents: "none",
 });

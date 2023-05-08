@@ -34,14 +34,32 @@ const vueComponents: Component[] = SVGs.map((svg) => ({
   framework: "vue",
 }));
 
-const icons: { dist: string; components: Component[] }[] = [
+// React用のコンポーネントを生成
+const reactComponents: Component[] = SVGs.map((svg) => ({
+  svg: svg,
+  componentFile: createIcon.react(svg.svgFile, svg.pascalName),
+  framework: "react",
+}));
+
+const icons: {
+  dist: string;
+  components: Component[];
+  indexFile: (components: SVG[]) => string;
+}[] = [
   {
     dist: path.join(CURRENT_DIR, "../../wiz-ui/src/components/icons"),
     components: vueComponents,
+    indexFile: indexFile.vue,
   },
   {
     dist: path.join(CURRENT_DIR, "../../wiz-ui-next/src/components/icons"),
     components: vueComponents,
+    indexFile: indexFile.vue,
+  },
+  {
+    dist: path.join(CURRENT_DIR, "../../wiz-ui-react/src/components/icons"),
+    components: reactComponents,
+    indexFile: indexFile.react,
   },
 ];
 
@@ -67,6 +85,6 @@ icons.forEach((icon) => {
   // index.tsを生成
   fs.writeFileSync(
     path.join(icon.dist, "index.ts"),
-    indexFile(icon.components.map((component) => component.svg))
+    icon.indexFile(icon.components.map((component) => component.svg))
   );
 });
