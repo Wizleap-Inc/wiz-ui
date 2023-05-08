@@ -157,8 +157,8 @@ const props = defineProps({
 
 const emit = defineEmits<Emit>();
 
-const defaultCurrentMonth = new Date().setHours(0, 0, 0, 0);
-const currentMonth = ref(new Date(defaultCurrentMonth));
+const defaultCurrentMonth = props.modelValue || new Date();
+const currentMonth = ref(defaultCurrentMonth);
 const openDatepicker = ref(false);
 
 const toggleDatepicker = () => {
