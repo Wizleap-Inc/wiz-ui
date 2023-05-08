@@ -199,6 +199,43 @@ const selectBoxOptions = [
   { label: "選択肢3選択肢3", value: "3" },
 ];
 
+export const InitialValue: StoryFn<typeof WizDateRangePicker> = (args) => ({
+  components: { WizDateRangePicker },
+  setup() {
+    const dateRange1 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 1, 15),
+    });
+    const dateRange2 = ref<DateRange>({
+      start: null,
+      end: new Date(2000, 1, 15),
+    });
+    const dateRange3 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: null,
+    });
+    const selectBoxValue1 = ref<string>();
+    const selectBoxValue2 = ref<string>();
+    const selectBoxValue3 = ref<string>();
+    return {
+      dateRange1,
+      dateRange2,
+      dateRange3,
+      selectBoxValue1,
+      selectBoxValue2,
+      selectBoxValue3,
+      selectBoxOptions,
+      args,
+    };
+  },
+  template: `
+    <div style="display: flex; gap: 15rem; flex-direction: column">
+      <WizDateRangePicker v-model="dateRange1" v-model:selectBoxValue="selectBoxValue1" :selectBoxOptions="selectBoxOptions" @update:modelValue="args.onDateSelected" @update:selectBoxValue="args.onSelectBoxValueChange"/>
+      <WizDateRangePicker v-model="dateRange2" v-model:selectBoxValue="selectBoxValue2" :selectBoxOptions="selectBoxOptions" @update:modelValue="args.onDateSelected" @update:selectBoxValue="args.onSelectBoxValueChange"/>
+      <WizDateRangePicker v-model="dateRange3" v-model:selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @update:modelValue="args.onDateSelected" @update:selectBoxValue="args.onSelectBoxValueChange"/>
+    </div>
+  `,
+});
 export const Test: StoryFn<typeof WizDateRangePicker> = (args) => ({
   components: { WizDateRangePicker },
   setup() {

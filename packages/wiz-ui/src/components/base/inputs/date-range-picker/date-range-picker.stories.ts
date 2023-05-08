@@ -186,6 +186,49 @@ SelectBoxOptions.parameters = {
   },
 };
 
+export const InitialValue: StoryFn<typeof WizDateRangePicker> = (
+  args,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizDateRangePicker },
+  setup() {
+    const dateRange1 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 1, 15),
+    });
+    const dateRange2 = ref<DateRange>({
+      start: null,
+      end: new Date(2000, 1, 15),
+    });
+    const dateRange3 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: null,
+    });
+
+    const selectBoxValue = ref<string>();
+    const handleSelectBoxValueChange = (value: string) => {
+      selectBoxValue.value = value;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      args.onSelectBoxValueChange(value);
+    };
+    return {
+      dateRange1,
+      dateRange2,
+      dateRange3,
+      selectBoxValue,
+      handleSelectBoxValueChange,
+    };
+  },
+  template: ` 
+    <div style="display: flex; gap: 15rem; flex-direction: column">
+      <WizDateRangePicker v-model="dateRange1" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
+      <WizDateRangePicker v-model="dateRange2" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
+      <WizDateRangePicker v-model="dateRange3" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
+    </div>
+  `,
+});
 const _formatDateJp = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
