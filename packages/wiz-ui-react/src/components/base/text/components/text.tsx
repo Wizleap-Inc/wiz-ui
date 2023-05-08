@@ -45,14 +45,14 @@ const _Text = ({
   lineThrough = false,
   ...props
 }: Props) => {
-  const style = {
-    ...(maxLines && {
-      overflow: "hidden",
-      display: "-webkit-box",
-      webkitBoxOrient: "vertical",
-      WebkitLineClamp: maxLines,
-    }),
-  };
+  const style = maxLines
+    ? {
+        overflow: "hidden",
+        display: "-webkit-box",
+        webkitBoxOrient: "vertical",
+        WebkitLineClamp: maxLines,
+      }
+    : undefined;
   const className = clsx(
     styles.textStyle,
     styles.textFontWeightStyle[bold ? "bold" : "default"],
