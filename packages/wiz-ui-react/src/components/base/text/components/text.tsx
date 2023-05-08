@@ -23,7 +23,15 @@ type Props = {
   bold?: boolean;
   maxLines?: number;
   whiteSpace?: WhiteSpaceKeys;
+  /**
+   * ぼかしたダミーテキストを表示するかどうかを指定します。
+   * @default false
+   */
   isDummy?: boolean;
+  /**
+   * ダミーテキストを指定します。ぼかしたダミーテキストを表示する場合は`isDummy=true`にしてください。
+   * @default "DummyValue"
+   */
   dummyValue?: string;
   breakAll?: boolean;
   textAlign?: "start" | "end" | "left" | "right" | "center";
@@ -41,7 +49,7 @@ const _Text = ({
   maxLines,
   whiteSpace = "normal",
   isDummy = false,
-  dummyValue = "DummyValueDummyValue",
+  dummyValue = "DummyValue",
   breakAll,
   textAlign = "start",
   lineThrough = false,
