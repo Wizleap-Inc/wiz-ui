@@ -121,7 +121,7 @@ import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, ref, inject, computed } from "vue";
+import { PropType, ref, inject, computed, onMounted } from "vue";
 
 import {
   WizCalendar,
@@ -138,7 +138,7 @@ import {
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-import { DateStatus } from "../../calendar/types";
+import { DateStatus, DateState } from "../../calendar/types";
 
 import { DateRangePickerSelectBoxOption, DateRange } from "./types";
 
@@ -179,7 +179,22 @@ type SelectState = "selecting" | "selected" | "none";
 const isPopupOpen = ref(false);
 const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();
-const rightCalendarDate = ref(new Date());
+const rightCalendarDate = ref(
+  (() => {
+    const [start, end] = [props.modelValue.start, props.modelValue.end];
+    if (end) {
+      return end;
+    }
+    if (start) {
+      return new Date(
+        start.getFullYear(),
+        start.getMonth() + 1,
+        start.getDate()
+      );
+    }
+    return new Date();
+  })()
+);
 const leftCalendarDate = computed(() => {
   const date = new Date(
     rightCalendarDate.value.getFullYear(),
@@ -253,6 +268,37 @@ const handleDayClick = (date: Date) => {
     state: "primary",
   });
 };
+
+onMounted(() => {
+  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  const setDateState = (date: Date, state: DateState) =>
+    selectedDates.value.push({ date, state });
+  if (!start) {
+    if (end) {
+      // start・endを入れ替える
+      emit("update:modelValue", {
+        start: end,
+        end: null,
+      });
+      selectedState.value = "selecting";
+      setDateState(end, "primary");
+    }
+    return;
+  }
+  if (end) {
+    selectedState.value = "selected";
+    const tomorrowOfStart = new Date(start);
+    tomorrowOfStart.setDate(tomorrowOfStart.getDate() + 1);
+    for (let d = tomorrowOfStart; d < end; d.setDate(d.getDate() + 1)) {
+      setDateState(new Date(d), "secondary");
+    }
+    setDateState(start, "primary");
+    setDateState(end, "primary");
+  } else {
+    selectedState.value = "selecting";
+    setDateState(start, "primary");
+  }
+});
 
 const toggleSelectBoxOpen = () => {
   isSelectBoxOpen.value = !isSelectBoxOpen.value;
