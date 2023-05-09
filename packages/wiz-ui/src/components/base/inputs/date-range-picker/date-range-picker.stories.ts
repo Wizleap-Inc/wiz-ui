@@ -50,12 +50,44 @@ export default {
   },
 } as Meta<typeof WizDateRangePicker>;
 
-const Template: StoryFn<typeof WizDateRangePicker> = (_, { argTypes }) => ({
+const Template: StoryFn<typeof WizDateRangePicker> = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDateRangePicker },
+  setup() {
+    const dateRange = ref<DateRange>({
+      start: null,
+      end: null,
+    });
+    const selectBoxValue = ref<string>();
+    const handleSelectBoxValueChange = (value: string) => {
+      selectBoxValue.value = value;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      args.onSelectBoxValueChange(value);
+    };
+    const isOpen = ref(true);
+    const updateIsOpen = (value: boolean) => {
+      isOpen.value = value;
+    };
+
+    return {
+      dateRange,
+      selectBoxValue,
+      handleSelectBoxValueChange,
+      isOpen,
+      updateIsOpen,
+    };
+  },
   template: `
     <div>
-      <WizDateRangePicker v-bind="$props" @input="onDateSelected" @updateSelectBoxValue="onSelectBoxValueChange"/>
+      <WizDateRangePicker
+        v-bind="$props" 
+        v-model="dateRange"
+        @input="onDateSelected" 
+        @updateSelectBoxValue="onSelectBoxValueChange"
+        :isOpen="isOpen"
+        @updateIsOpen="updateIsOpen"  
+      />
     </div>
   `,
 });
@@ -205,6 +237,12 @@ export const InitialValue: StoryFn<typeof WizDateRangePicker> = (
       start: new Date(2000, 0, 15),
       end: null,
     });
+    const isOpen1 = ref<boolean>(true);
+    const isOpen2 = ref<boolean>(true);
+    const isOpen3 = ref<boolean>(true);
+    const setIsOpen1 = (value: boolean) => (isOpen1.value = value);
+    const setIsOpen2 = (value: boolean) => (isOpen2.value = value);
+    const setIsOpen3 = (value: boolean) => (isOpen3.value = value);
 
     const selectBoxValue = ref<string>();
     const handleSelectBoxValueChange = (value: string) => {
@@ -219,13 +257,43 @@ export const InitialValue: StoryFn<typeof WizDateRangePicker> = (
       dateRange3,
       selectBoxValue,
       handleSelectBoxValueChange,
+      isOpen1,
+      isOpen2,
+      isOpen3,
+      setIsOpen1,
+      setIsOpen2,
+      setIsOpen3,
     };
   },
   template: ` 
     <div style="display: flex; gap: 15rem; flex-direction: column">
-      <WizDateRangePicker v-model="dateRange1" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
-      <WizDateRangePicker v-model="dateRange2" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
-      <WizDateRangePicker v-model="dateRange3" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
+      <WizDateRangePicker 
+        v-model="dateRange1" 
+        :selectBoxValue="selectBoxValue" 
+        :selectBoxOptions="selectBoxOptions" 
+        @input="onDateSelected" 
+        @updateSelectBoxValue="handleSelectBoxValueChange"
+        :isOpen="isOpen1"
+        @updateIsOpen="setIsOpen1"
+      />
+      <WizDateRangePicker
+        v-model="dateRange2"
+        :selectBoxValue="selectBoxValue"
+        :selectBoxOptions="selectBoxOptions"
+        @input="onDateSelected"
+        @updateSelectBoxValue="handleSelectBoxValueChange"
+        :isOpen="isOpen2"
+        @updateIsOpen="setIsOpen2"
+      />
+      <WizDateRangePicker
+        v-model="dateRange3"
+        :selectBoxValue="selectBoxValue"  
+        :selectBoxOptions="selectBoxOptions"
+        @input="onDateSelected"
+        @updateSelectBoxValue="handleSelectBoxValueChange"
+        :isOpen="isOpen3"
+        @updateIsOpen="setIsOpen3"
+      />
     </div>
   `,
 });
@@ -260,16 +328,30 @@ export const Test: StoryFn<typeof WizDateRangePicker> = (
       // @ts-ignore
       args.onSelectBoxValueChange(value);
     };
+    const isOpen = ref(false);
+    const updateIsOpen = (value: boolean) => {
+      isOpen.value = value;
+    };
     return {
       dateRange,
       selectBoxValue,
       selectBoxOptions,
       handleSelectBoxValueChange,
+      isOpen,
+      updateIsOpen,
     };
   },
   template: `
     <div>
-      <WizDateRangePicker v-model="dateRange" :selectBoxValue="selectBoxValue" :selectBoxOptions="selectBoxOptions" @input="onDateSelected" @updateSelectBoxValue="handleSelectBoxValueChange" />
+      <WizDateRangePicker 
+        v-model="dateRange" 
+        :selectBoxValue="selectBoxValue" 
+        :selectBoxOptions="selectBoxOptions" 
+        @input="onDateSelected" 
+        @updateSelectBoxValue="handleSelectBoxValueChange" 
+        :isOpen="isOpen"
+        @updateIsOpen="updateIsOpen"  
+      />
     </div>
   `,
 });
