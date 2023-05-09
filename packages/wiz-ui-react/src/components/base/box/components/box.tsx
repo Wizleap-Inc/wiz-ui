@@ -114,7 +114,7 @@ const _Box = forwardRef(
       minHeight,
       maxHeight,
       borderRadius,
-      zIndex: zIndex && +getZIndexCss(zIndex),
+      zIndex: zIndex && getZIndexCss(zIndex),
       backgroundColor: bgColor && getColorCss(bgColor),
       boxShadow: shadow && getShadowCss(shadow),
       filter: dropShadow && `drop-shadow(${getShadowCss(dropShadow)})`,
