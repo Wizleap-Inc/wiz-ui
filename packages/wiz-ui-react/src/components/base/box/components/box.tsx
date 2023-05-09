@@ -126,7 +126,7 @@ const _Box = forwardRef(
       transform,
       transition,
       opacity,
-      scrollSnapType: snapScroll && snapScroll,
+      scrollSnapType: snapScroll,
       backdropFilter: backdropBlur && `blur(${getSpacingCss(backdropBlur)})`,
     };
 
