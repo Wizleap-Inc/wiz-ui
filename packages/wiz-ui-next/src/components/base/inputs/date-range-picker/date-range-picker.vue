@@ -173,11 +173,10 @@ const props = defineProps({
   },
   /**
    * カレンダー（Popup）の開閉状態を指定します。
-   * default: false
    */
   isOpen: {
     type: Boolean,
-    required: false,
+    required: true,
   },
 });
 
