@@ -8,7 +8,7 @@
       ]"
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
       :disabled="disabled"
-      @click="togglePopupOpen"
+      @click="setIsOpen(!isOpen)"
     >
       <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
       <span
@@ -25,7 +25,7 @@
         >{{ modelValue.end ? formatDateToMD(modelValue.end) : "終了日" }}</span
       >
     </button>
-    <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false">
+    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
@@ -145,6 +145,7 @@ import { DateRangePickerSelectBoxOption, DateRange } from "./types";
 interface Emit {
   (e: "update:modelValue", value: DateRange): void;
   (e: "update:selectBoxValue", value: string): void;
+  (e: "update:isOpen", value: boolean): void;
 }
 
 const props = defineProps({
@@ -170,13 +171,20 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  /**
+   * カレンダー（Popup）の開閉状態を指定します。
+   * default: false
+   */
+  isOpen: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
 
 type SelectState = "selecting" | "selected" | "none";
 
-const isPopupOpen = ref(false);
 const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();
 const rightCalendarDate = ref(
@@ -205,8 +213,8 @@ const leftCalendarDate = computed(() => {
 });
 const selectedState = ref<SelectState>("none");
 
-const togglePopupOpen = () => {
-  isPopupOpen.value = !isPopupOpen.value;
+const setIsOpen = (value: boolean) => {
+  emit("update:isOpen", value);
 };
 
 const moveToNextMonth = () => {
@@ -327,7 +335,7 @@ const isError = computed(() => (form ? form.isError.value : false));
 
 const borderState = computed(() => {
   if (isError.value) return "error";
-  if (isPopupOpen.value) return "active";
+  if (props.isOpen) return "active";
   return "default";
 });
 </script>
