@@ -106,3 +106,66 @@ export const WithRowHeader: StoryFn<typeof WizFlatTable> = (args) => ({
     </WizFlatTable>
   `,
 });
+
+export const UnionRow: StoryFn<typeof WizFlatTable> = (args) => ({
+  setup: () => ({ args }),
+  components: {
+    WizFlatTable,
+    WizFlatThead,
+    WizFlatTbody,
+    WizFlatTr,
+    WizFlatTh,
+    WizFlatTd,
+  },
+  template: `
+    <WizFlatTable>
+      <WizFlatThead>
+        <WizFlatTr>
+          <WizFlatTh v-for="i in 2" :key="i" scope="col" :colSpan="2">Column {{ i }}</WizFlatTh>
+        </WizFlatTr>
+      </WizFlatThead>
+      <WizFlatTbody>
+        <WizFlatTr v-for="i in 4" :key="i">
+          <WizFlatTh scope="row">Row {{ i }}</WizFlatTh>
+          <WizFlatTd v-for="j in 2" :key="j">Row {{ i }}</WizFlatTd>
+        </WizFlatTr>
+      </WizFlatTbody>
+    </WizFlatTable>
+  `,
+});
+
+export const UnionColumn: StoryFn<typeof WizFlatTable> = (args) => ({
+  setup: () => ({ args }),
+  components: {
+    WizFlatTable,
+    WizFlatThead,
+    WizFlatTbody,
+    WizFlatTr,
+    WizFlatTh,
+    WizFlatTd,
+  },
+  template: `
+    <WizFlatTable>
+      <WizFlatThead>
+        <WizFlatTr>
+          <WizFlatTh scope="col" :colSpan="2">Column 1</WizFlatTh>
+          <WizFlatTh scope="col" >Column 2</WizFlatTh>
+        </WizFlatTr>
+      </WizFlatThead>
+      <WizFlatTbody>
+
+        <WizFlatTr >
+          <WizFlatTh scope="row" :colSpan="3">Row</WizFlatTh>
+        </WizFlatTr>
+        <WizFlatTr>
+          <WizFlatTh scope="row">Row 1</WizFlatTh>
+          <WizFlatTd>Row 2 </WizFlatTd>
+          <WizFlatTd>Row 3</WizFlatTd>
+        </WizFlatTr>
+        <WizFlatTr >
+          <WizFlatTd scope="row" :colSpan="3">Row</WizFlatTd>
+        </WizFlatTr>
+      </WizFlatTbody>
+    </WizFlatTable>
+  `,
+});

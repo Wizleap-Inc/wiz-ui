@@ -41,5 +41,14 @@ export default defineConfig({
       name: "Wiz-UI",
       fileName: (format) => `wiz-ui.${format}.js`,
     },
+    rollupOptions: {
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      },
+    },
   },
 });
