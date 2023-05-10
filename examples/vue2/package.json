@@ -1,7 +1,7 @@
 {
   "name": "@wizleap-inc/wiz-ui-example-vue2",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vue": "^2.7.14",
-    "@wizleap-inc/wiz-ui": "*"
+    "@wizleap-inc/wiz-ui": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue2": "^2.0.1",

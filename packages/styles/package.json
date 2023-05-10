@@ -1,9 +1,17 @@
 {
-  "private": true,
   "name": "@wizleap-inc/wiz-ui-styles",
-  "version": "0.0.0",
-  "main": "index.ts",
+  "version": "0.3.0",
+  "main": "./dist/wiz-ui-styles.umd.js",
+  "module": "./dist/wiz-ui-styles.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "build:tools": "pnpm run build"
+  },
   "dependencies": {
-    "@wizleap-inc/wiz-ui-constants": "*"
+    "@wizleap-inc/wiz-ui-constants": "workspace:*"
   }
 }
