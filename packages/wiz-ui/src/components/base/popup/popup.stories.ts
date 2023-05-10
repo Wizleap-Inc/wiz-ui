@@ -238,7 +238,6 @@ export const Fixed: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
 Fixed.args = {
   closeOnBlur: false,
   shadow: true,
-  fixed: true,
 };
 
 export const Playground = Template.bind({});

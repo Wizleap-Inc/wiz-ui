@@ -225,7 +225,6 @@ export const Fixed: StoryFn<typeof WizPopup> = (args) => ({
 Fixed.args = {
   closeOnBlur: false,
   shadow: true,
-  fixed: true,
 };
 
 export const Playground: StoryFn<typeof WizPopup> = (args) => ({
