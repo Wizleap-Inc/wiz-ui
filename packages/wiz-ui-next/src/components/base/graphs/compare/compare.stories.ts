@@ -180,11 +180,11 @@ UnitVerticalAxis.parameters = {
   },
 };
 
-export const LabelX = Template.bind({});
-LabelX.args = {
-  rotateStrength: 1,
+export const TiltedLabel = Template.bind({});
+TiltedLabel.args = {
+  isTilted: true,
 };
-LabelX.parameters = {
+TiltedLabel.parameters = {
   docs: {
     description: {
       story: `ラベルを回転できます。`,
