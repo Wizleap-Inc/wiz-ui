@@ -195,24 +195,42 @@ export const Shadow: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
 export const Fixed: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPopup, WizTextButton, WizPopupContainer },
+  setup() {
+    const isOpen = ref(false);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    return { isOpen, toggle };
+  },
   template: `
-  <div style="width:200vw; height: 200vh;">  
-    <wiz-popup-container>
-      <wiz-popup :isOpen="true" v-bind="$props">
-        <div style="
-          position: absolute;
-          top: 50%;
-          left: 10rem;
-          transform: translateY(-50%);
-          width: max-content;
-          padding: 16px; 
-          background-color: white; 
-          border-radius: 4px;"
-        >
-          <p>This is a popup content</p>
-        </div>
-      </wiz-popup>
-    </wiz-popup-container> 
+  <div style="width:200vw; height: 200vh;">
+    <div style="
+      border: 1px solid black;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+    ">
+      <wiz-popup-container>
+        <button @click="toggle">
+          <span>Popup Button</span> 
+        </button>
+        <wiz-popup :isOpen="isOpen" v-bind="$props">
+          <div style="
+            position: absolute;
+            top: 50%;
+            left: 10rem;
+            transform: translate(-50%, -50%);
+            width: max-content;
+            padding: 16px; 
+            background-color: white; 
+            border-radius: 4px;"
+          >
+            <p>This is a popup content</p>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container> 
+    </div>
   </div> 
   `,
 });

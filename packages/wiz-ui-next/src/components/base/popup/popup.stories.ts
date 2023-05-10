@@ -182,17 +182,32 @@ export const Shadow: StoryFn<typeof WizPopup> = (args) => ({
 export const Fixed: StoryFn<typeof WizPopup> = (args) => ({
   components: { WizPopup, WizTextButton, WizPopupContainer },
   setup() {
-    return { args };
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
+    return { isOpen, toggle, close, args };
   },
   template: `
   <div style="width:200vw; height: 200vh;">  
+    <div style="
+      border: 1px solid black;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+    ">
     <wiz-popup-container>
-      <wiz-popup :isOpen="true" v-bind="args">
+      <button @click="toggle">
+        <span>Popup Button</span> 
+      </button>
+      <wiz-popup :isOpen="isOpen"  v-bind="args">
         <div style="
           position: absolute;
           top: 50%;
           left: 10rem;
-          transform: translateY(-50%);
+          transform: translate(-50%, -50%);
           width: max-content;
           padding: 16px; 
           background-color: white; 
@@ -202,6 +217,7 @@ export const Fixed: StoryFn<typeof WizPopup> = (args) => ({
         </div>
       </wiz-popup>
     </wiz-popup-container> 
+    </div>
   </div> 
   `,
 });
