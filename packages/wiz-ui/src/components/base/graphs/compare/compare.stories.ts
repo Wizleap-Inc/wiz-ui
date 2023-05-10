@@ -53,7 +53,7 @@ const DUMMY_DATA: CompareGraphData[] = [
     ],
   },
   {
-    label: "red apple",
+    label: "very very very red apple",
     data: [
       {
         id: "red_1",
