@@ -40,11 +40,8 @@ const meta: Meta<typeof WizText> = {
       control: { type: "select" },
       options: WHITE_SPACE_MAP_ACCESSORS,
     },
-    isDummy: {
+    isBlurred: {
       control: { type: "boolean" },
-    },
-    dummyValue: {
-      control: { type: "text" },
     },
     textAlign: {
       control: { type: "select" },
@@ -134,13 +131,12 @@ export const Color: Story = {
   },
 };
 
-export const DummyValue: Story = {
+export const Blur: Story = {
   render: (args) => (
     <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
   args: {
-    isDummy: true,
-    dummyValue: "ABCDEFG",
+    isBlurred: true,
   },
 };
 
