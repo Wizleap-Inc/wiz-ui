@@ -6,7 +6,7 @@
         shadow && popupShadowStyle,
         zIndexStyle[layer],
         !isActuallyOpen && popupHiddenStyle,
-        fixed && popupFixedStyle,
+        isFixed && popupFixedStyle,
       ]"
       :style="{
         inset,
@@ -110,11 +110,6 @@ const props = defineProps({
     required: false,
     default: false,
   },
-  fixed: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
 });
 
 const emit = defineEmits<Emits>();
@@ -154,6 +149,12 @@ const togglePopup = () => {
       isActuallyOpen.value = props.isOpen;
     };
   }
+};
+
+const existsFixedParent = (el: HTMLElement | null): HTMLElement | null => {
+  if (!el) return null;
+  if (el.style.position === "fixed") return el;
+  return existsFixedParent(el.parentElement);
 };
 
 let removeScrollHandler: (() => void) | null = null;
@@ -327,8 +328,12 @@ watch(
   }
 );
 
+const isFixed = computed(() => {
+  return existsFixedParent(containerRef.value || null) ? true : false;
+});
+
 const inset = computed(() => {
-  if (props.fixed) return "0";
+  if (isFixed) return "0";
   const { scrollX, scrollY } = window;
   const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
