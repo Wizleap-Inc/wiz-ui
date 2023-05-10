@@ -263,7 +263,7 @@ export const InitialValue: StoryFn<typeof WizDateRangePicker> = (args) => ({
     };
   },
   template: `
-    <div style="display: flex; gap: 15rem; flex-direction: column">
+    <div style="display: flex; gap: 15rem; flex-direction: column; height: 200vh">
       <WizDateRangePicker 
         v-model="dateRange1"
         v-model:selectBoxValue="selectBoxValue1"
