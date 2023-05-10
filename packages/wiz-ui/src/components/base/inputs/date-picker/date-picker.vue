@@ -18,11 +18,7 @@
         <span>{{ parseValue(calendarValue) || placeholder }}</span>
       </WizHStack>
     </button>
-    <WizPopup
-      :isOpen="!disabled && isOpen"
-      @onClose="setIsOpen(false)"
-      :is-direction-fixed="true"
-    >
+    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizHStack align="center" justify="between" gap="xs2">
