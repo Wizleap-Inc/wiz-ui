@@ -14,7 +14,7 @@
         :key="barData.label"
         :barGap="barGap"
         :barGroupWidth="barGroupWidth"
-        :rotateStrength="rotateStrength"
+        :theta="theta"
       />
     </div>
     <div :class="summaryLabelStyle">
@@ -88,16 +88,19 @@ const props = defineProps({
     default: "no",
   },
   /**
-   * 回転の強さを指定します。
-   * 横幅にあわせて、0°~45°までの傾きが横軸ラベルに自動設定されます。
-   * @param rotateStrength - 0の時は常に水平です。大きいほど傾きやすくなります。推奨は1です。
-   * @default 0
+   * 横軸ラベルを傾けるかを指定します。
+   * @param isTilted
+   * @default false
    */
-  rotateStrength: {
-    type: Number,
+  isTilted: {
+    type: Boolean,
     required: false,
-    default: 0,
+    default: false,
   },
+});
+
+const theta = computed(() => {
+  return props.isTilted ? Math.PI / 4 : 0;
 });
 
 const maxFrequency = computed(() => {

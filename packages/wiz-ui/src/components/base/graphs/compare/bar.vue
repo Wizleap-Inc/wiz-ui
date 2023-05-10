@@ -50,11 +50,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  rotateStrength: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
   data: {
     type: Object as PropType<CompareGraphData>,
     required: true,
@@ -75,6 +70,12 @@ const props = defineProps({
     required: false,
     default: 0.8,
   },
+  /** バーの傾き(rad)を指定します。*/
+  theta: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 const barRefs = ref<HTMLElement[]>();
@@ -83,21 +84,12 @@ const labelRef = ref<HTMLElement>();
 const graphRef = ref<HTMLElement>();
 
 const updateLabelTransformStyle = () => {
-  if (!labelRef.value || !graphRef.value) return;
-  const w = graphRef.value.clientWidth;
-  const theta = (() => {
-    const x = Math.atan((props.rotateStrength * 50) / w);
-    const x2 = (Math.PI / 2) * ((Math.tanh(6 * x - 3) + 1) / 2);
-    const [minThreshold, maxThreshold] = [0.05, (Math.PI / 2) * 0.5];
-    const x3 = x2 < minThreshold ? 0 : x2;
-    const x4 = maxThreshold < x3 ? maxThreshold : x3;
-    return x4;
-  })();
+  if (!labelRef.value) return;
   const d = labelRef.value.clientWidth / 2;
   labelRef.value.style.transform = `
     translateX(-50%)
-    translateY(${d * Math.abs(Math.sin(theta))}px)
-    rotate(-${theta}rad)`;
+    translateY(${d * Math.abs(Math.sin(props.theta))}px)
+    rotate(-${props.theta}rad)`;
 };
 
 const updateBarItemCurrentHeight = () => {
@@ -129,7 +121,7 @@ const barItemCurrentResizeObserver = new ResizeObserver(
 
 const graphResizeObserver = new ResizeObserver(updateLabelTransformStyle);
 
-watch(() => props.rotateStrength, updateLabelTransformStyle);
+watch(() => props.theta, updateLabelTransformStyle);
 
 onMounted(() => {
   if (barRefs.value)
