@@ -62,6 +62,7 @@ const Boxes = (props: { count: number }) => (
 
 export const Default: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [boxCount, setBoxCount] = useState(5);
     return (
       <div
