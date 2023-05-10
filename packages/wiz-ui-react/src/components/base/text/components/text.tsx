@@ -24,15 +24,10 @@ type Props = {
   maxLines?: number;
   whiteSpace?: WhiteSpaceKeys;
   /**
-   * ぼかしたダミーテキストを表示するかどうかを指定します。
+   * テキストをぼかすかどうかを指定します。
    * @default false
    */
-  isDummy?: boolean;
-  /**
-   * ダミーテキストを指定します。ぼかしたダミーテキストを表示する場合は`isDummy=true`にしてください。
-   * @default "DummyValue"
-   */
-  dummyValue?: string;
+  isBlurred?: boolean;
   breakAll?: boolean;
   textAlign?: "start" | "end" | "left" | "right" | "center";
   lineThrough?: boolean;
@@ -48,8 +43,7 @@ const _Text = ({
   bold,
   maxLines,
   whiteSpace = "normal",
-  isDummy = false,
-  dummyValue = "DummyValue",
+  isBlurred = false,
   breakAll,
   textAlign = "start",
   lineThrough = false,
@@ -63,7 +57,7 @@ const _Text = ({
         WebkitLineClamp: maxLines,
       }
     : undefined;
-  const className = clsx(
+  const className = clsx([
     styles.textStyle,
     styles.textFontWeightStyle[bold ? "bold" : "default"],
     styles.textAlignStyle[textAlign],
@@ -74,32 +68,28 @@ const _Text = ({
     fontSizeStyle[fontSize],
     colorStyle[color],
     whiteSpaceStyle[whiteSpace],
-    lineThrough && styles.textLineThroughStyle
-  );
-  const content = isDummy ? (
-    <span className={styles.textDummyStyle}>{dummyValue}</span>
-  ) : (
-    props.children && props.children
-  );
+    lineThrough && styles.textLineThroughStyle,
+    isBlurred && styles.textDummyStyle,
+  ]);
   switch (as) {
     case "p": {
       return (
         <p className={className} style={style}>
-          {content}
+          {props.children}
         </p>
       );
     }
     case "label": {
       return (
         <label htmlFor={htmlFor} className={className} style={style}>
-          {content}
+          {props.children}
         </label>
       );
     }
     case "span": {
       return (
         <span className={className} style={style}>
-          {content}
+          {props.children}
         </span>
       );
     }
