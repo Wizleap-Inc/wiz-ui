@@ -95,6 +95,7 @@ const updateLabelTransformStyle = () => {
   })();
   const d = labelRef.value.clientWidth / 2;
   labelRef.value.style.transform = `
+    translateX(-50%)
     translateY(${d * Math.abs(Math.sin(theta))}px)
     rotate(-${theta}rad)`;
 };
