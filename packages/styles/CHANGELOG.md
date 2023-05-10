@@ -1,5 +1,24 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.3.0
+
+### Minor Changes
+
+- [#668](https://github.com/Wizleap-Inc/wiz-ui/pull/668) [`68b7493c`](https://github.com/Wizleap-Inc/wiz-ui/commit/68b7493cc4e0c0de9e8a23845526baa02cdc49e5) Thanks [@sor4chi](https://github.com/sor4chi)! - Schedule コンポーネントの追加
+
+### Patch Changes
+
+- Updated dependencies [[`68b7493c`](https://github.com/Wizleap-Inc/wiz-ui/commit/68b7493cc4e0c0de9e8a23845526baa02cdc49e5)]:
+  - @wizleap-inc/wiz-ui-constants@0.3.0
+
+## 0.2.0
+
+### Minor Changes
+
+- [`f946335f`](https://github.com/Wizleap-Inc/wiz-ui/commit/f946335f7a9d68a090d2ce01547c4b21394067e6) Thanks [@ichi-h](https://github.com/ichi-h)! - unstyled-table の Row に横罫線を引けるように
+
+- [#692](https://github.com/Wizleap-Inc/wiz-ui/pull/692) [`aad6269f`](https://github.com/Wizleap-Inc/wiz-ui/commit/aad6269fe8d9ecd5195e94e72ee7870f120dbbbd) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTag の variant を変更（error -> red, success -> green）、新規タグ（黄色・青色）追加
+
 ## 0.1.2
 
 ### Patch Changes

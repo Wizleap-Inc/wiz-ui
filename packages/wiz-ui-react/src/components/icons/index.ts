@@ -1,5 +1,7 @@
 import { WizIAdd } from "./add";
 import { WizIAddCircle } from "./add-circle";
+import { WizIArrowDropDown } from "./arrow-drop-down";
+import { WizIArrowDropUp } from "./arrow-drop-up";
 import { WizIArrowRight } from "./arrow-right";
 import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
@@ -50,6 +52,8 @@ import { WizIWarning } from "./warning";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIArrowDropDown
+  | typeof WizIArrowDropUp
   | typeof WizIArrowRight
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
@@ -100,6 +104,8 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIArrowDropDown,
+  WizIArrowDropUp,
   WizIArrowRight,
   WizIAssignmentAdd,
   WizIAssignment,
