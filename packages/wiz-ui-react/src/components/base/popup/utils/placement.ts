@@ -79,15 +79,20 @@ export const adjustDirection: Record<
   (body: DOMRect, content: DOMRect, anchor: DOMRect) => DirectionValues
 > = {
   bl: (body: DOMRect, content: DOMRect, anchor: DOMRect) => {
+    console.log("y", body.height, anchor.y + anchor.height + window.scrollY);
     const y =
-      body.height < anchor.y + anchor.height + window.scrollY ? "t" : "b";
+      body.height < anchor.y + anchor.height + content.height + window.scrollY
+        ? "t"
+        : "b";
     const x =
       body.width < anchor.x + content.width + window.scrollX ? "r" : "l";
     return `${y}${x}` as DirectionValues;
   },
   bc: (body: DOMRect, content: DOMRect, anchor: DOMRect) => {
     const y =
-      body.height < anchor.y + anchor.height + window.scrollY ? "t" : "b";
+      body.height < anchor.y + anchor.height + content.height + window.scrollY
+        ? "t"
+        : "b";
     const r =
       body.width <
         anchor.x + (anchor.width + content.width) / 2 + window.scrollX && "r";
@@ -97,7 +102,9 @@ export const adjustDirection: Record<
   },
   br: (body: DOMRect, content: DOMRect, anchor: DOMRect) => {
     const y =
-      body.height < anchor.y + anchor.height + window.scrollY ? "t" : "b";
+      body.height < anchor.y + anchor.height + content.height + window.scrollY
+        ? "t"
+        : "b";
     const x =
       anchor.x + anchor.width - content.width + window.scrollX < 0 ? "l" : "r";
     return `${y}${x}` as DirectionValues;
