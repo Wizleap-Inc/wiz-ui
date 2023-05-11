@@ -79,7 +79,6 @@ export const adjustDirection: Record<
   (body: DOMRect, content: DOMRect, anchor: DOMRect) => DirectionValues
 > = {
   bl: (body: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    console.log("y", body.height, anchor.y + anchor.height + window.scrollY);
     const y =
       body.height < anchor.y + anchor.height + content.height + window.scrollY
         ? "t"

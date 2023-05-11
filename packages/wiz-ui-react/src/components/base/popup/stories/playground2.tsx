@@ -76,7 +76,6 @@ export const Playground2Story: StoryObj<typeof WizPopup> = {
         transform: "translate(-50%, 0%)",
       },
     ];
-    console.log(document.body);
     return (
       <div
         style={{
