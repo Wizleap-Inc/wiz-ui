@@ -58,6 +58,7 @@ contentに改行文字(\\n)を含む文字列を渡すと、改行されて表�
 export const Hover = Template.bind({});
 Hover.args = {
   hover: true,
+  animation: false,
 };
 Hover.parameters = {
   docs: {
@@ -79,6 +80,7 @@ export const Direction = Template.bind({});
 Direction.args = {
   direction: "right",
   hover: true,
+  animation: false,
 };
 Direction.parameters = {
   docs: {
@@ -112,6 +114,7 @@ export const LongTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
 });
 LongTextFixedOutBox.args = {
   hover: true,
+  animation: false,
 };
 LongTextFixedOutBox.parameters = {
   docs: {
@@ -145,6 +148,7 @@ export const ShortTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
 });
 ShortTextFixedOutBox.args = {
   hover: true,
+  animation: false,
 };
 ShortTextFixedOutBox.parameters = {
   docs: {

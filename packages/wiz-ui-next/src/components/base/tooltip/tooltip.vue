@@ -11,7 +11,7 @@
         :isOpen="isHover || hover"
         :direction="computedDirection"
         :shadow="false"
-        :animation="true"
+        :animation="animation"
         @onTurn="turnPopup"
         gap="xs2"
       >
@@ -66,6 +66,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  animation: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
 });
 
