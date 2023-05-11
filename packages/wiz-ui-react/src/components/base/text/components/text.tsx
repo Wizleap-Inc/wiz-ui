@@ -47,7 +47,7 @@ const _Text = ({
   breakAll,
   textAlign = "start",
   lineThrough = false,
-  ...props
+  children,
 }: Props) => {
   const style = maxLines
     ? {
@@ -75,21 +75,21 @@ const _Text = ({
     case "p": {
       return (
         <p className={className} style={style}>
-          {props.children}
+          {children}
         </p>
       );
     }
     case "label": {
       return (
         <label htmlFor={htmlFor} className={className} style={style}>
-          {props.children}
+          {children}
         </label>
       );
     }
     case "span": {
       return (
         <span className={className} style={style}>
-          {props.children}
+          {children}
         </span>
       );
     }
