@@ -42,7 +42,6 @@ export const DefaultStory: StoryObj<typeof WizPopup> = {
             anchorElement={anchor}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            shadow={true}
           >
             <div
               style={{
