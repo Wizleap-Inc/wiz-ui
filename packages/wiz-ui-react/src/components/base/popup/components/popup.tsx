@@ -20,7 +20,7 @@ import {
 import { WizPortal } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
-import { Direction } from "../types/direction";
+import { DIRECTION_MAP, DirectionKeys } from "../types/direction";
 import {
   PopupPlacementStyle,
   adjustDirection,
@@ -32,7 +32,7 @@ type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   anchorElement: RefObject<HTMLElement>;
-  direction?: Direction;
+  direction?: DirectionKeys;
   gap?: SpacingKeys;
   closeOnBlur?: boolean;
   layer?: Exclude<ZIndexKeys, "dialog">;
@@ -48,7 +48,7 @@ const _Popup = ({
   closeOnBlur = true,
   layer = "popover",
   gap = "no",
-  direction = "bl",
+  direction = "bottomLeft",
   shadow = true,
   animation = false,
   ...props
@@ -62,13 +62,14 @@ const _Popup = ({
     const bodyRect = props.bodyElement?.getBoundingClientRect();
     const contentRect = popupRef.current?.getBoundingClientRect();
     const gapRem = getSpacingCss(gap) ?? "0";
+    const dir = DIRECTION_MAP[direction];
     if (!anchorRect) return {};
     if (!bodyRect || !contentRect)
       // Popupの表示領域の指定がない場合、回り込みロジックは適用されません。(!bodyRect)
       // レンダリング前にgetStyleが呼ばれると、contentRectを取得できないため、回り込みロジックは適用されません。(!contentRect)
-      return getPlacementStyle[direction](anchorRect, gapRem);
-    const dir = adjustDirection[direction](bodyRect, contentRect, anchorRect);
-    return getPlacementStyle[dir](anchorRect, gapRem);
+      return getPlacementStyle[dir](anchorRect, gapRem);
+    const dir2 = adjustDirection[dir](bodyRect, contentRect, anchorRect);
+    return getPlacementStyle[dir2](anchorRect, gapRem);
   };
 
   if (closeOnBlur)
