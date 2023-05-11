@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { StoryObj } from "@storybook/react";
 import { useEffect, useRef, useState } from "react";
 

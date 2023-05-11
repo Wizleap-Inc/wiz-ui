@@ -77,8 +77,11 @@ const _Popup = ({
     return getPlacementStyle[dir2](anchorRect, gapRem);
   };
 
-  if (closeOnBlur)
-    useClickOutside(popupRef, () => setIsOpen(false), anchorElement);
+  useClickOutside(
+    popupRef,
+    () => closeOnBlur && setIsOpen(false),
+    anchorElement
+  );
 
   useEffect(() => {
     if (!animation || !popupRef.current) {
