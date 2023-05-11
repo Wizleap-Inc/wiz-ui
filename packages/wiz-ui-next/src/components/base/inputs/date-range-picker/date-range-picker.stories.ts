@@ -263,34 +263,38 @@ export const InitialValue: StoryFn<typeof WizDateRangePicker> = (args) => ({
     };
   },
   template: `
-    <div style="display: flex; gap: 20rem; flex-direction: row; width: 90rem">
-      <WizDateRangePicker 
-        v-model="dateRange1"
-        v-model:selectBoxValue="selectBoxValue1"
-        :selectBoxOptions="selectBoxOptions"
-        @update:modelValue="args.onDateSelected"
-        @update:selectBoxValue="args.onSelectBoxValueChange"
-        :isOpen="isOpen1"
-        @update:isOpen="setIsOpen1"
-      />
-      <WizDateRangePicker
-        v-model="dateRange2"
-        v-model:selectBoxValue="selectBoxValue2"
-        :selectBoxOptions="selectBoxOptions"
-        @update:modelValue="args.onDateSelected"
-        @update:selectBoxValue="args.onSelectBoxValueChange"
-        :isOpen="isOpen2"
-        @update:isOpen="setIsOpen2"
-      />
-      <WizDateRangePicker
-        v-model="dateRange3"
-        v-model:selectBoxValue="selectBoxValue3"
-        :selectBoxOptions="selectBoxOptions"
-        @update:modelValue="args.onDateSelected"
-        @update:selectBoxValue="args.onSelectBoxValueChange"
-        :isOpen="isOpen3"
-        @update:isOpen="setIsOpen3"
-      />
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem"> 
+      <div style="display: flex; gap: 20rem; flex-direction: row; width: 90rem;">
+        <WizDateRangePicker 
+          v-model="dateRange1"
+          v-model:selectBoxValue="selectBoxValue1"
+          :selectBoxOptions="selectBoxOptions"
+          @update:modelValue="args.onDateSelected"
+          @update:selectBoxValue="args.onSelectBoxValueChange"
+          :isOpen="isOpen1"
+          @update:isOpen="setIsOpen1"
+        />
+      </div>
+      <div style="display: flex; gap: 20rem; flex-direction: row; width: 90rem;">
+        <WizDateRangePicker
+          v-model="dateRange2"
+          v-model:selectBoxValue="selectBoxValue2"
+          :selectBoxOptions="selectBoxOptions"
+          @update:modelValue="args.onDateSelected"
+          @update:selectBoxValue="args.onSelectBoxValueChange"
+          :isOpen="isOpen2"
+          @update:isOpen="setIsOpen2"
+        />
+        <WizDateRangePicker
+          v-model="dateRange3"
+          v-model:selectBoxValue="selectBoxValue3"
+          :selectBoxOptions="selectBoxOptions"
+          @update:modelValue="args.onDateSelected"
+          @update:selectBoxValue="args.onSelectBoxValueChange"
+          :isOpen="isOpen3"
+          @update:isOpen="setIsOpen3"
+        />
+      </div>
     </div>
   `,
 });
