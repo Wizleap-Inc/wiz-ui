@@ -1,48 +1,52 @@
 import { StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import {
-  WizPopup,
-  WizPopupTrigger,
-  WizPopupContent,
-  WizPopupCloseButton,
-} from "../components";
+import { WizPopup } from "../components";
 
 import { Pattern, popupContentStyle } from "./common";
 
-export const GapStory: StoryObj<typeof WizPopupContent> = {
+export const GapStory: StoryObj<typeof WizPopup> = {
   render: (args) => {
     const patterns: Pattern[] = [
-      { direction: "rt", gap: "no" },
-      { direction: "rt", gap: "xs2" },
-      { direction: "rt", gap: "xs" },
-      { direction: "rt", gap: "sm" },
-      { direction: "rt", gap: "md" },
-      { direction: "rt", gap: "lg" },
-      { direction: "rt", gap: "xl" },
-      { direction: "rt", gap: "xl2" },
-      { direction: "rt", gap: "xl3" },
-      { direction: "rt", gap: "xl4" },
+      { direction: "rightTop", gap: "no" },
+      { direction: "rightTop", gap: "xs2" },
+      { direction: "rightTop", gap: "xs" },
+      { direction: "rightTop", gap: "sm" },
+      { direction: "rightTop", gap: "md" },
+      { direction: "rightTop", gap: "lg" },
+      { direction: "rightTop", gap: "xl" },
+      { direction: "rightTop", gap: "xl2" },
+      { direction: "rightTop", gap: "xl3" },
+      { direction: "rightTop", gap: "xl4" },
     ];
 
     const Popup = ({ pattern }: { pattern: Pattern }) => {
       const [isOpen, setIsOpen] = useState(true);
+      const anchor = useRef<HTMLButtonElement | null>(null);
       return (
-        <WizPopup isOpen={isOpen} setIsOpen={setIsOpen}>
-          <WizPopupTrigger>
-            <button>
-              Click me {pattern.direction} {pattern.gap}
-            </button>
-          </WizPopupTrigger>
-          <WizPopupContent {...args} {...pattern}>
+        <>
+          <button
+            ref={anchor}
+            style={{ width: "5rem", height: "2rem" }}
+            onClick={() => setIsOpen((v) => !v)}
+          >
+            Gap {pattern.gap}
+          </button>
+          <WizPopup
+            {...args}
+            {...pattern}
+            anchorElement={anchor}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          >
             <div style={popupContentStyle}>
-              <p>
-                This is a popup content {pattern.direction} {pattern.gap}
-              </p>
-              <WizPopupCloseButton>close</WizPopupCloseButton>
+              <div>{pattern.gap}</div>
+              <button style={{}} onClick={() => setIsOpen(false)}>
+                Close
+              </button>
             </div>
-          </WizPopupContent>
-        </WizPopup>
+          </WizPopup>
+        </>
       );
     };
     return (
@@ -52,7 +56,8 @@ export const GapStory: StoryObj<typeof WizPopupContent> = {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          gap: "15rem",
+          gap: "8rem",
+          paddingBottom: "4rem",
         }}
       >
         {patterns.map((pattern, i) => (

@@ -1,9 +1,9 @@
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 
-import { Direction } from "../types/direction";
+import { DirectionKeys } from "../types/direction";
 
 export type Pattern = {
-  direction: Direction;
+  direction: DirectionKeys;
   gap?: SpacingKeys;
 };
 

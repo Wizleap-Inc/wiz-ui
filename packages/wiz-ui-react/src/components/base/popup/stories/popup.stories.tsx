@@ -2,16 +2,16 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { WizProvider } from "@/components/manager";
 
-import { WizPopupContent } from "../components";
+import { WizPopup } from "../components";
 
 import { DefaultStory } from "./default";
 import { GapStory } from "./gap";
 import { PlaygroundStory } from "./playground";
 import { Playground2Story } from "./playground2";
 
-const meta: Meta<typeof WizPopupContent> = {
+const meta: Meta<typeof WizPopup> = {
   title: "Base/Popup",
-  component: WizPopupContent,
+  component: WizPopup,
   argTypes: {},
   decorators: [
     (Story) => (
@@ -23,7 +23,7 @@ const meta: Meta<typeof WizPopupContent> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof WizPopupContent>;
+type Story = StoryObj<typeof WizPopup>;
 
 export const Default: Story = DefaultStory;
 

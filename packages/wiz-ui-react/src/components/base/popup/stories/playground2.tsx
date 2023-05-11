@@ -1,18 +1,14 @@
 import { StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import {
-  WizPopup,
-  WizPopupTrigger,
-  WizPopupContent,
-  WizPopupCloseButton,
-} from "../components";
+import { WizPopup } from "../components";
 
 import { popupContentStyle } from "./common";
 
-export const Playground2Story: StoryObj<typeof WizPopupContent> = {
+export const Playground2Story: StoryObj<typeof WizPopup> = {
   args: {
     closeOnBlur: false,
+    isDirectionFixed: false,
   },
   render: (args) => {
     const absolutePositions = [
@@ -80,6 +76,7 @@ export const Playground2Story: StoryObj<typeof WizPopupContent> = {
         transform: "translate(-50%, 0%)",
       },
     ];
+    console.log(document.body);
     return (
       <div
         style={{
@@ -90,6 +87,7 @@ export const Playground2Story: StoryObj<typeof WizPopupContent> = {
       >
         {absolutePositions.map((pattern, i) => {
           const [isOpen, setIsOpen] = useState(true);
+          const anchor = useRef<HTMLButtonElement | null>(null);
           return (
             <div
               key={i}
@@ -98,22 +96,19 @@ export const Playground2Story: StoryObj<typeof WizPopupContent> = {
                 ...pattern,
               }}
             >
-              <WizPopup isOpen={isOpen} setIsOpen={setIsOpen}>
-                <WizPopupTrigger>
-                  <button>Toggle</button>
-                </WizPopupTrigger>
-                <WizPopupContent
-                  {...args}
-                  {...pattern}
-                  bodyElement={
-                    document.getElementById("storybook-root") || undefined
-                  }
-                >
-                  <div style={popupContentStyle}>
-                    <p>This is a popup content</p>
-                    <WizPopupCloseButton>close</WizPopupCloseButton>
-                  </div>
-                </WizPopupContent>
+              <button ref={anchor} onClick={() => setIsOpen((v) => !v)}>
+                Toggle
+              </button>
+              <WizPopup
+                {...args}
+                anchorElement={anchor}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              >
+                <div style={popupContentStyle}>
+                  <p>This is a popup content</p>
+                  <button onClick={() => setIsOpen(false)}>Close</button>
+                </div>
               </WizPopup>
             </div>
           );

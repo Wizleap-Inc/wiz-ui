@@ -1,18 +1,14 @@
 import { StoryObj } from "@storybook/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import {
-  WizPopup,
-  WizPopupTrigger,
-  WizPopupContent,
-  WizPopupCloseButton,
-} from "../components";
+import { WizPopup } from "../components";
 
 import { popupContentStyle } from "./common";
 
-export const PlaygroundStory: StoryObj<typeof WizPopupContent> = {
+export const PlaygroundStory: StoryObj<typeof WizPopup> = {
   render: (args) => {
     const [isOpen, setIsOpen] = useState(true);
+    const anchor = useRef<HTMLButtonElement | null>(null);
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [maxX, setMaxX] = useState(0);
@@ -43,16 +39,19 @@ export const PlaygroundStory: StoryObj<typeof WizPopupContent> = {
             left: x + "px",
           }}
         >
-          <WizPopup isOpen={isOpen} setIsOpen={setIsOpen}>
-            <WizPopupTrigger>
-              <button>Toggle</button>
-            </WizPopupTrigger>
-            <WizPopupContent {...args}>
-              <div style={popupContentStyle}>
-                <p>This is a popup content</p>
-                <WizPopupCloseButton>close</WizPopupCloseButton>
-              </div>
-            </WizPopupContent>
+          <button ref={anchor} onClick={() => setIsOpen((v) => !v)}>
+            Toggle
+          </button>
+          <WizPopup
+            {...args}
+            anchorElement={anchor}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          >
+            <div style={popupContentStyle}>
+              <p>This is a popup content</p>
+              <button onClick={() => setIsOpen(false)}>Close</button>
+            </div>
           </WizPopup>
         </div>
         <input
