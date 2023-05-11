@@ -157,7 +157,7 @@ export const UnionColumn: StoryFn = (_, { argTypes }) => ({
         </WizCardTr>
       </WizCardThead>
       <WizCardTbody>
-        <WizCardTr v-for="i in 3" @click="onClick('Row ' + i)">
+        <WizCardTr v-for="i in 3" :key="i" @click="onClick('Row ' + i)">
           <WizCardTd v-for="j in 4" :key="j">Row {{ i }}</WizCardTd>
         </WizCardTr>
       </WizCardTbody>
