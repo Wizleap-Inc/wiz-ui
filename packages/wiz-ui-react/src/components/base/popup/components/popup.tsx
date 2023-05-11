@@ -38,34 +38,39 @@ type Props = {
   layer?: Exclude<ZIndexKeys, "dialog">;
   animation?: boolean;
   shadow?: boolean;
-  /** Popupの表示領域を指定します。指定した場合、回り込みロジックによりPopupは指定した要素の内側に表示されます。 */
-  bodyElement?: HTMLElement;
+  /** Popupの表示位置を固定するかどうかを指定します。
+   * `false`の場合、回り込みロジックが適用されます。
+   * @default: true
+   */
+  isDirectionFixed?: boolean;
   children: ReactNode;
 } & ComponentProps<"div">;
 
 const _Popup = ({
   isOpen,
+  setIsOpen,
+  anchorElement,
   closeOnBlur = true,
   layer = "popover",
   gap = "no",
   direction = "bottomLeft",
   shadow = true,
   animation = false,
-  ...props
+  isDirectionFixed = true,
+  children,
 }: Props) => {
   const [isActuallyOpen, setIsActuallyOpen] = useState(false);
   const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
   const popupRef = useRef<HTMLDivElement | null>(null);
 
   const getStyle = (): PopupPlacementStyle => {
-    const anchorRect = props.anchorElement.current?.getBoundingClientRect();
-    const bodyRect = props.bodyElement?.getBoundingClientRect();
+    const anchorRect = anchorElement.current?.getBoundingClientRect();
+    const bodyRect = document.body.getBoundingClientRect();
     const contentRect = popupRef.current?.getBoundingClientRect();
     const gapRem = getSpacingCss(gap) ?? "0";
     const dir = DIRECTION_MAP[direction];
     if (!anchorRect) return {};
-    if (!bodyRect || !contentRect)
-      // Popupの表示領域の指定がない場合、回り込みロジックは適用されません。(!bodyRect)
+    if (isDirectionFixed || !contentRect)
       // レンダリング前にgetStyleが呼ばれると、contentRectを取得できないため、回り込みロジックは適用されません。(!contentRect)
       return getPlacementStyle[dir](anchorRect, gapRem);
     const dir2 = adjustDirection[dir](bodyRect, contentRect, anchorRect);
@@ -73,11 +78,7 @@ const _Popup = ({
   };
 
   if (closeOnBlur)
-    useClickOutside(
-      popupRef,
-      () => props.setIsOpen(false),
-      props.anchorElement
-    );
+    useClickOutside(popupRef, () => setIsOpen(false), anchorElement);
 
   useEffect(() => {
     if (!animation || !popupRef.current) {
@@ -113,7 +114,7 @@ const _Popup = ({
           ...placementStyle,
         }}
       >
-        {props.children}
+        {children}
       </div>
     </WizPortal>
   );
