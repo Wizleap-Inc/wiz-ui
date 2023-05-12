@@ -9,13 +9,7 @@ import {
   getSpacingCss,
   getZIndexCss,
 } from "@wizleap-inc/wiz-ui-constants";
-import {
-  ComponentProps,
-  ForwardedRef,
-  ReactNode,
-  forwardRef,
-  memo,
-} from "react";
+import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
 type Props = {
   position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
@@ -140,4 +134,4 @@ const _Box = forwardRef(
 
 _Box.displayName = ComponentName.Box;
 
-export const WizBox = memo(_Box);
+export const WizBox = _Box;
