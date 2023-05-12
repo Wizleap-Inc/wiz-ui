@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const cardStyle = style({
@@ -36,24 +36,4 @@ export const cardHeaderMainStyle = style({
   display: "flex",
   alignItems: "center",
   gap: THEME.spacing.xs2,
-});
-
-export const cardStackBase = style({
-  display: "flex",
-  flexDirection: "column",
-});
-
-export const cardStackAlignStyle = styleVariants({
-  start: {
-    alignItems: "flex-start",
-  },
-  center: {
-    alignItems: "center",
-  },
-  end: {
-    alignItems: "flex-end",
-  },
-  stretch: {
-    alignItems: "stretch",
-  },
 });

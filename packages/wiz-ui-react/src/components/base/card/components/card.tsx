@@ -9,10 +9,11 @@ import {
   paddingXStyle,
   paddingYStyle,
   backgroundStyle,
-  gapStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ComponentProps, ReactNode } from "react";
+
+import { WizVStack } from "@/components";
 
 type Props = {
   p?: SpacingKeys;
@@ -71,15 +72,9 @@ const _Card = ({
       ])}
       style={{ maxWidth }}
     >
-      <div
-        className={clsx(
-          styles.cardStackBase,
-          gapStyle[gap],
-          styles.cardStackAlignStyle[align]
-        )}
-      >
+      <WizVStack gap={gap} align={align}>
         {children}
-      </div>
+      </WizVStack>
     </div>
   );
 };
