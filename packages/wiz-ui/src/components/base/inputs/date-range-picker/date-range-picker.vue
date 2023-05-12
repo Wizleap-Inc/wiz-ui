@@ -186,7 +186,7 @@ const rightCalendarDate = ref(
   (() => {
     const [start, end] = [props.value.start, props.value.end];
     if (end) {
-      return end;
+      return new Date(end);
     }
     if (start) {
       return new Date(

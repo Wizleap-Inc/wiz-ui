@@ -190,7 +190,7 @@ const rightCalendarDate = ref(
   (() => {
     const [start, end] = [props.modelValue.start, props.modelValue.end];
     if (end) {
-      return end;
+      return new Date(end);
     }
     if (start) {
       return new Date(
