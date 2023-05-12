@@ -12,26 +12,22 @@ export default meta;
 type Story = StoryObj<typeof WizBox>;
 
 export const Default: Story = {
-  args: {},
-  render: (args) => (
-    <WizBox {...args}>
-      <div
-        style={{
-          width: "50vw",
-          height: "50vh",
-          backgroundColor: "gray",
-        }}
-      >
-        hoge
-      </div>
-    </WizBox>
-  ),
+  args: {
+    width: "300px",
+    height: "300px",
+    bgColor: "gradient",
+  },
+  render: (args) => <WizBox {...args} />,
 };
 
 const blockBaseStyle = {
   width: "200px",
   height: "200px",
   scrollSnapAlign: "start",
+  display: "grid",
+  placeContent: "center",
+  color: "white",
+  fontSize: "2em",
 };
 
 export const Overflow: Story = {
@@ -59,7 +55,7 @@ export const Overflow: Story = {
                   backgroundColor: (i + j) % 2 === 0 ? "gray" : "transparent",
                 }}
               >
-                {i}, {j}
+                {i} , {j}
               </div>
             ))}
           </div>
@@ -94,7 +90,7 @@ export const Snap: Story = {
                   backgroundColor: (i + j) % 2 === 0 ? "gray" : "transparent",
                 }}
               >
-                {i}, {j}
+                {i} , {j}
               </div>
             ))}
           </div>
