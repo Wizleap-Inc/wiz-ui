@@ -40,6 +40,7 @@ type Props = {
   transform?: string;
   transition?: string;
   opacity?: number;
+  /** `overflow`, `overflowX`, `overflowY`について指定がなく、`snapScroll`について指定がある場合は、`overflow: auto`が設定されます。 */
   snapScroll?: "none" | "x" | "y" | "block" | "inline" | "both";
   backdropBlur?: Exclude<SpacingKeys, "at">;
   children?: ReactNode;
