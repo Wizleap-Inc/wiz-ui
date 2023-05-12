@@ -62,7 +62,6 @@ const _Stack = ({
       }
     }
   })();
-
   const stackStyle = clsx(
     styles.stackStyle,
     styles.stackDirectionStyle[dir],
