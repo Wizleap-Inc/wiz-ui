@@ -117,7 +117,7 @@ import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, ref, inject, computed, onMounted } from "vue";
+import { PropType, ref, inject, computed } from "vue";
 
 import {
   WizCalendar,
@@ -178,8 +178,6 @@ const props = defineProps({
 
 const emit = defineEmits<Emit>();
 
-type SelectState = "selecting" | "selected" | "none";
-
 const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();
 const rightCalendarDate = ref(
@@ -189,11 +187,7 @@ const rightCalendarDate = ref(
       return new Date(end);
     }
     if (start) {
-      return new Date(
-        start.getFullYear(),
-        start.getMonth() + 1,
-        start.getDate()
-      );
+      return new Date(start.getFullYear(), start.getMonth() + 1, 1);
     }
     return new Date();
   })()
@@ -206,11 +200,8 @@ const leftCalendarDate = computed(() => {
   );
   return date;
 });
-const selectedState = ref<SelectState>("none");
 
-const setIsOpen = (value: boolean) => {
-  emit("updateIsOpen", value);
-};
+const setIsOpen = (value: boolean) => emit("updateIsOpen", value);
 
 const moveToNextMonth = () => {
   rightCalendarDate.value = new Date(
@@ -222,86 +213,44 @@ const moveToPrevMonth = () => {
   rightCalendarDate.value = leftCalendarDate.value;
 };
 
-const selectedDates = ref<DateStatus[]>([]);
+const selectedDates = computed<DateStatus[]>(() => {
+  const getDateStatus = (date: Date, state: DateState): DateStatus => ({
+    date,
+    state,
+  });
+  const [start, end] = [props.value.start, props.value.end];
+  if (start && end) {
+    const secondaries: DateStatus[] = [];
+    const tomorrowOfStart = new Date(start);
+    tomorrowOfStart.setDate(tomorrowOfStart.getDate() + 1);
+    for (let d = tomorrowOfStart; d < end; d.setDate(d.getDate() + 1)) {
+      secondaries.push(getDateStatus(new Date(d), "secondary"));
+    }
+    return [
+      getDateStatus(start, "primary"),
+      ...secondaries,
+      getDateStatus(end, "primary"),
+    ];
+  }
+  if (start) {
+    return [getDateStatus(start, "primary")];
+  }
+  return [];
+});
 
 const handleDayClick = (date: Date) => {
-  if (selectedState.value === "selecting") {
-    selectedState.value = "selected";
-    let start = props.value.start;
-    let end = date;
-    const dates = [];
-    if (!start) return;
-
-    if (start > end) {
-      const temp = start;
-      start = end;
-      end = temp;
-    }
-
-    const tomorrowOfStart = new Date(start);
-    tomorrowOfStart.setDate(tomorrowOfStart.getDate() + 1);
-
-    for (let d = tomorrowOfStart; d < end; d.setDate(d.getDate() + 1)) {
-      dates.push(new Date(d));
-    }
-    dates.forEach((d) => {
-      selectedDates.value.push({
-        date: d,
-        state: "secondary",
-      });
-    });
-    selectedDates.value.push({
-      date,
-      state: "primary",
-    });
-    emit("input", {
-      start,
-      end,
-    });
-    return;
-  }
-  selectedState.value = "selecting";
-  emit("input", {
-    start: date,
-    end: null,
-  });
-  selectedDates.value = [];
-  selectedDates.value.push({
-    date,
-    state: "primary",
-  });
-};
-
-onMounted(() => {
   const [start, end] = [props.value.start, props.value.end];
-  const setDateState = (date: Date, state: DateState) =>
-    selectedDates.value.push({ date, state });
-  if (!start) {
-    if (end) {
-      // start・endを入れ替える
-      emit("input", {
-        start: end,
-        end: null,
-      });
-      selectedState.value = "selecting";
-      setDateState(end, "primary");
-    }
+  if (start && end) {
+    emit("input", { start: date, end: null });
     return;
   }
-  if (end) {
-    selectedState.value = "selected";
-    const tomorrowOfStart = new Date(start);
-    tomorrowOfStart.setDate(tomorrowOfStart.getDate() + 1);
-    for (let d = tomorrowOfStart; d < end; d.setDate(d.getDate() + 1)) {
-      setDateState(new Date(d), "secondary");
-    }
-    setDateState(start, "primary");
-    setDateState(end, "primary");
-  } else {
-    selectedState.value = "selecting";
-    setDateState(start, "primary");
+  if (start) {
+    const [nextStart, nextEnd] = start > date ? [date, start] : [start, date];
+    emit("input", { start: nextStart, end: nextEnd });
+    return;
   }
-});
+  emit("input", { start: date, end: null });
+};
 
 const toggleSelectBoxOpen = () => {
   isSelectBoxOpen.value = !isSelectBoxOpen.value;
