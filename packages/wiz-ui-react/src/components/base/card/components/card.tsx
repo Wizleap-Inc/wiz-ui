@@ -27,21 +27,10 @@ type Props = {
   maxWidth?: string;
   gap?: SpacingKeys;
   children?: ReactNode;
+  mainHeaderArea?: ReactNode;
+  subHeaderArea?: ReactNode;
+  footerArea?: ReactNode;
 } & ComponentProps<"div">;
-
-const _CardHeader = ({ children }: { children: ReactNode }) => (
-  <div className={styles.cardHeaderStyle}>
-    <div>{children}</div>
-  </div>
-);
-
-const _CardBody = ({ children }: { children: ReactNode }) => (
-  <div className={styles.cardBodyStyle}> {children}</div>
-);
-
-const _CardFooter = ({ children }: { children: ReactNode }) => (
-  <div>{children}</div>
-);
 
 const _Card = ({
   p = "md",
@@ -55,6 +44,9 @@ const _Card = ({
   maxWidth,
   gap = "md",
   children,
+  mainHeaderArea,
+  subHeaderArea,
+  footerArea,
   ...props
 }: Props) => {
   return (
@@ -73,15 +65,18 @@ const _Card = ({
       style={{ maxWidth }}
     >
       <WizVStack gap={gap} align={align}>
-        {children}
+        {(mainHeaderArea || subHeaderArea) && (
+          <div className={styles.cardHeaderStyle}>
+            <div>{mainHeaderArea}</div>
+            <div>{subHeaderArea}</div>
+          </div>
+        )}
+        <div className={styles.cardBodyStyle}>{children}</div>
+        {footerArea && <div>{footerArea}</div>}
       </WizVStack>
     </div>
   );
 };
-
-_Card.Header = _CardHeader;
-_Card.Body = _CardBody;
-_Card.Footer = _CardFooter;
 
 _Card.displayName = ComponentName.Card;
 export const WizCard = _Card;

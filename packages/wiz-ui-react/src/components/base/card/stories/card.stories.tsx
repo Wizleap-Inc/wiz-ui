@@ -48,7 +48,7 @@ type Story = StoryObj<typeof WizCard>;
 
 export const Default: Story = {
   render: (args) => {
-    return <WizCard {...args}>defaultスロット</WizCard>;
+    return <WizCard {...args}>Card の Body</WizCard>;
   },
 };
 
@@ -58,15 +58,12 @@ export const Shadow: Story = {
     gap: "md",
   },
   render: (args) => {
-    return <WizCard {...args}>defaultスロット</WizCard>;
+    return <WizCard {...args}>Card の Body</WizCard>;
   },
   parameters: {
     docs: {
       description: {
         story: "`shadow` を指定することができます。",
-      },
-      source: {
-        code: `<WizCard shadow>defaultスロット</WizCard>`,
       },
     },
   },
@@ -77,15 +74,12 @@ export const Border: Story = {
     border: true,
   },
   render: (args) => {
-    return <WizCard {...args}>defaultスロット</WizCard>;
+    return <WizCard {...args}>Card の Body</WizCard>;
   },
   parameters: {
     docs: {
       description: {
         story: "`border` を指定することができます。",
-      },
-      source: {
-        code: `<WizCard border>defaultスロット</WizCard>`,
       },
     },
   },
@@ -96,16 +90,13 @@ export const Align: Story = {
     align: "center",
   },
   render: (args) => {
-    return <WizCard {...args}>defaultスロット</WizCard>;
+    return <WizCard {...args}>Card の Body</WizCard>;
   },
   parameters: {
     docs: {
       description: {
         story:
           "`align` を指定することができます。選択肢は `start`, `center`, `end` の中から選択できます。",
-      },
-      source: {
-        code: `<WizCard border>defaultスロット</WizCard>`,
       },
     },
   },
@@ -116,16 +107,13 @@ export const Gap: Story = {
     gap: "xl",
   },
   render: (args) => {
-    return <WizCard {...args}>defaultスロット</WizCard>;
+    return <WizCard {...args}>Card の Body</WizCard>;
   },
   parameters: {
     docs: {
       description: {
         story:
           "`gap` を指定することができます。選択肢はSpacingKeysの中から選択できます。",
-      },
-      source: {
-        code: `<WizCard gap="xl">defaultスロット</WizCard>`,
       },
     },
   },
@@ -134,13 +122,13 @@ export const Gap: Story = {
 export const Compound: Story = {
   render: (args) => {
     return (
-      <WizCard {...args}>
-        <WizCard.Header>
-          <div>Main Header</div>
-          <div>Sub Header</div>
-        </WizCard.Header>
-        <WizCard.Body>Body</WizCard.Body>
-        <WizCard.Footer>Footer</WizCard.Footer>
+      <WizCard
+        {...args}
+        mainHeaderArea={<div>Main Header</div>}
+        subHeaderArea={<div>Sub Header</div>}
+        footerArea={<div>Footer</div>}
+      >
+        Card の Body
       </WizCard>
     );
   },
@@ -148,18 +136,6 @@ export const Compound: Story = {
     docs: {
       description: {
         story: "カード内部に Header, Body, Footerを設定できます。",
-      },
-      source: {
-        code: `
-        <WizCard {...args}>
-          <WizCard.Header>
-            <div>Main</div>
-            <div>Sub</div>
-          </WizCard.Header>
-          <WizCard.Body>Body</WizCard.Body>
-          <WizCard.Footer>Footer</WizCard.Footer>
-        </WizCard>
-        `,
       },
     },
   },
