@@ -15,8 +15,6 @@ import clsx from "clsx";
 import { ComponentProps, ReactNode } from "react";
 
 type Props = {
-  title?: string;
-  hint?: string;
   p?: SpacingKeys;
   px?: SpacingKeys;
   py?: SpacingKeys;
@@ -55,6 +53,7 @@ const _Card = ({
   fit,
   maxWidth,
   gap = "md",
+  children,
   ...props
 }: Props) => {
   return (
@@ -79,7 +78,7 @@ const _Card = ({
           styles.cardStackAlignStyle[align]
         )}
       >
-        {props.children}
+        {children}
       </div>
     </div>
   );
