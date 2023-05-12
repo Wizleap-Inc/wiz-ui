@@ -101,15 +101,6 @@ const _Box = forwardRef(
       return undefined;
     })();
 
-    const overflowStyle = (() => {
-      if (snapScroll) return { overflow: "auto" };
-      if (overflow) return { overflow };
-      return {
-        overflowX,
-        overflowY,
-      };
-    })();
-
     const style = {
       position,
       top,
@@ -127,7 +118,9 @@ const _Box = forwardRef(
       backgroundColor: bgColor && getColorCss(bgColor),
       boxShadow: shadow && getShadowCss(shadow),
       filter: dropShadow && `drop-shadow(${getShadowCss(dropShadow)})`,
-      ...overflowStyle,
+      overflow: overflow ?? (snapScroll ? "auto" : undefined),
+      ...(overflowX && { overflowX }),
+      ...(overflowY && { overflowY }),
       cursor,
       pointerEvents,
       transform,
