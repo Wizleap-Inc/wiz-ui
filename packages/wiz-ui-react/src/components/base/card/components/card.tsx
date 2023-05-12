@@ -32,7 +32,7 @@ type Props = {
   footerArea?: ReactNode;
 } & ComponentProps<"div">;
 
-const _Card = ({
+const Card = ({
   p = "md",
   px,
   py,
@@ -78,5 +78,5 @@ const _Card = ({
   );
 };
 
-_Card.displayName = ComponentName.Card;
-export const WizCard = _Card;
+Card.displayName = ComponentName.Card;
+export const WizCard = Card;
