@@ -59,7 +59,7 @@ const Template: StoryFn<typeof WizDateRangePicker> = (args, { argTypes }) => ({
       end: null,
     });
     const selectBoxValue = ref<string>();
-    const handleSelectBoxValueChange = (value: string) => {
+    const updateSelectBoxValueChange = (value: string) => {
       selectBoxValue.value = value;
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -73,7 +73,7 @@ const Template: StoryFn<typeof WizDateRangePicker> = (args, { argTypes }) => ({
     return {
       dateRange,
       selectBoxValue,
-      handleSelectBoxValueChange,
+      updateSelectBoxValueChange,
       isOpen,
       updateIsOpen,
     };
@@ -83,9 +83,10 @@ const Template: StoryFn<typeof WizDateRangePicker> = (args, { argTypes }) => ({
       <WizDateRangePicker
         v-bind="$props" 
         v-model="dateRange"
-        @input="onDateSelected" 
-        @updateSelectBoxValue="onSelectBoxValueChange"
         :isOpen="isOpen"
+        :selectBoxValue="selectBoxValue"
+        @input="onDateSelected" 
+        @updateSelectBoxValue="updateSelectBoxValueChange"
         @updateIsOpen="updateIsOpen"  
       />
     </div>
@@ -218,7 +219,7 @@ SelectBoxOptions.parameters = {
   },
 };
 
-export const InitialValue: StoryFn<typeof WizDateRangePicker> = (
+export const InitialValueRange: StoryFn<typeof WizDateRangePicker> = (
   args,
   { argTypes }
 ) => ({
@@ -261,50 +262,8 @@ export const InitialValue: StoryFn<typeof WizDateRangePicker> = (
     </div>
   `,
 });
-export const InitialValue2: StoryFn<typeof WizDateRangePicker> = (
-  args,
-  { argTypes }
-) => ({
-  props: Object.keys(argTypes),
-  components: { WizDateRangePicker },
-  setup() {
-    const dateRange2 = ref<DateRange>({
-      start: null,
-      end: new Date(2000, 1, 15),
-    });
-    const isOpen2 = ref<boolean>(true);
-    const setIsOpen2 = (value: boolean) => (isOpen2.value = value);
 
-    const selectBoxValue = ref<string>();
-    const handleSelectBoxValueChange = (value: string) => {
-      selectBoxValue.value = value;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      args.onSelectBoxValueChange(value);
-    };
-    return {
-      dateRange2,
-      selectBoxValue,
-      handleSelectBoxValueChange,
-      isOpen2,
-      setIsOpen2,
-    };
-  },
-  template: ` 
-    <div style="display: flex; gap: 20rem; flex-direction: column; height: 60rem">
-      <WizDateRangePicker
-        v-model="dateRange2"
-        :selectBoxValue="selectBoxValue"
-        :selectBoxOptions="selectBoxOptions"
-        @input="onDateSelected"
-        @updateSelectBoxValue="handleSelectBoxValueChange"
-        :isOpen="isOpen2"
-        @updateIsOpen="setIsOpen2"
-      />
-    </div>
-  `,
-});
-export const InitialValue3: StoryFn<typeof WizDateRangePicker> = (
+export const InitialValueStart: StoryFn<typeof WizDateRangePicker> = (
   args,
   { argTypes }
 ) => ({
