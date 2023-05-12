@@ -109,7 +109,7 @@ const _Box = forwardRef(
       maxHeight,
       borderRadius,
       zIndex: zIndex && getZIndexCss(zIndex),
-      backgroundColor: bgColor && getColorCss(bgColor),
+      background: bgColor && getColorCss(bgColor),
       boxShadow: shadow && getShadowCss(shadow),
       filter: dropShadow && `drop-shadow(${getShadowCss(dropShadow)})`,
       overflow: overflow ?? (snapScroll ? "auto" : undefined),
