@@ -45,7 +45,7 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"div">;
 
-const _Box = forwardRef(
+const Box = forwardRef(
   (
     {
       position,
@@ -132,6 +132,6 @@ const _Box = forwardRef(
   }
 );
 
-_Box.displayName = ComponentName.Box;
+Box.displayName = ComponentName.Box;
 
-export const WizBox = _Box;
+export const WizBox = Box;
