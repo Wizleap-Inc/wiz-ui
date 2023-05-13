@@ -5,8 +5,8 @@ type Props = {
   children: ReactNode;
 };
 
-const _Portal = ({ children }: Props) => {
-  const mount = document.documentElement;
+const Portal = ({ children }: Props) => {
+  const mount = document.body;
   const el = useRef(document.createElement("div"));
   useEffect(() => {
     const elNode = el.current;
@@ -20,4 +20,4 @@ const _Portal = ({ children }: Props) => {
   return createPortal(children, el.current);
 };
 
-export const WizPortal = _Portal;
+export const WizPortal = Portal;
