@@ -1,14 +1,12 @@
 import { ReactNode, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-import { PORTAL_ID } from "@/constants/id";
-
 type Props = {
   children: ReactNode;
 };
 
 const _Portal = ({ children }: Props) => {
-  const mount = document.getElementById(PORTAL_ID);
+  const mount = document.documentElement;
   const el = useRef(document.createElement("div"));
   useEffect(() => {
     const elNode = el.current;
