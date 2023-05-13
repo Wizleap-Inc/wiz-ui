@@ -25,7 +25,7 @@ export const DefaultStory: StoryObj<typeof WizPopup> = {
       const [isOpen, setIsOpen] = useState(true);
       const anchor = useRef<HTMLButtonElement | null>(null);
       return (
-        <>
+        <div>
           <button
             ref={anchor}
             onClick={() => setIsOpen((v) => !v)}
@@ -58,7 +58,7 @@ export const DefaultStory: StoryObj<typeof WizPopup> = {
               </button>
             </div>
           </WizPopup>
-        </>
+        </div>
       );
     };
     const tbStyle: CSSProperties = {
