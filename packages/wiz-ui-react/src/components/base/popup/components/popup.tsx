@@ -12,6 +12,7 @@ import {
   ReactNode,
   RefObject,
   memo,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -32,6 +33,7 @@ type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   anchorElement: RefObject<HTMLElement>;
+  usePortal?: boolean;
   direction?: DirectionKeys;
   gap?: SpacingKeys;
   closeOnBlur?: boolean;
@@ -50,6 +52,7 @@ const _Popup = ({
   isOpen,
   setIsOpen,
   anchorElement,
+  usePortal = false,
   closeOnBlur = true,
   layer = "popover",
   gap = "no",
@@ -63,7 +66,7 @@ const _Popup = ({
   const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
   const popupRef = useRef<HTMLDivElement | null>(null);
 
-  const getStyle = (): PopupPlacementStyle => {
+  const getStyle = useCallback((): PopupPlacementStyle => {
     const anchorRect = anchorElement.current?.getBoundingClientRect();
     const bodyRect = document.body.getBoundingClientRect();
     const contentRect = popupRef.current?.getBoundingClientRect();
@@ -72,10 +75,20 @@ const _Popup = ({
     if (!anchorRect) return {};
     if (isDirectionFixed || !contentRect)
       // レンダリング前にgetStyleが呼ばれると、contentRectを取得できないため、回り込みロジックは適用されません。(!contentRect)
-      return getPlacementStyle[dir](anchorRect, gapRem);
+      return getPlacementStyle[dir]({
+        anchor: anchorRect,
+        usePortal: usePortal,
+        gap: gapRem,
+        content: contentRect,
+      });
     const dir2 = adjustDirection[dir](bodyRect, contentRect, anchorRect);
-    return getPlacementStyle[dir2](anchorRect, gapRem);
-  };
+    return getPlacementStyle[dir2]({
+      anchor: anchorRect,
+      usePortal: usePortal,
+      content: contentRect,
+      gap: gapRem,
+    });
+  }, [anchorElement, gap, direction, isDirectionFixed, usePortal]);
 
   useClickOutside(
     popupRef,
@@ -91,7 +104,7 @@ const _Popup = ({
     if (isOpen)
       fadeAnimation.open(popupRef.current, () => setIsActuallyOpen(true));
     else fadeAnimation.close(popupRef.current, () => setIsActuallyOpen(false));
-  }, [isOpen]);
+  }, [animation, isOpen]);
 
   useEffect(() => {
     setPlacementStyle(getStyle());
@@ -100,27 +113,27 @@ const _Popup = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [isActuallyOpen, direction]);
+  }, [isActuallyOpen, direction, getStyle]);
 
-  return (
-    <WizPortal>
-      <div
-        ref={popupRef}
-        className={clsx(
-          styles.popupStyle,
-          shadow && styles.popupShadowStyle,
-          zIndexStyle[layer],
-          !isActuallyOpen && styles.popupHiddenStyle
-        )}
-        style={{
-          position: "absolute",
-          ...placementStyle,
-        }}
-      >
-        {children}
-      </div>
-    </WizPortal>
+  const content = (
+    <div
+      ref={popupRef}
+      className={clsx(
+        styles.popupStyle,
+        shadow && styles.popupShadowStyle,
+        zIndexStyle[layer],
+        !isActuallyOpen && styles.popupHiddenStyle
+      )}
+      style={{
+        position: "absolute",
+        ...placementStyle,
+      }}
+    >
+      {children}
+    </div>
   );
+  if (usePortal) return <WizPortal>{content}</WizPortal>;
+  return content;
 };
 
 _Popup.displayName = ComponentName.Popup;

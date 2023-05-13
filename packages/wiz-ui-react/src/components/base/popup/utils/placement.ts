@@ -1,77 +1,194 @@
 import { DirectionValues } from "../types/direction";
 
 export type PopupPlacementStyle = {
-  bottom?: number;
-  left?: number;
-  right?: number;
   top?: number;
+  left?: number;
   transform?: string;
+};
+
+type PlacementOption = {
+  anchor: DOMRect;
+  content?: DOMRect;
+  gap?: string;
+  usePortal?: boolean;
 };
 
 export const getPlacementStyle: Record<
   DirectionValues,
-  (rect: DOMRect, gap?: string) => PopupPlacementStyle
+  (option: PlacementOption) => PopupPlacementStyle
 > = {
-  tl: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + window.scrollY,
-    left: rect.x + window.scrollX,
-    transform: `translateY(-100%) translate(0, -${gap})`,
-  }),
-  tc: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + window.scrollY,
-    left: rect.x + rect.width / 2 + window.scrollX,
-    transform: `translateY(-100%) translateX(-50%) translate(0, -${gap})`,
-  }),
-  tr: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + window.scrollY,
-    left: rect.x + rect.width + window.scrollX,
-    transform: `translateY(-100%) translateX(-100%) translate(0, -${gap})`,
-  }),
-  bl: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + rect.height + window.scrollY,
-    left: rect.x + window.scrollX,
-    transform: `translate(0, ${gap})`,
-  }),
-  bc: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + rect.height + window.scrollY,
-    left: rect.x + rect.width / 2 + window.scrollX,
-    transform: `translateX(-50%) translate(0, ${gap})`,
-  }),
-  br: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + rect.height + window.scrollY,
-    left: rect.x + rect.width + window.scrollX,
-    transform: `translateX(-100%) translate(0, ${gap})`,
-  }),
-  rt: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + window.scrollY,
-    left: rect.x + rect.width + window.scrollX,
-    transform: `translate(${gap}, 0)`,
-  }),
-  rc: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + rect.height / 2 + window.scrollY,
-    left: rect.x + rect.width + window.scrollX,
-    transform: `translateY(-50%) translate(${gap}, 0)`,
-  }),
-  rb: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + rect.height + window.scrollY,
-    left: rect.x + rect.width + window.scrollX,
-    transform: `translateY(-100%) translate(${gap}, 0)`,
-  }),
-  lt: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + window.scrollY,
-    left: rect.x + window.scrollX,
-    transform: `translateX(-100%) translate(-${gap}, 0)`,
-  }),
-  lc: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + rect.height / 2 + window.scrollY,
-    left: rect.x + window.scrollX,
-    transform: `translateY(-50%) translateX(-100%) translate(-${gap}, 0)`,
-  }),
-  lb: (rect: DOMRect, gap?: string) => ({
-    top: rect.y + rect.height + window.scrollY,
-    left: rect.x + window.scrollX,
-    transform: `translateY(-100%) translateX(-100%) translate(-${gap}, 0)`,
-  }),
+  tl: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + window.scrollY,
+        left: anchor.x + window.scrollX,
+        transform: `translateY(-100%) translate(0, -${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offset = anchor.height + content.height;
+    return {
+      transform: `translateY(-${offset}px) translate(0, -${gap})`,
+    };
+  },
+  tc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + window.scrollY,
+        left: anchor.x + anchor.width / 2 + window.scrollX,
+        transform: `translateY(-100%) translateX(-50%) translate(0, -${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offsetY = anchor.height + content.height;
+    const offsetX = (content.width - anchor.width) / 2;
+    return {
+      transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
+    };
+  },
+  tr: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + window.scrollY,
+        left: anchor.x + anchor.width + window.scrollX,
+        transform: `translateY(-100%) translateX(-100%) translate(0, -${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offsetY = anchor.height + content.height;
+    const offsetX = content.width - anchor.width;
+    return {
+      transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
+    };
+  },
+  bl: ({ anchor, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + anchor.height + window.scrollY,
+        left: anchor.x + window.scrollX,
+        transform: `translate(0, ${gap})`,
+      };
+    }
+    return {};
+  },
+  bc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + anchor.height + window.scrollY,
+        left: anchor.x + anchor.width / 2 + window.scrollX,
+        transform: `translateX(-50%) translate(0, ${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offsetX = (content.width - anchor.width) / 2;
+    return {
+      transform: `translate(${-offsetX}px, 0) translate(0, ${gap})`,
+    };
+  },
+  br: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + anchor.height + window.scrollY,
+        left: anchor.x + anchor.width + window.scrollX,
+        transform: `translateX(-100%) translate(0, ${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offsetX = content.width - anchor.width;
+    return {
+      transform: `translate(${-offsetX}px, 0) translate(0, ${gap})`,
+    };
+  },
+  rt: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + window.scrollY,
+        left: anchor.x + anchor.width + window.scrollX,
+        transform: `translate(${gap}, 0)`,
+      };
+    }
+    if (!content) return {};
+    const offsetX = anchor.width;
+    const offsetY = anchor.height;
+    return {
+      transform: `translate(${offsetX}px, ${-offsetY}px) translate(${gap}, 0)`,
+    };
+  },
+  rc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + anchor.height / 2 + window.scrollY,
+        left: anchor.x + anchor.width + window.scrollX,
+        transform: `translateY(-50%) translate(${gap}, 0)`,
+      };
+    }
+    if (!content) return {};
+    const offsetX = anchor.width;
+    const offsetY = (content.height + anchor.height) / 2;
+    return {
+      transform: `translate(${offsetX}px, ${-offsetY}px)  translate(${gap}, 0)`,
+    };
+  },
+  rb: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + anchor.height + window.scrollY,
+        left: anchor.x + anchor.width + window.scrollX,
+        transform: `translateY(-100%) translate(${gap}, 0)`,
+      };
+    }
+    if (!content) return {};
+    const offsetX = anchor.width;
+    const offsetY = content.height;
+    return {
+      transform: `translate(${offsetX}px, ${-offsetY}px) translate(${gap}, 0)`,
+    };
+  },
+  lt: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + window.scrollY,
+        left: anchor.x + window.scrollX,
+        transform: `translateX(-100%) translate(0, -${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offsetY = anchor.height;
+    const offsetX = content.width;
+    return {
+      transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
+    };
+  },
+  lc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + anchor.height / 2 + window.scrollY,
+        left: anchor.x + window.scrollX,
+        transform: `translate(-100%, -50%) translate(0, -${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offsetY = (content.height + anchor.height) / 2;
+    const offsetX = content.width;
+    return {
+      transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
+    };
+  },
+  lb: ({ anchor, content, usePortal, gap }: PlacementOption) => {
+    if (usePortal) {
+      return {
+        top: anchor.y + anchor.height + window.scrollY,
+        left: anchor.x + window.scrollX,
+        transform: `translate(-100%, -100%) translate(0, -${gap})`,
+      };
+    }
+    if (!content) return {};
+    const offsetY = content.height;
+    const offsetX = content.width;
+    return {
+      transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
+    };
+  },
 };
 
 export const adjustDirection: Record<
