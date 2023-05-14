@@ -6,6 +6,7 @@ import { WizPopup } from "../components";
 
 import { DefaultStory } from "./default";
 import { GapStory } from "./gap";
+import { NextStory } from "./nest";
 import { PlaygroundStory } from "./playground";
 import { Playground2Story } from "./playground2";
 
@@ -28,6 +29,8 @@ type Story = StoryObj<typeof WizPopup>;
 export const Default: Story = DefaultStory;
 
 export const Gap: Story = GapStory;
+
+export const Nest: Story = NextStory;
 
 export const Playground: Story = PlaygroundStory;
 
