@@ -48,7 +48,7 @@ type Props = {
   children: ReactNode;
 } & ComponentProps<"div">;
 
-const _Popup = ({
+const Popup = ({
   isOpen,
   setIsOpen,
   anchorElement,
@@ -136,6 +136,6 @@ const _Popup = ({
   return content;
 };
 
-_Popup.displayName = ComponentName.Popup;
+Popup.displayName = ComponentName.Popup;
 
-export const WizPopup = memo(_Popup);
+export const WizPopup = memo(Popup);
