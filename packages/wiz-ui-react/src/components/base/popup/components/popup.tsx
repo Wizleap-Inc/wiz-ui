@@ -11,7 +11,6 @@ import {
   ComponentProps,
   ReactNode,
   RefObject,
-  memo,
   useCallback,
   useEffect,
   useRef,
@@ -138,4 +137,4 @@ const Popup = ({
 
 Popup.displayName = ComponentName.Popup;
 
-export const WizPopup = memo(Popup);
+export const WizPopup = Popup;
