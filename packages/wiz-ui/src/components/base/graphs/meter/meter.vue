@@ -2,7 +2,7 @@
   <div :class="MeterBarContainerStyle">
     <svg
       :class="MeterBarSVGStyle"
-      :viewBox="`0 0 ${VIEW_BOX_SIZE} ${VIEW_BOX_SIZE}`"
+      :viewBox="`0 -1 ${VIEW_BOX_SIZE} ${VIEW_BOX_SIZE - 1}`"
     >
       <path
         :class="MeterBarBgStyle"
