@@ -4,7 +4,6 @@ import {
   FontSizeKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
-import { gapStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   ComponentProps,
@@ -14,7 +13,7 @@ import {
   memo,
 } from "react";
 
-import { WizIcon, TIcon } from "@/components";
+import { WizIcon, TIcon, WizHStack } from "@/components";
 
 type Props = {
   variant?: "primary" | "sub";
@@ -49,20 +48,11 @@ const _TextButton = forwardRef(
       size = "md",
       icon,
       iconPosition = "left",
+      children,
       ...props
     }: Props,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
-    const content = [
-      icon && (
-        <WizIcon
-          icon={icon}
-          color={variantColor[variant]}
-          size={iconSize[size]}
-        />
-      ),
-      props.children,
-    ];
     return (
       <button
         ref={ref}
@@ -76,9 +66,21 @@ const _TextButton = forwardRef(
         )}
         disabled={disabled}
       >
-        <div className={clsx(gapStyle["xs2"], styles.textButtonStackStyle)}>
-          {...iconPosition === "left" ? content : content.reverse()}
-        </div>
+        <WizHStack
+          align="center"
+          justify="center"
+          gap="xs2"
+          reverse={iconPosition === "right"}
+        >
+          {icon && (
+            <WizIcon
+              icon={icon}
+              color={variantColor[variant]}
+              size={iconSize[size]}
+            />
+          )}
+          {children}
+        </WizHStack>
       </button>
     );
   }

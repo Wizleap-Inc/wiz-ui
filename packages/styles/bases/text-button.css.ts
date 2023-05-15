@@ -86,10 +86,3 @@ export const textButtonSizeStyle = styleVariants({
     },
   ],
 });
-
-export const textButtonStackStyle = style({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-});
