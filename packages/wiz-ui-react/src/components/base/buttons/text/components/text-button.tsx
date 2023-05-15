@@ -5,13 +5,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
 import clsx from "clsx";
-import {
-  ComponentProps,
-  ForwardedRef,
-  ReactNode,
-  forwardRef,
-  memo,
-} from "react";
+import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { WizIcon, TIcon, WizHStack } from "@/components";
 
@@ -38,7 +32,7 @@ const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
   lg: "xl3",
 };
 
-const _TextButton = forwardRef(
+const TextButton = forwardRef(
   (
     {
       variant = "primary",
@@ -86,6 +80,6 @@ const _TextButton = forwardRef(
   }
 );
 
-_TextButton.displayName = ComponentName.TextButton;
+TextButton.displayName = ComponentName.TextButton;
 
-export const WizTextButton = memo(_TextButton);
+export const WizTextButton = TextButton;
