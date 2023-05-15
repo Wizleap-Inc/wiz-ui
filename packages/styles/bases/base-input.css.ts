@@ -19,18 +19,18 @@ export const baseInputStyle = style({
 
 export const baseInputPaddingStyle = styleVariants({
   left: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.xs}`,
     paddingLeft: THEME.spacing.xl3,
   },
   right: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.xs}`,
     paddingRight: THEME.spacing.xl3,
   },
   both: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.xs}`,
   },
   none: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.xs}`,
   },
 });
 
