@@ -1,7 +1,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import clsx from "clsx";
-import { memo } from "react";
 
 type Props = {
   value: boolean;
@@ -9,7 +8,7 @@ type Props = {
   setValue: (value: boolean) => void;
 };
 
-const _ToggleSwitch = ({ value, ariaLabel, ...props }: Props) => (
+const ToggleSwitch = ({ value, ariaLabel, ...props }: Props) => (
   <label className={styles.toggleSwitchStyle}>
     <input
       className={styles.toggleSwitchInputStyle}
@@ -26,6 +25,6 @@ const _ToggleSwitch = ({ value, ariaLabel, ...props }: Props) => (
   </label>
 );
 
-_ToggleSwitch.displayName = ComponentName.ToggleSwitch;
+ToggleSwitch.displayName = ComponentName.ToggleSwitch;
 
-export const WizToggleSwitch = memo(_ToggleSwitch);
+export const WizToggleSwitch = ToggleSwitch;
