@@ -32,7 +32,6 @@ type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   anchorElement: RefObject<HTMLElement>;
-  usePortal?: boolean;
   direction?: DirectionKeys;
   gap?: SpacingKeys;
   closeOnBlur?: boolean;
@@ -51,7 +50,6 @@ const Popup = ({
   isOpen,
   setIsOpen,
   anchorElement,
-  usePortal = false,
   closeOnBlur = true,
   layer = "popover",
   gap = "no",
@@ -76,18 +74,18 @@ const Popup = ({
       // レンダリング前にgetStyleが呼ばれると、contentRectを取得できないため、回り込みロジックは適用されません。(!contentRect)
       return getPlacementStyle[dir]({
         anchor: anchorRect,
-        usePortal: usePortal,
+        usePortal: true,
         gap: gapRem,
         content: contentRect,
       });
     const dir2 = adjustDirection[dir](bodyRect, contentRect, anchorRect);
     return getPlacementStyle[dir2]({
       anchor: anchorRect,
-      usePortal: usePortal,
+      usePortal: true,
       content: contentRect,
       gap: gapRem,
     });
-  }, [anchorElement, gap, direction, isDirectionFixed, usePortal]);
+  }, [anchorElement, gap, direction, isDirectionFixed]);
 
   useClickOutside(
     popupRef,
@@ -131,8 +129,7 @@ const Popup = ({
       {children}
     </div>
   );
-  if (usePortal) return <WizPortal>{content}</WizPortal>;
-  return content;
+  return <WizPortal>{content}</WizPortal>;
 };
 
 Popup.displayName = ComponentName.Popup;
