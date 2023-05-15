@@ -12,7 +12,7 @@ import {
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ForwardedRef, ReactNode, forwardRef, memo } from "react";
+import { ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
@@ -28,7 +28,7 @@ type Props = {
   children: ReactNode;
 };
 
-const _Anchor = forwardRef(
+const Anchor = forwardRef(
   (
     {
       to,
@@ -39,30 +39,10 @@ const _Anchor = forwardRef(
       iconPosition = "left",
       openInNewTab = false,
       nowrap = false,
-      ...props
+      children,
     }: Props,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
-    const AnchorContent = ({ children }: { children: ReactNode }) => (
-      <>
-        {icon && iconPosition === "left" && (
-          <WizIcon
-            icon={icon}
-            size={getRelativeFontSize(fontSize, 3)}
-            color={color}
-          />
-        )}
-        {children}
-        {icon && iconPosition === "right" && (
-          <WizIcon
-            icon={icon}
-            size={getRelativeFontSize(fontSize, 3)}
-            color={color}
-          />
-        )}
-      </>
-    );
-
     const anchorStyle = clsx([
       styles.anchorStyle,
       colorStyle[color],
@@ -70,6 +50,14 @@ const _Anchor = forwardRef(
       fontWeightStyle[fontWeight],
       nowrap && styles.anchorNoWrapStyle,
     ]);
+
+    const iconContent = icon && (
+      <WizIcon
+        icon={icon}
+        size={getRelativeFontSize(fontSize, 3)}
+        color={color}
+      />
+    );
 
     return (
       <a
@@ -79,12 +67,14 @@ const _Anchor = forwardRef(
         target={openInNewTab ? "_blank" : undefined}
         rel={openInNewTab ? "noopener noreferrer" : undefined}
       >
-        <AnchorContent>{props.children}</AnchorContent>
+        {iconPosition === "left" && iconContent}
+        {children}
+        {iconPosition === "right" && iconContent}
       </a>
     );
   }
 );
 
-_Anchor.displayName = ComponentName.Anchor;
+Anchor.displayName = ComponentName.Anchor;
 
-export const WizAnchor = memo(_Anchor);
+export const WizAnchor = Anchor;
