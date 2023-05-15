@@ -4,7 +4,6 @@ import {
   FONT_WEIGHT_ACCESSORS,
   COLOR_MAP_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
-import { MemoryRouter } from "react-router-dom";
 
 import { WizIArrowRight } from "@/components";
 
@@ -49,13 +48,6 @@ const meta: Meta<typeof WizAnchor> = {
       defaultValue: false,
     },
   },
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
 };
 
 export default meta;

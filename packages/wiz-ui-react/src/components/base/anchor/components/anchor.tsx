@@ -13,7 +13,6 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ForwardedRef, ReactNode, forwardRef, memo } from "react";
-import { Link } from "react-router-dom";
 
 import { TIcon, WizIcon } from "@/components";
 
@@ -44,11 +43,6 @@ const _Anchor = forwardRef(
     }: Props,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
-    const isRouterLink = (() => {
-      if (openInNewTab) return false;
-      return !to.startsWith("http");
-    })();
-
     const AnchorContent = ({ children }: { children: ReactNode }) => (
       <>
         {icon && iconPosition === "left" && (
@@ -78,29 +72,15 @@ const _Anchor = forwardRef(
     ]);
 
     return (
-      <div>
-        {isRouterLink ? (
-          <Link
-            ref={ref}
-            className={anchorStyle}
-            to={to}
-            target={openInNewTab ? "_blank" : undefined}
-            rel={openInNewTab ? "noopener noreferrer" : undefined}
-          >
-            <AnchorContent>{props.children}</AnchorContent>
-          </Link>
-        ) : (
-          <a
-            ref={ref}
-            className={anchorStyle}
-            href={to}
-            target={openInNewTab ? "_blank" : undefined}
-            rel={openInNewTab ? "noopener noreferrer" : undefined}
-          >
-            <AnchorContent>{props.children}</AnchorContent>
-          </a>
-        )}
-      </div>
+      <a
+        ref={ref}
+        className={anchorStyle}
+        href={to}
+        target={openInNewTab ? "_blank" : undefined}
+        rel={openInNewTab ? "noopener noreferrer" : undefined}
+      >
+        <AnchorContent>{props.children}</AnchorContent>
+      </a>
     );
   }
 );
