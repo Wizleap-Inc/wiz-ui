@@ -5,7 +5,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
 import clsx from "clsx";
-import { ComponentProps, ForwardedRef, forwardRef, memo } from "react";
+import { ComponentProps, ForwardedRef, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
@@ -23,7 +23,7 @@ const iconSVGColor: Record<string, ColorKeys> = {
   link: "blue.800",
 };
 
-const _IconButton = forwardRef(
+const IconButton = forwardRef(
   (
     {
       icon,
@@ -54,6 +54,6 @@ const _IconButton = forwardRef(
   }
 );
 
-_IconButton.displayName = ComponentName.IconButton;
+IconButton.displayName = ComponentName.IconButton;
 
-export const WizIconButton = memo(_IconButton);
+export const WizIconButton = IconButton;
