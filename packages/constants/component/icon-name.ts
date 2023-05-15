@@ -1,6 +1,8 @@
 export const IconComponentName = {
   IAddCircle: "WizIAddCircle",
   IAdd: "WizIAdd",
+  IArrowDropDown: "WizIArrowDropDown",
+  IArrowDropUp: "WizIArrowDropUp",
   IArrowRight: "WizIArrowRight",
   IAssignmentAdd: "WizIAssignmentAdd",
   IAssignment: "WizIAssignment",
@@ -26,6 +28,7 @@ export const IconComponentName = {
   IEye: "WizIEye",
   IGroups: "WizIGroups",
   IHelp: "WizIHelp",
+  IHistory: "WizIHistory",
   IHome: "WizIHome",
   IInfo: "WizIInfo",
   IManageAccounts: "WizIManageAccounts",

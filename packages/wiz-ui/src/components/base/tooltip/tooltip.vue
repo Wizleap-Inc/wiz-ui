@@ -13,7 +13,7 @@
         :shadow="false"
         :animation="true"
         @onTurn="turnPopup"
-        gap="xs"
+        gap="xs2"
       >
         <div
           :class="[tooltipPositionStyle[actuallyDirection], tooltipPopupStyle]"

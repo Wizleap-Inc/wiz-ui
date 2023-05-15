@@ -1,5 +1,7 @@
 import { WizIAdd } from "./add";
 import { WizIAddCircle } from "./add-circle";
+import { WizIArrowDropDown } from "./arrow-drop-down";
+import { WizIArrowDropUp } from "./arrow-drop-up";
 import { WizIArrowRight } from "./arrow-right";
 import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
@@ -25,6 +27,7 @@ import { WizIExpandMore } from "./expand-more";
 import { WizIEye } from "./eye";
 import { WizIGroups } from "./groups";
 import { WizIHelp } from "./help";
+import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIInfo } from "./info";
 import { WizIManageAccounts } from "./manage-accounts";
@@ -49,6 +52,8 @@ import { WizIWarning } from "./warning";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIArrowDropDown
+  | typeof WizIArrowDropUp
   | typeof WizIArrowRight
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
@@ -74,6 +79,7 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIGroups
   | typeof WizIHelp
+  | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIInfo
   | typeof WizIManageAccounts
@@ -98,6 +104,8 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIArrowDropDown,
+  WizIArrowDropUp,
   WizIArrowRight,
   WizIAssignmentAdd,
   WizIAssignment,
@@ -123,6 +131,7 @@ export {
   WizIEye,
   WizIGroups,
   WizIHelp,
+  WizIHistory,
   WizIHome,
   WizIInfo,
   WizIManageAccounts,
