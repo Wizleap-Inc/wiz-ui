@@ -23,6 +23,7 @@ type Story = StoryObj<typeof WizToggleSwitch>;
 export const Default: Story = {
   args: {},
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState(false);
     return (
       <>
