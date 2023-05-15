@@ -2,3 +2,4 @@
 **/storybook-static
 **/dist
 **/coverage
+packages/vuepress-plugin-wiz-ui
