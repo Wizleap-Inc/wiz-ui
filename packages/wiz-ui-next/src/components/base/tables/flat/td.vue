@@ -1,6 +1,7 @@
 <template>
   <td
     :class="[flatTdStyle, flatTdAlignStyle[align]]"
+    :style="{ fontSize: THEME.fontSize[fontSize] }"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
   >
@@ -9,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   flatTdStyle,
   flatTdAlignStyle,
@@ -33,6 +34,11 @@ defineProps({
   colSpan: {
     type: Number,
     required: false,
+  },
+  fontSize: {
+    type: String as PropType<"xs2" | "xs" | "sm" | "md">,
+    required: false,
+    default: "sm",
   },
 });
 </script>
