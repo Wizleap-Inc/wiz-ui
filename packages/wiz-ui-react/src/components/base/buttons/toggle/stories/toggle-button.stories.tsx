@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
+import { useState, useRef, MouseEventHandler, useEffect } from "react";
 
 import { WizIAdd, WizIRemove } from "@/components";
 
@@ -134,5 +136,33 @@ export const Size: Story = {
       story:
         "ボタンの大きさを指定することができます。 'sm', 'md', 'lg', xl' から選択できます。default は `md` です。",
     },
+  },
+};
+
+export const Playground: Story = {
+  args: {
+    activeIcon: WizIRemove,
+    inactiveIcon: WizIAdd,
+  },
+  render: (args) => {
+    const [isActive, setIsActive] = useState(args.isActive);
+    useEffect(() => {
+      setIsActive(args.isActive);
+    }, [args.isActive]);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+      setIsActive(!isActive);
+      args.onClick?.(e);
+    };
+    return (
+      <WizToggleButton
+        ref={buttonRef}
+        {...args}
+        isActive={isActive}
+        onClick={onClick}
+      >
+        顧客データ追加
+      </WizToggleButton>
+    );
   },
 };
