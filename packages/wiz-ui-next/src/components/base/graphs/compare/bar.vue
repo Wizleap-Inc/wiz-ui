@@ -83,11 +83,14 @@ const labelRef = ref<HTMLElement>();
 const graphRef = ref<HTMLElement>();
 
 const updateLabelTransformStyle = () => {
-  if (!labelRef.value) return;
+  if (!labelRef.value || !graphRef.value) return;
   const d = labelRef.value.clientWidth / 2;
+  const cx = Math.cos(props.theta) * d;
+  const gx = (graphRef.value.clientWidth * props.barGroupWidth) / 2;
+  const dx = gx < cx ? gx - cx : 0;
   labelRef.value.style.transform = `
-    translateX(-50%)
-    translateY(${d * Math.abs(Math.sin(props.theta))}px)
+    translateX(${dx}px)
+    translate(-50%, ${d * Math.abs(Math.sin(props.theta))}px)
     rotate(-${props.theta}rad)`;
 };
 
