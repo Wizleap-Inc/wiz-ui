@@ -13,9 +13,6 @@ const meta: Meta<typeof WizAnchor> = {
   title: "Base/Anchor",
   component: WizAnchor,
   argTypes: {
-    href: {
-      control: { type: "string" },
-    },
     fontSize: {
       control: { type: "select" },
       options: FONT_SIZE_ACCESSORS,
