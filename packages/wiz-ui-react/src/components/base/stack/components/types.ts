@@ -26,7 +26,7 @@ export type StackProps = {
   width?: string;
   height?: string;
   overflow?: string;
-  reverse?: string;
+  reverse?: boolean;
   position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
   children?: ReactNode;
 };
