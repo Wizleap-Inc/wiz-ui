@@ -201,37 +201,43 @@ export const Fixed: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
     return { isOpen, toggle };
   },
   template: `
-  <div style="width:200vw; height: 200vh;">
-    <div style="
-      border: 1px solid black;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      height: 200px;
-    ">
-      <wiz-popup-container>
-        <button @click="toggle">
-          <span>Popup Button</span> 
-        </button>
-        <wiz-popup :isOpen="isOpen" v-bind="$props">
-          <div style="
-            position: absolute;
-            top: 50%;
-            left: 10rem;
-            transform: translate(-50%, -50%);
-            width: max-content;
-            padding: 16px; 
-            background-color: white; 
-            border-radius: 4px;"
-          >
-            <p>This is a popup content</p>
-          </div>
-        </wiz-popup>
-      </wiz-popup-container> 
-    </div>
-  </div> 
+    <div style="width:200vw; height: 200vh; background-color: #eee;">
+      <div>
+        Scroll area
+        <wiz-popup-container>
+          <button @click="toggle">
+            <span>Popup Button</span> 
+          </button>
+          <wiz-popup :isOpen="isOpen"  v-bind="$props">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <p>This is a scroll popup content</p>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container> 
+      </div>
+      <div style="
+        border: 1px solid black;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+      ">
+        Fixed area
+        <wiz-popup-container>
+          <button @click="toggle">
+            <span>Popup Button</span> 
+          </button>
+          <wiz-popup :isOpen="isOpen"  v-bind="$props">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <p>This is a fixed popup content</p>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container> 
+      </div>
+    </div> 
   `,
 });
 
