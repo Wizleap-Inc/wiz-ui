@@ -13,7 +13,7 @@ const iconSize: Record<string, FontSizeKeys> = {
 
 type Props = {
   isActive: boolean;
-  inActiveIcon: TIcon;
+  inactiveIcon: TIcon;
   activeIcon: TIcon;
   disabled?: boolean;
   rounded?: boolean;
@@ -24,7 +24,7 @@ type Props = {
 const ToggleButton = forwardRef(
   (
     {
-      inActiveIcon,
+      inactiveIcon,
       activeIcon,
       disabled = false,
       rounded = true,
@@ -48,7 +48,7 @@ const ToggleButton = forwardRef(
     >
       <WizHStack align="center" gap="xs2">
         <WizIcon
-          icon={isActive ? activeIcon : inActiveIcon}
+          icon={isActive ? activeIcon : inactiveIcon}
           color={"green.800"}
           size={iconSize[size]}
         />

@@ -8,7 +8,7 @@ const meta: Meta<typeof WizToggleButton> = {
   title: "Base/Buttons/Toggle",
   component: WizToggleButton,
   argTypes: {
-    inActiveIcon: {
+    inactiveIcon: {
       control: { type: "object" },
     },
     activeIcon: {
@@ -39,7 +39,7 @@ type Story = StoryObj<typeof WizToggleButton>;
 export const Default: Story = {
   args: {
     activeIcon: WizIRemove,
-    inActiveIcon: WizIAdd,
+    inactiveIcon: WizIAdd,
   },
   render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
 };
@@ -47,7 +47,7 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: {
     activeIcon: WizIRemove,
-    inActiveIcon: WizIAdd,
+    inactiveIcon: WizIAdd,
     disabled: true,
   },
   render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
@@ -62,7 +62,7 @@ export const Disabled: Story = {
 export const Angled: Story = {
   args: {
     activeIcon: WizIRemove,
-    inActiveIcon: WizIAdd,
+    inactiveIcon: WizIAdd,
     rounded: false,
   },
   render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
@@ -76,7 +76,7 @@ export const Angled: Story = {
 export const On: Story = {
   args: {
     activeIcon: WizIRemove,
-    inActiveIcon: WizIAdd,
+    inactiveIcon: WizIAdd,
     isActive: true,
   },
   render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
@@ -90,7 +90,7 @@ export const On: Story = {
 export const Off: Story = {
   args: {
     activeIcon: WizIRemove,
-    inActiveIcon: WizIAdd,
+    inactiveIcon: WizIAdd,
     isActive: false,
   },
   render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
@@ -104,7 +104,7 @@ export const Off: Story = {
 export const Size: Story = {
   args: {
     activeIcon: WizIRemove,
-    inActiveIcon: WizIAdd,
+    inactiveIcon: WizIAdd,
   },
   render: (args) => (
     <div
