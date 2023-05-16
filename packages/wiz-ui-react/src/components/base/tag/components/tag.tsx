@@ -9,7 +9,7 @@ import {
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ForwardedRef, forwardRef, memo } from "react";
+import { ComponentProps, ForwardedRef, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
@@ -22,7 +22,7 @@ type Props = {
   width?: string;
 } & ComponentProps<"div">;
 
-const _Tag = forwardRef(
+const Tag = forwardRef(
   (
     {
       label,
@@ -58,6 +58,6 @@ const _Tag = forwardRef(
   }
 );
 
-_Tag.displayName = ComponentName.Tag;
+Tag.displayName = ComponentName.Tag;
 
-export const WizTag = memo(_Tag);
+export const WizTag = Tag;
