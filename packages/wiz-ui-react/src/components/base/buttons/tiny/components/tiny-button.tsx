@@ -6,14 +6,20 @@ import {
   paddingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
+import {
+  ComponentProps,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  useState,
+} from "react";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
 type Props = {
   clickable?: boolean;
   active?: boolean;
-  isHover?: boolean;
+  hover?: boolean;
   p?: SpacingKeys;
   px?: SpacingKeys;
   py?: SpacingKeys;
@@ -27,17 +33,21 @@ const TinyButton = forwardRef(
     {
       clickable = true,
       active = true,
-      isHover = false,
+      hover = false,
       p,
       px,
       py,
       icon,
       iconPosition = "left",
+      onMouseEnter,
+      onMouseLeave,
       children,
       ...props
     }: Props,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
+    const [isHover, setIsHover] = useState(false);
+
     const tinyButtonState = (() => {
       const selectable = clickable ? "clickable" : "unclickable";
       const activeState = active ? "active" : "inactive";
@@ -52,7 +62,7 @@ const TinyButton = forwardRef(
           styles.tinyButtonBaseStyle,
           styles.tinyButtonSizeStyle,
           styles.tinyButtonVaraiantStyle[tinyButtonState],
-          clickable && isHover && styles.tinyButtonHoverStyle,
+          clickable && (isHover || hover) && styles.tinyButtonHoverStyle,
           !p && !py && paddingYStyle["xs2"],
           !p && !px && paddingXStyle["sm"],
           p && paddingStyle[p],
@@ -60,6 +70,14 @@ const TinyButton = forwardRef(
           py && paddingYStyle[py]
         )}
         disabled={!clickable}
+        onMouseEnter={(e) => {
+          onMouseEnter?.(e);
+          setIsHover(true);
+        }}
+        onMouseLeave={(e) => {
+          onMouseLeave?.(e);
+          setIsHover(false);
+        }}
       >
         <WizHStack
           align="center"
