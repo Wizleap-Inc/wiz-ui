@@ -1,6 +1,5 @@
 import { ComponentName, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
-import { gapStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   ComponentProps,
@@ -10,7 +9,7 @@ import {
   memo,
 } from "react";
 
-import { TIcon, WizIcon } from "@/components";
+import { TIcon, WizHStack, WizIcon } from "@/components";
 
 const iconSize: Record<string, FontSizeKeys> = {
   sm: "xl",
@@ -53,14 +52,14 @@ const _ToggleButton = forwardRef(
       )}
       disabled={disabled}
     >
-      <div className={clsx(gapStyle["xs2"], styles.toggleButtonStackStyle)}>
+      <WizHStack align="center" gap="xs2">
         <WizIcon
           icon={isActive ? activeIcon : inActiveIcon}
           color={"green.800"}
           size={iconSize[size]}
         />
         {props.children}
-      </div>
+      </WizHStack>
     </button>
   )
 );

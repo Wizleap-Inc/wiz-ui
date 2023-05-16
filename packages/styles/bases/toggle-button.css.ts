@@ -56,9 +56,3 @@ export const toggleButtonSizeStyle = styleVariants({
     fontSize: THEME.fontSize.md,
   },
 });
-
-export const toggleButtonStackStyle = style({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-});
