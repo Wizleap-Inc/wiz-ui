@@ -1,5 +1,21 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.5.0
+
+### Minor Changes
+
+- [#694](https://github.com/Wizleap-Inc/wiz-ui/pull/694) [`b16a00b9`](https://github.com/Wizleap-Inc/wiz-ui/commit/b16a00b9594e2798c2e173ff91cdb2ff7f6b31e0) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ArrowDropUp, ArrowDropDown アイコンを追加。WizDatePicker に年を選択する機能を追加。
+
+- [#693](https://github.com/Wizleap-Inc/wiz-ui/pull/693) [`62d0c58a`](https://github.com/Wizleap-Inc/wiz-ui/commit/62d0c58a0eb8e4980d78bdcaeead6088dbc05712) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup の回り込みロジックを有効・無効にするオプションを追加
+
+### Patch Changes
+
+- [#705](https://github.com/Wizleap-Inc/wiz-ui/pull/705) [`31d9d7a6`](https://github.com/Wizleap-Inc/wiz-ui/commit/31d9d7a63417bfc7d4a0fac137cd0799128a4bb6) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WIzShowMoreLess コンポーネントが export されていない問題を修正
+
+- Updated dependencies [[`b16a00b9`](https://github.com/Wizleap-Inc/wiz-ui/commit/b16a00b9594e2798c2e173ff91cdb2ff7f6b31e0)]:
+  - @wizleap-inc/wiz-ui-constants@0.4.0
+  - @wizleap-inc/wiz-ui-styles@0.4.0
+
 ## 1.4.0
 
 ### Minor Changes
