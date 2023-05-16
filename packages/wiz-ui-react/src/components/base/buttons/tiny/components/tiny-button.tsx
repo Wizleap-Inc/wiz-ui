@@ -6,13 +6,7 @@ import {
   paddingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import {
-  ComponentProps,
-  ForwardedRef,
-  ReactNode,
-  forwardRef,
-  memo,
-} from "react";
+import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -28,7 +22,7 @@ type Props = {
   children: ReactNode;
 } & ComponentProps<"button">;
 
-const _TinyButton = forwardRef(
+const TinyButton = forwardRef(
   (
     {
       clickable = true,
@@ -39,6 +33,7 @@ const _TinyButton = forwardRef(
       py,
       icon,
       iconPosition = "left",
+      children,
       ...props
     }: Props,
     ref: ForwardedRef<HTMLButtonElement>
@@ -74,13 +69,13 @@ const _TinyButton = forwardRef(
           reverse={iconPosition === "right"}
         >
           {icon && <WizIcon icon={icon} color={"white.800"} size={"xs"} />}
-          {props.children}
+          {children}
         </WizHStack>
       </button>
     );
   }
 );
 
-_TinyButton.displayName = ComponentName.TinyButton;
+TinyButton.displayName = ComponentName.TinyButton;
 
-export const WizTinyButton = memo(_TinyButton);
+export const WizTinyButton = TinyButton;
