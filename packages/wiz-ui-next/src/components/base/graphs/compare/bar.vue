@@ -87,7 +87,10 @@ const updateLabelTransformStyle = () => {
   const d = labelRef.value.clientWidth / 2;
   const cx = Math.cos(props.theta) * d;
   const gx = (graphRef.value.clientWidth * props.barGroupWidth) / 2;
-  const dx = gx < cx ? gx - cx : 0;
+  const dx = (() => {
+    if (props.theta === 0) return 0;
+    return gx < cx ? gx - cx : 0;
+  })();
   labelRef.value.style.transform = `
     translateX(${dx}px)
     translate(-50%, ${d * Math.abs(Math.sin(props.theta))}px)
