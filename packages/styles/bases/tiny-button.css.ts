@@ -33,7 +33,6 @@ export const tinyButtonVaraiantStyle = styleVariants({
 });
 
 export const tinyButtonSizeStyle = style({
-  padding: `${THEME.spacing["xs2"]} ${THEME.spacing["sm"]}`,
   fontWeight: "bold",
   fontSize: THEME.fontSize.xs,
 });

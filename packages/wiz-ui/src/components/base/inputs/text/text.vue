@@ -11,12 +11,13 @@
       :error="isError"
       type="text"
       :space-type="icon ? 'left' : 'none'"
+      :autocomplete="autocomplete"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { AutoCompleteKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   textInputStyle,
   textInputExpandStyle,
@@ -62,6 +63,11 @@ const props = defineProps({
   icon: {
     type: Object as PropType<TIcon>,
     required: false,
+  },
+  autocomplete: {
+    type: String as PropType<AutoCompleteKeys>,
+    required: false,
+    default: "off",
   },
 });
 
