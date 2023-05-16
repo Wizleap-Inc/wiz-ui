@@ -80,10 +80,14 @@ export const Variant: Story = {
     >
       <WizTag {...args} label="必須" variant="info" />
       <div>variant={'"info"'}</div>
-      <WizTag {...args} label="自動失注" variant="error" />
-      <div>variant={'"error"'}</div>
-      <WizTag {...args} label="申請完了" variant="success" />
-      <div>variant={'"success"'}</div>
+      <WizTag {...args} label="自動失注" variant="red" />
+      <div>variant={'"red"'}</div>
+      <WizTag {...args} label="申請完了" variant="green" />
+      <div>variant={'"green"'}</div>
+      <WizTag {...args} label="準備中" variant="yellow" />
+      <div>variant={'"yellow"'}</div>
+      <WizTag {...args} label="完了" variant="blue" />
+      <div>variant={'"blue"'}</div>
       <WizTag {...args} label="11/11(月)" variant="mono" />
       <div>variant={'"mono"'}</div>
     </div>

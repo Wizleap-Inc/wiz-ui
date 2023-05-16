@@ -16,7 +16,7 @@ import { TIcon, WizIcon } from "@/components";
 type Props = {
   label: string;
   icon?: TIcon;
-  variant?: "info" | "error" | "success" | "mono";
+  variant?: "info" | "red" | "green" | "yellow" | "blue" | "mono";
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
   width?: string;
