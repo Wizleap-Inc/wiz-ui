@@ -9,6 +9,7 @@
       :width="width"
       :error="isError"
       :type="isPasswordVisible ? 'text' : 'password'"
+      :autocomplete="autocomplete"
       space-type="right"
     />
     <button
@@ -22,14 +23,18 @@
 </template>
 
 <script setup lang="ts">
-import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ARIA_LABELS,
+  AutoCompleteKeys,
+  ComponentName,
+} from "@wizleap-inc/wiz-ui-constants";
 import {
   passwordStyle,
   passwordExpandStyle,
   passwordVisibleIconStyle,
   passwordVisibleIconActiveStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
-import { computed, ref, inject } from "vue";
+import { computed, ref, inject, PropType } from "vue";
 
 import { WizIEye } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";
@@ -68,6 +73,13 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
+  },
+  autocomplete: {
+    type: String as PropType<
+      Extract<AutoCompleteKeys, "currentPassword" | "newPassword">
+    >,
+    required: false,
+    default: "off",
   },
 });
 

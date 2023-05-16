@@ -1,13 +1,10 @@
-import Vue, { ref } from "vue";
+import { ref, readonly } from "vue";
 
-import WizSnackbarController from "@/components/base/snackbar/snackbar-controller.vue";
 import { SnackbarOption } from "@/components/base/snackbar/types";
 
-const options = ref<SnackbarOption[]>([]);
-let snackbar: any = null;
-
 export const useSnackbar = () => {
-  const show = (message: string) => {
+  const options = ref<SnackbarOption[]>([]);
+  const snack = (message: string) => {
     const created = new Date().toISOString();
     const deleteSnackbar = () => {
       options.value = options.value.filter(
@@ -20,15 +17,8 @@ export const useSnackbar = () => {
       delete: deleteSnackbar,
     });
   };
-
-  if (!snackbar) {
-    snackbar = new Vue({
-      ...WizSnackbarController,
-      propsData: { options },
-    });
-    snackbar.$mount();
-    document.body.appendChild(snackbar.$el);
-  }
-
-  return show;
+  return {
+    snackbarOptions: readonly(options),
+    snack,
+  };
 };

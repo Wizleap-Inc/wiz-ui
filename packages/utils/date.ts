@@ -98,3 +98,19 @@ export const formatDateToMD = (date: Date): string => {
   const day = date.getDate();
   return [month, day].join("/");
 };
+
+/**
+ * formatNumHourToTime
+ * ```ts
+ * const input = 1.5;
+ * const output = '1:30';
+ * assert.equal(formatNumHourToTime(input), output);
+ * ```
+ * @param numHour
+ * @returns string
+ */
+export const formatNumHourToTime = (numHour: number): string => {
+  const hours = Math.floor(numHour);
+  const minutes = Math.floor((numHour - hours) * 60);
+  return [hours, minutes.toString().padStart(2, "0")].join(":");
+};
