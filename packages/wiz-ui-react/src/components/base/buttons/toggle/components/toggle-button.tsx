@@ -1,13 +1,7 @@
 import { ComponentName, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
 import clsx from "clsx";
-import {
-  ComponentProps,
-  ForwardedRef,
-  ReactNode,
-  forwardRef,
-  memo,
-} from "react";
+import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -27,7 +21,7 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"button">;
 
-const _ToggleButton = forwardRef(
+const ToggleButton = forwardRef(
   (
     {
       inActiveIcon,
@@ -64,6 +58,6 @@ const _ToggleButton = forwardRef(
   )
 );
 
-_ToggleButton.displayName = ComponentName.ToggleButton;
+ToggleButton.displayName = ComponentName.ToggleButton;
 
-export const WizToggleButton = memo(_ToggleButton);
+export const WizToggleButton = ToggleButton;
