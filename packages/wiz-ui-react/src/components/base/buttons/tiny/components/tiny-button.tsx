@@ -60,7 +60,6 @@ const TinyButton = forwardRef(
           py && paddingYStyle[py]
         )}
         disabled={!clickable}
-        {...props}
       >
         <WizHStack
           align="center"
