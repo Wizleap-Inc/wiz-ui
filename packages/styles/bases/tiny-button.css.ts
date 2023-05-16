@@ -40,18 +40,3 @@ export const tinyButtonSizeStyle = style({
 export const tinyButtonHoverStyle = style({
   opacity: 0.9,
 });
-
-export const textButtonStackStyle = styleVariants({
-  default: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  reverse: {
-    display: "flex",
-    flexDirection: "row-reverse",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

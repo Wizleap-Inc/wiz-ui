@@ -1,7 +1,6 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tiny-button.css";
 import {
-  gapStyle,
   paddingStyle,
   paddingXStyle,
   paddingYStyle,
@@ -15,7 +14,7 @@ import {
   memo,
 } from "react";
 
-import { TIcon, WizIcon } from "@/components";
+import { TIcon, WizHStack, WizIcon } from "@/components";
 
 type Props = {
   clickable?: boolean;
@@ -68,17 +67,15 @@ const _TinyButton = forwardRef(
         disabled={!clickable}
         {...props}
       >
-        <div
-          className={clsx(
-            gapStyle["xs2"],
-            styles.textButtonStackStyle[
-              iconPosition === "right" ? "reverse" : "default"
-            ]
-          )}
+        <WizHStack
+          align="center"
+          justify="center"
+          gap="xs2"
+          reverse={iconPosition === "right"}
         >
           {icon && <WizIcon icon={icon} color={"white.800"} size={"xs"} />}
           {props.children}
-        </div>
+        </WizHStack>
       </button>
     );
   }
