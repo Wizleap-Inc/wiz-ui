@@ -12,12 +12,11 @@ import {
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ForwardedRef, ReactNode, forwardRef } from "react";
+import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
 type Props = {
-  to: string;
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
@@ -26,12 +25,11 @@ type Props = {
   openInNewTab?: boolean;
   nowrap?: boolean;
   children: ReactNode;
-};
+} & ComponentProps<"a">;
 
 const Anchor = forwardRef(
   (
     {
-      to,
       color = "blue.800",
       fontSize = "md",
       fontWeight = "normal",
@@ -40,6 +38,7 @@ const Anchor = forwardRef(
       openInNewTab = false,
       nowrap = false,
       children,
+      ...props
     }: Props,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
@@ -61,9 +60,9 @@ const Anchor = forwardRef(
 
     return (
       <a
+        {...props}
         ref={ref}
         className={anchorStyle}
-        href={to}
         target={openInNewTab ? "_blank" : undefined}
         rel={openInNewTab ? "noopener noreferrer" : undefined}
       >

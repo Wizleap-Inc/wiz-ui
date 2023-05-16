@@ -13,7 +13,7 @@ const meta: Meta<typeof WizAnchor> = {
   title: "Base/Anchor",
   component: WizAnchor,
   argTypes: {
-    to: {
+    href: {
       control: { type: "string" },
     },
     fontSize: {
@@ -63,7 +63,7 @@ export const Default: Story = {
     },
   },
   args: {
-    to: "#",
+    href: "#",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
 };
@@ -78,7 +78,7 @@ export const Color: Story = {
     },
   },
   args: {
-    to: "#",
+    href: "#",
     color: "red.800",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -94,7 +94,7 @@ export const FontSize: Story = {
     },
   },
   args: {
-    to: "#",
+    href: "#",
     fontSize: "sm",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -109,7 +109,7 @@ export const FontWeight: Story = {
     },
   },
   args: {
-    to: "#",
+    href: "#",
     fontWeight: "bold",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -125,7 +125,7 @@ export const Icon: Story = {
     },
   },
   args: {
-    to: "#",
+    href: "#",
     icon: WizIArrowRight,
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -144,7 +144,7 @@ export const IconPosition: Story = {
     },
   },
   args: {
-    to: "#",
+    href: "#",
     icon: WizIArrowRight,
     iconPosition: "right",
   },
@@ -160,7 +160,7 @@ export const OpenInNewTab: Story = {
     },
   },
   args: {
-    to: "https://wizleap.co.jp",
+    href: "https://wizleap.co.jp",
     openInNewTab: true,
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
