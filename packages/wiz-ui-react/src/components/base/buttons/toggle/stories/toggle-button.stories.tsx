@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { MouseEventHandler, useRef, useState } from "react";
 
 import { WizIAdd, WizIRemove } from "@/components";
 
@@ -42,24 +41,7 @@ export const Default: Story = {
     activeIcon: WizIRemove,
     inActiveIcon: WizIAdd,
   },
-  render: (args) => {
-    const [isActive, setIsActive] = useState(args.isActive);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-      setIsActive(!isActive);
-      args.onClick?.(e);
-    };
-    return (
-      <WizToggleButton
-        ref={buttonRef}
-        {...args}
-        isActive={isActive}
-        onClick={onClick}
-      >
-        顧客データ追加
-      </WizToggleButton>
-    );
-  },
+  render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
 };
 
 export const Disabled: Story = {
@@ -68,24 +50,7 @@ export const Disabled: Story = {
     inActiveIcon: WizIAdd,
     disabled: true,
   },
-  render: (args) => {
-    const [isActive, setIsActive] = useState(args.isActive);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-      setIsActive(!isActive);
-      args.onClick?.(e);
-    };
-    return (
-      <WizToggleButton
-        ref={buttonRef}
-        {...args}
-        isActive={isActive}
-        onClick={onClick}
-      >
-        顧客データ追加
-      </WizToggleButton>
-    );
-  },
+  render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
   parameters: {
     description: {
       story:
@@ -100,24 +65,7 @@ export const Angled: Story = {
     inActiveIcon: WizIAdd,
     rounded: false,
   },
-  render: (args) => {
-    const [isActive, setIsActive] = useState(args.isActive);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-      setIsActive(!isActive);
-      args.onClick?.(e);
-    };
-    return (
-      <WizToggleButton
-        ref={buttonRef}
-        {...args}
-        isActive={isActive}
-        onClick={onClick}
-      >
-        顧客データ追加
-      </WizToggleButton>
-    );
-  },
+  render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
   parameters: {
     description: {
       story: "ボタンの形を矩形にすることができます。",
@@ -131,24 +79,7 @@ export const On: Story = {
     inActiveIcon: WizIAdd,
     isActive: true,
   },
-  render: (args) => {
-    const [isActive, setIsActive] = useState(args.isActive);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-      setIsActive(!isActive);
-      args.onClick?.(e);
-    };
-    return (
-      <WizToggleButton
-        ref={buttonRef}
-        {...args}
-        isActive={isActive}
-        onClick={onClick}
-      >
-        顧客データ追加
-      </WizToggleButton>
-    );
-  },
+  render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
   parameters: {
     description: {
       story: "ボタンのOn/Offを指定することができます。",
@@ -162,24 +93,7 @@ export const Off: Story = {
     inActiveIcon: WizIAdd,
     isActive: false,
   },
-  render: (args) => {
-    const [isActive, setIsActive] = useState(args.isActive);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-      setIsActive(!isActive);
-      args.onClick?.(e);
-    };
-    return (
-      <WizToggleButton
-        ref={buttonRef}
-        {...args}
-        isActive={isActive}
-        onClick={onClick}
-      >
-        顧客データ追加
-      </WizToggleButton>
-    );
-  },
+  render: (args) => <WizToggleButton {...args}>顧客データ追加</WizToggleButton>,
   parameters: {
     description: {
       story: "ボタンのOn/Offを指定することができます。",
