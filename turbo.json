@@ -8,8 +8,12 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "build:storybook": {
-      "dependsOn": ["^build:storybook"],
+    "build:tools": {
+      "dependsOn": ["^build:tools"],
+      "outputs": ["dist/**"]
+    },
+    "storybook:build": {
+      "dependsOn": ["^storybook:build"],
       "outputs": ["storybook-static/**"]
     },
     "test": {

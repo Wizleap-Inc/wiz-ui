@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": minor
 ---
 
-PrivateBaseInput の React 対応
+WizCard の React 対応
