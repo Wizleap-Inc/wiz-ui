@@ -1,7 +1,7 @@
 <template>
   <div :class="snackbarControllerStyle" ref="containerRef">
     <WizSnackbar
-      v-for="(option, i) in options"
+      v-for="(option, i) in snackbarOptions"
       :key="option.created"
       :message="option.message"
       @delete="option.delete"
@@ -14,18 +14,12 @@
 <script setup lang="ts">
 import { getSpacingCss, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import { snackbarControllerStyle } from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
-import { PropType, ref } from "vue";
+import { ref } from "vue";
 
 import { WizSnackbar } from "@/components";
+import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
-import { SnackbarOption } from "./types";
-
-defineProps({
-  options: {
-    type: Object as PropType<SnackbarOption[]>,
-    required: true,
-  },
-});
+const { snackbarOptions } = globalInject(globalKey);
 
 const containerRef = ref<HTMLElement | undefined>();
 

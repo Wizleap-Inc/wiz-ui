@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.5.0
+
+### Minor Changes
+
+- [#659](https://github.com/Wizleap-Inc/wiz-ui/pull/659) [`2d737b6e`](https://github.com/Wizleap-Inc/wiz-ui/commit/2d737b6eaf06f6187a805468b31ae908ea1e0e0d) Thanks [@okakyo](https://github.com/okakyo)! - remove details marker in Safari
+
 ## 0.4.0
 
 ### Minor Changes

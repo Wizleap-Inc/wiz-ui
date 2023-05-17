@@ -1,5 +1,26 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.5.0
+
+### Minor Changes
+
+- [#592](https://github.com/Wizleap-Inc/wiz-ui/pull/592) [`39b317d1`](https://github.com/Wizleap-Inc/wiz-ui/commit/39b317d1f088d024aa86a0542f15a06975341dd6) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizToggleSwitch の React 対応
+
+- [#575](https://github.com/Wizleap-Inc/wiz-ui/pull/575) [`cf855452`](https://github.com/Wizleap-Inc/wiz-ui/commit/cf855452fe9fb2004cc9a288c448fc676a4154cb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizCard の React 対応
+
+- [#556](https://github.com/Wizleap-Inc/wiz-ui/pull/556) [`c49e2e6e`](https://github.com/Wizleap-Inc/wiz-ui/commit/c49e2e6e23f09df04a80cc89bbdf4054f0d8ea0a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizText の React 対応
+
+- [#576](https://github.com/Wizleap-Inc/wiz-ui/pull/576) [`436c3672`](https://github.com/Wizleap-Inc/wiz-ui/commit/436c3672a68c2e35ce9c35cd29cae3df4aa28ce3) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTextButton の React 対応
+
+- [#573](https://github.com/Wizleap-Inc/wiz-ui/pull/573) [`81926881`](https://github.com/Wizleap-Inc/wiz-ui/commit/8192688116385bf945c8fad9117213cfaa79b799) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizBox の React 対応
+
+- [#590](https://github.com/Wizleap-Inc/wiz-ui/pull/590) [`7bf4f7b5`](https://github.com/Wizleap-Inc/wiz-ui/commit/7bf4f7b5aa666de0db9f9ee4f9c33b2cf2d5567f) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizIconButton の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`2d737b6e`](https://github.com/Wizleap-Inc/wiz-ui/commit/2d737b6eaf06f6187a805468b31ae908ea1e0e0d)]:
+  - @wizleap-inc/wiz-ui-styles@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes
