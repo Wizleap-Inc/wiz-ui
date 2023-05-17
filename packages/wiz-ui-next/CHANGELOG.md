@@ -1,5 +1,21 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.6.0
+
+### Minor Changes
+
+- [#673](https://github.com/Wizleap-Inc/wiz-ui/pull/673) [`3955c01e`](https://github.com/Wizleap-Inc/wiz-ui/commit/3955c01ec78d1ab9a727e0e9a7241f958efbfc53) Thanks [@RyushiAok](https://github.com/RyushiAok)! - CompareGraph に横軸ラベルの回転機能を追加
+
+- [#608](https://github.com/Wizleap-Inc/wiz-ui/pull/608) [`7dd4331d`](https://github.com/Wizleap-Inc/wiz-ui/commit/7dd4331db545b2dda050b145f5b5def2aeb87f87) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ・内部で仮想 DOM を用いた手動レンダリングが入ることによるライフサイクルのバグの修正
+  ・スナックバー表示関数「snack」を global provider から取得する
+
+### Patch Changes
+
+- [`9c729560`](https://github.com/Wizleap-Inc/wiz-ui/commit/9c7295600a5171938c0bdfc71e5bd60243e365a1) Thanks [@okakyo](https://github.com/okakyo)! - fix meter position
+
+- Updated dependencies [[`2d737b6e`](https://github.com/Wizleap-Inc/wiz-ui/commit/2d737b6eaf06f6187a805468b31ae908ea1e0e0d)]:
+  - @wizleap-inc/wiz-ui-styles@0.5.0
+
 ## 1.5.0
 
 ### Minor Changes
