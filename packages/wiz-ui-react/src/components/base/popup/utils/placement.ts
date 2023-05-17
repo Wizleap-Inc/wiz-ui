@@ -10,15 +10,15 @@ type PlacementOption = {
   anchor: DOMRect;
   content?: DOMRect;
   gap?: string;
-  usePortal?: boolean;
+  isPortal?: boolean;
 };
 
 export const getPlacementStyle: Record<
   DirectionValues,
   (option: PlacementOption) => PopupPlacementStyle
 > = {
-  tl: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  tl: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + window.scrollY,
         left: anchor.x + window.scrollX,
@@ -31,8 +31,8 @@ export const getPlacementStyle: Record<
       transform: `translateY(-${offset}px) translate(0, -${gap})`,
     };
   },
-  tc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  tc: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + window.scrollY,
         left: anchor.x + anchor.width / 2 + window.scrollX,
@@ -46,8 +46,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
     };
   },
-  tr: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  tr: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + window.scrollY,
         left: anchor.x + anchor.width + window.scrollX,
@@ -61,8 +61,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
     };
   },
-  bl: ({ anchor, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  bl: ({ anchor, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + anchor.height + window.scrollY,
         left: anchor.x + window.scrollX,
@@ -71,8 +71,8 @@ export const getPlacementStyle: Record<
     }
     return {};
   },
-  bc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  bc: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + anchor.height + window.scrollY,
         left: anchor.x + anchor.width / 2 + window.scrollX,
@@ -85,8 +85,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${-offsetX}px, 0) translate(0, ${gap})`,
     };
   },
-  br: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  br: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + anchor.height + window.scrollY,
         left: anchor.x + anchor.width + window.scrollX,
@@ -99,8 +99,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${-offsetX}px, 0) translate(0, ${gap})`,
     };
   },
-  rt: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  rt: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + window.scrollY,
         left: anchor.x + anchor.width + window.scrollX,
@@ -114,8 +114,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${offsetX}px, ${-offsetY}px) translate(${gap}, 0)`,
     };
   },
-  rc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  rc: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + anchor.height / 2 + window.scrollY,
         left: anchor.x + anchor.width + window.scrollX,
@@ -129,8 +129,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${offsetX}px, ${-offsetY}px)  translate(${gap}, 0)`,
     };
   },
-  rb: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  rb: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + anchor.height + window.scrollY,
         left: anchor.x + anchor.width + window.scrollX,
@@ -144,8 +144,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${offsetX}px, ${-offsetY}px) translate(${gap}, 0)`,
     };
   },
-  lt: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  lt: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + window.scrollY,
         left: anchor.x + window.scrollX,
@@ -159,8 +159,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
     };
   },
-  lc: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  lc: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + anchor.height / 2 + window.scrollY,
         left: anchor.x + window.scrollX,
@@ -174,8 +174,8 @@ export const getPlacementStyle: Record<
       transform: `translate(${-offsetX}px, ${-offsetY}px) translate(0, -${gap})`,
     };
   },
-  lb: ({ anchor, content, usePortal, gap }: PlacementOption) => {
-    if (usePortal) {
+  lb: ({ anchor, content, isPortal, gap }: PlacementOption) => {
+    if (isPortal) {
       return {
         top: anchor.y + anchor.height + window.scrollY,
         left: anchor.x + window.scrollX,

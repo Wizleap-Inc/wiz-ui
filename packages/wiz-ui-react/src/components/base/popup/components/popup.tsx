@@ -90,7 +90,7 @@ const Popup = ({
       };
       return getPlacementStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
         anchor: anchorRect,
-        usePortal: true,
+        isPortal: true,
         gap: getSpacingCss(gap) ?? "0",
         content: contentRect,
       });
