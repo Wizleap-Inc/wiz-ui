@@ -66,7 +66,7 @@ const Popup = ({
   const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
   const popupRef = useRef<HTMLDivElement | null>(null);
 
-  useClickOutside(popupRef, () => closeOnBlur && onClose(), anchorElement);
+  useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
   useEffect(() => {
     if (!animation || !popupRef.current) {
