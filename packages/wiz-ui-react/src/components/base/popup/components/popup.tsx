@@ -11,7 +11,6 @@ import {
   ComponentProps,
   ReactNode,
   RefObject,
-  useCallback,
   useEffect,
   useRef,
   useState,
@@ -20,12 +19,16 @@ import {
 import { WizPortal } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
-import { DIRECTION_MAP, DirectionKeys } from "../types/direction";
+import {
+  DIRECTION_MAP,
+  DirectionKeys,
+  DirectionValues,
+} from "../types/direction";
 import {
   PopupPlacementStyle,
-  adjustDirection,
   fadeAnimation,
   getPlacementStyle,
+  wrapDirection,
 } from "../utils";
 
 type Props = {
@@ -63,30 +66,6 @@ const Popup = ({
   const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
   const popupRef = useRef<HTMLDivElement | null>(null);
 
-  const getStyle = useCallback((): PopupPlacementStyle => {
-    const anchorRect = anchorElement.current?.getBoundingClientRect();
-    const bodyRect = document.body.getBoundingClientRect();
-    const contentRect = popupRef.current?.getBoundingClientRect();
-    const gapRem = getSpacingCss(gap) ?? "0";
-    const dir = DIRECTION_MAP[direction];
-    if (!anchorRect) return {};
-    if (isDirectionFixed || !contentRect)
-      // レンダリング前にgetStyleが呼ばれると、contentRectを取得できないため、回り込みロジックは適用されません。(!contentRect)
-      return getPlacementStyle[dir]({
-        anchor: anchorRect,
-        usePortal: true,
-        gap: gapRem,
-        content: contentRect,
-      });
-    const dir2 = adjustDirection[dir](bodyRect, contentRect, anchorRect);
-    return getPlacementStyle[dir2]({
-      anchor: anchorRect,
-      usePortal: true,
-      content: contentRect,
-      gap: gapRem,
-    });
-  }, [anchorElement, gap, direction, isDirectionFixed]);
-
   useClickOutside(popupRef, () => closeOnBlur && onClose(), anchorElement);
 
   useEffect(() => {
@@ -100,13 +79,29 @@ const Popup = ({
   }, [animation, isOpen]);
 
   useEffect(() => {
-    setPlacementStyle(getStyle());
-    const handleResize = () => setPlacementStyle(getStyle());
+    const popupPlacement = () => {
+      const anchorRect = anchorElement.current?.getBoundingClientRect();
+      if (!anchorRect) return {};
+      const contentRect = popupRef.current?.getBoundingClientRect();
+      const wrapOutOfBound = (dir: DirectionValues) => {
+        if (isDirectionFixed || !contentRect) return dir;
+        const bodyRect = document.body.getBoundingClientRect();
+        return wrapDirection[dir](bodyRect, contentRect, anchorRect);
+      };
+      return getPlacementStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
+        anchor: anchorRect,
+        usePortal: true,
+        gap: getSpacingCss(gap) ?? "0",
+        content: contentRect,
+      });
+    };
+    setPlacementStyle(popupPlacement());
+    const handleResize = () => setPlacementStyle(popupPlacement());
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [isActuallyOpen, direction, getStyle]);
+  }, [isActuallyOpen, direction, gap, anchorElement, isDirectionFixed]);
 
   const content = (
     <div
