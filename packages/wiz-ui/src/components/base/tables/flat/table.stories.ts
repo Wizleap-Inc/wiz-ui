@@ -52,6 +52,59 @@ export const Default: StoryFn = (_, { argTypes }) => ({
   `,
 });
 
+export const FontSize: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizFlatTable,
+    WizFlatThead,
+    WizFlatTbody,
+    WizFlatTr,
+    WizFlatTh,
+    WizFlatTd,
+  },
+  template: `
+    <div>
+      <h2>Font Size (Th)</h2>
+      <div v-for="fontSize in ['xs2', 'xs', 'sm', 'md']">
+        <div style="padding-bottom:1rem;">
+          <span>Font Size: {{ fontSize }}</span>
+          <WizFlatTable :key="fontSize">
+            <WizFlatThead>
+              <WizFlatTr>
+                <WizFlatTh v-for="i in 3" :key="i" :fontSize="fontSize">Column {{ i }}</WizFlatTh>
+              </WizFlatTr>
+            </WizFlatThead>
+            <WizFlatTbody>
+              <WizFlatTr v-for="i in 3">
+                <WizFlatTd v-for="j in 3" :key="j" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTd>
+              </WizFlatTr>
+            </WizFlatTbody>
+          </WizFlatTable>
+        </div>
+      </div>
+      <hr/>
+      <h2>Font Size (Td)</h2>
+      <div v-for="fontSize in ['xs2', 'xs', 'sm', 'md']">
+        <div style="padding-bottom:1rem;">
+          <span>Font Size: {{ fontSize }}</span>
+          <WizFlatTable :key="fontSize">
+            <WizFlatThead>
+              <WizFlatTr>
+                <WizFlatTh v-for="i in 3" :key="i" :fontSize="$props.fontSize">Column {{ i }}</WizFlatTh>
+              </WizFlatTr>
+            </WizFlatThead>
+            <WizFlatTbody>
+              <WizFlatTr v-for="i in 3">
+                <WizFlatTd v-for="j in 3" :key="j" :fontSize="fontSize">Row {{ i }}</WizFlatTd>
+              </WizFlatTr>
+            </WizFlatTbody>
+          </WizFlatTable>
+        </div>
+      </div>
+    </div>
+  `,
+});
+
 export const Fixed: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
