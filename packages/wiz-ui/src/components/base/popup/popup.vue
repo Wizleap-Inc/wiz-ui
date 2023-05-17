@@ -347,7 +347,6 @@ const isFixed = computed(() => {
 });
 
 const inset = computed(() => {
-  if (isFixed) return "0";
   const { scrollX, scrollY } = window;
   const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
