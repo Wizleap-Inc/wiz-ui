@@ -37,7 +37,7 @@ export const GapStory: StoryObj<typeof WizPopup> = {
             {...pattern}
             anchorElement={anchor}
             isOpen={isOpen}
-            setIsOpen={setIsOpen}
+            onClose={() => setIsOpen(false)}
           >
             <div style={popupContentStyle}>
               <div>{pattern.gap}</div>

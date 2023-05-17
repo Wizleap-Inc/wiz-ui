@@ -30,7 +30,7 @@ import {
 
 type Props = {
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  onClose: () => void;
   anchorElement: RefObject<HTMLElement>;
   direction?: DirectionKeys;
   gap?: SpacingKeys;
@@ -48,7 +48,7 @@ type Props = {
 
 const Popup = ({
   isOpen,
-  setIsOpen,
+  onClose,
   anchorElement,
   closeOnBlur = true,
   layer = "popover",
@@ -87,11 +87,7 @@ const Popup = ({
     });
   }, [anchorElement, gap, direction, isDirectionFixed]);
 
-  useClickOutside(
-    popupRef,
-    () => closeOnBlur && setIsOpen(false),
-    anchorElement
-  );
+  useClickOutside(popupRef, () => closeOnBlur && onClose(), anchorElement);
 
   useEffect(() => {
     if (!animation || !popupRef.current) {

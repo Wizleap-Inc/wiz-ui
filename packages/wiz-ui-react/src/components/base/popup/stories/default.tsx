@@ -41,7 +41,7 @@ export const DefaultStory: StoryObj<typeof WizPopup> = {
             {...pattern}
             anchorElement={anchor}
             isOpen={isOpen}
-            setIsOpen={setIsOpen}
+            onClose={() => setIsOpen(false)}
           >
             <div
               style={{

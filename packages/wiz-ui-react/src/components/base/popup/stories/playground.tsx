@@ -47,7 +47,7 @@ export const PlaygroundStory: StoryObj<typeof WizPopup> = {
             {...args}
             anchorElement={anchor}
             isOpen={isOpen}
-            setIsOpen={setIsOpen}
+            onClose={() => setIsOpen(false)}
           >
             <div style={popupContentStyle}>
               <p>This is a popup content</p>
