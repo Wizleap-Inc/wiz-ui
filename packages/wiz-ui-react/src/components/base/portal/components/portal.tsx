@@ -6,16 +6,16 @@ type Props = {
 };
 
 const Portal = ({ children }: Props) => {
-  const mount = document.body;
   const el = useRef(document.createElement("div"));
   useEffect(() => {
+    const mount = document.body;
     const elNode = el.current;
     if (!mount || !elNode) return;
     mount.appendChild(elNode);
     return () => {
       mount.removeChild(elNode);
     };
-  }, [mount]);
+  }, []);
 
   return createPortal(children, el.current);
 };
