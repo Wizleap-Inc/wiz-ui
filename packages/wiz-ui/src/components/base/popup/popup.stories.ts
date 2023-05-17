@@ -196,7 +196,7 @@ export const Fixed: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPopup, WizTextButton, WizPopupContainer },
   setup() {
-    const isOpen = ref(false);
+    const isOpen = ref(true);
     const toggle = () => (isOpen.value = !isOpen.value);
     return { isOpen, toggle };
   },

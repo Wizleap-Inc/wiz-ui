@@ -219,7 +219,7 @@ export const Fixed: StoryFn<typeof WizPopup> = (args) => ({
           </button>
           <wiz-popup :isOpen="isOpen"  v-bind="args">
             <div style="padding: 16px; background-color: white; border-radius: 4px;">
-              <p>This is a static popup content</p>
+              <p>This is a fixed popup content</p>
             </div>
           </wiz-popup>
         </wiz-popup-container> 
