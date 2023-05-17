@@ -19,6 +19,7 @@ import {
 import { WizPortal } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
+import { usePopupAnimation } from "../hooks/use-popup-animation";
 import {
   DIRECTION_MAP,
   DirectionKeys,
@@ -26,7 +27,6 @@ import {
 } from "../types/direction";
 import {
   PopupPlacementStyle,
-  fadeAnimation,
   getPlacementStyle,
   wrapDirection,
 } from "../utils";
@@ -62,21 +62,11 @@ const Popup = ({
   isDirectionFixed = true,
   children,
 }: Props) => {
-  const [isActuallyOpen, setIsActuallyOpen] = useState(false);
-  const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
   const popupRef = useRef<HTMLDivElement | null>(null);
+  const isActuallyOpen = usePopupAnimation(animation, popupRef, isOpen);
+  const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
-
-  useEffect(() => {
-    if (!animation || !popupRef.current) {
-      setIsActuallyOpen(isOpen);
-      return;
-    }
-    if (isOpen)
-      fadeAnimation.open(popupRef.current, () => setIsActuallyOpen(true));
-    else fadeAnimation.close(popupRef.current, () => setIsActuallyOpen(false));
-  }, [animation, isOpen]);
 
   useEffect(() => {
     const popupPlacement = () => {
