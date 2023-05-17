@@ -273,77 +273,78 @@ export const Playground: StoryFn<typeof WizPopup> = (args) => ({
   `,
 });
 
+const absolutePositions = [
+  {
+    top: "0px",
+    left: "0px",
+    bottom: "initial",
+    right: "initial",
+    transform: "initial",
+  },
+  {
+    top: "0px",
+    left: "initial",
+    bottom: "initial",
+    right: "0px",
+    transform: "initial",
+  },
+  {
+    top: "initial",
+    left: "0px",
+    bottom: "0px",
+    right: "initial",
+    transform: "initial",
+  },
+  {
+    top: "initial",
+    left: "initial",
+    bottom: "0px",
+    right: "0px",
+    transform: "initial",
+  },
+  {
+    top: "50%",
+    left: "50%",
+    bottom: "initial",
+    right: "initial",
+    transform: "translate(-50%, -50%)",
+  },
+  {
+    top: "50%",
+    left: "0px",
+    bottom: "initial",
+    right: "initial",
+    transform: "translate(0%, -50%)",
+  },
+  {
+    top: "50%",
+    left: "initial",
+    bottom: "initial",
+    right: "0px",
+    transform: "translate(0%, -50%)",
+  },
+  {
+    top: "0px",
+    left: "50%",
+    bottom: "initial",
+    right: "initial",
+    transform: "translate(-50%, 0%)",
+  },
+  {
+    top: "initial",
+    left: "50%",
+    bottom: "0px",
+    right: "initial",
+    transform: "translate(-50%, 0%)",
+  },
+];
+
 export const Playground2: StoryFn<typeof WizPopup> = (args) => ({
   components: { WizPopup, WizPopupContainer, WizTextButton, WizHStack },
   setup() {
     const isOpen = ref(true);
     const toggle = () => (isOpen.value = !isOpen.value);
     const close = () => (isOpen.value = false);
-    const absolutePositions = [
-      {
-        top: "0px",
-        left: "0px",
-        bottom: "initial",
-        right: "initial",
-        transform: "initial",
-      },
-      {
-        top: "0px",
-        left: "initial",
-        bottom: "initial",
-        right: "0px",
-        transform: "initial",
-      },
-      {
-        top: "initial",
-        left: "0px",
-        bottom: "0px",
-        right: "initial",
-        transform: "initial",
-      },
-      {
-        top: "initial",
-        left: "initial",
-        bottom: "0px",
-        right: "0px",
-        transform: "initial",
-      },
-      {
-        top: "50%",
-        left: "50%",
-        bottom: "initial",
-        right: "initial",
-        transform: "translate(-50%, -50%)",
-      },
-      {
-        top: "50%",
-        left: "0px",
-        bottom: "initial",
-        right: "initial",
-        transform: "translate(0%, -50%)",
-      },
-      {
-        top: "50%",
-        left: "initial",
-        bottom: "initial",
-        right: "0px",
-        transform: "translate(0%, -50%)",
-      },
-      {
-        top: "0px",
-        left: "50%",
-        bottom: "initial",
-        right: "initial",
-        transform: "translate(-50%, 0%)",
-      },
-      {
-        top: "initial",
-        left: "50%",
-        bottom: "0px",
-        right: "initial",
-        transform: "translate(-50%, 0%)",
-      },
-    ];
     return { isOpen, toggle, close, absolutePositions, args };
   },
   template: `
@@ -361,3 +362,31 @@ export const Playground2: StoryFn<typeof WizPopup> = (args) => ({
   </div>
   `,
 });
+
+export const FixDirection: StoryFn<typeof WizPopup> = (args) => ({
+  components: { WizPopup, WizPopupContainer, WizTextButton, WizHStack },
+  setup() {
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
+    return { isOpen, toggle, close, absolutePositions, args };
+  },
+  template: `
+  <div style="height: 100vh; width: 100vw; position: relative; overflow">
+    <div v-for="(pos, key) in absolutePositions" :key="key" :style="{ position: 'absolute', ...pos }">
+      <wiz-popup-container>
+        <wiz-text-button @click="toggle">Toggle</wiz-text-button>
+        <wiz-popup v-bind="args" :isOpen="isOpen"  @onClose="close">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <span>Popup content</span>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div>
+  </div>
+  `,
+});
+
+FixDirection.args = {
+  isDirectionFixed: true,
+};

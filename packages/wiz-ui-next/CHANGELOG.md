@@ -1,5 +1,50 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.6.0
+
+### Minor Changes
+
+- [#673](https://github.com/Wizleap-Inc/wiz-ui/pull/673) [`3955c01e`](https://github.com/Wizleap-Inc/wiz-ui/commit/3955c01ec78d1ab9a727e0e9a7241f958efbfc53) Thanks [@RyushiAok](https://github.com/RyushiAok)! - CompareGraph に横軸ラベルの回転機能を追加
+
+- [#608](https://github.com/Wizleap-Inc/wiz-ui/pull/608) [`7dd4331d`](https://github.com/Wizleap-Inc/wiz-ui/commit/7dd4331db545b2dda050b145f5b5def2aeb87f87) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ・内部で仮想 DOM を用いた手動レンダリングが入ることによるライフサイクルのバグの修正
+  ・スナックバー表示関数「snack」を global provider から取得する
+
+### Patch Changes
+
+- [`9c729560`](https://github.com/Wizleap-Inc/wiz-ui/commit/9c7295600a5171938c0bdfc71e5bd60243e365a1) Thanks [@okakyo](https://github.com/okakyo)! - fix meter position
+
+- Updated dependencies [[`2d737b6e`](https://github.com/Wizleap-Inc/wiz-ui/commit/2d737b6eaf06f6187a805468b31ae908ea1e0e0d)]:
+  - @wizleap-inc/wiz-ui-styles@0.5.0
+
+## 1.5.0
+
+### Minor Changes
+
+- [#694](https://github.com/Wizleap-Inc/wiz-ui/pull/694) [`b16a00b9`](https://github.com/Wizleap-Inc/wiz-ui/commit/b16a00b9594e2798c2e173ff91cdb2ff7f6b31e0) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ArrowDropUp, ArrowDropDown アイコンを追加。WizDatePicker に年を選択する機能を追加。
+
+- [#693](https://github.com/Wizleap-Inc/wiz-ui/pull/693) [`62d0c58a`](https://github.com/Wizleap-Inc/wiz-ui/commit/62d0c58a0eb8e4980d78bdcaeead6088dbc05712) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup の回り込みロジックを有効・無効にするオプションを追加
+
+### Patch Changes
+
+- [#705](https://github.com/Wizleap-Inc/wiz-ui/pull/705) [`31d9d7a6`](https://github.com/Wizleap-Inc/wiz-ui/commit/31d9d7a63417bfc7d4a0fac137cd0799128a4bb6) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WIzShowMoreLess コンポーネントが export されていない問題を修正
+
+- Updated dependencies [[`b16a00b9`](https://github.com/Wizleap-Inc/wiz-ui/commit/b16a00b9594e2798c2e173ff91cdb2ff7f6b31e0)]:
+  - @wizleap-inc/wiz-ui-constants@0.4.0
+  - @wizleap-inc/wiz-ui-styles@0.4.0
+
+## 1.4.0
+
+### Minor Changes
+
+- [#668](https://github.com/Wizleap-Inc/wiz-ui/pull/668) [`68b7493c`](https://github.com/Wizleap-Inc/wiz-ui/commit/68b7493cc4e0c0de9e8a23845526baa02cdc49e5) Thanks [@sor4chi](https://github.com/sor4chi)! - Schedule コンポーネントの追加
+
+### Patch Changes
+
+- Updated dependencies [[`68b7493c`](https://github.com/Wizleap-Inc/wiz-ui/commit/68b7493cc4e0c0de9e8a23845526baa02cdc49e5)]:
+  - @wizleap-inc/wiz-ui-constants@0.3.0
+  - @wizleap-inc/wiz-ui-styles@0.3.0
+  - @wizleap-inc/wiz-ui-utils@0.2.0
+
 ## 1.3.0
 
 ### Minor Changes

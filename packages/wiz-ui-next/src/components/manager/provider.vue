@@ -1,5 +1,6 @@
 <template>
   <div>
+    <WizSnackbarController />
     <slot />
   </div>
 </template>
@@ -8,6 +9,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { provide } from "vue";
 
+import WizSnackbarController from "@/components/base/snackbar/snackbar-controller.vue";
 import { globalKey, useGlobalProvider } from "@/hooks/use-global-provider";
 
 defineOptions({
