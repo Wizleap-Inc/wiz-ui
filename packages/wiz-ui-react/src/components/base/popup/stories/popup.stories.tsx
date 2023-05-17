@@ -1,7 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { WizProvider } from "@/components/manager";
-
 import { WizPopup } from "../components";
 
 import { DefaultStory } from "./default";
@@ -13,13 +11,6 @@ const meta: Meta<typeof WizPopup> = {
   title: "Base/Popup",
   component: WizPopup,
   argTypes: {},
-  decorators: [
-    (Story) => (
-      <WizProvider>
-        <Story />
-      </WizProvider>
-    ),
-  ],
 };
 
 export default meta;
