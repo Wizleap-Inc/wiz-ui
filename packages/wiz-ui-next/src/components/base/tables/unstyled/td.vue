@@ -1,5 +1,9 @@
 <template>
-  <td :class="[unstyledTdStyle, unstyledTdAlignStyle[align]]">
+  <td
+    :class="[unstyledTdStyle, unstyledTdAlignStyle[align]]"
+    :rowSpan="rowSpan"
+    :colSpan="colSpan"
+  >
     <slot />
   </td>
 </template>
@@ -21,6 +25,14 @@ defineProps({
     type: String as PropType<"left" | "center" | "right">,
     required: false,
     default: "center",
+  },
+  rowSpan: {
+    type: Number,
+    required: false,
+  },
+  colSpan: {
+    type: Number,
+    required: false,
   },
 });
 </script>
