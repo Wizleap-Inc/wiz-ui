@@ -1,4 +1,8 @@
-import { ColorKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  SpacingKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
 import {
   backgroundStyle,
@@ -6,13 +10,7 @@ import {
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import {
-  ComponentProps,
-  ForwardedRef,
-  forwardRef,
-  memo,
-  useState,
-} from "react";
+import { ComponentProps, ForwardedRef, forwardRef, useState } from "react";
 
 type Props = {
   src: string;
@@ -24,7 +22,7 @@ type Props = {
   clickable?: boolean;
 } & ComponentProps<"div">;
 
-const _Avatar = forwardRef(
+const Avatar = forwardRef(
   (
     {
       src,
@@ -76,4 +74,6 @@ const _Avatar = forwardRef(
   }
 );
 
-export const WizAvatar = memo(_Avatar);
+Avatar.displayName = ComponentName.Avatar;
+
+export const WizAvatar = Avatar;
