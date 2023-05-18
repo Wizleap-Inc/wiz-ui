@@ -1,7 +1,7 @@
 <template>
   <div>
-    <WizSnackbarController />
     <slot />
+    <WizSnackbarController />
   </div>
 </template>
 
