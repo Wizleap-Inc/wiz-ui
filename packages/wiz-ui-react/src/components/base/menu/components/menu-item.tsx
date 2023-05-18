@@ -4,6 +4,7 @@ import clsx from "clsx";
 import {
   ComponentProps,
   ForwardedRef,
+  KeyboardEventHandler,
   MouseEventHandler,
   forwardRef,
   useState,
@@ -31,6 +32,7 @@ const MenuItem = forwardRef(
       onMouseUp,
       onMouseOut,
       onClick,
+      onKeyDown,
       ...props
     }: Props,
     ref: ForwardedRef<HTMLDivElement>
@@ -81,6 +83,18 @@ const MenuItem = forwardRef(
       if (clickable) onClick?.(e);
     };
 
+    const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (e) => {
+      onKeyDown?.(e);
+      if (e.key === "Enter" || e.key === " ") {
+        if (clickable) {
+          if (e.target instanceof HTMLElement) {
+            e.stopPropagation();
+            e.target.click();
+          }
+        }
+      }
+    };
+
     return (
       <div
         ref={ref}
@@ -96,6 +110,9 @@ const MenuItem = forwardRef(
         onMouseUp={handleMouseUp}
         onMouseOut={handleMouseOut}
         onClick={handleClick}
+        role={clickable ? "button" : undefined}
+        tabIndex={clickable ? 0 : undefined}
+        onKeyDown={handleKeyDown}
       >
         <WizHStack align="center" justify="between">
           <div>{label}</div>

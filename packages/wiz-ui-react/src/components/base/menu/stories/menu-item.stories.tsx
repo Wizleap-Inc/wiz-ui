@@ -64,7 +64,7 @@ export const Active: Story = {
 export const Disabled: Story = {
   args: {
     label: "テスト",
-    clickable: true,
+    clickable: false,
   },
   parameters: {
     docs: {
