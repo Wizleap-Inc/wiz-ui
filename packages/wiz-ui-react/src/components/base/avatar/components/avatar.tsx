@@ -32,6 +32,7 @@ const Avatar = forwardRef(
       alt,
       fallback,
       clickable,
+      onClick,
       ...props
     }: Props,
     ref: ForwardedRef<HTMLDivElement>
@@ -50,7 +51,18 @@ const Avatar = forwardRef(
           clickable && styles.avatarClickableStyle
         )}
         {...props}
-        onClick={(e) => clickable && props.onClick?.(e)}
+        role={clickable ? "button" : undefined}
+        tabIndex={clickable ? 0 : undefined}
+        onClick={(e) => clickable && onClick?.(e)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            if (!clickable) return;
+            if (e.target instanceof HTMLElement) {
+              e.stopPropagation();
+              e.target.click();
+            }
+          }
+        }}
       >
         {isImgLoadSuccess ? (
           <img

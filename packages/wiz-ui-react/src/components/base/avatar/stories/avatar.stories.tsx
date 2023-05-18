@@ -96,7 +96,7 @@ export const Clickable: Story = {
     docs: {
       description: {
         story:
-          "`fallback` を設定した場合、画像の表示に失敗した際に、`alt`の代わりに `fallback` で指定されたテキストが表示されます。",
+          "`clickable`を `true` にすることで、`onClick` を有効にすることができます。",
       },
     },
   },
