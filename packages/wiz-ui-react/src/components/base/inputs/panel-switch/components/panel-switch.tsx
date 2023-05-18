@@ -8,7 +8,7 @@ import { PanelItems } from "./type";
 type Props = {
   value: number | null;
   items: PanelItems[];
-  onChange?: (value: number) => void;
+  onChange: (value: number) => void;
 };
 
 const PanelSwitch = ({ value, items, onChange }: Props) => {
