@@ -39,8 +39,6 @@ const Avatar = forwardRef(
   ) => {
     const [isImgLoadSuccess, setIsLoadSuccess] = useState(true);
 
-    const onError = () => setIsLoadSuccess(false);
-
     return (
       <div
         ref={ref}
@@ -69,7 +67,7 @@ const Avatar = forwardRef(
             className={styles.avatarImageStyle}
             src={src}
             alt={alt}
-            onError={onError}
+            onError={() => setIsLoadSuccess(false)}
           />
         ) : (
           <div
