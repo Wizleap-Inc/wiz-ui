@@ -87,6 +87,10 @@ export const ComponentName = {
   StepBar: "WizStepBar",
   StepPoint: "WizStepPoint",
   StepLine: "WizStepLine",
+  ScheduleCard: "WizScheduleCard",
+  ScheduleSheet: "WizScheduleSheet",
+  ScheduleGrid: "WizScheduleGrid",
+  Schedule: "WizSchedule",
   PopupButtonGroup: "WizPopupButtonGroup",
   ...IconComponentName,
 } as const;

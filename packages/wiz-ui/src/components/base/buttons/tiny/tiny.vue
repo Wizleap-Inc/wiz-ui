@@ -5,6 +5,8 @@
       tinyButtonSizeStyle,
       tinyButtonVaraiantStyle[tinyButtonState],
       clickable && (isHover || hover) && tinyButtonHoverStyle,
+      !p && !py && paddingYStyle['xs2'],
+      !p && !px && paddingXStyle['sm'],
       p && paddingStyle[p],
       px && paddingXStyle[px],
       py && paddingYStyle[py],
