@@ -26,6 +26,12 @@ const _MenuItem = forwardRef(
       width = "10rem",
       active = false,
       clickable = true,
+      onMouseOver,
+      onMouseLeave,
+      onMouseDown,
+      onMouseUp,
+      onMouseOut,
+      onClick,
       ...props
     }: Props,
     ref: ForwardedRef<HTMLDivElement>
@@ -44,36 +50,36 @@ const _MenuItem = forwardRef(
       return "default";
     })();
 
-    const onMouseOver: MouseEventHandler<HTMLDivElement> = (e) => {
+    const handleMouseOver: MouseEventHandler<HTMLDivElement> = (e) => {
       setIsHover(true);
-      props.onMouseOver?.(e);
+      onMouseOver?.(e);
     };
 
-    const onMouseLeave: MouseEventHandler<HTMLDivElement> = (e) => {
+    const handleMouseLeave: MouseEventHandler<HTMLDivElement> = (e) => {
       setIsHover(false);
-      props.onMouseLeave?.(e);
+      onMouseLeave?.(e);
     };
 
     /** activate */
-    const onMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
+    const handleMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
       setIsPressed(true);
-      props.onMouseDown?.(e);
+      onMouseDown?.(e);
     };
 
     /** inactivate */
-    const onMouseUp: MouseEventHandler<HTMLDivElement> = (e) => {
+    const handleMouseUp: MouseEventHandler<HTMLDivElement> = (e) => {
       setIsPressed(false);
-      props.onMouseUp?.(e);
+      onMouseUp?.(e);
     };
 
     /** inactivate */
-    const onMouseOut: MouseEventHandler<HTMLDivElement> = (e) => {
+    const handleMouseOut: MouseEventHandler<HTMLDivElement> = (e) => {
       setIsPressed(false);
-      props.onMouseOut?.(e);
+      onMouseOut?.(e);
     };
 
-    const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
-      if (clickable) props.onClick?.(e);
+    const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
+      if (clickable) onClick?.(e);
     };
 
     return (
@@ -85,12 +91,12 @@ const _MenuItem = forwardRef(
         )}
         style={{ width }}
         {...props}
-        onMouseOver={onMouseOver}
-        onMouseLeave={onMouseLeave}
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-        onMouseOut={onMouseOut}
-        onClick={onClick}
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseOut={handleMouseOut}
+        onClick={handleClick}
       >
         <WizHStack align="center" justify="between">
           <div>{label}</div>
