@@ -2,7 +2,9 @@ import { ref, readonly } from "vue";
 
 import { SnackbarOption } from "@/components/base/snackbar/types";
 
-export const useSnackbar = () => {
+import { globalInject, globalKey } from "./use-global-provider";
+
+export const useSnackbarManager = () => {
   const options = ref<SnackbarOption[]>([]);
   const snack = (message: string) => {
     const created = new Date().toISOString();
@@ -20,5 +22,13 @@ export const useSnackbar = () => {
   return {
     snackbarOptions: readonly(options),
     snack,
+  };
+};
+
+export const useSnackbar = () => {
+  const { snack, snackbarOptions } = globalInject(globalKey);
+  return {
+    snack,
+    snackbarOptions,
   };
 };
