@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { WizMenuItem } from "../components/menu-item";
 
 const meta: Meta<typeof WizMenuItem> = {
-  title: "Base/Menu",
+  title: "Base/MenuItem",
   component: WizMenuItem,
   argTypes: {
     label: {
@@ -70,7 +70,7 @@ export const Disabled: Story = {
     docs: {
       description: {
         story:
-          "`clickable = true`  とすることで、クリックできないように設定することもできます。default 値は `true`です。",
+          "`clickable = false` とすることで、クリックできないように設定することもできます。default 値は `true` です。",
       },
     },
   },
