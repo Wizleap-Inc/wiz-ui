@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.6.0
+
+### Minor Changes
+
+- [#699](https://github.com/Wizleap-Inc/wiz-ui/pull/699) [`2a271180`](https://github.com/Wizleap-Inc/wiz-ui/commit/2a27118005a851fb13b23647ceeb9e68deb7dbb3) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fixed された Popup がスクロールされるバグを修正
+
 ## 0.5.0
 
 ### Minor Changes

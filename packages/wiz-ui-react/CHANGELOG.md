@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.6.0
+
+### Minor Changes
+
+- [#580](https://github.com/Wizleap-Inc/wiz-ui/pull/580) [`406d7161`](https://github.com/Wizleap-Inc/wiz-ui/commit/406d71612c5280a3d97db4c94c3409f78490650c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTinyButton の React 対応
+
+- [#602](https://github.com/Wizleap-Inc/wiz-ui/pull/602) [`57bdb5b1`](https://github.com/Wizleap-Inc/wiz-ui/commit/57bdb5b17c2543dce6e031f84014f725d093b2e5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTag の React 対応
+
+- [#586](https://github.com/Wizleap-Inc/wiz-ui/pull/586) [`63e7b50d`](https://github.com/Wizleap-Inc/wiz-ui/commit/63e7b50d04d780e74337b21a686726465313d1df) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizAnchor の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`2a271180`](https://github.com/Wizleap-Inc/wiz-ui/commit/2a27118005a851fb13b23647ceeb9e68deb7dbb3)]:
+  - @wizleap-inc/wiz-ui-styles@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes
