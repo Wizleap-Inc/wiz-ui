@@ -7,10 +7,10 @@ import { PanelItems } from "./type";
 type Props = {
   value: number | null;
   items: PanelItems[];
-  setValue?: (value: number) => void;
+  onChange?: (value: number) => void;
 };
 
-const PanelSwitch = ({ value, items, setValue }: Props) => {
+const PanelSwitch = ({ value, items, onChange }: Props) => {
   return (
     <div className={styles.panelSwitchStyle}>
       {items.map((item, index) => {
@@ -33,7 +33,7 @@ const PanelSwitch = ({ value, items, setValue }: Props) => {
             htmlFor={`panel${item.value}`}
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") setValue?.(item.value);
+              if (e.key === "Enter" || e.key === " ") onChange?.(item.value);
             }}
           >
             {item.label}
@@ -43,7 +43,7 @@ const PanelSwitch = ({ value, items, setValue }: Props) => {
               id={`panel${item.value}`}
               name={`panel${item.value}`}
               value={item.value}
-              onClick={() => setValue?.(item.value)}
+              onClick={() => onChange?.(item.value)}
             />
           </label>
         );

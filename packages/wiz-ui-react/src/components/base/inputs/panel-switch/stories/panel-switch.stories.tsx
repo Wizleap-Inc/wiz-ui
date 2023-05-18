@@ -21,11 +21,18 @@ export const Default: Story = {
     ],
   },
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState<number | null>(null);
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizPanelSwitch {...args} value={value} setValue={setValue} />
+        <WizPanelSwitch
+          {...args}
+          value={value}
+          onChange={(changed) => {
+            setValue(changed);
+          }}
+        />
       </div>
     );
   },
