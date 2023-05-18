@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 
-import { WizIcon, WizIChevronRight } from "@/components";
+import { WizIcon, WizIChevronRight, WizHStack } from "@/components";
 
 type Props = {
   label: string;
@@ -92,10 +92,10 @@ const _MenuItem = forwardRef(
         onMouseOut={onMouseOut}
         onClick={onClick}
       >
-        <div className={styles.menuStackStyle}>
+        <WizHStack align="center" justify="between">
           <div>{label}</div>
           <WizIcon size="xl2" icon={WizIChevronRight} color={iconColor} />
-        </div>
+        </WizHStack>
       </div>
     );
   }

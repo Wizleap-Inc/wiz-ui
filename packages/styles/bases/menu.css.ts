@@ -25,10 +25,3 @@ export const menuItemVariantStyle = styleVariants({
     cursor: "not-allowed",
   },
 });
-
-export const menuStackStyle = style({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-});
