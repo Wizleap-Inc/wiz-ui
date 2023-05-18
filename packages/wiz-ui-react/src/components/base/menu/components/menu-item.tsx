@@ -6,7 +6,6 @@ import {
   ForwardedRef,
   MouseEventHandler,
   forwardRef,
-  memo,
   useState,
 } from "react";
 
@@ -19,7 +18,7 @@ type Props = {
   clickable?: boolean;
 } & ComponentProps<"div">;
 
-const _MenuItem = forwardRef(
+const MenuItem = forwardRef(
   (
     {
       label,
@@ -107,6 +106,6 @@ const _MenuItem = forwardRef(
   }
 );
 
-_MenuItem.displayName = ComponentName.MenuItem;
+MenuItem.displayName = ComponentName.MenuItem;
 
-export const WizMenuItem = memo(_MenuItem);
+export const WizMenuItem = MenuItem;
