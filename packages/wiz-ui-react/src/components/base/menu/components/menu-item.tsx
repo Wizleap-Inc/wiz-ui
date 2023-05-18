@@ -44,12 +44,12 @@ const MenuItem = forwardRef(
     const iconColor: ColorKeys =
       clickable && (active || isHover) ? "green.800" : "gray.500";
 
-    const componentStatus = (() => {
+    function getVariant() {
       if (!clickable) return "disabled";
       if (active || isPressed) return "active";
       if (isHover) return "hover";
       return "default";
-    })();
+    }
 
     const handleMouseOver: MouseEventHandler<HTMLDivElement> = (e) => {
       setIsHover(true);
@@ -100,7 +100,7 @@ const MenuItem = forwardRef(
         ref={ref}
         className={clsx(
           styles.menuItemStyle,
-          styles.menuItemVariantStyle[componentStatus]
+          styles.menuItemVariantStyle[getVariant()]
         )}
         style={{ width }}
         {...props}
