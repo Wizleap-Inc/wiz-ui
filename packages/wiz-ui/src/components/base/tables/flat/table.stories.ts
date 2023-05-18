@@ -19,6 +19,10 @@ export default {
     width: {
       control: { type: "text" },
     },
+    fontSize: {
+      control: { type: "select" },
+      options: ["xs2", "xs", "sm", "md"],
+    },
   },
 };
 
@@ -36,15 +40,68 @@ export const Default: StoryFn = (_, { argTypes }) => ({
     <WizFlatTable>
       <WizFlatThead>
         <WizFlatTr>
-          <WizFlatTh v-for="i in 3" :key="i">Column {{ i }}</WizFlatTh>
+          <WizFlatTh v-for="i in 3" :key="i" :fontSize="$props.fontSize">Column {{ i }}</WizFlatTh>
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
         <WizFlatTr v-for="i in 3">
-          <WizFlatTd v-for="j in 3" :key="j">Row {{ i }}</WizFlatTd>
+          <WizFlatTd v-for="j in 3" :key="j" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTd>
         </WizFlatTr>
       </WizFlatTbody>
     </WizFlatTable>
+  `,
+});
+
+export const FontSize: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    WizFlatTable,
+    WizFlatThead,
+    WizFlatTbody,
+    WizFlatTr,
+    WizFlatTh,
+    WizFlatTd,
+  },
+  template: `
+    <div>
+      <h2>Font Size (Th)</h2>
+      <div v-for="fontSize in ['xs2', 'xs', 'sm', 'md']">
+        <div style="padding-bottom:1rem;">
+          <span>Font Size: {{ fontSize }}</span>
+          <WizFlatTable :key="fontSize">
+            <WizFlatThead>
+              <WizFlatTr>
+                <WizFlatTh v-for="i in 3" :key="i" :fontSize="fontSize">Column {{ i }}</WizFlatTh>
+              </WizFlatTr>
+            </WizFlatThead>
+            <WizFlatTbody>
+              <WizFlatTr v-for="i in 3">
+                <WizFlatTd v-for="j in 3" :key="j" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTd>
+              </WizFlatTr>
+            </WizFlatTbody>
+          </WizFlatTable>
+        </div>
+      </div>
+      <hr/>
+      <h2>Font Size (Td)</h2>
+      <div v-for="fontSize in ['xs2', 'xs', 'sm', 'md']">
+        <div style="padding-bottom:1rem;">
+          <span>Font Size: {{ fontSize }}</span>
+          <WizFlatTable :key="fontSize">
+            <WizFlatThead>
+              <WizFlatTr>
+                <WizFlatTh v-for="i in 3" :key="i" :fontSize="$props.fontSize">Column {{ i }}</WizFlatTh>
+              </WizFlatTr>
+            </WizFlatThead>
+            <WizFlatTbody>
+              <WizFlatTr v-for="i in 3">
+                <WizFlatTd v-for="j in 3" :key="j" :fontSize="fontSize">Row {{ i }}</WizFlatTd>
+              </WizFlatTr>
+            </WizFlatTbody>
+          </WizFlatTable>
+        </div>
+      </div>
+    </div>
   `,
 });
 
@@ -62,14 +119,14 @@ export const Fixed: StoryFn = (_, { argTypes }) => ({
     <WizFlatTable v-bind="$props">
       <WizFlatThead>
         <WizFlatTr>
-          <WizFlatTh v-for="i in 3" :key="i" :width="'calc(100px * ' + i + ')'">
+          <WizFlatTh v-for="i in 3" :key="i" :width="'calc(100px * ' + i + ')'" :fontSize="$props.fontSize">
             Column {{ i }}
           </WizFlatTh>
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
         <WizFlatTr v-for="i in 3">
-          <WizFlatTd v-for="j in 3" :key="j">Row {{ i }}</WizFlatTd>
+          <WizFlatTd v-for="j in 3" :key="j" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTd>
         </WizFlatTr>
       </WizFlatTbody>
     </WizFlatTable>
@@ -94,13 +151,13 @@ export const WithRowHeader: StoryFn = (_, { argTypes }) => ({
     <WizFlatTable>
       <WizFlatThead>
         <WizFlatTr>
-          <WizFlatTh v-for="i in 3" :key="i" scope="col">Column {{ i }}</WizFlatTh>
+          <WizFlatTh v-for="i in 3" :key="i" scope="col" :fontSize="$props.fontSize">Column {{ i }}</WizFlatTh>
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
         <WizFlatTr v-for="i in 3">
-          <WizFlatTh scope="row">Row {{ i }}</WizFlatTh>
-          <WizFlatTd v-for="j in 2" :key="j">Row {{ i }}</WizFlatTd>
+          <WizFlatTh scope="row" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTh>
+          <WizFlatTd v-for="j in 2" :key="j" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTd>
         </WizFlatTr>
       </WizFlatTbody>
     </WizFlatTable>
@@ -121,13 +178,13 @@ export const UnionRow: StoryFn = (_, { argTypes }) => ({
     <WizFlatTable>
       <WizFlatThead>
         <WizFlatTr>
-          <WizFlatTh v-for="i in 2" :key="i" scope="col" :colSpan="2">Column {{ i }}</WizFlatTh>
+          <WizFlatTh v-for="i in 2" :key="i" scope="col" :colSpan="2" :fontSize="$props.fontSize">Column {{ i }}</WizFlatTh>
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
         <WizFlatTr v-for="i in 4" :key="i">
-          <WizFlatTh scope="row">Row {{ i }}</WizFlatTh>
-          <WizFlatTd v-for="j in 2" :key="j">Row {{ i }}</WizFlatTd>
+          <WizFlatTh scope="row" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTh>
+          <WizFlatTd v-for="j in 2" :key="j" :fontSize="$props.fontSize">Row {{ i }}</WizFlatTd>
         </WizFlatTr>
       </WizFlatTbody>
     </WizFlatTable>
@@ -148,22 +205,22 @@ export const UnionColumn: StoryFn = (_, { argTypes }) => ({
     <WizFlatTable>
       <WizFlatThead>
         <WizFlatTr>
-          <WizFlatTh scope="col" :colSpan="2">Column 1</WizFlatTh>
-          <WizFlatTh scope="col" >Column 2</WizFlatTh>
+          <WizFlatTh scope="col" :colSpan="2" :fontSize="$props.fontSize">Column 1</WizFlatTh>
+          <WizFlatTh scope="col" :fontSize="$props.fontSize">Column 2</WizFlatTh>
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
 
         <WizFlatTr >
-          <WizFlatTh scope="row" :colSpan="3">Row</WizFlatTh>
+          <WizFlatTh scope="row" :colSpan="3" :fontSize="$props.fontSize">Row</WizFlatTh>
         </WizFlatTr>
         <WizFlatTr>
-          <WizFlatTh scope="row">Row 1</WizFlatTh>
-          <WizFlatTd>Row 2 </WizFlatTd>
-          <WizFlatTd>Row 3</WizFlatTd>
+          <WizFlatTh scope="row" :fontSize="$props.fontSize">Row 1</WizFlatTh>
+          <WizFlatTd :fontSize="$props.fontSize">Row 2 </WizFlatTd>
+          <WizFlatTd :fontSize="$props.fontSize">Row 3</WizFlatTd>
         </WizFlatTr>
         <WizFlatTr >
-          <WizFlatTd scope="row" :colSpan="3">Row</WizFlatTd>
+          <WizFlatTd scope="row" :colSpan="3" :fontSize="$props.fontSize">Row</WizFlatTd>
         </WizFlatTr>
       </WizFlatTbody>
     </WizFlatTable>

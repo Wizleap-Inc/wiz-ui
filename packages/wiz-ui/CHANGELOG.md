@@ -1,5 +1,37 @@
 # @wizleap-inc/wiz-ui
 
+## 1.7.0
+
+### Minor Changes
+
+- [#699](https://github.com/Wizleap-Inc/wiz-ui/pull/699) [`2a271180`](https://github.com/Wizleap-Inc/wiz-ui/commit/2a27118005a851fb13b23647ceeb9e68deb7dbb3) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fixed された Popup がスクロールされるバグを修正
+
+- [#727](https://github.com/Wizleap-Inc/wiz-ui/pull/727) [`bfb05654`](https://github.com/Wizleap-Inc/wiz-ui/commit/bfb05654c74ea6a270a6aad06059fd3249fc0a24) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizFlatTh, WizFlatTd のフォントサイズを xs2~md の間で指定できるようにする。
+
+### Patch Changes
+
+- [#738](https://github.com/Wizleap-Inc/wiz-ui/pull/738) [`3a8bda00`](https://github.com/Wizleap-Inc/wiz-ui/commit/3a8bda005247acaac2230ea85936f1bc46f44ac8) Thanks [@ichi-h](https://github.com/ichi-h)! - - useSnackbar の形で snackbar を利用できるようにする
+  - wiz-ui の global provider にアクセスするための globalKey が公開されていないため、inject の形で snackbar を利用できない
+  - 今後 react にも snackbar が実装された場合、inject から snackbar を取得した場合、vue と react で snackbar のインターフェースが異なることになるため
+- Updated dependencies [[`2a271180`](https://github.com/Wizleap-Inc/wiz-ui/commit/2a27118005a851fb13b23647ceeb9e68deb7dbb3)]:
+  - @wizleap-inc/wiz-ui-styles@0.6.0
+
+## 1.6.0
+
+### Minor Changes
+
+- [#673](https://github.com/Wizleap-Inc/wiz-ui/pull/673) [`3955c01e`](https://github.com/Wizleap-Inc/wiz-ui/commit/3955c01ec78d1ab9a727e0e9a7241f958efbfc53) Thanks [@RyushiAok](https://github.com/RyushiAok)! - CompareGraph に横軸ラベルの回転機能を追加
+
+- [#608](https://github.com/Wizleap-Inc/wiz-ui/pull/608) [`7dd4331d`](https://github.com/Wizleap-Inc/wiz-ui/commit/7dd4331db545b2dda050b145f5b5def2aeb87f87) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ・内部で仮想 DOM を用いた手動レンダリングが入ることによるライフサイクルのバグの修正
+  ・スナックバー表示関数「snack」を global provider から取得する
+
+### Patch Changes
+
+- [`9c729560`](https://github.com/Wizleap-Inc/wiz-ui/commit/9c7295600a5171938c0bdfc71e5bd60243e365a1) Thanks [@okakyo](https://github.com/okakyo)! - fix meter position
+
+- Updated dependencies [[`2d737b6e`](https://github.com/Wizleap-Inc/wiz-ui/commit/2d737b6eaf06f6187a805468b31ae908ea1e0e0d)]:
+  - @wizleap-inc/wiz-ui-styles@0.5.0
+
 ## 1.5.0
 
 ### Minor Changes
