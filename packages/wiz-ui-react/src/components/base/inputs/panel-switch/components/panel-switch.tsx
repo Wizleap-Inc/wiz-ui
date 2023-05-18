@@ -1,6 +1,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/panel-switch-input.css";
 import clsx from "clsx";
+import { useId } from "react";
 
 import { PanelItems } from "./type";
 
@@ -11,9 +12,12 @@ type Props = {
 };
 
 const PanelSwitch = ({ value, items, onChange }: Props) => {
+  const idPrefix = useId();
+
   return (
     <div className={styles.panelSwitchStyle}>
       {items.map((item, index) => {
+        const radioId = `${idPrefix}-${item.value}`;
         const isFirstItem = index === 0;
         const isLastItem = index === items.length - 1;
         const isActiveItem = value && value === item.value;
@@ -30,7 +34,7 @@ const PanelSwitch = ({ value, items, onChange }: Props) => {
                 isActiveItem ? "active" : "default"
               ]
             )}
-            htmlFor={`panel${item.value}`}
+            htmlFor={radioId}
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") onChange?.(item.value);
@@ -40,8 +44,8 @@ const PanelSwitch = ({ value, items, onChange }: Props) => {
             <input
               className={styles.panelSwitchInputStyle}
               type="radio"
-              id={`panel${item.value}`}
-              name={`panel${item.value}`}
+              id={radioId}
+              name={item.name}
               value={item.value}
               onClick={() => onChange?.(item.value)}
             />
