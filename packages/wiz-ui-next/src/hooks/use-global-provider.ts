@@ -1,12 +1,12 @@
 import { InjectionKey, inject } from "vue";
 
 import { useMenu } from "./use-menu";
-import { useSnackbar } from "./use-snackbar";
+import { useSnackbarManager } from "./use-snackbar";
 
 export const useGlobalProvider = () => {
   return {
     ...useMenu(),
-    ...useSnackbar(),
+    ...useSnackbarManager(),
   };
 };
 
