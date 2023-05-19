@@ -1,4 +1,4 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
 import clsx from "clsx";
 
@@ -50,7 +50,7 @@ const Pagination = ({ currentPage, length, onChangePage }: Props) => {
         currentPage <= 1 && styles.paginationGapStyle["left"],
         currentPage >= length && styles.paginationGapStyle["right"]
       )}
-      aria-label="pagination"
+      aria-label={ARIA_LABELS.PAGINATION}
     >
       {currentPage > 1 && (
         <DivButton
@@ -59,7 +59,7 @@ const Pagination = ({ currentPage, length, onChangePage }: Props) => {
             styles.paginationButtonStyle,
             styles.paginationButtonVariantStyle["default"]
           )}
-          aria-label="previous"
+          aria-label={ARIA_LABELS.PAGINATION_PREV}
         >
           <WizIcon icon={WizIChevronLeft} size={"xl2"} />
         </DivButton>
@@ -89,7 +89,7 @@ const Pagination = ({ currentPage, length, onChangePage }: Props) => {
             styles.paginationButtonStyle,
             styles.paginationButtonVariantStyle["default"]
           )}
-          aria-label="next"
+          aria-label={ARIA_LABELS.PAGINATION_NEXT}
         >
           <WizIcon icon={WizIChevronRight} size={"xl2"} />
         </DivButton>
