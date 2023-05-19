@@ -1,7 +1,7 @@
 import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
 import clsx from "clsx";
-import { ForwardedRef, ReactNode, forwardRef, memo } from "react";
+import { ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
@@ -19,9 +19,9 @@ type Props = {
   children?: ReactNode;
 };
 
-const _MessageBox = forwardRef(
+const MessageBox = forwardRef(
   (
-    { title, variant = "information", icon, expand = false, ...props }: Props,
+    { title, variant = "information", icon, expand = false, children }: Props,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const width = expand ? "expand" : "default";
@@ -41,13 +41,13 @@ const _MessageBox = forwardRef(
         )}
         <div>
           <div className={styles.messageBoxTitleStyle}>{title}</div>
-          {props.children}
+          {children}
         </div>
       </div>
     );
   }
 );
 
-_MessageBox.displayName = ComponentName.MessageBox;
+MessageBox.displayName = ComponentName.MessageBox;
 
-export const WizMessageBox = memo(_MessageBox);
+export const WizMessageBox = MessageBox;
