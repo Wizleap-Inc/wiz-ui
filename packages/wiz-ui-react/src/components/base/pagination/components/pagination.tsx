@@ -5,6 +5,8 @@ import clsx from "clsx";
 import { WizIcon } from "@/components";
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
 
+import { DivButton } from "./private-div-button";
+
 const PREV_ITEM_LENGTH = 2;
 const NEXT_ITEM_LENGTH = 2;
 const MAX_ITEM_LENGTH = PREV_ITEM_LENGTH + NEXT_ITEM_LENGTH + 1;
@@ -42,59 +44,57 @@ const Pagination = ({ currentPage, length, onChangePage }: Props) => {
     );
   };
   return (
-    <div
+    <nav
       className={clsx(
         styles.paginationStyle,
         currentPage <= 1 && styles.paginationGapStyle["left"],
         currentPage >= length && styles.paginationGapStyle["right"]
       )}
+      aria-label="pagination"
     >
       {currentPage > 1 && (
-        <div
+        <DivButton
           onClick={() => handleChangePage(currentPage - 1)}
-          onKeyDown={(e) => {
-            if (e.key === " ") handleChangePage(currentPage - 1);
-          }}
           className={clsx(
             styles.paginationButtonStyle,
             styles.paginationButtonVariantStyle["default"]
           )}
+          aria-label="previous"
         >
           <WizIcon icon={WizIChevronLeft} size={"xl2"} />
-        </div>
+        </DivButton>
       )}
-      {getActuallyDisplayingPages().map((page) => (
-        <div
-          key={page}
-          onClick={() => handleChangePage(page)}
-          onKeyDown={(e) => {
-            if (e.key === " ") handleChangePage(page);
-          }}
-          className={clsx(
-            styles.paginationButtonStyle,
-            styles.paginationButtonVariantStyle[
-              currentPage === page ? "active" : "default"
-            ]
-          )}
-        >
-          {page}
-        </div>
-      ))}
+      {getActuallyDisplayingPages().map((page) => {
+        const isCurrentPage = currentPage === page;
+        return (
+          <DivButton
+            key={page}
+            onClick={() => handleChangePage(page)}
+            className={clsx(
+              styles.paginationButtonStyle,
+              styles.paginationButtonVariantStyle[
+                isCurrentPage ? "active" : "default"
+              ]
+            )}
+            aria-current={isCurrentPage ? "page" : undefined}
+          >
+            {page}
+          </DivButton>
+        );
+      })}
       {currentPage < length && (
-        <div
+        <DivButton
           onClick={() => handleChangePage(currentPage + 1)}
-          onKeyDown={(e) => {
-            if (e.key === " ") handleChangePage(currentPage + 1);
-          }}
           className={clsx(
             styles.paginationButtonStyle,
             styles.paginationButtonVariantStyle["default"]
           )}
+          aria-label="next"
         >
           <WizIcon icon={WizIChevronRight} size={"xl2"} />
-        </div>
+        </DivButton>
       )}
-    </div>
+    </nav>
   );
 };
 
