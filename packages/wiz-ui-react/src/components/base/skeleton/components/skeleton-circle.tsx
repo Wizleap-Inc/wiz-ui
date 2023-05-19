@@ -1,7 +1,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { ReactNode } from "react";
 
 type Props = {
   size: string;
@@ -9,10 +9,10 @@ type Props = {
   children?: ReactNode;
 };
 
-const _SkeletonCircle = ({
+const SkeletonCircle = ({
   size = "2.5rem",
   isLoading = true,
-  ...props
+  children,
 }: Props) => {
   const loadingStyle = clsx(styles.skeletonStyle, styles.circleSkeletonStyle);
   return (
@@ -20,11 +20,11 @@ const _SkeletonCircle = ({
       className={!isLoading ? "" : loadingStyle}
       style={{ width: size, height: size }}
     >
-      {props.children}
+      {children}
     </div>
   );
 };
 
-_SkeletonCircle.displayName = ComponentName.SkeletonCircle;
+SkeletonCircle.displayName = ComponentName.SkeletonCircle;
 
-export const WizSkeletonCircle = memo(_SkeletonCircle);
+export const WizSkeletonCircle = SkeletonCircle;

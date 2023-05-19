@@ -6,7 +6,10 @@ import {
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import { fontSizeAsHeightStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { ReactNode } from "react";
+
+import { WizVStack } from "@/components";
+
 type Props = {
   fontSize?: FontSizeKeys;
   gap?: SpacingKeys;
@@ -15,12 +18,12 @@ type Props = {
   children?: ReactNode;
 };
 
-const _SkeletonText = ({
+const SkeletonText = ({
   fontSize = "lg",
   gap = "sm",
   lines = 1,
   isLoading = true,
-  ...props
+  children,
 }: Props) => {
   const judgeOrder = (line: number) => {
     if (lines === 1) return "noLast";
@@ -35,19 +38,18 @@ const _SkeletonText = ({
   return (
     <>
       {!isLoading ? (
-        props.children
+        children
       ) : (
-        //  <WizVStack v-if="isLoading" :gap="gap">
-        <div>
+        <WizVStack gap={gap}>
           {Array.from({ length: lines }, (_, i) => (
             <div key={i} className={loadingStyle} />
           ))}
-        </div>
+        </WizVStack>
       )}
     </>
   );
 };
 
-_SkeletonText.displayName = ComponentName.SkeletonText;
+SkeletonText.displayName = ComponentName.SkeletonText;
 
-export const WizSkeletonText = memo(_SkeletonText);
+export const WizSkeletonText = SkeletonText;

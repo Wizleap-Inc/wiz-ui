@@ -1,7 +1,7 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { ReactNode } from "react";
 
 type Props = {
   width?: string;
@@ -11,12 +11,12 @@ type Props = {
   children?: ReactNode;
 };
 
-const _Skeleton = ({
+const Skeleton = ({
   width = "100%",
   height = "100%",
   borderRadius = "no",
   isLoading = true,
-  ...props
+  children,
 }: Props) => {
   const loadingStyle = clsx(
     styles.skeletonStyle,
@@ -25,11 +25,11 @@ const _Skeleton = ({
   );
   return (
     <div className={!isLoading ? "" : loadingStyle} style={{ width, height }}>
-      {props.children}
+      {children}
     </div>
   );
 };
 
-_Skeleton.displayName = ComponentName.Skeleton;
+Skeleton.displayName = ComponentName.Skeleton;
 
-export const WizSkeleton = memo(_Skeleton);
+export const WizSkeleton = Skeleton;
