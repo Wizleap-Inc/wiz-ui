@@ -1,7 +1,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
 import clsx from "clsx";
-import { ComponentProps, ReactNode, memo } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Props = {
   fixed?: boolean;
@@ -9,7 +9,7 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"table">;
 
-const _CardTable = ({ fixed = false, width, ...props }: Props) => {
+const CardTable = ({ fixed = false, width, children, ...props }: Props) => {
   return (
     <table
       className={clsx([
@@ -19,11 +19,11 @@ const _CardTable = ({ fixed = false, width, ...props }: Props) => {
       style={{ width }}
       {...props}
     >
-      {props.children}
+      {children}
     </table>
   );
 };
 
-_CardTable.displayName = ComponentName.CardTable;
+CardTable.displayName = ComponentName.CardTable;
 
-export const WizCardTable = memo(_CardTable);
+export const WizCardTable = CardTable;

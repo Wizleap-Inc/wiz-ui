@@ -1,14 +1,14 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { ComponentProps, ReactNode, memo } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Props = {
   children?: ReactNode;
 } & ComponentProps<"thead">;
 
-const _FlatThead = ({ ...props }: Props) => (
-  <thead {...props}>{props.children}</thead>
+const FlatThead = ({ children, ...props }: Props) => (
+  <thead {...props}>{children}</thead>
 );
 
-_FlatThead.displayName = ComponentName.FlatThead;
+FlatThead.displayName = ComponentName.FlatThead;
 
-export const WizFlatThead = memo(_FlatThead);
+export const WizFlatThead = FlatThead;

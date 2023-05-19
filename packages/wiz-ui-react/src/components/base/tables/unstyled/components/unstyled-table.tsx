@@ -6,7 +6,8 @@ import {
   borderSpacingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ReactNode, memo } from "react";
+import { ComponentProps, ReactNode } from "react";
+
 type Props = {
   space?: SpacingKeys;
   spaceX?: SpacingKeys;
@@ -16,13 +17,15 @@ type Props = {
   borderCollapse?: "collapse" | "separate";
   children?: ReactNode;
 } & ComponentProps<"table">;
-const _UnstyledTable = ({
+
+const UnstyledTable = ({
   space = "no",
   spaceX,
   spaceY,
   fixed = false,
   width,
   borderCollapse,
+  children,
   ...props
 }: Props) => {
   return (
@@ -38,11 +41,11 @@ const _UnstyledTable = ({
       style={{ width }}
       {...props}
     >
-      {props.children}
+      {children}
     </table>
   );
 };
 
-_UnstyledTable.displayName = ComponentName.UnstyledTable;
+UnstyledTable.displayName = ComponentName.UnstyledTable;
 
-export const WizUnstyledTable = memo(_UnstyledTable);
+export const WizUnstyledTable = UnstyledTable;

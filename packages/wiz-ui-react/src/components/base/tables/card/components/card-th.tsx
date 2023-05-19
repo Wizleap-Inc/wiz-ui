@@ -1,6 +1,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
-import { ComponentProps, ReactNode, memo } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Props = {
   width?: string;
@@ -8,17 +8,17 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"th">;
 
-const _CardTh = ({ width = "auto", colSpan, ...props }: Props) => (
+const CardTh = ({ width = "auto", colSpan, children, ...props }: Props) => (
   <th
     className={styles.cardThStyle}
     style={{ width }}
     colSpan={colSpan}
     {...props}
   >
-    {props.children}
+    {children}
   </th>
 );
 
-_CardTh.displayName = ComponentName.CardTh;
+CardTh.displayName = ComponentName.CardTh;
 
-export const WizCardTh = memo(_CardTh);
+export const WizCardTh = CardTh;

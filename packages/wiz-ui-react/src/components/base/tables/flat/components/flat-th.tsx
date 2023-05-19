@@ -1,7 +1,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
 import clsx from "clsx";
-import { ComponentProps, ReactNode, memo } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Props = {
   width?: string;
@@ -9,16 +9,21 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"th">;
 
-const _FlatTh = ({ width = "auto", scope = "col", ...props }: Props) => (
+const FlatTh = ({
+  width = "auto",
+  scope = "col",
+  children,
+  ...props
+}: Props) => (
   <th
     className={clsx(styles.flatTh, styles.flatThVariantStyle[scope])}
     style={{ width }}
     {...props}
   >
-    {props.children}
+    {children}
   </th>
 );
 
-_FlatTh.displayName = ComponentName.FlatTh;
+FlatTh.displayName = ComponentName.FlatTh;
 
-export const WizFlatTh = memo(_FlatTh);
+export const WizFlatTh = FlatTh;

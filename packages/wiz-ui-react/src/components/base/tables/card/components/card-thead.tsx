@@ -1,14 +1,14 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { ComponentProps, ReactNode, memo } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Props = {
   children?: ReactNode;
 } & ComponentProps<"thead">;
 
-const _CardThead = ({ ...props }: Props) => (
-  <thead {...props}>{props.children}</thead>
+const CardThead = ({ children, ...props }: Props) => (
+  <thead {...props}>{children}</thead>
 );
 
-_CardThead.displayName = ComponentName.CardThead;
+CardThead.displayName = ComponentName.CardThead;
 
-export const WizCardThead = memo(_CardThead);
+export const WizCardThead = CardThead;
