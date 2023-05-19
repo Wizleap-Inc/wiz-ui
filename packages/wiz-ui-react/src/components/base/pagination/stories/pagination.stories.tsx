@@ -14,7 +14,7 @@ const meta: Meta<typeof WizPagination> = {
 ### WizPagination
 
 Length分のページネーションを表示するコンポーネントです。
-activeValueが現在のページの番号を表します。
+currentPageが現在のページの番号を表します。
 初期値は1にするとよいです。`,
       },
     },
