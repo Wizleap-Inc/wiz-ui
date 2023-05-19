@@ -1,5 +1,10 @@
 <template>
-  <th :class="cardThStyle" :style="{ width }" :colSpan="colSpan">
+  <th
+    :class="cardThStyle"
+    :style="{ width }"
+    :rowSpan="rowSpan"
+    :colSpan="colSpan"
+  >
     <slot />
   </th>
 </template>
@@ -17,6 +22,10 @@ defineProps({
     type: String,
     required: false,
     default: "auto",
+  },
+  rowSpan: {
+    type: Number,
+    required: false,
   },
   colSpan: {
     type: Number,
