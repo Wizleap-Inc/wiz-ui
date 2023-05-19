@@ -36,6 +36,7 @@ export const Default: Story = {
   },
   render: (args) => (
     <WizSkeletonCircle {...args}>
+      {/* WizAvatar 追加待ち */}
       {/* <WizAvatar src="./public/images/avatar-1.png" alt="avatar" /> */}
     </WizSkeletonCircle>
   ),
