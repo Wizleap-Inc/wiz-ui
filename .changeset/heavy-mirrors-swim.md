@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": minor
 ---
 
-WizSkeleton の React 対応
+WizSkeleton, WizSkeletonCircle, WizSkeletonText の React 対応
