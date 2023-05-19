@@ -1,7 +1,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
 import clsx from "clsx";
-import { memo } from "react";
 
 import { WizIcon } from "@/components";
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
@@ -12,11 +11,11 @@ type Props = {
   setActiveValue: (value: number) => void;
 };
 
-const _Pagination = ({ activeValue, length, ...props }: Props) => {
+const Pagination = ({ activeValue, length, setActiveValue }: Props) => {
   const onUpdatePage = (index: number) => {
-    if (index < 1) return props.setActiveValue(1);
-    if (index > length) return props.setActiveValue(length);
-    props.setActiveValue(index);
+    if (index < 1) return setActiveValue(1);
+    if (index > length) return setActiveValue(length);
+    setActiveValue(index);
   };
   const displayIndex = (() => {
     if (length < 5) return [...Array(length)].map((_, index) => index + 1);
@@ -85,6 +84,6 @@ const _Pagination = ({ activeValue, length, ...props }: Props) => {
   );
 };
 
-_Pagination.displayName = ComponentName.Pagination;
+Pagination.displayName = ComponentName.Pagination;
 
-export const WizPagination = memo(_Pagination);
+export const WizPagination = Pagination;
