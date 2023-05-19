@@ -4,17 +4,11 @@ import { ComponentProps, ReactNode } from "react";
 
 type Props = {
   width?: string;
-  colSpan?: number;
   children?: ReactNode;
 } & ComponentProps<"th">;
 
-const CardTh = ({ width = "auto", colSpan, children, ...props }: Props) => (
-  <th
-    className={styles.cardThStyle}
-    style={{ width }}
-    colSpan={colSpan}
-    {...props}
-  >
+const CardTh = ({ width = "auto", children, ...props }: Props) => (
+  <th className={styles.cardThStyle} style={{ width }} {...props}>
     {children}
   </th>
 );
