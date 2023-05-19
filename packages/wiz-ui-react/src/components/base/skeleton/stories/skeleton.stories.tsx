@@ -56,6 +56,9 @@ export const Default: Story = {
       <WizSkeleton {...args} />{" "}
     </div>
   ),
+  parameters: {
+    layout: "fullscreen",
+  },
 };
 
 export const WidthHeight: Story = {
