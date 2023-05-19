@@ -19,7 +19,7 @@ export default {
     },
     variant: {
       control: { type: "select" },
-      options: ["info", "error", "success", "mono"],
+      options: ["info", "red", "green", "yellow", "blue", "mono"],
     },
     label: {
       control: { type: "text" },
@@ -67,10 +67,14 @@ export const Variant: StoryFn = (_, { argTypes }) => ({
     <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
       <WizTag label="必須" variant="info" :icon="WizIClose" />
       <div>variant="info"</div>
-      <WizTag label="自動失注" variant="error" :icon="WizIClose" />
-      <div>variant="error"</div>
-      <WizTag label="申請完了" variant="success" :icon="WizIClose" />
-      <div>variant="success"</div>
+      <WizTag label="自動失注" variant="red" :icon="WizIClose" />
+      <div>variant="red"</div>
+      <WizTag label="申請完了" variant="green" :icon="WizIClose" />
+      <div>variant="green"</div>
+      <WizTag label="準備中" variant="yellow" :icon="WizIClose" />
+      <div>variant="yellow"</div>
+      <WizTag label="完了" variant="blue" :icon="WizIClose" />
+      <div>variant="blue"</div>
       <WizTag label="11/11(月)" variant="mono" :icon="WizIClose" />
       <div>variant="mono"</div>
     </div>
