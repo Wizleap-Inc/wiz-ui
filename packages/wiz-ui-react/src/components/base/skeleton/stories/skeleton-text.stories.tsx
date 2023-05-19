@@ -104,7 +104,7 @@ export const Loading: Story = {
   parameters: {
     docs: {
       description: {
-        story: `ローディング中でない場合は、スケルトンは表示されません。その代わり、スロットされたコンテンツが表示されます。`,
+        story: `ローディング中でない場合は、スケルトンは表示されません。その代わり、\`children\` の内容が表示されます。`,
       },
     },
   },

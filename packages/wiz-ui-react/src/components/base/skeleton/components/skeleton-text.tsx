@@ -25,28 +25,29 @@ const SkeletonText = ({
   isLoading = true,
   children,
 }: Props) => {
-  const judgeOrder = (line: number) => {
+  const getLastLineOrNot = (index: number) => {
     if (lines === 1) return "noLast";
-    return line === lines ? "last" : "noLast";
+    return index === lines - 1 ? "last" : "noLast";
   };
-  const loadingStyle = clsx(
-    styles.skeletonStyle,
-    styles.normalSkeletonStyle,
-    styles.textSkeletonStyle[judgeOrder(1)],
-    fontSizeAsHeightStyle[fontSize]
-  );
-  return (
-    <>
-      {!isLoading ? (
-        children
-      ) : (
-        <WizVStack gap={gap}>
-          {Array.from({ length: lines }, (_, i) => (
-            <div key={i} className={loadingStyle} />
-          ))}
-        </WizVStack>
-      )}
-    </>
+
+  return !isLoading ? (
+    <>{children}</>
+  ) : (
+    <WizVStack gap={gap}>
+      {Array.from({ length: lines }, (_, i) => {
+        return (
+          <div
+            key={i}
+            className={clsx(
+              styles.skeletonStyle,
+              styles.normalSkeletonStyle,
+              styles.textSkeletonStyle[getLastLineOrNot(i)],
+              fontSizeAsHeightStyle[fontSize]
+            )}
+          />
+        );
+      })}
+    </WizVStack>
   );
 };
 

@@ -14,12 +14,12 @@ const SkeletonCircle = ({
   isLoading = true,
   children,
 }: Props) => {
-  const loadingStyle = clsx(styles.skeletonStyle, styles.circleSkeletonStyle);
+  const className = isLoading
+    ? clsx(styles.skeletonStyle, styles.circleSkeletonStyle)
+    : undefined;
+
   return (
-    <div
-      className={!isLoading ? "" : loadingStyle}
-      style={{ width: size, height: size }}
-    >
+    <div className={className} style={{ width: size, height: size }}>
       {children}
     </div>
   );

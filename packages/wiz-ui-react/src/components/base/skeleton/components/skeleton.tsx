@@ -18,13 +18,16 @@ const Skeleton = ({
   isLoading = true,
   children,
 }: Props) => {
-  const loadingStyle = clsx(
-    styles.skeletonStyle,
-    styles.normalSkeletonStyle,
-    styles.borderRadiusStyle[borderRadius]
-  );
+  const className = isLoading
+    ? clsx(
+        styles.skeletonStyle,
+        styles.normalSkeletonStyle,
+        styles.borderRadiusStyle[borderRadius]
+      )
+    : undefined;
+
   return (
-    <div className={!isLoading ? "" : loadingStyle} style={{ width, height }}>
+    <div className={className} style={{ width, height }}>
       {children}
     </div>
   );
