@@ -29,12 +29,13 @@ export const Default: Story = {
     length: 10,
   },
   render: (args) => {
-    const [activeValue, setActiveValue] = useState(1);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [currentPage, setCurrentPage] = useState(1);
     return (
       <WizPagination
         {...args}
-        activeValue={activeValue}
-        setActiveValue={setActiveValue}
+        currentPage={currentPage}
+        onChangePage={(page) => setCurrentPage(page)}
       />
     );
   },

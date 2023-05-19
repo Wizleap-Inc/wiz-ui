@@ -5,77 +5,91 @@ import clsx from "clsx";
 import { WizIcon } from "@/components";
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
 
+const PREV_ITEM_LENGTH = 2;
+const NEXT_ITEM_LENGTH = 2;
+const MAX_ITEM_LENGTH = PREV_ITEM_LENGTH + NEXT_ITEM_LENGTH + 1;
+
 type Props = {
-  activeValue: number;
+  currentPage: number;
   length: number;
-  setActiveValue: (value: number) => void;
+  onChangePage: (page: number) => void;
 };
 
-const Pagination = ({ activeValue, length, setActiveValue }: Props) => {
-  const onUpdatePage = (index: number) => {
-    if (index < 1) return setActiveValue(1);
-    if (index > length) return setActiveValue(length);
-    setActiveValue(index);
+const Pagination = ({ currentPage, length, onChangePage }: Props) => {
+  const handleChangePage = (index: number) => {
+    if (index < 1) return onChangePage(1);
+    if (index > length) return onChangePage(length);
+    onChangePage(index);
   };
-  const displayIndex = (() => {
-    if (length < 5) return [...Array(length)].map((_, index) => index + 1);
-    let from = activeValue - 2;
-    if (activeValue < 3) from = 1;
-    if (activeValue > length - 2) from = length - 4;
-    return [...Array(5)].map((_, index) => from + index);
-  })();
+  const getActuallyDisplayingPages = () => {
+    if (length < MAX_ITEM_LENGTH) {
+      return Array.from({ length }).map((_, index) => index + 1);
+    }
+    function getStartPage() {
+      if (currentPage <= PREV_ITEM_LENGTH) {
+        // (ex.)  1 [2] 3 4 5
+        return 1;
+      }
+      if (currentPage > length - NEXT_ITEM_LENGTH) {
+        // (ex.)  6 7 8 [9] 10
+        return length - (PREV_ITEM_LENGTH + NEXT_ITEM_LENGTH);
+      }
+      // (ex.)  3 4 [5] 6 7
+      return currentPage - PREV_ITEM_LENGTH;
+    }
+    return Array.from({ length: MAX_ITEM_LENGTH }).map(
+      (_, index) => getStartPage() + index
+    );
+  };
   return (
     <div
       className={clsx(
         styles.paginationStyle,
-        activeValue <= 1 && styles.paginationGapStyle["left"],
-        activeValue >= length && styles.paginationGapStyle["right"]
+        currentPage <= 1 && styles.paginationGapStyle["left"],
+        currentPage >= length && styles.paginationGapStyle["right"]
       )}
     >
-      {activeValue > 1 && (
+      {currentPage > 1 && (
         <div
-          onClick={() => onUpdatePage(activeValue - 1)}
+          onClick={() => handleChangePage(currentPage - 1)}
           onKeyDown={(e) => {
-            if (e.key === " ") onUpdatePage(activeValue - 1);
+            if (e.key === " ") handleChangePage(currentPage - 1);
           }}
           className={clsx(
             styles.paginationButtonStyle,
             styles.paginationButtonVariantStyle["default"]
           )}
-          tabIndex={displayIndex[0] - 1}
         >
           <WizIcon icon={WizIChevronLeft} size={"xl2"} />
         </div>
       )}
-      {displayIndex.map((index) => (
+      {getActuallyDisplayingPages().map((page) => (
         <div
-          key={index}
-          onClick={() => onUpdatePage(index)}
+          key={page}
+          onClick={() => handleChangePage(page)}
           onKeyDown={(e) => {
-            if (e.key === " ") onUpdatePage(e.currentTarget.tabIndex);
+            if (e.key === " ") handleChangePage(page);
           }}
           className={clsx(
             styles.paginationButtonStyle,
             styles.paginationButtonVariantStyle[
-              activeValue === index ? "active" : "default"
+              currentPage === page ? "active" : "default"
             ]
           )}
-          tabIndex={index}
         >
-          {index}
+          {page}
         </div>
       ))}
-      {activeValue < length && (
+      {currentPage < length && (
         <div
-          onClick={() => onUpdatePage(activeValue + 1)}
+          onClick={() => handleChangePage(currentPage + 1)}
           onKeyDown={(e) => {
-            if (e.key === " ") onUpdatePage(activeValue + 1);
+            if (e.key === " ") handleChangePage(currentPage + 1);
           }}
           className={clsx(
             styles.paginationButtonStyle,
             styles.paginationButtonVariantStyle["default"]
           )}
-          tabIndex={displayIndex[displayIndex.length - 1] + 1}
         >
           <WizIcon icon={WizIChevronRight} size={"xl2"} />
         </div>
