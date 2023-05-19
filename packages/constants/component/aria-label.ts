@@ -7,4 +7,7 @@ export const ARIA_LABELS = {
   DATE_PICKER_INPUT: "日付を選択",
   RANGE_DATE_PICKER_INPUT: "日付の範囲を選択",
   RANGE_DATE_PICKER_SELECT_BOX_INPUT: "日付の種類を選択",
+  PAGINATION: "ページネーション",
+  PAGINATION_PREV: "前のページへ",
+  PAGINATION_NEXT: "次のページへ",
 } as const;
