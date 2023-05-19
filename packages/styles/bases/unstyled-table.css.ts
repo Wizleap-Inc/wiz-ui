@@ -43,3 +43,11 @@ export const unstyledTh = style({
   fontSize: THEME.fontSize.sm,
   fontWeight: "bold",
 });
+
+export const unstyledThDividerYStyle = style({
+  selectors: {
+    "&:not(:last-child)": {
+      borderRight: `1px solid ${THEME.color.gray["400"]}`,
+    },
+  },
+});
