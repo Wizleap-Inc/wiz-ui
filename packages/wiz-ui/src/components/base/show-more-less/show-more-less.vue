@@ -1,7 +1,7 @@
 <template>
   <WizVStack
     :class="[showMoreLessDetailsStyle, bgColor && backgroundStyle[bgColor]]"
-    :style="{ width }"
+    :style="{ width, height }"
     :open="isOpen || isAnimating"
   >
     <div
@@ -13,24 +13,34 @@
     >
       <slot />
     </div>
-    <div :class="showMoreLessSummaryStyle" @click="onClick">
+    <div
+      :class="[
+        showMoreLessSummaryStyle,
+        isHover && showMoreDefaultHoverBgColorStyle,
+      ]"
+      @click="onClick"
+      @mouseenter="isHover = true"
+      @mouseleave="isHover = false"
+    >
       <WizHStack
         align="center"
         justify="between"
         gap="xs2"
         :class="[
           showMoreLessMessageStyle,
-          bgColor && backgroundStyle[bgColor],
+          isHover
+            ? showMoreDefaultHoverBgColorStyle
+            : bgColor && backgroundStyle[bgColor],
           colorStyle[fontColor],
         ]"
       >
-        <div>
+        <div :class="isHover && showMoreLessDefaultHoverStyle">
           {{ isOpen ? closeMessage : openMessage }}
         </div>
         <WizIcon
           size="xl2"
           :icon="WizIExpandMore"
-          :color="fontColor"
+          :color="isHover ? 'green.800' : fontColor"
           :class="[
             showMoreLessExpandIconStyle,
             isOpen && showMoreLessRotateIconStyle,
@@ -50,6 +60,8 @@ import {
   showMoreLessSummaryStyle,
   showMoreLessExpandIconStyle,
   showMoreLessRotateIconStyle,
+  showMoreDefaultHoverBgColorStyle,
+  showMoreLessDefaultHoverStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
 import {
   backgroundStyle,
@@ -80,6 +92,11 @@ defineProps({
     required: false,
     default: "20rem",
   },
+  height: {
+    type: String,
+    required: false,
+    default: "44px",
+  },
   bgColor: {
     type: String as PropType<ColorKeys | undefined>,
     required: false,
@@ -98,6 +115,7 @@ const emit = defineEmits<Emit>();
 
 const contentRef = ref<HTMLElement | undefined>();
 const isAnimating = ref(false);
+const isHover = ref(false);
 
 const toggleHeight = computed(() => {
   const content = contentRef.value;

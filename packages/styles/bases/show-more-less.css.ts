@@ -19,6 +19,14 @@ export const showMoreLessSummaryStyle = style({
   userSelect: "none",
 });
 
+export const showMoreDefaultHoverBgColorStyle = style({
+  backgroundColor: THEME.color.gray["200"],
+});
+
+export const showMoreLessDefaultHoverStyle = style({
+  color: THEME.color.green["800"],
+});
+
 export const showMoreLessContentStyle = style({
   overflow: "hidden",
   maxHeight: 0,
