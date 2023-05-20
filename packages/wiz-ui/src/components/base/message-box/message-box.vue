@@ -13,7 +13,9 @@
     />
     <div>
       <div :class="messageBoxTitleStyle">{{ title }}</div>
-      <slot></slot>
+      <div v-if="!short" :class="messageBoxSlotStyle">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +29,7 @@ import {
   messageBoxIconStyle,
   messageBoxIconFillStyle,
   messageBoxTitleStyle,
+  messageBoxSlotStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
 import { computed, PropType } from "vue";
 
@@ -55,9 +58,14 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  short: {
+    type: Boolean,
+    requred: false,
+    default: false,
+  },
 });
 
 const computedWidth = computed(() => {
-  return props.expand ? "expand" : "default";
+  return props.expand ? "expand" : props.short ? "short" : "default";
 });
 </script>

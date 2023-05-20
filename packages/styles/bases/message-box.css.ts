@@ -4,7 +4,7 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 export const messageBoxStyle = style({
   display: "flex",
   height: "max-content",
-  padding: THEME.spacing.md,
+  padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
   boxSizing: "border-box",
 });
 
@@ -33,6 +33,10 @@ export const messageBoxWidthStyle = styleVariants({
   expand: {
     width: "100%",
   },
+  short: {
+    width: "max-content",
+    minWidth: "12.5rem",
+  },
 });
 
 export const messageBoxIconStyle = style({
@@ -54,8 +58,12 @@ export const messageBoxIconFillStyle = styleVariants({
 
 export const messageBoxTitleStyle = style({
   fontWeight: 700,
-  fontSize: THEME.fontSize.sm,
+  fontSize: THEME.fontSize.xs,
   lineHeight: THEME.fontSize.xl2,
+  color: THEME.color.gray[700],
+});
+export const messageBoxSlotStyle = style({
   marginBottom: THEME.spacing.xs,
+  fontSize: THEME.fontSize.xs,
   color: THEME.color.gray[700],
 });

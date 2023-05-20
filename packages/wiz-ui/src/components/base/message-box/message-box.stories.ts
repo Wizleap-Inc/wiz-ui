@@ -60,3 +60,9 @@ Expand.args = {
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
 };
+
+export const short = Template.bind({});
+short.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  short: true,
+};

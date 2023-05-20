@@ -61,3 +61,9 @@ Expand.args = {
   title: "ヘッダーヘッダーヘッダー",
   expand: true,
 };
+
+export const short = Template.bind({});
+short.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  short: true,
+};
