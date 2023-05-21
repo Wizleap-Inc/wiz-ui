@@ -24,6 +24,10 @@ export const accordionSummaryStyle = style({
   },
 });
 
+export const accordionSummaryTextStyle = style({
+  padding: `${THEME.spacing.xs} 0`,
+});
+
 export const accordionContentStyle = style({
   overflow: "hidden",
 });
