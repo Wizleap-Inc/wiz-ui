@@ -22,7 +22,7 @@ export const PopupWrapTemplate = (args: any) => {
           onClose={() => setIsOpen(false)}
         >
           <div style={popupContentStyle}>
-            <p>This is a popup content</p>
+            <p>popup content</p>
             <button onClick={() => setIsOpen(false)}>Close</button>
           </div>
         </WizPopup>
