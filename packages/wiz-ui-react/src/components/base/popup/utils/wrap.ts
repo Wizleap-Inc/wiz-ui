@@ -1,4 +1,4 @@
-import { DirectionValues } from "../types/direction";
+import { DirectionValues, createDirectionValue } from "../types/direction";
 
 const isOutOfBound = {
   top: (_: DOMRect, content: DOMRect, anchor: DOMRect) =>
@@ -30,14 +30,27 @@ const isOutOfBound = {
 };
 
 const reflection = {
-  t_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.top(bound, content, anchor) ? "b" : "t",
-  b_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.bottom(bound, content, anchor) ? "t" : "b",
-  r_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.right(bound, content, anchor) ? "l" : "r",
-  l_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.left(bound, content, anchor) ? "r" : "l",
+  t_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
+    const v = isOutOfBound.top(bound, content, anchor) ? "b" : "t";
+    return (h: "l" | "c" | "r") =>
+      createDirectionValue({ first: v, second: h });
+  },
+  b_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
+    const v = isOutOfBound.bottom(bound, content, anchor) ? "t" : "b";
+    return (h: "l" | "c" | "r") =>
+      createDirectionValue({ first: v, second: h });
+  },
+  r_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
+    const h = isOutOfBound.right(bound, content, anchor) ? "l" : "r";
+    return (v: "t" | "c" | "b") =>
+      createDirectionValue({ first: h, second: v });
+  },
+
+  l_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
+    const h = isOutOfBound.left(bound, content, anchor) ? "r" : "l";
+    return (v: "t" | "c" | "b") =>
+      createDirectionValue({ first: h, second: v });
+  },
   _l: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
     isOutOfBound.rightOnV(bound, content, anchor) ? "r" : "l",
   _r: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
@@ -63,63 +76,63 @@ export const wrapDirection: Record<
   (bound: DOMRect, content: DOMRect, anchor: DOMRect) => DirectionValues
 > = {
   bl: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const y = reflection.b_(bound, content, anchor);
+    const f = reflection.b_(bound, content, anchor);
     const x = reflection._l(bound, content, anchor);
-    return `${y}${x}` as DirectionValues;
+    return f(x);
   },
   bc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const y = reflection.b_(bound, content, anchor);
+    const f = reflection.b_(bound, content, anchor);
     const x = reflection.vc(bound, content, anchor);
-    return `${y}${x}` as DirectionValues;
+    return f(x);
   },
   br: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const y = reflection.b_(bound, content, anchor);
+    const f = reflection.b_(bound, content, anchor);
     const x = reflection._r(bound, content, anchor);
-    return `${y}${x}` as DirectionValues;
+    return f(x);
   },
   tl: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const y = reflection.t_(bound, content, anchor);
+    const f = reflection.t_(bound, content, anchor);
     const x = reflection._l(bound, content, anchor);
-    return `${y}${x}` as DirectionValues;
+    return f(x);
   },
   tc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const y = reflection.t_(bound, content, anchor);
+    const f = reflection.t_(bound, content, anchor);
     const x = reflection.vc(bound, content, anchor);
-    return `${y}${x}` as DirectionValues;
+    return f(x);
   },
   tr: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const y = reflection.t_(bound, content, anchor);
+    const f = reflection.t_(bound, content, anchor);
     const x = reflection._r(bound, content, anchor);
-    return `${y}${x}` as DirectionValues;
+    return f(x);
   },
   rt: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const x = reflection.r_(bound, content, anchor);
+    const f = reflection.r_(bound, content, anchor);
     const y = reflection._t(bound, content, anchor);
-    return `${x}${y}` as DirectionValues;
+    return f(y);
   },
   rc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const x = reflection.r_(bound, content, anchor);
+    const f = reflection.r_(bound, content, anchor);
     const y = reflection.hc(bound, content, anchor);
-    return `${x}${y}` as DirectionValues;
+    return f(y);
   },
   rb: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const x = reflection.r_(bound, content, anchor);
+    const f = reflection.r_(bound, content, anchor);
     const y = reflection._b(bound, content, anchor);
-    return `${x}${y}` as DirectionValues;
+    return f(y);
   },
   lt: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const x = reflection.l_(bound, content, anchor);
+    const f = reflection.l_(bound, content, anchor);
     const y = reflection._t(bound, content, anchor);
-    return `${x}${y}` as DirectionValues;
+    return f(y);
   },
   lc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const x = reflection.l_(bound, content, anchor);
+    const f = reflection.l_(bound, content, anchor);
     const y = reflection.hc(bound, content, anchor);
-    return `${x}${y}` as DirectionValues;
+    return f(y);
   },
   lb: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const x = reflection.l_(bound, content, anchor);
+    const f = reflection.l_(bound, content, anchor);
     const y = reflection._b(bound, content, anchor);
-    return `${x}${y}` as DirectionValues;
+    return f(y);
   },
 };

@@ -16,3 +16,18 @@ export const DIRECTION_MAP = {
 export type DirectionKeys = keyof typeof DIRECTION_MAP;
 
 export type DirectionValues = (typeof DIRECTION_MAP)[DirectionKeys];
+
+export const createDirectionValue = ({
+  first,
+  second,
+}:
+  | {
+      first: "b" | "t";
+      second: "l" | "c" | "r";
+    }
+  | {
+      first: "l" | "r";
+      second: "t" | "c" | "b";
+    }) => {
+  return `${first}${second}` as DirectionValues;
+};
