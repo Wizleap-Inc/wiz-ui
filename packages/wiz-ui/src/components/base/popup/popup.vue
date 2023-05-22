@@ -6,6 +6,7 @@
         shadow && popupShadowStyle,
         zIndexStyle[layer],
         !isActuallyOpen && popupHiddenStyle,
+        isFixed && popupFixedStyle,
       ]"
       :style="{
         inset,
@@ -30,6 +31,7 @@ import {
   popupStyle,
   popupShadowStyle,
   popupHiddenStyle,
+  popupFixedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { MountingPortal } from "portal-vue";
@@ -158,6 +160,12 @@ const togglePopup = () => {
       isActuallyOpen.value = props.isOpen;
     };
   }
+};
+
+const existsFixedParent = (el: HTMLElement | null): HTMLElement | null => {
+  if (!el) return null;
+  if (el.style.position === "fixed") return el;
+  return existsFixedParent(el.parentElement);
 };
 
 let removeScrollHandler: (() => void) | null = null;
@@ -333,6 +341,10 @@ watch(
     emit("onTurn", newVal);
   }
 );
+
+const isFixed = computed(() => {
+  return existsFixedParent(containerRef.value || null) ? true : false;
+});
 
 const inset = computed(() => {
   const { scrollX, scrollY } = window;

@@ -2,7 +2,7 @@ import { StoryFn, Meta } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizSnackbar, WizProvider } from "@/components";
-import { globalInject, globalKey } from "@/hooks/use-global-provider";
+import { useSnackbar } from "@/hooks";
 
 export default {
   title: "Base/Snackbar",
@@ -42,7 +42,7 @@ Snackbar.args = {
 export const UseSnackbar: StoryFn<typeof WizSnackbar> = () => ({
   setup() {
     const message = ref("Hello World");
-    const { snack } = globalInject(globalKey);
+    const { snack } = useSnackbar();
     return {
       message,
       snack,
