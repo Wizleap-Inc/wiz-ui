@@ -9,14 +9,9 @@ import {
   WizCardTd,
 } from "../components";
 
-const meta: Meta<typeof WizCardTr> = {
+const meta: Meta<typeof WizCardTable> = {
   title: "Base/Tables/Card",
-  component: WizCardTr,
-  argTypes: {
-    onClick: {
-      action: "onClick",
-    },
-  },
+  component: WizCardTable,
   parameters: {
     docs: {
       description: {
@@ -34,9 +29,9 @@ router-pushなどと組み合わせて、クリックした行に対応するペ
 
 export default meta;
 
-export const Default: StoryObj<typeof WizCardTr> = {
+export const Default: StoryObj<typeof WizCardTable> = {
   render: (args) => (
-    <WizCardTable>
+    <WizCardTable {...args}>
       <WizCardThead>
         <WizCardTr>
           {[1, 2, 3].map((i) => (
@@ -46,7 +41,7 @@ export const Default: StoryObj<typeof WizCardTr> = {
       </WizCardThead>
       <WizCardTbody>
         {[1, 2, 3].map((i) => (
-          <WizCardTr key={i} {...args}>
+          <WizCardTr key={i}>
             {[1, 2, 3].map((j) => (
               <WizCardTd key={j}>Row {i}</WizCardTd>
             ))}
@@ -86,16 +81,13 @@ export const Fixed: StoryObj<typeof WizCardTable> = {
   ),
 };
 
-export const UnionColumn: StoryObj<typeof WizCardTh> = {
-  args: {
-    colSpan: 2,
-  },
+export const UnionColumn: StoryObj<typeof WizCardTable> = {
   render: (args) => (
-    <WizCardTable>
+    <WizCardTable {...args}>
       <WizCardThead>
         <WizCardTr>
           {[1, 2].map((i) => (
-            <WizCardTh key={i} {...args}>
+            <WizCardTh key={i} colSpan={2}>
               Column {i}
             </WizCardTh>
           ))}
@@ -114,7 +106,7 @@ export const UnionColumn: StoryObj<typeof WizCardTh> = {
   ),
 };
 
-export const Example: StoryObj<typeof WizCardTr> = {
+export const Example: StoryObj<typeof WizCardTable> = {
   render: (args) => {
     const headers = [
       "ID・ステータス",
@@ -132,7 +124,7 @@ export const Example: StoryObj<typeof WizCardTr> = {
     ];
 
     return (
-      <WizCardTable>
+      <WizCardTable {...args}>
         <WizCardThead>
           <WizCardTr>
             {headers.map((header, i) => (
@@ -142,7 +134,7 @@ export const Example: StoryObj<typeof WizCardTr> = {
         </WizCardThead>
         <WizCardTbody>
           {[1, 2, 3].map((i) => (
-            <WizCardTr key={i} {...args}>
+            <WizCardTr key={i}>
               {rows.map((row, j) => (
                 <WizCardTd key={j}>
                   <div style={{ display: "flex", flexDirection: "column" }}>

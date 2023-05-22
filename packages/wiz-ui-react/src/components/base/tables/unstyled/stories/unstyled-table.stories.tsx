@@ -9,21 +9,16 @@ import {
   WizUnstyledTd,
 } from "../components";
 
-const meta: Meta<typeof WizUnstyledTr> = {
+const meta: Meta<typeof WizUnstyledTable> = {
   title: "Base/Tables/Unstyled",
-  component: WizUnstyledTr,
-  argTypes: {
-    onClick: {
-      action: "onClick",
-    },
-  },
+  component: WizUnstyledTable,
 };
 
 export default meta;
 
-export const Default: StoryObj<typeof WizUnstyledTr> = {
+export const Default: StoryObj<typeof WizUnstyledTable> = {
   render: (args) => (
-    <WizUnstyledTable>
+    <WizUnstyledTable {...args}>
       <WizUnstyledThead>
         <WizUnstyledTr>
           {[1, 2, 3].map((i) => (
@@ -33,7 +28,7 @@ export const Default: StoryObj<typeof WizUnstyledTr> = {
       </WizUnstyledThead>
       <WizUnstyledTbody>
         {[1, 2, 3].map((i) => (
-          <WizUnstyledTr key={i} {...args}>
+          <WizUnstyledTr key={i}>
             {[1, 2, 3].map((j) => (
               <WizUnstyledTd key={j}>Row {i}</WizUnstyledTd>
             ))}
@@ -73,9 +68,9 @@ export const Fixed: StoryObj<typeof WizUnstyledTable> = {
   ),
 };
 
-export const WithRowHeader: StoryObj<typeof WizUnstyledTr> = {
+export const WithRowHeader: StoryObj<typeof WizUnstyledTable> = {
   render: (args) => (
-    <WizUnstyledTable>
+    <WizUnstyledTable {...args}>
       <WizUnstyledThead>
         <WizUnstyledTr>
           {[1, 2, 3].map((i) => (
@@ -85,7 +80,7 @@ export const WithRowHeader: StoryObj<typeof WizUnstyledTr> = {
       </WizUnstyledThead>
       <WizUnstyledTbody>
         {[1, 2, 3].map((i) => (
-          <WizUnstyledTr key={i} {...args}>
+          <WizUnstyledTr key={i}>
             {[1, 2, 3].map((j) => (
               <>
                 {j === 1 && <WizUnstyledTh key={j}>Row {i}</WizUnstyledTh>}
@@ -99,6 +94,7 @@ export const WithRowHeader: StoryObj<typeof WizUnstyledTr> = {
   ),
 };
 
+// MEMO: 関連コンポーネントの追加待ち
 // export const UseAsForm: StoryObj<typeof WizUnstyledTable> = {
 //   render: (args) => {
 //     return (
@@ -148,10 +144,13 @@ export const WithRowHeader: StoryObj<typeof WizUnstyledTr> = {
 //   },
 // };
 
-export const Divider: StoryObj<typeof WizUnstyledTr> = {
+export const Divider: StoryObj<typeof WizUnstyledTable> = {
+  args: {
+    borderCollapse: "collapse",
+  },
   render: (args) => (
-    <WizUnstyledTable borderCollapse={"collapse"}>
-      <WizUnstyledThead divider={true}>
+    <WizUnstyledTable {...args}>
+      <WizUnstyledThead divider>
         <WizUnstyledTr>
           {[1, 2, 3].map((i) => (
             <WizUnstyledTh key={i}>Column {i}</WizUnstyledTh>
@@ -160,12 +159,105 @@ export const Divider: StoryObj<typeof WizUnstyledTr> = {
       </WizUnstyledThead>
       <WizUnstyledTbody>
         {[1, 2, 3].map((i) => (
-          <WizUnstyledTr key={i} {...args} divider={true}>
+          <WizUnstyledTr key={i} divider>
             {[1, 2, 3].map((j) => (
               <WizUnstyledTd key={j}>Row {i}</WizUnstyledTd>
             ))}
           </WizUnstyledTr>
         ))}
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  ),
+};
+
+export const DividerHeader: StoryObj<typeof WizUnstyledTable> = {
+  args: {
+    borderCollapse: "collapse",
+  },
+  render: (args) => (
+    <WizUnstyledTable {...args}>
+      <WizUnstyledThead>
+        <WizUnstyledTr>
+          {[1, 2, 3].map((i) => (
+            <WizUnstyledTh key={i} divider>
+              Column {i}
+            </WizUnstyledTh>
+          ))}
+        </WizUnstyledTr>
+      </WizUnstyledThead>
+      <WizUnstyledTbody>
+        {[1, 2, 3].map((i) => (
+          <WizUnstyledTr key={i}>
+            {[1, 2, 3].map((j) => (
+              <WizUnstyledTd key={j}>Row {i}</WizUnstyledTd>
+            ))}
+          </WizUnstyledTr>
+        ))}
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  ),
+};
+
+export const UnionRow: StoryObj<typeof WizUnstyledTable> = {
+  args: {
+    borderCollapse: "collapse",
+  },
+  render: (args) => (
+    <WizUnstyledTable {...args}>
+      <WizUnstyledThead divider>
+        <WizUnstyledTr>
+          {[1, 2, 3, 4].map((i) => (
+            <WizUnstyledTh key={i}>Column {i}</WizUnstyledTh>
+          ))}
+        </WizUnstyledTr>
+      </WizUnstyledThead>
+      <WizUnstyledTbody>
+        {[1, 2, 3, 4].map((i) => (
+          <WizUnstyledTr key={i} divider>
+            {i === 1 && (
+              <>
+                <WizUnstyledTd rowSpan={4}>Row</WizUnstyledTd>
+                <WizUnstyledTh scope="row" rowSpan={4}>
+                  Row
+                </WizUnstyledTh>
+              </>
+            )}
+            {[1, 2].map((j) => (
+              <WizUnstyledTd key={j}>Row {i}</WizUnstyledTd>
+            ))}
+          </WizUnstyledTr>
+        ))}
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  ),
+};
+
+export const UnionColumn: StoryObj<typeof WizUnstyledTable> = {
+  args: {
+    borderCollapse: "collapse",
+  },
+  render: (args) => (
+    <WizUnstyledTable {...args}>
+      <WizUnstyledThead divider>
+        <WizUnstyledTr>
+          {[1, 2].map((i) => (
+            <WizUnstyledTh key={i} colSpan={2}>
+              Column {i}
+            </WizUnstyledTh>
+          ))}
+        </WizUnstyledTr>
+      </WizUnstyledThead>
+      <WizUnstyledTbody>
+        {[1, 2, 3].map((i) => (
+          <WizUnstyledTr key={i} divider>
+            {[1, 2, 3].map((j) => (
+              <WizUnstyledTd key={j}>Row {i}</WizUnstyledTd>
+            ))}
+          </WizUnstyledTr>
+        ))}
+        <WizUnstyledTr divider>
+          <WizUnstyledTd colSpan={3}>Row</WizUnstyledTd>
+        </WizUnstyledTr>
       </WizUnstyledTbody>
     </WizUnstyledTable>
   ),
