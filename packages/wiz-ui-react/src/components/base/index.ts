@@ -5,6 +5,7 @@ export * from "./card";
 export * from "./tag";
 export * from "./icon";
 export * from "./divider";
+export * from "./menu";
 export * from "./stack";
 export * from "./anchor";
 export * from "./inputs";
