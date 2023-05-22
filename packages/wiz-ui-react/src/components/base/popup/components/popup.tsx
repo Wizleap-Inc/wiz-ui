@@ -25,11 +25,8 @@ import {
   DirectionKeys,
   DirectionValues,
 } from "../types/direction";
-import {
-  PopupPlacementStyle,
-  getPlacementStyle,
-  wrapDirection,
-} from "../utils";
+import { PlacementStyle } from "../types/placement";
+import { placeOnPortalStyle, wrapDirection } from "../utils";
 
 type Props = {
   isOpen: boolean;
@@ -64,7 +61,7 @@ const Popup = ({
 }: Props) => {
   const popupRef = useRef<HTMLDivElement | null>(null);
   const isActuallyOpen = usePopupAnimation(animation, popupRef, isOpen);
-  const [placementStyle, setPlacementStyle] = useState<PopupPlacementStyle>({});
+  const [placementStyle, setPlacementStyle] = useState<PlacementStyle>({});
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
@@ -78,9 +75,8 @@ const Popup = ({
         const bodyRect = document.body.getBoundingClientRect();
         return wrapDirection[dir](bodyRect, contentRect, anchorRect);
       };
-      return getPlacementStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
+      return placeOnPortalStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
         anchor: anchorRect,
-        isPortal: true,
         gap: getSpacingCss(gap) ?? "0",
         content: contentRect,
       });
