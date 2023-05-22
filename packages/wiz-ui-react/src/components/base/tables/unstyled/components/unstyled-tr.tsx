@@ -9,7 +9,7 @@ type Props = {
 } & ComponentProps<"tr">;
 
 const UnstyledTr = ({ divider = false, children, ...props }: Props) => (
-  <tr className={clsx([divider && styles.unstyledTrDividerStyle])} {...props}>
+  <tr className={clsx(divider && styles.unstyledTrDividerStyle)} {...props}>
     {children}
   </tr>
 );

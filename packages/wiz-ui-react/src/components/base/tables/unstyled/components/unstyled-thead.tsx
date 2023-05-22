@@ -9,7 +9,7 @@ type Props = {
 } & ComponentProps<"thead">;
 
 const UnstyledThead = ({ divider = false, children, ...props }: Props) => (
-  <thead className={clsx([divider && unstyledTheadDividerStyle])} {...props}>
+  <thead className={clsx(divider && unstyledTheadDividerStyle)} {...props}>
     {children}
   </thead>
 );

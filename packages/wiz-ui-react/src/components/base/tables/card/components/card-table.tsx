@@ -12,10 +12,10 @@ type Props = {
 const CardTable = ({ fixed = false, width, children, ...props }: Props) => {
   return (
     <table
-      className={clsx([
+      className={clsx(
         styles.cardTableStyle,
-        fixed && styles.cardTableFixedStyle,
-      ])}
+        fixed && styles.cardTableFixedStyle
+      )}
       style={{ width }}
       {...props}
     >

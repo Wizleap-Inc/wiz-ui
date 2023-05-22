@@ -30,14 +30,14 @@ const UnstyledTable = ({
 }: Props) => {
   return (
     <table
-      className={clsx([
+      className={clsx(
         spaceX && borderSpacingXStyle[spaceX],
         spaceY && borderSpacingYStyle[spaceY],
         !spaceX && !spaceY && borderSpacingStyle[space],
         fixed && styles.unstyledTableFixedStyle,
         borderCollapse &&
-          styles.unstyledTableBorderCollapseStyle[borderCollapse],
-      ])}
+          styles.unstyledTableBorderCollapseStyle[borderCollapse]
+      )}
       style={{ width }}
       {...props}
     >
