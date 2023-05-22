@@ -1,14 +1,12 @@
-import { ref, readonly, InjectionKey, inject } from "vue";
+import { InjectionKey, inject } from "vue";
+
+import { useMenu } from "./use-menu";
+import { useSnackbarManager } from "./use-snackbar";
 
 export const useGlobalProvider = () => {
-  const isMenuOpen = ref(true);
-  const setIsMenuOpen = (value: boolean) => {
-    isMenuOpen.value = value;
-  };
-
   return {
-    isMenuOpen: readonly(isMenuOpen),
-    setIsMenuOpen,
+    ...useMenu(),
+    ...useSnackbarManager(),
   };
 };
 
