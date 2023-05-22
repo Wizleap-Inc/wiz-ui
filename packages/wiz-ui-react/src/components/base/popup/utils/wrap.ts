@@ -1,138 +1,144 @@
 import { DirectionValues, createDirectionValue } from "../types/direction";
 
+type Input = {
+  bound: DOMRect;
+  content: DOMRect;
+  anchor: DOMRect;
+  window: {
+    scrollX: number;
+    scrollY: number;
+  };
+};
+
 const isOutOfBound = {
-  top: (_: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  top: ({ anchor, content, window }: Input) =>
     anchor.y - content.height + window.scrollY < 0,
-  bottom: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  bottom: ({ bound, anchor, content, window }: Input) =>
     bound.height < anchor.y + anchor.height + content.height + window.scrollY,
-  left: (_: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  left: ({ anchor, content, window }: Input) =>
     anchor.x - content.width + window.scrollX < 0,
-  right: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  right: ({ bound, anchor, content, window }: Input) =>
     bound.width < anchor.x + anchor.width + content.width + window.scrollX,
-  rightOnV: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  rightOnV: ({ bound, anchor, content, window }: Input) =>
     bound.width < anchor.x + content.width + window.scrollX,
-  leftOnV: (_: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  leftOnV: ({ anchor, content, window }: Input) =>
     anchor.x + anchor.width - content.width + window.scrollX < 0,
-  topOnH: (_: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  topOnH: ({ anchor, content, window }: Input) =>
     anchor.y + anchor.height - content.height + window.scrollY < 0,
-  bottomOnH: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  bottomOnH: ({ bound, anchor, content, window }: Input) =>
     bound.height < anchor.y + anchor.height + content.height + window.scrollY,
-  leftOnHCenter: (_: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  leftOnHCenter: ({ anchor, content, window }: Input) =>
     anchor.x - (anchor.width + content.width) / 2 + window.scrollX < 0,
-  rightOnHCenter: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  rightOnHCenter: ({ bound, anchor, content, window }: Input) =>
     bound.width <
     anchor.x + (anchor.width + content.width) / 2 + window.scrollX,
-  topOnVCenter: (_: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  topOnVCenter: ({ anchor, content, window }: Input) =>
     anchor.y - (anchor.width + content.height) / 2 + window.scrollY < 0,
-  bottomOnVCenter: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
+  bottomOnVCenter: ({ bound, anchor, content, window }: Input) =>
     bound.height <
     anchor.y + (anchor.width + content.height) / 2 + window.scrollY,
 };
 
 const reflection = {
-  t_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const v = isOutOfBound.top(bound, content, anchor) ? "b" : "t";
+  t_: (input: Input) => {
+    const v = isOutOfBound.top(input) ? "b" : "t";
     return (h: "l" | "c" | "r") =>
       createDirectionValue({ first: v, second: h });
   },
-  b_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const v = isOutOfBound.bottom(bound, content, anchor) ? "t" : "b";
+  b_: (input: Input) => {
+    const v = isOutOfBound.bottom(input) ? "t" : "b";
     return (h: "l" | "c" | "r") =>
       createDirectionValue({ first: v, second: h });
   },
-  r_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const h = isOutOfBound.right(bound, content, anchor) ? "l" : "r";
+  r_: (input: Input) => {
+    const h = isOutOfBound.right(input) ? "l" : "r";
     return (v: "t" | "c" | "b") =>
       createDirectionValue({ first: h, second: v });
   },
 
-  l_: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const h = isOutOfBound.left(bound, content, anchor) ? "r" : "l";
+  l_: (input: Input) => {
+    const h = isOutOfBound.left(input) ? "r" : "l";
     return (v: "t" | "c" | "b") =>
       createDirectionValue({ first: h, second: v });
   },
-  _l: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.rightOnV(bound, content, anchor) ? "r" : "l",
-  _r: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.leftOnV(bound, content, anchor) ? "l" : "r",
-  _t: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.bottomOnH(bound, content, anchor) ? "b" : "t",
-  _b: (bound: DOMRect, content: DOMRect, anchor: DOMRect) =>
-    isOutOfBound.topOnH(bound, content, anchor) ? "t" : "b",
-  vc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const r = isOutOfBound.rightOnHCenter(bound, content, anchor) && "r";
-    const l = isOutOfBound.leftOnHCenter(bound, content, anchor) && "l";
+  _l: (input: Input) => (isOutOfBound.rightOnV(input) ? "r" : "l"),
+  _r: (input: Input) => (isOutOfBound.leftOnV(input) ? "l" : "r"),
+  _t: (input: Input) => (isOutOfBound.bottomOnH(input) ? "b" : "t"),
+  _b: (input: Input) => (isOutOfBound.topOnH(input) ? "t" : "b"),
+  vc: (input: Input) => {
+    const r = isOutOfBound.rightOnHCenter(input) && "r";
+    const l = isOutOfBound.leftOnHCenter(input) && "l";
     return l || r || "c";
   },
-  hc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const b = isOutOfBound.bottomOnVCenter(bound, content, anchor) && "b";
-    const t = isOutOfBound.topOnVCenter(bound, content, anchor) && "t";
+  hc: (input: Input) => {
+    const b = isOutOfBound.bottomOnVCenter(input) && "b";
+    const t = isOutOfBound.topOnVCenter(input) && "t";
     return t || b || "c";
   },
 };
 
 export const wrapDirection: Record<
   DirectionValues,
-  (bound: DOMRect, content: DOMRect, anchor: DOMRect) => DirectionValues
+  (input: Input) => DirectionValues
 > = {
-  bl: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.b_(bound, content, anchor);
-    const x = reflection._l(bound, content, anchor);
+  bl: (input: Input) => {
+    const f = reflection.b_(input);
+    const x = reflection._l(input);
     return f(x);
   },
-  bc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.b_(bound, content, anchor);
-    const x = reflection.vc(bound, content, anchor);
+  bc: (input: Input) => {
+    const f = reflection.b_(input);
+    const x = reflection.vc(input);
     return f(x);
   },
-  br: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.b_(bound, content, anchor);
-    const x = reflection._r(bound, content, anchor);
+  br: (input: Input) => {
+    const f = reflection.b_(input);
+    const x = reflection._r(input);
     return f(x);
   },
-  tl: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.t_(bound, content, anchor);
-    const x = reflection._l(bound, content, anchor);
+  tl: (input: Input) => {
+    const f = reflection.t_(input);
+    const x = reflection._l(input);
     return f(x);
   },
-  tc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.t_(bound, content, anchor);
-    const x = reflection.vc(bound, content, anchor);
+  tc: (input: Input) => {
+    const f = reflection.t_(input);
+    const x = reflection.vc(input);
     return f(x);
   },
-  tr: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.t_(bound, content, anchor);
-    const x = reflection._r(bound, content, anchor);
+  tr: (input: Input) => {
+    const f = reflection.t_(input);
+    const x = reflection._r(input);
     return f(x);
   },
-  rt: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.r_(bound, content, anchor);
-    const y = reflection._t(bound, content, anchor);
+  rt: (input: Input) => {
+    const f = reflection.r_(input);
+    const y = reflection._t(input);
     return f(y);
   },
-  rc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.r_(bound, content, anchor);
-    const y = reflection.hc(bound, content, anchor);
+  rc: (input: Input) => {
+    const f = reflection.r_(input);
+    const y = reflection.hc(input);
     return f(y);
   },
-  rb: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.r_(bound, content, anchor);
-    const y = reflection._b(bound, content, anchor);
+  rb: (input: Input) => {
+    const f = reflection.r_(input);
+    const y = reflection._b(input);
     return f(y);
   },
-  lt: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.l_(bound, content, anchor);
-    const y = reflection._t(bound, content, anchor);
+  lt: (input: Input) => {
+    const f = reflection.l_(input);
+    const y = reflection._t(input);
     return f(y);
   },
-  lc: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.l_(bound, content, anchor);
-    const y = reflection.hc(bound, content, anchor);
+  lc: (input: Input) => {
+    const f = reflection.l_(input);
+    const y = reflection.hc(input);
     return f(y);
   },
-  lb: (bound: DOMRect, content: DOMRect, anchor: DOMRect) => {
-    const f = reflection.l_(bound, content, anchor);
-    const y = reflection._b(bound, content, anchor);
+  lb: (input: Input) => {
+    const f = reflection.l_(input);
+    const y = reflection._b(input);
     return f(y);
   },
 };

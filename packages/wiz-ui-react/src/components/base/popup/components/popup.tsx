@@ -73,7 +73,12 @@ const Popup = ({
       const wrapOutOfBound = (dir: DirectionValues) => {
         if (isDirectionFixed || !contentRect) return dir;
         const bodyRect = document.body.getBoundingClientRect();
-        return wrapDirection[dir](bodyRect, contentRect, anchorRect);
+        return wrapDirection[dir]({
+          bound: bodyRect,
+          content: contentRect,
+          anchor: anchorRect,
+          window: { scrollX: window.scrollX, scrollY: window.scrollY },
+        });
       };
       return placeOnPortalStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
         anchor: anchorRect,
