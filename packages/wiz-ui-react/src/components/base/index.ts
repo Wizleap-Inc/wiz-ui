@@ -1,4 +1,5 @@
 export * from "./buttons";
+export * from "./avatar";
 export * from "./box";
 export * from "./card";
 export * from "./tag";
