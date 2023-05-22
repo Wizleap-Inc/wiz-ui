@@ -84,6 +84,7 @@ const Popup = ({
         anchor: anchorRect,
         gap: getSpacingCss(gap) ?? "0",
         content: contentRect,
+        window: { scrollX: window.scrollX, scrollY: window.scrollY },
       });
     };
     setPlacementStyle(popupPlacement());

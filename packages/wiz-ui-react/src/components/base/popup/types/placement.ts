@@ -1,6 +1,10 @@
 export type PlacementOption = {
   anchor: DOMRect;
   content?: DOMRect;
+  window: {
+    scrollX: number;
+    scrollY: number;
+  };
   gap?: string;
 };
 
