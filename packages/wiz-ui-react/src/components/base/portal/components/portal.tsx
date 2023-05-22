@@ -2,19 +2,19 @@ import { ReactNode, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 type Props = {
+  container: HTMLElement;
   children: ReactNode;
 };
 
-const Portal = ({ children }: Props) => {
+const Portal = ({ container, children }: Props) => {
   const el = useRef(document.createElement("div"));
   useEffect(() => {
-    const portalContainer = document.body;
     const elNode = el.current;
-    portalContainer.appendChild(elNode);
+    container.appendChild(elNode);
     return () => {
-      portalContainer.removeChild(elNode);
+      container.removeChild(elNode);
     };
-  }, []);
+  }, [container]);
 
   return createPortal(children, el.current);
 };

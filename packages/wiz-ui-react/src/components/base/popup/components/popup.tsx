@@ -95,24 +95,25 @@ const Popup = ({
     };
   }, [isActuallyOpen, direction, gap, anchorElement, isDirectionFixed]);
 
-  const content = (
-    <div
-      ref={popupRef}
-      className={clsx(
-        styles.popupStyle,
-        shadow && styles.popupShadowStyle,
-        zIndexStyle[layer],
-        !isActuallyOpen && styles.popupHiddenStyle
-      )}
-      style={{
-        position: "absolute",
-        ...placementStyle,
-      }}
-    >
-      {children}
-    </div>
+  return (
+    <WizPortal container={document.body}>
+      <div
+        ref={popupRef}
+        className={clsx(
+          styles.popupStyle,
+          shadow && styles.popupShadowStyle,
+          zIndexStyle[layer],
+          !isActuallyOpen && styles.popupHiddenStyle
+        )}
+        style={{
+          position: "absolute",
+          ...placementStyle,
+        }}
+      >
+        {children}
+      </div>
+    </WizPortal>
   );
-  return <WizPortal>{content}</WizPortal>;
 };
 
 Popup.displayName = ComponentName.Popup;
