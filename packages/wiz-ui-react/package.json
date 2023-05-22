@@ -6,6 +6,7 @@
     "build": "tsc --noEmit && vite build",
     "dev": "pnpm storybook:dev",
     "test": "run-p storybook:test",
+    "test:unit": "vitest run",
     "check:lib-publish": "can-npm-publish --verbose",
     "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6008' http://localhost:6008",
     "storybook:build": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",

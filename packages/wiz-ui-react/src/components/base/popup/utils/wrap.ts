@@ -1,6 +1,6 @@
 import { DirectionValues, createDirectionValue } from "../types/direction";
 
-type Input = {
+export type Input = {
   bound: DOMRect;
   content: DOMRect;
   anchor: DOMRect;
@@ -10,7 +10,7 @@ type Input = {
   };
 };
 
-const isOutOfBound = {
+export const isOutOfBound = {
   top: ({ anchor, content, window }: Input) =>
     anchor.y - content.height + window.scrollY < 0,
   bottom: ({ bound, anchor, content, window }: Input) =>
@@ -39,7 +39,7 @@ const isOutOfBound = {
     anchor.y + (anchor.width + content.height) / 2 + window.scrollY,
 };
 
-const reflection = {
+export const reflection = {
   t_: (input: Input) => {
     const v = isOutOfBound.top(input) ? "b" : "t";
     return (h: "l" | "c" | "r") =>
