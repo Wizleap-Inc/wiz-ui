@@ -159,11 +159,15 @@ const onSelect = (value: number) => {
 };
 
 const onKeyUp = () => {
-  if (currentSelectOption.value > 0) currentSelectOption.value--;
+  if (openSelectBox.value && currentSelectOption.value > 0)
+    currentSelectOption.value--;
 };
 
 const onKeyDown = () => {
-  if (currentSelectOption.value < props.options.length - 1)
+  if (
+    openSelectBox.value &&
+    currentSelectOption.value < props.options.length - 1
+  )
     currentSelectOption.value++;
 };
 
