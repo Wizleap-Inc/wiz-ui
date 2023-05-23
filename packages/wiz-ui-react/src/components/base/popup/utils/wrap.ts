@@ -71,14 +71,14 @@ export const reflection = {
     popupContentIsOutOfBoundary.bottomOnHorizontal(args) ? "Bottom" : "Top",
   _Bottom: (args: Args) =>
     popupContentIsOutOfBoundary.topOnHorizontal(args) ? "Top" : "Bottom",
-  verticalCenter: (args: Args) => {
+  horizontalCenter: (args: Args) => {
     const r =
       popupContentIsOutOfBoundary.rightOnHorizontalCenter(args) && "Right";
     const l =
       popupContentIsOutOfBoundary.leftOnHorizontalCenter(args) && "Left";
     return l || r || "Center";
   },
-  horizontalCenter: (args: Args) => {
+  verticalCenter: (args: Args) => {
     const b =
       popupContentIsOutOfBoundary.bottomOnVerticalCenter(args) && "Bottom";
     const t = popupContentIsOutOfBoundary.topOnVerticalCenter(args) && "Top";
@@ -97,7 +97,7 @@ export const wrapDirection: Record<
   },
   bottomCenter: (args: Args) => {
     const f = reflection.bottom_(args);
-    const x = reflection.verticalCenter(args);
+    const x = reflection.horizontalCenter(args);
     return f(x);
   },
   bottomRight: (args: Args) => {
@@ -112,7 +112,7 @@ export const wrapDirection: Record<
   },
   topCenter: (args: Args) => {
     const f = reflection.top_(args);
-    const x = reflection.verticalCenter(args);
+    const x = reflection.horizontalCenter(args);
     return f(x);
   },
   topRight: (args: Args) => {
@@ -127,7 +127,7 @@ export const wrapDirection: Record<
   },
   rightCenter: (args: Args) => {
     const f = reflection.right_(args);
-    const y = reflection.horizontalCenter(args);
+    const y = reflection.verticalCenter(args);
     return f(y);
   },
   rightBottom: (args: Args) => {
@@ -142,7 +142,7 @@ export const wrapDirection: Record<
   },
   leftCenter: (args: Args) => {
     const f = reflection.left_(args);
-    const y = reflection.horizontalCenter(args);
+    const y = reflection.verticalCenter(args);
     return f(y);
   },
   leftBottom: (args: Args) => {
