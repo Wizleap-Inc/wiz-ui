@@ -73,10 +73,15 @@ const Popup = ({
       const wrapOutOfBound = (dir: DirectionValue) => {
         if (isDirectionFixed || !contentRect) return dir;
         const bodyRect = document.body.getBoundingClientRect();
+        const fontSize = window.getComputedStyle(document.body).fontSize;
+        const gapPx =
+          parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
+        console.log(gapPx);
         return wrapDirection[dir]({
           bound: bodyRect,
           content: contentRect,
           anchor: anchorRect,
+          gap: gapPx,
           window: { scrollX: window.scrollX, scrollY: window.scrollY },
         });
       };

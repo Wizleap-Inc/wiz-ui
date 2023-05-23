@@ -8,6 +8,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 10, y: 10, width: 20, height: 20 } as DOMRect,
       anchor: { x: 50, y: 50, width: 30, height: 30 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -32,6 +33,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 5, y: 5, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -56,6 +58,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 5, y: 50, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -80,6 +83,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 5, y: 95, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -104,6 +108,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 50, y: 5, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -128,6 +133,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 50, y: 95, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -152,6 +158,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 95, y: 5, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -176,6 +183,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 95, y: 50, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,
@@ -200,6 +208,7 @@ describe("Popup Wrapping", () => {
       bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 95, y: 95, width: 10, height: 10 } as DOMRect,
+      gap: 0,
       window: {
         scrollX: 0,
         scrollY: 0,

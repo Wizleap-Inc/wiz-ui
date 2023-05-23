@@ -7,6 +7,7 @@ describe("popupContentIsOutOfBoundary", () => {
     bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
     content: { x: 10, y: 10, width: 20, height: 20 } as DOMRect,
     anchor: { x: 50, y: 50, width: 30, height: 30 } as DOMRect,
+    gap: 0,
     window: {
       scrollX: 0,
       scrollY: 0,
@@ -37,6 +38,7 @@ describe("popupContentIsOutOfBoundary", () => {
     bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
     content: { x: 10, y: 10, width: 200, height: 200 } as DOMRect,
     anchor: { x: 50, y: 50, width: 30, height: 30 } as DOMRect,
+    gap: 0,
     window: {
       scrollX: 0,
       scrollY: 0,

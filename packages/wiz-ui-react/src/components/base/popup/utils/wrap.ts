@@ -6,6 +6,7 @@ export type Args = {
   bound: DOMRect;
   content: DOMRect;
   anchor: DOMRect;
+  gap: number;
   window: {
     scrollX: number;
     scrollY: number;
@@ -13,32 +14,35 @@ export type Args = {
 };
 
 export const popupContentIsOutOfBoundary = {
-  top: ({ anchor, content, window }: Args) =>
-    anchor.y - content.height + window.scrollY < 0,
-  bottom: ({ bound, anchor, content, window }: Args) =>
-    bound.height < anchor.y + anchor.height + content.height + window.scrollY,
-  left: ({ anchor, content, window }: Args) =>
-    anchor.x - content.width + window.scrollX < 0,
-  right: ({ bound, anchor, content, window }: Args) =>
-    bound.width < anchor.x + anchor.width + content.width + window.scrollX,
-  rightOnVertical: ({ bound, anchor, content, window }: Args) =>
-    bound.width < anchor.x + content.width + window.scrollX,
-  leftOnVertical: ({ anchor, content, window }: Args) =>
-    anchor.x + anchor.width - content.width + window.scrollX < 0,
-  topOnHorizontal: ({ anchor, content, window }: Args) =>
-    anchor.y + anchor.height - content.height + window.scrollY < 0,
-  bottomOnHorizontal: ({ bound, anchor, content, window }: Args) =>
-    bound.height < anchor.y + anchor.height + content.height + window.scrollY,
-  leftOnHorizontalCenter: ({ anchor, content, window }: Args) =>
-    anchor.x + (anchor.width - content.width) / 2 + window.scrollX < 0,
-  rightOnHorizontalCenter: ({ bound, anchor, content, window }: Args) =>
-    bound.width <
-    anchor.x + (anchor.width + content.width) / 2 + window.scrollX,
-  topOnVerticalCenter: ({ anchor, content, window }: Args) =>
-    anchor.y + (anchor.height - content.height) / 2 + window.scrollY < 0,
-  bottomOnVerticalCenter: ({ bound, anchor, content, window }: Args) =>
+  top: ({ anchor, content, window, gap }: Args) =>
+    anchor.y - content.height + window.scrollY - gap < 0,
+  bottom: ({ bound, anchor, content, window, gap }: Args) =>
     bound.height <
-    anchor.y + (anchor.height + content.height) / 2 + window.scrollY,
+    anchor.y + anchor.height + content.height + window.scrollY + gap,
+  left: ({ anchor, content, window, gap }: Args) =>
+    anchor.x - content.width + window.scrollX - gap < 0,
+  right: ({ bound, anchor, content, window, gap }: Args) =>
+    bound.width <
+    anchor.x + anchor.width + content.width + window.scrollX + gap,
+  rightOnVertical: ({ bound, anchor, content, window, gap }: Args) =>
+    bound.width < anchor.x + content.width + window.scrollX + gap,
+  leftOnVertical: ({ anchor, content, window, gap }: Args) =>
+    anchor.x + anchor.width - content.width + window.scrollX - gap < 0,
+  topOnHorizontal: ({ anchor, content, window, gap }: Args) =>
+    anchor.y + anchor.height - content.height + window.scrollY - gap < 0,
+  bottomOnHorizontal: ({ bound, anchor, content, window, gap }: Args) =>
+    bound.height <
+    anchor.y + anchor.height + content.height + window.scrollY + gap,
+  leftOnHorizontalCenter: ({ anchor, content, window, gap }: Args) =>
+    anchor.x + (anchor.width - content.width) / 2 + window.scrollX - gap < 0,
+  rightOnHorizontalCenter: ({ bound, anchor, content, window, gap }: Args) =>
+    bound.width <
+    anchor.x + (anchor.width + content.width) / 2 + window.scrollX + gap,
+  topOnVerticalCenter: ({ anchor, content, window, gap }: Args) =>
+    anchor.y + (anchor.height - content.height) / 2 + window.scrollY - gap < 0,
+  bottomOnVerticalCenter: ({ bound, anchor, content, window, gap }: Args) =>
+    bound.height <
+    anchor.y + (anchor.height + content.height) / 2 + window.scrollY + gap,
 };
 
 export const reflection = {
