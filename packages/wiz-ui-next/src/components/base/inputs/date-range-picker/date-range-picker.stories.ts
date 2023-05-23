@@ -416,4 +416,7 @@ Test.play = async ({ canvasElement }) => {
   await waitFor(() =>
     expect(selectedDatesAfterRightClick.length).toBe(diff + 1)
   );
+
+  await userEvent.click(button);
+  await userEvent.tab();
 };
