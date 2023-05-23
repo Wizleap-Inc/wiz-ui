@@ -279,7 +279,7 @@ const isError = computed(() => (form ? form.isError.value : false));
 
 const borderState = computed(() => {
   if (isError.value) return "error";
-  if (props.isOpen) return "active";
+  if (props.isOpen && !props.disabled) return "active";
   return "default";
 });
 </script>
