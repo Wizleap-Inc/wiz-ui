@@ -3,7 +3,7 @@ import * as components from "./components";
 import type { App, Plugin } from "vue";
 
 export * from "./components";
-export * from "./hooks/use-snackbar";
+export * from "./hooks";
 export * from "@wizleap-inc/wiz-ui-constants";
 import "@wizleap-inc/wiz-ui-styles/global.css";
 

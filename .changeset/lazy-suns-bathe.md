@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": minor
 ---
 
-WizCard の React 対応
+WizMessageBox の React 対応

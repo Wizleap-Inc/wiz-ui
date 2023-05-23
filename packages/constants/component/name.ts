@@ -22,6 +22,7 @@ export const ComponentName = {
   TabPane: "WizTabPane",
   ToggleSwitch: "WizToggleSwitch",
   MessageBox: "WizMessageBox",
+  MenuItem: "WizMenuItem",
   NavigationContainer: "WizNavigationContainer",
   NavigationItem: "WizNavigationItem",
   PopupContainer: "WizPopupContainer",
@@ -91,5 +92,6 @@ export const ComponentName = {
   ScheduleGrid: "WizScheduleGrid",
   Schedule: "WizSchedule",
   PopupButtonGroup: "WizPopupButtonGroup",
+  Pagination: "WizPagination",
   ...IconComponentName,
 } as const;
