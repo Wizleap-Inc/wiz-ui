@@ -16,15 +16,13 @@ export const PlaygroundStory: StoryObj<typeof WizPopup> = {
     const [maxY, setMaxY] = useState(0);
     const sbRoot = document.getElementById("storybook-root");
     if (!sbRoot) return <></>;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const updateMax = () => {
-      setMaxX(sbRoot.clientWidth);
-      setMaxY(sbRoot.clientHeight);
-    };
     useEffect(() => {
-      updateMax();
+      const updateMax = () => {
+        setMaxX(sbRoot.clientWidth);
+        setMaxY(sbRoot.clientHeight);
+      };
       window.addEventListener("resize", updateMax);
-    }, [updateMax]);
+    }, [sbRoot.clientHeight, sbRoot.clientWidth]);
     return (
       <div
         style={{

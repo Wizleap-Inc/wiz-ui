@@ -1,12 +1,11 @@
-import { useRef, useState } from "react";
+import { ComponentProps, useRef, useState } from "react";
 
 import { WizPopup } from "../../components";
 import { popupContentStyle } from "../common";
 
 import { absolutePositions } from "./positions";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const PopupWrapTemplate = (args: any) => {
+export const PopupWrapTemplate = (args: ComponentProps<typeof WizPopup>) => {
   const Popup = () => {
     const [isOpen, setIsOpen] = useState(true);
     const anchor = useRef<HTMLButtonElement | null>(null);
