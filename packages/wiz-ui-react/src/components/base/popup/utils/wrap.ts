@@ -1,4 +1,6 @@
-import { DirectionValue, createDirectionValue } from "../types/direction";
+import { DirectionValue } from "../types/direction";
+
+import { createDirectionValue } from "./direction-value";
 
 export type Args = {
   bound: DOMRect;
