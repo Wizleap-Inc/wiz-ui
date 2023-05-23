@@ -1,34 +1,30 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-input.css";
 import clsx from "clsx";
-import { memo } from "react";
+import { ChangeEventHandler, ComponentProps, memo } from "react";
 
-// import { useFormControl } from "@/hooks/use-form-control-provider";
+import { TIcon } from "@/components";
+import { PrivateBaseInput } from "@/components/base/inputs/base";
+
+type PrivateBaseInputProps = ComponentProps<typeof PrivateBaseInput>;
 
 export type Props = {
-  id?: string;
-  value?: string;
-  placeholder?: string;
-  disabled?: boolean;
-  width?: string;
-  expand?: boolean;
-  // icon ?: TIcon;
-  onChange: (value: string) => void;
-};
+  icon?: TIcon;
+  onChangeValue?: (value: string) => void;
+} & Omit<PrivateBaseInputProps, "type">;
 
 const _TextInput = ({
-  id,
-  value,
-  placeholder,
-  disabled = false,
-  width,
-  expand,
-  // icon,
+  icon: Icon,
+  onChangeValue,
+  onChange,
   ...props
 }: Props) => {
-  // const { isError } = useFormControl();
-  const isError = false;
+  const computedExpand = props.expand ? "expand" : "default";
+  const error = props.error; // ?? useContext
 
-  const computedExpand = expand ? "expand" : "default";
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    onChange?.(e);
+    onChangeValue?.(e.target.value);
+  };
 
   return (
     <div
@@ -37,17 +33,18 @@ const _TextInput = ({
         styles.textInputExpandStyle[computedExpand]
       )}
     >
-      {/* icon */}
-      {/* PrivateBaseInput */}
-      <input
-        id={id}
-        placeholder={placeholder}
-        value={value}
-        disabled={disabled}
-        width={width}
+      {Icon && (
+        <div className={styles.textInputIconStyle}>
+          <Icon />
+        </div>
+      )}
+      <PrivateBaseInput
+        {...props}
+        error={error}
         type="text"
-        // error={isError}
-        onChange={(e) => props.onChange(e.target.value)}
+        onChange={handleChange}
+        spaceType={Icon ? "left" : "none"}
+        autoComplete="autocomplete"
       />
     </div>
   );

@@ -1,33 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
+import { WizISearch } from "@/components/icons";
+
 import { WizTextInput, Props } from "../components/text";
 
 const meta: Meta<typeof WizTextInput> = {
   title: "Base/Input/Text",
   component: WizTextInput,
-  argTypes: {
-    value: {
-      control: {
-        type: "text",
-      },
-    },
-    placeholder: {
-      control: {
-        type: "text",
-      },
-    },
-    disabled: {
-      control: {
-        type: "boolean",
-      },
-    },
-    expand: {
-      control: {
-        type: "boolean",
-      },
-    },
-  },
 };
 
 export default meta;
@@ -39,7 +19,7 @@ const PlaygroundTemplate = (args: Props) => {
   return (
     <>
       <p>入力値：{value}</p>
-      <WizTextInput {...args} onChange={setValue} />
+      <WizTextInput {...args} onChangeValue={setValue} />
     </>
   );
 };
@@ -65,6 +45,14 @@ export const Expand: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
+    placeholder: "入力してください",
+  },
+  render: (args) => <Template {...args} />,
+};
+
+export const WithIcon: Story = {
+  args: {
+    icon: WizISearch,
     placeholder: "入力してください",
   },
   render: (args) => <Template {...args} />,
