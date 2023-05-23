@@ -122,5 +122,7 @@ export const DefaultStory: StoryObj<typeof WizPopup> = {
       </div>
     );
   },
-  args: {},
+  args: {
+    isDirectionFixed: true,
+  },
 };
