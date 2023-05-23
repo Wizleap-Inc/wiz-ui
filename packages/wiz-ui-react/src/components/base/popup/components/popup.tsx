@@ -56,7 +56,7 @@ const Popup = ({
   direction = "bottomLeft",
   shadow = true,
   animation = false,
-  isDirectionFixed = true,
+  isDirectionFixed = false,
   children,
 }: Props) => {
   const popupRef = useRef<HTMLDivElement | null>(null);
