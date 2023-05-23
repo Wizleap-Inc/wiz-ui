@@ -68,7 +68,7 @@ const Popup = ({
   useEffect(() => {
     const popupPlacement = () => {
       if (!anchorElement.current) return {};
-      const anchorRect = anchorElement.current?.getBoundingClientRect();
+      const anchorRect = anchorElement.current.getBoundingClientRect();
       const contentRect = popupRef.current?.getBoundingClientRect();
       const wrapOutOfBound = (dir: DirectionValues) => {
         if (isDirectionFixed || !contentRect) return dir;
