@@ -255,7 +255,5 @@ Test.play = async ({ canvasElement }) => {
   await waitFor(() => expect(currentMonthDisplay).toBeTruthy());
 
   await userEvent.click(button);
-  for (let i = 0; i < 4; i++) {
-    userEvent.tab();
-  }
+  await userEvent.tab();
 };
