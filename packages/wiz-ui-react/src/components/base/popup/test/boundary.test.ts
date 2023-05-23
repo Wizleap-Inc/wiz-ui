@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
 
-import { isOutOfBound, Args } from "../utils/wrap";
+import { popupContentIsOutOfBoundary, Args } from "../utils/wrap";
 
-describe("isOutOfBound", () => {
-  const input: Args = {
+describe("popupContentIsOutOfBoundary", () => {
+  const args: Args = {
     bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
     content: { x: 10, y: 10, width: 20, height: 20 } as DOMRect,
     anchor: { x: 50, y: 50, width: 30, height: 30 } as DOMRect,
@@ -13,18 +13,24 @@ describe("isOutOfBound", () => {
     },
   };
   it("popupが境界内に存在するとき。", () => {
-    expect(isOutOfBound.top(input)).toBe(false);
-    expect(isOutOfBound.bottom(input)).toBe(false);
-    expect(isOutOfBound.left(input)).toBe(false);
-    expect(isOutOfBound.right(input)).toBe(false);
-    expect(isOutOfBound.rightOnVertical(input)).toBe(false);
-    expect(isOutOfBound.leftOnVertical(input)).toBe(false);
-    expect(isOutOfBound.topOnHorizontal(input)).toBe(false);
-    expect(isOutOfBound.bottomOnHorizontal(input)).toBe(false);
-    expect(isOutOfBound.leftOnHorizontalCenter(input)).toBe(false);
-    expect(isOutOfBound.rightOnHorizontalCenter(input)).toBe(false);
-    expect(isOutOfBound.topOnVerticalCenter(input)).toBe(false);
-    expect(isOutOfBound.bottomOnVerticalCenter(input)).toBe(false);
+    expect(popupContentIsOutOfBoundary.top(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.bottom(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.left(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.right(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.rightOnVertical(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.leftOnVertical(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.topOnHorizontal(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.bottomOnHorizontal(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.leftOnHorizontalCenter(args)).toBe(
+      false
+    );
+    expect(popupContentIsOutOfBoundary.rightOnHorizontalCenter(args)).toBe(
+      false
+    );
+    expect(popupContentIsOutOfBoundary.topOnVerticalCenter(args)).toBe(false);
+    expect(popupContentIsOutOfBoundary.bottomOnVerticalCenter(args)).toBe(
+      false
+    );
   });
 
   const outOfBoundInput: Args = {
@@ -37,17 +43,33 @@ describe("isOutOfBound", () => {
     },
   };
   it("popupが境界外に存在するとき。", () => {
-    expect(isOutOfBound.top(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.bottom(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.left(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.right(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.rightOnVertical(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.leftOnVertical(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.topOnHorizontal(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.bottomOnHorizontal(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.leftOnHorizontalCenter(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.rightOnHorizontalCenter(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.topOnVerticalCenter(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.bottomOnVerticalCenter(outOfBoundInput)).toBe(true);
+    expect(popupContentIsOutOfBoundary.top(outOfBoundInput)).toBe(true);
+    expect(popupContentIsOutOfBoundary.bottom(outOfBoundInput)).toBe(true);
+    expect(popupContentIsOutOfBoundary.left(outOfBoundInput)).toBe(true);
+    expect(popupContentIsOutOfBoundary.right(outOfBoundInput)).toBe(true);
+    expect(popupContentIsOutOfBoundary.rightOnVertical(outOfBoundInput)).toBe(
+      true
+    );
+    expect(popupContentIsOutOfBoundary.leftOnVertical(outOfBoundInput)).toBe(
+      true
+    );
+    expect(popupContentIsOutOfBoundary.topOnHorizontal(outOfBoundInput)).toBe(
+      true
+    );
+    expect(
+      popupContentIsOutOfBoundary.bottomOnHorizontal(outOfBoundInput)
+    ).toBe(true);
+    expect(
+      popupContentIsOutOfBoundary.leftOnHorizontalCenter(outOfBoundInput)
+    ).toBe(true);
+    expect(
+      popupContentIsOutOfBoundary.rightOnHorizontalCenter(outOfBoundInput)
+    ).toBe(true);
+    expect(
+      popupContentIsOutOfBoundary.topOnVerticalCenter(outOfBoundInput)
+    ).toBe(true);
+    expect(
+      popupContentIsOutOfBoundary.bottomOnVerticalCenter(outOfBoundInput)
+    ).toBe(true);
   });
 });
