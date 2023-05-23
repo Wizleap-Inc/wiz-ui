@@ -14,7 +14,7 @@ describe("Placement Style (Portal)", () => {
     },
   };
   it("top-left", () => {
-    const style = placeOnPortalStyle.tl(input);
+    const style = placeOnPortalStyle.topLeft(input);
     expect(style.top).toBe(input.anchor.y + input.window.scrollY);
     expect(style.left).toBe(input.anchor.x + input.window.scrollX);
     expect(style.transform).toBe(
@@ -22,7 +22,7 @@ describe("Placement Style (Portal)", () => {
     );
   });
   it("top", () => {
-    const style = placeOnPortalStyle.tc(input);
+    const style = placeOnPortalStyle.topCenter(input);
     expect(style.top).toBe(input.anchor.y + input.window.scrollY);
     expect(style.left).toBe(
       input.anchor.x + input.anchor.width / 2 + input.window.scrollX
@@ -32,7 +32,7 @@ describe("Placement Style (Portal)", () => {
     );
   });
   it("top-right", () => {
-    const style = placeOnPortalStyle.tr(input);
+    const style = placeOnPortalStyle.topRight(input);
     expect(style.top).toBe(input.anchor.y + input.window.scrollY);
     expect(style.left).toBe(
       input.anchor.x + input.anchor.width + input.window.scrollX
@@ -42,7 +42,7 @@ describe("Placement Style (Portal)", () => {
     );
   });
   it("bottom-left", () => {
-    const style = placeOnPortalStyle.bl(input);
+    const style = placeOnPortalStyle.bottomLeft(input);
     expect(style.top).toBe(
       input.anchor.y + input.anchor.height + input.window.scrollY
     );
@@ -50,7 +50,7 @@ describe("Placement Style (Portal)", () => {
     expect(style.transform).toBe(`translate(0, ${input.gap})`);
   });
   it("bottom", () => {
-    const style = placeOnPortalStyle.bc(input);
+    const style = placeOnPortalStyle.bottomCenter(input);
     expect(style.top).toBe(
       input.anchor.y + input.anchor.height + input.window.scrollY
     );
@@ -60,7 +60,7 @@ describe("Placement Style (Portal)", () => {
     expect(style.transform).toBe(`translateX(-50%) translate(0, ${input.gap})`);
   });
   it("bottom-right", () => {
-    const style = placeOnPortalStyle.br(input);
+    const style = placeOnPortalStyle.bottomRight(input);
     expect(style.top).toBe(
       input.anchor.y + input.anchor.height + input.window.scrollY
     );
@@ -72,7 +72,7 @@ describe("Placement Style (Portal)", () => {
     );
   });
   it("left-top", () => {
-    const style = placeOnPortalStyle.lt(input);
+    const style = placeOnPortalStyle.leftTop(input);
     expect(style.top).toBe(input.anchor.y + input.window.scrollY);
     expect(style.left).toBe(input.anchor.x + input.window.scrollX);
     expect(style.transform).toBe(
@@ -80,7 +80,7 @@ describe("Placement Style (Portal)", () => {
     );
   });
   it("left", () => {
-    const style = placeOnPortalStyle.lc(input);
+    const style = placeOnPortalStyle.leftCenter(input);
     expect(style.top).toBe(
       input.anchor.y + input.anchor.height / 2 + input.window.scrollY
     );
@@ -91,7 +91,7 @@ describe("Placement Style (Portal)", () => {
     );
   });
   it("left-bottom", () => {
-    const style = placeOnPortalStyle.lb(input);
+    const style = placeOnPortalStyle.leftBottom(input);
     expect(style.top).toBe(
       input.anchor.y + input.anchor.height + input.window.scrollY
     );

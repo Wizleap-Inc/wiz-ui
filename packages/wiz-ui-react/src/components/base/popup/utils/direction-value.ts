@@ -5,12 +5,12 @@ export const createDirectionValue = ({
   second,
 }:
   | {
-      first: "b" | "t";
-      second: "l" | "c" | "r";
+      first: "bottom" | "top";
+      second: "Left" | "Center" | "Right";
     }
   | {
-      first: "l" | "r";
-      second: "t" | "c" | "b";
+      first: "left" | "right";
+      second: "Top" | "Center" | "Bottom";
     }) => {
   return `${first}${second}` as DirectionValue;
 };

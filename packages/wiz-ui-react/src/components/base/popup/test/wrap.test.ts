@@ -13,18 +13,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("bl");
-    expect(wrapDirection.bc(input)).toBe("bc");
-    expect(wrapDirection.br(input)).toBe("br");
-    expect(wrapDirection.tl(input)).toBe("tl");
-    expect(wrapDirection.tc(input)).toBe("tc");
-    expect(wrapDirection.tr(input)).toBe("tr");
-    expect(wrapDirection.lt(input)).toBe("lt");
-    expect(wrapDirection.lc(input)).toBe("lc");
-    expect(wrapDirection.lb(input)).toBe("lb");
-    expect(wrapDirection.rt(input)).toBe("rt");
-    expect(wrapDirection.rc(input)).toBe("rc");
-    expect(wrapDirection.rb(input)).toBe("rb");
+    expect(wrapDirection.bottomLeft(input)).toBe("bottomLeft");
+    expect(wrapDirection.bottomCenter(input)).toBe("bottomCenter");
+    expect(wrapDirection.bottomRight(input)).toBe("bottomRight");
+    expect(wrapDirection.topLeft(input)).toBe("topLeft");
+    expect(wrapDirection.topCenter(input)).toBe("topCenter");
+    expect(wrapDirection.topRight(input)).toBe("topRight");
+    expect(wrapDirection.leftTop(input)).toBe("leftTop");
+    expect(wrapDirection.leftCenter(input)).toBe("leftCenter");
+    expect(wrapDirection.leftBottom(input)).toBe("leftBottom");
+    expect(wrapDirection.rightTop(input)).toBe("rightTop");
+    expect(wrapDirection.rightCenter(input)).toBe("rightCenter");
+    expect(wrapDirection.rightBottom(input)).toBe("rightBottom");
   });
 
   it("Anchor: 左上", () => {
@@ -37,18 +37,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("bl");
-    expect(wrapDirection.bc(input)).toBe("bc");
-    expect(wrapDirection.br(input)).toBe("br");
-    expect(wrapDirection.tl(input)).toBe("bl");
-    expect(wrapDirection.tc(input)).toBe("bc");
-    expect(wrapDirection.tr(input)).toBe("br");
-    expect(wrapDirection.lt(input)).toBe("rt");
-    expect(wrapDirection.lc(input)).toBe("rc");
-    expect(wrapDirection.lb(input)).toBe("rb");
-    expect(wrapDirection.rt(input)).toBe("rt");
-    expect(wrapDirection.rc(input)).toBe("rc");
-    expect(wrapDirection.rb(input)).toBe("rb");
+    expect(wrapDirection.bottomLeft(input)).toBe("bottomLeft");
+    expect(wrapDirection.bottomCenter(input)).toBe("bottomCenter");
+    expect(wrapDirection.bottomRight(input)).toBe("bottomRight");
+    expect(wrapDirection.topLeft(input)).toBe("bottomLeft");
+    expect(wrapDirection.topCenter(input)).toBe("bottomCenter");
+    expect(wrapDirection.topRight(input)).toBe("bottomRight");
+    expect(wrapDirection.leftTop(input)).toBe("rightTop");
+    expect(wrapDirection.leftCenter(input)).toBe("rightCenter");
+    expect(wrapDirection.leftBottom(input)).toBe("rightBottom");
+    expect(wrapDirection.rightTop(input)).toBe("rightTop");
+    expect(wrapDirection.rightCenter(input)).toBe("rightCenter");
+    expect(wrapDirection.rightBottom(input)).toBe("rightBottom");
   });
 
   it("Anchor: 左", () => {
@@ -61,18 +61,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("bl");
-    expect(wrapDirection.bc(input)).toBe("bc");
-    expect(wrapDirection.br(input)).toBe("br");
-    expect(wrapDirection.tl(input)).toBe("tl");
-    expect(wrapDirection.tc(input)).toBe("tc");
-    expect(wrapDirection.tr(input)).toBe("tr");
-    expect(wrapDirection.lt(input)).toBe("rt");
-    expect(wrapDirection.lc(input)).toBe("rc");
-    expect(wrapDirection.lb(input)).toBe("rb");
-    expect(wrapDirection.rt(input)).toBe("rt");
-    expect(wrapDirection.rc(input)).toBe("rc");
-    expect(wrapDirection.rb(input)).toBe("rb");
+    expect(wrapDirection.bottomLeft(input)).toBe("bottomLeft");
+    expect(wrapDirection.bottomCenter(input)).toBe("bottomCenter");
+    expect(wrapDirection.bottomRight(input)).toBe("bottomRight");
+    expect(wrapDirection.topLeft(input)).toBe("topLeft");
+    expect(wrapDirection.topCenter(input)).toBe("topCenter");
+    expect(wrapDirection.topRight(input)).toBe("topRight");
+    expect(wrapDirection.leftTop(input)).toBe("rightTop");
+    expect(wrapDirection.leftCenter(input)).toBe("rightCenter");
+    expect(wrapDirection.leftBottom(input)).toBe("rightBottom");
+    expect(wrapDirection.rightTop(input)).toBe("rightTop");
+    expect(wrapDirection.rightCenter(input)).toBe("rightCenter");
+    expect(wrapDirection.rightBottom(input)).toBe("rightBottom");
   });
 
   it("Anchor: 左下", () => {
@@ -85,18 +85,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("tl");
-    expect(wrapDirection.bc(input)).toBe("tc");
-    expect(wrapDirection.br(input)).toBe("tr");
-    expect(wrapDirection.tl(input)).toBe("tl");
-    expect(wrapDirection.tc(input)).toBe("tc");
-    expect(wrapDirection.tr(input)).toBe("tr");
-    expect(wrapDirection.lt(input)).toBe("rb");
-    expect(wrapDirection.lc(input)).toBe("rb");
-    expect(wrapDirection.lb(input)).toBe("rb");
-    expect(wrapDirection.rt(input)).toBe("rb");
-    expect(wrapDirection.rc(input)).toBe("rb");
-    expect(wrapDirection.rb(input)).toBe("rb");
+    expect(wrapDirection.bottomLeft(input)).toBe("topLeft");
+    expect(wrapDirection.bottomCenter(input)).toBe("topCenter");
+    expect(wrapDirection.bottomRight(input)).toBe("topRight");
+    expect(wrapDirection.topLeft(input)).toBe("topLeft");
+    expect(wrapDirection.topCenter(input)).toBe("topCenter");
+    expect(wrapDirection.topRight(input)).toBe("topRight");
+    expect(wrapDirection.leftTop(input)).toBe("rightBottom");
+    expect(wrapDirection.leftCenter(input)).toBe("rightBottom");
+    expect(wrapDirection.leftBottom(input)).toBe("rightBottom");
+    expect(wrapDirection.rightTop(input)).toBe("rightBottom");
+    expect(wrapDirection.rightCenter(input)).toBe("rightBottom");
+    expect(wrapDirection.rightBottom(input)).toBe("rightBottom");
   });
 
   it("Anchor: 上", () => {
@@ -109,18 +109,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("bl");
-    expect(wrapDirection.bc(input)).toBe("bc");
-    expect(wrapDirection.br(input)).toBe("br");
-    expect(wrapDirection.tl(input)).toBe("bl");
-    expect(wrapDirection.tc(input)).toBe("bc");
-    expect(wrapDirection.tr(input)).toBe("br");
-    expect(wrapDirection.lt(input)).toBe("lt");
-    expect(wrapDirection.lc(input)).toBe("lc");
-    expect(wrapDirection.lb(input)).toBe("lb");
-    expect(wrapDirection.rt(input)).toBe("rt");
-    expect(wrapDirection.rc(input)).toBe("rc");
-    expect(wrapDirection.rb(input)).toBe("rb");
+    expect(wrapDirection.bottomLeft(input)).toBe("bottomLeft");
+    expect(wrapDirection.bottomCenter(input)).toBe("bottomCenter");
+    expect(wrapDirection.bottomRight(input)).toBe("bottomRight");
+    expect(wrapDirection.topLeft(input)).toBe("bottomLeft");
+    expect(wrapDirection.topCenter(input)).toBe("bottomCenter");
+    expect(wrapDirection.topRight(input)).toBe("bottomRight");
+    expect(wrapDirection.leftTop(input)).toBe("leftTop");
+    expect(wrapDirection.leftCenter(input)).toBe("leftCenter");
+    expect(wrapDirection.leftBottom(input)).toBe("leftBottom");
+    expect(wrapDirection.rightTop(input)).toBe("rightTop");
+    expect(wrapDirection.rightCenter(input)).toBe("rightCenter");
+    expect(wrapDirection.rightBottom(input)).toBe("rightBottom");
   });
 
   it("Anchor: 下", () => {
@@ -133,18 +133,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("tl");
-    expect(wrapDirection.bc(input)).toBe("tc");
-    expect(wrapDirection.br(input)).toBe("tr");
-    expect(wrapDirection.tl(input)).toBe("tl");
-    expect(wrapDirection.tc(input)).toBe("tc");
-    expect(wrapDirection.tr(input)).toBe("tr");
-    expect(wrapDirection.lt(input)).toBe("lb");
-    expect(wrapDirection.lc(input)).toBe("lb");
-    expect(wrapDirection.lb(input)).toBe("lb");
-    expect(wrapDirection.rt(input)).toBe("rb");
-    expect(wrapDirection.rc(input)).toBe("rb");
-    expect(wrapDirection.rb(input)).toBe("rb");
+    expect(wrapDirection.bottomLeft(input)).toBe("topLeft");
+    expect(wrapDirection.bottomCenter(input)).toBe("topCenter");
+    expect(wrapDirection.bottomRight(input)).toBe("topRight");
+    expect(wrapDirection.topLeft(input)).toBe("topLeft");
+    expect(wrapDirection.topCenter(input)).toBe("topCenter");
+    expect(wrapDirection.topRight(input)).toBe("topRight");
+    expect(wrapDirection.leftTop(input)).toBe("leftBottom");
+    expect(wrapDirection.leftCenter(input)).toBe("leftBottom");
+    expect(wrapDirection.leftBottom(input)).toBe("leftBottom");
+    expect(wrapDirection.rightTop(input)).toBe("rightBottom");
+    expect(wrapDirection.rightCenter(input)).toBe("rightBottom");
+    expect(wrapDirection.rightBottom(input)).toBe("rightBottom");
   });
 
   it("Anchor: 右上", () => {
@@ -157,18 +157,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("br");
-    expect(wrapDirection.bc(input)).toBe("br");
-    expect(wrapDirection.br(input)).toBe("br");
-    expect(wrapDirection.tl(input)).toBe("br");
-    expect(wrapDirection.tc(input)).toBe("br");
-    expect(wrapDirection.tr(input)).toBe("br");
-    expect(wrapDirection.lt(input)).toBe("lt");
-    expect(wrapDirection.lc(input)).toBe("lc");
-    expect(wrapDirection.lb(input)).toBe("lb");
-    expect(wrapDirection.rt(input)).toBe("lt");
-    expect(wrapDirection.rc(input)).toBe("lc");
-    expect(wrapDirection.rb(input)).toBe("lb");
+    expect(wrapDirection.bottomLeft(input)).toBe("bottomRight");
+    expect(wrapDirection.bottomCenter(input)).toBe("bottomRight");
+    expect(wrapDirection.bottomRight(input)).toBe("bottomRight");
+    expect(wrapDirection.topLeft(input)).toBe("bottomRight");
+    expect(wrapDirection.topCenter(input)).toBe("bottomRight");
+    expect(wrapDirection.topRight(input)).toBe("bottomRight");
+    expect(wrapDirection.leftTop(input)).toBe("leftTop");
+    expect(wrapDirection.leftCenter(input)).toBe("leftCenter");
+    expect(wrapDirection.leftBottom(input)).toBe("leftBottom");
+    expect(wrapDirection.rightTop(input)).toBe("leftTop");
+    expect(wrapDirection.rightCenter(input)).toBe("leftCenter");
+    expect(wrapDirection.rightBottom(input)).toBe("leftBottom");
   });
 
   it("Anchor: 右", () => {
@@ -181,18 +181,18 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("br");
-    expect(wrapDirection.bc(input)).toBe("br");
-    expect(wrapDirection.br(input)).toBe("br");
-    expect(wrapDirection.tl(input)).toBe("tr");
-    expect(wrapDirection.tc(input)).toBe("tr");
-    expect(wrapDirection.tr(input)).toBe("tr");
-    expect(wrapDirection.lt(input)).toBe("lt");
-    expect(wrapDirection.lc(input)).toBe("lc");
-    expect(wrapDirection.lb(input)).toBe("lb");
-    expect(wrapDirection.rt(input)).toBe("lt");
-    expect(wrapDirection.rc(input)).toBe("lc");
-    expect(wrapDirection.rb(input)).toBe("lb");
+    expect(wrapDirection.bottomLeft(input)).toBe("bottomRight");
+    expect(wrapDirection.bottomCenter(input)).toBe("bottomRight");
+    expect(wrapDirection.bottomRight(input)).toBe("bottomRight");
+    expect(wrapDirection.topLeft(input)).toBe("topRight");
+    expect(wrapDirection.topCenter(input)).toBe("topRight");
+    expect(wrapDirection.topRight(input)).toBe("topRight");
+    expect(wrapDirection.leftTop(input)).toBe("leftTop");
+    expect(wrapDirection.leftCenter(input)).toBe("leftCenter");
+    expect(wrapDirection.leftBottom(input)).toBe("leftBottom");
+    expect(wrapDirection.rightTop(input)).toBe("leftTop");
+    expect(wrapDirection.rightCenter(input)).toBe("leftCenter");
+    expect(wrapDirection.rightBottom(input)).toBe("leftBottom");
   });
 
   it("Anchor: 右下", () => {
@@ -205,17 +205,17 @@ describe("Popup Wrapping", () => {
         scrollY: 0,
       },
     };
-    expect(wrapDirection.bl(input)).toBe("tr");
-    expect(wrapDirection.bc(input)).toBe("tr");
-    expect(wrapDirection.br(input)).toBe("tr");
-    expect(wrapDirection.tl(input)).toBe("tr");
-    expect(wrapDirection.tc(input)).toBe("tr");
-    expect(wrapDirection.tr(input)).toBe("tr");
-    expect(wrapDirection.lt(input)).toBe("lb");
-    expect(wrapDirection.lc(input)).toBe("lb");
-    expect(wrapDirection.lb(input)).toBe("lb");
-    expect(wrapDirection.rt(input)).toBe("lb");
-    expect(wrapDirection.rc(input)).toBe("lb");
-    expect(wrapDirection.rb(input)).toBe("lb");
+    expect(wrapDirection.bottomLeft(input)).toBe("topRight");
+    expect(wrapDirection.bottomCenter(input)).toBe("topRight");
+    expect(wrapDirection.bottomRight(input)).toBe("topRight");
+    expect(wrapDirection.topLeft(input)).toBe("topRight");
+    expect(wrapDirection.topCenter(input)).toBe("topRight");
+    expect(wrapDirection.topRight(input)).toBe("topRight");
+    expect(wrapDirection.leftTop(input)).toBe("leftBottom");
+    expect(wrapDirection.leftCenter(input)).toBe("leftBottom");
+    expect(wrapDirection.leftBottom(input)).toBe("leftBottom");
+    expect(wrapDirection.rightTop(input)).toBe("leftBottom");
+    expect(wrapDirection.rightCenter(input)).toBe("leftBottom");
+    expect(wrapDirection.rightBottom(input)).toBe("leftBottom");
   });
 });

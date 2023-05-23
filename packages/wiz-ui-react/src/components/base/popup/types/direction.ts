@@ -1,16 +1,16 @@
 export const DIRECTION_MAP = {
-  topLeft: "tl",
-  topRight: "tr",
-  top: "tc",
-  bottomLeft: "bl",
-  bottomRight: "br",
-  bottom: "bc",
-  rightTop: "rt",
-  rightBottom: "rb",
-  right: "rc",
-  leftTop: "lt",
-  leftBottom: "lb",
-  left: "lc",
+  topLeft: "topLeft",
+  topRight: "topRight",
+  top: "topCenter",
+  bottomLeft: "bottomLeft",
+  bottomRight: "bottomRight",
+  bottom: "bottomCenter",
+  rightTop: "rightTop",
+  rightBottom: "rightBottom",
+  right: "rightCenter",
+  leftTop: "leftTop",
+  leftBottom: "leftBottom",
+  left: "leftCenter",
 } as const;
 
 export type DirectionKey = keyof typeof DIRECTION_MAP;

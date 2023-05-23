@@ -17,14 +17,14 @@ describe("isOutOfBound", () => {
     expect(isOutOfBound.bottom(input)).toBe(false);
     expect(isOutOfBound.left(input)).toBe(false);
     expect(isOutOfBound.right(input)).toBe(false);
-    expect(isOutOfBound.rightOnV(input)).toBe(false);
-    expect(isOutOfBound.leftOnV(input)).toBe(false);
-    expect(isOutOfBound.topOnH(input)).toBe(false);
-    expect(isOutOfBound.bottomOnH(input)).toBe(false);
-    expect(isOutOfBound.leftOnHCenter(input)).toBe(false);
-    expect(isOutOfBound.rightOnHCenter(input)).toBe(false);
-    expect(isOutOfBound.topOnVCenter(input)).toBe(false);
-    expect(isOutOfBound.bottomOnVCenter(input)).toBe(false);
+    expect(isOutOfBound.rightOnVertical(input)).toBe(false);
+    expect(isOutOfBound.leftOnVertical(input)).toBe(false);
+    expect(isOutOfBound.topOnHorizontal(input)).toBe(false);
+    expect(isOutOfBound.bottomOnHorizontal(input)).toBe(false);
+    expect(isOutOfBound.leftOnHorizontalCenter(input)).toBe(false);
+    expect(isOutOfBound.rightOnHorizontalCenter(input)).toBe(false);
+    expect(isOutOfBound.topOnVerticalCenter(input)).toBe(false);
+    expect(isOutOfBound.bottomOnVerticalCenter(input)).toBe(false);
   });
 
   const outOfBoundInput: Args = {
@@ -41,13 +41,13 @@ describe("isOutOfBound", () => {
     expect(isOutOfBound.bottom(outOfBoundInput)).toBe(true);
     expect(isOutOfBound.left(outOfBoundInput)).toBe(true);
     expect(isOutOfBound.right(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.rightOnV(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.leftOnV(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.topOnH(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.bottomOnH(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.leftOnHCenter(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.rightOnHCenter(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.topOnVCenter(outOfBoundInput)).toBe(true);
-    expect(isOutOfBound.bottomOnVCenter(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.rightOnVertical(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.leftOnVertical(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.topOnHorizontal(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.bottomOnHorizontal(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.leftOnHorizontalCenter(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.rightOnHorizontalCenter(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.topOnVerticalCenter(outOfBoundInput)).toBe(true);
+    expect(isOutOfBound.bottomOnVerticalCenter(outOfBoundInput)).toBe(true);
   });
 });

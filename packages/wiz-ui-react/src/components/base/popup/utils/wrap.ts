@@ -21,61 +21,65 @@ export const isOutOfBound = {
     anchor.x - content.width + window.scrollX < 0,
   right: ({ bound, anchor, content, window }: Args) =>
     bound.width < anchor.x + anchor.width + content.width + window.scrollX,
-  rightOnV: ({ bound, anchor, content, window }: Args) =>
+  rightOnVertical: ({ bound, anchor, content, window }: Args) =>
     bound.width < anchor.x + content.width + window.scrollX,
-  leftOnV: ({ anchor, content, window }: Args) =>
+  leftOnVertical: ({ anchor, content, window }: Args) =>
     anchor.x + anchor.width - content.width + window.scrollX < 0,
-  topOnH: ({ anchor, content, window }: Args) =>
+  topOnHorizontal: ({ anchor, content, window }: Args) =>
     anchor.y + anchor.height - content.height + window.scrollY < 0,
-  bottomOnH: ({ bound, anchor, content, window }: Args) =>
+  bottomOnHorizontal: ({ bound, anchor, content, window }: Args) =>
     bound.height < anchor.y + anchor.height + content.height + window.scrollY,
-  leftOnHCenter: ({ anchor, content, window }: Args) =>
+  leftOnHorizontalCenter: ({ anchor, content, window }: Args) =>
     anchor.x + (anchor.width - content.width) / 2 + window.scrollX < 0,
-  rightOnHCenter: ({ bound, anchor, content, window }: Args) =>
+  rightOnHorizontalCenter: ({ bound, anchor, content, window }: Args) =>
     bound.width <
     anchor.x + (anchor.width + content.width) / 2 + window.scrollX,
-  topOnVCenter: ({ anchor, content, window }: Args) =>
+  topOnVerticalCenter: ({ anchor, content, window }: Args) =>
     anchor.y + (anchor.height - content.height) / 2 + window.scrollY < 0,
-  bottomOnVCenter: ({ bound, anchor, content, window }: Args) =>
+  bottomOnVerticalCenter: ({ bound, anchor, content, window }: Args) =>
     bound.height <
     anchor.y + (anchor.height + content.height) / 2 + window.scrollY,
 };
 
 export const reflection = {
-  t_: (input: Args) => {
-    const v = isOutOfBound.top(input) ? "b" : "t";
-    return (h: "l" | "c" | "r") =>
+  top_: (input: Args) => {
+    const v = isOutOfBound.top(input) ? "bottom" : "top";
+    return (h: "Left" | "Center" | "Right") =>
       createDirectionValue({ first: v, second: h });
   },
-  b_: (input: Args) => {
-    const v = isOutOfBound.bottom(input) ? "t" : "b";
-    return (h: "l" | "c" | "r") =>
+  bottom_: (input: Args) => {
+    const v = isOutOfBound.bottom(input) ? "top" : "bottom";
+    return (h: "Left" | "Center" | "Right") =>
       createDirectionValue({ first: v, second: h });
   },
-  r_: (input: Args) => {
-    const h = isOutOfBound.right(input) ? "l" : "r";
-    return (v: "t" | "c" | "b") =>
+  right_: (input: Args) => {
+    const h = isOutOfBound.right(input) ? "left" : "right";
+    return (v: "Top" | "Center" | "Bottom") =>
       createDirectionValue({ first: h, second: v });
   },
 
-  l_: (input: Args) => {
-    const h = isOutOfBound.left(input) ? "r" : "l";
-    return (v: "t" | "c" | "b") =>
+  left_: (input: Args) => {
+    const h = isOutOfBound.left(input) ? "right" : "left";
+    return (v: "Top" | "Center" | "Bottom") =>
       createDirectionValue({ first: h, second: v });
   },
-  _l: (input: Args) => (isOutOfBound.rightOnV(input) ? "r" : "l"),
-  _r: (input: Args) => (isOutOfBound.leftOnV(input) ? "l" : "r"),
-  _t: (input: Args) => (isOutOfBound.bottomOnH(input) ? "b" : "t"),
-  _b: (input: Args) => (isOutOfBound.topOnH(input) ? "t" : "b"),
-  vc: (input: Args) => {
-    const r = isOutOfBound.rightOnHCenter(input) && "r";
-    const l = isOutOfBound.leftOnHCenter(input) && "l";
-    return l || r || "c";
+  _Left: (input: Args) =>
+    isOutOfBound.rightOnVertical(input) ? "Right" : "Left",
+  _Right: (input: Args) =>
+    isOutOfBound.leftOnVertical(input) ? "Left" : "Right",
+  _Top: (input: Args) =>
+    isOutOfBound.bottomOnHorizontal(input) ? "Bottom" : "Top",
+  _Bottom: (input: Args) =>
+    isOutOfBound.topOnHorizontal(input) ? "Top" : "Bottom",
+  verticalCenter: (input: Args) => {
+    const r = isOutOfBound.rightOnHorizontalCenter(input) && "Right";
+    const l = isOutOfBound.leftOnHorizontalCenter(input) && "Left";
+    return l || r || "Center";
   },
-  hc: (input: Args) => {
-    const b = isOutOfBound.bottomOnVCenter(input) && "b";
-    const t = isOutOfBound.topOnVCenter(input) && "t";
-    return t || b || "c";
+  horizontalCenter: (input: Args) => {
+    const b = isOutOfBound.bottomOnVerticalCenter(input) && "Bottom";
+    const t = isOutOfBound.topOnVerticalCenter(input) && "Top";
+    return t || b || "Center";
   },
 };
 
@@ -83,64 +87,64 @@ export const wrapDirection: Record<
   DirectionValue,
   (input: Args) => DirectionValue
 > = {
-  bl: (input: Args) => {
-    const f = reflection.b_(input);
-    const x = reflection._l(input);
+  bottomLeft: (input: Args) => {
+    const f = reflection.bottom_(input);
+    const x = reflection._Left(input);
     return f(x);
   },
-  bc: (input: Args) => {
-    const f = reflection.b_(input);
-    const x = reflection.vc(input);
+  bottomCenter: (input: Args) => {
+    const f = reflection.bottom_(input);
+    const x = reflection.verticalCenter(input);
     return f(x);
   },
-  br: (input: Args) => {
-    const f = reflection.b_(input);
-    const x = reflection._r(input);
+  bottomRight: (input: Args) => {
+    const f = reflection.bottom_(input);
+    const x = reflection._Right(input);
     return f(x);
   },
-  tl: (input: Args) => {
-    const f = reflection.t_(input);
-    const x = reflection._l(input);
+  topLeft: (input: Args) => {
+    const f = reflection.top_(input);
+    const x = reflection._Left(input);
     return f(x);
   },
-  tc: (input: Args) => {
-    const f = reflection.t_(input);
-    const x = reflection.vc(input);
+  topCenter: (input: Args) => {
+    const f = reflection.top_(input);
+    const x = reflection.verticalCenter(input);
     return f(x);
   },
-  tr: (input: Args) => {
-    const f = reflection.t_(input);
-    const x = reflection._r(input);
+  topRight: (input: Args) => {
+    const f = reflection.top_(input);
+    const x = reflection._Right(input);
     return f(x);
   },
-  rt: (input: Args) => {
-    const f = reflection.r_(input);
-    const y = reflection._t(input);
+  rightTop: (input: Args) => {
+    const f = reflection.right_(input);
+    const y = reflection._Top(input);
     return f(y);
   },
-  rc: (input: Args) => {
-    const f = reflection.r_(input);
-    const y = reflection.hc(input);
+  rightCenter: (input: Args) => {
+    const f = reflection.right_(input);
+    const y = reflection.horizontalCenter(input);
     return f(y);
   },
-  rb: (input: Args) => {
-    const f = reflection.r_(input);
-    const y = reflection._b(input);
+  rightBottom: (input: Args) => {
+    const f = reflection.right_(input);
+    const y = reflection._Bottom(input);
     return f(y);
   },
-  lt: (input: Args) => {
-    const f = reflection.l_(input);
-    const y = reflection._t(input);
+  leftTop: (input: Args) => {
+    const f = reflection.left_(input);
+    const y = reflection._Top(input);
     return f(y);
   },
-  lc: (input: Args) => {
-    const f = reflection.l_(input);
-    const y = reflection.hc(input);
+  leftCenter: (input: Args) => {
+    const f = reflection.left_(input);
+    const y = reflection.horizontalCenter(input);
     return f(y);
   },
-  lb: (input: Args) => {
-    const f = reflection.l_(input);
-    const y = reflection._b(input);
+  leftBottom: (input: Args) => {
+    const f = reflection.left_(input);
+    const y = reflection._Bottom(input);
     return f(y);
   },
 };
