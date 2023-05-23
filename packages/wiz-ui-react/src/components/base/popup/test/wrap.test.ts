@@ -38,16 +38,16 @@ describe("Popup Wrapping", () => {
       },
     };
     expect(wrapDirection.bl(input)).toBe("bl");
-    expect(wrapDirection.bc(input)).toBe("bl");
+    expect(wrapDirection.bc(input)).toBe("bc");
     expect(wrapDirection.br(input)).toBe("br");
     expect(wrapDirection.tl(input)).toBe("bl");
-    expect(wrapDirection.tc(input)).toBe("bl");
+    expect(wrapDirection.tc(input)).toBe("bc");
     expect(wrapDirection.tr(input)).toBe("br");
     expect(wrapDirection.lt(input)).toBe("rt");
-    expect(wrapDirection.lc(input)).toBe("rt");
+    expect(wrapDirection.lc(input)).toBe("rc");
     expect(wrapDirection.lb(input)).toBe("rb");
     expect(wrapDirection.rt(input)).toBe("rt");
-    expect(wrapDirection.rc(input)).toBe("rt");
+    expect(wrapDirection.rc(input)).toBe("rc");
     expect(wrapDirection.rb(input)).toBe("rb");
   });
 
@@ -62,10 +62,10 @@ describe("Popup Wrapping", () => {
       },
     };
     expect(wrapDirection.bl(input)).toBe("bl");
-    expect(wrapDirection.bc(input)).toBe("bl");
+    expect(wrapDirection.bc(input)).toBe("bc");
     expect(wrapDirection.br(input)).toBe("br");
     expect(wrapDirection.tl(input)).toBe("tl");
-    expect(wrapDirection.tc(input)).toBe("tl");
+    expect(wrapDirection.tc(input)).toBe("tc");
     expect(wrapDirection.tr(input)).toBe("tr");
     expect(wrapDirection.lt(input)).toBe("rt");
     expect(wrapDirection.lc(input)).toBe("rc");
@@ -86,10 +86,10 @@ describe("Popup Wrapping", () => {
       },
     };
     expect(wrapDirection.bl(input)).toBe("tl");
-    expect(wrapDirection.bc(input)).toBe("tl");
+    expect(wrapDirection.bc(input)).toBe("tc");
     expect(wrapDirection.br(input)).toBe("tr");
     expect(wrapDirection.tl(input)).toBe("tl");
-    expect(wrapDirection.tc(input)).toBe("tl");
+    expect(wrapDirection.tc(input)).toBe("tc");
     expect(wrapDirection.tr(input)).toBe("tr");
     expect(wrapDirection.lt(input)).toBe("rb");
     expect(wrapDirection.lc(input)).toBe("rb");
@@ -116,10 +116,10 @@ describe("Popup Wrapping", () => {
     expect(wrapDirection.tc(input)).toBe("bc");
     expect(wrapDirection.tr(input)).toBe("br");
     expect(wrapDirection.lt(input)).toBe("lt");
-    expect(wrapDirection.lc(input)).toBe("lt");
+    expect(wrapDirection.lc(input)).toBe("lc");
     expect(wrapDirection.lb(input)).toBe("lb");
     expect(wrapDirection.rt(input)).toBe("rt");
-    expect(wrapDirection.rc(input)).toBe("rt");
+    expect(wrapDirection.rc(input)).toBe("rc");
     expect(wrapDirection.rb(input)).toBe("rb");
   });
 
@@ -164,10 +164,10 @@ describe("Popup Wrapping", () => {
     expect(wrapDirection.tc(input)).toBe("br");
     expect(wrapDirection.tr(input)).toBe("br");
     expect(wrapDirection.lt(input)).toBe("lt");
-    expect(wrapDirection.lc(input)).toBe("lt");
+    expect(wrapDirection.lc(input)).toBe("lc");
     expect(wrapDirection.lb(input)).toBe("lb");
     expect(wrapDirection.rt(input)).toBe("lt");
-    expect(wrapDirection.rc(input)).toBe("lt");
+    expect(wrapDirection.rc(input)).toBe("lc");
     expect(wrapDirection.rb(input)).toBe("lb");
   });
 
