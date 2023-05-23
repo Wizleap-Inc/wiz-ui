@@ -73,21 +73,21 @@ export const placeOnPortalStyle: Record<
     return {
       top: anchor.y + window.scrollY,
       left: anchor.x + window.scrollX,
-      transform: `translateX(-100%) translate(0, -${gap})`,
+      transform: `translateX(-100%) translate(-${gap}, 0)`,
     };
   },
   lc: ({ anchor, gap, window }: PlacementOption) => {
     return {
       top: anchor.y + anchor.height / 2 + window.scrollY,
       left: anchor.x + window.scrollX,
-      transform: `translate(-100%, -50%) translate(0, -${gap})`,
+      transform: `translate(-100%, -50%) translate(-${gap}, 0)`,
     };
   },
   lb: ({ anchor, gap, window }: PlacementOption) => {
     return {
       top: anchor.y + anchor.height + window.scrollY,
       left: anchor.x + window.scrollX,
-      transform: `translate(-100%, -100%) translate(0, -${gap})`,
+      transform: `translate(-100%, -100%) translate(-${gap}, 0)`,
     };
   },
 };

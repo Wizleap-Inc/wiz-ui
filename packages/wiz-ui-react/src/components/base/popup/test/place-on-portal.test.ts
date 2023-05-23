@@ -76,7 +76,7 @@ describe("Placement Style (Portal)", () => {
     expect(style.top).toBe(input.anchor.y + input.window.scrollY);
     expect(style.left).toBe(input.anchor.x + input.window.scrollX);
     expect(style.transform).toBe(
-      `translateX(-100%) translate(0, -${input.gap})`
+      `translateX(-100%) translate(-${input.gap}, 0)`
     );
   });
   it("left", () => {
@@ -87,7 +87,7 @@ describe("Placement Style (Portal)", () => {
 
     expect(style.left).toBe(input.anchor.x + input.window.scrollX);
     expect(style.transform).toBe(
-      `translate(-100%, -50%) translate(0, -${input.gap})`
+      `translate(-100%, -50%) translate(-${input.gap}, 0)`
     );
   });
   it("left-bottom", () => {
@@ -97,7 +97,7 @@ describe("Placement Style (Portal)", () => {
     );
     expect(style.left).toBe(input.anchor.x + input.window.scrollX);
     expect(style.transform).toBe(
-      `translate(-100%, -100%) translate(0, -${input.gap})`
+      `translate(-100%, -100%) translate(-${input.gap}, 0)`
     );
   });
 });
