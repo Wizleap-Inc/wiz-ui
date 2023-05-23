@@ -28,15 +28,15 @@ export const isOutOfBound = {
   bottomOnH: ({ bound, anchor, content, window }: Input) =>
     bound.height < anchor.y + anchor.height + content.height + window.scrollY,
   leftOnHCenter: ({ anchor, content, window }: Input) =>
-    anchor.x - (anchor.width + content.width) / 2 + window.scrollX < 0,
+    anchor.x + (anchor.width - content.width) / 2 + window.scrollX < 0,
   rightOnHCenter: ({ bound, anchor, content, window }: Input) =>
     bound.width <
     anchor.x + (anchor.width + content.width) / 2 + window.scrollX,
   topOnVCenter: ({ anchor, content, window }: Input) =>
-    anchor.y - (anchor.width + content.height) / 2 + window.scrollY < 0,
+    anchor.y + (anchor.height - content.height) / 2 + window.scrollY < 0,
   bottomOnVCenter: ({ bound, anchor, content, window }: Input) =>
     bound.height <
-    anchor.y + (anchor.width + content.height) / 2 + window.scrollY,
+    anchor.y + (anchor.height + content.height) / 2 + window.scrollY,
 };
 
 export const reflection = {
