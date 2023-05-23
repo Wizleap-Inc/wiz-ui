@@ -22,8 +22,8 @@ import { useClickOutside } from "@/hooks/use-click-outside";
 import { usePopupAnimation } from "../hooks/use-popup-animation";
 import {
   DIRECTION_MAP,
-  DirectionKeys,
-  DirectionValues,
+  DirectionKey,
+  DirectionValue,
 } from "../types/direction";
 import { PlacementStyle } from "../types/placement";
 import { placeOnPortalStyle, wrapDirection } from "../utils";
@@ -32,7 +32,7 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   anchorElement: RefObject<HTMLElement>;
-  direction?: DirectionKeys;
+  direction?: DirectionKey;
   gap?: SpacingKeys;
   closeOnBlur?: boolean;
   layer?: Exclude<ZIndexKeys, "dialog">;
@@ -70,7 +70,7 @@ const Popup = ({
       if (!anchorElement.current) return {};
       const anchorRect = anchorElement.current.getBoundingClientRect();
       const contentRect = popupRef.current?.getBoundingClientRect();
-      const wrapOutOfBound = (dir: DirectionValues) => {
+      const wrapOutOfBound = (dir: DirectionValue) => {
         if (isDirectionFixed || !contentRect) return dir;
         const bodyRect = document.body.getBoundingClientRect();
         return wrapDirection[dir]({

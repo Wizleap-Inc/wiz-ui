@@ -1,8 +1,8 @@
-import { DirectionValues } from "../../types/direction";
+import { DirectionValue } from "../../types/direction";
 import { PlacementOption, PlacementStyle } from "../../types/placement";
 
 export const placeOnChildStyle: Record<
-  DirectionValues,
+  DirectionValue,
   (option: PlacementOption) => PlacementStyle
 > = {
   tl: ({ anchor, content, gap }: PlacementOption) => {

@@ -1,4 +1,4 @@
-import { DirectionValues, createDirectionValue } from "../types/direction";
+import { DirectionValue, createDirectionValue } from "../types/direction";
 
 export type Args = {
   bound: DOMRect;
@@ -78,8 +78,8 @@ export const reflection = {
 };
 
 export const wrapDirection: Record<
-  DirectionValues,
-  (input: Args) => DirectionValues
+  DirectionValue,
+  (input: Args) => DirectionValue
 > = {
   bl: (input: Args) => {
     const f = reflection.b_(input);

@@ -1,8 +1,8 @@
-import { DirectionValues } from "../../types/direction";
+import { DirectionValue } from "../../types/direction";
 import { PlacementOption, PlacementStyle } from "../../types/placement";
 
 export const placeOnPortalStyle: Record<
-  DirectionValues,
+  DirectionValue,
   (option: PlacementOption) => PlacementStyle
 > = {
   tl: ({ anchor, gap, window }: PlacementOption) => {
