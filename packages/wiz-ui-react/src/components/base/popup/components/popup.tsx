@@ -76,7 +76,6 @@ const Popup = ({
         const fontSize = window.getComputedStyle(document.body).fontSize;
         const gapPx =
           parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
-        console.log(gapPx);
         return wrapDirection[dir]({
           bound: bodyRect,
           content: contentRect,
