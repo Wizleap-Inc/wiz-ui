@@ -58,6 +58,14 @@ export const WithIcon: Story = {
   render: (args) => <Template {...args} />,
 };
 
+export const Error: Story = {
+  args: {
+    placeholder: "入力してください",
+    error: true,
+  },
+  render: (args) => <Template {...args} />,
+};
+
 export const Test: Story = {
   args: {
     placeholder: "入力してください",
@@ -66,5 +74,8 @@ export const Test: Story = {
 };
 
 export const Playground: Story = {
+  args: {
+    placeholder: "入力してください",
+  },
   render: (args) => <PlaygroundTemplate {...args} />,
 };

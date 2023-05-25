@@ -1,9 +1,10 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-input.css";
 import clsx from "clsx";
-import { ChangeEventHandler, ComponentProps, memo } from "react";
+import { ChangeEventHandler, ComponentProps, memo, useContext } from "react";
 
 import { TIcon } from "@/components";
 import { PrivateBaseInput } from "@/components/base/inputs/base";
+import { FormControlContext } from "@/components/custom/form/form-control-context";
 
 type PrivateBaseInputProps = ComponentProps<typeof PrivateBaseInput>;
 
@@ -18,8 +19,10 @@ const _TextInput = ({
   onChange,
   ...props
 }: Props) => {
+  const formControl = useContext(FormControlContext);
+
   const computedExpand = props.expand ? "expand" : "default";
-  const error = props.error; // ?? useContext
+  const error = props.error ?? formControl.error;
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     onChange?.(e);
