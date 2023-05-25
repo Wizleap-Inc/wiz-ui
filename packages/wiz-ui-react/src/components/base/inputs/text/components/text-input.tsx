@@ -22,13 +22,10 @@ export type Props = {
 
 const TextInput = forwardRef(
   (
-    { icon: Icon, onChangeValue, onChange, ...props }: Props,
+    { icon: Icon, onChangeValue, onChange, error, ...props }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const formControl = useContext(FormControlContext);
-
-    const computedExpand = props.expand ? "expand" : "default";
-    const error = props.error ?? formControl.error;
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
       onChange?.(e);
@@ -39,7 +36,7 @@ const TextInput = forwardRef(
       <div
         className={clsx(
           styles.textInputStyle,
-          styles.textInputExpandStyle[computedExpand]
+          styles.textInputExpandStyle[props.expand ? "expand" : "default"]
         )}
       >
         {Icon && (
@@ -50,7 +47,7 @@ const TextInput = forwardRef(
         <PrivateBaseInput
           {...props}
           ref={ref}
-          error={error}
+          error={error ?? formControl.error}
           type="text"
           onChange={handleChange}
           spaceType={Icon ? "left" : "none"}
