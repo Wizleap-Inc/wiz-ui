@@ -1,9 +1,9 @@
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import clsx from "clsx";
-import { memo } from "react";
+import { FC } from "react";
 
-import { WizICheck } from "@/components/icons";
+import { WizICheck, WizStack } from "@/components";
 
 import { CheckBoxOption } from "./types";
 
@@ -14,25 +14,26 @@ type Props = {
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
   strikeThrough?: boolean;
-  onChange?: (value: number, checked: boolean) => void;
+  className?: string;
+  onChange?: (value: number[]) => void;
 };
 
-const _CheckBox = ({
+const CheckBox: FC<Props> = ({
   options,
   value,
   disabled,
   direction = "horizontal",
   gap = "xl",
   strikeThrough = false,
-  ...props
-}: Props) => {
-  const labelPointer = (optionDisabled?: boolean) =>
-    disabled || optionDisabled ? "disabled" : "default";
+  className,
+  onChange,
+}) => {
   return (
-    <div className={styles.checkboxStyle}>
-      {/* <WizWtack gap={gap} direction={direction} wrap> */}
-      <div>
-        {options?.map((option) => {
+    <div className={clsx(styles.checkboxStyle, className)}>
+      <WizStack gap={gap} direction={direction} wrap>
+        {options.map((option) => {
+          const isChecked = value.includes(option.value);
+          const isDisabled = disabled || option.disabled;
           return (
             <div key={option.key}>
               <input
@@ -41,33 +42,40 @@ const _CheckBox = ({
                 id={option.key}
                 name={option.key}
                 value={option.value}
-                disabled={disabled || option.disabled}
-                onChange={(e) => {
-                  props.onChange?.(option.value, e.target.checked);
+                checked={isChecked}
+                disabled={isDisabled}
+                onChange={() => {
+                  if (!onChange) {
+                    return;
+                  }
+                  if (isChecked) {
+                    onChange(value.filter((v) => v !== option.value));
+                  } else {
+                    onChange([...value, option.value]);
+                  }
                 }}
               />
               <label
                 className={clsx(
                   styles.checkboxLabelStyle,
-                  value.includes(option.value) &&
-                    styles.checkboxLabelCheckedStyle,
-                  (disabled || option.disabled) &&
-                    styles.checkboxLabelDisabledStyle,
-                  styles.checkboxLabelCursorStyle[labelPointer(option.disabled)]
+                  isChecked && styles.checkboxLabelCheckedStyle,
+                  isDisabled && styles.checkboxLabelDisabledStyle,
+                  styles.checkboxLabelCursorStyle[
+                    isDisabled ? "disabled" : "default"
+                  ]
                 )}
                 htmlFor={option.key}
               >
-                {value.includes(option.value) && (
+                {isChecked && (
                   <div className={styles.checkboxIconStyle}>
                     <WizICheck />
                   </div>
                 )}
                 <span
                   className={clsx(
-                    value.includes(option.value) &&
-                      styles.checkboxBlockCheckedStyle,
+                    isChecked && styles.checkboxBlockCheckedStyle,
                     strikeThrough &&
-                      value.includes(option.value) &&
+                      isChecked &&
                       styles.checkboxLabelStrikeThrough
                   )}
                 >
@@ -77,9 +85,11 @@ const _CheckBox = ({
             </div>
           );
         })}
-      </div>
+      </WizStack>
     </div>
   );
 };
 
-export const WizCheckBox = memo(_CheckBox);
+CheckBox.displayName = ComponentName.CheckBox;
+
+export const WizCheckBox = CheckBox;

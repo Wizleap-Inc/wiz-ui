@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
 import { WizCheckBox } from "../components/checkbox";
@@ -7,40 +7,17 @@ import { WizCheckBox } from "../components/checkbox";
 const meta: Meta<typeof WizCheckBox> = {
   title: "Base/Input/CheckBox",
   component: WizCheckBox,
-  argTypes: {
-    options: {
-      control: { type: "object" },
-    },
-    disabled: {
-      control: { type: "boolean" },
-    },
-    direction: {
-      control: { type: "select" },
-      options: ["horizontal", "vertical"],
-    },
-    gap: {
-      control: { type: "select" },
-      options: SPACING_ACCESSORS,
-    },
-    onChange: {
-      action: "input",
-    },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof WizCheckBox>;
 
-const useCheckBox = (initValues: number[]) => {
-  const [values, setValues] = useState<number[]>(initValues);
-  const onChange = (value: number, checked: boolean) => {
-    if (checked) {
-      setValues([...values, value]);
-    } else {
-      setValues(values.filter((v) => v !== value));
-    }
+const useControlledProps = (initValue: number[]) => {
+  const [value, setValue] = useState<number[]>(initValue);
+  const handleChange = (changed: number[]) => {
+    setValue(changed);
   };
-  return { values, onChange };
+  return { value, handleChange };
 };
 
 export const Default: Story = {
@@ -60,11 +37,11 @@ export const Default: Story = {
     ],
   },
   render: (args) => {
-    const { values, onChange } = useCheckBox([]);
+    const { value, handleChange } = useControlledProps([]);
     return (
       <div>
-        <p>入力値：[{values.join(", ")}]</p>
-        <WizCheckBox {...args} value={values} onChange={onChange} />
+        <p>入力値：[{value.join(", ")}]</p>
+        <WizCheckBox {...args} value={value} onChange={handleChange} />
       </div>
     );
   },
@@ -91,11 +68,11 @@ keyはcheckboxのidとして使用されます。keyは一意である必要が�
     ],
   },
   render: (args) => {
-    const { values, onChange } = useCheckBox([]);
+    const { value, handleChange } = useControlledProps([]);
     return (
       <div>
-        <p>入力値：[{values.join(", ")}]</p>
-        <WizCheckBox {...args} value={values} onChange={onChange} />
+        <p>入力値：[{value.join(", ")}]</p>
+        <WizCheckBox {...args} value={value} onChange={handleChange} />
       </div>
     );
   },
@@ -119,11 +96,11 @@ export const AllDisabled: Story = {
     ],
   },
   render: (args) => {
-    const { values, onChange } = useCheckBox([]);
+    const { value, handleChange } = useControlledProps([]);
     return (
       <div>
-        <p>入力値：[{values.join(", ")}]</p>
-        <WizCheckBox {...args} value={values} onChange={onChange} />
+        <p>入力値：[{value.join(", ")}]</p>
+        <WizCheckBox {...args} value={value} onChange={handleChange} />
       </div>
     );
   },
@@ -147,11 +124,11 @@ export const SpotDisabled: Story = {
     ],
   },
   render: (args) => {
-    const { values, onChange } = useCheckBox([]);
+    const { value, handleChange } = useControlledProps([]);
     return (
       <div>
-        <p>入力値：[{values.join(", ")}]</p>
-        <WizCheckBox {...args} value={values} onChange={onChange} />
+        <p>入力値：[{value.join(", ")}]</p>
+        <WizCheckBox {...args} value={value} onChange={handleChange} />
       </div>
     );
   },
@@ -168,17 +145,18 @@ export const Vertical: Story = {
   args: {
     options: [
       { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2", disabled: true },
+      { label: "test2", value: 2, key: "test2" },
       { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4", disabled: true },
+      { label: "test4", value: 4, key: "test4" },
     ],
+    direction: "vertical",
   },
   render: (args) => {
-    const { values, onChange } = useCheckBox([]);
+    const { value, handleChange } = useControlledProps([]);
     return (
       <div>
-        <p>入力値：[{values.join(", ")}]</p>
-        <WizCheckBox {...args} value={values} onChange={onChange} />
+        <p>入力値：[{value.join(", ")}]</p>
+        <WizCheckBox {...args} value={value} onChange={handleChange} />
       </div>
     );
   },
@@ -202,24 +180,17 @@ export const Gap: Story = {
     gap: "sm",
   },
   render: (args) => {
-    const { values, onChange } = useCheckBox([]);
+    const { value, handleChange } = useControlledProps([]);
     return (
       <div>
-        <p>入力値：[{values.join(", ")}]</p>
-        <WizCheckBox {...args} value={values} onChange={onChange} />
+        <p>入力値：[{value.join(", ")}]</p>
+        <WizCheckBox {...args} value={value} onChange={handleChange} />
       </div>
     );
   },
 };
 
 export const StrikeThrough: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: "gapを指定すると、チェックボックスの間に余白を設定できます。",
-      },
-    },
-  },
   args: {
     options: [
       { label: "test1", value: 1, key: "test1" },
@@ -230,11 +201,11 @@ export const StrikeThrough: Story = {
     strikeThrough: true,
   },
   render: (args) => {
-    const { values, onChange } = useCheckBox([1, 2]);
+    const { value, handleChange } = useControlledProps([1, 2]);
     return (
       <div>
-        <p>入力値：[{values.join(", ")}]</p>
-        <WizCheckBox {...args} value={values} onChange={onChange} />
+        <p>入力値：[{value.join(", ")}]</p>
+        <WizCheckBox {...args} value={value} onChange={handleChange} />
       </div>
     );
   },
