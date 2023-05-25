@@ -21,6 +21,7 @@ export const PlaygroundStory: StoryObj<typeof WizPopup> = {
         setMaxX(sbRoot.clientWidth);
         setMaxY(sbRoot.clientHeight);
       };
+      updateMax();
       window.addEventListener("resize", updateMax);
     }, [sbRoot.clientHeight, sbRoot.clientWidth]);
     return (
