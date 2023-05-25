@@ -25,6 +25,11 @@ export default {
     onClick: {
       action: "update:modelValue",
     },
+    disabled: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 } as Meta<typeof WizDatepicker>;
 

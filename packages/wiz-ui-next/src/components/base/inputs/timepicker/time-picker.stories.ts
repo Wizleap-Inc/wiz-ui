@@ -9,11 +9,17 @@ export default {
   argTypes: {
     value: {
       control: {
-        type: "text",
+        type: "date",
       },
     },
     input: {
       action: "input",
+    },
+
+    disabled: {
+      control: {
+        type: "boolean",
+      },
     },
   },
 } as Meta<typeof WizTimePicker>;
