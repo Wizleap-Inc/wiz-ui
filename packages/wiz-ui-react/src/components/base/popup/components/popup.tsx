@@ -33,7 +33,7 @@ type Props = {
   onClose: () => void;
   anchorElement: RefObject<HTMLElement>;
   direction?: DirectionKey;
-  gap?: SpacingKeys;
+  gap?: Exclude<SpacingKeys, "at">;
   closeOnBlur?: boolean;
   layer?: Exclude<ZIndexKeys, "dialog">;
   animation?: boolean;
