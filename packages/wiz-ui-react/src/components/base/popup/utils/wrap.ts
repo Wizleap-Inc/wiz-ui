@@ -31,7 +31,7 @@ export const popupContentIsOutOfBoundary = {
   topOnHorizontal: ({ anchor, content, window }: Args) =>
     anchor.y + anchor.height - content.height + window.scrollY < 0,
   bottomOnHorizontal: ({ bound, anchor, content, window }: Args) =>
-    bound.height < anchor.y + anchor.height + content.height + window.scrollY,
+    bound.height < anchor.y + content.height + window.scrollY,
   leftOnHorizontalCenter: ({ anchor, content, window }: Args) =>
     anchor.x + (anchor.width - content.width) / 2 + window.scrollX < 0,
   rightOnHorizontalCenter: ({ bound, anchor, content, window }: Args) =>
