@@ -1,1 +1,1 @@
-export { WizTextInput } from "./text";
+export { WizTextInput } from "./text-input";

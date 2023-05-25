@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { WizISearch } from "@/components/icons";
 
-import { WizTextInput, Props } from "../components/text";
+import { WizTextInput, Props } from "../components/text-input";
 
 const meta: Meta<typeof WizTextInput> = {
   title: "Base/Input/Text",
