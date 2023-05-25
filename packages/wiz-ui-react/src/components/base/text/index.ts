@@ -1,0 +1,1 @@
+export { WizText } from "./components";

@@ -17,6 +17,11 @@ export const accordionSummaryStyle = style({
   justifyContent: "center",
   cursor: "pointer",
   userSelect: "none",
+  selectors: {
+    "&::-webkit-details-marker": {
+      display: "none",
+    },
+  },
 });
 
 export const accordionContentStyle = style({
