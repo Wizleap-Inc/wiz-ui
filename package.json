@@ -6,11 +6,13 @@
     "prepare": "husky install",
     "release": "changeset publish",
     "build": "turbo build",
-    "build:storybook": "turbo build:storybook",
+    "build:tools": "turbo build:tools",
     "dev": "turbo dev --parallel",
     "test": "turbo test",
     "vrt": "reg-suit run",
-    "storycap": "turbo storycap"
+    "storycap": "turbo storycap",
+    "storybook:build": "turbo storybook:build",
+    "postinstall": "turbo build:tools"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,vue}": [
@@ -43,6 +45,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.7.0",
     "http-server": "^14.1.1",

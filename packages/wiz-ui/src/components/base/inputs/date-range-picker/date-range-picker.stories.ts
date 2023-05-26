@@ -213,6 +213,8 @@ export const Test: StoryFn<typeof WizDateRangePicker> = (
     const selectBoxValue = ref<string>();
     const handleSelectBoxValueChange = (value: string) => {
       selectBoxValue.value = value;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       args.onSelectBoxValueChange(value);
     };
     return {
