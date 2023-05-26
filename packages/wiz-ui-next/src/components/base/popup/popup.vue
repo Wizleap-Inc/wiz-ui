@@ -6,6 +6,7 @@
         shadow && popupShadowStyle,
         zIndexStyle[layer],
         !isActuallyOpen && popupHiddenStyle,
+        isFixed && popupFixedStyle,
       ]"
       :style="{
         inset,
@@ -30,6 +31,7 @@ import {
   popupStyle,
   popupShadowStyle,
   popupHiddenStyle,
+  popupFixedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import {
@@ -108,6 +110,16 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  /**
+   * 配置方向を固定するかどうかを設定します。
+   *  - true: 配置方向を固定します。
+   *  - false: 回り込みロジックが適用されます。
+   */
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emits>();
@@ -147,6 +159,12 @@ const togglePopup = () => {
       isActuallyOpen.value = props.isOpen;
     };
   }
+};
+
+const existsFixedParent = (el: HTMLElement | null): HTMLElement | null => {
+  if (!el) return null;
+  if (el.style.position === "fixed") return el;
+  return existsFixedParent(el.parentElement);
 };
 
 let removeScrollHandler: (() => void) | null = null;
@@ -279,6 +297,7 @@ const convertDirection = (char: DirectionChar) => {
 };
 
 const computedDirection = computed(() => {
+  if (props.isDirectionFixed) return props.direction;
   const chars = directionToTuple(props.direction);
   const { top, left, bottom, right } = spaceBetweenPopupAndWindow.value;
 
@@ -319,6 +338,10 @@ watch(
     emit("onTurn", newVal);
   }
 );
+
+const isFixed = computed(() => {
+  return existsFixedParent(containerRef.value || null) ? true : false;
+});
 
 const inset = computed(() => {
   const { scrollX, scrollY } = window;

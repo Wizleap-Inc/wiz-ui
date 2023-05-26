@@ -1,13 +1,12 @@
-import Vue, { ref } from "vue";
+import { ref, readonly } from "vue";
 
-import WizSnackbarController from "@/components/base/snackbar/snackbar-controller.vue";
 import { SnackbarOption } from "@/components/base/snackbar/types";
 
-const options = ref<SnackbarOption[]>([]);
-let snackbar: any = null;
+import { globalInject, globalKey } from "./use-global-provider";
 
-export const useSnackbar = () => {
-  const show = (message: string) => {
+export const useSnackbarManager = () => {
+  const options = ref<SnackbarOption[]>([]);
+  const snack = (message: string) => {
     const created = new Date().toISOString();
     const deleteSnackbar = () => {
       options.value = options.value.filter(
@@ -20,15 +19,16 @@ export const useSnackbar = () => {
       delete: deleteSnackbar,
     });
   };
+  return {
+    snackbarOptions: readonly(options),
+    snack,
+  };
+};
 
-  if (!snackbar) {
-    snackbar = new Vue({
-      ...WizSnackbarController,
-      propsData: { options },
-    });
-    snackbar.$mount();
-    document.body.appendChild(snackbar.$el);
-  }
-
-  return show;
+export const useSnackbar = () => {
+  const { snack, snackbarOptions } = globalInject(globalKey);
+  return {
+    snack,
+    snackbarOptions,
+  };
 };
