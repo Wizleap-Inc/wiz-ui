@@ -4,42 +4,29 @@ import {
   SPACING_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 
+import {
+  WizAvatar,
+  WizINotification,
+  WizIcon,
+  WizIconButton,
+} from "@/components";
+
 import { WizBadge } from "../components/badge";
 
 const meta: Meta<typeof WizBadge> = {
   title: "Base/Badge",
   component: WizBadge,
-  argTypes: {
-    hidden: {
-      control: { type: "boolean" },
-    },
-    label: {
-      control: { type: "text" },
-    },
-    color: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    bgColor: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    offset: {
-      control: { type: "select" },
-      options: SPACING_ACCESSORS,
-    },
-    size: {
-      control: { type: "select" },
-      options: ["sm", "md", "lg"],
-    },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof WizBadge>;
 
 export const Default: Story = {
-  render: (args) => <WizBadge {...args}>Icon</WizBadge>,
+  render: (args) => (
+    <WizBadge {...args}>
+      <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+    </WizBadge>
+  ),
 };
 
 export const Hidden: Story = {
@@ -54,7 +41,11 @@ export const Hidden: Story = {
   args: {
     hidden: true,
   },
-  render: (args) => <WizBadge {...args}>Icon</WizBadge>,
+  render: (args) => (
+    <WizBadge {...args}>
+      <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+    </WizBadge>
+  ),
 };
 
 export const WithLabel: Story = {
@@ -68,7 +59,11 @@ export const WithLabel: Story = {
   args: {
     label: "99+",
   },
-  render: (args) => <WizBadge {...args}>Icon</WizBadge>,
+  render: (args) => (
+    <WizBadge {...args}>
+      <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
+    </WizBadge>
+  ),
 };
 
 export const WithOffset: Story = {
@@ -96,7 +91,7 @@ export const WithOffset: Story = {
         <>
           <div>Offset = {offset}</div>
           <WizBadge {...args} offset={offset}>
-            Icon
+            <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
           </WizBadge>
         </>
       ))}
@@ -129,7 +124,7 @@ export const WithColor: Story = {
         <>
           <div>Color = {color}</div>
           <WizBadge {...args} color={color}>
-            Icon
+            <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
           </WizBadge>
         </>
       ))}
@@ -162,7 +157,7 @@ export const WithBgColor: Story = {
         <>
           <div>Background Color = {color}</div>
           <WizBadge {...args} bgColor={color}>
-            Icon
+            <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
           </WizBadge>
         </>
       ))}
@@ -195,7 +190,7 @@ export const WithSize: Story = {
         <>
           <div>Size = {size}</div>
           <WizBadge {...args} size={size}>
-            Icon
+            <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
           </WizBadge>
         </>
       ))}
@@ -203,7 +198,7 @@ export const WithSize: Story = {
   ),
 };
 
-export const WithSlot: Story = {
+export const WithChild: Story = {
   parameters: {
     docs: {
       description: {
@@ -223,15 +218,13 @@ export const WithSlot: Story = {
         alignItems: "center",
       }}
     >
-      <div>Slot = WizIcon</div>
+      <div>Child = WizIcon</div>
       <WizBadge {...args}>
-        {/* <WizIcon :icon="WizINotification" size="xl6" /> */}
-        Icon1
+        <WizIcon icon={WizINotification} size="xl6" />
       </WizBadge>
-      <div>Slot = WizAvatar</div>
+      <div>Child = WizAvatar</div>
       <WizBadge {...args} size="sm">
-        Icon2
-        {/* <WizAvatar src="./public/images/avatar-1.png" alt="avatar" /> */}
+        <WizAvatar src="./public/images/avatar-1.png" alt="avatar" />
       </WizBadge>
     </div>
   ),
@@ -250,8 +243,7 @@ export const WithIconButton: Story = {
   },
   render: (args) => (
     <WizBadge {...args}>
-      {/*  <WizIconButton size="xl4" :icon="WizINotification" variant="transparent" @click="args.buttonClick" /> */}
-      Icon1
+      <WizIconButton size="xl" icon={WizINotification} variant="transparent" />
     </WizBadge>
   ),
 };

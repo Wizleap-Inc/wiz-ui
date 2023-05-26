@@ -1,4 +1,8 @@
-import { ColorKeys, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  SpacingKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/badge.css";
 import {
   backgroundStyle,
@@ -7,7 +11,7 @@ import {
   rightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { FC, ReactNode } from "react";
 
 type Props = {
   label?: string;
@@ -17,20 +21,22 @@ type Props = {
   offset?: SpacingKeys;
   size?: "sm" | "md" | "lg";
   children?: ReactNode;
+  className?: string;
 };
 
-const _Badge = ({
+const Badge: FC<Props> = ({
   label,
   hidden = false,
   color = "white.800",
   bgColor = "red.800",
   offset = "no",
   size = "md",
-  ...props
+  children,
+  className,
 }: Props) => {
   return (
-    <div className={styles.badgeContainerStyle}>
-      {props.children}
+    <div className={clsx(styles.badgeContainerStyle, className)}>
+      {children}
       {!hidden && (
         <div
           className={clsx(
@@ -49,4 +55,6 @@ const _Badge = ({
   );
 };
 
-export const WizBadge = memo(_Badge);
+Badge.displayName = ComponentName.Badge;
+
+export const WizBadge = Badge;
