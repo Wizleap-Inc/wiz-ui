@@ -1,70 +1,76 @@
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import clsx from "clsx";
-import { memo } from "react";
+import { memo, useId } from "react";
+
+import { WizStack } from "@/components";
 
 import { RadioOption } from "./types";
 
 type Props = {
   options: RadioOption[];
   value: number | null;
+  name?: string;
   disabled?: boolean;
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
   strikeThrough?: boolean;
-  onSelect?: (value: number) => void;
+  onChange?: (value: number) => void;
 };
 
 export const _Radio = ({
   options,
   value,
+  name,
   disabled = false,
   direction = "horizontal",
   gap = "xl",
   strikeThrough = false,
-  ...props
+  onChange,
 }: Props) => {
-  const radioLabelColor = (isChecked: boolean) =>
-    isChecked ? "checked" : "default";
-
-  const radioLabelCursor = (optionDisabled?: boolean) =>
-    disabled || optionDisabled ? "disabled" : "default";
-
+  const idPrefix = useId();
   return (
     <div className={styles.radioStyle}>
-      {/* WizStack <WizStack :gap="gap" :direction="direction" wrap> */}
-      <div>
-        {options.map((option) => (
-          <div key={option.key}>
-            <input
-              className={styles.radioInputStyle}
-              type="radio"
-              name={option.key}
-              id={option.key}
-              value={option.value}
-              disabled={disabled || option.disabled}
-              onClick={() => props.onSelect?.(option.value)}
-            />
-            <label
-              className={clsx(
-                styles.radioLabelStyle,
-                value === option.value && styles.radioLabelCheckedStyle,
-                (disabled || option.disabled) && styles.radioLabelDisabledStyle,
-                styles.radioLabelColorStyle[
-                  radioLabelColor(value === option.value)
-                ],
-                styles.radioLabelCursorStyle[radioLabelCursor(option.disabled)],
-                strikeThrough &&
-                  value === option.value &&
-                  styles.radioLabelStrikeThrough
-              )}
-              htmlFor={option.key}
-            >
-              {option.label}
-            </label>
-          </div>
-        ))}
-      </div>
+      <WizStack gap={gap} direction={direction} wrap>
+        {options.map((option) => {
+          const id = `${idPrefix}-${option.value}`;
+          const isChecked = value === option.value;
+          const isDisabled = disabled || option.disabled;
+          return (
+            <div key={id}>
+              <input
+                className={styles.radioInputStyle}
+                type="radio"
+                id={id}
+                name={name}
+                value={option.value}
+                checked={isChecked}
+                disabled={isDisabled}
+                onClick={() => {
+                  onChange?.(option.value);
+                }}
+              />
+              <label
+                className={clsx(
+                  styles.radioLabelStyle,
+                  isChecked && styles.radioLabelCheckedStyle,
+                  isDisabled && styles.radioLabelDisabledStyle,
+                  styles.radioLabelColorStyle[
+                    isChecked ? "checked" : "default"
+                  ],
+                  styles.radioLabelCursorStyle[
+                    isDisabled ? "disabled" : "default"
+                  ],
+                  strikeThrough && isChecked && styles.radioLabelStrikeThrough
+                )}
+                htmlFor={id}
+              >
+                {option.label}
+              </label>
+            </div>
+          );
+        })}
+      </WizStack>
     </div>
   );
 };

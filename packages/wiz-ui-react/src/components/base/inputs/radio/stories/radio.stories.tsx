@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
 import { WizRadio } from "../components/radio";
@@ -7,25 +7,6 @@ import { WizRadio } from "../components/radio";
 const meta: Meta<typeof WizRadio> = {
   title: "Base/Input/Radio",
   component: WizRadio,
-  argTypes: {
-    options: {
-      control: { type: "object" },
-    },
-    disabled: {
-      control: { type: "boolean" },
-    },
-    direction: {
-      control: { type: "select" },
-      options: ["horizontal", "vertical"],
-    },
-    gap: {
-      control: { type: "select" },
-      options: SPACING_ACCESSORS,
-    },
-    onSelect: {
-      action: "input",
-    },
-  },
 };
 
 export default meta;
@@ -33,28 +14,27 @@ type Story = StoryObj<typeof WizRadio>;
 
 const useRadio = (initValues: number | null) => {
   const [value, setValue] = useState<number | null>(initValues);
-  const onSelect = (value: number) => {
-    console.log(value);
-    setValue(value);
+  const onChange = (changedValue: number) => {
+    setValue(changedValue);
   };
-  return { value, onSelect };
+  return { value, onChange };
 };
 
 export const Default: Story = {
   args: {
     options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2" },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4" },
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "test3", value: 3 },
+      { label: "test4", value: 4 },
     ],
   },
   render: (args) => {
-    const { value, onSelect } = useRadio(1);
+    const { value, onChange } = useRadio(1);
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizRadio {...args} value={value} onSelect={onSelect} />
+        <WizRadio {...args} value={value} onChange={onChange} />
       </div>
     );
   },
@@ -74,18 +54,18 @@ keyはcheckboxのidとして使用されます。keyは一意である必要が�
   },
   args: {
     options: [
-      { label: "test1", value: 1, key: "options1" },
-      { label: "test2", value: 2, key: "options2" },
-      { label: "test3", value: 3, key: "options3" },
-      { label: "test4", value: 4, key: "options4" },
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "test3", value: 3 },
+      { label: "test4", value: 4 },
     ],
   },
   render: (args) => {
-    const { value, onSelect } = useRadio(null);
+    const { value, onChange } = useRadio(1);
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizRadio {...args} value={value} onSelect={onSelect} />
+        <WizRadio {...args} value={value} onChange={onChange} />
       </div>
     );
   },
@@ -102,18 +82,18 @@ export const AllDisabled: Story = {
   args: {
     disabled: true,
     options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2" },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4" },
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "test3", value: 3 },
+      { label: "test4", value: 4 },
     ],
   },
   render: (args) => {
-    const { value, onSelect } = useRadio(null);
+    const { value, onChange } = useRadio(1);
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizRadio {...args} value={value} onSelect={onSelect} />
+        <WizRadio {...args} value={value} onChange={onChange} />
       </div>
     );
   },
@@ -130,18 +110,18 @@ export const SpotDisabled: Story = {
   },
   args: {
     options: [
-      { label: "test1", value: 1, key: "spotDisabled1" },
-      { label: "test2", value: 2, key: "spotDisabled2", disabled: true },
-      { label: "test3", value: 3, key: "spotDisabled3" },
-      { label: "test4", value: 4, key: "spotDisabled4", disabled: true },
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2, disabled: true },
+      { label: "test3", value: 3 },
+      { label: "test4", value: 4, disabled: true },
     ],
   },
   render: (args) => {
-    const { value, onSelect } = useRadio(null);
+    const { value, onChange } = useRadio(1);
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizRadio {...args} value={value} onSelect={onSelect} />
+        <WizRadio {...args} value={value} onChange={onChange} />
       </div>
     );
   },
@@ -157,19 +137,19 @@ export const Vertical: Story = {
   },
   args: {
     options: [
-      { label: "test1", value: 1, key: "vertical1" },
-      { label: "test2", value: 2, key: "vertical2" },
-      { label: "test3", value: 3, key: "vertical3" },
-      { label: "test4", value: 4, key: "vertical4" },
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "test3", value: 3 },
+      { label: "test4", value: 4 },
     ],
     direction: "vertical",
   },
   render: (args) => {
-    const { value, onSelect } = useRadio(null);
+    const { value, onChange } = useRadio(1);
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizRadio {...args} value={value} onSelect={onSelect} />
+        <WizRadio {...args} value={value} onChange={onChange} />
       </div>
     );
   },
@@ -185,19 +165,19 @@ export const Gap: Story = {
   },
   args: {
     options: [
-      { label: "test1", value: 1, key: "gap1" },
-      { label: "test2", value: 2, key: "gap2" },
-      { label: "test3", value: 3, key: "gap3" },
-      { label: "test4", value: 4, key: "gap4" },
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "test3", value: 3 },
+      { label: "test4", value: 4 },
     ],
     gap: "sm",
   },
   render: (args) => {
-    const { value, onSelect } = useRadio(0);
+    const { value, onChange } = useRadio(1);
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizRadio {...args} value={value} onSelect={onSelect} />
+        <WizRadio {...args} value={value} onChange={onChange} />
       </div>
     );
   },
@@ -211,19 +191,23 @@ export const StrikeThrough: Story = {
   },
   args: {
     options: [
-      { label: "test1", value: 1, key: "strike1" },
-      { label: "test2", value: 2, key: "strike2" },
-      { label: "test3", value: 3, key: "strike3" },
-      { label: "test4", value: 4, key: "strike4" },
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "test3", value: 3 },
+      { label: "test4", value: 4 },
     ],
     strikeThrough: true,
   },
   render: (args) => {
-    const { value, onSelect } = useRadio(null);
+    const props1 = useRadio(1);
+    const props2 = useRadio(1);
+
     return (
       <div>
-        <p>入力値：{value}</p>
-        <WizRadio {...args} value={value} onSelect={onSelect} />
+        <p>入力値：{props1.value}</p>
+        <WizRadio {...args} {...props1} />
+        <p>入力値：{props2.value}</p>
+        <WizRadio {...args} {...props2} disabled />
       </div>
     );
   },
