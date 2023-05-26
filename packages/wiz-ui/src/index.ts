@@ -2,7 +2,7 @@ import Vue from "vue";
 
 import * as components from "./components";
 export * from "./components";
-export * from "./hooks/use-snackbar";
+export * from "./hooks";
 export * from "@wizleap-inc/wiz-ui-constants";
 import "@wizleap-inc/wiz-ui-styles/global.css";
 
