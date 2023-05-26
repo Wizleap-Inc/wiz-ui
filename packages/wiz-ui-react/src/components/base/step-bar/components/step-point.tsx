@@ -1,5 +1,6 @@
 import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
+import clsx from "clsx";
 import { FC } from "react";
 
 import { WizICircleCheck, WizIcon } from "@/components";
@@ -8,6 +9,7 @@ import { StepStatus } from "./types";
 
 type Props = {
   status: StepStatus;
+  className?: string;
 };
 
 const status2color: Record<string, ColorKeys> = {
@@ -15,9 +17,9 @@ const status2color: Record<string, ColorKeys> = {
   pending: "gray.500",
 };
 
-const StepPoint: FC<Props> = ({ status }: Props) => {
+const StepPoint: FC<Props> = ({ status, className }: Props) => {
   return (
-    <span className={styles.stepPointStyle}>
+    <span className={clsx(styles.stepPointStyle, className)}>
       <span className={styles.stepPointValueStyle}>
         <WizIcon
           icon={WizICircleCheck}

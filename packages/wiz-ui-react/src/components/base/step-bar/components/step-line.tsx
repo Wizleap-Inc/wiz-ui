@@ -6,14 +6,16 @@ import { FC } from "react";
 type Props = {
   active?: boolean;
   isFirst: boolean;
+  className?: string;
 };
 
-const StepLine: FC<Props> = ({ active, isFirst }: Props) => (
+const StepLine: FC<Props> = ({ active, isFirst, className }: Props) => (
   <span
     className={clsx(
       styles.stepLineStyle,
       styles.stepLineBackgroundStyle[active ? "active" : "inactive"],
-      styles.stepLineWidthStyle[isFirst ? "first" : "default"]
+      styles.stepLineWidthStyle[isFirst ? "first" : "default"],
+      className
     )}
   />
 );
