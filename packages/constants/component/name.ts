@@ -17,6 +17,7 @@ export const ComponentName = {
   Text: "WizText",
   TextInput: "WizTextInput",
   BaseInput: "WizBaseInput",
+  Radio: "WizRadio",
   TimePicker: "WizTimePicker",
   Tab: "WizTab",
   TabPane: "WizTabPane",
