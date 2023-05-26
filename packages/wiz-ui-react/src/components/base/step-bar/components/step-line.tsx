@@ -1,14 +1,14 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
 import clsx from "clsx";
-import { memo } from "react";
+import { FC } from "react";
 
 type Props = {
   active?: boolean;
   isFirst: boolean;
 };
 
-const _StepLine = ({ active, isFirst }: Props) => (
+const StepLine: FC<Props> = ({ active, isFirst }: Props) => (
   <span
     className={clsx(
       styles.stepLineStyle,
@@ -18,6 +18,6 @@ const _StepLine = ({ active, isFirst }: Props) => (
   />
 );
 
-_StepLine.displayName = ComponentName.StepLine;
+StepLine.displayName = ComponentName.StepLine;
 
-export const WizStepLine = memo(_StepLine);
+export const WizStepLine = StepLine;

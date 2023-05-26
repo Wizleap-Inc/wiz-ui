@@ -96,9 +96,3 @@ export const stepPointValueStyle = style({
   fontSize: THEME.fontSize.xl6,
   position: "relative",
 });
-
-export const stepBarStackStyle = style({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-});

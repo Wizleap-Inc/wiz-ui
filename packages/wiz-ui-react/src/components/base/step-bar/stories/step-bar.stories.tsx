@@ -6,7 +6,6 @@ import { StepItem } from "../components/types";
 const meta: Meta<typeof WizStepBar> = {
   title: "Base/Step/Bar",
   component: WizStepBar,
-  argTypes: {},
   decorators: [
     (Story) => (
       <div style={{ padding: "100px" }}>
@@ -59,40 +58,36 @@ const status: StepItem[] = [
 
 export const Default: Story = {
   args: {
-    contents: status.map((item) => ({
-      id: item.id,
-      status: item.status,
+    contents: status.map(({ id, status }) => ({
+      id,
+      status,
     })),
   },
-  render: (args) => <WizStepBar {...args} />,
 };
 
 export const WithProgress: Story = {
   args: {
-    contents: status.map((item) => ({
-      id: item.id,
-      status: item.status,
-      progress: item.progress,
+    contents: status.map(({ id, status, progress }) => ({
+      id,
+      status,
+      progress,
     })),
   },
-  render: (args) => <WizStepBar {...args} />,
 };
 
 export const WithLabel: Story = {
   args: {
-    contents: status.map((item) => ({
-      id: item.id,
-      status: item.status,
-      progress: item.progress,
-      label: item.label,
+    contents: status.map(({ id, status, progress, label }) => ({
+      id,
+      status,
+      progress,
+      label,
     })),
   },
-  render: (args) => <WizStepBar {...args} />,
 };
 
 export const WithAll: Story = {
   args: {
     contents: status,
   },
-  render: (args) => <WizStepBar {...args} />,
 };
