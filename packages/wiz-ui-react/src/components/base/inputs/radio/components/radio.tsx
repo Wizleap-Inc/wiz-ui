@@ -1,7 +1,7 @@
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import clsx from "clsx";
-import { memo, useId } from "react";
+import { FC, useId } from "react";
 
 import { WizStack } from "@/components";
 
@@ -15,10 +15,11 @@ type Props = {
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
   strikeThrough?: boolean;
+  className?: string;
   onChange?: (value: number) => void;
 };
 
-export const _Radio = ({
+export const Radio: FC<Props> = ({
   options,
   value,
   name,
@@ -26,11 +27,12 @@ export const _Radio = ({
   direction = "horizontal",
   gap = "xl",
   strikeThrough = false,
+  className,
   onChange,
 }: Props) => {
   const idPrefix = useId();
   return (
-    <div className={styles.radioStyle}>
+    <div className={clsx(styles.radioStyle, className)}>
       <WizStack gap={gap} direction={direction} wrap>
         {options.map((option) => {
           const id = `${idPrefix}-${option.value}`;
@@ -75,4 +77,6 @@ export const _Radio = ({
   );
 };
 
-export const WizRadio = memo(_Radio);
+Radio.displayName = ComponentName.Radio;
+
+export const WizRadio = Radio;
