@@ -209,7 +209,7 @@ export const Popup: StoryFn<typeof WizNavContainer> = (args) => ({
       lockingPopup.value = isLock;
     };
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
-    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+    const toggles = isOpens.map((isOpen) => (value: boolean) => {
       isOpen.value = value;
     });
     return {
@@ -245,7 +245,7 @@ export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
       lockingPopup.value = isLock;
     };
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
-    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+    const toggles = isOpens.map((isOpen) => (value: boolean) => {
       isOpen.value = value;
     });
     return {
@@ -282,7 +282,7 @@ export const PopupStickyOpen: StoryFn<typeof WizNavContainer> = (args) => ({
     };
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
     isOpens[0].value = true;
-    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+    const toggles = isOpens.map((isOpen) => (value: boolean) => {
       isOpen.value = value;
     });
     return {
@@ -348,7 +348,7 @@ export const PopupAndTooltip: StoryFn<typeof WizNavContainer> = (args) => ({
       lockingPopup.value = isLock;
     };
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
-    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+    const toggles = isOpens.map((isOpen) => (value: boolean) => {
       isOpen.value = value;
     });
     return {
