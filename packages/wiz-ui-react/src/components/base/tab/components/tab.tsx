@@ -1,5 +1,7 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import { memo } from "react";
+import { FC } from "react";
+
+import { WizHStack } from "@/components";
 
 import { WizTabPane } from "./tab-pane";
 import { TabItem } from "./types";
@@ -9,34 +11,31 @@ type Props = {
   items: TabItem[];
   gap?: SpacingKeys;
   width?: string;
-  setActiveTabName: (value: string) => void;
+  onClickTab: (name: string) => void;
 };
 
-const _Tab = ({ activeTabName, items, gap, width, ...props }: Props) => {
+const Tab: FC<Props> = ({
+  activeTabName,
+  items,
+  gap,
+  width,
+  onClickTab,
+}: Props) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
-      {/* WizHStack */}
+    <WizHStack gap={gap} wrap={false}>
       {items.map((tab) => (
         <WizTabPane
-          key={tab.label}
-          label={tab.label}
-          notificationCount={tab.notificationCount}
-          disabled={tab.disabled}
+          key={tab.name}
+          {...tab}
           width={width}
           active={tab.name === activeTabName}
-          onClick={() => props.setActiveTabName(tab.name)}
+          onClick={onClickTab}
         />
       ))}
-      <div></div>
-    </div>
+    </WizHStack>
   );
 };
 
-_Tab.displayName = ComponentName.Tab;
+Tab.displayName = ComponentName.Tab;
 
-export const WizTab = memo(_Tab);
+export const WizTab = Tab;

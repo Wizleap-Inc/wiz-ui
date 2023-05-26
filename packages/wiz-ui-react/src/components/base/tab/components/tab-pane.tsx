@@ -1,66 +1,49 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tab.css";
 import clsx from "clsx";
-import {
-  ComponentProps,
-  ForwardedRef,
-  MouseEventHandler,
-  ReactNode,
-  forwardRef,
-  memo,
-} from "react";
+import { FC } from "react";
 
 type Props = {
   label: string;
+  name: string;
   active?: boolean;
   disabled?: boolean;
   notificationCount?: number;
   width?: string;
-  children?: ReactNode;
-} & ComponentProps<"div">;
+  onClick: (name: string) => void;
+};
 
-const _TabPane = forwardRef(
-  (
-    {
-      label,
-      active,
-      disabled,
-      notificationCount,
-      width = "100%",
-      ...props
-    }: Props,
-    ref: ForwardedRef<HTMLDivElement>
-  ) => {
-    const variant = (() => {
-      if (active) return "active";
-      if (disabled) return "disabled";
-      return "default";
-    })();
-    const onClick: MouseEventHandler<HTMLDivElement> = (e) =>
-      disabled || props.onClick?.(e);
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          styles.tabPaneStyle,
-          styles.tabPaneVariantStyle[variant]
-        )}
-        style={{ width }}
-        {...props}
-        onClick={onClick}
-      >
-        <span className={styles.tabPaneLabelStyle}>{label}</span>
-        {notificationCount && (
-          <span className={styles.tabPaneNotificationStyle}>
-            {notificationCount}
-          </span>
-        )}
-        {props.children}
-      </div>
-    );
-  }
-);
+const TabPane: FC<Props> = ({
+  label,
+  name,
+  active,
+  disabled,
+  notificationCount,
+  width = "100%",
+  onClick,
+}: Props) => {
+  const variant = (() => {
+    if (active) return "active";
+    if (disabled) return "disabled";
+    return "default";
+  })();
 
-_TabPane.displayName = ComponentName.TabPane;
+  return (
+    <div
+      className={clsx(styles.tabPaneStyle, styles.tabPaneVariantStyle[variant])}
+      style={{ width }}
+      onClick={() => disabled || onClick(name)}
+    >
+      <span className={styles.tabPaneLabelStyle}>{label}</span>
+      {notificationCount && (
+        <span className={styles.tabPaneNotificationStyle}>
+          {notificationCount}
+        </span>
+      )}
+    </div>
+  );
+};
 
-export const WizTabPane = memo(_TabPane);
+TabPane.displayName = ComponentName.TabPane;
+
+export const WizTabPane = TabPane;

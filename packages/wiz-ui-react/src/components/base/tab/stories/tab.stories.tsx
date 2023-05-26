@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
 import { WizTab } from "../components/";
@@ -7,24 +7,6 @@ import { WizTab } from "../components/";
 const meta: Meta<typeof WizTab> = {
   title: "Base/Tab/Tab",
   component: WizTab,
-  argTypes: {
-    gap: {
-      control: { type: "select" },
-      options: SPACING_ACCESSORS,
-    },
-    items: {
-      control: { type: "array" },
-    },
-    width: {
-      control: { type: "text" },
-    },
-    activeTabName: {
-      control: { type: "text" },
-    },
-    setActiveTabName: {
-      action: "click",
-    },
-  },
 };
 
 export default meta;
@@ -55,7 +37,7 @@ export const Default: Story = {
       <WizTab
         {...args}
         activeTabName={activeTabName}
-        setActiveTabName={setActiveTabName}
+        onClickTab={(name) => setActiveTabName(name)}
       />
     );
   },
@@ -72,7 +54,7 @@ export const Gap: Story = {
       <WizTab
         {...args}
         activeTabName={activeTabName}
-        setActiveTabName={setActiveTabName}
+        onClickTab={(name) => setActiveTabName(name)}
       />
     );
   },
@@ -89,7 +71,7 @@ export const Width: Story = {
       <WizTab
         {...args}
         activeTabName={activeTabName}
-        setActiveTabName={setActiveTabName}
+        onClickTab={(name) => setActiveTabName(name)}
       />
     );
   },
@@ -121,11 +103,11 @@ export const Playground: Story = {
         <WizTab
           {...args}
           activeTabName={activeTabName}
-          setActiveTabName={setActiveTabName}
+          onClickTab={(name) => setActiveTabName(name)}
         />
-        {activeTabName === "basic" && <div>Basic</div>}
-        {activeTabName === "notification" && <div>Notification</div>}
-        {activeTabName === "disabled" && <div>Disabled</div>}
+        {activeTabName === "basic" && <div>Basicの中身</div>}
+        {activeTabName === "notification" && <div>Notificationの中身</div>}
+        {activeTabName === "disabled" && <div>Disabledの中身</div>}
       </div>
     );
   },

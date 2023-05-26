@@ -5,26 +5,6 @@ import { WizTabPane } from "../components";
 const meta: Meta<typeof WizTabPane> = {
   title: "Base/Tab/Pane",
   component: WizTabPane,
-  argTypes: {
-    label: {
-      control: { type: "text" },
-    },
-    active: {
-      control: { type: "boolean" },
-    },
-    disabled: {
-      control: { type: "boolean" },
-    },
-    notificationCount: {
-      control: { type: "number" },
-    },
-    width: {
-      control: { type: "text" },
-    },
-    onClick: {
-      action: "click",
-    },
-  },
 };
 
 export default meta;
@@ -34,7 +14,6 @@ export const Default: Story = {
   args: {
     label: "ほげほげ",
   },
-  render: (args) => <WizTabPane {...args} />,
 };
 
 export const Active: Story = {
@@ -42,7 +21,6 @@ export const Active: Story = {
     label: "ほげほげ",
     active: true,
   },
-  render: (args) => <WizTabPane {...args} />,
 };
 
 export const Disabled: Story = {
@@ -50,7 +28,6 @@ export const Disabled: Story = {
     label: "ほげほげ",
     disabled: true,
   },
-  render: (args) => <WizTabPane {...args} />,
 };
 
 export const NotificationCount: Story = {
@@ -58,7 +35,6 @@ export const NotificationCount: Story = {
     label: "ほげほげ",
     notificationCount: 10,
   },
-  render: (args) => <WizTabPane {...args} />,
 };
 
 export const Width: Story = {
@@ -66,5 +42,4 @@ export const Width: Story = {
     label: "ほげほげ",
     width: "100px",
   },
-  render: (args) => <WizTabPane {...args} />,
 };
