@@ -45,6 +45,7 @@
           @mouseLeave="popupMouseLeave"
           direction="rt"
           layer="popover"
+          :isDirectionFixed="isDirectionFixed"
         >
           <div @mouseenter="popupMouseEnter">
             <WizPopupButtonGroup
@@ -133,6 +134,11 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
     required: false,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
