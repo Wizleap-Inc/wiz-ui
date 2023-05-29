@@ -29,4 +29,5 @@ export type StackProps = {
   reverse?: boolean;
   position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
   children?: ReactNode;
+  className?: string;
 };
