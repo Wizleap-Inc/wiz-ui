@@ -9,6 +9,8 @@ import { FC, ReactNode } from "react";
 
 import { WizHStack, WizIExpandMore, WizIcon } from "@/components";
 
+import { useToggleAnimation } from "./use-toggle-animation";
+
 type Props = {
   isOpen: boolean;
   openMessage?: string;
@@ -18,6 +20,7 @@ type Props = {
   fontColor?: ColorKeys;
   children?: ReactNode;
   className?: string;
+  onToggle: (isOpen: boolean) => void;
 };
 
 const Accordion: FC<Props> = ({
@@ -29,10 +32,14 @@ const Accordion: FC<Props> = ({
   fontColor = "gray.600",
   children,
   className,
+  onToggle,
 }) => {
+  const { isActuallyOpen, isAnimating, contentRef } =
+    useToggleAnimation(isOpen);
+
   return (
     <details
-      open={isOpen}
+      open={isActuallyOpen}
       style={{ width }}
       className={clsx(
         styles.accordionDetailsStyle,
@@ -44,6 +51,9 @@ const Accordion: FC<Props> = ({
         className={styles.accordionSummaryStyle}
         onClick={(e) => {
           e.preventDefault();
+          if (!isAnimating) {
+            onToggle(!isOpen);
+          }
         }}
       >
         <WizHStack
@@ -68,7 +78,9 @@ const Accordion: FC<Props> = ({
           />
         </WizHStack>
       </summary>
-      <div className={styles.accordionContentStyle}>{children}</div>
+      <div ref={contentRef} className={styles.accordionContentStyle}>
+        {children}
+      </div>
     </details>
   );
 };
