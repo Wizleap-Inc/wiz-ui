@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import WizSearchInput from "./search-input.vue";
@@ -286,6 +286,41 @@ Open.args = {
     },
     {
       label: "テスト保険会社3",
+      value: 21,
+      children: [],
+    },
+  ],
+};
+
+export const LongLabel = Template(false).bind({});
+LongLabel.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  inputWidth: "15rem",
+  popupWidth: "10rem",
+  options: [
+    {
+      label: "テスト会社1",
+      value: 1,
+      children: [
+        {
+          label: "保険商品1",
+          value: 2,
+          children: [],
+        },
+        {
+          label: "保険商品2",
+          value: 3,
+          children: [],
+        },
+        {
+          label: "保険商品3",
+          value: 4,
+          children: [],
+        },
+      ],
+    },
+    {
+      label: "寿限無寿限無五劫の擦り切れ 海砂利水魚の水行末",
       value: 21,
       children: [],
     },
