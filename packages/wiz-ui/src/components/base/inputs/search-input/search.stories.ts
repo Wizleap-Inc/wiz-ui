@@ -1,10 +1,10 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import WizSearchInput from "./search.vue";
+import WizSearchInput from "./search-input.vue";
 
 export default {
-  title: "Base/Input/Search",
+  title: "Base/Input/SearchInput",
   component: WizSearchInput,
   argTypes: {
     name: {
