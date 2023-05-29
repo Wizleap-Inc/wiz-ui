@@ -113,7 +113,7 @@ export const searchDropdownLabelStyle = style({
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[700],
-  lineHeight: THEME.fontSize.xl,
+  lineHeight: THEME.fontSize.xl3,
   userSelect: "none",
   "@media": {
     "(any-hover: hover)": {
@@ -138,7 +138,7 @@ export const searchCheckboxLabelStyle = style({
   display: "flex",
   alignItems: "center",
   color: THEME.color.gray["600"],
-  lineHeight: THEME.fontSize.xl2,
+  lineHeight: THEME.fontSize.xl3,
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
   cursor: "pointer",
@@ -161,7 +161,8 @@ export const searchCheckboxLabelCheckedStyle = style({
 
 export const searchCheckboxIconStyle = style({
   position: "absolute",
-  top: THEME.spacing.xs2,
+  top: "50%",
+  transform: "translateY(-50%)",
   left: borderWidth,
   fill: THEME.color.green["800"],
 });
