@@ -150,6 +150,7 @@ export const searchCheckboxLabelStyle = style({
     height: THEME.spacing.md,
     boxSizing: "border-box",
     display: "inline-block",
+    flexShrink: 0,
   },
 });
 
