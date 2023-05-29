@@ -4,7 +4,7 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 export const baseInputStyle = style({
   borderRadius: THEME.spacing.xs2,
   fontSize: THEME.fontSize.sm,
-  lineHeight: 1.5,
+  lineHeight: 1.86,
   color: THEME.color.gray[700],
   boxSizing: "border-box",
 
