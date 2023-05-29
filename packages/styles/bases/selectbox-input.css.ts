@@ -3,7 +3,6 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const selectBoxStyle = style({
   position: "relative",
-  height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
@@ -25,11 +24,12 @@ export const selectBoxCursorStyle = styleVariants({
 
 export const selectBoxInnerBoxStyle = style({
   height: "100%",
-  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
+  padding: `${THEME.spacing.xs} ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
   width: "100%",
   boxSizing: "border-box",
+  lineHeight: THEME.fontSize.xl3,
 });
 
 export const selectBoxInnerBoxSelectedValueStyle = style({
