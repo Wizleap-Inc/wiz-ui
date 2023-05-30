@@ -6,6 +6,17 @@ import { WizCalendar } from "../components";
 const meta: Meta<typeof WizCalendar> = {
   title: "Base/Calendar",
   component: WizCalendar,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### カレンダー
+カレンダーを表示します。 \`activeDates\` には \`date\` と \`state\` を持つオブジェクトの配列を渡します。 \`state\` には \`primary\` と \`secondary\` を指定できます。
+差分を固定するため、currentMonthはUnRequiredですが初期値を設定しています。
+      `,
+      },
+    },
+  },
 };
 
 export default meta;
@@ -34,6 +45,13 @@ export const CurrentMonth: Story = {
   ...Template,
   args: {
     currentMonth: new Date("2021-01"),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "`currentMonth` を指定すると、その月のカレンダーを表示します。",
+      },
+    },
   },
 };
 
@@ -64,6 +82,14 @@ export const ActiveDates: Story = {
       },
     ],
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`activeDates` には `date` と `state` を持つオブジェクトの配列を渡します。 `state` には `primary` と `secondary` を指定できます。",
+      },
+    },
+  },
 };
 
 export const FilledWeeks: Story = {
@@ -71,5 +97,13 @@ export const FilledWeeks: Story = {
   args: {
     currentMonth: new Date("2023-03"),
     filledWeeks: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`filledWeeks` を `true` にすると、月の最初の日と最後の日の前後に空白の日付を表示します。",
+      },
+    },
   },
 };
