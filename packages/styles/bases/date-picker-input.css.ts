@@ -3,11 +3,11 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const datePickerStyle = style({
   width: "max-content",
-  height: THEME.spacing.xl3,
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
+  padding: `${THEME.spacing.xs} ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
+  lineHeight: THEME.fontSize.xl3,
 });
 
 export const datePickerVariantStyle = styleVariants({
