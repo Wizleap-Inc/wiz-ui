@@ -10,7 +10,6 @@ export const toggleButtonStyle = style({
   border: "none",
   fontWeight: "bold",
   padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
-  lineHeight: THEME.fontSize.xl3,
   borderRadius: THEME.spacing.xs2,
   background: THEME.color.white[800],
   boxShadow: THEME.shadow.sm,
