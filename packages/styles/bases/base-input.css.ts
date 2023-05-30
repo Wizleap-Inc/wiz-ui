@@ -4,7 +4,7 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 export const baseInputStyle = style({
   borderRadius: THEME.spacing.xs2,
   fontSize: THEME.fontSize.sm,
-  lineHeight: 1.86,
+  lineHeight: THEME.fontSize.lg,
   color: THEME.color.gray[700],
   boxSizing: "border-box",
 
@@ -19,18 +19,18 @@ export const baseInputStyle = style({
 
 export const baseInputPaddingStyle = styleVariants({
   left: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.md}`,
     paddingLeft: THEME.spacing.xl3,
   },
   right: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.md}`,
     paddingRight: THEME.spacing.xl3,
   },
   both: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.md}`,
   },
   none: {
-    padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+    padding: `${THEME.spacing.sm} ${THEME.spacing.md}`,
   },
 });
 
