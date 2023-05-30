@@ -1,10 +1,12 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
+const BORDER_WIDTH = "1px";
+
 const baseBodyStyle = style({
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs}`,
+  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   display: "flex",
   alignItems: "center",

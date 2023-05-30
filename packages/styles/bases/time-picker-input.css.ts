@@ -23,9 +23,11 @@ export const timePickerCursorStyle = styleVariants({
   },
 });
 
+const BORDER_WIDTH = "1px";
+
 export const timePickerBoxStyle = style({
   height: "100%",
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs}`,
+  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl3,
 });

@@ -22,9 +22,11 @@ export const selectBoxCursorStyle = styleVariants({
   },
 });
 
+const BORDER_WIDTH = "1px";
+
 export const selectBoxInnerBoxStyle = style({
   height: "100%",
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs}`,
+  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
   width: "100%",
