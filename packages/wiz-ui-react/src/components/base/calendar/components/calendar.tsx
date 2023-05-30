@@ -1,4 +1,4 @@
-import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import clsx from "clsx";
 import { FC, useMemo } from "react";
@@ -97,5 +97,7 @@ const Calendar: FC<Props> = ({
     </table>
   );
 };
+
+Calendar.displayName = ComponentName.Calendar;
 
 export const WizCalendar = Calendar;

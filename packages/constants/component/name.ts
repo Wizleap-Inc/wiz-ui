@@ -10,6 +10,7 @@ export const ComponentName = {
   TextButton: "WizTextButton",
   TinyButton: "WizTinyButton",
   ToggleButton: "WizToggleButton",
+  Calendar: "WizCalendar",
   Card: "WizCard",
   Divider: "WizDivider",
   Dropdown: "WizDropdown",
