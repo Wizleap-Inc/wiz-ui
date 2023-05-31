@@ -7,11 +7,13 @@ export const searchStyle = style({
   position: "relative",
 });
 
+const BORDER_WIDTH = "1px";
+
 export const searchInputStyle = style({
   borderRadius: THEME.spacing.xs2,
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xl2} ${THEME.spacing.xs} ${THEME.spacing.xl3}`,
+  padding: `calc(${THEME.spacing.sm} - ${BORDER_WIDTH}) ${THEME.spacing.xl2} calc(${THEME.spacing.sm} - ${BORDER_WIDTH}) ${THEME.spacing.xl3}`,
   fontSize: THEME.fontSize.sm,
-  lineHeight: THEME.spacing.xl,
+  lineHeight: THEME.spacing.lg,
   color: THEME.color.gray[700],
   boxSizing: "border-box",
   ":focus": {
@@ -30,7 +32,8 @@ export const searchInputDisabledStyle = style({
 
 export const searchInputIconStyle = style({
   position: "absolute",
-  top: THEME.spacing.xs,
+  top: "50%",
+  transform: "translateY(-50%)",
   left: THEME.spacing.xs,
   display: "flex",
   alignItems: "center",
