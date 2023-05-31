@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.4.1
+
+### Patch Changes
+
+- [#628](https://github.com/Wizleap-Inc/wiz-ui/pull/628) [`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizMenuItem の React 対応
+
+- [#632](https://github.com/Wizleap-Inc/wiz-ui/pull/632) [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPagination の React 対応
+
 ## 0.4.0
 
 ### Minor Changes
