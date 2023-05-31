@@ -22,6 +22,11 @@ export const createIcon = {
     });
     </script>
   `,
+  react: (svg: string, component: string) => `
+    export const WizI${component}= () => (
+      ${svg}
+    );
+  `,
 };
 
 /** constants/component/icon-name.tsを生成する */
@@ -33,17 +38,33 @@ export const iconComponentName = (svgs: SVG[]) => `
   }`;
 
 /** src/icons/index.tsを生成する */
-export const indexFile = (svgs: SVG[]) => `
-  ${svgs
-    .map(
-      (svg) =>
-        `import { default as WizI${svg.pascalName} } from "./${svg.kebabName}.vue";`
-    )
-    .join("")}
+export const indexFile = {
+  vue: (svgs: SVG[]) => `
+    ${svgs
+      .map(
+        (svg) =>
+          `import { default as WizI${svg.pascalName} } from "./${svg.kebabName}.vue";`
+      )
+      .join("")}
 
-  export type TIcon =
-    ${svgs.map((svg) => `| typeof WizI${svg.pascalName}`).join("")};
+    export type TIcon =
+      ${svgs.map((svg) => `| typeof WizI${svg.pascalName}`).join("")};
 
-  export {
-    ${svgs.map((svg) => `WizI${svg.pascalName}`).join(",")}
-  };`;
+    export {
+      ${svgs.map((svg) => `WizI${svg.pascalName}`).join(",")}
+    };`,
+
+  react: (svgs: SVG[]) => `
+    ${svgs
+      .map(
+        (svg) => `import { WizI${svg.pascalName} } from "./${svg.kebabName}";`
+      )
+      .join("")}
+
+    export type TIcon =
+      ${svgs.map((svg) => `| typeof WizI${svg.pascalName}`).join("")};
+
+    export {
+      ${svgs.map((svg) => `WizI${svg.pascalName}`).join(",")}
+    };`,
+};
