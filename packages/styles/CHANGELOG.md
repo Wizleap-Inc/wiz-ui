@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.7.0
+
+### Minor Changes
+
+- [#766](https://github.com/Wizleap-Inc/wiz-ui/pull/766) [`309a6cec`](https://github.com/Wizleap-Inc/wiz-ui/commit/309a6cec017bfd7c8aa3f7a19ff366e6b9107206) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - adjust height of components related to form to 44px
+
+- [#767](https://github.com/Wizleap-Inc/wiz-ui/pull/767) [`b50ef178`](https://github.com/Wizleap-Inc/wiz-ui/commit/b50ef17859fca8f19033864744a00ab584be3e80) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - adjust menu-item and navigation-item height to 44px
+
+### Patch Changes
+
+- [#542](https://github.com/Wizleap-Inc/wiz-ui/pull/542) [`95394568`](https://github.com/Wizleap-Inc/wiz-ui/commit/9539456842c1870bbbfb7bbe19a4a9329c217494) Thanks [@RyushiAok](https://github.com/RyushiAok)! - checkbox の a11y 対応 (display: none の解消、tabindex を効くようにする)
+
+- Updated dependencies [[`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe), [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af)]:
+  - @wizleap-inc/wiz-ui-constants@0.4.1
+
 ## 0.6.0
 
 ### Minor Changes

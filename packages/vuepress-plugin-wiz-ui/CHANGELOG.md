@@ -1,5 +1,12 @@
 # @wizleap-inc/vuepress-plugin-wiz-ui
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`57f31263`](https://github.com/Wizleap-Inc/wiz-ui/commit/57f31263d98bf75bdadadf5841ef4066b2d3a3c9), [`e5843274`](https://github.com/Wizleap-Inc/wiz-ui/commit/e5843274ee645f173d9775c7b5fe45fbdb049b2c), [`95394568`](https://github.com/Wizleap-Inc/wiz-ui/commit/9539456842c1870bbbfb7bbe19a4a9329c217494)]:
+  - @wizleap-inc/wiz-ui@1.8.0
+
 ## 0.0.5
 
 ### Patch Changes
