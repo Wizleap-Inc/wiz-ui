@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 import { Meta, StoryObj } from "@storybook/react";
-import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
 import { WizShowMoreLess } from "../components";
@@ -9,31 +8,7 @@ import { WizShowMoreLess } from "../components";
 const meta: Meta<typeof WizShowMoreLess> = {
   title: "Base/ShowMoreLess",
   component: WizShowMoreLess,
-  argTypes: {
-    isOpen: {
-      control: { type: "boolean" },
-    },
-    openMessage: {
-      control: { type: "text" },
-    },
-    closeMessage: {
-      control: { type: "text" },
-    },
-    width: {
-      control: { type: "text" },
-    },
-    bgColor: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    fontColor: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    onToggle: {
-      action: "onClick",
-    },
-  },
+  argTypes: {},
   parameters: {
     docs: {
       description: {
