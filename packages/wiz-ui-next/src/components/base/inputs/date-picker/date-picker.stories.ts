@@ -30,10 +30,21 @@ export default {
 
 const Template: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
-  setup: () => ({ args }),
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
   template: `
     <WizHStack>
-      <WizDatepicker v-bind="args" @update:modelValue="args.onClick"/>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
     </WizHStack>
   `,
 });
@@ -121,6 +132,27 @@ const date = ref<Date | null>(null);
   },
 };
 
+export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
+  template: `
+    <div>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
+    </div>
+  `,
+});
+
 const _formatDateSlash = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -144,11 +176,19 @@ export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
     const date = ref<Date | null>(null);
-    return { args, date };
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
   },
   template: `
     <div>
-      <WizDatepicker v-model="date" @update:modelValue="args.onClick"/>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
     </div>
   `,
 });
@@ -213,4 +253,7 @@ Test.play = async ({ canvasElement }) => {
     _formatDateJpMonth(clickDate)
   );
   await waitFor(() => expect(currentMonthDisplay).toBeTruthy());
+
+  await userEvent.click(button);
+  await userEvent.tab();
 };

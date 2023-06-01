@@ -8,7 +8,7 @@
       ]"
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
       :disabled="disabled"
-      @click="togglePopupOpen"
+      @click="setIsOpen(!isOpen)"
     >
       <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
       <span
@@ -25,7 +25,7 @@
         >{{ modelValue.end ? formatDateToMD(modelValue.end) : "終了日" }}</span
       >
     </button>
-    <WizPopup :isOpen="isPopupOpen" @onClose="isPopupOpen = false">
+    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
@@ -138,13 +138,14 @@ import {
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-import { DateStatus } from "../../calendar/types";
+import { DateState, DateStatus } from "../../calendar/types";
 
 import { DateRangePickerSelectBoxOption, DateRange } from "./types";
 
 interface Emit {
   (e: "update:modelValue", value: DateRange): void;
   (e: "update:selectBoxValue", value: string): void;
+  (e: "update:isOpen", value: boolean): void;
 }
 
 const props = defineProps({
@@ -170,16 +171,31 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  /**
+   * カレンダー（Popup）の開閉状態を指定します。
+   */
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const emit = defineEmits<Emit>();
 
-type SelectState = "selecting" | "selected" | "none";
-
-const isPopupOpen = ref(false);
 const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();
-const rightCalendarDate = ref(new Date());
+const rightCalendarDate = ref(
+  (() => {
+    const [start, end] = [props.modelValue.start, props.modelValue.end];
+    if (end) {
+      return new Date(end);
+    }
+    if (start) {
+      return new Date(start.getFullYear(), start.getMonth() + 1, 1);
+    }
+    return new Date();
+  })()
+);
 const leftCalendarDate = computed(() => {
   const date = new Date(
     rightCalendarDate.value.getFullYear(),
@@ -188,11 +204,8 @@ const leftCalendarDate = computed(() => {
   );
   return date;
 });
-const selectedState = ref<SelectState>("none");
 
-const togglePopupOpen = () => {
-  isPopupOpen.value = !isPopupOpen.value;
-};
+const setIsOpen = (value: boolean) => emit("update:isOpen", value);
 
 const moveToNextMonth = () => {
   rightCalendarDate.value = new Date(
@@ -204,54 +217,43 @@ const moveToPrevMonth = () => {
   rightCalendarDate.value = leftCalendarDate.value;
 };
 
-const selectedDates = ref<DateStatus[]>([]);
-
-const handleDayClick = (date: Date) => {
-  if (selectedState.value === "selecting") {
-    selectedState.value = "selected";
-    let start = props.modelValue.start;
-    let end = date;
-    const dates = [];
-    if (!start) return;
-
-    if (start > end) {
-      const temp = start;
-      start = end;
-      end = temp;
-    }
-
+const selectedDates = computed<DateStatus[]>(() => {
+  const getDateStatus = (date: Date, state: DateState): DateStatus => ({
+    date,
+    state,
+  });
+  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  if (start && end) {
+    const secondaries: DateStatus[] = [];
     const tomorrowOfStart = new Date(start);
     tomorrowOfStart.setDate(tomorrowOfStart.getDate() + 1);
-
     for (let d = tomorrowOfStart; d < end; d.setDate(d.getDate() + 1)) {
-      dates.push(new Date(d));
+      secondaries.push(getDateStatus(new Date(d), "secondary"));
     }
-    dates.forEach((d) => {
-      selectedDates.value.push({
-        date: d,
-        state: "secondary",
-      });
-    });
-    selectedDates.value.push({
-      date,
-      state: "primary",
-    });
-    emit("update:modelValue", {
-      start,
-      end,
-    });
+    return [
+      getDateStatus(start, "primary"),
+      ...secondaries,
+      getDateStatus(end, "primary"),
+    ];
+  }
+  if (start) {
+    return [getDateStatus(start, "primary")];
+  }
+  return [];
+});
+
+const handleDayClick = (date: Date) => {
+  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  if (start && end) {
+    emit("update:modelValue", { start: date, end: null });
     return;
   }
-  selectedState.value = "selecting";
-  emit("update:modelValue", {
-    start: date,
-    end: null,
-  });
-  selectedDates.value = [];
-  selectedDates.value.push({
-    date,
-    state: "primary",
-  });
+  if (start) {
+    const [nextStart, nextEnd] = start > date ? [date, start] : [start, date];
+    emit("update:modelValue", { start: nextStart, end: nextEnd });
+    return;
+  }
+  emit("update:modelValue", { start: date, end: null });
 };
 
 const toggleSelectBoxOpen = () => {
@@ -281,7 +283,7 @@ const isError = computed(() => (form ? form.isError.value : false));
 
 const borderState = computed(() => {
   if (isError.value) return "error";
-  if (isPopupOpen.value) return "active";
+  if (props.isOpen && !props.disabled) return "active";
   return "default";
 });
 </script>

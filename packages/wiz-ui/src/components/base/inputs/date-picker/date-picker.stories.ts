@@ -31,9 +31,21 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { date, isOpen, setIsOpen };
+  },
   template: `
     <WizHStack>
-      <WizDatepicker v-bind="$props" @input="input"/>
+      <WizDatepicker 
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        @input="input"
+        @updateIsOpen="setIsOpen"
+      />
     </WizHStack>
   `,
 });
@@ -121,6 +133,31 @@ const date = ref<Date | null>(null);
   },
 };
 
+export const InitialValue: StoryFn<typeof WizDatepicker> = (
+  _,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { date, isOpen, setIsOpen };
+  },
+  template: `
+    <div>
+      <WizDatepicker 
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        @input="input"
+        @updateIsOpen="setIsOpen"
+      />
+    </div>
+  `,
+});
+
 const _formatDateSlash = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -145,11 +182,19 @@ export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
     const date = ref<Date | null>(null);
-    return { date };
+    const isOpen = ref(false);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { date, isOpen, setIsOpen };
   },
   template: `
     <div>
-      <WizDatepicker v-model="date" @input="input"/>
+      <WizDatepicker 
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        @input="input"
+        @updateIsOpen="setIsOpen"
+      />
     </div>
   `,
 });
