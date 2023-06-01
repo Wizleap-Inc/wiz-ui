@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": minor
 ---
 
-create show-more-less react component
+WizShowMoreLess の React 対応
