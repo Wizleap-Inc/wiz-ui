@@ -3,12 +3,23 @@ import {
   showMoreLessContentStyle,
   showMoreLessDetailsStyle,
   showMoreLessExpandIconStyle,
+  showMoreLessMessageStyle,
   showMoreLessRotateIconStyle,
   showMoreLessSummaryStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
-import { backgroundStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import {
+  backgroundStyle,
+  colorStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, useMemo, useRef, ReactNode, MouseEventHandler } from "react";
+import {
+  FC,
+  useRef,
+  ReactNode,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 
 import { WizHStack, WizIExpandMore, WizIcon, WizVStack } from "@/components";
 
@@ -34,16 +45,18 @@ const ShowMoreLess: FC<Props> = ({
   children,
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const toggleHeight = useMemo(() => {
-    const content = contentRef.current;
-    return content?.scrollHeight + "px";
-  }, [contentRef]);
+  const [height, setHeight] = useState<string>("0px");
 
   const handleClick: MouseEventHandler = (event) => {
     event.preventDefault();
     onToggle();
   };
+
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    setHeight(contentRef.current.scrollHeight + "px");
+  }, [contentRef]);
 
   return (
     <div
@@ -51,27 +64,36 @@ const ShowMoreLess: FC<Props> = ({
         showMoreLessDetailsStyle,
         bgColor && backgroundStyle[bgColor]
       )}
+      style={{ width: width }}
     >
-      <WizVStack width={width}>
+      <WizVStack>
         <div
           ref={contentRef}
           className={showMoreLessContentStyle}
-          style={{ maxHeight: isOpen ? toggleHeight : 0 }}
+          style={{ maxHeight: isOpen ? height : 0 }}
         >
           {children}
         </div>
         <div className={showMoreLessSummaryStyle} onClick={handleClick}>
-          <WizHStack align="center" justify="between" gap="xs2">
-            <div>{isOpen ? closeMessage : openMessage}</div>
-            <div
-              className={clsx(
-                showMoreLessExpandIconStyle,
-                isOpen && showMoreLessRotateIconStyle
-              )}
-            >
-              <WizIcon size="xl2" icon={WizIExpandMore} color={fontColor} />
-            </div>
-          </WizHStack>
+          <div
+            className={clsx(
+              showMoreLessMessageStyle,
+              bgColor && backgroundStyle[bgColor],
+              colorStyle[fontColor]
+            )}
+          >
+            <WizHStack align="center" justify="between" gap="xs2">
+              <div>{isOpen ? closeMessage : openMessage}</div>
+              <div
+                className={clsx(
+                  showMoreLessExpandIconStyle,
+                  isOpen && showMoreLessRotateIconStyle
+                )}
+              >
+                <WizIcon size="xl2" icon={WizIExpandMore} color={fontColor} />
+              </div>
+            </WizHStack>
+          </div>
         </div>
       </WizVStack>
     </div>
