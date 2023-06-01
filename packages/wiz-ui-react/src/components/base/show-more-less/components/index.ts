@@ -1,1 +1,1 @@
-export * from "./show-more-ress";
+export * from "./show-more-less";
