@@ -111,26 +111,23 @@ export const Multiple: Story = {
     children,
   },
   render: (args) => {
-    const [isOpen1, setIsOpen1] = useState(true);
-    const [isOpen2, setIsOpen2] = useState(false);
-    const [isOpen3, setIsOpen3] = useState(false);
+    const [isOpens, setIsOpens] = useState([true, false, false]);
     return (
       <>
-        <WizShowMoreLess
-          {...args}
-          isOpen={isOpen1}
-          onToggle={() => setIsOpen1((prev) => !prev)}
-        />
-        <WizShowMoreLess
-          {...args}
-          isOpen={isOpen2}
-          onToggle={() => setIsOpen2((prev) => !prev)}
-        />
-        <WizShowMoreLess
-          {...args}
-          isOpen={isOpen3}
-          onToggle={() => setIsOpen3((prev) => !prev)}
-        />
+        {[0, 1, 2].map((i) => (
+          <WizShowMoreLess
+            key={`show-more-less-${i}`}
+            {...args}
+            isOpen={isOpens[i]}
+            onToggle={() =>
+              setIsOpens((prev) => {
+                const next = [...prev];
+                next[i] = !next[i];
+                return next;
+              })
+            }
+          />
+        ))}
       </>
     );
   },
