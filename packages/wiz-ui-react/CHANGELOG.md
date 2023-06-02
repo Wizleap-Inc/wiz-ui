@@ -1,5 +1,27 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.7.0
+
+### Minor Changes
+
+- [#628](https://github.com/Wizleap-Inc/wiz-ui/pull/628) [`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizMenuItem の React 対応
+
+- [#634](https://github.com/Wizleap-Inc/wiz-ui/pull/634) [`54db4c51`](https://github.com/Wizleap-Inc/wiz-ui/commit/54db4c51ba3b4353fecd6791fb0662f90c271df6) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSkeleton, WizSkeletonCircle, WizSkeletonText の React 対応
+
+- [#630](https://github.com/Wizleap-Inc/wiz-ui/pull/630) [`db38ccd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/db38ccd06da23c5c41d6a7ce947846657bf617ae) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizMessageBox の React 対応
+
+- [#600](https://github.com/Wizleap-Inc/wiz-ui/pull/600) [`6d2cdbab`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d2cdbab52d69851eff9968af2b5dc9548a8e50b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizAvatar の React 対応
+
+- [#604](https://github.com/Wizleap-Inc/wiz-ui/pull/604) [`942e9498`](https://github.com/Wizleap-Inc/wiz-ui/commit/942e9498d5add949a9d8bfebcac5b57791d6a43b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPanelSwitch の React 対応
+
+- [#632](https://github.com/Wizleap-Inc/wiz-ui/pull/632) [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPagination の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe), [`309a6cec`](https://github.com/Wizleap-Inc/wiz-ui/commit/309a6cec017bfd7c8aa3f7a19ff366e6b9107206), [`95394568`](https://github.com/Wizleap-Inc/wiz-ui/commit/9539456842c1870bbbfb7bbe19a4a9329c217494), [`b50ef178`](https://github.com/Wizleap-Inc/wiz-ui/commit/b50ef17859fca8f19033864744a00ab584be3e80), [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af)]:
+  - @wizleap-inc/wiz-ui-constants@0.4.1
+  - @wizleap-inc/wiz-ui-styles@0.7.0
+
 ## 0.6.0
 
 ### Minor Changes
