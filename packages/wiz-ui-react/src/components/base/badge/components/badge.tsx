@@ -21,7 +21,6 @@ type Props = {
   offset?: SpacingKeys;
   size?: "sm" | "md" | "lg";
   children?: ReactNode;
-  className?: string;
 };
 
 const Badge: FC<Props> = ({
@@ -32,10 +31,9 @@ const Badge: FC<Props> = ({
   offset = "no",
   size = "md",
   children,
-  className,
 }: Props) => {
   return (
-    <div className={clsx(styles.badgeContainerStyle, className)}>
+    <div className={styles.badgeContainerStyle}>
       {children}
       {!hidden && (
         <div
