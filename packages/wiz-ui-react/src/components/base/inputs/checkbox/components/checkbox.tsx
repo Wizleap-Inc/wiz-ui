@@ -14,7 +14,6 @@ type Props = {
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
   strikeThrough?: boolean;
-  className?: string;
   onChange?: (value: number[]) => void;
 };
 
@@ -25,11 +24,10 @@ const CheckBox: FC<Props> = ({
   direction = "horizontal",
   gap = "xl",
   strikeThrough = false,
-  className,
   onChange,
 }) => {
   return (
-    <div className={clsx(styles.checkboxStyle, className)}>
+    <div className={styles.checkboxStyle}>
       <WizStack gap={gap} direction={direction} wrap>
         {options.map((option) => {
           const isChecked = value.includes(option.value);
