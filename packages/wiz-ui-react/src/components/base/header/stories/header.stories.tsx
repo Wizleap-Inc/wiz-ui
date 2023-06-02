@@ -1,37 +1,73 @@
 import { Meta, StoryObj } from "@storybook/react";
-import {
-  COLOR_MAP_ACCESSORS,
-  FONT_SIZE_ACCESSORS,
-} from "@wizleap-inc/wiz-ui-constants";
+import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-import { WizINotification } from "@/components/icons";
-
+import { WizTextButton } from "../../buttons";
 import { WizHeader } from "../components/header";
 
 const meta: Meta<typeof WizHeader> = {
   title: "Base/Header",
   component: WizHeader,
-  argTypes: {
-    size: {
-      control: { type: "select" },
-      options: FONT_SIZE_ACCESSORS,
-    },
-    color: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    icon: {
-      control: { type: "object" },
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof WizHeader>;
 
+const content = () => (
+  <>
+    <WizTextButton>Click</WizTextButton>
+    <WizTextButton>Click</WizTextButton>
+    <WizTextButton>Click</WizTextButton>
+  </>
+);
+
 export const Default: Story = {
+  args: {},
+  render: (args) => <WizHeader {...args} />,
+};
+
+export const LeftContent: Story = {
   args: {
-    icon: WizINotification,
+    leftContent: content(),
   },
   render: (args) => <WizHeader {...args} />,
+};
+
+export const LeftContentWithGap: Story = {
+  args: {
+    leftContent: content(),
+    gapLeft: "sm",
+  },
+  render: (args) => <WizHeader {...args} />,
+};
+
+export const RightContent: Story = {
+  args: {
+    rightContent: content(),
+  },
+  render: (args) => <WizHeader {...args} />,
+};
+
+export const RightContentWithGap: Story = {
+  args: {
+    rightContent: content(),
+    gapRight: "sm",
+  },
+  render: (args) => <WizHeader {...args} />,
+};
+
+export const Fixed: Story = {
+  args: {
+    sticky: true,
+    leftContent: content(),
+    rightContent: content(),
+  },
+  render: (args) => (
+    <div style={{ height: "200vh" }}>
+      <WizHeader {...args} />
+      <div style={{ marginTop: `${THEME.share.HEADER_HEIGHT}` }}>
+        <h1>Scroll down</h1>
+      </div>
+    </div>
+  ),
 };
