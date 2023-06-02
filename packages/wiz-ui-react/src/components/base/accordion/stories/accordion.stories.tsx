@@ -19,7 +19,7 @@ const Template: Story = {
       <WizAccordion
         {...args}
         isOpen={args.isOpen ?? isOpen}
-        onToggle={(_isOpen) => setIsOpen(_isOpen)}
+        onToggle={() => setIsOpen(!isOpen)}
       >
         <p>折りたたまれている部分です．</p>
         <p>折りたたまれている部分です．</p>
@@ -54,39 +54,22 @@ export const Multiple: Story = {
 
     return (
       <>
-        <WizAccordion
-          {...args}
-          isOpen={isOpens[0]}
-          onToggle={(isOpen) =>
-            setIsOpens(isOpens.map((v, i) => (i === 0 ? isOpen : v)))
-          }
-        >
-          <p>折りたたまれている部分です．</p>
-          <p>折りたたまれている部分です．</p>
-          <p>折りたたまれている部分です．</p>
-        </WizAccordion>
-        <WizAccordion
-          {...args}
-          isOpen={isOpens[1]}
-          onToggle={(isOpen) =>
-            setIsOpens(isOpens.map((v, i) => (i === 1 ? isOpen : v)))
-          }
-        >
-          <p>折りたたまれている部分です．</p>
-          <p>折りたたまれている部分です．</p>
-          <p>折りたたまれている部分です．</p>
-        </WizAccordion>
-        <WizAccordion
-          {...args}
-          isOpen={isOpens[2]}
-          onToggle={(isOpen) =>
-            setIsOpens(isOpens.map((v, i) => (i === 2 ? isOpen : v)))
-          }
-        >
-          <p>折りたたまれている部分です．</p>
-          <p>折りたたまれている部分です．</p>
-          <p>折りたたまれている部分です．</p>
-        </WizAccordion>
+        {Array.from({ length: isOpens.length }).map((_, i) => (
+          <WizAccordion
+            {...args}
+            key={i}
+            isOpen={isOpens[i]}
+            onToggle={() =>
+              setIsOpens(
+                isOpens.map((isOpen, j) => (i === j ? !isOpen : isOpen))
+              )
+            }
+          >
+            <p>折りたたまれている部分です．</p>
+            <p>折りたたまれている部分です．</p>
+            <p>折りたたまれている部分です．</p>
+          </WizAccordion>
+        ))}
       </>
     );
   },
