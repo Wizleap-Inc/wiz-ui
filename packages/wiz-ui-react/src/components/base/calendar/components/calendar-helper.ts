@@ -44,7 +44,7 @@ export function createCalendarData(
     isOutOfCurrentMonth: true,
   }));
 
-  const fullDataItems = [
+  const flatDataItems = [
     ...lastMonthDataItems,
     ...currentMonthDataItems,
     ...nextMonthDataItems,
@@ -52,8 +52,8 @@ export function createCalendarData(
 
   const result: CalendarData = [];
   // 週ごとの二重配列を作成
-  for (let i = 0; i < fullDataItems.length / 7; i++) {
-    result.push(fullDataItems.slice(i * 7, (i + 1) * 7));
+  for (let i = 0; i < flatDataItems.length / 7; i++) {
+    result.push(flatDataItems.slice(i * 7, (i + 1) * 7));
   }
   return result;
 }
