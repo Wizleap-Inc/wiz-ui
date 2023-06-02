@@ -15,7 +15,6 @@ type Props = {
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
   strikeThrough?: boolean;
-  className?: string;
   onChange?: (value: number) => void;
 };
 
@@ -27,12 +26,11 @@ export const Radio: FC<Props> = ({
   direction = "horizontal",
   gap = "xl",
   strikeThrough = false,
-  className,
   onChange,
 }: Props) => {
   const idPrefix = useId();
   return (
-    <div className={clsx(styles.radioStyle, className)}>
+    <div className={styles.radioStyle}>
       <WizStack gap={gap} direction={direction} wrap>
         {options.map((option) => {
           const id = `${idPrefix}-${option.value}`;
