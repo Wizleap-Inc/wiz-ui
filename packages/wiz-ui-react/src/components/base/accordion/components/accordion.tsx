@@ -19,7 +19,6 @@ type Props = {
   bgColor?: ColorKeys;
   fontColor?: ColorKeys;
   children?: ReactNode;
-  className?: string;
   onToggle: (isOpen: boolean) => void;
 };
 
@@ -31,7 +30,6 @@ const Accordion: FC<Props> = ({
   bgColor,
   fontColor = "gray.600",
   children,
-  className,
   onToggle,
 }) => {
   const { isActuallyOpen, isAnimating, contentRef } =
@@ -43,8 +41,7 @@ const Accordion: FC<Props> = ({
       style={{ width }}
       className={clsx(
         styles.accordionDetailsStyle,
-        bgColor && backgroundStyle[bgColor],
-        className
+        bgColor && backgroundStyle[bgColor]
       )}
     >
       <summary
@@ -56,27 +53,25 @@ const Accordion: FC<Props> = ({
           }
         }}
       >
-        <WizHStack
-          align="center"
-          justify="between"
-          gap="xs2"
+        <div
           className={clsx(
             styles.accordionMessageStyle,
             colorStyle[fontColor],
             bgColor && backgroundStyle[bgColor]
           )}
         >
-          <div>{isOpen ? closeMessage : openMessage}</div>
-          <WizIcon
-            icon={WizIExpandMore}
-            size="xl2"
-            color={fontColor}
-            className={clsx(
-              styles.accordionExpandIconStyle,
-              isOpen && styles.accordionRotateIconStyle
-            )}
-          />
-        </WizHStack>
+          <WizHStack align="center" justify="between" gap="xs2">
+            <div>{isOpen ? closeMessage : openMessage}</div>
+            <div
+              className={clsx(
+                styles.accordionExpandIconStyle,
+                isOpen && styles.accordionRotateIconStyle
+              )}
+            >
+              <WizIcon icon={WizIExpandMore} size="xl2" color={fontColor} />
+            </div>
+          </WizHStack>
+        </div>
       </summary>
       <div ref={contentRef} className={styles.accordionContentStyle}>
         {children}

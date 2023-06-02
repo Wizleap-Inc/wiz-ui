@@ -50,8 +50,7 @@ const _Stack = ({
   my,
   reverse = false,
   position,
-  children,
-  className,
+  ...props
 }: StackProps) => {
   const dir = (() => {
     switch (direction) {
@@ -86,13 +85,12 @@ const _Stack = ({
     pt && paddingTopStyle[pt],
     pr && paddingRightStyle[pr],
     pb && paddingBottomStyle[pb],
-    pl && paddingLeftStyle[pl],
-    className
+    pl && paddingLeftStyle[pl]
   );
 
   return (
     <div className={stackStyle} style={{ width, height, overflow }}>
-      {children}
+      {props.children}
     </div>
   );
 };

@@ -10,22 +10,14 @@ type Props = {
   icon: TIcon;
   color?: ColorKeys | "inherit";
   size?: FontSizeKeys;
-  className?: string;
 };
 
-const _Icon = ({
-  icon,
-  color = "gray.700",
-  size = "xl2",
-  className,
-}: Props) => {
+const _Icon = ({ color = "gray.700", size = "xl2", ...props }: Props) => {
   const colorStyle =
     color === "inherit" ? styles.iconDefaultStyle : fillStyle[color];
-  const IconComponent = icon;
+  const IconComponent = props.icon;
   return (
-    <div
-      className={clsx(styles.iconStyle, styles.iconSizeStyle[size], className)}
-    >
+    <div className={clsx(styles.iconStyle, styles.iconSizeStyle[size])}>
       <div className={clsx(fontSizeStyle[size], colorStyle)}>
         <IconComponent />
       </div>
