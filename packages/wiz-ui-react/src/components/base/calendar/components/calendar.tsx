@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { FC, useMemo } from "react";
 
 import { createCalendarData } from "./calendar-helper";
-import { DateStatus } from "./types";
+import { CalendarDataItem, DateStatus } from "./types";
 
 type Props = {
   currentMonth?: Date;
@@ -23,6 +23,36 @@ const Calendar: FC<Props> = ({
     () => createCalendarData(currentMonth, filledWeeks),
     [currentMonth, filledWeeks]
   );
+
+  function findActiveDateStatus(item: CalendarDataItem) {
+    return activeDates?.find((activeDate) => {
+      return (
+        !item.isOutOfCurrentMonth &&
+        activeDate.date.getDate() === Number(item.label)
+      );
+    });
+  }
+
+  function getItemStyleState(
+    item: CalendarDataItem,
+    dateStatus?: DateStatus
+  ): keyof typeof styles.calendarItemStyle {
+    if (item.isOutOfCurrentMonth) return "outOfCurrentMonth";
+    return dateStatus?.state ?? "inCurrentMonth";
+  }
+
+  function handleClickDate(item: CalendarDataItem) {
+    if (item.isOutOfCurrentMonth) {
+      return;
+    }
+    onClickDate?.(
+      new Date(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth(),
+        Number(item.label)
+      )
+    );
+  }
 
   return (
     <table className={styles.calendarStyle}>
@@ -45,48 +75,30 @@ const Calendar: FC<Props> = ({
       <tbody>
         {calendarData.map((weekDataItems, row) => (
           <tr key={`week-${row}`}>
-            {weekDataItems.map(({ label, isOutOfCurrentMonth }, col) => {
-              const foundActiveDate = activeDates?.find((activeDate) => {
-                return (
-                  activeDate.date.getFullYear() ===
-                    currentMonth.getFullYear() &&
-                  activeDate.date.getMonth() === currentMonth.getMonth() &&
-                  activeDate.date.getDate() === Number(label)
-                );
-              });
-              function getItemStyleState(): keyof typeof styles.calendarItemStyle {
-                if (isOutOfCurrentMonth) return "outOfCurrentMonth";
-                return foundActiveDate?.state ?? "inCurrentMonth";
-              }
-
+            {weekDataItems.map((item, col) => {
+              const activeDateStatus = findActiveDateStatus(item);
               return (
                 <td
-                  key={`${label}-${col}`}
+                  key={`${item.label}-${col}`}
                   className={styles.calendarCellStyle}
                 >
                   <button
                     disabled={
-                      isOutOfCurrentMonth ||
-                      foundActiveDate?.state === "primary"
+                      item.isOutOfCurrentMonth ||
+                      activeDateStatus?.state === "primary"
                     }
                     aria-label={`${currentMonth.getFullYear()}年${
                       currentMonth.getMonth() + 1
-                    }月${label}日${foundActiveDate ? "-選択済み" : ""}`}
+                    }月${item.label}日${activeDateStatus ? "-選択済み" : ""}`}
                     className={clsx(
                       styles.calendarItemCommonStyle,
-                      styles.calendarItemStyle[getItemStyleState()]
+                      styles.calendarItemStyle[
+                        getItemStyleState(item, activeDateStatus)
+                      ]
                     )}
-                    onClick={() =>
-                      onClickDate?.(
-                        new Date(
-                          currentMonth.getFullYear(),
-                          currentMonth.getMonth(),
-                          Number(label)
-                        )
-                      )
-                    }
+                    onClick={() => handleClickDate(item)}
                   >
-                    {label}
+                    {item.label}
                   </button>
                 </td>
               );
