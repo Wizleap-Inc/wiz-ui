@@ -13,7 +13,6 @@ type Props = {
   footer?: ReactNode;
   children?: ReactNode;
   align?: "start" | "center" | "end";
-  className?: string;
   onClose: () => void;
 };
 
@@ -24,7 +23,6 @@ const Dialog: FC<Props> = ({
   footer,
   children,
   align,
-  className,
   onClose,
 }) => {
   const portalRoot = useRef<HTMLDivElement>(
@@ -71,11 +69,7 @@ const Dialog: FC<Props> = ({
 
   return createPortal(
     <div
-      className={clsx(
-        styles.dialogStyle,
-        isOpen && styles.dialogVisibleStyle,
-        className
-      )}
+      className={clsx(styles.dialogStyle, isOpen && styles.dialogVisibleStyle)}
       style={{ zIndex: THEME.zIndex.dialog }}
     >
       <div
