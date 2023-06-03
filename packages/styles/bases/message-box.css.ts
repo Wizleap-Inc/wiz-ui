@@ -36,6 +36,7 @@ export const messageBoxWidthStyle = styleVariants({
 });
 
 export const messageBoxIconStyle = style({
+  flexShrink: 0,
   fontSize: THEME.fontSize.xl2,
   marginRight: THEME.spacing.sm,
 });
