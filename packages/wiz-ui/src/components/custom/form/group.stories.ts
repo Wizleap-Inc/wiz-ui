@@ -1,5 +1,9 @@
 import { StoryFn } from "@storybook/vue";
-import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  FontSizeKeys,
+  SPACING_ACCESSORS,
+} from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import {
@@ -61,13 +65,22 @@ const Template: StoryFn = (_, { argTypes }) => ({
 interface Options {
   labelWidth: string;
   gap: string;
+  labelColor: ColorKeys;
+  labelFontSize: FontSizeKeys;
 }
 
-const CODE_TEMPLATE = ({ labelWidth, gap }: Partial<Options>) => `
+const CODE_TEMPLATE = ({
+  labelWidth,
+  gap,
+  labelColor,
+  labelFontSize,
+}: Partial<Options>) => `
 <template>
   <WizFormGroup${
     (labelWidth ? ` label-width="${labelWidth}"` : "") +
-    (gap ? ` gap="${gap}"` : "")
+    (gap ? ` gap="${gap}"` : "") +
+    (labelColor ? ` label-color="${labelColor}"` : "") +
+    (labelFontSize ? ` label-font-size="${labelFontSize}"` : "")
   }>
     <WizFormControl label="Label1">
       <WizTextInput v-model="input" name="input" />
@@ -129,6 +142,38 @@ Gap.parameters = {
     },
     source: {
       code: CODE_TEMPLATE({ gap: "md" }),
+    },
+  },
+};
+
+export const LabelColor = Template.bind({});
+LabelColor.args = {
+  labelColor: "red.500",
+};
+LabelColor.parameters = {
+  docs: {
+    description: {
+      story:
+        "slotに持っている**FormControl**の各要素のラベル色を一括指定できます。",
+    },
+    source: {
+      code: CODE_TEMPLATE({ labelColor: "red.500" }),
+    },
+  },
+};
+
+export const LabelFontSize = Template.bind({});
+LabelFontSize.args = {
+  labelFontSize: "xl3",
+};
+LabelFontSize.parameters = {
+  docs: {
+    description: {
+      story:
+        "slotに持っている**FormControl**の各要素のラベルサイズを一括指定できます。",
+    },
+    source: {
+      code: CODE_TEMPLATE({ labelFontSize: "xl3" }),
     },
   },
 };
