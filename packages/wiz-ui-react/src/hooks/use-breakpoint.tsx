@@ -34,7 +34,7 @@ const getBreakpoint = (breakpoint: Breakpoint) => {
   const currentBreakpoint = keys.find((key) => {
     return viewportWidth <= breakpoint[key];
   });
-  return currentBreakpoint ?? BREAKPOINTS[0];
+  return currentBreakpoint ?? BREAKPOINTS[BREAKPOINTS.length - 1];
 };
 
 /**
@@ -64,7 +64,7 @@ const getBreakpoint = (breakpoint: Breakpoint) => {
  */
 export const useBreakpoint = (breakpoint = DEFAULT_BREAKPOINT) => {
   const [currentBreakpoint, setCurrentBreakpoint] = useState<BreakpointVariant>(
-    BREAKPOINTS[0]
+    BREAKPOINTS[BREAKPOINTS.length - 1]
   );
 
   useLayoutEffect(() => {
