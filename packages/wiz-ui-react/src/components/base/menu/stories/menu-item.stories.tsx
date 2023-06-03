@@ -21,6 +21,11 @@ const meta: Meta<typeof WizMenuItem> = {
         type: "boolean",
       },
     },
+    expand: {
+      control: {
+        type: "boolean",
+      },
+    },
     onClick: {
       action: "onClick",
     },
@@ -71,6 +76,22 @@ export const Disabled: Story = {
       description: {
         story:
           "`clickable = false` とすることで、クリックできないように設定することもできます。default 値は `true` です。",
+      },
+    },
+  },
+  render: (args) => <WizMenuItem {...args} />,
+};
+
+export const Expand: Story = {
+  args: {
+    label: "テスト",
+    expand: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`expand = true` とすることで、親要素の幅いっぱいにメニューを表示することができます。default 値は `false` です。",
       },
     },
   },

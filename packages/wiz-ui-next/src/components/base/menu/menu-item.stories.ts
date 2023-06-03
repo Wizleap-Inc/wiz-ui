@@ -11,6 +11,11 @@ export default {
         type: "text",
       },
     },
+    expand: {
+      control: {
+        type: "boolean",
+      },
+    },
     click: {
       action: "click",
     },
@@ -79,6 +84,27 @@ Disabled.parameters = {
       code: `
 <template>
   <WizMenuItem label="テスト" clickable="false"/>
+</template>
+      `,
+    },
+  },
+};
+
+export const Expand = Template.bind({});
+Expand.args = {
+  label: "テスト",
+  expand: true,
+};
+Expand.parameters = {
+  docs: {
+    description: {
+      story:
+        "`expand = true` とすることで、親要素の幅いっぱいにメニューを表示することができます。default 値は `false` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizMenuItem label="テスト" expand/>
 </template>
       `,
     },

@@ -17,6 +17,7 @@ type Props = {
   width?: string;
   active?: boolean;
   clickable?: boolean;
+  expand?: boolean;
 } & ComponentProps<"div">;
 
 const MenuItem = forwardRef(
@@ -26,6 +27,7 @@ const MenuItem = forwardRef(
       width = "10rem",
       active = false,
       clickable = true,
+      expand,
       onMouseOver,
       onMouseLeave,
       onMouseDown,
@@ -100,7 +102,8 @@ const MenuItem = forwardRef(
         ref={ref}
         className={clsx(
           styles.menuItemStyle,
-          styles.menuItemVariantStyle[getVariant()]
+          styles.menuItemVariantStyle[getVariant()],
+          styles.menuItemExpand
         )}
         style={{ width }}
         {...props}

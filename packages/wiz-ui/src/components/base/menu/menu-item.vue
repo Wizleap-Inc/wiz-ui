@@ -1,6 +1,10 @@
 <template>
   <div
-    :class="[menuItemStyle, menuItemVariantStyle[componentStatus]]"
+    :class="[
+      menuItemStyle,
+      menuItemVariantStyle[componentStatus],
+      expand && menuItemExpand,
+    ]"
     :style="{ width: width }"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
@@ -21,6 +25,7 @@ import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   menuItemStyle,
   menuItemVariantStyle,
+  menuItemExpand,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { ref, computed } from "vue";
 
@@ -51,6 +56,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: true,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
   },
 });
 
