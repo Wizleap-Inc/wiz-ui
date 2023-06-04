@@ -1,5 +1,5 @@
 <template>
-  <div :class="[informationPanelStye]" v-show="visible">
+  <div :class="[informationPanelStye]" :style="{ width }" v-show="visible">
     <div>
       <div
         v-for="message in messages"
@@ -50,6 +50,10 @@ const props = defineProps({
   messages: {
     type: Array as PropType<messageType[]>,
     required: true,
+  },
+  width: {
+    type: String,
+    required: false,
   },
 });
 

@@ -1,4 +1,4 @@
-import { StoryFn , Meta } from "@storybook/vue3";
+import { StoryFn, Meta } from "@storybook/vue3";
 import { ref } from "vue";
 
 import WizInformationPanel from "./information-panel.vue";
@@ -27,7 +27,7 @@ const Template: StoryFn<typeof WizInformationPanel> = (args) => ({
   },
   template: `
       <div style="padding: 1rem;  height: 100vh; background-color: #EEF0EF" >
-        <WizInformationPanel v-bind="$props" v-model="isShow" @update:modelValue="args.input" />
+        <WizInformationPanel v-bind=" args" v-model="isShow" @update:modelValue="args.input" />
       </div>
   `,
 });
