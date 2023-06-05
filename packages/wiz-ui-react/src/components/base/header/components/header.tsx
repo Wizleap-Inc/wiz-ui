@@ -4,7 +4,7 @@ import {
   headerStickyStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/header.css";
 import clsx from "clsx";
-import { Dispatch, FC, ReactNode, SetStateAction } from "react";
+import { FC, ReactNode } from "react";
 
 import { WizHStack, WizIMenu } from "@/components";
 
@@ -16,7 +16,7 @@ interface Props {
   sticky?: boolean;
   leftContent?: ReactNode;
   rightContent?: ReactNode;
-  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
+  onToggle: () => void;
 }
 
 const Header: FC<Props> = ({
@@ -25,7 +25,7 @@ const Header: FC<Props> = ({
   sticky,
   leftContent,
   rightContent,
-  setIsMenuOpen,
+  onToggle,
 }) => {
   return (
     <div className={clsx(headerStyle, sticky && headerStickyStyle)}>
@@ -35,7 +35,7 @@ const Header: FC<Props> = ({
             icon={WizIMenu}
             size="lg"
             variant="transparent"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
+            onClick={onToggle}
           />
           {leftContent}
         </WizHStack>
