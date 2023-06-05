@@ -1,4 +1,8 @@
-import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ComponentName,
+  SpacingKeys,
+  THEME,
+} from "@wizleap-inc/wiz-ui-constants";
 import {
   headerStyle,
   headerStickyStyle,
@@ -28,7 +32,10 @@ const Header: FC<Props> = ({
   onToggle,
 }) => {
   return (
-    <div className={clsx(headerStyle, sticky && headerStickyStyle)}>
+    <div
+      className={clsx(headerStyle, sticky && headerStickyStyle)}
+      style={{ zIndex: THEME.zIndex.floating }}
+    >
       <WizHStack align="center" justify="between" height="100%">
         <WizHStack align="center" gap={gapLeft} pl="lg">
           <WizIconButton
