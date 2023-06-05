@@ -40,7 +40,7 @@ export const Bar: FC<Props> = ({ percentages, children }) => {
         />
         {barDisplayData.map((item, i) => (
           <path
-            key={i}
+            key={`${i}-${item.startPercentage}-${item.width}`}
             className={styles.CircleBarStyle}
             style={{
               stroke:
