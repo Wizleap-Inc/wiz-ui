@@ -21,10 +21,7 @@ const content = () => (
   </>
 );
 
-export const Default: Story = {
-  args: {},
-  render: (args) => <WizHeader {...args} />,
-};
+export const Default: Story = {};
 
 export const LeftContent: Story = {
   args: {
