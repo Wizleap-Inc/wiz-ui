@@ -10,6 +10,7 @@ import { default as WizIAutoRenew } from "./auto-renew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICamera } from "./camera.vue";
+import { default as WizICancel } from "./cancel.vue";
 import { default as WizIChangeHistory } from "./change-history.vue";
 import { default as WizIChat } from "./chat.vue";
 import { default as WizICheck } from "./check.vue";
@@ -62,6 +63,7 @@ export type TIcon =
   | typeof WizIBusinessCenter
   | typeof WizICalendar
   | typeof WizICamera
+  | typeof WizICancel
   | typeof WizIChangeHistory
   | typeof WizIChat
   | typeof WizICheck
@@ -114,6 +116,7 @@ export {
   WizIBusinessCenter,
   WizICalendar,
   WizICamera,
+  WizICancel,
   WizIChangeHistory,
   WizIChat,
   WizICheck,

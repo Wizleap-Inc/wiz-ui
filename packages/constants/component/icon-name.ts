@@ -11,6 +11,7 @@ export const IconComponentName = {
   IBusinessCenter: "WizIBusinessCenter",
   ICalendar: "WizICalendar",
   ICamera: "WizICamera",
+  ICancel: "WizICancel",
   IChangeHistory: "WizIChangeHistory",
   IChat: "WizIChat",
   ICheck: "WizICheck",
