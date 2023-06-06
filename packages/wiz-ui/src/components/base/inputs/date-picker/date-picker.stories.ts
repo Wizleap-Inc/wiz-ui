@@ -159,7 +159,7 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (
 });
 
 const _formatDateSlash = (date: Date) => {
-  const year = date.getFullYear();
+  const year = date.getFullYear() % 100;
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}/${month}/${day}`;
