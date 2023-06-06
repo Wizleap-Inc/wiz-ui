@@ -30,19 +30,17 @@ export const Bar: FC<Props> = ({
   const barFrequenciesRef = useRef<Array<HTMLSpanElement | null>>([]);
 
   const barDisplayData = useMemo(() => {
-    const groupedData = data.data;
-    const barWidthRatio = barGroupWidth / groupedData.length;
+    const groupData = data.data;
+    const barWidthRatio = barGroupWidth / groupData.length;
 
-    return groupedData.map((data, i) => {
-      const heightPercent = (data.frequency / maxFrequency) * 100;
+    return groupData.map((data, i) => {
       return {
         id: data.id,
-        heightPercent,
+        frequency: data.frequency,
         bgColorStyle: backgroundStyle[data.barColor ?? "green.800"],
         numberColorStyle: colorStyle[data.numberColor ?? "white.800"],
-        frequency: data.frequency,
         elementStyle: {
-          height: `${heightPercent}%`,
+          height: `${(data.frequency / maxFrequency) * 100}%`,
           width: `${barWidthRatio * (1 - barGap) * 100}%`,
           left: `${(barWidthRatio * (i * 2 + 1) - barGroupWidth) * 100}%`,
         },
@@ -149,7 +147,7 @@ export const Bar: FC<Props> = ({
             barsRef.current[i] = ref;
           }}
         >
-          {item.heightPercent !== 0 && (
+          {item.frequency !== 0 && (
             <span
               className={clsx(
                 styles.graphBarNumberStyle,
