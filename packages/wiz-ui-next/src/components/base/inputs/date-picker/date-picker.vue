@@ -13,7 +13,26 @@
       @click="setIsOpen(!isOpen)"
     >
       <WizHStack gap="xs" align="center" height="100%">
-        <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        <span
+          v-if="valueIsEmpty"
+          @mouseenter="setIsHover(true)"
+          @mouseleave="setIsHover(false)"
+        >
+          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        </span>
+        <button
+          v-else
+          :class="datePickerCancelButtonStyle"
+          @click="onClickCancel"
+          @mouseenter="setIsHover(true)"
+          @mouseleave="setIsHover(false)"
+        >
+          <WizIcon
+            size="xl2"
+            :color="isHover ? 'green.800' : 'gray.500'"
+            :icon="WizICancel"
+          />
+        </button>
         <span>{{ parseValue(calendarValue) || placeholder }}</span>
       </WizHStack>
     </button>
@@ -96,42 +115,45 @@
 <script setup lang="ts">
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
+  datePickerArrowIconStyle,
+  datePickerCancelButtonStyle,
+  datePickerMonthSelectorItemStyle,
+  datePickerMonthSelectorStyle,
+  datePickerSelectorStyle,
   datePickerStyle,
   datePickerVariantStyle,
-  datePickerSelectorStyle,
-  datePickerMonthSelectorStyle,
-  datePickerMonthSelectorItemStyle,
   datePickerYearSelectorItemStyle,
-  datePickerArrowIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
 import {
-  inputBorderStyle,
   fillStyle,
   fontSizeStyle,
+  inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType } from "vue";
+import { PropType, computed, inject, ref } from "vue";
 
 import {
-  WizIcon,
-  WizVStack,
-  WizHStack,
   WizCalendar,
-  WizText,
+  WizHStack,
+  WizIcon,
   WizPopup,
   WizPopupContainer,
+  WizText,
+  WizVStack,
 } from "@/components";
 import {
+  WizIArrowDropDown,
+  WizIArrowDropUp,
   WizICalendar,
+  WizICancel,
   WizIChevronLeft,
   WizIChevronRight,
-  WizIArrowDropUp,
-  WizIArrowDropDown,
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
 interface Emit {
-  (e: "update:modelValue", value: Date): void;
+  (e: "update:modelValue", value: Date | null): void;
   (e: "update:isOpen", value: boolean): void;
+  (e: "update:isHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -161,6 +183,13 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  /**
+   * `isHover=true`の時、キャンセルアイコンを緑色にします。
+   */
+  isHover: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -168,9 +197,10 @@ const emit = defineEmits<Emit>();
 const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
-const setIsOpen = (value: boolean) => {
-  emit("update:isOpen", value);
-};
+const valueIsEmpty = computed(() => !props.modelValue);
+const setIsOpen = (value: boolean) => emit("update:isOpen", value);
+const setIsHover = (value: boolean) => emit("update:isHover", value);
+const onClickCancel = () => emit("update:modelValue", null);
 
 const clickToNextMonth = () => {
   const setDateTime = new Date(
