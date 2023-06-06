@@ -206,7 +206,7 @@ export const Children: Story = {
       <span>
         ここは
         <br />
-        スロットです
+        childrenです
       </span>
     ),
   },
