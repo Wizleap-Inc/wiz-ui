@@ -85,9 +85,26 @@ Default.args = {
           children: [],
         },
         {
-          label: "保険商品3",
+          label: "テスト子会社3",
           value: 4,
-          children: [],
+          children: [
+            {
+              label: "保険商品4",
+              value: 5000000000000,
+              children: [
+                {
+                  label: "保険商品5",
+                  value: 60000000000000000,
+                  children: [],
+                },
+                {
+                  label: "保険商品6",
+                  value: 7000000000000000000,
+                  children: [],
+                },
+              ],
+            },
+          ],
         },
       ],
     },
