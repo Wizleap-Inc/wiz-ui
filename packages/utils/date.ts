@@ -41,7 +41,7 @@ export const formatDateToYMDHM = (_date: Date): string => {
  * formatDateToYYMMDD
  * ```ts
  * const input = new Date('2021-01-01 12:34:56');
- * const output = '21/01/01';
+ * const output = '21/1/1';
  * assert.equal(formatDateToYYMMDD(input), output);
  * ```
  */
