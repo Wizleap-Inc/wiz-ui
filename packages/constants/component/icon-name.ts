@@ -44,6 +44,7 @@ export const IconComponentName = {
   ISchedule: "WizISchedule",
   ISearch: "WizISearch",
   ISend: "WizISend",
+  IStars: "WizIStars",
   IStoreFront: "WizIStoreFront",
   ITab: "WizITab",
   ITask: "WizITask",
