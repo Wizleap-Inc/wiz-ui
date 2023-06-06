@@ -16,13 +16,15 @@
           styles.inputTextStyle[modelValue.start ? 'selected' : 'default']
         "
         >{{
-          modelValue.start ? formatDateToMD(modelValue.start) : "開始日"
+          modelValue.start ? formatDateToYYMMDD(modelValue.start) : "開始日"
         }}</span
       >
       <span :class="styles.separatorStyle">-</span>
       <span
         :class="styles.inputTextStyle[modelValue.end ? 'selected' : 'default']"
-        >{{ modelValue.end ? formatDateToMD(modelValue.end) : "終了日" }}</span
+        >{{
+          modelValue.end ? formatDateToYYMMDD(modelValue.end) : "終了日"
+        }}</span
       >
     </button>
     <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
@@ -120,8 +122,8 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, ref, inject, computed } from "vue";
+import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
+import { computed, inject, PropType, ref } from "vue";
 
 import {
   WizCalendar,
@@ -140,7 +142,7 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { DateState, DateStatus } from "../../calendar/types";
 
-import { DateRangePickerSelectBoxOption, DateRange } from "./types";
+import { DateRange, DateRangePickerSelectBoxOption } from "./types";
 
 interface Emit {
   (e: "update:modelValue", value: DateRange): void;
