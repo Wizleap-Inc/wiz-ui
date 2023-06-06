@@ -10,7 +10,22 @@
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
     >
-      <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+      <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
+        <span v-if="valueIsEmpty">
+          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        </span>
+        <button
+          v-else
+          :class="styles.popupCalendarCancelButtonStyle"
+          @click="onClickCancel"
+        >
+          <WizIcon
+            size="xl2"
+            :color="isHover ? 'green.800' : 'gray.500'"
+            :icon="WizICancel"
+          />
+        </button>
+      </span>
       <span
         :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
         >{{ value.start ? formatDateToYYMMDD(value.start) : "開始日" }}</span
@@ -117,12 +132,13 @@ import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, ref, inject, computed } from "vue";
+import { computed, inject, PropType, ref } from "vue";
 
 import {
   WizCalendar,
   WizCard,
   WizICalendar,
+  WizICancel,
   WizIChevronLeft,
   WizIChevronRight,
   WizIcon,
@@ -136,12 +152,13 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { DateState, DateStatus } from "../../calendar/types";
 
-import { DateRangePickerSelectBoxOption, DateRange } from "./types";
+import { DateRange, DateRangePickerSelectBoxOption } from "./types";
 
 interface Emit {
   (e: "input", value: DateRange): void;
   (e: "updateSelectBoxValue", value: string): void;
   (e: "updateIsOpen", value: boolean): void;
+  (e: "updateIsHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -174,6 +191,13 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  /**
+   * `isHover=true`の時、キャンセルアイコンを緑色にします。
+   */
+  isHover: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -201,7 +225,10 @@ const leftCalendarDate = computed(() => {
   return date;
 });
 
+const valueIsEmpty = computed(() => !props.value.start && !props.value.end);
 const setIsOpen = (value: boolean) => emit("updateIsOpen", value);
+const setIsHover = (value: boolean) => emit("updateIsHover", value);
+const onClickCancel = () => emit("input", { start: null, end: null });
 
 const moveToNextMonth = () => {
   rightCalendarDate.value = new Date(

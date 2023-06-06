@@ -10,7 +10,22 @@
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
     >
-      <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+      <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
+        <span v-if="valueIsEmpty">
+          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        </span>
+        <button
+          v-else
+          :class="styles.popupCalendarCancelButtonStyle"
+          @click="onClickCancel"
+        >
+          <WizIcon
+            size="xl2"
+            :color="isHover ? 'green.800' : 'gray.500'"
+            :icon="WizICancel"
+          />
+        </button>
+      </span>
       <span
         :class="
           styles.inputTextStyle[modelValue.start ? 'selected' : 'default']
@@ -129,6 +144,7 @@ import {
   WizCalendar,
   WizCard,
   WizICalendar,
+  WizICancel,
   WizIChevronLeft,
   WizIChevronRight,
   WizIcon,
@@ -148,6 +164,7 @@ interface Emit {
   (e: "update:modelValue", value: DateRange): void;
   (e: "update:selectBoxValue", value: string): void;
   (e: "update:isOpen", value: boolean): void;
+  (e: "update:isHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -180,6 +197,13 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  /**
+   * `isHover=true`の時、キャンセルアイコンを表示します。
+   */
+  isHover: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -207,7 +231,13 @@ const leftCalendarDate = computed(() => {
   return date;
 });
 
+const valueIsEmpty = computed(
+  () => !props.modelValue.start && !props.modelValue.end
+);
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
+const setIsHover = (value: boolean) => emit("update:isHover", value);
+const onClickCancel = () =>
+  emit("update:modelValue", { start: null, end: null });
 
 const moveToNextMonth = () => {
   rightCalendarDate.value = new Date(
