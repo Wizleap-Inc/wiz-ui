@@ -101,6 +101,7 @@
           :options="filteredOptions"
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
+          :dy="activeItemIndex || 0"
         />
       </WizHStack>
     </WizPopup>
@@ -207,6 +208,7 @@ const searchValue = ref("");
 const filteredOptions = ref<SearchInputOption[]>([]);
 const selectedItem = ref<number[]>([]);
 const activeItem = ref<number | null>();
+const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
 const isBorder = ref(false);
 
@@ -229,6 +231,9 @@ const computedIconColor = computed(() => (value: number) => {
 const onMouseover = (value: number) => {
   isBorder.value = true;
   activeItem.value = value;
+  activeItemIndex.value = filteredOptions.value.findIndex(
+    (option) => option.value === value
+  );
   selectedItem.value = [];
   if (!selectedItem.value.includes(value)) {
     selectedItem.value.push(value);
