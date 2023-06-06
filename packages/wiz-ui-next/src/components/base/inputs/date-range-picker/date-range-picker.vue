@@ -198,7 +198,7 @@ const props = defineProps({
     required: true,
   },
   /**
-   * `isHover=true`の時、キャンセルアイコンを表示します。
+   * `isHover=true`の時、キャンセルアイコンを緑色にします。
    */
   isHover: {
     type: Boolean,
