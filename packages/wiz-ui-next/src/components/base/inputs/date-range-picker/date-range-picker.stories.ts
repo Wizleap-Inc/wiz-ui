@@ -266,6 +266,42 @@ export const InitialValueRange: StoryFn<typeof WizDateRangePicker> = (
   `,
 });
 
+export const InitialValueRange2: StoryFn<typeof WizDateRangePicker> = (
+  args
+) => ({
+  components: { WizDateRangePicker },
+  setup() {
+    const dateRange1 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 0, 15),
+    });
+    const selectBoxValue1 = ref<string>();
+    const isOpen1 = ref(true);
+    const setIsOpen1 = (value: boolean) => (isOpen1.value = value);
+    return {
+      dateRange1,
+      selectBoxValue1,
+      selectBoxOptions,
+      isOpen1,
+      setIsOpen1,
+      args,
+    };
+  },
+  template: `
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem"> 
+      <WizDateRangePicker 
+        v-model="dateRange1"
+        v-model:selectBoxValue="selectBoxValue1"
+        :selectBoxOptions="selectBoxOptions"
+        @update:modelValue="args.onDateSelected"
+        @update:selectBoxValue="args.onSelectBoxValueChange"
+        :isOpen="isOpen1"
+        @update:isOpen="setIsOpen1"
+      /> 
+    </div>
+  `,
+});
+
 export const InitialValueStart: StoryFn<typeof WizDateRangePicker> = (
   args
 ) => ({
