@@ -46,12 +46,10 @@ export const formatDateToYMDHM = (_date: Date): string => {
  * ```
  */
 export const formatDateToYYMMDD = (_date: Date): string => {
-  const year = _date.getFullYear() % 100;
+  const year = String(_date.getFullYear() % 100).padStart(2, "0");
   const month = _date.getMonth() + 1;
   const date = _date.getDate();
-  const day = [year, month, date]
-    .map((n) => String(n).padStart(2, "0"))
-    .join("/");
+  const day = [year, month, date].join("/");
   return `${day}`;
 };
 

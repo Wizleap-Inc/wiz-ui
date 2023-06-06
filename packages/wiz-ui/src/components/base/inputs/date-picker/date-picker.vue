@@ -34,7 +34,9 @@
             :icon="WizICancel"
           />
         </button>
-        <span>{{ parseValue(calendarValue) || placeholder }}</span>
+        <span>{{
+          (calendarValue && formatDateToYYMMDD(calendarValue)) || placeholder
+        }}</span>
       </WizHStack>
     </button>
     <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
@@ -130,6 +132,7 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, computed, inject, ref } from "vue";
 
 import {
@@ -150,7 +153,6 @@ import {
   WizIChevronRight,
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
-
 interface Emit {
   (e: "input", value: Date | null): void;
   (e: "updateIsOpen", value: boolean): void;
