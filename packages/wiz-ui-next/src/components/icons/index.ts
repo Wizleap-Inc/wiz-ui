@@ -43,6 +43,7 @@ import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
+import { default as WizIStars } from "./stars.vue";
 import { default as WizIStoreFront } from "./store-front.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
@@ -95,6 +96,7 @@ export type TIcon =
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
+  | typeof WizIStars
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -147,6 +149,7 @@ export {
   WizISchedule,
   WizISearch,
   WizISend,
+  WizIStars,
   WizIStoreFront,
   WizITab,
   WizITask,
