@@ -241,12 +241,6 @@ const clickToPreviousYear = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const parseValue = (inputValue: Date | null) => {
-  if (inputValue === null) return undefined;
-  const value = inputValue ?? new Date();
-  return `${value.getFullYear()}/${value.getMonth() + 1}/${value.getDate()}`;
-};
-
 const currentDateTitle = computed(() => {
   return `${currentMonth.value.getMonth() + 1}月`;
 });
