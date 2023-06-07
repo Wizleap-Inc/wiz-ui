@@ -30,6 +30,7 @@ export const ComponentName = {
   Header: "WizHeader",
   Heading: "WizHeading",
   HStack: "WizHStack",
+  InformationPanel: "WizInformationPanel",
   VStack: "WizVStack",
   CardTable: "WizCardTable",
   CardThead: "WizCardThead",
