@@ -4,7 +4,7 @@ import { DirectionKey } from "../types/direction";
 
 export type Pattern = {
   direction: DirectionKey;
-  gap?: SpacingKeys;
+  gap?: Exclude<SpacingKeys, "at">;
 };
 
 export const popupContentStyle = {
