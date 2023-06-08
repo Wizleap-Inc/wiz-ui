@@ -1,9 +1,14 @@
 <template>
-  <div>
-    <template v-for="(option, key) in options">
+  <div
+    :style="{
+      paddingTop: `${dy * (ITEM_HEIGHT + DIVIDER_HEIGHT)}px`,
+    }"
+  >
+    <div v-for="(option, key) in options">
       <div
         v-if="option.children.length"
         :class="searchPopupStyle"
+        :style="{ height: '0px' }"
         :key="`${option.label}_${option.value}_${key}`"
       >
         <div
@@ -79,38 +84,40 @@
             />
           </div>
         </div>
+
         <WizSearchPopup
           :values="checkValues"
           @input="inputValues"
           :options="option.children"
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
-        ></WizSearchPopup>
+          :dy="activeItemIndex || 0"
+        />
       </div>
-    </template>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  searchPopupStyle,
-  searchPopupBlockStyle,
-  searchPopupBlockBorderRightStyle,
-  searchPopupBlockBorderRadiusStyle,
-  searchPopupDropdownItemStyle,
+  searchCheckboxBlockCheckedStyle,
+  searchCheckboxIconStyle,
+  searchCheckboxInputStyle,
+  searchCheckboxLabelCheckedStyle,
+  searchCheckboxLabelStyle,
   searchDropdownCheckboxItemStyle,
   searchDropdownLabelStyle,
-  searchCheckboxInputStyle,
-  searchCheckboxLabelStyle,
-  searchCheckboxLabelCheckedStyle,
-  searchCheckboxIconStyle,
-  searchCheckboxBlockCheckedStyle,
+  searchPopupBlockBorderRadiusStyle,
+  searchPopupBlockBorderRightStyle,
+  searchPopupBlockStyle,
+  searchPopupDropdownItemStyle,
+  searchPopupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
-import { ref, computed, PropType } from "vue";
+import { PropType, computed, ref } from "vue";
 
-import { WizDivider, WizIcon } from "@/components";
-import { WizIChevronRight, WizICheck } from "@/components/icons";
+import { WizDivider, WizIcon, WizSearchPopup } from "@/components";
+import { WizICheck, WizIChevronRight } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -135,6 +142,11 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  dy: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 const emit = defineEmits<{
@@ -154,6 +166,10 @@ const inputValues = (value: number[]) => {
 };
 
 const activeItem = ref<number | null>();
+const activeItemIndex = ref<number | null>(null);
+
+const ITEM_HEIGHT = 44;
+const DIVIDER_HEIGHT = 0.8;
 
 const mutableSelectedItem = computed(() => {
   return props.selectedItem;
@@ -176,6 +192,7 @@ const computedIconColor = computed(() => (value: number) => {
 
 const onMouseover = (value: number, options: SearchInputOption[]) => {
   activeItem.value = value;
+  activeItemIndex.value = options.findIndex((option) => option.value === value);
   options.forEach((option: SearchInputOption) => {
     if (mutableSelectedItem.value.includes(option.value)) {
       const index = mutableSelectedItem.value.indexOf(option.value);
