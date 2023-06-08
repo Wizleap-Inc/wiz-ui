@@ -59,4 +59,5 @@ Expand.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
+  icon: WizIClose,
 };
