@@ -15,7 +15,7 @@
     >
       <WizHStack gap="xs" align="center" height="100%">
         <span
-          v-if="valueIsEmpty"
+          v-if="!isHover"
           @mouseenter="setIsHover(true)"
           @mouseleave="setIsHover(false)"
         >
@@ -28,11 +28,7 @@
           @mouseenter="setIsHover(true)"
           @mouseleave="setIsHover(false)"
         >
-          <WizIcon
-            size="xl2"
-            :color="isHover ? 'green.800' : 'gray.500'"
-            :icon="WizICancel"
-          />
+          <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
         </button>
         <span>{{
           (calendarValue && formatDateToYYMMDD(calendarValue)) || placeholder
@@ -200,7 +196,6 @@ const emit = defineEmits<Emit>();
 const defaultCurrentMonth = props.value || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
-const valueIsEmpty = computed(() => !props.value);
 const setIsOpen = (value: boolean) => emit("updateIsOpen", value);
 const setIsHover = (value: boolean) => emit("updateIsHover", value);
 const onClickCancel = () => emit("input", null);

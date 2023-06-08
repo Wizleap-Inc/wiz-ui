@@ -98,4 +98,8 @@ export const datePickerCancelButtonStyle = style({
   borderRadius: THEME.spacing.xs2,
   border: "none",
   background: "transparent",
+  fill: THEME.color.gray["500"],
+  ":active": {
+    fill: THEME.color.green["800"],
+  },
 });
