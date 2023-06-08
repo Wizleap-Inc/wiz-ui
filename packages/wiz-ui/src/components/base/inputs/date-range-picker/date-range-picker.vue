@@ -17,6 +17,7 @@
         <button
           v-else
           :class="styles.popupCalendarCancelButtonStyle"
+          :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_CANCEL"
           @click="onClickCancel"
         >
           <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
