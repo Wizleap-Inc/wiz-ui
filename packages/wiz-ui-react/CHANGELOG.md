@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.9.0
+
+### Minor Changes
+
+- [#613](https://github.com/Wizleap-Inc/wiz-ui/pull/613) [`0e0c05b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/0e0c05b642f1850a654c41b508852c936dce7e72) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup の React 化（a11y 未対応）
+
+### Patch Changes
+
+- Updated dependencies [[`9016c38a`](https://github.com/Wizleap-Inc/wiz-ui/commit/9016c38a88ef804ff7ffe1c0b9fef238828a27c5), [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3)]:
+  - @wizleap-inc/wiz-ui-styles@0.8.0
+  - @wizleap-inc/wiz-ui-constants@0.6.0
+
 ## 0.8.0
 
 ### Minor Changes
