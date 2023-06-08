@@ -1,5 +1,25 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.8.0
+
+### Minor Changes
+
+- [#810](https://github.com/Wizleap-Inc/wiz-ui/pull/810) [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3) Thanks [@ichi-h](https://github.com/ichi-h)! - [#757] Information Panel コンポーネントを追加
+
+### Patch Changes
+
+- [#765](https://github.com/Wizleap-Inc/wiz-ui/pull/765) [`9016c38a`](https://github.com/Wizleap-Inc/wiz-ui/commit/9016c38a88ef804ff7ffe1c0b9fef238828a27c5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput のスタイル・バグ修正
+
+- Updated dependencies [[`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3)]:
+  - @wizleap-inc/wiz-ui-constants@0.6.0
+
+## 0.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964)]:
+  - @wizleap-inc/wiz-ui-constants@0.5.0
+
 ## 0.7.0
 
 ### Minor Changes

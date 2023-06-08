@@ -9,5 +9,5 @@ export * from "./panel-switch";
 export * from "./timepicker";
 export * from "./date-picker";
 export * from "./upload";
-export * from "./search";
+export * from "./search-input";
 export * from "./date-range-picker";
