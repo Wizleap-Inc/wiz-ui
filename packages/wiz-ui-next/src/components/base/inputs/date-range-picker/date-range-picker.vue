@@ -11,7 +11,7 @@
       @click="setIsOpen(!isOpen)"
     >
       <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
-        <span v-if="valueIsEmpty">
+        <span v-if="!isHover">
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
         <button
@@ -19,11 +19,7 @@
           :class="styles.popupCalendarCancelButtonStyle"
           @click="onClickCancel"
         >
-          <WizIcon
-            size="xl2"
-            :color="isHover ? 'green.800' : 'gray.500'"
-            :icon="WizICancel"
-          />
+          <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
         </button>
       </span>
       <span
@@ -231,9 +227,6 @@ const leftCalendarDate = computed(() => {
   return date;
 });
 
-const valueIsEmpty = computed(
-  () => !props.modelValue.start && !props.modelValue.end
-);
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
 const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () =>
