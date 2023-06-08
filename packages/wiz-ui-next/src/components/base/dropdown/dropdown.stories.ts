@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
@@ -27,7 +27,7 @@ export default {
 const Template: StoryFn<typeof WizDropdown> = (args) => ({
   components: { WizDropdown, WizDropdownItem, WizTextButton },
   setup() {
-    const isOpen = ref(false);
+    const isOpen = ref(true);
     return { isOpen, args };
   },
   template: `
@@ -37,6 +37,8 @@ const Template: StoryFn<typeof WizDropdown> = (args) => ({
         <WizDropdownItem @click="args.click">選択肢1</WizDropdownItem>
         <WizDropdownItem @click="args.click">選択肢2</WizDropdownItem>
         <WizDropdownItem @click="args.click">選択肢3</WizDropdownItem>
+        <WizDropdownItem @click="args.click" disabled>選択肢4</WizDropdownItem>
+        <WizDropdownItem @click="args.click">選択肢5</WizDropdownItem>
       </template>
     </WizDropdown>
   `,
