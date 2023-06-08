@@ -24,6 +24,7 @@
         <button
           v-else
           :class="datePickerCancelButtonStyle"
+          :aria-label="ARIA_LABELS.DATE_PICKER_CANCEL"
           @click="onClickCancel"
           @mouseenter="setIsHover(true)"
           @mouseleave="setIsHover(false)"
