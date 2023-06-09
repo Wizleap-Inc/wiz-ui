@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.11.2
+
+### Patch Changes
+
+- [#818](https://github.com/Wizleap-Inc/wiz-ui/pull/818) [`6fff2934`](https://github.com/Wizleap-Inc/wiz-ui/commit/6fff293452fa178a0ca12d8016cfd2d6eff34e83) Thanks [@okakyo](https://github.com/okakyo)! - [#797] Message Box の icon の幅が変わってしまうバグの修正
+
+- Updated dependencies [[`6fff2934`](https://github.com/Wizleap-Inc/wiz-ui/commit/6fff293452fa178a0ca12d8016cfd2d6eff34e83)]:
+  - @wizleap-inc/wiz-ui-styles@0.9.2
+
 ## 1.11.1
 
 ### Patch Changes
