@@ -72,7 +72,7 @@ const CheckBox: FC<Props> = ({
                   onBlur={() => setFocusedKey(null)}
                 />
                 <span className={styles.checkboxIconContainerStyle}>
-                  <WizICheck
+                  <span
                     className={clsx(
                       styles.checkboxIconBaseStyle,
                       styles.checkboxIconVariantStyle[
@@ -83,7 +83,9 @@ const CheckBox: FC<Props> = ({
                           isChecked ? "checked" : "default"
                         ]
                     )}
-                  />
+                  >
+                    <WizICheck />
+                  </span>
                 </span>
                 <span
                   className={clsx(
