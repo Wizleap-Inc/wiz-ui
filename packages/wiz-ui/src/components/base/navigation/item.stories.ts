@@ -22,9 +22,6 @@ export default {
     to: {
       control: { type: "text" },
     },
-    IsDirectionFixed: {
-      control: { type: "boolean" },
-    },
   },
   decorators: [
     (story: StoryFn) => ({
@@ -70,14 +67,6 @@ Disabled.args = {
   label: "Home",
   to: "/home",
   disabled: true,
-};
-
-export const IsDirectionFixed = Template.bind({});
-IsDirectionFixed.args = {
-  icon: WizIDashboard,
-  label: "Home",
-  to: "/home",
-  isDirectionFixed: true,
 };
 
 const TooltipTemplate: StoryFn = (args, { argTypes }) => ({
