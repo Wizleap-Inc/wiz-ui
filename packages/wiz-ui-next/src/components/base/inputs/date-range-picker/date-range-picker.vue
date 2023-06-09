@@ -25,7 +25,11 @@
         >{{ modelValue.end ? formatDateToMD(modelValue.end) : "終了日" }}</span
       >
     </button>
-    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
+    <WizPopup
+      :isOpen="!disabled && isOpen"
+      @onClose="setIsOpen(false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
@@ -177,6 +181,11 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
     required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
