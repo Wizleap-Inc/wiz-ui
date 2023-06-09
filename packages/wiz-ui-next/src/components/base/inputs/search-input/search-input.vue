@@ -15,15 +15,16 @@
         :disabled="disabled"
         @focusin="hasFocus = true"
         @focusout="hasFocus = false"
-        @click="
-          emit('toggle', true);
-          selectedItem = [];
-        "
+        @click="emit('toggle', !openPopup)"
         autocomplete="off"
       />
       <WizISearch :class="searchInputIconStyle" />
     </div>
-    <WizPopup :isOpen="openPopup" @onClose="emit('toggle', false)">
+    <WizPopup
+      :isOpen="openPopup"
+      @onClose="emit('toggle', false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <WizHStack>
         <div
           :class="[
@@ -38,7 +39,9 @@
             :key="`${option.label}_${option.value}_${key}`"
           >
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
-              <div
+              <WizHStack
+                align="center"
+                justify="between"
                 :class="searchDropdownLabelStyle"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
@@ -49,7 +52,7 @@
                   :icon="WizIChevronRight"
                   :color="computedIconColor(option.value)"
                 />
-              </div>
+              </WizHStack>
             </div>
             <div
               v-else
@@ -96,11 +99,11 @@
           </div>
         </div>
         <WizSearchPopup
-          :values="values"
-          @input="inputValues"
-          :options="options"
+          v-model="checkValues"
+          :options="filteredOptions"
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
+          :dy="activeItemIndex || 0"
         />
       </WizHStack>
     </WizPopup>
@@ -110,35 +113,35 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  searchStyle,
-  searchInputStyle,
-  searchInputIconStyle,
-  searchInputDisabledStyle,
-  searchBlockStyle,
-  searchBlockBorderStyle,
   searchBlockBorderRadiusStyle,
-  searchDropdownItemStyle,
-  searchDropdownCheckboxItemStyle,
-  searchDropdownLabelStyle,
-  searchCheckboxInputStyle,
-  searchCheckboxLabelStyle,
-  searchCheckboxLabelCheckedStyle,
-  searchCheckboxIconStyle,
+  searchBlockBorderStyle,
+  searchBlockStyle,
   searchCheckboxBlockCheckedStyle,
+  searchCheckboxIconStyle,
+  searchCheckboxInputStyle,
+  searchCheckboxLabelCheckedStyle,
+  searchCheckboxLabelStyle,
+  searchDropdownCheckboxItemStyle,
+  searchDropdownItemStyle,
+  searchDropdownLabelStyle,
+  searchInputDisabledStyle,
+  searchInputIconStyle,
+  searchInputStyle,
+  searchStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, watch, PropType, onMounted } from "vue";
+import { PropType, computed, onMounted, ref, watch } from "vue";
 
 import {
-  WizHStack,
   WizDivider,
+  WizHStack,
   WizISearch,
-  WizPopupContainer,
-  WizPopup,
-  WizSearchPopup,
   WizIcon,
+  WizPopup,
+  WizPopupContainer,
+  WizSearchPopup,
 } from "@/components";
-import { WizIChevronRight, WizICheck } from "@/components/icons";
+import { WizICheck, WizIChevronRight } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -151,7 +154,7 @@ const props = defineProps({
     type: Array as PropType<SearchInputOption[]>,
     required: true,
   },
-  values: {
+  modelValue: {
     type: Array as PropType<number[]>,
     required: true,
   },
@@ -184,29 +187,29 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
-  (e: "input", value: number[]): void;
+  (e: "update:modelValue", value: number[]): void;
   (e: "click"): void;
   (e: "toggle", value: boolean): void;
 }>();
 
 const checkValues = computed({
-  get: () => props.values,
-  set: (value) => {
-    emit("input", value);
-  },
+  get: () => props.modelValue,
+  set: (value: number[]) => emit("update:modelValue", value),
 });
-
-const inputValues = (value: number[]) => {
-  emit("input", value);
-};
 
 const searchValue = ref("");
 const filteredOptions = ref<SearchInputOption[]>([]);
 const selectedItem = ref<number[]>([]);
 const activeItem = ref<number | null>();
+const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
 const isBorder = ref(false);
 
@@ -229,19 +232,42 @@ const computedIconColor = computed(() => (value: number) => {
 const onMouseover = (value: number) => {
   isBorder.value = true;
   activeItem.value = value;
+  activeItemIndex.value = filteredOptions.value.findIndex(
+    (option) => option.value === value
+  );
   selectedItem.value = [];
   if (!selectedItem.value.includes(value)) {
     selectedItem.value.push(value);
   }
 };
 
+const filterOptions =
+  (match: (label: string) => boolean) =>
+  (options: SearchInputOption[]): SearchInputOption[] =>
+    options.flatMap((option) => {
+      if (option.children.length === 0) {
+        return match(option.label) ? [option] : [];
+      }
+      if (match(option.label)) return [option];
+      const children = filterOptions(match)(option.children);
+      if (children.length === 0) return [];
+      return [
+        {
+          ...option,
+          children: children,
+        },
+      ];
+    });
+
+const searchBy = (keyword: string) => (str: string) => str.includes(keyword);
+
 watch(searchValue, () => {
   selectedItem.value = [];
   emit("toggle", true);
   if (searchValue.value.length) {
-    filteredOptions.value = props.options.filter((option) => {
-      return option.label.indexOf(searchValue.value[0]) !== -1;
-    });
+    filteredOptions.value = filterOptions(searchBy(searchValue.value))(
+      props.options
+    );
   } else {
     filteredOptions.value = props.options;
   }

@@ -1,10 +1,10 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
-import WizSearchInput from "./search.vue";
+import WizSearchInput from "./search-input.vue";
 
 export default {
-  title: "Base/Input/Search",
+  title: "Base/Input/SearchInput",
   component: WizSearchInput,
   argTypes: {
     name: {
@@ -30,32 +30,44 @@ export default {
     input: {
       action: "input",
     },
+    isDirectionFixed: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
-} as Meta<typeof WizSearchInput>;
+};
 
 const Template =
-  (open: boolean): StoryFn<typeof WizSearchInput> =>
-  (args) => ({
+  (open: boolean): StoryFn =>
+  (_, { argTypes }) => ({
+    props: Object.keys(argTypes),
     components: { WizSearchInput },
     setup() {
       const values = ref<number[]>([]);
+      const inputValues = (value: number[]) => {
+        values.value = value;
+      };
       const openPopup = ref(open);
       const toggle = (value: boolean) => {
         openPopup.value = value;
       };
-      return { values, args, openPopup, toggle };
+      return { values, inputValues, openPopup, toggle };
     },
     template: `
-  <div>
-    <div>values:{{ values }}</div>
-    <WizSearchInput
-      v-bind="args"
-      v-model="values"
-      name="search-input"
-      :openPopup="openPopup"
-      @toggle="toggle"
-    />
-  </div>`,
+    <div>
+      <div>values:{{ values }}</div>
+      <WizSearchInput
+        v-bind="$props"
+        :values="values"
+        @input="inputValues"
+        :options="options"
+        name="search-input"
+        :openPopup="openPopup"
+        @toggle="toggle"
+      />
+    </div>
+  `,
   });
 
 export const Default = Template(false).bind({});
@@ -78,9 +90,26 @@ Default.args = {
           children: [],
         },
         {
-          label: "保険商品3",
+          label: "テスト子会社3",
           value: 4,
-          children: [],
+          children: [
+            {
+              label: "保険商品4",
+              value: 5000000000000,
+              children: [
+                {
+                  label: "保険商品5",
+                  value: 60000000000000000,
+                  children: [],
+                },
+                {
+                  label: "保険商品6",
+                  value: 7000000000000000000,
+                  children: [],
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -292,6 +321,41 @@ Open.args = {
   ],
 };
 
+export const LongLabel = Template(true).bind({});
+LongLabel.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  inputWidth: "15rem",
+  popupWidth: "10rem",
+  options: [
+    {
+      label: "テスト会社1",
+      value: 1,
+      children: [
+        {
+          label: "保険商品1",
+          value: 2,
+          children: [],
+        },
+        {
+          label: "保険商品2",
+          value: 3,
+          children: [],
+        },
+        {
+          label: "保険商品3",
+          value: 4,
+          children: [],
+        },
+      ],
+    },
+    {
+      label: "寿限無寿限無五劫の擦り切れ 海砂利水魚の水行末",
+      value: 21,
+      children: [],
+    },
+  ],
+};
+
 export const Expand = Template(false).bind({});
 Expand.args = {
   placeholder: "氏名・ID・電話番号で検索",
@@ -352,6 +416,30 @@ export const Disabled = Template(false).bind({});
 Disabled.args = {
   placeholder: "氏名・ID・電話番号で検索",
   disabled: true,
+  inputWidth: "15rem",
+  options: [
+    {
+      label: "選択肢1",
+      value: 1,
+      children: [],
+    },
+    {
+      label: "選択肢2",
+      value: 2,
+      children: [],
+    },
+    {
+      label: "選択肢3",
+      value: 3,
+      children: [],
+    },
+  ],
+};
+
+export const IsDirectionFixed = Template(false).bind({});
+IsDirectionFixed.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  isDirectionFixed: true,
   inputWidth: "15rem",
   options: [
     {

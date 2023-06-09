@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.6.0
+
+### Minor Changes
+
+- [#810](https://github.com/Wizleap-Inc/wiz-ui/pull/810) [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3) Thanks [@ichi-h](https://github.com/ichi-h)! - [#757] Information Panel コンポーネントを追加
+
+## 0.5.0
+
+### Minor Changes
+
+- [#806](https://github.com/Wizleap-Inc/wiz-ui/pull/806) [`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964) Thanks [@ichi-h](https://github.com/ichi-h)! - WizIStars の追加
+
 ## 0.4.1
 
 ### Patch Changes

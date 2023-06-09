@@ -18,7 +18,11 @@
         <span>{{ parseValue(calendarValue) || placeholder }}</span>
       </WizHStack>
     </button>
-    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
+    <WizPopup
+      :isOpen="!disabled && isOpen"
+      @onClose="setIsOpen(false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizHStack align="center" justify="between" gap="xs2">
@@ -161,6 +165,11 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
     required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
