@@ -30,6 +30,11 @@ export default {
     input: {
       action: "input",
     },
+    isDirectionFixed: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 };
 
@@ -411,6 +416,30 @@ export const Disabled = Template(false).bind({});
 Disabled.args = {
   placeholder: "氏名・ID・電話番号で検索",
   disabled: true,
+  inputWidth: "15rem",
+  options: [
+    {
+      label: "選択肢1",
+      value: 1,
+      children: [],
+    },
+    {
+      label: "選択肢2",
+      value: 2,
+      children: [],
+    },
+    {
+      label: "選択肢3",
+      value: 3,
+      children: [],
+    },
+  ],
+};
+
+export const IsDirectionFixed = Template(false).bind({});
+IsDirectionFixed.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  isDirectionFixed: true,
   inputWidth: "15rem",
   options: [
     {

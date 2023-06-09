@@ -25,6 +25,7 @@
         :isOpen="openTimepicker"
         @onClose="openTimepicker = false"
         gap="xs"
+        :isDirectionFixed="isDirectionFixed"
       >
         <div :class="timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">
@@ -140,6 +141,11 @@ const props = defineProps({
     default: "10rem",
   },
   disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  isDirectionFixed: {
     type: Boolean,
     required: false,
     default: false,

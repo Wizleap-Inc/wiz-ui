@@ -20,6 +20,11 @@ export default {
         type: "boolean",
       },
     },
+    isDirectionFixed: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 };
 
@@ -40,4 +45,9 @@ export const Default = Template.bind({});
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  isDirectionFixed: true,
 };

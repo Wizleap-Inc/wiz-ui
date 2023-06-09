@@ -23,7 +23,11 @@
       />
       <WizISearch :class="searchInputIconStyle" />
     </div>
-    <WizPopup :isOpen="openPopup" @onClose="emit('toggle', false)">
+    <WizPopup
+      :isOpen="openPopup"
+      :isDirectionFixed="isDirectionFixed"
+      @onClose="emit('toggle', false)"
+    >
       <WizHStack>
         <div
           :class="[
@@ -184,6 +188,11 @@ const props = defineProps({
   openPopup: {
     type: Boolean,
     required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
