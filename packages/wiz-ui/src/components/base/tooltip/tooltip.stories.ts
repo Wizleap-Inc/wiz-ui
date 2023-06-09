@@ -180,16 +180,16 @@ export const IsDirectionFixed: StoryFn = (_, { argTypes }) => ({
 IsDirectionFixed.args = {
   hover: true,
   direction: "right",
-  IsDirectionFixed: true,
+  isDirectionFixed: true,
 };
 IsDirectionFixed.parameters = {
   docs: {
     description: {
-      story: `IsDirectionFixed を指定すると、Popup の表示位置を固定します。`,
+      story: `isDirectionFixed を指定すると、Popup の表示位置を固定します。`,
     },
     source: {
       code: `
-<WizTooltip hover direction="right" IsDirectionFixed>
+<WizTooltip hover direction="right" isDirectionFixed>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>

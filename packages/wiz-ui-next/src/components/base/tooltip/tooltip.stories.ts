@@ -103,12 +103,12 @@ export const IsDirectionFixed = Template.bind({});
 IsDirectionFixed.args = {
   hover: true,
   direction: "right",
-  IsDirectionFixed: true,
+  isDirectionFixed: true,
 };
 IsDirectionFixed.parameters = {
   docs: {
     description: {
-      story: `IsDirectionFixed を指定すると、Popup の表示位置を固定します。`,
+      story: `isDirectionFixed を指定すると、Popup の表示位置を固定します。`,
     },
     source: {
       code: `
