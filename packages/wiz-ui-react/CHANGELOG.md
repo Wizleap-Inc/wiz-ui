@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.12.0
+
+### Minor Changes
+
+- [#776](https://github.com/Wizleap-Inc/wiz-ui/pull/776) [`c069a06e`](https://github.com/Wizleap-Inc/wiz-ui/commit/c069a06ec44c4a3e6268ded7b42af182ee9c3e44) Thanks [@wmoai](https://github.com/wmoai)! - WizDialog の React 対応
+
 ## 0.11.0
 
 ### Minor Changes
