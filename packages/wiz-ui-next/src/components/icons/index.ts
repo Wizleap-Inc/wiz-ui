@@ -10,6 +10,7 @@ import { default as WizIAutoRenew } from "./auto-renew.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICamera } from "./camera.vue";
+import { default as WizICancel } from "./cancel.vue";
 import { default as WizIChangeHistory } from "./change-history.vue";
 import { default as WizIChat } from "./chat.vue";
 import { default as WizICheck } from "./check.vue";
@@ -43,6 +44,7 @@ import { default as WizIRemove } from "./remove.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
+import { default as WizIStars } from "./stars.vue";
 import { default as WizIStoreFront } from "./store-front.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
@@ -62,6 +64,7 @@ export type TIcon =
   | typeof WizIBusinessCenter
   | typeof WizICalendar
   | typeof WizICamera
+  | typeof WizICancel
   | typeof WizIChangeHistory
   | typeof WizIChat
   | typeof WizICheck
@@ -95,6 +98,7 @@ export type TIcon =
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
+  | typeof WizIStars
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -114,6 +118,7 @@ export {
   WizIBusinessCenter,
   WizICalendar,
   WizICamera,
+  WizICancel,
   WizIChangeHistory,
   WizIChat,
   WizICheck,
@@ -147,6 +152,7 @@ export {
   WizISchedule,
   WizISearch,
   WizISend,
+  WizIStars,
   WizIStoreFront,
   WizITab,
   WizITask,
