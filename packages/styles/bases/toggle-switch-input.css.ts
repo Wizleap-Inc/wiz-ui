@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -10,6 +10,23 @@ export const toggleSwitchStyle = style({
   display: "inline-block",
   width: switchWidth,
   height: switchHeight,
+});
+
+export const toggleSwitchColorStyle = styleVariants({
+  default: {
+    backgroundColor: THEME.color.gray["600"],
+    border: `${borderWidth} solid ${THEME.color.gray["600"]}`,
+    ":before": {
+      backgroundColor: THEME.color.gray["600"],
+    },
+  },
+  checked: {
+    backgroundColor: THEME.color.green["800"],
+    border: `${borderWidth} solid ${THEME.color.green["800"]}`,
+    ":before": {
+      backgroundColor: THEME.color.green["800"],
+    },
+  },
 });
 
 export const toggleSwitchInputStyle = style({
@@ -26,7 +43,6 @@ export const toggleSwitchSliderStyle = style({
   right: 0,
   bottom: 0,
   backgroundColor: THEME.color.white["800"],
-  border: `${borderWidth} solid ${THEME.color.green["800"]}`,
   borderRadius: THEME.spacing.xl,
   boxSizing: "border-box",
   ":before": {
@@ -36,7 +52,6 @@ export const toggleSwitchSliderStyle = style({
     width: `calc(${switchWidth} / 3)`,
     top: `calc((${switchHeight} - ${borderWidth} * 2 - calc(${switchWidth} / 3)) / 2)`,
     left: THEME.spacing.xs2,
-    backgroundColor: THEME.color.green["800"],
     borderRadius: THEME.spacing.max,
     transition: "0.4s",
   },
