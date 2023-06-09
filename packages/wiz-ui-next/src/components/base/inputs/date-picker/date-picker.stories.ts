@@ -25,8 +25,12 @@ export default {
     onClick: {
       action: "update:modelValue",
     },
-
-    isDirectioonFixed: {
+    disabled: {
+      control: {
+        type: "boolean",
+      },
+    },
+    isDirectionFixed: {
       control: { type: "boolean" },
     },
   },

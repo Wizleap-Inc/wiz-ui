@@ -24,7 +24,7 @@ export const datePickerVariantStyle = styleVariants({
     cursor: "pointer",
   },
   disabled: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["500"],
     background: THEME.color.gray["300"],
     cursor: "not-allowed",
   },

@@ -190,9 +190,10 @@ const timePickerCursor = computed(() =>
   props.disabled ? "disabled" : "default"
 );
 
-const timePickerBoxColor = computed(() =>
-  props.modelValue ? "selected" : "default"
-);
+const timePickerBoxColor = computed(() => {
+  if (props.disabled) return "disabled";
+  return props.modelValue ? "selected" : "default";
+});
 
 const timePickerSelectorOptionItemColor = (isSelected: boolean) =>
   isSelected ? "selected" : "default";

@@ -25,6 +25,11 @@ export default {
     input: {
       action: "input",
     },
+    disabled: {
+      control: {
+        type: "boolean",
+      },
+    },
     isDirectionFixed: {
       control: {
         type: "boolean",
@@ -77,9 +82,12 @@ import { ref } from "vue";
 import { WizDatepicker } from "@wizleap-inc/wiz-ui";
 
 const date = ref<Date | null>(null);
+const input = (value: Date) => {
+  input.value = value;
+};
 </script>
 <template>
-  <WizDatepicker v-model="date" />
+  <WizDatepicker v-model="date" @input="input" />
 </template>
   `,
     },
@@ -103,9 +111,12 @@ import { ref } from "vue";
 import { WizDatepicker } from "@wizleap-inc/wiz-ui";
 
 const date = ref<Date | null>(null);
+const input = (value: Date) => {
+  input.value = value;
+};
 </script>
 <template>
-  <WizDatepicker v-model="date" placeholder="(例) 2000/1/1" />
+  <WizDatepicker v-model="date" @input="input" placeholder="(例) 2000/1/1" />
 </template>
   `,
     },
@@ -129,9 +140,12 @@ import { ref } from "vue";
 import { WizDatepicker } from "@wizleap-inc/wiz-ui";
 
 const date = ref<Date | null>(null);
+const input = (value: Date) => {
+  input.value = value;
+};
 </script>
 <template>
-  <WizDatepicker v-model="date" disabled />
+  <WizDatepicker v-model="date" @input="input" disabled />
 </template>
   `,
     },

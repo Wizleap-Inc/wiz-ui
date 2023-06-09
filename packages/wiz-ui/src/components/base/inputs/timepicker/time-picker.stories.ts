@@ -9,11 +9,16 @@ export default {
   argTypes: {
     value: {
       control: {
-        type: "text",
+        type: "date",
       },
     },
     input: {
       action: "input",
+    },
+    disabled: {
+      control: {
+        type: "boolean",
+      },
     },
     isDirectionFixed: {
       control: {
@@ -30,7 +35,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
     const value = ref("");
     return { value };
   },
-  template: `<WizTimePicker v-bind="$props"  v-model="value" @input="input"/>`,
+  template: `<WizTimePicker v-bind="$props"  v-model="value">`,
 });
 
 // デフォルト

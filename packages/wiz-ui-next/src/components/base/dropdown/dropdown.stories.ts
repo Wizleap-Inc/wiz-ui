@@ -22,7 +22,7 @@ export default {
       options: SPACING_ACCESSORS,
     },
 
-    isDirectioonFixed: {
+    isDirectionFixed: {
       control: { type: "boolean" },
     },
   },

@@ -21,7 +21,7 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
-    isDirectioonFixed: {
+    isDirectionFixed: {
       control: { type: "boolean" },
     },
   },

@@ -9,14 +9,18 @@ export default {
   argTypes: {
     value: {
       control: {
-        type: "text",
+        type: "date",
       },
     },
     input: {
       action: "input",
     },
-
-    isDirectioonFixed: {
+    disabled: {
+      control: {
+        type: "boolean",
+      },
+    },
+    isDirectionFixed: {
       control: { type: "boolean" },
     },
   },
