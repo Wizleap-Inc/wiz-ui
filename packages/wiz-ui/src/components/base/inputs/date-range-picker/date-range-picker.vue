@@ -10,15 +10,27 @@
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
     >
-      <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+      <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
+        <span v-if="!isHover">
+          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        </span>
+        <button
+          v-else
+          :class="styles.popupCalendarCancelButtonStyle"
+          :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_CANCEL"
+          @click="onClickCancel"
+        >
+          <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
+        </button>
+      </span>
       <span
         :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
-        >{{ value.start ? formatDateToMD(value.start) : "開始日" }}</span
+        >{{ value.start ? formatDateToYYMMDD(value.start) : "開始日" }}</span
       >
       <span :class="styles.separatorStyle">-</span>
       <span
         :class="styles.inputTextStyle[value.end ? 'selected' : 'default']"
-        >{{ value.end ? formatDateToMD(value.end) : "終了日" }}</span
+        >{{ value.end ? formatDateToYYMMDD(value.end) : "終了日" }}</span
       >
     </button>
     <WizPopup
@@ -120,13 +132,14 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, ref, inject, computed } from "vue";
+import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
+import { computed, inject, PropType, ref } from "vue";
 
 import {
   WizCalendar,
   WizCard,
   WizICalendar,
+  WizICancel,
   WizIChevronLeft,
   WizIChevronRight,
   WizIcon,
@@ -140,12 +153,13 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { DateState, DateStatus } from "../../calendar/types";
 
-import { DateRangePickerSelectBoxOption, DateRange } from "./types";
+import { DateRange, DateRangePickerSelectBoxOption } from "./types";
 
 interface Emit {
   (e: "input", value: DateRange): void;
   (e: "updateSelectBoxValue", value: string): void;
   (e: "updateIsOpen", value: boolean): void;
+  (e: "updateIsHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -175,6 +189,13 @@ const props = defineProps({
    * カレンダー（Popup）の開閉状態を指定します。
    */
   isOpen: {
+    type: Boolean,
+    required: true,
+  },
+  /**
+   * `isHover=true`の時、キャンセルアイコンを緑色にします。
+   */
+  isHover: {
     type: Boolean,
     required: true,
   },
@@ -211,6 +232,8 @@ const leftCalendarDate = computed(() => {
 });
 
 const setIsOpen = (value: boolean) => emit("updateIsOpen", value);
+const setIsHover = (value: boolean) => emit("updateIsHover", value);
+const onClickCancel = () => emit("input", { start: null, end: null });
 
 const moveToNextMonth = () => {
   rightCalendarDate.value = new Date(

@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
@@ -162,7 +162,7 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
 });
 
 const _formatDateSlash = (date: Date) => {
-  const year = date.getFullYear();
+  const year = date.getFullYear() % 100;
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}/${month}/${day}`;
@@ -180,13 +180,15 @@ const _formatDateJpMonth = (date: Date) => {
   return `${month}月`;
 };
 
-export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
+export const Hover: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(null);
+    const date = ref<Date | null>(new Date(1990, 0, 1));
     const isOpen = ref(true);
-    const setIsOpen = (value: boolean) => (isOpen.value = value);
-    return { args, date, isOpen, setIsOpen };
+    const isHover = ref(true);
+    const updateIsOpen = (value: boolean) => (isOpen.value = value);
+    const updateIsHover = (value: boolean) => (isHover.value = value);
+    return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
   },
   template: `
     <div>
@@ -194,8 +196,35 @@ export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
         v-bind="args"
         v-model="date"
         :isOpen="isOpen"
+        :isHover="isHover"
         @update:modelValue="args.onClick"
-        @update:isOpen="setIsOpen"
+        @update:isOpen="updateIsOpen"
+        @update:isHover="updateIsHover"
+      />
+    </div>
+  `,
+});
+
+export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(true);
+    const isHover = ref(false);
+    const updateIsOpen = (value: boolean) => (isOpen.value = value);
+    const updateIsHover = (value: boolean) => (isHover.value = value);
+    return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
+  },
+  template: `
+    <div>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        :isHover="isHover"
+        @update:modelValue="args.onClick"
+        @update:isOpen="updateIsOpen"
+        @update:isHover="updateIsHover"
       />
     </div>
   `,

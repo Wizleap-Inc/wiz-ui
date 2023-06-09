@@ -178,7 +178,7 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (
 });
 
 const _formatDateSlash = (date: Date) => {
-  const year = date.getFullYear();
+  const year = date.getFullYear() % 100;
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}/${month}/${day}`;
@@ -196,14 +196,16 @@ const _formatDateJpMonth = (date: Date) => {
   return `${month}月`;
 };
 
-export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
+export const Hover: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(null);
-    const isOpen = ref(false);
-    const setIsOpen = (value: boolean) => (isOpen.value = value);
-    return { date, isOpen, setIsOpen };
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const isHover = ref(true);
+    const updateIsOpen = (value: boolean) => (isOpen.value = value);
+    const updateIsHover = (value: boolean) => (isHover.value = value);
+    return { date, isOpen, isHover, updateIsOpen, updateIsHover };
   },
   template: `
     <div>
@@ -211,8 +213,35 @@ export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
+        :isHover="isHover"
         @input="input"
-        @updateIsOpen="setIsOpen"
+        @updateIsOpen="updateIsOpen"
+        @updateIsHover="updateIsHover"
+      />
+    </div>
+  `,
+});
+export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(false);
+    const isHover = ref(false);
+    const updateIsOpen = (value: boolean) => (isOpen.value = value);
+    const updateIsHover = (value: boolean) => (isHover.value = value);
+    return { date, isOpen, isHover, updateIsOpen, updateIsHover };
+  },
+  template: `
+    <div>
+      <WizDatepicker 
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        :isHover="isHover"
+        @input="input"
+        @updateIsOpen="updateIsOpen"
+        @updateIsHover="updateIsHover"
       />
     </div>
   `,
