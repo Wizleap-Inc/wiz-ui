@@ -10,19 +10,22 @@
     @click="onClick"
   >
     <WizHStack align="center" justify="between">
-      <div>{{ label }}</div>
+      <div :class="fontSizeStyle[fontSize]">
+        {{ label }}
+      </div>
       <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
     </WizHStack>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   menuItemStyle,
   menuItemVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
-import { ref, computed } from "vue";
+import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType, computed, ref } from "vue";
 
 import { WizIChevronRight } from "@/components/icons";
 
@@ -51,6 +54,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: true,
+  },
+  fontSize: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+    default: "md",
   },
 });
 

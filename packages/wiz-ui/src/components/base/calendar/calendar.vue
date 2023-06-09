@@ -25,10 +25,7 @@
               ? '-選択済み'
               : ''
           }`"
-          :disabled="
-            getDateState(row, col) === 'outOfCurrentMonth' ||
-            getDateState(row, col) === 'primary'
-          "
+          :disabled="getDateState(row, col) === 'outOfCurrentMonth'"
           @click="updateSelectedDate(row, col, day)"
         >
           {{ day }}
@@ -41,17 +38,18 @@
 <script setup lang="ts">
 import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
 import {
-  calendarStyle,
   calendarCellStyle,
-  calendarItemStyle,
   calendarItemCommonStyle,
+  calendarItemStyle,
+  calendarStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
-import { computed, PropType } from "vue";
+import { PropType, computed } from "vue";
 
 import { DateStatus } from "./types";
 
 interface Emit {
   (e: "click", value: Date): void;
+  (e: "clickOnSelectedDate", value: Date): void;
 }
 const emits = defineEmits<Emit>();
 

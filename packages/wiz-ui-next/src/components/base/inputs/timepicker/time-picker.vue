@@ -25,6 +25,7 @@
         :isOpen="openTimepicker"
         @onClose="openTimepicker = false"
         gap="xs"
+        :isDirectionFixed="isDirectionFixed"
       >
         <div :class="timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">
@@ -144,6 +145,11 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const openTimepicker = ref(false);
@@ -184,9 +190,10 @@ const timePickerCursor = computed(() =>
   props.disabled ? "disabled" : "default"
 );
 
-const timePickerBoxColor = computed(() =>
-  props.modelValue ? "selected" : "default"
-);
+const timePickerBoxColor = computed(() => {
+  if (props.disabled) return "disabled";
+  return props.modelValue ? "selected" : "default";
+});
 
 const timePickerSelectorOptionItemColor = (isSelected: boolean) =>
   isSelected ? "selected" : "default";

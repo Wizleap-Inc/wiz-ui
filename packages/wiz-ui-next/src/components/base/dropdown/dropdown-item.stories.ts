@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import { WizIOpenInNew } from "@/components";
 
@@ -28,6 +28,11 @@ const Template: StoryFn<typeof WizDropdownItem> = (args) => ({
 });
 
 export const Default = Template.bind({});
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {

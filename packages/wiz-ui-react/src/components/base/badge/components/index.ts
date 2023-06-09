@@ -1,0 +1,1 @@
+export { WizBadge } from "./badge";
