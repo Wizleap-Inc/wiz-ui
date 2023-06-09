@@ -60,5 +60,11 @@ export const Expand = Template.bind({});
 Expand.args = {
   title: "ヘッダーヘッダーヘッダー",
   expand: true,
+};
+
+export const ExpandWithIcon = Template.bind({});
+ExpandWithIcon.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  expand: true,
   icon: WizIClose,
 };
