@@ -1,5 +1,29 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.11.0
+
+### Minor Changes
+
+- [#640](https://github.com/Wizleap-Inc/wiz-ui/pull/640) [`7142a0af`](https://github.com/Wizleap-Inc/wiz-ui/commit/7142a0afedc76c1398136e9b43bd0f52fe055703) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTab, WizTabPane の React 対応
+
+- [#636](https://github.com/Wizleap-Inc/wiz-ui/pull/636) [`fd585466`](https://github.com/Wizleap-Inc/wiz-ui/commit/fd585466e80be351243c8d3d79668f0d807e4c44) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizStepBar, WizStepLine, WizStepPoint の React 対応
+
+- [#598](https://github.com/Wizleap-Inc/wiz-ui/pull/598) [`7153d860`](https://github.com/Wizleap-Inc/wiz-ui/commit/7153d860423a6ccf13c2c559697615e90b3d1a63) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizBadge の React 対応
+
+- [#768](https://github.com/Wizleap-Inc/wiz-ui/pull/768) [`6cd0f304`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cd0f304d302f67bdee136b55cb30a1e2dd95418) Thanks [@wmoai](https://github.com/wmoai)! - WizCalendar の React 対応
+
+- [#594](https://github.com/Wizleap-Inc/wiz-ui/pull/594) [`1f006646`](https://github.com/Wizleap-Inc/wiz-ui/commit/1f006646ef5ab7acab52c1b9ce36a0a1cfec5db7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizRadio の React 対応
+
+- [#764](https://github.com/Wizleap-Inc/wiz-ui/pull/764) [`73d538c0`](https://github.com/Wizleap-Inc/wiz-ui/commit/73d538c0c6cae798bb1a52837e6e726dd953f61a) Thanks [@wmoai](https://github.com/wmoai)! - WizAccordion の React 対応
+
+- [#642](https://github.com/Wizleap-Inc/wiz-ui/pull/642) [`607fcab8`](https://github.com/Wizleap-Inc/wiz-ui/commit/607fcab8f570ddc9976b376358a6c1aaa21a063e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizCardTable, WizFlatTable, WizUnstyledTable の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`6cd0f304`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cd0f304d302f67bdee136b55cb30a1e2dd95418), [`1f006646`](https://github.com/Wizleap-Inc/wiz-ui/commit/1f006646ef5ab7acab52c1b9ce36a0a1cfec5db7)]:
+  - @wizleap-inc/wiz-ui-constants@0.7.1
+  - @wizleap-inc/wiz-ui-styles@0.9.1
+
 ## 0.10.0
 
 ### Minor Changes
