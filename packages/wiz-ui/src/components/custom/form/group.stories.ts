@@ -1,6 +1,8 @@
 import { StoryFn } from "@storybook/vue";
 import {
+  COLOR_MAP_ACCESSORS,
   ColorKeys,
+  FONT_SIZE_ACCESSORS,
   FontSizeKeys,
   SPACING_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
@@ -38,6 +40,14 @@ export default {
     gap: {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
+    },
+    labelColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    labelFontSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
     },
   },
 };

@@ -1,5 +1,11 @@
 import { Meta, StoryFn } from "@storybook/vue3";
-import { ColorKeys, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
+import {
+  COLOR_MAP_ACCESSORS,
+  ColorKeys,
+  FONT_SIZE_ACCESSORS,
+  FontSizeKeys,
+  SPACING_ACCESSORS,
+} from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import {
@@ -27,7 +33,23 @@ export default {
   title: "Custom/Form/Group",
   component: WizFormGroup,
   subcomponents: { WizFormControl },
-  argTypes: {},
+  argTypes: {
+    labelWidth: {
+      control: { type: "text" },
+    },
+    gap: {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    },
+    labelColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    labelFontSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
+    },
+  },
 } as Meta<typeof WizFormGroup>;
 
 const Template: StoryFn<typeof WizFormGroup> = (args) => ({
