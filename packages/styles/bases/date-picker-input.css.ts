@@ -24,7 +24,7 @@ export const datePickerVariantStyle = styleVariants({
     cursor: "pointer",
   },
   disabled: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["500"],
     background: THEME.color.gray["300"],
     cursor: "not-allowed",
   },
@@ -90,4 +90,16 @@ export const datePickerYearSelectorItemStyle = style({
 export const datePickerArrowIconStyle = style({
   transform: "scale(2)",
   pointerEvents: "none",
+});
+
+export const datePickerCancelButtonStyle = style({
+  cursor: "pointer",
+  padding: THEME.spacing.no,
+  borderRadius: THEME.spacing.xs2,
+  border: "none",
+  background: "transparent",
+  fill: THEME.color.gray["500"],
+  ":active": {
+    fill: THEME.color.green["800"],
+  },
 });

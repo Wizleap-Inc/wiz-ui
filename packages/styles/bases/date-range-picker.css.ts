@@ -32,7 +32,7 @@ export const bodyStyle = styleVariants({
 
 export const widthStyle = styleVariants({
   default: {
-    width: "10rem",
+    width: "12rem",
   },
   expanded: {
     width: "100%",
@@ -186,4 +186,16 @@ export const popupCalendarHeaderButtonStyle = style({
 export const popupCalendarHeaderSpacerStyle = style({
   width: THEME.spacing.xl,
   height: THEME.spacing.xl,
+});
+
+export const popupCalendarCancelButtonStyle = style({
+  cursor: "pointer",
+  padding: THEME.spacing.no,
+  borderRadius: THEME.spacing.xs2,
+  border: "none",
+  background: "transparent",
+  fill: THEME.color.gray["500"],
+  ":active": {
+    fill: THEME.color.green["800"],
+  },
 });

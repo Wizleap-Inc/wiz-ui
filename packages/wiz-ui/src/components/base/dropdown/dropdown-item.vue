@@ -1,6 +1,7 @@
 <template>
-  <div
+  <button
     :class="dropdownItemStyle"
+    :disabled="disabled"
     @click="onClick"
     @mouseover="onMouseover"
     @mouseout="onMouseout"
@@ -11,15 +12,15 @@
       <slot />
       <WizIcon v-if="icon" size="md" :icon="icon" :color="computedColor" />
     </WizHStack>
-  </div>
+  </button>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { dropdownItemStyle } from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
-import { computed, PropType, ref } from "vue";
+import { PropType, computed, ref } from "vue";
 
-import { WizIcon, WizHStack } from "@/components";
+import { WizHStack, WizIcon } from "@/components";
 import type { TIcon } from "@/components/icons";
 
 defineOptions({
@@ -29,6 +30,11 @@ defineOptions({
 defineProps({
   icon: {
     type: Object as PropType<TIcon>,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 interface Emit {

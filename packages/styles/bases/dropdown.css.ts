@@ -12,21 +12,32 @@ export const dropdownSkeletonStyle = style({
 });
 
 export const dropdownItemStyle = style({
+  border: "none",
+  font: "inherit",
+  color: "inherit",
+  background: "none",
+  width: "100%",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl,
   userSelect: "none",
-  "@media": {
-    "(any-hover: hover)": {
-      ":hover": {
-        background: THEME.color.green[300],
-        color: THEME.color.green[800],
+  ":disabled": {
+    color: THEME.color.gray[400],
+    cursor: "not-allowed",
+  },
+  selectors: {
+    "&:active:not(:disabled)": {
+      color: THEME.color.white[800],
+      background: THEME.color.green[800],
+    },
+    "&:hover:not(:disabled):not(:active)": {
+      "@media": {
+        "(any-hover: hover)": {
+          background: THEME.color.green[300],
+          color: THEME.color.green[800],
+        },
       },
     },
-  },
-  ":active": {
-    background: THEME.color.green[800],
-    color: THEME.color.white[800],
   },
 });
