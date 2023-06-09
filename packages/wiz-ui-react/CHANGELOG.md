@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.13.0
+
+### Minor Changes
+
+- [#783](https://github.com/Wizleap-Inc/wiz-ui/pull/783) [`50b11fb6`](https://github.com/Wizleap-Inc/wiz-ui/commit/50b11fb6a71848992f3cba241e13df69f10f8203) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizHeader の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`6fff2934`](https://github.com/Wizleap-Inc/wiz-ui/commit/6fff293452fa178a0ca12d8016cfd2d6eff34e83)]:
+  - @wizleap-inc/wiz-ui-styles@0.9.2
+
 ## 0.12.0
 
 ### Minor Changes
