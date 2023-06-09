@@ -1,4 +1,6 @@
 export * from "./buttons";
+export * from "./popup";
+export * from "./portal";
 export * from "./avatar";
 export * from "./box";
 export * from "./card";
@@ -10,3 +12,5 @@ export * from "./menu";
 export * from "./stack";
 export * from "./anchor";
 export * from "./inputs";
+export * from "./text";
+export * from "./graphs";

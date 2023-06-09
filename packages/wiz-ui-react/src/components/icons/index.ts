@@ -10,6 +10,7 @@ import { WizIAutoRenew } from "./auto-renew";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
 import { WizICamera } from "./camera";
+import { WizICancel } from "./cancel";
 import { WizIChangeHistory } from "./change-history";
 import { WizIChat } from "./chat";
 import { WizICheck } from "./check";
@@ -43,6 +44,7 @@ import { WizIRemove } from "./remove";
 import { WizISchedule } from "./schedule";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
+import { WizIStars } from "./stars";
 import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
@@ -62,6 +64,7 @@ export type TIcon =
   | typeof WizIBusinessCenter
   | typeof WizICalendar
   | typeof WizICamera
+  | typeof WizICancel
   | typeof WizIChangeHistory
   | typeof WizIChat
   | typeof WizICheck
@@ -95,6 +98,7 @@ export type TIcon =
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
+  | typeof WizIStars
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -114,6 +118,7 @@ export {
   WizIBusinessCenter,
   WizICalendar,
   WizICamera,
+  WizICancel,
   WizIChangeHistory,
   WizIChat,
   WizICheck,
@@ -147,6 +152,7 @@ export {
   WizISchedule,
   WizISearch,
   WizISend,
+  WizIStars,
   WizIStoreFront,
   WizITab,
   WizITask,

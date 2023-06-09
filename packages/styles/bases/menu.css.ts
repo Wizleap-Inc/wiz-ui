@@ -3,6 +3,7 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const menuItemStyle = style({
   padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
+  lineHeight: THEME.fontSize.xl3,
 });
 
 export const menuItemVariantStyle = styleVariants({

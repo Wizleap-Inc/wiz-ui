@@ -120,6 +120,37 @@ Title.parameters = {
   },
 };
 
+export const HideClose = Template.bind({});
+HideClose.args = {
+  hideClose: true,
+};
+HideClose.parameters = {
+  docs: {
+    description: {
+      story: "Dialog の 閉じるボタンを非表示にすることができます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizDialog hideClose v-model="isOpen">
+      <template #title v-if="slotTitle">
+        <component :is="slotTitle" />
+      </template>
+      <component :is="slotDefault" />
+      <template #footer v-if="slotFooter">
+        <component :is="slotFooter" />
+      </template>
+    </WizDialog>
+    <button @click="isOpen = true">Open</button>
+    <div style="height: 200vh"></div>
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
 const ExampleTitleComponent = Vue.component("CustomHeader", {
   components: { WizTag, WizText },
   template: `

@@ -32,6 +32,12 @@ Default.args = {
   slotDefault: "選択肢",
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  slotDefault: "選択肢",
+  disabled: true,
+};
+
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   slotDefault: "選択肢",
