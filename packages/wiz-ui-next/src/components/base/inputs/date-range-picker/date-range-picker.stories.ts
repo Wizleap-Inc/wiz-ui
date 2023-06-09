@@ -38,7 +38,7 @@ export default {
       action: "update:selectBoxValue",
     },
 
-    isDirectioonFixed: {
+    isDirectionFixed: {
       control: { type: "boolean" },
     },
   },

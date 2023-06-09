@@ -26,7 +26,7 @@ export default {
       control: { type: "boolean" },
     },
 
-    isDirectioonFixed: {
+    isDirectionFixed: {
       control: { type: "boolean" },
     },
   },

@@ -14,7 +14,7 @@ export default {
     },
     hover: { control: { type: "boolean" } },
 
-    isDirectioonFixed: {
+    isDirectionFixed: {
       control: { type: "boolean" },
     },
   },
