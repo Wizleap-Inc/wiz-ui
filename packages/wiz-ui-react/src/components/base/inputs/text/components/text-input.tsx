@@ -6,6 +6,7 @@ import {
   ComponentProps,
   ForwardedRef,
   forwardRef,
+  useCallback,
   useContext,
 } from "react";
 
@@ -27,10 +28,13 @@ const TextInput = forwardRef(
   ) => {
     const formControl = useContext(FormControlContext);
 
-    const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-      onChange?.(e);
-      onChangeValue?.(e.target.value);
-    };
+    const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
+      (e) => {
+        onChange?.(e);
+        onChangeValue?.(e.target.value);
+      },
+      [onChange, onChangeValue]
+    );
 
     return (
       <div

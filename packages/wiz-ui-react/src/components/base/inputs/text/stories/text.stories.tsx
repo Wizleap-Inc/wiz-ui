@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { WizISearch } from "@/components/icons";
 
-import { WizTextInput, Props } from "../components/text-input";
+import { WizTextInput } from "../components/text-input";
 
 const meta: Meta<typeof WizTextInput> = {
   title: "Base/Input/Text",
@@ -13,33 +13,18 @@ const meta: Meta<typeof WizTextInput> = {
 export default meta;
 type Story = StoryObj<typeof WizTextInput>;
 
-const Template = (args: Props) => <WizTextInput {...args} />;
-const PlaygroundTemplate = (args: Props) => {
-  const [value, setValue] = useState("");
-  return (
-    <>
-      <p>入力値：{value}</p>
-      <WizTextInput {...args} onChangeValue={setValue} />
-    </>
-  );
-};
-
-export const Default: Story = {
-  render: (args) => <Template {...args} />,
-};
+export const Default: Story = {};
 
 export const Placeholder: Story = {
   args: {
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
 };
 
 export const Expand: Story = {
   args: {
     expand: true,
   },
-  render: (args) => <Template {...args} />,
 };
 
 export const Disabled: Story = {
@@ -47,7 +32,6 @@ export const Disabled: Story = {
     disabled: true,
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
 };
 
 export const WithIcon: Story = {
@@ -55,7 +39,6 @@ export const WithIcon: Story = {
     icon: WizISearch,
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
 };
 
 export const Error: Story = {
@@ -63,19 +46,26 @@ export const Error: Story = {
     placeholder: "入力してください",
     error: true,
   },
-  render: (args) => <Template {...args} />,
 };
 
 export const Test: Story = {
   args: {
     placeholder: "入力してください",
   },
-  render: (args) => <Template {...args} />,
 };
 
 export const Playground: Story = {
   args: {
     placeholder: "入力してください",
   },
-  render: (args) => <PlaygroundTemplate {...args} />,
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState("");
+    return (
+      <>
+        <p>入力値：{value}</p>
+        <WizTextInput {...args} onChangeValue={setValue} />
+      </>
+    );
+  },
 };
