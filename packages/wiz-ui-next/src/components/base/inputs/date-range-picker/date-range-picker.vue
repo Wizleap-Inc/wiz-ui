@@ -10,22 +10,40 @@
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
     >
-      <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+      <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
+        <span v-if="!isHover">
+          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        </span>
+        <button
+          v-else
+          :class="styles.popupCalendarCancelButtonStyle"
+          :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_CANCEL"
+          @click="onClickCancel"
+        >
+          <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
+        </button>
+      </span>
       <span
         :class="
           styles.inputTextStyle[modelValue.start ? 'selected' : 'default']
         "
         >{{
-          modelValue.start ? formatDateToMD(modelValue.start) : "開始日"
+          modelValue.start ? formatDateToYYMMDD(modelValue.start) : "開始日"
         }}</span
       >
       <span :class="styles.separatorStyle">-</span>
       <span
         :class="styles.inputTextStyle[modelValue.end ? 'selected' : 'default']"
-        >{{ modelValue.end ? formatDateToMD(modelValue.end) : "終了日" }}</span
+        >{{
+          modelValue.end ? formatDateToYYMMDD(modelValue.end) : "終了日"
+        }}</span
       >
     </button>
-    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
+    <WizPopup
+      :isOpen="!disabled && isOpen"
+      @onClose="setIsOpen(false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
@@ -120,13 +138,14 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToMD } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, ref, inject, computed } from "vue";
+import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
+import { computed, inject, PropType, ref } from "vue";
 
 import {
   WizCalendar,
   WizCard,
   WizICalendar,
+  WizICancel,
   WizIChevronLeft,
   WizIChevronRight,
   WizIcon,
@@ -140,12 +159,13 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { DateState, DateStatus } from "../../calendar/types";
 
-import { DateRangePickerSelectBoxOption, DateRange } from "./types";
+import { DateRange, DateRangePickerSelectBoxOption } from "./types";
 
 interface Emit {
   (e: "update:modelValue", value: DateRange): void;
   (e: "update:selectBoxValue", value: string): void;
   (e: "update:isOpen", value: boolean): void;
+  (e: "update:isHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -178,6 +198,18 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  /**
+   * `isHover=true`の時、キャンセルアイコンを緑色にします。
+   */
+  isHover: {
+    type: Boolean,
+    required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -206,6 +238,9 @@ const leftCalendarDate = computed(() => {
 });
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
+const setIsHover = (value: boolean) => emit("update:isHover", value);
+const onClickCancel = () =>
+  emit("update:modelValue", { start: null, end: null });
 
 const moveToNextMonth = () => {
   rightCalendarDate.value = new Date(

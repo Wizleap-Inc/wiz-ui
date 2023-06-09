@@ -10,7 +10,6 @@ export const timePickerStyle = style({
 });
 
 export const timePickerDisabledStyle = style({
-  color: THEME.color.gray["700"],
   backgroundColor: THEME.color.gray["300"],
 });
 
@@ -38,6 +37,9 @@ export const timePickerBoxColorStyle = styleVariants({
   },
   selected: {
     color: THEME.color.gray["700"],
+  },
+  disabled: {
+    color: THEME.color.gray["500"],
   },
 });
 

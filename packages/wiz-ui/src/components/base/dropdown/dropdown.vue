@@ -1,7 +1,12 @@
 <template>
   <WizPopupContainer>
     <slot />
-    <WizPopup :isOpen="modelValue" @onClose="modelValue = false" :gap="gap">
+    <WizPopup
+      :isOpen="modelValue"
+      @onClose="modelValue = false"
+      :gap="gap"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <div :class="[dropdownStyle, skeleton && dropdownSkeletonStyle]">
         <WizVStack p="xs" gap="xs2">
           <slot name="options" />
@@ -37,6 +42,11 @@ const props = defineProps({
   gap: {
     type: String as PropType<SpacingKeys>,
     required: false,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

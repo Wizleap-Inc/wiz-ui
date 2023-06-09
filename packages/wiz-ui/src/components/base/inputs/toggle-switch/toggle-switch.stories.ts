@@ -13,12 +13,16 @@ const Template: StoryFn = (_, { argTypes }) => ({
   components: { WizToggleSwitch },
   setup() {
     const value = ref(false);
-    return { value };
+    const value2 = ref(true);
+    return { value, value2 };
   },
   template: `
   <div>
     <p>入力値：{{ value }}</p>
     <WizToggleSwitch v-bind="$props" v-model="value" />
+    <div style="{margin: '40px'}"/>
+    <p>入力値：{{ value2 }}</p>
+    <WizToggleSwitch v-bind="$props" v-model="value2" />
   </div>
 `,
 });

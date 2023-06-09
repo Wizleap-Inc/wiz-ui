@@ -33,7 +33,11 @@
         </WizHStack>
       </div>
     </div>
-    <WizPopup :isOpen="openSelectBox" @onClose="openSelectBox = false">
+    <WizPopup
+      :isOpen="openSelectBox"
+      @onClose="openSelectBox = false"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
         <WizVStack gap="xs2">
           <div
@@ -113,6 +117,11 @@ const props = defineProps({
     required: false,
   },
   isOpen: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  isDirectionFixed: {
     type: Boolean,
     required: false,
     default: false,
