@@ -22,6 +22,11 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
+    isDirectionFixed: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 };
 
@@ -87,4 +92,11 @@ export const ExtraLabel = Template.bind({});
 ExtraLabel.args = {
   options: _getDummyOptions("test", 3, "(10)"),
   isOpen: true,
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  options: _getDummyOptions("test", 3),
+  isOpen: true,
+  isDirectionFixed: true,
 };

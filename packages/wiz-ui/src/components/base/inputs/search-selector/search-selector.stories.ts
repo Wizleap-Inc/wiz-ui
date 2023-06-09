@@ -124,6 +124,7 @@ const code = (
     disabled?: boolean;
     addable?: boolean;
     multiSelectable?: boolean;
+    isDirectionFixed?: boolean;
   }
 ) => `
 <script setup lang="ts">
@@ -166,10 +167,11 @@ const emits = {
       :value="value"
       :options="options"
       :searchValue="searchValue"
-      :isOpen=isOpen
+      :isOpen="isOpen"
       :disabled=${opts?.disabled ? "true" : "false" ?? "false"}
       :multiSelectable=${opts?.multiSelectable ? "true" : "false" ?? "false"}
       :addable=${opts?.addable ? "true" : "false" ?? "false"}
+      :isDirectionFixed=${opts?.isDirectionFixed ? "true" : "false" ?? "false"}
       @toggle="emits.toggle"
       @input="emits.select"
       @unselect="emits.unselect"
@@ -296,6 +298,25 @@ Addable.parameters = {
     source: {
       code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
         addable: true,
+      }),
+    },
+  },
+};
+
+export const IsDirectionFixed = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
+IsDirectionFixed.args = {
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
+        isDirectionFixed: true,
       }),
     },
   },
