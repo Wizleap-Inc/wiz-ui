@@ -12,3 +12,5 @@ export * from "./menu";
 export * from "./stack";
 export * from "./anchor";
 export * from "./inputs";
+export * from "./text";
+export * from "./graphs";
