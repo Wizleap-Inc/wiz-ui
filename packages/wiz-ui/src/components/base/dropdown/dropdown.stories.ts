@@ -21,6 +21,9 @@ export default {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
     },
+    isDirectioonFixed: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -28,7 +31,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDropdown, WizDropdownItem, WizTextButton },
   setup() {
-    const isOpen = ref(false);
+    const isOpen = ref(true);
     return { isOpen };
   },
   template: `
@@ -38,6 +41,8 @@ const Template: StoryFn = (_, { argTypes }) => ({
         <WizDropdownItem @click="click">選択肢1</WizDropdownItem>
         <WizDropdownItem @click="click">選択肢2</WizDropdownItem>
         <WizDropdownItem @click="click">選択肢3</WizDropdownItem>
+        <WizDropdownItem @click="click" disabled>選択肢4</WizDropdownItem>
+        <WizDropdownItem @click="click">選択肢5</WizDropdownItem>
       </template>
     </WizDropdown>
   `,
@@ -86,6 +91,32 @@ Gap.parameters = {
       code: `
 <template>
   <WizDropdown gap="lg" v-model="isOpen">
+    <WizTextButton @click="isOpen = !isOpen" name="trigger">Click me</WizTextButton>
+    <template #options>
+      <WizDropdownItem @click="click">選択肢1</WizDropdownItem>
+      <WizDropdownItem @click="click">選択肢2</WizDropdownItem>
+      <WizDropdownItem @click="click">選択肢3</WizDropdownItem>
+    </template>
+  </WizDropdown>
+</template>
+      `,
+    },
+  },
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    description: {
+      story: `isDirectionFixed を指定することで、Popup の表示位置を固定することができます。 `,
+    },
+    source: {
+      code: `
+<template>
+  <WizDropdown isDirectionFixed v-model="isOpen">
     <WizTextButton @click="isOpen = !isOpen" name="trigger">Click me</WizTextButton>
     <template #options>
       <WizDropdownItem @click="click">選択肢1</WizDropdownItem>

@@ -2,7 +2,13 @@
   <WizVStack>
     <WizHStack>
       <WizHStack :width="labelWidth" align="center" gap="xs2">
-        <WizText as="label" :htmlFor="htmlFor">{{ label }}</WizText>
+        <WizText
+          as="label"
+          :htmlFor="htmlFor"
+          :color="labelColor"
+          :font-size="labelFontSize"
+          >{{ label }}</WizText
+        >
         <WizTag font-size="xs2" label="必須" v-if="required" />
       </WizHStack>
       <WizVStack>
@@ -57,6 +63,8 @@ const props = defineProps({
 // Form Group
 const fromGroup = inject(formGroupKey);
 const labelWidth = computed(() => fromGroup?.labelWidth.value || "8rem");
+const labelColor = computed(() => fromGroup?.labelColor.value || "gray.900");
+const labelFontSize = computed(() => fromGroup?.labelFontSize.value || "md");
 
 // Form Control
 const provider = useFormControlProvider();

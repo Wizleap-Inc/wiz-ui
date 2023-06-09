@@ -15,6 +15,10 @@ export default {
     input: {
       action: "input",
     },
+
+    isDirectioonFixed: {
+      control: { type: "boolean" },
+    },
   },
 } as Meta<typeof WizTimePicker>;
 
@@ -34,4 +38,9 @@ export const Default = Template.bind({});
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  isDirectionFixed: true,
 };

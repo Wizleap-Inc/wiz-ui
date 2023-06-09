@@ -25,6 +25,10 @@ export default {
     multiSelectable: {
       control: { type: "boolean" },
     },
+
+    isDirectioonFixed: {
+      control: { type: "boolean" },
+    },
   },
   parameters: {
     docs: {
@@ -123,6 +127,7 @@ const code = (
     disabled?: boolean;
     addable?: boolean;
     multiSelectable?: boolean;
+    isDirectionFixed?: boolean;
   }
 ) => `
   <script setup lang="ts">
@@ -295,6 +300,25 @@ Addable.parameters = {
     source: {
       code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
         addable: true,
+      }),
+    },
+  },
+};
+
+export const IsDirectionFixed = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
+IsDirectionFixed.args = {
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
+        isDirectionFixed: true,
       }),
     },
   },

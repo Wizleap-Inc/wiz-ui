@@ -37,6 +37,10 @@ export default {
     onSelectBoxValueChange: {
       action: "update:selectBoxValue",
     },
+
+    isDirectioonFixed: {
+      control: { type: "boolean" },
+    },
   },
   parameters: {
     screenshot: {
@@ -94,6 +98,7 @@ interface Props {
   disabled: boolean;
   expand: boolean;
   selectBoxOptions: boolean;
+  isDirectionFixed: boolean;
 }
 
 const CODE_TEMPLATE = (props: Partial<Props>) => `
@@ -125,7 +130,8 @@ const selectBoxValue = ref('');
     (props.expand ? " expand" : "") +
     (props.selectBoxOptions
       ? ' :selectBoxOptions="selectBoxOptions" v-model:selectBoxValue="selectBoxValue"'
-      : "")
+      : "") +
+    (props.isDirectionFixed ? ' :isDirectionFixed="true"' : "")
   }/>
 </template>
 `;
@@ -212,6 +218,25 @@ SelectBoxOptions.parameters = {
     },
     source: {
       code: CODE_TEMPLATE({ selectBoxOptions: true }),
+    },
+  },
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  modelValue: {
+    start: null,
+    end: null,
+  },
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    description: {
+      story: `isDirectionFixedを設定することで、Popup の表示位置を固定することができます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({ isDirectionFixed: true }),
     },
   },
 };
