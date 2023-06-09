@@ -1,5 +1,31 @@
 # @wizleap-inc/wiz-ui
 
+## 1.11.0
+
+### Minor Changes
+
+- [#761](https://github.com/Wizleap-Inc/wiz-ui/pull/761) [`a69b3df4`](https://github.com/Wizleap-Inc/wiz-ui/commit/a69b3df4bb24b27e1ce0fefbce3b2180a6c9b2ce) Thanks [@okakyo](https://github.com/okakyo)! - [#752] ToggleSwitch に default color を設定
+
+- [#819](https://github.com/Wizleap-Inc/wiz-ui/pull/819) [`35b30a45`](https://github.com/Wizleap-Inc/wiz-ui/commit/35b30a452c9c6a90db9757adbda20e51e4f32991) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDropdownItem に disabled プロパティを追加
+
+- [#787](https://github.com/Wizleap-Inc/wiz-ui/pull/787) [`0711087a`](https://github.com/Wizleap-Inc/wiz-ui/commit/0711087a8a81e3edbb05ef083a546a1a8d275d59) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizFormGroup でラベルのサイズと色を一括指定できるようにする
+
+- [#798](https://github.com/Wizleap-Inc/wiz-ui/pull/798) [`3926b854`](https://github.com/Wizleap-Inc/wiz-ui/commit/3926b8548619958e0defacc71c1db343845f84da) Thanks [@RyushiAok](https://github.com/RyushiAok)! - 同じ日付を選択可能にする
+  リセット機能を追加
+
+- [#820](https://github.com/Wizleap-Inc/wiz-ui/pull/820) [`d754a04a`](https://github.com/Wizleap-Inc/wiz-ui/commit/d754a04abc3989745ae42193995c6e373ec83236) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizMenuItem に fontSize プロパティを追加
+
+- [#762](https://github.com/Wizleap-Inc/wiz-ui/pull/762) [`7ecb2744`](https://github.com/Wizleap-Inc/wiz-ui/commit/7ecb27445534608fe12bc0bc1eb2aa0f47b4b98a) Thanks [@okakyo](https://github.com/okakyo)! - [#732] isDirectionFixed Prop を Popup コンポーネントを含むコンポーネントに追加
+
+### Patch Changes
+
+- [#759](https://github.com/Wizleap-Inc/wiz-ui/pull/759) [`73a89a97`](https://github.com/Wizleap-Inc/wiz-ui/commit/73a89a97a34170f4530f8498f6ba9cd74d54afdd) Thanks [@okakyo](https://github.com/okakyo)! - [#751] datetimepicker に disabled color を設定
+
+- Updated dependencies [[`a69b3df4`](https://github.com/Wizleap-Inc/wiz-ui/commit/a69b3df4bb24b27e1ce0fefbce3b2180a6c9b2ce), [`35b30a45`](https://github.com/Wizleap-Inc/wiz-ui/commit/35b30a452c9c6a90db9757adbda20e51e4f32991), [`73a89a97`](https://github.com/Wizleap-Inc/wiz-ui/commit/73a89a97a34170f4530f8498f6ba9cd74d54afdd), [`3926b854`](https://github.com/Wizleap-Inc/wiz-ui/commit/3926b8548619958e0defacc71c1db343845f84da)]:
+  - @wizleap-inc/wiz-ui-styles@0.9.0
+  - @wizleap-inc/wiz-ui-constants@0.7.0
+  - @wizleap-inc/wiz-ui-utils@0.3.0
+
 ## 1.10.0
 
 ### Minor Changes
