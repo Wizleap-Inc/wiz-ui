@@ -15,6 +15,7 @@ export * from "./menu";
 export * from "./stack";
 export * from "./anchor";
 export * from "./inputs";
+export * from "./calendar";
 export * from "./accordion";
 export * from "./text";
 export * from "./graphs";
