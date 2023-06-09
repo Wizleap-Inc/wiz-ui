@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui
 
+## 1.11.1
+
+### Patch Changes
+
+- [#825](https://github.com/Wizleap-Inc/wiz-ui/pull/825) [`22ce6639`](https://github.com/Wizleap-Inc/wiz-ui/commit/22ce66392a28bda23432b554348c101a3012713e) Thanks [@ichi-h](https://github.com/ichi-h)! - fixed の要素上で popup が追従しない問題を解消
+
+- Updated dependencies [[`6cd0f304`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cd0f304d302f67bdee136b55cb30a1e2dd95418), [`1f006646`](https://github.com/Wizleap-Inc/wiz-ui/commit/1f006646ef5ab7acab52c1b9ce36a0a1cfec5db7)]:
+  - @wizleap-inc/wiz-ui-constants@0.7.1
+  - @wizleap-inc/wiz-ui-styles@0.9.1
+
 ## 1.11.0
 
 ### Minor Changes
