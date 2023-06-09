@@ -39,7 +39,11 @@
         }}</span
       >
     </button>
-    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
+    <WizPopup
+      :isOpen="!disabled && isOpen"
+      @onClose="setIsOpen(false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
@@ -200,6 +204,11 @@ const props = defineProps({
   isHover: {
     type: Boolean,
     required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

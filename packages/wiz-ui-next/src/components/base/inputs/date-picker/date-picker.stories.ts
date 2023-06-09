@@ -25,6 +25,10 @@ export default {
     onClick: {
       action: "update:modelValue",
     },
+
+    isDirectioonFixed: {
+      control: { type: "boolean" },
+    },
   },
 } as Meta<typeof WizDatepicker>;
 
@@ -285,4 +289,30 @@ Test.play = async ({ canvasElement }) => {
 
   await userEvent.click(button);
   await userEvent.tab();
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  value: null,
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    description: {
+      story: `isDirectionFixedを設定することで、Popup の表示位置を固定することができます。`,
+    },
+    source: {
+      code: `
+<script setup lang="ts">
+import { ref } from "vue";
+import { WizDatepicker } from "@wizleap-inc/wiz-ui";
+
+const date = ref<Date | null>(null);
+</script>
+<template>
+  <WizDatepicker v-model="date" isDirectionFixed />
+</template>
+  `,
+    },
+  },
 };
