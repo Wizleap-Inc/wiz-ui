@@ -1,5 +1,48 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.10.0
+
+### Minor Changes
+
+- [#810](https://github.com/Wizleap-Inc/wiz-ui/pull/810) [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3) Thanks [@ichi-h](https://github.com/ichi-h)! - [#757] Information Panel コンポーネントを追加
+
+### Patch Changes
+
+- [#765](https://github.com/Wizleap-Inc/wiz-ui/pull/765) [`9016c38a`](https://github.com/Wizleap-Inc/wiz-ui/commit/9016c38a88ef804ff7ffe1c0b9fef238828a27c5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput のスタイル・バグ修正
+
+- Updated dependencies [[`9016c38a`](https://github.com/Wizleap-Inc/wiz-ui/commit/9016c38a88ef804ff7ffe1c0b9fef238828a27c5), [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3)]:
+  - @wizleap-inc/wiz-ui-styles@0.8.0
+  - @wizleap-inc/wiz-ui-constants@0.6.0
+
+## 1.9.0
+
+### Minor Changes
+
+- [#806](https://github.com/Wizleap-Inc/wiz-ui/pull/806) [`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964) Thanks [@ichi-h](https://github.com/ichi-h)! - WizIStars の追加
+
+### Patch Changes
+
+- Updated dependencies [[`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964)]:
+  - @wizleap-inc/wiz-ui-constants@0.5.0
+  - @wizleap-inc/wiz-ui-styles@0.7.1
+
+## 1.8.0
+
+### Minor Changes
+
+- [#777](https://github.com/Wizleap-Inc/wiz-ui/pull/777) [`57f31263`](https://github.com/Wizleap-Inc/wiz-ui/commit/57f31263d98bf75bdadadf5841ef4066b2d3a3c9) Thanks [@okakyo](https://github.com/okakyo)! - dialog に hideClose のプロパティを追加し、バツボタンを非表示にできるようにする
+
+- [#706](https://github.com/Wizleap-Inc/wiz-ui/pull/706) [`e5843274`](https://github.com/Wizleap-Inc/wiz-ui/commit/e5843274ee645f173d9775c7b5fe45fbdb049b2c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - - WizDatePicker, WizDateRangePicker の初期値を表示に反映する機能を追加
+  - WizDatePicker, WizDateRangePicker のカレンダーの開閉状態を Props で指定
+
+### Patch Changes
+
+- [#542](https://github.com/Wizleap-Inc/wiz-ui/pull/542) [`95394568`](https://github.com/Wizleap-Inc/wiz-ui/commit/9539456842c1870bbbfb7bbe19a4a9329c217494) Thanks [@RyushiAok](https://github.com/RyushiAok)! - checkbox の a11y 対応 (display: none の解消、tabindex を効くようにする)
+
+- Updated dependencies [[`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe), [`309a6cec`](https://github.com/Wizleap-Inc/wiz-ui/commit/309a6cec017bfd7c8aa3f7a19ff366e6b9107206), [`95394568`](https://github.com/Wizleap-Inc/wiz-ui/commit/9539456842c1870bbbfb7bbe19a4a9329c217494), [`b50ef178`](https://github.com/Wizleap-Inc/wiz-ui/commit/b50ef17859fca8f19033864744a00ab584be3e80), [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af)]:
+  - @wizleap-inc/wiz-ui-constants@0.4.1
+  - @wizleap-inc/wiz-ui-styles@0.7.0
+
 ## 1.7.0
 
 ### Minor Changes

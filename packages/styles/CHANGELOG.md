@@ -1,5 +1,40 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.8.0
+
+### Minor Changes
+
+- [#810](https://github.com/Wizleap-Inc/wiz-ui/pull/810) [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3) Thanks [@ichi-h](https://github.com/ichi-h)! - [#757] Information Panel コンポーネントを追加
+
+### Patch Changes
+
+- [#765](https://github.com/Wizleap-Inc/wiz-ui/pull/765) [`9016c38a`](https://github.com/Wizleap-Inc/wiz-ui/commit/9016c38a88ef804ff7ffe1c0b9fef238828a27c5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput のスタイル・バグ修正
+
+- Updated dependencies [[`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3)]:
+  - @wizleap-inc/wiz-ui-constants@0.6.0
+
+## 0.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964)]:
+  - @wizleap-inc/wiz-ui-constants@0.5.0
+
+## 0.7.0
+
+### Minor Changes
+
+- [#766](https://github.com/Wizleap-Inc/wiz-ui/pull/766) [`309a6cec`](https://github.com/Wizleap-Inc/wiz-ui/commit/309a6cec017bfd7c8aa3f7a19ff366e6b9107206) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - adjust height of components related to form to 44px
+
+- [#767](https://github.com/Wizleap-Inc/wiz-ui/pull/767) [`b50ef178`](https://github.com/Wizleap-Inc/wiz-ui/commit/b50ef17859fca8f19033864744a00ab584be3e80) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - adjust menu-item and navigation-item height to 44px
+
+### Patch Changes
+
+- [#542](https://github.com/Wizleap-Inc/wiz-ui/pull/542) [`95394568`](https://github.com/Wizleap-Inc/wiz-ui/commit/9539456842c1870bbbfb7bbe19a4a9329c217494) Thanks [@RyushiAok](https://github.com/RyushiAok)! - checkbox の a11y 対応 (display: none の解消、tabindex を効くようにする)
+
+- Updated dependencies [[`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe), [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af)]:
+  - @wizleap-inc/wiz-ui-constants@0.4.1
+
 ## 0.6.0
 
 ### Minor Changes

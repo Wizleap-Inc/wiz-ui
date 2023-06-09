@@ -124,12 +124,15 @@ export const selectBoxSelectorOptionLabelStyle = style({
   whiteSpace: "nowrap",
 });
 
+const BORDER_WIDTH = "1px";
+
 export const selectBoxSearchInputStyle = style({
   width: 0,
   minWidth: "30%",
   border: "none",
   outline: "none",
-  padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`,
+  padding: `calc(${THEME.spacing.xs2} - ${BORDER_WIDTH}) ${THEME.spacing.no}`,
+  lineHeight: THEME.fontSize.xl,
   flexGrow: 1,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
