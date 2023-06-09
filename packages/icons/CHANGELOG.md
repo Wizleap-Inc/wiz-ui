@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.3.0
+
+### Minor Changes
+
+- [#806](https://github.com/Wizleap-Inc/wiz-ui/pull/806) [`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964) Thanks [@ichi-h](https://github.com/ichi-h)! - WizIStars の追加
+
 ## 0.2.0
 
 ### Minor Changes

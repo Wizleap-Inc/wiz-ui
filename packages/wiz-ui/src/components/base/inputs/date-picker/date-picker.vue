@@ -10,14 +10,19 @@
         width,
       }"
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
-      @click="toggleDatepicker"
+      :disabled="disabled"
+      @click="setIsOpen(!isOpen)"
     >
       <WizHStack gap="xs" align="center" height="100%">
         <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         <span>{{ parseValue(calendarValue) || placeholder }}</span>
       </WizHStack>
     </button>
-    <WizPopup :isOpen="openDatepicker" @onClose="openDatepicker = false">
+    <WizPopup
+      :isOpen="!disabled && isOpen"
+      @onClose="setIsOpen(false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizHStack align="center" justify="between" gap="xs2">
@@ -131,6 +136,7 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 interface Emit {
   (e: "input", value: Date): void;
+  (e: "updateIsOpen", value: boolean): void;
 }
 
 const props = defineProps({
@@ -153,19 +159,27 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  /**
+   * カレンダー（Popup）の開閉状態を指定します。
+   */
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
 
-const defaultCurrentMonth = new Date().setHours(0, 0, 0, 0);
-const currentMonth = ref(new Date(defaultCurrentMonth));
-const openDatepicker = ref(false);
+const defaultCurrentMonth = props.value || new Date();
+const currentMonth = ref(defaultCurrentMonth);
 
-const toggleDatepicker = () => {
-  if (props.disabled) {
-    return;
-  }
-  openDatepicker.value = !openDatepicker.value;
+const setIsOpen = (value: boolean) => {
+  emit("updateIsOpen", value);
 };
 
 const clickToNextMonth = () => {
@@ -225,7 +239,7 @@ const isError = computed(() => (form ? form.isError.value : false));
 
 const borderState = computed(() => {
   if (isError.value) return "error";
-  if (openDatepicker.value) return "active";
+  if (props.isOpen && !props.disabled) return "active";
   return "default";
 });
 

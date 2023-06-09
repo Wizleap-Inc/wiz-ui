@@ -43,6 +43,7 @@ import { WizIRemove } from "./remove";
 import { WizISchedule } from "./schedule";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
+import { WizIStars } from "./stars";
 import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
@@ -95,6 +96,7 @@ export type TIcon =
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
+  | typeof WizIStars
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -147,6 +149,7 @@ export {
   WizISchedule,
   WizISearch,
   WizISend,
+  WizIStars,
   WizIStoreFront,
   WizITab,
   WizITask,

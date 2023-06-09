@@ -1,5 +1,7 @@
 export * from "./buttons";
 export * from "./inputs";
+export * from "./popup";
+export * from "./portal";
 export * from "./avatar";
 export * from "./box";
 export * from "./card";
