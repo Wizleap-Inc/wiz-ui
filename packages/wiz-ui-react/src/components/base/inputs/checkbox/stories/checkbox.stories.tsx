@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { ComponentProps, useState } from "react";
 
 import { WizCheckBox } from "../components/checkbox";
 
@@ -12,42 +11,42 @@ const meta: Meta<typeof WizCheckBox> = {
 export default meta;
 type Story = StoryObj<typeof WizCheckBox>;
 
-const useControlledProps = (initValue: number[]) => {
-  const [value, setValue] = useState<number[]>(initValue);
-  const handleChange = (changed: number[]) => {
-    setValue(changed);
-  };
-  return { value, handleChange };
-};
+const DUMMY_OPTIONS: ComponentProps<typeof WizCheckBox>["options"] = [
+  { label: "test1", value: 1, key: "test1" },
+  { label: "test2", value: 2, key: "test2" },
+  { label: "test3", value: 3, key: "test3" },
+  { label: "test4", value: 4, key: "test4" },
+];
 
-export const Default: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: "",
-      },
-    },
-  },
-  args: {
-    options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2" },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4" },
-    ],
-  },
+const Template: Story = {
   render: (args) => {
-    const { value, handleChange } = useControlledProps([]);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [values, setValues] = useState<number[]>(args.values ?? []);
     return (
       <div>
-        <p>入力値：[{value.join(", ")}]</p>
-        <WizCheckBox {...args} value={value} onChange={handleChange} />
+        <p>入力値：[{values.join(", ")}]</p>
+        <WizCheckBox
+          {...args}
+          values={values}
+          onChange={(updated) => setValues(updated)}
+        />
       </div>
     );
   },
 };
 
+export const Default: Story = {
+  ...Template,
+  args: {
+    options: DUMMY_OPTIONS,
+  },
+};
+
 export const Options: Story = {
+  ...Template,
+  args: {
+    options: DUMMY_OPTIONS,
+  },
   parameters: {
     docs: {
       description: {
@@ -59,54 +58,26 @@ keyはcheckboxのidとして使用されます。keyは一意である必要が�
       },
     },
   },
-  args: {
-    options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2" },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4" },
-    ],
-  },
-  render: (args) => {
-    const { value, handleChange } = useControlledProps([]);
-    return (
-      <div>
-        <p>入力値：[{value.join(", ")}]</p>
-        <WizCheckBox {...args} value={value} onChange={handleChange} />
-      </div>
-    );
-  },
 };
 
 export const AllDisabled: Story = {
+  ...Template,
+  args: {
+    disabled: true,
+    options: DUMMY_OPTIONS,
+  },
   parameters: {
     docs: {
       description: {
-        story: "",
+        story:
+          "disabledをtrueにすると、全てのチェックボックスがdisabledになります。",
       },
     },
-  },
-  args: {
-    disabled: true,
-    options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2" },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4" },
-    ],
-  },
-  render: (args) => {
-    const { value, handleChange } = useControlledProps([]);
-    return (
-      <div>
-        <p>入力値：[{value.join(", ")}]</p>
-        <WizCheckBox {...args} value={value} onChange={handleChange} />
-      </div>
-    );
   },
 };
 
 export const SpotDisabled: Story = {
+  ...Template,
   parameters: {
     docs: {
       description: {
@@ -116,25 +87,19 @@ export const SpotDisabled: Story = {
     },
   },
   args: {
-    options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2", disabled: true },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4", disabled: true },
-    ],
-  },
-  render: (args) => {
-    const { value, handleChange } = useControlledProps([]);
-    return (
-      <div>
-        <p>入力値：[{value.join(", ")}]</p>
-        <WizCheckBox {...args} value={value} onChange={handleChange} />
-      </div>
-    );
+    options: DUMMY_OPTIONS.map((option, i) => ({
+      ...option,
+      disabled: i % 2 === 1,
+    })),
   },
 };
 
 export const Vertical: Story = {
+  ...Template,
+  args: {
+    options: DUMMY_OPTIONS,
+    direction: "vertical",
+  },
   parameters: {
     docs: {
       description: {
@@ -142,27 +107,14 @@ export const Vertical: Story = {
       },
     },
   },
-  args: {
-    options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2" },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4" },
-    ],
-    direction: "vertical",
-  },
-  render: (args) => {
-    const { value, handleChange } = useControlledProps([]);
-    return (
-      <div>
-        <p>入力値：[{value.join(", ")}]</p>
-        <WizCheckBox {...args} value={value} onChange={handleChange} />
-      </div>
-    );
-  },
 };
 
 export const Gap: Story = {
+  ...Template,
+  args: {
+    options: DUMMY_OPTIONS,
+    gap: "sm",
+  },
   parameters: {
     docs: {
       description: {
@@ -170,43 +122,16 @@ export const Gap: Story = {
       },
     },
   },
-  args: {
-    options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2" },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4" },
-    ],
-    gap: "sm",
-  },
-  render: (args) => {
-    const { value, handleChange } = useControlledProps([]);
-    return (
-      <div>
-        <p>入力値：[{value.join(", ")}]</p>
-        <WizCheckBox {...args} value={value} onChange={handleChange} />
-      </div>
-    );
-  },
 };
 
 export const StrikeThrough: Story = {
+  ...Template,
   args: {
-    options: [
-      { label: "test1", value: 1, key: "test1" },
-      { label: "test2", value: 2, key: "test2", disabled: true },
-      { label: "test3", value: 3, key: "test3" },
-      { label: "test4", value: 4, key: "test4", disabled: true },
-    ],
+    options: DUMMY_OPTIONS.map((option, i) => ({
+      ...option,
+      disabled: i % 2 === 1,
+    })),
+    values: [1, 2],
     strikeThrough: true,
-  },
-  render: (args) => {
-    const { value, handleChange } = useControlledProps([1, 2]);
-    return (
-      <div>
-        <p>入力値：[{value.join(", ")}]</p>
-        <WizCheckBox {...args} value={value} onChange={handleChange} />
-      </div>
-    );
   },
 };
