@@ -5,7 +5,7 @@
       @keyup.up="onKeyUp"
       @keyup.down="onKeyDown"
       @blur="onBlur"
-      @keyup.enter="onSelect(currentSelectOption + 1)"
+      @keyup.enter="onSelect(currentSelectOptionIndex + 1)"
       :class="[
         selectBoxStyle,
         inputBorderStyle[state],
@@ -48,7 +48,8 @@
           <div
             :class="[
               selectBoxSelectorOptionStyle,
-              currentSelectOption === key && selectBoxSelectorOptionSelectStyle,
+              currentSelectOptionIndex === key &&
+                selectBoxSelectorOptionSelectStyle,
             ]"
             v-for="(option, key) in options"
             :key="'option' + key"
@@ -138,7 +139,7 @@ const props = defineProps({
 });
 
 const openSelectBox = ref(props.isOpen);
-const currentSelectOption = ref(-1);
+const currentSelectOptionIndex = ref(-1);
 
 const toggleSelectBox = () => {
   if (props.disabled) {
@@ -148,20 +149,20 @@ const toggleSelectBox = () => {
 };
 
 const onKeyUp = () => {
-  if (openSelectBox.value && currentSelectOption.value > 0)
-    currentSelectOption.value--;
+  if (openSelectBox.value && currentSelectOptionIndex.value > 0)
+    currentSelectOptionIndex.value--;
 };
 
 const onKeyDown = () => {
   if (
     openSelectBox.value &&
-    currentSelectOption.value < props.options.length - 1
+    currentSelectOptionIndex.value < props.options.length - 1
   )
-    currentSelectOption.value++;
+    currentSelectOptionIndex.value++;
 };
 
 const onBlur = () => {
-  currentSelectOption.value = -1;
+  currentSelectOptionIndex.value = -1;
 };
 interface Emit {
   (e: "update:modelValue", value: number): void;
@@ -171,7 +172,7 @@ const emit = defineEmits<Emit>();
 const onSelect = (value: number) => {
   toggleSelectBox();
   if (value < 0) return;
-  emit("update:modelValue", value);
+  emit("update:modelValue", props.options[value].value);
 };
 
 const selectBoxCursor = computed(() =>
