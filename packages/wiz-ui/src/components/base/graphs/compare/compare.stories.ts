@@ -11,6 +11,13 @@ export default {
     data: {
       control: { type: "array" },
     },
+    unitPosition: {
+      control: { type: "select" },
+      options: ["vertical", "intersection", "no"],
+    },
+    rotateStrength: {
+      control: { type: "number" },
+    },
   },
 } as Meta<typeof WizCompareGraph>;
 
@@ -23,7 +30,7 @@ const Template: StoryFn<typeof WizCompareGraph> = (_, { argTypes }) => ({
 });
 const DUMMY_DATA: CompareGraphData[] = [
   {
-    label: "2022/5",
+    label: "dog",
     data: [
       {
         id: "green_1",
@@ -46,7 +53,7 @@ const DUMMY_DATA: CompareGraphData[] = [
     ],
   },
   {
-    label: "2022/6",
+    label: "very very very red apple",
     data: [
       {
         id: "red_1",
@@ -69,7 +76,7 @@ const DUMMY_DATA: CompareGraphData[] = [
     ],
   },
   {
-    label: "2022/7",
+    label: "yellow banana",
     data: [
       {
         id: "blue_1",
@@ -139,11 +146,45 @@ export const Unit = Template.bind({});
 Unit.args = {
   data: DUMMY_DATA,
   unit: "%",
+  unitPosition: "intersection",
 };
 Unit.parameters = {
   docs: {
     description: {
       story: `単位を設定できます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const UnitVerticalAxis = Template.bind({});
+UnitVerticalAxis.args = {
+  data: DUMMY_DATA,
+  unit: "%",
+  unitPosition: "vertical",
+};
+UnitVerticalAxis.parameters = {
+  docs: {
+    description: {
+      story: `縦軸にラベルを設定できます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({}),
+    },
+  },
+};
+
+export const TiltedLabel = Template.bind({});
+TiltedLabel.args = {
+  data: DUMMY_DATA,
+  isTilted: true,
+};
+TiltedLabel.parameters = {
+  docs: {
+    description: {
+      story: `ラベルを傾けることができます`,
     },
     source: {
       code: CODE_TEMPLATE({}),

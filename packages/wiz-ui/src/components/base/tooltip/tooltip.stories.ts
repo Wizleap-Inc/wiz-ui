@@ -13,6 +13,7 @@ export default {
       options: ["top", "bottom", "left", "right"],
     },
     hover: { control: { type: "boolean" } },
+    isDirectionFixed: { control: { type: "boolean" } },
   },
 };
 
@@ -158,6 +159,41 @@ ShortTextFixedOutBox.parameters = {
     source: {
       code: `
 <WizTooltip hover>
+  <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
+  <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+</WizTooltip>
+`,
+    },
+  },
+};
+
+export const IsDirectionFixed: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizTooltip, WizText },
+  template: `
+    <div style="width: 700px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;">
+      <div style="width: 200px;">
+        <WizTooltip v-bind="$props">
+          <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
+          <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+        </WizTooltip>
+      </div>
+    </div>
+  `,
+});
+IsDirectionFixed.args = {
+  hover: true,
+  direction: "right",
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    description: {
+      story: `isDirectionFixed を指定すると、Popup の表示位置を固定します。`,
+    },
+    source: {
+      code: `
+<WizTooltip hover direction="right" isDirectionFixed>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>

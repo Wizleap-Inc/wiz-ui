@@ -14,6 +14,7 @@
         :animation="animation"
         @onTurn="turnPopup"
         gap="xs2"
+        :isDirectionFixed="isDirectionFixed"
       >
         <div
           :class="[tooltipPositionStyle[actuallyDirection], tooltipPopupStyle]"
@@ -71,6 +72,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

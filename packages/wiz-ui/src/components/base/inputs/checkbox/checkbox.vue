@@ -2,15 +2,6 @@
   <div :class="checkboxStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
       <div v-for="option in options" :key="option.key">
-        <input
-          :class="checkboxInputStyle"
-          type="checkbox"
-          :id="option.key"
-          :name="option.key"
-          :value="option.value"
-          v-model="checkboxValue"
-          :disabled="disabled || option.disabled"
-        />
         <label
           :class="[
             checkboxLabelStyle,
@@ -20,10 +11,28 @@
           ]"
           :for="option.key"
         >
-          <WizICheck
-            v-if="checkboxValue.includes(option.value)"
-            :class="checkboxIconStyle"
+          <input
+            :class="checkboxInputStyle"
+            type="checkbox"
+            :id="option.key"
+            :name="option.key"
+            :value="option.value"
+            v-model="checkboxValue"
+            :disabled="disabled || option.disabled"
+            @focus="focusOption = option.value"
+            @blur="focusOption = null"
           />
+          <span :class="checkboxIconContainerStyle">
+            <WizICheck
+              :class="[
+                checkboxIconBaseStyle,
+                checkboxValue.includes(option.value)
+                  ? checkboxIconVariantStyle['checked']
+                  : checkboxIconVariantStyle['default'],
+                checkboxLabelFocusStyle(option.value),
+              ]"
+            />
+          </span>
           <span
             :class="[
               checkboxValue.includes(option.value) && checkboxBlockCheckedStyle,
@@ -40,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants/styles/spacing";
+import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   checkboxStyle,
   checkboxInputStyle,
@@ -48,13 +57,16 @@ import {
   checkboxLabelCheckedStyle,
   checkboxLabelDisabledStyle,
   checkboxLabelCursorStyle,
-  checkboxIconStyle,
+  checkboxIconBaseStyle,
   checkboxBlockCheckedStyle,
   checkboxLabelStrikeThrough,
+  checkboxIconVariantStyle,
+  checkboxIconFocusedColorStyle,
+  checkboxIconContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
-import { computed, PropType } from "vue";
+import { computed, PropType, ref } from "vue";
 
-import WizStack from "@/components/base/stack/stack.vue";
+import { WizStack } from "@/components";
 import { WizICheck } from "@/components/icons";
 
 import { CheckBoxOption } from "./types";
@@ -71,6 +83,7 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     required: false,
+    default: false,
   },
   direction: {
     type: String as PropType<"horizontal" | "vertical">,
@@ -101,4 +114,20 @@ const checkboxValue = computed({
 
 const labelPointer = (optionDisabled?: boolean) =>
   props.disabled || optionDisabled ? "disabled" : "default";
+
+const focusOption = ref<number | null>(null);
+
+const value2Option = computed(() =>
+  props.options.reduce((acc, option) => {
+    acc[option.value] = option;
+    return acc;
+  }, {} as Record<number, CheckBoxOption>)
+);
+const checkboxLabelFocusStyle = computed(() => (n: number) => {
+  if (props.disabled || value2Option.value[n].disabled) return;
+  if (focusOption.value !== n) return;
+  return checkboxValue.value.includes(n)
+    ? checkboxIconFocusedColorStyle["checked"]
+    : checkboxIconFocusedColorStyle["default"];
+});
 </script>
