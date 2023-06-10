@@ -1,11 +1,12 @@
 {
   "name": "@wizleap-inc/wiz-ui-react",
-  "version": "0.6.0",
+  "version": "0.13.0",
   "description": "A React UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "tsc --noEmit && vite build",
     "dev": "pnpm storybook:dev",
-    "test": "run-p storybook:test",
+    "test": "run-p test:unit storybook:test",
+    "test:unit": "vitest run",
     "check:lib-publish": "can-npm-publish --verbose",
     "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6008' http://localhost:6008",
     "storybook:build": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
@@ -16,6 +17,7 @@
     "@storybook/react": "^7.0.2",
     "@storybook/react-vite": "^7.0.2",
     "@types/react": "^18.0.31",
+    "@types/react-dom": "^18.2.4",
     "@vitejs/plugin-react": "^3.1.0"
   },
   "repository": {

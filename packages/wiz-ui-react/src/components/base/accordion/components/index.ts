@@ -1,0 +1,1 @@
+export { WizAccordion } from "./accordion";

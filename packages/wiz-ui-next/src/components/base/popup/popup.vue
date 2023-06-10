@@ -163,7 +163,8 @@ const togglePopup = () => {
 
 const existsFixedParent = (el: HTMLElement | null): HTMLElement | null => {
   if (!el) return null;
-  if (el.style.position === "fixed") return el;
+  const position = window.getComputedStyle(el).position;
+  if (position === "fixed") return el;
   return existsFixedParent(el.parentElement);
 };
 

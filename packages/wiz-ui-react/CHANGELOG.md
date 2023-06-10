@@ -1,5 +1,116 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.13.0
+
+### Minor Changes
+
+- [#783](https://github.com/Wizleap-Inc/wiz-ui/pull/783) [`50b11fb6`](https://github.com/Wizleap-Inc/wiz-ui/commit/50b11fb6a71848992f3cba241e13df69f10f8203) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizHeader の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`6fff2934`](https://github.com/Wizleap-Inc/wiz-ui/commit/6fff293452fa178a0ca12d8016cfd2d6eff34e83)]:
+  - @wizleap-inc/wiz-ui-styles@0.9.2
+
+## 0.12.0
+
+### Minor Changes
+
+- [#776](https://github.com/Wizleap-Inc/wiz-ui/pull/776) [`c069a06e`](https://github.com/Wizleap-Inc/wiz-ui/commit/c069a06ec44c4a3e6268ded7b42af182ee9c3e44) Thanks [@wmoai](https://github.com/wmoai)! - WizDialog の React 対応
+
+## 0.11.0
+
+### Minor Changes
+
+- [#640](https://github.com/Wizleap-Inc/wiz-ui/pull/640) [`7142a0af`](https://github.com/Wizleap-Inc/wiz-ui/commit/7142a0afedc76c1398136e9b43bd0f52fe055703) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTab, WizTabPane の React 対応
+
+- [#636](https://github.com/Wizleap-Inc/wiz-ui/pull/636) [`fd585466`](https://github.com/Wizleap-Inc/wiz-ui/commit/fd585466e80be351243c8d3d79668f0d807e4c44) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizStepBar, WizStepLine, WizStepPoint の React 対応
+
+- [#598](https://github.com/Wizleap-Inc/wiz-ui/pull/598) [`7153d860`](https://github.com/Wizleap-Inc/wiz-ui/commit/7153d860423a6ccf13c2c559697615e90b3d1a63) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizBadge の React 対応
+
+- [#768](https://github.com/Wizleap-Inc/wiz-ui/pull/768) [`6cd0f304`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cd0f304d302f67bdee136b55cb30a1e2dd95418) Thanks [@wmoai](https://github.com/wmoai)! - WizCalendar の React 対応
+
+- [#594](https://github.com/Wizleap-Inc/wiz-ui/pull/594) [`1f006646`](https://github.com/Wizleap-Inc/wiz-ui/commit/1f006646ef5ab7acab52c1b9ce36a0a1cfec5db7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizRadio の React 対応
+
+- [#764](https://github.com/Wizleap-Inc/wiz-ui/pull/764) [`73d538c0`](https://github.com/Wizleap-Inc/wiz-ui/commit/73d538c0c6cae798bb1a52837e6e726dd953f61a) Thanks [@wmoai](https://github.com/wmoai)! - WizAccordion の React 対応
+
+- [#642](https://github.com/Wizleap-Inc/wiz-ui/pull/642) [`607fcab8`](https://github.com/Wizleap-Inc/wiz-ui/commit/607fcab8f570ddc9976b376358a6c1aaa21a063e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizCardTable, WizFlatTable, WizUnstyledTable の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`6cd0f304`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cd0f304d302f67bdee136b55cb30a1e2dd95418), [`1f006646`](https://github.com/Wizleap-Inc/wiz-ui/commit/1f006646ef5ab7acab52c1b9ce36a0a1cfec5db7)]:
+  - @wizleap-inc/wiz-ui-constants@0.7.1
+  - @wizleap-inc/wiz-ui-styles@0.9.1
+
+## 0.10.0
+
+### Minor Changes
+
+- [#582](https://github.com/Wizleap-Inc/wiz-ui/pull/582) [`7cac47f0`](https://github.com/Wizleap-Inc/wiz-ui/commit/7cac47f02910b12e130c6aa8a22c7552161ff1ed) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizToggleButton の React 対応
+
+- [#584](https://github.com/Wizleap-Inc/wiz-ui/pull/584) [`cf23119c`](https://github.com/Wizleap-Inc/wiz-ui/commit/cf23119c8c0234d2d22c96e8bf6452986d055fb0) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTextInput の React 対応
+
+- [#785](https://github.com/Wizleap-Inc/wiz-ui/pull/785) [`dba598ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/dba598ca966f1126c2ec052b7c9511c6de1558e1) Thanks [@wmoai](https://github.com/wmoai)! - WizCircleGraph の React 対応
+
+- [#815](https://github.com/Wizleap-Inc/wiz-ui/pull/815) [`027ac8e3`](https://github.com/Wizleap-Inc/wiz-ui/commit/027ac8e35beda8dccac023f182e16283e162bbb1) Thanks [@wmoai](https://github.com/wmoai)! - WizTransitionGraph の React 対応
+
+- [#798](https://github.com/Wizleap-Inc/wiz-ui/pull/798) [`3926b854`](https://github.com/Wizleap-Inc/wiz-ui/commit/3926b8548619958e0defacc71c1db343845f84da) Thanks [@RyushiAok](https://github.com/RyushiAok)! - 同じ日付を選択可能にする
+  リセット機能を追加
+
+- [#796](https://github.com/Wizleap-Inc/wiz-ui/pull/796) [`fab01bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/fab01bb3b5797568ee8fd3c0a127daa45d68c06e) Thanks [@wmoai](https://github.com/wmoai)! - WizCompareGraph の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`a69b3df4`](https://github.com/Wizleap-Inc/wiz-ui/commit/a69b3df4bb24b27e1ce0fefbce3b2180a6c9b2ce), [`35b30a45`](https://github.com/Wizleap-Inc/wiz-ui/commit/35b30a452c9c6a90db9757adbda20e51e4f32991), [`73a89a97`](https://github.com/Wizleap-Inc/wiz-ui/commit/73a89a97a34170f4530f8498f6ba9cd74d54afdd), [`3926b854`](https://github.com/Wizleap-Inc/wiz-ui/commit/3926b8548619958e0defacc71c1db343845f84da)]:
+  - @wizleap-inc/wiz-ui-styles@0.9.0
+  - @wizleap-inc/wiz-ui-constants@0.7.0
+  - @wizleap-inc/wiz-ui-utils@0.3.0
+
+## 0.9.0
+
+### Minor Changes
+
+- [#613](https://github.com/Wizleap-Inc/wiz-ui/pull/613) [`0e0c05b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/0e0c05b642f1850a654c41b508852c936dce7e72) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup の React 化（a11y 未対応）
+
+### Patch Changes
+
+- Updated dependencies [[`9016c38a`](https://github.com/Wizleap-Inc/wiz-ui/commit/9016c38a88ef804ff7ffe1c0b9fef238828a27c5), [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3)]:
+  - @wizleap-inc/wiz-ui-styles@0.8.0
+  - @wizleap-inc/wiz-ui-constants@0.6.0
+
+## 0.8.0
+
+### Minor Changes
+
+- [#806](https://github.com/Wizleap-Inc/wiz-ui/pull/806) [`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964) Thanks [@ichi-h](https://github.com/ichi-h)! - WizIStars の追加
+
+### Patch Changes
+
+- Updated dependencies [[`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964)]:
+  - @wizleap-inc/wiz-ui-constants@0.5.0
+  - @wizleap-inc/wiz-ui-styles@0.7.1
+
+## 0.7.0
+
+### Minor Changes
+
+- [#628](https://github.com/Wizleap-Inc/wiz-ui/pull/628) [`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizMenuItem の React 対応
+
+- [#634](https://github.com/Wizleap-Inc/wiz-ui/pull/634) [`54db4c51`](https://github.com/Wizleap-Inc/wiz-ui/commit/54db4c51ba3b4353fecd6791fb0662f90c271df6) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSkeleton, WizSkeletonCircle, WizSkeletonText の React 対応
+
+- [#630](https://github.com/Wizleap-Inc/wiz-ui/pull/630) [`db38ccd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/db38ccd06da23c5c41d6a7ce947846657bf617ae) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizMessageBox の React 対応
+
+- [#600](https://github.com/Wizleap-Inc/wiz-ui/pull/600) [`6d2cdbab`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d2cdbab52d69851eff9968af2b5dc9548a8e50b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizAvatar の React 対応
+
+- [#604](https://github.com/Wizleap-Inc/wiz-ui/pull/604) [`942e9498`](https://github.com/Wizleap-Inc/wiz-ui/commit/942e9498d5add949a9d8bfebcac5b57791d6a43b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPanelSwitch の React 対応
+
+- [#632](https://github.com/Wizleap-Inc/wiz-ui/pull/632) [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPagination の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`db3d7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/db3d7cdcb11d49b6126343975dd24bea118ccebe), [`309a6cec`](https://github.com/Wizleap-Inc/wiz-ui/commit/309a6cec017bfd7c8aa3f7a19ff366e6b9107206), [`95394568`](https://github.com/Wizleap-Inc/wiz-ui/commit/9539456842c1870bbbfb7bbe19a4a9329c217494), [`b50ef178`](https://github.com/Wizleap-Inc/wiz-ui/commit/b50ef17859fca8f19033864744a00ab584be3e80), [`90221126`](https://github.com/Wizleap-Inc/wiz-ui/commit/90221126a1827eb8216113c896f7a638ae2cf3af)]:
+  - @wizleap-inc/wiz-ui-constants@0.4.1
+  - @wizleap-inc/wiz-ui-styles@0.7.0
+
 ## 0.6.0
 
 ### Minor Changes
