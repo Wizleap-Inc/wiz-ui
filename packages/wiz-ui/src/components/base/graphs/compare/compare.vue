@@ -1,5 +1,9 @@
 <template>
-  <Container :maxFrequency="maxFrequency" :annotationUnit="unit">
+  <Container
+    :maxFrequency="maxFrequency"
+    :annotationUnit="(unitPosition === 'intersection' && unit) || undefined"
+    :label-unit="(unitPosition === 'vertical' && unit) || undefined"
+  >
     <div :class="[graphBodyStyle]">
       <Bar
         v-for="(barData, i) in formattedBarData"
@@ -10,6 +14,7 @@
         :key="barData.label"
         :barGap="barGap"
         :barGroupWidth="barGroupWidth"
+        :theta="theta"
       />
     </div>
     <div :class="summaryLabelStyle">
@@ -62,11 +67,40 @@ const props = defineProps({
     required: false,
     default: 0.8,
   },
-  /** 単位を指定してください。 */
+  /** 単位を指定します。
+   * 単位を表示するには、unitPosition に "vertical" または "intersection" を指定してください。
+   */
   unit: {
     type: String,
     required: false,
   },
+  /**
+   * @param {String} unitPosition - ラベルの単位の表示位置を指定します。以下のいずれかの値を指定できます:
+   *   - "vertical": 縦軸の目盛に対して単位を表示します。
+   *   - "intersection": 縦軸と横軸が交わる位置に単位を表示します。
+   *   - "no": 単位を表示しません。
+   * @default "no"
+   * @required false
+   */
+  unitPosition: {
+    type: String as PropType<"vertical" | "intersection" | "no">,
+    required: false,
+    default: "no",
+  },
+  /**
+   * 横軸ラベルを傾けるかを指定します。
+   * @param isTilted
+   * @default false
+   */
+  isTilted: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+});
+
+const theta = computed(() => {
+  return props.isTilted ? Math.PI / 4 : 0;
 });
 
 const maxFrequency = computed(() => {

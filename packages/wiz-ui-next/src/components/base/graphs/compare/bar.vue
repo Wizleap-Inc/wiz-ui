@@ -1,6 +1,6 @@
 <template>
-  <div :class="graphBarStyle">
-    <span :class="graphBarLabelStyle">{{ label }}</span>
+  <div :class="graphBarStyle" ref="graphRef">
+    <span :class="graphBarLabelStyle" ref="labelRef">{{ label }}</span>
     <div
       v-for="bar in bars"
       :key="bar.id"
@@ -34,7 +34,14 @@ import {
   backgroundStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, computed, onMounted, ref } from "vue";
+import {
+  PropType,
+  computed,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
 
 import { CompareGraphData } from "./types";
 const props = defineProps({
@@ -62,10 +69,33 @@ const props = defineProps({
     required: false,
     default: 0.8,
   },
+  /** バーの傾き(rad)を指定します。*/
+  theta: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 const barRefs = ref<HTMLElement[]>();
 const barFrequencyRefs = ref<HTMLElement[]>();
+const labelRef = ref<HTMLElement>();
+const graphRef = ref<HTMLElement>();
+
+const updateLabelTransformStyle = () => {
+  if (!labelRef.value || !graphRef.value) return;
+  const d = labelRef.value.clientWidth / 2;
+  const cx = Math.cos(props.theta) * d;
+  const gx = (graphRef.value.clientWidth * props.barGroupWidth) / 2;
+  const dx = (() => {
+    if (props.theta === 0) return 0;
+    return gx < cx ? gx - cx : 0;
+  })();
+  labelRef.value.style.transform = `
+    translateX(${dx}px)
+    translate(-50%, ${d * Math.abs(Math.sin(props.theta))}px)
+    rotate(-${props.theta}rad)`;
+};
 
 const updateBarItemCurrentHeight = () => {
   const barElms = barRefs.value;
@@ -90,14 +120,25 @@ const updateBarItemCurrentHeight = () => {
   });
 };
 
+const barItemCurrentResizeObserver = new ResizeObserver(
+  updateBarItemCurrentHeight
+);
+
+const graphResizeObserver = new ResizeObserver(updateLabelTransformStyle);
+
+watch(() => props.theta, updateLabelTransformStyle);
+
 onMounted(() => {
-  const barItemCurrentResizeObserver = new ResizeObserver(() => {
-    updateBarItemCurrentHeight();
-  });
   if (barRefs.value)
     barRefs.value.forEach((barItemCurrentRef) => {
       barItemCurrentResizeObserver.observe(barItemCurrentRef);
     });
+  if (graphRef.value) graphResizeObserver.observe(graphRef.value);
+});
+
+onBeforeUnmount(() => {
+  barItemCurrentResizeObserver.disconnect();
+  graphResizeObserver.disconnect();
 });
 
 const barWidth = computed(() => props.barGroupWidth / props.data.data.length);
