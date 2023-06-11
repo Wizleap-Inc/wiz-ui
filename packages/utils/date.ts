@@ -37,6 +37,22 @@ export const formatDateToYMDHM = (_date: Date): string => {
   return `${day} ${time}`;
 };
 
+/**
+ * formatDateToYYMMDD
+ * ```ts
+ * const input = new Date('2021-01-01 12:34:56');
+ * const output = '21/1/1';
+ * assert.equal(formatDateToYYMMDD(input), output);
+ * ```
+ */
+export const formatDateToYYMMDD = (_date: Date): string => {
+  const year = String(_date.getFullYear() % 100).padStart(2, "0");
+  const month = _date.getMonth() + 1;
+  const date = _date.getDate();
+  const day = [year, month, date].join("/");
+  return `${day}`;
+};
+
 const DATE_UNITS = {
   year: 1000 * 60 * 60 * 24 * 365,
   month: 1000 * 60 * 60 * 24 * 30,
@@ -97,4 +113,20 @@ export const formatDateToMD = (date: Date): string => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return [month, day].join("/");
+};
+
+/**
+ * formatNumHourToTime
+ * ```ts
+ * const input = 1.5;
+ * const output = '1:30';
+ * assert.equal(formatNumHourToTime(input), output);
+ * ```
+ * @param numHour
+ * @returns string
+ */
+export const formatNumHourToTime = (numHour: number): string => {
+  const hours = Math.floor(numHour);
+  const minutes = Math.floor((numHour - hours) * 60);
+  return [hours, minutes.toString().padStart(2, "0")].join(":");
 };

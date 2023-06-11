@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
@@ -25,15 +25,34 @@ export default {
     onClick: {
       action: "update:modelValue",
     },
+    disabled: {
+      control: {
+        type: "boolean",
+      },
+    },
+    isDirectionFixed: {
+      control: { type: "boolean" },
+    },
   },
 } as Meta<typeof WizDatepicker>;
 
 const Template: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
-  setup: () => ({ args }),
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
   template: `
     <WizHStack>
-      <WizDatepicker v-bind="args" @update:modelValue="args.onClick"/>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
     </WizHStack>
   `,
 });
@@ -121,8 +140,29 @@ const date = ref<Date | null>(null);
   },
 };
 
+export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
+  template: `
+    <div>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
+    </div>
+  `,
+});
+
 const _formatDateSlash = (date: Date) => {
-  const year = date.getFullYear();
+  const year = date.getFullYear() % 100;
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}/${month}/${day}`;
@@ -136,20 +176,56 @@ const _formatDateJp = (date: Date) => {
 };
 
 const _formatDateJpMonth = (date: Date) => {
-  const year = date.getFullYear();
   const month = date.getMonth() + 1;
-  return `${year}年${month}月`;
+  return `${month}月`;
 };
+
+export const Hover: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const isHover = ref(true);
+    const updateIsOpen = (value: boolean) => (isOpen.value = value);
+    const updateIsHover = (value: boolean) => (isHover.value = value);
+    return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
+  },
+  template: `
+    <div>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        :isHover="isHover"
+        @update:modelValue="args.onClick"
+        @update:isOpen="updateIsOpen"
+        @update:isHover="updateIsHover"
+      />
+    </div>
+  `,
+});
 
 export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
     const date = ref<Date | null>(null);
-    return { args, date };
+    const isOpen = ref(true);
+    const isHover = ref(false);
+    const updateIsOpen = (value: boolean) => (isOpen.value = value);
+    const updateIsHover = (value: boolean) => (isHover.value = value);
+    return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
   },
   template: `
     <div>
-      <WizDatepicker v-model="date" @update:modelValue="args.onClick"/>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        :isHover="isHover"
+        @update:modelValue="args.onClick"
+        @update:isOpen="updateIsOpen"
+        @update:isHover="updateIsHover"
+      />
     </div>
   `,
 });
@@ -214,4 +290,33 @@ Test.play = async ({ canvasElement }) => {
     _formatDateJpMonth(clickDate)
   );
   await waitFor(() => expect(currentMonthDisplay).toBeTruthy());
+
+  await userEvent.click(button);
+  await userEvent.tab();
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  value: null,
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    description: {
+      story: `isDirectionFixedを設定することで、Popup の表示位置を固定することができます。`,
+    },
+    source: {
+      code: `
+<script setup lang="ts">
+import { ref } from "vue";
+import { WizDatepicker } from "@wizleap-inc/wiz-ui";
+
+const date = ref<Date | null>(null);
+</script>
+<template>
+  <WizDatepicker v-model="date" isDirectionFixed />
+</template>
+  `,
+    },
+  },
 };

@@ -14,11 +14,12 @@
     @focusout="hasFocus = false"
     v-model="textValue"
     :id="id"
+    :autocomplete="autocomplete"
   />
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, AutoCompleteKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   baseInputStyle,
   baseInputDisabledStyle,
@@ -69,6 +70,11 @@ const props = defineProps({
     type: String as PropType<"left" | "right" | "both" | "none">,
     required: false,
     default: "none",
+  },
+  autocomplete: {
+    type: String as PropType<AutoCompleteKeys>,
+    required: false,
+    default: "off",
   },
 });
 

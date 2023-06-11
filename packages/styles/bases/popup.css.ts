@@ -23,3 +23,7 @@ export const popupContainerStyle = styleVariants({
 export const popupHiddenStyle = style({
   display: "none",
 });
+
+export const popupFixedStyle = style({
+  position: "fixed",
+});
