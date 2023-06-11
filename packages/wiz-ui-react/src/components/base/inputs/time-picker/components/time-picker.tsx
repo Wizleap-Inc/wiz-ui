@@ -1,22 +1,17 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  timePickerStyle,
-  timePickerDisabledStyle,
-  timePickerCursorStyle,
-  timePickerBoxStyle,
-  timePickerBoxColorStyle,
-  timePickerScrollStyle,
-  timePickerSelectorOptionItemColorStyle,
-  timePickerSelectorOptionItemSelectedStyle,
-  timePickerSelectorOptionItemStyle,
-  timePickerSelectorOptionStyle,
-  timePickerSelectorOptionTypeStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { memo, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
-import { WizDivider, WizIcon } from "@/components";
+import {
+  WizDivider,
+  WizHStack,
+  WizIcon,
+  WizPopup,
+  WizVStack,
+} from "@/components";
+import { FormControlContext } from "@/components/custom/form/form-control-context";
 import { WizISchedule } from "@/components/icons";
 
 type Props = {
@@ -24,21 +19,25 @@ type Props = {
   placeholder?: string;
   width?: string;
   disabled?: boolean;
-  setTime: (time: string) => void;
+  isDirectionFixed?: boolean;
+  onChange: (time: string) => void;
 };
+
+const hourOptions = [...Array(24).keys()].map((val) => String(val));
+const minuteOptions = ["00", "15", "30", "45"];
+
 const _TimePicker = ({
   time,
   placeholder = "時間を選択",
   width = "10rem",
   disabled = false,
-  ...props
+  isDirectionFixed = false,
+  onChange,
 }: Props) => {
   const [openTimePicker, setOpenTimePicker] = useState(false);
   const [selectedHour, setSelectedHour] = useState("");
   const [selectedMinute, setSelectedMinute] = useState("");
-
-  const hourOptions = [...Array(24).keys()].map((val) => String(val));
-  const minuteOptions = ["00", "15", "30", "45"];
+  const anchor = useRef<HTMLDivElement | null>(null);
 
   const toggleTimePicker = () => {
     if (disabled) return;
@@ -54,7 +53,7 @@ const _TimePicker = ({
       defaultValue[1] = inputValue;
       setSelectedMinute(inputValue);
     }
-    props.setTime(defaultValue.join(":"));
+    onChange(defaultValue.join(":"));
   };
 
   const timePickerCursor = disabled ? "disabled" : "default";
@@ -62,66 +61,74 @@ const _TimePicker = ({
   const timePickerSelectorOptionItemColor = (isSelected: boolean) =>
     isSelected ? "selected" : "default";
 
-  const isError = false; // useFormContext
+  const formControl = useContext(FormControlContext);
   const state = (() => {
-    if (isError) return "error";
+    if (formControl.error) return "error";
     if (openTimePicker) return "active";
     return "default";
   })();
 
   return (
-    <div
-      className={clsx([
-        timePickerStyle,
-        inputBorderStyle[state],
-        disabled && timePickerDisabledStyle,
-        timePickerCursorStyle[timePickerCursor],
-      ])}
-    >
+    <>
       <div
-        className={clsx(
-          timePickerBoxStyle,
-          timePickerBoxColorStyle[timePickerBoxColor]
-        )}
-        style={{ width }}
-        onClick={toggleTimePicker}
+        ref={anchor}
+        className={clsx([
+          styles.timePickerStyle,
+          inputBorderStyle[state],
+          disabled && styles.timePickerDisabledStyle,
+          styles.timePickerCursorStyle[timePickerCursor],
+        ])}
+      >
+        <div
+          className={clsx(
+            styles.timePickerBoxStyle,
+            styles.timePickerBoxColorStyle[timePickerBoxColor]
+          )}
+          style={{ width }}
+          onClick={toggleTimePicker}
+        >
+          <WizHStack gap="sm" align="center" height="100%">
+            <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
+            <span>{time || placeholder}</span>
+          </WizHStack>
+        </div>
+      </div>
+
+      <WizPopup
+        isOpen={openTimePicker}
+        anchorElement={anchor}
+        shadow={true}
+        isDirectionFixed={isDirectionFixed}
+        direction="bottomLeft"
+        gap="sm"
+        onClose={() => setOpenTimePicker(false)}
       >
         <div
           style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
             height: "100%",
+            padding: THEME.spacing.xs,
+            background: THEME.color.white["800"],
+            borderRadius: THEME.spacing.xs2,
+            boxSizing: "border-box",
           }}
         >
-          <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
-          <span>{time || placeholder}</span>
-        </div>
-
-        {/* popup */}
-        <div className={"timePickerSelectorStyle"}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              overflow: "none",
-            }}
-          >
-            {/* hh */}
+          <WizHStack overflow="none" gap="xs2">
+            {/* hh  */}
             <div
-              className={timePickerScrollStyle}
+              className={styles.timePickerScrollStyle}
               style={{
                 display: "flex",
                 flexDirection: "column",
                 overflow: "auto",
                 height: "8rem",
                 alignItems: "center",
+                gap: THEME.spacing.xs2,
               }}
             >
               <div
                 className={clsx(
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionTypeStyle
+                  styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionTypeStyle
                 )}
               >
                 時
@@ -130,11 +137,11 @@ const _TimePicker = ({
                 <div
                   key={"hh" + option}
                   className={clsx([
-                    timePickerSelectorOptionStyle,
-                    timePickerSelectorOptionItemStyle,
+                    styles.timePickerSelectorOptionStyle,
+                    styles.timePickerSelectorOptionItemStyle,
                     option === selectedHour &&
-                      timePickerSelectorOptionItemSelectedStyle,
-                    timePickerSelectorOptionItemColorStyle[
+                      styles.timePickerSelectorOptionItemSelectedStyle,
+                    styles.timePickerSelectorOptionItemColorStyle[
                       timePickerSelectorOptionItemColor(option === selectedHour)
                     ],
                   ])}
@@ -146,28 +153,16 @@ const _TimePicker = ({
             </div>
 
             {/* ｜ */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
+            <WizVStack gap="xs2">
               <WizDivider direction="vertical" />
-            </div>
+            </WizVStack>
 
             {/* mm */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <WizVStack gap="xs2" align="center" justify="center">
               <div
                 className={clsx(
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionTypeStyle
+                  styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionTypeStyle
                 )}
               >
                 分
@@ -176,11 +171,11 @@ const _TimePicker = ({
                 <div
                   key={"mm" + option}
                   className={clsx([
-                    timePickerSelectorOptionStyle,
-                    timePickerSelectorOptionItemStyle,
+                    styles.timePickerSelectorOptionStyle,
+                    styles.timePickerSelectorOptionItemStyle,
                     option === selectedMinute &&
-                      timePickerSelectorOptionItemSelectedStyle,
-                    timePickerSelectorOptionItemColorStyle[
+                      styles.timePickerSelectorOptionItemSelectedStyle,
+                    styles.timePickerSelectorOptionItemColorStyle[
                       timePickerSelectorOptionItemColor(
                         option === selectedMinute
                       )
@@ -191,14 +186,14 @@ const _TimePicker = ({
                   {option}
                 </div>
               ))}
-            </div>
-          </div>
+            </WizVStack>
+          </WizHStack>
         </div>
-      </div>
-    </div>
+      </WizPopup>
+    </>
   );
 };
 
 _TimePicker.displayName = ComponentName.TimePicker;
 
-export const WizTimePicker = memo(_TimePicker);
+export const WizTimePicker = _TimePicker;
