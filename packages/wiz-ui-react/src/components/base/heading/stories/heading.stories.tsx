@@ -12,6 +12,7 @@ const meta: Meta<typeof WizHeading> = {
   argTypes: {
     level: {
       control: { type: "range", min: 1, max: 6 },
+      defaultValue: 1,
     },
     fontSize: {
       control: { type: "select" },
