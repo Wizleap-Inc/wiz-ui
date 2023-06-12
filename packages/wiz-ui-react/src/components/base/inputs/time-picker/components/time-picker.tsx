@@ -2,7 +2,7 @@ import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 
 import {
   WizDivider,
@@ -12,59 +12,62 @@ import {
   WizVStack,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/form-control-context";
-import { WizISchedule } from "@/components/icons";
+import { WizICancel, WizISchedule } from "@/components/icons";
+
+import { HOURS, MINUTE_MAP, Time } from "../types/time";
 
 type Props = {
-  time: string;
+  time: Time;
+  isOpen: boolean;
+  isHover: boolean;
+  onChange: (time: Time) => void;
+  setIsOpen: (isOpen: boolean) => void;
+  setIsHover: (isHover: boolean) => void;
   placeholder?: string;
   width?: string;
   disabled?: boolean;
   isDirectionFixed?: boolean;
-  onChange: (time: string) => void;
 };
 
-const hourOptions = [...Array(24).keys()].map((val) => String(val));
-const minuteOptions = ["00", "15", "30", "45"];
+const hourOptions = HOURS;
+const minuteOptions = [0, 15, 30, 45] as const;
 
 const _TimePicker = ({
   time,
+  isOpen,
+  isHover,
   placeholder = "時間を選択",
   width = "10rem",
   disabled = false,
   isDirectionFixed = false,
   onChange,
+  setIsOpen,
+  setIsHover,
 }: Props) => {
-  const [openTimePicker, setOpenTimePicker] = useState(false);
-  const [selectedHour, setSelectedHour] = useState("");
-  const [selectedMinute, setSelectedMinute] = useState("");
   const anchor = useRef<HTMLDivElement | null>(null);
-
   const toggleTimePicker = () => {
     if (disabled) return;
-    setOpenTimePicker(!openTimePicker);
-  };
-
-  const onSelect = (inputValue: string, isHour: boolean) => {
-    const defaultValue = time.length > 0 ? time.split(":") : ["0", "00"];
-    if (isHour) {
-      defaultValue[0] = inputValue;
-      setSelectedHour(inputValue);
-    } else {
-      defaultValue[1] = inputValue;
-      setSelectedMinute(inputValue);
-    }
-    onChange(defaultValue.join(":"));
+    setIsOpen(!isOpen);
   };
 
   const timePickerCursor = disabled ? "disabled" : "default";
-  const timePickerBoxColor = time ? "selected" : "default";
+  const timePickerIsSelected = time.hour || time.minute;
+  const label = timePickerIsSelected
+    ? `${time.hour}:${MINUTE_MAP[time.minute]}`
+    : placeholder;
+  const timePickerBoxColor = (() => {
+    if (disabled) return "disabled";
+    if (timePickerIsSelected) return "selected";
+    return "default";
+  })();
+
   const timePickerSelectorOptionItemColor = (isSelected: boolean) =>
     isSelected ? "selected" : "default";
 
   const formControl = useContext(FormControlContext);
   const state = (() => {
     if (formControl.error) return "error";
-    if (openTimePicker) return "active";
+    if (!disabled && isOpen) return "active";
     return "default";
   })();
 
@@ -88,20 +91,32 @@ const _TimePicker = ({
           onClick={toggleTimePicker}
         >
           <WizHStack gap="sm" align="center" height="100%">
-            <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
-            <span>{time || placeholder}</span>
+            <span
+              onClick={() => onChange({ hour: null, minute: null })}
+              onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)}
+            >
+              {isHover ? (
+                <span className={styles.cancelButtonStyle}>
+                  <WizIcon size="xl2" color="inherit" icon={WizICancel} />
+                </span>
+              ) : (
+                <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
+              )}
+            </span>
+            <span>{label}</span>
           </WizHStack>
         </div>
       </div>
 
       <WizPopup
-        isOpen={openTimePicker}
+        isOpen={!disabled && isOpen}
         anchorElement={anchor}
         shadow={true}
         isDirectionFixed={isDirectionFixed}
         direction="bottomLeft"
         gap="sm"
-        onClose={() => setOpenTimePicker(false)}
+        onClose={() => setIsOpen(false)}
       >
         <div
           style={{
@@ -138,14 +153,17 @@ const _TimePicker = ({
                   key={"hh" + option}
                   className={clsx([
                     styles.timePickerSelectorOptionStyle,
-                    styles.timePickerSelectorOptionItemStyle,
-                    option === selectedHour &&
+                    option !== time.hour &&
+                      styles.timePickerSelectorOptionItemStyle,
+                    option === time.hour &&
                       styles.timePickerSelectorOptionItemSelectedStyle,
                     styles.timePickerSelectorOptionItemColorStyle[
-                      timePickerSelectorOptionItemColor(option === selectedHour)
+                      timePickerSelectorOptionItemColor(option === time.hour)
                     ],
                   ])}
-                  onClick={() => onSelect(option, true)}
+                  onClick={() =>
+                    onChange({ hour: option, minute: time.minute || 0 })
+                  }
                 >
                   {option}
                 </div>
@@ -172,18 +190,19 @@ const _TimePicker = ({
                   key={"mm" + option}
                   className={clsx([
                     styles.timePickerSelectorOptionStyle,
-                    styles.timePickerSelectorOptionItemStyle,
-                    option === selectedMinute &&
+                    option !== time.minute &&
+                      styles.timePickerSelectorOptionItemStyle,
+                    option === time.minute &&
                       styles.timePickerSelectorOptionItemSelectedStyle,
                     styles.timePickerSelectorOptionItemColorStyle[
-                      timePickerSelectorOptionItemColor(
-                        option === selectedMinute
-                      )
+                      timePickerSelectorOptionItemColor(option === time.minute)
                     ],
                   ])}
-                  onClick={() => onSelect(option, false)}
+                  onClick={() =>
+                    onChange({ hour: time.hour || 0, minute: option })
+                  }
                 >
-                  {option}
+                  {MINUTE_MAP[option]}
                 </div>
               ))}
             </WizVStack>
