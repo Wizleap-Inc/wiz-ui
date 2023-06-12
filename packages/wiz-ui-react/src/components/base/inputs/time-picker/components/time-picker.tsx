@@ -17,10 +17,10 @@ import { WizICancel, WizISchedule } from "@/components/icons";
 import { HOURS, MINUTE_MAP, Time } from "../types/time";
 
 type Props = {
-  time: Time;
+  time: Time | null;
   isOpen: boolean;
   isHover: boolean;
-  onChange: (time: Time) => void;
+  onChange: (time: Time | null) => void;
   setIsOpen: (isOpen: boolean) => void;
   setIsHover: (isHover: boolean) => void;
   placeholder?: string;
@@ -51,13 +51,10 @@ const _TimePicker = ({
   };
 
   const timePickerCursor = disabled ? "disabled" : "default";
-  const timePickerIsSelected = time.hour || time.minute;
-  const label = timePickerIsSelected
-    ? `${time.hour}:${MINUTE_MAP[time.minute]}`
-    : placeholder;
+  const label = time ? `${time.hour}:${MINUTE_MAP[time.minute]}` : placeholder;
   const timePickerBoxColor = (() => {
     if (disabled) return "disabled";
-    if (timePickerIsSelected) return "selected";
+    if (time) return "selected";
     return "default";
   })();
 
@@ -92,7 +89,7 @@ const _TimePicker = ({
         >
           <WizHStack gap="sm" align="center" height="100%">
             <span
-              onClick={() => onChange({ hour: null, minute: null })}
+              onClick={() => onChange(null)}
               onMouseEnter={() => setIsHover(true)}
               onMouseLeave={() => setIsHover(false)}
             >
@@ -153,16 +150,16 @@ const _TimePicker = ({
                   key={"hh" + option}
                   className={clsx([
                     styles.timePickerSelectorOptionStyle,
-                    option !== time.hour &&
+                    option !== time?.hour &&
                       styles.timePickerSelectorOptionItemStyle,
-                    option === time.hour &&
+                    option === time?.hour &&
                       styles.timePickerSelectorOptionItemSelectedStyle,
                     styles.timePickerSelectorOptionItemColorStyle[
-                      timePickerSelectorOptionItemColor(option === time.hour)
+                      timePickerSelectorOptionItemColor(option === time?.hour)
                     ],
                   ])}
                   onClick={() =>
-                    onChange({ hour: option, minute: time.minute || 0 })
+                    onChange({ hour: option, minute: time?.minute || 0 })
                   }
                 >
                   {option}
@@ -190,16 +187,16 @@ const _TimePicker = ({
                   key={"mm" + option}
                   className={clsx([
                     styles.timePickerSelectorOptionStyle,
-                    option !== time.minute &&
+                    option !== time?.minute &&
                       styles.timePickerSelectorOptionItemStyle,
-                    option === time.minute &&
+                    option === time?.minute &&
                       styles.timePickerSelectorOptionItemSelectedStyle,
                     styles.timePickerSelectorOptionItemColorStyle[
-                      timePickerSelectorOptionItemColor(option === time.minute)
+                      timePickerSelectorOptionItemColor(option === time?.minute)
                     ],
                   ])}
                   onClick={() =>
-                    onChange({ hour: time.hour || 0, minute: option })
+                    onChange({ hour: time?.hour || 0, minute: option })
                   }
                 >
                   {MINUTE_MAP[option]}

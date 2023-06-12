@@ -10,12 +10,7 @@ export const MINUTE_MAP = {
   45: "45",
 } as const;
 
-export type Time =
-  | {
-      hour: (typeof HOURS)[number];
-      minute: keyof typeof MINUTE_MAP;
-    }
-  | {
-      hour: null;
-      minute: null;
-    };
+export type Time = {
+  hour: (typeof HOURS)[number];
+  minute: keyof typeof MINUTE_MAP;
+};

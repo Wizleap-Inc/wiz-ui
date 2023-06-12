@@ -44,7 +44,7 @@ type Story = StoryObj<typeof WizTimePicker>;
 
 export const Default: Story = {
   render: (args) => {
-    const [time, setTime] = useState<Time>({ hour: null, minute: null });
+    const [time, setTime] = useState<Time | null>(null);
     const [isOpen, setIsOpen] = useState(true);
     const [isHover, setIsHover] = useState(false);
     return (
@@ -63,7 +63,7 @@ export const Default: Story = {
 
 export const Hover: Story = {
   render: (args) => {
-    const [time, setTime] = useState<Time>({ hour: 8, minute: 15 });
+    const [time, setTime] = useState<Time | null>({ hour: 8, minute: 15 });
     const [isOpen, setIsOpen] = useState(true);
     const [isHover, setIsHover] = useState(true);
     return (
@@ -85,7 +85,7 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => {
-    const [time, setTime] = useState<Time>({ hour: null, minute: null });
+    const [time, setTime] = useState<Time | null>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [isHover, setIsHover] = useState(false);
     return (
@@ -107,7 +107,7 @@ export const isDirectionFixed: Story = {
     isDirectionFixed: true,
   },
   render: (args) => {
-    const [time, setTime] = useState<Time>({ hour: null, minute: null });
+    const [time, setTime] = useState<Time | null>(null);
     const [isOpen, setIsOpen] = useState(true);
     const [isHover, setIsHover] = useState(false);
     return (
