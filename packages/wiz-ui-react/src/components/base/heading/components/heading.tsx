@@ -6,7 +6,7 @@ import {
 import { headingStyle } from "@wizleap-inc/wiz-ui-styles/bases/heading.css";
 import { colorStyle, fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, ReactNode, useMemo } from "react";
+import { FC, ReactNode } from "react";
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -35,36 +35,31 @@ interface Props {
   children: ReactNode;
 }
 
-const Heading: FC<Props> = ({ level = 1, color, fontSize, children }) => {
-  const computedFontSize = useMemo(() => {
-    if (fontSize) return fontSize;
-    return DEFAULT_FONT_SIZE[level];
-  }, [fontSize, level]);
-
-  const computedColor = useMemo(() => {
-    if (color) return color;
-    return DEFAULT_COLOR[level];
-  }, [color, level]);
-
-  const tagStyle = clsx(
+const Heading: FC<Props> = ({
+  level = 1,
+  color = DEFAULT_COLOR[level],
+  fontSize = DEFAULT_FONT_SIZE[level],
+  children,
+}) => {
+  const headingClassName = clsx(
     headingStyle,
-    fontSizeStyle[computedFontSize],
-    colorStyle[computedColor]
+    fontSizeStyle[fontSize],
+    colorStyle[color]
   );
 
   switch (level) {
     case 1:
-      return <h1 className={tagStyle}>{children}</h1>;
+      return <h1 className={headingClassName}>{children}</h1>;
     case 2:
-      return <h2 className={tagStyle}>{children}</h2>;
+      return <h2 className={headingClassName}>{children}</h2>;
     case 3:
-      return <h3 className={tagStyle}>{children}</h3>;
+      return <h3 className={headingClassName}>{children}</h3>;
     case 4:
-      return <h4 className={tagStyle}>{children}</h4>;
+      return <h4 className={headingClassName}>{children}</h4>;
     case 5:
-      return <h5 className={tagStyle}>{children}</h5>;
+      return <h5 className={headingClassName}>{children}</h5>;
     case 6:
-      return <h6 className={tagStyle}>{children}</h6>;
+      return <h6 className={headingClassName}>{children}</h6>;
   }
 };
 
