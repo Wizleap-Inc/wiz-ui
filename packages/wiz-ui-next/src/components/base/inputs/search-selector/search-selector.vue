@@ -65,7 +65,12 @@
         />
       </button>
     </div>
-    <WizPopup layer="popover" :isOpen="isOpen" @onClose="emit('toggle', false)">
+    <WizPopup
+      layer="popover"
+      :isOpen="isOpen"
+      @onClose="emit('toggle', false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <div
         :class="selectBoxSelectorStyle"
         :style="{ minWidth: width }"
@@ -183,6 +188,11 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
     required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

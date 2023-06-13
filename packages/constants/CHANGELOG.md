@@ -1,5 +1,32 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.7.1
+
+### Patch Changes
+
+- [#768](https://github.com/Wizleap-Inc/wiz-ui/pull/768) [`6cd0f304`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cd0f304d302f67bdee136b55cb30a1e2dd95418) Thanks [@wmoai](https://github.com/wmoai)! - WizCalendar の React 対応
+
+- [#594](https://github.com/Wizleap-Inc/wiz-ui/pull/594) [`1f006646`](https://github.com/Wizleap-Inc/wiz-ui/commit/1f006646ef5ab7acab52c1b9ce36a0a1cfec5db7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizRadio の React 対応
+
+## 0.7.0
+
+### Minor Changes
+
+- [#798](https://github.com/Wizleap-Inc/wiz-ui/pull/798) [`3926b854`](https://github.com/Wizleap-Inc/wiz-ui/commit/3926b8548619958e0defacc71c1db343845f84da) Thanks [@RyushiAok](https://github.com/RyushiAok)! - 同じ日付を選択可能にする
+  リセット機能を追加
+
+## 0.6.0
+
+### Minor Changes
+
+- [#810](https://github.com/Wizleap-Inc/wiz-ui/pull/810) [`35460bb3`](https://github.com/Wizleap-Inc/wiz-ui/commit/35460bb3a409465e707d81e77e2f75d641f7b4b3) Thanks [@ichi-h](https://github.com/ichi-h)! - [#757] Information Panel コンポーネントを追加
+
+## 0.5.0
+
+### Minor Changes
+
+- [#806](https://github.com/Wizleap-Inc/wiz-ui/pull/806) [`44a23351`](https://github.com/Wizleap-Inc/wiz-ui/commit/44a23351b6a9aef8af9255d8f5f9ed44c1af2964) Thanks [@ichi-h](https://github.com/ichi-h)! - WizIStars の追加
+
 ## 0.4.1
 
 ### Patch Changes
