@@ -1,1 +1,1 @@
-export * from "./heading";
+export { WizHeading } from "./heading";
