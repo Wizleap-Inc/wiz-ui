@@ -10,6 +10,7 @@ import { WizIAutoRenew } from "./auto-renew";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
 import { WizICamera } from "./camera";
+import { WizICancel } from "./cancel";
 import { WizIChangeHistory } from "./change-history";
 import { WizIChat } from "./chat";
 import { WizICheck } from "./check";
@@ -63,6 +64,7 @@ export type TIcon =
   | typeof WizIBusinessCenter
   | typeof WizICalendar
   | typeof WizICamera
+  | typeof WizICancel
   | typeof WizIChangeHistory
   | typeof WizIChat
   | typeof WizICheck
@@ -116,6 +118,7 @@ export {
   WizIBusinessCenter,
   WizICalendar,
   WizICamera,
+  WizICancel,
   WizIChangeHistory,
   WizIChat,
   WizICheck,

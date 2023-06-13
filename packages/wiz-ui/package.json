@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui",
-  "version": "1.9.0",
+  "version": "1.11.2",
   "description": "A Vue2 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",

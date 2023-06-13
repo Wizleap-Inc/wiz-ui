@@ -14,11 +14,33 @@
       @click="setIsOpen(!isOpen)"
     >
       <WizHStack gap="xs" align="center" height="100%">
-        <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
-        <span>{{ parseValue(calendarValue) || placeholder }}</span>
+        <span
+          v-if="!isHover"
+          @mouseenter="setIsHover(true)"
+          @mouseleave="setIsHover(false)"
+        >
+          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+        </span>
+        <button
+          v-else
+          :class="datePickerCancelButtonStyle"
+          :aria-label="ARIA_LABELS.DATE_PICKER_CANCEL"
+          @click="onClickCancel"
+          @mouseenter="setIsHover(true)"
+          @mouseleave="setIsHover(false)"
+        >
+          <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
+        </button>
+        <span>{{
+          (calendarValue && formatDateToYYMMDD(calendarValue)) || placeholder
+        }}</span>
       </WizHStack>
     </button>
-    <WizPopup :isOpen="!disabled && isOpen" @onClose="setIsOpen(false)">
+    <WizPopup
+      :isOpen="!disabled && isOpen"
+      @onClose="setIsOpen(false)"
+      :isDirectionFixed="isDirectionFixed"
+    >
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizHStack align="center" justify="between" gap="xs2">
@@ -97,42 +119,45 @@
 <script setup lang="ts">
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
+  datePickerArrowIconStyle,
+  datePickerCancelButtonStyle,
+  datePickerMonthSelectorItemStyle,
+  datePickerMonthSelectorStyle,
+  datePickerSelectorStyle,
   datePickerStyle,
   datePickerVariantStyle,
-  datePickerSelectorStyle,
-  datePickerMonthSelectorStyle,
-  datePickerMonthSelectorItemStyle,
   datePickerYearSelectorItemStyle,
-  datePickerArrowIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
 import {
-  inputBorderStyle,
   fillStyle,
   fontSizeStyle,
+  inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType } from "vue";
+import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
+import { PropType, computed, inject, ref } from "vue";
 
 import {
-  WizIcon,
-  WizHStack,
-  WizVStack,
   WizCalendar,
-  WizText,
+  WizHStack,
+  WizIcon,
   WizPopup,
   WizPopupContainer,
+  WizText,
+  WizVStack,
 } from "@/components";
 import {
+  WizIArrowDropDown,
+  WizIArrowDropUp,
   WizICalendar,
+  WizICancel,
   WizIChevronLeft,
   WizIChevronRight,
-  WizIArrowDropUp,
-  WizIArrowDropDown,
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
-
 interface Emit {
-  (e: "input", value: Date): void;
+  (e: "input", value: Date | null): void;
   (e: "updateIsOpen", value: boolean): void;
+  (e: "updateIsHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -162,6 +187,18 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  /**
+   * `isHover=true`の時、キャンセルアイコンを緑色にします。
+   */
+  isHover: {
+    type: Boolean,
+    required: true,
+  },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -169,9 +206,9 @@ const emit = defineEmits<Emit>();
 const defaultCurrentMonth = props.value || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
-const setIsOpen = (value: boolean) => {
-  emit("updateIsOpen", value);
-};
+const setIsOpen = (value: boolean) => emit("updateIsOpen", value);
+const setIsHover = (value: boolean) => emit("updateIsHover", value);
+const onClickCancel = () => emit("input", null);
 
 const clickToNextMonth = () => {
   const setDateTime = new Date(
@@ -207,12 +244,6 @@ const clickToPreviousYear = () => {
     1
   );
   currentMonth.value = new Date(setDateTime);
-};
-
-const parseValue = (inputValue: Date | null) => {
-  if (inputValue === null) return undefined;
-  const value = inputValue ?? new Date();
-  return `${value.getFullYear()}/${value.getMonth() + 1}/${value.getDate()}`;
 };
 
 const currentDateTitle = computed(() => {
