@@ -31,13 +31,15 @@ const Tooltip: FC<Props> = ({
   const anchor = useRef<HTMLDivElement | null>(null);
 
   return (
-    <div
-      className={clsx(tooltipStyle)}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      ref={anchor}
-    >
-      {children}
+    <>
+      <div
+        className={clsx(tooltipStyle)}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+        ref={anchor}
+      >
+        {children}
+      </div>
       <WizPopup
         anchorElement={anchor}
         isOpen={isHover || hover}
@@ -62,7 +64,7 @@ const Tooltip: FC<Props> = ({
           </div>
         </div>
       </WizPopup>
-    </div>
+    </>
   );
 };
 
