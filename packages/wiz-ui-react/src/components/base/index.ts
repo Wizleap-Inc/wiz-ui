@@ -23,3 +23,4 @@ export * from "./accordion";
 export * from "./text";
 export * from "./graphs";
 export * from "./heading";
+export * from "./popup-button-group";
