@@ -9,19 +9,7 @@ import { HeadingLevel, WizHeading } from "../components/heading";
 const meta: Meta<typeof WizHeading> = {
   title: "Base/Heading",
   component: WizHeading,
-  argTypes: {
-    level: {
-      control: { type: "range", min: 1, max: 6 },
-    },
-    fontSize: {
-      control: { type: "select" },
-      options: FONT_SIZE_ACCESSORS,
-    },
-    color: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
