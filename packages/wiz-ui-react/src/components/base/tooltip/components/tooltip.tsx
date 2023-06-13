@@ -1,8 +1,66 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { FC } from "react";
+import {
+  tooltipContentStyle,
+  tooltipIconDirectionStyle,
+  tooltipIconStyle,
+  tooltipPopupStyle,
+  tooltipPositionStyle,
+  tooltipStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
+import clsx from "clsx";
+import { FC, ReactNode, useRef, useState } from "react";
 
-const Tooltip: FC = () => {
-  return <div className=""></div>;
+import { WizIChangeHistory, WizPopup } from "@/components";
+
+interface Props {
+  direction?: "top" | "bottom" | "left" | "right";
+  hover?: boolean;
+  isDirectionFixed?: boolean;
+  children: ReactNode;
+  content: ReactNode;
+}
+
+const Tooltip: FC<Props> = ({
+  direction = "top",
+  hover = false,
+  isDirectionFixed = false,
+  children,
+  content,
+}) => {
+  const [isHover, setIsHover] = useState(false);
+  const anchor = useRef<HTMLDivElement | null>(null);
+
+  return (
+    <div
+      className={clsx(tooltipStyle)}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+      ref={anchor}
+    >
+      {children}
+      <WizPopup
+        anchorElement={anchor}
+        isOpen={isHover || hover}
+        onClose={() => setIsHover(false)}
+        direction={direction}
+        isDirectionFixed={isDirectionFixed}
+      >
+        <div
+          className={clsx(tooltipPositionStyle[direction], tooltipPopupStyle)}
+        >
+          <div className={clsx(tooltipContentStyle)}>{content}</div>
+          <div
+            className={clsx(
+              tooltipIconStyle,
+              tooltipIconDirectionStyle[direction]
+            )}
+          >
+            <WizIChangeHistory />
+          </div>
+        </div>
+      </WizPopup>
+    </div>
+  );
 };
 
 Tooltip.displayName = ComponentName.Tooltip;
