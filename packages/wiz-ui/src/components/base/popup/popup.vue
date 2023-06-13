@@ -348,7 +348,9 @@ const isFixed = computed(() => {
 });
 
 const inset = computed(() => {
-  const { scrollX, scrollY } = isFixed ? { scrollX: 0, scrollY: 0 } : window;
+  const { scrollX, scrollY } = isFixed.value
+    ? { scrollX: 0, scrollY: 0 }
+    : window;
   const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
     bodyPxInfo.top + scrollY - popupRect.value.height + bodyPxInfo.height;
