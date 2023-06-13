@@ -16,6 +16,7 @@ interface Props {
   direction?: "top" | "bottom" | "left" | "right";
   hover?: boolean;
   isDirectionFixed?: boolean;
+  /** ancorとして動作 */
   children: ReactNode;
   content: ReactNode;
 }
@@ -43,6 +44,9 @@ const Tooltip: FC<Props> = ({
         isOpen={isHover || hover}
         onClose={() => setIsHover(false)}
         direction={direction}
+        shadow={false}
+        animation
+        gap="xs2"
         isDirectionFixed={isDirectionFixed}
       >
         <div
