@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.7.1
+
+### Patch Changes
+
+- [#768](https://github.com/Wizleap-Inc/wiz-ui/pull/768) [`6cd0f304`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cd0f304d302f67bdee136b55cb30a1e2dd95418) Thanks [@wmoai](https://github.com/wmoai)! - WizCalendar の React 対応
+
+- [#594](https://github.com/Wizleap-Inc/wiz-ui/pull/594) [`1f006646`](https://github.com/Wizleap-Inc/wiz-ui/commit/1f006646ef5ab7acab52c1b9ce36a0a1cfec5db7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizRadio の React 対応
+
+## 0.7.0
+
+### Minor Changes
+
+- [#798](https://github.com/Wizleap-Inc/wiz-ui/pull/798) [`3926b854`](https://github.com/Wizleap-Inc/wiz-ui/commit/3926b8548619958e0defacc71c1db343845f84da) Thanks [@RyushiAok](https://github.com/RyushiAok)! - 同じ日付を選択可能にする
+  リセット機能を追加
+
 ## 0.6.0
 
 ### Minor Changes

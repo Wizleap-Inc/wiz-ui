@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.4.0
+
+### Minor Changes
+
+- [#798](https://github.com/Wizleap-Inc/wiz-ui/pull/798) [`3926b854`](https://github.com/Wizleap-Inc/wiz-ui/commit/3926b8548619958e0defacc71c1db343845f84da) Thanks [@RyushiAok](https://github.com/RyushiAok)! - 同じ日付を選択可能にする
+  リセット機能を追加
+
 ## 0.3.0
 
 ### Minor Changes
