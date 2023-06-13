@@ -78,9 +78,9 @@ export const FontSize: Story = {
 };
 
 export const Test: Story = {
-  render: () => (
-    <WizHeading fontSize="sm" color="gray.900">
-      案件配信
-    </WizHeading>
-  ),
+  args: {
+    fontSize: "sm",
+    color: "gray.900",
+  },
+  render: (args) => <WizHeading {...args}>案件配信</WizHeading>,
 };
