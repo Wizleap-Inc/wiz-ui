@@ -8,7 +8,7 @@ import {
   tooltipStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
 import clsx from "clsx";
-import { FC, ReactNode, useRef, useState } from "react";
+import { FC, ReactNode, useCallback, useRef, useState } from "react";
 
 import { WizIChangeHistory, WizPopup } from "@/components";
 
@@ -41,7 +41,7 @@ const Tooltip: FC<Props> = ({
       <WizPopup
         anchorElement={anchor}
         isOpen={isHover || hover}
-        onClose={() => setIsHover(false)}
+        onClose={useCallback(() => setIsHover(false), [])}
         direction={direction}
         shadow={false}
         animation
