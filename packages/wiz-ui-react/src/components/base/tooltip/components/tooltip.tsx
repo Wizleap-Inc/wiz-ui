@@ -16,7 +16,6 @@ interface Props {
   direction?: "top" | "bottom" | "left" | "right";
   hover?: boolean;
   isDirectionFixed?: boolean;
-  /** ancorとして動作 */
   children: ReactNode;
   content: ReactNode;
 }
