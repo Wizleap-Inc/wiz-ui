@@ -1,11 +1,12 @@
 import { StoryFn } from "@storybook/vue";
 import {
   SPACING_ACCESSORS,
+  THEME,
   Z_INDEX_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 import { onMounted, ref } from "vue";
 
-import { WizTextButton, WizHStack } from "@/components";
+import { WizTextButton, WizHStack, WizHeader } from "@/components";
 
 import { WizPopup, WizPopupContainer } from ".";
 
@@ -242,6 +243,43 @@ export const Fixed: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
 });
 
 Fixed.args = {
+  closeOnBlur: false,
+  shadow: true,
+};
+
+export const Header: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizPopup, WizHeader, WizTextButton, WizPopupContainer },
+  setup() {
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
+    return { isOpen, toggle, close };
+  },
+  template: `
+  <div style="height: 200vh"> 
+    <div style="position: fixed; top: 0; left: 0; right: 0; height: ${THEME.share.HEADER_HEIGHT}; background-color: transparent; box-shadow: 0 0 4px rgba(0,0,0,0.2); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+      <wiz-popup-container  style="display: flex; align-items: center; position: fixed; right: 0;">
+        <wiz-text-button @click="toggle">Toggle</wiz-text-button>
+        <wiz-popup v-bind="$props" :isOpen="isOpen" @onClose="close" @onTurn="onTurn">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div> 
+    <div style="margin-top: ${THEME.share.HEADER_HEIGHT};">
+      <h1>Scroll down</h1>
+    </div>
+  </div>
+  `,
+});
+
+Header.args = {
   closeOnBlur: false,
   shadow: true,
 };
