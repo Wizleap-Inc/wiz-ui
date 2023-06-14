@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui
 
+## 1.11.3
+
+### Patch Changes
+
+- [#836](https://github.com/Wizleap-Inc/wiz-ui/pull/836) [`27dd1bbb`](https://github.com/Wizleap-Inc/wiz-ui/commit/27dd1bbbb6eb4d1744e5b7f049438100936533d4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ブラウザの幅が変わったとき fixed の上にある popup の表示位置が狂う問題を修正
+
 ## 1.11.2
 
 ### Patch Changes
