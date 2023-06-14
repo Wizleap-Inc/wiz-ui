@@ -80,11 +80,11 @@ const PopupButtonGroup: FC<Props> = ({
       <WizVStack gap="xs2" p={depth === 0 ? p : "no"}>
         {items.map((item, i) => {
           if (item.kind === "divider") {
-            return <DividerItem key={i} />;
+            return <DividerItem key={`divider-${i}`} />;
           } else if (item.item.kind === "group") {
             return (
               <GroupItem
-                key={i}
+                key={`group-${item.item.title}`}
                 item={item.item}
                 disabled={disabled}
                 depth={depth}
@@ -93,7 +93,7 @@ const PopupButtonGroup: FC<Props> = ({
           } else if (item.item.kind === "button") {
             return (
               <ButtonItem
-                key={i}
+                key={`button-${item.item.option.value}`}
                 item={item.item}
                 disabled={disabled}
                 depth={depth}
