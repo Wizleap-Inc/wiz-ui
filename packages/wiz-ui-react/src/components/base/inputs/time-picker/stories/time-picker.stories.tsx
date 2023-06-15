@@ -8,28 +8,6 @@ import { Time } from "../types/time";
 const meta: Meta<typeof WizTimePicker> = {
   title: "Base/Input/TimePicker",
   component: WizTimePicker,
-  argTypes: {
-    placeholder: {
-      control: {
-        type: "text",
-      },
-    },
-    width: {
-      control: {
-        type: "text",
-      },
-    },
-    disabled: {
-      control: {
-        type: "boolean",
-      },
-    },
-    isDirectionFixed: {
-      control: {
-        type: "boolean",
-      },
-    },
-  },
   decorators: [
     (Story) => (
       <div style={{ height: "20rem" }}>
