@@ -3,4 +3,4 @@
 "@wizleap-inc/wiz-ui-styles": minor
 ---
 
-WizLineGraph の React 対応
+WizTooltip の React 対応
