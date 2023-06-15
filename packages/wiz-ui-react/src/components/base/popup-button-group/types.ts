@@ -1,6 +1,6 @@
 import { TIcon } from "@/components";
 
-interface PopupButtonOption {
+export interface PopupButtonOption {
   label: string;
   value: number;
   exLabel?: string;
