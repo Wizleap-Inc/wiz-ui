@@ -57,7 +57,7 @@ const Item: FC<Props> = ({
         onMouseEnter={navItemMouseEnter}
         onMouseLeave={navItemMouseLeave}
       >
-        <a href={href}></a>
+        <a href={href}>test</a>
       </div>
     </WizTooltip>
   );
