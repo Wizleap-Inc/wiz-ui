@@ -22,7 +22,7 @@ interface DividerItem {
 export interface GroupItem {
   kind: "group";
   title: string;
-  // 再帰的な自己参照を許可するために、no-use-before-define を無効化
+  // 再帰参照を許可するためにno-use-before-define無効化
   // eslint-disable-next-line no-use-before-define
   items: ButtonGroupItem[];
   groupDivider?: boolean;
