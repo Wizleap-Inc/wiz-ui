@@ -212,7 +212,8 @@ const popupButtonMouseDown = (item: ButtonGroupItem) => {
 const popupButtonMouseOver = (item: ButtonGroupItem) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
-    isHover.value = item.option.value;
+    is;
+    Hover.value = item.option.value;
   }
 };
 
