@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { fireEvent, userEvent, within } from "@storybook/testing-library";
+import { fireEvent, within } from "@storybook/testing-library";
 import { useState } from "react";
 
 import { WizTimePicker } from "../components";
@@ -41,8 +41,7 @@ export const Hover: Story = {
     const canvas = within(canvasElement);
     const button = canvas.getByRole("button");
     await fireEvent.click(button);
-    // await fireEvent.focusIn(button);
-    userEvent.hover(await within(canvasElement).getByRole("button"));
+    await fireEvent.mouseOver(button);
   },
 };
 
