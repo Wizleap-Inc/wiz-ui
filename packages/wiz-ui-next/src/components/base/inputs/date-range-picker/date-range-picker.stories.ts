@@ -180,6 +180,29 @@ Disabled.parameters = {
   },
 };
 
+export const DisabledWithValue: StoryFn<typeof WizDateRangePicker> = (
+  args
+) => ({
+  components: { WizDateRangePicker },
+  setup() {
+    return {
+      args,
+    };
+  },
+  template: `
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem"> 
+      <WizDateRangePicker v-bind="args" /> 
+    </div>
+  `,
+});
+DisabledWithValue.args = {
+  modelValue: {
+    start: new Date(2000, 0, 15),
+    end: new Date(2000, 1, 15),
+  },
+  disabled: true,
+};
+
 export const Expand = Template.bind({});
 Expand.args = {
   modelValue: {
