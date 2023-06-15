@@ -87,18 +87,12 @@ export const timePickerSelectorOptionTypeStyle = style({
 export const timePickerSelectorOptionItemStyle = style({
   "@media": {
     "(any-hover: hover)": {
-      selectors: {
-        "&:hover:not(:active)": {
-          color: THEME.color.green["800"],
-          background: THEME.color.green["300"],
-          borderRadius: THEME.spacing.xs2,
-        },
+      ":hover": {
+        color: THEME.color.green["800"],
+        background: THEME.color.green["300"],
+        borderRadius: THEME.spacing.xs2,
       },
     },
-  },
-  ":active": {
-    color: THEME.color.white["800"],
-    background: THEME.color.green["800"],
   },
 });
 
