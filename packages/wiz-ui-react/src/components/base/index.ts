@@ -22,5 +22,6 @@ export * from "./calendar";
 export * from "./accordion";
 export * from "./text";
 export * from "./graphs";
+export * from "./tooltip";
 export * from "./heading";
 export * from "./popup-button-group";
