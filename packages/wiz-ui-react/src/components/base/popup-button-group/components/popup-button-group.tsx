@@ -84,7 +84,7 @@ const PopupButtonGroup: FC<Props> = ({
           } else if (item.item.kind === "group") {
             return (
               <GroupItem
-                key={`group-${item.item.title}`}
+                key={`group-${i}-${item.item.title}`}
                 item={item.item}
                 disabled={disabled}
                 depth={depth}
@@ -93,7 +93,7 @@ const PopupButtonGroup: FC<Props> = ({
           } else if (item.item.kind === "button") {
             return (
               <ButtonItem
-                key={`button-${item.item.option.value}`}
+                key={`button-${i}-${item.item.option.value}`}
                 item={item.item}
                 disabled={disabled}
                 depth={depth}
