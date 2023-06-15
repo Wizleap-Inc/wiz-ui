@@ -24,12 +24,18 @@
         </button>
       </span>
       <span
-        :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
+        :class="
+          styles.inputTextStyle[
+            value.start && !disabled ? 'selected' : 'default'
+          ]
+        "
         >{{ value.start ? formatDateToYYMMDD(value.start) : "開始日" }}</span
       >
       <span :class="styles.separatorStyle">-</span>
       <span
-        :class="styles.inputTextStyle[value.end ? 'selected' : 'default']"
+        :class="
+          styles.inputTextStyle[value.end && !disabled ? 'selected' : 'default']
+        "
         >{{ value.end ? formatDateToYYMMDD(value.end) : "終了日" }}</span
       >
     </button>
