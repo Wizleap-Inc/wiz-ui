@@ -118,6 +118,8 @@ export const timePickerSelectorOptionItemColorStyle = styleVariants({
 export const cancelButtonStyle = style({
   cursor: "pointer",
   background: "transparent",
+  border: "none",
+  padding: 0,
   fill: THEME.color.gray["500"],
   ":active": {
     fill: THEME.color.green["800"],

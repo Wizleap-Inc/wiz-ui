@@ -3,14 +3,9 @@ export const HOURS = [
   22, 23,
 ] as const;
 
-export const MINUTE_MAP = {
-  0: "00",
-  15: "15",
-  30: "30",
-  45: "45",
-} as const;
+export const MINUTES = [0, 15, 30, 45] as const;
 
 export type Time = {
   hour: (typeof HOURS)[number];
-  minute: keyof typeof MINUTE_MAP;
+  minute: (typeof MINUTES)[number];
 };

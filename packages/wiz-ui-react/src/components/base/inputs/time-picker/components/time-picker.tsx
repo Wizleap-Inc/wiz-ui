@@ -1,8 +1,12 @@
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ARIA_LABELS,
+  ComponentName,
+  THEME,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 
 import {
   WizDivider,
@@ -14,44 +18,41 @@ import {
 import { FormControlContext } from "@/components/custom/form/form-control-context";
 import { WizICancel, WizISchedule } from "@/components/icons";
 
-import { HOURS, MINUTE_MAP, Time } from "../types/time";
+import { HOURS, MINUTES, Time } from "../types/time";
 
 type Props = {
   time: Time | null;
-  isOpen: boolean;
-  isHover: boolean;
-  onChange: (time: Time | null) => void;
-  setIsOpen: (isOpen: boolean) => void;
-  setIsHover: (isHover: boolean) => void;
   placeholder?: string;
   width?: string;
   disabled?: boolean;
   isDirectionFixed?: boolean;
+  error?: boolean;
+  onChange: (time: Time | null) => void;
 };
-
-const hourOptions = HOURS;
-const minuteOptions = [0, 15, 30, 45] as const;
 
 const _TimePicker = ({
   time,
-  isOpen,
-  isHover,
   placeholder = "時間を選択",
   width = "10rem",
   disabled = false,
   isDirectionFixed = false,
+  error = false,
   onChange,
-  setIsOpen,
-  setIsHover,
 }: Props) => {
   const anchor = useRef<HTMLDivElement | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+  const [isCancelButtonFocused, setIsCancelButtonFocused] = useState(false);
+  const cancelButtonVisible = !!time && (isHover || isCancelButtonFocused);
   const toggleTimePicker = () => {
     if (disabled) return;
     setIsOpen(!isOpen);
   };
 
   const timePickerCursor = disabled ? "disabled" : "default";
-  const label = time ? `${time.hour}:${MINUTE_MAP[time.minute]}` : placeholder;
+  const label = time
+    ? `${time.hour}:${String(time.minute).padStart(2, "0")}`
+    : placeholder;
   const timePickerBoxColor = (() => {
     if (disabled) return "disabled";
     if (time) return "selected";
@@ -62,8 +63,8 @@ const _TimePicker = ({
     isSelected ? "selected" : "default";
 
   const formControl = useContext(FormControlContext);
-  const state = (() => {
-    if (formControl.error) return "error";
+  const formState = (() => {
+    if (error || formControl.error) return "error";
     if (!disabled && isOpen) return "active";
     return "default";
   })();
@@ -74,7 +75,7 @@ const _TimePicker = ({
         ref={anchor}
         className={clsx([
           styles.timePickerStyle,
-          inputBorderStyle[state],
+          inputBorderStyle[formState],
           disabled && styles.timePickerDisabledStyle,
           styles.timePickerCursorStyle[timePickerCursor],
         ])}
@@ -86,21 +87,24 @@ const _TimePicker = ({
           )}
           style={{ width }}
           onClick={toggleTimePicker}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
           <WizHStack gap="sm" align="center" height="100%">
-            <span
+            <button
+              className={styles.cancelButtonStyle}
+              disabled={!cancelButtonVisible}
+              aria-label={ARIA_LABELS.TIME_PICKER_CANCEL}
               onClick={() => onChange(null)}
-              onMouseEnter={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)}
+              onFocus={() => setIsCancelButtonFocused(true)}
+              onBlur={() => setIsCancelButtonFocused(false)}
             >
-              {isHover ? (
-                <span className={styles.cancelButtonStyle}>
-                  <WizIcon size="xl2" color="inherit" icon={WizICancel} />
-                </span>
+              {cancelButtonVisible ? (
+                <WizIcon size="xl2" color="inherit" icon={WizICancel} />
               ) : (
                 <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
               )}
-            </span>
+            </button>
             <span>{label}</span>
           </WizHStack>
         </div>
@@ -145,7 +149,7 @@ const _TimePicker = ({
               >
                 時
               </div>
-              {hourOptions.map((option) => (
+              {HOURS.map((option) => (
                 <div
                   key={"hh" + option}
                   className={clsx([
@@ -182,7 +186,7 @@ const _TimePicker = ({
               >
                 分
               </div>
-              {minuteOptions.map((option) => (
+              {MINUTES.map((option) => (
                 <div
                   key={"mm" + option}
                   className={clsx([
@@ -199,7 +203,7 @@ const _TimePicker = ({
                     onChange({ hour: time?.hour || 0, minute: option })
                   }
                 >
-                  {MINUTE_MAP[option]}
+                  {String(option).padStart(2, "0")}
                 </div>
               ))}
             </WizVStack>
