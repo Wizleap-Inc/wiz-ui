@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
+import { fireEvent, userEvent, within } from "@storybook/testing-library";
 import { useState } from "react";
 
 import { WizTimePicker } from "../components";
@@ -23,38 +24,25 @@ type Story = StoryObj<typeof WizTimePicker>;
 export const Default: Story = {
   render: (args) => {
     const [time, setTime] = useState<Time | null>(null);
-    const [isOpen, setIsOpen] = useState(true);
-    const [isHover, setIsHover] = useState(false);
-    return (
-      <WizTimePicker
-        {...args}
-        time={time}
-        isOpen={isOpen}
-        isHover={isHover}
-        onChange={setTime}
-        setIsOpen={setIsOpen}
-        setIsHover={setIsHover}
-      />
-    );
+    return <WizTimePicker {...args} time={time} onChange={setTime} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    fireEvent.click(canvas.getByRole("button"));
   },
 };
 
 export const Hover: Story = {
   render: (args) => {
     const [time, setTime] = useState<Time | null>({ hour: 8, minute: 15 });
-    const [isOpen, setIsOpen] = useState(true);
-    const [isHover, setIsHover] = useState(true);
-    return (
-      <WizTimePicker
-        {...args}
-        time={time}
-        isOpen={isOpen}
-        isHover={isHover}
-        onChange={setTime}
-        setIsOpen={setIsOpen}
-        setIsHover={setIsHover}
-      />
-    );
+    return <WizTimePicker {...args} time={time} onChange={setTime} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await fireEvent.click(button);
+    // await fireEvent.focusIn(button);
+    userEvent.hover(await within(canvasElement).getByRole("button"));
   },
 };
 
@@ -64,19 +52,22 @@ export const Disabled: Story = {
   },
   render: (args) => {
     const [time, setTime] = useState<Time | null>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    const [isHover, setIsHover] = useState(false);
-    return (
-      <WizTimePicker
-        {...args}
-        time={time}
-        isOpen={isOpen}
-        isHover={isHover}
-        onChange={setTime}
-        setIsOpen={setIsOpen}
-        setIsHover={setIsHover}
-      />
-    );
+    return <WizTimePicker {...args} time={time} onChange={setTime} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await fireEvent.click(button);
+  },
+};
+
+export const Error: Story = {
+  args: {
+    error: true,
+  },
+  render: (args) => {
+    const [time, setTime] = useState<Time | null>(null);
+    return <WizTimePicker {...args} time={time} onChange={setTime} />;
   },
 };
 
@@ -86,18 +77,11 @@ export const isDirectionFixed: Story = {
   },
   render: (args) => {
     const [time, setTime] = useState<Time | null>(null);
-    const [isOpen, setIsOpen] = useState(true);
-    const [isHover, setIsHover] = useState(false);
-    return (
-      <WizTimePicker
-        {...args}
-        time={time}
-        isOpen={isOpen}
-        isHover={isHover}
-        onChange={setTime}
-        setIsOpen={setIsOpen}
-        setIsHover={setIsHover}
-      />
-    );
+    return <WizTimePicker {...args} time={time} onChange={setTime} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await fireEvent.click(button);
   },
 };
