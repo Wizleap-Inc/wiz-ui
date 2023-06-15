@@ -8,6 +8,12 @@ const meta: Meta<typeof WizTooltip> = {
   title: "Base/Tooltip",
   component: WizTooltip,
   argTypes: {},
+  parameters: {
+    screenshot: {
+      // Popup のフェードインアニメーション分をディレイする
+      delay: 200,
+    },
+  },
 };
 
 export default meta;
