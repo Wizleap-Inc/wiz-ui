@@ -17,7 +17,7 @@ const meta: Meta<typeof WizPopupButtonGroup> = {
 export default meta;
 type Story = StoryObj<typeof WizPopupButtonGroup>;
 
-const _getDummyOptions = (
+const getDummyOptions = (
   count: number,
   click: (n: number) => void,
   exLabel?: string
@@ -70,14 +70,14 @@ const createButton = (
 
 const onClick = () => void 0;
 
-const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
+const getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
   {
     kind: "group",
     title: "タイトル1",
     groupDivider: true,
     buttonDivider: true,
     items: [
-      ..._getDummyOptions(3, click),
+      ...getDummyOptions(3, click),
       {
         kind: "group",
         title: "タイトル2",
@@ -91,7 +91,7 @@ const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
 
 export const Default: Story = {
   args: {
-    options: _getDummyItems(onClick),
+    options: getDummyItems(onClick),
   },
   render: (args) => {
     return <WizPopupButtonGroup {...args} />;
@@ -100,7 +100,7 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
-    options: _getDummyItems(onClick),
+    options: getDummyItems(onClick),
     disabled: true,
   },
   render: (args) => {
@@ -124,7 +124,7 @@ export const DisabledButton: Story = {
 
 export const Popup: Story = {
   args: {
-    options: _getDummyItems(onClick),
+    options: getDummyItems(onClick),
   },
   render: (args) => {
     const [isOpen, setIsOpen] = useState(true);
