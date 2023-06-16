@@ -24,3 +24,6 @@ export * from "./tab";
 export * from "./tag";
 export * from "./text";
 export * from "./tooltip";
+export * from "./heading";
+export * from "./popup-button-group";
+export * from "./dropdown";
