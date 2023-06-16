@@ -17,11 +17,7 @@ const meta: Meta<typeof WizPopupButtonGroup> = {
 export default meta;
 type Story = StoryObj<typeof WizPopupButtonGroup>;
 
-const _getDummyOptions = (
-  count: number,
-  click: (n: number) => void,
-  exLabel?: string
-) => {
+const getDummyOptions = (count: number) => {
   const options: PopupButtonOption[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
@@ -40,10 +36,10 @@ const _getDummyOptions = (
     options.push({
       label: (n % 2 === 0 ? "test" : " テスト") + n,
       value: n,
-      exLabel: exLabel,
+      exLabel: undefined,
       icon: icon?.icon,
       iconDefaultColor: icon?.iconDefaultColor,
-      onClick: () => click(n),
+      onClick: () => void 0,
     });
   });
   return options.map(
@@ -53,7 +49,6 @@ const _getDummyOptions = (
 
 const createButton = (
   n: number,
-  click: (n: number) => void,
   disabled?: boolean,
   icon?: TIcon
 ): ButtonGroupItem => ({
@@ -61,37 +56,35 @@ const createButton = (
   option: {
     label: `item ${n}`,
     value: n,
-    onClick: () => click(n),
+    onClick: () => void 0,
     disabled: disabled,
     icon: icon,
     iconDefaultColor: "gray.500",
   },
 });
 
-const onClick = () => void 0;
-
-const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
+const dummyItems: ButtonGroupItem[] = [
   {
     kind: "group",
     title: "タイトル1",
     groupDivider: true,
     buttonDivider: true,
     items: [
-      ..._getDummyOptions(3, click),
+      ...getDummyOptions(3),
       {
         kind: "group",
         title: "タイトル2",
-        items: [createButton(4, click), createButton(5, click)],
+        items: [createButton(4), createButton(5)],
       },
     ],
   },
-  createButton(6, click),
-  createButton(7, click),
+  createButton(6),
+  createButton(7),
 ];
 
 export const Default: Story = {
   args: {
-    options: _getDummyItems(onClick),
+    options: dummyItems,
   },
   render: (args) => {
     return <WizPopupButtonGroup {...args} />;
@@ -100,7 +93,7 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
-    options: _getDummyItems(onClick),
+    options: dummyItems,
     disabled: true,
   },
   render: (args) => {
@@ -111,10 +104,10 @@ export const Disabled: Story = {
 export const DisabledButton: Story = {
   args: {
     options: [
-      createButton(1, onClick, true, WizIOpenInNew),
-      createButton(2, onClick, false, WizIOpenInNew),
-      createButton(3, onClick, true),
-      createButton(4, onClick, false),
+      createButton(1, true, WizIOpenInNew),
+      createButton(2, false, WizIOpenInNew),
+      createButton(3, true),
+      createButton(4, false),
     ],
   },
   render: (args) => {
@@ -124,7 +117,7 @@ export const DisabledButton: Story = {
 
 export const Popup: Story = {
   args: {
-    options: _getDummyItems(onClick),
+    options: dummyItems,
   },
   render: (args) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -150,11 +143,11 @@ export const Popup: Story = {
 export const Divider: Story = {
   args: {
     options: [
-      createButton(1, onClick),
-      createButton(2, onClick),
+      createButton(1),
+      createButton(2),
       { kind: "divider" },
-      createButton(3, onClick),
-      createButton(4, onClick),
+      createButton(3),
+      createButton(4),
     ],
   },
   render: (args) => {
