@@ -74,8 +74,8 @@ const Item: FC<Props> = ({
     if (!lockingPopup) onToggle(false);
   }, [lockingPopup, onToggle]);
 
-  return (
-    <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
+  const Body: FC = () => (
+    <>
       <div
         ref={navItemRef}
         onClick={handleClick}
@@ -139,6 +139,14 @@ const Item: FC<Props> = ({
           </WizPopup>
         </div>
       )}
+    </>
+  );
+
+  if (!tooltipText) return <Body />;
+
+  return (
+    <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
+      <Body />
     </WizTooltip>
   );
 };
