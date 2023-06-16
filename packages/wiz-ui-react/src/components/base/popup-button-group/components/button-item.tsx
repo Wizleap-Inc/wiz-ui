@@ -19,15 +19,15 @@ interface Props {
 }
 
 export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
-  const [isClicking, setIsClicking] = useState<number | null>(null);
-  const [isHover, setIsHover] = useState<number | null>(null);
+  const [isClicking, setIsClicking] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
   const iconColor = useMemo(() => {
-    if (item.option.value === isClicking) {
+    if (isClicking) {
       return "white.800";
     } else if (disabled || item.option.disabled) {
       return "gray.400";
-    } else if (item.option.value === isHover) {
+    } else if (isHover) {
       return "green.800";
     }
     return item.option.iconDefaultColor ?? "gray.500";
@@ -37,7 +37,6 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
     isHover,
     item.option.disabled,
     item.option.iconDefaultColor,
-    item.option.value,
   ]);
 
   const popupButtonMouseDown = (item: ButtonItemType) => {
@@ -47,12 +46,12 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
 
   const popupButtonMouseOver = (item: ButtonItemType) => {
     if (disabled || item.option.disabled) return;
-    setIsHover(item.option.value);
+    setIsHover(true);
   };
 
   const popupButtonMouseOut = (item: ButtonItemType) => {
     if (disabled || item.option.disabled) return;
-    setIsHover(null);
+    setIsHover(false);
   };
 
   const popupButtonKeyPress = (
@@ -66,9 +65,9 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
 
   const onHoldClick = (item: ButtonItemType) => {
     if (disabled || item.option.disabled) return;
-    setIsClicking(item.option.value);
+    setIsClicking(true);
     const mouseup = () => {
-      setIsClicking(null);
+      setIsClicking(false);
       document.removeEventListener("mouseup", mouseup);
     };
     document.addEventListener("mouseup", mouseup);
