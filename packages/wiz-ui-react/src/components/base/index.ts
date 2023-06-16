@@ -24,3 +24,4 @@ export * from "./text";
 export * from "./graphs";
 export * from "./tooltip";
 export * from "./heading";
+export * from "./dropdown";
