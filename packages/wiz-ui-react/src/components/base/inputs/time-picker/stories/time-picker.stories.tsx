@@ -9,13 +9,6 @@ import { Time } from "../types/time";
 const meta: Meta<typeof WizTimePicker> = {
   title: "Base/Input/TimePicker",
   component: WizTimePicker,
-  decorators: [
-    (Story) => (
-      <div style={{ height: "20rem" }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
