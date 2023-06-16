@@ -12,7 +12,7 @@ import {
 import clsx from "clsx";
 import { FC, useRef } from "react";
 
-import { TIcon, WizTooltip } from "@/components";
+import { TIcon, WizPopup, WizTooltip } from "@/components";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
 
@@ -39,7 +39,7 @@ const Item: FC<Props> = ({
   tooltipText = null,
   lockingPopup = true,
   buttons,
-  isOpen,
+  isOpen = false,
   onToggle,
   setLock,
 }) => {
@@ -99,6 +99,19 @@ const Item: FC<Props> = ({
           </div>
         </a>
       </div>
+      {existPopup && (
+        <div>
+          <WizPopup
+            isOpen={isOpen}
+            onClose={}
+            direction="rightTop"
+            layer="popover"
+            isDirectionFixed
+          >
+            <div className="">a</div>
+          </WizPopup>
+        </div>
+      )}
     </WizTooltip>
   );
 };
