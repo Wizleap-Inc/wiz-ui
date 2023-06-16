@@ -3,7 +3,7 @@ import { DirectionValue } from "../types/direction";
 import { createDirectionValue } from "./direction-value";
 
 export type Args = {
-  bound: DOMRect;
+  bound: { width: number; height: number };
   content: DOMRect;
   anchor: DOMRect;
   gap: number;
