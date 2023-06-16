@@ -18,6 +18,12 @@ export default {
       control: { type: "boolean" },
     },
   },
+  parameters: {
+    screenshot: {
+      // Popup のフェードインアニメーション分をディレイする
+      delay: 200,
+    },
+  },
 } as Meta<typeof WizTooltip>;
 
 const Template: StoryFn<typeof WizTooltip> = (args) => ({
