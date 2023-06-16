@@ -10,13 +10,15 @@
           :value="option.value"
           v-model="radioValue"
           :disabled="disabled || option.disabled"
+          @focus="focusOption = option.value"
+          @blur="focusOption = null"
         />
         <label
           :class="[
             radioLabelStyle,
             radioValue === option.value && radioLabelCheckedStyle,
             (disabled || option.disabled) && radioLabelDisabledStyle,
-            radioLabelColorStyle[radioLabelColor(radioValue === option.value)],
+            radioLabelColorStyle[radioLabelColor(option.value)],
             radioLabelCursorStyle[radioLabelCursor(option.disabled)],
             strikeThrough &&
               radioValue === option.value &&
@@ -43,7 +45,7 @@ import {
   radioLabelCursorStyle,
   radioLabelStrikeThrough,
 } from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
-import { computed, PropType } from "vue";
+import { computed, PropType, ref } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
 
@@ -84,6 +86,8 @@ interface Emit {
   (e: "input", value: number): void;
 }
 
+const focusOption = ref<number | null>(null);
+
 const emit = defineEmits<Emit>();
 
 const radioValue = computed({
@@ -91,8 +95,12 @@ const radioValue = computed({
   set: (value) => emit("input", value),
 });
 
-const radioLabelColor = (isChecked: boolean) =>
-  isChecked ? "checked" : "default";
+const radioLabelColor = (value: number) =>
+  radioValue.value === value
+    ? "checked"
+    : focusOption.value === value
+    ? "focused"
+    : "default";
 
 const radioLabelCursor = (optionDisabled?: boolean) =>
   props.disabled || optionDisabled ? "disabled" : "default";
