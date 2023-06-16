@@ -1,4 +1,15 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  navigationItemStyle,
+  navigationItemActiveStyle,
+  navigationItemIconStyle,
+  navigationItemIconActiveStyle,
+  navigationItemTextStyle,
+  navigationItemTextActiveStyle,
+  navigationItemDisabledStyle,
+  navigationItemIconDisabledStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
+import clsx from "clsx";
 import { FC, useRef } from "react";
 
 import { TIcon, WizTooltip } from "@/components";
@@ -20,7 +31,7 @@ interface Props {
 }
 
 const Item: FC<Props> = ({
-  icon,
+  icon: Icon,
   label,
   active,
   href,
@@ -36,16 +47,16 @@ const Item: FC<Props> = ({
 
   const existPopup = buttons && buttons.length > 0;
 
-  const navItemOnClick = () => {
+  const handleClick = () => {
     onToggle(true);
     if (existPopup) setLock(true);
   };
 
-  const navItemMouseEnter = () => {
+  const handleMouseEnter = () => {
     if (!lockingPopup) onToggle(true);
   };
 
-  const navItemMouseLeave = () => {
+  const handleMouseLeave = () => {
     if (!lockingPopup) onToggle(false);
   };
 
@@ -53,15 +64,45 @@ const Item: FC<Props> = ({
     <WizTooltip content={<div>{tooltipText}</div>}>
       <div
         ref={navItemRef}
-        onClick={navItemOnClick}
-        onMouseEnter={navItemMouseEnter}
-        onMouseLeave={navItemMouseLeave}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <a href={href}>test</a>
+        <a
+          href={disabled ? undefined : href}
+          target={disabled ? undefined : "_blank"}
+          rel={disabled ? undefined : "noreferrer"}
+          className={clsx(
+            navigationItemStyle,
+            disabled
+              ? navigationItemDisabledStyle
+              : active && navigationItemActiveStyle
+          )}
+        >
+          <div
+            className={clsx(
+              navigationItemIconStyle,
+              disabled
+                ? navigationItemIconDisabledStyle
+                : active && navigationItemIconActiveStyle
+            )}
+          >
+            <Icon />
+          </div>
+          <div
+            className={clsx(
+              navigationItemTextStyle,
+              !disabled && active && navigationItemTextActiveStyle
+            )}
+          >
+            {label}
+          </div>
+        </a>
       </div>
     </WizTooltip>
   );
 };
+
 Item.displayName = ComponentName.NavigationItem;
 
 export const WizNavigationItem = Item;
