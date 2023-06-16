@@ -78,7 +78,7 @@ const Popup = ({
         return wrapDirection[dir]({
           bound: {
             width: document.body.clientWidth,
-            height: window.innerHeight,
+            height: Math.max(document.body.clientHeight, window.innerHeight),
           },
           content: contentRect,
           anchor: anchorRect,
