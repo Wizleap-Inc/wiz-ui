@@ -5,7 +5,7 @@ import { wrapDirection, Args } from "../utils/wrap";
 describe("Popup Wrapping", () => {
   it("popupが境界内に存在するとき、回り込みロジックは発火しません。", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 10, y: 10, width: 20, height: 20 } as DOMRect,
       anchor: { x: 50, y: 50, width: 30, height: 30 } as DOMRect,
       gap: 0,
@@ -30,7 +30,7 @@ describe("Popup Wrapping", () => {
 
   it("Anchor: 左上", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 5, y: 5, width: 10, height: 10 } as DOMRect,
       gap: 0,
@@ -80,7 +80,7 @@ describe("Popup Wrapping", () => {
 
   it("Anchor: 左下", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 5, y: 95, width: 10, height: 10 } as DOMRect,
       gap: 0,
@@ -105,7 +105,7 @@ describe("Popup Wrapping", () => {
 
   it("Anchor: 上", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 50, y: 5, width: 10, height: 10 } as DOMRect,
       gap: 0,
@@ -130,7 +130,7 @@ describe("Popup Wrapping", () => {
 
   it("Anchor: 下", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 50, y: 95, width: 10, height: 10 } as DOMRect,
       gap: 0,
@@ -155,7 +155,7 @@ describe("Popup Wrapping", () => {
 
   it("Anchor: 右上", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 95, y: 5, width: 10, height: 10 } as DOMRect,
       gap: 0,
@@ -180,7 +180,7 @@ describe("Popup Wrapping", () => {
 
   it("Anchor: 右", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 95, y: 50, width: 10, height: 10 } as DOMRect,
       gap: 0,
@@ -205,7 +205,7 @@ describe("Popup Wrapping", () => {
 
   it("Anchor: 右下", () => {
     const args: Args = {
-      bound: { x: 0, y: 0, width: 100, height: 100 } as DOMRect,
+      bound: { width: 100, height: 100 },
       content: { x: 0, y: 0, width: 10, height: 10 } as DOMRect,
       anchor: { x: 95, y: 95, width: 10, height: 10 } as DOMRect,
       gap: 0,
