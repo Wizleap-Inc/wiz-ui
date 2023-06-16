@@ -8,11 +8,12 @@ import {
   navigationItemTextActiveStyle,
   navigationItemDisabledStyle,
   navigationItemIconDisabledStyle,
+  navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
-import { FC, useRef } from "react";
+import { FC, useCallback, useRef } from "react";
 
-import { TIcon, WizPopup, WizTooltip } from "@/components";
+import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
 
@@ -60,8 +61,21 @@ const Item: FC<Props> = ({
     if (!lockingPopup) onToggle(false);
   };
 
+  const handleClosePopup = useCallback(() => {
+    onToggle(false);
+    setLock(false);
+  }, [onToggle, setLock]);
+
+  const handleMouseEnterToPopup = () => {
+    if (!lockingPopup) onToggle(true);
+  };
+
+  const handleMouseLeaveFromPopup = useCallback(() => {
+    if (!lockingPopup) onToggle(false);
+  }, [lockingPopup, onToggle]);
+
   return (
-    <WizTooltip content={<div>{tooltipText}</div>}>
+    <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
       <div
         ref={navItemRef}
         onClick={handleClick}
@@ -86,6 +100,7 @@ const Item: FC<Props> = ({
                 ? navigationItemIconDisabledStyle
                 : active && navigationItemIconActiveStyle
             )}
+            style={{ display: "flex", alignItems: "center" }}
           >
             <Icon />
           </div>
@@ -102,13 +117,25 @@ const Item: FC<Props> = ({
       {existPopup && (
         <div>
           <WizPopup
+            anchorElement={navItemRef}
             isOpen={isOpen}
-            onClose={}
+            onClose={handleClosePopup}
+            onMouseLeave={handleMouseLeaveFromPopup}
             direction="rightTop"
             layer="popover"
             isDirectionFixed
           >
-            <div className="">a</div>
+            <div
+              onMouseEnter={handleMouseEnterToPopup}
+              className={navigationPopupContainerStyle}
+            >
+              <WizPopupButtonGroup
+                options={buttons}
+                p="xs"
+                borderRadius="xs2"
+                disabled={disabled}
+              />
+            </div>
           </WizPopup>
         </div>
       )}
