@@ -6,7 +6,7 @@ import {
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import {
   WizDivider,
@@ -45,6 +45,11 @@ const TimePicker = ({
   const [isCancelButtonFocused, setIsCancelButtonFocused] = useState(false);
   const cancelButtonVisible =
     !disabled && !!time && (isHover || isCancelButtonFocused);
+  useEffect(() => {
+    if (!cancelButtonVisible) {
+      setIsCancelButtonFocused(false);
+    }
+  }, [cancelButtonVisible]);
   const toggleTimePicker = () => {
     if (disabled) return;
     setIsOpen(!isOpen);
@@ -93,7 +98,10 @@ const TimePicker = ({
         >
           <WizHStack gap="sm" align="center" height="100%">
             <button
-              className={styles.cancelButtonStyle}
+              className={clsx([
+                styles.cancelButtonStyle,
+                disabled && styles.cancelButtonDisabledStyle,
+              ])}
               disabled={!cancelButtonVisible}
               aria-label={ARIA_LABELS.TIME_PICKER_CANCEL}
               onClick={() => onChange(null)}

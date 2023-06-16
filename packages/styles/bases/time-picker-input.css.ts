@@ -119,3 +119,7 @@ export const cancelButtonStyle = style({
     fill: THEME.color.green["800"],
   },
 });
+
+export const cancelButtonDisabledStyle = style({
+  cursor: "not-allowed",
+});
