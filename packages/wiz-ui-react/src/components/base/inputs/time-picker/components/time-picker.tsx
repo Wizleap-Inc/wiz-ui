@@ -43,7 +43,8 @@ const TimePicker = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isCancelButtonFocused, setIsCancelButtonFocused] = useState(false);
-  const cancelButtonVisible = !!time && (isHover || isCancelButtonFocused);
+  const cancelButtonVisible =
+    !disabled && !!time && (isHover || isCancelButtonFocused);
   const toggleTimePicker = () => {
     if (disabled) return;
     setIsOpen(!isOpen);
