@@ -81,6 +81,7 @@ const Item: FC<Props> = ({
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        style={{ display: "inline-block" }}
       >
         <a
           href={disabled ? undefined : href}

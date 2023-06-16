@@ -22,3 +22,33 @@ export const Default: Story = {
   },
   render: (args) => <WizNavigationItem {...args} />,
 };
+
+export const Active: Story = {
+  args: {
+    icon: WizIDashboard,
+    label: "Home",
+    href: "/",
+    active: true,
+  },
+  render: (args) => <WizNavigationItem {...args} />,
+};
+
+export const Disabled: Story = {
+  args: {
+    icon: WizIDashboard,
+    label: "Home",
+    href: "/",
+    disabled: true,
+  },
+  render: (args) => <WizNavigationItem {...args} />,
+};
+
+export const WithToolTip: Story = {
+  args: {
+    icon: WizIDashboard,
+    label: "Home",
+    href: "/",
+    tooltipText: "これはヒントです。",
+  },
+  render: (args) => <WizNavigationItem {...args} />,
+};
