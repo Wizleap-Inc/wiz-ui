@@ -39,32 +39,31 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
     item.option.iconDefaultColor,
   ]);
 
-  const popupButtonMouseDown = (item: ButtonItemType) => {
-    if (disabled || item.option.disabled) return;
+  const isDisabled = disabled || item.option.disabled;
+
+  const handleMouseDown = () => {
+    if (isDisabled) return;
     item.option.onClick();
   };
 
-  const popupButtonMouseOver = (item: ButtonItemType) => {
-    if (disabled || item.option.disabled) return;
+  const handleMouseOver = () => {
+    if (isDisabled) return;
     setIsHover(true);
   };
 
-  const popupButtonMouseOut = (item: ButtonItemType) => {
-    if (disabled || item.option.disabled) return;
+  const handleMouseOut = () => {
+    if (isDisabled) return;
     setIsHover(false);
   };
 
-  const popupButtonKeyPress = (
-    e: KeyboardEvent<HTMLDivElement>,
-    item: ButtonItemType
-  ) => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== "Enter") return;
-    if (disabled || item.option.disabled) return;
+    if (isDisabled) return;
     item.option.onClick();
   };
 
-  const onHoldClick = (item: ButtonItemType) => {
-    if (disabled || item.option.disabled) return;
+  const onHoldClick = () => {
+    if (isDisabled) return;
     setIsClicking(true);
     const mouseup = () => {
       setIsClicking(false);
@@ -86,14 +85,14 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
         style={{
           paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
         }}
-        onClick={() => popupButtonMouseDown(item)}
-        onMouseOver={() => popupButtonMouseOver(item)}
-        onMouseOut={() => popupButtonMouseOut(item)}
-        onMouseDown={() => onHoldClick(item)}
-        onKeyDown={(e) => popupButtonKeyPress(e, item)}
+        onClick={handleMouseDown}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        onMouseDown={onHoldClick}
+        onKeyDown={handleKeyPress}
         tabIndex={0}
       >
-        <span className={clsx(popupButtonGroupInnerContainerStyle)}>
+        <span className={popupButtonGroupInnerContainerStyle}>
           <span>{item.option.label}</span>
           {!!item.option.icon && (
             <WizIcon icon={item.option.icon} color={iconColor} size="md" />
