@@ -22,26 +22,20 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
+  const isDisabled = disabled || item.option.disabled;
+
   const iconColor = useMemo(() => {
     if (isClicking) {
       return "white.800";
-    } else if (disabled || item.option.disabled) {
+    } else if (isDisabled) {
       return "gray.400";
     } else if (isHover) {
       return "green.800";
     }
     return item.option.iconDefaultColor ?? "gray.500";
-  }, [
-    disabled,
-    isClicking,
-    isHover,
-    item.option.disabled,
-    item.option.iconDefaultColor,
-  ]);
+  }, [isClicking, isDisabled, isHover, item.option.iconDefaultColor]);
 
-  const isDisabled = disabled || item.option.disabled;
-
-  const handleMouseDown = () => {
+  const handleClick = () => {
     if (isDisabled) return;
     item.option.onClick();
   };
@@ -56,13 +50,13 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
     setIsHover(false);
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== "Enter") return;
     if (isDisabled) return;
     item.option.onClick();
   };
 
-  const onHoldClick = () => {
+  const handleMouseDown = () => {
     if (isDisabled) return;
     setIsClicking(true);
     const mouseup = () => {
@@ -77,7 +71,7 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
       <div
         className={clsx(
           popupButtonGroupButtonBaseStyle,
-          disabled || item.option.disabled
+          isDisabled
             ? popupButtonGroupButtonVariantStyle["disabled"]
             : popupButtonGroupButtonVariantStyle["enabled"],
           item.option.disabled && popupButtonGroupDisabledCursorStyle
@@ -85,11 +79,11 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
         style={{
           paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
         }}
-        onClick={handleMouseDown}
+        onClick={handleClick}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
-        onMouseDown={onHoldClick}
-        onKeyDown={handleKeyPress}
+        onMouseDown={handleMouseDown}
+        onKeyDown={handleKeyDown}
         tabIndex={0}
       >
         <span className={popupButtonGroupInnerContainerStyle}>
