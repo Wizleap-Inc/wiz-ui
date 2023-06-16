@@ -30,7 +30,7 @@ type Props = {
   onChange: (time: Time | null) => void;
 };
 
-const _TimePicker = ({
+const TimePicker = ({
   time,
   placeholder = "時間を選択",
   width = "10rem",
@@ -214,6 +214,6 @@ const _TimePicker = ({
   );
 };
 
-_TimePicker.displayName = ComponentName.TimePicker;
+TimePicker.displayName = ComponentName.TimePicker;
 
-export const WizTimePicker = _TimePicker;
+export const WizTimePicker = TimePicker;
