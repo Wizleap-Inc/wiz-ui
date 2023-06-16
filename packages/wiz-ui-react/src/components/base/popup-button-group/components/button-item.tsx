@@ -94,7 +94,7 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
       >
         <span className={popupButtonGroupInnerContainerStyle}>
           <span>{item.option.label}</span>
-          {!!item.option.icon && (
+          {item.option.icon && (
             <WizIcon icon={item.option.icon} color={iconColor} size="md" />
           )}
         </span>
