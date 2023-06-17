@@ -212,12 +212,13 @@ const toggleDropdown = () => {
 
 const deepCopy = <T>(ary: T): T => JSON.parse(JSON.stringify(ary));
 
-const sortByLevenshtein = (options: SelectBoxOption[], target: string) => {
+const selectByLevenshtein = (options: SelectBoxOption[], target: string) => {
   const dist = options.reduce((acc, str) => {
     acc[str.label] = levenshteinDistance(str.label, target);
     return acc;
   }, {} as { [key: string]: number });
-  return options.sort((a, b) => dist[a.label] - dist[b.label]);
+  const closestWords = Math.min(...Object.values(dist));
+  return options.filter((option) => dist[option.label] === closestWords);
 };
 
 const valueToOption = computed(() =>
@@ -240,7 +241,7 @@ const setUnselectableRef =
 const filteredOptions = computed(() => {
   const sortedOptions =
     props.searchValue.length !== 0
-      ? sortByLevenshtein(deepCopy(props.options), props.searchValue)
+      ? selectByLevenshtein(deepCopy(props.options), props.searchValue)
       : props.options;
   const removeSelectedOptions = (options: SelectBoxOption[]) => {
     return options.filter((v) => {
