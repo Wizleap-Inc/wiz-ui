@@ -12,7 +12,7 @@ const spacingControls = spacingKeys.reduce((acc, key) => {
     options: SPACING_ACCESSORS,
   };
   return acc;
-}, {} as Record<string, any>);
+}, {} as Record<string, unknown>);
 
 const meta: Meta<typeof WizStack> = {
   title: "Base/Stack/Stack",
