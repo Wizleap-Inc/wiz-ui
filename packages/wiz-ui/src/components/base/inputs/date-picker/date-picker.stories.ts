@@ -42,14 +42,14 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(null);
+    const date = ref<Date | null>(new Date(2020, 0, 1));
     const isOpen = ref(true);
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { date, isOpen, setIsOpen };
   },
   template: `
     <WizHStack>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
@@ -166,7 +166,7 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (
   },
   template: `
     <div>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
@@ -209,7 +209,7 @@ export const Hover: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   },
   template: `
     <div>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
@@ -234,7 +234,7 @@ export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   },
   template: `
     <div>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
