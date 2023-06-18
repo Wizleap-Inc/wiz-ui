@@ -151,9 +151,9 @@ const createButton = (n: number): ButtonGroupItem => ({
 const PopupTemplate: Story = {
   render: (args) => {
     const [isOpens, setIsOpens] = useState([false, false, false, false]);
-    const handleSetIsOpen = (index: number) => {
+    const handleSetIsOpen = (index: number, isOpen: boolean) => {
       const newIsOpens = [...isOpens];
-      newIsOpens[index] = !newIsOpens[index];
+      newIsOpens[index] = isOpen;
       setIsOpens(newIsOpens);
     };
 
@@ -173,7 +173,7 @@ const PopupTemplate: Story = {
               active={false}
               buttons={[createButton(i + 1)]}
               isOpen={isOpens[i]}
-              onSetIsOpen={() => handleSetIsOpen(i)}
+              onSetIsOpen={(isOpen) => handleSetIsOpen(i, isOpen)}
               lockingPopup={lockingPopup}
               onSetLockingPopup={handleSetLockingPopup}
             />
