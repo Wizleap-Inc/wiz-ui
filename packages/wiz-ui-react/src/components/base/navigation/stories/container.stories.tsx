@@ -150,13 +150,10 @@ const createButton = (n: number): ButtonGroupItem => ({
 
 const PopupTemplate: Story = {
   render: (args) => {
-    const [isOpens, setIsOpens] = useState([false, false, false, false]);
-    const handleSetIsOpen = (index: number, isOpen: boolean) => {
-      const newIsOpens = [...isOpens];
-      newIsOpens[index] = isOpen;
-      setIsOpens(newIsOpens);
-    };
-
+    const [isOpen0, setIsOpen0] = useState(false);
+    const [isOpen1, setIsOpen1] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(false);
+    const [isOpen3, setIsOpen3] = useState(false);
     const [lockingPopup, setLockingPopup] = useState(false);
     const handleSetLockingPopup = (isLockingPopup: boolean) =>
       setLockingPopup(isLockingPopup);
@@ -164,20 +161,50 @@ const PopupTemplate: Story = {
     return (
       <div style={{ display: "flex", height: "100vh" }}>
         <WizNavigationContainer {...args}>
-          {paths.map((path, i) => (
-            <WizNavigationItem
-              key={`path-${path.label}`}
-              icon={path.icon}
-              label={path.label}
-              href={path.href}
-              active={false}
-              buttons={[createButton(i + 1)]}
-              isOpen={isOpens[i]}
-              onSetIsOpen={(isOpen) => handleSetIsOpen(i, isOpen)}
-              lockingPopup={lockingPopup}
-              onSetLockingPopup={handleSetLockingPopup}
-            />
-          ))}
+          <WizNavigationItem
+            icon={WizIDashboard}
+            label="Home"
+            href="/"
+            active={false}
+            buttons={[createButton(1)]}
+            isOpen={isOpen0}
+            onSetIsOpen={(isOpen) => setIsOpen0(isOpen)}
+            lockingPopup={lockingPopup}
+            onSetLockingPopup={handleSetLockingPopup}
+          />
+          <WizNavigationItem
+            icon={WizIAssignment}
+            label="Page1"
+            href="/page1"
+            active={false}
+            buttons={[createButton(1)]}
+            isOpen={isOpen1}
+            onSetIsOpen={(isOpen) => setIsOpen1(isOpen)}
+            lockingPopup={lockingPopup}
+            onSetLockingPopup={handleSetLockingPopup}
+          />
+          <WizNavigationItem
+            icon={WizIBusinessCenter}
+            label="Page2"
+            href="/page2"
+            active={false}
+            buttons={[createButton(1)]}
+            isOpen={isOpen2}
+            onSetIsOpen={(isOpen) => setIsOpen2(isOpen)}
+            lockingPopup={lockingPopup}
+            onSetLockingPopup={handleSetLockingPopup}
+          />
+          <WizNavigationItem
+            icon={WizIHelp}
+            label="Page3"
+            href="/page3"
+            active={false}
+            buttons={[createButton(1)]}
+            isOpen={isOpen3}
+            onSetIsOpen={(isOpen) => setIsOpen3(isOpen)}
+            lockingPopup={lockingPopup}
+            onSetLockingPopup={handleSetLockingPopup}
+          />
         </WizNavigationContainer>
       </div>
     );

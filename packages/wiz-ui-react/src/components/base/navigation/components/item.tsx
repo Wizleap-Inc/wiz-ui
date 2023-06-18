@@ -116,27 +116,28 @@ const Item: FC<Props> = ({
         </a>
       </div>
       {existPopup && (
-        <WizPopup
-          anchorElement={popupAnchoer}
-          isOpen={isOpen}
-          onClose={handleClosePopup}
-          onMouseLeave={handleMouseLeaveFromPopup}
-          direction="rightTop"
-          layer="popover"
-          isDirectionFixed
-        >
-          <div
-            onMouseEnter={handleMouseEnterToPopup}
-            className={navigationPopupContainerStyle}
+        <div onMouseLeave={handleMouseLeaveFromPopup}>
+          <WizPopup
+            anchorElement={popupAnchoer}
+            isOpen={isOpen}
+            onClose={handleClosePopup}
+            direction="rightTop"
+            layer="popover"
+            isDirectionFixed
           >
-            <WizPopupButtonGroup
-              options={buttons}
-              p="xs"
-              borderRadius="xs2"
-              disabled={disabled}
-            />
-          </div>
-        </WizPopup>
+            <div
+              onMouseEnter={handleMouseEnterToPopup}
+              className={navigationPopupContainerStyle}
+            >
+              <WizPopupButtonGroup
+                options={buttons}
+                p="xs"
+                borderRadius="xs2"
+                disabled={disabled}
+              />
+            </div>
+          </WizPopup>
+        </div>
       )}
     </>
   );
