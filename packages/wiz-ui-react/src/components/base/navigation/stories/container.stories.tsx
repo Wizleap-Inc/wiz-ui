@@ -58,7 +58,7 @@ const Template: Story = {
             label={path.label}
             href={path.href}
             active={false}
-            onSetIsOpen={handleSetOpen}
+            onSetIsOpenPopup={handleSetOpen}
             onSetLockingPopup={setLock}
           />
         ))}
@@ -109,7 +109,7 @@ export const Playground: Story = {
               label={path.label}
               href={path.href}
               active={false}
-              onSetIsOpen={handleSetOpen}
+              onSetIsOpenPopup={handleSetOpen}
               onSetLockingPopup={setLock}
             />
           ))}
@@ -167,8 +167,8 @@ const PopupTemplate: Story = {
             href="/"
             active={false}
             buttons={[createButton(1)]}
-            isOpen={isOpen0}
-            onSetIsOpen={(isOpen) => setIsOpen0(isOpen)}
+            isOpenPopup={isOpen0}
+            onSetIsOpenPopup={(isOpen) => setIsOpen0(isOpen)}
             lockingPopup={lockingPopup}
             onSetLockingPopup={handleSetLockingPopup}
           />
@@ -178,8 +178,8 @@ const PopupTemplate: Story = {
             href="/page1"
             active={false}
             buttons={[createButton(1)]}
-            isOpen={isOpen1}
-            onSetIsOpen={(isOpen) => setIsOpen1(isOpen)}
+            isOpenPopup={isOpen1}
+            onSetIsOpenPopup={(isOpen) => setIsOpen1(isOpen)}
             lockingPopup={lockingPopup}
             onSetLockingPopup={handleSetLockingPopup}
           />
@@ -189,8 +189,8 @@ const PopupTemplate: Story = {
             href="/page2"
             active={false}
             buttons={[createButton(1)]}
-            isOpen={isOpen2}
-            onSetIsOpen={(isOpen) => setIsOpen2(isOpen)}
+            isOpenPopup={isOpen2}
+            onSetIsOpenPopup={(isOpen) => setIsOpen2(isOpen)}
             lockingPopup={lockingPopup}
             onSetLockingPopup={handleSetLockingPopup}
           />
@@ -200,8 +200,8 @@ const PopupTemplate: Story = {
             href="/page3"
             active={false}
             buttons={[createButton(1)]}
-            isOpen={isOpen3}
-            onSetIsOpen={(isOpen) => setIsOpen3(isOpen)}
+            isOpenPopup={isOpen3}
+            onSetIsOpenPopup={(isOpen) => setIsOpen3(isOpen)}
             lockingPopup={lockingPopup}
             onSetLockingPopup={handleSetLockingPopup}
           />

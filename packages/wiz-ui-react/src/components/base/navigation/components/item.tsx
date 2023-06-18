@@ -26,8 +26,8 @@ interface Props {
   tooltipText?: string;
   lockingPopup?: boolean;
   buttons?: ButtonGroupItem[];
-  isOpen?: boolean;
-  onSetIsOpen: (isOpen: boolean) => void;
+  isOpenPopup?: boolean;
+  onSetIsOpenPopup: (isOpenPopup: boolean) => void;
   onSetLockingPopup: (lock: boolean) => void;
 }
 
@@ -40,8 +40,8 @@ const Item: FC<Props> = ({
   tooltipText = null,
   lockingPopup = true,
   buttons,
-  isOpen = false,
-  onSetIsOpen,
+  isOpenPopup = false,
+  onSetIsOpenPopup,
   onSetLockingPopup,
 }) => {
   const popupAnchoer = useRef<HTMLDivElement>(null);
@@ -49,30 +49,30 @@ const Item: FC<Props> = ({
   const existPopup = buttons && buttons.length > 0;
 
   const handleClick = () => {
-    onSetIsOpen(true);
+    onSetIsOpenPopup(true);
     if (existPopup) onSetLockingPopup(true);
   };
 
   const handleMouseEnter = () => {
-    if (!lockingPopup) onSetIsOpen(true);
+    if (!lockingPopup) onSetIsOpenPopup(true);
   };
 
   const handleMouseLeave = () => {
-    if (!lockingPopup) onSetIsOpen(false);
+    if (!lockingPopup) onSetIsOpenPopup(false);
   };
 
   const handleClosePopup = useCallback(() => {
-    onSetIsOpen(false);
+    onSetIsOpenPopup(false);
     onSetLockingPopup(false);
-  }, [onSetIsOpen, onSetLockingPopup]);
+  }, [onSetIsOpenPopup, onSetLockingPopup]);
 
   const handleMouseEnterToPopup = () => {
-    if (!lockingPopup) onSetIsOpen(true);
+    if (!lockingPopup) onSetIsOpenPopup(true);
   };
 
   const handleMouseLeaveFromPopup = useCallback(() => {
-    if (!lockingPopup) onSetIsOpen(false);
-  }, [lockingPopup, onSetIsOpen]);
+    if (!lockingPopup) onSetIsOpenPopup(false);
+  }, [lockingPopup, onSetIsOpenPopup]);
 
   const Body: FC = () => (
     <>
@@ -119,7 +119,7 @@ const Item: FC<Props> = ({
         <div onMouseLeave={handleMouseLeaveFromPopup}>
           <WizPopup
             anchorElement={popupAnchoer}
-            isOpen={isOpen}
+            isOpen={isOpenPopup}
             onClose={handleClosePopup}
             direction="rightTop"
             layer="popover"
