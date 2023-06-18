@@ -27,8 +27,8 @@ interface Props {
   lockingPopup?: boolean;
   buttons?: ButtonGroupItem[];
   isOpen?: boolean;
-  onToggle: (isOpen: boolean) => void;
-  setLock: (lock: boolean) => void;
+  onSetOpen: (isOpen: boolean) => void;
+  onSetLockingPopup: (lock: boolean) => void;
 }
 
 const Item: FC<Props> = ({
@@ -41,38 +41,38 @@ const Item: FC<Props> = ({
   lockingPopup = true,
   buttons,
   isOpen = false,
-  onToggle,
-  setLock,
+  onSetOpen,
+  onSetLockingPopup,
 }) => {
   const navItemRef = useRef<HTMLDivElement>(null);
 
   const existPopup = buttons && buttons.length > 0;
 
   const handleClick = () => {
-    onToggle(true);
-    if (existPopup) setLock(true);
+    onSetOpen(true);
+    if (existPopup) onSetLockingPopup(true);
   };
 
   const handleMouseEnter = () => {
-    if (!lockingPopup) onToggle(true);
+    if (!lockingPopup) onSetOpen(true);
   };
 
   const handleMouseLeave = () => {
-    if (!lockingPopup) onToggle(false);
+    if (!lockingPopup) onSetOpen(false);
   };
 
   const handleClosePopup = useCallback(() => {
-    onToggle(false);
-    setLock(false);
-  }, [onToggle, setLock]);
+    onSetOpen(false);
+    onSetLockingPopup(false);
+  }, [onSetOpen, onSetLockingPopup]);
 
   const handleMouseEnterToPopup = () => {
-    if (!lockingPopup) onToggle(true);
+    if (!lockingPopup) onSetOpen(true);
   };
 
   const handleMouseLeaveFromPopup = useCallback(() => {
-    if (!lockingPopup) onToggle(false);
-  }, [lockingPopup, onToggle]);
+    if (!lockingPopup) onSetOpen(false);
+  }, [lockingPopup, onSetOpen]);
 
   const Body: FC = () => (
     <>

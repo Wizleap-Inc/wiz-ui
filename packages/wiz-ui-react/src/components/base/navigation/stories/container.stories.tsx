@@ -21,7 +21,7 @@ const meta: Meta<typeof WizNavigationContainer> = {
 export default meta;
 type Story = StoryObj<typeof WizNavigationContainer>;
 
-const handleToggle = () => void 0;
+const handleSetOpen = () => void 0;
 const setLock = () => void 0;
 
 const paths = [
@@ -58,8 +58,8 @@ const Template: Story = {
             label={path.label}
             href={path.href}
             active={false}
-            onToggle={handleToggle}
-            setLock={setLock}
+            onSetOpen={handleSetOpen}
+            onSetLockingPopup={setLock}
           />
         ))}
       </WizNavigationContainer>
@@ -93,10 +93,12 @@ export const Close: Story = {
 };
 
 export const Playground: Story = {
-  args: {},
+  args: {
+    isOpen: true,
+  },
   render: (args) => {
     const [isMenuOpen, setIsMenuOpen] = useState(args.isOpen);
-    const handleToggle = () => setIsMenuOpen((prev) => !prev);
+    const handleSetOpen = () => setIsMenuOpen((prev) => !prev);
     return (
       <div style={{ display: "flex", height: "100vh" }}>
         <WizNavigationContainer {...args} isOpen={isMenuOpen}>
@@ -107,14 +109,14 @@ export const Playground: Story = {
               label={path.label}
               href={path.href}
               active={false}
-              onToggle={handleToggle}
-              setLock={setLock}
+              onSetOpen={handleSetOpen}
+              onSetLockingPopup={setLock}
             />
           ))}
         </WizNavigationContainer>
         <div>
           デバッグ用
-          <button onClick={handleToggle}>
+          <button onClick={handleSetOpen}>
             {isMenuOpen ? "Close" : "Open"}
           </button>
         </div>
@@ -148,7 +150,17 @@ const createButton = (n: number): ButtonGroupItem => ({
 
 const PopupTemplate: Story = {
   render: (args) => {
-    const [isPopupOpen, setIsPopupOpen] = useState(true);
+    const [isOpens, setIsOpens] = useState([false, false, false, false]);
+    const handleSetOpen = (index: number) => {
+      const newIsOpens = [...isOpens];
+      newIsOpens[index] = !newIsOpens[index];
+      setIsOpens(newIsOpens);
+    };
+
+    const [lockingPopup, setLockingPopup] = useState(false);
+    const handleSetLockingPopup = (isLockingPopup: boolean) =>
+      setLockingPopup(isLockingPopup);
+
     return (
       <div style={{ display: "flex", height: "100vh" }}>
         <WizNavigationContainer {...args}>
@@ -159,10 +171,11 @@ const PopupTemplate: Story = {
               label={path.label}
               href={path.href}
               active={false}
-              onToggle={handleToggle}
-              setLock={setLock}
               buttons={[createButton(i + 1)]}
-              isOpen={isPopupOpen}
+              isOpen={isOpens[i]}
+              onSetOpen={() => handleSetOpen(i)}
+              lockingPopup={lockingPopup}
+              onSetLockingPopup={handleSetLockingPopup}
             />
           ))}
         </WizNavigationContainer>
