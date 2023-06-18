@@ -58,7 +58,7 @@ const Template: Story = {
             label={path.label}
             href={path.href}
             active={false}
-            onSetOpen={handleSetOpen}
+            onSetIsOpen={handleSetOpen}
             onSetLockingPopup={setLock}
           />
         ))}
@@ -109,7 +109,7 @@ export const Playground: Story = {
               label={path.label}
               href={path.href}
               active={false}
-              onSetOpen={handleSetOpen}
+              onSetIsOpen={handleSetOpen}
               onSetLockingPopup={setLock}
             />
           ))}
@@ -173,7 +173,7 @@ const PopupTemplate: Story = {
               active={false}
               buttons={[createButton(i + 1)]}
               isOpen={isOpens[i]}
-              onSetOpen={() => handleSetOpen(i)}
+              onSetIsOpen={() => handleSetOpen(i)}
               lockingPopup={lockingPopup}
               onSetLockingPopup={handleSetLockingPopup}
             />
