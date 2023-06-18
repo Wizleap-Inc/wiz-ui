@@ -44,7 +44,7 @@ const Item: FC<Props> = ({
   onSetIsOpen,
   onSetLockingPopup,
 }) => {
-  const navItemRef = useRef<HTMLDivElement>(null);
+  const popupAnchoer = useRef<HTMLDivElement>(null);
 
   const existPopup = buttons && buttons.length > 0;
 
@@ -77,7 +77,7 @@ const Item: FC<Props> = ({
   const Body: FC = () => (
     <>
       <div
-        ref={navItemRef}
+        ref={popupAnchoer}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -116,29 +116,27 @@ const Item: FC<Props> = ({
         </a>
       </div>
       {existPopup && (
-        <div>
-          <WizPopup
-            anchorElement={navItemRef}
-            isOpen={isOpen}
-            onClose={handleClosePopup}
-            onMouseLeave={handleMouseLeaveFromPopup}
-            direction="rightTop"
-            layer="popover"
-            isDirectionFixed
+        <WizPopup
+          anchorElement={popupAnchoer}
+          isOpen={isOpen}
+          onClose={handleClosePopup}
+          onMouseLeave={handleMouseLeaveFromPopup}
+          direction="rightTop"
+          layer="popover"
+          isDirectionFixed
+        >
+          <div
+            onMouseEnter={handleMouseEnterToPopup}
+            className={navigationPopupContainerStyle}
           >
-            <div
-              onMouseEnter={handleMouseEnterToPopup}
-              className={navigationPopupContainerStyle}
-            >
-              <WizPopupButtonGroup
-                options={buttons}
-                p="xs"
-                borderRadius="xs2"
-                disabled={disabled}
-              />
-            </div>
-          </WizPopup>
-        </div>
+            <WizPopupButtonGroup
+              options={buttons}
+              p="xs"
+              borderRadius="xs2"
+              disabled={disabled}
+            />
+          </div>
+        </WizPopup>
       )}
     </>
   );
