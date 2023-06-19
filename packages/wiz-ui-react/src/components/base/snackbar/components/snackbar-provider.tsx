@@ -1,6 +1,6 @@
 import { getSpacingCss } from "@wizleap-inc/wiz-ui-constants";
 import { snackbarControllerStyle } from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
-import { FC, ReactNode, useEffect, useId, useRef, useState } from "react";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 import { WizSnackbar } from "./snackbar";
 import { SnackbarContext } from "./snackbar-context";
@@ -23,7 +23,6 @@ const marginPx = (() => {
 const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [snackbarData, setSnackbarData] = useState<SnackbarDataItem[]>([]);
   const containersRef = useRef<Array<HTMLDivElement | null>>([]);
-  const idPrefix = useId();
   const countRef = useRef(0);
 
   useEffect(() => {
@@ -42,7 +41,10 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const showSnackbar = (message: string) => {
     setSnackbarData((current) => [
       ...current,
-      { message, id: `${idPrefix}-${countRef.current++}` },
+      {
+        message,
+        id: `${new Date().toISOString()}-${countRef.current++}`,
+      },
     ]);
   };
 
