@@ -26,9 +26,6 @@ export const UseSnackbar: Story = {
       </WizSnackbarProvider>
     ),
   ],
-  parameters: {
-    layout: "centered",
-  },
   render: () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { showSnackbar } = useSnackbar();
@@ -45,5 +42,13 @@ export const UseSnackbar: Story = {
         </button>
       </div>
     );
+  },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        story: `WizSnackbarProviderとuseSnackbarを用いて、showSnackbar関数にmessageを渡すとSnackbarが表示されます。`,
+      },
+    },
   },
 };
