@@ -12,7 +12,7 @@ const meta: Meta<typeof WizSnackbar> = {
 export default meta;
 type Story = StoryObj<typeof WizSnackbar>;
 
-export const SnackBar: Story = {
+export const Snackbar: Story = {
   args: {
     message: "Hello World Hello World Hello World Hello World",
   },
