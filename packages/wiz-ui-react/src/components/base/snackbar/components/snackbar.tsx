@@ -24,7 +24,10 @@ const Snackbar: FC<Props> = ({
   const [isHidden, setIsHidden] = useState(enableAnimation ? true : false);
 
   useEffect(() => {
-    setIsHidden(false);
+    if (enableAnimation) {
+      // for fade-in animation
+      setIsHidden(false);
+    }
   }, [enableAnimation]);
 
   const handleClose = useCallback(() => {
