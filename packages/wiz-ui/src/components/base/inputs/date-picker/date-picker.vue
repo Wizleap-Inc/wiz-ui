@@ -12,6 +12,10 @@
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
+      @keydown.up="clickToNextYear"
+      @keydown.down="clickToPreviousYear"
+      @keydown.left="clickToPreviousMonth"
+      @keydown.right="clickToNextMonth"
     >
       <WizHStack gap="xs" align="center" height="100%">
         <span
@@ -108,6 +112,7 @@
               : []
           "
           @click="(date) => (calendarValue = date)"
+          @keypress.up="console.log('up')"
           :currentMonth="currentMonth"
           filledWeeks
         />

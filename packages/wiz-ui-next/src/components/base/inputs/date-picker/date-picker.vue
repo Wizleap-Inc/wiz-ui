@@ -11,6 +11,10 @@
       }"
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       @click="setIsOpen(!isOpen)"
+      @keydown.up="clickToNextYear"
+      @keydown.down="clickToPreviousYear"
+      @keydown.left="clickToPreviousMonth"
+      @keydown.right="clickToNextMonth"
     >
       <WizHStack gap="xs" align="center" height="100%">
         <span

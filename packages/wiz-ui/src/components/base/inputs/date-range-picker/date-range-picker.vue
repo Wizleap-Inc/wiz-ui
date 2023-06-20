@@ -9,6 +9,8 @@
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
+      @keydown.left="moveToPrevMonth"
+      @keydown.right="moveToNextMonth"
     >
       <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
         <span v-if="!isHover">
