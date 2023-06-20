@@ -3,7 +3,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-import type { ProgressStatus } from "./types";
+import type { ProgressStatus } from "../types";
 
 type Props = {
   status: ProgressStatus;

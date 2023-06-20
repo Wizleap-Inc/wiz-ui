@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import { WizProgressBar } from "../components";
-import { ProgressItem } from "../components/types";
+import { ProgressItem } from "../types";
 
 const meta: Meta<typeof WizProgressBar> = {
   title: "Base/Progress/Bar",

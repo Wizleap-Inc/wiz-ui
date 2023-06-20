@@ -4,8 +4,9 @@ import { ReactNode } from "react";
 
 import { WizText, WizTooltip } from "@/components";
 
+import { ProgressItem } from "../types";
+
 import { WizProgressPoint } from "./progress-point";
-import { ProgressItem } from "./types";
 
 import { WizProgressLine } from ".";
 
