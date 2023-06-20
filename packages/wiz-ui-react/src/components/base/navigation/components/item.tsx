@@ -45,6 +45,7 @@ const Item: FC<Props> = ({
   onSetLockingPopup,
 }) => {
   const popupAnchoer = useRef<HTMLDivElement>(null);
+  const popupBody = useRef<HTMLDivElement>(null);
 
   const existPopup = buttons && buttons.length > 0;
 
@@ -55,30 +56,33 @@ const Item: FC<Props> = ({
 
   // ホバー時の動作
   useEffect(() => {
-    if (isOpenPopup) return;
     const handleMouseEnter = (event: MouseEvent) => {
-      if (popupAnchoer.current?.contains(event.target as Node))
-        onSetIsOpenPopup(true);
+      if (lockingPopup) return;
+      if (!popupAnchoer.current?.contains(event.target as Node)) return;
+      onSetIsOpenPopup(true);
     };
     document.addEventListener("mouseover", handleMouseEnter);
     return () => document.removeEventListener("mouseover", handleMouseEnter);
-  }, [isOpenPopup, onSetIsOpenPopup]);
+  }, [lockingPopup, onSetIsOpenPopup]);
 
   // ホバーを外した時の動作
   useEffect(() => {
-    if (!isOpenPopup) return;
     const handleMouseOut = (event: MouseEvent) => {
-      if (!popupAnchoer.current?.contains(event.target as Node))
-        onSetIsOpenPopup(false);
+      if (lockingPopup) return;
+      if (!popupAnchoer.current || !popupBody.current) return;
+      if (popupAnchoer.current.contains(event.target as Node)) return;
+      if (popupBody.current.contains(event.target as Node)) return;
+      onSetIsOpenPopup(false);
     };
     document.addEventListener("mouseover", handleMouseOut);
     return () => document.removeEventListener("mouseover", handleMouseOut);
-  }, [isOpenPopup, onSetIsOpenPopup]);
+  }, [lockingPopup, onSetIsOpenPopup]);
 
   const handleClosePopup = useCallback(() => {
+    if (!isOpenPopup) return;
     onSetIsOpenPopup(false);
     onSetLockingPopup(false);
-  }, [onSetIsOpenPopup, onSetLockingPopup]);
+  }, [isOpenPopup, onSetIsOpenPopup, onSetLockingPopup]);
 
   const handleMouseEnterToPopup = () => {
     if (!lockingPopup) onSetIsOpenPopup(true);
@@ -138,6 +142,7 @@ const Item: FC<Props> = ({
             isDirectionFixed
           >
             <div
+              ref={popupBody}
               onMouseEnter={handleMouseEnterToPopup}
               className={navigationPopupContainerStyle}
             >
