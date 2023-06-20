@@ -57,8 +57,8 @@ const Item: FC<Props> = ({
 
   // ホバー時の動作
   useEffect(() => {
+    if (lockingPopup) return;
     const handleMouseEnter = (event: MouseEvent) => {
-      if (lockingPopup) return;
       if (!popupAnchoer.current?.contains(event.target as Node)) return;
       onSetIsOpenPopup(true);
     };
@@ -68,8 +68,8 @@ const Item: FC<Props> = ({
 
   // ホバーを外した時の動作
   useEffect(() => {
+    if (lockingPopup) return;
     const handleMouseOut = (event: MouseEvent) => {
-      if (lockingPopup) return;
       if (!popupAnchoer.current || !popupBody.current) return;
       if (popupAnchoer.current.contains(event.target as Node)) return;
       if (popupBody.current.contains(event.target as Node)) return;
