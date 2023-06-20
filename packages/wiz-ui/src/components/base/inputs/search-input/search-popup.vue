@@ -2,6 +2,7 @@
   <div
     :style="{
       paddingTop: `${dy * (ITEM_HEIGHT + DIVIDER_HEIGHT)}px`,
+      marginTop: `${-parentScrollAmount}px`,
     }"
   >
     <div v-for="(option, key) in options">
@@ -13,6 +14,8 @@
       >
         <div
           v-if="selectedItem.includes(option.value)"
+          ref="optionsRef"
+          @scroll="onScroll"
           :class="[
             searchPopupBlockStyle,
             isBorder(option.children) && searchPopupBlockBorderRightStyle,
@@ -84,7 +87,6 @@
             />
           </div>
         </div>
-
         <WizSearchPopup
           :values="checkValues"
           @input="inputValues"
@@ -92,6 +94,7 @@
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
           :dy="activeItemIndex || 0"
+          :parentScrollAmount="scrollAmount"
         />
       </div>
     </div>
@@ -147,6 +150,11 @@ const props = defineProps({
     required: false,
     default: 0,
   },
+  parentScrollAmount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 const emit = defineEmits<{
@@ -170,6 +178,12 @@ const activeItemIndex = ref<number | null>(null);
 
 const ITEM_HEIGHT = 44;
 const DIVIDER_HEIGHT = 0.8;
+
+const optionsRef = ref<HTMLElement[]>();
+const scrollAmount = ref<number>(0);
+const onScroll = () => {
+  scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
+};
 
 const mutableSelectedItem = computed(() => {
   return props.selectedItem;
