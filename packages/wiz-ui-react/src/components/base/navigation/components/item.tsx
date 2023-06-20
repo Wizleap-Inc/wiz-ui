@@ -11,7 +11,7 @@ import {
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
-import { FC, useCallback, useRef } from "react";
+import { FC, useCallback, useEffect, useRef } from "react";
 
 import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
 
@@ -53,13 +53,25 @@ const Item: FC<Props> = ({
     if (existPopup) onSetLockingPopup(true);
   };
 
-  const handleMouseEnter = () => {
-    if (!lockingPopup) onSetIsOpenPopup(true);
-  };
+  // ホバー時の動作
+  useEffect(() => {
+    const handleMouseEnter = (event: MouseEvent) => {
+      if (popupAnchoer.current?.contains(event.target as Node))
+        onSetIsOpenPopup(true);
+    };
+    document.addEventListener("mouseover", handleMouseEnter);
+    return () => document.removeEventListener("mouseover", handleMouseEnter);
+  }, [onSetIsOpenPopup]);
 
-  const handleMouseLeave = () => {
-    if (!lockingPopup) onSetIsOpenPopup(false);
-  };
+  // ホバーを外した時の動作
+  useEffect(() => {
+    const handleMouseOut = (event: MouseEvent) => {
+      if (!popupAnchoer.current?.contains(event.target as Node))
+        onSetIsOpenPopup(false);
+    };
+    document.addEventListener("mouseover", handleMouseOut);
+    return () => document.removeEventListener("mouseover", handleMouseOut);
+  }, [onSetIsOpenPopup]);
 
   const handleClosePopup = useCallback(() => {
     onSetIsOpenPopup(false);
@@ -79,8 +91,6 @@ const Item: FC<Props> = ({
       <div
         ref={popupAnchoer}
         onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         style={{ display: "inline-block" }}
       >
         <a
