@@ -25,15 +25,17 @@ type Story = StoryObj<typeof WizProgressBar>;
 const contents: ProgressItem[] = [
   {
     id: "1",
-    annotation: "1",
+    annotation: "Annotation 1",
     label: "Label 1",
+    tooltip: "Tooltip 1",
     status: "done",
     value: 1,
     progress: true,
   },
   {
     id: "2",
-    annotation: "2",
+    annotation: "Annotation 2",
+    tooltip: "Tooltip 2",
     label: "Label 2",
     status: "active",
     value: 2,
@@ -41,7 +43,8 @@ const contents: ProgressItem[] = [
   },
   {
     id: "3",
-    annotation: "3",
+    annotation: "Annotation 3",
+    tooltip: "Tooltip 3",
     label: "Label 3",
     status: "inactive",
     value: 3,
@@ -49,7 +52,8 @@ const contents: ProgressItem[] = [
   },
   {
     id: "4",
-    annotation: "4",
+    annotation: "Annotation 4",
+    tooltip: "Tooltip 4",
     label: "Label 4",
     status: "pending",
     value: 4,
@@ -57,7 +61,8 @@ const contents: ProgressItem[] = [
   },
   {
     id: "5",
-    annotation: "5",
+    annotation: "Annotation 5",
+    tooltip: "Tooltip 5",
     label: "Label 5",
     status: "dead",
     value: 5,
@@ -65,7 +70,8 @@ const contents: ProgressItem[] = [
   },
   {
     id: "6",
-    annotation: "6",
+    annotation: "Annotation 6",
+    tooltip: "Tooltip 6",
     label: "Label 6",
     status: "none",
     value: 6,
