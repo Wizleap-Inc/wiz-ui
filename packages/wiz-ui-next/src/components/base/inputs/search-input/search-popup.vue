@@ -1,7 +1,7 @@
 <template>
   <template v-for="(option, key) in options">
     <div
-      v-if="option.children.length"
+      v-if="option.children.length && selectedItem.includes(option.value)"
       :class="searchPopupStyle"
       :key="`${option.label}_${option.value}_${key}`"
       :style="{
@@ -10,7 +10,6 @@
       }"
     >
       <div
-        v-if="selectedItem.includes(option.value)"
         ref="optionsRef"
         @scroll="onScroll"
         :class="[
