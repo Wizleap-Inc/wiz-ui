@@ -1,14 +1,13 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
 import clsx from "clsx";
-import { memo } from "react";
 
 type Props = {
   active?: boolean;
   isFirst: boolean;
 };
 
-const _ProgressLine = ({ active, isFirst }: Props) => {
+const ProgressLine = ({ active, isFirst }: Props) => {
   return (
     <span
       className={clsx(
@@ -20,6 +19,6 @@ const _ProgressLine = ({ active, isFirst }: Props) => {
   );
 };
 
-_ProgressLine.displayName = ComponentName.ProgressLine;
+ProgressLine.displayName = ComponentName.ProgressLine;
 
-export const WizProgressLine = memo(_ProgressLine);
+export const WizProgressLine = ProgressLine;

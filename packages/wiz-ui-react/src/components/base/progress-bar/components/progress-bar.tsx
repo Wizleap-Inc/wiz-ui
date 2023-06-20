@@ -1,6 +1,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
-import { ReactNode, memo } from "react";
+import { ReactNode } from "react";
 
 import { WizProgressPoint } from "./progress-point";
 import { ProgressItem } from "./types";
@@ -11,7 +11,7 @@ type Props = {
   contents: ProgressItem[];
   children?: ReactNode;
 };
-const _ProgressBar = ({ ...props }: Props) => {
+const ProgressBar = ({ ...props }: Props) => {
   return (
     <div className={styles.progressBarStyle}>
       {props.contents.map((content, index) => (
@@ -40,6 +40,6 @@ const _ProgressBar = ({ ...props }: Props) => {
   );
 };
 
-_ProgressBar.displayName = ComponentName.ProgressBar;
+ProgressBar.displayName = ComponentName.ProgressBar;
 
-export const WizProgressBar = memo(_ProgressBar);
+export const WizProgressBar = ProgressBar;
