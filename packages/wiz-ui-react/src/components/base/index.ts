@@ -26,3 +26,4 @@ export * from "./tooltip";
 export * from "./heading";
 export * from "./popup-button-group";
 export * from "./dropdown";
+export * from "./snackbar";
