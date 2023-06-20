@@ -58,7 +58,7 @@ const Item: FC<Props> = ({
   useEffect(() => {
     if (lockingPopup) return;
 
-    const handleMouseEnter = (event: MouseEvent) => {
+    const handleMouseOver = (event: MouseEvent) => {
       if (!popupAnchoer.current?.contains(event.target as Node)) return;
       onSetIsOpenPopup(true);
     };
@@ -70,11 +70,11 @@ const Item: FC<Props> = ({
       onSetIsOpenPopup(false);
     };
 
-    document.addEventListener("mouseover", handleMouseEnter);
+    document.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseover", handleMouseOut);
 
     return () => {
-      document.removeEventListener("mouseover", handleMouseEnter);
+      document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseover", handleMouseOut);
     };
   }, [lockingPopup, onSetIsOpenPopup]);
