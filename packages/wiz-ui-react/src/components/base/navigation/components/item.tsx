@@ -55,28 +55,28 @@ const Item: FC<Props> = ({
     if (existPopup) onSetLockingPopup(true);
   };
 
-  // ホバー時の動作
   useEffect(() => {
     if (lockingPopup) return;
+
     const handleMouseEnter = (event: MouseEvent) => {
       if (!popupAnchoer.current?.contains(event.target as Node)) return;
       onSetIsOpenPopup(true);
     };
-    document.addEventListener("mouseover", handleMouseEnter);
-    return () => document.removeEventListener("mouseover", handleMouseEnter);
-  }, [lockingPopup, onSetIsOpenPopup]);
 
-  // ホバーを外した時の動作
-  useEffect(() => {
-    if (lockingPopup) return;
     const handleMouseOut = (event: MouseEvent) => {
       if (!popupAnchoer.current || !popupBody.current) return;
       if (popupAnchoer.current.contains(event.target as Node)) return;
       if (popupBody.current.contains(event.target as Node)) return;
       onSetIsOpenPopup(false);
     };
+
+    document.addEventListener("mouseover", handleMouseEnter);
     document.addEventListener("mouseover", handleMouseOut);
-    return () => document.removeEventListener("mouseover", handleMouseOut);
+
+    return () => {
+      document.removeEventListener("mouseover", handleMouseEnter);
+      document.removeEventListener("mouseover", handleMouseOut);
+    };
   }, [lockingPopup, onSetIsOpenPopup]);
 
   const handleClosePopup = useCallback(() => {
