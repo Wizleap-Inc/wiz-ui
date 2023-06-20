@@ -21,7 +21,7 @@
       <WizISearch :class="searchInputIconStyle" />
     </div>
     <WizPopup
-      :isOpen="openPopup"
+      :isOpen="!disabled && openPopup"
       @onClose="emit('toggle', false)"
       :isDirectionFixed="isDirectionFixed"
     >
