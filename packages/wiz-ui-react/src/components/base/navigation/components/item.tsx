@@ -47,6 +47,7 @@ const Item: FC<Props> = ({
   const popupAnchoer = useRef<HTMLDivElement>(null);
   const popupBody = useRef<HTMLDivElement>(null);
 
+  const isExternalLink = typeof href === "string" && href.startsWith("http");
   const existPopup = buttons && buttons.length > 0;
 
   const handleClick = () => {
@@ -97,8 +98,8 @@ const Item: FC<Props> = ({
       >
         <a
           href={disabled ? undefined : href}
-          target={disabled ? undefined : "_blank"}
-          rel={disabled ? undefined : "noreferrer"}
+          target={!disabled && isExternalLink ? "_blank" : undefined}
+          rel={!disabled && isExternalLink ? "noreferrer" : undefined}
           className={clsx(
             navigationItemStyle,
             disabled
