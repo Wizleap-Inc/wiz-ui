@@ -1,5 +1,43 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.15.0
+
+### Minor Changes
+
+- [#837](https://github.com/Wizleap-Inc/wiz-ui/pull/837) [`e27c9812`](https://github.com/Wizleap-Inc/wiz-ui/commit/e27c9812ea2a8864e9abbe699466a2394db1060e) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizTooltip の React 対応
+
+- [#842](https://github.com/Wizleap-Inc/wiz-ui/pull/842) [`bfb2cbb4`](https://github.com/Wizleap-Inc/wiz-ui/commit/bfb2cbb414fe984594fb42bc24d4b9eb08463c95) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizPopupButtonGroup の React 対応
+
+- [#840](https://github.com/Wizleap-Inc/wiz-ui/pull/840) [`7e3c53d9`](https://github.com/Wizleap-Inc/wiz-ui/commit/7e3c53d9c6d9e5ed1f9ceaca3ec4a29f99cf55ee) Thanks [@wmoai](https://github.com/wmoai)! - WizDropdown の React 対応
+
+- [#588](https://github.com/Wizleap-Inc/wiz-ui/pull/588) [`892756bc`](https://github.com/Wizleap-Inc/wiz-ui/commit/892756bc9fb037ecbe164b81166987a57874d928) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizCheckBox の React 対応
+
+### Patch Changes
+
+- [#847](https://github.com/Wizleap-Inc/wiz-ui/pull/847) [`dc549293`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc549293aeed097bf44a89f3bbabc4d2f5caeb0d) Thanks [@wmoai](https://github.com/wmoai)! - WizPopup の座標計算方法を修正
+
+- Updated dependencies [[`892756bc`](https://github.com/Wizleap-Inc/wiz-ui/commit/892756bc9fb037ecbe164b81166987a57874d928)]:
+  - @wizleap-inc/wiz-ui-constants@0.7.2
+  - @wizleap-inc/wiz-ui-styles@0.9.3
+
+## 0.14.0
+
+### Minor Changes
+
+- [#811](https://github.com/Wizleap-Inc/wiz-ui/pull/811) [`c49d4f1f`](https://github.com/Wizleap-Inc/wiz-ui/commit/c49d4f1f00ee06a4cd0b4cf5768fa791986cecd7) Thanks [@wmoai](https://github.com/wmoai)! - WizPollGraph の React 対応
+
+- [#800](https://github.com/Wizleap-Inc/wiz-ui/pull/800) [`3046238d`](https://github.com/Wizleap-Inc/wiz-ui/commit/3046238d5c3dd3e7bd38730235362d2e194e812c) Thanks [@wmoai](https://github.com/wmoai)! - WizLineGraph の React 対応
+
+- [#803](https://github.com/Wizleap-Inc/wiz-ui/pull/803) [`8bc85c15`](https://github.com/Wizleap-Inc/wiz-ui/commit/8bc85c15c48174a699c17c900dd73d57a6f11179) Thanks [@wmoai](https://github.com/wmoai)! - WizMeterGraph の React 対応
+
+- [#781](https://github.com/Wizleap-Inc/wiz-ui/pull/781) [`30adae9c`](https://github.com/Wizleap-Inc/wiz-ui/commit/30adae9cbf6455578a8c126edd76c45a0b194f1d) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizShowMoreLess の React 対応
+
+- [#832](https://github.com/Wizleap-Inc/wiz-ui/pull/832) [`7ab392b9`](https://github.com/Wizleap-Inc/wiz-ui/commit/7ab392b9d23c96beec455a4d2a4c26c55cb74add) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizHeading の React 対応
+
+### Patch Changes
+
+- [#835](https://github.com/Wizleap-Inc/wiz-ui/pull/835) [`d3210784`](https://github.com/Wizleap-Inc/wiz-ui/commit/d3210784cf7ef6cc0f32925bfe53b82cf7795013) Thanks [@wmoai](https://github.com/wmoai)! - Dialog のスタイルクリンナップ処理を修正
+
 ## 0.13.0
 
 ### Minor Changes

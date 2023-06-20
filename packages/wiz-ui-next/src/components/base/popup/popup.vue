@@ -10,7 +10,7 @@
       ]"
       :style="{
         inset,
-        transform: popupTranslate,
+        transform: `${popupTranslate} translateZ(0)`,
       }"
       ref="popupRef"
       @mouseleave="mouseLeave"
@@ -345,7 +345,9 @@ const isFixed = computed(() => {
 });
 
 const inset = computed(() => {
-  const { scrollX, scrollY } = window;
+  const { scrollX, scrollY } = isFixed.value
+    ? { scrollX: 0, scrollY: 0 }
+    : window;
   const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
     bodyPxInfo.top + scrollY - popupRect.value.height + bodyPxInfo.height;

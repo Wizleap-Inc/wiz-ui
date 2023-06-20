@@ -1,5 +1,23 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.11.4
+
+### Patch Changes
+
+- [#851](https://github.com/Wizleap-Inc/wiz-ui/pull/851) [`e7061a5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/e7061a5ba5987bd17a9789c5015576ae43487c93) Thanks [@okakyo](https://github.com/okakyo)! - [#736] Search Input の expand の修正
+
+- [#667](https://github.com/Wizleap-Inc/wiz-ui/pull/667) [`b1c5a4e3`](https://github.com/Wizleap-Inc/wiz-ui/commit/b1c5a4e3393f576af58228a14179e95fd775b494) Thanks [@okakyo](https://github.com/okakyo)! - Popup の影が残るバグの修正
+
+- Updated dependencies [[`892756bc`](https://github.com/Wizleap-Inc/wiz-ui/commit/892756bc9fb037ecbe164b81166987a57874d928)]:
+  - @wizleap-inc/wiz-ui-constants@0.7.2
+  - @wizleap-inc/wiz-ui-styles@0.9.3
+
+## 1.11.3
+
+### Patch Changes
+
+- [#836](https://github.com/Wizleap-Inc/wiz-ui/pull/836) [`27dd1bbb`](https://github.com/Wizleap-Inc/wiz-ui/commit/27dd1bbbb6eb4d1744e5b7f049438100936533d4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ブラウザの幅が変わったとき fixed の上にある popup の表示位置が狂う問題を修正
+
 ## 1.11.2
 
 ### Patch Changes
