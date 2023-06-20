@@ -84,10 +84,6 @@ const Item: FC<Props> = ({
     onSetLockingPopup(false);
   }, [isOpenPopup, onSetIsOpenPopup, onSetLockingPopup]);
 
-  const handleMouseEnterToPopup = () => {
-    if (!lockingPopup) onSetIsOpenPopup(true);
-  };
-
   const handleMouseLeaveFromPopup = useCallback(() => {
     if (!lockingPopup) onSetIsOpenPopup(false);
   }, [lockingPopup, onSetIsOpenPopup]);
@@ -132,20 +128,17 @@ const Item: FC<Props> = ({
         </a>
       </div>
       {existPopup && (
-        <div onMouseLeave={handleMouseLeaveFromPopup}>
+        <div>
           <WizPopup
             anchorElement={popupAnchoer}
             isOpen={isOpenPopup}
             onClose={handleClosePopup}
+            onMouseLeave={handleMouseLeaveFromPopup}
             direction="rightTop"
             layer="popover"
             isDirectionFixed
           >
-            <div
-              ref={popupBody}
-              onMouseEnter={handleMouseEnterToPopup}
-              className={navigationPopupContainerStyle}
-            >
+            <div ref={popupBody} className={navigationPopupContainerStyle}>
               <WizPopupButtonGroup
                 options={buttons}
                 p="xs"
