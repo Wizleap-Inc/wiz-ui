@@ -94,7 +94,7 @@ const Item: FC<Props> = ({
       <div
         ref={popupAnchoer}
         onClick={handleClick}
-        style={{ display: "inline-block" }}
+        style={{ display: tooltipText ? "block" : "inline-block" }}
       >
         <a
           href={disabled ? undefined : href}
