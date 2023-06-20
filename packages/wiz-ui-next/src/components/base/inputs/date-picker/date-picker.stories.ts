@@ -58,9 +58,6 @@ const Template: StoryFn<typeof WizDatepicker> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  modelValue: null,
-};
 Default.parameters = {
   docs: {
     description: {
@@ -88,9 +85,29 @@ const date = ref<Date | null>(null);
   },
 };
 
-export const Placeholder = Template.bind({});
+const PlaceholderTemplate: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
+  template: `
+    <WizHStack>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
+    </WizHStack>
+  `,
+});
+
+export const Placeholder = PlaceholderTemplate.bind({});
 Placeholder.args = {
-  modelValue: null,
   placeholder: "(例) 2000/1/1",
 };
 Placeholder.parameters = {
@@ -116,7 +133,6 @@ const date = ref<Date | null>(null);
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  modelValue: null,
   disabled: true,
 };
 Disabled.parameters = {

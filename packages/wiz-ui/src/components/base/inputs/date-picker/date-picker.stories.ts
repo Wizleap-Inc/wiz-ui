@@ -94,7 +94,29 @@ const input = (value: Date) => {
   },
 };
 
-export const Placeholder = Template.bind({});
+const PlaceholderTemplate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { date, isOpen, setIsOpen };
+  },
+  template: `
+    <WizHStack>
+      <WizDatepicker
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        @input="input"
+        @updateIsOpen="setIsOpen"
+      />
+    </WizHStack>
+  `,
+});
+
+export const Placeholder = PlaceholderTemplate.bind({});
 Placeholder.args = {
   value: null,
   placeholder: "(例) 2000/1/1",
