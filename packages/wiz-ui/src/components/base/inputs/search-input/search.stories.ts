@@ -95,16 +95,16 @@ Default.args = {
           children: [
             {
               label: "保険商品4",
-              value: 5000000000000,
+              value: 40,
               children: [
                 {
                   label: "保険商品5",
-                  value: 60000000000000000,
+                  value: 60,
                   children: [],
                 },
                 {
                   label: "保険商品6",
-                  value: 7000000000000000000,
+                  value: 70,
                   children: [],
                 },
               ],
@@ -140,12 +140,108 @@ Default.args = {
             {
               label: "保険商品10",
               value: 10,
-              children: [],
+              children: [
+                {
+                  label: "10-オプション1",
+                  value: 101,
+                  children: [],
+                },
+                {
+                  label: "10-オプション2",
+                  value: 102,
+                  children: [],
+                },
+              ],
             },
             {
               label: "保険商品11",
               value: 11,
-              children: [],
+              children: [
+                {
+                  label: "11-オプション1",
+                  value: 111,
+                  children: [
+                    {
+                      label: "opt 11-1-1",
+                      value: 1111,
+                      children: [],
+                    },
+                    {
+                      label: "opt 11-1-2",
+                      value: 1112,
+                      children: [],
+                    },
+                  ],
+                },
+                {
+                  label: "11-オプション2",
+                  value: 112,
+                  children: [
+                    {
+                      label: "opt 11-2-1",
+                      value: 1121,
+                      children: [],
+                    },
+                    {
+                      label: "opt 11-2-2",
+                      value: 1122,
+                      children: [],
+                    },
+                  ],
+                },
+
+                {
+                  label: "11-オプション3",
+                  value: 113,
+                  children: [],
+                },
+                {
+                  label: "11-オプション4",
+                  value: 114,
+                  children: [],
+                },
+                {
+                  label: "11-オプション5",
+                  value: 115,
+                  children: [
+                    {
+                      label: "opt 11-5-1",
+                      value: 1121,
+                      children: [],
+                    },
+                    {
+                      label: "opt 11-5-2",
+                      value: 1122,
+                      children: [],
+                    },
+                  ],
+                },
+                {
+                  label: "11-オプション6",
+                  value: 116,
+                  children: [],
+                },
+                {
+                  label: "11-オプション7",
+                  value: 117,
+                  children: [],
+                },
+                {
+                  label: "11-オプション8",
+                  value: 118,
+                  children: [],
+                },
+                {
+                  label: "11-オプション9",
+                  value: 119,
+                  children: [],
+                },
+                {
+                  label: "11-オプション10",
+                  value: 1110,
+                  children: [],
+                },
+              ],
             },
             {
               label: "保険商品12",
@@ -165,7 +261,18 @@ Default.args = {
             {
               label: "保険商品15",
               value: 15,
-              children: [],
+              children: [
+                {
+                  label: "15-オプション1",
+                  value: 151,
+                  children: [],
+                },
+                {
+                  label: "15-オプション2",
+                  value: 152,
+                  children: [],
+                },
+              ],
             },
             {
               label: "保険商品16",
