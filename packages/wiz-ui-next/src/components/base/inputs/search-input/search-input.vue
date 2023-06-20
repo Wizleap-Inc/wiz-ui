@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer>
+  <WizPopupContainer :expand="expand">
     <div :class="searchStyle">
       <input
         type="text"
