@@ -25,7 +25,7 @@ import {
   DirectionKey,
   DirectionValue,
 } from "../types/direction";
-import { PlacementStyle } from "../types/placement";
+import { PlacementOption, PlacementStyle } from "../types/placement";
 import { placeOnPortalStyle, wrapDirection } from "../utils";
 
 type Props = {
@@ -86,12 +86,18 @@ const Popup = ({
           window: { scrollX: window.scrollX, scrollY: window.scrollY },
         });
       };
-      return placeOnPortalStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
+      const placementOption: PlacementOption = {
         anchor: anchorRect,
         gap: getSpacingCss(gap) ?? "0",
         content: contentRect,
         window: { scrollX: window.scrollX, scrollY: window.scrollY },
-      });
+      };
+      const wrappedDir = wrapOutOfBound(DIRECTION_MAP[direction]);
+      if (wrappedDir !== wrapOutOfBound(wrappedDir)) {
+        // 回り込み方向に十分な余白がないとき方向を固定する
+        return placeOnPortalStyle[DIRECTION_MAP[direction]](placementOption);
+      }
+      return placeOnPortalStyle[wrappedDir](placementOption);
     };
     setPlacementStyle(popupPlacement());
     const handleResize = () => setPlacementStyle(popupPlacement());
