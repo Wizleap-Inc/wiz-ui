@@ -22,11 +22,16 @@ export const createIcon = {
     });
     </script>
   `,
-  react: (svg: string, component: string) => `
-    export const WizI${component}= () => (
-      ${svg}
+  react: (svg: string, component: string) => {
+    return `
+    type Props = {
+      className?: string;
+    };
+    export const WizI${component}= ({ className }: Props) => (
+      ${svg.replace(/<svg/g, `<svg className={className}`)}
     );
-  `,
+  `;
+  },
 };
 
 /** constants/component/icon-name.tsを生成する */
