@@ -69,12 +69,15 @@ const Template: Story = {
 
 export const Overview: Story = {
   ...Template,
-  args: {},
+  args: {
+    isOpen: true,
+  },
 };
 
 export const WithFooter: Story = {
   ...Template,
   args: {
+    isOpen: true,
     footer: (
       <div>
         <h4>Footer</h4>
@@ -128,6 +131,7 @@ export const Playground: Story = {
 export const Fixed: Story = {
   ...Template,
   args: {
+    isOpen: true,
     sticky: true,
     footer: (
       <div>

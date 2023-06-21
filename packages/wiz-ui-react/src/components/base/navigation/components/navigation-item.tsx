@@ -11,7 +11,7 @@ import {
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
-import { FC, useCallback, useEffect, useRef } from "react";
+import { FC, useCallback, useRef } from "react";
 
 import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
 
@@ -55,29 +55,13 @@ const NavigationItem: FC<Props> = ({
     if (existPopup) onTogglePopupLocking(true);
   };
 
-  useEffect(() => {
-    if (isPopupLocking) return;
+  const handleMouseEnter = () => {
+    if (!isPopupLocking) onTogglePopup(true);
+  };
 
-    const handleMouseOver = (event: MouseEvent) => {
-      if (!popupAnchor.current?.contains(event.target as Node)) return;
-      onTogglePopup(true);
-    };
-
-    const handleMouseOut = (event: MouseEvent) => {
-      if (!popupAnchor.current || !popupBody.current) return;
-      if (popupAnchor.current.contains(event.target as Node)) return;
-      if (popupBody.current.contains(event.target as Node)) return;
-      onTogglePopup(false);
-    };
-
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseover", handleMouseOut);
-
-    return () => {
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mouseover", handleMouseOut);
-    };
-  }, [isPopupLocking, onTogglePopup]);
+  const handleMouseLeave = () => {
+    if (!isPopupLocking) onTogglePopup(false);
+  };
 
   const handleClosePopup = useCallback(() => {
     if (!isPopupOpen) return;
@@ -89,12 +73,18 @@ const NavigationItem: FC<Props> = ({
     if (!isPopupLocking) onTogglePopup(false);
   }, [isPopupLocking, onTogglePopup]);
 
-  const Body: FC = () => (
+  const handleMouseEnterToPopup = () => {
+    if (!isPopupLocking) onTogglePopup(true);
+  };
+
+  const body = (
     <>
       <div
         ref={popupAnchor}
         onClick={handleClick}
         style={{ display: tooltipText ? "block" : "inline-block" }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <a
           href={disabled ? undefined : href}
@@ -134,12 +124,16 @@ const NavigationItem: FC<Props> = ({
             anchorElement={popupAnchor}
             isOpen={isPopupOpen}
             onClose={handleClosePopup}
-            onMouseLeave={handleMouseLeaveFromPopup}
             direction="rightTop"
             layer="popover"
             isDirectionFixed
           >
-            <div ref={popupBody} className={navigationPopupContainerStyle}>
+            <div
+              ref={popupBody}
+              className={navigationPopupContainerStyle}
+              onMouseEnter={handleMouseEnterToPopup}
+              onMouseLeave={handleMouseLeaveFromPopup}
+            >
               <WizPopupButtonGroup
                 options={buttons}
                 p="xs"
@@ -153,11 +147,11 @@ const NavigationItem: FC<Props> = ({
     </>
   );
 
-  if (!tooltipText) return <Body />;
+  if (!tooltipText) return body;
 
   return (
     <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
-      <Body />
+      {body}
     </WizTooltip>
   );
 };
