@@ -1,5 +1,9 @@
-export const WizIExpandMore = () => (
+type Props = {
+  className?: string;
+};
+export const WizIExpandMore = ({ className }: Props) => (
   <svg
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     height="1em"
     width="1em"

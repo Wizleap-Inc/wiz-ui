@@ -1,5 +1,9 @@
-export const WizIContentCopy = () => (
+type Props = {
+  className?: string;
+};
+export const WizIContentCopy = ({ className }: Props) => (
   <svg
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     height="1em"

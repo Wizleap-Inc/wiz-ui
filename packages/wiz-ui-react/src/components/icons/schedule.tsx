@@ -1,5 +1,9 @@
-export const WizISchedule = () => (
+type Props = {
+  className?: string;
+};
+export const WizISchedule = ({ className }: Props) => (
   <svg
+    className={className}
     width="1em"
     height="1em"
     viewBox="0 0 24 24"
