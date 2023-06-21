@@ -44,7 +44,7 @@ const NavigationItem: FC<Props> = ({
   onSetIsOpenPopup,
   onSetLockingPopup,
 }) => {
-  const popupAnchoer = useRef<HTMLDivElement>(null);
+  const popupAnchor = useRef<HTMLDivElement>(null);
   const popupBody = useRef<HTMLDivElement>(null);
 
   const isExternalLink = typeof href === "string" && href.startsWith("http");
@@ -59,13 +59,13 @@ const NavigationItem: FC<Props> = ({
     if (lockingPopup) return;
 
     const handleMouseOver = (event: MouseEvent) => {
-      if (!popupAnchoer.current?.contains(event.target as Node)) return;
+      if (!popupAnchor.current?.contains(event.target as Node)) return;
       onSetIsOpenPopup(true);
     };
 
     const handleMouseOut = (event: MouseEvent) => {
-      if (!popupAnchoer.current || !popupBody.current) return;
-      if (popupAnchoer.current.contains(event.target as Node)) return;
+      if (!popupAnchor.current || !popupBody.current) return;
+      if (popupAnchor.current.contains(event.target as Node)) return;
       if (popupBody.current.contains(event.target as Node)) return;
       onSetIsOpenPopup(false);
     };
@@ -92,7 +92,7 @@ const NavigationItem: FC<Props> = ({
   const Body: FC = () => (
     <>
       <div
-        ref={popupAnchoer}
+        ref={popupAnchor}
         onClick={handleClick}
         style={{ display: tooltipText ? "block" : "inline-block" }}
       >
@@ -131,7 +131,7 @@ const NavigationItem: FC<Props> = ({
       {existPopup && (
         <div>
           <WizPopup
-            anchorElement={popupAnchoer}
+            anchorElement={popupAnchor}
             isOpen={isOpenPopup}
             onClose={handleClosePopup}
             onMouseLeave={handleMouseLeaveFromPopup}

@@ -15,7 +15,7 @@ interface Props {
 }
 
 const NavigationContainer: FC<Props> = ({
-  isOpen = true,
+  isOpen,
   width,
   sticky = false,
   children,
