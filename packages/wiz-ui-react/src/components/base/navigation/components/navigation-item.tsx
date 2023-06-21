@@ -69,12 +69,12 @@ const NavigationItem: FC<Props> = ({
     onTogglePopupLocking(false);
   }, [isPopupOpen, onTogglePopup, onTogglePopupLocking]);
 
-  const handleMouseLeaveFromPopup = useCallback(() => {
-    if (!isPopupLocking) onTogglePopup(false);
-  }, [isPopupLocking, onTogglePopup]);
-
   const handleMouseEnterToPopup = () => {
     if (!isPopupLocking) onTogglePopup(true);
+  };
+
+  const handleMouseLeaveFromPopup = () => {
+    if (!isPopupLocking) onTogglePopup(false);
   };
 
   const body = (
