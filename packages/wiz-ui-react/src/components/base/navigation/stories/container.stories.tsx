@@ -58,8 +58,8 @@ const Template: Story = {
             label={path.label}
             href={path.href}
             active={false}
-            onSetIsOpenPopup={handleSetOpen}
-            onSetLockingPopup={setLock}
+            onTogglePopup={handleSetOpen}
+            onTogglePopupLocking={setLock}
           />
         ))}
       </WizNavigationContainer>
@@ -109,8 +109,8 @@ export const Playground: Story = {
               label={path.label}
               href={path.href}
               active={false}
-              onSetIsOpenPopup={handleSetOpen}
-              onSetLockingPopup={setLock}
+              onTogglePopup={handleSetOpen}
+              onTogglePopupLocking={setLock}
             />
           ))}
         </WizNavigationContainer>
@@ -154,7 +154,7 @@ const PopupTemplate: Story = {
     const [isOpen1, setIsOpen1] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
     const [isOpen3, setIsOpen3] = useState(false);
-    const [lockingPopup, setLockingPopup] = useState(false);
+    const [isPopupLocking, setLockingPopup] = useState(false);
     const handleSetLockingPopup = (isLockingPopup: boolean) =>
       setLockingPopup(isLockingPopup);
 
@@ -167,10 +167,10 @@ const PopupTemplate: Story = {
             href="/"
             active={false}
             buttons={[createButton(0)]}
-            isOpenPopup={isOpen0}
-            onSetIsOpenPopup={(isOpen) => setIsOpen0(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen0}
+            onTogglePopup={(isOpen) => setIsOpen0(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
           />
           <WizNavigationItem
             icon={WizIAssignment}
@@ -178,10 +178,10 @@ const PopupTemplate: Story = {
             href="/page1"
             active={false}
             buttons={[createButton(1), createButton(2)]}
-            isOpenPopup={isOpen1}
-            onSetIsOpenPopup={(isOpen) => setIsOpen1(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen1}
+            onTogglePopup={(isOpen) => setIsOpen1(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
           />
           <WizNavigationItem
             icon={WizIBusinessCenter}
@@ -189,10 +189,10 @@ const PopupTemplate: Story = {
             href="/page2"
             active={false}
             buttons={[createButton(3), createButton(4)]}
-            isOpenPopup={isOpen2}
-            onSetIsOpenPopup={(isOpen) => setIsOpen2(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen2}
+            onTogglePopup={(isOpen) => setIsOpen2(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
           />
           <WizNavigationItem
             icon={WizIHelp}
@@ -200,10 +200,10 @@ const PopupTemplate: Story = {
             href="http://localhost:6008/"
             active={false}
             buttons={[createButton(5), createButton(6)]}
-            isOpenPopup={isOpen3}
-            onSetIsOpenPopup={(isOpen) => setIsOpen3(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen3}
+            onTogglePopup={(isOpen) => setIsOpen3(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
           />
         </WizNavigationContainer>
       </div>
@@ -241,8 +241,8 @@ export const Disabled: Story = {
             label={path.label}
             href={path.href}
             active={false}
-            onSetIsOpenPopup={handleSetOpen}
-            onSetLockingPopup={setLock}
+            onTogglePopup={handleSetOpen}
+            onTogglePopupLocking={setLock}
             disabled
           />
         ))}
@@ -261,7 +261,7 @@ export const PopupAndTooltip: Story = {
     const [isOpen1, setIsOpen1] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
     const [isOpen3, setIsOpen3] = useState(false);
-    const [lockingPopup, setLockingPopup] = useState(false);
+    const [isPopupLocking, setLockingPopup] = useState(false);
     const handleSetLockingPopup = (isLockingPopup: boolean) =>
       setLockingPopup(isLockingPopup);
 
@@ -274,10 +274,10 @@ export const PopupAndTooltip: Story = {
             href="/"
             active={false}
             buttons={[createButton(0)]}
-            isOpenPopup={isOpen0}
-            onSetIsOpenPopup={(isOpen) => setIsOpen0(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen0}
+            onTogglePopup={(isOpen) => setIsOpen0(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
             tooltipText="これはヒント1です。"
           />
           <WizNavigationItem
@@ -286,10 +286,10 @@ export const PopupAndTooltip: Story = {
             href="/page1"
             active={false}
             buttons={[createButton(1), createButton(2)]}
-            isOpenPopup={isOpen1}
-            onSetIsOpenPopup={(isOpen) => setIsOpen1(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen1}
+            onTogglePopup={(isOpen) => setIsOpen1(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
             tooltipText="これはヒント2です。"
           />
           <WizNavigationItem
@@ -298,10 +298,10 @@ export const PopupAndTooltip: Story = {
             href="/page2"
             active={false}
             buttons={[createButton(3), createButton(4)]}
-            isOpenPopup={isOpen2}
-            onSetIsOpenPopup={(isOpen) => setIsOpen2(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen2}
+            onTogglePopup={(isOpen) => setIsOpen2(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
             tooltipText="これはヒント3です。"
           />
           <WizNavigationItem
@@ -310,10 +310,10 @@ export const PopupAndTooltip: Story = {
             href="http://localhost:6008/"
             active={false}
             buttons={[createButton(5), createButton(6)]}
-            isOpenPopup={isOpen3}
-            onSetIsOpenPopup={(isOpen) => setIsOpen3(isOpen)}
-            lockingPopup={lockingPopup}
-            onSetLockingPopup={handleSetLockingPopup}
+            isPopupOpen={isOpen3}
+            onTogglePopup={(isOpen) => setIsOpen3(isOpen)}
+            isPopupLocking={isPopupLocking}
+            onTogglePopupLocking={handleSetLockingPopup}
             tooltipText="これはヒント4です。"
           />
         </WizNavigationContainer>

@@ -24,11 +24,11 @@ interface Props {
   href: string;
   disabled?: boolean;
   tooltipText?: string;
-  lockingPopup?: boolean;
+  isPopupLocking?: boolean;
   buttons?: ButtonGroupItem[];
-  isOpenPopup?: boolean;
-  onSetIsOpenPopup: (isOpenPopup: boolean) => void;
-  onSetLockingPopup: (lock: boolean) => void;
+  isPopupOpen?: boolean;
+  onTogglePopup: (isPopup: boolean) => void;
+  onTogglePopupLocking: (lock: boolean) => void;
 }
 
 const NavigationItem: FC<Props> = ({
@@ -38,11 +38,11 @@ const NavigationItem: FC<Props> = ({
   href,
   disabled = false,
   tooltipText = null,
-  lockingPopup = true,
+  isPopupLocking = true,
   buttons,
-  isOpenPopup = false,
-  onSetIsOpenPopup,
-  onSetLockingPopup,
+  isPopupOpen = false,
+  onTogglePopup,
+  onTogglePopupLocking,
 }) => {
   const popupAnchor = useRef<HTMLDivElement>(null);
   const popupBody = useRef<HTMLDivElement>(null);
@@ -51,23 +51,23 @@ const NavigationItem: FC<Props> = ({
   const existPopup = buttons && buttons.length > 0;
 
   const handleClick = () => {
-    onSetIsOpenPopup(true);
-    if (existPopup) onSetLockingPopup(true);
+    onTogglePopup(true);
+    if (existPopup) onTogglePopupLocking(true);
   };
 
   useEffect(() => {
-    if (lockingPopup) return;
+    if (isPopupLocking) return;
 
     const handleMouseOver = (event: MouseEvent) => {
       if (!popupAnchor.current?.contains(event.target as Node)) return;
-      onSetIsOpenPopup(true);
+      onTogglePopup(true);
     };
 
     const handleMouseOut = (event: MouseEvent) => {
       if (!popupAnchor.current || !popupBody.current) return;
       if (popupAnchor.current.contains(event.target as Node)) return;
       if (popupBody.current.contains(event.target as Node)) return;
-      onSetIsOpenPopup(false);
+      onTogglePopup(false);
     };
 
     document.addEventListener("mouseover", handleMouseOver);
@@ -77,17 +77,17 @@ const NavigationItem: FC<Props> = ({
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseover", handleMouseOut);
     };
-  }, [lockingPopup, onSetIsOpenPopup]);
+  }, [isPopupLocking, onTogglePopup]);
 
   const handleClosePopup = useCallback(() => {
-    if (!isOpenPopup) return;
-    onSetIsOpenPopup(false);
-    onSetLockingPopup(false);
-  }, [isOpenPopup, onSetIsOpenPopup, onSetLockingPopup]);
+    if (!isPopupOpen) return;
+    onTogglePopup(false);
+    onTogglePopupLocking(false);
+  }, [isPopupOpen, onTogglePopup, onTogglePopupLocking]);
 
   const handleMouseLeaveFromPopup = useCallback(() => {
-    if (!lockingPopup) onSetIsOpenPopup(false);
-  }, [lockingPopup, onSetIsOpenPopup]);
+    if (!isPopupLocking) onTogglePopup(false);
+  }, [isPopupLocking, onTogglePopup]);
 
   const Body: FC = () => (
     <>
@@ -132,7 +132,7 @@ const NavigationItem: FC<Props> = ({
         <div>
           <WizPopup
             anchorElement={popupAnchor}
-            isOpen={isOpenPopup}
+            isOpen={isPopupOpen}
             onClose={handleClosePopup}
             onMouseLeave={handleMouseLeaveFromPopup}
             direction="rightTop"
