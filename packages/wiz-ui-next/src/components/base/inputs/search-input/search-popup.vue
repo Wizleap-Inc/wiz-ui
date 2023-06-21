@@ -185,13 +185,14 @@ watch(
   [
     scrollItems,
     () => {
-      return Math.ceil(
-        (scrollAmount.value + DIVIDER_HEIGHT) / (ITEM_HEIGHT + DIVIDER_HEIGHT)
-      );
+      return Math.ceil(scrollAmount.value / (ITEM_HEIGHT + DIVIDER_HEIGHT));
     },
   ],
-  ([scrollItems, hiddenLastItemIndex]) => {
-    const hiddenItems = scrollItems.slice(0, hiddenLastItemIndex);
+  ([scrollItems, showFrom]) => {
+    const hiddenItems = (() => {
+      if (showFrom === 0) return [];
+      return scrollItems.slice(0, showFrom - 1);
+    })();
     hiddenItems.forEach((item) => {
       if (mutableSelectedItem.value.includes(item.value)) {
         const index = mutableSelectedItem.value.indexOf(item.value);
@@ -217,6 +218,7 @@ const computedIconColor = computed(() => (value: number) => {
 });
 
 const onMouseover = (value: number, options: SearchInputOption[]) => {
+  scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
   activeItem.value = value;
   activeItemIndex.value = options.findIndex((option) => option.value === value);
   options.forEach((option: SearchInputOption) => {
