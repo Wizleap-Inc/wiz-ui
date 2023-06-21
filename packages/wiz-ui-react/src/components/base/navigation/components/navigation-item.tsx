@@ -47,7 +47,7 @@ const NavigationItem: FC<Props> = ({
   const popupAnchor = useRef<HTMLDivElement>(null);
   const popupBody = useRef<HTMLDivElement>(null);
 
-  const isExternalLink = typeof href === "string" && href.startsWith("http");
+  const isExternalLink = href.startsWith("http");
   const existPopup = buttons && buttons.length > 0;
 
   const handleClick = () => {
