@@ -11,7 +11,7 @@
     >
       <div
         ref="optionsRef"
-        @scroll="onScroll"
+        @scroll="() => onScroll(key)"
         :class="[
           searchPopupBlockStyle,
           isBorder(option.children) && searchPopupBlockBorderRightStyle,
@@ -113,7 +113,7 @@ import {
   searchPopupDropdownItemStyle,
   searchPopupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
-import { PropType, computed, ref } from "vue";
+import { PropType, computed, ref, watch } from "vue";
 
 import { WizDivider, WizHStack, WizIcon, WizSearchPopup } from "@/components";
 import { WizICheck, WizIChevronRight } from "@/components/icons";
@@ -164,12 +164,6 @@ const activeItemIndex = ref<number | null>(null);
 const ITEM_HEIGHT = 44;
 const DIVIDER_HEIGHT = 0.8;
 
-const optionsRef = ref<HTMLElement[]>();
-const scrollAmount = ref<number>(0);
-const onScroll = () => {
-  scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
-};
-
 const checkValues = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
@@ -178,6 +172,34 @@ const checkValues = computed({
 const mutableSelectedItem = computed(() => {
   return props.selectedItem;
 });
+
+const optionsRef = ref<HTMLElement[]>();
+const scrollAmount = ref<number>(0);
+const scrollItems = ref<SearchInputOption[]>([]);
+const onScroll = (parentOrder: number) => {
+  scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
+  scrollItems.value = props.options[parentOrder].children;
+};
+
+watch(
+  [
+    scrollItems,
+    () => {
+      return Math.ceil(
+        (scrollAmount.value + DIVIDER_HEIGHT) / (ITEM_HEIGHT + DIVIDER_HEIGHT)
+      );
+    },
+  ],
+  ([scrollItems, hiddenLastItemIndex]) => {
+    const hiddenItems = scrollItems.slice(0, hiddenLastItemIndex);
+    hiddenItems.forEach((item) => {
+      if (mutableSelectedItem.value.includes(item.value)) {
+        const index = mutableSelectedItem.value.indexOf(item.value);
+        mutableSelectedItem.value.splice(index, 1);
+      }
+    });
+  }
+);
 
 const isBorder = computed(() => (options: SearchInputOption[]) => {
   return options.some((option) =>
