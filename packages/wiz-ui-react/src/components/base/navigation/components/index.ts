@@ -1,2 +1,2 @@
-export { WizNavigationItem } from "./item";
-export { WizNavigationContainer } from "./container";
+export { WizNavigationItem } from "./navigation-item";
+export { WizNavigationContainer } from "./navigation-container";

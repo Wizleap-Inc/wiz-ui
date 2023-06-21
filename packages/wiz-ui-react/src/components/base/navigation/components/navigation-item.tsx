@@ -31,7 +31,7 @@ interface Props {
   onSetLockingPopup: (lock: boolean) => void;
 }
 
-const Item: FC<Props> = ({
+const NavigationItem: FC<Props> = ({
   icon: Icon,
   label,
   active,
@@ -162,6 +162,6 @@ const Item: FC<Props> = ({
   );
 };
 
-Item.displayName = ComponentName.NavigationItem;
+NavigationItem.displayName = ComponentName.NavigationItem;
 
-export const WizNavigationItem = Item;
+export const WizNavigationItem = NavigationItem;

@@ -14,7 +14,7 @@ interface Props {
   footer?: ReactNode;
 }
 
-const Container: FC<Props> = ({
+const NavigationContainer: FC<Props> = ({
   isOpen = true,
   width,
   sticky = false,
@@ -47,6 +47,6 @@ const Container: FC<Props> = ({
     </div>
   );
 };
-Container.displayName = ComponentName.NavigationContainer;
+NavigationContainer.displayName = ComponentName.NavigationContainer;
 
-export const WizNavigationContainer = Container;
+export const WizNavigationContainer = NavigationContainer;
