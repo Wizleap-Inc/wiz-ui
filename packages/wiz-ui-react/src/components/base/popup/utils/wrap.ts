@@ -154,3 +154,19 @@ export const wrapDirection: Record<
     return f(y);
   },
 };
+
+/// 回り込み方向に十分な余白がないとき、方向はそのままです。
+export const wrapOutOfBound = (
+  dir: DirectionValue,
+  placementArgs: {
+    bound: { width: number; height: number };
+    content: DOMRect;
+    anchor: DOMRect;
+    gap: number;
+    window: { scrollX: number; scrollY: number };
+  }
+) => {
+  const wrappedDir = wrapDirection[dir](placementArgs);
+  const wrappedDir2 = wrapDirection[wrappedDir](placementArgs);
+  return wrappedDir !== wrappedDir2 ? dir : wrappedDir;
+};

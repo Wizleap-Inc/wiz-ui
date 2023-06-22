@@ -20,13 +20,10 @@ import { WizPortal } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { usePopupAnimation } from "../hooks/use-popup-animation";
-import {
-  DIRECTION_MAP,
-  DirectionKey,
-  DirectionValue,
-} from "../types/direction";
+import { DIRECTION_MAP, DirectionKey } from "../types/direction";
 import { PlacementOption, PlacementStyle } from "../types/placement";
-import { placeOnPortalStyle, wrapDirection } from "../utils";
+import { placeOnPortalStyle } from "../utils";
+import { wrapOutOfBound } from "../utils/wrap";
 
 type Props = {
   isOpen: boolean;
@@ -70,34 +67,29 @@ const Popup = ({
       if (!anchorElement.current) return {};
       const anchorRect = anchorElement.current.getBoundingClientRect();
       const contentRect = popupRef.current?.getBoundingClientRect();
-      const wrapOutOfBound = (dir: DirectionValue) => {
-        if (isDirectionFixed || !contentRect) return dir;
-        const fontSize = window.getComputedStyle(document.body).fontSize;
-        const gapPx =
-          parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
-        return wrapDirection[dir]({
-          bound: {
-            width: document.body.clientWidth,
-            height: Math.max(document.body.clientHeight, window.innerHeight),
-          },
-          content: contentRect,
-          anchor: anchorRect,
-          gap: gapPx,
-          window: { scrollX: window.scrollX, scrollY: window.scrollY },
-        });
-      };
       const placementOption: PlacementOption = {
         anchor: anchorRect,
         gap: getSpacingCss(gap) ?? "0",
         content: contentRect,
         window: { scrollX: window.scrollX, scrollY: window.scrollY },
       };
-      const wrappedDir = wrapOutOfBound(DIRECTION_MAP[direction]);
-      if (wrappedDir !== wrapOutOfBound(wrappedDir)) {
-        // 回り込み方向に十分な余白がないとき方向を固定する
+      if (isDirectionFixed || !contentRect)
         return placeOnPortalStyle[DIRECTION_MAP[direction]](placementOption);
-      }
-      return placeOnPortalStyle[wrappedDir](placementOption);
+      const gapPx = (() => {
+        const fontSize = window.getComputedStyle(document.body).fontSize;
+        return parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
+      })();
+      const dir = wrapOutOfBound(DIRECTION_MAP[direction], {
+        bound: {
+          width: document.body.clientWidth,
+          height: Math.max(document.body.clientHeight, window.innerHeight),
+        },
+        content: contentRect,
+        anchor: anchorRect,
+        gap: gapPx,
+        window: { scrollX: window.scrollX, scrollY: window.scrollY },
+      });
+      return placeOnPortalStyle[dir](placementOption);
     };
     setPlacementStyle(popupPlacement());
     const handleResize = () => setPlacementStyle(popupPlacement());
