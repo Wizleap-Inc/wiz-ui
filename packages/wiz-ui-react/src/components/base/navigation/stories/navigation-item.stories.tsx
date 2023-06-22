@@ -20,7 +20,6 @@ export const Default: Story = {
     href: "/",
     active: false,
   },
-  render: (args) => <WizNavigationItem {...args} />,
 };
 
 export const Active: Story = {
@@ -50,5 +49,9 @@ export const WithToolTip: Story = {
     href: "/",
     tooltipText: "これはヒントです。",
   },
-  render: (args) => <WizNavigationItem {...args} />,
+  render: (args) => (
+    <div style={{ marginTop: "48px" }}>
+      <WizNavigationItem {...args} />
+    </div>
+  ),
 };
