@@ -1,17 +1,16 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
 import clsx from "clsx";
-import { ReactNode } from "react";
+import { FC } from "react";
 
 import type { ProgressStatus } from "../types";
 
 type Props = {
   status: ProgressStatus;
   value?: number;
-  children?: ReactNode;
 };
 
-const ProgressPoint = ({ status, value }: Props) => {
+const ProgressPoint: FC<Props> = ({ status, value }) => {
   return (
     <span
       className={clsx([
