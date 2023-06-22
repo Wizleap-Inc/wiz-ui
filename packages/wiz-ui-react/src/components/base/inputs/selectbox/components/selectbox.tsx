@@ -118,7 +118,12 @@ const SelectBox: FC<Props> = ({
         tabIndex={disabled ? undefined : 0}
       >
         <div className={styles.selectBoxInnerBoxStyle}>
-          <WizHStack align="center" justify="between" height="100%">
+          <WizHStack
+            align="center"
+            justify="between"
+            height="100%"
+            wrap={false}
+          >
             {selectedOption ? (
               <span className={styles.selectBoxInnerBoxSelectedValueStyle}>
                 {selectedOption.label}
