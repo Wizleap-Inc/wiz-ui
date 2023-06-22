@@ -45,7 +45,6 @@ const NavigationItem: FC<Props> = ({
   onTogglePopupLocking,
 }) => {
   const popupAnchor = useRef<HTMLDivElement>(null);
-  const popupBody = useRef<HTMLDivElement>(null);
 
   const isExternalLink = href.startsWith("http");
   const existPopup = buttons && buttons.length > 0;
@@ -129,7 +128,6 @@ const NavigationItem: FC<Props> = ({
             isDirectionFixed
           >
             <div
-              ref={popupBody}
               className={navigationPopupContainerStyle}
               onMouseEnter={handleMouseEnterToPopup}
               onMouseLeave={handleMouseLeaveFromPopup}
