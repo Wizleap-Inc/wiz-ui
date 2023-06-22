@@ -6,11 +6,6 @@ import { ProgressItem } from "../types";
 const meta: Meta<typeof WizProgressBar> = {
   title: "Base/Progress/Bar",
   component: WizProgressBar,
-  argTypes: {
-    contents: {
-      control: { type: "array" },
-    },
-  },
   decorators: [
     (Story) => (
       <div style={{ padding: "100px" }}>
@@ -86,7 +81,6 @@ export const Default: Story = {
       status: content.status,
     })),
   },
-  render: (args) => <WizProgressBar {...args} />,
 };
 
 export const WithValue: Story = {
@@ -97,7 +91,6 @@ export const WithValue: Story = {
       value: content.value,
     })),
   },
-  render: (args) => <WizProgressBar {...args} />,
 };
 
 export const WithProgress: Story = {
@@ -108,7 +101,6 @@ export const WithProgress: Story = {
       progress: content.progress,
     })),
   },
-  render: (args) => <WizProgressBar {...args} />,
 };
 
 export const WithTooltip: Story = {
@@ -119,7 +111,6 @@ export const WithTooltip: Story = {
       tooltip: content.tooltip,
     })),
   },
-  render: (args) => <WizProgressBar {...args} />,
 };
 
 export const WithLabel: Story = {
@@ -130,7 +121,6 @@ export const WithLabel: Story = {
       label: content.label,
     })),
   },
-  render: (args) => <WizProgressBar {...args} />,
 };
 
 export const WithAnnotation: Story = {
@@ -141,12 +131,10 @@ export const WithAnnotation: Story = {
       annotation: content.annotation,
     })),
   },
-  render: (args) => <WizProgressBar {...args} />,
 };
 
 export const WithAll: Story = {
   args: {
     contents: contents,
   },
-  render: (args) => <WizProgressBar {...args} />,
 };
