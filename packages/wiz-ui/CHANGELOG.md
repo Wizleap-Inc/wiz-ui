@@ -1,5 +1,21 @@
 # @wizleap-inc/wiz-ui
 
+## 1.12.0
+
+### Minor Changes
+
+- [#858](https://github.com/Wizleap-Inc/wiz-ui/pull/858) [`02803baa`](https://github.com/Wizleap-Inc/wiz-ui/commit/02803baade37cb165a8f9dff4312b720049f086b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput：フラットにオプションを表示し、選択中の要素を緑色にハイライトする。
+
+- [#846](https://github.com/Wizleap-Inc/wiz-ui/pull/846) [`5d6d3c76`](https://github.com/Wizleap-Inc/wiz-ui/commit/5d6d3c765d629f27d8442d3e48c9488524dae62c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDateRangePicker: Disabled 時のフォントカラーを修正
+
+### Patch Changes
+
+- [#852](https://github.com/Wizleap-Inc/wiz-ui/pull/852) [`ce26dc19`](https://github.com/Wizleap-Inc/wiz-ui/commit/ce26dc19a554f2cbd72b552de34b2de9cdb81838) Thanks [@okakyo](https://github.com/okakyo)! - [#814] (WizSearchSelector) 検索単語に近い単語だけを抽出
+
+- Updated dependencies [[`1fc0b151`](https://github.com/Wizleap-Inc/wiz-ui/commit/1fc0b151ccb634cafb769ece59c3798226eb0268), [`02803baa`](https://github.com/Wizleap-Inc/wiz-ui/commit/02803baade37cb165a8f9dff4312b720049f086b), [`fddd61f5`](https://github.com/Wizleap-Inc/wiz-ui/commit/fddd61f50c0d0b141fca32390e27bc3aee7714d0), [`d7cf88e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/d7cf88e09595eb866ea8e81c530915cbed44ccd6)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.0
+  - @wizleap-inc/wiz-ui-styles@0.10.0
+
 ## 1.11.4
 
 ### Patch Changes

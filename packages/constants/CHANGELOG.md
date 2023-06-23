@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.8.0
+
+### Minor Changes
+
+- [#646](https://github.com/Wizleap-Inc/wiz-ui/pull/646) [`fddd61f5`](https://github.com/Wizleap-Inc/wiz-ui/commit/fddd61f50c0d0b141fca32390e27bc3aee7714d0) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTimePicker の React 対応
+
+### Patch Changes
+
+- [#871](https://github.com/Wizleap-Inc/wiz-ui/pull/871) [`1fc0b151`](https://github.com/Wizleap-Inc/wiz-ui/commit/1fc0b151ccb634cafb769ece59c3798226eb0268) Thanks [@wmoai](https://github.com/wmoai)! - WizFormControl, WizFormGroup の React 対応
+
 ## 0.7.2
 
 ### Patch Changes

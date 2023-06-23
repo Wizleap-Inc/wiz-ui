@@ -1,5 +1,29 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.16.0
+
+### Minor Changes
+
+- [#853](https://github.com/Wizleap-Inc/wiz-ui/pull/853) [`929d9b4e`](https://github.com/Wizleap-Inc/wiz-ui/commit/929d9b4e7fa3e5be2fa772afd8cf308bc6291fc0) Thanks [@wmoai](https://github.com/wmoai)! - WizSnackbar の React 対応
+
+- [#871](https://github.com/Wizleap-Inc/wiz-ui/pull/871) [`1fc0b151`](https://github.com/Wizleap-Inc/wiz-ui/commit/1fc0b151ccb634cafb769ece59c3798226eb0268) Thanks [@wmoai](https://github.com/wmoai)! - WizFormControl, WizFormGroup の React 対応
+
+- [#857](https://github.com/Wizleap-Inc/wiz-ui/pull/857) [`39fac4ad`](https://github.com/Wizleap-Inc/wiz-ui/commit/39fac4addb39497a80c28cbea59b1123c75ae6ab) Thanks [@wmoai](https://github.com/wmoai)! - WizUploadInput の React 対応
+
+- [#833](https://github.com/Wizleap-Inc/wiz-ui/pull/833) [`d2ea1c8e`](https://github.com/Wizleap-Inc/wiz-ui/commit/d2ea1c8e8a45b79c28f61e4792fe7fe8accdbc09) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizNavigationContainer と WizNavigationItem の Rect 対応
+
+- [#646](https://github.com/Wizleap-Inc/wiz-ui/pull/646) [`fddd61f5`](https://github.com/Wizleap-Inc/wiz-ui/commit/fddd61f50c0d0b141fca32390e27bc3aee7714d0) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTimePicker の React 対応
+
+- [#862](https://github.com/Wizleap-Inc/wiz-ui/pull/862) [`310ee846`](https://github.com/Wizleap-Inc/wiz-ui/commit/310ee8469f7d529f0e40956e494bd94423b212c0) Thanks [@wmoai](https://github.com/wmoai)! - WizSelectBox の React 対応
+
+- [#874](https://github.com/Wizleap-Inc/wiz-ui/pull/874) [`eec0bcdf`](https://github.com/Wizleap-Inc/wiz-ui/commit/eec0bcdf37a1a6c16986640ba61e7c90ea3345c6) Thanks [@wmoai](https://github.com/wmoai)! - WizNotification の React 対応
+
+### Patch Changes
+
+- Updated dependencies [[`1fc0b151`](https://github.com/Wizleap-Inc/wiz-ui/commit/1fc0b151ccb634cafb769ece59c3798226eb0268), [`02803baa`](https://github.com/Wizleap-Inc/wiz-ui/commit/02803baade37cb165a8f9dff4312b720049f086b), [`fddd61f5`](https://github.com/Wizleap-Inc/wiz-ui/commit/fddd61f50c0d0b141fca32390e27bc3aee7714d0), [`d7cf88e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/d7cf88e09595eb866ea8e81c530915cbed44ccd6)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.0
+  - @wizleap-inc/wiz-ui-styles@0.10.0
+
 ## 0.15.0
 
 ### Minor Changes
