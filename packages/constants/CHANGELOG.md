@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.7.2
+
+### Patch Changes
+
+- [#588](https://github.com/Wizleap-Inc/wiz-ui/pull/588) [`892756bc`](https://github.com/Wizleap-Inc/wiz-ui/commit/892756bc9fb037ecbe164b81166987a57874d928) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizCheckBox の React 対応
+
 ## 0.7.1
 
 ### Patch Changes
