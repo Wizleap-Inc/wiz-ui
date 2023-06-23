@@ -24,7 +24,7 @@
       <WizISearch :class="searchInputIconStyle" />
     </div>
     <WizPopup
-      :isOpen="openPopup"
+      :isOpen="!disabled && openPopup"
       :isDirectionFixed="isDirectionFixed"
       @onClose="emit('toggle', false)"
     >
@@ -43,7 +43,11 @@
           >
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
               <div
-                :class="searchDropdownLabelStyle"
+                :class="[
+                  searchDropdownLabelStyle,
+                  selectedItem.includes(option.value) &&
+                    searchDropdownSelectingItemStyle,
+                ]"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
               >
@@ -126,6 +130,7 @@ import {
   searchDropdownCheckboxItemStyle,
   searchDropdownItemStyle,
   searchDropdownLabelStyle,
+  searchDropdownSelectingItemStyle,
   searchInputDisabledStyle,
   searchInputIconStyle,
   searchInputStyle,
