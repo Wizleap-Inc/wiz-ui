@@ -25,7 +25,9 @@
       </span>
       <span
         :class="
-          styles.inputTextStyle[modelValue.start ? 'selected' : 'default']
+          styles.inputTextStyle[
+            modelValue.start && !disabled ? 'selected' : 'default'
+          ]
         "
         >{{
           modelValue.start ? formatDateToYYMMDD(modelValue.start) : "開始日"
@@ -33,7 +35,11 @@
       >
       <span :class="styles.separatorStyle">-</span>
       <span
-        :class="styles.inputTextStyle[modelValue.end ? 'selected' : 'default']"
+        :class="
+          styles.inputTextStyle[
+            modelValue.end && !disabled ? 'selected' : 'default'
+          ]
+        "
         >{{
           modelValue.end ? formatDateToYYMMDD(modelValue.end) : "終了日"
         }}</span
