@@ -74,7 +74,7 @@ export const timePickerSelectorOptionStyle = style({
   position: "relative",
   margin: `0 ${THEME.spacing.xs}`,
   padding: THEME.spacing.xs2,
-  fontSize: THEME.fontSize.xs2,
+  fontSize: THEME.fontSize.xs,
   textAlign: "center",
   boxSizing: "border-box",
   borderRadius: THEME.spacing.xs2,
