@@ -35,7 +35,7 @@ const TabPane: FC<Props> = ({
       onClick={() => disabled || onClick(name)}
     >
       <span className={styles.tabPaneLabelStyle}>{label}</span>
-      {notificationCount && (
+      {notificationCount !== 0 && (
         <span className={styles.tabPaneNotificationStyle}>
           {notificationCount}
         </span>
