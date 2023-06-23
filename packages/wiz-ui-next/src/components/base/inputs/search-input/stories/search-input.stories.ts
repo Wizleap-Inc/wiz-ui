@@ -4,6 +4,7 @@ import { ref } from "vue";
 import WizSearchInput from "../search-input.vue";
 
 import {
+  debugOption,
   defaultOption,
   expandOption,
   longLabelOption,
@@ -113,4 +114,12 @@ IsDirectionFixed.args = {
   isDirectionFixed: true,
   inputWidth: "15rem",
   options: simpleOption,
+};
+
+export const Debug = Template(true).bind({});
+Debug.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  inputWidth: "15rem",
+  popupWidth: "25rem",
+  options: debugOption,
 };

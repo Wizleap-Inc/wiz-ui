@@ -445,3 +445,83 @@ export const simpleOption: SearchInputOption[] = [
     children: [],
   },
 ];
+
+let valueCounter = 1;
+// Function to get the next unique value
+const getNextValue = (): number => {
+  return valueCounter++;
+};
+
+// Function to generate grandchild elements
+const generateGrandchildren = (
+  startValue: number,
+  count: number
+): SearchInputOption[] => {
+  const grandchildren: SearchInputOption[] = [];
+  for (let i = 0; i < count; i++) {
+    const grandchildValue = getNextValue();
+    grandchildren.push({
+      label: "孫要素" + (startValue + i),
+      value: grandchildValue,
+      children: [],
+    });
+  }
+  return grandchildren;
+};
+
+// Function to generate child elements
+const generateChildren = (
+  startValue: number,
+  count: number
+): SearchInputOption[] => {
+  const children: SearchInputOption[] = [];
+  for (let i = 0; i < count; i++) {
+    const childValue = getNextValue();
+    children.push({
+      label:
+        "子要素" +
+        (startValue + i) +
+        " 寿限無寿限無五劫の擦り切れ海砂利水魚の水行末雲来末風来末食う寝る処に住む処やぶら小路の藪柑子",
+      value: childValue,
+      children: generateGrandchildren(childValue * 10, 2),
+    });
+  }
+  return children;
+};
+
+// Function to generate additional parent elements
+const generateParentElements = (
+  startValue: number,
+  count: number
+): SearchInputOption[] => {
+  const parentElements: SearchInputOption[] = [];
+  for (let i = 0; i < count; i++) {
+    const parentValue = getNextValue();
+    parentElements.push({
+      label: "親要素" + (startValue + i),
+      value: parentValue,
+      children: generateChildren(parentValue * 10, 2),
+    });
+  }
+  return parentElements;
+};
+
+export const debugOption: SearchInputOption[] = [
+  {
+    label: "親要素1",
+    value: getNextValue(),
+    children: generateChildren(getNextValue(), 20),
+  },
+  {
+    label: "親要素4",
+    value: getNextValue(),
+    children: generateChildren(getNextValue(), 20),
+  },
+  {
+    label: "親要素9",
+    value: getNextValue(),
+    children: [],
+  },
+  // Generate additional parent elements (up to 13)
+  ...generateParentElements(getNextValue(), 13),
+];
