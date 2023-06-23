@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.10.0
+
+### Minor Changes
+
+- [#858](https://github.com/Wizleap-Inc/wiz-ui/pull/858) [`02803baa`](https://github.com/Wizleap-Inc/wiz-ui/commit/02803baade37cb165a8f9dff4312b720049f086b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput：フラットにオプションを表示し、選択中の要素を緑色にハイライトする。
+
+- [#646](https://github.com/Wizleap-Inc/wiz-ui/pull/646) [`fddd61f5`](https://github.com/Wizleap-Inc/wiz-ui/commit/fddd61f50c0d0b141fca32390e27bc3aee7714d0) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTimePicker の React 対応
+
+### Patch Changes
+
+- [#873](https://github.com/Wizleap-Inc/wiz-ui/pull/873) [`d7cf88e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/d7cf88e09595eb866ea8e81c530915cbed44ccd6) Thanks [@nagaihiroki-git](https://github.com/nagaihiroki-git)! - time-picker のフォントサイズを xs に変更する
+
+- Updated dependencies [[`1fc0b151`](https://github.com/Wizleap-Inc/wiz-ui/commit/1fc0b151ccb634cafb769ece59c3798226eb0268), [`fddd61f5`](https://github.com/Wizleap-Inc/wiz-ui/commit/fddd61f50c0d0b141fca32390e27bc3aee7714d0)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.0
+
 ## 0.9.3
 
 ### Patch Changes
