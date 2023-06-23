@@ -57,8 +57,7 @@ export const searchBlockStyle = style({
   backgroundColor: THEME.color.white[800],
   paddingRight: THEME.spacing.xs,
   paddingLeft: THEME.spacing.xs,
-  height: "fit-content",
-  maxHeight: "25rem",
+  height: "25rem",
   overflowY: "auto",
   "::-webkit-scrollbar": {
     width: THEME.spacing.xs2,
@@ -80,8 +79,7 @@ export const searchBlockBorderRadiusStyle = style({
 export const searchPopupBlockStyle = style({
   backgroundColor: THEME.color.white[800],
   padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
-  height: "fit-content",
-  maxHeight: "25rem",
+  height: "25rem",
   overflowY: "auto",
   "::-webkit-scrollbar": {
     width: THEME.spacing.xs2,
