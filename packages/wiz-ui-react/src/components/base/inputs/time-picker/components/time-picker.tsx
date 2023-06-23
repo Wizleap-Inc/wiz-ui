@@ -12,11 +12,12 @@ import {
   WizDivider,
   WizHStack,
   WizIcon,
+  WizICancel,
+  WizISchedule,
   WizPopup,
   WizVStack,
 } from "@/components";
-import { FormControlContext } from "@/components/custom/form/form-control-context";
-import { WizICancel, WizISchedule } from "@/components/icons";
+import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 
 import { HOURS, MINUTES, Time } from "../types/time";
 
@@ -76,7 +77,7 @@ const TimePicker = ({
   })();
 
   return (
-    <>
+    <div>
       <div
         ref={anchor}
         className={clsx([
@@ -219,7 +220,7 @@ const TimePicker = ({
           </WizHStack>
         </div>
       </WizPopup>
-    </>
+    </div>
   );
 };
 

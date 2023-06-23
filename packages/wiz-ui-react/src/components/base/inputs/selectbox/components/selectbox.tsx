@@ -20,7 +20,7 @@ import {
   WizPopup,
   WizVStack,
 } from "@/components";
-import { FormControlContext } from "@/components/custom/form/form-control-context";
+import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 
 type SelectBoxOption = {
   label: string;

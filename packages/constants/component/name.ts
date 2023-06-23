@@ -15,6 +15,8 @@ export const ComponentName = {
   Divider: "WizDivider",
   Dropdown: "WizDropdown",
   DropdownItem: "WizDropdownItem",
+  FormControl: "WizFormControl",
+  FormGroup: "WizFormGroup",
   Text: "WizText",
   TextInput: "WizTextInput",
   BaseInput: "WizBaseInput",
