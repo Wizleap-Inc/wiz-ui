@@ -1,6 +1,7 @@
 ---
 "@wizleap-inc/wiz-ui-next": minor
 "@wizleap-inc/wiz-ui": minor
+"@wizleap-inc/wiz-ui-style": minor
 ---
 
-WizSearchInput：オプション内でスクロールすると親要素に子要素が追従しない問題を修正
+WizSearchInput：フラットにオプションを表示し、選択中の要素を緑色にハイライトする。
