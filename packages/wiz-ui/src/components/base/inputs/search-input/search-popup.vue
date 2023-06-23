@@ -1,10 +1,5 @@
 <template>
-  <div
-    :style="{
-      paddingTop: `${dy * (ITEM_HEIGHT + DIVIDER_HEIGHT)}px`,
-      marginTop: `${-parentScrollAmount}px`,
-    }"
-  >
+  <div>
     <div v-for="(option, key) in options">
       <div
         v-if="option.children.length && selectedItem.includes(option.value)"
@@ -31,7 +26,11 @@
               :class="searchPopupDropdownItemStyle"
             >
               <div
-                :class="searchDropdownLabelStyle"
+                :class="[
+                  searchDropdownLabelStyle,
+                  selectedItem.includes(item.value) &&
+                    searchDropdownSelectingItemStyle,
+                ]"
                 @mouseover="onMouseover(item.value, option.children)"
                 @mouseout="activeItem = null"
               >
@@ -110,6 +109,7 @@ import {
   searchCheckboxLabelStyle,
   searchDropdownCheckboxItemStyle,
   searchDropdownLabelStyle,
+  searchDropdownSelectingItemStyle,
   searchPopupBlockBorderRadiusStyle,
   searchPopupBlockBorderRightStyle,
   searchPopupBlockStyle,
@@ -143,16 +143,6 @@ const props = defineProps({
   popupWidth: {
     type: String,
     required: false,
-  },
-  dy: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  parentScrollAmount: {
-    type: Number,
-    required: false,
-    default: 0,
   },
 });
 

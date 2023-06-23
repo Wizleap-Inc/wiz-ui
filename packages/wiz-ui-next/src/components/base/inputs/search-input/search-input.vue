@@ -42,7 +42,12 @@
               <WizHStack
                 align="center"
                 justify="between"
-                :class="searchDropdownLabelStyle"
+                :class="[
+                  searchDropdownLabelStyle,
+
+                  selectedItem.includes(option.value) &&
+                    searchDropdownSelectingItemStyle,
+                ]"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
               >
@@ -124,6 +129,7 @@ import {
   searchDropdownCheckboxItemStyle,
   searchDropdownItemStyle,
   searchDropdownLabelStyle,
+  searchDropdownSelectingItemStyle,
   searchInputDisabledStyle,
   searchInputIconStyle,
   searchInputStyle,

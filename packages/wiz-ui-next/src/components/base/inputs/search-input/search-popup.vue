@@ -4,10 +4,6 @@
       v-if="option.children.length && selectedItem.includes(option.value)"
       :class="searchPopupStyle"
       :key="`${option.label}_${option.value}_${key}`"
-      :style="{
-        paddingTop: `${dy * (ITEM_HEIGHT + DIVIDER_HEIGHT)}px`,
-        marginTop: `${-parentScrollAmount}px`,
-      }"
     >
       <div
         ref="optionsRef"
@@ -30,7 +26,11 @@
             <WizHStack
               align="center"
               justify="between"
-              :class="searchDropdownLabelStyle"
+              :class="[
+                searchDropdownLabelStyle,
+                selectedItem.includes(item.value) &&
+                  searchDropdownSelectingItemStyle,
+              ]"
               @mouseover="onMouseover(item.value, option.children)"
               @mouseout="activeItem = null"
             >
@@ -107,6 +107,7 @@ import {
   searchCheckboxLabelStyle,
   searchDropdownCheckboxItemStyle,
   searchDropdownLabelStyle,
+  searchDropdownSelectingItemStyle,
   searchPopupBlockBorderRadiusStyle,
   searchPopupBlockBorderRightStyle,
   searchPopupBlockStyle,

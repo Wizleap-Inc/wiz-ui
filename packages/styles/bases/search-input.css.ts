@@ -128,6 +128,11 @@ export const searchDropdownLabelStyle = style({
   },
 });
 
+export const searchDropdownSelectingItemStyle = style({
+  background: THEME.color.green[300],
+  color: THEME.color.green[800],
+});
+
 export const searchDropdownCheckboxItemStyle = style({
   padding: `${THEME.spacing.xs} ${THEME.spacing.sm}`,
 });
