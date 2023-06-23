@@ -14,7 +14,7 @@ const meta: Meta<typeof WizFormGroup> = {
       description: {
         component: `
 ### WizFormGroup
-各FormControlをまとめて表示するためのコンポーネントです。複数のFormControlをslotに持たせて使用します。
+各FormControlをまとめて表示するためのコンポーネントです。複数のFormControlを子要素に持たせて使用します。
     `,
       },
     },
