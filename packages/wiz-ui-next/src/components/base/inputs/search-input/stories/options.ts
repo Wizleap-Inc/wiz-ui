@@ -483,7 +483,7 @@ const generateChildren = (
         (startValue + i) +
         " 寿限無寿限無五劫の擦り切れ海砂利水魚の水行末雲来末風来末食う寝る処に住む処やぶら小路の藪柑子",
       value: childValue,
-      children: generateGrandchildren(childValue * 10, 2),
+      children: i % 2 === 0 ? generateGrandchildren(childValue * 10, 2) : [],
     });
   }
   return children;
