@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.10.1
+
+### Patch Changes
+
+- [#876](https://github.com/Wizleap-Inc/wiz-ui/pull/876) [`7cbc6f7b`](https://github.com/Wizleap-Inc/wiz-ui/commit/7cbc6f7bfc0cbfac379e994631a3140dd56bf768) Thanks [@ichi-h](https://github.com/ichi-h)! - message-box が外側の text-align の影響を受けないようにする
+
 ## 0.10.0
 
 ### Minor Changes

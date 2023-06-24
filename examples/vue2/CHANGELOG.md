@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-example-vue2
 
+## 0.0.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @wizleap-inc/wiz-ui@1.12.1
+
 ## 0.0.14
 
 ### Patch Changes
