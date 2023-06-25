@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.11.1
+
+### Patch Changes
+
+- [`8de48e05`](https://github.com/Wizleap-Inc/wiz-ui/commit/8de48e05be350b3adb7978fae1585aaf6f233068) Thanks [@ichi-h](https://github.com/ichi-h)! - 再リリース
+
 ## 0.11.0
 
 ### Minor Changes
