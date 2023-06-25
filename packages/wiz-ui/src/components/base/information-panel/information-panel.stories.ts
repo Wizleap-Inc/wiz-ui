@@ -16,6 +16,9 @@ export default {
     width: {
       control: { type: "text" },
     },
+    border: {
+      control: { type: "boolean" },
+    },
   },
 };
 
@@ -55,4 +58,14 @@ Width.args = {
     { text: "メッセージ3", type: "default" },
   ],
   width: "300px",
+};
+
+export const Border = Template.bind({});
+Border.args = {
+  messages: [
+    { text: "メッセージ1", type: "default" },
+    { text: "メッセージ2", type: "error" },
+    { text: "メッセージ3", type: "default" },
+  ],
+  border: true,
 };
