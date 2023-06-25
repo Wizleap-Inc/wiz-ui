@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui
 
+## 1.14.0
+
+### Minor Changes
+
+- [#884](https://github.com/Wizleap-Inc/wiz-ui/pull/884) [`c08ddc90`](https://github.com/Wizleap-Inc/wiz-ui/commit/c08ddc90179a4f360663e924df5e08000c541e7b) Thanks [@ichi-h](https://github.com/ichi-h)! - information-panel のデザインが異なる箇所を修正
+
+  - border がない
+  - 文字の間隔が margin によってなされている
+  - card の padding が上下・左右が逆
+
+### Patch Changes
+
+- Updated dependencies [[`c08ddc90`](https://github.com/Wizleap-Inc/wiz-ui/commit/c08ddc90179a4f360663e924df5e08000c541e7b)]:
+  - @wizleap-inc/wiz-ui-styles@0.11.0
+
 ## 1.13.0
 
 ### Minor Changes
