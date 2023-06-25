@@ -1,17 +1,18 @@
 <template>
-  <div :class="[informationPanelStye]" :style="{ width }" v-show="visible">
-    <div>
+  <div
+    :class="[informationPanelStyle, border && informationPanelBorderStyle]"
+    :style="{ width }"
+    v-show="visible"
+  >
+    <WizVStack align="center" gap="xs">
       <div
         v-for="message in messages"
         :key="message.text"
-        :class="[
-          informationPanelMessageStyle,
-          informationPanelFontStyle[message.type],
-        ]"
+        :class="[informationPanelFontStyle[message.type]]"
       >
         {{ message.text }}
       </div>
-    </div>
+    </WizVStack>
     <div :class="[informationPanelIconStyle]">
       <WizVStack align="center">
         <WizIconButton variant="transparent" :icon="WizIClose" @click="close" />
@@ -22,8 +23,8 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  informationPanelStye,
-  informationPanelMessageStyle,
+  informationPanelStyle,
+  informationPanelBorderStyle,
   informationPanelFontStyle,
   informationPanelIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
@@ -54,6 +55,11 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
+  },
+  border: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
