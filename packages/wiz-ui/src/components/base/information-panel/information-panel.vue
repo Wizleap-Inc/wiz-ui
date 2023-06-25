@@ -4,7 +4,7 @@
     :style="{ width }"
     v-show="visible"
   >
-    <WizVStack align="center" gap="xs">
+    <WizVStack gap="xs">
       <div
         v-for="message in messages"
         :key="message.text"
