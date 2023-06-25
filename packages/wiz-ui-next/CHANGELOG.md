@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.14.2
+
+### Patch Changes
+
+- [#888](https://github.com/Wizleap-Inc/wiz-ui/pull/888) [`a7a0c0ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7a0c0ca942599114983aada7c1e198a60954cc9) Thanks [@ichi-h](https://github.com/ichi-h)! - information-panel の不要な align の削除
+
 ## 1.14.1
 
 ### Patch Changes
