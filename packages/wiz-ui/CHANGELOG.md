@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui
 
+## 1.13.0
+
+### Minor Changes
+
+- [#881](https://github.com/Wizleap-Inc/wiz-ui/pull/881) [`4f0ddabb`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f0ddabba815782c16f207cbff3391084533faf8) Thanks [@ichi-h](https://github.com/ichi-h)! - information-panel を export する
+
 ## 1.12.1
 
 ### Patch Changes
