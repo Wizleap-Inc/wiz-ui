@@ -41,6 +41,13 @@ export const Row: Story = {
   },
 };
 
+export const Error: Story = {
+  args: {
+    error: true,
+    placeholder: "入力してください",
+  },
+};
+
 export const Test: Story = {
   args: {
     placeholder: "入力してください",

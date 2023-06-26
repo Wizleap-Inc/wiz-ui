@@ -1,1 +1,1 @@
-export { WizPasswordInput } from "./password";
+export { WizPasswordInput } from "./password-input";
