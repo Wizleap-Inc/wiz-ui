@@ -28,3 +28,4 @@ export * from "./popup-button-group";
 export * from "./navigation";
 export * from "./dropdown";
 export * from "./snackbar";
+export * from "./text-area";
