@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
+import { expect } from "vitest";
 
 import { WizPasswordInput } from "../components/password-input";
 

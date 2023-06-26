@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
+import { expect } from "vitest";
 
 import { WizTextArea } from "..";
 
