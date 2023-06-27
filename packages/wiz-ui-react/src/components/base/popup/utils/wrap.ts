@@ -155,7 +155,9 @@ export const wrapDirection: Record<
   },
 };
 
-/// 回り込み方向に十分な余白がないとき、方向はそのままです。
+/**
+ * 境界外にPopupContentが出てしまう場合、回り込みにより方向を変更します。ただし、変更後も境界外に出てしまう場合は変更しません。
+ */
 export const wrapOutOfBound = (
   dir: DirectionValue,
   placementArgs: {
