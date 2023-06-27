@@ -3,7 +3,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css"
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useContext, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 
 import { WizCalendar, WizPopup, WizText } from "@/components";
 import { WizIcon } from "@/components/base/icon";
@@ -39,6 +39,13 @@ const DatePicker: FC<Props> = ({
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const cancelButtonVisible = !disabled && !!date && (isHover || isFocused);
+  useEffect(() => {
+    if (!cancelButtonVisible) {
+      setIsFocused(false);
+    }
+  }, [cancelButtonVisible]);
   const [currentMonth, setCurrentMonth] = useState(date || new Date());
   const moveCalender = {
     nextMonth: () => {
@@ -93,14 +100,17 @@ const DatePicker: FC<Props> = ({
         style={{ width }}
         aria-label={ARIA_LABELS.DATE_PICKER_INPUT}
         disabled={disabled}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <WizHStack gap="xs" align="center" height="100%">
-          {isHover && date ? (
+          {cancelButtonVisible ? (
             <button
               className={styles.datePickerCancelButtonStyle}
-              onMouseEnter={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)}
+              disabled={disabled}
               onClick={() => onClickDate(null)}
               aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
             >
@@ -108,8 +118,8 @@ const DatePicker: FC<Props> = ({
             </button>
           ) : (
             <button
-              onMouseEnter={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)}
+              className={styles.datePickerCancelButtonStyle}
+              disabled={disabled}
             >
               <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
             </button>
@@ -118,7 +128,7 @@ const DatePicker: FC<Props> = ({
         </WizHStack>
       </button>
       <WizPopup
-        isOpen={isOpen}
+        isOpen={!disabled && isOpen}
         onClose={() => setIsOpen(false)}
         direction="bottomLeft"
         isDirectionFixed={isDirectionFixed}
