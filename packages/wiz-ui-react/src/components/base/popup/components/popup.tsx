@@ -75,10 +75,9 @@ const Popup = ({
       };
       if (isDirectionFixed || !contentRect)
         return placeOnPortalStyle[DIRECTION_MAP[direction]](placementOption);
-      const gapPx = (() => {
-        const fontSize = window.getComputedStyle(document.body).fontSize;
-        return parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
-      })();
+      const fontSize = window.getComputedStyle(document.body).fontSize;
+      const gapPx =
+        parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
       const dir = wrapOutOfBound(DIRECTION_MAP[direction], {
         bound: {
           width: document.body.clientWidth,
