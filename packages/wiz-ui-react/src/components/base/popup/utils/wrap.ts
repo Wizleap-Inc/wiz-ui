@@ -169,6 +169,8 @@ export const wrapOutOfBound = (
   }
 ) => {
   const wrappedDir = wrapDirection[dir](placementArgs);
-  const wrappedDir2 = wrapDirection[wrappedDir](placementArgs);
-  return wrappedDir !== wrappedDir2 ? dir : wrappedDir;
+  if (wrappedDir === dir) return dir; // 回り込みが発生しない場合
+  const rewrappedDir = wrapDirection[wrappedDir](placementArgs);
+  // 回り込み先で回り込む場合、変更後も境界外にはみ出すということなので回り込みを適用しない
+  return wrappedDir !== rewrappedDir ? dir : wrappedDir;
 };
