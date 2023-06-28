@@ -22,8 +22,7 @@ import { useClickOutside } from "@/hooks/use-click-outside";
 import { usePopupAnimation } from "../hooks/use-popup-animation";
 import { DIRECTION_MAP, DirectionKey } from "../types/direction";
 import { PlacementOption, PlacementStyle } from "../types/placement";
-import { placeOnPortalStyle } from "../utils";
-import { wrapOutOfBound } from "../utils/wrap";
+import { placeOnPortalStyle, wrapOutOfBound } from "../utils";
 
 type Props = {
   isOpen: boolean;
