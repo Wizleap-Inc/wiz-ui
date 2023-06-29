@@ -27,6 +27,7 @@
     >
       <WizHStack>
         <div
+          v-if="filteredOptions.length"
           :class="[
             searchBlockStyle,
             searchBlockBorderRadiusStyle,
