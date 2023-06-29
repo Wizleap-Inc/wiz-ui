@@ -62,6 +62,9 @@ const Popup = ({
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
   useEffect(() => {
+    if (!isActuallyOpen) {
+      return;
+    }
     const popupPlacement = () => {
       if (!anchorElement.current) return {};
       const anchorRect = anchorElement.current.getBoundingClientRect();
