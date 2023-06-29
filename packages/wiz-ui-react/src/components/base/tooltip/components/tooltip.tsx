@@ -17,7 +17,7 @@ interface Props {
   hover?: boolean;
   isDirectionFixed?: boolean;
   children: ReactNode;
-  content?: ReactNode;
+  content: ReactNode;
 }
 
 const Tooltip: FC<Props> = ({
@@ -30,8 +30,6 @@ const Tooltip: FC<Props> = ({
   const [isHover, setIsHover] = useState(false);
   const anchor = useRef<HTMLDivElement | null>(null);
 
-  const handleClose = useCallback(() => setIsHover(false), []);
-
   return (
     <>
       <div
@@ -42,32 +40,30 @@ const Tooltip: FC<Props> = ({
       >
         {children}
       </div>
-      {content && (
-        <WizPopup
-          anchorElement={anchor}
-          isOpen={isHover || hover}
-          onClose={handleClose}
-          direction={direction}
-          shadow={false}
-          animation
-          gap="xs2"
-          isDirectionFixed={isDirectionFixed}
+      <WizPopup
+        anchorElement={anchor}
+        isOpen={isHover || hover}
+        onClose={useCallback(() => setIsHover(false), [])}
+        direction={direction}
+        shadow={false}
+        animation
+        gap="xs2"
+        isDirectionFixed={isDirectionFixed}
+      >
+        <div
+          className={clsx(tooltipPositionStyle[direction], tooltipPopupStyle)}
         >
+          <div className={clsx(tooltipContentStyle)}>{content}</div>
           <div
-            className={clsx(tooltipPositionStyle[direction], tooltipPopupStyle)}
+            className={clsx(
+              tooltipIconStyle,
+              tooltipIconDirectionStyle[direction]
+            )}
           >
-            <div className={clsx(tooltipContentStyle)}>{content}</div>
-            <div
-              className={clsx(
-                tooltipIconStyle,
-                tooltipIconDirectionStyle[direction]
-              )}
-            >
-              <WizIChangeHistory />
-            </div>
+            <WizIChangeHistory />
           </div>
-        </WizPopup>
-      )}
+        </div>
+      </WizPopup>
     </>
   );
 };
