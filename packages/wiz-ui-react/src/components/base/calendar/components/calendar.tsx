@@ -28,7 +28,9 @@ const Calendar: FC<Props> = ({
     return activeDates?.find((activeDate) => {
       return (
         !item.isOutOfCurrentMonth &&
-        activeDate.date.getDate() === Number(item.label)
+        activeDate.date.getDate() === Number(item.label) &&
+        activeDate.date.getMonth() === currentMonth.getMonth() &&
+        activeDate.date.getFullYear() === currentMonth.getFullYear()
       );
     });
   }
