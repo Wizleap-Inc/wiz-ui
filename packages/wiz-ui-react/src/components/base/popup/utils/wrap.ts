@@ -154,3 +154,23 @@ export const wrapDirection: Record<
     return f(y);
   },
 };
+
+/**
+ * 境界外にPopupContentが出てしまう場合、回り込みにより方向を変更します。ただし、変更後も境界外に出てしまう場合は変更しません。
+ */
+export const wrapOutOfBound = (
+  dir: DirectionValue,
+  placementArgs: {
+    bound: { width: number; height: number };
+    content: DOMRect;
+    anchor: DOMRect;
+    gap: number;
+    window: { scrollX: number; scrollY: number };
+  }
+) => {
+  const wrappedDir = wrapDirection[dir](placementArgs);
+  if (wrappedDir === dir) return dir; // 回り込みが発生しない場合
+  const rewrappedDir = wrapDirection[wrappedDir](placementArgs);
+  // 回り込み先で回り込む場合、変更後も境界外にはみ出すということなので回り込みを適用しない
+  return wrappedDir !== rewrappedDir ? dir : wrappedDir;
+};
