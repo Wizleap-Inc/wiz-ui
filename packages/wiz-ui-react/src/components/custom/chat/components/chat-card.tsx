@@ -38,7 +38,6 @@ type Props = {
   username: string;
   placeholder?: string;
   messages: Message[];
-  isOpen?: boolean;
   haveNewMessage?: boolean;
   formRows?: number;
   typingUsername?: string;
@@ -48,7 +47,7 @@ type Props = {
   onChangeStatus?: (status: number | null) => void;
   onChangeTextValue: (value: string) => void;
   onSubmit: () => void;
-  onToggleOpen: () => void;
+  onToggleOpen?: (isOpen: boolean) => void;
 };
 
 const ChatCard: FC<Props> = ({
@@ -56,7 +55,6 @@ const ChatCard: FC<Props> = ({
   username,
   placeholder,
   messages,
-  isOpen = false,
   haveNewMessage,
   formRows,
   typingUsername,
@@ -71,6 +69,7 @@ const ChatCard: FC<Props> = ({
   const wrapperBoxRef = useRef<HTMLDivElement>(null);
   const listBoxRef = useRef<HTMLDivElement>(null);
   const [wrapperHeight, setWrapperHeight] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const displayMessages = useMemo(() => {
     const displayMessages: DisplayMessage[] = [];
@@ -97,8 +96,14 @@ const ChatCard: FC<Props> = ({
   const [isToggleAnimating, setIsToggleAnimating] = useState(false);
   const handleClickToggleButton = useCallback(() => {
     setIsToggleAnimating(true);
-    setTimeout(() => setIsToggleAnimating(false), TOGGLE_ANIMATION_DURATION);
-    onToggleOpen();
+    setTimeout(() => {
+      setIsToggleAnimating(false);
+    }, TOGGLE_ANIMATION_DURATION);
+    setIsOpen((current) => {
+      const updated = !current;
+      onToggleOpen?.(updated);
+      return updated;
+    });
   }, [onToggleOpen]);
 
   useLayoutEffect(() => {

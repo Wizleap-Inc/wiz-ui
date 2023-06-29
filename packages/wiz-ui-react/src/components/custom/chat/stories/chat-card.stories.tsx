@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/testing-library";
 import { ComponentProps, useState } from "react";
 
 import { WizChatCard } from "..";
@@ -90,33 +91,50 @@ const templateArgs = {
   messages: dummyMessages,
 };
 
-export const Open: Story = {
+const OpenTemplate: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    buttons.forEach((button) => {
+      if (button.children.length === 0) {
+        userEvent.click(button);
+      }
+    });
+  },
+  parameters: {
+    screenshot: {
+      delay: 300,
+    },
+  },
+};
+
+export const Default: Story = {
+  ...OpenTemplate,
   args: {
     ...templateArgs,
-    isOpen: true,
   },
 };
 
 export const FormRows: Story = {
+  ...OpenTemplate,
   args: {
     ...templateArgs,
-    isOpen: true,
     formRows: 5,
   },
 };
 
 export const SomeonesTyping: Story = {
+  ...OpenTemplate,
   args: {
     ...templateArgs,
-    isOpen: true,
     typingUsername: "なんとかかんとか",
   },
 };
 
 export const Status: Story = {
+  ...OpenTemplate,
   args: {
     ...templateArgs,
-    isOpen: true,
     status: 1,
     statusOptions: dummyStatusOptions,
     statusPlaceholder: "ステータスを選択してください",
@@ -126,14 +144,12 @@ export const Status: Story = {
 export const Closed: Story = {
   args: {
     ...templateArgs,
-    isOpen: false,
   },
 };
 
 export const HaveNewMessage: Story = {
   args: {
     ...templateArgs,
-    isOpen: false,
     haveNewMessage: true,
   },
 };
@@ -141,13 +157,11 @@ export const HaveNewMessage: Story = {
 export const Playground: Story = {
   render: () => {
     const [messages, setMessages] = useState(dummyMessages);
-    const [isOpen, setIsOpen] = useState(false);
     const [textValue, setTextValue] = useState("");
     const [haveNewMessage, setHaveNewMessage] = useState(true);
     const [status, setStatus] = useState<number | null>(null);
     return (
       <WizChatCard
-        isOpen={isOpen}
         messages={messages}
         haveNewMessage={haveNewMessage}
         textValue={textValue}
@@ -157,10 +171,7 @@ export const Playground: Story = {
         typingUsername="なんとかかんとか"
         status={status}
         statusOptions={dummyStatusOptions}
-        onToggleOpen={() => {
-          setHaveNewMessage(false);
-          setIsOpen(!isOpen);
-        }}
+        onToggleOpen={() => setHaveNewMessage(false)}
         onChangeTextValue={(changed) => setTextValue(changed)}
         onChangeStatus={(changed) => setStatus(changed)}
         onSubmit={() => {
