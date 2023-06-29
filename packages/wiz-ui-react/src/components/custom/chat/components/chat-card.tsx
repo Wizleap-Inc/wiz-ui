@@ -67,8 +67,9 @@ const ChatCard: FC<Props> = ({
   onToggleOpen,
 }) => {
   const wrapperBoxRef = useRef<HTMLDivElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
   const listBoxRef = useRef<HTMLDivElement>(null);
-  const [wrapperHeight, setWrapperHeight] = useState(0);
+  const [closedWrapperBottom, setClosedWrapperBottom] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   const displayMessages = useMemo(() => {
@@ -108,13 +109,21 @@ const ChatCard: FC<Props> = ({
 
   useLayoutEffect(() => {
     const wrapperBox = wrapperBoxRef.current;
-    if (!wrapperBox) {
+    const divider = dividerRef.current;
+    if (!wrapperBox || !divider) {
       return;
     }
+    const updateClosedWrapperBottom = () => {
+      const wrapperRect = wrapperBox.getBoundingClientRect();
+      const dividerRect = divider.getBoundingClientRect();
+      setClosedWrapperBottom(
+        dividerRect.top - wrapperRect.top - wrapperRect.height
+      );
+    };
     // ちらつき防止の為最初に一回計算する
-    setWrapperHeight(wrapperBox.clientHeight);
+    updateClosedWrapperBottom();
     const wrapperObserver = new ResizeObserver(() => {
-      setWrapperHeight(wrapperBox.clientHeight);
+      updateClosedWrapperBottom();
     });
     wrapperObserver.observe(wrapperBox);
     return () => {
@@ -135,11 +144,7 @@ const ChatCard: FC<Props> = ({
       ref={wrapperBoxRef}
       position="fixed"
       right="1.5rem"
-      bottom={
-        isOpen
-          ? "0"
-          : `calc(${THEME.fontSize.xl2} + ${THEME.spacing.md} * 2 - ${wrapperHeight}px)`
-      }
+      bottom={isOpen ? "0" : `${closedWrapperBottom}px`}
       transition={
         isToggleAnimating
           ? `bottom ${TOGGLE_ANIMATION_DURATION}ms ease-in-out`
@@ -152,7 +157,7 @@ const ChatCard: FC<Props> = ({
         shadow
         align="stretch"
         mainHeaderArea={
-          <WizHStack align="center" gap="xs2">
+          <WizHStack align="center" gap="xs2" wrap={false}>
             <WizText color="gray.700" as="span" bold>
               {username}
             </WizText>
@@ -204,13 +209,15 @@ const ChatCard: FC<Props> = ({
                 <WizText as="span" bold fontSize="xs2" color="gray.700">
                   {typingUsername}
                 </WizText>
-                さんが入力しています...
+                &nbsp;さんが入力しています...
               </WizText>
             )}
           </WizVStack>
         }
       >
-        <WizDivider />
+        <div ref={dividerRef}>
+          <WizDivider />
+        </div>
         <WizBox overflowY="scroll" ref={listBoxRef}>
           <WizVStack gap="xs" py="xs" height="320px" wrap={false}>
             {displayMessages.map(({ date, contents }, i) => {
