@@ -98,13 +98,9 @@ const OpenTemplate: Story = {
     buttons.forEach((button) => {
       if (button.children.length === 0) {
         userEvent.click(button);
+        button.blur();
       }
     });
-  },
-  parameters: {
-    screenshot: {
-      delay: 300,
-    },
   },
 };
 
