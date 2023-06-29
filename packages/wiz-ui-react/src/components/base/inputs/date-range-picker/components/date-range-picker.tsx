@@ -3,7 +3,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css"
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useContext, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 
 import {
   WizCalendar,
@@ -19,38 +19,47 @@ import {
 } from "@/components";
 import { DateStatus } from "@/components/base/calendar/components/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
+import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { DateRange, DateRangePickerSelectBoxOption } from "../types";
 
 type Props = {
-  value: DateRange;
+  dateRange: DateRange;
   expand?: boolean;
   disabled?: boolean;
   selectBoxOptions?: DateRangePickerSelectBoxOption[];
+  selectBoxValue?: string;
   isDirectionFixed?: boolean;
   error?: boolean;
   setDateRange: (dateRange: DateRange) => void;
+  setSelectBoxValue?: (value: string) => void;
 };
 
 const DateRangePicker: FC<Props> = ({
-  value,
+  dateRange,
   expand = false,
   disabled = false,
   selectBoxOptions,
+  selectBoxValue,
   isDirectionFixed = false,
-  setDateRange,
   error,
+  setDateRange,
+  setSelectBoxValue,
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [selectBoxValue, setSelectBoxValue] = useState<string>("");
   const [isSelectBoxOpen, setIsSelectBoxOpen] = useState(false);
   const cancelButtonVisible =
-    !disabled && !!value.start && (isHover || isFocused);
+    !disabled && !!dateRange.start && (isHover || isFocused);
+  useEffect(() => {
+    if (!cancelButtonVisible) {
+      setIsFocused(false);
+    }
+  }, [cancelButtonVisible]);
   const [rightCalendarDate, setRightCalendarDate] = useState(
     (() => {
-      const [start, end] = [value.start, value.end];
+      const [start, end] = [dateRange.start, dateRange.end];
       if (end) {
         return new Date(end);
       }
@@ -88,7 +97,7 @@ const DateRangePicker: FC<Props> = ({
       date,
       state,
     });
-    const [start, end] = [value.start, value.end];
+    const [start, end] = [dateRange.start, dateRange.end];
     if (start && end) {
       const secondaries: DateStatus[] = [];
       const tomorrowOfStart = new Date(start);
@@ -109,7 +118,7 @@ const DateRangePicker: FC<Props> = ({
   })();
 
   const onClickDate = (date: Date) => {
-    const [start, end] = [value.start, value.end];
+    const [start, end] = [dateRange.start, dateRange.end];
     if (start && end) {
       setDateRange({ start: date, end: null });
     } else if (start) {
@@ -129,25 +138,31 @@ const DateRangePicker: FC<Props> = ({
     option: DateRangePickerSelectBoxOption
   ) => {
     setIsSelectBoxOpen(false);
-    setSelectBoxValue(option.value);
+    setSelectBoxValue?.(option.value);
   };
 
   const formControl = useContext(FormControlContext);
 
   const anchor = useRef<HTMLButtonElement | null>(null);
+  const selectBoxRef = useRef<HTMLDivElement | null>(null);
+  useClickOutside([selectBoxRef], () => setIsSelectBoxOpen(false));
+
   const isError = error || formControl.error;
   const borderStyle = (() => {
     if (isError) return "error";
     if (isOpen && !disabled) return "active";
     return "default";
   })();
-  console.log(selectedDates);
   return (
     <>
       <button
         ref={anchor}
         aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
         onClick={() => setIsOpen(true)}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         disabled={disabled}
         className={clsx(
           styles.bodyStyle[disabled ? "disabled" : "active"],
@@ -175,21 +190,21 @@ const DateRangePicker: FC<Props> = ({
         <span
           className={
             styles.inputTextStyle[
-              value.start && !disabled ? "selected" : "default"
+              dateRange.start && !disabled ? "selected" : "default"
             ]
           }
         >
-          {value.start ? formatDateToYYMMDD(value.start) : "開始日"}
+          {dateRange.start ? formatDateToYYMMDD(dateRange.start) : "開始日"}
         </span>
         <span className={styles.separatorStyle}>-</span>
         <span
           className={
             styles.inputTextStyle[
-              value.end && !disabled ? "selected" : "default"
+              dateRange.end && !disabled ? "selected" : "default"
             ]
           }
         >
-          {value.end ? formatDateToYYMMDD(value.end) : "終了日"}
+          {dateRange.end ? formatDateToYYMMDD(dateRange.end) : "終了日"}
         </span>
       </button>
       <WizPopup
@@ -203,8 +218,10 @@ const DateRangePicker: FC<Props> = ({
             {selectBoxOptions && (
               <>
                 <div className={styles.popupHeaderStyle}>
-                  {/* TODO: selectboxcontainerstyle */}
-                  <div className={styles.popupHeaderSelectBoxContainerStyle}>
+                  <div
+                    className={styles.popupHeaderSelectBoxContainerStyle}
+                    ref={selectBoxRef}
+                  >
                     <button
                       className={clsx(
                         styles.popupHeaderSelectBoxStyle,
