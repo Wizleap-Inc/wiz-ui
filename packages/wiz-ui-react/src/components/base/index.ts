@@ -7,6 +7,7 @@ export * from "./box";
 export * from "./card";
 export * from "./tag";
 export * from "./icon";
+export * from "./information-panel";
 export * from "./divider";
 export * from "./tab";
 export * from "./step-bar";
