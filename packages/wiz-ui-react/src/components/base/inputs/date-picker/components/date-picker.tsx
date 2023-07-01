@@ -1,6 +1,10 @@
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
-import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import {
+  fillStyle,
+  fontSizeStyle,
+  inputBorderStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
 import { FC, useContext, useEffect, useRef, useState } from "react";
@@ -10,8 +14,6 @@ import { WizIcon } from "@/components/base/icon";
 import { WizHStack, WizVStack } from "@/components/base/stack";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import {
-  WizIArrowDropDown,
-  WizIArrowDropUp,
   WizICalendar,
   WizICancel,
   WizIChevronLeft,
@@ -88,6 +90,9 @@ const DatePicker: FC<Props> = ({
     return "default";
   })();
   const anchor = useRef<HTMLButtonElement | null>(null);
+  const iconRef = useRef<HTMLButtonElement | null>(null);
+  useEffect(() => {}, []);
+
   return (
     <>
       <button
@@ -151,16 +156,42 @@ const DatePicker: FC<Props> = ({
                   className={styles.datePickerYearSelectorItemStyle}
                   aria-label={ARIA_LABELS.YEAR_SELECTOR_NEXT}
                 >
-                  {/* TODO: style */}
-                  <WizIArrowDropUp />
+                  {/* FIXME: https://github.com/Wizleap-Inc/wiz-ui/issues/758 */}
+                  {/* <WizIArrowDropUp /> */}
+                  <svg
+                    className={clsx(
+                      fillStyle["gray.700"],
+                      fontSizeStyle["xs2"],
+                      styles.datePickerArrowIconStyle
+                    )}
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    width="1em"
+                    viewBox="0 96 960 960"
+                  >
+                    <path d="M406.231 636q-21.616 0-29.808-19.885-8.192-19.884 6.961-35.038l74.77-74.769q5.231-5.231 10.692-7.462 5.462-2.231 11.923-2.231 6.462 0 11.923 2.231 5.462 2.231 10.693 7.462l74.769 74.769q15.154 15.154 6.962 35.038Q576.923 636 555.308 636H406.231Z" />
+                  </svg>
                 </button>
                 <button
                   onClick={moveCalender.prevYear}
                   className={styles.datePickerYearSelectorItemStyle}
                   aria-label={ARIA_LABELS.YEAR_SELECTOR_PREV}
                 >
-                  {/* TODO: style */}
-                  <WizIArrowDropDown />
+                  {/* FIXME: https://github.com/Wizleap-Inc/wiz-ui/issues/758 */}
+                  {/* <WizIArrowDropDown /> */}
+                  <svg
+                    className={clsx(
+                      fillStyle["gray.700"],
+                      fontSizeStyle["xs2"],
+                      styles.datePickerArrowIconStyle
+                    )}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 96 960 960"
+                    height="1em"
+                    width="1em"
+                  >
+                    <path d="m458.154 645.692-74.77-74.769q-15.153-15.154-6.961-35.038Q384.615 516 406.231 516h149.077q21.615 0 29.808 19.885 8.192 19.884-6.962 35.038l-74.769 74.769q-5.231 5.231-10.693 7.462-5.461 2.231-11.923 2.231-6.461 0-11.923-2.231-5.461-2.231-10.692-7.462Z" />
+                  </svg>
                 </button>
               </WizVStack>
             </WizHStack>
