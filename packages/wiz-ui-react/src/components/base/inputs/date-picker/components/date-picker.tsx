@@ -49,27 +49,18 @@ const DatePicker: FC<Props> = ({
     }
   }, [cancelButtonVisible]);
   const [currentMonth, setCurrentMonth] = useState(date || new Date());
-  const moveCalender = {
-    nextMonth: () => {
-      setCurrentMonth(
-        new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1)
-      );
-    },
-    prevMonth: () => {
-      setCurrentMonth(
-        new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1)
-      );
-    },
-    nextYear: () => {
-      setCurrentMonth(
-        new Date(currentMonth.getFullYear() + 1, currentMonth.getMonth(), 1)
-      );
-    },
-    prevYear: () => {
-      setCurrentMonth(
-        new Date(currentMonth.getFullYear() - 1, currentMonth.getMonth(), 1)
-      );
-    },
+  const moveCalender = (
+    command: "nextMonth" | "prevMonth" | "nextYear" | "prevYear"
+  ) => {
+    const [dy, dm] = (() => {
+      if (command === "nextMonth") return [0, 1];
+      if (command === "prevMonth") return [0, -1];
+      if (command === "nextYear") return [1, 0];
+      return [-1, 0]; // prevYear
+    })();
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear() + dy, currentMonth.getMonth() + dm, 1)
+    );
   };
   const calender = {
     title: `${currentMonth.getMonth() + 1}月`,
@@ -90,9 +81,6 @@ const DatePicker: FC<Props> = ({
     return "default";
   })();
   const anchor = useRef<HTMLButtonElement | null>(null);
-  const iconRef = useRef<HTMLButtonElement | null>(null);
-  useEffect(() => {}, []);
-
   return (
     <>
       <button
@@ -152,7 +140,7 @@ const DatePicker: FC<Props> = ({
               </WizText>
               <WizVStack>
                 <button
-                  onClick={moveCalender.nextYear}
+                  onClick={() => moveCalender("nextYear")}
                   className={styles.datePickerYearSelectorItemStyle}
                   aria-label={ARIA_LABELS.YEAR_SELECTOR_NEXT}
                 >
@@ -173,7 +161,7 @@ const DatePicker: FC<Props> = ({
                   </svg>
                 </button>
                 <button
-                  onClick={moveCalender.prevYear}
+                  onClick={() => moveCalender("prevYear")}
                   className={styles.datePickerYearSelectorItemStyle}
                   aria-label={ARIA_LABELS.YEAR_SELECTOR_PREV}
                 >
@@ -201,14 +189,14 @@ const DatePicker: FC<Props> = ({
             <div className={styles.datePickerMonthSelectorStyle}>
               <button
                 aria-label={ARIA_LABELS.MONTH_SELECTOR_PREV}
-                onClick={moveCalender.prevMonth}
+                onClick={() => moveCalender("prevMonth")}
                 className={styles.datePickerMonthSelectorItemStyle}
               >
                 <WizIcon size="md" color="inherit" icon={WizIChevronLeft} />
               </button>
               <button
                 aria-label={ARIA_LABELS.MONTH_SELECTOR_NEXT}
-                onClick={moveCalender.nextMonth}
+                onClick={() => moveCalender("nextMonth")}
                 className={styles.datePickerMonthSelectorItemStyle}
               >
                 <WizIcon size="md" color="inherit" icon={WizIChevronRight} />
