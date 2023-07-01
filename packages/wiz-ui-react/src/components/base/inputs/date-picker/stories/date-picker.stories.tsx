@@ -65,6 +65,7 @@ export const Hover: Story = {
 
 export const IsDirectionFixed: Story = {
   args: {
+    date: new Date(2023, 0, 1),
     isDirectionFixed: true,
   },
   play: async ({ canvasElement }) => {
