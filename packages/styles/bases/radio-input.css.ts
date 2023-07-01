@@ -18,6 +18,7 @@ export const radioLabelStyle = style({
   alignItems: "center",
   gap: THEME.spacing.sm,
   fontSize: THEME.fontSize.sm,
+  lineHeight: "100%",
   ":before": {
     content: "",
     background: THEME.color.white["800"],
