@@ -50,40 +50,35 @@ export const textButtonExpandStyle = style({
   width: "100%",
 });
 
-const textButtonSizeXsStyle = style({
-  padding: `${THEME.spacing["xs2"]} ${THEME.spacing["sm"]}`,
-  lineHeight: THEME.fontSize.lg,
-});
-
-const textButtonSizeNotXsStyle = style({
-  padding: `${THEME.spacing["xs"]} ${THEME.spacing["xl"]}`,
-  fontWeight: "bold",
-});
-
 export const textButtonSizeStyle = styleVariants({
   xs: [
-    textButtonSizeXsStyle,
     {
-      fontSize: THEME.fontSize.xs,
+      padding: `${THEME.spacing["xs2"]} ${THEME.spacing["sm"]}`,
+      fontWeight: THEME.fontWeight.bold,
+      lineHeight: THEME.fontSize.lg,
+      fontSize: THEME.fontSize.xs2,
     },
   ],
   sm: [
-    textButtonSizeNotXsStyle,
     {
+      padding: `${THEME.spacing["xs"]} ${THEME.spacing["xl"]}`,
+      fontWeight: THEME.fontWeight.bold,
       fontSize: THEME.fontSize.xs,
       lineHeight: THEME.fontSize.xl,
     },
   ],
   md: [
-    textButtonSizeNotXsStyle,
     {
+      padding: `${THEME.fontSize["xs2"]} ${THEME.spacing["xl"]}`,
+      fontWeight: THEME.fontWeight.bold,
       fontSize: THEME.fontSize.sm,
       lineHeight: THEME.fontSize.xl2,
     },
   ],
   lg: [
-    textButtonSizeNotXsStyle,
     {
+      padding: `${THEME.fontSize["xs2"]} ${THEME.spacing["xl"]}`,
+      fontWeight: THEME.fontWeight.bold,
       fontSize: THEME.fontSize.md,
       lineHeight: THEME.fontSize.xl3,
     },
