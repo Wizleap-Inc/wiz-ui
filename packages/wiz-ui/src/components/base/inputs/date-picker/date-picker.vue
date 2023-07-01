@@ -110,6 +110,7 @@
           @click="(date) => (calendarValue = date)"
           :currentMonth="currentMonth"
           filledWeeks
+          :disabledDate="disabledDate"
         />
       </div>
     </WizPopup>
@@ -198,6 +199,16 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  /**
+   * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
+   * @param date
+   * @returns {boolean} `true`: 無効な日付, `false`: 有効な日付
+   */
+  disabledDate: {
+    type: Function as PropType<(date: Date) => boolean>,
+    required: false,
+    default: () => false,
   },
 });
 
