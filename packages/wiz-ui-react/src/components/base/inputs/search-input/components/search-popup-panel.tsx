@@ -1,7 +1,7 @@
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import clsx from "clsx";
-import { FC, useCallback, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   WizCheckBox,
@@ -46,6 +46,11 @@ export const SearchPopupPanel: FC<Props> = ({
     },
     [onChangeValues, options, values]
   );
+
+  useEffect(() => {
+    // reset active
+    setActiveValue(null);
+  }, [options]);
 
   return (
     <>
