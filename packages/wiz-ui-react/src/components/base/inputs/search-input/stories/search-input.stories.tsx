@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { WizSearchInput } from "..";
 
-import { normalOptions, longLabelOptions, debugOptions } from "./options";
+import { normalOptions, longLabelOptions, debugOptions } from "./dummy-data";
 
 const meta: Meta<typeof WizSearchInput> = {
   title: "Base/Input/SearchInput",
