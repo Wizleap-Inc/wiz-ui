@@ -30,7 +30,7 @@ export const SearchPopupPanel: FC<Props> = ({
     () => options.find((option) => activeValue === option.value),
     [activeValue, options]
   );
-  const isOpen = activeOption !== undefined && activeOption.children.length > 0;
+  const isOpen = activeOption && activeOption.children.length > 0;
 
   const handleChangeValues = useCallback(
     (selectedValues: number[]) => {
