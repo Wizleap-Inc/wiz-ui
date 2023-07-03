@@ -32,7 +32,7 @@ export const SearchPopupPanel: FC<Props> = ({
   );
   const isOpen = activeOption !== undefined && activeOption.children.length > 0;
 
-  const handleChangeValue = useCallback(
+  const handleChangeValues = useCallback(
     (selectedValues: number[]) => {
       const allValues = options.map((option) => option.value);
       const unselectedValues = allValues.filter(
@@ -99,7 +99,7 @@ export const SearchPopupPanel: FC<Props> = ({
                       },
                     ]}
                     values={values}
-                    onChange={handleChangeValue}
+                    onChange={handleChangeValues}
                   />
                 </div>
               )}
