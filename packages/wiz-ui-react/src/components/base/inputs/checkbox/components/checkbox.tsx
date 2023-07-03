@@ -31,83 +31,81 @@ const CheckBox: FC<Props> = ({
   );
 
   return (
-    <div className={styles.checkboxStyle}>
-      <WizStack gap={gap} direction={direction} wrap>
-        {options.map((option) => {
-          const isChecked = values.includes(option.value);
-          const isDisabled = disabled || option.disabled;
-          const isFocused = !isDisabled && option.key === focusedKey;
-          return (
-            <div key={option.key}>
-              <label
-                className={clsx(
-                  styles.checkboxLabelStyle,
-                  isChecked && styles.checkboxLabelCheckedStyle,
-                  isDisabled && styles.checkboxLabelDisabledStyle,
-                  styles.checkboxLabelCursorStyle[
-                    isDisabled ? "disabled" : "default"
-                  ]
-                )}
-                htmlFor={option.key}
-              >
-                <input
-                  className={styles.checkboxInputStyle}
-                  type="checkbox"
-                  id={option.key}
-                  name={option.key}
-                  value={option.value}
-                  checked={isChecked}
-                  disabled={isDisabled}
-                  onChange={() => {
-                    if (!onChange) {
-                      return;
-                    }
-                    if (isChecked) {
-                      onChange(values.filter((v) => v !== option.value));
-                    } else {
-                      onChange([...values, option.value]);
-                    }
-                  }}
-                  onFocus={() => setFocusedKey(option.key)}
-                  onBlur={() => setFocusedKey(null)}
-                />
-                <span className={styles.checkboxIconContainerStyle}>
-                  {/* FIXME: WizICheck をコピーして使用 https://github.com/Wizleap-Inc/wiz-ui/issues/758 */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="1em"
-                    width="1em"
-                    viewBox="0 0 24 24"
-                    className={clsx(
-                      styles.checkboxIconBaseStyle,
-                      styles.checkboxIconVariantStyle[
-                        isChecked ? "checked" : "default"
-                      ],
-                      isFocused &&
-                        styles.checkboxIconFocusedColorStyle[
-                          isChecked ? "checked" : "default"
-                        ]
-                    )}
-                  >
-                    <path d="M9.55 16.975q-.15 0-.288-.05-.137-.05-.287-.175l-4.05-4.05q-.15-.175-.15-.363 0-.187.175-.362.15-.15.35-.15.2 0 .35.15l3.9 3.9 8.8-8.8q.15-.15.35-.15.2 0 .375.15.15.175.15.363 0 .187-.15.362l-8.95 8.95q-.15.125-.287.175-.138.05-.288.05Z" />
-                  </svg>
-                </span>
-                <span
+    <WizStack gap={gap} direction={direction} wrap>
+      {options.map((option) => {
+        const isChecked = values.includes(option.value);
+        const isDisabled = disabled || option.disabled;
+        const isFocused = !isDisabled && option.key === focusedKey;
+        return (
+          <div key={option.key}>
+            <label
+              className={clsx(
+                styles.checkboxLabelStyle,
+                isChecked && styles.checkboxLabelCheckedStyle,
+                isDisabled && styles.checkboxLabelDisabledStyle,
+                styles.checkboxLabelCursorStyle[
+                  isDisabled ? "disabled" : "default"
+                ]
+              )}
+              htmlFor={option.key}
+            >
+              <input
+                className={styles.checkboxInputStyle}
+                type="checkbox"
+                id={option.key}
+                name={option.key}
+                value={option.value}
+                checked={isChecked}
+                disabled={isDisabled}
+                onChange={() => {
+                  if (!onChange) {
+                    return;
+                  }
+                  if (isChecked) {
+                    onChange(values.filter((v) => v !== option.value));
+                  } else {
+                    onChange([...values, option.value]);
+                  }
+                }}
+                onFocus={() => setFocusedKey(option.key)}
+                onBlur={() => setFocusedKey(null)}
+              />
+              <span className={styles.checkboxIconContainerStyle}>
+                {/* FIXME: WizICheck をコピーして使用 https://github.com/Wizleap-Inc/wiz-ui/issues/758 */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  width="1em"
+                  viewBox="0 0 24 24"
                   className={clsx(
-                    isChecked && styles.checkboxBlockCheckedStyle,
-                    strikeThrough &&
-                      isChecked &&
-                      styles.checkboxLabelStrikeThrough
+                    styles.checkboxIconBaseStyle,
+                    styles.checkboxIconVariantStyle[
+                      isChecked ? "checked" : "default"
+                    ],
+                    isFocused &&
+                      styles.checkboxIconFocusedColorStyle[
+                        isChecked ? "checked" : "default"
+                      ]
                   )}
                 >
-                  {option.label}
-                </span>
-              </label>
-            </div>
-          );
-        })}
-      </WizStack>
-    </div>
+                  <path d="M9.55 16.975q-.15 0-.288-.05-.137-.05-.287-.175l-4.05-4.05q-.15-.175-.15-.363 0-.187.175-.362.15-.15.35-.15.2 0 .35.15l3.9 3.9 8.8-8.8q.15-.15.35-.15.2 0 .375.15.15.175.15.363 0 .187-.15.362l-8.95 8.95q-.15.125-.287.175-.138.05-.288.05Z" />
+                </svg>
+              </span>
+              <span
+                className={clsx(
+                  isChecked && styles.checkboxBlockCheckedStyle,
+                  strikeThrough &&
+                    isChecked &&
+                    styles.checkboxLabelStrikeThrough
+                )}
+              >
+                {option.label}
+              </span>
+            </label>
+          </div>
+        );
+      })}
+    </WizStack>
   );
 };
 
