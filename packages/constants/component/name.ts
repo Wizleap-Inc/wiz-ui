@@ -93,6 +93,7 @@ export const ComponentName = {
   Schedule: "WizSchedule",
   PopupButtonGroup: "WizPopupButtonGroup",
   Pagination: "WizPagination",
+  BreakpointProvider: "WizBreakpointProvider",
   Timeline: "WizTimeline",
   TimelineItem: "WizTimelineItem",
   ...IconComponentName,
