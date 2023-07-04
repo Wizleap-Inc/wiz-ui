@@ -122,4 +122,16 @@ export const IsDirectionFixed: Story = {
     options: getDummyOptions("test", 3),
     isDirectionFixed: true,
   },
+  parameters: {
+    layout: "fullscreen",
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ height: "6.5rem" }}>
+        <div style={{ position: "absolute", bottom: "2rem", left: "1rem" }}>
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
 };
