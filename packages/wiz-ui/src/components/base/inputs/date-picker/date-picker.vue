@@ -112,7 +112,6 @@
               : []
           "
           @click="(date) => (calendarValue = date)"
-          @keypress.up="console.log('up')"
           :currentMonth="currentMonth"
           filledWeeks
         />
