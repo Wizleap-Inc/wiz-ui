@@ -4,7 +4,6 @@ import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   FC,
-  FocusEventHandler,
   KeyboardEvent,
   KeyboardEventHandler,
   MouseEventHandler,
@@ -158,11 +157,6 @@ const SearchSelector: FC<Props> = ({
     };
   };
 
-  const focusComponent = () => {
-    setIsFocused(true);
-    setIsPopupOpen(true);
-  };
-
   const handleClickWrapper = () => {
     if (disabled) {
       return;
@@ -170,17 +164,8 @@ const SearchSelector: FC<Props> = ({
     if (searchTextboxRef.current) {
       searchTextboxRef.current.focus();
     } else {
-      focusComponent();
-    }
-  };
-
-  const handleBlurComponent: FocusEventHandler = (e) => {
-    if (
-      popupRef.current?.contains(e.relatedTarget) === false &&
-      wrapperRef.current?.contains(e.relatedTarget) === false
-    ) {
-      setIsFocused(false);
-      setIsPopupOpen(false);
+      setIsFocused(true);
+      setIsPopupOpen(true);
     }
   };
 
@@ -240,8 +225,11 @@ const SearchSelector: FC<Props> = ({
         style={{ width: expand ? "100%" : width }}
         role="group"
         onClick={handleClickWrapper}
-        onFocus={focusComponent}
-        onBlur={handleBlurComponent}
+        onFocus={() => {
+          setIsFocused(true);
+          setIsPopupOpen(true);
+        }}
+        onBlur={() => setIsFocused(false)}
       >
         <div className={styles.selectBoxInnerBoxStyle}>
           <WizHStack align="center" height="100%" gap="xs" pr="xl">
@@ -311,7 +299,6 @@ const SearchSelector: FC<Props> = ({
             ref={popupRef}
             className={styles.selectBoxSelectorStyle}
             style={{ minWidth: width }}
-            onBlur={handleBlurComponent}
           >
             <WizPopupButtonGroup options={buttonGroupOptions} />
           </div>
