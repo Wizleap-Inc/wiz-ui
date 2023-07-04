@@ -95,12 +95,11 @@ const radioValue = computed({
   set: (value) => emit("update:modelValue", value),
 });
 
-const radioLabelColor = (value: number) =>
-  radioValue.value === value
-    ? "checked"
-    : focusOption.value === value
-    ? "focused"
-    : "default";
+const radioLabelColor = (value: number) => {
+  if (radioValue.value === value) return "checked";
+  if (focusOption.value === value) return "focused";
+  return "default";
+};
 
 const radioLabelCursor = (optionDisabled?: boolean) =>
   props.disabled || optionDisabled ? "disabled" : "default";
