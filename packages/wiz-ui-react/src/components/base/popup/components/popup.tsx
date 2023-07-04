@@ -11,6 +11,7 @@ import {
   ComponentProps,
   ReactNode,
   RefObject,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -61,44 +62,50 @@ const Popup = ({
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
-  useEffect(() => {
-    if (!isActuallyOpen) {
+  const calculatePlacementStyle = useCallback(() => {
+    if (!anchorElement.current) {
       return;
     }
-    const popupPlacement = () => {
-      if (!anchorElement.current) return {};
-      const anchorRect = anchorElement.current.getBoundingClientRect();
-      const contentRect = popupRef.current?.getBoundingClientRect();
-      const placementOption: PlacementOption = {
-        anchor: anchorRect,
-        gap: getSpacingCss(gap) ?? "0",
-        content: contentRect,
-        window: { scrollX: window.scrollX, scrollY: window.scrollY },
-      };
-      if (isDirectionFixed || !contentRect)
-        return placeOnPortalStyle[DIRECTION_MAP[direction]](placementOption);
-      const fontSize = window.getComputedStyle(document.body).fontSize;
-      const gapPx =
-        parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
-      const dir = wrapOutOfBound(DIRECTION_MAP[direction], {
-        bound: {
-          width: document.body.clientWidth,
-          height: Math.max(document.body.clientHeight, window.innerHeight),
-        },
-        content: contentRect,
-        anchor: anchorRect,
-        gap: gapPx,
-        window: { scrollX: window.scrollX, scrollY: window.scrollY },
-      });
-      return placeOnPortalStyle[dir](placementOption);
+    const anchorRect = anchorElement.current.getBoundingClientRect();
+    const contentRect = popupRef.current?.getBoundingClientRect();
+    const placementOption: PlacementOption = {
+      anchor: anchorRect,
+      gap: getSpacingCss(gap) ?? "0",
+      content: contentRect,
+      window: { scrollX: window.scrollX, scrollY: window.scrollY },
     };
-    setPlacementStyle(popupPlacement());
-    const handleResize = () => setPlacementStyle(popupPlacement());
-    window.addEventListener("resize", handleResize);
+    if (isDirectionFixed || !contentRect)
+      return placeOnPortalStyle[DIRECTION_MAP[direction]](placementOption);
+    const fontSize = window.getComputedStyle(document.body).fontSize;
+    const gapPx = parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
+    const dir = wrapOutOfBound(DIRECTION_MAP[direction], {
+      bound: {
+        width: document.body.clientWidth,
+        height: Math.max(document.body.clientHeight, window.innerHeight),
+      },
+      content: contentRect,
+      anchor: anchorRect,
+      gap: gapPx,
+      window: { scrollX: window.scrollX, scrollY: window.scrollY },
+    });
+    const placementStyle = placeOnPortalStyle[dir](placementOption);
+    setPlacementStyle(placementStyle);
+  }, [anchorElement, direction, gap, isDirectionFixed]);
+
+  useEffect(() => {
+    if (!isActuallyOpen || !anchorElement.current) {
+      return;
+    }
+    const anchorResizeObserver = new ResizeObserver(() =>
+      calculatePlacementStyle()
+    );
+    anchorResizeObserver.observe(anchorElement.current);
+    window.addEventListener("resize", calculatePlacementStyle);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      anchorResizeObserver.disconnect();
+      window.removeEventListener("resize", calculatePlacementStyle);
     };
-  }, [isActuallyOpen, direction, gap, anchorElement, isDirectionFixed]);
+  }, [anchorElement, calculatePlacementStyle, isActuallyOpen]);
 
   return (
     <WizPortal container={document.body}>
