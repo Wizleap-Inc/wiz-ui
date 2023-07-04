@@ -1,6 +1,5 @@
 import { InjectionKey, inject } from "vue";
 
-import { useBreakpointProvider } from "./use-breakpoint";
 import { useMenu } from "./use-menu";
 import { useSnackbarManager } from "./use-snackbar";
 
@@ -8,7 +7,6 @@ export const useGlobalProvider = () => {
   return {
     ...useMenu(),
     ...useSnackbarManager(),
-    ...useBreakpointProvider(),
   };
 };
 
