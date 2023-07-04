@@ -181,7 +181,7 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const date = ref<Date | null>(new Date(2020, 0, 1));
     const isOpen = ref(true);
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { date, isOpen, setIsOpen };
@@ -222,7 +222,7 @@ export const Hover: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const date = ref<Date | null>(new Date(2020, 0, 1));
     const isOpen = ref(true);
     const isHover = ref(true);
     const updateIsOpen = (value: boolean) => (isOpen.value = value);
