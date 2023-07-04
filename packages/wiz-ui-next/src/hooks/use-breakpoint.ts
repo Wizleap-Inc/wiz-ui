@@ -1,4 +1,11 @@
-import { InjectionKey, onBeforeMount, onMounted, ref } from "vue";
+import {
+  InjectionKey,
+  inject,
+  onBeforeMount,
+  onMounted,
+  provide,
+  ref,
+} from "vue";
 
 const BREAKPOINTS = ["sm", "md", "lg"] as const;
 
@@ -10,7 +17,7 @@ const BREAKPOINTS = ["sm", "md", "lg"] as const;
  * - md: max-width: 768px(48rem)
  * - lg: max-width: 1024px(64rem)
  *
- * この閾値は、`useBreakpoint`フックを使用して、カスタマイズすることができます。
+ * この閾値は、BreakpointProviderを使用して、カスタマイズすることができます。
  */
 export type BreakpointVariant = (typeof BREAKPOINTS)[number];
 
@@ -31,40 +38,38 @@ const getBreakpoint = (breakpoint: Breakpoint) => {
   return currentBreakpoint ?? BREAKPOINTS[BREAKPOINTS.length - 1];
 };
 
+const breakpointKey: InjectionKey<Breakpoint> = Symbol("BreakpointProvider");
+
 /**
  * @see {@link BreakpointVariant}
  * @example
  * # カスタマイズ
- * `useBreakpoint`フックを使用して、閾値をカスタマイズすることができます。
+ * `useBreakpoint`フックを使用して、一番近い親のprovideBreakpointの閾値を取得することができます。
  * このフックは、`BreakpointVariant`のいずれかの値を返します。
  * この戻り値は、`bp`という名前のPropsにそのまま渡すことができます。
  *
- *
  * ```vue
  * <template>
- *  <Timeline :bp="customBp">
+ *  <Timeline :bp="bp">
  * </template>
  *
  * <script setup lang="ts">
  * import { Timeline } from "wiz-ui";
  * import { useBreakpoint } from "@/hooks/use-breakpoint";
- * import { globalInject, globalKey } from "@/hooks/use-global-provider";
- * const { bp } = globalInject(globalKey);
- * const customBp = useBreakpoint({
- *   sm: 640,
- *   md: 800,
- *   lg: 1024,
- * });
+ *
+ * // 一番近い親のprovideBreakpointの閾値を取得する（同じキーのprovideネストは子優先挙動をするため)
+ * const bp = useBreakpoint();
  * </script>
  * ```
  */
-export const useBreakpoint = (breakpoint = DEFAULT_BREAKPOINT) => {
+export const useBreakpoint = () => {
+  const bp = inject(breakpointKey, DEFAULT_BREAKPOINT);
   const currentBreakpoint = ref<BreakpointVariant>(
     BREAKPOINTS[BREAKPOINTS.length - 1]
   );
   onMounted(() => {
     const observer = new ResizeObserver(() => {
-      currentBreakpoint.value = getBreakpoint(breakpoint);
+      currentBreakpoint.value = getBreakpoint(bp);
     });
 
     observer.observe(document.body);
@@ -74,7 +79,7 @@ export const useBreakpoint = (breakpoint = DEFAULT_BREAKPOINT) => {
     };
   });
   onBeforeMount(() => {
-    currentBreakpoint.value = getBreakpoint(breakpoint);
+    currentBreakpoint.value = getBreakpoint(bp);
   });
   return currentBreakpoint;
 };
@@ -93,16 +98,20 @@ export const useBreakpoint = (breakpoint = DEFAULT_BREAKPOINT) => {
  *
  * <script setup lang="ts">
  * import { Timeline } from "wiz-ui";
- * import { globalInject, globalKey } from "@/hooks/use-global-provider";
- * const { bp } = globalInject(globalKey);
+ * import { useBreakpointProvider } from "@/hooks/use-breakpoint";
+ *
+ * // デフォルトの閾値を使用する場合は、このように記述します。
+ * provideBreakpoint();
+ *
+ * // カスタマイズする場合は、このように記述します。
+ * provideBreakpoint({
+ *  sm: 640,
+ *  md: 800,
+ *  lg: 1024,
+ * });
  * </script>
  * ```
  */
-export const useBreakpointProvider = () => {
-  const bp = useBreakpoint();
-  return { bp };
+export const provideBreakpoint = (breakpoint = DEFAULT_BREAKPOINT) => {
+  provide(breakpointKey, breakpoint);
 };
-
-export const breakPointKey: InjectionKey<
-  ReturnType<typeof useBreakpointProvider>
-> = Symbol("BreakpointProvider");
