@@ -1,5 +1,8 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   InjectionKey,
+  PropType,
+  defineComponent,
   inject,
   onBeforeMount,
   onMounted,
@@ -38,8 +41,7 @@ const getBreakpoint = (breakpoint: Breakpoint) => {
   return currentBreakpoint ?? BREAKPOINTS[BREAKPOINTS.length - 1];
 };
 
-export const breakPointKey: InjectionKey<Breakpoint> =
-  Symbol("BreakpointProvider");
+const breakpointKey: InjectionKey<Breakpoint> = Symbol("BreakpointProvider");
 
 /**
  * @see {@link BreakpointVariant}
@@ -64,7 +66,7 @@ export const breakPointKey: InjectionKey<Breakpoint> =
  * ```
  */
 export const useBreakpoint = () => {
-  const bp = inject(breakPointKey, DEFAULT_BREAKPOINT);
+  const bp = inject(breakpointKey, DEFAULT_BREAKPOINT);
   const currentBreakpoint = ref<BreakpointVariant>(
     BREAKPOINTS[BREAKPOINTS.length - 1]
   );
@@ -85,34 +87,16 @@ export const useBreakpoint = () => {
   return currentBreakpoint;
 };
 
-/**
- * @see {@link BreakpointVariant}
- * @example
- * # 基本的な使い方
- * もしコンポーネントがWindowサイズに依存する場合は、`bp`という名前のPropsが必要となっています。
- * このPropsは、`BreakpointVariant`のいずれかの値を取ります。
- *
- * ```vue
- * <template>
- *   <Timeline :bp="bp">
- * </template>
- *
- * <script setup lang="ts">
- * import { Timeline } from "wiz-ui";
- * import { provideBreakpoint } from "@/hooks/use-breakpoint";
- *
- * // デフォルトの閾値を使用する場合は、このように記述します。
- * provideBreakpoint();
- *
- * // カスタマイズする場合は、このように記述します。
- * provideBreakpoint({
- *  sm: 640,
- *  md: 800,
- *  lg: 1024,
- * });
- * </script>
- * ```
- */
-export const provideBreakpoint = (breakpoint = DEFAULT_BREAKPOINT) => {
-  provide(breakPointKey, breakpoint);
-};
+export const BreakpointProvider = defineComponent({
+  name: ComponentName.BreakpointProvider,
+  props: {
+    bp: {
+      type: Object as PropType<Breakpoint>,
+      required: true,
+    },
+  },
+  setup({ bp }, { slots }) {
+    provide(breakpointKey, bp);
+    return () => slots.default?.();
+  },
+});
