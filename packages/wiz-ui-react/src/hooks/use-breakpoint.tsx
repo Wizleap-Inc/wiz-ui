@@ -61,9 +61,9 @@ const BreakpointContext = createContext(DEFAULT_BREAKPOINT);
  */
 export const useBreakpoint = () => {
   // Providerが設定されていない場合は、DEFAULT_BREAKPOINTを返す
-  const bp = useContext(BreakpointContext) || DEFAULT_BREAKPOINT;
+  const bp = useContext(BreakpointContext);
   const [currentBreakpoint, setCurrentBreakpoint] = useState<BreakpointVariant>(
-    BREAKPOINTS[BREAKPOINTS.length - 1]
+    getBreakpoint(bp)
   );
 
   useLayoutEffect(() => {

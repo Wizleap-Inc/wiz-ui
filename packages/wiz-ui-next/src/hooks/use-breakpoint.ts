@@ -67,9 +67,7 @@ const breakpointKey: InjectionKey<Breakpoint> = Symbol("BreakpointProvider");
  */
 export const useBreakpoint = () => {
   const bp = inject(breakpointKey, DEFAULT_BREAKPOINT);
-  const currentBreakpoint = ref<BreakpointVariant>(
-    BREAKPOINTS[BREAKPOINTS.length - 1]
-  );
+  const currentBreakpoint = ref<BreakpointVariant>(getBreakpoint(bp));
   onMounted(() => {
     const observer = new ResizeObserver(() => {
       currentBreakpoint.value = getBreakpoint(bp);
