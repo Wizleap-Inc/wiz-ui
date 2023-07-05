@@ -100,5 +100,6 @@ export const ComponentName = {
   PopupButtonGroup: "WizPopupButtonGroup",
   Pagination: "WizPagination",
   FullModalView: "WizFullModalView",
+  FullModalViewContainer: "WizFullModalViewContainer",
   ...IconComponentName,
 } as const;
