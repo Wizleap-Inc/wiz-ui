@@ -216,50 +216,44 @@ const DateRangePicker: FC<Props> = ({
         <WizCard p="no">
           <div className={styles.popupStyle}>
             {selectBoxOptions && (
-              <>
-                <div className={styles.popupHeaderStyle}>
-                  <div
-                    className={styles.popupHeaderSelectBoxContainerStyle}
-                    ref={selectBoxRef}
+              <div className={styles.popupHeaderStyle}>
+                <div
+                  className={styles.popupHeaderSelectBoxContainerStyle}
+                  ref={selectBoxRef}
+                >
+                  <button
+                    className={clsx(
+                      styles.popupHeaderSelectBoxStyle,
+                      inputBorderStyle[isSelectBoxOpen ? "active" : "default"]
+                    )}
+                    onClick={() => setIsSelectBoxOpen(!isSelectBoxOpen)}
+                    aria-label={ARIA_LABELS.RANGE_DATE_PICKER_SELECT_BOX_INPUT}
                   >
-                    <button
-                      className={clsx(
-                        styles.popupHeaderSelectBoxStyle,
-                        inputBorderStyle[isSelectBoxOpen ? "active" : "default"]
-                      )}
-                      onClick={() => setIsSelectBoxOpen(!isSelectBoxOpen)}
-                      aria-label={
-                        ARIA_LABELS.RANGE_DATE_PICKER_SELECT_BOX_INPUT
-                      }
-                    >
-                      {selectedOption?.label || "未選択"}
-                      <WizIcon
-                        size="xl"
-                        color="gray.400"
-                        icon={isSelectBoxOpen ? WizIExpandLess : WizIExpandMore}
-                      />
-                      {isSelectBoxOpen && (
-                        <div
-                          className={styles.popupHeaderSelectBoxOptionsStyle}
-                        >
-                          {selectBoxOptions.map((option) => (
-                            <button
-                              key={option.value}
-                              className={styles.popupHeaderSelectBoxOptionStyle}
-                              aria-label={option.label}
-                              onClick={() => {
-                                handleSelectBoxOptionClick(option);
-                              }}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </button>
-                  </div>
+                    {selectedOption?.label || "未選択"}
+                    <WizIcon
+                      size="xl"
+                      color="gray.400"
+                      icon={isSelectBoxOpen ? WizIExpandLess : WizIExpandMore}
+                    />
+                    {isSelectBoxOpen && (
+                      <div className={styles.popupHeaderSelectBoxOptionsStyle}>
+                        {selectBoxOptions.map((option) => (
+                          <button
+                            key={option.value}
+                            className={styles.popupHeaderSelectBoxOptionStyle}
+                            aria-label={option.label}
+                            onClick={() => {
+                              handleSelectBoxOptionClick(option);
+                            }}
+                          >
+                            {option.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </button>
                 </div>
-              </>
+              </div>
             )}
             <div className={styles.popupCalendarsStyle}>
               <div className={styles.popupCalendarContainerStyle["left"]}>
