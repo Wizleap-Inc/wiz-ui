@@ -31,8 +31,8 @@ type Props = {
   selectBoxValue?: string;
   isDirectionFixed?: boolean;
   error?: boolean;
-  setDateRange: (dateRange: DateRange) => void;
-  setSelectBoxValue?: (value: string) => void;
+  onChangeDateRange: (dateRange: DateRange) => void;
+  onChangeSelectBoxValue?: (value: string) => void;
 };
 
 const DateRangePicker: FC<Props> = ({
@@ -43,8 +43,8 @@ const DateRangePicker: FC<Props> = ({
   selectBoxValue,
   isDirectionFixed = false,
   error,
-  setDateRange,
-  setSelectBoxValue,
+  onChangeDateRange,
+  onChangeSelectBoxValue,
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +74,7 @@ const DateRangePicker: FC<Props> = ({
     rightCalendarDate.getMonth() - 1,
     1
   );
-  const onClickCancel = () => setDateRange({ start: null, end: null });
+  const onClickCancel = () => onChangeDateRange({ start: null, end: null });
   const moveCalendar = (command: "nextMonth" | "prevMonth") => {
     const [dm, dy] = (() => {
       if (command === "nextMonth") return [1, 0];
@@ -120,12 +120,12 @@ const DateRangePicker: FC<Props> = ({
   const onClickDate = (date: Date) => {
     const [start, end] = [dateRange.start, dateRange.end];
     if (start && end) {
-      setDateRange({ start: date, end: null });
+      onChangeDateRange({ start: date, end: null });
     } else if (start) {
       const [nextStart, nextEnd] = start > date ? [date, start] : [start, date];
-      setDateRange({ start: nextStart, end: nextEnd });
+      onChangeDateRange({ start: nextStart, end: nextEnd });
     } else {
-      setDateRange({ start: date, end: null });
+      onChangeDateRange({ start: date, end: null });
     }
   };
 
@@ -138,7 +138,7 @@ const DateRangePicker: FC<Props> = ({
     option: DateRangePickerSelectBoxOption
   ) => {
     setIsSelectBoxOpen(false);
-    setSelectBoxValue?.(option.value);
+    onChangeSelectBoxValue?.(option.value);
   };
 
   const formControl = useContext(FormControlContext);

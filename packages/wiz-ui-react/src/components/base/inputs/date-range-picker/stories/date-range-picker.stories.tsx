@@ -8,7 +8,7 @@ import { WizDateRangePicker } from "../components";
 import { DateRange } from "../types";
 
 const meta: Meta<typeof WizDateRangePicker> = {
-  title: "Base/DateRangePicker",
+  title: "Base/Input/DateRangePicker",
   component: WizDateRangePicker,
   argTypes: {},
   parameters: {},
@@ -92,7 +92,7 @@ export const SelectBoxOptions: Story = {
       <WizDateRangePicker
         {...args}
         selectBoxValue={selectBoxValue}
-        setSelectBoxValue={setSelectBoxValue}
+        onChangeSelectBoxValue={setSelectBoxValue}
       />
     );
   },
@@ -178,9 +178,9 @@ export const Playground: Story = {
       <WizDateRangePicker
         {...args}
         dateRange={dateRange}
-        setDateRange={setDateRange}
+        onChangeDateRange={setDateRange}
         selectBoxValue={selectBoxValue}
-        setSelectBoxValue={setSelectBoxValue}
+        onChangeSelectBoxValue={setSelectBoxValue}
       />
     );
   },
