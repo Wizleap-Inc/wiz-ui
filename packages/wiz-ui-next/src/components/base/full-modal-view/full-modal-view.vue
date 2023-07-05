@@ -94,7 +94,7 @@ watch(anchorRef, (anchor) => {
 // TODO: focus管理
 onMounted(() => {
   modalRef.value?.focus();
-  const handleScroll = () => {
+  const updateModal = () => {
     const rect = anchorRef.value?.getBoundingClientRect();
     modalHeight.value = document.documentElement.scrollHeight;
     if (rect) {
@@ -102,11 +102,12 @@ onMounted(() => {
       contentLeft.value = rect.left;
     }
   };
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleScroll);
+  updateModal();
+  window.addEventListener("scroll", updateModal);
+  window.addEventListener("resize", updateModal);
   return () => {
-    window.removeEventListener("scroll", handleScroll);
-    window.removeEventListener("resize", handleScroll);
+    window.removeEventListener("scroll", updateModal);
+    window.removeEventListener("resize", updateModal);
   };
 });
 
