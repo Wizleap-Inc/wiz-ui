@@ -12,7 +12,7 @@ import { StyleValue, computed, provide, ref } from "vue";
 import { FULL_MODAL_VIEW_KEY, useFullModalViewProvider } from "./provider";
 
 defineOptions({
-  name: ComponentName.FullModalView,
+  name: ComponentName.FullModalViewContainer,
 });
 
 const props = defineProps({

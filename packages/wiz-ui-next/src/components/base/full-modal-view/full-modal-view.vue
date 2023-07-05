@@ -1,14 +1,17 @@
 <template>
   <teleport to="body">
     <div
-      :class="[zIndexStyle['popover'], !isActuallyOpen && styles.hiddenStyle]"
+      :class="[
+        zIndexStyle['base'],
+        !isActuallyOpen && styles.hiddenStyle,
+        bgColor && backgroundStyle[bgColor],
+      ]"
       :style="{
         position: 'fixed',
         top: `${contentTop}px`,
+        left: `${contentLeft}px`,
         width: `${anchorRef?.clientWidth}px`,
         height: `${modalHeight}px`,
-        background: 'rgba(100, 100, 100, 0.8)',
-        backdropFilter: 'blur(10px)',
       }"
       ref="modalRef"
     >
@@ -18,10 +21,13 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/full-modal-view.css";
-import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { inject, onMounted, ref, watch } from "vue";
+import {
+  backgroundStyle,
+  zIndexStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType, inject, onMounted, ref, watch } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
 
@@ -34,6 +40,21 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
     required: true,
+  },
+  /**
+   * モーダルの背景色を指定します。
+   */
+  bgColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+  },
+  /**
+   * モーダルの開閉アニメーションの時間を指定します。
+   */
+  duration: {
+    type: Number,
+    required: false,
+    default: 200,
   },
 });
 
@@ -51,13 +72,14 @@ const injected = inject(FULL_MODAL_VIEW_KEY);
 
 if (!injected) {
   throw new Error(
-    `${ComponentName.FullModalView}は${ComponentName.FullModalView}の中で使用する必要があります。`
+    `${ComponentName.FullModalView}は${ComponentName.FullModalViewContainer}の中で使用する必要があります。`
   );
 }
 
 const { anchorRef } = injected;
 
 const contentTop = ref(0);
+const contentLeft = ref(0);
 const modalHeight = ref(document.documentElement.scrollHeight); // - contentTop.value;
 
 useClickOutside(modalRef, () => {
@@ -66,6 +88,7 @@ useClickOutside(modalRef, () => {
 watch(anchorRef, (anchor) => {
   const rect = anchor?.getBoundingClientRect();
   if (rect) contentTop.value = rect.top + rect.height;
+  if (rect) contentLeft.value = rect.left;
 });
 
 // TODO: focus管理
@@ -76,11 +99,14 @@ onMounted(() => {
     modalHeight.value = document.documentElement.scrollHeight;
     if (rect) {
       contentTop.value = rect.top + rect.height;
+      contentLeft.value = rect.left;
     }
   };
   window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", handleScroll);
   return () => {
     window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScroll);
   };
 });
 
@@ -103,7 +129,7 @@ watch(
           },
         ],
         {
-          duration: 200,
+          duration: props.duration,
           easing: "ease-in-out",
         }
       );
@@ -118,7 +144,7 @@ watch(
           },
         ],
         {
-          duration: 200,
+          duration: props.duration,
           easing: "ease-in-out",
         }
       );
