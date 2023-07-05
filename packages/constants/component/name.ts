@@ -101,5 +101,6 @@ export const ComponentName = {
   Pagination: "WizPagination",
   FullModalView: "WizFullModalView",
   FullModalViewContainer: "WizFullModalViewContainer",
+  BreakpointProvider: "WizBreakpointProvider",
   ...IconComponentName,
 } as const;
