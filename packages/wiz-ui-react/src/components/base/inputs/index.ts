@@ -1,6 +1,7 @@
 export * from "./checkbox";
 export * from "./radio";
 export * from "./search-input";
+export * from "./search-selector";
 export * from "./selectbox";
 export * from "./text";
 export * from "./toggle-switch";
