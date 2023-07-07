@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.16.0
+
+### Minor Changes
+
+- [#788](https://github.com/Wizleap-Inc/wiz-ui/pull/788) [`d87a88fa`](https://github.com/Wizleap-Inc/wiz-ui/commit/d87a88fa7d244cbef584efa84229defc973f61b2) Thanks [@sor4chi](https://github.com/sor4chi)! - Breakpoint Provider の作成
+
 ## 1.15.0
 
 ### Minor Changes

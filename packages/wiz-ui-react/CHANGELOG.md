@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.18.0
+
+### Minor Changes
+
+- [#908](https://github.com/Wizleap-Inc/wiz-ui/pull/908) [`53e93946`](https://github.com/Wizleap-Inc/wiz-ui/commit/53e93946df0eef5dfd0ec8101e167b4a12e7772c) Thanks [@wmoai](https://github.com/wmoai)! - WizSearchInput の React 対応
+
+- [#911](https://github.com/Wizleap-Inc/wiz-ui/pull/911) [`3c8d0bce`](https://github.com/Wizleap-Inc/wiz-ui/commit/3c8d0bce9f810cfd309f61f23a95549f63c28d39) Thanks [@wmoai](https://github.com/wmoai)! - WizSearchSelector の React 対応
+
+- [#788](https://github.com/Wizleap-Inc/wiz-ui/pull/788) [`d87a88fa`](https://github.com/Wizleap-Inc/wiz-ui/commit/d87a88fa7d244cbef584efa84229defc973f61b2) Thanks [@sor4chi](https://github.com/sor4chi)! - Breakpoint Provider の作成
+
 ## 0.17.0
 
 ### Minor Changes
