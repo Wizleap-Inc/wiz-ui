@@ -9,10 +9,7 @@
     <div :class="navigationContainerItemsStyle">
       <slot />
     </div>
-    <div
-      v-if="isMenuOpen && slots.footer"
-      :class="navigationContainerFooterStyle"
-    >
+    <div v-if="isOpen && slots.footer" :class="navigationContainerFooterStyle">
       <slot name="footer" />
     </div>
   </div>
@@ -27,13 +24,9 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { computed, StyleValue, useSlots } from "vue";
 
-import { globalInject, globalKey } from "@/hooks/use-global-provider";
-
 defineOptions({
   name: ComponentName.NavigationContainer,
 });
-
-const { isMenuOpen } = globalInject(globalKey);
 
 const slots = useSlots();
 
@@ -46,11 +39,16 @@ const props = defineProps({
     type: Boolean,
     requird: false,
   },
+  isOpen: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
 });
 
 const computedWidth = computed(() => {
   if (props.width) return props.width;
-  if (isMenuOpen.value) return "180px";
+  if (props.isOpen) return "180px";
   return `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`;
 });
 
