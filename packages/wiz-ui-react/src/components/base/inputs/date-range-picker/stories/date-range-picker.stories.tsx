@@ -153,8 +153,9 @@ export const Hover: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT).click();
-    userEvent.hover(canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT));
+    const button = canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT);
+    button.click();
+    userEvent.hover(button);
   },
 };
 
