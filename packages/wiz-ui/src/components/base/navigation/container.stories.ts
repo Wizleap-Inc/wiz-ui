@@ -246,6 +246,7 @@ export const PopupSticky: StoryFn = (_, { argTypes }) => ({
     const lockingPopup = ref(false);
     const setLock = (isLock: boolean) => (lockingPopup.value = isLock);
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
+    isOpens[2].value = true;
     const toggles = isOpens.map((isOpen) => (value: boolean) => {
       isOpen.value = value;
     });
