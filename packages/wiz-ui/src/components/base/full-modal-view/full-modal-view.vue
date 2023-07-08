@@ -4,50 +4,72 @@
       :class="[
         zIndexStyle['base'],
         !isActuallyOpen && styles.hiddenStyle,
-        bgColor && backgroundStyle[bgColor],
+        backgroundStyle['white.800'],
+        styles.containerStyle,
       ]"
       :style="{
-        position: 'fixed',
-        top: `${contentTop}px`,
         left: `${contentLeft}px`,
-        width: `${anchorRef?.clientWidth}px`,
         height: `${modalHeight}px`,
       }"
       ref="modalRef"
     >
-      <slot />
+      <WizVStack>
+        <div :class="styles.headerStyle">
+          <WizHStack
+            justify="between"
+            :height="getSpacingCss('xl3')"
+            align="center"
+          >
+            <WizText bold> {{ title }} </WizText>
+            <WizHStack gap="md">
+              <slot name="header" />
+              <WizIconButton
+                :icon="WizIClose"
+                variant="transparent"
+                @click="closeModal"
+              />
+            </WizHStack>
+          </WizHStack>
+        </div>
+        <WizDivider color="gray.300" />
+        <div :class="styles.contentStyle">
+          <slot />
+        </div>
+      </WizVStack>
     </div>
   </MountingPortal>
 </template>
 
 <script setup lang="ts">
-import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, getSpacingCss } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/full-modal-view.css";
 import {
   backgroundStyle,
   zIndexStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { MountingPortal } from "portal-vue";
-import { PropType, inject, onMounted, ref, watch } from "vue";
+import { ref, watch } from "vue";
 
-import { useClickOutside } from "@/hooks/use-click-outside";
+import {
+  WizDivider,
+  WizHStack,
+  WizIClose,
+  WizIconButton,
+  WizText,
+  WizVStack,
+} from "@/components";
 
-import { FULL_MODAL_VIEW_KEY } from "./provider";
 defineOptions({
   name: ComponentName.FullModalView,
 });
 
 const props = defineProps({
+  title: {
+    type: String,
+    required: false,
+  },
   isOpen: {
     type: Boolean,
     required: true,
-  },
-  /**
-   * モーダルの背景色を指定します。
-   */
-  bgColor: {
-    type: String as PropType<ColorKeys>,
-    required: false,
   },
   /**
    * モーダルの開閉アニメーションの時間を指定します。
@@ -68,49 +90,8 @@ const closeModal = () => {
   emit("close");
 };
 const modalRef = ref<HTMLElement | undefined>(undefined);
-
-const injected = inject(FULL_MODAL_VIEW_KEY);
-
-if (!injected) {
-  throw new Error(
-    `${ComponentName.FullModalView}は${ComponentName.FullModalViewContainer}の中で使用する必要があります。`
-  );
-}
-
-const { anchorRef } = injected;
-
-const contentTop = ref(0);
-const contentLeft = ref(0);
-const modalHeight = ref(document.documentElement.scrollHeight); // - contentTop.value;
-
-useClickOutside(modalRef, () => {
-  closeModal();
-});
-watch(anchorRef, (anchor) => {
-  const rect = anchor?.getBoundingClientRect();
-  if (rect) contentTop.value = rect.top + rect.height;
-  if (rect) contentLeft.value = rect.left;
-});
-
-// TODO: focus管理
-onMounted(() => {
-  modalRef.value?.focus();
-  const updateModal = () => {
-    const rect = anchorRef.value?.getBoundingClientRect();
-    modalHeight.value = document.documentElement.scrollHeight;
-    if (rect) {
-      contentTop.value = rect.top + rect.height;
-      contentLeft.value = rect.left;
-    }
-  };
-  updateModal();
-  window.addEventListener("scroll", updateModal);
-  window.addEventListener("resize", updateModal);
-  return () => {
-    window.removeEventListener("scroll", updateModal);
-    window.removeEventListener("resize", updateModal);
-  };
-});
+const contentLeft = document.documentElement.clientLeft;
+const modalHeight = document.documentElement.scrollHeight;
 
 // Animation + 開閉ロジック
 watch(
@@ -127,7 +108,7 @@ watch(
             top: `${window.innerHeight}px`,
           },
           {
-            top: `${contentTop.value}px`,
+            top: `${0}px`,
           },
         ],
         {
@@ -139,7 +120,7 @@ watch(
       const animation = modalRef.value?.animate(
         [
           {
-            top: `${contentTop.value}px`,
+            top: `${0}px`,
           },
           {
             top: `${window.innerHeight}px`,
