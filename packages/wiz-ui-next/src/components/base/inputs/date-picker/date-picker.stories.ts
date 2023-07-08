@@ -178,7 +178,7 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
 });
 
 const _formatDateSlash = (date: Date) => {
-  const year = date.getFullYear() % 100;
+  const year = (date.getFullYear() % 100).toString().padStart(2, "0");
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}/${month}/${day}`;
@@ -224,7 +224,7 @@ export const Hover: StoryFn<typeof WizDatepicker> = (args) => ({
 export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(null);
+    const date = ref<Date | null>(new Date(2000, 0, 1));
     const isOpen = ref(true);
     const isHover = ref(false);
     const updateIsOpen = (value: boolean) => (isOpen.value = value);
@@ -251,7 +251,7 @@ Test.play = async ({ canvasElement }) => {
   await userEvent.click(button);
   await waitFor(() => expect(button).toHaveFocus());
 
-  const date = new Date();
+  const date = new Date(2000, 1, 0);
 
   // その月の15日を選択
   const body = within(canvasElement.ownerDocument.body);
