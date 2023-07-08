@@ -7,7 +7,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useContext, useRef, useState } from "react";
 
 import { WizCalendar, WizPopup, WizText } from "@/components";
 import { WizIcon } from "@/components/base/icon";
@@ -43,11 +43,6 @@ const DatePicker: FC<Props> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const cancelButtonVisible = !disabled && !!date && (isHover || isFocused);
-  useEffect(() => {
-    if (!cancelButtonVisible) {
-      setIsFocused(false);
-    }
-  }, [cancelButtonVisible]);
   const [currentMonth, setCurrentMonth] = useState(date || new Date());
   const moveCalender = (
     command: "nextMonth" | "prevMonth" | "nextYear" | "prevYear"
@@ -69,9 +64,8 @@ const DatePicker: FC<Props> = ({
     date: currentMonth.getDate(),
   };
   const formControl = useContext(FormControlContext);
-  const isError = error || formControl.error;
   const borderStyle = (() => {
-    if (isError) return "error";
+    if (error || formControl.error) return "error";
     if (isOpen && !disabled) return "active";
     return "default";
   })();
@@ -204,7 +198,9 @@ const DatePicker: FC<Props> = ({
             </div>
           </WizHStack>
           <WizCalendar
-            activeDates={date ? [{ date: date, state: "primary" }] : []}
+            activeDates={
+              (date && [{ date: date, state: "primary" }]) || undefined
+            }
             onClickDate={(date) => onClickDate(date)}
             currentMonth={currentMonth}
             filledWeeks
