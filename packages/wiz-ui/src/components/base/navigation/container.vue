@@ -38,7 +38,7 @@ const props = defineProps({
   },
   sticky: {
     type: Boolean,
-    requird: false,
+    required: false,
   },
   isOpen: {
     type: Boolean,
