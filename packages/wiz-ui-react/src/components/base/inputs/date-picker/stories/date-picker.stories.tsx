@@ -7,7 +7,7 @@ import { useState } from "react";
 import { WizDatePicker } from "../components";
 
 const meta: Meta<typeof WizDatePicker> = {
-  title: "Base/DatePicker",
+  title: "Base/Input/DatePicker",
   component: WizDatePicker,
   argTypes: {},
   parameters: {},
