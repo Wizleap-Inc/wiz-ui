@@ -3,7 +3,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css"
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useContext, useRef, useState } from "react";
+import { FC, useCallback, useContext, useMemo, useRef, useState } from "react";
 
 import {
   WizCalendar,
@@ -64,10 +64,14 @@ const DateRangePicker: FC<Props> = ({
       return new Date();
     })()
   );
-  const leftCalendarDate = new Date(
-    rightCalendarDate.getFullYear(),
-    rightCalendarDate.getMonth() - 1,
-    1
+  const leftCalendarDate = useMemo(
+    () =>
+      new Date(
+        rightCalendarDate.getFullYear(),
+        rightCalendarDate.getMonth() - 1,
+        1
+      ),
+    [rightCalendarDate]
   );
   const onClickCancel = () => onChangeDateRange({ start: null, end: null });
   const moveCalendar = (command: "nextMonth" | "prevMonth") => {
@@ -81,7 +85,7 @@ const DateRangePicker: FC<Props> = ({
     );
   };
 
-  const selectedDates = (() => {
+  const selectedDates = useMemo(() => {
     const getDateStatus = (
       date: Date,
       state: DateStatus["state"]
@@ -107,19 +111,23 @@ const DateRangePicker: FC<Props> = ({
       return [getDateStatus(start, "primary")];
     }
     return [];
-  })();
+  }, [dateRange]);
 
-  const onClickDate = (date: Date) => {
-    const [start, end] = [dateRange.start, dateRange.end];
-    if (start && end) {
-      onChangeDateRange({ start: date, end: null });
-    } else if (start) {
-      const [nextStart, nextEnd] = start > date ? [date, start] : [start, date];
-      onChangeDateRange({ start: nextStart, end: nextEnd });
-    } else {
-      onChangeDateRange({ start: date, end: null });
-    }
-  };
+  const onClickDate = useCallback(
+    (date: Date) => {
+      const [start, end] = [dateRange.start, dateRange.end];
+      if (start && end) {
+        onChangeDateRange({ start: date, end: null });
+      } else if (start) {
+        const [nextStart, nextEnd] =
+          start > date ? [date, start] : [start, date];
+        onChangeDateRange({ start: nextStart, end: nextEnd });
+      } else {
+        onChangeDateRange({ start: date, end: null });
+      }
+    },
+    [dateRange, onChangeDateRange]
+  );
 
   const selectedOption = (() => {
     if (!selectBoxOptions) return undefined;
