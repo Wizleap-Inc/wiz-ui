@@ -134,7 +134,7 @@ const DateRangePicker: FC<Props> = ({
     return selectBoxOptions.find((option) => option.value === selectBoxValue);
   })();
 
-  const handleSelectBoxOptionClick = (
+  const handleClickSelectBoxOption = (
     option: DateRangePickerSelectBoxOption
   ) => {
     setIsSelectBoxOpen(false);
@@ -243,7 +243,7 @@ const DateRangePicker: FC<Props> = ({
                             className={styles.popupHeaderSelectBoxOptionStyle}
                             aria-label={option.label}
                             onClick={() => {
-                              handleSelectBoxOptionClick(option);
+                              handleClickSelectBoxOption(option);
                             }}
                           >
                             {option.label}
