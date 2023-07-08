@@ -71,13 +71,10 @@ const DateRangePicker: FC<Props> = ({
   );
   const onClickCancel = () => onChangeDateRange({ start: null, end: null });
   const moveCalendar = (command: "nextMonth" | "prevMonth") => {
-    const [dm, dy] = (() => {
-      if (command === "nextMonth") return [1, 0];
-      return [-1, 0];
-    })();
+    const dm = command === "nextMonth" ? 1 : -1;
     setRightCalendarDate(
       new Date(
-        rightCalendarDate.getFullYear() + dy,
+        rightCalendarDate.getFullYear(),
         rightCalendarDate.getMonth() + dm,
         1
       )
