@@ -62,12 +62,12 @@ const Popup = ({
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
   useEffect(() => {
-    if (!isActuallyOpen) {
+    const anchor = anchorElement.current;
+    if (!isActuallyOpen || !anchor) {
       return;
     }
-    const popupPlacement = () => {
-      if (!anchorElement.current) return {};
-      const anchorRect = anchorElement.current.getBoundingClientRect();
+    const getPopupPlacementStyle = () => {
+      const anchorRect = anchor.getBoundingClientRect();
       const contentRect = popupRef.current?.getBoundingClientRect();
       const placementOption: PlacementOption = {
         anchor: anchorRect,
@@ -92,13 +92,19 @@ const Popup = ({
       });
       return placeOnPortalStyle[dir](placementOption);
     };
-    setPlacementStyle(popupPlacement());
-    const handleResize = () => setPlacementStyle(popupPlacement());
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
+
+    const updatePlacementStyle = () => {
+      setPlacementStyle(getPopupPlacementStyle());
     };
-  }, [isActuallyOpen, direction, gap, anchorElement, isDirectionFixed]);
+    updatePlacementStyle();
+    window.addEventListener("resize", updatePlacementStyle);
+    const anchorResizeObserver = new ResizeObserver(updatePlacementStyle);
+    anchorResizeObserver.observe(anchor);
+    return () => {
+      window.removeEventListener("resize", updatePlacementStyle);
+      anchorResizeObserver.disconnect();
+    };
+  }, [anchorElement, direction, gap, isActuallyOpen, isDirectionFixed]);
 
   return (
     <WizPortal container={document.body}>

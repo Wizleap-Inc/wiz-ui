@@ -29,6 +29,7 @@ export const calendarItemStyle = styleVariants({
     textAlign: "center",
     background: THEME.color.green[800],
     borderRadius: THEME.spacing.xs2,
+    cursor: "pointer",
   },
   secondary: {
     color: THEME.color.green[800],

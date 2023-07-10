@@ -18,6 +18,7 @@ import {
   WizIAssignment,
   WizIBusinessCenter,
   WizIHelp,
+  WizIInfo,
 } from "@wizleap-inc/wiz-ui";
 import { computed } from "vue";
 import { useRoute } from "vue-router/composables";
@@ -49,6 +50,12 @@ const navigationItems = computed(() => [
     label: "Help",
     to: "/help",
     active: currentPath.value === "/help",
+  },
+  {
+    icon: WizIInfo,
+    label: "Breakpoint",
+    to: "/breakpoint",
+    active: currentPath.value === "/breakpoint",
   },
 ]);
 </script>
