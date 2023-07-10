@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { BrowserRouter } from "react-router-dom";
 
 import { WizIDashboard } from "@/components/icons";
 
@@ -13,7 +14,16 @@ const meta: Meta<typeof WizNavigationItem> = {
 export default meta;
 type Story = StoryObj<typeof WizNavigationItem>;
 
+const Template: Story = {
+  render: (args) => (
+    <BrowserRouter>
+      <WizNavigationItem {...args} />
+    </BrowserRouter>
+  ),
+};
+
 export const Default: Story = {
+  ...Template,
   args: {
     icon: WizIDashboard,
     label: "Home",
@@ -23,23 +33,23 @@ export const Default: Story = {
 };
 
 export const Active: Story = {
+  ...Template,
   args: {
     icon: WizIDashboard,
     label: "Home",
     href: "/",
     active: true,
   },
-  render: (args) => <WizNavigationItem {...args} />,
 };
 
 export const Disabled: Story = {
+  ...Template,
   args: {
     icon: WizIDashboard,
     label: "Home",
     href: "/",
     disabled: true,
   },
-  render: (args) => <WizNavigationItem {...args} />,
 };
 
 export const WithToolTip: Story = {
@@ -50,8 +60,10 @@ export const WithToolTip: Story = {
     tooltipText: "これはヒントです。",
   },
   render: (args) => (
-    <div style={{ marginTop: "48px" }}>
-      <WizNavigationItem {...args} />
-    </div>
+    <BrowserRouter>
+      <div style={{ marginTop: "48px" }}>
+        <WizNavigationItem {...args} />
+      </div>
+    </BrowserRouter>
   ),
 };

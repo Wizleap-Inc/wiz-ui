@@ -1,12 +1,9 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  navigationItemStyle,
-  navigationItemActiveStyle,
   navigationItemIconStyle,
   navigationItemIconActiveStyle,
   navigationItemTextStyle,
   navigationItemTextActiveStyle,
-  navigationItemDisabledStyle,
   navigationItemIconDisabledStyle,
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
@@ -16,6 +13,8 @@ import { FC, useCallback, useRef } from "react";
 import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
+
+import { NavigationItemLink } from "./navigation-item-link";
 
 interface Props {
   icon: TIcon;
@@ -85,37 +84,34 @@ const NavigationItem: FC<Props> = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <a
-          href={disabled ? undefined : href}
-          target={!disabled && isExternalLink ? "_blank" : undefined}
-          rel={!disabled && isExternalLink ? "noreferrer" : undefined}
-          className={clsx(
-            navigationItemStyle,
-            disabled
-              ? navigationItemDisabledStyle
-              : active && navigationItemActiveStyle
-          )}
+        <NavigationItemLink
+          isExternalLink={isExternalLink}
+          href={href}
+          active={active}
+          disabled={disabled}
         >
-          <div
-            className={clsx(
-              navigationItemIconStyle,
-              disabled
-                ? navigationItemIconDisabledStyle
-                : active && navigationItemIconActiveStyle
-            )}
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <Icon />
-          </div>
-          <div
-            className={clsx(
-              navigationItemTextStyle,
-              !disabled && active && navigationItemTextActiveStyle
-            )}
-          >
-            {label}
-          </div>
-        </a>
+          <>
+            <div
+              className={clsx(
+                navigationItemIconStyle,
+                disabled
+                  ? navigationItemIconDisabledStyle
+                  : active && navigationItemIconActiveStyle
+              )}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Icon />
+            </div>
+            <div
+              className={clsx(
+                navigationItemTextStyle,
+                !disabled && active && navigationItemTextActiveStyle
+              )}
+            >
+              {label}
+            </div>
+          </>
+        </NavigationItemLink>
       </div>
       {existPopup && (
         <div>

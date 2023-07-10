@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 import {
   WizIAssignment,
@@ -52,19 +53,21 @@ const navItems = [
 const Template: Story = {
   render: (args) => (
     <div style={{ display: "flex", height: "100vh" }}>
-      <WizNavigationContainer {...args}>
-        {navItems.map((path) => (
-          <WizNavigationItem
-            key={`path-${path.label}`}
-            icon={path.icon}
-            label={path.label}
-            href={path.href}
-            active={false}
-            onTogglePopup={dummyHandler}
-            onTogglePopupLocking={dummyHandler}
-          />
-        ))}
-      </WizNavigationContainer>
+      <BrowserRouter>
+        <WizNavigationContainer {...args}>
+          {navItems.map((path) => (
+            <WizNavigationItem
+              key={`path-${path.label}`}
+              icon={path.icon}
+              label={path.label}
+              href={path.href}
+              active={false}
+              onTogglePopup={dummyHandler}
+              onTogglePopupLocking={dummyHandler}
+            />
+          ))}
+        </WizNavigationContainer>
+      </BrowserRouter>
     </div>
   ),
 };
@@ -105,27 +108,29 @@ export const Playground: Story = {
     const [isMenuOpen, setIsMenuOpen] = useState(args.isOpen);
     const dummyHandler = () => setIsMenuOpen((prev) => !prev);
     return (
-      <div style={{ display: "flex", height: "100vh" }}>
-        <WizNavigationContainer {...args} isOpen={isMenuOpen}>
-          {navItems.map((path) => (
-            <WizNavigationItem
-              key={`path-${path.label}`}
-              icon={path.icon}
-              label={path.label}
-              href={path.href}
-              active={false}
-              onTogglePopup={dummyHandler}
-              onTogglePopupLocking={dummyHandler}
-            />
-          ))}
-        </WizNavigationContainer>
-        <div>
-          デバッグ用
-          <button onClick={dummyHandler}>
-            {isMenuOpen ? "Close" : "Open"}
-          </button>
+      <BrowserRouter>
+        <div style={{ display: "flex", height: "100vh" }}>
+          <WizNavigationContainer {...args} isOpen={isMenuOpen}>
+            {navItems.map((path) => (
+              <WizNavigationItem
+                key={`path-${path.label}`}
+                icon={path.icon}
+                label={path.label}
+                href={path.href}
+                active={false}
+                onTogglePopup={dummyHandler}
+                onTogglePopupLocking={dummyHandler}
+              />
+            ))}
+          </WizNavigationContainer>
+          <div>
+            デバッグ用
+            <button onClick={dummyHandler}>
+              {isMenuOpen ? "Close" : "Open"}
+            </button>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   },
 };
@@ -165,54 +170,56 @@ const PopupTemplate: Story = {
       setIsPopupLocking(isPopupLocking);
 
     return (
-      <div style={{ display: "flex", height: "100vh" }}>
-        <WizNavigationContainer {...args}>
-          <WizNavigationItem
-            icon={WizIDashboard}
-            label="Home"
-            href="/"
-            active={false}
-            buttons={[createButton(0)]}
-            isPopupOpen={isPopupOpen0}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-          />
-          <WizNavigationItem
-            icon={WizIAssignment}
-            label="Page1"
-            href="/page1"
-            active={false}
-            buttons={[createButton(1), createButton(2)]}
-            isPopupOpen={isPopupOpen1}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-          />
-          <WizNavigationItem
-            icon={WizIBusinessCenter}
-            label="Page2"
-            href="/page2"
-            active={false}
-            buttons={[createButton(3), createButton(4)]}
-            isPopupOpen={isPopupOpen2}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-          />
-          <WizNavigationItem
-            icon={WizIHelp}
-            label="Page3"
-            href="http://localhost:6008/"
-            active={false}
-            buttons={[createButton(5), createButton(6)]}
-            isPopupOpen={isPopupOpen3}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-          />
-        </WizNavigationContainer>
-      </div>
+      <BrowserRouter>
+        <div style={{ display: "flex", height: "100vh" }}>
+          <WizNavigationContainer {...args}>
+            <WizNavigationItem
+              icon={WizIDashboard}
+              label="Home"
+              href="/"
+              active={false}
+              buttons={[createButton(0)]}
+              isPopupOpen={isPopupOpen0}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+            />
+            <WizNavigationItem
+              icon={WizIAssignment}
+              label="Page1"
+              href="/page1"
+              active={false}
+              buttons={[createButton(1), createButton(2)]}
+              isPopupOpen={isPopupOpen1}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+            />
+            <WizNavigationItem
+              icon={WizIBusinessCenter}
+              label="Page2"
+              href="/page2"
+              active={false}
+              buttons={[createButton(3), createButton(4)]}
+              isPopupOpen={isPopupOpen2}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+            />
+            <WizNavigationItem
+              icon={WizIHelp}
+              label="Page3"
+              href="http://localhost:6008/"
+              active={false}
+              buttons={[createButton(5), createButton(6)]}
+              isPopupOpen={isPopupOpen3}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+            />
+          </WizNavigationContainer>
+        </div>
+      </BrowserRouter>
     );
   },
 };
@@ -238,22 +245,24 @@ export const Disabled: Story = {
     sticky: true,
   },
   render: (args) => (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <WizNavigationContainer {...args}>
-        {navItems.map((path) => (
-          <WizNavigationItem
-            key={`path-${path.label}`}
-            icon={path.icon}
-            label={path.label}
-            href={path.href}
-            active={false}
-            onTogglePopup={dummyHandler}
-            onTogglePopupLocking={dummyHandler}
-            disabled
-          />
-        ))}
-      </WizNavigationContainer>
-    </div>
+    <BrowserRouter>
+      <div style={{ display: "flex", height: "100vh" }}>
+        <WizNavigationContainer {...args}>
+          {navItems.map((path) => (
+            <WizNavigationItem
+              key={`path-${path.label}`}
+              icon={path.icon}
+              label={path.label}
+              href={path.href}
+              active={false}
+              onTogglePopup={dummyHandler}
+              onTogglePopupLocking={dummyHandler}
+              disabled
+            />
+          ))}
+        </WizNavigationContainer>
+      </div>
+    </BrowserRouter>
   ),
 };
 
@@ -272,58 +281,60 @@ export const PopupAndTooltip: Story = {
       setIsPopupLocking(isPopupLocking);
 
     return (
-      <div style={{ display: "flex", height: "100vh" }}>
-        <WizNavigationContainer {...args}>
-          <WizNavigationItem
-            icon={WizIDashboard}
-            label="Home"
-            href="/"
-            active={false}
-            buttons={[createButton(0)]}
-            isPopupOpen={isPopupOpen0}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-            tooltipText="これはヒント1です。"
-          />
-          <WizNavigationItem
-            icon={WizIAssignment}
-            label="Page1"
-            href="/page1"
-            active={false}
-            buttons={[createButton(1), createButton(2)]}
-            isPopupOpen={isPopupOpen1}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-            tooltipText="これはヒント2です。"
-          />
-          <WizNavigationItem
-            icon={WizIBusinessCenter}
-            label="Page2"
-            href="/page2"
-            active={false}
-            buttons={[createButton(3), createButton(4)]}
-            isPopupOpen={isPopupOpen2}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-            tooltipText="これはヒント3です。"
-          />
-          <WizNavigationItem
-            icon={WizIHelp}
-            label="Page3"
-            href="http://localhost:6008/"
-            active={false}
-            buttons={[createButton(5), createButton(6)]}
-            isPopupOpen={isPopupOpen3}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
-            tooltipText="これはヒント4です。"
-          />
-        </WizNavigationContainer>
-      </div>
+      <BrowserRouter>
+        <div style={{ display: "flex", height: "100vh" }}>
+          <WizNavigationContainer {...args}>
+            <WizNavigationItem
+              icon={WizIDashboard}
+              label="Home"
+              href="/"
+              active={false}
+              buttons={[createButton(0)]}
+              isPopupOpen={isPopupOpen0}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+              tooltipText="これはヒント1です。"
+            />
+            <WizNavigationItem
+              icon={WizIAssignment}
+              label="Page1"
+              href="/page1"
+              active={false}
+              buttons={[createButton(1), createButton(2)]}
+              isPopupOpen={isPopupOpen1}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+              tooltipText="これはヒント2です。"
+            />
+            <WizNavigationItem
+              icon={WizIBusinessCenter}
+              label="Page2"
+              href="/page2"
+              active={false}
+              buttons={[createButton(3), createButton(4)]}
+              isPopupOpen={isPopupOpen2}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+              tooltipText="これはヒント3です。"
+            />
+            <WizNavigationItem
+              icon={WizIHelp}
+              label="Page3"
+              href="http://localhost:6008/"
+              active={false}
+              buttons={[createButton(5), createButton(6)]}
+              isPopupOpen={isPopupOpen3}
+              onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
+              isPopupLocking={isPopupLocking}
+              onTogglePopupLocking={dummyHandler}
+              tooltipText="これはヒント4です。"
+            />
+          </WizNavigationContainer>
+        </div>
+      </BrowserRouter>
     );
   },
 };
