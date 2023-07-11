@@ -58,7 +58,7 @@ const OVERVIEW_TEMPLATE = `
     <WizUnstyledTable space="xs2" width="100%">
       <WizUnstyledTbody>
         <WizUnstyledTr>
-          <WizUnstyledTd align="light" width="80px">
+          <WizUnstyledTd align="left" width="80px">
             <WizText fontSize="xs">
               相談日時
             </WizText>
@@ -78,7 +78,7 @@ const OVERVIEW_TEMPLATE = `
           </WizUnstyledTd>
         </WizUnstyledTr>
         <WizUnstyledTr>
-          <WizUnstyledTd align="light">
+          <WizUnstyledTd align="left">
             <WizText fontSize="xs">
               相談場所
             </WizText>
@@ -104,7 +104,7 @@ const OVERVIEW_TEMPLATE = `
           </WizUnstyledTd>
         </WizUnstyledTr>
         <WizUnstyledTr>
-          <WizUnstyledTd align="light">
+          <WizUnstyledTd align="left">
             <WizText fontSize="xs">
               専門家
             </WizText>
@@ -116,7 +116,7 @@ const OVERVIEW_TEMPLATE = `
           </WizUnstyledTd>
         </WizUnstyledTr>
         <WizUnstyledTr>
-          <WizUnstyledTd align="light">
+          <WizUnstyledTd align="left">
             <WizText fontSize="xs">
               前日の挨拶
             </WizText>

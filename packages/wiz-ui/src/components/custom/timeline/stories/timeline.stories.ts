@@ -40,12 +40,12 @@ const Template: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
   <WizTimeline v-bind="$props">
     <WizTimelineItem title="Title"/>
     <WizTimelineItem title="Title" tag="Tag"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
     </WizTimelineItem>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
       <template #footer>
         <WizDivider/>
@@ -100,12 +100,12 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
       <WizUnstyledTable space="sm" width="100%">
         <WizUnstyledTbody>
           <WizUnstyledTr>
-            <WizUnstyledTd align="light" width="80px">
+            <WizUnstyledTd align="left" width="80px">
               <WizText fontSize="xs">
                 相談日時
               </WizText>
             </WizUnstyledTd>
-            <WizUnstyledTd align="light">
+            <WizUnstyledTd align="left">
               <WizHStack align="start" justify="between">
                 <WizVStack>
                   <WizText bold :fontSize="sectionFontSize">
@@ -138,7 +138,7 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
             </WizUnstyledTd>
           </WizUnstyledTr>
           <WizUnstyledTr>
-            <WizUnstyledTd align="light">
+            <WizUnstyledTd align="left">
               <WizText fontSize="xs">
                 相談場所
               </WizText>
@@ -158,13 +158,13 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
                 </WizText>
                 <WizText bold color="red.800" as="span" fontSize="sm">
                   未設定
-                </WizText display="inline-block">
+                </WizText>
                 <WizIcon :icon="WizIInfo" color="red.800" />
               </WizHStack>
             </WizUnstyledTd>
           </WizUnstyledTr>
           <WizUnstyledTr>
-            <WizUnstyledTd align="light">
+            <WizUnstyledTd align="left">
               <WizText fontSize="xs">
                 専門家
               </WizText>
@@ -176,7 +176,7 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
             </WizUnstyledTd>
           </WizUnstyledTr>
           <WizUnstyledTr>
-            <WizUnstyledTd align="light">
+            <WizUnstyledTd align="left">
               <WizText fontSize="xs">
                 前日の挨拶
               </WizText>
@@ -203,12 +203,12 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
     </WizTimelineItem>
     <WizTimelineItem title="Title"/>
     <WizTimelineItem title="Title" tag="Tag"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
     </WizTimelineItem>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
       <template #footer>
         <WizDivider/>

@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/vue";
+import { StoryFn } from "@storybook/vue3";
 import { provide, ref } from "vue";
 
 import {
@@ -98,7 +98,7 @@ const OVERVIEW_TEMPLATE = `
               </WizText>
               <WizText bold color="red.800" as="span" fontSize="sm">
                 未設定
-              </WizText display="inline-block">
+              </WizText>
               <WizIcon :icon="WizIInfo" color="red.800" />
             </WizHStack>
           </WizUnstyledTd>

@@ -40,12 +40,12 @@ const Template: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
   <WizTimeline v-bind="$props">
     <WizTimelineItem title="Title"/>
     <WizTimelineItem title="Title" tag="Tag"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
     </WizTimelineItem>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
       <template #footer>
         <WizDivider/>
@@ -128,7 +128,7 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
                       すぐにマネーキャリアから相談者に連絡を取ります。<br />
                       申請後、相談開始時間から30分は、そのまま待機をお願いいたします。
                     </WizText>
-                    <WizAnchor href="https://wizleap.co.jp" target="_blank" rel="noopener" :icon="WizIArrowRight">
+                    <WizAnchor to="https://wizleap.co.jp" target="_blank" rel="noopener" :icon="WizIArrowRight">
                       マネーキャリアに連絡する（相談者不在申請）
                     </WizAnchor>
                   </WizMessageBox>
@@ -158,7 +158,7 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
                 </WizText>
                 <WizText bold color="red.800" as="span" fontSize="sm">
                   未設定
-                </WizText display="inline-block">
+                </WizText>
                 <WizIcon :icon="WizIInfo" color="red.800" />
               </WizHStack>
             </WizUnstyledTd>
@@ -203,12 +203,12 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
     </WizTimelineItem>
     <WizTimelineItem title="Title"/>
     <WizTimelineItem title="Title" tag="Tag"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure"/>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure"/>
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
     </WizTimelineItem>
-    <WizTimelineItem title="Title" tag="Tag" date="2023年12月9日" variant="failure">
+    <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure">
       SLOT
       <template #footer>
         <WizDivider/>

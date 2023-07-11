@@ -93,10 +93,10 @@ export const Playground: StoryFn<typeof WizTimeline> = () => {
         <WizUnstyledTable space="sm" width="100%">
           <WizUnstyledTbody>
             <WizUnstyledTr>
-              <WizUnstyledTd align="right" width="80px">
+              <WizUnstyledTd align="left" width="80px">
                 <WizText fontSize="xs">相談日時</WizText>
               </WizUnstyledTd>
-              <WizUnstyledTd align="right">
+              <WizUnstyledTd align="left">
                 <WizHStack align="start" justify="between">
                   <WizVStack>
                     <WizText bold fontSize={sectionFontSize}>
@@ -146,7 +146,7 @@ export const Playground: StoryFn<typeof WizTimeline> = () => {
               </WizUnstyledTd>
             </WizUnstyledTr>
             <WizUnstyledTr>
-              <WizUnstyledTd align="right">
+              <WizUnstyledTd align="left">
                 <WizText fontSize="xs">相談場所</WizText>
               </WizUnstyledTd>
               <WizUnstyledTd>
@@ -170,7 +170,7 @@ export const Playground: StoryFn<typeof WizTimeline> = () => {
               </WizUnstyledTd>
             </WizUnstyledTr>
             <WizUnstyledTr>
-              <WizUnstyledTd align="right">
+              <WizUnstyledTd align="left">
                 <WizText fontSize="xs">専門家</WizText>
               </WizUnstyledTd>
               <WizUnstyledTd>
@@ -180,7 +180,7 @@ export const Playground: StoryFn<typeof WizTimeline> = () => {
               </WizUnstyledTd>
             </WizUnstyledTr>
             <WizUnstyledTr>
-              <WizUnstyledTd align="right">
+              <WizUnstyledTd align="left">
                 <WizText fontSize="xs">前日の挨拶</WizText>
               </WizUnstyledTd>
               <WizUnstyledTd>
