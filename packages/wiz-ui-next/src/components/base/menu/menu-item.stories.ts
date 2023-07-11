@@ -1,4 +1,5 @@
 import { StoryFn, Meta } from "@storybook/vue3";
+import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizMenuItem } from "./";
 
@@ -15,6 +16,11 @@ export default {
       control: {
         type: "boolean",
       },
+    },
+    fontSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
+      defaultValue: "md",
     },
     click: {
       action: "click",
@@ -109,4 +115,10 @@ Expand.parameters = {
       `,
     },
   },
+};
+
+export const FontSize = Template.bind({});
+FontSize.args = {
+  label: "テスト",
+  fontSize: "lg",
 };

@@ -57,8 +57,7 @@ export const searchBlockStyle = style({
   backgroundColor: THEME.color.white[800],
   paddingRight: THEME.spacing.xs,
   paddingLeft: THEME.spacing.xs,
-  height: "fit-content",
-  maxHeight: "25rem",
+  height: "25rem",
   overflowY: "auto",
   "::-webkit-scrollbar": {
     width: THEME.spacing.xs2,
@@ -80,8 +79,7 @@ export const searchBlockBorderRadiusStyle = style({
 export const searchPopupBlockStyle = style({
   backgroundColor: THEME.color.white[800],
   padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
-  height: "fit-content",
-  maxHeight: "25rem",
+  height: "25rem",
   overflowY: "auto",
   "::-webkit-scrollbar": {
     width: THEME.spacing.xs2,
@@ -116,7 +114,7 @@ export const searchDropdownLabelStyle = style({
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[700],
-  lineHeight: THEME.fontSize.xl,
+  lineHeight: THEME.fontSize.xl3,
   userSelect: "none",
   "@media": {
     "(any-hover: hover)": {
@@ -126,6 +124,11 @@ export const searchDropdownLabelStyle = style({
       },
     },
   },
+});
+
+export const searchDropdownSelectingItemStyle = style({
+  background: THEME.color.green[300],
+  color: THEME.color.green[800],
 });
 
 export const searchDropdownCheckboxItemStyle = style({
@@ -141,7 +144,7 @@ export const searchCheckboxLabelStyle = style({
   display: "flex",
   alignItems: "center",
   color: THEME.color.gray["600"],
-  lineHeight: THEME.fontSize.xl2,
+  lineHeight: THEME.fontSize.xl3,
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
   cursor: "pointer",
@@ -153,6 +156,7 @@ export const searchCheckboxLabelStyle = style({
     height: THEME.spacing.md,
     boxSizing: "border-box",
     display: "inline-block",
+    flexShrink: 0,
   },
 });
 
@@ -164,7 +168,8 @@ export const searchCheckboxLabelCheckedStyle = style({
 
 export const searchCheckboxIconStyle = style({
   position: "absolute",
-  top: THEME.spacing.xs2,
+  top: "50%",
+  transform: "translateY(-50%)",
   left: borderWidth,
   fill: THEME.color.green["800"],
 });

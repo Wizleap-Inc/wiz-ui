@@ -1,7 +1,8 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { StoryFn, Meta } from "@storybook/vue";
+import { Meta, StoryFn } from "@storybook/vue";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
+import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { ref } from "vue";
 
 import WizDateRangePicker from "./date-range-picker.vue";
@@ -36,6 +37,11 @@ export default {
     },
     onSelectBoxValueChange: {
       action: "updateSelectBoxValue",
+    },
+    isDirectionFixed: {
+      control: {
+        type: "boolean",
+      },
     },
   },
   parameters: {
@@ -97,6 +103,7 @@ interface Props {
   disabled: boolean;
   expand: boolean;
   selectBoxOptions: boolean;
+  isDirectionFixed: boolean;
 }
 
 const CODE_TEMPLATE = (props: Partial<Props>) => `
@@ -128,7 +135,8 @@ const selectBoxValue = ref('');
     (props.expand ? " expand" : "") +
     (props.selectBoxOptions
       ? ' :selectBoxOptions="selectBoxOptions" :selectBoxValue="selectBoxValue" @updateSelectBoxValue="selectBoxValue = $event"'
-      : "")
+      : "") +
+    (props.isDirectionFixed ? ' :isDirectionFixed="true"' : "")
   }/>
 </template>
 `;
@@ -176,6 +184,26 @@ Disabled.parameters = {
   },
 };
 
+export const DisabledWithValue: StoryFn<typeof WizDateRangePicker> = (
+  _,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizDateRangePicker },
+  template: `
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem"> 
+      <WizDateRangePicker v-bind="$props"  /> 
+    </div>
+  `,
+});
+DisabledWithValue.args = {
+  value: {
+    start: new Date(2000, 0, 15),
+    end: new Date(2000, 1, 15),
+  },
+  disabled: true,
+};
+
 export const Expand = Template.bind({});
 Expand.args = {
   value: {
@@ -191,6 +219,25 @@ Expand.parameters = {
     },
     source: {
       code: CODE_TEMPLATE({ expand: true }),
+    },
+  },
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  value: {
+    start: null,
+    end: null,
+  },
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    description: {
+      story: `isDirectionFixedを設定することで、Popup の表示位置を固定することができます。`,
+    },
+    source: {
+      code: CODE_TEMPLATE({ isDirectionFixed: true }),
     },
   },
 };
@@ -229,6 +276,50 @@ export const InitialValueRange: StoryFn<typeof WizDateRangePicker> = (
     const dateRange1 = ref<DateRange>({
       start: new Date(2000, 0, 15),
       end: new Date(2000, 1, 15),
+    });
+    const isOpen1 = ref<boolean>(true);
+    const setIsOpen1 = (value: boolean) => (isOpen1.value = value);
+
+    const selectBoxValue = ref<string>();
+    const handleSelectBoxValueChange = (value: string) => {
+      selectBoxValue.value = value;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      args.onSelectBoxValueChange(value);
+    };
+    return {
+      dateRange1,
+      selectBoxValue,
+      handleSelectBoxValueChange,
+      isOpen1,
+      setIsOpen1,
+    };
+  },
+  template: ` 
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 60rem"> 
+      <WizDateRangePicker 
+        v-model="dateRange1" 
+        :selectBoxValue="selectBoxValue" 
+        :selectBoxOptions="selectBoxOptions" 
+        @input="onDateSelected" 
+        @updateSelectBoxValue="handleSelectBoxValueChange"
+        :isOpen="isOpen1"
+        @updateIsOpen="setIsOpen1"
+      />
+    </div>
+  `,
+});
+
+export const InitialValueRange2: StoryFn<typeof WizDateRangePicker> = (
+  args,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizDateRangePicker },
+  setup() {
+    const dateRange1 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 0, 15),
     });
     const isOpen1 = ref<boolean>(true);
     const setIsOpen1 = (value: boolean) => (isOpen1.value = value);
@@ -306,6 +397,59 @@ export const InitialValueStart: StoryFn<typeof WizDateRangePicker> = (
     </div>
   `,
 });
+
+export const Hover: StoryFn<typeof WizDateRangePicker> = (
+  args,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizDateRangePicker },
+  setup() {
+    const dateRange = ref<DateRange>({
+      start: new Date(2020, 0, 15),
+      end: new Date(2020, 1, 15),
+    });
+    const selectBoxValue = ref<string>();
+    const updateSelectBoxValue = (value: string) => {
+      selectBoxValue.value = value;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      args.onSelectBoxValueChange(value);
+    };
+    const isOpen = ref(true);
+    const isHover = ref(true);
+    const updateIsOpen = (value: boolean) => {
+      isOpen.value = value;
+    };
+    const updateIsHover = (value: boolean) => {
+      isHover.value = value;
+    };
+    return {
+      dateRange,
+      selectBoxValue,
+      isOpen,
+      isHover,
+      updateSelectBoxValue,
+      updateIsOpen,
+      updateIsHover,
+    };
+  },
+  template: `
+    <div>
+      <WizDateRangePicker 
+        v-model="dateRange" 
+        :selectBoxValue="selectBoxValue" 
+        :isOpen="isOpen"
+        :isHover="isHover"
+        @input="onDateSelected" 
+        @updateSelectBoxValue="updateSelectBoxValue" 
+        @updateIsOpen="updateIsOpen"  
+        @updateIsHover="updateIsHover"
+      />
+    </div>
+  `,
+});
+
 const _formatDateJp = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -331,23 +475,29 @@ export const Test: StoryFn<typeof WizDateRangePicker> = (
       end: null,
     });
     const selectBoxValue = ref<string>();
-    const handleSelectBoxValueChange = (value: string) => {
+    const updateSelectBoxValue = (value: string) => {
       selectBoxValue.value = value;
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       args.onSelectBoxValueChange(value);
     };
     const isOpen = ref(false);
+    const isHover = ref(false);
     const updateIsOpen = (value: boolean) => {
       isOpen.value = value;
+    };
+    const updateIsHover = (value: boolean) => {
+      isHover.value = value;
     };
     return {
       dateRange,
       selectBoxValue,
       selectBoxOptions,
-      handleSelectBoxValueChange,
       isOpen,
+      isHover,
+      updateSelectBoxValue,
       updateIsOpen,
+      updateIsHover,
     };
   },
   template: `
@@ -356,10 +506,12 @@ export const Test: StoryFn<typeof WizDateRangePicker> = (
         v-model="dateRange" 
         :selectBoxValue="selectBoxValue" 
         :selectBoxOptions="selectBoxOptions" 
-        @input="onDateSelected" 
-        @updateSelectBoxValue="handleSelectBoxValueChange" 
         :isOpen="isOpen"
+        :isHover="isHover"
+        @input="onDateSelected" 
+        @updateSelectBoxValue="updateSelectBoxValue" 
         @updateIsOpen="updateIsOpen"  
+        @updateIsHover="updateIsHover"
       />
     </div>
   `,
@@ -387,7 +539,7 @@ Test.play = async ({ canvasElement }) => {
   // Input内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent).toBe(
-      `${leftClickDate.getMonth() + 1}/${leftClickDate.getDate()}-終了日`
+      formatDateToYYMMDD(leftClickDate) + "-終了日"
     )
   );
 
@@ -404,10 +556,10 @@ Test.play = async ({ canvasElement }) => {
   );
   // Input内が選択した日付になることを確認
   await waitFor(() =>
-    expect(button.textContent).toBe(
-      `${leftClickDate.getMonth() + 1}/${leftClickDate.getDate()}-${
-        rightClickDate.getMonth() + 1
-      }/${rightClickDate.getDate()}`
+    expect(button.textContent?.replace(/\s+/g, "")).toBe(
+      `${formatDateToYYMMDD(leftClickDate)}-${formatDateToYYMMDD(
+        rightClickDate
+      )}`
     )
   );
   // 選択済みなボタンがrightClickedDate ~ leftClickedDateの間の数だけあることを確認
