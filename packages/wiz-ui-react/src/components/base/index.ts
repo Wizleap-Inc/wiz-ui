@@ -11,6 +11,7 @@ export * from "./information-panel";
 export * from "./divider";
 export * from "./progress-bar";
 export * from "./tab";
+export * from "./tables";
 export * from "./step-bar";
 export * from "./message-box";
 export * from "./menu";
