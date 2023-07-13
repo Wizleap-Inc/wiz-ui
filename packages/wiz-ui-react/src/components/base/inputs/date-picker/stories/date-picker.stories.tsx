@@ -77,6 +77,6 @@ export const IsDirectionFixed: Story = {
 export const Playground: Story = {
   render: (args) => {
     const [date, setDate] = useState<Date | null>(null);
-    return <WizDatePicker {...args} date={date} onClickDate={setDate} />;
+    return <WizDatePicker {...args} date={date} onChangeDate={setDate} />;
   },
 };

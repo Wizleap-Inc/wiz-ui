@@ -27,7 +27,7 @@ type Props = {
   disabled?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
-  onClickDate: (selectedValue: Date | null) => void;
+  onChangeDate: (selectedValue: Date | null) => void;
 };
 
 const DatePicker: FC<Props> = ({
@@ -36,7 +36,7 @@ const DatePicker: FC<Props> = ({
   width = "10rem",
   disabled = false,
   isDirectionFixed = false,
-  onClickDate,
+  onChangeDate,
   error,
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
@@ -98,7 +98,7 @@ const DatePicker: FC<Props> = ({
             <button
               className={styles.datePickerCancelButtonStyle}
               disabled={disabled}
-              onClick={() => onClickDate(null)}
+              onClick={() => onChangeDate(null)}
               aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
             >
               <WizIcon size="xl2" color="inherit" icon={WizICancel} />
@@ -201,7 +201,7 @@ const DatePicker: FC<Props> = ({
             activeDates={
               (date && [{ date: date, state: "primary" }]) || undefined
             }
-            onClickDate={(date) => onClickDate(date)}
+            onClickDate={(date) => onChangeDate(date)}
             currentMonth={currentMonth}
             filledWeeks
           />
