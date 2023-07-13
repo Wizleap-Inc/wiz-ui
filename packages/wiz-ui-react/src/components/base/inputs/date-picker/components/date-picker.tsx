@@ -57,7 +57,7 @@ const DatePicker: FC<Props> = ({
       new Date(currentMonth.getFullYear() + dy, currentMonth.getMonth() + dm, 1)
     );
   };
-  const calender = {
+  const calendar = {
     title: `${currentMonth.getMonth() + 1}月`,
     year: currentMonth.getFullYear(),
     month: currentMonth.getMonth(),
@@ -130,7 +130,7 @@ const DatePicker: FC<Props> = ({
                 line-height="lg"
                 color="gray.700"
               >
-                {calender.year}年
+                {calendar.year}年
               </WizText>
               <WizVStack>
                 <button
@@ -178,7 +178,7 @@ const DatePicker: FC<Props> = ({
               </WizVStack>
             </WizHStack>
             <WizText as="span" fontSize="xs" color="gray.700">
-              {calender.title}
+              {calendar.title}
             </WizText>
             <div className={styles.datePickerMonthSelectorStyle}>
               <button
