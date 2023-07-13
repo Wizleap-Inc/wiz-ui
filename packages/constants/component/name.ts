@@ -12,6 +12,7 @@ export const ComponentName = {
   ToggleButton: "WizToggleButton",
   Calendar: "WizCalendar",
   Card: "WizCard",
+  DatePicker: "WizDatePicker",
   DateRangePicker: "WizDateRangePicker",
   Divider: "WizDivider",
   Dropdown: "WizDropdown",
