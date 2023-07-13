@@ -6,17 +6,18 @@ import {
   navigationItemTextActiveStyle,
   navigationItemIconDisabledStyle,
   navigationPopupContainerStyle,
+  navigationItemStyle,
+  navigationItemActiveStyle,
+  navigationItemDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
-import { FC, useCallback, useRef } from "react";
+import { ElementType, useCallback, useRef } from "react";
 
 import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
 
-import { NavigationItemLink } from "./navigation-item-link";
-
-interface Props {
+interface Props<T extends ElementType> {
   icon: TIcon;
   label: string;
   active: boolean;
@@ -28,24 +29,32 @@ interface Props {
   isPopupOpen?: boolean;
   onTogglePopup: (isPopup: boolean) => void;
   onTogglePopupLocking: (lock: boolean) => void;
+  as?: T;
 }
 
-const NavigationItem: FC<Props> = ({
+/**
+ * 現状、asにはreact-routerのLinkのみ対応しています。asを指定しない場合aタグになります。
+ * ```tsx
+ * import { Link } from "react-router-dom";
+ * <WizNavigationItem as={Link} href="/page1" { ...otherProps } />
+ * ```
+ */
+const NavigationItem = <T extends ElementType>({
   icon: Icon,
   label,
   active,
   href,
   disabled = false,
-  tooltipText = null,
+  tooltipText,
   isPopupLocking = true,
   buttons,
   isPopupOpen = false,
   onTogglePopup,
   onTogglePopupLocking,
-}) => {
+  as: Component,
+}: Props<T>) => {
+  const LinkComponent = Component ?? "a";
   const popupAnchor = useRef<HTMLDivElement>(null);
-
-  const isExternalLink = href.startsWith("http");
   const existPopup = buttons && buttons.length > 0;
 
   const handleClick = () => {
@@ -75,6 +84,15 @@ const NavigationItem: FC<Props> = ({
     if (!isPopupLocking) onTogglePopup(false);
   };
 
+  const linkComponentProps =
+    Component === "a"
+      ? {
+          href: disabled ? undefined : href,
+          target: disabled ? undefined : "_blank",
+          rel: disabled ? undefined : "noreferrer",
+        }
+      : { to: disabled ? undefined : href };
+
   const body = (
     <>
       <div
@@ -84,34 +102,35 @@ const NavigationItem: FC<Props> = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <NavigationItemLink
-          isExternalLink={isExternalLink}
-          href={href}
-          active={active}
-          disabled={disabled}
+        <LinkComponent
+          {...linkComponentProps}
+          className={clsx(
+            navigationItemStyle,
+            disabled
+              ? navigationItemDisabledStyle
+              : active && navigationItemActiveStyle
+          )}
         >
-          <>
-            <div
-              className={clsx(
-                navigationItemIconStyle,
-                disabled
-                  ? navigationItemIconDisabledStyle
-                  : active && navigationItemIconActiveStyle
-              )}
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <Icon />
-            </div>
-            <div
-              className={clsx(
-                navigationItemTextStyle,
-                !disabled && active && navigationItemTextActiveStyle
-              )}
-            >
-              {label}
-            </div>
-          </>
-        </NavigationItemLink>
+          <div
+            className={clsx(
+              navigationItemIconStyle,
+              disabled
+                ? navigationItemIconDisabledStyle
+                : active && navigationItemIconActiveStyle
+            )}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <Icon />
+          </div>
+          <div
+            className={clsx(
+              navigationItemTextStyle,
+              !disabled && active && navigationItemTextActiveStyle
+            )}
+          >
+            {label}
+          </div>
+        </LinkComponent>
       </div>
       {existPopup && (
         <div>
