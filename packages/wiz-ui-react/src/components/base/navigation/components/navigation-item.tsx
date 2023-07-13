@@ -91,7 +91,7 @@ const NavigationItem = <T extends ElementType>({
           target: disabled ? undefined : "_blank",
           rel: disabled ? undefined : "noreferrer",
         }
-      : { to: disabled ? undefined : href };
+      : { to: disabled ? undefined : href }; // react-router-domのLinkの場合
 
   const body = (
     <>
