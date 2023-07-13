@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.8.1
+
+### Patch Changes
+
+- [#895](https://github.com/Wizleap-Inc/wiz-ui/pull/895) [`b8ecc5e1`](https://github.com/Wizleap-Inc/wiz-ui/commit/b8ecc5e15eb2ee14c3160ae93adc8f3014015822) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDatePicker の React 対応
+
+- [#900](https://github.com/Wizleap-Inc/wiz-ui/pull/900) [`ba785746`](https://github.com/Wizleap-Inc/wiz-ui/commit/ba7857468d67988537a6d0ea6a915dc978f715f4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDateRangePicker の React 対応
+
 ## 0.8.0
 
 ### Minor Changes

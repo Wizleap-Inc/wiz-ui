@@ -1,5 +1,23 @@
 # @wizleap-inc/wiz-ui
 
+## 1.17.0
+
+### Minor Changes
+
+- [#905](https://github.com/Wizleap-Inc/wiz-ui/pull/905) [`fc01d5ef`](https://github.com/Wizleap-Inc/wiz-ui/commit/fc01d5efd9a1968ff6f91276881ad6666842ec99) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizRadio: 全角と半角が混じるとスタイルが崩れる問題を修正
+
+- [#915](https://github.com/Wizleap-Inc/wiz-ui/pull/915) [`095e4ca4`](https://github.com/Wizleap-Inc/wiz-ui/commit/095e4ca4afd005da3e04528153215294b2037334) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTimePicker: 5 分刻みで時間を指定可能にする
+
+### Patch Changes
+
+- [#918](https://github.com/Wizleap-Inc/wiz-ui/pull/918) [`8f5e4df0`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f5e4df0dec355f1f1e382c96c607f82a0c52d00) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup の Sticky 対応
+
+- [#790](https://github.com/Wizleap-Inc/wiz-ui/pull/790) [`f7207338`](https://github.com/Wizleap-Inc/wiz-ui/commit/f72073385fd90c4d2035420dc64481121015311c) Thanks [@okakyo](https://github.com/okakyo)! - [#740] radio の a11y 対応 (キー操作)
+
+- Updated dependencies [[`b8ecc5e1`](https://github.com/Wizleap-Inc/wiz-ui/commit/b8ecc5e15eb2ee14c3160ae93adc8f3014015822), [`fc01d5ef`](https://github.com/Wizleap-Inc/wiz-ui/commit/fc01d5efd9a1968ff6f91276881ad6666842ec99), [`ba785746`](https://github.com/Wizleap-Inc/wiz-ui/commit/ba7857468d67988537a6d0ea6a915dc978f715f4), [`f7207338`](https://github.com/Wizleap-Inc/wiz-ui/commit/f72073385fd90c4d2035420dc64481121015311c)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.1
+  - @wizleap-inc/wiz-ui-styles@0.12.0
+
 ## 1.16.0
 
 ### Minor Changes
