@@ -26,6 +26,11 @@ const routes: RouteRecordRaw[] = [
     name: "breakpoint",
     component: () => import("../pages/breakpoint/index.vue"),
   },
+  {
+    path: "/chat",
+    name: "chat",
+    component: () => import("../pages/chat.vue"),
+  },
 ];
 
 const router = createRouter({
