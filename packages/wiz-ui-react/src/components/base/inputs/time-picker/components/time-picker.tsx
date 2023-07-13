@@ -11,9 +11,9 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {
   WizDivider,
   WizHStack,
-  WizIcon,
   WizICancel,
   WizISchedule,
+  WizIcon,
   WizPopup,
   WizVStack,
 } from "@/components";
@@ -187,7 +187,17 @@ const TimePicker = ({
             </WizVStack>
 
             {/* mm */}
-            <WizVStack gap="xs2" align="center" justify="center">
+            <div
+              className={styles.timePickerScrollStyle}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                overflow: "auto",
+                height: "8rem",
+                alignItems: "center",
+                gap: THEME.spacing.xs2,
+              }}
+            >
               <div
                 className={clsx(
                   styles.timePickerSelectorOptionStyle,
@@ -216,7 +226,7 @@ const TimePicker = ({
                   {String(option).padStart(2, "0")}
                 </div>
               ))}
-            </WizVStack>
+            </div>
           </WizHStack>
         </div>
       </WizPopup>

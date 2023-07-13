@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.16.0
+
+### Minor Changes
+
+- [#788](https://github.com/Wizleap-Inc/wiz-ui/pull/788) [`d87a88fa`](https://github.com/Wizleap-Inc/wiz-ui/commit/d87a88fa7d244cbef584efa84229defc973f61b2) Thanks [@sor4chi](https://github.com/sor4chi)! - Breakpoint Provider の作成
+
+## 1.15.0
+
+### Minor Changes
+
+- [#899](https://github.com/Wizleap-Inc/wiz-ui/pull/899) [`0cd0f905`](https://github.com/Wizleap-Inc/wiz-ui/commit/0cd0f905125bed71a073374dbcc2efc46e96c33e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput: 検索結果が空の時の表示
+
 ## 1.14.2
 
 ### Patch Changes

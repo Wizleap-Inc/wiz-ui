@@ -20,13 +20,9 @@ import { WizPortal } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { usePopupAnimation } from "../hooks/use-popup-animation";
-import {
-  DIRECTION_MAP,
-  DirectionKey,
-  DirectionValue,
-} from "../types/direction";
-import { PlacementStyle } from "../types/placement";
-import { placeOnPortalStyle, wrapDirection } from "../utils";
+import { DIRECTION_MAP, DirectionKey } from "../types/direction";
+import { PlacementOption, PlacementStyle } from "../types/placement";
+import { placeOnPortalStyle, wrapOutOfBound } from "../utils";
 
 type Props = {
   isOpen: boolean;
@@ -66,40 +62,49 @@ const Popup = ({
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
   useEffect(() => {
-    const popupPlacement = () => {
-      if (!anchorElement.current) return {};
-      const anchorRect = anchorElement.current.getBoundingClientRect();
+    const anchor = anchorElement.current;
+    if (!isActuallyOpen || !anchor) {
+      return;
+    }
+    const getPopupPlacementStyle = () => {
+      const anchorRect = anchor.getBoundingClientRect();
       const contentRect = popupRef.current?.getBoundingClientRect();
-      const wrapOutOfBound = (dir: DirectionValue) => {
-        if (isDirectionFixed || !contentRect) return dir;
-        const fontSize = window.getComputedStyle(document.body).fontSize;
-        const gapPx =
-          parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
-        return wrapDirection[dir]({
-          bound: {
-            width: document.body.clientWidth,
-            height: Math.max(document.body.clientHeight, window.innerHeight),
-          },
-          content: contentRect,
-          anchor: anchorRect,
-          gap: gapPx,
-          window: { scrollX: window.scrollX, scrollY: window.scrollY },
-        });
-      };
-      return placeOnPortalStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
+      const placementOption: PlacementOption = {
         anchor: anchorRect,
         gap: getSpacingCss(gap) ?? "0",
         content: contentRect,
         window: { scrollX: window.scrollX, scrollY: window.scrollY },
+      };
+      if (isDirectionFixed || !contentRect)
+        return placeOnPortalStyle[DIRECTION_MAP[direction]](placementOption);
+      const fontSize = window.getComputedStyle(document.body).fontSize;
+      const gapPx =
+        parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
+      const dir = wrapOutOfBound(DIRECTION_MAP[direction], {
+        bound: {
+          width: document.body.clientWidth,
+          height: Math.max(document.body.clientHeight, window.innerHeight),
+        },
+        content: contentRect,
+        anchor: anchorRect,
+        gap: gapPx,
+        window: { scrollX: window.scrollX, scrollY: window.scrollY },
       });
+      return placeOnPortalStyle[dir](placementOption);
     };
-    setPlacementStyle(popupPlacement());
-    const handleResize = () => setPlacementStyle(popupPlacement());
-    window.addEventListener("resize", handleResize);
+
+    const updatePlacementStyle = () => {
+      setPlacementStyle(getPopupPlacementStyle());
+    };
+    updatePlacementStyle();
+    window.addEventListener("resize", updatePlacementStyle);
+    const anchorResizeObserver = new ResizeObserver(updatePlacementStyle);
+    anchorResizeObserver.observe(anchor);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updatePlacementStyle);
+      anchorResizeObserver.disconnect();
     };
-  }, [isActuallyOpen, direction, gap, anchorElement, isDirectionFixed]);
+  }, [anchorElement, direction, gap, isActuallyOpen, isDirectionFixed]);
 
   return (
     <WizPortal container={document.body}>
