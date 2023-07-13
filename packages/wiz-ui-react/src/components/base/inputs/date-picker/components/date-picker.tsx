@@ -70,11 +70,11 @@ const DatePicker: FC<Props> = ({
     if (date) return "selected";
     return "default";
   })();
-  const anchor = useRef<HTMLButtonElement | null>(null);
+  const wrapperButtonRef = useRef<HTMLButtonElement | null>(null);
   return (
     <>
       <button
-        ref={anchor}
+        ref={wrapperButtonRef}
         className={clsx(
           styles.datePickerStyle,
           styles.datePickerVariantStyle[variant],
@@ -115,7 +115,7 @@ const DatePicker: FC<Props> = ({
         onClose={() => setIsOpen(false)}
         direction="bottomLeft"
         isDirectionFixed={isDirectionFixed}
-        anchorElement={anchor}
+        anchorElement={wrapperButtonRef}
       >
         <div className={styles.datePickerSelectorStyle}>
           <WizHStack align="center" my="xs2" px="xs" justify="between">
