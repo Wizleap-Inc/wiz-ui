@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { Link } from "react-router-dom";
 
 import { WizIDashboard } from "@/components/icons";
 
@@ -24,6 +25,16 @@ export const Default: Story = {
     label: "Home",
     href: "/",
     active: false,
+  },
+};
+export const ReactRouterLink: Story = {
+  ...Template,
+  args: {
+    icon: WizIDashboard,
+    label: "Home",
+    active: false,
+    as: Link,
+    to: "/",
   },
 };
 

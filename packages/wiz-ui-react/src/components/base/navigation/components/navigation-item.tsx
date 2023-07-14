@@ -12,16 +12,26 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
 import { ElementType, useCallback, useRef } from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
 
-interface Props<T extends ElementType> {
+type AnchorLinkProps = {
+  as?: "a";
+  href: string;
+};
+
+type ReactRouterLinkProps = {
+  as: typeof ReactRouterLink;
+  to: string;
+};
+
+type NavigationProps = {
   icon: TIcon;
   label: string;
   active: boolean;
-  href: string;
   disabled?: boolean;
   tooltipText?: string;
   isPopupLocking?: boolean;
@@ -29,21 +39,21 @@ interface Props<T extends ElementType> {
   isPopupOpen?: boolean;
   onTogglePopup: (isPopup: boolean) => void;
   onTogglePopupLocking: (lock: boolean) => void;
-  as?: T;
-}
+};
+
+type Props = NavigationProps & (AnchorLinkProps | ReactRouterLinkProps);
 
 /**
- * 現状、asにはreact-routerのLinkのみ対応しています。asを指定しない場合aタグになります。
+ * 現状、asには"a"またはreact-routerのLinkのみ対応。asを指定しない場合aタグになります。
  * ```tsx
  * import { Link } from "react-router-dom";
- * <WizNavigationItem as={Link} href="/page1" { ...otherProps } />
+ * <WizNavigationItem as={Link} to="/page1" { ...otherProps } />
  * ```
  */
-const NavigationItem = <T extends ElementType>({
+const NavigationItem = ({
   icon: Icon,
   label,
   active,
-  href,
   disabled = false,
   tooltipText,
   isPopupLocking = true,
@@ -51,9 +61,10 @@ const NavigationItem = <T extends ElementType>({
   isPopupOpen = false,
   onTogglePopup,
   onTogglePopupLocking,
-  as: Component,
-}: Props<T>) => {
-  const LinkComponent = Component ?? "a";
+  as,
+  ...linkProps
+}: Props) => {
+  const LinkComponent = as || ("a" as ElementType);
   const popupAnchor = useRef<HTMLDivElement>(null);
   const existPopup = buttons && buttons.length > 0;
 
@@ -84,14 +95,18 @@ const NavigationItem = <T extends ElementType>({
     if (!isPopupLocking) onTogglePopup(false);
   };
 
-  const linkComponentProps =
-    Component === "a"
-      ? {
-          href: disabled ? undefined : href,
-          target: disabled ? undefined : "_blank",
-          rel: disabled ? undefined : "noreferrer",
-        }
-      : { to: disabled ? undefined : href }; // react-router-domのLinkの場合
+  const linkComponentProps = () => {
+    switch (LinkComponent) {
+      case "a":
+        return {
+          href: disabled ? undefined : (linkProps as AnchorLinkProps).href,
+        };
+      case ReactRouterLink:
+        return {
+          to: disabled ? undefined : (linkProps as ReactRouterLinkProps).to,
+        };
+    }
+  };
 
   const body = (
     <>
@@ -103,7 +118,7 @@ const NavigationItem = <T extends ElementType>({
         onMouseLeave={handleMouseLeave}
       >
         <LinkComponent
-          {...linkComponentProps}
+          {...linkComponentProps()}
           className={clsx(
             navigationItemStyle,
             disabled
