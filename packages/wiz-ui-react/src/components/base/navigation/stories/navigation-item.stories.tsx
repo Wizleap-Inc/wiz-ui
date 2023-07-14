@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 
 import { WizIDashboard } from "@/components/icons";
 
@@ -15,7 +15,11 @@ export default meta;
 type Story = StoryObj<typeof WizNavigationItem>;
 
 const Template: Story = {
-  render: (args) => <WizNavigationItem {...args} />,
+  render: (args) => (
+    <BrowserRouter>
+      <WizNavigationItem {...args} />
+    </BrowserRouter>
+  ),
 };
 
 export const Default: Story = {

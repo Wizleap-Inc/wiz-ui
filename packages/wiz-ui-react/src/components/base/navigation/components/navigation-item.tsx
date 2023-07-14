@@ -100,6 +100,8 @@ const NavigationItem = ({
       case "a":
         return {
           href: disabled ? undefined : (linkProps as AnchorLinkProps).href,
+          target: disabled ? undefined : "_blank",
+          rel: disabled ? undefined : "noreferrer",
         };
       case ReactRouterLink:
         return {
