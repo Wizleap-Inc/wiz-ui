@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": minor
 ---
 
-navigation に react-router 導入
+navigation-item の react-router 対応
