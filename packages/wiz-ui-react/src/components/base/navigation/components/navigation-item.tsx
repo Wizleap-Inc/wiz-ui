@@ -61,10 +61,10 @@ const NavigationItem = ({
   isPopupOpen = false,
   onTogglePopup,
   onTogglePopupLocking,
-  as,
+  as = "a",
   ...linkProps
 }: Props) => {
-  const LinkComponent = as || ("a" as ElementType);
+  const LinkComponent = as as ElementType;
   const popupAnchor = useRef<HTMLDivElement>(null);
   const existPopup = buttons && buttons.length > 0;
 
