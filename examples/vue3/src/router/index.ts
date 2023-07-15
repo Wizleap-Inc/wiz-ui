@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/chat",
     name: "chat",
-    component: () => import("../pages/chat.vue"),
+    component: () => import("../pages/chat/index.vue"),
   },
 ];
 

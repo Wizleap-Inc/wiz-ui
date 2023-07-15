@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "vue": "^3.2.45",
-    "@wizleap-inc/wiz-ui-next": "workspace:"
+    "@wizleap-inc/wiz-ui-next": "workspace:",
+    "@wizleap-inc/wiz-ui-utils": "workspace:",
+    "@wizleap-inc/wiz-ui-constants": "workspace:"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
