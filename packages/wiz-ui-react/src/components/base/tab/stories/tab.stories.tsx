@@ -77,6 +77,14 @@ export const Width: Story = {
   },
 };
 
+export const Center: Story = {
+  args: {
+    width: "200px",
+    center: true,
+    items,
+  },
+};
+
 export const Playground: Story = {
   args: {
     items: [
