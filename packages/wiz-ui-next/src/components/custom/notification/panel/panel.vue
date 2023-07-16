@@ -1,9 +1,11 @@
 <template>
   <WizBox
-    @mouseover.native="isHovered = true"
-    @mouseleave.native="isHovered = false"
-    @pointerdown.native="isPressed = true"
-    @pointerup.native="isPressed = false"
+    @mouseover.native="setIsHover(true)"
+    @mouseleave.native="setIsHover(false)"
+    @pointerdown.native="setIsPressed(true)"
+    @pointerup.native="setIsPressed(false)"
+    @pointerleave.native="setIsPressed(false)"
+    @pointercancel.native="setIsPressed(false)"
     @click.native="onClick"
     :bgColor="panelBgColor()"
     height="fit-content"
@@ -98,6 +100,17 @@ const displayDatetime = computed(() => formatDateToYMDHM(props.timestamp));
 const displayHowPast = computed(() => formatHowPast(props.timestamp));
 
 const isPc = computed(() => window.innerWidth > 768);
+
+const isHovered = ref(false);
+const isPressed = ref(false);
+
+const setIsHover = (value: boolean) => {
+  isHovered.value = value;
+};
+const setIsPressed = (value: boolean) => {
+  isPressed.value = value;
+};
+
 const panelBgColor = (): ColorKeys => {
   if (isPc) {
     if (isPressed.value) {
@@ -109,8 +122,6 @@ const panelBgColor = (): ColorKeys => {
   }
   return "white.800";
 };
-const isHovered = ref(false);
-const isPressed = ref(false);
 
 interface Emit {
   (event: "click"): void;
