@@ -66,6 +66,8 @@ const props = defineProps({
 });
 
 const computedWidth = computed(() => {
-  return props.expand ? "expand" : props.short ? "short" : "default";
+  if (props.expand) return "expand";
+  if (props.short) return "short";
+  return "default";
 });
 </script>

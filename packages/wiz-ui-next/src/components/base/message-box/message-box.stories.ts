@@ -72,5 +72,6 @@ ExpandWithIcon.args = {
 export const short = Template.bind({});
 short.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   short: true,
-},
+};
