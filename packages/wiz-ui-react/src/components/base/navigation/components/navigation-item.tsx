@@ -97,7 +97,6 @@ const NavigationItem = <T extends ElementType>({
           {...linkProps}
           href={disabled ? undefined : linkProps.href}
           to={disabled ? undefined : linkProps.to}
-          target={linkProps.href ? "_blank" : undefined}
           className={clsx(
             navigationItemStyle,
             disabled
