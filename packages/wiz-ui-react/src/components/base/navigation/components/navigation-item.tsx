@@ -11,24 +11,13 @@ import {
   navigationItemDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
-import { ElementType, useCallback, useRef } from "react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { ComponentProps, ElementType, useCallback, useRef } from "react";
 
 import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
 
-type AnchorLinkProps = {
-  as?: "a";
-  href: string;
-};
-
-type ReactRouterLinkProps = {
-  as: typeof ReactRouterLink;
-  to: string;
-};
-
-type NavigationProps = {
+type Props<T extends ElementType> = {
   icon: TIcon;
   label: string;
   active: boolean;
@@ -39,18 +28,18 @@ type NavigationProps = {
   isPopupOpen?: boolean;
   onTogglePopup: (isPopup: boolean) => void;
   onTogglePopupLocking: (lock: boolean) => void;
+  as: T;
+  componentProps: ComponentProps<T>;
 };
 
-type Props = NavigationProps & (AnchorLinkProps | ReactRouterLinkProps);
-
 /**
- * 現状、asには"a"またはreact-routerのLinkのみ対応。asを指定しない場合aタグになります。
+ * react-routerでの使い方
  * ```tsx
  * import { Link } from "react-router-dom";
  * <WizNavigationItem as={Link} to="/page1" { ...otherProps } />
  * ```
  */
-const NavigationItem = ({
+const NavigationItem = <T extends ElementType>({
   icon: Icon,
   label,
   active,
@@ -61,9 +50,9 @@ const NavigationItem = ({
   isPopupOpen = false,
   onTogglePopup,
   onTogglePopupLocking,
-  as = "a",
-  ...linkProps
-}: Props) => {
+  as = "a" as T,
+  componentProps,
+}: Props<T>) => {
   const LinkComponent = as as ElementType;
   const popupAnchor = useRef<HTMLDivElement>(null);
   const existPopup = buttons && buttons.length > 0;
@@ -96,18 +85,17 @@ const NavigationItem = ({
   };
 
   const linkComponentProps = () => {
-    switch (LinkComponent) {
-      case "a":
-        return {
-          href: disabled ? undefined : (linkProps as AnchorLinkProps).href,
-          target: disabled ? undefined : "_blank",
-          rel: disabled ? undefined : "noreferrer",
-        };
-      case ReactRouterLink:
-        return {
-          to: disabled ? undefined : (linkProps as ReactRouterLinkProps).to,
-        };
+    if (LinkComponent === "a") {
+      return {
+        href: disabled ? undefined : componentProps.href,
+        target: disabled ? undefined : "_blank",
+        rel: disabled ? undefined : "noreferrer",
+      };
     }
+
+    return {
+      to: disabled ? undefined : componentProps.to,
+    };
   };
 
   const body = (
