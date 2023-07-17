@@ -28,8 +28,8 @@ type Props<T extends ElementType> = {
   isPopupOpen?: boolean;
   onTogglePopup: (isPopup: boolean) => void;
   onTogglePopupLocking: (lock: boolean) => void;
-  as: T;
-  componentProps: ComponentProps<T>;
+  as?: T;
+  linkProps: ComponentProps<T>;
 };
 
 /**
@@ -51,7 +51,7 @@ const NavigationItem = <T extends ElementType>({
   onTogglePopup,
   onTogglePopupLocking,
   as = "a" as T,
-  componentProps,
+  linkProps,
 }: Props<T>) => {
   const LinkComponent = as as ElementType;
   const popupAnchor = useRef<HTMLDivElement>(null);
@@ -84,20 +84,6 @@ const NavigationItem = <T extends ElementType>({
     if (!isPopupLocking) onTogglePopup(false);
   };
 
-  const linkComponentProps = () => {
-    if (LinkComponent === "a") {
-      return {
-        href: disabled ? undefined : componentProps.href,
-        target: disabled ? undefined : "_blank",
-        rel: disabled ? undefined : "noreferrer",
-      };
-    }
-
-    return {
-      to: disabled ? undefined : componentProps.to,
-    };
-  };
-
   const body = (
     <>
       <div
@@ -108,7 +94,10 @@ const NavigationItem = <T extends ElementType>({
         onMouseLeave={handleMouseLeave}
       >
         <LinkComponent
-          {...linkComponentProps()}
+          {...linkProps}
+          href={disabled ? undefined : linkProps.href}
+          to={disabled ? undefined : linkProps.to}
+          target={linkProps.href ? "_blank" : undefined}
           className={clsx(
             navigationItemStyle,
             disabled

@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { BrowserRouter, Link } from "react-router-dom";
 
 import { WizIDashboard } from "@/components/icons";
 
@@ -15,11 +14,7 @@ export default meta;
 type Story = StoryObj<typeof WizNavigationItem>;
 
 const Template: Story = {
-  render: (args) => (
-    <BrowserRouter>
-      <WizNavigationItem {...args} />
-    </BrowserRouter>
-  ),
+  render: (args) => <WizNavigationItem {...args} />,
 };
 
 export const Default: Story = {
@@ -27,18 +22,10 @@ export const Default: Story = {
   args: {
     icon: WizIDashboard,
     label: "Home",
-    href: "/",
     active: false,
-  },
-};
-export const ReactRouterLink: Story = {
-  ...Template,
-  args: {
-    icon: WizIDashboard,
-    label: "Home",
-    active: false,
-    as: Link,
-    to: "/",
+    linkProps: {
+      href: "/",
+    },
   },
 };
 
@@ -47,7 +34,9 @@ export const Active: Story = {
   args: {
     icon: WizIDashboard,
     label: "Home",
-    href: "/",
+    linkProps: {
+      href: "/",
+    },
     active: true,
   },
 };
@@ -57,8 +46,10 @@ export const Disabled: Story = {
   args: {
     icon: WizIDashboard,
     label: "Home",
-    href: "/",
     disabled: true,
+    linkProps: {
+      href: "/",
+    },
   },
 };
 
@@ -66,7 +57,9 @@ export const WithToolTip: Story = {
   args: {
     icon: WizIDashboard,
     label: "Home",
-    href: "/",
+    linkProps: {
+      href: "/",
+    },
     tooltipText: "これはヒントです。",
   },
   render: (args) => (
