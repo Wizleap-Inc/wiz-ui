@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui
 
+## 1.18.0
+
+### Minor Changes
+
+- [#931](https://github.com/Wizleap-Inc/wiz-ui/pull/931) [`201489b8`](https://github.com/Wizleap-Inc/wiz-ui/commit/201489b8e50b0879924299d94631507cc8aa97ac) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Tab を中央寄せにするオプションを追加
+
+### Patch Changes
+
+- Updated dependencies [[`e5919485`](https://github.com/Wizleap-Inc/wiz-ui/commit/e591948573d0f5ed39b74522f161de090af58b3e)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.1
+
 ## 1.17.0
 
 ### Minor Changes

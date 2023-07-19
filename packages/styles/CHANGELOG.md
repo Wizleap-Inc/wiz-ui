@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.12.1
+
+### Patch Changes
+
+- [#930](https://github.com/Wizleap-Inc/wiz-ui/pull/930) [`e5919485`](https://github.com/Wizleap-Inc/wiz-ui/commit/e591948573d0f5ed39b74522f161de090af58b3e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - TextButton が Shrink するときに折り返す問題を修正
+
 ## 0.12.0
 
 ### Minor Changes
