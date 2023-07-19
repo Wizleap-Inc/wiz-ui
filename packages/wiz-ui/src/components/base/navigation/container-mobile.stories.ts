@@ -23,14 +23,17 @@ const Template: StoryFn<typeof WizNavContainerMobile> = (_, { argTypes }) => ({
   components: {
     WizNavContainerMobile,
     WizNavItem,
-    WizIDashboard,
-    WizIAssignment,
-    WizIBusinessCenter,
-    WizIHelp,
   },
-  setup: () => ({}),
-  template: `
-    <div>
+  setup: () => {
+    return {
+      WizIDashboard,
+      WizIAssignment,
+      WizIBusinessCenter,
+      WizIHelp,
+    };
+  },
+  template: ` 
+   <div>
       <WizNavContainerMobile v-bind="$props">      
         <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="true" />
         <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />

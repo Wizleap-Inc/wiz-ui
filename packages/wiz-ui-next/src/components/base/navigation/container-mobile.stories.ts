@@ -25,18 +25,20 @@ const Template: StoryFn<typeof WizNavContainerMobile> = (args) => ({
   components: {
     WizNavContainerMobile,
     WizNavItem,
-    WizIDashboard,
-    WizIAssignment,
-    WizIBusinessCenter,
-    WizIHelp,
     WizHeader,
-    WizIconButton,
-    WizIMenu,
-    WizICancel,
   },
-  setup: () => ({
-    args,
-  }),
+  setup: () => {
+    return {
+      args,
+      WizIDashboard,
+      WizIAssignment,
+      WizIBusinessCenter,
+      WizIHelp,
+      WizIconButton,
+      WizIMenu,
+      WizICancel,
+    };
+  },
   template: `
     <div> 
       <WizNavContainerMobile v-bind="args">      
