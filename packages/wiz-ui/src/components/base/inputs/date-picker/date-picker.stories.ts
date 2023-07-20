@@ -152,9 +152,14 @@ const input = (value: Date) => {
   },
 };
 
-export const DisabledDate = Template.bind({});
+export const DisabledDate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizDatepicker, WizHStack },
+  template: `<WizDatePicker v-bind="$props" />`,
+});
 DisabledDate.args = {
-  modelValue: null,
+  value: new Date(1990, 0, 1),
+  isOpen: true,
   disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
 };
 

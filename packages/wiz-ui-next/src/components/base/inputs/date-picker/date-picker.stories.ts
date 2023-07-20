@@ -140,9 +140,16 @@ const date = ref<Date | null>(null);
   },
 };
 
-export const DisabledDate = Template.bind({});
+export const DisabledDate: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    return { args };
+  },
+  template: `<WizDatePicker v-bind="$props" />`,
+});
 DisabledDate.args = {
-  modelValue: null,
+  value: new Date(1990, 0, 1),
+  isOpen: true,
   disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
 };
 
