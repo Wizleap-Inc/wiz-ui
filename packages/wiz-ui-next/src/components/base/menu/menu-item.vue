@@ -60,6 +60,11 @@ const props = defineProps({
     required: false,
     default: "md",
   },
+  selected: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -78,12 +83,13 @@ const inactivate = () => (isPressed.value = false);
 
 const width = computed(() => props.width);
 const iconColor = computed((): ColorKeys => {
-  return props.clickable && (props.active || isHover.value)
+  return props.clickable && (props.active || isHover.value || props.selected)
     ? "green.800"
     : "gray.500";
 });
 const componentStatus = computed(() => {
   if (!props.clickable) return "disabled";
+  if (props.selected) return "selected";
   if (props.active || isPressed.value) return "active";
   if (isHover.value) return "hover";
   return "default";
