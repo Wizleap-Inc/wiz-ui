@@ -1,7 +1,8 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
+import { checkboxHoverStyle } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import clsx from "clsx";
-import { FC, useState } from "react";
+import { FC, RefObject, createRef, useEffect, useRef, useState } from "react";
 
 import { WizStack } from "@/components";
 
@@ -29,15 +30,38 @@ const CheckBox: FC<Props> = ({
   const [focusedKey, setFocusedKey] = useState<CheckBoxOption["key"] | null>(
     null
   );
+  const [hoveredOption, setHoveredOption] = useState<number | null>(null);
+  const radioRefs = useRef<RefObject<HTMLDivElement>[]>(
+    options.map(() => createRef())
+  );
+  const [radioWidth, setRadioWidth] = useState<number[]>([]);
+  useEffect(() => {
+    setRadioWidth(
+      radioRefs.current.map((ref) => ref.current?.clientWidth ?? 0)
+    );
+  }, [options]);
 
   return (
     <WizStack gap={gap} direction={direction} wrap>
-      {options.map((option) => {
+      {options.map((option, i) => {
         const isChecked = values.includes(option.value);
         const isDisabled = disabled || option.disabled;
         const isFocused = !isDisabled && option.key === focusedKey;
+        const isHovered = !isDisabled && option.value === hoveredOption;
+        const iconStyle = (() => {
+          if (isChecked && isFocused) return "checkedFocused";
+          if (isChecked) return "checked";
+          if (isFocused) return "focused";
+          return "default";
+        })();
         return (
-          <div key={option.key}>
+          <div
+            key={option.key}
+            ref={radioRefs.current[i]}
+            style={{
+              width: radioWidth[i],
+            }}
+          >
             <label
               className={clsx(
                 styles.checkboxLabelStyle,
@@ -48,6 +72,8 @@ const CheckBox: FC<Props> = ({
                 ]
               )}
               htmlFor={option.key}
+              onMouseEnter={() => setHoveredOption(option.value)}
+              onMouseLeave={() => setHoveredOption(null)}
             >
               <input
                 className={styles.checkboxInputStyle}
@@ -68,7 +94,9 @@ const CheckBox: FC<Props> = ({
                   }
                 }}
                 onFocus={() => setFocusedKey(option.key)}
-                onBlur={() => setFocusedKey(null)}
+                onBlur={() => {
+                  if (!isHovered) setFocusedKey(null);
+                }}
               />
               <span className={styles.checkboxIconContainerStyle}>
                 {/* FIXME: WizICheck をコピーして使用 https://github.com/Wizleap-Inc/wiz-ui/issues/758 */}
@@ -79,13 +107,7 @@ const CheckBox: FC<Props> = ({
                   viewBox="0 0 24 24"
                   className={clsx(
                     styles.checkboxIconBaseStyle,
-                    styles.checkboxIconVariantStyle[
-                      isChecked ? "checked" : "default"
-                    ],
-                    isFocused &&
-                      styles.checkboxIconFocusedColorStyle[
-                        isChecked ? "checked" : "default"
-                      ]
+                    styles.checkboxIconVariantStyle[iconStyle]
                   )}
                 >
                   <path d="M9.55 16.975q-.15 0-.288-.05-.137-.05-.287-.175l-4.05-4.05q-.15-.175-.15-.363 0-.187.175-.362.15-.15.35-.15.2 0 .35.15l3.9 3.9 8.8-8.8q.15-.15.35-.15.2 0 .375.15.15.175.15.363 0 .187-.15.362l-8.95 8.95q-.15.125-.287.175-.138.05-.288.05Z" />
@@ -96,7 +118,8 @@ const CheckBox: FC<Props> = ({
                   isChecked && styles.checkboxBlockCheckedStyle,
                   strikeThrough &&
                     isChecked &&
-                    styles.checkboxLabelStrikeThrough
+                    styles.checkboxLabelStrikeThrough,
+                  isHovered && checkboxHoverStyle
                 )}
               >
                 {option.label}

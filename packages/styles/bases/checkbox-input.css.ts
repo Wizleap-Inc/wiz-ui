@@ -64,6 +64,13 @@ export const checkboxIconVariantStyle = styleVariants({
     fill: THEME.color.green["800"],
     border: `${borderWidth} solid ${THEME.color.green["800"]}`,
   },
+  focused: {
+    border: `${focusedBorderWidth} solid ${THEME.color.gray["600"]}`,
+  },
+  checkedFocused: {
+    fill: THEME.color.green["800"],
+    border: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
+  },
 });
 
 export const checkboxIconContainerStyle = style({
@@ -73,16 +80,10 @@ export const checkboxIconContainerStyle = style({
   height: "100%",
 });
 
-export const checkboxIconFocusedColorStyle = styleVariants({
-  default: {
-    outline: `${focusedBorderWidth} solid ${THEME.color.gray[800]}`,
-  },
-  checked: {
-    fill: THEME.color.green["800"],
-    outline: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
-  },
-});
-
 export const checkboxBlockCheckedStyle = style({
   color: THEME.color.green["800"],
+});
+
+export const checkboxHoverStyle = style({
+  fontWeight: THEME.fontWeight.bold,
 });

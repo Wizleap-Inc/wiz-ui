@@ -1,7 +1,14 @@
 <template>
   <div :class="checkboxStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
-      <div v-for="option in options" :key="option.key">
+      <div
+        v-for="(option, i) in options"
+        :key="option.key"
+        ref="radioRefs"
+        :style="{
+          width: `${radioWidths[i]}px`,
+        }"
+      >
         <label
           :class="[
             checkboxLabelStyle,
@@ -10,6 +17,8 @@
             checkboxLabelCursorStyle[labelPointer(option.disabled)],
           ]"
           :for="option.key"
+          @mouseenter="hoverOption = option.value"
+          @mouseleave="hoverOption = null"
         >
           <input
             :class="checkboxInputStyle"
@@ -20,16 +29,17 @@
             v-model="checkboxValue"
             :disabled="disabled || option.disabled"
             @focus="focusOption = option.value"
-            @blur="focusOption = null"
+            @blur="
+              () => {
+                if (hoverOption === option.value) focusOption = null;
+              }
+            "
           />
           <span :class="checkboxIconContainerStyle">
             <WizICheck
               :class="[
                 checkboxIconBaseStyle,
-                checkboxValue.includes(option.value)
-                  ? checkboxIconVariantStyle['checked']
-                  : checkboxIconVariantStyle['default'],
-                checkboxLabelFocusStyle(option.value),
+                checkboxIconVariantStyle[iconStyle(option.value)],
               ]"
             />
           </span>
@@ -39,9 +49,14 @@
               strikeThrough &&
                 checkboxValue.includes(option.value) &&
                 checkboxLabelStrikeThrough,
+              hoverOption === option.value &&
+                !disabled &&
+                !option.disabled &&
+                checkboxHoverStyle,
             ]"
-            >{{ option.label }}</span
           >
+            {{ option.label }}
+          </span>
         </label>
       </div>
     </WizStack>
@@ -51,20 +66,20 @@
 <script setup lang="ts">
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  checkboxStyle,
-  checkboxInputStyle,
-  checkboxLabelStyle,
-  checkboxLabelCheckedStyle,
-  checkboxLabelDisabledStyle,
-  checkboxLabelCursorStyle,
-  checkboxIconBaseStyle,
   checkboxBlockCheckedStyle,
-  checkboxLabelStrikeThrough,
-  checkboxIconVariantStyle,
-  checkboxIconFocusedColorStyle,
+  checkboxHoverStyle,
+  checkboxIconBaseStyle,
   checkboxIconContainerStyle,
+  checkboxIconVariantStyle,
+  checkboxInputStyle,
+  checkboxLabelCheckedStyle,
+  checkboxLabelCursorStyle,
+  checkboxLabelDisabledStyle,
+  checkboxLabelStrikeThrough,
+  checkboxLabelStyle,
+  checkboxStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
-import { computed, PropType, ref } from "vue";
+import { PropType, computed, onMounted, ref, watch } from "vue";
 
 import { WizStack } from "@/components";
 import { WizICheck } from "@/components/icons";
@@ -115,6 +130,22 @@ const labelPointer = (optionDisabled?: boolean) =>
   props.disabled || optionDisabled ? "disabled" : "default";
 
 const focusOption = ref<number | null>(null);
+const hoverOption = ref<number | null>(null);
+
+const radioRefs = ref<HTMLElement[]>([]);
+const radioWidths = ref<number[]>([]);
+onMounted(() => {
+  radioWidths.value = radioRefs.value.map(
+    (ref) => ref.getBoundingClientRect().width
+  );
+});
+watch(
+  [props.options, radioRefs],
+  () =>
+    (radioWidths.value = radioRefs.value.map(
+      (ref) => ref.getBoundingClientRect().width
+    ))
+);
 
 const value2Option = computed(() =>
   props.options.reduce((acc, option) => {
@@ -122,11 +153,14 @@ const value2Option = computed(() =>
     return acc;
   }, {} as Record<number, CheckBoxOption>)
 );
-const checkboxLabelFocusStyle = computed(() => (n: number) => {
-  if (props.disabled || value2Option.value[n].disabled) return;
-  if (focusOption.value !== n) return;
-  return checkboxValue.value.includes(n)
-    ? checkboxIconFocusedColorStyle["checked"]
-    : checkboxIconFocusedColorStyle["default"];
-});
+
+const iconStyle = (value: number) => {
+  if (props.disabled || value2Option.value[value].disabled) return "default";
+  const isChecked = checkboxValue.value.includes(value);
+  const isFocused = focusOption.value === value;
+  if (isChecked && isFocused) return "checkedFocused";
+  if (isChecked) return "checked";
+  if (isFocused) return "focused";
+  return "default";
+};
 </script>
