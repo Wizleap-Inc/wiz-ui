@@ -1,6 +1,6 @@
 <template>
   <WizVStack
-    :class="[showMoreLessDetailsStyle, bgColor && backgroundStyle[bgColor]]"
+    :class="[showMoreLessDetailsStyle]"
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
@@ -18,11 +18,8 @@
         align="center"
         justify="between"
         gap="xs2"
-        :class="[
-          showMoreLessMessageStyle,
-          bgColor && backgroundStyle[bgColor],
-          colorStyle[fontColor],
-        ]"
+        :height="variant === 'mobile' ? '2.75rem' : '1.375rem'"
+        :class="[showMoreLessMessageStyle]"
       >
         <div>
           {{ isOpen ? closeMessage : openMessage }}
@@ -30,7 +27,7 @@
         <WizIcon
           size="xl2"
           :icon="WizIExpandMore"
-          :color="fontColor"
+          color="inherit"
           :class="[
             showMoreLessExpandIconStyle,
             isOpen && showMoreLessRotateIconStyle,
@@ -42,25 +39,25 @@
 </template>
 
 <script setup lang="ts">
-import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  showMoreLessMessageStyle,
-  showMoreLessDetailsStyle,
   showMoreLessContentStyle,
-  showMoreLessSummaryStyle,
+  showMoreLessDetailsStyle,
   showMoreLessExpandIconStyle,
+  showMoreLessMessageStyle,
   showMoreLessRotateIconStyle,
+  showMoreLessSummaryStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
-import {
-  backgroundStyle,
-  colorStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, PropType } from "vue";
+import { PropType, computed, ref } from "vue";
 
-import { WizHStack, WizVStack, WizIcon } from "@/components";
+import { WizHStack, WizIcon, WizVStack } from "@/components";
 import { WizIExpandMore } from "@/components/icons";
 
 defineProps({
+  variant: {
+    type: String as PropType<"pc" | "mobile">,
+    required: false,
+    default: "pc",
+  },
   isOpen: {
     type: Boolean,
     required: true,
@@ -79,15 +76,6 @@ defineProps({
     type: String,
     required: false,
     default: "20rem",
-  },
-  bgColor: {
-    type: String as PropType<ColorKeys | undefined>,
-    required: false,
-  },
-  fontColor: {
-    type: String as PropType<ColorKeys>,
-    required: false,
-    default: "gray.600",
   },
 });
 

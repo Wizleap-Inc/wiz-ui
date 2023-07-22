@@ -3,6 +3,7 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const showMoreLessDetailsStyle = style({
   borderRadius: THEME.spacing.xs,
+  background: THEME.color.white[800],
 });
 
 export const showMoreLessMessageStyle = style({
@@ -10,6 +11,7 @@ export const showMoreLessMessageStyle = style({
   fontSize: THEME.fontSize.sm,
   lineHeight: "130%",
   alignItems: "center",
+  background: "transparent",
 });
 
 export const showMoreLessSummaryStyle = style({
@@ -17,6 +19,19 @@ export const showMoreLessSummaryStyle = style({
   justifyContent: "center",
   cursor: "pointer",
   userSelect: "none",
+  borderRadius: THEME.spacing.xs,
+  background: THEME.color.white[800],
+  color: THEME.color.gray[600],
+  fill: THEME.color.gray[600],
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        background: THEME.color.gray[200],
+        color: THEME.color.green[800],
+        fill: THEME.color.green[800],
+      },
+    },
+  },
 });
 
 export const showMoreLessContentStyle = style({
