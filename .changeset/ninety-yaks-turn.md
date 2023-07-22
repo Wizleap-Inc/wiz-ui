@@ -1,6 +1,6 @@
 ---
-"@wizleap-inc/wiz-ui-next": minor
-"@wizleap-inc/wiz-ui": minor
+"@wizleap-inc/wiz-ui-next": major
+"@wizleap-inc/wiz-ui": major
 ---
 
-[#893] sidebar の isOpen を props で設定
+[#893] sidebar の Global State を削除
