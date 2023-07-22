@@ -1,5 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue";
-import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
+import { Meta, StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
 import WizShowMoreLess from "./show-more-less.vue";
@@ -8,13 +7,9 @@ export default {
   title: "Base/ShowMoreLess",
   component: WizShowMoreLess,
   argTypes: {
-    bgColor: {
+    variant: {
       control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    fontColor: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
+      options: ["pc", "mobile"],
     },
   },
 } as Meta<typeof WizShowMoreLess>;
@@ -40,10 +35,9 @@ const Template: StoryFn<typeof WizShowMoreLess> = (_, { argTypes }) => ({
 
 export const Default = Template.bind({});
 
-export const Color = Template.bind({});
-Color.args = {
-  bgColor: "gray.300",
-  fontColor: "green.800",
+export const Mobile = Template.bind({});
+Mobile.args = {
+  variant: "mobile",
 };
 
 export const Open: StoryFn<typeof WizShowMoreLess> = (_, { argTypes }) => ({
