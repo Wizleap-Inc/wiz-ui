@@ -1,9 +1,7 @@
 import { StoryFn } from "@storybook/vue";
 import { THEME, SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
-import { provide } from "vue";
 
 import { WizTextButton } from "@/components";
-import { globalKey, useGlobalProvider } from "@/hooks/use-global-provider";
 
 import { WizHeader } from ".";
 
@@ -26,9 +24,6 @@ export default {
   decorators: [
     (story: StoryFn) => ({
       components: { story },
-      setup() {
-        provide(globalKey, useGlobalProvider());
-      },
       template: `<story />`,
     }),
   ],
