@@ -92,6 +92,7 @@ const componentStatus = computed(() => {
   if (props.selected) return "selected";
   if (props.active || isPressed.value) return "active";
   if (isHover.value) return "hover";
+  if (props.selected) return "selected";
   return "default";
 });
 </script>
