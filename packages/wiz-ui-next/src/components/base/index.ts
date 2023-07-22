@@ -8,6 +8,7 @@ export * from "./calendar";
 export * from "./card";
 export * from "./dialog";
 export * from "./divider";
+export * from "./drawer";
 export * from "./dropdown";
 export * from "./header";
 export * from "./heading";

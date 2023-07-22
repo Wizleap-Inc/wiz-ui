@@ -27,7 +27,7 @@ import {
 import { ref, useSlots, watch } from "vue";
 
 defineOptions({
-  name: ComponentName.NavigationContainer,
+  name: ComponentName.Drawer,
 });
 
 const props = defineProps({
@@ -39,7 +39,7 @@ const props = defineProps({
 
 const slots = useSlots();
 const containerRef = ref<HTMLElement | null>(null);
-const isActuallyOpen = ref<boolean>(false);
+const isActuallyOpen = ref<boolean>(props.isOpen);
 watch(props, () => {
   if (props.isOpen) {
     // move in animation

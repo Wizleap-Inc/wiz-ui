@@ -30,7 +30,7 @@ export const ComponentName = {
   ToggleSwitch: "WizToggleSwitch",
   MessageBox: "WizMessageBox",
   MenuItem: "WizMenuItem",
-  NavigationContainer: "WizNavigationContainer",
+  Drawer: "WizDrawer",
   NavigationItem: "WizNavigationItem",
   PopupContainer: "WizPopupContainer",
   Popup: "WizPopup",

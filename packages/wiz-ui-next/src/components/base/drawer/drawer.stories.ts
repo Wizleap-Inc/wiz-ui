@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/vue3";
 
-import { WizHeader, WizIconButton } from "@/components";
+import { WizDrawer, WizHeader, WizIconButton, WizNavItem } from "@/components";
 import {
   WizIAssignment,
   WizIBusinessCenter,
@@ -10,20 +10,18 @@ import {
   WizIMenu,
 } from "@/components/icons";
 
-import { WizNavContainerMobile, WizNavItem } from ".";
-
 export default {
-  title: "Base/Navigation/ContainerMobile",
-  component: WizNavContainerMobile,
+  title: "Base/Drawer",
+  component: WizDrawer,
   argTypes: {},
   parameters: {
     layout: "fullscreen",
   },
-} as Meta<typeof WizNavContainerMobile>;
+} as Meta<typeof WizDrawer>;
 
-const Template: StoryFn<typeof WizNavContainerMobile> = (args) => ({
+const Template: StoryFn<typeof WizDrawer> = (args) => ({
   components: {
-    WizNavContainerMobile,
+    WizDrawer,
     WizNavItem,
     WizHeader,
   },
@@ -41,7 +39,7 @@ const Template: StoryFn<typeof WizNavContainerMobile> = (args) => ({
   },
   template: `
     <div> 
-      <WizNavContainerMobile v-bind="args">      
+      <WizDrawer v-bind="args">      
         <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="true" />
         <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
         <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
@@ -51,7 +49,7 @@ const Template: StoryFn<typeof WizNavContainerMobile> = (args) => ({
           <h5>Footer</h5>
           <h6>Footer</h6>
         </template>
-      </WizNavContainerMobile>
+      </WizDrawer>
         <WizIconButton 
           :icon="WizIMenu "
           size="lg"
