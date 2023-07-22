@@ -1,7 +1,14 @@
 <template>
   <div :class="radioStyle">
     <WizStack :gap="gap" :direction="direction" wrap>
-      <div v-for="option in options" :key="option.key">
+      <div
+        v-for="(option, i) in options"
+        :key="option.key"
+        ref="radioRefs"
+        :style="{
+          width: `${radioWidths[i]}px`,
+        }"
+      >
         <input
           :class="radioInputStyle"
           type="radio"
@@ -18,6 +25,7 @@
             radioLabelStyle,
             radioValue === option.value && radioLabelCheckedStyle,
             (disabled || option.disabled) && radioLabelDisabledStyle,
+            !disabled && !option.disabled && radioBoldOnHoverStyle,
             radioLabelColorStyle[radioLabelColor(option.value)],
             radioLabelCursorStyle[radioLabelCursor(option.disabled)],
             strikeThrough &&
@@ -36,16 +44,17 @@
 <script setup lang="ts">
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  radioStyle,
+  radioBoldOnHoverStyle,
   radioInputStyle,
-  radioLabelStyle,
   radioLabelCheckedStyle,
-  radioLabelDisabledStyle,
   radioLabelColorStyle,
   radioLabelCursorStyle,
+  radioLabelDisabledStyle,
   radioLabelStrikeThrough,
+  radioLabelStyle,
+  radioStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
-import { computed, PropType, ref } from "vue";
+import { PropType, computed, onMounted, ref, watch } from "vue";
 
 import WizStack from "@/components/base/stack/stack.vue";
 
@@ -90,12 +99,29 @@ const focusOption = ref<number | null>(null);
 
 const emit = defineEmits<Emit>();
 
+const radioRefs = ref<HTMLElement[]>([]);
+const radioWidths = ref<number[]>([]);
+onMounted(() => {
+  radioWidths.value = radioRefs.value.map(
+    (ref) => ref.getBoundingClientRect().width
+  );
+});
+watch(
+  [props.options, radioRefs],
+  () =>
+    (radioWidths.value = radioRefs.value.map(
+      (ref) => ref.getBoundingClientRect().width
+    ))
+);
+
 const radioValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
 
 const radioLabelColor = (value: number) => {
+  if (radioValue.value === value && focusOption.value === value)
+    return "checkedFocused";
   if (radioValue.value === value) return "checked";
   if (focusOption.value === value) return "focused";
   return "default";

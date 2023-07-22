@@ -1,7 +1,15 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import clsx from "clsx";
-import { FC, useId } from "react";
+import {
+  FC,
+  RefObject,
+  createRef,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 
 import { WizStack } from "@/components";
 
@@ -29,15 +37,39 @@ export const Radio: FC<Props> = ({
   onChange,
 }: Props) => {
   const idPrefix = useId();
+  const [focusedOption, setFocusedOption] = useState<number | null>(null);
+  const radioRefs = useRef<RefObject<HTMLDivElement>[]>(
+    options.map(() => createRef())
+  );
+  const [radioWidth, setRadioWidth] = useState<number[]>([]);
+  useEffect(() => {
+    setRadioWidth(
+      radioRefs.current.map((ref) => ref.current?.clientWidth ?? 0)
+    );
+  }, [options]);
+
   return (
     <div className={styles.radioStyle}>
       <WizStack gap={gap} direction={direction} wrap>
-        {options.map((option) => {
+        {options.map((option, i) => {
           const id = `${idPrefix}-${option.value}`;
           const isChecked = value === option.value;
           const isDisabled = disabled || option.disabled;
+          const isFocused = focusedOption === option.value;
+          const colorStyle = (() => {
+            if (isChecked && isFocused) return "checkedFocused";
+            if (isChecked) return "checked";
+            if (isFocused) return "focused";
+            return "default";
+          })();
           return (
-            <div key={id}>
+            <div
+              key={id}
+              ref={radioRefs.current[i]}
+              style={{
+                width: radioWidth[i],
+              }}
+            >
               <input
                 className={styles.radioInputStyle}
                 type="radio"
@@ -49,15 +81,20 @@ export const Radio: FC<Props> = ({
                 onClick={() => {
                   onChange?.(option.value);
                 }}
+                onFocus={() => {
+                  setFocusedOption(option.value);
+                }}
+                onBlur={() => {
+                  setFocusedOption(null);
+                }}
               />
               <label
                 className={clsx(
                   styles.radioLabelStyle,
                   isChecked && styles.radioLabelCheckedStyle,
                   isDisabled && styles.radioLabelDisabledStyle,
-                  styles.radioLabelColorStyle[
-                    isChecked ? "checked" : "default"
-                  ],
+                  !isDisabled && styles.radioBoldOnHoverStyle,
+                  styles.radioLabelColorStyle[colorStyle],
                   styles.radioLabelCursorStyle[
                     isDisabled ? "disabled" : "default"
                   ],

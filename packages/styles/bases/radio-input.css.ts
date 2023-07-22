@@ -30,6 +30,7 @@ export const radioLabelStyle = style({
     height: THEME.spacing.md,
     boxSizing: "border-box",
     display: "inline-block",
+    flexShrink: 0,
   },
 });
 
@@ -67,13 +68,22 @@ export const radioLabelColorStyle = styleVariants({
   focused: {
     color: THEME.color.gray["600"],
     ":before": {
-      border: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
+      border: `${focusedBorderWidth} solid ${THEME.color.gray["400"]}`,
     },
   },
   checked: {
     color: THEME.color.green["800"],
     ":before": {
       border: `${borderWidth} solid ${THEME.color.green["800"]}`,
+    },
+    ":after": {
+      background: THEME.color.green["800"],
+    },
+  },
+  checkedFocused: {
+    color: THEME.color.green["800"],
+    ":before": {
+      border: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
     },
     ":after": {
       background: THEME.color.green["800"],
@@ -87,5 +97,16 @@ export const radioLabelCursorStyle = styleVariants({
   },
   disabled: {
     cursor: "not-allowed",
+  },
+});
+
+export const radioBoldOnHoverStyle = style({
+  "@media": {
+    "(any-hover: hover)": {
+      ":hover": {
+        fontWeight: THEME.fontWeight.bold,
+        textAlign: "right",
+      },
+    },
   },
 });
