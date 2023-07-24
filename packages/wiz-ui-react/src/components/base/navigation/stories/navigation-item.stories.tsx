@@ -23,9 +23,7 @@ export const Default: Story = {
     icon: WizIDashboard,
     label: "Home",
     active: false,
-    linkProps: {
-      href: "/",
-    },
+    href: "/",
   },
 };
 
@@ -34,9 +32,7 @@ export const Active: Story = {
   args: {
     icon: WizIDashboard,
     label: "Home",
-    linkProps: {
-      href: "/",
-    },
+    href: "/",
     active: true,
   },
 };
@@ -47,9 +43,7 @@ export const Disabled: Story = {
     icon: WizIDashboard,
     label: "Home",
     disabled: true,
-    linkProps: {
-      href: "/",
-    },
+    href: "/",
   },
 };
 
@@ -57,9 +51,7 @@ export const WithToolTip: Story = {
   args: {
     icon: WizIDashboard,
     label: "Home",
-    linkProps: {
-      href: "/",
-    },
+    href: "/",
     tooltipText: "これはヒントです。",
   },
   render: (args) => (

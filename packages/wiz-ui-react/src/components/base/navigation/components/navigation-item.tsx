@@ -28,20 +28,24 @@ type Props<T extends ElementType> = {
   isPopupOpen?: boolean;
   onTogglePopup: (isPopup: boolean) => void;
   onTogglePopupLocking: (lock: boolean) => void;
-  as?: T;
-  linkProps: ComponentProps<T>;
-};
+} & (
+  | { href: string }
+  | {
+      as: T;
+      asProps: ComponentProps<T>;
+    }
+);
 
 /**
  * aタグでの使い方
  * ```tsx
- * <WizNavigationItem linkProps={{ href: "https://xxxx" }} { ...otherProps } />
+ * <WizNavigationItem href="https://xxxx" { ...otherProps } />
  * ```
  *
  * `react-router`での使い方
  * ```tsx
  * import { Link } from "react-router-dom";
- * <WizNavigationItem as={Link} linkProps={{ to: "/page1" }} { ...otherProps } />
+ * <WizNavigationItem as={Link} to="/page1" { ...otherProps } />
  * ```
  */
 const NavigationItem = <T extends ElementType>({
@@ -55,10 +59,13 @@ const NavigationItem = <T extends ElementType>({
   isPopupOpen = false,
   onTogglePopup,
   onTogglePopupLocking,
-  as = "a" as T,
-  linkProps,
+  ...props
 }: Props<T>) => {
-  const LinkComponent = as as ElementType;
+  const isAnchor = "href" in props;
+  const LinkComponent = isAnchor ? "a" : props.as;
+  const linkProps = isAnchor
+    ? { href: disabled ? undefined : props.href }
+    : props.asProps;
   const popupAnchor = useRef<HTMLDivElement>(null);
   const existPopup = buttons && buttons.length > 0;
 
@@ -100,8 +107,6 @@ const NavigationItem = <T extends ElementType>({
       >
         <LinkComponent
           {...linkProps}
-          href={disabled ? undefined : linkProps.href}
-          to={disabled ? undefined : linkProps.to}
           className={clsx(
             navigationItemStyle,
             disabled
