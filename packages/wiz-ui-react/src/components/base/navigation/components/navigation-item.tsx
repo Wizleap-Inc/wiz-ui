@@ -45,7 +45,7 @@ type Props<T extends ElementType> = {
  * `react-router`での使い方
  * ```tsx
  * import { Link } from "react-router-dom";
- * <WizNavigationItem as={Link} to="/page1" { ...otherProps } />
+ * <WizNavigationItem as={Link} asProps={{ to: "/page1" }} { ...otherProps } />
  * ```
  */
 const NavigationItem = <T extends ElementType>({
