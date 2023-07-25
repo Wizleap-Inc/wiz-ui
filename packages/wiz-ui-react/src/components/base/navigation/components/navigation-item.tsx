@@ -29,8 +29,13 @@ type Props<T extends ElementType> = {
   onTogglePopup: (isPopup: boolean) => void;
   onTogglePopupLocking: (lock: boolean) => void;
 } & (
-  | { href: string }
   | {
+      href: string;
+      as?: never;
+      asProps?: never;
+    }
+  | {
+      href?: never;
       as: T;
       asProps: ComponentProps<T>;
     }
