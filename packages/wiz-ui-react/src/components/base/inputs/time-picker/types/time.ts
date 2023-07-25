@@ -3,7 +3,7 @@ export const HOURS = [
   22, 23,
 ] as const;
 
-export const MINUTES = [0, 15, 30, 45] as const;
+export const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55] as const;
 
 export type Time = {
   hour: (typeof HOURS)[number];

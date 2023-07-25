@@ -11,6 +11,7 @@ type Props = {
   items: TabItem[];
   gap?: SpacingKeys;
   width?: string;
+  center?: boolean;
   onClickTab: (name: string) => void;
 };
 
@@ -19,10 +20,11 @@ const Tab: FC<Props> = ({
   items,
   gap,
   width,
+  center = false,
   onClickTab,
 }: Props) => {
   return (
-    <WizHStack gap={gap} wrap={false}>
+    <WizHStack gap={gap} wrap={false} justify={center ? "center" : undefined}>
       {items.map((tab) => (
         <WizTabPane
           key={tab.name}

@@ -2,15 +2,17 @@ import { Meta, StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
 import {
-  WizIDashboard,
   WizIAssignment,
   WizIBusinessCenter,
+  WizIDashboard,
   WizIHelp,
 } from "@/components/icons";
 
+import { WizTextButton } from "../buttons";
+import { WizHeader } from "../header";
 import { ButtonGroupItem } from "../popup-button-group/types";
 
-import { WizNavItem, WizNavContainer } from ".";
+import { WizNavContainer, WizNavItem } from ".";
 
 export default {
   title: "Base/Navigation/Container",
@@ -232,13 +234,12 @@ export const Popup: StoryFn = (_, { argTypes }) => ({
 
 export const PopupSticky: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { WizNavContainer, WizNavItem },
+  components: { WizNavContainer, WizNavItem, WizHeader, WizTextButton },
   setup() {
     const lockingPopup = ref(false);
-    const setLock = (isLock: boolean) => {
-      lockingPopup.value = isLock;
-    };
+    const setLock = (isLock: boolean) => (lockingPopup.value = isLock);
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
+    isOpens[2].value = true;
     const toggles = isOpens.map((isOpen) => (value: boolean) => {
       isOpen.value = value;
     });

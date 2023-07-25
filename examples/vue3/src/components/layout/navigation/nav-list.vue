@@ -19,6 +19,7 @@ import {
   WizIBusinessCenter,
   WizIHelp,
   WizIInfo,
+  WizIChat,
 } from "@wizleap-inc/wiz-ui-next";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
@@ -55,6 +56,12 @@ const navigationItems = computed(() => [
     icon: WizIInfo,
     label: "Breakpoint",
     to: "/breakpoint",
+    active: currentPath.value === "/breakpoint",
+  },
+  {
+    icon: WizIChat,
+    label: "Chat",
+    to: "/chat",
     active: currentPath.value === "/breakpoint",
   },
 ]);

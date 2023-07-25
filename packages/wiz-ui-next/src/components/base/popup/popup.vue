@@ -28,21 +28,21 @@ import {
   ZIndexKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  popupStyle,
-  popupShadowStyle,
-  popupHiddenStyle,
   popupFixedStyle,
+  popupHiddenStyle,
+  popupShadowStyle,
+  popupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import {
   computed,
-  watch,
   inject,
-  PropType,
-  ref,
-  reactive,
   nextTick,
   onMounted,
+  PropType,
+  reactive,
+  ref,
+  watch,
 } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
@@ -161,11 +161,13 @@ const togglePopup = () => {
   }
 };
 
-const existsFixedParent = (el: HTMLElement | null): HTMLElement | null => {
+const existsFixedOrStickyParent = (
+  el: HTMLElement | null
+): HTMLElement | null => {
   if (!el) return null;
   const position = window.getComputedStyle(el).position;
-  if (position === "fixed") return el;
-  return existsFixedParent(el.parentElement);
+  if (position === "fixed" || position === "sticky") return el;
+  return existsFixedOrStickyParent(el.parentElement);
 };
 
 let removeScrollHandler: (() => void) | null = null;
@@ -341,7 +343,7 @@ watch(
 );
 
 const isFixed = computed(() => {
-  return existsFixedParent(containerRef.value || null) ? true : false;
+  return existsFixedOrStickyParent(containerRef.value || null) ? true : false;
 });
 
 const inset = computed(() => {

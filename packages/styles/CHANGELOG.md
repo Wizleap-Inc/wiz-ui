@@ -1,5 +1,24 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.12.1
+
+### Patch Changes
+
+- [#930](https://github.com/Wizleap-Inc/wiz-ui/pull/930) [`e5919485`](https://github.com/Wizleap-Inc/wiz-ui/commit/e591948573d0f5ed39b74522f161de090af58b3e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - TextButton が Shrink するときに折り返す問題を修正
+
+## 0.12.0
+
+### Minor Changes
+
+- [#905](https://github.com/Wizleap-Inc/wiz-ui/pull/905) [`fc01d5ef`](https://github.com/Wizleap-Inc/wiz-ui/commit/fc01d5efd9a1968ff6f91276881ad6666842ec99) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizRadio: 全角と半角が混じるとスタイルが崩れる問題を修正
+
+### Patch Changes
+
+- [#790](https://github.com/Wizleap-Inc/wiz-ui/pull/790) [`f7207338`](https://github.com/Wizleap-Inc/wiz-ui/commit/f72073385fd90c4d2035420dc64481121015311c) Thanks [@okakyo](https://github.com/okakyo)! - [#740] radio の a11y 対応 (キー操作)
+
+- Updated dependencies [[`b8ecc5e1`](https://github.com/Wizleap-Inc/wiz-ui/commit/b8ecc5e15eb2ee14c3160ae93adc8f3014015822), [`ba785746`](https://github.com/Wizleap-Inc/wiz-ui/commit/ba7857468d67988537a6d0ea6a915dc978f715f4)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.1
+
 ## 0.11.1
 
 ### Patch Changes
