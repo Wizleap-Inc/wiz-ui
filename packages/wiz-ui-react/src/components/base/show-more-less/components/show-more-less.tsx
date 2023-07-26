@@ -62,7 +62,10 @@ const ShowMoreLess: FC<Props> = ({
         >
           {children}
         </div>
-        <div className={showMoreLessSummaryStyle} onClick={handleClick}>
+        <div
+          className={showMoreLessSummaryStyle[variant]}
+          onClick={handleClick}
+        >
           <div className={clsx(showMoreLessMessageStyle)}>
             <WizHStack
               align="center"

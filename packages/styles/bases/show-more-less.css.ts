@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const showMoreLessDetailsStyle = style({
@@ -14,24 +14,40 @@ export const showMoreLessMessageStyle = style({
   background: "transparent",
 });
 
-export const showMoreLessSummaryStyle = style({
+const summaryBaseStyle = style({
   display: "flex",
   justifyContent: "center",
   cursor: "pointer",
   userSelect: "none",
   borderRadius: THEME.spacing.xs,
-  background: THEME.color.white[800],
-  color: THEME.color.gray[600],
-  fill: THEME.color.gray[600],
-  "@media": {
-    "(any-hover: hover)": {
-      ":hover": {
-        background: THEME.color.gray[200],
-        color: THEME.color.green[800],
-        fill: THEME.color.green[800],
+});
+
+export const showMoreLessSummaryStyle = styleVariants({
+  mobile: [
+    summaryBaseStyle,
+    {
+      background: THEME.color.gray[200],
+      color: THEME.color.green[800],
+      fill: THEME.color.green[800],
+    },
+  ],
+  pc: [
+    summaryBaseStyle,
+    {
+      background: THEME.color.white[800],
+      color: THEME.color.gray[600],
+      fill: THEME.color.gray[600],
+      "@media": {
+        "(any-hover: hover)": {
+          ":hover": {
+            background: THEME.color.gray[200],
+            color: THEME.color.green[800],
+            fill: THEME.color.green[800],
+          },
+        },
       },
     },
-  },
+  ],
 });
 
 export const showMoreLessContentStyle = style({

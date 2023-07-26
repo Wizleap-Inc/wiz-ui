@@ -13,7 +13,7 @@
     >
       <slot />
     </div>
-    <div :class="showMoreLessSummaryStyle" @click="onClick">
+    <div :class="showMoreLessSummaryStyle[variant]" @click="onClick">
       <WizHStack
         align="center"
         justify="between"
