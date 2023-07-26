@@ -44,7 +44,7 @@ type Props<T extends ElementType> = {
 /**
  * aタグでの使い方
  * ```tsx
- * <WizNavigationItem href="https://xxxx" { ...otherProps } />
+ * <WizNavigationItem href="https://xxx" { ...otherProps } />
  * ```
  *
  * `react-router`での使い方
