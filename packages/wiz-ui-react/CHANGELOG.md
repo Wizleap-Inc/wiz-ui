@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.21.0
+
+### Minor Changes
+
+- [#919](https://github.com/Wizleap-Inc/wiz-ui/pull/919) [`9919c5b2`](https://github.com/Wizleap-Inc/wiz-ui/commit/9919c5b2755b22c4d265efbf8ce5ab4dbdc0b0e4) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - navigation-item の react-router 対応
+
+- [#713](https://github.com/Wizleap-Inc/wiz-ui/pull/713) [`360819d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/360819d5982b29f19af5e1bd52ccc5df41fdc8a3) Thanks [@okakyo](https://github.com/okakyo)! - Icon に fontSize を適用した
+
 ## 0.20.0
 
 ### Minor Changes

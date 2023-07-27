@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.19.0
+
+### Minor Changes
+
+- [#713](https://github.com/Wizleap-Inc/wiz-ui/pull/713) [`360819d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/360819d5982b29f19af5e1bd52ccc5df41fdc8a3) Thanks [@okakyo](https://github.com/okakyo)! - Icon に fontSize を適用した
+
 ## 1.18.0
 
 ### Minor Changes
