@@ -65,7 +65,12 @@
         />
       </button>
     </div>
-    <WizPopup layer="popover" :isOpen="isOpen" @onClose="emit('toggle', false)">
+    <WizPopup
+      layer="popover"
+      :isOpen="isOpen"
+      :isDirectionFixed="isDirectionFixed"
+      @onClose="emit('toggle', false)"
+    >
       <div
         :class="selectBoxSelectorStyle"
         :style="{ minWidth: width }"
@@ -184,6 +189,11 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -202,12 +212,24 @@ const toggleDropdown = () => {
 
 const deepCopy = <T>(ary: T): T => JSON.parse(JSON.stringify(ary));
 
-const sortByLevenshtein = (options: SelectBoxOption[], target: string) => {
+const selectByLevenshteinAndPartialMatch = (
+  options: SelectBoxOption[],
+  target: string
+) => {
   const dist = options.reduce((acc, str) => {
     acc[str.label] = levenshteinDistance(str.label, target);
     return acc;
   }, {} as { [key: string]: number });
-  return options.sort((a, b) => dist[a.label] - dist[b.label]);
+  const minLength = Math.min(...Object.values(dist));
+  const closestWords = options.filter(
+    (option) => dist[option.label] === minLength
+  );
+
+  const exactMatch = options.filter((option) => {
+    const isIncluded = option.label.indexOf(target) !== -1;
+    return isIncluded && !closestWords.includes(option);
+  });
+  return closestWords.concat(exactMatch);
 };
 
 const valueToOption = computed(() =>
@@ -230,7 +252,10 @@ const setUnselectableRef =
 const filteredOptions = computed(() => {
   const sortedOptions =
     props.searchValue.length !== 0
-      ? sortByLevenshtein(deepCopy(props.options), props.searchValue)
+      ? selectByLevenshteinAndPartialMatch(
+          deepCopy(props.options),
+          props.searchValue
+        )
       : props.options;
   const removeSelectedOptions = (options: SelectBoxOption[]) => {
     return options.filter((v) => {

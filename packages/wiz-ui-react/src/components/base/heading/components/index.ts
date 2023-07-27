@@ -1,0 +1,1 @@
+export { WizHeading } from "./heading";

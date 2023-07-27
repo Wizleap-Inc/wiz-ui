@@ -48,7 +48,7 @@ const _Stack = ({
   ml,
   mx,
   my,
-  reverse,
+  reverse = false,
   position,
   ...props
 }: StackProps) => {
