@@ -1,3 +1,5 @@
+import { expect } from "@storybook/jest";
+import { userEvent, waitFor, within, screen } from "@storybook/testing-library";
 import { StoryFn } from "@storybook/vue";
 
 import { WizText } from "@/components";
@@ -23,7 +25,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   template: `
     <div style="width: 700px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;">
       <WizTooltip v-bind="$props">
-        保険見直し、つみ…
+        保険見直し、つみ...
         <template #content>保険見直し、つみたて・投資、ライフプラン</template>
       </WizTooltip>
     </div>
@@ -196,4 +198,28 @@ IsDirectionFixed.parameters = {
 `,
     },
   },
+};
+
+export const Test = Template.bind({});
+
+Test.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const target = await canvas.getByText("保険見直し、つみ...");
+
+  userEvent.hover(target);
+
+  waitFor(async () => {
+    const tooltip = await screen.getByText(
+      "保険見直し、つみたて・投資、ライフプラン"
+    );
+    expect(tooltip).toBeInTheDocument();
+  });
+
+  userEvent.unhover(target);
+  waitFor(async () => {
+    const tooltip = await screen.getByText(
+      "保険見直し、つみたて・投資、ライフプラン"
+    );
+    expect(tooltip).not.toBeVisible();
+  });
 };

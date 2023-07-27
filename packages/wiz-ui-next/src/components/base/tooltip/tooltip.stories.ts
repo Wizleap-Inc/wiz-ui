@@ -1,3 +1,5 @@
+import { expect } from "@storybook/jest";
+import { screen, userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn, Meta } from "@storybook/vue3";
 
 import { WizText } from "@/components";
@@ -125,4 +127,28 @@ IsDirectionFixed.parameters = {
 `,
     },
   },
+};
+
+export const Test = Template.bind({});
+
+Test.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const target = await canvas.getByText("保険見直し、つみ...");
+
+  userEvent.hover(target);
+
+  waitFor(async () => {
+    const tooltip = await screen.getByText(
+      "保険見直し、つみたて・投資、ライフプラン"
+    );
+    expect(tooltip).toBeInTheDocument();
+  });
+
+  userEvent.unhover(target);
+  waitFor(async () => {
+    const tooltip = await screen.getByText(
+      "保険見直し、つみたて・投資、ライフプラン"
+    );
+    expect(tooltip).not.toBeVisible();
+  });
 };
