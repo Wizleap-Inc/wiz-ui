@@ -1,3 +1,5 @@
+import { expect } from "@storybook/jest";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { StoryFn, Meta } from "@storybook/vue";
 import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
@@ -99,3 +101,40 @@ const MultipleTemplate: StoryFn<typeof WizAccordion> = (_, { argTypes }) => ({
 });
 
 export const Multiple = MultipleTemplate.bind({});
+
+export const Test: StoryFn<typeof WizAccordion> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizAccordion },
+  setup: () => {
+    const isOpen = ref(false);
+    const toggle = () => {
+      isOpen.value = !isOpen.value;
+    };
+    return { isOpen, toggle };
+  },
+  template: `
+  <WizAccordion v-bind="$props" :isOpen="isOpen" @toggle="toggle">
+    <div data-testid="contents">
+      <p>折りたたまれている部分です．</p>
+      <p>折りたたまれている部分です．</p>
+      <p>折りたたまれている部分です．</p>
+    </div>
+  </WizAccordion>
+  `,
+});
+
+Test.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  const accordion = await canvas.getByText("もっと見る");
+  const details = await canvas.getByTestId("contents");
+
+  await expect(details).not.toBeVisible();
+
+  await userEvent.click(accordion);
+
+  waitFor(() => {
+    expect(details).toBeVisible();
+    expect(accordion).toHaveTextContent("閉じる");
+  });
+};
