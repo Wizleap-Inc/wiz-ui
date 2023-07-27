@@ -27,8 +27,9 @@ const Calendar: FC<Props> = ({
   function findActiveDateStatus(item: CalendarDataItem) {
     return activeDates?.find((activeDate) => {
       return (
-        !item.isOutOfCurrentMonth &&
-        activeDate.date.getDate() === Number(item.label)
+        activeDate.date.getDate() === Number(item.label) &&
+        activeDate.date.getMonth() === currentMonth.getMonth() &&
+        activeDate.date.getFullYear() === currentMonth.getFullYear()
       );
     });
   }
@@ -83,10 +84,7 @@ const Calendar: FC<Props> = ({
                   className={styles.calendarCellStyle}
                 >
                   <button
-                    disabled={
-                      item.isOutOfCurrentMonth ||
-                      activeDateStatus?.state === "primary"
-                    }
+                    disabled={item.isOutOfCurrentMonth}
                     aria-label={`${currentMonth.getFullYear()}年${
                       currentMonth.getMonth() + 1
                     }月${item.label}日${activeDateStatus ? "-選択済み" : ""}`}

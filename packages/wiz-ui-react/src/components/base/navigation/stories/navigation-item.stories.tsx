@@ -13,33 +13,38 @@ const meta: Meta<typeof WizNavigationItem> = {
 export default meta;
 type Story = StoryObj<typeof WizNavigationItem>;
 
+const Template: Story = {
+  render: (args) => <WizNavigationItem {...args} />,
+};
+
 export const Default: Story = {
+  ...Template,
   args: {
     icon: WizIDashboard,
     label: "Home",
-    href: "/",
     active: false,
+    href: "/",
   },
 };
 
 export const Active: Story = {
+  ...Template,
   args: {
     icon: WizIDashboard,
     label: "Home",
     href: "/",
     active: true,
   },
-  render: (args) => <WizNavigationItem {...args} />,
 };
 
 export const Disabled: Story = {
+  ...Template,
   args: {
     icon: WizIDashboard,
     label: "Home",
-    href: "/",
     disabled: true,
+    href: "/",
   },
-  render: (args) => <WizNavigationItem {...args} />,
 };
 
 export const WithToolTip: Story = {
