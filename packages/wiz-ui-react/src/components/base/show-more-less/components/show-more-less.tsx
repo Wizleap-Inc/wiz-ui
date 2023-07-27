@@ -67,12 +67,7 @@ const ShowMoreLess: FC<Props> = ({
           onClick={handleClick}
         >
           <div className={clsx(showMoreLessMessageStyle)}>
-            <WizHStack
-              align="center"
-              justify="between"
-              gap="xs2"
-              height={variant === "mobile" ? "2.75rem" : "1.375rem"}
-            >
+            <WizHStack align="center" justify="between" gap="xs2">
               <div>{isOpen ? closeMessage : openMessage}</div>
               <div
                 className={clsx(
@@ -80,7 +75,7 @@ const ShowMoreLess: FC<Props> = ({
                   isOpen && showMoreLessRotateIconStyle
                 )}
               >
-                <WizIcon size="xl2" icon={WizIExpandMore} color={"inherit"} />
+                <WizIcon size="xl2" icon={WizIExpandMore} color="inherit" />
               </div>
             </WizHStack>
           </div>

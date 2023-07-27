@@ -11,6 +11,7 @@ export const showMoreLessMessageStyle = style({
   fontSize: THEME.fontSize.sm,
   lineHeight: "130%",
   alignItems: "center",
+  display: "flex",
   background: "transparent",
 });
 
@@ -26,6 +27,7 @@ export const showMoreLessSummaryStyle = styleVariants({
   mobile: [
     summaryBaseStyle,
     {
+      height: "2.75rem",
       background: THEME.color.gray[200],
       color: THEME.color.green[800],
       fill: THEME.color.green[800],
@@ -34,6 +36,7 @@ export const showMoreLessSummaryStyle = styleVariants({
   pc: [
     summaryBaseStyle,
     {
+      height: "1.375rem",
       background: THEME.color.white[800],
       color: THEME.color.gray[600],
       fill: THEME.color.gray[600],

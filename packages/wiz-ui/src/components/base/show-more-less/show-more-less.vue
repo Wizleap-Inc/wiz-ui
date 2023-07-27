@@ -14,26 +14,22 @@
       <slot />
     </div>
     <div :class="showMoreLessSummaryStyle[variant]" @click="onClick">
-      <WizHStack
-        align="center"
-        justify="between"
-        gap="xs2"
-        :height="variant === 'mobile' ? '2.75rem' : '1.375rem'"
-        :class="[showMoreLessMessageStyle]"
-      >
-        <div>
-          {{ isOpen ? closeMessage : openMessage }}
-        </div>
-        <WizIcon
-          size="xl2"
-          :icon="WizIExpandMore"
-          color="inherit"
-          :class="[
-            showMoreLessExpandIconStyle,
-            isOpen && showMoreLessRotateIconStyle,
-          ]"
-        />
-      </WizHStack>
+      <div :class="showMoreLessMessageStyle">
+        <WizHStack align="center" justify="between" gap="xs2">
+          <div>
+            {{ isOpen ? closeMessage : openMessage }}
+          </div>
+          <WizIcon
+            size="xl2"
+            :icon="WizIExpandMore"
+            color="inherit"
+            :class="[
+              showMoreLessExpandIconStyle,
+              isOpen && showMoreLessRotateIconStyle,
+            ]"
+          />
+        </WizHStack>
+      </div>
     </div>
   </WizVStack>
 </template>
