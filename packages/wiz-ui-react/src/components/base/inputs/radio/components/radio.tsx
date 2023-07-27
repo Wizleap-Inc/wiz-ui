@@ -1,15 +1,7 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import clsx from "clsx";
-import {
-  FC,
-  RefObject,
-  createRef,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import { FC, useEffect, useId, useRef, useState } from "react";
 
 import { WizStack } from "@/components";
 
@@ -38,14 +30,10 @@ export const Radio: FC<Props> = ({
 }: Props) => {
   const idPrefix = useId();
   const [focusedOption, setFocusedOption] = useState<number | null>(null);
-  const radioRefs = useRef<RefObject<HTMLDivElement>[]>(
-    options.map(() => createRef())
-  );
+  const radiosRef = useRef<Array<HTMLDivElement | null>>([]);
   const [radioWidth, setRadioWidth] = useState<number[]>([]);
   useEffect(() => {
-    setRadioWidth(
-      radioRefs.current.map((ref) => ref.current?.clientWidth ?? 0)
-    );
+    setRadioWidth(radiosRef.current.map((ref) => ref?.clientWidth ?? 0));
   }, [options]);
 
   return (
@@ -65,7 +53,9 @@ export const Radio: FC<Props> = ({
           return (
             <div
               key={id}
-              ref={radioRefs.current[i]}
+              ref={(ref) => {
+                radiosRef.current[i] = ref;
+              }}
               style={{
                 width: radioWidth[i],
               }}
