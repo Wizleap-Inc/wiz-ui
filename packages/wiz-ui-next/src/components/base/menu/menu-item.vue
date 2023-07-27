@@ -10,10 +10,13 @@
     @click="onClick"
   >
     <WizHStack align="center" justify="between">
-      <div :class="fontSizeStyle[fontSize]">
-        {{ label }}
-      </div>
-      <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
+      <div :class="fontSizeStyle[fontSize]">{{ label }}</div>
+      <WizIcon
+        size="xl2"
+        :class="[menuItemIconStyle]"
+        :icon="WizIChevronRight"
+        :color="iconColor"
+      />
     </WizHStack>
   </div>
 </template>
@@ -21,6 +24,7 @@
 <script setup lang="ts">
 import { ColorKeys, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
+  menuItemIconStyle,
   menuItemStyle,
   menuItemVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
