@@ -8,9 +8,8 @@ type DirectionSet = {
 };
 type Size = { width: number; height: number };
 type Position = { x: number; y: number };
-type Rect = Size & {
-  [key in Direction]: number;
-};
+
+import { Rect } from "./rect";
 
 function convertDirectionKeyToDirectionSet(key: DirectionKey): DirectionSet {
   const convertPrimary = (): Direction => {
@@ -98,19 +97,18 @@ function getPopupRect({
     }
     return anchorRect.top;
   })();
-  return {
-    ...popupSize,
-    top: y + scroll.y,
-    right: x + popupSize.width + scroll.x,
-    bottom: y + popupSize.height + scroll.y,
-    left: x + scroll.x,
-  };
+  return new Rect(
+    x + scroll.x,
+    y + scroll.y,
+    popupSize.width,
+    popupSize.height
+  );
 }
 
 /**
- * 必要に応じてポップアップの回り込みを一度だけ行う
+ * 必要に応じて、ポップアップの表示方向の回り込みを行う
  */
-function wrapPopupDirectionOnce({
+function wrapPopupDirection({
   popupRect,
   directionSet,
   screenSize,
@@ -198,10 +196,9 @@ function wrapPopupDirectionOnce({
 }
 
 /**
- * 必要に応じてポップアップの回り込みを行う。
- * 回り込んだ場合で、回り込んだ先にも十分なスペースがない場合は元の方向を返す。
+ * ポップアップの表示方向を返す
  */
-export function wrapPopupDirection({
+function getPopupDirection({
   anchorRect,
   popupSize,
   directionSet,
@@ -223,7 +220,7 @@ export function wrapPopupDirection({
     gap,
     scroll,
   });
-  const wrappedDirectionSet = wrapPopupDirectionOnce({
+  const wrappedDirectionSet = wrapPopupDirection({
     popupRect,
     directionSet,
     screenSize,
@@ -245,7 +242,7 @@ export function wrapPopupDirection({
     gap,
     scroll,
   });
-  const rewrappedDIrectionSet = wrapPopupDirectionOnce({
+  const rewrappedDIrectionSet = wrapPopupDirection({
     popupRect: wrappedPopupRect,
     directionSet: wrappedDirectionSet,
     screenSize,
@@ -265,7 +262,7 @@ export function wrapPopupDirection({
 }
 
 /**
- * ポップアップの回り込みを考慮した位置のスタイルを返す
+ * 回り込みを考慮したポップアップの位置を返す
  */
 export function getPopupPosition({
   anchorRect,
@@ -287,7 +284,7 @@ export function getPopupPosition({
   const directionSet = convertDirectionKeyToDirectionSet(directionKey);
   const determinedDirectionSet = isDirectionFixed
     ? directionSet
-    : wrapPopupDirection({
+    : getPopupDirection({
         anchorRect,
         popupSize,
         directionSet,

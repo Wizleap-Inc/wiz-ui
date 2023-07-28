@@ -1,17 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { getPopupPosition } from "../utils/popup-position";
+import { getPopupPosition, Rect } from "../utils";
 
 type Args = Parameters<typeof getPopupPosition>[0];
-
-const Rect = (x: number, y: number, width: number, height: number) => ({
-  top: y,
-  right: x + width,
-  bottom: y + height,
-  left: x,
-  width,
-  height,
-});
 
 const testHelper = (args: Omit<Args, "directionKey">) => {
   const { screenSize, anchorRect, popupSize, gap, scroll } = args;
@@ -113,7 +104,7 @@ describe("popup-position", () => {
           width: 1000,
           height: 1001,
         },
-        anchorRect: Rect(500, 502, 10, 13),
+        anchorRect: new Rect(500, 502, 10, 13),
         popupSize: {
           width: 34,
           height: 30,
@@ -149,7 +140,7 @@ describe("popup-position", () => {
           width: 1000,
           height: 1000,
         },
-        anchorRect: Rect(0, 0, 50, 50),
+        anchorRect: new Rect(0, 0, 50, 50),
         popupSize: {
           width: 100,
           height: 100,
@@ -183,7 +174,7 @@ describe("popup-position", () => {
           width: 1000,
           height: 1000,
         },
-        anchorRect: Rect(950, 950, 50, 50),
+        anchorRect: new Rect(950, 950, 50, 50),
         popupSize: {
           width: 100,
           height: 100,
