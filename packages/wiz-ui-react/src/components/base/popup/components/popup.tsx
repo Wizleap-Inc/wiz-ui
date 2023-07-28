@@ -21,8 +21,7 @@ import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { usePopupAnimation } from "../hooks/use-popup-animation";
 import { DirectionKey } from "../types/direction";
-import { PlacementStyle } from "../types/placement";
-import { getPopupStyles } from "../utils";
+import { getPopupPosition } from "../utils";
 
 type Props = {
   isOpen: boolean;
@@ -57,7 +56,10 @@ const Popup = ({
 }: Props) => {
   const popupRef = useRef<HTMLDivElement | null>(null);
   const isActuallyOpen = usePopupAnimation(animation, popupRef, isOpen);
-  const [placementStyle, setPlacementStyle] = useState<PlacementStyle>({});
+  const [popupPosition, setPopupPosition] = useState<{
+    top?: number;
+    left?: number;
+  }>({});
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
@@ -67,37 +69,38 @@ const Popup = ({
     if (!isActuallyOpen || !anchor || !content) {
       return;
     }
-    const updatePlacementStyle = () => {
+    const updatePopupPosition = () => {
       const fontSize = window.getComputedStyle(document.body).fontSize;
       const contentRect = content.getBoundingClientRect();
 
-      const styles = getPopupStyles({
-        anchorRect: anchor.getBoundingClientRect(),
-        popupSize: {
-          width: contentRect.width,
-          height: contentRect.height,
-        },
-        directionKey: direction,
-        gap: parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize),
-        screenSize: {
-          width: document.body.clientWidth,
-          height: Math.max(document.body.clientHeight, window.innerHeight),
-        },
-        scroll: {
-          x: window.scrollX,
-          y: window.scrollY,
-        },
-        isDirectionFixed,
-      });
-      setPlacementStyle(styles);
+      setPopupPosition(
+        getPopupPosition({
+          anchorRect: anchor.getBoundingClientRect(),
+          popupSize: {
+            width: contentRect.width,
+            height: contentRect.height,
+          },
+          directionKey: direction,
+          gap: parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize),
+          screenSize: {
+            width: document.body.clientWidth,
+            height: Math.max(document.body.clientHeight, window.innerHeight),
+          },
+          scroll: {
+            x: window.scrollX,
+            y: window.scrollY,
+          },
+          isDirectionFixed,
+        })
+      );
     };
 
-    updatePlacementStyle();
-    window.addEventListener("resize", updatePlacementStyle);
-    const anchorResizeObserver = new ResizeObserver(updatePlacementStyle);
+    updatePopupPosition();
+    window.addEventListener("resize", updatePopupPosition);
+    const anchorResizeObserver = new ResizeObserver(updatePopupPosition);
     anchorResizeObserver.observe(anchor);
     return () => {
-      window.removeEventListener("resize", updatePlacementStyle);
+      window.removeEventListener("resize", updatePopupPosition);
       anchorResizeObserver.disconnect();
     };
   }, [anchorElement, direction, gap, isActuallyOpen, isDirectionFixed]);
@@ -114,7 +117,7 @@ const Popup = ({
         )}
         style={{
           position: "absolute",
-          ...placementStyle,
+          ...popupPosition,
         }}
       >
         {children}

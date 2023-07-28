@@ -267,7 +267,7 @@ export function wrapPopupDirection({
 /**
  * ポップアップの回り込みを考慮した位置のスタイルを返す
  */
-export function getPopupStyles({
+export function getPopupPosition({
   anchorRect,
   popupSize,
   directionKey,

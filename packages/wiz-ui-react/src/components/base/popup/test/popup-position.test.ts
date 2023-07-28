@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { getPopupStyles } from "../utils/popup-position";
+import { getPopupPosition } from "../utils/popup-position";
 
-type Args = Parameters<typeof getPopupStyles>[0];
+type Args = Parameters<typeof getPopupPosition>[0];
 
 const Rect = (x: number, y: number, width: number, height: number) => ({
   top: y,
@@ -106,7 +106,7 @@ const testHelper = (args: Omit<Args, "directionKey">) => {
 };
 
 describe("popup-position", () => {
-  describe("getPopupStyles", () => {
+  describe("getPopupPosition", () => {
     it("popupが画面内に存在するとき、指定通りの方向の座標が得られること", () => {
       const { args, expected } = testHelper({
         screenSize: {
@@ -125,18 +125,22 @@ describe("popup-position", () => {
         },
       });
 
-      expect(getPopupStyles(args("bottomLeft"))).toEqual(expected.bottomLeft);
-      expect(getPopupStyles(args("bottom"))).toEqual(expected.bottom);
-      expect(getPopupStyles(args("bottomRight"))).toEqual(expected.bottomRight);
-      expect(getPopupStyles(args("topLeft"))).toEqual(expected.topLeft);
-      expect(getPopupStyles(args("top"))).toEqual(expected.top);
-      expect(getPopupStyles(args("topRight"))).toEqual(expected.topRight);
-      expect(getPopupStyles(args("leftTop"))).toEqual(expected.leftTop);
-      expect(getPopupStyles(args("left"))).toEqual(expected.left);
-      expect(getPopupStyles(args("leftBottom"))).toEqual(expected.leftBottom);
-      expect(getPopupStyles(args("rightTop"))).toEqual(expected.rightTop);
-      expect(getPopupStyles(args("right"))).toEqual(expected.right);
-      expect(getPopupStyles(args("rightBottom"))).toEqual(expected.rightBottom);
+      expect(getPopupPosition(args("bottomLeft"))).toEqual(expected.bottomLeft);
+      expect(getPopupPosition(args("bottom"))).toEqual(expected.bottom);
+      expect(getPopupPosition(args("bottomRight"))).toEqual(
+        expected.bottomRight
+      );
+      expect(getPopupPosition(args("topLeft"))).toEqual(expected.topLeft);
+      expect(getPopupPosition(args("top"))).toEqual(expected.top);
+      expect(getPopupPosition(args("topRight"))).toEqual(expected.topRight);
+      expect(getPopupPosition(args("leftTop"))).toEqual(expected.leftTop);
+      expect(getPopupPosition(args("left"))).toEqual(expected.left);
+      expect(getPopupPosition(args("leftBottom"))).toEqual(expected.leftBottom);
+      expect(getPopupPosition(args("rightTop"))).toEqual(expected.rightTop);
+      expect(getPopupPosition(args("right"))).toEqual(expected.right);
+      expect(getPopupPosition(args("rightBottom"))).toEqual(
+        expected.rightBottom
+      );
     });
 
     it("アンカーが画面左上に接しているとき、ポップアップの方向が適切に回り込むこと", () => {
@@ -157,18 +161,20 @@ describe("popup-position", () => {
         },
       });
 
-      expect(getPopupStyles(args("bottomLeft"))).toEqual(expected.bottomLeft);
-      expect(getPopupStyles(args("bottom"))).toEqual(expected.bottomLeft);
-      expect(getPopupStyles(args("bottomRight"))).toEqual(expected.bottomLeft);
-      expect(getPopupStyles(args("topLeft"))).toEqual(expected.bottomLeft);
-      expect(getPopupStyles(args("top"))).toEqual(expected.bottomLeft);
-      expect(getPopupStyles(args("topRight"))).toEqual(expected.bottomLeft);
-      expect(getPopupStyles(args("leftTop"))).toEqual(expected.rightTop);
-      expect(getPopupStyles(args("left"))).toEqual(expected.rightTop);
-      expect(getPopupStyles(args("leftBottom"))).toEqual(expected.rightTop);
-      expect(getPopupStyles(args("rightTop"))).toEqual(expected.rightTop);
-      expect(getPopupStyles(args("right"))).toEqual(expected.rightTop);
-      expect(getPopupStyles(args("rightBottom"))).toEqual(expected.rightTop);
+      expect(getPopupPosition(args("bottomLeft"))).toEqual(expected.bottomLeft);
+      expect(getPopupPosition(args("bottom"))).toEqual(expected.bottomLeft);
+      expect(getPopupPosition(args("bottomRight"))).toEqual(
+        expected.bottomLeft
+      );
+      expect(getPopupPosition(args("topLeft"))).toEqual(expected.bottomLeft);
+      expect(getPopupPosition(args("top"))).toEqual(expected.bottomLeft);
+      expect(getPopupPosition(args("topRight"))).toEqual(expected.bottomLeft);
+      expect(getPopupPosition(args("leftTop"))).toEqual(expected.rightTop);
+      expect(getPopupPosition(args("left"))).toEqual(expected.rightTop);
+      expect(getPopupPosition(args("leftBottom"))).toEqual(expected.rightTop);
+      expect(getPopupPosition(args("rightTop"))).toEqual(expected.rightTop);
+      expect(getPopupPosition(args("right"))).toEqual(expected.rightTop);
+      expect(getPopupPosition(args("rightBottom"))).toEqual(expected.rightTop);
     });
 
     it("アンカーが画面右下に接しているとき、ポップアップの方向が適切に回り込むこと", () => {
@@ -189,18 +195,20 @@ describe("popup-position", () => {
         },
       });
 
-      expect(getPopupStyles(args("bottomLeft"))).toEqual(expected.topRight);
-      expect(getPopupStyles(args("bottom"))).toEqual(expected.topRight);
-      expect(getPopupStyles(args("bottomRight"))).toEqual(expected.topRight);
-      expect(getPopupStyles(args("topLeft"))).toEqual(expected.topRight);
-      expect(getPopupStyles(args("top"))).toEqual(expected.topRight);
-      expect(getPopupStyles(args("topRight"))).toEqual(expected.topRight);
-      expect(getPopupStyles(args("leftTop"))).toEqual(expected.leftBottom);
-      expect(getPopupStyles(args("left"))).toEqual(expected.leftBottom);
-      expect(getPopupStyles(args("leftBottom"))).toEqual(expected.leftBottom);
-      expect(getPopupStyles(args("rightTop"))).toEqual(expected.leftBottom);
-      expect(getPopupStyles(args("right"))).toEqual(expected.leftBottom);
-      expect(getPopupStyles(args("rightBottom"))).toEqual(expected.leftBottom);
+      expect(getPopupPosition(args("bottomLeft"))).toEqual(expected.topRight);
+      expect(getPopupPosition(args("bottom"))).toEqual(expected.topRight);
+      expect(getPopupPosition(args("bottomRight"))).toEqual(expected.topRight);
+      expect(getPopupPosition(args("topLeft"))).toEqual(expected.topRight);
+      expect(getPopupPosition(args("top"))).toEqual(expected.topRight);
+      expect(getPopupPosition(args("topRight"))).toEqual(expected.topRight);
+      expect(getPopupPosition(args("leftTop"))).toEqual(expected.leftBottom);
+      expect(getPopupPosition(args("left"))).toEqual(expected.leftBottom);
+      expect(getPopupPosition(args("leftBottom"))).toEqual(expected.leftBottom);
+      expect(getPopupPosition(args("rightTop"))).toEqual(expected.leftBottom);
+      expect(getPopupPosition(args("right"))).toEqual(expected.leftBottom);
+      expect(getPopupPosition(args("rightBottom"))).toEqual(
+        expected.leftBottom
+      );
     });
   });
 });
