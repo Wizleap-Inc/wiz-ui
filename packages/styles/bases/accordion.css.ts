@@ -14,6 +14,7 @@ export const accordionMessageStyle = style({
 
 export const accordionSummaryStyle = style({
   display: "flex",
+  overflow: "hidden",
   justifyContent: "center",
   cursor: "pointer",
   userSelect: "none",
