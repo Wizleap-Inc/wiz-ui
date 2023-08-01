@@ -1,3 +1,4 @@
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
@@ -105,5 +106,7 @@ const Drawer: FC<Props> = ({
     </div>
   );
 };
+
+Drawer.displayName = ComponentName.Drawer;
 
 export const WizDrawer = Drawer;
