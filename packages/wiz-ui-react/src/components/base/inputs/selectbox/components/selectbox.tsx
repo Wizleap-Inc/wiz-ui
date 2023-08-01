@@ -122,7 +122,7 @@ const SelectBox: FC<Props> = ({
             align="center"
             justify="between"
             height="100%"
-            wrap={false}
+            nowrap={true}
           >
             {selectedOption ? (
               <span className={styles.selectBoxInnerBoxSelectedValueStyle}>

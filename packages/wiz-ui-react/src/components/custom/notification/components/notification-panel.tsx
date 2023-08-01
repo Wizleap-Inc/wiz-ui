@@ -51,7 +51,7 @@ const NotificationPanel: FC<Props> = ({
       height="fit-content"
       cursor="pointer"
     >
-      <WizHStack px="md" py="xs" justify="between" align="center" wrap={false}>
+      <WizHStack px="md" py="xs" justify="between" align="center" nowrap={true}>
         <WizVStack gap="xs" position="relative" width="100%">
           {variant === "primary" && (
             <WizHStack justify="between" align="start">

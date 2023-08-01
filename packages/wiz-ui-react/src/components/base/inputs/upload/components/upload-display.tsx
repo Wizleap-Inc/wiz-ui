@@ -58,7 +58,7 @@ const UploadDisplay: FC<Props> = ({
               ? "ファイルアップロード完了"
               : `ファイルアップロード中…（${completedFileCount}/${uploadingFileCount}）`}
           </span>
-          <WizHStack align="center" gap="xs" wrap={false}>
+          <WizHStack align="center" gap="xs" nowrap={true}>
             <WizLineGraph percentage={progress} />
             <div
               className={clsx(

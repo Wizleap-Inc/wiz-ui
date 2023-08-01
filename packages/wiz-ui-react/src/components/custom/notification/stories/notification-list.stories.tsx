@@ -36,7 +36,7 @@ export const Variant: Story = {
   },
   render: (args) => (
     <div style={{ width: 616 }}>
-      <WizHStack gap="md" wrap={false}>
+      <WizHStack gap="md" nowrap={true}>
         <WizNotificationList {...args} />
         <WizNotificationList {...args} variant="secondary" />
       </WizHStack>

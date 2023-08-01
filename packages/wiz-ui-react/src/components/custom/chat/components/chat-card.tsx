@@ -29,7 +29,7 @@ import {
 
 import { DisplayMessage, Message } from "./types";
 
-import { WizChatItem, WizChatForm } from ".";
+import { WizChatForm, WizChatItem } from ".";
 
 const TOGGLE_ANIMATION_DURATION = 300;
 
@@ -157,7 +157,7 @@ const ChatCard: FC<Props> = ({
         shadow
         align="stretch"
         mainHeaderArea={
-          <WizHStack align="center" gap="xs2" wrap={false}>
+          <WizHStack align="center" gap="xs2" nowrap={true}>
             <WizText color="gray.700" as="span" bold>
               {username}
             </WizText>
@@ -188,7 +188,7 @@ const ChatCard: FC<Props> = ({
               formRows={formRows}
             />
             {status !== undefined && statusOptions !== undefined && (
-              <WizHStack wrap={false}>
+              <WizHStack nowrap={true}>
                 <WizSelectBox
                   options={statusOptions}
                   value={status}
@@ -219,7 +219,7 @@ const ChatCard: FC<Props> = ({
           <WizDivider />
         </div>
         <WizBox overflowY="scroll" ref={listBoxRef}>
-          <WizVStack gap="xs" py="xs" height="320px" wrap={false}>
+          <WizVStack gap="xs" py="xs" height="320px" nowrap={true}>
             {displayMessages.map(({ date, contents }, i) => {
               const messagesKey = `${date.toDateString()}-${i}`;
               return (
