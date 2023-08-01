@@ -23,7 +23,9 @@ export const menuItemVariantStyle = styleVariants({
     cursor: "pointer",
   },
   disabled: {
-    color: THEME.color.gray[500],
+    color: THEME.color.gray[700],
+    backgroundColor: THEME.color.white[800],
+    opacity: 0.5,
     cursor: "not-allowed",
   },
   selected: {
