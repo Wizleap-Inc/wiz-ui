@@ -31,6 +31,7 @@ export const ComponentName = {
   MessageBox: "WizMessageBox",
   MenuItem: "WizMenuItem",
   Drawer: "WizDrawer",
+  NavigationContainer: "WizNavigationContainer",
   NavigationItem: "WizNavigationItem",
   PopupContainer: "WizPopupContainer",
   Popup: "WizPopup",
