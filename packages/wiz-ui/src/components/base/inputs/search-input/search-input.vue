@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer>
+  <WizPopupContainer :expand="expand">
     <div :class="searchStyle">
       <input
         type="text"
@@ -24,12 +24,13 @@
       <WizISearch :class="searchInputIconStyle" />
     </div>
     <WizPopup
-      :isOpen="openPopup"
+      :isOpen="!disabled && openPopup"
       :isDirectionFixed="isDirectionFixed"
       @onClose="emit('toggle', false)"
     >
       <WizHStack>
         <div
+          v-if="filteredOptions.length"
           :class="[
             searchBlockStyle,
             searchBlockBorderRadiusStyle,
@@ -43,7 +44,11 @@
           >
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
               <div
-                :class="searchDropdownLabelStyle"
+                :class="[
+                  searchDropdownLabelStyle,
+                  selectedItem.includes(option.value) &&
+                    searchDropdownSelectingItemStyle,
+                ]"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
               >
@@ -126,6 +131,7 @@ import {
   searchDropdownCheckboxItemStyle,
   searchDropdownItemStyle,
   searchDropdownLabelStyle,
+  searchDropdownSelectingItemStyle,
   searchInputDisabledStyle,
   searchInputIconStyle,
   searchInputStyle,

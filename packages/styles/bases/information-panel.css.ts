@@ -1,18 +1,18 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const informationPanelStye = style({
+export const informationPanelStyle = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "flex-start",
-  padding: `${THEME.spacing.lg} ${THEME.spacing.md}`,
+  padding: `${THEME.spacing.md} ${THEME.spacing.xl}`,
   gap: THEME.spacing.xs,
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
 });
 
-export const informationPanelMessageStyle = style({
-  margin: `${THEME.spacing.xs} 0`,
+export const informationPanelBorderStyle = style({
+  border: `1px solid ${THEME.color.gray["400"]}`,
 });
 
 export const informationPanelFontStyle = styleVariants({

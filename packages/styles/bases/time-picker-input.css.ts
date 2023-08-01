@@ -74,7 +74,7 @@ export const timePickerSelectorOptionStyle = style({
   position: "relative",
   margin: `0 ${THEME.spacing.xs}`,
   padding: THEME.spacing.xs2,
-  fontSize: THEME.fontSize.xs2,
+  fontSize: THEME.fontSize.xs,
   textAlign: "center",
   boxSizing: "border-box",
   borderRadius: THEME.spacing.xs2,
@@ -94,10 +94,6 @@ export const timePickerSelectorOptionItemStyle = style({
       },
     },
   },
-  ":active": {
-    color: THEME.color.white["800"],
-    background: THEME.color.green["800"],
-  },
 });
 
 export const timePickerSelectorOptionItemSelectedStyle = style({
@@ -111,4 +107,19 @@ export const timePickerSelectorOptionItemColorStyle = styleVariants({
   selected: {
     color: THEME.color.white["800"],
   },
+});
+
+export const cancelButtonStyle = style({
+  cursor: "pointer",
+  background: "transparent",
+  border: "none",
+  padding: 0,
+  fill: THEME.color.gray["500"],
+  ":active": {
+    fill: THEME.color.green["800"],
+  },
+});
+
+export const cancelButtonDisabledStyle = style({
+  cursor: "not-allowed",
 });

@@ -1,5 +1,129 @@
 # @wizleap-inc/wiz-ui-next
 
+## 1.19.0
+
+### Minor Changes
+
+- [#713](https://github.com/Wizleap-Inc/wiz-ui/pull/713) [`360819d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/360819d5982b29f19af5e1bd52ccc5df41fdc8a3) Thanks [@okakyo](https://github.com/okakyo)! - Icon に fontSize を適用した
+
+## 1.18.0
+
+### Minor Changes
+
+- [#931](https://github.com/Wizleap-Inc/wiz-ui/pull/931) [`201489b8`](https://github.com/Wizleap-Inc/wiz-ui/commit/201489b8e50b0879924299d94631507cc8aa97ac) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Tab を中央寄せにするオプションを追加
+
+### Patch Changes
+
+- Updated dependencies [[`e5919485`](https://github.com/Wizleap-Inc/wiz-ui/commit/e591948573d0f5ed39b74522f161de090af58b3e)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.1
+
+## 1.17.0
+
+### Minor Changes
+
+- [#905](https://github.com/Wizleap-Inc/wiz-ui/pull/905) [`fc01d5ef`](https://github.com/Wizleap-Inc/wiz-ui/commit/fc01d5efd9a1968ff6f91276881ad6666842ec99) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizRadio: 全角と半角が混じるとスタイルが崩れる問題を修正
+
+- [#915](https://github.com/Wizleap-Inc/wiz-ui/pull/915) [`095e4ca4`](https://github.com/Wizleap-Inc/wiz-ui/commit/095e4ca4afd005da3e04528153215294b2037334) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTimePicker: 5 分刻みで時間を指定可能にする
+
+### Patch Changes
+
+- [#918](https://github.com/Wizleap-Inc/wiz-ui/pull/918) [`8f5e4df0`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f5e4df0dec355f1f1e382c96c607f82a0c52d00) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup の Sticky 対応
+
+- [#790](https://github.com/Wizleap-Inc/wiz-ui/pull/790) [`f7207338`](https://github.com/Wizleap-Inc/wiz-ui/commit/f72073385fd90c4d2035420dc64481121015311c) Thanks [@okakyo](https://github.com/okakyo)! - [#740] radio の a11y 対応 (キー操作)
+
+- Updated dependencies [[`b8ecc5e1`](https://github.com/Wizleap-Inc/wiz-ui/commit/b8ecc5e15eb2ee14c3160ae93adc8f3014015822), [`fc01d5ef`](https://github.com/Wizleap-Inc/wiz-ui/commit/fc01d5efd9a1968ff6f91276881ad6666842ec99), [`ba785746`](https://github.com/Wizleap-Inc/wiz-ui/commit/ba7857468d67988537a6d0ea6a915dc978f715f4), [`f7207338`](https://github.com/Wizleap-Inc/wiz-ui/commit/f72073385fd90c4d2035420dc64481121015311c)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.1
+  - @wizleap-inc/wiz-ui-styles@0.12.0
+
+## 1.16.0
+
+### Minor Changes
+
+- [#788](https://github.com/Wizleap-Inc/wiz-ui/pull/788) [`d87a88fa`](https://github.com/Wizleap-Inc/wiz-ui/commit/d87a88fa7d244cbef584efa84229defc973f61b2) Thanks [@sor4chi](https://github.com/sor4chi)! - Breakpoint Provider の作成
+
+## 1.15.0
+
+### Minor Changes
+
+- [#899](https://github.com/Wizleap-Inc/wiz-ui/pull/899) [`0cd0f905`](https://github.com/Wizleap-Inc/wiz-ui/commit/0cd0f905125bed71a073374dbcc2efc46e96c33e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput: 検索結果が空の時の表示
+
+## 1.14.2
+
+### Patch Changes
+
+- [#888](https://github.com/Wizleap-Inc/wiz-ui/pull/888) [`a7a0c0ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7a0c0ca942599114983aada7c1e198a60954cc9) Thanks [@ichi-h](https://github.com/ichi-h)! - information-panel の不要な align の削除
+
+## 1.14.1
+
+### Patch Changes
+
+- [`8de48e05`](https://github.com/Wizleap-Inc/wiz-ui/commit/8de48e05be350b3adb7978fae1585aaf6f233068) Thanks [@ichi-h](https://github.com/ichi-h)! - 再リリース
+
+- Updated dependencies [[`8de48e05`](https://github.com/Wizleap-Inc/wiz-ui/commit/8de48e05be350b3adb7978fae1585aaf6f233068)]:
+  - @wizleap-inc/wiz-ui-styles@0.11.1
+
+## 1.14.0
+
+### Minor Changes
+
+- [#884](https://github.com/Wizleap-Inc/wiz-ui/pull/884) [`c08ddc90`](https://github.com/Wizleap-Inc/wiz-ui/commit/c08ddc90179a4f360663e924df5e08000c541e7b) Thanks [@ichi-h](https://github.com/ichi-h)! - information-panel のデザインが異なる箇所を修正
+
+  - border がない
+  - 文字の間隔が margin によってなされている
+  - card の padding が上下・左右が逆
+
+### Patch Changes
+
+- Updated dependencies [[`c08ddc90`](https://github.com/Wizleap-Inc/wiz-ui/commit/c08ddc90179a4f360663e924df5e08000c541e7b)]:
+  - @wizleap-inc/wiz-ui-styles@0.11.0
+
+## 1.13.0
+
+### Minor Changes
+
+- [#881](https://github.com/Wizleap-Inc/wiz-ui/pull/881) [`4f0ddabb`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f0ddabba815782c16f207cbff3391084533faf8) Thanks [@ichi-h](https://github.com/ichi-h)! - information-panel を export する
+
+## 1.12.1
+
+### Patch Changes
+
+- Updated dependencies [[`7cbc6f7b`](https://github.com/Wizleap-Inc/wiz-ui/commit/7cbc6f7bfc0cbfac379e994631a3140dd56bf768)]:
+  - @wizleap-inc/wiz-ui-styles@0.10.1
+
+## 1.12.0
+
+### Minor Changes
+
+- [#858](https://github.com/Wizleap-Inc/wiz-ui/pull/858) [`02803baa`](https://github.com/Wizleap-Inc/wiz-ui/commit/02803baade37cb165a8f9dff4312b720049f086b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSearchInput：フラットにオプションを表示し、選択中の要素を緑色にハイライトする。
+
+- [#846](https://github.com/Wizleap-Inc/wiz-ui/pull/846) [`5d6d3c76`](https://github.com/Wizleap-Inc/wiz-ui/commit/5d6d3c765d629f27d8442d3e48c9488524dae62c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDateRangePicker: Disabled 時のフォントカラーを修正
+
+### Patch Changes
+
+- [#852](https://github.com/Wizleap-Inc/wiz-ui/pull/852) [`ce26dc19`](https://github.com/Wizleap-Inc/wiz-ui/commit/ce26dc19a554f2cbd72b552de34b2de9cdb81838) Thanks [@okakyo](https://github.com/okakyo)! - [#814] (WizSearchSelector) 検索単語に近い単語だけを抽出
+
+- Updated dependencies [[`1fc0b151`](https://github.com/Wizleap-Inc/wiz-ui/commit/1fc0b151ccb634cafb769ece59c3798226eb0268), [`02803baa`](https://github.com/Wizleap-Inc/wiz-ui/commit/02803baade37cb165a8f9dff4312b720049f086b), [`fddd61f5`](https://github.com/Wizleap-Inc/wiz-ui/commit/fddd61f50c0d0b141fca32390e27bc3aee7714d0), [`d7cf88e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/d7cf88e09595eb866ea8e81c530915cbed44ccd6)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.0
+  - @wizleap-inc/wiz-ui-styles@0.10.0
+
+## 1.11.4
+
+### Patch Changes
+
+- [#851](https://github.com/Wizleap-Inc/wiz-ui/pull/851) [`e7061a5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/e7061a5ba5987bd17a9789c5015576ae43487c93) Thanks [@okakyo](https://github.com/okakyo)! - [#736] Search Input の expand の修正
+
+- [#667](https://github.com/Wizleap-Inc/wiz-ui/pull/667) [`b1c5a4e3`](https://github.com/Wizleap-Inc/wiz-ui/commit/b1c5a4e3393f576af58228a14179e95fd775b494) Thanks [@okakyo](https://github.com/okakyo)! - Popup の影が残るバグの修正
+
+- Updated dependencies [[`892756bc`](https://github.com/Wizleap-Inc/wiz-ui/commit/892756bc9fb037ecbe164b81166987a57874d928)]:
+  - @wizleap-inc/wiz-ui-constants@0.7.2
+  - @wizleap-inc/wiz-ui-styles@0.9.3
+
+## 1.11.3
+
+### Patch Changes
+
+- [#836](https://github.com/Wizleap-Inc/wiz-ui/pull/836) [`27dd1bbb`](https://github.com/Wizleap-Inc/wiz-ui/commit/27dd1bbbb6eb4d1744e5b7f049438100936533d4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - ブラウザの幅が変わったとき fixed の上にある popup の表示位置が狂う問題を修正
+
 ## 1.11.2
 
 ### Patch Changes

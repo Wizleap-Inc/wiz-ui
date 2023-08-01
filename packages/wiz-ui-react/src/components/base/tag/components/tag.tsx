@@ -50,7 +50,11 @@ const Tag = forwardRef(
         {...props}
       >
         {icon && (
-          <WizIcon icon={icon} color={styles.tagIconColorStyle[variant]} />
+          <WizIcon
+            icon={icon}
+            color={styles.tagIconColorStyle[variant]}
+            size={fontSize}
+          />
         )}
         {label}
       </div>
