@@ -12,11 +12,17 @@ import {
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
+import {
+  ComponentProps,
+  ElementType,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+} from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
-type Props = {
+type Props<T extends ElementType> = {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
@@ -25,10 +31,21 @@ type Props = {
   openInNewTab?: boolean;
   nowrap?: boolean;
   children: ReactNode;
-} & ComponentProps<"a">;
+} & (
+  | {
+      href: string;
+      as?: never;
+      asProps?: never;
+    }
+  | {
+      href?: never;
+      as: T;
+      asProps: ComponentProps<T>;
+    }
+);
 
 const Anchor = forwardRef(
-  (
+  <T extends ElementType>(
     {
       color = "blue.800",
       fontSize = "md",
@@ -39,9 +56,13 @@ const Anchor = forwardRef(
       nowrap = false,
       children,
       ...props
-    }: Props,
+    }: Props<T>,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
+    const isAnchor = "href" in props;
+    const LinkComponent = isAnchor ? "a" : props.as;
+    const linkProps = isAnchor ? { href: props.href } : props.asProps;
+
     const anchorStyle = clsx([
       styles.anchorStyle,
       colorStyle[color],
@@ -59,8 +80,8 @@ const Anchor = forwardRef(
     );
 
     return (
-      <a
-        {...props}
+      <LinkComponent
+        {...linkProps}
         ref={ref}
         className={anchorStyle}
         target={openInNewTab ? "_blank" : undefined}
@@ -69,7 +90,7 @@ const Anchor = forwardRef(
         {iconPosition === "left" && iconContent}
         {children}
         {iconPosition === "right" && iconContent}
-      </a>
+      </LinkComponent>
     );
   }
 );
