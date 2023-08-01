@@ -60,7 +60,7 @@ const props = defineProps({
   },
   short: {
     type: Boolean,
-    requred: false,
+    required: false,
     default: false,
   },
 });
