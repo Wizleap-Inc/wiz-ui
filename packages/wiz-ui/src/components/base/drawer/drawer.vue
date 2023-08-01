@@ -3,8 +3,6 @@
     ref="containerRef"
     :class="styles.drawerContainerStyle"
     :style="{
-      position: 'absolute',
-      width: '100%',
       height: `calc(${height}px - ${offsetHeight})`,
       display: isActuallyOpen ? undefined : 'none',
     }"
