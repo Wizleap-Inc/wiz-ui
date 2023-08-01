@@ -33,7 +33,7 @@ export const navigationItemStyle = style({
   textDecoration: "none",
   position: "relative",
   fontSize: THEME.fontSize.xs,
-  lineHeight: THEME.fontSize.xl2,
+  lineHeight: THEME.fontSize.xl3,
   transition: "background-color 0.2s ease-in-out",
   ":before": {
     content: '""',

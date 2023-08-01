@@ -8,7 +8,12 @@
     ]"
     :style="{ width: width || 'max-content' }"
   >
-    <WizIcon v-if="icon" :icon="icon" :color="tagIconColorStyle[variant]" />
+    <WizIcon
+      v-if="icon"
+      :icon="icon"
+      :color="tagIconColorStyle[variant]"
+      :size="fontSize"
+    />
     {{ label }}
   </span>
 </template>

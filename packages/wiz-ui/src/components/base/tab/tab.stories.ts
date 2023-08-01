@@ -18,6 +18,9 @@ export default {
     width: {
       control: { type: "text" },
     },
+    center: {
+      control: { type: "boolean" },
+    },
     value: {
       control: { type: "text" },
     },
@@ -64,6 +67,13 @@ Gap.args = {
 export const Width = Template.bind({});
 Width.args = {
   width: "200px",
+  items,
+};
+
+export const Center = Template.bind({});
+Center.args = {
+  width: "200px",
+  center: true,
   items,
 };
 

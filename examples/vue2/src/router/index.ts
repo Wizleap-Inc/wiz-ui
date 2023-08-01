@@ -21,6 +21,11 @@ const routes: RouteConfig[] = [
     name: "help",
     component: () => import("../pages/help.vue"),
   },
+  {
+    path: "/breakpoint",
+    name: "breakpoint",
+    component: () => import("../pages/breakpoint/index.vue"),
+  },
 ];
 
 const router = new VueRouter({

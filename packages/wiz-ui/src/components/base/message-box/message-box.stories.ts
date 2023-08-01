@@ -60,3 +60,11 @@ Expand.args = {
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
 };
+
+export const ExpandWithIcon = Template.bind({});
+ExpandWithIcon.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+  expand: true,
+  icon: WizIClose,
+};
