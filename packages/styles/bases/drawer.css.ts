@@ -20,7 +20,3 @@ export const drawerContainerItemsStyle = style({
   flexDirection: "column",
   cursor: "pointer",
 });
-
-export const drawerContainerFooterStyle = style({
-  padding: THEME.spacing.xl2,
-});

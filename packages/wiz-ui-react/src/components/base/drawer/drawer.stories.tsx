@@ -30,16 +30,7 @@ export const Default: Story = {
 
   render: (args) => {
     return (
-      <WizDrawer
-        {...args}
-        footerChildren={
-          <>
-            <h4>Footer</h4>
-            <h5>Footer</h5>
-            <h6>Footer</h6>
-          </>
-        }
-      >
+      <WizDrawer {...args}>
         <WizNavigationItem
           icon={WizIDashboard}
           label="Home"
@@ -86,16 +77,7 @@ export const WithHeader: Story = {
     return (
       <div style={{ height: "100vh" }}>
         <WizHeader onToggle={() => {}} />
-        <WizDrawer
-          {...args}
-          footerChildren={
-            <>
-              <h4>Footer</h4>
-              <h5>Footer</h5>
-              <h6>Footer</h6>
-            </>
-          }
-        >
+        <WizDrawer {...args}>
           <WizNavigationItem
             icon={WizIDashboard}
             label="Home"

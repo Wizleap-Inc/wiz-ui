@@ -12,14 +12,12 @@ type Props = {
    */
   offsetHeight?: string;
   children: ReactNode;
-  footerChildren?: ReactNode;
 };
 
 const Drawer: FC<Props> = ({
   isOpen,
   offsetHeight = "0px",
   children,
-  footerChildren,
 }: Props) => {
   const [height, setHeight] = useState(document.documentElement.clientHeight);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -96,11 +94,6 @@ const Drawer: FC<Props> = ({
       }}
     >
       <div className={styles.drawerContainerItemsStyle}>{children}</div>
-      {footerChildren && (
-        <div className={styles.drawerContainerFooterStyle}>
-          {footerChildren}
-        </div>
-      )}
     </div>
   );
 };

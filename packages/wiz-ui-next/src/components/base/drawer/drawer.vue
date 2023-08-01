@@ -10,16 +10,13 @@
     <div :class="styles.drawerContainerItemsStyle">
       <slot />
     </div>
-    <div v-if="slots.footer" :class="styles.drawerContainerFooterStyle">
-      <slot name="footer" />
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
-import { onMounted, onUnmounted, ref, useSlots, watch } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 
 defineOptions({
   name: ComponentName.Drawer,
@@ -43,7 +40,6 @@ const props = defineProps({
   },
 });
 
-const slots = useSlots();
 const containerRef = ref<HTMLElement | null>(null);
 const height = ref(document.documentElement.clientHeight);
 const updateHeight = () => {
