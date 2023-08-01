@@ -28,22 +28,39 @@ type Props<T extends ElementType> = {
   fontWeight?: FontWeightKeys;
   icon?: TIcon;
   iconPosition?: "left" | "right";
-  openInNewTab?: boolean;
   nowrap?: boolean;
   children: ReactNode;
 } & (
   | {
       href: string;
+      target?: "_blank" | "_self" | "_parent" | "_top";
+      rel?: string;
       as?: never;
       asProps?: never;
     }
   | {
       href?: never;
+      target?: never;
+      rel?: never;
       as: T;
       asProps: ComponentProps<T>;
     }
 );
 
+/**
+ * aタグでの使い方
+ * ```tsx
+ * <WizAnchor href="https://xxx" { ...otherProps } />
+ * <WizAnchor href="https://xxx" target="_blank", rel="noopener noreferrer" { ...otherProps } />
+ * ```
+ *
+ * `react-router`での使い方
+ * ```tsx
+ * import { Link } from "react-router-dom";
+ * <WizAnchor as={Link} asProps={{ to: "/page1" }} { ...otherProps } />
+ * <WizAnchor as={Link} asProps={{ to: "/page1", target: "_blank", rel: "noopener noreferrer" }} { ...otherProps } />
+ * ```
+ */
 const Anchor = forwardRef(
   <T extends ElementType>(
     {
@@ -52,7 +69,6 @@ const Anchor = forwardRef(
       fontWeight = "normal",
       icon,
       iconPosition = "left",
-      openInNewTab = false,
       nowrap = false,
       children,
       ...props
@@ -61,7 +77,9 @@ const Anchor = forwardRef(
   ) => {
     const isAnchor = "href" in props;
     const LinkComponent = isAnchor ? "a" : props.as;
-    const linkProps = isAnchor ? { href: props.href } : props.asProps;
+    const linkProps = isAnchor
+      ? { href: props.href, target: props.target, rel: props.rel }
+      : props.asProps;
 
     const anchorStyle = clsx([
       styles.anchorStyle,
@@ -80,13 +98,7 @@ const Anchor = forwardRef(
     );
 
     return (
-      <LinkComponent
-        {...linkProps}
-        ref={ref}
-        className={anchorStyle}
-        target={openInNewTab ? "_blank" : undefined}
-        rel={openInNewTab ? "noopener noreferrer" : undefined}
-      >
+      <LinkComponent {...linkProps} ref={ref} className={anchorStyle}>
         {iconPosition === "left" && iconContent}
         {children}
         {iconPosition === "right" && iconContent}
