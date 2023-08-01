@@ -8,6 +8,7 @@ export * from "./card";
 export * from "./tag";
 export * from "./icon";
 export * from "./information-panel";
+export * from "./drawer";
 export * from "./divider";
 export * from "./progress-bar";
 export * from "./tab";
