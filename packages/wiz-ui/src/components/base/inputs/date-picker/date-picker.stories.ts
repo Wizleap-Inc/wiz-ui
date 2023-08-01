@@ -99,7 +99,7 @@ const PlaceholderTemplate: StoryFn = (_, { argTypes }) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
     const date = ref<Date | null>(null);
-    const isOpen = ref(true);
+    const isOpen = ref(false);
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { date, isOpen, setIsOpen };
   },
