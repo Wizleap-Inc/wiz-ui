@@ -1,5 +1,42 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.21.0
+
+### Minor Changes
+
+- [#919](https://github.com/Wizleap-Inc/wiz-ui/pull/919) [`9919c5b2`](https://github.com/Wizleap-Inc/wiz-ui/commit/9919c5b2755b22c4d265efbf8ce5ab4dbdc0b0e4) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - navigation-item の react-router 対応
+
+- [#713](https://github.com/Wizleap-Inc/wiz-ui/pull/713) [`360819d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/360819d5982b29f19af5e1bd52ccc5df41fdc8a3) Thanks [@okakyo](https://github.com/okakyo)! - Icon に fontSize を適用した
+
+## 0.20.0
+
+### Minor Changes
+
+- [#931](https://github.com/Wizleap-Inc/wiz-ui/pull/931) [`201489b8`](https://github.com/Wizleap-Inc/wiz-ui/commit/201489b8e50b0879924299d94631507cc8aa97ac) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Tab を中央寄せにするオプションを追加
+
+- [#940](https://github.com/Wizleap-Inc/wiz-ui/pull/940) [`b2dd11c9`](https://github.com/Wizleap-Inc/wiz-ui/commit/b2dd11c931b28547c1984c1493330ae009d54f24) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - React の tables ディレクトリを export に追加
+
+### Patch Changes
+
+- Updated dependencies [[`e5919485`](https://github.com/Wizleap-Inc/wiz-ui/commit/e591948573d0f5ed39b74522f161de090af58b3e)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.1
+
+## 0.19.0
+
+### Minor Changes
+
+- [#895](https://github.com/Wizleap-Inc/wiz-ui/pull/895) [`b8ecc5e1`](https://github.com/Wizleap-Inc/wiz-ui/commit/b8ecc5e15eb2ee14c3160ae93adc8f3014015822) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDatePicker の React 対応
+
+- [#900](https://github.com/Wizleap-Inc/wiz-ui/pull/900) [`ba785746`](https://github.com/Wizleap-Inc/wiz-ui/commit/ba7857468d67988537a6d0ea6a915dc978f715f4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDateRangePicker の React 対応
+
+- [#915](https://github.com/Wizleap-Inc/wiz-ui/pull/915) [`095e4ca4`](https://github.com/Wizleap-Inc/wiz-ui/commit/095e4ca4afd005da3e04528153215294b2037334) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTimePicker: 5 分刻みで時間を指定可能にする
+
+### Patch Changes
+
+- Updated dependencies [[`b8ecc5e1`](https://github.com/Wizleap-Inc/wiz-ui/commit/b8ecc5e15eb2ee14c3160ae93adc8f3014015822), [`fc01d5ef`](https://github.com/Wizleap-Inc/wiz-ui/commit/fc01d5efd9a1968ff6f91276881ad6666842ec99), [`ba785746`](https://github.com/Wizleap-Inc/wiz-ui/commit/ba7857468d67988537a6d0ea6a915dc978f715f4), [`f7207338`](https://github.com/Wizleap-Inc/wiz-ui/commit/f72073385fd90c4d2035420dc64481121015311c)]:
+  - @wizleap-inc/wiz-ui-constants@0.8.1
+  - @wizleap-inc/wiz-ui-styles@0.12.0
+
 ## 0.18.0
 
 ### Minor Changes

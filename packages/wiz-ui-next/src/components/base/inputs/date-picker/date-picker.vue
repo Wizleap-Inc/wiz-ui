@@ -11,6 +11,10 @@
       }"
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       @click="setIsOpen(!isOpen)"
+      @keydown.up="clickToNextYear"
+      @keydown.down="clickToPreviousYear"
+      @keydown.left="clickToPreviousMonth"
+      @keydown.right="clickToNextMonth"
     >
       <WizHStack gap="xs" align="center" height="100%">
         <span
@@ -210,7 +214,8 @@ const setIsOpen = (value: boolean) => emit("update:isOpen", value);
 const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () => emit("update:modelValue", null);
 
-const clickToNextMonth = () => {
+const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear(),
     currentMonth.value.getMonth() + 1,
@@ -219,7 +224,8 @@ const clickToNextMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToPreviousMonth = () => {
+const clickToPreviousMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear(),
     currentMonth.value.getMonth() - 1,
@@ -228,7 +234,8 @@ const clickToPreviousMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToNextYear = () => {
+const clickToNextYear = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear() + 1,
     currentMonth.value.getMonth(),
@@ -237,7 +244,8 @@ const clickToNextYear = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToPreviousYear = () => {
+const clickToPreviousYear = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear() - 1,
     currentMonth.value.getMonth(),
