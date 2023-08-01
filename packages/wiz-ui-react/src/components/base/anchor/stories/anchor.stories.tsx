@@ -115,7 +115,8 @@ export const OpenInNewTab: Story = {
   parameters: {
     docs: {
       description: {
-        story: "外部リンクの場合、新しいタブで開くかどうかを指定できます。",
+        story:
+          "target='_blank', rel='noopener noreferrer'の指定で、新しいタブで開きます。",
       },
     },
   },
