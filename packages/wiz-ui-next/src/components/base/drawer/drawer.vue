@@ -49,9 +49,13 @@ const slots = useSlots();
 const containerRef = ref<HTMLElement | null>(null);
 const height = ref(document.documentElement.clientHeight);
 const updateHeight = () => {
-  height.value = document.documentElement.clientHeight;
+  height.value = Math.max(
+    document.documentElement.clientHeight,
+    containerRef.value?.scrollHeight || 0
+  );
 };
 onMounted(() => {
+  updateHeight();
   window.addEventListener("resize", updateHeight);
 });
 onUnmounted(() => {
