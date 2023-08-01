@@ -1,17 +1,17 @@
 <template>
   <div
     ref="containerRef"
-    :class="navigationContainerStyle"
+    :class="styles.drawerContainerStyle"
     :style="{
       position: 'absolute',
       width: '100%',
       display: isActuallyOpen ? undefined : 'none',
     }"
   >
-    <div :class="navigationContainerItemsStyle">
+    <div :class="styles.drawerContainerItemsStyle">
       <slot />
     </div>
-    <div v-if="slots.footer" :class="navigationContainerFooterStyle">
+    <div v-if="slots.footer" :class="styles.drawerContainerFooterStyle">
       <slot name="footer" />
     </div>
   </div>
@@ -19,11 +19,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  navigationContainerFooterStyle,
-  navigationContainerItemsStyle,
-  navigationContainerStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
 import { ref, useSlots, watch } from "vue";
 
 defineOptions({
