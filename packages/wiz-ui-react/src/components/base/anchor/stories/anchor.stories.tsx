@@ -115,15 +115,13 @@ export const OpenInNewTab: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "target='_blank', rel='noopener noreferrer'の指定で、新しいタブで開きます。",
+        story: "外部リンクの場合、新しいタブで開くかどうかを指定できます。",
       },
     },
   },
   args: {
     href: "https://wizleap.co.jp",
-    target: "_blank",
-    rel: "noopener noreferrer",
+    openInNewTab: true,
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
 };

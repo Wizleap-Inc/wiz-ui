@@ -28,20 +28,17 @@ type Props<T extends ElementType> = {
   fontWeight?: FontWeightKeys;
   icon?: TIcon;
   iconPosition?: "left" | "right";
+  openInNewTab?: boolean;
   nowrap?: boolean;
   children: ReactNode;
 } & (
   | {
       href: string;
-      target?: "_blank" | "_self" | "_parent" | "_top";
-      rel?: string;
       as?: never;
       asProps?: never;
     }
   | {
       href?: never;
-      target?: never;
-      rel?: never;
       as: T;
       asProps: ComponentProps<T>;
     }
@@ -69,6 +66,7 @@ const Anchor = forwardRef(
       fontWeight = "normal",
       icon,
       iconPosition = "left",
+      openInNewTab,
       nowrap = false,
       children,
       ...props
@@ -77,9 +75,7 @@ const Anchor = forwardRef(
   ) => {
     const isAnchor = "href" in props;
     const LinkComponent = isAnchor ? "a" : props.as;
-    const linkProps = isAnchor
-      ? { href: props.href, target: props.target, rel: props.rel }
-      : props.asProps;
+    const linkProps = isAnchor ? { href: props.href } : props.asProps;
 
     const anchorStyle = clsx([
       styles.anchorStyle,
@@ -98,7 +94,13 @@ const Anchor = forwardRef(
     );
 
     return (
-      <LinkComponent {...linkProps} ref={ref} className={anchorStyle}>
+      <LinkComponent
+        {...linkProps}
+        target={openInNewTab ? "_blank" : undefined}
+        rel={openInNewTab ? "noopener noreferrer" : undefined}
+        ref={ref}
+        className={anchorStyle}
+      >
         {iconPosition === "left" && iconContent}
         {children}
         {iconPosition === "right" && iconContent}
