@@ -20,6 +20,9 @@ export default {
     sticky: {
       control: { type: "boolean" },
     },
+    onToggle: {
+      action: "click",
+    },
   },
   decorators: [
     (story: StoryFn) => ({
@@ -33,7 +36,7 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeader },
   template: `
-    <wiz-header v-bind="$props"/>
+    <wiz-header v-bind="$props" @onToggle="onToggle('menu')" />
   `,
 });
 
@@ -43,7 +46,7 @@ const LeftSlotTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeader, WizTextButton },
   template: `
-    <wiz-header v-bind="$props">
+    <wiz-header v-bind="$props" @onToggle="onToggle('menu')">
       <template #left>
         <wiz-text-button>Click</wiz-text-button>
         <wiz-text-button>Click</wiz-text-button>
@@ -63,7 +66,7 @@ const RightSlotTemplate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizHeader, WizTextButton },
   template: `
-    <wiz-header v-bind="$props">
+    <wiz-header v-bind="$props" @onToggle="onToggle('menu')">
       <template #right>
         <wiz-text-button>Click</wiz-text-button>
         <wiz-text-button>Click</wiz-text-button>
@@ -79,11 +82,12 @@ RightSlotWithGap.args = {
   gapRight: "sm",
 };
 
-export const Fixed: StoryFn = () => ({
+export const Fixed: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { WizHeader, WizTextButton },
   template: `
     <div style="height: 200vh">
-      <wiz-header sticky>
+      <wiz-header @onToggle="onToggle('menu')" sticky>
         <template #left>
           <wiz-text-button>Click</wiz-text-button>
           <wiz-text-button>Click</wiz-text-button>
