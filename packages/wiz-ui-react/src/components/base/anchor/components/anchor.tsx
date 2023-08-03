@@ -12,36 +12,64 @@ import {
   fontWeightStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
+import {
+  ComponentProps,
+  ElementType,
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+} from "react";
 
 import { TIcon, WizIcon } from "@/components";
 
-type Props = {
+type Props<T extends ElementType> = {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
   icon?: TIcon;
   iconPosition?: "left" | "right";
-  openInNewTab?: boolean;
   nowrap?: boolean;
   children: ReactNode;
-} & ComponentProps<"a">;
+} & (
+  | {
+      href: string;
+      as?: never;
+      asProps?: never;
+      openInNewTab?: boolean;
+    }
+  | {
+      href?: never;
+      as: T;
+      asProps: ComponentProps<T>;
+      openInNewTab?: never;
+    }
+);
 
 const Anchor = forwardRef(
-  (
+  <T extends ElementType>(
     {
       color = "blue.800",
       fontSize = "md",
       fontWeight = "normal",
       icon,
       iconPosition = "left",
-      openInNewTab = false,
+      openInNewTab,
       nowrap = false,
       children,
       ...props
-    }: Props,
+    }: Props<T>,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
+    const isAnchor = "href" in props;
+    const LinkComponent = isAnchor ? "a" : props.as;
+    const linkProps = isAnchor
+      ? {
+          href: props.href,
+          target: openInNewTab ? "_blank" : undefined,
+          rel: openInNewTab ? "noopener noreferrer" : undefined,
+        }
+      : props.asProps;
+
     const anchorStyle = clsx([
       styles.anchorStyle,
       colorStyle[color],
@@ -59,17 +87,11 @@ const Anchor = forwardRef(
     );
 
     return (
-      <a
-        {...props}
-        ref={ref}
-        className={anchorStyle}
-        target={openInNewTab ? "_blank" : undefined}
-        rel={openInNewTab ? "noopener noreferrer" : undefined}
-      >
+      <LinkComponent {...linkProps} ref={ref} className={anchorStyle}>
         {iconPosition === "left" && iconContent}
         {children}
         {iconPosition === "right" && iconContent}
-      </a>
+      </LinkComponent>
     );
   }
 );
