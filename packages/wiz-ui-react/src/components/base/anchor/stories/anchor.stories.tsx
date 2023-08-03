@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { FC } from "react";
 
 import { WizIArrowRight } from "@/components";
 
@@ -122,6 +123,29 @@ export const OpenInNewTab: Story = {
   args: {
     href: "https://wizleap.co.jp",
     openInNewTab: true,
+  },
+  render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
+};
+
+/** react-routerのLink等 */
+const Link: FC<any> = (props) => <a {...props}>{props.children}</a>; // eslint-disable-line @typescript-eslint/no-explicit-any
+
+export const AsComponent: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "アンカーのコンポーネントを指定することができます。asPropsで、渡したコンポーネントにpropsを渡せます。",
+      },
+    },
+  },
+  args: {
+    as: Link,
+    asProps: {
+      href: "https://wizleap.co.jp",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
 };

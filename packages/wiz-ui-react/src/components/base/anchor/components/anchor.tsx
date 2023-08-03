@@ -45,20 +45,6 @@ type Props<T extends ElementType> = {
     }
 );
 
-/**
- * aタグでの使い方
- * ```tsx
- * <WizAnchor href="https://xxx" { ...otherProps } />
- * <WizAnchor href="https://xxx" target="_blank", rel="noopener noreferrer" { ...otherProps } />
- * ```
- *
- * `react-router`での使い方
- * ```tsx
- * import { Link } from "react-router-dom";
- * <WizAnchor as={Link} asProps={{ to: "/page1" }} { ...otherProps } />
- * <WizAnchor as={Link} asProps={{ to: "/page1", target: "_blank", rel: "noopener noreferrer" }} { ...otherProps } />
- * ```
- */
 const Anchor = forwardRef(
   <T extends ElementType>(
     {
