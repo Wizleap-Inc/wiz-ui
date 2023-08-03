@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizMenuItem } from "../components/menu-item";
 
@@ -20,6 +21,11 @@ const meta: Meta<typeof WizMenuItem> = {
       control: {
         type: "boolean",
       },
+    },
+    fontSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
+      defaultValue: "md",
     },
     onClick: {
       action: "onClick",
@@ -71,6 +77,22 @@ export const Disabled: Story = {
       description: {
         story:
           "`clickable = false` とすることで、クリックできないように設定することもできます。default 値は `true` です。",
+      },
+    },
+  },
+  render: (args) => <WizMenuItem {...args} />,
+};
+
+export const FontSize: Story = {
+  args: {
+    label: "テスト",
+    fontSize: "xl",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "FontSize を設定することで、フォントの大きさを変えることもできます。 default 値は `md` です。",
       },
     },
   },
