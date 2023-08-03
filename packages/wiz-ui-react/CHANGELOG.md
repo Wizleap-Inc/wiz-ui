@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.22.0
+
+### Minor Changes
+
+- [#961](https://github.com/Wizleap-Inc/wiz-ui/pull/961) [`0f2cebe0`](https://github.com/Wizleap-Inc/wiz-ui/commit/0f2cebe0fd40db0d87d642d04c60ff58ebfb21e1) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizAnchor の react-router 対応
+
+### Patch Changes
+
+- [#914](https://github.com/Wizleap-Inc/wiz-ui/pull/914) [`64969436`](https://github.com/Wizleap-Inc/wiz-ui/commit/64969436b6ecf3d2108bf7ccef869dc757d92926) Thanks [@wmoai](https://github.com/wmoai)! - Popup の座標計算方法を変更
+
+- Updated dependencies [[`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.2
+
 ## 0.21.0
 
 ### Minor Changes

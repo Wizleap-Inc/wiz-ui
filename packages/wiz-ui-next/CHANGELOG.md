@@ -1,5 +1,22 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.0.0
+
+### Major Changes
+
+- [#917](https://github.com/Wizleap-Inc/wiz-ui/pull/917) [`6cf7b061`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cf7b0617fab540e73715050b04790d36800b07d) Thanks [@okakyo](https://github.com/okakyo)! - [#893] sidebar の Global State を削除
+
+### Patch Changes
+
+- [#791](https://github.com/Wizleap-Inc/wiz-ui/pull/791) [`1e45c897`](https://github.com/Wizleap-Inc/wiz-ui/commit/1e45c8976fc51dc5ba646a6cb373d9b32550f0d8) Thanks [@okakyo](https://github.com/okakyo)! - [#730] DatePicker, DataRangePicker の a11y 対応 (キー操作)
+
+- [#850](https://github.com/Wizleap-Inc/wiz-ui/pull/850) [`4633f848`](https://github.com/Wizleap-Inc/wiz-ui/commit/4633f8489ce1cd1ed4f37a792f491cb0dec1388e) Thanks [@okakyo](https://github.com/okakyo)! - [#814] date-timepicker のテストケースの日付を固定
+
+- [#945](https://github.com/Wizleap-Inc/wiz-ui/pull/945) [`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe) Thanks [@okakyo](https://github.com/okakyo)! - [#935] MenuItem の色の状態変更
+
+- Updated dependencies [[`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.2
+
 ## 1.19.0
 
 ### Minor Changes
