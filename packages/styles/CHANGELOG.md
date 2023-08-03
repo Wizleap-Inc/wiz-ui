@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.12.2
+
+### Patch Changes
+
+- [#945](https://github.com/Wizleap-Inc/wiz-ui/pull/945) [`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe) Thanks [@okakyo](https://github.com/okakyo)! - [#935] MenuItem の色の状態変更
+
 ## 0.12.1
 
 ### Patch Changes
