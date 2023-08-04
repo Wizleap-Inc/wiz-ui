@@ -4,7 +4,7 @@ import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { FC, useMemo, useRef, useState } from "react";
 
-import { WizHStack, WizISearch, WizPopup } from "@/components";
+import { WizHStack, WizISearch, WizPopup, TIcon } from "@/components";
 
 import { SearchPopupPanel } from "./search-popup-panel";
 import { SearchInputOption } from "./types";
@@ -19,6 +19,7 @@ type Props = {
   inputWidth?: string;
   popupWidth?: string;
   isDirectionFixed?: boolean;
+  icon?: TIcon;
   onChangeValues: (values: number[]) => void;
 };
 
@@ -54,6 +55,7 @@ const SearchInput: FC<Props> = ({
   popupWidth,
   isDirectionFixed = false,
   onChangeValues,
+  icon = WizISearch,
 }) => {
   const [filteringText, setFilteringText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -64,6 +66,8 @@ const SearchInput: FC<Props> = ({
     () => filterOptions(options, filteringText),
     [filteringText, options]
   );
+
+  const IconComponent = icon;
 
   return (
     <div
@@ -93,7 +97,7 @@ const SearchInput: FC<Props> = ({
         autoComplete="off"
       />
       <div className={styles.searchInputIconStyle}>
-        <WizISearch />
+        <IconComponent />
       </div>
       {filteredOptions.length > 0 && (
         <WizPopup
