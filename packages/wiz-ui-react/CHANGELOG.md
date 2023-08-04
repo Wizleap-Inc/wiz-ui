@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.23.0
+
+### Minor Changes
+
+- [#975](https://github.com/Wizleap-Inc/wiz-ui/pull/975) [`f835ae35`](https://github.com/Wizleap-Inc/wiz-ui/commit/f835ae35d3cc91b0d29c59c4a768e98b19dc3976) Thanks [@ichi-h](https://github.com/ichi-h)! - Feat(search-input): アイコンを外側から受け付けられるようにする
+
 ## 0.22.0
 
 ### Minor Changes
