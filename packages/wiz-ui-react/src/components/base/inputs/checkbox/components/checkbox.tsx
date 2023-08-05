@@ -2,7 +2,7 @@ import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import { checkboxHoverStyle } from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import clsx from "clsx";
-import { FC, RefObject, createRef, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 import { WizStack } from "@/components";
 
@@ -31,14 +31,10 @@ const CheckBox: FC<Props> = ({
     null
   );
   const [hoveredOption, setHoveredOption] = useState<number | null>(null);
-  const radioRefs = useRef<RefObject<HTMLDivElement>[]>(
-    options.map(() => createRef())
-  );
-  const [radioWidth, setRadioWidth] = useState<number[]>([]);
+  const checkboxRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [checkboxWidth, setRadioWidth] = useState<number[]>([]);
   useEffect(() => {
-    setRadioWidth(
-      radioRefs.current.map((ref) => ref.current?.clientWidth ?? 0)
-    );
+    setRadioWidth(checkboxRefs.current.map((ref) => ref?.clientWidth ?? 0));
   }, [options]);
 
   return (
@@ -57,9 +53,9 @@ const CheckBox: FC<Props> = ({
         return (
           <div
             key={option.key}
-            ref={radioRefs.current[i]}
+            ref={(ref) => (checkboxRefs.current[i] = ref)}
             style={{
-              width: radioWidth[i],
+              width: checkboxWidth[i],
             }}
           >
             <label
