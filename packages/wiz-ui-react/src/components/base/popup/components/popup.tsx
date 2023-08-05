@@ -63,6 +63,17 @@ const Popup = ({
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
+  const existsFixedOrStickyParent = (
+    el: HTMLElement | null
+  ): HTMLElement | null => {
+    if (!el) return null;
+    const position = window.getComputedStyle(el).position;
+    if (position === "fixed" || position === "sticky") return el;
+    return existsFixedOrStickyParent(el.parentElement);
+  };
+
+  const isPopupFixed = !!existsFixedOrStickyParent(anchorElement.current);
+
   useEffect(() => {
     const anchor = anchorElement.current;
     const content = popupRef.current;
@@ -87,8 +98,8 @@ const Popup = ({
             height: Math.max(document.body.clientHeight, window.innerHeight),
           },
           scroll: {
-            x: window.scrollX,
-            y: window.scrollY,
+            x: isPopupFixed ? 0 : window.scrollX,
+            y: isPopupFixed ? 0 : window.scrollY,
           },
           isDirectionFixed,
         })
@@ -96,14 +107,23 @@ const Popup = ({
     };
 
     updatePopupPosition();
+    window.addEventListener("scroll", updatePopupPosition);
     window.addEventListener("resize", updatePopupPosition);
     const anchorResizeObserver = new ResizeObserver(updatePopupPosition);
     anchorResizeObserver.observe(anchor);
     return () => {
       window.removeEventListener("resize", updatePopupPosition);
+      window.removeEventListener("scroll", updatePopupPosition);
       anchorResizeObserver.disconnect();
     };
-  }, [anchorElement, direction, gap, isActuallyOpen, isDirectionFixed]);
+  }, [
+    anchorElement,
+    direction,
+    gap,
+    isActuallyOpen,
+    isDirectionFixed,
+    isPopupFixed,
+  ]);
 
   return (
     <WizPortal container={document.body}>
@@ -116,7 +136,7 @@ const Popup = ({
           !isActuallyOpen && styles.popupHiddenStyle
         )}
         style={{
-          position: "absolute",
+          position: isPopupFixed ? "fixed" : "absolute",
           ...popupPosition,
         }}
       >
