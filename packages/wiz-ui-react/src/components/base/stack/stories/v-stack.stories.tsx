@@ -26,7 +26,7 @@ const meta: Meta<typeof WizVStack> = {
       control: { type: "select" },
       options: ["start", "center", "end", "between", "around", "evenly"],
     },
-    wrap: {
+    nowrap: {
       control: { type: "boolean" },
     },
     reverse: {
