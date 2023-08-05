@@ -143,15 +143,26 @@ const date = ref<Date | null>(null);
 export const DisabledDate: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
-    return { args };
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const disabledDate = (date: Date) =>
+      date.getDate() >= 10 && date.getDate() < 17;
+    return { args, date, isOpen, setIsOpen, disabledDate };
   },
-  template: `<WizDatePicker v-bind="$props" />`,
+  template: `
+    <div>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        :disabledDate="disabledDate"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
+    </div>
+  `,
 });
-DisabledDate.args = {
-  value: new Date(1990, 0, 1),
-  isOpen: true,
-  disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
-};
 
 export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
@@ -159,6 +170,8 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
     const date = ref<Date | null>(new Date(1990, 0, 1));
     const isOpen = ref(true);
     const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const disabledDate = (date: Date) =>
+      date.getDate() >= 10 && date.getDate() < 17;
     return { args, date, isOpen, setIsOpen };
   },
   template: `

@@ -155,13 +155,27 @@ const input = (value: Date) => {
 export const DisabledDate: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
-  template: `<WizDatePicker v-bind="$props" />`,
+  setup() {
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const disabledDate = (date: Date) =>
+      date.getDate() >= 10 && date.getDate() < 17;
+    return { date, isOpen, setIsOpen, disabledDate };
+  },
+  template: `
+    <WizHStack>
+      <WizDatepicker 
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        :disabledDate="disabledDate"
+        @input="input"
+        @updateIsOpen="setIsOpen"
+      />
+    </WizHStack>
+  `,
 });
-DisabledDate.args = {
-  value: new Date(1990, 0, 1),
-  isOpen: true,
-  disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
-};
 
 export const InitialValue: StoryFn<typeof WizDatepicker> = (
   _,
