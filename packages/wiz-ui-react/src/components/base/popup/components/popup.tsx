@@ -137,6 +137,7 @@ const Popup = ({
         )}
         style={{
           position: isPopupFixed ? "fixed" : "absolute",
+          transform: "translateZ(0)",
           ...popupPosition,
         }}
       >
