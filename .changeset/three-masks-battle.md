@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": minor
 ---
 
-WizStack: wrap オプションを deprecated にし、nowrap オプションを追加
+WizStack: wrap props を削除し、折り返すかどうかを nowrap により制御する(react)
