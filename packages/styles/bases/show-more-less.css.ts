@@ -36,7 +36,7 @@ export const showMoreLessSummaryStyle = styleVariants({
   pc: [
     summaryBaseStyle,
     {
-      height: "1.375rem",
+      height: THEME.spacing.xl,
       background: THEME.color.white[800],
       color: THEME.color.gray[600],
       fill: THEME.color.gray[600],
