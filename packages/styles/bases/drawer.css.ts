@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const drawerContainerStyle = style({
-  position: "absolute",
+  position: "fixed",
   width: "100%",
   display: "flex",
   flexDirection: "column",

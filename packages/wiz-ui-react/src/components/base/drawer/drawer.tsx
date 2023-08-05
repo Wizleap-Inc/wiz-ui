@@ -2,6 +2,8 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
+import { WizPortal } from "@/components";
+
 type Props = {
   isOpen: boolean;
   /**
@@ -10,15 +12,11 @@ type Props = {
    * @default 0px
    * @example THEME.share.HEADER_HEIGHT
    */
-  offsetHeight?: string;
+  offsetTop?: string;
   children: ReactNode;
 };
 
-const Drawer: FC<Props> = ({
-  isOpen,
-  offsetHeight = "0px",
-  children,
-}: Props) => {
+const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
   const [height, setHeight] = useState(document.documentElement.clientHeight);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isActuallyOpen, setIsActuallyOpen] = useState(isOpen);
@@ -85,16 +83,19 @@ const Drawer: FC<Props> = ({
   }, [isOpen]);
 
   return (
-    <div
-      ref={containerRef}
-      className={styles.drawerContainerStyle}
-      style={{
-        height: `calc(${height}px - ${offsetHeight})`,
-        display: isActuallyOpen ? undefined : "none",
-      }}
-    >
-      <div className={styles.drawerContainerItemsStyle}>{children}</div>
-    </div>
+    <WizPortal container={document.documentElement}>
+      <div
+        ref={containerRef}
+        className={styles.drawerContainerStyle}
+        style={{
+          height: `calc(${height}px - ${offsetTop})`,
+          top: offsetTop,
+          display: isActuallyOpen ? undefined : "none",
+        }}
+      >
+        <div className={styles.drawerContainerItemsStyle}>{children}</div>
+      </div>
+    </WizPortal>
   );
 };
 

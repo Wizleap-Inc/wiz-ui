@@ -1,16 +1,19 @@
 <template>
-  <div
-    ref="containerRef"
-    :class="styles.drawerContainerStyle"
-    :style="{
-      height: `calc(${height}px - ${offsetHeight})`,
-      display: isActuallyOpen ? undefined : 'none',
-    }"
-  >
-    <div :class="styles.drawerContainerItemsStyle">
-      <slot />
+  <teleport to="body">
+    <div
+      ref="containerRef"
+      :class="styles.drawerContainerStyle"
+      :style="{
+        height: `calc(${height}px - ${offsetTop})`,
+        top: offsetTop,
+        display: isActuallyOpen ? undefined : 'none',
+      }"
+    >
+      <div :class="styles.drawerContainerItemsStyle">
+        <slot />
+      </div>
     </div>
-  </div>
+  </teleport>
 </template>
 
 <script setup lang="ts">
@@ -33,7 +36,7 @@ const props = defineProps({
    * @default 0px
    * @example THEME.share.HEADER_HEIGHT
    */
-  offsetHeight: {
+  offsetTop: {
     type: String,
     required: false,
     default: "0px",

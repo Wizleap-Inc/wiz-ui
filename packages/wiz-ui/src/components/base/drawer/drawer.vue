@@ -1,21 +1,25 @@
 <template>
-  <div
-    ref="containerRef"
-    :class="styles.drawerContainerStyle"
-    :style="{
-      height: `calc(${height}px - ${offsetHeight})`,
-      display: isActuallyOpen ? undefined : 'none',
-    }"
-  >
-    <div :class="styles.drawerContainerItemsStyle">
-      <slot />
+  <MountingPortal mountTo="body" append>
+    <div
+      ref="containerRef"
+      :class="styles.drawerContainerStyle"
+      :style="{
+        height: `calc(${height}px - ${offsetTop})`,
+        top: offsetTop,
+        display: isActuallyOpen ? undefined : 'none',
+      }"
+    >
+      <div :class="styles.drawerContainerItemsStyle">
+        <slot />
+      </div>
     </div>
-  </div>
+  </MountingPortal>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
+import { MountingPortal } from "portal-vue";
 import { onMounted, onUnmounted, ref, watch } from "vue";
 
 defineOptions({
@@ -33,7 +37,7 @@ const props = defineProps({
    * @default 0px
    * @example THEME.share.HEADER_HEIGHT
    */
-  offsetHeight: {
+  offsetTop: {
     type: String,
     required: false,
     default: "0px",

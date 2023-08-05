@@ -96,5 +96,5 @@ export const WithHeader: StoryFn<typeof WizDrawer> = (args) => ({
 
 WithHeader.args = {
   isOpen: true,
-  offsetHeight: THEME.share.HEADER_HEIGHT,
+  offsetTop: THEME.share.HEADER_HEIGHT,
 };

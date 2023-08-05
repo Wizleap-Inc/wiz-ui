@@ -70,13 +70,13 @@ export const Default: Story = {
 export const WithHeader: Story = {
   args: {
     isOpen: true,
-    offsetHeight: THEME.share.HEADER_HEIGHT,
+    offsetTop: THEME.share.HEADER_HEIGHT,
   },
 
   render: (args) => {
     return (
       <div style={{ height: "100vh" }}>
-        <WizHeader onToggle={() => {}} />
+        <WizHeader sticky onToggle={() => {}} />
         <WizDrawer {...args}>
           <WizNavigationItem
             icon={WizIDashboard}
