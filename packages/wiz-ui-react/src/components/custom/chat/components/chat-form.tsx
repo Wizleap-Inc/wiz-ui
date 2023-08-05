@@ -21,7 +21,7 @@ const ChatForm: FC<Props> = ({
   onSubmit,
 }) => {
   return (
-    <WizHStack align="center" gap="xs" nowrap={true}>
+    <WizHStack align="center" gap="xs" nowrap>
       <WizTextArea
         value={value}
         placeholder={placeholder}

@@ -27,8 +27,7 @@ const _Stack = ({
   direction = "horizontal",
   align = "stretch",
   justify = "start",
-  nowrap,
-  wrap = true,
+  nowrap = false,
   width = "auto",
   height = "auto",
   overflow = "visible",
@@ -63,14 +62,13 @@ const _Stack = ({
       }
     }
   })();
-  const isWrap = nowrap === undefined ? wrap : !nowrap;
   const stackStyle = clsx(
     styles.stackStyle,
     styles.stackDirectionStyle[dir],
     styles.stackJustifyStyle[justify],
     styles.stackAlignStyle[align],
     position && styles.stackPositionStyle[position],
-    isWrap && styles.stackWrapStyle,
+    !nowrap && styles.stackWrapStyle,
     gx && gapXStyle[gx],
     gy && gapYStyle[gy],
     !gx && !gy && gap && gapStyle[gap],

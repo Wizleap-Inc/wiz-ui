@@ -6,11 +6,6 @@ export type StackProps = {
   align?: "start" | "center" | "end" | "stretch";
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
   nowrap?: boolean;
-  /**
-   * @deprecated
-   * @use nowrap
-   */
-  wrap?: boolean;
   gap?: SpacingKeys;
   gx?: SpacingKeys;
   gy?: SpacingKeys;

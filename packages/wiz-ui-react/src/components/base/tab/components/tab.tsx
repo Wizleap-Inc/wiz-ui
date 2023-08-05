@@ -24,7 +24,7 @@ const Tab: FC<Props> = ({
   onClickTab,
 }: Props) => {
   return (
-    <WizHStack gap={gap} nowrap={true} justify={center ? "center" : undefined}>
+    <WizHStack gap={gap} nowrap justify={center ? "center" : undefined}>
       {items.map((tab) => (
         <WizTabPane
           key={tab.name}

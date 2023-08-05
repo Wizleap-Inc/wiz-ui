@@ -157,7 +157,7 @@ const ChatCard: FC<Props> = ({
         shadow
         align="stretch"
         mainHeaderArea={
-          <WizHStack align="center" gap="xs2" nowrap={true}>
+          <WizHStack align="center" gap="xs2" nowrap>
             <WizText color="gray.700" as="span" bold>
               {username}
             </WizText>
@@ -188,7 +188,7 @@ const ChatCard: FC<Props> = ({
               formRows={formRows}
             />
             {status !== undefined && statusOptions !== undefined && (
-              <WizHStack nowrap={true}>
+              <WizHStack nowrap>
                 <WizSelectBox
                   options={statusOptions}
                   value={status}
@@ -219,7 +219,7 @@ const ChatCard: FC<Props> = ({
           <WizDivider />
         </div>
         <WizBox overflowY="scroll" ref={listBoxRef}>
-          <WizVStack gap="xs" py="xs" height="320px" nowrap={true}>
+          <WizVStack gap="xs" py="xs" height="320px" nowrap>
             {displayMessages.map(({ date, contents }, i) => {
               const messagesKey = `${date.toDateString()}-${i}`;
               return (

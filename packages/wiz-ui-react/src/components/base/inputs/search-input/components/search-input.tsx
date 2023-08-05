@@ -102,7 +102,7 @@ const SearchInput: FC<Props> = ({
           onClose={() => setIsPopupOpen(false)}
           isDirectionFixed={isDirectionFixed}
         >
-          <WizHStack nowrap={true}>
+          <WizHStack nowrap>
             <SearchPopupPanel
               options={filteredOptions}
               values={values}
