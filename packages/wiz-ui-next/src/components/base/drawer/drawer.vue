@@ -4,8 +4,8 @@
       ref="containerRef"
       :class="styles.drawerContainerStyle"
       :style="{
-        height: `calc(${height}px - ${offsetTop})`,
         top: offsetTop,
+        bottom: 0,
         display: isActuallyOpen ? undefined : 'none',
       }"
     >
@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { ref, watch } from "vue";
 
 defineOptions({
   name: ComponentName.Drawer,
@@ -44,20 +44,6 @@ const props = defineProps({
 });
 
 const containerRef = ref<HTMLElement | null>(null);
-const height = ref(document.documentElement.clientHeight);
-const updateHeight = () => {
-  height.value = Math.max(
-    document.documentElement.clientHeight,
-    containerRef.value?.scrollHeight || 0
-  );
-};
-onMounted(() => {
-  updateHeight();
-  window.addEventListener("resize", updateHeight);
-});
-onUnmounted(() => {
-  window.removeEventListener("resize", updateHeight);
-});
 
 const isActuallyOpen = ref<boolean>(props.isOpen);
 watch(props, () => {

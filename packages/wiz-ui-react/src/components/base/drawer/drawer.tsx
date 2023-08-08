@@ -17,25 +17,8 @@ type Props = {
 };
 
 const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
-  const [height, setHeight] = useState(document.documentElement.clientHeight);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isActuallyOpen, setIsActuallyOpen] = useState(isOpen);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      setHeight(
-        Math.max(
-          document.documentElement.clientHeight,
-          containerRef.current?.scrollHeight || 0
-        )
-      );
-    };
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => {
-      window.removeEventListener("resize", updateHeight);
-    };
-  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -88,8 +71,8 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
         ref={containerRef}
         className={styles.drawerContainerStyle}
         style={{
-          height: `calc(${height}px - ${offsetTop})`,
           top: offsetTop,
+          bottom: 0,
           display: isActuallyOpen ? undefined : "none",
         }}
       >
