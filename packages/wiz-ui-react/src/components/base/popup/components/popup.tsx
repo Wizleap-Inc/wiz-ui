@@ -139,8 +139,7 @@ const Popup = ({
         )}
         style={{
           position: isPopupFixed ? "fixed" : "absolute",
-          // Safariで影が消えない問題の対策
-          transform: "translateZ(0)",
+          transform: "translateZ(0)", // Safariで影が消えない問題の対策
           ...popupPosition,
         }}
       >
