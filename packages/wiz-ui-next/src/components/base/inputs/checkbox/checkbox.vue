@@ -4,9 +4,9 @@
       <div
         v-for="(option, i) in options"
         :key="option.key"
-        ref="radioRefs"
+        ref="checkboxRefs"
         :style="{
-          width: `${radioWidths[i]}px`,
+          width: `${checkboxWidths[i]}px`,
         }"
       >
         <label
@@ -132,17 +132,17 @@ const labelPointer = (optionDisabled?: boolean) =>
 const focusOption = ref<number | null>(null);
 const hoverOption = ref<number | null>(null);
 
-const radioRefs = ref<HTMLElement[]>([]);
-const radioWidths = ref<number[]>([]);
+const checkboxRefs = ref<HTMLElement[]>([]);
+const checkboxWidths = ref<number[]>([]);
 onMounted(() => {
-  radioWidths.value = radioRefs.value.map(
+  checkboxWidths.value = checkboxRefs.value.map(
     (ref) => ref.getBoundingClientRect().width
   );
 });
 watch(
-  [props.options, radioRefs],
+  [props.options, checkboxRefs],
   () =>
-    (radioWidths.value = radioRefs.value.map(
+    (checkboxWidths.value = checkboxRefs.value.map(
       (ref) => ref.getBoundingClientRect().width
     ))
 );
