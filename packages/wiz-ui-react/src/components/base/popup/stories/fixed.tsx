@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable no-empty-function */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { StoryObj } from "@storybook/react";
 import { ComponentProps, ReactNode, useRef, useState } from "react";
