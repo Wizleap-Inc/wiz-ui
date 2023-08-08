@@ -41,6 +41,17 @@ type Props = {
   children: ReactNode;
 } & ComponentProps<"div">;
 
+/** 与えられた要素が、fixedまたはstickyの要素上にあるかどうかを返します。 */
+const hasFixedOrStickyParent = (el: HTMLElement | null): boolean => {
+  const checkParent = (el: HTMLElement | null): HTMLElement | null => {
+    if (!el) return null;
+    const position = window.getComputedStyle(el).position;
+    if (position === "fixed" || position === "sticky") return el;
+    return checkParent(el.parentElement);
+  };
+  return !!checkParent(el);
+};
+
 const Popup = ({
   isOpen,
   onClose,
@@ -63,16 +74,7 @@ const Popup = ({
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
-  const existsFixedOrStickyParent = (
-    el: HTMLElement | null
-  ): HTMLElement | null => {
-    if (!el) return null;
-    const position = window.getComputedStyle(el).position;
-    if (position === "fixed" || position === "sticky") return el;
-    return existsFixedOrStickyParent(el.parentElement);
-  };
-
-  const isPopupFixed = !!existsFixedOrStickyParent(anchorElement.current);
+  const isPopupFixed = hasFixedOrStickyParent(anchorElement.current);
 
   useEffect(() => {
     const anchor = anchorElement.current;
