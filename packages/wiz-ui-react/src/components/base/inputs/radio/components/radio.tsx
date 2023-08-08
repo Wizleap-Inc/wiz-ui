@@ -31,7 +31,7 @@ export const Radio: FC<Props> = ({
   const idPrefix = useId();
   return (
     <div className={styles.radioStyle}>
-      <WizStack gap={gap} direction={direction} nowrap={false}>
+      <WizStack gap={gap} direction={direction}>
         {options.map((option) => {
           const id = `${idPrefix}-${option.value}`;
           const isChecked = value === option.value;

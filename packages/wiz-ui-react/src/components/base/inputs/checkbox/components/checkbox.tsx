@@ -31,7 +31,7 @@ const CheckBox: FC<Props> = ({
   );
 
   return (
-    <WizStack gap={gap} direction={direction} nowrap={false}>
+    <WizStack gap={gap} direction={direction}>
       {options.map((option) => {
         const isChecked = values.includes(option.value);
         const isDisabled = disabled || option.disabled;
