@@ -61,10 +61,6 @@ const MultiVariantTemplate: StoryFn<typeof WizNotificationPanel> = (args) => ({
         <WizText>variant = secondary</WizText>
         <WizNotificationPanel v-bind="args" variant="secondary" @click="args.click"/>
       </WizVStack>
-      <WizVStack gap="md">
-        <WizText>variant = secondary</WizText>
-        <WizNotificationPanel v-bind="args" variant="secondary" @click="args.click"/>
-      </WizVStack>
     </WizHStack>
   </div>
   `,
