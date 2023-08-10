@@ -1,14 +1,18 @@
 <template>
   <WizBox
-    @mouseover.native="isHovered = true"
-    @mouseleave.native="isHovered = false"
-    @pointerdown.native="isPressed = true"
-    @pointerup.native="isPressed = false"
+    @mouseover.native="setIsHover(true)"
+    @mouseleave.native="setIsHover(false)"
+    @pointerdown.native="setIsPressed(true)"
+    @pointerup.native="setIsPressed(false)"
+    @pointerleave.native="setIsPressed(false)"
+    @pointercancel.native="setIsPressed(false)"
     @click.native="onClick"
-    :bgColor="isHovered ? 'green.300' : 'white.800'"
-    :opacity="isPressed ? 0.5 : 1"
+    :bgColor="panelBgColor()"
     height="fit-content"
     cursor="pointer"
+    :style="{
+      width,
+    }"
   >
     <WizHStack px="md" py="xs" justify="between" align="center">
       <WizVStack gap="xs" position="relative" width="100%">
@@ -34,16 +38,13 @@
           {{ displayDatetime }}
         </WizText>
       </WizVStack>
-      <WizIcon
-        :icon="WizIChevronRight"
-        :color="isHovered || isPressed ? 'green.800' : 'gray.500'"
-      />
+      <WizIcon :icon="WizIChevronRight" color="green.800" />
     </WizHStack>
   </WizBox>
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToYMDHM, formatHowPast } from "@wizleap-inc/wiz-ui-utils";
 import { computed, ref, PropType } from "vue";
 
@@ -86,13 +87,37 @@ const props = defineProps({
     type: Array as PropType<TableInfoItem[]>,
     required: false,
   },
+  width: {
+    type: String,
+    required: false,
+  },
 });
 
 const displayDatetime = computed(() => formatDateToYMDHM(props.timestamp));
 const displayHowPast = computed(() => formatHowPast(props.timestamp));
+const isPc = computed(() => window.innerWidth > 768);
 
 const isHovered = ref(false);
 const isPressed = ref(false);
+
+const setIsHover = (value: boolean) => {
+  isHovered.value = value;
+};
+const setIsPressed = (value: boolean) => {
+  isPressed.value = value;
+};
+
+const panelBgColor = (): ColorKeys => {
+  if (isPc) {
+    if (isPressed.value) {
+      return "green.300";
+    }
+    if (isHovered.value) {
+      return "gray.200";
+    }
+  }
+  return "white.800";
+};
 
 interface Emit {
   (event: "click"): void;
