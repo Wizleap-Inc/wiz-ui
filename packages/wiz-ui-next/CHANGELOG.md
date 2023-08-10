@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.2.0
+
+### Minor Changes
+
+- [#947](https://github.com/Wizleap-Inc/wiz-ui/pull/947) [`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizShowMoreLess: モバイル対応
+
+- [#907](https://github.com/Wizleap-Inc/wiz-ui/pull/907) [`2c3311f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2c3311f9271b83b0cb19c0179dc840d6f22c2861) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDatePicker, WizCalendar: 選択不可な日付の条件を指定できるようにする
+
+- [#741](https://github.com/Wizleap-Inc/wiz-ui/pull/741) [`394a93d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/394a93d5a94a70d6e50055fd7a951ed4dbfd85bf) Thanks [@okakyo](https://github.com/okakyo)! - [#716] Notification の panel, color props を変更した
+
+### Patch Changes
+
+- Updated dependencies [[`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe), [`2c3311f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2c3311f9271b83b0cb19c0179dc840d6f22c2861)]:
+  - @wizleap-inc/wiz-ui-styles@0.13.0
+
 ## 2.1.0
 
 ### Minor Changes
