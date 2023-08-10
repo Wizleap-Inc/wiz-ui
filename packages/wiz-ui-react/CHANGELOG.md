@@ -1,5 +1,24 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.24.0
+
+### Minor Changes
+
+- [#947](https://github.com/Wizleap-Inc/wiz-ui/pull/947) [`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizShowMoreLess: モバイル対応
+
+- [#970](https://github.com/Wizleap-Inc/wiz-ui/pull/970) [`9d64f618`](https://github.com/Wizleap-Inc/wiz-ui/commit/9d64f618cd9a93450ae886712ace4c28b694d0ec) Thanks [@okakyo](https://github.com/okakyo)! - [#955] dialog(React) hideClose Props 追加
+
+- [#964](https://github.com/Wizleap-Inc/wiz-ui/pull/964) [`000beb06`](https://github.com/Wizleap-Inc/wiz-ui/commit/000beb06a5e0744ad29a980d19f43a466b5bb42e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizStack: wrap props を削除し、折り返すかどうかを nowrap により制御する(react)
+
+### Patch Changes
+
+- [#972](https://github.com/Wizleap-Inc/wiz-ui/pull/972) [`50c0e41a`](https://github.com/Wizleap-Inc/wiz-ui/commit/50c0e41ab10322c42d89a172af74b41d74e40109) Thanks [@okakyo](https://github.com/okakyo)! - [#958] MenuItem に FontSize prop を追加 (React)
+
+- [#971](https://github.com/Wizleap-Inc/wiz-ui/pull/971) [`74418b5a`](https://github.com/Wizleap-Inc/wiz-ui/commit/74418b5a3fa196cd6f7999c2b2359ac5e3eb9dd3) Thanks [@okakyo](https://github.com/okakyo)! - [#956] ToggleSwitch に defaultColor を設定
+
+- Updated dependencies [[`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe), [`2c3311f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2c3311f9271b83b0cb19c0179dc840d6f22c2861)]:
+  - @wizleap-inc/wiz-ui-styles@0.13.0
+
 ## 0.23.0
 
 ### Minor Changes
