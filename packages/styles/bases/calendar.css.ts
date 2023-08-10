@@ -63,4 +63,10 @@ export const calendarItemStyle = styleVariants({
     textAlign: "center",
     borderRadius: THEME.spacing.xs2,
   },
+  disabledDate: {
+    background: "none",
+    color: THEME.color.gray[500],
+    textAlign: "center",
+    borderRadius: THEME.spacing.xs2,
+  },
 });
