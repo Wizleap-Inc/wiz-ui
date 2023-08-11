@@ -36,6 +36,9 @@ export default {
     annotation: {
       control: { type: "text" },
     },
+    disabled: {
+      control: { type: "boolean" },
+    },
   },
   decorators: [
     () => ({
@@ -244,3 +247,10 @@ BreakpointSm.decorators = [
     template: `<story />`,
   }),
 ];
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  variant: "success",
+  title: "disabledにすると、タイムラインのアイテムがグレーアウトします",
+  disabled: true,
+};
