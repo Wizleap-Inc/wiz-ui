@@ -33,95 +33,98 @@ export default meta;
 
 type Story = StoryObj<typeof WizTimelineItem>;
 
+const Template = ({ disabled }: { disabled?: boolean }) => (
+  <WizTimelineItem
+    disabled={disabled}
+    variant="success"
+    tag="面談終了"
+    title="面談レポート提出完了しました"
+    annotation="2022年6月17日"
+    footer={
+      <>
+        <WizDivider />
+        <WizMenuItem label="編集" active expand />
+        <WizDivider />
+        <WizMenuItem label="面談日程追加" active expand />
+        <WizDivider />
+        <WizMenuItem label="相談者不在申請" active expand />
+      </>
+    }
+  >
+    <WizUnstyledTable space="xs2" width="100%">
+      <WizUnstyledTbody>
+        <WizUnstyledTr>
+          <WizUnstyledTd align="left" width="80px">
+            <WizText fontSize="xs">相談日時</WizText>
+          </WizUnstyledTd>
+          <WizUnstyledTd>
+            <WizHStack align="center" justify="between">
+              <WizText bold fontSize="sm">
+                <WizText as="span" bold fontSize="sm" display="inline-block">
+                  2022年6月17日
+                </WizText>
+                <WizText as="span" bold fontSize="sm" display="inline-block">
+                  10:00 ~ 11:00
+                </WizText>
+              </WizText>
+              <WizIcon icon={WizIInfo} color="yellow.800" />
+            </WizHStack>
+          </WizUnstyledTd>
+        </WizUnstyledTr>
+        <WizUnstyledTr>
+          <WizUnstyledTd align="left">
+            <WizText fontSize="xs">相談場所</WizText>
+          </WizUnstyledTd>
+          <WizUnstyledTd>
+            <WizText bold fontSize="sm">
+              オンライン
+            </WizText>
+          </WizUnstyledTd>
+        </WizUnstyledTr>
+        <WizUnstyledTr>
+          <WizUnstyledTd />
+          <WizUnstyledTd>
+            <WizHStack align="center" wrap>
+              <WizText fontSize="sm" as="span">
+                ※ビデオ面談URL：
+              </WizText>
+              <WizText bold color="red.800" as="span" fontSize="sm">
+                未設定
+              </WizText>
+              <WizIcon icon={WizIInfo} color="red.800" />
+            </WizHStack>
+          </WizUnstyledTd>
+        </WizUnstyledTr>
+        <WizUnstyledTr>
+          <WizUnstyledTd align="left">
+            <WizText fontSize="xs">専門家</WizText>
+          </WizUnstyledTd>
+          <WizUnstyledTd>
+            <WizText bold fontSize="sm">
+              専門 タロウ
+            </WizText>
+          </WizUnstyledTd>
+        </WizUnstyledTr>
+        <WizUnstyledTr>
+          <WizUnstyledTd align="left">
+            <WizText fontSize="xs">前日の挨拶</WizText>
+          </WizUnstyledTd>
+          <WizUnstyledTd>
+            <WizHStack align="center" justify="between">
+              <WizText bold fontSize="sm">
+                配信済み
+              </WizText>
+              <WizIcon icon={WizIHelp} />
+            </WizHStack>
+          </WizUnstyledTd>
+        </WizUnstyledTr>
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  </WizTimelineItem>
+);
+
 export const Overview: Story = {
-  render: () => (
-    <WizTimelineItem
-      variant="success"
-      tag="面談終了"
-      title="面談レポート提出完了しました"
-      annotation="2022年6月17日"
-      footer={
-        <>
-          <WizDivider />
-          <WizMenuItem label="編集" active expand />
-          <WizDivider />
-          <WizMenuItem label="面談日程追加" active expand />
-          <WizDivider />
-          <WizMenuItem label="相談者不在申請" active expand />
-        </>
-      }
-    >
-      <WizUnstyledTable space="xs2" width="100%">
-        <WizUnstyledTbody>
-          <WizUnstyledTr>
-            <WizUnstyledTd align="left" width="80px">
-              <WizText fontSize="xs">相談日時</WizText>
-            </WizUnstyledTd>
-            <WizUnstyledTd>
-              <WizHStack align="center" justify="between">
-                <WizText bold fontSize="sm">
-                  <WizText as="span" bold fontSize="sm" display="inline-block">
-                    2022年6月17日
-                  </WizText>
-                  <WizText as="span" bold fontSize="sm" display="inline-block">
-                    10:00 ~ 11:00
-                  </WizText>
-                </WizText>
-                <WizIcon icon={WizIInfo} color="yellow.800" />
-              </WizHStack>
-            </WizUnstyledTd>
-          </WizUnstyledTr>
-          <WizUnstyledTr>
-            <WizUnstyledTd align="left">
-              <WizText fontSize="xs">相談場所</WizText>
-            </WizUnstyledTd>
-            <WizUnstyledTd>
-              <WizText bold fontSize="sm">
-                オンライン
-              </WizText>
-            </WizUnstyledTd>
-          </WizUnstyledTr>
-          <WizUnstyledTr>
-            <WizUnstyledTd />
-            <WizUnstyledTd>
-              <WizHStack align="center" wrap>
-                <WizText fontSize="sm" as="span">
-                  ※ビデオ面談URL：
-                </WizText>
-                <WizText bold color="red.800" as="span" fontSize="sm">
-                  未設定
-                </WizText>
-                <WizIcon icon={WizIInfo} color="red.800" />
-              </WizHStack>
-            </WizUnstyledTd>
-          </WizUnstyledTr>
-          <WizUnstyledTr>
-            <WizUnstyledTd align="left">
-              <WizText fontSize="xs">専門家</WizText>
-            </WizUnstyledTd>
-            <WizUnstyledTd>
-              <WizText bold fontSize="sm">
-                専門 タロウ
-              </WizText>
-            </WizUnstyledTd>
-          </WizUnstyledTr>
-          <WizUnstyledTr>
-            <WizUnstyledTd align="left">
-              <WizText fontSize="xs">前日の挨拶</WizText>
-            </WizUnstyledTd>
-            <WizUnstyledTd>
-              <WizHStack align="center" justify="between">
-                <WizText bold fontSize="sm">
-                  配信済み
-                </WizText>
-                <WizIcon icon={WizIHelp} />
-              </WizHStack>
-            </WizUnstyledTd>
-          </WizUnstyledTr>
-        </WizUnstyledTbody>
-      </WizUnstyledTable>
-    </WizTimelineItem>
-  ),
+  render: Template,
   parameters: {
     docs: {
       description: {
@@ -183,4 +186,8 @@ export const BreakpointSm: Story = {
       </TimelineContext.Provider>
     ),
   ],
+};
+
+export const Disabled: Story = {
+  render: () => <Template disabled />,
 };

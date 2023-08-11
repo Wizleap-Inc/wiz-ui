@@ -17,6 +17,7 @@ interface TimelineItemProps {
   annotation?: string;
   children?: ReactNode;
   footer?: ReactNode;
+  disabled?: boolean;
 }
 
 const TimelineItem: FC<TimelineItemProps> = ({
@@ -26,6 +27,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
   annotation,
   children,
   footer,
+  disabled = false,
 }) => {
   const ctx = useContext(TimelineContext);
   if (!ctx) {
@@ -46,11 +48,20 @@ const TimelineItem: FC<TimelineItemProps> = ({
         styles.timelineItemVariant[size],
         styles.TIMELINE_ITEM_IDENTIFIER_CLASS
       )}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      inert={disabled ? "" : undefined}
     >
-      <div className={clsx(styles.icon, styles.iconVariant[variant])}>
+      <div
+        className={clsx(
+          styles.icon,
+          styles.iconVariant[variant],
+          disabled && styles.disabled
+        )}
+      >
         <WizIcon size={iconSize} icon={WizICalendar} color="white.800" />
       </div>
-      <div className={styles.card}>
+      <div className={clsx(styles.card, disabled && styles.disabled)}>
         <div className={styles.contents}>
           <div className={styles.header}>
             <div className={styles.headerRow}>

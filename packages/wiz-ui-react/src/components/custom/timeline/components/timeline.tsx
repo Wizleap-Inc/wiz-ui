@@ -10,7 +10,7 @@ import type { FC, ReactNode } from "react";
 
 interface TimelineProps {
   bp: BreakpointVariant;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Timeline: FC<TimelineProps> = ({ bp, children }) => {

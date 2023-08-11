@@ -1,4 +1,4 @@
-import { StoryFn } from "@storybook/react";
+import { StoryFn, StoryObj } from "@storybook/react";
 
 import {
   WizMenuItem,
@@ -24,13 +24,9 @@ import { WizTimeline, WizTimelineItem } from "..";
 export default {
   title: "Custom/Timeline",
   component: WizTimeline,
-  argTypes: {
-    bp: {
-      control: { type: "select" },
-      options: ["sm", "md", "lg"],
-    },
-  },
 };
+
+type Story = StoryObj<typeof WizTimeline>;
 
 const Template: StoryFn<typeof WizTimeline> = (args) => (
   <WizTimeline {...args}>
@@ -68,17 +64,15 @@ const Template: StoryFn<typeof WizTimeline> = (args) => (
   </WizTimeline>
 );
 
-export const Large = Template.bind({});
-Large.args = {
-  bp: "lg",
+export const Large: Story = {
+  render: () => <Template bp="lg" />,
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  bp: "sm",
+export const Small: Story = {
+  render: () => <Template bp="sm" />,
 };
 
-export const Playground: StoryFn<typeof WizTimeline> = () => {
+const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
   const bp = useBreakpoint();
   const sectionFontSize = bp === "sm" ? "sm" : "lg";
 
@@ -196,6 +190,7 @@ export const Playground: StoryFn<typeof WizTimeline> = () => {
         </WizUnstyledTable>
       </WizTimelineItem>
       <WizTimelineItem title="Title" />
+      <WizTimelineItem title="Title" disabled />
       <WizTimelineItem title="Title" tag="Tag" />
       <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" />
       <WizTimelineItem
@@ -228,4 +223,8 @@ export const Playground: StoryFn<typeof WizTimeline> = () => {
       </WizTimelineItem>
     </WizTimeline>
   );
+};
+
+export const Playground: Story = {
+  render: PlaygroundTemplate,
 };
