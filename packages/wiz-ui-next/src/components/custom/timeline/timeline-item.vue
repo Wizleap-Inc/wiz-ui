@@ -6,10 +6,16 @@
       styles.TIMELINE_ITEM_IDENTIFIER_CLASS,
     ]"
   >
-    <div :class="[styles.icon, styles.iconVariant[variant]]">
+    <div
+      :class="[
+        styles.icon,
+        styles.iconVariant[variant],
+        disabled && styles.disabled,
+      ]"
+    >
       <WizIcon :size="iconSize" :icon="WizICalendar" color="white.800" />
     </div>
-    <div :class="styles.card">
+    <div :class="[styles.card, disabled && styles.disabled]">
       <div :class="styles.contents">
         <div :class="styles.header">
           <div :class="styles.headerRow">
@@ -75,6 +81,11 @@ const props = defineProps({
   annotation: {
     type: String,
     required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

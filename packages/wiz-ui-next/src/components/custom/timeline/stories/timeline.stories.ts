@@ -202,6 +202,7 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
       </template>
     </WizTimelineItem>
     <WizTimelineItem title="Title"/>
+    <WizTimelineItem title="Title" disabled />
     <WizTimelineItem title="Title" tag="Tag"/>
     <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日"/>
     <WizTimelineItem title="Title" tag="Tag" annotation="2023年12月9日" variant="failure"/>
