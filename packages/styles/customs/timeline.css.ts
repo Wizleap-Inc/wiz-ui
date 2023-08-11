@@ -117,6 +117,7 @@ export const title = style({
   fontSize: timelineItemVars.titleFontSize,
   fontWeight: THEME.fontWeight.bold,
   height: "min-content",
+  color: THEME.color.gray[700],
 });
 
 export const annotation = style({
