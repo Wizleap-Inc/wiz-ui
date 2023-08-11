@@ -47,7 +47,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
         styles.TIMELINE_ITEM_IDENTIFIER_CLASS
       )}
     >
-      <div className={[styles.icon, styles.iconVariant[variant]].join(" ")}>
+      <div className={clsx(styles.icon, styles.iconVariant[variant])}>
         <WizIcon size={iconSize} icon={WizICalendar} color="white.800" />
       </div>
       <div className={styles.card}>
