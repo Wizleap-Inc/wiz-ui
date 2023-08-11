@@ -103,7 +103,7 @@ const MenuItem = forwardRef(
         className={clsx(
           styles.menuItemStyle,
           styles.menuItemVariantStyle[getVariant()],
-          styles.menuItemExpand
+          expand && styles.menuItemExpand
         )}
         style={{ width }}
         {...props}
