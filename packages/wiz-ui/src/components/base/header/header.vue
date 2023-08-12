@@ -34,7 +34,6 @@ import { PropType } from "vue";
 
 import { WizHStack, WizIconButton, WizIMenu } from "@/components";
 import { useZIndex } from "@/hooks";
-import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
 defineOptions({
   name: ComponentName.Header,
@@ -55,7 +54,12 @@ defineProps({
   },
 });
 
-const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
-const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen.value);
+interface Emit {
+  (e: "onToggle"): void;
+}
+
+const emits = defineEmits<Emit>();
+
+const toggleMenuOpen = () => emits("onToggle");
 const { currentZIndex } = useZIndex(THEME.zIndex.floating);
 </script>

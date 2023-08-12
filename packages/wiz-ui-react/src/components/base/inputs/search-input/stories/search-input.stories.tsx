@@ -3,6 +3,8 @@ import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
 import { useState } from "react";
 
+import { WizIPublic } from "@/components/icons";
+
 import { WizSearchInput } from "..";
 
 import { normalOptions, longLabelOptions, debugOptions } from "./dummy-data";
@@ -82,6 +84,17 @@ export const IsDirectionFixed: Story = {
     placeholder: "氏名・ID・電話番号で検索",
     inputWidth: "15rem",
     isDirectionFixed: true,
+  },
+};
+
+export const Icon: Story = {
+  ...Template,
+  args: {
+    options: normalOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    inputWidth: "15rem",
+    isDirectionFixed: true,
+    icon: WizIPublic,
   },
 };
 

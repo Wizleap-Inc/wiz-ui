@@ -17,13 +17,13 @@
       <div :class="fontSizeStyle[fontSize]">
         {{ label }}
       </div>
-      <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
+      <WizIcon size="xl2" :icon="WizIChevronRight" color="green.800" />
     </WizHStack>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ColorKeys, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
+import { FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   menuItemStyle,
   menuItemVariantStyle,
@@ -69,6 +69,11 @@ const props = defineProps({
     required: false,
     default: "md",
   },
+  selected: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -86,13 +91,10 @@ const activate = () => (isPressed.value = true);
 const inactivate = () => (isPressed.value = false);
 
 const width = computed(() => props.width);
-const iconColor = computed((): ColorKeys => {
-  return props.clickable && (props.active || isHover.value)
-    ? "green.800"
-    : "gray.500";
-});
+
 const componentStatus = computed(() => {
   if (!props.clickable) return "disabled";
+  if (props.selected) return "selected";
   if (props.active || isPressed.value) return "active";
   if (isHover.value) return "hover";
   return "default";

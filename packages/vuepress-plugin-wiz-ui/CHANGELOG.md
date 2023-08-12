@@ -1,5 +1,47 @@
 # @wizleap-inc/vuepress-plugin-wiz-ui
 
+## 0.0.27
+
+### Patch Changes
+
+- Updated dependencies [[`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe), [`2c3311f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2c3311f9271b83b0cb19c0179dc840d6f22c2861), [`394a93d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/394a93d5a94a70d6e50055fd7a951ed4dbfd85bf)]:
+  - @wizleap-inc/wiz-ui@2.2.0
+
+## 0.0.26
+
+### Patch Changes
+
+- Updated dependencies [[`f835ae35`](https://github.com/Wizleap-Inc/wiz-ui/commit/f835ae35d3cc91b0d29c59c4a768e98b19dc3976), [`2199fbb9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2199fbb9d5c0f0cf4e9d850ff753f36824967591)]:
+  - @wizleap-inc/wiz-ui@2.1.0
+
+## 0.0.25
+
+### Patch Changes
+
+- Updated dependencies [[`1e45c897`](https://github.com/Wizleap-Inc/wiz-ui/commit/1e45c8976fc51dc5ba646a6cb373d9b32550f0d8), [`4633f848`](https://github.com/Wizleap-Inc/wiz-ui/commit/4633f8489ce1cd1ed4f37a792f491cb0dec1388e), [`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe), [`6cf7b061`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cf7b0617fab540e73715050b04790d36800b07d)]:
+  - @wizleap-inc/wiz-ui@2.0.0
+
+## 0.0.24
+
+### Patch Changes
+
+- Updated dependencies [[`360819d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/360819d5982b29f19af5e1bd52ccc5df41fdc8a3)]:
+  - @wizleap-inc/wiz-ui@1.19.0
+
+## 0.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`201489b8`](https://github.com/Wizleap-Inc/wiz-ui/commit/201489b8e50b0879924299d94631507cc8aa97ac)]:
+  - @wizleap-inc/wiz-ui@1.18.0
+
+## 0.0.22
+
+### Patch Changes
+
+- Updated dependencies [[`fc01d5ef`](https://github.com/Wizleap-Inc/wiz-ui/commit/fc01d5efd9a1968ff6f91276881ad6666842ec99), [`8f5e4df0`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f5e4df0dec355f1f1e382c96c607f82a0c52d00), [`095e4ca4`](https://github.com/Wizleap-Inc/wiz-ui/commit/095e4ca4afd005da3e04528153215294b2037334), [`f7207338`](https://github.com/Wizleap-Inc/wiz-ui/commit/f72073385fd90c4d2035420dc64481121015311c)]:
+  - @wizleap-inc/wiz-ui@1.17.0
+
 ## 0.0.21
 
 ### Patch Changes

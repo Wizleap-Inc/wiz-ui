@@ -33,3 +33,4 @@ export * from "./dropdown";
 export * from "./snackbar";
 export * from "./text-area";
 export * from "./skeleton";
+export * from "./tables";

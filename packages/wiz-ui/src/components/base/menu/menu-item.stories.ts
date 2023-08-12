@@ -121,3 +121,9 @@ FontSize.args = {
   label: "テスト",
   fontSize: "lg",
 };
+
+export const Selected = Template.bind({});
+Selected.args = {
+  label: "テスト",
+  selected: true,
+};

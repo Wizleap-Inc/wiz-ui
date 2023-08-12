@@ -1,5 +1,10 @@
-import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  FontSizeKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
+import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   ComponentProps,
@@ -18,6 +23,7 @@ type Props = {
   active?: boolean;
   clickable?: boolean;
   expand?: boolean;
+  fontSize: FontSizeKeys;
 } & ComponentProps<"div">;
 
 const MenuItem = forwardRef(
@@ -28,6 +34,7 @@ const MenuItem = forwardRef(
       active = false,
       clickable = true,
       expand,
+      fontSize = "md",
       onMouseOver,
       onMouseLeave,
       onMouseDown,
@@ -118,7 +125,7 @@ const MenuItem = forwardRef(
         onKeyDown={handleKeyDown}
       >
         <WizHStack align="center" justify="between">
-          <div>{label}</div>
+          <div className={fontSizeStyle[fontSize]}>{label}</div>
           <WizIcon size="xl2" icon={WizIChevronRight} color={iconColor} />
         </WizHStack>
       </div>
