@@ -3,7 +3,15 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css"
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useCallback, useContext, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  KeyboardEvent,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import {
   WizCalendar,
@@ -113,6 +121,18 @@ const DateRangePicker: FC<Props> = ({
     return [];
   }, [dateRange]);
 
+  const handleCalendar = (e: KeyboardEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    switch (e.key) {
+      case "ArrowRight":
+        moveCalendar("nextMonth");
+      case "ArrowLeft":
+        moveCalendar("prevMonth");
+      case "Enter":
+        setIsOpen(true);
+    }
+  };
+
   const onClickDate = useCallback(
     (date: Date) => {
       const [start, end] = [dateRange.start, dateRange.end];
@@ -163,6 +183,7 @@ const DateRangePicker: FC<Props> = ({
         onMouseLeave={() => setIsHover(false)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        onKeyDown={handleCalendar}
         disabled={disabled}
         className={clsx(
           styles.bodyStyle[disabled ? "disabled" : "active"],
