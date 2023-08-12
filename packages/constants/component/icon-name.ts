@@ -18,6 +18,7 @@ export const IconComponentName = {
   IChevronLeft: "WizIChevronLeft",
   IChevronRight: "WizIChevronRight",
   ICircleCheck: "WizICircleCheck",
+  ICircle: "WizICircle",
   IClose: "WizIClose",
   IContentCopy: "WizIContentCopy",
   IContract: "WizIContract",

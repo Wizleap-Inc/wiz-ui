@@ -17,6 +17,7 @@ import { default as WizICheck } from "./check.vue";
 import { default as WizIChevronLeft } from "./chevron-left.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizICircleCheck } from "./circle-check.vue";
+import { default as WizICircle } from "./circle.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizIContentCopy } from "./content-copy.vue";
 import { default as WizIContract } from "./contract.vue";
@@ -75,6 +76,7 @@ export type TIcon =
   | typeof WizIChevronLeft
   | typeof WizIChevronRight
   | typeof WizICircleCheck
+  | typeof WizICircle
   | typeof WizIClose
   | typeof WizIContentCopy
   | typeof WizIContract
@@ -133,6 +135,7 @@ export {
   WizIChevronLeft,
   WizIChevronRight,
   WizICircleCheck,
+  WizICircle,
   WizIClose,
   WizIContentCopy,
   WizIContract,

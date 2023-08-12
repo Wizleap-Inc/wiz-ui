@@ -16,6 +16,7 @@ import { WizIChat } from "./chat";
 import { WizICheck } from "./check";
 import { WizIChevronLeft } from "./chevron-left";
 import { WizIChevronRight } from "./chevron-right";
+import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClose } from "./close";
 import { WizIContentCopy } from "./content-copy";
@@ -75,6 +76,7 @@ export type TIcon =
   | typeof WizIChevronLeft
   | typeof WizIChevronRight
   | typeof WizICircleCheck
+  | typeof WizICircle
   | typeof WizIClose
   | typeof WizIContentCopy
   | typeof WizIContract
@@ -133,6 +135,7 @@ export {
   WizIChevronLeft,
   WizIChevronRight,
   WizICircleCheck,
+  WizICircle,
   WizIClose,
   WizIContentCopy,
   WizIContract,
