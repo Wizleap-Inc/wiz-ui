@@ -26,8 +26,8 @@ type Props<T extends ElementType> = {
   isPopupLocking?: boolean;
   buttons?: ButtonGroupItem[];
   isPopupOpen?: boolean;
-  onTogglePopup: (isPopup: boolean) => void;
-  onTogglePopupLocking: (lock: boolean) => void;
+  onTogglePopup?: (isPopup: boolean) => void;
+  onTogglePopupLocking?: (lock: boolean) => void;
 } & (
   | {
       href: string;
@@ -75,30 +75,30 @@ const NavigationItem = <T extends ElementType>({
   const existPopup = buttons && buttons.length > 0;
 
   const handleClick = () => {
-    onTogglePopup(true);
-    if (existPopup) onTogglePopupLocking(true);
+    onTogglePopup?.(true);
+    if (existPopup) onTogglePopupLocking?.(true);
   };
 
   const handleMouseEnter = () => {
-    if (!isPopupLocking) onTogglePopup(true);
+    if (!isPopupLocking) onTogglePopup?.(true);
   };
 
   const handleMouseLeave = () => {
-    if (!isPopupLocking) onTogglePopup(false);
+    if (!isPopupLocking) onTogglePopup?.(false);
   };
 
   const handleClosePopup = useCallback(() => {
     if (!isPopupOpen) return;
-    onTogglePopup(false);
-    onTogglePopupLocking(false);
+    onTogglePopup?.(false);
+    onTogglePopupLocking?.(false);
   }, [isPopupOpen, onTogglePopup, onTogglePopupLocking]);
 
   const handleMouseEnterToPopup = () => {
-    if (!isPopupLocking) onTogglePopup(true);
+    if (!isPopupLocking) onTogglePopup?.(true);
   };
 
   const handleMouseLeaveFromPopup = () => {
-    if (!isPopupLocking) onTogglePopup(false);
+    if (!isPopupLocking) onTogglePopup?.(false);
   };
 
   const body = (
