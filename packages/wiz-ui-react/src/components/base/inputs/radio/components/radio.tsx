@@ -47,7 +47,6 @@ export const Radio: FC<Props> = ({
           return (
             <div key={id}>
               <input
-                tabIndex={1}
                 className={styles.radioInputStyle}
                 type="radio"
                 id={id}
@@ -58,12 +57,10 @@ export const Radio: FC<Props> = ({
                 onClick={() => {
                   onChange?.(option.value);
                 }}
-                onFocus={(e) => {
-                  e.preventDefault();
+                onFocus={() => {
                   setFocusOption(option.value);
                 }}
-                onBlur={(e) => {
-                  e.preventDefault();
+                onBlur={() => {
                   setFocusOption(null);
                 }}
               />
