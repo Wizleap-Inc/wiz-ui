@@ -129,7 +129,7 @@ const DateRangePicker: FC<Props> = ({
       case "ArrowLeft":
         moveCalendar("prevMonth");
       case "Enter":
-        setIsOpen(true);
+        setIsOpen(!isOpen);
     }
   };
 
@@ -178,7 +178,7 @@ const DateRangePicker: FC<Props> = ({
       <button
         ref={anchor}
         aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         onFocus={() => setIsFocused(true)}
