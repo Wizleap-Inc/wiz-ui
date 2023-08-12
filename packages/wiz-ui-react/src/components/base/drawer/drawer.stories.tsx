@@ -1,5 +1,3 @@
-/* eslint-disable no-empty-function */
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Meta, StoryObj } from "@storybook/react";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
@@ -23,6 +21,10 @@ const meta: Meta<typeof WizDrawer> = {
 export default meta;
 type Story = StoryObj<typeof WizDrawer>;
 
+const dummy = () => {
+  // dummy function
+};
+
 export const Default: Story = {
   args: {
     isOpen: true,
@@ -36,32 +38,32 @@ export const Default: Story = {
           label="Home"
           active={true}
           href={""}
-          onTogglePopup={() => {}}
-          onTogglePopupLocking={() => {}}
+          onTogglePopup={dummy}
+          onTogglePopupLocking={dummy}
         />
         <WizNavigationItem
           icon={WizIAssignment}
           label="Page1"
           active={false}
           href={""}
-          onTogglePopup={() => {}}
-          onTogglePopupLocking={() => {}}
+          onTogglePopup={dummy}
+          onTogglePopupLocking={dummy}
         />
         <WizNavigationItem
           icon={WizIBusinessCenter}
           label="Page2"
           active={false}
           href={""}
-          onTogglePopup={() => {}}
-          onTogglePopupLocking={() => {}}
+          onTogglePopup={dummy}
+          onTogglePopupLocking={dummy}
         />
         <WizNavigationItem
           icon={WizIHelp}
           label="Page3"
           active={false}
           href={""}
-          onTogglePopup={() => {}}
-          onTogglePopupLocking={() => {}}
+          onTogglePopup={dummy}
+          onTogglePopupLocking={dummy}
         />
       </WizDrawer>
     );
@@ -76,39 +78,39 @@ export const WithHeader: Story = {
   render: (args) => {
     return (
       <div style={{ height: "100vh" }}>
-        <WizHeader sticky onToggle={() => {}} />
+        <WizHeader sticky onToggle={dummy} />
         <WizDrawer {...args}>
           <WizNavigationItem
             icon={WizIDashboard}
             label="Home"
             active={true}
             href={""}
-            onTogglePopup={() => {}}
-            onTogglePopupLocking={() => {}}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
           />
           <WizNavigationItem
             icon={WizIAssignment}
             label="Page1"
             active={false}
             href={""}
-            onTogglePopup={() => {}}
-            onTogglePopupLocking={() => {}}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
           />
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Page2"
             active={false}
             href={""}
-            onTogglePopup={() => {}}
-            onTogglePopupLocking={() => {}}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
           />
           <WizNavigationItem
             icon={WizIHelp}
             label="Page3"
             active={false}
             href={""}
-            onTogglePopup={() => {}}
-            onTogglePopupLocking={() => {}}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
           />
         </WizDrawer>
       </div>
