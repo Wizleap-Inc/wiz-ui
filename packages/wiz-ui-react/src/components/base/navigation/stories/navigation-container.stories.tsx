@@ -24,8 +24,6 @@ const meta: Meta<typeof WizNavigationContainer> = {
 export default meta;
 type Story = StoryObj<typeof WizNavigationContainer>;
 
-const dummyHandler = () => void 0;
-
 const navItems = [
   {
     icon: WizIDashboard,
@@ -60,8 +58,6 @@ const Template: Story = {
             label={path.label}
             href="/"
             active={false}
-            onTogglePopup={dummyHandler}
-            onTogglePopupLocking={dummyHandler}
           />
         ))}
       </WizNavigationContainer>
@@ -114,8 +110,6 @@ export const Playground: Story = {
               label={path.label}
               href="/"
               active={false}
-              onTogglePopup={dummyHandler}
-              onTogglePopupLocking={dummyHandler}
             />
           ))}
         </WizNavigationContainer>
@@ -247,8 +241,6 @@ export const Disabled: Story = {
             label={path.label}
             href="/"
             active={false}
-            onTogglePopup={dummyHandler}
-            onTogglePopupLocking={dummyHandler}
             disabled
           />
         ))}
@@ -319,7 +311,6 @@ export const PopupAndTooltip: Story = {
             isPopupOpen={isPopupOpen3}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={dummyHandler}
             tooltipText="これはヒント4です。"
           />
         </WizNavigationContainer>
