@@ -43,13 +43,14 @@ type Props = {
 
 /** 与えられた要素が、fixedまたはstickyの要素上にあるかどうかを返します。 */
 const hasFixedOrStickyParent = (el: HTMLElement | null): boolean => {
-  const checkParent = (el: HTMLElement | null): HTMLElement | null => {
-    if (!el) return null;
-    const position = window.getComputedStyle(el).position;
-    if (position === "fixed" || position === "sticky") return el;
-    return checkParent(el.parentElement);
-  };
-  return !!checkParent(el);
+  if (!el) {
+    return false;
+  }
+  const position = window.getComputedStyle(el).position;
+  if (position === "fixed" || position === "sticky") {
+    return true;
+  }
+  return hasFixedOrStickyParent(el.parentElement);
 };
 
 const Popup = ({
