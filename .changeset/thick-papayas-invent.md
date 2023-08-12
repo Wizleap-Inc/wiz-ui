@@ -6,4 +6,4 @@
 "@wizleap-inc/wiz-ui-icons": minor
 ---
 
-Icon 追加: WizIContract, WizILocationCity, WizISettings, WizISmartphone
+Icon 追加: WizIContract, WizILocationCity, WizISettings, WizISmartphone, WizICircle
