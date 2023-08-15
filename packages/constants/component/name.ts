@@ -101,6 +101,7 @@ export const ComponentName = {
   Schedule: "WizSchedule",
   PopupButtonGroup: "WizPopupButtonGroup",
   Pagination: "WizPagination",
+  FullModalView: "WizFullModalView",
   BreakpointProvider: "WizBreakpointProvider",
   ...IconComponentName,
 } as const;

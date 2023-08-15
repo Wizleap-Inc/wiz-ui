@@ -9,6 +9,7 @@ export * from "./card";
 export * from "./dialog";
 export * from "./divider";
 export * from "./dropdown";
+export * from "./full-modal-view";
 export * from "./header";
 export * from "./heading";
 export * from "./icon";
