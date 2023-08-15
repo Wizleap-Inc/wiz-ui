@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.13.1
+
+### Patch Changes
+
+- Updated dependencies [[`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2)]:
+  - @wizleap-inc/wiz-ui-constants@0.9.0
+
 ## 0.13.0
 
 ### Minor Changes
