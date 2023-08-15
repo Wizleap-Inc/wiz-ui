@@ -99,7 +99,7 @@ export const Playground: Story = {
   },
   render: (args) => {
     const [isMenuOpen, setIsMenuOpen] = useState(args.isOpen);
-    const popupLocker = () => setIsMenuOpen((prev) => !prev);
+    const handleTogglePopupLocking = () => setIsMenuOpen((prev) => !prev);
     return (
       <div style={{ display: "flex", height: "100vh" }}>
         <WizNavigationContainer {...args} isOpen={isMenuOpen}>
@@ -115,7 +115,9 @@ export const Playground: Story = {
         </WizNavigationContainer>
         <div>
           デバッグ用
-          <button onClick={popupLocker}>{isMenuOpen ? "Close" : "Open"}</button>
+          <button onClick={handleTogglePopupLocking}>
+            {isMenuOpen ? "Close" : "Open"}
+          </button>
         </div>
       </div>
     );
@@ -153,7 +155,7 @@ const PopupTemplate: Story = {
     const [isPopupOpen2, setIsPopupOpen2] = useState(false);
     const [isPopupOpen3, setIsPopupOpen3] = useState(false);
     const [isPopupLocking, setIsPopupLocking] = useState(false);
-    const popupLocker = (isPopupLocking: boolean) =>
+    const handleTogglePopupLocking = (isPopupLocking: boolean) =>
       setIsPopupLocking(isPopupLocking);
 
     return (
@@ -168,7 +170,7 @@ const PopupTemplate: Story = {
             isPopupOpen={isPopupOpen0}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={popupLocker}
+            onTogglePopupLocking={handleTogglePopupLocking}
           />
           <WizNavigationItem
             icon={WizIAssignment}
@@ -179,7 +181,7 @@ const PopupTemplate: Story = {
             isPopupOpen={isPopupOpen1}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={popupLocker}
+            onTogglePopupLocking={handleTogglePopupLocking}
           />
           <WizNavigationItem
             icon={WizIBusinessCenter}
@@ -190,7 +192,7 @@ const PopupTemplate: Story = {
             isPopupOpen={isPopupOpen2}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={popupLocker}
+            onTogglePopupLocking={handleTogglePopupLocking}
           />
           <WizNavigationItem
             icon={WizIHelp}
@@ -201,7 +203,7 @@ const PopupTemplate: Story = {
             isPopupOpen={isPopupOpen3}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={popupLocker}
+            onTogglePopupLocking={handleTogglePopupLocking}
           />
         </WizNavigationContainer>
       </div>
@@ -258,7 +260,7 @@ export const PopupAndTooltip: Story = {
     const [isPopupOpen2, setIsPopupOpen2] = useState(false);
     const [isPopupOpen3, setIsPopupOpen3] = useState(false);
     const [isPopupLocking, setIsPopupLocking] = useState(false);
-    const popupLocker = (isPopupLocking: boolean) =>
+    const handleTogglePopupLocking = (isPopupLocking: boolean) =>
       setIsPopupLocking(isPopupLocking);
 
     return (
@@ -273,7 +275,7 @@ export const PopupAndTooltip: Story = {
             isPopupOpen={isPopupOpen0}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={popupLocker}
+            onTogglePopupLocking={handleTogglePopupLocking}
             tooltipText="これはヒント1です。"
           />
           <WizNavigationItem
@@ -285,7 +287,7 @@ export const PopupAndTooltip: Story = {
             isPopupOpen={isPopupOpen1}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={popupLocker}
+            onTogglePopupLocking={handleTogglePopupLocking}
             tooltipText="これはヒント2です。"
           />
           <WizNavigationItem
@@ -297,7 +299,7 @@ export const PopupAndTooltip: Story = {
             isPopupOpen={isPopupOpen2}
             onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
             isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={popupLocker}
+            onTogglePopupLocking={handleTogglePopupLocking}
             tooltipText="これはヒント3です。"
           />
           <WizNavigationItem
