@@ -43,11 +43,11 @@ const Template = ({ disabled }: { disabled?: boolean }) => (
     footer={
       <>
         <WizDivider />
-        <WizMenuItem label="編集" active expand />
+        <WizMenuItem label="編集" expand />
         <WizDivider />
-        <WizMenuItem label="面談日程追加" active expand />
+        <WizMenuItem label="面談日程追加" expand />
         <WizDivider />
-        <WizMenuItem label="相談者不在申請" active expand />
+        <WizMenuItem label="相談者不在申請" expand />
       </>
     }
   >
@@ -168,7 +168,7 @@ export const VariantFailure = {
   ),
 };
 
-export const BreakpointSm: Story = {
+export const MobileDevice: Story = {
   render: () => (
     <WizTimelineItem
       variant="success"

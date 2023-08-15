@@ -49,7 +49,7 @@ const Template: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
       SLOT
       <template #footer>
         <WizDivider/>
-        <WizMenuItem label="FOOTER" active expand />
+        <WizMenuItem label="FOOTER" expand />
       </template>
     </WizTimelineItem>
   </WizTimeline>
@@ -195,11 +195,11 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
       </WizUnstyledTable>
       <template #footer>
         <WizDivider />
-        <WizMenuItem label="編集" active expand />
+        <WizMenuItem label="編集" expand />
         <WizDivider />
-        <WizMenuItem label="面談日程追加" active expand />
+        <WizMenuItem label="面談日程追加" expand />
         <WizDivider />
-        <WizMenuItem label="相談者不在申請" active expand />
+        <WizMenuItem label="相談者不在申請" expand />
       </template>
     </WizTimelineItem>
     <WizTimelineItem title="Title"/>
@@ -214,7 +214,7 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
       SLOT
       <template #footer>
         <WizDivider/>
-        <WizMenuItem label="FOOTER" active expand />
+        <WizMenuItem label="FOOTER" expand />
       </template>
     </WizTimelineItem>
   </WizTimeline>

@@ -56,7 +56,7 @@ const Template: StoryFn<typeof WizTimeline> = (args) => (
       footer={
         <>
           <WizDivider />
-          <WizMenuItem label="FOOTER" active expand />
+          <WizMenuItem label="FOOTER" expand />
         </>
       }
     >
@@ -216,7 +216,7 @@ const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
         footer={
           <>
             <WizDivider />
-            <WizMenuItem label="FOOTER" active expand />
+            <WizMenuItem label="FOOTER" expand />
           </>
         }
       >

@@ -138,11 +138,11 @@ const OVERVIEW_TEMPLATE = `
     </WizUnstyledTable>
     <template #footer>
       <WizDivider />
-      <WizMenuItem label="編集" active expand />
+      <WizMenuItem label="編集" expand />
       <WizDivider />
-      <WizMenuItem label="面談日程追加" active expand />
+      <WizMenuItem label="面談日程追加" expand />
       <WizDivider />
-      <WizMenuItem label="相談者不在申請" active expand />
+      <WizMenuItem label="相談者不在申請" expand />
     </template>
   </WizTimelineItem>
 `.trim();
@@ -233,13 +233,13 @@ VariantFailure.args = {
   title: "失敗ステータスのバリエーションです",
 };
 
-export const BreakpointSm = Template.bind({});
-BreakpointSm.args = {
+export const MobileDevice = Template.bind({});
+MobileDevice.args = {
   variant: "success",
   title:
     "Timeline（親）コンポーネントのdeviceがmobileの場合は、TimelineItem(子)コンポーネントも小さくなります",
 };
-BreakpointSm.decorators = [
+MobileDevice.decorators = [
   () => ({
     setup() {
       const device = ref("mobile");
