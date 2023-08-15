@@ -76,9 +76,44 @@ export const ManyOptions: Story = {
 };
 
 export const ExtraLabel: Story = {
-  ...Template,
   args: {
     options: getDummyOptions("test", 3, "(10)"),
+    value: 1,
+  },
+  render: (args) => {
+    const [value, setValue] = useState<number | null>(args.value);
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "10px",
+        }}
+      >
+        <div>
+          <h5>showExLabel = false</h5>
+          <WizSelectBox
+            {...args}
+            value={value}
+            showExLabel={false}
+            onChange={(updated) => setValue(updated)}
+          />
+        </div>
+        <div>
+          <h5>showExLabel = true</h5>
+          <WizSelectBox
+            {...args}
+            value={value}
+            showExLabel={true}
+            onChange={(updated) => setValue(updated)}
+          />
+        </div>
+      </div>
+    );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    fireEvent.click(canvas.getAllByRole("combobox")[0]);
   },
 };
 

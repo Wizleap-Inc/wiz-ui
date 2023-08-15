@@ -37,6 +37,7 @@ type Props = {
   expand?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
+  showExLabel?: boolean;
   onChange: (value: number | null) => void;
 };
 
@@ -49,6 +50,7 @@ const SelectBox: FC<Props> = ({
   expand,
   error,
   isDirectionFixed = false,
+  showExLabel = false,
   onChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -122,6 +124,9 @@ const SelectBox: FC<Props> = ({
             {selectedOption ? (
               <span className={styles.selectBoxInnerBoxSelectedValueStyle}>
                 {selectedOption.label}
+                {showExLabel &&
+                  selectedOption.exLabel &&
+                  " " + selectedOption.exLabel}
               </span>
             ) : (
               <span className={styles.selectBoxPlaceholderStyle}>
