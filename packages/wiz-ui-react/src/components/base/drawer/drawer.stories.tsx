@@ -15,6 +15,9 @@ const meta: Meta<typeof WizDrawer> = {
   argTypes: {},
   parameters: {
     layout: "fullscreen",
+    screenshot: {
+      delay: 300,
+    },
   },
 };
 

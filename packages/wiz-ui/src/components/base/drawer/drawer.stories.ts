@@ -25,6 +25,9 @@ export default {
   ],
   parameters: {
     layout: "fullscreen",
+    screenshot: {
+      delay: 300,
+    },
   },
 } as Meta<typeof WizDrawer>;
 
