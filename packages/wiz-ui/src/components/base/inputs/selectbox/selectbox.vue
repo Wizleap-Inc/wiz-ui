@@ -21,7 +21,7 @@
             :class="selectBoxInnerBoxSelectedValueStyle"
           >
             {{ option.label }}
-            {{ option.exLabel ? " " + option.exLabel : "" }}
+            {{ showExLabel && option.exLabel ? " " + option.exLabel : "" }}
           </span>
           <WizIExpandLess
             v-if="openSelectBox"
@@ -123,6 +123,11 @@ const props = defineProps({
     default: false,
   },
   isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  showExLabel: {
     type: Boolean,
     required: false,
     default: false,
