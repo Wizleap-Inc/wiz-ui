@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.5.0
+
+### Minor Changes
+
+- [#977](https://github.com/Wizleap-Inc/wiz-ui/pull/977) [`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Icon 追加: WizIContract, WizILocationCity, WizISettings, WizISmartphone, WizICircle
+
 ## 0.4.0
 
 ### Minor Changes
