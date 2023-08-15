@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.10.0
+
+### Minor Changes
+
+- [#510](https://github.com/Wizleap-Inc/wiz-ui/pull/510) [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba) Thanks [@RyushiAok](https://github.com/RyushiAok)! - feat: 非テキストボタンに aria-label を付与する
+
+- [#910](https://github.com/Wizleap-Inc/wiz-ui/pull/910) [`1c7e0163`](https://github.com/Wizleap-Inc/wiz-ui/commit/1c7e01631c5192c5d6d9cdf9a63cf78ae3ab5e77) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizFullModalView を追加
+
 ## 0.9.0
 
 ### Minor Changes

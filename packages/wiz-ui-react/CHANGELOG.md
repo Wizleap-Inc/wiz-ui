@@ -1,5 +1,21 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.26.0
+
+### Minor Changes
+
+- [#996](https://github.com/Wizleap-Inc/wiz-ui/pull/996) [`28ad0967`](https://github.com/Wizleap-Inc/wiz-ui/commit/28ad0967832da564ea9e4202343eac487c5a1d10) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSelectBox: exLabel の表示切替機能を追加
+
+- [#510](https://github.com/Wizleap-Inc/wiz-ui/pull/510) [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba) Thanks [@RyushiAok](https://github.com/RyushiAok)! - feat: 非テキストボタンに aria-label を付与する
+
+### Patch Changes
+
+- [#980](https://github.com/Wizleap-Inc/wiz-ui/pull/980) [`17e44342`](https://github.com/Wizleap-Inc/wiz-ui/commit/17e443427ba22204a0682ed1426a43f4aa3292ac) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup: 影が残る問題を修正。Fixed・Sticky 上の Popup 位置計算を修正。
+
+- Updated dependencies [[`5861e211`](https://github.com/Wizleap-Inc/wiz-ui/commit/5861e211be49a145ef181136d5aedbb0ea8c903f), [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba), [`1c7e0163`](https://github.com/Wizleap-Inc/wiz-ui/commit/1c7e01631c5192c5d6d9cdf9a63cf78ae3ab5e77)]:
+  - @wizleap-inc/wiz-ui-styles@0.14.0
+  - @wizleap-inc/wiz-ui-constants@0.10.0
+
 ## 0.25.0
 
 ### Minor Changes
