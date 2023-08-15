@@ -71,14 +71,6 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  /**
-   * モーダルの開閉アニメーションの時間を指定します。
-   */
-  duration: {
-    type: Number,
-    required: false,
-    default: 200,
-  },
 });
 
 interface Emit {
@@ -112,7 +104,7 @@ watch(
           },
         ],
         {
-          duration: props.duration,
+          duration: 200,
           easing: "ease-in-out",
         }
       );
@@ -127,7 +119,7 @@ watch(
           },
         ],
         {
-          duration: props.duration,
+          duration: 200,
           easing: "ease-in-out",
         }
       );
