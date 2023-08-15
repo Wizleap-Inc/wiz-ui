@@ -41,6 +41,18 @@ type Props = {
   children: ReactNode;
 } & ComponentProps<"div">;
 
+/** 与えられた要素が、fixedまたはstickyの要素上にあるかどうかを返します。 */
+const hasFixedOrStickyParent = (el: HTMLElement | null): boolean => {
+  if (!el) {
+    return false;
+  }
+  const position = window.getComputedStyle(el).position;
+  if (position === "fixed" || position === "sticky") {
+    return true;
+  }
+  return hasFixedOrStickyParent(el.parentElement);
+};
+
 const Popup = ({
   isOpen,
   onClose,
@@ -62,6 +74,8 @@ const Popup = ({
   }>({});
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
+
+  const isPopupFixed = hasFixedOrStickyParent(anchorElement.current);
 
   useEffect(() => {
     const anchor = anchorElement.current;
@@ -87,8 +101,8 @@ const Popup = ({
             height: Math.max(document.body.clientHeight, window.innerHeight),
           },
           scroll: {
-            x: window.scrollX,
-            y: window.scrollY,
+            x: isPopupFixed ? 0 : window.scrollX,
+            y: isPopupFixed ? 0 : window.scrollY,
           },
           isDirectionFixed,
         })
@@ -96,14 +110,23 @@ const Popup = ({
     };
 
     updatePopupPosition();
+    window.addEventListener("scroll", updatePopupPosition);
     window.addEventListener("resize", updatePopupPosition);
     const anchorResizeObserver = new ResizeObserver(updatePopupPosition);
     anchorResizeObserver.observe(anchor);
     return () => {
       window.removeEventListener("resize", updatePopupPosition);
+      window.removeEventListener("scroll", updatePopupPosition);
       anchorResizeObserver.disconnect();
     };
-  }, [anchorElement, direction, gap, isActuallyOpen, isDirectionFixed]);
+  }, [
+    anchorElement,
+    direction,
+    gap,
+    isActuallyOpen,
+    isDirectionFixed,
+    isPopupFixed,
+  ]);
 
   return (
     <WizPortal container={document.body}>
@@ -116,7 +139,8 @@ const Popup = ({
           !isActuallyOpen && styles.popupHiddenStyle
         )}
         style={{
-          position: "absolute",
+          position: isPopupFixed ? "fixed" : "absolute",
+          transform: "translateZ(0)", // Safariで影が消えない問題の対策
           ...popupPosition,
         }}
       >
