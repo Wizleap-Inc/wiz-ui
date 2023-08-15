@@ -6,6 +6,7 @@
       fontSizeStyle[getRelativeFontSize(size, 3)],
     ]"
     :disabled="disabled"
+    :aria-label="ariaLabel"
     @click="onClick"
   >
     <component :is="icon" :class="iconButtonSVGStyle[variant]" />
@@ -38,6 +39,10 @@ interface Emits {
 const props = defineProps({
   icon: {
     type: Object as PropType<TIcon>,
+    required: true,
+  },
+  ariaLabel: {
+    type: String,
     required: true,
   },
   variant: {

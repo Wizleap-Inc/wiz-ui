@@ -3,7 +3,7 @@
     <input
       :class="toggleSwitchInputStyle"
       type="checkbox"
-      :aria-label="label"
+      :aria-label="ariaLabel"
       v-model="switchValue"
     />
     <span
@@ -36,7 +36,7 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  label: {
+  ariaLabel: {
     type: String,
     required: true,
   },

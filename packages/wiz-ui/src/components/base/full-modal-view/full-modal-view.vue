@@ -27,6 +27,7 @@
                 :icon="WizIClose"
                 variant="transparent"
                 @click="closeModal"
+                :ariaLabel="ARIA_LABELS.FULL_MODAL_VIEW.CLOSE"
               />
             </WizHStack>
           </WizHStack>
@@ -41,7 +42,11 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, getSpacingCss } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ARIA_LABELS,
+  ComponentName,
+  getSpacingCss,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/full-modal-view.css";
 import {
   backgroundStyle,

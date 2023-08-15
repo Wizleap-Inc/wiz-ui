@@ -16,7 +16,11 @@
       <div :class="snackbarMessageStyle">
         <WizText color="white.800" fontSize="sm">{{ message }}</WizText>
       </div>
-      <button :class="snackbarCloseButtonStyle" @click="onDelete">
+      <button
+        :class="snackbarCloseButtonStyle"
+        @click="onDelete"
+        :aria-label="ARIA_LABELS.SNACKBAR.CLOSE"
+      >
         <WizIcon color="white.800" :icon="WizIClose" />
       </button>
     </div>
@@ -24,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   snackbarStyle,
   snackbarFixedStyle,
