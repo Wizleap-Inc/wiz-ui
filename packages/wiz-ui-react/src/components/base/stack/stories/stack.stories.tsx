@@ -30,7 +30,7 @@ const meta: Meta<typeof WizStack> = {
       control: { type: "select" },
       options: ["start", "center", "end", "between", "around", "evenly"],
     },
-    wrap: {
+    nowrap: {
       control: { type: "boolean" },
     },
     reverse: {

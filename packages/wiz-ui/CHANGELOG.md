@@ -1,5 +1,74 @@
 # @wizleap-inc/wiz-ui
 
+## 2.3.0
+
+### Minor Changes
+
+- [#977](https://github.com/Wizleap-Inc/wiz-ui/pull/977) [`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Icon 追加: WizIContract, WizILocationCity, WizISettings, WizISmartphone, WizICircle
+
+### Patch Changes
+
+- Updated dependencies [[`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2)]:
+  - @wizleap-inc/wiz-ui-constants@0.9.0
+  - @wizleap-inc/wiz-ui-styles@0.13.1
+
+## 2.2.0
+
+### Minor Changes
+
+- [#947](https://github.com/Wizleap-Inc/wiz-ui/pull/947) [`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizShowMoreLess: モバイル対応
+
+- [#907](https://github.com/Wizleap-Inc/wiz-ui/pull/907) [`2c3311f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2c3311f9271b83b0cb19c0179dc840d6f22c2861) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDatePicker, WizCalendar: 選択不可な日付の条件を指定できるようにする
+
+- [#741](https://github.com/Wizleap-Inc/wiz-ui/pull/741) [`394a93d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/394a93d5a94a70d6e50055fd7a951ed4dbfd85bf) Thanks [@okakyo](https://github.com/okakyo)! - [#716] Notification の panel, color props を変更した
+
+### Patch Changes
+
+- Updated dependencies [[`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe), [`2c3311f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2c3311f9271b83b0cb19c0179dc840d6f22c2861)]:
+  - @wizleap-inc/wiz-ui-styles@0.13.0
+
+## 2.1.0
+
+### Minor Changes
+
+- [#975](https://github.com/Wizleap-Inc/wiz-ui/pull/975) [`f835ae35`](https://github.com/Wizleap-Inc/wiz-ui/commit/f835ae35d3cc91b0d29c59c4a768e98b19dc3976) Thanks [@ichi-h](https://github.com/ichi-h)! - Feat(search-input): アイコンを外側から受け付けられるようにする
+
+- [#969](https://github.com/Wizleap-Inc/wiz-ui/pull/969) [`2199fbb9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2199fbb9d5c0f0cf4e9d850ff753f36824967591) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(header): 仕様を react に合わせる
+
+## 2.0.0
+
+### Major Changes
+
+- [#917](https://github.com/Wizleap-Inc/wiz-ui/pull/917) [`6cf7b061`](https://github.com/Wizleap-Inc/wiz-ui/commit/6cf7b0617fab540e73715050b04790d36800b07d) Thanks [@okakyo](https://github.com/okakyo)! - [#893] sidebar の Global State を削除
+
+### Patch Changes
+
+- [#791](https://github.com/Wizleap-Inc/wiz-ui/pull/791) [`1e45c897`](https://github.com/Wizleap-Inc/wiz-ui/commit/1e45c8976fc51dc5ba646a6cb373d9b32550f0d8) Thanks [@okakyo](https://github.com/okakyo)! - [#730] DatePicker, DataRangePicker の a11y 対応 (キー操作)
+
+- [#850](https://github.com/Wizleap-Inc/wiz-ui/pull/850) [`4633f848`](https://github.com/Wizleap-Inc/wiz-ui/commit/4633f8489ce1cd1ed4f37a792f491cb0dec1388e) Thanks [@okakyo](https://github.com/okakyo)! - [#814] date-timepicker のテストケースの日付を固定
+
+- [#945](https://github.com/Wizleap-Inc/wiz-ui/pull/945) [`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe) Thanks [@okakyo](https://github.com/okakyo)! - [#935] MenuItem の色の状態変更
+
+- Updated dependencies [[`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.2
+
+## 1.19.0
+
+### Minor Changes
+
+- [#713](https://github.com/Wizleap-Inc/wiz-ui/pull/713) [`360819d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/360819d5982b29f19af5e1bd52ccc5df41fdc8a3) Thanks [@okakyo](https://github.com/okakyo)! - Icon に fontSize を適用した
+
+## 1.18.0
+
+### Minor Changes
+
+- [#931](https://github.com/Wizleap-Inc/wiz-ui/pull/931) [`201489b8`](https://github.com/Wizleap-Inc/wiz-ui/commit/201489b8e50b0879924299d94631507cc8aa97ac) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Tab を中央寄せにするオプションを追加
+
+### Patch Changes
+
+- Updated dependencies [[`e5919485`](https://github.com/Wizleap-Inc/wiz-ui/commit/e591948573d0f5ed39b74522f161de090af58b3e)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.1
+
 ## 1.17.0
 
 ### Minor Changes

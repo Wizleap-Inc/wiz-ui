@@ -5,6 +5,7 @@ const baseTextButtonStyle = style({
   cursor: "pointer",
   borderRadius: THEME.spacing.xs2,
   width: "fit-content",
+  whiteSpace: "nowrap",
   selectors: {
     "&:hover:not(:disabled)": {
       "@media": {

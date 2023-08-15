@@ -11,6 +11,10 @@
       }"
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       @click="setIsOpen(!isOpen)"
+      @keydown.up="clickToNextYear"
+      @keydown.down="clickToPreviousYear"
+      @keydown.left="clickToPreviousMonth"
+      @keydown.right="clickToNextMonth"
     >
       <WizHStack gap="xs" align="center" height="100%">
         <span
@@ -109,6 +113,7 @@
           @click="(date) => (calendarValue = date)"
           :currentMonth="currentMonth"
           filledWeeks
+          :disabledDate="disabledDate"
         />
       </div>
     </WizPopup>
@@ -199,6 +204,16 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  /**
+   * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
+   * @param date
+   * @returns {boolean} `true`: 無効な日付, `false`: 有効な日付
+   */
+  disabledDate: {
+    type: Function as PropType<(date: Date) => boolean>,
+    required: false,
+    default: () => false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -210,7 +225,8 @@ const setIsOpen = (value: boolean) => emit("update:isOpen", value);
 const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () => emit("update:modelValue", null);
 
-const clickToNextMonth = () => {
+const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear(),
     currentMonth.value.getMonth() + 1,
@@ -219,7 +235,8 @@ const clickToNextMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToPreviousMonth = () => {
+const clickToPreviousMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear(),
     currentMonth.value.getMonth() - 1,
@@ -228,7 +245,8 @@ const clickToPreviousMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToNextYear = () => {
+const clickToNextYear = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear() + 1,
     currentMonth.value.getMonth(),
@@ -237,7 +255,8 @@ const clickToNextYear = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToPreviousYear = () => {
+const clickToPreviousYear = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear() - 1,
     currentMonth.value.getMonth(),

@@ -30,7 +30,7 @@ const navItems = [
   {
     icon: WizIDashboard,
     label: "Home",
-    href: "/",
+    href: "/page0",
   },
   {
     icon: WizIAssignment,
@@ -58,7 +58,7 @@ const Template: Story = {
             key={`path-${path.label}`}
             icon={path.icon}
             label={path.label}
-            href={path.href}
+            href="/"
             active={false}
             onTogglePopup={dummyHandler}
             onTogglePopupLocking={dummyHandler}
@@ -112,7 +112,7 @@ export const Playground: Story = {
               key={`path-${path.label}`}
               icon={path.icon}
               label={path.label}
-              href={path.href}
+              href="/"
               active={false}
               onTogglePopup={dummyHandler}
               onTogglePopupLocking={dummyHandler}
@@ -181,7 +181,7 @@ const PopupTemplate: Story = {
           <WizNavigationItem
             icon={WizIAssignment}
             label="Page1"
-            href="/page1"
+            href="/"
             active={false}
             buttons={[createButton(1), createButton(2)]}
             isPopupOpen={isPopupOpen1}
@@ -192,7 +192,7 @@ const PopupTemplate: Story = {
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Page2"
-            href="/page2"
+            href="/"
             active={false}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
@@ -203,7 +203,7 @@ const PopupTemplate: Story = {
           <WizNavigationItem
             icon={WizIHelp}
             label="Page3"
-            href="http://localhost:6008/"
+            href="/"
             active={false}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
@@ -245,7 +245,7 @@ export const Disabled: Story = {
             key={`path-${path.label}`}
             icon={path.icon}
             label={path.label}
-            href={path.href}
+            href="/"
             active={false}
             onTogglePopup={dummyHandler}
             onTogglePopupLocking={dummyHandler}
@@ -289,7 +289,7 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIAssignment}
             label="Page1"
-            href="/page1"
+            href="/"
             active={false}
             buttons={[createButton(1), createButton(2)]}
             isPopupOpen={isPopupOpen1}
@@ -301,7 +301,7 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Page2"
-            href="/page2"
+            href="/"
             active={false}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
@@ -313,7 +313,7 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIHelp}
             label="Page3"
-            href="http://localhost:6008/"
+            href="/"
             active={false}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}

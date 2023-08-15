@@ -46,11 +46,10 @@ export const Default: Story = {
   },
 };
 
-export const Color: Story = {
+export const Mobile: Story = {
   args: {
+    variant: "mobile",
     children,
-    bgColor: "gray.300",
-    fontColor: "green.800",
   },
   render: (args) => {
     const [isOpen, setIsOpen] = useState(false);

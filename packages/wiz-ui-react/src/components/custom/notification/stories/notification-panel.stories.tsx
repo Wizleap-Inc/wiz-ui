@@ -32,7 +32,7 @@ const baseProps = {
 const Template: Story = {
   render: (args) => (
     <div style={{ width: 616 }}>
-      <WizHStack gap="md" wrap={false}>
+      <WizHStack gap="md" nowrap>
         <WizVStack gap="md">
           <WizText>variant = primary(default)</WizText>
           <WizNotificationPanel {...args} />
