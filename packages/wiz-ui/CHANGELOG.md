@@ -1,5 +1,25 @@
 # @wizleap-inc/wiz-ui
 
+## 2.4.0
+
+### Minor Changes
+
+- [#996](https://github.com/Wizleap-Inc/wiz-ui/pull/996) [`28ad0967`](https://github.com/Wizleap-Inc/wiz-ui/commit/28ad0967832da564ea9e4202343eac487c5a1d10) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSelectBox: exLabel の表示切替機能を追加
+
+- [#510](https://github.com/Wizleap-Inc/wiz-ui/pull/510) [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba) Thanks [@RyushiAok](https://github.com/RyushiAok)! - feat: 非テキストボタンに aria-label を付与する
+
+- [#910](https://github.com/Wizleap-Inc/wiz-ui/pull/910) [`1c7e0163`](https://github.com/Wizleap-Inc/wiz-ui/commit/1c7e01631c5192c5d6d9cdf9a63cf78ae3ab5e77) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizFullModalView を追加
+
+### Patch Changes
+
+- [#744](https://github.com/Wizleap-Inc/wiz-ui/pull/744) [`5861e211`](https://github.com/Wizleap-Inc/wiz-ui/commit/5861e211be49a145ef181136d5aedbb0ea8c903f) Thanks [@okakyo](https://github.com/okakyo)! - [#734] Safari での Accordion の Animation の修正
+
+- [#981](https://github.com/Wizleap-Inc/wiz-ui/pull/981) [`f83bcd50`](https://github.com/Wizleap-Inc/wiz-ui/commit/f83bcd50d44d61dfb53d0eacd26082ac3271a6e4) Thanks [@okakyo](https://github.com/okakyo)! - [#976] 左右にスクロールするバグの修正
+
+- Updated dependencies [[`5861e211`](https://github.com/Wizleap-Inc/wiz-ui/commit/5861e211be49a145ef181136d5aedbb0ea8c903f), [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba), [`1c7e0163`](https://github.com/Wizleap-Inc/wiz-ui/commit/1c7e01631c5192c5d6d9cdf9a63cf78ae3ab5e77)]:
+  - @wizleap-inc/wiz-ui-styles@0.14.0
+  - @wizleap-inc/wiz-ui-constants@0.10.0
+
 ## 2.3.0
 
 ### Minor Changes
