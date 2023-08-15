@@ -12,6 +12,7 @@
           <template v-if="!hideClose" #subHeaderArea>
             <WizIconButton
               :icon="WizIClose"
+              :ariaLabel="ARIA_LABELS.DIALOG.CLOSE"
               @click="close"
               variant="transparent"
             />
@@ -27,7 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import { THEME, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  THEME,
+  ComponentName,
+  ARIA_LABELS,
+} from "@wizleap-inc/wiz-ui-constants";
 import {
   dialogStyle,
   dialogVisibleStyle,

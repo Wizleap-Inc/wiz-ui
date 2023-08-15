@@ -9,6 +9,7 @@
           :icon="WizIMenu"
           size="lg"
           variant="transparent"
+          :ariaLabel="ARIA_LABELS.MENU"
           @click="toggleMenuOpen"
         />
         <slot name="left" />
@@ -25,6 +26,7 @@ import {
   ComponentName,
   SpacingKeys,
   THEME,
+  ARIA_LABELS,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   headerStyle,

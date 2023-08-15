@@ -250,13 +250,15 @@ const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () =>
   emit("update:modelValue", { start: null, end: null });
 
-const moveToNextMonth = () => {
+const moveToNextMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = new Date(
     rightCalendarDate.value.setMonth(rightCalendarDate.value.getMonth() + 1)
   );
 };
 
-const moveToPrevMonth = () => {
+const moveToPrevMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = leftCalendarDate.value;
 };
 

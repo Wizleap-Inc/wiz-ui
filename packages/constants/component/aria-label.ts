@@ -9,8 +9,31 @@ export const ARIA_LABELS = {
   DATE_PICKER_CANCEL: "日付の選択を解除",
   RANGE_DATE_PICKER_INPUT: "日付の範囲を選択",
   RANGE_DATE_PICKER_SELECT_BOX_INPUT: "日付の種類を選択",
+  DIALOG: {
+    CLOSE: "ダイアログを閉じる",
+  },
+  MENU: "メニュー",
+  SEARCH_SELECTOR: {
+    UNSELECT: "選択を解除する",
+    EXPAND: "開閉する",
+  },
+  SNACKBAR: {
+    CLOSE: "通知を閉じる",
+  },
+  CHAT_CARD: {
+    EXPAND: "チャット画面を開閉する",
+  },
+  CHAT_FORM: {
+    SEND: "送信する",
+  },
   RANGE_DATE_PICKER_CANCEL: "日付の範囲の選択を解除",
   PAGINATION: "ページネーション",
   PAGINATION_PREV: "前のページへ",
   PAGINATION_NEXT: "次のページへ",
+  INFORMATION_PANEL: {
+    CLOSE: "パネルを閉じる",
+  },
+  FULL_MODAL_VIEW: {
+    CLOSE: "モーダルを閉じる",
+  },
 } as const;
