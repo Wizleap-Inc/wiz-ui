@@ -13,7 +13,6 @@ export const ARIA_LABELS = {
     CLOSE: "ダイアログを閉じる",
   },
   MENU: "メニュー",
-
   SEARCH_SELECTOR: {
     UNSELECT: "選択を解除する",
     EXPAND: "開閉する",
@@ -31,4 +30,10 @@ export const ARIA_LABELS = {
   PAGINATION: "ページネーション",
   PAGINATION_PREV: "前のページへ",
   PAGINATION_NEXT: "次のページへ",
+  INFORMATION_PANEL: {
+    CLOSE: "パネルを閉じる",
+  },
+  FULL_MODAL_VIEW: {
+    CLOSE: "モーダルを閉じる",
+  },
 } as const;
