@@ -31,3 +31,5 @@ export * from "./graphs";
 export * from "./snackbar";
 export * from "./popup-button-group";
 export * from "./show-more-less";
+export * from "./information-panel";
+export * from "./full-modal-view";

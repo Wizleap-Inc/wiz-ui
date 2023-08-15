@@ -10,14 +10,17 @@ import { WizIAutoRenew } from "./auto-renew";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
 import { WizICamera } from "./camera";
+import { WizICancel } from "./cancel";
 import { WizIChangeHistory } from "./change-history";
 import { WizIChat } from "./chat";
 import { WizICheck } from "./check";
 import { WizIChevronLeft } from "./chevron-left";
 import { WizIChevronRight } from "./chevron-right";
+import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClose } from "./close";
 import { WizIContentCopy } from "./content-copy";
+import { WizIContract } from "./contract";
 import { WizIDashboard } from "./dashboard";
 import { WizIDescription } from "./description";
 import { WizIDownload } from "./download";
@@ -30,6 +33,7 @@ import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIInfo } from "./info";
+import { WizILocationCity } from "./location-city";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMonitoring } from "./monitoring";
@@ -43,6 +47,9 @@ import { WizIRemove } from "./remove";
 import { WizISchedule } from "./schedule";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
+import { WizISettings } from "./settings";
+import { WizISmartphone } from "./smartphone";
+import { WizIStars } from "./stars";
 import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
@@ -62,14 +69,17 @@ export type TIcon =
   | typeof WizIBusinessCenter
   | typeof WizICalendar
   | typeof WizICamera
+  | typeof WizICancel
   | typeof WizIChangeHistory
   | typeof WizIChat
   | typeof WizICheck
   | typeof WizIChevronLeft
   | typeof WizIChevronRight
   | typeof WizICircleCheck
+  | typeof WizICircle
   | typeof WizIClose
   | typeof WizIContentCopy
+  | typeof WizIContract
   | typeof WizIDashboard
   | typeof WizIDescription
   | typeof WizIDownload
@@ -82,6 +92,7 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIInfo
+  | typeof WizILocationCity
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -95,6 +106,9 @@ export type TIcon =
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
+  | typeof WizISettings
+  | typeof WizISmartphone
+  | typeof WizIStars
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -114,14 +128,17 @@ export {
   WizIBusinessCenter,
   WizICalendar,
   WizICamera,
+  WizICancel,
   WizIChangeHistory,
   WizIChat,
   WizICheck,
   WizIChevronLeft,
   WizIChevronRight,
   WizICircleCheck,
+  WizICircle,
   WizIClose,
   WizIContentCopy,
+  WizIContract,
   WizIDashboard,
   WizIDescription,
   WizIDownload,
@@ -134,6 +151,7 @@ export {
   WizIHistory,
   WizIHome,
   WizIInfo,
+  WizILocationCity,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
@@ -147,6 +165,9 @@ export {
   WizISchedule,
   WizISearch,
   WizISend,
+  WizISettings,
+  WizISmartphone,
+  WizIStars,
   WizIStoreFront,
   WizITab,
   WizITask,

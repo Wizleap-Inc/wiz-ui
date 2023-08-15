@@ -1,6 +1,6 @@
 <template>
   <div>
-    <WizHStack :gap="gap">
+    <WizHStack :gap="gap" :justify="center ? 'center' : undefined">
       <TabPane
         v-for="tab in items"
         :key="tab.name"
@@ -45,6 +45,11 @@ defineProps({
   width: {
     type: String,
     required: false,
+  },
+  center: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

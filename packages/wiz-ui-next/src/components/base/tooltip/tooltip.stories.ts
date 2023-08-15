@@ -13,6 +13,16 @@ export default {
       options: ["top", "bottom", "left", "right"],
     },
     hover: { control: { type: "boolean" } },
+
+    isDirectionFixed: {
+      control: { type: "boolean" },
+    },
+  },
+  parameters: {
+    screenshot: {
+      // Popup のフェードインアニメーション分をディレイする
+      delay: 200,
+    },
   },
 } as Meta<typeof WizTooltip>;
 
@@ -83,6 +93,28 @@ Direction.parameters = {
   docs: {
     description: {
       story: `directionには、top, bottom, left, rightのいずれかを渡すことができます。デフォルトはtopです。`,
+    },
+    source: {
+      code: `
+<WizTooltip direction="right">
+  保険見直し、つみ...
+  <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+</WizTooltip>
+`,
+    },
+  },
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  hover: true,
+  direction: "right",
+  isDirectionFixed: true,
+};
+IsDirectionFixed.parameters = {
+  docs: {
+    description: {
+      story: `isDirectionFixed を指定すると、Popup の表示位置を固定します。`,
     },
     source: {
       code: `

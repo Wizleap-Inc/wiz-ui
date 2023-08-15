@@ -12,7 +12,7 @@ const spacingControls = spacingKeys.reduce((acc, key) => {
     options: SPACING_ACCESSORS,
   };
   return acc;
-}, {} as Record<string, any>);
+}, {} as Record<string, unknown>);
 
 const meta: Meta<typeof WizVStack> = {
   title: "Base/Stack/VStack",
@@ -26,7 +26,7 @@ const meta: Meta<typeof WizVStack> = {
       control: { type: "select" },
       options: ["start", "center", "end", "between", "around", "evenly"],
     },
-    wrap: {
+    nowrap: {
       control: { type: "boolean" },
     },
     reverse: {
