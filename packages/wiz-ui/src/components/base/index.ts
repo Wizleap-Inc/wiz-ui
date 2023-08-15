@@ -33,3 +33,4 @@ export * from "./popup-button-group";
 export * from "./show-more-less";
 export * from "./information-panel";
 export * from "./drawer";
+export * from "./full-modal-view";
