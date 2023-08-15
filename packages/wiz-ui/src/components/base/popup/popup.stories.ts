@@ -1,11 +1,12 @@
 import { StoryFn } from "@storybook/vue";
 import {
   SPACING_ACCESSORS,
+  THEME,
   Z_INDEX_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 import { onMounted, ref } from "vue";
 
-import { WizTextButton, WizHStack } from "@/components";
+import { WizTextButton, WizHStack, WizHeader } from "@/components";
 
 import { WizPopup, WizPopupContainer } from ".";
 
@@ -192,8 +193,164 @@ export const Shadow: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
   `,
 });
 
+export const Fixed: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizPopup, WizTextButton, WizPopupContainer },
+  setup() {
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    return { isOpen, toggle };
+  },
+  template: `
+    <div style="width:200vw; height: 200vh; background-color: #eee;">
+      <div>
+        Scroll area
+        <wiz-popup-container>
+          <button @click="toggle">
+            <span>Popup Button</span> 
+          </button>
+          <wiz-popup :isOpen="isOpen"  v-bind="$props">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <p>This is a scroll popup content</p>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container> 
+      </div>
+      <div style="
+        border: 1px solid black;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+      ">
+        Fixed area
+        <wiz-popup-container>
+          <button @click="toggle">
+            <span>Popup Button</span> 
+          </button>
+          <wiz-popup :isOpen="isOpen"  v-bind="$props">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <p>This is a fixed popup content</p>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container> 
+      </div>
+    </div> 
+  `,
+});
+
+Fixed.args = {
+  closeOnBlur: false,
+  shadow: true,
+};
+
+export const Header: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizPopup, WizHeader, WizTextButton, WizPopupContainer },
+  setup() {
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
+    return { isOpen, toggle, close };
+  },
+  template: `
+  <div style="height: 200vh"> 
+    <div style="position: fixed; top: 0; left: 0; right: 0; height: ${THEME.share.HEADER_HEIGHT}; background-color: transparent; box-shadow: 0 0 4px rgba(0,0,0,0.2); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+      <wiz-popup-container  style="display: flex; align-items: center; position: fixed; right: 0;">
+        <wiz-text-button @click="toggle">Toggle</wiz-text-button>
+        <wiz-popup v-bind="$props" :isOpen="isOpen" @onClose="close" @onTurn="onTurn">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div> 
+    <div style="margin-top: ${THEME.share.HEADER_HEIGHT};">
+      <h1>Scroll down</h1>
+    </div>
+  </div>
+  `,
+});
+
+Header.args = {
+  closeOnBlur: false,
+  shadow: true,
+};
+
 export const Playground = Template.bind({});
 
+const absolutePositions = [
+  {
+    top: "0px",
+    left: "0px",
+    bottom: "initial",
+    right: "initial",
+    transform: "initial",
+  },
+  {
+    top: "0px",
+    left: "initial",
+    bottom: "initial",
+    right: "0px",
+    transform: "initial",
+  },
+  {
+    top: "initial",
+    left: "0px",
+    bottom: "0px",
+    right: "initial",
+    transform: "initial",
+  },
+  {
+    top: "initial",
+    left: "initial",
+    bottom: "0px",
+    right: "0px",
+    transform: "initial",
+  },
+  {
+    top: "50%",
+    left: "50%",
+    bottom: "initial",
+    right: "initial",
+    transform: "translate(-50%, -50%)",
+  },
+  {
+    top: "50%",
+    left: "0px",
+    bottom: "initial",
+    right: "initial",
+    transform: "translate(0%, -50%)",
+  },
+  {
+    top: "50%",
+    left: "initial",
+    bottom: "initial",
+    right: "0px",
+    transform: "translate(0%, -50%)",
+  },
+  {
+    top: "0px",
+    left: "50%",
+    bottom: "initial",
+    right: "initial",
+    transform: "translate(-50%, 0%)",
+  },
+  {
+    top: "initial",
+    left: "50%",
+    bottom: "0px",
+    right: "initial",
+    transform: "translate(-50%, 0%)",
+  },
+];
 export const Playground2: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizPopup, WizPopupContainer, WizTextButton, WizHStack },
@@ -201,71 +358,6 @@ export const Playground2: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
     const isOpen = ref(true);
     const toggle = () => (isOpen.value = !isOpen.value);
     const close = () => (isOpen.value = false);
-    const absolutePositions = [
-      {
-        top: "0px",
-        left: "0px",
-        bottom: "initial",
-        right: "initial",
-        transform: "initial",
-      },
-      {
-        top: "0px",
-        left: "initial",
-        bottom: "initial",
-        right: "0px",
-        transform: "initial",
-      },
-      {
-        top: "initial",
-        left: "0px",
-        bottom: "0px",
-        right: "initial",
-        transform: "initial",
-      },
-      {
-        top: "initial",
-        left: "initial",
-        bottom: "0px",
-        right: "0px",
-        transform: "initial",
-      },
-      {
-        top: "50%",
-        left: "50%",
-        bottom: "initial",
-        right: "initial",
-        transform: "translate(-50%, -50%)",
-      },
-      {
-        top: "50%",
-        left: "0px",
-        bottom: "initial",
-        right: "initial",
-        transform: "translate(0%, -50%)",
-      },
-      {
-        top: "50%",
-        left: "initial",
-        bottom: "initial",
-        right: "0px",
-        transform: "translate(0%, -50%)",
-      },
-      {
-        top: "0px",
-        left: "50%",
-        bottom: "initial",
-        right: "initial",
-        transform: "translate(-50%, 0%)",
-      },
-      {
-        top: "initial",
-        left: "50%",
-        bottom: "0px",
-        right: "initial",
-        transform: "translate(-50%, 0%)",
-      },
-    ];
     return { isOpen, toggle, close, absolutePositions };
   },
   template: `
@@ -283,3 +375,32 @@ export const Playground2: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
     </div>
   `,
 });
+
+export const FixDirection: StoryFn<typeof WizPopup> = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizPopup, WizPopupContainer, WizTextButton, WizHStack },
+  setup() {
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
+    return { isOpen, toggle, close, absolutePositions };
+  },
+  template: `
+    <div style="height: 100vh; width: 100vw; position: relative; overflow">
+      <div v-for="(pos, key) in absolutePositions" :key="key" :style="{ position: 'absolute', ...pos }">
+        <wiz-popup-container>
+          <wiz-text-button @click="toggle">Toggle</wiz-text-button>
+          <wiz-popup v-bind="$props" :isOpen="isOpen" @onClose="close">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <span>Popup content</span>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container>
+      </div>
+    </div>
+  `,
+});
+
+FixDirection.args = {
+  isDirectionFixed: true,
+};

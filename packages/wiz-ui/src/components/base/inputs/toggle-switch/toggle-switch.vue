@@ -9,6 +9,7 @@
     <span
       :class="[
         toggleSwitchSliderStyle,
+        toggleSwitchColorStyle[switchState],
         switchValue && toggleSwitchSliderCheckedStyle,
       ]"
     ></span>
@@ -21,6 +22,7 @@ import {
   toggleSwitchStyle,
   toggleSwitchInputStyle,
   toggleSwitchSliderStyle,
+  toggleSwitchColorStyle,
   toggleSwitchSliderCheckedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import { computed } from "vue";
@@ -49,5 +51,9 @@ const emit = defineEmits<Emit>();
 const switchValue = computed({
   get: () => props.value,
   set: (value) => emit("input", value),
+});
+
+const switchState = computed(() => {
+  return switchValue.value ? "checked" : "default";
 });
 </script>

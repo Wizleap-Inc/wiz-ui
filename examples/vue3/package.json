@@ -4,13 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.2.45",
-    "@wizleap-inc/wiz-ui-next": "*"
+    "@wizleap-inc/wiz-ui-next": "workspace:",
+    "@wizleap-inc/wiz-ui-utils": "workspace:",
+    "@wizleap-inc/wiz-ui-constants": "workspace:"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",

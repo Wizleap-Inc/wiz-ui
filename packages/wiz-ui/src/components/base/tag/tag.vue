@@ -8,7 +8,12 @@
     ]"
     :style="{ width: width || 'max-content' }"
   >
-    <WizIcon v-if="icon" :icon="icon" :color="tagIconColorStyle[variant]" />
+    <WizIcon
+      v-if="icon"
+      :icon="icon"
+      :color="tagIconColorStyle[variant]"
+      :size="fontSize"
+    />
     {{ label }}
   </span>
 </template>
@@ -47,7 +52,9 @@ defineProps({
     required: false,
   },
   variant: {
-    type: String as PropType<"info" | "error" | "success" | "mono">,
+    type: String as PropType<
+      "info" | "red" | "green" | "yellow" | "blue" | "mono"
+    >,
     required: false,
     default: "info",
   },

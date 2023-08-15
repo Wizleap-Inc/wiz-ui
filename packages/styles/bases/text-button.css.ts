@@ -5,6 +5,7 @@ const baseTextButtonStyle = style({
   cursor: "pointer",
   borderRadius: THEME.spacing.xs2,
   width: "fit-content",
+  whiteSpace: "nowrap",
   selectors: {
     "&:hover:not(:disabled)": {
       "@media": {
@@ -71,18 +72,21 @@ export const textButtonSizeStyle = styleVariants({
     textButtonSizeNotXsStyle,
     {
       fontSize: THEME.fontSize.xs,
+      lineHeight: THEME.fontSize.xl,
     },
   ],
   md: [
     textButtonSizeNotXsStyle,
     {
       fontSize: THEME.fontSize.sm,
+      lineHeight: THEME.fontSize.xl2,
     },
   ],
   lg: [
     textButtonSizeNotXsStyle,
     {
       fontSize: THEME.fontSize.md,
+      lineHeight: THEME.fontSize.xl3,
     },
   ],
 });

@@ -1,6 +1,14 @@
 {
-  "private": true,
   "name": "@wizleap-inc/wiz-ui-utils",
-  "version": "0.0.0",
-  "main": "index.ts"
+  "version": "0.3.0",
+  "main": "./dist/wiz-ui-utils.umd.js",
+  "module": "./dist/wiz-ui-utils.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "build:tools": "pnpm run build"
+  }
 }

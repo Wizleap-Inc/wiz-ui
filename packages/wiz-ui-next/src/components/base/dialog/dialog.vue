@@ -9,7 +9,7 @@
           <template #mainHeaderArea>
             <slot v-if="!title" name="title" />
           </template>
-          <template #subHeaderArea>
+          <template v-if="!hideClose" #subHeaderArea>
             <WizIconButton
               :icon="WizIClose"
               :ariaLabel="ARIA_LABELS.DIALOG.CLOSE"
@@ -67,6 +67,11 @@ const props = defineProps({
   align: {
     type: String as PropType<"start" | "center" | "end">,
     required: false,
+  },
+  hideClose: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
