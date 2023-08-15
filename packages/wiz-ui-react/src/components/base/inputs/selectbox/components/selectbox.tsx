@@ -122,6 +122,7 @@ const SelectBox: FC<Props> = ({
             {selectedOption ? (
               <span className={styles.selectBoxInnerBoxSelectedValueStyle}>
                 {selectedOption.label}
+                {selectedOption.exLabel && " " + selectedOption.exLabel}
               </span>
             ) : (
               <span className={styles.selectBoxPlaceholderStyle}>
