@@ -1,4 +1,5 @@
 import { StoryFn, StoryObj } from "@storybook/react";
+import { useMemo } from "react";
 
 import {
   WizMenuItem,
@@ -65,19 +66,20 @@ const Template: StoryFn<typeof WizTimeline> = (args) => (
 );
 
 export const Large: Story = {
-  render: () => <Template bp="lg" />,
+  render: () => <Template device="pc" />,
 };
 
 export const Small: Story = {
-  render: () => <Template bp="sm" />,
+  render: () => <Template device="mobile" />,
 };
 
 const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
   const bp = useBreakpoint();
+  const device = useMemo(() => (bp === "sm" ? "mobile" : "pc"), [bp]);
   const sectionFontSize = bp === "sm" ? "sm" : "lg";
 
   return (
-    <WizTimeline bp={bp}>
+    <WizTimeline device={device}>
       <WizTimelineItem
         variant="success"
         tag="面談終了"
@@ -127,8 +129,7 @@ const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
                       </WizText>
                       <WizAnchor
                         href="https://wizleap.co.jp"
-                        target="_blank"
-                        rel="noopener"
+                        openInNewTab={true}
                         icon={WizIArrowRight}
                       >
                         マネーキャリアに連絡する（相談者不在申請）
@@ -152,7 +153,7 @@ const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
             <WizUnstyledTr>
               <WizUnstyledTd />
               <WizUnstyledTd>
-                <WizHStack align="center" wrap>
+                <WizHStack align="center">
                   <WizText fontSize="sm" as="span">
                     ※ビデオ面談URL：
                   </WizText>

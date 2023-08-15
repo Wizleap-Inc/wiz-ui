@@ -10,7 +10,6 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/customs/timeline.css";
 import { PropType, provide, toRef } from "vue";
 
 import { WizVStack } from "@/components/base";
-import { BreakpointVariant } from "@/hooks";
 
 import { TIMELINE_KEY } from "./use-timeline";
 
@@ -19,13 +18,13 @@ defineOptions({
 });
 
 const props = defineProps({
-  bp: {
-    type: String as PropType<BreakpointVariant>,
+  device: {
+    type: String as PropType<"mobile" | "pc">,
     required: true,
   },
 });
 
-const bp = toRef(props, "bp");
+const device = toRef(props, "device");
 
-provide(TIMELINE_KEY, { bp });
+provide(TIMELINE_KEY, { device });
 </script>

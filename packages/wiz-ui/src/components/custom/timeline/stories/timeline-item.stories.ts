@@ -1,5 +1,5 @@
 import { StoryFn } from "@storybook/vue";
-import { provide, ref } from "vue";
+import { computed, provide, ref } from "vue";
 
 import {
   WizUnstyledTable,
@@ -44,7 +44,8 @@ export default {
     () => ({
       setup() {
         const bp = useBreakpoint();
-        provide(TIMELINE_KEY, { bp });
+        const device = computed(() => (bp.value === "sm" ? "mobile" : "pc"));
+        provide(TIMELINE_KEY, { device });
       },
       template: `<story />`,
     }),
@@ -236,13 +237,13 @@ export const BreakpointSm = Template.bind({});
 BreakpointSm.args = {
   variant: "success",
   title:
-    "Timeline（親）コンポーネントのbpがsmの場合は、TimelineItem(子)コンポーネントも小さくなります",
+    "Timeline（親）コンポーネントのdeviceがmobileの場合は、TimelineItem(子)コンポーネントも小さくなります",
 };
 BreakpointSm.decorators = [
   () => ({
     setup() {
-      const bp = ref("sm");
-      provide(TIMELINE_KEY, { bp });
+      const device = ref("mobile");
+      provide(TIMELINE_KEY, { device });
     },
     template: `<story />`,
   }),

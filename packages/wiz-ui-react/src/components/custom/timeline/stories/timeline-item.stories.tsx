@@ -22,7 +22,7 @@ const meta: Meta<typeof WizTimelineItem> = {
   component: WizTimelineItem,
   decorators: [
     (Story) => (
-      <TimelineContext.Provider value={{ bp: "lg" }}>
+      <TimelineContext.Provider value={{ device: "pc" }}>
         <Story />
       </TimelineContext.Provider>
     ),
@@ -84,7 +84,7 @@ const Template = ({ disabled }: { disabled?: boolean }) => (
         <WizUnstyledTr>
           <WizUnstyledTd />
           <WizUnstyledTd>
-            <WizHStack align="center" wrap>
+            <WizHStack align="center">
               <WizText fontSize="sm" as="span">
                 ※ビデオ面談URL：
               </WizText>
@@ -172,14 +172,14 @@ export const BreakpointSm: Story = {
   render: () => (
     <WizTimelineItem
       variant="success"
-      title="Timeline（親）コンポーネントのbpがsmの場合は、TimelineItem(子)コンポーネントも小さくなります"
+      title="Timeline（親）コンポーネントのdeviceがmobileの場合は、TimelineItem(子)コンポーネントも小さくなります"
     />
   ),
   decorators: [
     (Story) => (
       <TimelineContext.Provider
         value={{
-          bp: "sm",
+          device: "mobile",
         }}
       >
         <Story />

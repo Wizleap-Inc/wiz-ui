@@ -20,7 +20,7 @@ const timelineItemVars = createThemeContract({
 });
 
 export const timelineItemVariant = styleVariants({
-  sm: {
+  mobile: {
     vars: assignVars(timelineItemVars, {
       iconCardGap: THEME.spacing.xs,
       iconSize: THEME.spacing.xl,
@@ -29,7 +29,7 @@ export const timelineItemVariant = styleVariants({
       dateFontSize: THEME.fontSize.xs2,
     }),
   },
-  lg: {
+  pc: {
     vars: assignVars(timelineItemVars, {
       iconCardGap: THEME.spacing.md,
       iconSize: THEME.spacing.xl3,

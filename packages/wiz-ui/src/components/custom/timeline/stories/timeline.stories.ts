@@ -26,9 +26,9 @@ export default {
   title: "Custom/Timeline",
   component: WizTimeline,
   argTypes: {
-    bp: {
+    device: {
       control: { type: "select" },
-      options: ["sm", "md", "lg"],
+      options: ["mobile", "pc"],
     },
   },
 };
@@ -58,12 +58,12 @@ const Template: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
 
 export const Large = Template.bind({});
 Large.args = {
-  bp: "lg",
+  device: "pc",
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  bp: "sm",
+  device: "mobile",
 };
 
 export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
@@ -86,11 +86,12 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
   },
   setup() {
     const bp = useBreakpoint();
+    const device = computed(() => (bp.value === "sm" ? "mobile" : "pc"));
     const sectionFontSize = computed(() => (bp.value === "sm" ? "sm" : "lg"));
-    return { bp, sectionFontSize, WizIInfo, WizIHelp, WizIArrowRight };
+    return { device, sectionFontSize, WizIInfo, WizIHelp, WizIArrowRight };
   },
   template: `
-    <WizTimeline :bp="bp">
+    <WizTimeline :device="device">
       <WizTimelineItem
       variant="success"
       tag="面談終了"
@@ -121,14 +122,14 @@ export const Playground: StoryFn<typeof WizTimeline> = (_, { argTypes }) => ({
                     variant="caution"
                     :icon="WizIInfo"
                     expand
-                    v-if="bp !== 'sm'"
+                    v-if="device !== 'mobile'"
                   >
                     <WizText fontSize="sm">
                       相談者が数分でも遅れた場合、早急にマネーキャリアまでご連絡ください。<br />
                       すぐにマネーキャリアから相談者に連絡を取ります。<br />
                       申請後、相談開始時間から30分は、そのまま待機をお願いいたします。
                     </WizText>
-                    <WizAnchor href="https://wizleap.co.jp" target="_blank" rel="noopener" :icon="WizIArrowRight">
+                    <WizAnchor href="https://wizleap.co.jp" :openInNewTab="true" :icon="WizIArrowRight">
                       マネーキャリアに連絡する（相談者不在申請）
                     </WizAnchor>
                   </WizMessageBox>

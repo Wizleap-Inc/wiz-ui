@@ -1,9 +1,7 @@
 import { InjectionKey, Ref } from "vue";
 
-import { BreakpointVariant } from "@/hooks";
-
 interface TimelineProvider {
-  bp: Ref<BreakpointVariant>;
+  device: Ref<"mobile" | "pc">;
 }
 
 export const TIMELINE_KEY: InjectionKey<TimelineProvider> = Symbol("timeline");

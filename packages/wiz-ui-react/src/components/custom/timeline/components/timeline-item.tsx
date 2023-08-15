@@ -36,16 +36,21 @@ const TimelineItem: FC<TimelineItemProps> = ({
     );
   }
 
-  const { bp } = ctx;
-  const size = useMemo(() => (bp === "sm" ? "sm" : "lg"), [bp]);
-  const iconSize = useMemo(() => (bp === "sm" ? "md" : "xl2"), [bp]);
-  const isTitleEscape = useMemo(() => bp === "sm" && tag, [bp, tag]);
+  const { device } = ctx;
+  const iconSize = useMemo(
+    () => (device === "mobile" ? "md" : "xl2"),
+    [device]
+  );
+  const isTitleEscape = useMemo(
+    () => device === "mobile" && tag,
+    [device, tag]
+  );
 
   return (
     <div
       className={clsx(
         styles.container,
-        styles.timelineItemVariant[size],
+        styles.timelineItemVariant[device],
         styles.TIMELINE_ITEM_IDENTIFIER_CLASS
       )}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -2,7 +2,7 @@
   <div
     :class="[
       styles.container,
-      styles.timelineItemVariant[size],
+      styles.timelineItemVariant[device],
       styles.TIMELINE_ITEM_IDENTIFIER_CLASS,
     ]"
   >
@@ -100,7 +100,12 @@ if (injected === undefined) {
   );
 }
 
-const size = computed(() => (injected.bp.value === "sm" ? "sm" : "lg"));
-const iconSize = computed(() => (injected.bp.value === "sm" ? "md" : "xl2"));
-const isTitleEscape = computed(() => injected.bp.value === "sm" && props.tag);
+const { device } = injected;
+
+const iconSize = computed(() =>
+  injected.device.value === "mobile" ? "md" : "xl2"
+);
+const isTitleEscape = computed(
+  () => injected.device.value === "mobile" && props.tag
+);
 </script>

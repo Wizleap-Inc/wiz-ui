@@ -23,7 +23,7 @@ type Props = {
   active?: boolean;
   clickable?: boolean;
   expand?: boolean;
-  fontSize: FontSizeKeys;
+  fontSize?: FontSizeKeys;
 } & ComponentProps<"div">;
 
 const MenuItem = forwardRef(
