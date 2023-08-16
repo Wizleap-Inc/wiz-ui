@@ -57,3 +57,32 @@ export const cardTrStyle = style({
     },
   },
 });
+
+export const cardTrOnSafariStyle = style({
+  selectors: {
+    "tbody > &": {
+      cursor: "pointer",
+      content: "",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: `calc(100% + ${THEME.spacing.xs} * 2)`,
+      transform: `translateY(calc(-1 * ${THEME.spacing.xs}))`,
+      borderRadius: THEME.spacing.xs2,
+      background: THEME.color.white[800],
+      zIndex: -1,
+      boxSizing: "border-box",
+      outline: `1px solid ${THEME.color.gray[300]}`,
+    },
+    "tbody > &:hover": {
+      "@media": {
+        "(any-hover: hover)": {
+          outline: `2px solid ${THEME.color.green[800]}`,
+        },
+      },
+    },
+    "tbody > &:active": {
+      background: THEME.color.green[300],
+    },
+  },
+});
