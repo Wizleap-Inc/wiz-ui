@@ -1,6 +1,10 @@
 <template>
   <div
-    :class="[menuItemStyle, menuItemVariantStyle[componentStatus]]"
+    :class="[
+      menuItemStyle,
+      menuItemVariantStyle[componentStatus],
+      expand && menuItemExpand,
+    ]"
     :style="{ width: width }"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
@@ -23,6 +27,7 @@ import { FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
   menuItemStyle,
   menuItemVariantStyle,
+  menuItemExpand,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
@@ -54,6 +59,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: true,
+  },
+  expand: {
+    type: Boolean,
+    required: false,
   },
   fontSize: {
     type: String as PropType<FontSizeKeys>,
