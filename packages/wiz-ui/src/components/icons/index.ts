@@ -7,6 +7,7 @@ import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./auto-renew.vue";
+import { default as WizIBook } from "./book.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICamera } from "./camera.vue";
@@ -41,6 +42,7 @@ import { default as WizIMoreVert } from "./more-vert.vue";
 import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
+import { default as WizIPieChart } from "./pie-chart.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIPublic } from "./public.vue";
 import { default as WizIRemove } from "./remove.vue";
@@ -66,6 +68,7 @@ export type TIcon =
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
+  | typeof WizIBook
   | typeof WizIBusinessCenter
   | typeof WizICalendar
   | typeof WizICamera
@@ -100,6 +103,7 @@ export type TIcon =
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
+  | typeof WizIPieChart
   | typeof WizIPinDrop
   | typeof WizIPublic
   | typeof WizIRemove
@@ -125,6 +129,7 @@ export {
   WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
+  WizIBook,
   WizIBusinessCenter,
   WizICalendar,
   WizICamera,
@@ -159,6 +164,7 @@ export {
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
+  WizIPieChart,
   WizIPinDrop,
   WizIPublic,
   WizIRemove,
