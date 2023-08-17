@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.26.1
+
+### Patch Changes
+
+- [#731](https://github.com/Wizleap-Inc/wiz-ui/pull/731) [`13a61932`](https://github.com/Wizleap-Inc/wiz-ui/commit/13a619321878bfe0805e67ed66f477393b8a822c) Thanks [@okakyo](https://github.com/okakyo)! - fix(card-table): card-table の safari 対応
+
+- [#978](https://github.com/Wizleap-Inc/wiz-ui/pull/978) [`5f42b7f3`](https://github.com/Wizleap-Inc/wiz-ui/commit/5f42b7f3441f7e099c5f4a3b4d814faeca794f17) Thanks [@okakyo](https://github.com/okakyo)! - [#957] Radio の a11y 化 (React)
+
+- Updated dependencies [[`13a61932`](https://github.com/Wizleap-Inc/wiz-ui/commit/13a619321878bfe0805e67ed66f477393b8a822c)]:
+  - @wizleap-inc/wiz-ui-styles@0.14.1
+
 ## 0.26.0
 
 ### Minor Changes
