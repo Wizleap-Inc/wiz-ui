@@ -20,7 +20,8 @@ defineOptions({
 const props = defineProps({
   device: {
     type: String as PropType<"mobile" | "pc">,
-    required: true,
+    default: "pc",
+    required: false,
   },
 });
 

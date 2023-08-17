@@ -8,11 +8,11 @@ import { TimelineContext } from "./use-timeline";
 import type { FC, ReactNode } from "react";
 
 interface TimelineProps {
-  device: "mobile" | "pc";
+  device?: "mobile" | "pc";
   children?: ReactNode;
 }
 
-const Timeline: FC<TimelineProps> = ({ device, children }) => {
+const Timeline: FC<TimelineProps> = ({ device = "pc", children }) => {
   return (
     <TimelineContext.Provider value={{ device }}>
       <WizVStack gap={styles.TIMELINES_GAP}>{children}</WizVStack>
