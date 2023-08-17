@@ -7,6 +7,7 @@ import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
 import { WizIAttachFile } from "./attach-file";
 import { WizIAutoRenew } from "./auto-renew";
+import { WizIBook } from "./book";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
 import { WizICamera } from "./camera";
@@ -41,6 +42,7 @@ import { WizIMoreVert } from "./more-vert";
 import { WizINoteAdd } from "./note-add";
 import { WizINotification } from "./notification";
 import { WizIOpenInNew } from "./open-in-new";
+import { WizIPieChart } from "./pie-chart";
 import { WizIPinDrop } from "./pin-drop";
 import { WizIPublic } from "./public";
 import { WizIRemove } from "./remove";
@@ -66,6 +68,7 @@ export type TIcon =
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
+  | typeof WizIBook
   | typeof WizIBusinessCenter
   | typeof WizICalendar
   | typeof WizICamera
@@ -100,6 +103,7 @@ export type TIcon =
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
+  | typeof WizIPieChart
   | typeof WizIPinDrop
   | typeof WizIPublic
   | typeof WizIRemove
@@ -125,6 +129,7 @@ export {
   WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
+  WizIBook,
   WizIBusinessCenter,
   WizICalendar,
   WizICamera,
@@ -159,6 +164,7 @@ export {
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
+  WizIPieChart,
   WizIPinDrop,
   WizIPublic,
   WizIRemove,
