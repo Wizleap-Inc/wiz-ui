@@ -19,6 +19,26 @@ export const cardTdStyle = style({
   },
 });
 
+export const cardTdOnSafariStyle = style({
+  padding: `${THEME.spacing.sm} ${THEME.spacing.sm}`,
+  position: "relative",
+  ":after": {
+    content: "''",
+    position: "absolute",
+    top: "50%",
+    right: "-1px",
+    transform: "translateY(-50%)",
+    width: "1px",
+    height: `calc(100% - ${THEME.spacing.md})`,
+    backgroundColor: THEME.color.gray[300],
+  },
+  selectors: {
+    "&:last-child::after ": {
+      display: "none",
+    },
+  },
+});
+
 export const cardThStyle = style({
   color: THEME.color.gray[500],
   fontSize: THEME.fontSize.xs2,

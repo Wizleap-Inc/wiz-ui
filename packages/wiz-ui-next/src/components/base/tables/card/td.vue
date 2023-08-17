@@ -1,12 +1,21 @@
 <template>
-  <td :class="cardTdStyle" :rowSpan="rowSpan" :colSpan="colSpan">
+  <td
+    :class="isSafari ? cardTdOnSafariStyle : cardTdStyle"
+    :rowSpan="rowSpan"
+    :colSpan="colSpan"
+  >
     <slot />
   </td>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { cardTdStyle } from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import {
+  cardTdStyle,
+  cardTdOnSafariStyle,
+} from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+
+import { useIsSafari } from "./hooks/use-is-safari";
 
 defineOptions({
   name: ComponentName.CardTd,
@@ -22,4 +31,6 @@ defineProps({
     required: false,
   },
 });
+
+const isSafari = useIsSafari();
 </script>
