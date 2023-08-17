@@ -99,7 +99,7 @@ export const Playground: Story = {
   },
   render: (args) => {
     const [isMenuOpen, setIsMenuOpen] = useState(args.isOpen);
-    const handleTogglePopupLocking = () => setIsMenuOpen((prev) => !prev);
+    const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
     return (
       <div style={{ display: "flex", height: "100vh" }}>
         <WizNavigationContainer {...args} isOpen={isMenuOpen}>
@@ -115,7 +115,7 @@ export const Playground: Story = {
         </WizNavigationContainer>
         <div>
           デバッグ用
-          <button onClick={handleTogglePopupLocking}>
+          <button onClick={handleToggleMenu}>
             {isMenuOpen ? "Close" : "Open"}
           </button>
         </div>
