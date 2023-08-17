@@ -6,6 +6,11 @@ export const cardTableStyle = style({
   borderSpacing: `0 calc(${THEME.spacing.xs2} + ${THEME.spacing.xs} * 2)`,
 });
 
+export const cardTableOnSafariStyle = style({
+  borderCollapse: "separate",
+  borderSpacing: `0 ${THEME.spacing.xs}`,
+});
+
 export const cardTableFixedStyle = style({
   tableLayout: "fixed",
 });
@@ -43,6 +48,13 @@ export const cardThStyle = style({
   color: THEME.color.gray[500],
   fontSize: THEME.fontSize.xs2,
   fontWeight: "normal",
+});
+
+export const cardThOnSafariStyle = style({
+  color: THEME.color.gray[500],
+  fontSize: THEME.fontSize.xs2,
+  fontWeight: "normal",
+  height: THEME.spacing.xl3,
 });
 
 export const cardTrStyle = style({
