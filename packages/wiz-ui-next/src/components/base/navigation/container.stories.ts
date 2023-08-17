@@ -20,7 +20,7 @@ export default {
     width: {
       control: { type: "text" },
     },
-    sticky: {
+    fixed: {
       control: { type: "boolean" },
     },
     isOpen: {
@@ -168,7 +168,7 @@ export const Fixed: StoryFn = (_, { argTypes }) => ({
   },
   template: `
   <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
+    <WizNavContainer fixed>
       <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="false" />
       <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
       <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
@@ -231,7 +231,7 @@ export const Popup: StoryFn<typeof WizNavContainer> = (args) => ({
   `,
 });
 
-export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
+export const PopupFixed: StoryFn<typeof WizNavContainer> = (args) => ({
   components: { WizNavContainer, WizNavItem, WizHeader, WizTextButton },
   setup() {
     const lockingPopup = ref(false);
@@ -256,7 +256,7 @@ export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
   },
   template: `
   <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
+    <WizNavContainer fixed>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
@@ -266,7 +266,7 @@ export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
   `,
 });
 
-export const PopupStickyOpen: StoryFn<typeof WizNavContainer> = (args) => ({
+export const PopupFixedOpen: StoryFn<typeof WizNavContainer> = (args) => ({
   components: { WizNavContainer, WizNavItem },
   setup() {
     const lockingPopup = ref(false);
@@ -293,7 +293,7 @@ export const PopupStickyOpen: StoryFn<typeof WizNavContainer> = (args) => ({
   },
   template: `
   <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
+    <WizNavContainer fixed>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
@@ -323,7 +323,7 @@ export const Disabled: StoryFn<typeof WizNavContainer> = (args) => ({
   },
   template: `
   <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
+    <WizNavContainer fixed>
       <WizNavItem :disabled="true"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" />
       <WizNavItem :disabled="true"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
       <WizNavItem :disabled="true"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
@@ -359,7 +359,7 @@ export const PopupAndTooltip: StoryFn<typeof WizNavContainer> = (args) => ({
   },
   template: `
   <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
+    <WizNavContainer fixed>
       <WizNavItem tooltipText="これはヒント1です。"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
       <WizNavItem tooltipText="これはヒント2です。"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
       <WizNavItem tooltipText="これはヒント3です。"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
