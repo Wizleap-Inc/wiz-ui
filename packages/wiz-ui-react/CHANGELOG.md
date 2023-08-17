@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.27.0
+
+### Minor Changes
+
+- [`76278182`](https://github.com/Wizleap-Inc/wiz-ui/commit/7627818220fd31cac99de56e1c32e24f2c0381af) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(icons): book, pie-chart のアイコンを追加
+
 ## 0.26.1
 
 ### Patch Changes
