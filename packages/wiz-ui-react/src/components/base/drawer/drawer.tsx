@@ -66,7 +66,7 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
   }, [isOpen]);
 
   return (
-    <WizPortal container={document.documentElement}>
+    <WizPortal container={document.body}>
       <div
         ref={containerRef}
         className={styles.drawerContainerStyle}
