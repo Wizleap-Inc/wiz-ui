@@ -1,15 +1,15 @@
 <template>
-  <tr :class="[isSafari ? cardTrOnSafariStyle : cardTrStyle]" @click="onClick">
+  <tr
+    :class="[isSafari ? styles.cardTrOnSafariStyle : styles.cardTrStyle]"
+    @click="onClick"
+  >
     <slot />
   </tr>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  cardTrStyle,
-  cardTrOnSafariStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
 
 import { useIsSafari } from "./hooks/use-is-safari";
 
