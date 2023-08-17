@@ -1,7 +1,8 @@
 ---
-"@wizleap-inc/wiz-ui-next": minor
-"@wizleap-inc/wiz-ui-styles": minor
-"@wizleap-inc/wiz-ui": minor
+"@wizleap-inc/wiz-ui-next": patch
+"@wizleap-inc/wiz-ui-styles": patch
+"@wizleap-inc/wiz-ui": patch
+"@wizleap-inc/wiz-ui-react": patch
 ---
 
-add css styles on safari only
+fix(card-table): card-table の safari 対応
