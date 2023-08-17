@@ -1,7 +1,7 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/radio-input.css";
 import clsx from "clsx";
-import { FC, useId } from "react";
+import { FC, useId, useState } from "react";
 
 import { WizStack } from "@/components";
 
@@ -29,6 +29,14 @@ export const Radio: FC<Props> = ({
   onChange,
 }: Props) => {
   const idPrefix = useId();
+  const [focusOption, setFocusOption] = useState<number | null>(null);
+
+  const radioLabelColor = (inputValue: number) => {
+    if (value === inputValue) return "checked";
+    if (focusOption === inputValue) return "focused";
+    return "default";
+  };
+
   return (
     <div className={styles.radioStyle}>
       <WizStack gap={gap} direction={direction}>
@@ -49,15 +57,19 @@ export const Radio: FC<Props> = ({
                 onClick={() => {
                   onChange?.(option.value);
                 }}
+                onFocus={() => {
+                  setFocusOption(option.value);
+                }}
+                onBlur={() => {
+                  setFocusOption(null);
+                }}
               />
               <label
                 className={clsx(
                   styles.radioLabelStyle,
                   isChecked && styles.radioLabelCheckedStyle,
                   isDisabled && styles.radioLabelDisabledStyle,
-                  styles.radioLabelColorStyle[
-                    isChecked ? "checked" : "default"
-                  ],
+                  styles.radioLabelColorStyle[radioLabelColor(option.value)],
                   styles.radioLabelCursorStyle[
                     isDisabled ? "disabled" : "default"
                   ],
