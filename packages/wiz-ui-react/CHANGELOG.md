@@ -1,5 +1,23 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.28.0
+
+### Minor Changes
+
+- [#926](https://github.com/Wizleap-Inc/wiz-ui/pull/926) [`2ba24412`](https://github.com/Wizleap-Inc/wiz-ui/commit/2ba244125c11539842264fd2f7027e00668de991) Thanks [@sor4chi](https://github.com/sor4chi)! - WizText に display props の追加
+
+- [#932](https://github.com/Wizleap-Inc/wiz-ui/pull/932) [`e1ff61b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/e1ff61b697284b4bb775930a10effc26a5282884) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDrawer を追加
+
+- [#926](https://github.com/Wizleap-Inc/wiz-ui/pull/926) [`8842fc17`](https://github.com/Wizleap-Inc/wiz-ui/commit/8842fc175061b58a8a2734ad7546c767ff0592d7) Thanks [@sor4chi](https://github.com/sor4chi)! - WizMenuItem に expand オプションの追加
+
+### Patch Changes
+
+- [#991](https://github.com/Wizleap-Inc/wiz-ui/pull/991) [`c8793dfa`](https://github.com/Wizleap-Inc/wiz-ui/commit/c8793dfa7687a33108747253d9f561d224598781) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizNavItem: onTogglePopup、ontogglePopupLocking をオプショナルに変更
+
+- Updated dependencies [[`2ba24412`](https://github.com/Wizleap-Inc/wiz-ui/commit/2ba244125c11539842264fd2f7027e00668de991), [`e1ff61b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/e1ff61b697284b4bb775930a10effc26a5282884), [`8842fc17`](https://github.com/Wizleap-Inc/wiz-ui/commit/8842fc175061b58a8a2734ad7546c767ff0592d7)]:
+  - @wizleap-inc/wiz-ui-styles@0.15.0
+  - @wizleap-inc/wiz-ui-constants@0.11.0
+
 ## 0.27.0
 
 ### Minor Changes
