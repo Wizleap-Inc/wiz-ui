@@ -23,7 +23,7 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizMessageBox, WizText },
-  template: `<WizMessageBox v-bind="$props"><WizText>{{ slot }}</WizText></WizMessageBox>`,
+  template: `<WizMessageBox v-bind="$props">{{ slot }}</WizMessageBox>`,
 });
 
 export const Information = Template.bind({});
@@ -45,6 +45,12 @@ Warning.args = {
   title: "ヘッダーヘッダーヘッダー",
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "warning",
+};
+
+export const TitleOnly = Template.bind({});
+TitleOnly.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  isTitleOnly: true,
 };
 
 export const WithIcon = Template.bind({});

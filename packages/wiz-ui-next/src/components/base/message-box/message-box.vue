@@ -12,14 +12,19 @@
       :class="[messageBoxIconStyle, messageBoxIconFillStyle[variant]]"
     />
     <div>
-      <div :class="messageBoxTitleStyle">{{ title }}</div>
-      <slot></slot>
+      <div
+        :class="messageBoxTitleStyle"
+        :style="{ marginBottom: titleMarginBottom }"
+      >
+        {{ title }}
+      </div>
+      <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName , THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   messageBoxStyle,
   messageBoxWidthStyle,
@@ -55,9 +60,16 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  isTitleOnly: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const computedWidth = computed(() => {
   return props.expand ? "expand" : "default";
 });
+
+const titleMarginBottom = props.isTitleOnly ? 0 : THEME.spacing.xs;
 </script>

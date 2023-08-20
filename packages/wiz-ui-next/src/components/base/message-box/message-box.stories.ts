@@ -23,48 +23,54 @@ export default {
 const Template: StoryFn<typeof WizMessageBox> = (args) => ({
   components: { WizMessageBox, WizText },
   setup: () => ({ args }),
-  template: `
-    <WizMessageBox v-bind="args">
-      <WizText>
-        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-      </WizText>
-    </WizMessageBox>
-  `,
+  template: `<WizMessageBox v-bind="$props">{{ slot }}</WizMessageBox>`,
 });
 
 export const Information = Template.bind({});
 Information.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "information",
 };
 
 export const Caution = Template.bind({});
 Caution.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "caution",
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   variant: "warning",
+};
+
+export const TitleOnly = Template.bind({});
+TitleOnly.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  isTitleOnly: true,
 };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   icon: WizIClose,
 };
 
 export const Expand = Template.bind({});
 Expand.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
 };
 
 export const ExpandWithIcon = Template.bind({});
 ExpandWithIcon.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
   icon: WizIClose,
 };

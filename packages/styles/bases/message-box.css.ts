@@ -6,6 +6,7 @@ export const messageBoxStyle = style({
   height: "max-content",
   padding: THEME.spacing.md,
   boxSizing: "border-box",
+  color: THEME.color.gray[700],
 });
 
 export const messageBoxVariantStyle = styleVariants({
@@ -58,7 +59,6 @@ export const messageBoxTitleStyle = style({
   fontWeight: 700,
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl2,
-  marginBottom: THEME.spacing.xs,
   color: THEME.color.gray[700],
   textAlign: "left",
 });
