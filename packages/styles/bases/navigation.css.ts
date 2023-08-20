@@ -112,3 +112,8 @@ export const navigationPopupContainerStyle = style({
   maxHeight: "25rem",
   overflowY: "auto",
 });
+
+export const navigationContentStyle = style({
+  marginTop: `calc(${THEME.share.HEADER_HEIGHT} + 1px)`,
+  transition: "margin 0.2s ease-in-out",
+});
