@@ -23,7 +23,7 @@ export default {
 const Template: StoryFn<typeof WizMessageBox> = (args) => ({
   components: { WizMessageBox, WizText },
   setup: () => ({ args }),
-  template: `<WizMessageBox v-bind="$props">{{ slot }}</WizMessageBox>`,
+  template: `<WizMessageBox v-bind="$props">{{ args.slot }}</WizMessageBox>`,
 });
 
 export const Information = Template.bind({});

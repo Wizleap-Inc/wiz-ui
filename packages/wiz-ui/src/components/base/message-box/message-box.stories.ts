@@ -50,6 +50,7 @@ Warning.args = {
 export const TitleOnly = Template.bind({});
 TitleOnly.args = {
   title: "ヘッダーヘッダーヘッダー",
+  slot: "",
   isTitleOnly: true,
 };
 
