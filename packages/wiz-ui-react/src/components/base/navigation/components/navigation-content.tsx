@@ -3,14 +3,11 @@ import { navigationContentStyle } from "@wizleap-inc/wiz-ui-styles/bases/navigat
 import { FC, ReactNode } from "react";
 
 interface Props {
-  isOpen: boolean;
-  width?: string;
-  sticky?: boolean;
+  isOpen?: boolean;
   children: ReactNode;
-  footer?: ReactNode;
 }
 
-const NavigationContent: FC<Props> = ({ isOpen, children }) => {
+const NavigationContent: FC<Props> = ({ isOpen = false, children }) => {
   const marginLeftStyle = isOpen ? "181px" : "61px";
 
   return (
