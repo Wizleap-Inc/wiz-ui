@@ -29,6 +29,7 @@ export const calendarItemStyle = styleVariants({
     textAlign: "center",
     background: THEME.color.green[800],
     borderRadius: THEME.spacing.xs2,
+    cursor: "pointer",
   },
   secondary: {
     color: THEME.color.green[800],
@@ -57,6 +58,12 @@ export const calendarItemStyle = styleVariants({
     },
   },
   outOfCurrentMonth: {
+    background: "none",
+    color: THEME.color.gray[500],
+    textAlign: "center",
+    borderRadius: THEME.spacing.xs2,
+  },
+  disabledDate: {
     background: "none",
     color: THEME.color.gray[500],
     textAlign: "center",

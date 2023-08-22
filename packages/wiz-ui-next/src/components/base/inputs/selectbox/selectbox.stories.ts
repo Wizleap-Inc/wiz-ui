@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizHStack } from "@/components";
@@ -22,13 +22,19 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
+    showExLabel: {
+      control: { type: "boolean" },
+    },
+    isDirectionFixed: {
+      control: { type: "boolean" },
+    },
   },
 } as Meta<typeof WizSelectBox>;
 
 const Template: StoryFn<typeof WizSelectBox> = (args) => ({
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref(0);
+    const value = ref(args.value);
     return { value, args };
   },
   template: `
@@ -82,8 +88,24 @@ ManyOptions.args = {
   isOpen: true,
 };
 
+export const WithExtraLabel = Template.bind({});
+WithExtraLabel.args = {
+  options: _getDummyOptions("test", 3, "(10)"),
+  isOpen: true,
+  value: 1,
+};
+
 export const ExtraLabel = Template.bind({});
 ExtraLabel.args = {
   options: _getDummyOptions("test", 3, "(10)"),
   isOpen: true,
+  showExLabel: true,
+  value: 1,
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  options: _getDummyOptions("test", 3),
+  isOpen: true,
+  isDirectionFixed: true,
 };

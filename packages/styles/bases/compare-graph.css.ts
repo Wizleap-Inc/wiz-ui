@@ -126,9 +126,7 @@ export const graphBarNumberStyle = style({
 export const graphBarLabelStyle = style({
   position: "absolute",
   bottom: `calc(-1 * ${BAR_LABEL_HEIGHT})`,
-  left: 0,
-  right: 0,
-  margin: "auto",
+  left: "50%",
   width: "max-content",
   fontSize: THEME.fontSize.sm,
   fontWeight: THEME.fontWeight.bold,

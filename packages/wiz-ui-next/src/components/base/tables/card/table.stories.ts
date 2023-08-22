@@ -75,17 +75,17 @@ router-pushなどと組み合わせて、クリックした行に対応するペ
       </WizCardTr>
     </WizCardThead>
     <WizCardTbody>
-      <WizCardTr @click="onClick('Row 1')">
+      <WizCardTr @click="args.onClick('Row 1')">
         <WizCardTd>Row 1</WizCardTd>
         <WizCardTd>Row 1</WizCardTd>
         <WizCardTd>Row 1</WizCardTd>
       </WizCardTr>
-      <WizCardTr @click="onClick('Row 2')">
+      <WizCardTr @click="args.onClick('Row 2')">
         <WizCardTd>Row 2</WizCardTd>
         <WizCardTd>Row 2</WizCardTd>
         <WizCardTd>Row 2</WizCardTd>
       </WizCardTr>
-      <WizCardTr @click="onClick('Row 3')">
+      <WizCardTr @click="args.onClick('Row 3')">
         <WizCardTd>Row 3</WizCardTd>
         <WizCardTd>Row 3</WizCardTd>
         <WizCardTd>Row 3</WizCardTd>
@@ -127,7 +127,7 @@ export const Fixed: StoryFn<typeof WizCardTable> = (args) => ({
         </WizCardTr>
       </WizCardThead>
       <WizCardTbody>
-        <WizCardTr v-for="i in 3" @click="onClick('Row ' + i)">
+        <WizCardTr v-for="i in 3" @click="args.onClick('Row ' + i)">
           <WizCardTd v-for="j in 3" :key="j">
             Row {{ i }}
           </WizCardTd>
@@ -159,7 +159,7 @@ export const UnionColumn: StoryFn<typeof WizCardTable> = (args) => ({
         </WizCardTr>
       </WizCardThead>
       <WizCardTbody>
-        <WizCardTr v-for="i in 3" :key="i" @click="onClick('Row ' + i)">
+        <WizCardTr v-for="i in 3" :key="i" @click="args.onClick('Row ' + i)">
           <WizCardTd v-for="j in 4" :key="j">Row {{ i }}</WizCardTd>
         </WizCardTr>
       </WizCardTbody>
@@ -182,19 +182,19 @@ UnionColumn.parameters = {
       </WizCardTr>
     </WizCardThead>
     <WizCardTbody>
-      <WizCardTr @click="onClick('Row 1')">
+      <WizCardTr @click="args.onClick('Row 1')">
         <WizCardTd>Row 1</WizCardTd>
         <WizCardTd>Row 1</WizCardTd>
         <WizCardTd>Row 1</WizCardTd>
         <WizCardTd>Row 1</WizCardTd>
       </WizCardTr>
-      <WizCardTr @click="onClick('Row 2')">
+      <WizCardTr @click="args.onClick('Row 2')">
         <WizCardTd>Row 2</WizCardTd>
         <WizCardTd>Row 2</WizCardTd>
         <WizCardTd>Row 2</WizCardTd>
         <WizCardTd>Row 2</WizCardTd>
       </WizCardTr>
-      <WizCardTr @click="onClick('Row 3')">
+      <WizCardTr @click="args.onClick('Row 3')">
         <WizCardTd>Row 3</WizCardTd>
         <WizCardTd>Row 3</WizCardTd>
         <WizCardTd>Row 3</WizCardTd>

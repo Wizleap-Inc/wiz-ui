@@ -1,11 +1,12 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import {
   SPACING_ACCESSORS,
+  THEME,
   Z_INDEX_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 import { onMounted, ref } from "vue";
 
-import { WizTextButton, WizHStack } from "@/components";
+import { WizHStack, WizHeader, WizTextButton } from "@/components";
 
 import { WizPopup, WizPopupContainer } from ".";
 
@@ -178,6 +179,96 @@ export const Shadow: StoryFn<typeof WizPopup> = (args) => ({
     </div>
   `,
 });
+
+export const Fixed: StoryFn<typeof WizPopup> = (args) => ({
+  components: { WizPopup, WizTextButton, WizPopupContainer },
+  setup() {
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
+    return { isOpen, toggle, close, args };
+  },
+  template: `
+    <div style="width:200vw; height: 200vh; background-color: #eee;">
+      <div>
+        Scroll area
+        <wiz-popup-container>
+          <button @click="toggle">
+            <span>Popup Button</span> 
+          </button>
+          <wiz-popup :isOpen="isOpen"  v-bind="args">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <p>This is a scroll popup content</p>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container> 
+      </div>
+      <div style="
+        border: 1px solid black;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+      ">
+        Fixed area
+        <wiz-popup-container>
+          <button @click="toggle">
+            <span>Popup Button</span> 
+          </button>
+          <wiz-popup :isOpen="isOpen"  v-bind="args">
+            <div style="padding: 16px; background-color: white; border-radius: 4px;">
+              <p>This is a fixed popup content</p>
+            </div>
+          </wiz-popup>
+        </wiz-popup-container> 
+      </div>
+    </div> 
+  `,
+});
+
+Fixed.args = {
+  closeOnBlur: false,
+  shadow: true,
+};
+
+export const Header: StoryFn<typeof WizPopup> = (args) => ({
+  components: { WizPopup, WizHeader, WizTextButton, WizPopupContainer },
+  setup() {
+    const isOpen = ref(true);
+    const toggle = () => (isOpen.value = !isOpen.value);
+    const close = () => (isOpen.value = false);
+    return { isOpen, toggle, close, args };
+  },
+  template: `
+  <div style="height: 200vh"> 
+    <div style="position: fixed; top: 0; left: 0; right: 0; height: ${THEME.share.HEADER_HEIGHT}; background-color: transparent; box-shadow: 0 0 4px rgba(0,0,0,0.2); z-index: 1000; display: flex; justify-content: center; align-items: center;">
+      <wiz-popup-container  style="display: flex; align-items: center; position: fixed; right: 0;">
+        <wiz-text-button @click="toggle">Toggle</wiz-text-button>
+        <wiz-popup  v-bind="args" :isOpen="isOpen" :animation="args.animation" @onClose="close" @onTurn="onTurn">
+          <div style="padding: 16px; background-color: white; border-radius: 4px;">
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+            <div style="padding: 10px">Popup content</div>
+          </div>
+        </wiz-popup>
+      </wiz-popup-container>
+    </div> 
+    <div style="margin-top: ${THEME.share.HEADER_HEIGHT};">
+      <h1>Scroll down</h1>
+    </div>
+  </div>
+  `,
+});
+
+Header.args = {
+  closeOnBlur: false,
+  shadow: true,
+};
 
 export const Playground: StoryFn<typeof WizPopup> = (args) => ({
   components: { WizPopup, WizPopupContainer, WizTextButton, WizHStack },

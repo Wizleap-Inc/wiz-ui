@@ -18,6 +18,7 @@
               ? navigationItemDisabledStyle
               : active && navigationItemActiveStyle,
           ]"
+          :aria-label="label"
         >
           <component
             :is="icon"
@@ -45,6 +46,7 @@
           @mouseLeave="popupMouseLeave"
           direction="rt"
           layer="popover"
+          :isDirectionFixed="true"
         >
           <div @mouseenter="popupMouseEnter">
             <WizPopupButtonGroup

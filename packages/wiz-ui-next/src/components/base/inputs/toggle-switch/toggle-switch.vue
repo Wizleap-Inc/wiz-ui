@@ -3,12 +3,13 @@
     <input
       :class="toggleSwitchInputStyle"
       type="checkbox"
-      :aria-label="label"
+      :aria-label="ariaLabel"
       v-model="switchValue"
     />
     <span
       :class="[
         toggleSwitchSliderStyle,
+        toggleSwitchColorStyle[switchState],
         switchValue && toggleSwitchSliderCheckedStyle,
       ]"
     ></span>
@@ -21,6 +22,7 @@ import {
   toggleSwitchStyle,
   toggleSwitchInputStyle,
   toggleSwitchSliderStyle,
+  toggleSwitchColorStyle,
   toggleSwitchSliderCheckedStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import { computed } from "vue";
@@ -34,7 +36,7 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  label: {
+  ariaLabel: {
     type: String,
     required: true,
   },
@@ -49,5 +51,9 @@ const emit = defineEmits<Emit>();
 const switchValue = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
+});
+
+const switchState = computed(() => {
+  return switchValue.value ? "checked" : "default";
 });
 </script>

@@ -4,14 +4,12 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 export const timePickerStyle = style({
   width: "max-content",
   padding: `0 ${THEME.spacing.xs2}`,
-  height: THEME.spacing.xl3,
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
 });
 
 export const timePickerDisabledStyle = style({
-  color: THEME.color.gray["700"],
   backgroundColor: THEME.color.gray["300"],
 });
 
@@ -24,10 +22,13 @@ export const timePickerCursorStyle = styleVariants({
   },
 });
 
+const BORDER_WIDTH = "1px";
+
 export const timePickerBoxStyle = style({
   height: "100%",
-  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
+  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
+  lineHeight: THEME.fontSize.xl3,
 });
 
 export const timePickerBoxColorStyle = styleVariants({
@@ -36,6 +37,9 @@ export const timePickerBoxColorStyle = styleVariants({
   },
   selected: {
     color: THEME.color.gray["700"],
+  },
+  disabled: {
+    color: THEME.color.gray["500"],
   },
 });
 
@@ -70,7 +74,7 @@ export const timePickerSelectorOptionStyle = style({
   position: "relative",
   margin: `0 ${THEME.spacing.xs}`,
   padding: THEME.spacing.xs2,
-  fontSize: THEME.fontSize.xs2,
+  fontSize: THEME.fontSize.xs,
   textAlign: "center",
   boxSizing: "border-box",
   borderRadius: THEME.spacing.xs2,
@@ -90,10 +94,6 @@ export const timePickerSelectorOptionItemStyle = style({
       },
     },
   },
-  ":active": {
-    color: THEME.color.white["800"],
-    background: THEME.color.green["800"],
-  },
 });
 
 export const timePickerSelectorOptionItemSelectedStyle = style({
@@ -107,4 +107,19 @@ export const timePickerSelectorOptionItemColorStyle = styleVariants({
   selected: {
     color: THEME.color.white["800"],
   },
+});
+
+export const cancelButtonStyle = style({
+  cursor: "pointer",
+  background: "transparent",
+  border: "none",
+  padding: 0,
+  fill: THEME.color.gray["500"],
+  ":active": {
+    fill: THEME.color.green["800"],
+  },
+});
+
+export const cancelButtonDisabledStyle = style({
+  cursor: "not-allowed",
 });

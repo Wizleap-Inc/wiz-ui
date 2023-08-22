@@ -22,14 +22,22 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
+    showExLabel: {
+      control: { type: "boolean" },
+    },
+    isDirectionFixed: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 };
 
-const Template: StoryFn = (_, { argTypes }) => ({
+const Template: StoryFn = (props, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref(0);
+    const value = ref(props.value);
     return { value };
   },
   template: `
@@ -83,8 +91,24 @@ ManyOptions.args = {
   isOpen: true,
 };
 
+export const WithExtraLabel = Template.bind({});
+WithExtraLabel.args = {
+  options: _getDummyOptions("test", 3, "(10)"),
+  isOpen: true,
+  value: 1,
+};
+
 export const ExtraLabel = Template.bind({});
 ExtraLabel.args = {
   options: _getDummyOptions("test", 3, "(10)"),
   isOpen: true,
+  showExLabel: true,
+  value: 1,
+};
+
+export const IsDirectionFixed = Template.bind({});
+IsDirectionFixed.args = {
+  options: _getDummyOptions("test", 3),
+  isOpen: true,
+  isDirectionFixed: true,
 };

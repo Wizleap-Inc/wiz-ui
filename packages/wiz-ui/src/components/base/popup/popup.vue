@@ -6,10 +6,11 @@
         shadow && popupShadowStyle,
         zIndexStyle[layer],
         !isActuallyOpen && popupHiddenStyle,
+        isFixed && popupFixedStyle,
       ]"
       :style="{
         inset,
-        transform: popupTranslate,
+        transform: `${popupTranslate} translateZ(0)`,
       }"
       ref="popupRef"
       @mouseleave="mouseLeave"
@@ -27,21 +28,22 @@ import {
   ZIndexKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  popupStyle,
-  popupShadowStyle,
+  popupFixedStyle,
   popupHiddenStyle,
+  popupShadowStyle,
+  popupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { MountingPortal } from "portal-vue";
 import {
   computed,
-  watch,
   inject,
-  PropType,
-  ref,
-  reactive,
   nextTick,
   onMounted,
+  PropType,
+  reactive,
+  ref,
+  watch,
 } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
@@ -158,6 +160,15 @@ const togglePopup = () => {
       isActuallyOpen.value = props.isOpen;
     };
   }
+};
+
+const existsFixedOrStickyParent = (
+  el: HTMLElement | null
+): HTMLElement | null => {
+  if (!el) return null;
+  const position = window.getComputedStyle(el).position;
+  if (position === "fixed" || position === "sticky") return el;
+  return existsFixedOrStickyParent(el.parentElement);
 };
 
 let removeScrollHandler: (() => void) | null = null;
@@ -334,8 +345,14 @@ watch(
   }
 );
 
+const isFixed = computed(() => {
+  return existsFixedOrStickyParent(containerRef.value || null) ? true : false;
+});
+
 const inset = computed(() => {
-  const { scrollX, scrollY } = window;
+  const { scrollX, scrollY } = isFixed.value
+    ? { scrollX: 0, scrollY: 0 }
+    : window;
   const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
     bodyPxInfo.top + scrollY - popupRect.value.height + bodyPxInfo.height;

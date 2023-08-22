@@ -1,4 +1,5 @@
 import { StoryFn, Meta } from "@storybook/vue3";
+import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizMenuItem } from "./";
 
@@ -10,6 +11,16 @@ export default {
       control: {
         type: "text",
       },
+    },
+    expand: {
+      control: {
+        type: "boolean",
+      },
+    },
+    fontSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
+      defaultValue: "md",
     },
     click: {
       action: "click",
@@ -83,4 +94,37 @@ Disabled.parameters = {
       `,
     },
   },
+};
+
+export const Expand = Template.bind({});
+Expand.args = {
+  label: "テスト",
+  expand: true,
+};
+Expand.parameters = {
+  docs: {
+    description: {
+      story:
+        "`expand = true` とすることで、親要素の幅いっぱいにメニューを表示することができます。default 値は `false` です。",
+    },
+    source: {
+      code: `
+<template>
+  <WizMenuItem label="テスト" expand/>
+</template>
+      `,
+    },
+  },
+};
+
+export const FontSize = Template.bind({});
+FontSize.args = {
+  label: "テスト",
+  fontSize: "lg",
+};
+
+export const Selected = Template.bind({});
+Selected.args = {
+  label: "テスト",
+  selected: true,
 };
