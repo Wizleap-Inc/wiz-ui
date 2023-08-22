@@ -9,7 +9,7 @@ import { CSSProperties, FC, ReactNode } from "react";
 interface Props {
   isOpen: boolean;
   width?: string;
-  sticky?: boolean;
+  fixed?: boolean;
   children: ReactNode;
   footer?: ReactNode;
 }
@@ -17,7 +17,7 @@ interface Props {
 const NavigationContainer: FC<Props> = ({
   isOpen,
   width,
-  sticky = false,
+  fixed = false,
   children,
   footer,
 }) => {
@@ -25,9 +25,9 @@ const NavigationContainer: FC<Props> = ({
     width ??
     (isOpen ? "180px" : `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`);
 
-  const stickyStyle: CSSProperties = sticky
+  const fixedStyle: CSSProperties = fixed
     ? {
-        position: "sticky",
+        position: "fixed",
         top: `calc(${THEME.share.HEADER_HEIGHT} + 1px)`,
         left: 0,
         borderRight: `1px solid ${THEME.color.gray[400]}`,
@@ -38,7 +38,7 @@ const NavigationContainer: FC<Props> = ({
   return (
     <div
       className={navigationContainerStyle}
-      style={{ ...stickyStyle, width: widthStyle }}
+      style={{ ...fixedStyle, width: widthStyle }}
     >
       <div className={navigationContainerItemsStyle}>{children}</div>
       {isOpen && footer && (
