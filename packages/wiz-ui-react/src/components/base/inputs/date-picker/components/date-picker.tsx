@@ -74,6 +74,7 @@ const DatePicker: FC<Props> = ({
   return (
     <>
       <button
+        type="button"
         ref={wrapperButtonRef}
         className={clsx(
           styles.datePickerStyle,
