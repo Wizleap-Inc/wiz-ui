@@ -142,16 +142,6 @@ const props = defineProps({
     type: String,
     required: false,
   },
-  dy: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  parentScrollAmount: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
 });
 
 const emit = defineEmits<{
