@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.29.0
+
+### Minor Changes
+
+- [#1013](https://github.com/Wizleap-Inc/wiz-ui/pull/1013) [`710a7fa0`](https://github.com/Wizleap-Inc/wiz-ui/commit/710a7fa02d8339ebbda948177241b714f03e354e) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - react の date-picker の button type を "button" に変更
+
+### Patch Changes
+
+- Updated dependencies [[`7f91e503`](https://github.com/Wizleap-Inc/wiz-ui/commit/7f91e503220bc61a09c889c989793d22b138d18d)]:
+  - @wizleap-inc/wiz-ui-styles@0.15.1
+
 ## 0.28.0
 
 ### Minor Changes
