@@ -66,6 +66,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           onChange={(e) => onChange(e.target.value)}
         />
         <button
+          type="button"
           aria-label={ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE}
           className={styles.passwordVisibleIconStyle}
           onClick={() => setIsPasswordVisible(!isPasswordVisible)}

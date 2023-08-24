@@ -242,6 +242,7 @@ const SearchSelector: FC<Props> = ({
                   {selectedOption.label}
                 </span>
                 <button
+                  type="button"
                   ref={(ref) => (clearButtonsRef.current[i] = ref)}
                   className={styles.selectBoxInnerBoxCloseButtonStyle}
                   disabled={disabled}

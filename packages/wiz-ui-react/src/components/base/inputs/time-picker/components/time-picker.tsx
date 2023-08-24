@@ -99,6 +99,7 @@ const TimePicker = ({
         >
           <WizHStack gap="sm" align="center" height="100%">
             <button
+              type="button"
               className={clsx([
                 styles.cancelButtonStyle,
                 disabled && styles.cancelButtonDisabledStyle,

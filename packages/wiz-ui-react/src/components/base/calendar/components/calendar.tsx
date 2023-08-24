@@ -84,6 +84,7 @@ const Calendar: FC<Props> = ({
                   className={styles.calendarCellStyle}
                 >
                   <button
+                    type="button"
                     disabled={item.isOutOfCurrentMonth}
                     aria-label={`${currentMonth.getFullYear()}年${
                       currentMonth.getMonth() + 1
