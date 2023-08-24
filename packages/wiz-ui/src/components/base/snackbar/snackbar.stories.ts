@@ -76,3 +76,22 @@ UseSnackbar.parameters = {
     },
   },
 };
+
+export const UseSnackbarWithExpand: StoryFn<typeof WizSnackbar> = () => ({
+  setup() {
+    const message = ref("Hello World");
+    const expand = ref(true);
+    const { snack } = useSnackbar();
+    return {
+      message,
+      expand,
+      snack,
+    };
+  },
+  template: `
+    <div style="text-align: center;">
+      <input v-model="message" />
+      <button @click="snack(message,expand)">Show</button>
+    </div>
+  `,
+});

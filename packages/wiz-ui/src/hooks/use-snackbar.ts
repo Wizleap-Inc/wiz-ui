@@ -6,7 +6,7 @@ import { globalInject, globalKey } from "./use-global-provider";
 
 export const useSnackbarManager = () => {
   const options = ref<SnackbarOption[]>([]);
-  const snack = (message: string) => {
+  const snack = (message: string, expand = false) => {
     const created = new Date().toISOString();
     const deleteSnackbar = () => {
       options.value = options.value.filter(
@@ -15,6 +15,7 @@ export const useSnackbarManager = () => {
     };
     options.value.push({
       message,
+      expand,
       created,
       delete: deleteSnackbar,
     });
