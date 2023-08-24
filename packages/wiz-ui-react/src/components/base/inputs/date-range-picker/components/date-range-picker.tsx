@@ -156,6 +156,7 @@ const DateRangePicker: FC<Props> = ({
   return (
     <>
       <button
+        type="button"
         ref={anchor}
         aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
         onClick={() => setIsOpen(true)}
@@ -172,6 +173,7 @@ const DateRangePicker: FC<Props> = ({
       >
         {cancelButtonVisible ? (
           <button
+            type="button"
             className={styles.popupCalendarCancelButtonStyle}
             disabled={disabled}
             onClick={onClickCancel}
@@ -181,6 +183,7 @@ const DateRangePicker: FC<Props> = ({
           </button>
         ) : (
           <button
+            type="button"
             className={styles.popupCalendarCancelButtonStyle}
             disabled={disabled}
           >
@@ -222,6 +225,7 @@ const DateRangePicker: FC<Props> = ({
                   ref={selectBoxRef}
                 >
                   <button
+                    type="button"
                     className={clsx(
                       styles.popupHeaderSelectBoxStyle,
                       inputBorderStyle[isSelectBoxOpen ? "active" : "default"]
@@ -239,6 +243,7 @@ const DateRangePicker: FC<Props> = ({
                       <div className={styles.popupHeaderSelectBoxOptionsStyle}>
                         {selectBoxOptions.map((option) => (
                           <button
+                            type="button"
                             key={option.value}
                             className={styles.popupHeaderSelectBoxOptionStyle}
                             aria-label={option.label}
@@ -259,6 +264,7 @@ const DateRangePicker: FC<Props> = ({
               <div className={styles.popupCalendarContainerStyle["left"]}>
                 <div className={styles.popupCalendarHeaderStyle}>
                   <button
+                    type="button"
                     className={styles.popupCalendarHeaderButtonStyle}
                     onClick={() => moveCalendar("prevMonth")}
                     aria-label={ARIA_LABELS.MONTH_SELECTOR_PREV}
@@ -287,6 +293,7 @@ const DateRangePicker: FC<Props> = ({
                     }月`}
                   </span>
                   <button
+                    type="button"
                     className={styles.popupCalendarHeaderButtonStyle}
                     onClick={() => moveCalendar("nextMonth")}
                     aria-label={ARIA_LABELS.MONTH_SELECTOR_NEXT}

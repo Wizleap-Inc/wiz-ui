@@ -245,6 +245,7 @@ const ChatCard: FC<Props> = ({
         </WizBox>
       </WizCard>
       <button
+        type="button"
         className={styles.chatCardOpenButtonStyle}
         onClick={handleClickToggleButton}
       />

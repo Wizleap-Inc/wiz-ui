@@ -93,6 +93,7 @@ const DatePicker: FC<Props> = ({
         <WizHStack gap="xs" align="center" height="100%">
           {cancelButtonVisible ? (
             <button
+              type="button"
               className={styles.datePickerCancelButtonStyle}
               disabled={disabled}
               onClick={() => onChangeDate(null)}
@@ -102,6 +103,7 @@ const DatePicker: FC<Props> = ({
             </button>
           ) : (
             <button
+              type="button"
               className={styles.datePickerCancelButtonStyle}
               disabled={disabled}
             >
@@ -131,6 +133,7 @@ const DatePicker: FC<Props> = ({
               </WizText>
               <WizVStack>
                 <button
+                  type="button"
                   onClick={() => moveCalendar(1, 0)}
                   className={styles.datePickerYearSelectorItemStyle}
                   aria-label={ARIA_LABELS.YEAR_SELECTOR_NEXT}
@@ -152,6 +155,7 @@ const DatePicker: FC<Props> = ({
                   </svg>
                 </button>
                 <button
+                  type="button"
                   onClick={() => moveCalendar(-1, 0)}
                   className={styles.datePickerYearSelectorItemStyle}
                   aria-label={ARIA_LABELS.YEAR_SELECTOR_PREV}
@@ -179,6 +183,7 @@ const DatePicker: FC<Props> = ({
             </WizText>
             <div className={styles.datePickerMonthSelectorStyle}>
               <button
+                type="button"
                 aria-label={ARIA_LABELS.MONTH_SELECTOR_PREV}
                 onClick={() => moveCalendar(0, -1)}
                 className={styles.datePickerMonthSelectorItemStyle}
@@ -186,6 +191,7 @@ const DatePicker: FC<Props> = ({
                 <WizIcon size="md" color="inherit" icon={WizIChevronLeft} />
               </button>
               <button
+                type="button"
                 aria-label={ARIA_LABELS.MONTH_SELECTOR_NEXT}
                 onClick={() => moveCalendar(0, 1)}
                 className={styles.datePickerMonthSelectorItemStyle}
