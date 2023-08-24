@@ -186,8 +186,6 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
     const date = ref<Date | null>(new Date(2020, 0, 1));
     const isOpen = ref(true);
     const setIsOpen = (value: boolean) => (isOpen.value = value);
-    const disabledDate = (date: Date) =>
-      date.getDate() >= 10 && date.getDate() < 17;
     return { args, date, isOpen, setIsOpen };
   },
   template: `

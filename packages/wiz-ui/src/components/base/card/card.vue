@@ -63,14 +63,6 @@ defineOptions({
 });
 
 defineProps({
-  title: {
-    type: String,
-    required: false,
-  },
-  hint: {
-    type: String,
-    required: false,
-  },
   p: {
     type: String as PropType<SpacingKeys>,
     required: false,
