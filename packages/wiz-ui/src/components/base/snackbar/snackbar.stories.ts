@@ -22,20 +22,34 @@ export default {
         type: "text",
       },
     },
+    expand: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
   parameters: {
     layout: "fullscreen",
   },
 };
 
-export const Snackbar: StoryFn<typeof WizSnackbar> = (_, { argTypes }) => ({
+const Template: StoryFn<typeof WizSnackbar> = (_, { argTypes }) => ({
   components: { WizSnackbar },
   props: Object.keys(argTypes),
-  template: `<WizSnackbar :message="$props.message" :isStatic="true" />`,
+  template: `<WizSnackbar v-bind="$props" />`,
 });
 
-Snackbar.args = {
+export const Default = Template.bind({});
+Default.args = {
   message: "Hello World Hello World Hello World Hello World",
+  isStatic: true,
+};
+
+export const Expand = Template.bind({});
+Expand.args = {
+  message: "Hello World Hello World Hello World Hello World",
+  isStatic: true,
+  expand: true,
 };
 
 export const UseSnackbar: StoryFn<typeof WizSnackbar> = () => ({

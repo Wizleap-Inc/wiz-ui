@@ -1,9 +1,7 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const snackbarStyle = style({
-  maxWidth: "300px",
-  width: "fit-content",
   backgroundColor: THEME.color.green["800"],
   borderRadius: THEME.spacing.xs2,
   transitionDuration: "0.2s",
@@ -30,6 +28,16 @@ export const snackbarHiddenStyle = style({
 
 export const snackbarMessageStyle = style({
   width: "100%",
+});
+
+export const snackbarWidthStyle = styleVariants({
+  default: {
+    width: "fit-content",
+    maxWidth: "300px",
+  },
+  expand: {
+    width: "100%",
+  },
 });
 
 export const snackbarCloseButtonStyle = style({
