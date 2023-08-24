@@ -8,6 +8,7 @@ import { SnackbarContext } from "./snackbar-context";
 type SnackbarDataItem = {
   id: string;
   message: string;
+  expand: boolean;
 };
 
 const marginPx = (() => {
@@ -38,11 +39,12 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
       }, marginPx);
   };
 
-  const showSnackbar = (message: string) => {
+  const showSnackbar = (message: string, expand = false) => {
     setSnackbarData((current) => [
       ...current,
       {
         message,
+        expand,
         id: `${new Date().toISOString()}-${countRef.current++}`,
       },
     ]);
@@ -66,6 +68,7 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
         >
           <WizSnackbar
             message={item.message}
+            expand={item.expand}
             onClose={() => {
               setSnackbarData((current) =>
                 current.filter((_item) => _item.id !== item.id)

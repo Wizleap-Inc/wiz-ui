@@ -52,5 +52,6 @@ export const snackbarControllerStyle = style({
   position: "fixed",
   bottom: THEME.spacing.md,
   left: THEME.spacing.md,
+  right: THEME.spacing.md,
   zIndex: THEME.zIndex.floating,
 });

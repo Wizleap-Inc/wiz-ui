@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 
 type SnackbarContextType = {
-  showSnackbar: (message: string) => void;
+  showSnackbar: (message: string, expand?: boolean) => void;
 };
 
 export const SnackbarContext = createContext<SnackbarContextType>({
