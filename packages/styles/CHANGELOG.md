@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.15.1
+
+### Patch Changes
+
+- [#943](https://github.com/Wizleap-Inc/wiz-ui/pull/943) [`7f91e503`](https://github.com/Wizleap-Inc/wiz-ui/commit/7f91e503220bc61a09c889c989793d22b138d18d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - CircleGraph の色を変更
+
 ## 0.15.0
 
 ### Minor Changes
