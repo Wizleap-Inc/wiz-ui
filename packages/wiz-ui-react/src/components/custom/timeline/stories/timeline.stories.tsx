@@ -1,5 +1,4 @@
 import { StoryFn, StoryObj } from "@storybook/react";
-import { useMemo } from "react";
 
 import {
   WizMenuItem,
@@ -75,7 +74,7 @@ export const Small: Story = {
 
 const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
   const bp = useBreakpoint();
-  const device = useMemo(() => (bp === "sm" ? "mobile" : "pc"), [bp]);
+  const device = bp === "sm" ? "mobile" : "pc";
   const sectionFontSize = bp === "sm" ? "sm" : "lg";
 
   return (
