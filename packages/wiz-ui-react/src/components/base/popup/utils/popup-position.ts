@@ -300,7 +300,7 @@ export function getPopupPosition({
     scroll,
   });
   return {
-    top: popupRect.top,
-    left: popupRect.left,
+    top: Math.round(popupRect.top),
+    left: Math.round(popupRect.left),
   };
 }
