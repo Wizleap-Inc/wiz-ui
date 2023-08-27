@@ -106,5 +106,6 @@ export const ComponentName = {
   BreakpointProvider: "WizBreakpointProvider",
   Timeline: "WizTimeline",
   TimelineItem: "WizTimelineItem",
+  LoadingOverlay: "WizLoadingOverlay",
   ...IconComponentName,
 } as const;
