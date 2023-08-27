@@ -54,7 +54,7 @@ const DatePicker: FC<Props> = ({
     );
   };
 
-  const handleCalendar = (e: KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     e.preventDefault();
     switch (e.key) {
       case "ArrowUp":
@@ -105,7 +105,7 @@ const DatePicker: FC<Props> = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onClick={() => setIsOpen((prev) => !prev)}
-        onKeyDown={handleCalendar}
+        onKeyDown={handleKeyDown}
       >
         <WizHStack gap="xs" align="center" height="100%">
           {cancelButtonVisible ? (

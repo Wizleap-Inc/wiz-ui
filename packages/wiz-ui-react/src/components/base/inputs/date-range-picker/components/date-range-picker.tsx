@@ -121,15 +121,15 @@ const DateRangePicker: FC<Props> = ({
     return [];
   }, [dateRange]);
 
-  const handleCalendar = (e: KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     e.preventDefault();
     switch (e.key) {
       case "ArrowRight":
-        moveCalendar("nextMonth");
+        return moveCalendar("nextMonth");
       case "ArrowLeft":
-        moveCalendar("prevMonth");
+        return moveCalendar("prevMonth");
       case "Enter":
-        setIsOpen(!isOpen);
+        return setIsOpen(!isOpen);
     }
   };
 
@@ -183,7 +183,7 @@ const DateRangePicker: FC<Props> = ({
         onMouseLeave={() => setIsHover(false)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        onKeyDown={handleCalendar}
+        onKeyDown={handleKeyDown}
         disabled={disabled}
         className={clsx(
           styles.bodyStyle[disabled ? "disabled" : "active"],
