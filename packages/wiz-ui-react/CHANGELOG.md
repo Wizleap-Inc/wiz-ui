@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.30.0
+
+### Minor Changes
+
+- [#1020](https://github.com/Wizleap-Inc/wiz-ui/pull/1020) [`ea3f6694`](https://github.com/Wizleap-Inc/wiz-ui/commit/ea3f6694694506e5e7e701f65c4cf1a3dc3d6317) Thanks [@sor4chi](https://github.com/sor4chi)! - Loading Overlay コンポーネントの実装
+
+### Patch Changes
+
+- Updated dependencies [[`ea3f6694`](https://github.com/Wizleap-Inc/wiz-ui/commit/ea3f6694694506e5e7e701f65c4cf1a3dc3d6317)]:
+  - @wizleap-inc/wiz-ui-constants@0.12.0
+  - @wizleap-inc/wiz-ui-styles@0.16.0
+
 ## 0.29.0
 
 ### Minor Changes
