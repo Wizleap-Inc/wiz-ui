@@ -36,3 +36,4 @@ export * from "./text-area";
 export * from "./skeleton";
 export * from "./tables";
 export * from "./loading-overlay";
+export * from "./pagination";
