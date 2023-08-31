@@ -3,7 +3,15 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css"
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useCallback, useContext, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  KeyboardEvent,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import {
   WizCalendar,
@@ -113,6 +121,18 @@ const DateRangePicker: FC<Props> = ({
     return [];
   }, [dateRange]);
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    switch (e.key) {
+      case "ArrowRight":
+        return moveCalendar("nextMonth");
+      case "ArrowLeft":
+        return moveCalendar("prevMonth");
+      case "Enter":
+        return setIsOpen(!isOpen);
+    }
+  };
+
   const onClickDate = useCallback(
     (date: Date) => {
       const [start, end] = [dateRange.start, dateRange.end];
@@ -159,11 +179,12 @@ const DateRangePicker: FC<Props> = ({
         type="button"
         ref={anchor}
         aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        onKeyDown={handleKeyDown}
         disabled={disabled}
         className={clsx(
           styles.bodyStyle[disabled ? "disabled" : "active"],

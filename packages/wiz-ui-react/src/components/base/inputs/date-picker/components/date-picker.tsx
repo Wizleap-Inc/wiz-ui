@@ -7,7 +7,7 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useContext, useRef, useState } from "react";
+import { FC, KeyboardEvent, useContext, useRef, useState } from "react";
 
 import { WizCalendar, WizPopup, WizText } from "@/components";
 import { WizIcon } from "@/components/base/icon";
@@ -53,6 +53,23 @@ const DatePicker: FC<Props> = ({
       )
     );
   };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    switch (e.key) {
+      case "ArrowUp":
+        return moveCalendar(1, 0);
+      case "ArrowDown":
+        return moveCalendar(-1, 0);
+      case "ArrowRight":
+        return moveCalendar(0, 1);
+      case "ArrowLeft":
+        return moveCalendar(0, -1);
+      case "Enter":
+        return setIsOpen((prev) => !prev);
+    }
+  };
+
   const calendar = {
     title: `${currentMonth.getMonth() + 1}月`,
     year: currentMonth.getFullYear(),
@@ -89,6 +106,7 @@ const DatePicker: FC<Props> = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onClick={() => setIsOpen((prev) => !prev)}
+        onKeyDown={handleKeyDown}
       >
         <WizHStack gap="xs" align="center" height="100%">
           {cancelButtonVisible ? (
