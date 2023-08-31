@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.17.0
+
+### Minor Changes
+
+- [#728](https://github.com/Wizleap-Inc/wiz-ui/pull/728) [`43504479`](https://github.com/Wizleap-Inc/wiz-ui/commit/43504479c611ab50874964e93a35e4f97ae58bfe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - PrivateBaseInput の Padding を変更
+
 ## 0.16.0
 
 ### Minor Changes
