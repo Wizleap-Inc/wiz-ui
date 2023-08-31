@@ -67,6 +67,7 @@ const Snackbar: FC<Props> = ({
           </WizText>
         </div>
         <button
+          type="button"
           className={styles.snackbarCloseButtonStyle}
           onClick={handleClose}
         >

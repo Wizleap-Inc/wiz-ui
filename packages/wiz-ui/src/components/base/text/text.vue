@@ -11,6 +11,7 @@
       colorStyle[color],
       whiteSpaceStyle[whiteSpace],
       lineThrough && textLineThroughStyle,
+      display && textDisplayStyle[display],
     ]"
     :for="htmlFor"
     :style="overflowStyles"
@@ -35,6 +36,7 @@ import {
   textWordBreakStyle,
   textAlignStyle,
   textLineThroughStyle,
+  textDisplayStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text.css";
 import {
   lineHeightStyle,
@@ -102,6 +104,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  display: {
+    type: String as PropType<"inline" | "inline-block" | "inline-flex">,
+    required: false,
   },
 });
 

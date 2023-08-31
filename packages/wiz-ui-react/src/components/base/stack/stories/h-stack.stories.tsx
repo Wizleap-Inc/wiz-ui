@@ -26,7 +26,7 @@ const meta: Meta<typeof WizHStack> = {
       control: { type: "select" },
       options: ["start", "center", "end", "between", "around", "evenly"],
     },
-    wrap: {
+    nowrap: {
       control: { type: "boolean" },
     },
     reverse: {

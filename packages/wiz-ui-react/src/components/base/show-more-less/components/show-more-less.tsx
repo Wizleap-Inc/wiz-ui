@@ -1,4 +1,4 @@
-import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   showMoreLessContentStyle,
   showMoreLessDetailsStyle,
@@ -7,17 +7,13 @@ import {
   showMoreLessRotateIconStyle,
   showMoreLessSummaryStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
-import {
-  backgroundStyle,
-  colorStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   FC,
-  useRef,
-  ReactNode,
   MouseEventHandler,
+  ReactNode,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -28,8 +24,7 @@ interface Props {
   openMessage?: string;
   closeMessage?: string;
   width?: string;
-  bgColor?: ColorKeys;
-  fontColor?: ColorKeys;
+  variant?: "pc" | "mobile";
   onToggle: () => void;
   children: ReactNode;
 }
@@ -39,8 +34,7 @@ const ShowMoreLess: FC<Props> = ({
   openMessage = "もっと見る",
   closeMessage = "閉じる",
   width = "20rem",
-  bgColor,
-  fontColor = "gray.600",
+  variant = "pc",
   onToggle,
   children,
 }) => {
@@ -59,13 +53,7 @@ const ShowMoreLess: FC<Props> = ({
   }, [contentRef]);
 
   return (
-    <div
-      className={clsx(
-        showMoreLessDetailsStyle,
-        bgColor && backgroundStyle[bgColor]
-      )}
-      style={{ width: width }}
-    >
+    <div className={clsx(showMoreLessDetailsStyle)} style={{ width: width }}>
       <WizVStack>
         <div
           ref={contentRef}
@@ -74,14 +62,11 @@ const ShowMoreLess: FC<Props> = ({
         >
           {children}
         </div>
-        <div className={showMoreLessSummaryStyle} onClick={handleClick}>
-          <div
-            className={clsx(
-              showMoreLessMessageStyle,
-              bgColor && backgroundStyle[bgColor],
-              colorStyle[fontColor]
-            )}
-          >
+        <div
+          className={showMoreLessSummaryStyle[variant]}
+          onClick={handleClick}
+        >
+          <div className={clsx(showMoreLessMessageStyle)}>
             <WizHStack align="center" justify="between" gap="xs2">
               <div>{isOpen ? closeMessage : openMessage}</div>
               <div
@@ -90,7 +75,7 @@ const ShowMoreLess: FC<Props> = ({
                   isOpen && showMoreLessRotateIconStyle
                 )}
               >
-                <WizIcon size="xl2" icon={WizIExpandMore} color={fontColor} />
+                <WizIcon size="xl2" icon={WizIExpandMore} color="inherit" />
               </div>
             </WizHStack>
           </div>

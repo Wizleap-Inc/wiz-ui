@@ -37,6 +37,7 @@ type Props = {
   expand?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
+  showExLabel?: boolean;
   onChange: (value: number | null) => void;
 };
 
@@ -49,6 +50,7 @@ const SelectBox: FC<Props> = ({
   expand,
   error,
   isDirectionFixed = false,
+  showExLabel = false,
   onChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -118,15 +120,13 @@ const SelectBox: FC<Props> = ({
         tabIndex={disabled ? undefined : 0}
       >
         <div className={styles.selectBoxInnerBoxStyle}>
-          <WizHStack
-            align="center"
-            justify="between"
-            height="100%"
-            wrap={false}
-          >
+          <WizHStack align="center" justify="between" height="100%" nowrap>
             {selectedOption ? (
               <span className={styles.selectBoxInnerBoxSelectedValueStyle}>
                 {selectedOption.label}
+                {showExLabel &&
+                  selectedOption.exLabel &&
+                  " " + selectedOption.exLabel}
               </span>
             ) : (
               <span className={styles.selectBoxPlaceholderStyle}>

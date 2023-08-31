@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "react/button-has-type": "off"
+  }
+}

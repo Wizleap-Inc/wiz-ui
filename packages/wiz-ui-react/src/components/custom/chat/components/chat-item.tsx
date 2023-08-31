@@ -42,7 +42,7 @@ const ChatItem: FC<Props> = ({ content, maxChatItemWidth }) => {
               <WizAnchor
                 key={`anchor-${i}`}
                 href={part.content}
-                target="_blank"
+                openInNewTab
                 fontSize="xs"
               >
                 {part.content}

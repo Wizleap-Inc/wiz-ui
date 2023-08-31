@@ -74,6 +74,14 @@ export const Align: Story = {
   },
 };
 
+export const HideClose: Story = {
+  ...Template,
+  args: {
+    isOpen: true,
+    hideClose: true,
+  },
+};
+
 export const Playground: Story = {
   render: (args) => {
     const [isOpen, setIsOpen] = useState(false);

@@ -2,11 +2,11 @@ import { keyframes, style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const GRAPH_COLORS = [
-  THEME.color.green[700],
+  THEME.color.green[800],
   THEME.color.green[600],
-  THEME.color.green[500],
   THEME.color.green[400],
-  THEME.color.gray[300],
+  THEME.color.green[300],
+  THEME.color.gray[200],
 ];
 
 export const STROKE_WIDTH = 1.8;

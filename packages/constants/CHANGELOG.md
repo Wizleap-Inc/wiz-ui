@@ -1,5 +1,39 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.12.0
+
+### Minor Changes
+
+- [#1020](https://github.com/Wizleap-Inc/wiz-ui/pull/1020) [`ea3f6694`](https://github.com/Wizleap-Inc/wiz-ui/commit/ea3f6694694506e5e7e701f65c4cf1a3dc3d6317) Thanks [@sor4chi](https://github.com/sor4chi)! - Loading Overlay コンポーネントの実装
+
+## 0.11.0
+
+### Minor Changes
+
+- [#932](https://github.com/Wizleap-Inc/wiz-ui/pull/932) [`e1ff61b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/e1ff61b697284b4bb775930a10effc26a5282884) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDrawer を追加
+
+## 0.10.0
+
+### Minor Changes
+
+- [#510](https://github.com/Wizleap-Inc/wiz-ui/pull/510) [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba) Thanks [@RyushiAok](https://github.com/RyushiAok)! - feat: 非テキストボタンに aria-label を付与する
+
+- [#910](https://github.com/Wizleap-Inc/wiz-ui/pull/910) [`1c7e0163`](https://github.com/Wizleap-Inc/wiz-ui/commit/1c7e01631c5192c5d6d9cdf9a63cf78ae3ab5e77) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizFullModalView を追加
+
+## 0.9.0
+
+### Minor Changes
+
+- [#977](https://github.com/Wizleap-Inc/wiz-ui/pull/977) [`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Icon 追加: WizIContract, WizILocationCity, WizISettings, WizISmartphone, WizICircle
+
+## 0.8.1
+
+### Patch Changes
+
+- [#895](https://github.com/Wizleap-Inc/wiz-ui/pull/895) [`b8ecc5e1`](https://github.com/Wizleap-Inc/wiz-ui/commit/b8ecc5e15eb2ee14c3160ae93adc8f3014015822) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDatePicker の React 対応
+
+- [#900](https://github.com/Wizleap-Inc/wiz-ui/pull/900) [`ba785746`](https://github.com/Wizleap-Inc/wiz-ui/commit/ba7857468d67988537a6d0ea6a915dc978f715f4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDateRangePicker の React 対応
+
 ## 0.8.0
 
 ### Minor Changes

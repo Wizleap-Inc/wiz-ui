@@ -1,6 +1,8 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
+import { WizIPublic } from "@/components/icons";
+
 import WizSearchInput from "../search-input.vue";
 
 import {
@@ -43,6 +45,9 @@ export default {
       control: {
         type: "boolean",
       },
+    },
+    icon: {
+      control: { type: "object" },
     },
   },
 };
@@ -122,6 +127,15 @@ IsDirectionFixed.args = {
   isDirectionFixed: true,
   inputWidth: "15rem",
   options: simpleOption,
+};
+
+export const Icon = Template(true).bind({});
+Icon.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  isDirectionFixed: true,
+  inputWidth: "15rem",
+  options: simpleOption,
+  icon: WizIPublic,
 };
 
 export const Debug = Template(true).bind({});
