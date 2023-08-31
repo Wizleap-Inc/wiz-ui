@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui
 
+## 2.7.1
+
+### Patch Changes
+
+- [#963](https://github.com/Wizleap-Inc/wiz-ui/pull/963) [`a28c59ed`](https://github.com/Wizleap-Inc/wiz-ui/commit/a28c59ed8217c9ba86ff221690387111b66f7086) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup: fade アニメーションの Safari 対応
+
+- Updated dependencies [[`43504479`](https://github.com/Wizleap-Inc/wiz-ui/commit/43504479c611ab50874964e93a35e4f97ae58bfe)]:
+  - @wizleap-inc/wiz-ui-styles@0.17.0
+
 ## 2.7.0
 
 ### Minor Changes

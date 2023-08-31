@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.30.1
+
+### Patch Changes
+
+- [#990](https://github.com/Wizleap-Inc/wiz-ui/pull/990) [`729d34b9`](https://github.com/Wizleap-Inc/wiz-ui/commit/729d34b9faa224a0c2f2cacb1b4e61896e7ff5fe) Thanks [@okakyo](https://github.com/okakyo)! - [#965] DatePicker, DateRangePicker にキーボード操作追加 (React)
+
+- Updated dependencies [[`43504479`](https://github.com/Wizleap-Inc/wiz-ui/commit/43504479c611ab50874964e93a35e4f97ae58bfe)]:
+  - @wizleap-inc/wiz-ui-styles@0.17.0
+
 ## 0.30.0
 
 ### Minor Changes
