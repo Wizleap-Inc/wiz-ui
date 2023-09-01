@@ -61,3 +61,7 @@ export const messageBoxTitleStyle = style({
   color: THEME.color.gray[700],
   textAlign: "left",
 });
+
+export const messageBoxBodyStyle = style({
+  color: THEME.color.gray[700],
+});

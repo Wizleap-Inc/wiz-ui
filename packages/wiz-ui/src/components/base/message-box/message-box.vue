@@ -13,7 +13,7 @@
     />
     <WizVStack gap="xs">
       <div :class="messageBoxTitleStyle">{{ title }}</div>
-      <div v-if="hasDefaultSlot">
+      <div v-if="hasDefaultSlot" :class="messageBoxBodyStyle">
         <slot />
       </div>
     </WizVStack>
@@ -29,6 +29,7 @@ import {
   messageBoxIconStyle,
   messageBoxIconFillStyle,
   messageBoxTitleStyle,
+  messageBoxBodyStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
 import { computed, PropType, useSlots } from "vue";
 

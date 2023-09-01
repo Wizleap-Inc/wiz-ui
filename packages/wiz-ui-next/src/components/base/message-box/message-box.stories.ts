@@ -25,9 +25,7 @@ const Template: StoryFn<typeof WizMessageBox> = (args) => ({
   setup: () => ({ args }),
   template: `
     <WizMessageBox v-bind="args">
-      <WizText>
-        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-      </WizText>
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
     </WizMessageBox>
   `,
 });
