@@ -68,3 +68,14 @@ ExpandWithIcon.args = {
   expand: true,
   icon: WizIClose,
 };
+
+const EmptyTemplate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizMessageBox, WizText },
+  template: `<WizMessageBox v-bind="$props" />`,
+});
+export const EmptyBody = EmptyTemplate.bind({});
+EmptyBody.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  variant: "information",
+};

@@ -82,3 +82,11 @@ export const WithIcon: Story = {
     </WizMessageBox>
   ),
 };
+
+export const EmptyBody: Story = {
+  args: {
+    title: "ヘッダーヘッダーヘッダー",
+    variant: "information",
+  },
+  render: (args) => <WizMessageBox {...args} />,
+};

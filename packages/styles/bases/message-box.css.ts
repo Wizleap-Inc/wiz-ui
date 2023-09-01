@@ -58,7 +58,6 @@ export const messageBoxTitleStyle = style({
   fontWeight: 700,
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl2,
-  marginBottom: THEME.spacing.xs,
   color: THEME.color.gray[700],
   textAlign: "left",
 });
