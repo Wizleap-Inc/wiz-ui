@@ -8,6 +8,7 @@ import WizSearchInput from "../search-input.vue";
 import {
   debugOption,
   defaultOption,
+  emptyMessageOptions,
   expandOption,
   longLabelOption,
   openOption,
@@ -144,4 +145,12 @@ Debug.args = {
   inputWidth: "15rem",
   popupWidth: "25rem",
   options: debugOption,
+};
+
+export const EmptyMessage = Template(true).bind({});
+EmptyMessage.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  inputWidth: "15rem",
+  popupWidth: "25rem",
+  options: emptyMessageOptions,
 };

@@ -2,7 +2,7 @@
   <div>
     <div v-for="(option, key) in options">
       <div
-        v-if="option.children.length && selectedItem.includes(option.value)"
+        v-if="option.children && selectedItem.includes(option.value)"
         :class="searchPopupStyle"
         :style="{ height: '0px' }"
         :key="`${option.label}_${option.value}_${key}`"
@@ -17,72 +17,77 @@
           ]"
           :style="{ width: computedPopupWidth }"
         >
-          <div
-            v-for="(item, key) in option.children"
-            :key="`${item.label}_${item.value}_${key}`"
-          >
+          <div v-if="option.children.length">
             <div
-              v-if="item.children.length"
-              :class="searchPopupDropdownItemStyle"
+              v-for="(item, key) in option.children"
+              :key="`${item.label}_${item.value}_${key}`"
             >
               <div
-                :class="[
-                  searchDropdownLabelStyle,
-                  selectedItem.includes(item.value) &&
-                    searchDropdownSelectingItemStyle,
-                ]"
-                @mouseover="onMouseover(item.value, option.children)"
+                v-if="item.children && item.children.length"
+                :class="searchPopupDropdownItemStyle"
+              >
+                <div
+                  :class="[
+                    searchDropdownLabelStyle,
+                    selectedItem.includes(item.value) &&
+                      searchDropdownSelectingItemStyle,
+                  ]"
+                  @mouseover="onMouseover(item.value, option.children)"
+                  @mouseout="activeItem = null"
+                >
+                  {{ item.label }}
+                  <WizIcon
+                    size="xl2"
+                    :icon="WizIChevronRight"
+                    :color="computedIconColor(item.value)"
+                  />
+                </div>
+              </div>
+              <div
+                v-else
+                :class="searchDropdownCheckboxItemStyle"
+                @mouseover="activeItem = item.value"
                 @mouseout="activeItem = null"
               >
-                {{ item.label }}
-                <WizIcon
-                  size="xl2"
-                  :icon="WizIChevronRight"
-                  :color="computedIconColor(item.value)"
+                <input
+                  v-model="checkValues"
+                  :value="item.value"
+                  :class="searchCheckboxInputStyle"
+                  type="checkbox"
+                  :id="`${item.label}_${item.value}`"
+                  :name="`${item.label}_${item.value}`"
                 />
-              </div>
-            </div>
-            <div
-              v-else
-              :class="searchDropdownCheckboxItemStyle"
-              @mouseover="activeItem = item.value"
-              @mouseout="activeItem = null"
-            >
-              <input
-                v-model="checkValues"
-                :value="item.value"
-                :class="searchCheckboxInputStyle"
-                type="checkbox"
-                :id="`${item.label}_${item.value}`"
-                :name="`${item.label}_${item.value}`"
-              />
-              <label
-                :class="[
-                  searchCheckboxLabelStyle,
-                  (checkValues.includes(item.value) ||
-                    activeItem === item.value) &&
-                    searchCheckboxLabelCheckedStyle,
-                ]"
-                :for="`${item.label}_${item.value}`"
-              >
-                <WizICheck
-                  v-if="checkValues.includes(item.value)"
-                  :class="searchCheckboxIconStyle"
-                />
-                <span
+                <label
                   :class="[
+                    searchCheckboxLabelStyle,
                     (checkValues.includes(item.value) ||
                       activeItem === item.value) &&
-                      searchCheckboxBlockCheckedStyle,
+                      searchCheckboxLabelCheckedStyle,
                   ]"
-                  >{{ item.label }}</span
+                  :for="`${item.label}_${item.value}`"
                 >
-              </label>
+                  <WizICheck
+                    v-if="checkValues.includes(item.value)"
+                    :class="searchCheckboxIconStyle"
+                  />
+                  <span
+                    :class="[
+                      (checkValues.includes(item.value) ||
+                        activeItem === item.value) &&
+                        searchCheckboxBlockCheckedStyle,
+                    ]"
+                    >{{ item.label }}</span
+                  >
+                </label>
+              </div>
+              <WizDivider
+                v-if="key !== option.children.length - 1"
+                color="gray.300"
+              />
             </div>
-            <WizDivider
-              v-if="key !== option.children.length - 1"
-              color="gray.300"
-            />
+          </div>
+          <div v-else :class="[searchDropdownEmptyMessageStyle]">
+            {{ emptyMessage }}
           </div>
         </div>
         <WizSearchPopup
@@ -108,6 +113,7 @@ import {
   searchCheckboxLabelCheckedStyle,
   searchCheckboxLabelStyle,
   searchDropdownCheckboxItemStyle,
+  searchDropdownEmptyMessageStyle,
   searchDropdownLabelStyle,
   searchDropdownSelectingItemStyle,
   searchPopupBlockBorderRadiusStyle,
@@ -144,6 +150,11 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  emptyMessage: {
+    type: String,
+    required: false,
+    default: "選択肢がありません。",
+  },
 });
 
 const emit = defineEmits<{
@@ -177,7 +188,7 @@ const scrollAmount = ref<number>(0);
 const scrollItems = ref<SearchInputOption[]>([]);
 const onScroll = (parentOrder: number) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
-  scrollItems.value = props.options[parentOrder].children;
+  scrollItems.value = props.options[parentOrder].children ?? [];
 };
 watch(
   [
@@ -215,9 +226,10 @@ const computedIconColor = computed(() => (value: number) => {
   return "gray.500";
 });
 
-const onMouseover = (value: number, options: SearchInputOption[]) => {
+const onMouseover = (value: number, options?: SearchInputOption[]) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
   activeItem.value = value;
+  if (!options) return;
   activeItemIndex.value = options.findIndex((option) => option.value === value);
   options.forEach((option: SearchInputOption) => {
     if (mutableSelectedItem.value.includes(option.value)) {

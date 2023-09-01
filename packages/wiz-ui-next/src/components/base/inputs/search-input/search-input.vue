@@ -39,7 +39,7 @@
             v-for="(option, key) in filteredOptions"
             :key="`${option.label}_${option.value}_${key}`"
           >
-            <div v-if="option.children.length" :class="searchDropdownItemStyle">
+            <div v-if="option.children" :class="searchDropdownItemStyle">
               <WizHStack
                 align="center"
                 justify="between"
@@ -257,9 +257,10 @@ const filterOptions =
   (match: (label: string) => boolean) =>
   (options: SearchInputOption[]): SearchInputOption[] =>
     options.flatMap((option) => {
-      if (option.children.length === 0) {
-        return match(option.label) ? [option] : [];
+      if (!option.children) {
+        return [option];
       }
+      if (option.children.length === 0) return [];
       if (match(option.label)) return [option];
       const children = filterOptions(match)(option.children);
       if (children.length === 0) return [];
