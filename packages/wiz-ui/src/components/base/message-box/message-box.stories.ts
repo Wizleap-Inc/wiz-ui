@@ -23,7 +23,7 @@ export default {
 const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizMessageBox, WizText },
-  template: `<WizMessageBox v-bind="$props"><WizText>{{ slot }}</WizText></WizMessageBox>`,
+  template: `<WizMessageBox v-bind="$props">{{ slot }}</WizMessageBox>`,
 });
 
 export const Information = Template.bind({});
@@ -67,4 +67,15 @@ ExpandWithIcon.args = {
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
   icon: WizIClose,
+};
+
+const EmptyTemplate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizMessageBox, WizText },
+  template: `<WizMessageBox v-bind="$props" />`,
+});
+export const EmptyBody = EmptyTemplate.bind({});
+EmptyBody.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  variant: "information",
 };
