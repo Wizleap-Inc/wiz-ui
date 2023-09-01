@@ -39,12 +39,10 @@ const MessageBox = forwardRef(
             <WizIcon icon={icon} color={iconFontColor[variant]} />
           </div>
         )}
-        <div>
-          <WizVStack gap="xs">
-            <div className={styles.messageBoxTitleStyle}>{title}</div>
-            {children && <div>{children}</div>}
-          </WizVStack>
-        </div>
+        <WizVStack gap="xs">
+          <div className={styles.messageBoxTitleStyle}>{title}</div>
+          {children && <div>{children}</div>}
+        </WizVStack>
       </div>
     );
   }
