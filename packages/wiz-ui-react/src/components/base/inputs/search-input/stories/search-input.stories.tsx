@@ -7,7 +7,12 @@ import { WizIPublic } from "@/components/icons";
 
 import { WizSearchInput } from "..";
 
-import { normalOptions, longLabelOptions, debugOptions } from "./dummy-data";
+import {
+  debugOptions,
+  longLabelOptions,
+  normalOptions,
+  taggedOptions,
+} from "./dummy-data";
 
 const meta: Meta<typeof WizSearchInput> = {
   title: "Base/Input/SearchInput",
@@ -58,6 +63,15 @@ export const LongLabel: Story = {
   },
 };
 
+export const Tag: Story = {
+  ...Template,
+  args: {
+    options: taggedOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    inputWidth: "15rem",
+    popupWidth: "20rem",
+  },
+};
 export const Expand: Story = {
   ...Template,
   args: {
