@@ -34,6 +34,23 @@ export const tagColorStyle = styleVariants({
     backgroundColor: THEME.color.gray[300],
     color: THEME.color.gray[900],
   },
+  gray: {
+    backgroundColor: THEME.color.gray[600],
+    color: THEME.color.white[800],
+  },
+  darkGray: {
+    backgroundColor: THEME.color.gray[700],
+    color: THEME.color.white[800],
+  },
+  greenFill: {
+    backgroundColor: THEME.color.green[800],
+    color: THEME.color.white[800],
+  },
+  white: {
+    backgroundColor: THEME.color.white[800],
+    color: THEME.color.gray[800],
+    border: `1px solid ${THEME.color.gray[400]}`,
+  },
 });
 
 export const tagIconColorStyle: Record<string, ColorKeys> = {
@@ -43,4 +60,8 @@ export const tagIconColorStyle: Record<string, ColorKeys> = {
   yellow: "yellow.800",
   blue: "blue.800",
   mono: "gray.900",
+  gray: "white.800",
+  darkGray: "white.800",
+  greenFill: "white.800",
+  white: "gray.800",
 };

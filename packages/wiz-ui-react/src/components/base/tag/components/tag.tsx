@@ -2,6 +2,8 @@ import {
   ComponentName,
   FontSizeKeys,
   FontWeightKeys,
+  THEME,
+  getRelativeFontSize,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
@@ -16,9 +18,21 @@ import { TIcon, WizIcon } from "@/components";
 type Props = {
   label: string;
   icon?: TIcon;
-  variant?: "info" | "red" | "green" | "yellow" | "blue" | "mono";
+  variant?:
+    | "info"
+    | "red"
+    | "green"
+    | "yellow"
+    | "blue"
+    | "mono"
+    | "gray"
+    | "darkGray"
+    | "greenFill"
+    | "white";
+  lineHeight?: FontSizeKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
+  round?: boolean;
   width?: string;
 } & ComponentProps<"div">;
 
@@ -30,6 +44,8 @@ const Tag = forwardRef(
       variant = "info",
       fontSize = "md",
       fontWeight = "normal",
+      round = false,
+      lineHeight,
       width,
       ...props
     }: Props,
@@ -46,6 +62,8 @@ const Tag = forwardRef(
         )}
         style={{
           width: width || "max-content",
+          borderRadius: round ? THEME.spacing.xl2 : THEME.spacing.xs2,
+          lineHeight: lineHeight && THEME.fontSize[lineHeight],
         }}
         {...props}
       >
@@ -53,7 +71,7 @@ const Tag = forwardRef(
           <WizIcon
             icon={icon}
             color={styles.tagIconColorStyle[variant]}
-            size={fontSize}
+            size={getRelativeFontSize(fontSize, 3)}
           />
         )}
         {label}
