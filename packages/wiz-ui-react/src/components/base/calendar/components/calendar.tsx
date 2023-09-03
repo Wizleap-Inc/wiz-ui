@@ -11,6 +11,12 @@ type Props = {
   activeDates?: DateStatus[];
   filledWeeks?: boolean;
   onClickDate?: (selectedValue: Date) => void;
+  /**
+   * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
+   * @param date
+   * @returns {boolean} `true`: 無効な日付, `false`: 有効な日付
+   */
+  disabledDate?: (date: Date) => boolean;
 };
 
 const Calendar: FC<Props> = ({
@@ -18,6 +24,7 @@ const Calendar: FC<Props> = ({
   activeDates,
   filledWeeks,
   onClickDate,
+  disabledDate = () => false,
 }) => {
   const calendarData = useMemo(
     () => createCalendarData(currentMonth, filledWeeks),
@@ -39,6 +46,7 @@ const Calendar: FC<Props> = ({
     dateStatus?: DateStatus
   ): keyof typeof styles.calendarItemStyle {
     if (item.isOutOfCurrentMonth) return "outOfCurrentMonth";
+    if (disabledDate(item.date)) return "disabledDate";
     return dateStatus?.state ?? "inCurrentMonth";
   }
 
@@ -85,7 +93,11 @@ const Calendar: FC<Props> = ({
                 >
                   <button
                     type="button"
-                    disabled={item.isOutOfCurrentMonth}
+                    disabled={
+                      item.isOutOfCurrentMonth ||
+                      getItemStyleState(item, activeDateStatus) ===
+                        "disabledDate"
+                    }
                     aria-label={`${currentMonth.getFullYear()}年${
                       currentMonth.getMonth() + 1
                     }月${item.label}日${activeDateStatus ? "-選択済み" : ""}`}

@@ -24,6 +24,7 @@ export function createCalendarData(
     length: firstDayOfMonth,
   })
     .map((_, index) => ({
+      date: new Date(year, month - 1, LastDateOfLastMonth - index),
       label: shouldFillWeeks ? String(LastDateOfLastMonth - index) : "",
       isOutOfCurrentMonth: true,
     }))
@@ -33,6 +34,7 @@ export function createCalendarData(
   const currentMonthDataItems: CalendarDataItem[] = Array.from({
     length: lastDateOfMonth,
   }).map((_, index) => ({
+    date: new Date(year, month, index + 1),
     label: String(index + 1),
   }));
 
@@ -40,6 +42,7 @@ export function createCalendarData(
   const nextMonthDataItems: CalendarDataItem[] = Array.from({
     length: 6 - lastDayOfMonth,
   }).map((_, index) => ({
+    date: new Date(year, month + 1, index + 1),
     label: shouldFillWeeks ? String(index + 1) : "",
     isOutOfCurrentMonth: true,
   }));
