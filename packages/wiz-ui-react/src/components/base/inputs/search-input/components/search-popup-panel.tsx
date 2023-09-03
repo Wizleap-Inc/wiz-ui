@@ -6,10 +6,12 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import {
   WizCheckBox,
   WizDivider,
+  WizHStack,
   WizIChevronRight,
   WizIcon,
 } from "@/components";
 
+import { SearchInputTag } from "./search-input-tag";
 import { SearchInputOption } from "./types";
 
 type Props = {
@@ -62,11 +64,13 @@ export const SearchPopupPanel: FC<Props> = ({
         )}
         style={{ width }}
       >
-        {options.map((option, i) => {
+        {options.map((option) => {
           const isActive = activeOption && activeOption.value === option.value;
+          const optionTag = option.tag;
           return (
             <div key={`${option.label}-${option.value}`}>
               {option.children.length > 0 ? (
+                // Dropdown
                 <div
                   className={styles.searchDropdownItemStyle}
                   onMouseOver={() => setActiveValue(option.value)}
@@ -77,33 +81,75 @@ export const SearchPopupPanel: FC<Props> = ({
                       isActive && styles.searchDropdownSelectingItemStyle
                     )}
                   >
-                    {option.label}
-                    <WizIcon
-                      size="xl2"
-                      icon={WizIChevronRight}
-                      color={isActive ? "green.800" : "gray.500"}
-                    />
+                    {optionTag ? (
+                      // TagつきDropdown
+                      <WizHStack width="100%" justify="between" align="center">
+                        <div style={{ width: `calc(100% - 4.5rem)` }}>
+                          {option.label}
+                        </div>
+                        <WizHStack gap="xs" width="70px">
+                          <SearchInputTag label={optionTag.label} />
+                          <WizIcon
+                            size="xl2"
+                            icon={WizIChevronRight}
+                            color={isActive ? "green.800" : "gray.500"}
+                          />
+                        </WizHStack>
+                      </WizHStack>
+                    ) : (
+                      // Tagなし
+                      <>
+                        {option.label}
+                        <WizIcon
+                          size="xl2"
+                          icon={WizIChevronRight}
+                          color={isActive ? "green.800" : "gray.500"}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               ) : (
+                // CheckBox
                 <div
                   className={styles.searchDropdownCheckboxItemStyle}
                   style={{ lineHeight: THEME.fontSize.xl3 }}
                 >
-                  <WizCheckBox
-                    options={[
-                      {
-                        label: option.label,
-                        value: option.value,
-                        key: `${option.label}-${option.value}`,
-                      },
-                    ]}
-                    values={values}
-                    onChange={handleChangeValues}
-                  />
+                  {optionTag ? (
+                    // TagつきCheckBox
+                    <WizHStack width="100%" justify="between" align="center">
+                      <div style={{ width: `calc(100% - 2.5rem)` }}>
+                        <WizCheckBox
+                          options={[
+                            {
+                              label: option.label,
+                              value: option.value,
+                              key: `${option.label}-${option.value}`,
+                            },
+                          ]}
+                          values={values}
+                          onChange={handleChangeValues}
+                        />
+                      </div>
+                      <SearchInputTag label={optionTag?.label || "タグ"} />
+                    </WizHStack>
+                  ) : (
+                    // Tagなし
+                    <WizCheckBox
+                      options={[
+                        {
+                          label: option.label,
+                          value: option.value,
+                          key: `${option.label}-${option.value}`,
+                        },
+                      ]}
+                      values={values}
+                      onChange={handleChangeValues}
+                    />
+                  )}
                 </div>
               )}
-              {i !== options.length - 1 && <WizDivider color="gray.300" />}
+              <WizDivider color="gray.300" />
             </div>
           );
         })}
