@@ -177,19 +177,3 @@ export const searchCheckboxIconStyle = style({
 export const searchCheckboxBlockCheckedStyle = style({
   color: THEME.color.green["800"],
 });
-
-export const searchInputTagStyle = style({
-  flexShrink: 0,
-  width: THEME.fontSize.xl,
-  padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
-  borderRadius: THEME.spacing.xs2,
-  border: `1px solid ${THEME.color.gray["400"]}`,
-  background: THEME.color.white[800],
-  color: THEME.color.gray["800"],
-  lineHeight: THEME.fontSize.sm,
-  fontSize: THEME.fontSize.xs2,
-  textAlign: "center",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-});

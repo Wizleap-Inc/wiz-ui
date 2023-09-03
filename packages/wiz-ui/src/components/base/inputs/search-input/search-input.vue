@@ -59,7 +59,13 @@
                       {{ option.label }}
                     </div>
                     <WizHStack gap="xs" width="70px">
-                      <WizSearchInputTag :label="option.tag.label" />
+                      <WizTag
+                        :label="option.tag.label"
+                        variant="white"
+                        width="20px"
+                        font-size="xs2"
+                        line-height="sm"
+                      />
                       <WizIcon
                         size="xl2"
                         :icon="WizIChevronRight"
@@ -124,7 +130,13 @@
                       >
                     </label>
                   </div>
-                  <WizSearchInputTag :label="option.tag.label" />
+                  <WizTag
+                    :label="option.tag.label"
+                    variant="white"
+                    width="20px"
+                    font-size="xs2"
+                    line-height="sm"
+                  />
                 </WizHStack>
               </template>
               <!-- Tagなし -->
@@ -208,8 +220,8 @@ import {
   WizIcon,
   WizPopup,
   WizPopupContainer,
-  WizSearchInputTag,
   WizSearchPopup,
+  WizTag,
 } from "@/components";
 import { TIcon, WizICheck, WizIChevronRight } from "@/components/icons";
 

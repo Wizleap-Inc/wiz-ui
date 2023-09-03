@@ -9,9 +9,9 @@ import {
   WizHStack,
   WizIChevronRight,
   WizIcon,
+  WizTag,
 } from "@/components";
 
-import { SearchInputTag } from "./search-input-tag";
 import { SearchInputOption } from "./types";
 
 type Props = {
@@ -88,7 +88,13 @@ export const SearchPopupPanel: FC<Props> = ({
                           {option.label}
                         </div>
                         <WizHStack gap="xs" width="70px">
-                          <SearchInputTag label={optionTag.label} />
+                          <WizTag
+                            label={optionTag.label}
+                            variant="white"
+                            width="20px"
+                            fontSize="xs2"
+                            lineHeight="sm"
+                          />
                           <WizIcon
                             size="xl2"
                             icon={WizIChevronRight}
@@ -131,7 +137,13 @@ export const SearchPopupPanel: FC<Props> = ({
                           onChange={handleChangeValues}
                         />
                       </div>
-                      <SearchInputTag label={optionTag.label} />
+                      <WizTag
+                        label={optionTag.label}
+                        variant="white"
+                        width="20px"
+                        fontSize="xs2"
+                        lineHeight="sm"
+                      />
                     </WizHStack>
                   ) : (
                     // Tagなし
