@@ -5,4 +5,5 @@
 "@wizleap-inc/wiz-ui-styles": minor
 ---
 
+Feat(WizTag): Variant を追加
 Feat(WizSearchInput): tag 機能を追加
