@@ -179,6 +179,7 @@ export const searchCheckboxBlockCheckedStyle = style({
 });
 
 export const searchInputTagStyle = style({
+  flexShrink: 0,
   width: THEME.fontSize.xl,
   padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
   borderRadius: THEME.spacing.xs2,

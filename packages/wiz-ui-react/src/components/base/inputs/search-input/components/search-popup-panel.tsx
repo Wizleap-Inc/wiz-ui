@@ -131,7 +131,7 @@ export const SearchPopupPanel: FC<Props> = ({
                           onChange={handleChangeValues}
                         />
                       </div>
-                      <SearchInputTag label={optionTag?.label || "タグ"} />
+                      <SearchInputTag label={optionTag.label} />
                     </WizHStack>
                   ) : (
                     // Tagなし

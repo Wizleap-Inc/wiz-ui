@@ -71,6 +71,7 @@ export const ComponentName = {
   NotificationPanel: "WizNotificationPanel",
   SearchInput: "WizSearchInput",
   SearchPopup: "WizSearchPopup",
+  SearchInputTag: "WizSearchInputTag",
   Stack: "WizStack",
   Skeleton: "WizSkeleton",
   SkeletonText: "WizSkeletonText",

@@ -1,4 +1,4 @@
-type Tag = {
+export type Tag = {
   label: string;
 };
 

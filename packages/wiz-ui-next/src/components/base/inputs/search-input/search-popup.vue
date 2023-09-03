@@ -19,6 +19,7 @@
           v-for="(item, key) in option.children"
           :key="`${item.label}_${item.value}_${key}`"
         >
+          <!-- Dropdown -->
           <div
             v-if="item.children.length"
             :class="searchPopupDropdownItemStyle"
@@ -34,55 +35,114 @@
               @mouseover="onMouseover(item.value, option.children)"
               @mouseout="activeItem = null"
             >
-              {{ item.label }}
-              <WizIcon
-                size="xl2"
-                :icon="WizIChevronRight"
-                :color="computedIconColor(item.value)"
-              />
+              <!-- TagつきDropdown -->
+              <template v-if="item.tag">
+                <WizHStack width="100%" justify="between" align="center">
+                  <div style="width: calc(100% - 4.5rem)">
+                    {{ option.label }}
+                  </div>
+                  <WizHStack gap="xs" width="70px">
+                    <WizSearchInputTag :label="item.tag.label" />
+                    <WizIcon
+                      size="xl2"
+                      :icon="WizIChevronRight"
+                      :color="computedIconColor(item.value)"
+                    />
+                  </WizHStack>
+                </WizHStack>
+              </template>
+              <!-- Tagなし -->
+              <template v-else>
+                {{ item.label }}
+                <WizIcon
+                  size="xl2"
+                  :icon="WizIChevronRight"
+                  :color="computedIconColor(item.value)"
+                />
+              </template>
             </WizHStack>
           </div>
+          <!-- Checkbox -->
           <div
             v-else
             :class="searchDropdownCheckboxItemStyle"
             @mouseover="activeItem = item.value"
             @mouseout="activeItem = null"
           >
-            <input
-              v-model="checkValues"
-              :value="item.value"
-              :class="searchCheckboxInputStyle"
-              type="checkbox"
-              :id="`${item.label}_${item.value}`"
-              :name="`${item.label}_${item.value}`"
-            />
-            <label
-              :class="[
-                searchCheckboxLabelStyle,
-                (checkValues.includes(item.value) ||
-                  activeItem === item.value) &&
-                  searchCheckboxLabelCheckedStyle,
-              ]"
-              :for="`${item.label}_${item.value}`"
-            >
-              <WizICheck
-                v-if="checkValues.includes(item.value)"
-                :class="searchCheckboxIconStyle"
+            <!-- Tag + Checkbox -->
+            <template v-if="item.tag">
+              <WizHStack width="100%" justify="between" align="center">
+                <div style="width: `calc(100% - 2.5rem) `">
+                  <input
+                    v-model="checkValues"
+                    :value="item.value"
+                    :class="searchCheckboxInputStyle"
+                    type="checkbox"
+                    :id="`${item.label}_${item.value}`"
+                    :name="`${item.label}_${item.value}`"
+                  />
+                  <label
+                    :class="[
+                      searchCheckboxLabelStyle,
+                      (checkValues.includes(item.value) ||
+                        activeItem === item.value) &&
+                        searchCheckboxLabelCheckedStyle,
+                    ]"
+                    :for="`${item.label}_${item.value}`"
+                  >
+                    <WizICheck
+                      v-if="checkValues.includes(item.value)"
+                      :class="searchCheckboxIconStyle"
+                    />
+                    <span
+                      :class="[
+                        (checkValues.includes(item.value) ||
+                          activeItem === item.value) &&
+                          searchCheckboxBlockCheckedStyle,
+                      ]"
+                      >{{ item.label }}</span
+                    >
+                  </label>
+                </div>
+                <WizSearchInputTag :label="item.tag.label" />
+              </WizHStack>
+            </template>
+
+            <!-- Tagなし + Checkbox -->
+            <template v-else>
+              <input
+                v-model="checkValues"
+                :value="item.value"
+                :class="searchCheckboxInputStyle"
+                type="checkbox"
+                :id="`${item.label}_${item.value}`"
+                :name="`${item.label}_${item.value}`"
               />
-              <span
+              <label
                 :class="[
+                  searchCheckboxLabelStyle,
                   (checkValues.includes(item.value) ||
                     activeItem === item.value) &&
-                    searchCheckboxBlockCheckedStyle,
+                    searchCheckboxLabelCheckedStyle,
                 ]"
-                >{{ item.label }}</span
+                :for="`${item.label}_${item.value}`"
               >
-            </label>
+                <WizICheck
+                  v-if="checkValues.includes(item.value)"
+                  :class="searchCheckboxIconStyle"
+                />
+                <span
+                  :class="[
+                    (checkValues.includes(item.value) ||
+                      activeItem === item.value) &&
+                      searchCheckboxBlockCheckedStyle,
+                  ]"
+                  >{{ item.label }}</span
+                >
+              </label>
+            </template>
           </div>
-          <WizDivider
-            v-if="key !== option.children.length - 1"
-            color="gray.300"
-          />
+          <WizDivider color="gray.300" />
         </div>
       </div>
       <WizSearchPopup
@@ -116,7 +176,13 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { PropType, computed, ref, watch } from "vue";
 
-import { WizDivider, WizHStack, WizIcon, WizSearchPopup } from "@/components";
+import {
+  WizDivider,
+  WizHStack,
+  WizIcon,
+  WizSearchInputTag,
+  WizSearchPopup,
+} from "@/components";
 import { WizICheck, WizIChevronRight } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
