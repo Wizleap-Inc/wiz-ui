@@ -3,7 +3,6 @@ import {
   FontSizeKeys,
   FontWeightKeys,
   THEME,
-  getRelativeFontSize,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
@@ -71,7 +70,7 @@ const Tag = forwardRef(
           <WizIcon
             icon={icon}
             color={styles.tagIconColorStyle[variant]}
-            size={getRelativeFontSize(fontSize, 3)}
+            size={fontSize}
           />
         )}
         {label}
