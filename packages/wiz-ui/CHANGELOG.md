@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui
 
+## 2.7.2
+
+### Patch Changes
+
+- [#1033](https://github.com/Wizleap-Inc/wiz-ui/pull/1033) [`65d44893`](https://github.com/Wizleap-Inc/wiz-ui/commit/65d4489363c0a67ca0b08ad100369ea43894f6c1) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(message-box): slot が空のときにタイトル下に margin が入ってしまうのを解消
+
+- Updated dependencies [[`65d44893`](https://github.com/Wizleap-Inc/wiz-ui/commit/65d4489363c0a67ca0b08ad100369ea43894f6c1)]:
+  - @wizleap-inc/wiz-ui-styles@0.17.1
+
 ## 2.7.1
 
 ### Patch Changes
