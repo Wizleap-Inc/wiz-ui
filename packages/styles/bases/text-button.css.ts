@@ -56,7 +56,7 @@ export const textButtonSizeStyle = styleVariants({
     {
       padding: `${THEME.spacing["xs2"]} ${THEME.spacing["sm"]}`,
       fontWeight: THEME.fontWeight.bold,
-      lineHeight: THEME.fontSize.lg,
+      lineHeight: THEME.fontSize.sm,
       fontSize: THEME.fontSize.xs2,
     },
   ],
@@ -65,7 +65,7 @@ export const textButtonSizeStyle = styleVariants({
       padding: `${THEME.spacing["xs"]} ${THEME.spacing["xl"]}`,
       fontWeight: THEME.fontWeight.bold,
       fontSize: THEME.fontSize.xs,
-      lineHeight: THEME.fontSize.xl,
+      lineHeight: THEME.fontSize.lg,
     },
   ],
   md: [
