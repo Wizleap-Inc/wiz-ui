@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
-import { ref, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 
 defineOptions({
   name: ComponentName.Drawer,
@@ -41,6 +41,16 @@ const props = defineProps({
     required: false,
     default: "0px",
   },
+  /**
+   * slideFromがleftの場合は左から、rightの場合は右からスライドインします。
+   * @type {"left" | "right"}
+   * @default "left"
+   */
+  slideFrom: {
+    type: String as PropType<"left" | "right">,
+    required: false,
+    default: "left",
+  },
 });
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -53,7 +63,10 @@ watch(props, () => {
     containerRef.value?.animate(
       [
         {
-          transform: "translateX(-100vw)",
+          transform:
+            props.slideFrom === "left"
+              ? "translateX(-100vw)"
+              : "translateX(100vw)",
         },
         {
           transform: "translateX(0)",
@@ -73,7 +86,10 @@ watch(props, () => {
           transform: "translateX(0)",
         },
         {
-          transform: "translateX(-100vw)",
+          transform:
+            props.slideFrom === "left"
+              ? "translateX(-100vw)"
+              : "translateX(100vw)",
         },
       ],
       {

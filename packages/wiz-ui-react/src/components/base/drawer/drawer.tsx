@@ -14,9 +14,20 @@ type Props = {
    */
   offsetTop?: string;
   children: ReactNode;
+  /**
+   * slideFromがleftの場合は左から、rightの場合は右からスライドインします。
+   * @type {"left" | "right"}
+   * @default "left"
+   */
+  slideFrom?: "left" | "right";
 };
 
-const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
+const Drawer: FC<Props> = ({
+  isOpen,
+  offsetTop = "0px",
+  slideFrom = "left",
+  children,
+}: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isActuallyOpen, setIsActuallyOpen] = useState(isOpen);
 
@@ -27,7 +38,8 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
       containerRef.current?.animate(
         [
           {
-            transform: "translateX(-100vw)",
+            transform:
+              slideFrom === "left" ? "translateX(-100vw)" : "translateX(100vw)",
           },
           {
             transform: "translateX(0)",
@@ -47,7 +59,8 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
             transform: "translateX(0)",
           },
           {
-            transform: "translateX(-100vw)",
+            transform:
+              slideFrom === "left" ? "translateX(-100vw)" : "translateX(100vw)",
           },
         ],
         {
