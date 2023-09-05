@@ -9,6 +9,7 @@ type Props = {
   active?: boolean;
   disabled?: boolean;
   notificationCount?: number;
+  badgeColor?: "red" | "green";
   width?: string;
   onClick: (name: string) => void;
 };
@@ -19,6 +20,7 @@ const TabPane: FC<Props> = ({
   active,
   disabled,
   notificationCount = 0,
+  badgeColor = "red",
   width = "100%",
   onClick,
 }: Props) => {
@@ -36,7 +38,7 @@ const TabPane: FC<Props> = ({
     >
       <span className={styles.tabPaneLabelStyle}>{label}</span>
       {notificationCount > 0 && (
-        <span className={styles.tabPaneNotificationStyle}>
+        <span className={styles.tabPaneNotificationStyle[badgeColor]}>
           {notificationCount}
         </span>
       )}
