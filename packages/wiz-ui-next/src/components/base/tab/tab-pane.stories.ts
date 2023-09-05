@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import TabPane from "./tab-pane.vue";
 
@@ -56,6 +56,13 @@ export const NotificationCount = Template.bind({});
 NotificationCount.args = {
   label: "ほげほげ",
   notificationCount: 10,
+};
+
+export const BadgeColor = Template.bind({});
+BadgeColor.args = {
+  label: "ほげほげ",
+  notificationCount: 10,
+  badgeColor: "green",
 };
 
 export const Width = Template.bind({});
