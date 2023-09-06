@@ -47,11 +47,11 @@ export const Default: Story = {
   },
 };
 
-export const Hover: Story = {
+export const Open: Story = {
   ...Template,
   args: {
     content,
-    hover: true,
+    isOpen: true,
   },
   parameters: {
     docs: {
@@ -67,7 +67,7 @@ export const Direction: Story = {
   ...Template,
   args: {
     content,
-    hover: true,
+    isOpen: true,
     direction: "right",
   },
   parameters: {
@@ -84,7 +84,7 @@ export const IsDirectionFixed: Story = {
   ...Template,
   args: {
     content,
-    hover: true,
+    isOpen: true,
     direction: "right",
     isDirectionFixed: true,
   },
