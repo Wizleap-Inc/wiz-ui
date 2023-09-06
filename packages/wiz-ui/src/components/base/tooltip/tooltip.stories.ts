@@ -12,7 +12,7 @@ export default {
       control: { type: "select" },
       options: ["top", "bottom", "left", "right"],
     },
-    hover: { control: { type: "boolean" } },
+    isOpen: { control: { type: "boolean" } },
     isDirectionFixed: { control: { type: "boolean" } },
   },
 };
@@ -58,7 +58,7 @@ contentに改行文字(\\n)を含む文字列を渡すと、改行されて表�
 
 export const Hover = Template.bind({});
 Hover.args = {
-  hover: true,
+  isOpen: true,
 };
 Hover.parameters = {
   docs: {
@@ -79,7 +79,7 @@ Hover.parameters = {
 export const Direction = Template.bind({});
 Direction.args = {
   direction: "right",
-  hover: true,
+  isOpen: true,
 };
 Direction.parameters = {
   docs: {
@@ -112,7 +112,7 @@ export const LongTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
   `,
 });
 LongTextFixedOutBox.args = {
-  hover: true,
+  isOpen: true,
 };
 LongTextFixedOutBox.parameters = {
   docs: {
@@ -145,7 +145,7 @@ export const ShortTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
   `,
 });
 ShortTextFixedOutBox.args = {
-  hover: true,
+  isOpen: true,
 };
 ShortTextFixedOutBox.parameters = {
   docs: {
@@ -178,7 +178,7 @@ export const IsDirectionFixed: StoryFn = (_, { argTypes }) => ({
   `,
 });
 IsDirectionFixed.args = {
-  hover: true,
+  isOpen: true,
   direction: "right",
   isDirectionFixed: true,
 };
