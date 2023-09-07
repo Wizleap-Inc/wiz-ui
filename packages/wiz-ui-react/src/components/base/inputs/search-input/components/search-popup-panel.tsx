@@ -16,6 +16,7 @@ type Props = {
   options: SearchInputOption[];
   values: number[];
   width?: string;
+  emptyMessage?: string;
   onChangeValues: (values: number[]) => void;
 };
 
@@ -23,6 +24,7 @@ export const SearchPopupPanel: FC<Props> = ({
   options,
   values,
   width,
+  emptyMessage = "選択肢がありません。",
   onChangeValues,
 }) => {
   const [activeValue, setActiveValue] = useState<number | null>(null);
@@ -30,11 +32,11 @@ export const SearchPopupPanel: FC<Props> = ({
     () => options.find((option) => activeValue === option.value),
     [activeValue, options]
   );
-  const isOpen = activeOption && activeOption.children.length > 0;
+  const isOpen = activeOption && activeOption.children;
 
   const handleChangeValues = useCallback(
     (selectedValues: number[]) => {
-      const allValues = options.map((option) => option.value);
+      const allValues = options.map((option) => option.value) ?? [];
       const unselectedValues = allValues.filter(
         (value) => !selectedValues.includes(value)
       );
@@ -62,55 +64,62 @@ export const SearchPopupPanel: FC<Props> = ({
         )}
         style={{ width }}
       >
-        {options.map((option, i) => {
-          const isActive = activeOption && activeOption.value === option.value;
-          return (
-            <div key={`${option.label}-${option.value}`}>
-              {option.children.length > 0 ? (
-                <div
-                  className={styles.searchDropdownItemStyle}
-                  onMouseOver={() => setActiveValue(option.value)}
-                >
+        {options.length > 0 ? (
+          options.map((option, i) => {
+            const isActive =
+              activeOption && activeOption.value === option.value;
+            return (
+              <div key={`${option.label}-${option.value}`}>
+                {option.children ? (
                   <div
-                    className={clsx(
-                      styles.searchDropdownLabelStyle,
-                      isActive && styles.searchDropdownSelectingItemStyle
-                    )}
+                    className={styles.searchDropdownItemStyle}
+                    onMouseOver={() => setActiveValue(option.value)}
                   >
-                    {option.label}
-                    <WizIcon
-                      size="xl2"
-                      icon={WizIChevronRight}
-                      color={isActive ? "green.800" : "gray.500"}
+                    <div
+                      className={clsx(
+                        styles.searchDropdownLabelStyle,
+                        isActive && styles.searchDropdownSelectingItemStyle
+                      )}
+                    >
+                      {option.label}
+                      <WizIcon
+                        size="xl2"
+                        icon={WizIChevronRight}
+                        color={isActive ? "green.800" : "gray.500"}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className={styles.searchDropdownCheckboxItemStyle}
+                    style={{ lineHeight: THEME.fontSize.xl3 }}
+                  >
+                    <WizCheckBox
+                      options={[
+                        {
+                          label: option.label,
+                          value: option.value,
+                          key: `${option.label}-${option.value}`,
+                        },
+                      ]}
+                      values={values}
+                      onChange={handleChangeValues}
                     />
                   </div>
-                </div>
-              ) : (
-                <div
-                  className={styles.searchDropdownCheckboxItemStyle}
-                  style={{ lineHeight: THEME.fontSize.xl3 }}
-                >
-                  <WizCheckBox
-                    options={[
-                      {
-                        label: option.label,
-                        value: option.value,
-                        key: `${option.label}-${option.value}`,
-                      },
-                    ]}
-                    values={values}
-                    onChange={handleChangeValues}
-                  />
-                </div>
-              )}
-              {i !== options.length - 1 && <WizDivider color="gray.300" />}
-            </div>
-          );
-        })}
+                )}
+                {i !== options.length - 1 && <WizDivider color="gray.300" />}
+              </div>
+            );
+          })
+        ) : (
+          <div className={styles.searchDropdownEmptyMessageStyle}>
+            {emptyMessage}
+          </div>
+        )}
       </div>
       {isOpen && (
         <SearchPopupPanel
-          options={activeOption.children}
+          options={activeOption.children ?? []}
           values={values}
           width={width}
           onChangeValues={onChangeValues}

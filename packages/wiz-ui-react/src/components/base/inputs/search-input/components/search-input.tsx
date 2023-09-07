@@ -29,9 +29,10 @@ function filterOptions(
 ): SearchInputOption[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
-    if (option.children.length === 0) {
-      return isMatched ? [option] : [];
+    if (!option.children) {
+      return [option];
     }
+    if (option.children.length === 0) return [];
     if (isMatched) return [option];
     const children = filterOptions(option.children, text);
     if (children.length === 0) return [];
