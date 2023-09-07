@@ -71,11 +71,11 @@ Open.args = {
 Open.parameters = {
   docs: {
     description: {
-      story: `hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。`,
+      story: `isOpenをtrueにすると、常時表示されます。`,
     },
     source: {
       code: `
-<WizTooltip hover>
+<WizTooltip isOpen>
   保険見直し、つみ...
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>

@@ -56,18 +56,18 @@ contentに改行文字(\\n)を含む文字列を渡すと、改行されて表�
   },
 };
 
-export const Hover = Template.bind({});
-Hover.args = {
+export const Open = Template.bind({});
+Open.args = {
   isOpen: true,
 };
-Hover.parameters = {
+Open.parameters = {
   docs: {
     description: {
-      story: `hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。`,
+      story: `isOpenをtrueにすると、常時表示されます。`,
     },
     source: {
       code: `
-<WizTooltip hover>
+<WizTooltip isOpen>
   保険見直し、つみ...
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
@@ -121,7 +121,7 @@ LongTextFixedOutBox.parameters = {
     },
     source: {
       code: `
-<WizTooltip hover>
+<WizTooltip isOpen>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
@@ -154,7 +154,7 @@ ShortTextFixedOutBox.parameters = {
     },
     source: {
       code: `
-<WizTooltip hover>
+<WizTooltip isOpen>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
@@ -189,7 +189,7 @@ IsDirectionFixed.parameters = {
     },
     source: {
       code: `
-<WizTooltip hover direction="right" isDirectionFixed>
+<WizTooltip isOpen direction="right" isDirectionFixed>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
