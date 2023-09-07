@@ -47,17 +47,16 @@ export const Default: Story = {
   },
 };
 
-export const Hover: Story = {
+export const Open: Story = {
   ...Template,
   args: {
     content,
-    hover: true,
+    isOpen: true,
   },
   parameters: {
     docs: {
       description: {
-        story:
-          "hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。",
+        story: "isOpenをtrueにすると、常時表示されます。",
       },
     },
   },
@@ -67,7 +66,7 @@ export const Direction: Story = {
   ...Template,
   args: {
     content,
-    hover: true,
+    isOpen: true,
     direction: "right",
   },
   parameters: {
@@ -84,7 +83,7 @@ export const IsDirectionFixed: Story = {
   ...Template,
   args: {
     content,
-    hover: true,
+    isOpen: true,
     direction: "right",
     isDirectionFixed: true,
   },
