@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui
 
+## 2.8.0
+
+### Minor Changes
+
+- [#1042](https://github.com/Wizleap-Inc/wiz-ui/pull/1042) [`c36c6521`](https://github.com/Wizleap-Inc/wiz-ui/commit/c36c652152e9a66e114121edfd44d096b7f05b29) Thanks [@okakyo](https://github.com/okakyo)! - [#1014] hover プロパティを isOpen プロパティに変換
+
+- [#1039](https://github.com/Wizleap-Inc/wiz-ui/pull/1039) [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tab-pane): BadgeColor を追加
+
+### Patch Changes
+
+- Updated dependencies [[`32a54995`](https://github.com/Wizleap-Inc/wiz-ui/commit/32a54995b1868c7a66b60dd7fe483c9a72ddc909), [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c)]:
+  - @wizleap-inc/wiz-ui-styles@0.18.0
+
 ## 2.7.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.18.0
+
+### Minor Changes
+
+- [#906](https://github.com/Wizleap-Inc/wiz-ui/pull/906) [`32a54995`](https://github.com/Wizleap-Inc/wiz-ui/commit/32a54995b1868c7a66b60dd7fe483c9a72ddc909) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTextButton のスタイル修正
+
+- [#1039](https://github.com/Wizleap-Inc/wiz-ui/pull/1039) [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tab-pane): BadgeColor を追加
+
 ## 0.17.1
 
 ### Patch Changes
