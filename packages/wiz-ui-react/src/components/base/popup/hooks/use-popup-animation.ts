@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 export const usePopupAnimation = (
   animation: boolean,
@@ -8,6 +8,9 @@ export const usePopupAnimation = (
   const [isActuallyOpen, setIsActuallyOpen] = useState(false);
 
   useEffect(() => {
+    // safariでanimationを有効にするために必要
+    if (popupRef.current?.style) popupRef.current.style.animationName = "fade";
+
     const target = popupRef.current;
     if (!animation || !target) {
       setIsActuallyOpen(isOpen);
