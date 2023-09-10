@@ -76,7 +76,7 @@ const Drawer: FC<Props> = ({
         };
       }
     }
-  }, [isOpen]);
+  }, [isOpen, slideFrom]);
 
   return (
     <WizPortal container={document.body}>
