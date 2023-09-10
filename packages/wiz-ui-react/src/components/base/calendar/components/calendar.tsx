@@ -24,7 +24,7 @@ const Calendar: FC<Props> = ({
   activeDates,
   filledWeeks,
   onClickDate,
-  disabledDate = () => false,
+  disabledDate,
 }) => {
   const calendarData = useMemo(
     () => createCalendarData(currentMonth, filledWeeks),
@@ -46,7 +46,7 @@ const Calendar: FC<Props> = ({
     dateStatus?: DateStatus
   ): keyof typeof styles.calendarItemStyle {
     if (item.isOutOfCurrentMonth) return "outOfCurrentMonth";
-    if (disabledDate(item.date)) return "disabledDate";
+    if (disabledDate?.(item.date)) return "disabledDate";
     return dateStatus?.state ?? "inCurrentMonth";
   }
 
