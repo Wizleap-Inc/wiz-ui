@@ -28,7 +28,7 @@ export const createIcon = {
       className?: string;
     };
     export const WizI${component}= ({ className }: Props) => (
-      ${svg.replace(/<svg/g, `<svg className={className}`)}
+      ${svg.replace(/<svg/, `<svg className={className}`)}
     );
   `;
   },
