@@ -43,7 +43,7 @@ type Props = {
   isDirectionFixed?: boolean;
   onChangeValues: (values: number[]) => void;
   onCreate?: (label: string) => void;
-  onInput?: (text: string) => void;
+  onInputSearchText?: (text: string) => void;
 };
 
 const SearchSelector: FC<Props> = ({
@@ -59,7 +59,7 @@ const SearchSelector: FC<Props> = ({
   isDirectionFixed = false,
   onChangeValues,
   onCreate,
-  onInput,
+  onInputSearchText,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -267,7 +267,7 @@ const SearchSelector: FC<Props> = ({
                 disabled={disabled}
                 onChange={(e) => {
                   setSearchText(e.target.value);
-                  if (onInput) onInput(e.target.value);
+                  if (onInputSearchText) onInputSearchText(e.target.value);
                   setIsPopupOpen(true);
                 }}
                 onKeyDown={keyDownHandlers.input}
