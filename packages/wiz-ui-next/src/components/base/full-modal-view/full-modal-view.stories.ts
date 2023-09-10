@@ -145,7 +145,6 @@ export const WithButton: StoryFn<typeof WizFullModalView> = (args) => ({
 });
 WithButton.args = {
   title: "条件指定",
-  duration: 100,
 };
 
 WithButton.parameters = {
