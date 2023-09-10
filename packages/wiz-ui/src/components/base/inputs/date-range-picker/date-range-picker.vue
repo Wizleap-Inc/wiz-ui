@@ -9,6 +9,8 @@
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
+      @keydown.left="moveToPrevMonth"
+      @keydown.right="moveToNextMonth"
     >
       <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
         <span v-if="!isHover">
@@ -24,12 +26,18 @@
         </button>
       </span>
       <span
-        :class="styles.inputTextStyle[value.start ? 'selected' : 'default']"
+        :class="
+          styles.inputTextStyle[
+            value.start && !disabled ? 'selected' : 'default'
+          ]
+        "
         >{{ value.start ? formatDateToYYMMDD(value.start) : "開始日" }}</span
       >
       <span :class="styles.separatorStyle">-</span>
       <span
-        :class="styles.inputTextStyle[value.end ? 'selected' : 'default']"
+        :class="
+          styles.inputTextStyle[value.end && !disabled ? 'selected' : 'default']
+        "
         >{{ value.end ? formatDateToYYMMDD(value.end) : "終了日" }}</span
       >
     </button>
@@ -235,13 +243,15 @@ const setIsOpen = (value: boolean) => emit("updateIsOpen", value);
 const setIsHover = (value: boolean) => emit("updateIsHover", value);
 const onClickCancel = () => emit("input", { start: null, end: null });
 
-const moveToNextMonth = () => {
+const moveToNextMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = new Date(
     rightCalendarDate.value.setMonth(rightCalendarDate.value.getMonth() + 1)
   );
 };
 
-const moveToPrevMonth = () => {
+const moveToPrevMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = leftCalendarDate.value;
 };
 

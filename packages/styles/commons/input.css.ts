@@ -9,5 +9,5 @@ const baseInputBorderStyle = style({
 export const inputBorderStyle = styleVariants({
   default: [baseInputBorderStyle, { borderColor: THEME.color.gray[400] }],
   active: [baseInputBorderStyle, { borderColor: THEME.color.green[800] }],
-  error: [baseInputBorderStyle, { borderColor: THEME.color.red[400] }],
+  error: [baseInputBorderStyle, { borderColor: THEME.color.red[800] }],
 });

@@ -36,6 +36,7 @@ export const messageBoxWidthStyle = styleVariants({
 });
 
 export const messageBoxIconStyle = style({
+  flexShrink: 0,
   fontSize: THEME.fontSize.xl2,
   minWidth: THEME.fontSize.xl2,
   marginRight: THEME.spacing.sm,
@@ -57,6 +58,10 @@ export const messageBoxTitleStyle = style({
   fontWeight: 700,
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl2,
-  marginBottom: THEME.spacing.xs,
+  color: THEME.color.gray[700],
+  textAlign: "left",
+});
+
+export const messageBoxBodyStyle = style({
   color: THEME.color.gray[700],
 });

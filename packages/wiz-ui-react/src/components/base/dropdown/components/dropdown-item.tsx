@@ -33,6 +33,7 @@ const DropdownItem: FC<Props> = ({
 
   return (
     <button
+      type="button"
       className={styles.dropdownItemStyle}
       disabled={disabled}
       onClick={onClick}

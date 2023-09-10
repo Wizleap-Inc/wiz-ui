@@ -31,6 +31,7 @@ type Props = {
   breakAll?: boolean;
   textAlign?: "start" | "end" | "left" | "right" | "center";
   lineThrough?: boolean;
+  display?: "inline" | "inline-block" | "inline-flex";
   children?: ReactNode;
 };
 
@@ -47,6 +48,7 @@ const _Text = ({
   breakAll,
   textAlign = "start",
   lineThrough = false,
+  display,
   children,
 }: Props) => {
   const style = maxLines
@@ -70,6 +72,7 @@ const _Text = ({
     whiteSpaceStyle[whiteSpace],
     lineThrough && styles.textLineThroughStyle,
     isBlurred && styles.textDummyStyle,
+    display && styles.textDisplayStyle[display],
   ]);
   switch (as) {
     case "p": {

@@ -1,6 +1,9 @@
 <template>
   <table
-    :class="[cardTableStyle, fixed && cardTableFixedStyle]"
+    :class="[
+      isSafari ? styles.cardTableOnSafariStyle : styles.cardTableStyle,
+      fixed && styles.cardTableFixedStyle,
+    ]"
     :style="{ width }"
   >
     <slot />
@@ -9,10 +12,9 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  cardTableStyle,
-  cardTableFixedStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+
+import { useIsSafari } from "./hooks/use-is-safari";
 
 defineOptions({
   name: ComponentName.CardTable,
@@ -29,4 +31,6 @@ defineProps({
     required: false,
   },
 });
+
+const isSafari = useIsSafari();
 </script>

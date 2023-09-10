@@ -21,15 +21,16 @@
         "
         autocomplete="off"
       />
-      <WizISearch :class="searchInputIconStyle" />
+      <component :is="icon" :class="searchInputIconStyle" />
     </div>
     <WizPopup
-      :isOpen="openPopup"
+      :isOpen="!disabled && openPopup"
       :isDirectionFixed="isDirectionFixed"
       @onClose="emit('toggle', false)"
     >
       <WizHStack>
         <div
+          v-if="filteredOptions.length"
           :class="[
             searchBlockStyle,
             searchBlockBorderRadiusStyle,
@@ -43,7 +44,11 @@
           >
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
               <div
-                :class="searchDropdownLabelStyle"
+                :class="[
+                  searchDropdownLabelStyle,
+                  selectedItem.includes(option.value) &&
+                    searchDropdownSelectingItemStyle,
+                ]"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
               >
@@ -126,6 +131,7 @@ import {
   searchDropdownCheckboxItemStyle,
   searchDropdownItemStyle,
   searchDropdownLabelStyle,
+  searchDropdownSelectingItemStyle,
   searchInputDisabledStyle,
   searchInputIconStyle,
   searchInputStyle,
@@ -143,7 +149,7 @@ import {
   WizPopupContainer,
   WizSearchPopup,
 } from "@/components";
-import { WizICheck, WizIChevronRight } from "@/components/icons";
+import { WizICheck, WizIChevronRight, TIcon } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -193,6 +199,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+    default: WizISearch,
   },
 });
 

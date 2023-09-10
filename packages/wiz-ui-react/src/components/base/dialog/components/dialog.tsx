@@ -13,6 +13,7 @@ type Props = {
   footer?: ReactNode;
   children?: ReactNode;
   align?: "start" | "center" | "end";
+  hideClose?: boolean;
   onClose: () => void;
 };
 
@@ -23,6 +24,7 @@ const Dialog: FC<Props> = ({
   footer,
   children,
   align,
+  hideClose,
   onClose,
 }) => {
   const portalRoot = useRef<HTMLDivElement>(
@@ -88,7 +90,7 @@ const Dialog: FC<Props> = ({
           maxWidth={maxWidth}
           align={align}
           mainHeaderArea={title}
-          subHeaderArea={closeButton}
+          subHeaderArea={!hideClose && closeButton}
           footerArea={footer}
           role="dialog"
           aria-modal={true}

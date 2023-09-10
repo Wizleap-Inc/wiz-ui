@@ -5,7 +5,7 @@ export type StackProps = {
   direction?: "horizontal" | "vertical";
   align?: "start" | "center" | "end" | "stretch";
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
-  wrap?: boolean;
+  nowrap?: boolean;
   gap?: SpacingKeys;
   gx?: SpacingKeys;
   gy?: SpacingKeys;

@@ -20,13 +20,8 @@ import { WizPortal } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 
 import { usePopupAnimation } from "../hooks/use-popup-animation";
-import {
-  DIRECTION_MAP,
-  DirectionKey,
-  DirectionValue,
-} from "../types/direction";
-import { PlacementStyle } from "../types/placement";
-import { placeOnPortalStyle, wrapDirection } from "../utils";
+import { DirectionKey } from "../types/direction";
+import { getPopupPosition } from "../utils";
 
 type Props = {
   isOpen: boolean;
@@ -46,6 +41,18 @@ type Props = {
   children: ReactNode;
 } & ComponentProps<"div">;
 
+/** 与えられた要素が、fixedまたはstickyの要素上にあるかどうかを返します。 */
+const hasFixedOrStickyParent = (el: HTMLElement | null): boolean => {
+  if (!el) {
+    return false;
+  }
+  const position = window.getComputedStyle(el).position;
+  if (position === "fixed" || position === "sticky") {
+    return true;
+  }
+  return hasFixedOrStickyParent(el.parentElement);
+};
+
 const Popup = ({
   isOpen,
   onClose,
@@ -61,45 +68,65 @@ const Popup = ({
 }: Props) => {
   const popupRef = useRef<HTMLDivElement | null>(null);
   const isActuallyOpen = usePopupAnimation(animation, popupRef, isOpen);
-  const [placementStyle, setPlacementStyle] = useState<PlacementStyle>({});
+  const [popupPosition, setPopupPosition] = useState<{
+    top?: number;
+    left?: number;
+  }>({});
 
   useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
 
+  const isPopupFixed = hasFixedOrStickyParent(anchorElement.current);
+
   useEffect(() => {
-    const popupPlacement = () => {
-      if (!anchorElement.current) return {};
-      const anchorRect = anchorElement.current.getBoundingClientRect();
-      const contentRect = popupRef.current?.getBoundingClientRect();
-      const wrapOutOfBound = (dir: DirectionValue) => {
-        if (isDirectionFixed || !contentRect) return dir;
-        const fontSize = window.getComputedStyle(document.body).fontSize;
-        const gapPx =
-          parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize);
-        return wrapDirection[dir]({
-          bound: {
+    const anchor = anchorElement.current;
+    const content = popupRef.current;
+    if (!isActuallyOpen || !anchor || !content) {
+      return;
+    }
+    const updatePopupPosition = () => {
+      const fontSize = window.getComputedStyle(document.body).fontSize;
+      const contentRect = content.getBoundingClientRect();
+
+      setPopupPosition(
+        getPopupPosition({
+          anchorRect: anchor.getBoundingClientRect(),
+          popupSize: {
+            width: contentRect.width,
+            height: contentRect.height,
+          },
+          directionKey: direction,
+          gap: parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize),
+          screenSize: {
             width: document.body.clientWidth,
             height: Math.max(document.body.clientHeight, window.innerHeight),
           },
-          content: contentRect,
-          anchor: anchorRect,
-          gap: gapPx,
-          window: { scrollX: window.scrollX, scrollY: window.scrollY },
-        });
-      };
-      return placeOnPortalStyle[wrapOutOfBound(DIRECTION_MAP[direction])]({
-        anchor: anchorRect,
-        gap: getSpacingCss(gap) ?? "0",
-        content: contentRect,
-        window: { scrollX: window.scrollX, scrollY: window.scrollY },
-      });
+          scroll: {
+            x: isPopupFixed ? 0 : window.scrollX,
+            y: isPopupFixed ? 0 : window.scrollY,
+          },
+          isDirectionFixed,
+        })
+      );
     };
-    setPlacementStyle(popupPlacement());
-    const handleResize = () => setPlacementStyle(popupPlacement());
-    window.addEventListener("resize", handleResize);
+
+    updatePopupPosition();
+    window.addEventListener("scroll", updatePopupPosition);
+    window.addEventListener("resize", updatePopupPosition);
+    const anchorResizeObserver = new ResizeObserver(updatePopupPosition);
+    anchorResizeObserver.observe(anchor);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updatePopupPosition);
+      window.removeEventListener("scroll", updatePopupPosition);
+      anchorResizeObserver.disconnect();
     };
-  }, [isActuallyOpen, direction, gap, anchorElement, isDirectionFixed]);
+  }, [
+    anchorElement,
+    direction,
+    gap,
+    isActuallyOpen,
+    isDirectionFixed,
+    isPopupFixed,
+  ]);
 
   return (
     <WizPortal container={document.body}>
@@ -112,8 +139,9 @@ const Popup = ({
           !isActuallyOpen && styles.popupHiddenStyle
         )}
         style={{
-          position: "absolute",
-          ...placementStyle,
+          position: isPopupFixed ? "fixed" : "absolute",
+          transform: "translateZ(0)", // Safariで影が消えない問題の対策
+          ...popupPosition,
         }}
       >
         {children}
