@@ -86,6 +86,7 @@ const Calendar: FC<Props> = ({
           <tr key={`week-${row}`}>
             {weekDataItems.map((item, col) => {
               const activeDateStatus = findActiveDateStatus(item);
+              const itemStyle = getItemStyleState(item, activeDateStatus);
               return (
                 <td
                   key={`${item.label}-${col}`}
@@ -94,18 +95,14 @@ const Calendar: FC<Props> = ({
                   <button
                     type="button"
                     disabled={
-                      item.isOutOfCurrentMonth ||
-                      getItemStyleState(item, activeDateStatus) ===
-                        "disabledDate"
+                      item.isOutOfCurrentMonth || itemStyle === "disabledDate"
                     }
                     aria-label={`${currentMonth.getFullYear()}年${
                       currentMonth.getMonth() + 1
                     }月${item.label}日${activeDateStatus ? "-選択済み" : ""}`}
                     className={clsx(
                       styles.calendarItemCommonStyle,
-                      styles.calendarItemStyle[
-                        getItemStyleState(item, activeDateStatus)
-                      ]
+                      styles.calendarItemStyle[itemStyle]
                     )}
                     onClick={() => handleClickDate(item)}
                   >
