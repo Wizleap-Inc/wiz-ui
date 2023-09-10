@@ -28,7 +28,6 @@ type Props = {
     | "darkGray"
     | "greenFill"
     | "white";
-  lineHeight?: FontSizeKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
   round?: boolean;
@@ -44,7 +43,6 @@ const Tag = forwardRef(
       fontSize = "md",
       fontWeight = "normal",
       round = false,
-      lineHeight,
       width,
       ...props
     }: Props,
@@ -62,7 +60,6 @@ const Tag = forwardRef(
         style={{
           width: width || "max-content",
           borderRadius: round ? THEME.spacing.xl2 : THEME.spacing.xs2,
-          lineHeight: lineHeight && THEME.fontSize[lineHeight],
         }}
         {...props}
       >

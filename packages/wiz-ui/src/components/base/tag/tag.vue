@@ -9,7 +9,6 @@
     :style="{
       width: width || 'max-content',
       borderRadius: round ? THEME.spacing.xl2 : THEME.spacing.xs2,
-      lineHeight: lineHeight && THEME.fontSize[lineHeight],
     }"
   >
     <WizIcon
@@ -71,10 +70,6 @@ defineProps({
     >,
     required: false,
     default: "info",
-  },
-  lineHeight: {
-    type: String as PropType<FontSizeKeys>,
-    required: false,
   },
   fontSize: {
     type: String as PropType<FontSizeKeys>,
