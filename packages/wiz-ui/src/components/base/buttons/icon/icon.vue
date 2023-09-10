@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     :class="[
       iconButtonStyle[variant],
       disabled && iconButtonDisabledStyle,
@@ -19,9 +20,9 @@ import {
   getRelativeFontSize,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
+  iconButtonDisabledStyle,
   iconButtonSVGStyle,
   iconButtonStyle,
-  iconButtonDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";

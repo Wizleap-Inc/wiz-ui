@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     :class="[
       textButtonStyle[variant],
       textButtonSizeStyle[size],

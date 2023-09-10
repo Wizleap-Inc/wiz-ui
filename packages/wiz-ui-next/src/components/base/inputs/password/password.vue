@@ -13,6 +13,7 @@
       space-type="right"
     />
     <button
+      type="button"
       :aria-label="ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE"
       :class="passwordVisibleIconStyle"
       @click="isPasswordVisible = !isPasswordVisible"
@@ -29,12 +30,12 @@ import {
   ComponentName,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  passwordStyle,
   passwordExpandStyle,
-  passwordVisibleIconStyle,
+  passwordStyle,
   passwordVisibleIconActiveStyle,
+  passwordVisibleIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
-import { computed, ref, inject, PropType } from "vue";
+import { PropType, computed, inject, ref } from "vue";
 
 import { WizIEye } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";

@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     :class="[
       tinyButtonBaseStyle,
       tinyButtonSizeStyle,
@@ -41,7 +42,7 @@ import {
   paddingXStyle,
   paddingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, PropType, ref } from "vue";
+import { PropType, computed, ref } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 

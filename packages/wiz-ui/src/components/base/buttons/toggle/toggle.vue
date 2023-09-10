@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     :class="[
       toggleButtonStyle,
       toggleButtonSizeStyle[size],
@@ -24,13 +25,13 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  toggleButtonStyle,
   toggleButtonActiveStyle,
   toggleButtonDisabledStyle,
   toggleButtonRoundedStyle,
   toggleButtonSizeStyle,
+  toggleButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
-import { computed, PropType } from "vue";
+import { PropType, computed } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
