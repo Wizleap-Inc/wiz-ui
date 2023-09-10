@@ -81,38 +81,30 @@ export const SearchPopupPanel: FC<Props> = ({
                       isActive && styles.searchDropdownSelectingItemStyle
                     )}
                   >
-                    {optionTag ? (
-                      // TagつきDropdown
-                      <WizHStack width="100%" justify="between" align="center">
-                        <div style={{ width: `calc(100% - 4.5rem)` }}>
-                          {option.label}
-                        </div>
-                        <WizHStack gap="xs" width="70px">
-                          <WizTag
-                            label={optionTag.label}
-                            variant="white"
-                            width="20px"
-                            fontSize="xs2"
-                            lineHeight="sm"
-                          />
-                          <WizIcon
-                            size="xl2"
-                            icon={WizIChevronRight}
-                            color={isActive ? "green.800" : "gray.500"}
-                          />
-                        </WizHStack>
-                      </WizHStack>
-                    ) : (
-                      // Tagなし
-                      <>
+                    <WizHStack width="100%" justify="between" align="center">
+                      <div
+                        style={{ width: optionTag && "calc(100% - 4.5rem)" }}
+                      >
                         {option.label}
+                      </div>
+                      <WizHStack gap="xs" width={optionTag ? "70px" : "24px"}>
+                        {optionTag && (
+                          <div style={{ lineHeight: THEME.fontSize.sm }}>
+                            <WizTag
+                              label={optionTag.label}
+                              variant="white"
+                              width="20px"
+                              fontSize="xs2"
+                            />
+                          </div>
+                        )}
                         <WizIcon
                           size="xl2"
                           icon={WizIChevronRight}
                           color={isActive ? "green.800" : "gray.500"}
                         />
-                      </>
-                    )}
+                      </WizHStack>
+                    </WizHStack>
                   </div>
                 </div>
               ) : (
@@ -121,44 +113,31 @@ export const SearchPopupPanel: FC<Props> = ({
                   className={styles.searchDropdownCheckboxItemStyle}
                   style={{ lineHeight: THEME.fontSize.xl3 }}
                 >
-                  {optionTag ? (
-                    // TagつきCheckBox
-                    <WizHStack width="100%" justify="between" align="center">
-                      <div style={{ width: `calc(100% - 2.5rem)` }}>
-                        <WizCheckBox
-                          options={[
-                            {
-                              label: option.label,
-                              value: option.value,
-                              key: `${option.label}-${option.value}`,
-                            },
-                          ]}
-                          values={values}
-                          onChange={handleChangeValues}
+                  <WizHStack width="100%" justify="between" align="center">
+                    <div style={{ width: optionTag && "calc(100% - 2.5rem)" }}>
+                      <WizCheckBox
+                        options={[
+                          {
+                            label: option.label,
+                            value: option.value,
+                            key: `${option.label}-${option.value}`,
+                          },
+                        ]}
+                        values={values}
+                        onChange={handleChangeValues}
+                      />
+                    </div>
+                    {optionTag && (
+                      <div style={{ lineHeight: THEME.fontSize.sm }}>
+                        <WizTag
+                          label={optionTag.label}
+                          variant="white"
+                          width="20px"
+                          fontSize="xs2"
                         />
                       </div>
-                      <WizTag
-                        label={optionTag.label}
-                        variant="white"
-                        width="20px"
-                        fontSize="xs2"
-                        lineHeight="sm"
-                      />
-                    </WizHStack>
-                  ) : (
-                    // Tagなし
-                    <WizCheckBox
-                      options={[
-                        {
-                          label: option.label,
-                          value: option.value,
-                          key: `${option.label}-${option.value}`,
-                        },
-                      ]}
-                      values={values}
-                      onChange={handleChangeValues}
-                    />
-                  )}
+                    )}
+                  </WizHStack>
                 </div>
               )}
               <WizDivider color="gray.300" />

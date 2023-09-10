@@ -46,43 +46,34 @@
                 justify="between"
                 :class="[
                   searchDropdownLabelStyle,
-
                   selectedItem.includes(option.value) &&
                     searchDropdownSelectingItemStyle,
                 ]"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
               >
-                <template v-if="option.tag">
-                  <WizHStack width="100%" justify="between" align="center">
-                    <div style="width: calc(100% - 4.5rem)">
-                      {{ option.label }}
-                    </div>
-                    <WizHStack gap="xs" width="70px">
-                      <WizTag
-                        :label="option.tag.label"
-                        variant="white"
-                        width="20px"
-                        font-size="xs2"
-                        line-height="sm"
-                      />
-                      <WizIcon
-                        size="xl2"
-                        :icon="WizIChevronRight"
-                        :color="computedIconColor(option.value)"
-                      />
-                    </WizHStack>
+                <WizHStack width="100%" justify="between" align="center">
+                  <div :style="{ width: option.tag && 'calc(100% - 4.5rem)' }">
+                    {{ option.label }}
+                  </div>
+                  <WizHStack gap="xs" :width="option.tag ? '70px' : '24px'">
+                    <template v-if="option.tag">
+                      <span :style="{ lineHeight: THEME.fontSize.sm }">
+                        <WizTag
+                          :label="option.tag.label"
+                          variant="white"
+                          width="20px"
+                          font-size="xs2"
+                        />
+                      </span>
+                    </template>
+                    <WizIcon
+                      size="xl2"
+                      :icon="WizIChevronRight"
+                      :color="computedIconColor(option.value)"
+                    />
                   </WizHStack>
-                </template>
-                <!-- Tagなし -->
-                <template v-else>
-                  {{ option.label }}
-                  <WizIcon
-                    size="xl2"
-                    :icon="WizIChevronRight"
-                    :color="computedIconColor(option.value)"
-                  />
-                </template>
+                </WizHStack>
               </WizHStack>
             </div>
             <!-- Checkbox -->
@@ -92,88 +83,54 @@
               @mouseover="activeItem = option.value"
               @mouseout="activeItem = null"
             >
-              <!-- Tag + Checkbox -->
-              <template v-if="option.tag">
-                <WizHStack width="100%" justify="between" align="center">
-                  <div style="width: `calc(100% - 2.5rem) `">
-                    <input
-                      v-model="checkValues"
-                      :value="option.value"
-                      :class="searchCheckboxInputStyle"
-                      type="checkbox"
-                      :id="`${option.label}_${option.value}`"
-                      :name="`${option.label}_${option.value}`"
-                    />
-                    <label
-                      :class="[
-                        searchCheckboxLabelStyle,
-                        (checkValues.includes(option.value) ||
-                          activeItem === option.value) &&
-                          searchCheckboxLabelCheckedStyle,
-                      ]"
-                      :for="`${option.label}_${option.value}`"
-                      @mouseover="
-                        selectedItem = [];
-                        isBorder = false;
-                      "
-                    >
-                      <WizICheck
-                        v-if="checkValues.includes(option.value)"
-                        :class="searchCheckboxIconStyle"
-                      />
-                      <span
-                        :class="[
-                          (checkValues.includes(option.value) ||
-                            activeItem === option.value) &&
-                            searchCheckboxBlockCheckedStyle,
-                        ]"
-                        >{{ option.label }}</span
-                      >
-                    </label>
-                  </div>
-                  <WizTag
-                    :label="option.tag.label"
-                    variant="white"
-                    width="20px"
-                    font-size="xs2"
-                    line-height="sm"
+              <WizHStack width="100%" justify="between" align="center">
+                <div :style="{ width: option.tag && 'calc(100% - 2.5rem)' }">
+                  <input
+                    v-model="checkValues"
+                    :value="option.value"
+                    :class="searchCheckboxInputStyle"
+                    type="checkbox"
+                    :id="`${option.label}_${option.value}`"
+                    :name="`${option.label}_${option.value}`"
                   />
-                </WizHStack>
-              </template>
-              <!-- Tagなし -->
-              <template v-else>
-                <input
-                  v-model="checkValues"
-                  :value="option.value"
-                  :class="searchCheckboxInputStyle"
-                  type="checkbox"
-                  :id="`${option.label}_${option.value}`"
-                  :name="`${option.label}_${option.value}`"
-                />
-                <label
-                  :class="[
-                    searchCheckboxLabelStyle,
-                    (checkValues.includes(option.value) ||
-                      activeItem === option.value) &&
-                      searchCheckboxLabelCheckedStyle,
-                  ]"
-                  :for="`${option.label}_${option.value}`"
-                  @mouseover=""
-                >
-                  <WizICheck
-                    v-if="checkValues.includes(option.value)"
-                    :class="searchCheckboxIconStyle"
-                  />
-                  <span
+                  <label
                     :class="[
+                      searchCheckboxLabelStyle,
                       (checkValues.includes(option.value) ||
                         activeItem === option.value) &&
-                        searchCheckboxBlockCheckedStyle,
+                        searchCheckboxLabelCheckedStyle,
                     ]"
-                    >{{ option.label }}</span
+                    :for="`${option.label}_${option.value}`"
+                    @mouseover="
+                      selectedItem = [];
+                      isBorder = false;
+                    "
                   >
-                </label>
-              </template>
+                    <WizICheck
+                      v-if="checkValues.includes(option.value)"
+                      :class="searchCheckboxIconStyle"
+                    />
+                    <span
+                      :class="[
+                        (checkValues.includes(option.value) ||
+                          activeItem === option.value) &&
+                          searchCheckboxBlockCheckedStyle,
+                      ]"
+                      >{{ option.label }}</span
+                    >
+                  </label>
+                </div>
+                <template v-if="option.tag">
+                  <span :style="{ lineHeight: THEME.fontSize.sm }">
+                    <WizTag
+                      :label="option.tag.label"
+                      variant="white"
+                      width="20px"
+                      font-size="xs2"
+                    />
+                  </span>
+                </template>
+              </WizHStack>
             </div>
             <WizDivider color="gray.300" />
           </div>
@@ -191,7 +148,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   searchBlockBorderRadiusStyle,
   searchBlockBorderStyle,
