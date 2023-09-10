@@ -93,15 +93,15 @@ DummyValue.args = {
   slot: "これはテキストです。",
 };
 
-export const textAlign = Template.bind({});
-textAlign.args = {
+export const TextAlign = Template.bind({});
+TextAlign.args = {
   as: "p",
   slot: "これはテキストです。",
   textAlign: "start",
 };
 
-export const lineThrough = Template.bind({});
-lineThrough.args = {
+export const LineThrough = Template.bind({});
+LineThrough.args = {
   as: "p",
   slot: "これはテキストです。",
   lineThrough: true,

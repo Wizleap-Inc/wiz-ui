@@ -63,7 +63,7 @@ export const Error: Story = {
   },
 };
 
-export const isDirectionFixed: Story = {
+export const IsDirectionFixed: Story = {
   args: {
     isDirectionFixed: true,
   },

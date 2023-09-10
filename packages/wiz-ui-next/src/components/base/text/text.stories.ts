@@ -107,8 +107,8 @@ DummyValue.args = {
   dummyValue: "ABCDEFG",
 };
 
-export const lineThrough = Template.bind({});
-lineThrough.args = {
+export const LineThrough = Template.bind({});
+LineThrough.args = {
   as: "p",
   lineThrough: true,
 };

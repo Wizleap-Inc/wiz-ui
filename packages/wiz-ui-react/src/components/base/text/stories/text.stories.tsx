@@ -140,7 +140,7 @@ export const Blur: Story = {
   },
 };
 
-export const lineThrough: Story = {
+export const LineThrough: Story = {
   render: (args) => (
     <WizText {...args}>{"これはテキストです。\nこれはテキストです。"}</WizText>
   ),
