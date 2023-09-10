@@ -59,13 +59,14 @@
                       {{ option.label }}
                     </div>
                     <WizHStack gap="xs" width="70px">
-                      <WizTag
-                        :label="option.tag.label"
-                        variant="white"
-                        width="20px"
-                        font-size="xs2"
-                        line-height="sm"
-                      />
+                      <span :style="{ lineHeight: THEME.fontSize.sm }">
+                        <WizTag
+                          :label="option.tag.label"
+                          variant="white"
+                          width="20px"
+                          font-size="xs2"
+                        />
+                      </span>
                       <WizIcon
                         size="xl2"
                         :icon="WizIChevronRight"
@@ -130,13 +131,14 @@
                       >
                     </label>
                   </div>
-                  <WizTag
-                    :label="option.tag.label"
-                    variant="white"
-                    width="20px"
-                    font-size="xs2"
-                    line-height="sm"
-                  />
+                  <span :style="{ lineHeight: THEME.fontSize.sm }">
+                    <WizTag
+                      :label="option.tag.label"
+                      variant="white"
+                      width="20px"
+                      font-size="xs2"
+                    />
+                  </span>
                 </WizHStack>
               </template>
               <!-- Tagなし -->
@@ -191,7 +193,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   searchBlockBorderRadiusStyle,
   searchBlockBorderStyle,
