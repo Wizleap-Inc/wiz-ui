@@ -4,7 +4,7 @@ export type DateStatus = {
 };
 
 export type CalendarDataItem = {
-  date: Date;
+  isDisabled: boolean;
   label: string;
   isOutOfCurrentMonth?: boolean;
 };
