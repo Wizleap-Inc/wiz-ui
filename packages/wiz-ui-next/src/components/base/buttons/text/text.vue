@@ -1,6 +1,6 @@
 <template>
   <button
-    type="button"
+    :type="type"
     :class="[
       textButtonStyle[variant],
       textButtonSizeStyle[size],
@@ -31,13 +31,13 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  textButtonStyle,
   textButtonDisabledStyle,
-  textButtonRoundStyle,
   textButtonExpandStyle,
+  textButtonRoundStyle,
   textButtonSizeStyle,
+  textButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
-import { computed, PropType } from "vue";
+import { PropType, computed } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -83,6 +83,10 @@ const props = defineProps({
     type: String as PropType<"left" | "right">,
     required: false,
     default: "left",
+  },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    required: false,
   },
 });
 
