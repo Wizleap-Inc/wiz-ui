@@ -1,5 +1,9 @@
-export const WizILocationCity = () => (
+type Props = {
+  className?: string;
+};
+export const WizILocationCity = ({ className }: Props) => (
   <svg
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 -960 960 960"
     height="1em"
