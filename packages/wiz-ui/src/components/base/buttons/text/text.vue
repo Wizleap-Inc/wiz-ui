@@ -1,6 +1,6 @@
 <template>
   <button
-    type="button"
+    :type="type"
     :class="[
       textButtonStyle[variant],
       textButtonSizeStyle[size],
@@ -83,6 +83,10 @@ const props = defineProps({
     type: String as PropType<"left" | "right">,
     required: false,
     default: "left",
+  },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    required: false,
   },
 });
 

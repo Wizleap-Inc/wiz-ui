@@ -1,6 +1,6 @@
 <template>
   <button
-    type="button"
+    :type="type"
     :class="[
       toggleButtonStyle,
       toggleButtonSizeStyle[size],
@@ -71,6 +71,10 @@ const props = defineProps({
   value: {
     type: Boolean,
     required: true,
+  },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    required: false,
   },
 });
 
