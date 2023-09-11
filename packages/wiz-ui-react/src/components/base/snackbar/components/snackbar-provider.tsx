@@ -54,6 +54,7 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
         showSnackbar,
       }}
     >
+      {children}
       {snackbarData.map((item, i) => (
         <div
           key={item.id}
@@ -76,7 +77,6 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
           />
         </div>
       ))}
-      {children}
     </SnackbarContext.Provider>
   );
 };
