@@ -77,7 +77,8 @@ export const UseSnackbarWithExpand: Story = {
         <input ref={inputRef} defaultValue="Hello World" />
         <button
           onClick={() =>
-            inputRef.current && showSnackbar(inputRef.current.value, true)
+            inputRef.current &&
+            showSnackbar(inputRef.current.value, { expand: true })
           }
         >
           Show

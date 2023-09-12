@@ -10,7 +10,7 @@ const DISPLAY_DURATION = 3000;
 
 type Props = {
   message: string;
-  expand: boolean;
+  expand?: boolean;
   enableAnimation?: boolean;
   autoClose?: boolean;
   onClose: () => void;
