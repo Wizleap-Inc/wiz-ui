@@ -1,6 +1,10 @@
 export interface SnackbarOption {
   message: string;
-  expand: boolean;
+  options?: SnackbarOptionType;
   created: string;
   delete: () => void;
 }
+
+export type SnackbarOptionType = {
+  expand?: boolean;
+};

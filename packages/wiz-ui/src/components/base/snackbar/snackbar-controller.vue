@@ -4,7 +4,7 @@
       v-for="(option, i) in snackbarOptions"
       :key="option.created"
       :message="option.message"
-      :expand="option.expand"
+      :expand="option.options?.expand"
       @delete="option.delete"
       :bottom="`${calcBottom(i)}px`"
       :left="`${md}px`"
