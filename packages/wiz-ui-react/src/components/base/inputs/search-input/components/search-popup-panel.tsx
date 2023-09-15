@@ -81,13 +81,17 @@ export const SearchPopupPanel: FC<Props> = ({
                       isActive && styles.searchDropdownSelectingItemStyle
                     )}
                   >
-                    <WizHStack width="100%" justify="between" align="center">
-                      <div
-                        style={{ width: optionTag && "calc(100% - 4.5rem)" }}
-                      >
+                    <WizHStack
+                      width="100%"
+                      justify="between"
+                      align="center"
+                      gap="xs2"
+                      nowrap
+                    >
+                      <div className={styles.searchInputLabelStyle}>
                         {option.label}
                       </div>
-                      <WizHStack gap="xs" width={optionTag ? "70px" : "24px"}>
+                      <WizHStack gap="xs" nowrap>
                         {optionTag && (
                           <div style={{ lineHeight: THEME.fontSize.sm }}>
                             <WizTag
@@ -109,12 +113,15 @@ export const SearchPopupPanel: FC<Props> = ({
                 </div>
               ) : (
                 // CheckBox
-                <div
-                  className={styles.searchDropdownCheckboxItemStyle}
-                  style={{ lineHeight: THEME.fontSize.xl3 }}
-                >
-                  <WizHStack width="100%" justify="between" align="center">
-                    <div style={{ width: optionTag && "calc(100% - 2.5rem)" }}>
+                <div className={styles.searchDropdownCheckboxItemStyle}>
+                  <WizHStack
+                    width="100%"
+                    justify="between"
+                    align="center"
+                    gap="xs2"
+                    nowrap
+                  >
+                    <div className={styles.searchInputLabelStyle}>
                       <WizCheckBox
                         options={[
                           {
@@ -128,7 +135,7 @@ export const SearchPopupPanel: FC<Props> = ({
                       />
                     </div>
                     {optionTag && (
-                      <div style={{ lineHeight: THEME.fontSize.sm }}>
+                      <div className={styles.searchInputTagStyle}>
                         <WizTag
                           label={optionTag.label}
                           variant="white"

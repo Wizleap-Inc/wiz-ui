@@ -114,7 +114,6 @@ export const searchDropdownLabelStyle = style({
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[700],
-  lineHeight: THEME.fontSize.xl3,
   userSelect: "none",
   "@media": {
     "(any-hover: hover)": {
@@ -176,4 +175,12 @@ export const searchCheckboxIconStyle = style({
 
 export const searchCheckboxBlockCheckedStyle = style({
   color: THEME.color.green["800"],
+});
+
+export const searchInputLabelStyle = style({
+  lineHeight: THEME.fontSize.xl3,
+});
+
+export const searchInputTagStyle = style({
+  lineHeight: THEME.fontSize.sm,
 });

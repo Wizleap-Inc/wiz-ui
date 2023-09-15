@@ -1,11 +1,11 @@
 <template>
   <WizPopupContainer :expand="expand">
-    <div :class="searchStyle">
+    <div :class="styles.searchStyle">
       <input
         type="text"
         :class="[
-          searchInputStyle,
-          disabled && searchInputDisabledStyle,
+          styles.searchInputStyle,
+          disabled && styles.searchInputDisabledStyle,
           inputBorderStyle[state],
         ]"
         :style="{ width: computedInputWidth }"
@@ -18,7 +18,7 @@
         @click="emit('toggle', !openPopup)"
         autocomplete="off"
       />
-      <component :is="icon" :class="searchInputIconStyle" />
+      <component :is="icon" :class="styles.searchInputIconStyle" />
     </div>
     <WizPopup
       :isOpen="!disabled && openPopup"
@@ -29,9 +29,9 @@
         <div
           v-if="filteredOptions.length"
           :class="[
-            searchBlockStyle,
-            searchBlockBorderRadiusStyle,
-            isBorder && searchBlockBorderStyle,
+            styles.searchBlockStyle,
+            styles.searchBlockBorderRadiusStyle,
+            isBorder && styles.searchBlockBorderStyle,
           ]"
           :style="{ width: computedPopupWidth }"
         >
@@ -40,25 +40,34 @@
             :key="`${option.label}_${option.value}_${key}`"
           >
             <!-- Dropdown -->
-            <div v-if="option.children.length" :class="searchDropdownItemStyle">
+            <div
+              v-if="option.children.length"
+              :class="styles.searchDropdownItemStyle"
+            >
               <WizHStack
                 align="center"
                 justify="between"
                 :class="[
-                  searchDropdownLabelStyle,
+                  styles.searchDropdownLabelStyle,
                   selectedItem.includes(option.value) &&
-                    searchDropdownSelectingItemStyle,
+                    styles.searchDropdownSelectingItemStyle,
                 ]"
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
               >
-                <WizHStack width="100%" justify="between" align="center">
-                  <div :style="{ width: option.tag && 'calc(100% - 4.5rem)' }">
+                <WizHStack
+                  width="100%"
+                  justify="between"
+                  align="center"
+                  nowrap
+                  gap="xs2"
+                >
+                  <div :class="styles.searchInputLabelStyle">
                     {{ option.label }}
                   </div>
-                  <WizHStack gap="xs" :width="option.tag ? '70px' : '24px'">
+                  <WizHStack gap="xs" nowrap>
                     <template v-if="option.tag">
-                      <span :style="{ lineHeight: THEME.fontSize.sm }">
+                      <span :class="styles.searchInputTagStyle">
                         <WizTag
                           :label="option.tag.label"
                           variant="white"
@@ -79,26 +88,32 @@
             <!-- Checkbox -->
             <div
               v-else
-              :class="searchDropdownCheckboxItemStyle"
+              :class="styles.searchDropdownCheckboxItemStyle"
               @mouseover="activeItem = option.value"
               @mouseout="activeItem = null"
             >
-              <WizHStack width="100%" justify="between" align="center">
-                <div :style="{ width: option.tag && 'calc(100% - 2.5rem)' }">
+              <WizHStack
+                width="100%"
+                justify="between"
+                align="center"
+                nowrap
+                gap="xs2"
+              >
+                <div :class="styles.searchInputLabelStyle">
                   <input
                     v-model="checkValues"
                     :value="option.value"
-                    :class="searchCheckboxInputStyle"
+                    :class="styles.searchCheckboxInputStyle"
                     type="checkbox"
                     :id="`${option.label}_${option.value}`"
                     :name="`${option.label}_${option.value}`"
                   />
                   <label
                     :class="[
-                      searchCheckboxLabelStyle,
+                      styles.searchCheckboxLabelStyle,
                       (checkValues.includes(option.value) ||
                         activeItem === option.value) &&
-                        searchCheckboxLabelCheckedStyle,
+                        styles.searchCheckboxLabelCheckedStyle,
                     ]"
                     :for="`${option.label}_${option.value}`"
                     @mouseover="
@@ -108,20 +123,20 @@
                   >
                     <WizICheck
                       v-if="checkValues.includes(option.value)"
-                      :class="searchCheckboxIconStyle"
+                      :class="styles.searchCheckboxIconStyle"
                     />
                     <span
                       :class="[
                         (checkValues.includes(option.value) ||
                           activeItem === option.value) &&
-                          searchCheckboxBlockCheckedStyle,
+                          styles.searchCheckboxBlockCheckedStyle,
                       ]"
                       >{{ option.label }}</span
                     >
                   </label>
                 </div>
                 <template v-if="option.tag">
-                  <span :style="{ lineHeight: THEME.fontSize.sm }">
+                  <span :class="styles.searchInputTagStyle">
                     <WizTag
                       :label="option.tag.label"
                       variant="white"
@@ -148,25 +163,8 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
-import {
-  searchBlockBorderRadiusStyle,
-  searchBlockBorderStyle,
-  searchBlockStyle,
-  searchCheckboxBlockCheckedStyle,
-  searchCheckboxIconStyle,
-  searchCheckboxInputStyle,
-  searchCheckboxLabelCheckedStyle,
-  searchCheckboxLabelStyle,
-  searchDropdownCheckboxItemStyle,
-  searchDropdownItemStyle,
-  searchDropdownLabelStyle,
-  searchDropdownSelectingItemStyle,
-  searchInputDisabledStyle,
-  searchInputIconStyle,
-  searchInputStyle,
-  searchStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, onMounted, ref, watch } from "vue";
 
