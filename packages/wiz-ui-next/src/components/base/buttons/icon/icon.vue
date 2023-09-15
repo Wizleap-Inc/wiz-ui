@@ -1,6 +1,6 @@
 <template>
   <button
-    type="button"
+    :type="type"
     :class="[
       iconButtonStyle[variant],
       disabled && iconButtonDisabledStyle,
@@ -60,6 +60,10 @@ const props = defineProps({
     type: String as PropType<"sm" | "md" | "lg" | "xl">,
     required: false,
     default: "md",
+  },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    required: false,
   },
 });
 
