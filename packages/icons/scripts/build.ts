@@ -46,11 +46,6 @@ const icons: {
   components: Component[];
   indexFile: (components: SVG[]) => string;
 }[] = [
-  // {
-  //   dist: path.join(CURRENT_DIR, "../../wiz-ui/src/components/icons"),
-  //   components: vueComponents,
-  //   indexFile: indexFile.vue,
-  // },
   {
     dist: path.join(CURRENT_DIR, "../../wiz-ui-next/src/components/icons"),
     components: vueComponents,
