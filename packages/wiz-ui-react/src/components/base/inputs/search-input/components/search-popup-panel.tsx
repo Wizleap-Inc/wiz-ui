@@ -13,7 +13,7 @@ import {
 import { SearchInputOption } from "./types";
 
 type Props = {
-  options: SearchInputOption[];
+  options?: SearchInputOption[];
   values: number[];
   width?: string;
   emptyMessage?: string;
@@ -29,14 +29,14 @@ export const SearchPopupPanel: FC<Props> = ({
 }) => {
   const [activeValue, setActiveValue] = useState<number | null>(null);
   const activeOption = useMemo(
-    () => options.find((option) => activeValue === option.value),
+    () => options?.find((option) => activeValue === option.value),
     [activeValue, options]
   );
   const isOpen = activeOption && activeOption.children;
 
   const handleChangeValues = useCallback(
     (selectedValues: number[]) => {
-      const allValues = options.map((option) => option.value) ?? [];
+      const allValues = options ? options.map((option) => option.value) : [];
       const unselectedValues = allValues.filter(
         (value) => !selectedValues.includes(value)
       );
@@ -64,7 +64,7 @@ export const SearchPopupPanel: FC<Props> = ({
         )}
         style={{ width }}
       >
-        {options.length > 0 ? (
+        {options && options.length > 0 ? (
           options.map((option, i) => {
             const isActive =
               activeOption && activeOption.value === option.value;
@@ -119,7 +119,7 @@ export const SearchPopupPanel: FC<Props> = ({
       </div>
       {isOpen && (
         <SearchPopupPanel
-          options={activeOption.children ?? []}
+          options={activeOption.children}
           values={values}
           width={width}
           onChangeValues={onChangeValues}
