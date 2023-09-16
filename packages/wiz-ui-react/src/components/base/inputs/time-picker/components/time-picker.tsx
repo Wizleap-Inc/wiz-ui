@@ -142,11 +142,9 @@ const TimePicker = ({
           <WizHStack overflow="none" gap="xs2">
             {/* hh  */}
             <div
-              className={styles.timePickerScrollStyle}
               style={{
                 display: "flex",
                 flexDirection: "column",
-                overflow: "auto",
                 height: "8rem",
                 alignItems: "center",
                 gap: THEME.spacing.xs2,
@@ -160,26 +158,28 @@ const TimePicker = ({
               >
                 時
               </div>
-              {HOURS.map((option) => (
-                <div
-                  key={"hh" + option}
-                  className={clsx([
-                    styles.timePickerSelectorOptionStyle,
-                    option !== time?.hour &&
-                      styles.timePickerSelectorOptionItemStyle,
-                    option === time?.hour &&
-                      styles.timePickerSelectorOptionItemSelectedStyle,
-                    styles.timePickerSelectorOptionItemColorStyle[
-                      timePickerSelectorOptionItemColor(option === time?.hour)
-                    ],
-                  ])}
-                  onClick={() =>
-                    onChange({ hour: option, minute: time?.minute || 0 })
-                  }
-                >
-                  {option}
-                </div>
-              ))}
+              <div className={styles.timePickerScrollStyle}>
+                {HOURS.map((option) => (
+                  <div
+                    key={"hh" + option}
+                    className={clsx([
+                      styles.timePickerSelectorOptionStyle,
+                      option !== time?.hour &&
+                        styles.timePickerSelectorOptionItemStyle,
+                      option === time?.hour &&
+                        styles.timePickerSelectorOptionItemSelectedStyle,
+                      styles.timePickerSelectorOptionItemColorStyle[
+                        timePickerSelectorOptionItemColor(option === time?.hour)
+                      ],
+                    ])}
+                    onClick={() =>
+                      onChange({ hour: option, minute: time?.minute || 0 })
+                    }
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* ｜ */}
@@ -189,11 +189,9 @@ const TimePicker = ({
 
             {/* mm */}
             <div
-              className={styles.timePickerScrollStyle}
               style={{
                 display: "flex",
                 flexDirection: "column",
-                overflow: "auto",
                 height: "8rem",
                 alignItems: "center",
                 gap: THEME.spacing.xs2,
@@ -207,26 +205,30 @@ const TimePicker = ({
               >
                 分
               </div>
-              {MINUTES.map((option) => (
-                <div
-                  key={"mm" + option}
-                  className={clsx([
-                    styles.timePickerSelectorOptionStyle,
-                    option !== time?.minute &&
-                      styles.timePickerSelectorOptionItemStyle,
-                    option === time?.minute &&
-                      styles.timePickerSelectorOptionItemSelectedStyle,
-                    styles.timePickerSelectorOptionItemColorStyle[
-                      timePickerSelectorOptionItemColor(option === time?.minute)
-                    ],
-                  ])}
-                  onClick={() =>
-                    onChange({ hour: time?.hour || 0, minute: option })
-                  }
-                >
-                  {String(option).padStart(2, "0")}
-                </div>
-              ))}
+              <div className={styles.timePickerScrollStyle}>
+                {MINUTES.map((option) => (
+                  <div
+                    key={"mm" + option}
+                    className={clsx([
+                      styles.timePickerSelectorOptionStyle,
+                      option !== time?.minute &&
+                        styles.timePickerSelectorOptionItemStyle,
+                      option === time?.minute &&
+                        styles.timePickerSelectorOptionItemSelectedStyle,
+                      styles.timePickerSelectorOptionItemColorStyle[
+                        timePickerSelectorOptionItemColor(
+                          option === time?.minute
+                        )
+                      ],
+                    ])}
+                    onClick={() =>
+                      onChange({ hour: time?.hour || 0, minute: option })
+                    }
+                  >
+                    {String(option).padStart(2, "0")}
+                  </div>
+                ))}
+              </div>
             </div>
           </WizHStack>
         </div>
