@@ -46,8 +46,8 @@
     >
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" justify="between">
-          <WizHStack pl="xs" gap="xs">
-            <WizHStack align="center" justify="between" gap="xs2">
+          <WizHStack align="center" pl="xs" gap="xs">
+            <WizHStack align="center" gap="xs2">
               <WizText
                 as="span"
                 fontSize="xs"
