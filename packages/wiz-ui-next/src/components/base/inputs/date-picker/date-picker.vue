@@ -48,7 +48,7 @@
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizHStack align="center" justify="between" gap="xs2">
             <WizText as="span" fontSize="xs" line-height="lg" color="gray.700">
-              {{ currentMonth.getFullYear() }}年
+              {{ formatYear(currentMonth.getFullYear()) }}
             </WizText>
             <WizVStack>
               <button
@@ -213,6 +213,15 @@ const props = defineProps({
     type: Function as PropType<(date: Date) => boolean>,
     required: false,
     default: () => false,
+  },
+  /**
+   * @description 年の表示形式をカスタマイズします。
+   * @default (year) => `${year}年`
+   */
+  formatYear: {
+    type: Function as PropType<(year: number) => string>,
+    required: false,
+    default: (year: number) => `${year}年`,
   },
 });
 

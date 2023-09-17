@@ -34,6 +34,11 @@ type Props = {
    * @returns {boolean} `true`: 無効な日付, `false`: 有効な日付
    */
   disabledDate?: (date: Date) => boolean;
+  /**
+   * @description 年の表示形式をカスタマイズします。
+   * @default (year) => `${year}年`
+   */
+  formatYear?: (year: number) => string;
 };
 
 const DatePicker: FC<Props> = ({
@@ -45,6 +50,7 @@ const DatePicker: FC<Props> = ({
   onChangeDate,
   error,
   disabledDate = () => false,
+  formatYear = (year) => `${year}年`,
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -154,7 +160,7 @@ const DatePicker: FC<Props> = ({
                 line-height="lg"
                 color="gray.700"
               >
-                {calendar.year}年
+                {formatYear(calendar.year)}
               </WizText>
               <WizVStack>
                 <button
