@@ -45,43 +45,50 @@
       :isDirectionFixed="isDirectionFixed"
     >
       <div :class="datePickerSelectorStyle">
-        <WizHStack align="center" my="xs2" px="xs" justify="between" gap="xs">
-          <WizHStack align="center" justify="between" gap="xs2">
-            <WizText as="span" fontSize="xs" line-height="lg" color="gray.700">
-              {{ formatYear(currentMonth.getFullYear()) }}
+        <WizHStack align="center" my="xs2" justify="between">
+          <WizHStack pl="xs" gap="xs">
+            <WizHStack align="center" justify="between" gap="xs2">
+              <WizText
+                as="span"
+                fontSize="xs"
+                line-height="lg"
+                color="gray.700"
+              >
+                {{ formatYear(currentMonth.getFullYear()) }}
+              </WizText>
+              <WizVStack>
+                <button
+                  :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
+                  :class="[datePickerYearSelectorItemStyle]"
+                  @click="clickToNextYear"
+                >
+                  <WizIArrowDropUp
+                    :class="[
+                      fillStyle['gray.700'],
+                      fontSizeStyle['xs2'],
+                      datePickerArrowIconStyle,
+                    ]"
+                  />
+                </button>
+                <button
+                  :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
+                  :class="[datePickerYearSelectorItemStyle]"
+                  @click="clickToPreviousYear"
+                >
+                  <WizIArrowDropDown
+                    :class="[
+                      fillStyle['gray.700'],
+                      fontSizeStyle['xs2'],
+                      datePickerArrowIconStyle,
+                    ]"
+                  />
+                </button>
+              </WizVStack>
+            </WizHStack>
+            <WizText as="span" fontSize="xs" color="gray.700">
+              {{ currentDateTitle }}
             </WizText>
-            <WizVStack>
-              <button
-                :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
-                :class="[datePickerYearSelectorItemStyle]"
-                @click="clickToNextYear"
-              >
-                <WizIArrowDropUp
-                  :class="[
-                    fillStyle['gray.700'],
-                    fontSizeStyle['xs2'],
-                    datePickerArrowIconStyle,
-                  ]"
-                />
-              </button>
-              <button
-                :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
-                :class="[datePickerYearSelectorItemStyle]"
-                @click="clickToPreviousYear"
-              >
-                <WizIArrowDropDown
-                  :class="[
-                    fillStyle['gray.700'],
-                    fontSizeStyle['xs2'],
-                    datePickerArrowIconStyle,
-                  ]"
-                />
-              </button>
-            </WizVStack>
           </WizHStack>
-          <WizText as="span" fontSize="xs" color="gray.700">
-            {{ currentDateTitle }}
-          </WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
