@@ -54,7 +54,7 @@ export const selectBoxInnerBoxSelectedItemStyle = style({
 });
 
 export const selectBoxInnerBoxSelectedLabelStyle = style({
-  lineHeight: "100%",
+  lineHeight: "17px",
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
