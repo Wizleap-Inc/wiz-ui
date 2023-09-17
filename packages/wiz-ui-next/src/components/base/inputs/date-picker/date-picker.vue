@@ -45,7 +45,7 @@
       :isDirectionFixed="isDirectionFixed"
     >
       <div :class="datePickerSelectorStyle">
-        <WizHStack align="center" my="xs2" px="xs" justify="between">
+        <WizHStack align="center" my="xs2" px="xs" justify="between" gap="xs">
           <WizHStack align="center" justify="between" gap="xs2">
             <WizText as="span" fontSize="xs" line-height="lg" color="gray.700">
               {{ formatYear(currentMonth.getFullYear()) }}

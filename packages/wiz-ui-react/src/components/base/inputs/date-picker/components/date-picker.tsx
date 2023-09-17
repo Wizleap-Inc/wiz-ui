@@ -152,7 +152,7 @@ const DatePicker: FC<Props> = ({
         anchorElement={wrapperButtonRef}
       >
         <div className={styles.datePickerSelectorStyle}>
-          <WizHStack align="center" my="xs2" px="xs" justify="between">
+          <WizHStack align="center" my="xs2" px="xs" justify="between" gap="xs">
             <WizHStack align="center" justify="between" gap="xs2">
               <WizText
                 as="span"
