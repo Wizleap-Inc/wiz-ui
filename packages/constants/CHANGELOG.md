@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.13.0
+
+### Minor Changes
+
+- [#1049](https://github.com/Wizleap-Inc/wiz-ui/pull/1049) [`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): 新規アイコン追加
+  Chore(IconGen): Vue2 サポートを停止
+
 ## 0.12.0
 
 ### Minor Changes
