@@ -7,7 +7,7 @@
     "dev": "pnpm storybook:dev",
     "test": "run-p storybook:test",
     "check:lib-publish": "can-npm-publish --verbose",
-    "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd 'npx http-server storybook-static --ci --port 6007' http://localhost:6007",
+    "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd \"npx serve -l 6007 storybook-static\" http://localhost:6007",
     "storybook:build": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
     "storybook:dev": "storybook dev -p 6007",
     "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6007 --silent\" \"wait-on tcp:6007 && test-storybook --url http://localhost:6007\""
@@ -15,8 +15,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
     "unplugin-vue-define-options": "^1.1.1",
-    "@storybook/vue3": "^7.0.2",
-    "@storybook/vue3-vite": "^7.0.2",
+    "@storybook/vue3": "^7.4.2",
+    "@storybook/vue3-vite": "^7.4.2",
     "vue-tsc": "^1.0.9"
   },
   "repository": {
