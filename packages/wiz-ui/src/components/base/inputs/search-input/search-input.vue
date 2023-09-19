@@ -264,11 +264,9 @@ const filterOptions =
   (match: (label: string) => boolean) =>
   (options: SearchInputOption[]): SearchInputOption[] =>
     options.flatMap((option) => {
-      if (!option.children) {
-        return [option];
+      if (!option.children || option.children.length === 0) {
+        return match(option.label) ? [option] : [];
       }
-      if (option.children.length === 0) return [];
-      if (match(option.label)) return [option];
       const children = filterOptions(match)(option.children);
       if (children.length === 0) return [];
       return [
