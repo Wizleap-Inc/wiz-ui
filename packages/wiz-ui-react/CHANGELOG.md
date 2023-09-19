@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.32.0
+
+### Minor Changes
+
+- [#1037](https://github.com/Wizleap-Inc/wiz-ui/pull/1037) [`daf3149c`](https://github.com/Wizleap-Inc/wiz-ui/commit/daf3149c6078daa907dafad3fb84fbce6b65dacb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-picker, calender): 無効な日付を指定する機能の React 対応
+
+- [#1048](https://github.com/Wizleap-Inc/wiz-ui/pull/1048) [`1b162700`](https://github.com/Wizleap-Inc/wiz-ui/commit/1b16270030f01697cce9cfe88959145b68e2df63) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - search-selector に onInput プロパティを追加
+
 ## 0.31.0
 
 ### Minor Changes

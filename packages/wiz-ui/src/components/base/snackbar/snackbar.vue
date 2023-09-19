@@ -2,6 +2,7 @@
   <div
     :class="[
       snackbarStyle,
+      snackbarWidthStyle[snackbarWidthType],
       !isStatic && snackbarFixedStyle,
       isHidden && snackbarHiddenStyle,
     ]"
@@ -37,8 +38,9 @@ import {
   snackbarHiddenStyle,
   snackbarMessageStyle,
   snackbarStyle,
+  snackbarWidthStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
-import { onMounted, ref } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 import { WizICircleCheck, WizIClose, WizIcon, WizText } from "@/components";
 
@@ -70,12 +72,19 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  expand: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emits = defineEmits<Emits>();
 
 const snackbarRef = ref<HTMLElement | undefined>();
 const isHidden = ref(props.isStatic ? false : true);
+
+const snackbarWidthType = computed(() => (props.expand ? "expand" : "default"));
 
 const onDelete = () => {
   isHidden.value = true;

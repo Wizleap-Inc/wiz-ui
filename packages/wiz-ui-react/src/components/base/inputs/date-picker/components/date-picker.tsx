@@ -28,6 +28,12 @@ type Props = {
   error?: boolean;
   isDirectionFixed?: boolean;
   onChangeDate: (selectedValue: Date | null) => void;
+  /**
+   * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
+   * @param date
+   * @returns {boolean} `true`: 無効な日付, `false`: 有効な日付
+   */
+  disabledDate?: (date: Date) => boolean;
 };
 
 const DatePicker: FC<Props> = ({
@@ -38,6 +44,7 @@ const DatePicker: FC<Props> = ({
   isDirectionFixed = false,
   onChangeDate,
   error,
+  disabledDate = () => false,
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -225,6 +232,7 @@ const DatePicker: FC<Props> = ({
             onClickDate={(date) => onChangeDate(date)}
             currentMonth={currentMonth}
             filledWeeks
+            disabledDate={disabledDate}
           />
         </div>
       </WizPopup>
