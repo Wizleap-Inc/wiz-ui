@@ -25,7 +25,7 @@ import { WizICheckBold, WizIcon } from "@/components";
 
 interface Props {
   checked: boolean;
-  value?: string | number;
+  value?: string | number | string[];
   id?: string;
   name?: string;
   disabled?: boolean;
