@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.9.0
+
+### Minor Changes
+
+- [#1049](https://github.com/Wizleap-Inc/wiz-ui/pull/1049) [`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): 新規アイコン追加
+  Chore(IconGen): Vue2 サポートを停止
+
+- [#1018](https://github.com/Wizleap-Inc/wiz-ui/pull/1018) [`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2) Thanks [@okakyo](https://github.com/okakyo)! - [#1017] Snackbar に expand property を追加
+
+### Patch Changes
+
+- Updated dependencies [[`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730), [`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2)]:
+  - @wizleap-inc/wiz-ui-constants@0.13.0
+  - @wizleap-inc/wiz-ui-styles@0.19.0
+
 ## 2.8.0
 
 ### Minor Changes
