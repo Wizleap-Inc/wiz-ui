@@ -23,6 +23,7 @@ export const ComponentName = {
   TextInput: "WizTextInput",
   BaseInput: "WizBaseInput",
   CheckBox: "WizCheckBox",
+  CheckBoxNew: "WizCheckBoxNew",
   Radio: "WizRadio",
   TimePicker: "WizTimePicker",
   Tab: "WizTab",

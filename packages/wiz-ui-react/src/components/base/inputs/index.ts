@@ -1,4 +1,5 @@
 export * from "./checkbox";
+export * from "./checkbox-new";
 export * from "./radio";
 export * from "./search-input";
 export * from "./search-selector";
