@@ -1,4 +1,3 @@
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import clsx from "clsx";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
@@ -93,14 +92,12 @@ export const SearchPopupPanel: FC<Props> = ({
                       </div>
                       <WizHStack gap="xs" nowrap>
                         {optionTag && (
-                          <div style={{ lineHeight: THEME.fontSize.sm }}>
-                            <WizTag
-                              label={optionTag.label}
-                              variant="white"
-                              width="20px"
-                              fontSize="xs2"
-                            />
-                          </div>
+                          <WizTag
+                            label={optionTag.label}
+                            variant="white"
+                            width="20px"
+                            fontSize="xs2"
+                          />
                         )}
                         <WizIcon
                           size="xl2"
@@ -135,14 +132,12 @@ export const SearchPopupPanel: FC<Props> = ({
                       />
                     </div>
                     {optionTag && (
-                      <div className={styles.searchInputTagStyle}>
-                        <WizTag
-                          label={optionTag.label}
-                          variant="white"
-                          width="20px"
-                          fontSize="xs2"
-                        />
-                      </div>
+                      <WizTag
+                        label={optionTag.label}
+                        variant="white"
+                        width="20px"
+                        fontSize="xs2"
+                      />
                     )}
                   </WizHStack>
                 </div>

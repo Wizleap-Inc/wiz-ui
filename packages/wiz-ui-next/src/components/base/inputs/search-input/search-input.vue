@@ -67,14 +67,12 @@
                   </div>
                   <WizHStack gap="xs" nowrap>
                     <template v-if="option.tag">
-                      <span :class="styles.searchInputTagStyle">
-                        <WizTag
-                          :label="option.tag.label"
-                          variant="white"
-                          width="20px"
-                          font-size="xs2"
-                        />
-                      </span>
+                      <WizTag
+                        :label="option.tag.label"
+                        variant="white"
+                        width="20px"
+                        font-size="xs2"
+                      />
                     </template>
                     <WizIcon
                       size="xl2"
@@ -136,14 +134,12 @@
                   </label>
                 </div>
                 <template v-if="option.tag">
-                  <span :class="styles.searchInputTagStyle">
-                    <WizTag
-                      :label="option.tag.label"
-                      variant="white"
-                      width="20px"
-                      font-size="xs2"
-                    />
-                  </span>
+                  <WizTag
+                    :label="option.tag.label"
+                    variant="white"
+                    width="20px"
+                    font-size="xs2"
+                  />
                 </template>
               </WizHStack>
             </div>
