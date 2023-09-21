@@ -3,7 +3,7 @@
     <input
       type="checkbox"
       :class="styles.inputStyle"
-      :checked="checked"
+      :checked="actualChecked"
       :value="value"
       :id="id"
       :name="name"
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-new.css";
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 
 import { WizICheckBold, WizIcon } from "@/components";
 
@@ -40,6 +40,15 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
+const actualChecked = ref(props.checked);
+
+watch(
+  () => props.checked,
+  () => {
+    actualChecked.value = props.checked;
+  }
+);
+
 const labelClass = computed(() => {
   const borderedState = (() => {
     if (props.disabled) {
@@ -48,7 +57,7 @@ const labelClass = computed(() => {
     if (props.error) {
       return "error";
     }
-    if (props.checked) {
+    if (actualChecked.value) {
       return "checked";
     }
     return "default";
@@ -64,6 +73,7 @@ const labelClass = computed(() => {
 const handleChange = (e: Event) => {
   if (e.target instanceof HTMLInputElement) {
     emit("update:checked", e.target.checked);
+    actualChecked.value = e.target.checked;
   }
 };
 </script>
