@@ -10,9 +10,11 @@
       :disabled="disabled"
       @change="handleChange"
     />
-    <span :class="styles.iconWrapperStyle">
-      <WizIcon :icon="WizICheckBold" color="white.800" size="md" />
-    </span>
+    <div :class="styles.iconWrapperStyle">
+      <div :class="styles.iconPositionStyle">
+        <WizIcon :icon="WizICheckBold" color="white.800" size="md" />
+      </div>
+    </div>
     <slot />
   </label>
 </template>
