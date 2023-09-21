@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
 
 import { WizHStack, WizVStack } from "@/components/base/stack";
 
@@ -16,16 +16,6 @@ type Story = StoryObj<typeof WizCheckBoxNew>;
 export const Default: Story = {
   args: {
     children: "Label",
-  },
-  render: (args) => {
-    const [checked, setChecked] = useState(false);
-    return (
-      <WizCheckBoxNew
-        {...args}
-        checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
-      />
-    );
   },
 };
 
