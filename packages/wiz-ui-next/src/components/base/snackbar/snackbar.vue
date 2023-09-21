@@ -18,6 +18,7 @@
         <WizText color="white.800" fontSize="sm">{{ message }}</WizText>
       </div>
       <button
+        type="button"
         :class="snackbarCloseButtonStyle"
         @click="onDelete"
         :aria-label="ARIA_LABELS.SNACKBAR.CLOSE"
@@ -29,19 +30,19 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  snackbarStyle,
-  snackbarFixedStyle,
+  snackbarCloseButtonStyle,
   snackbarContainerStyle,
+  snackbarFixedStyle,
   snackbarHiddenStyle,
   snackbarMessageStyle,
-  snackbarCloseButtonStyle,
+  snackbarStyle,
   snackbarWidthStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
 import { ref, onMounted, computed } from "vue";
 
-import { WizText, WizIcon, WizICircleCheck, WizIClose } from "@/components";
+import { WizICircleCheck, WizIClose, WizIcon, WizText } from "@/components";
 
 interface Emits {
   (event: "delete"): void;
