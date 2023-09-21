@@ -153,6 +153,7 @@ const TimePicker = ({
               <div
                 className={clsx(
                   styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionTitleStyle,
                   styles.timePickerSelectorOptionTypeStyle
                 )}
               >
@@ -200,6 +201,7 @@ const TimePicker = ({
               <div
                 className={clsx(
                   styles.timePickerSelectorOptionStyle,
+                  styles.timePickerSelectorOptionTitleStyle,
                   styles.timePickerSelectorOptionTypeStyle
                 )}
               >

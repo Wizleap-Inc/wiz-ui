@@ -81,6 +81,10 @@ export const timePickerSelectorOptionStyle = style({
   borderRadius: THEME.spacing.xs2,
 });
 
+export const timePickerSelectorOptionTitleStyle = style({
+  margin: `0 ${THEME.spacing.sm} 0 ${THEME.spacing.xs}`,
+});
+
 export const timePickerSelectorOptionTypeStyle = style({
   color: THEME.color.gray["600"],
 });

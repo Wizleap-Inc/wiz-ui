@@ -33,12 +33,17 @@
               ><div
                 :class="[
                   timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionTitleStyle,
                   timePickerSelectorOptionTypeStyle,
                 ]"
               >
                 時
               </div>
-              <div :class="timePickerScrollStyle">
+              <WizVStack
+                gap="xs2"
+                overflow="auto"
+                :class="timePickerScrollStyle"
+              >
                 <div
                   v-for="(option, key) in hourOptions"
                   :key="'option' + key"
@@ -55,21 +60,26 @@
                 >
                   {{ option }}
                 </div>
-              </div>
+              </WizVStack>
             </WizVStack>
             <WizVStack gap="xs2">
               <WizDivider direction="vertical" />
             </WizVStack>
-            <WizVStack height="8rem" gap="xs2" align="center">
+            <WizVStack mr="xs2" height="8rem" gap="xs2" align="center">
               <div
                 :class="[
                   timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionTitleStyle,
                   timePickerSelectorOptionTypeStyle,
                 ]"
               >
                 分
               </div>
-              <div :class="timePickerScrollStyle">
+              <WizVStack
+                gap="xs2"
+                overflow="auto"
+                :class="timePickerScrollStyle"
+              >
                 <div
                   v-for="(option, key) in minuteOptions"
                   :key="'option' + key"
@@ -88,7 +98,7 @@
                 >
                   {{ option }}
                 </div>
-              </div>
+              </WizVStack>
             </WizVStack>
           </WizHStack>
         </div>
@@ -112,6 +122,7 @@ import {
   timePickerSelectorOptionTypeStyle,
   timePickerSelectorStyle,
   timePickerStyle,
+  timePickerSelectorOptionTitleStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, inject, ref } from "vue";
