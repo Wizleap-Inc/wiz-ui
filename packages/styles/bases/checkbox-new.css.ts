@@ -87,6 +87,7 @@ export const inputStyle = style([
 export const iconWrapperStyle = style([
   inputShapeStyle,
   {
+    position: "relative",
     height: THEME.fontSize.md,
     width: THEME.fontSize.md,
     borderRadius: "2px",
@@ -104,3 +105,10 @@ export const iconWrapperStyle = style([
     },
   },
 ]);
+
+export const iconPositionStyle = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+});
