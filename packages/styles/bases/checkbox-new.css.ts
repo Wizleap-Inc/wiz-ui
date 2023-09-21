@@ -35,6 +35,7 @@ const borderedBaseStyle = style({
   borderRadius: "4px",
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
+  lineHeight: THEME.fontSize.xl2,
 });
 
 export const borderedStyle = styleVariants({
