@@ -50,7 +50,7 @@ export const Variations: Story = {
         {variations.map((row, i) => (
           <WizHStack gap="xl" key={i}>
             {row.map((props, j) => (
-              <WizRadioNew {...props} key={j}>
+              <WizRadioNew {...props} name={`${i},${j}`} key={j}>
                 Label
               </WizRadioNew>
             ))}

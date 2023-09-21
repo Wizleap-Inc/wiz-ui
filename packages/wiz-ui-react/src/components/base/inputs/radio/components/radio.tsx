@@ -89,4 +89,7 @@ export const Radio: FC<Props> = ({
 
 Radio.displayName = ComponentName.Radio;
 
+/**
+ * @deprecated このコンポーネントは削除予定です。代わりに `WizRadioNew` コンポーネントを使ってください。
+ */
 export const WizRadio = Radio;

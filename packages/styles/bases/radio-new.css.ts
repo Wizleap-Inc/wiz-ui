@@ -30,13 +30,15 @@ export const strikeThroughStyle = style({
   textDecoration: "line-through",
 });
 
+const borderedBorderWidth = 1;
+
 export const borderedBaseStyle = style({
-  borderWidth: "1px",
+  borderWidth: `${borderedBorderWidth}px`,
   borderStyle: "solid",
   borderRadius: "4px",
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
-  lineHeight: THEME.fontSize.xl2,
+  lineHeight: `calc(${THEME.fontSize.xl2} - (${borderedBorderWidth}px * 2))`,
 });
 
 export const borderedStyle = styleVariants({
