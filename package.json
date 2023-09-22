@@ -64,7 +64,6 @@
     "rimraf": "^3.0.2",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-visualizer": "^5.9.0",
-    "serve": "^14.2.1",
     "storybook": "^7.0.2",
     "storycap": "^4.0.0",
     "turbo": "^1.8.7",
