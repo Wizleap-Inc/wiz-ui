@@ -39,6 +39,7 @@ export const borderedBaseStyle = style({
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
   lineHeight: `calc(${THEME.fontSize.xl2} - (${borderedBorderWidth}px * 2))`,
+  backgroundColor: THEME.color.white[800],
 });
 
 export const borderedStyle = styleVariants({
@@ -96,22 +97,20 @@ export const markerStyle = style([
     boxSizing: "border-box",
     padding: "2px",
     backgroundColor: THEME.color.white[800],
-    "::before": {
-      content: "",
-      display: "block",
-      width: "100%",
-      height: "100%",
-      borderRadius: THEME.spacing.max,
-    },
     selectors: {
       [`${inputStyle}:checked:not(:disabled) + &`]: {
         borderColor: THEME.color.green[800],
       },
-      [`${inputStyle}:checked + &::before`]: {
-        backgroundColor: THEME.color.green[800],
-      },
       [`${inputStyle}:disabled + &`]: {
         backgroundColor: THEME.color.gray[300],
+      },
+      [`${inputStyle}:checked + &::before`]: {
+        content: "",
+        display: "block",
+        width: "100%",
+        height: "100%",
+        borderRadius: THEME.spacing.max,
+        backgroundColor: THEME.color.green[800],
       },
       [`${inputStyle}:disabled:checked + &::before`]: {
         backgroundColor: THEME.color.gray[500],
