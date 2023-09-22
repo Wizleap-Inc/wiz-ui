@@ -103,8 +103,8 @@ export const iconWrapperStyle = style([
       [`${inputStyle}:checked:not(:disabled) + &`]: {
         backgroundColor: THEME.color.green[800],
       },
-      [`${borderedBaseStyle} > &`]: {
-        backgroundColor: "transparent",
+      [`${inputStyle}:disabled + &`]: {
+        backgroundColor: THEME.color.gray[300],
       },
       [`${inputStyle}:checked:disabled + &`]: {
         backgroundColor: THEME.color.gray[400],
