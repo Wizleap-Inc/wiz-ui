@@ -8,7 +8,7 @@
     "test": "run-p test:unit storybook:test",
     "check:lib-publish": "can-npm-publish --verbose",
     "test:unit": "vitest run",
-    "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd \"npx http-server storybook-static --ci --port 6006\" http://0.0.0.0:6006",
+    "storycap": "storycap --serverTimeout 100000 --captureTimeout 30000 --serverCmd \"npx http-server storybook-static --ci --port 6006\" http://127.0.0.1:6006",
     "storybook:build": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
     "storybook:dev": "storybook dev -p 6006",
     "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && test-storybook --url http://localhost:6006\""
