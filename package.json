@@ -68,7 +68,7 @@
     "storycap": "^4.0.0",
     "turbo": "^1.8.7",
     "typescript": "^5.0.2",
-    "vite": "^4.2.1",
+    "vite": "^4.2.3",
     "vite-plugin-dts": "^1.7.1",
     "vitest": "^0.29.8",
     "wait-on": "^7.0.1"
