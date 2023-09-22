@@ -38,6 +38,7 @@ const borderedBaseStyle = style({
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
   lineHeight: `calc(${THEME.fontSize.xl2} - (${borderedBorderWidth}px * 2))`,
+  backgroundColor: THEME.color.white[800],
 });
 
 export const borderedStyle = styleVariants({
@@ -94,12 +95,16 @@ export const iconWrapperStyle = style([
     width: THEME.fontSize.md,
     borderRadius: "2px",
     boxSizing: "border-box",
+    backgroundColor: THEME.color.white[800],
     selectors: {
       [`${inputStyle}:not(:checked) + &`]: {
         border: `1px solid ${THEME.color.gray[500]}`,
       },
       [`${inputStyle}:checked:not(:disabled) + &`]: {
         backgroundColor: THEME.color.green[800],
+      },
+      [`${borderedBaseStyle} > &`]: {
+        backgroundColor: "transparent",
       },
       [`${inputStyle}:checked:disabled + &`]: {
         backgroundColor: THEME.color.gray[400],

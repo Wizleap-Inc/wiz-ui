@@ -87,9 +87,11 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
           onChange={handleChange}
         />
         <div className={styles.iconWrapperStyle}>
-          <div className={styles.iconPositionStyle}>
-            <WizIcon icon={WizICheckBold} color="white.800" size="md" />
-          </div>
+          {actualChecked && (
+            <div className={styles.iconPositionStyle}>
+              <WizIcon icon={WizICheckBold} color="white.800" size="md" />
+            </div>
+          )}
         </div>
         {children}
       </label>
