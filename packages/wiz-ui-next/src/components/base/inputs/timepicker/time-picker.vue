@@ -29,8 +29,8 @@
       >
         <div :class="timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">
-            <WizVStack height="8rem" gap="xs2" align="center"
-              ><div
+            <WizVStack height="8rem" align="center">
+              <div
                 :class="[
                   timePickerSelectorOptionStyle,
                   timePickerSelectorOptionTitleStyle,
@@ -65,7 +65,7 @@
             <WizVStack gap="xs2">
               <WizDivider direction="vertical" />
             </WizVStack>
-            <WizVStack mr="xs2" height="8rem" gap="xs2" align="center">
+            <WizVStack height="8rem" align="center">
               <div
                 :class="[
                   timePickerSelectorOptionStyle,

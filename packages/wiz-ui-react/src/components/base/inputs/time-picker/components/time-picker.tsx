@@ -147,7 +147,6 @@ const TimePicker = ({
                 flexDirection: "column",
                 height: "8rem",
                 alignItems: "center",
-                gap: THEME.spacing.xs2,
               }}
             >
               <div
@@ -173,6 +172,9 @@ const TimePicker = ({
                         timePickerSelectorOptionItemColor(option === time?.hour)
                       ],
                     ])}
+                    style={{
+                      margin: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
+                    }}
                     onClick={() =>
                       onChange({ hour: option, minute: time?.minute || 0 })
                     }
@@ -195,7 +197,6 @@ const TimePicker = ({
                 flexDirection: "column",
                 height: "8rem",
                 alignItems: "center",
-                gap: THEME.spacing.xs2,
               }}
             >
               <div
@@ -207,7 +208,10 @@ const TimePicker = ({
               >
                 分
               </div>
-              <div className={styles.timePickerScrollStyle}>
+              <div
+                className={styles.timePickerScrollStyle}
+                style={{ margin: 0 }}
+              >
                 {MINUTES.map((option) => (
                   <div
                     key={"mm" + option}
@@ -223,6 +227,9 @@ const TimePicker = ({
                         )
                       ],
                     ])}
+                    style={{
+                      margin: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
+                    }}
                     onClick={() =>
                       onChange({ hour: time?.hour || 0, minute: option })
                     }
