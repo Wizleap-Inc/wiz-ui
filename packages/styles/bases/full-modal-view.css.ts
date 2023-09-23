@@ -9,6 +9,7 @@ export const containerStyle = style({
   position: "fixed",
   top: "0px",
   width: "100%",
+  backgroundColor: THEME.color.white[800],
 });
 
 export const headerStyle = style({
