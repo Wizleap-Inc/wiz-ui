@@ -41,10 +41,10 @@ const FullModalView: FC<Props> = ({
       modalRef.current?.animate(
         [
           {
-            transform: "translateY(100vw)",
+            transform: "translateY(100vh)",
           },
           {
-            transform: "translateX(0)",
+            transform: "translateY(0)",
           },
         ],
         {
@@ -58,10 +58,10 @@ const FullModalView: FC<Props> = ({
       const animation = modalRef.current?.animate(
         [
           {
-            transform: "translateX(0)",
+            transform: "translateY(0)",
           },
           {
-            transform: "translateY(100vw)",
+            transform: "translateY(100vh)",
           },
         ],
         {
