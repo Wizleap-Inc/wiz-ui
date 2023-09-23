@@ -90,14 +90,8 @@
               @mouseover="activeItem = option.value"
               @mouseout="activeItem = null"
             >
-              <WizHStack
-                width="100%"
-                justify="between"
-                align="center"
-                nowrap
-                gap="xs2"
-              >
-                <div :class="styles.searchInputLabelStyle">
+              <WizHStack width="100%" align="center" nowrap gap="xs2">
+                <div :class="styles.searchInputLabelStyle" width="100%">
                   <input
                     v-model="checkValues"
                     :value="option.value"

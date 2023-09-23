@@ -14,6 +14,7 @@ type Props = {
   direction?: "horizontal" | "vertical";
   gap?: SpacingKeys;
   strikeThrough?: boolean;
+  expand?: boolean;
   onChange?: (values: number[]) => void;
 };
 
@@ -24,6 +25,7 @@ const CheckBox: FC<Props> = ({
   direction = "horizontal",
   gap = "xl",
   strikeThrough = false,
+  expand = false,
   onChange,
 }) => {
   const [focusedKey, setFocusedKey] = useState<CheckBoxOption["key"] | null>(
@@ -37,7 +39,12 @@ const CheckBox: FC<Props> = ({
         const isDisabled = disabled || option.disabled;
         const isFocused = !isDisabled && option.key === focusedKey;
         return (
-          <div key={option.key}>
+          <div
+            key={option.key}
+            style={{
+              width: expand ? "100%" : undefined,
+            }}
+          >
             <label
               className={clsx(
                 styles.checkboxLabelStyle,

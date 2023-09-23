@@ -111,13 +111,7 @@ export const SearchPopupPanel: FC<Props> = ({
               ) : (
                 // CheckBox
                 <div className={styles.searchDropdownCheckboxItemStyle}>
-                  <WizHStack
-                    width="100%"
-                    justify="between"
-                    align="center"
-                    gap="xs2"
-                    nowrap
-                  >
+                  <WizHStack width="100%" align="center" gap="xs2" nowrap>
                     <div className={styles.searchInputLabelStyle}>
                       <WizCheckBox
                         options={[
@@ -129,6 +123,7 @@ export const SearchPopupPanel: FC<Props> = ({
                         ]}
                         values={values}
                         onChange={handleChangeValues}
+                        expand
                       />
                     </div>
                     {optionTag && (
