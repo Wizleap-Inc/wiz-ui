@@ -4,4 +4,4 @@
 "@wizleap-inc/wiz-ui": minor
 ---
 
-Feat(drawer): 右からスライドインするアニメーション効果を追加
+Feat(drawer): スライドイン方向、幅、影を指定可能にする
