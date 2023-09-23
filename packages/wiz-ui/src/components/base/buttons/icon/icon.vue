@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     :class="[
       iconButtonStyle[variant],
       disabled && iconButtonDisabledStyle,
@@ -19,9 +20,9 @@ import {
   getRelativeFontSize,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
+  iconButtonDisabledStyle,
   iconButtonSVGStyle,
   iconButtonStyle,
-  iconButtonDisabledStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/icon-button.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
@@ -59,6 +60,10 @@ const props = defineProps({
     type: String as PropType<"sm" | "md" | "lg" | "xl">,
     required: false,
     default: "md",
+  },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    required: false,
   },
 });
 

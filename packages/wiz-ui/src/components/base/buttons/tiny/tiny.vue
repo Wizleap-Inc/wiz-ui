@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     :class="[
       tinyButtonBaseStyle,
       tinyButtonSizeStyle,
@@ -41,7 +42,7 @@ import {
   paddingXStyle,
   paddingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, PropType, ref } from "vue";
+import { PropType, computed, ref } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -82,6 +83,10 @@ const props = defineProps({
     type: String as PropType<"left" | "right">,
     required: false,
     default: "left",
+  },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    required: false,
   },
 });
 

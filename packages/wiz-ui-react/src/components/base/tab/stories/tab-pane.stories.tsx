@@ -37,6 +37,14 @@ export const NotificationCount: Story = {
   },
 };
 
+export const BadgeColor: Story = {
+  args: {
+    label: "ほげほげ",
+    notificationCount: 10,
+    badgeColor: "green",
+  },
+};
+
 export const Width: Story = {
   args: {
     label: "ほげほげ",

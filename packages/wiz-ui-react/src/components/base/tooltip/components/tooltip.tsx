@@ -14,7 +14,7 @@ import { WizIChangeHistory, WizPopup } from "@/components";
 
 interface Props {
   direction?: "top" | "bottom" | "left" | "right";
-  hover?: boolean;
+  isOpen?: boolean;
   isDirectionFixed?: boolean;
   children: ReactNode;
   content: ReactNode;
@@ -22,7 +22,7 @@ interface Props {
 
 const Tooltip: FC<Props> = ({
   direction = "top",
-  hover = false,
+  isOpen = false,
   isDirectionFixed = false,
   children,
   content,
@@ -42,7 +42,7 @@ const Tooltip: FC<Props> = ({
       </div>
       <WizPopup
         anchorElement={anchor}
-        isOpen={isHover || hover}
+        isOpen={isHover || isOpen}
         onClose={useCallback(() => setIsHover(false), [])}
         direction={direction}
         shadow={false}

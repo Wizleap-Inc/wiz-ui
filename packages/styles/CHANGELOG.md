@@ -1,5 +1,30 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.19.0
+
+### Minor Changes
+
+- [#1018](https://github.com/Wizleap-Inc/wiz-ui/pull/1018) [`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2) Thanks [@okakyo](https://github.com/okakyo)! - [#1017] Snackbar に expand property を追加
+
+### Patch Changes
+
+- Updated dependencies [[`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730)]:
+  - @wizleap-inc/wiz-ui-constants@0.13.0
+
+## 0.18.0
+
+### Minor Changes
+
+- [#906](https://github.com/Wizleap-Inc/wiz-ui/pull/906) [`32a54995`](https://github.com/Wizleap-Inc/wiz-ui/commit/32a54995b1868c7a66b60dd7fe483c9a72ddc909) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizTextButton のスタイル修正
+
+- [#1039](https://github.com/Wizleap-Inc/wiz-ui/pull/1039) [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tab-pane): BadgeColor を追加
+
+## 0.17.1
+
+### Patch Changes
+
+- [#1033](https://github.com/Wizleap-Inc/wiz-ui/pull/1033) [`65d44893`](https://github.com/Wizleap-Inc/wiz-ui/commit/65d4489363c0a67ca0b08ad100369ea43894f6c1) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(message-box): slot が空のときにタイトル下に margin が入ってしまうのを解消
+
 ## 0.17.0
 
 ### Minor Changes
