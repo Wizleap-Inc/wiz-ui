@@ -72,6 +72,7 @@ export const Default: Story = {
     );
   },
 };
+
 export const WithHeader: Story = {
   args: {
     isOpen: true,
@@ -81,7 +82,63 @@ export const WithHeader: Story = {
   render: (args) => {
     return (
       <div style={{ height: "100vh" }}>
-        <WizHeader sticky onToggle={dummy} />
+        <div style={{ zIndex: 3000, position: "fixed", width: "100%" }}>
+          <WizHeader sticky onToggle={dummy} />
+        </div>
+        <WizDrawer {...args}>
+          <WizNavigationItem
+            icon={WizIDashboard}
+            label="Home"
+            active={true}
+            href={""}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
+          />
+          <WizNavigationItem
+            icon={WizIAssignment}
+            label="Page1"
+            active={false}
+            href={""}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
+          />
+          <WizNavigationItem
+            icon={WizIBusinessCenter}
+            label="Page2"
+            active={false}
+            href={""}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
+          />
+          <WizNavigationItem
+            icon={WizIHelp}
+            label="Page3"
+            active={false}
+            href={""}
+            onTogglePopup={dummy}
+            onTogglePopupLocking={dummy}
+          />
+        </WizDrawer>
+      </div>
+    );
+  },
+};
+
+export const Right: Story = {
+  args: {
+    isOpen: true,
+    shadow: true,
+    place: "right",
+    width: "300px",
+    offsetTop: THEME.share.HEADER_HEIGHT,
+  },
+
+  render: (args) => {
+    return (
+      <div style={{ height: "100vh" }}>
+        <div style={{ zIndex: 3000, position: "fixed", width: "100%" }}>
+          <WizHeader sticky onToggle={dummy} />
+        </div>
         <WizDrawer {...args}>
           <WizNavigationItem
             icon={WizIDashboard}

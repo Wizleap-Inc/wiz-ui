@@ -86,7 +86,9 @@ export const WithHeader: StoryFn<typeof WizDrawer> = (args) => ({
   },
   template: `
     <div style="height: 100vh"> 
-      <WizHeader />
+      <div style="z-index:3000; position: fixed; width: 100%">
+        <WizHeader />
+      </div>
       <WizDrawer v-bind="args">      
         <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="true" />
         <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
@@ -100,4 +102,45 @@ export const WithHeader: StoryFn<typeof WizDrawer> = (args) => ({
 WithHeader.args = {
   isOpen: true,
   offsetTop: THEME.share.HEADER_HEIGHT,
+};
+
+export const Right: StoryFn<typeof WizDrawer> = (args) => ({
+  components: {
+    WizDrawer,
+    WizNavItem,
+    WizHeader,
+  },
+  setup: () => {
+    return {
+      args,
+      WizIDashboard,
+      WizIAssignment,
+      WizIBusinessCenter,
+      WizIHelp,
+      WizIconButton,
+      WizIMenu,
+      WizICancel,
+    };
+  },
+  template: `
+    <div style="height: 100vh"> 
+      <div style="z-index:3000; position: fixed; width: 100%">
+        <WizHeader />
+      </div>
+      <WizDrawer v-bind="args">      
+        <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="true" />
+        <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+        <WizNavItem :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+        <WizNavItem :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
+      </WizDrawer> 
+    </div>
+  `,
+});
+
+Right.args = {
+  isOpen: true,
+  offsetTop: THEME.share.HEADER_HEIGHT,
+  place: "right",
+  width: "300px",
+  shadow: true,
 };
