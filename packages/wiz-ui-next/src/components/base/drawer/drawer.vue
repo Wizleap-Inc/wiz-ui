@@ -1,7 +1,6 @@
 <template>
   <teleport to="body">
     <div
-      ref="containerRef"
       :class="styles.drawerContainerStyle"
       :style="{
         top: offsetTop,
@@ -9,7 +8,17 @@
         display: isActuallyOpen ? undefined : 'none',
       }"
     >
-      <div :class="styles.drawerContainerItemsStyle">
+      <div
+        ref="containerRef"
+        :class="[
+          styles.drawerContainerItemsStyle,
+          shadow && styles.drawerShadowStyle,
+        ]"
+        :style="{
+          width: width,
+          right: place === 'right' ? 0 : undefined,
+        }"
+      >
         <slot />
       </div>
     </div>
@@ -42,14 +51,24 @@ const props = defineProps({
     default: "0px",
   },
   /**
-   * slideFromがleftの場合は左から、rightの場合は右からスライドインします。
+   * 左右どちらからスライドインするか指定します。
    * @type {"left" | "right"}
    * @default "left"
    */
-  slideFrom: {
+  place: {
     type: String as PropType<"left" | "right">,
     required: false,
     default: "left",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "100%",
+  },
+  shadow: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
 });
 
@@ -64,9 +83,7 @@ watch(props, () => {
       [
         {
           transform:
-            props.slideFrom === "left"
-              ? "translateX(-100vw)"
-              : "translateX(100vw)",
+            props.place === "left" ? "translateX(-100%)" : "translateX(100%)",
         },
         {
           transform: "translateX(0)",
@@ -87,9 +104,7 @@ watch(props, () => {
         },
         {
           transform:
-            props.slideFrom === "left"
-              ? "translateX(-100vw)"
-              : "translateX(100vw)",
+            props.place === "left" ? "translateX(-100%)" : "translateX(100%)",
         },
       ],
       {
