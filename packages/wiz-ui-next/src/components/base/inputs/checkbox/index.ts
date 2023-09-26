@@ -1,1 +1,1 @@
-export { default as WizCheckBox } from "./checkbox.vue";
+export { /** @deprecated */ default as WizCheckBox } from "./checkbox.vue";
