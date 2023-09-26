@@ -111,4 +111,7 @@ const CheckBox: FC<Props> = ({
 
 CheckBox.displayName = ComponentName.CheckBox;
 
+/**
+ * @deprecated このコンポーネントは削除予定です。代わりに `CheckBoxNew` コンポーネントを使用してください
+ */
 export const WizCheckBox = CheckBox;
