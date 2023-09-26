@@ -89,7 +89,10 @@ const _Stack = ({
   );
 
   return (
-    <div className={stackStyle} style={{ width, height, overflow }}>
+    <div
+      className={`${stackStyle} ${props.className}`}
+      style={{ width, height, overflow }}
+    >
       {props.children}
     </div>
   );

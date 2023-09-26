@@ -158,7 +158,12 @@ const TimePicker = ({
               >
                 時
               </div>
-              <div className={styles.timePickerScrollStyle}>
+              <WizVStack
+                gap="xs2"
+                overflow="auto"
+                nowrap
+                className={styles.timePickerScrollStyle}
+              >
                 {HOURS.map((option) => (
                   <div
                     key={"hh" + option}
@@ -172,9 +177,6 @@ const TimePicker = ({
                         timePickerSelectorOptionItemColor(option === time?.hour)
                       ],
                     ])}
-                    style={{
-                      margin: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
-                    }}
                     onClick={() =>
                       onChange({ hour: option, minute: time?.minute || 0 })
                     }
@@ -182,7 +184,7 @@ const TimePicker = ({
                     {option}
                   </div>
                 ))}
-              </div>
+              </WizVStack>
             </div>
 
             {/* ｜ */}
@@ -208,9 +210,11 @@ const TimePicker = ({
               >
                 分
               </div>
-              <div
+              <WizVStack
+                gap="xs2"
+                overflow="auto"
+                nowrap
                 className={styles.timePickerScrollStyle}
-                style={{ margin: 0 }}
               >
                 {MINUTES.map((option) => (
                   <div
@@ -227,9 +231,6 @@ const TimePicker = ({
                         )
                       ],
                     ])}
-                    style={{
-                      margin: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
-                    }}
                     onClick={() =>
                       onChange({ hour: time?.hour || 0, minute: option })
                     }
@@ -237,7 +238,7 @@ const TimePicker = ({
                     {String(option).padStart(2, "0")}
                   </div>
                 ))}
-              </div>
+              </WizVStack>
             </div>
           </WizHStack>
         </div>
