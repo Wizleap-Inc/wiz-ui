@@ -267,6 +267,7 @@ const filterOptions =
       if (!option.children || option.children.length === 0) {
         return match(option.label) ? [option] : [];
       }
+      if (match(option.label)) return [option];
       const children = filterOptions(match)(option.children);
       if (children.length === 0) return [];
       return [
