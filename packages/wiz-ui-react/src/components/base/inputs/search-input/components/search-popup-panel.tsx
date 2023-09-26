@@ -16,7 +16,7 @@ type Props = {
   options?: SearchInputOption[];
   values: number[];
   width?: string;
-  emptyMessage?: string;
+  emptyMessage: string;
   onChangeValues: (values: number[]) => void;
 };
 
@@ -24,7 +24,7 @@ export const SearchPopupPanel: FC<Props> = ({
   options,
   values,
   width,
-  emptyMessage = "選択肢がありません。",
+  emptyMessage,
   onChangeValues,
 }) => {
   const [activeValue, setActiveValue] = useState<number | null>(null);
@@ -122,6 +122,7 @@ export const SearchPopupPanel: FC<Props> = ({
           options={activeOption.children}
           values={values}
           width={width}
+          emptyMessage={emptyMessage}
           onChangeValues={onChangeValues}
         />
       )}
