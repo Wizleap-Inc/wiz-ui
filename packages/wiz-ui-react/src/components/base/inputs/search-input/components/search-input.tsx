@@ -33,6 +33,7 @@ function filterOptions(
     if (!option.children || option.children.length === 0) {
       return isMatched ? [option] : [];
     }
+    if (isMatched) return [option];
     const children = filterOptions(option.children, text);
     if (children.length === 0) return [];
     return [
