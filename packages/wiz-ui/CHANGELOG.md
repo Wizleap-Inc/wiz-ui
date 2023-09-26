@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui
 
+## 2.10.0
+
+### Minor Changes
+
+- [#1051](https://github.com/Wizleap-Inc/wiz-ui/pull/1051) [`d74864b4`](https://github.com/Wizleap-Inc/wiz-ui/commit/d74864b4f97092693d343dba4a991cbf40b22be6) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(button): button 要素に type を付与
+
+### Patch Changes
+
+- Updated dependencies [[`4ec8a235`](https://github.com/Wizleap-Inc/wiz-ui/commit/4ec8a235a19eabd3859f0a0d9b982b557acc4060), [`888eb872`](https://github.com/Wizleap-Inc/wiz-ui/commit/888eb872237b9f4ce66b6e333eac43de47c886a3)]:
+  - @wizleap-inc/wiz-ui-constants@0.14.0
+  - @wizleap-inc/wiz-ui-styles@0.20.0
+
 ## 2.9.0
 
 ### Minor Changes
