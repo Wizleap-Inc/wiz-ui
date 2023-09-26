@@ -25,6 +25,7 @@ export const ComponentName = {
   CheckBox: "WizCheckBox",
   CheckBoxNew: "WizCheckBoxNew",
   Radio: "WizRadio",
+  RadioNew: "WizRadioNew",
   TimePicker: "WizTimePicker",
   Tab: "WizTab",
   TabPane: "WizTabPane",
