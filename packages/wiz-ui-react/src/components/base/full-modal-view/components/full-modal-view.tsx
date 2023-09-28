@@ -4,6 +4,7 @@ import {
   getSpacingCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/full-modal-view.css";
+import clsx from "clsx";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 import {
@@ -83,11 +84,10 @@ const FullModalView: FC<Props> = ({
     <WizPortal container={document.body}>
       <div
         ref={modalRef}
-        className={styles.containerStyle}
-        style={{
-          bottom: 0,
-          display: isActuallyOpen ? undefined : "none",
-        }}
+        className={clsx([
+          styles.containerStyle,
+          !isActuallyOpen && styles.hiddenStyle,
+        ])}
       >
         <WizVStack>
           <div className={styles.headerStyle}>
