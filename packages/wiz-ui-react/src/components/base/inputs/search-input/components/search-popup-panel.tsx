@@ -123,6 +123,7 @@ export const SearchPopupPanel: FC<Props> = ({
                         ]}
                         values={values}
                         onChange={handleChangeValues}
+                        direction="vertical"
                       />
                     </div>
                     {optionTag && (
