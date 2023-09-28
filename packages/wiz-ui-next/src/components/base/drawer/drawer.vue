@@ -1,26 +1,17 @@
 <template>
   <teleport to="body">
     <div
-      :class="styles.drawerContainerStyle"
+      ref="containerRef"
+      :class="[styles.drawerStyle, shadow && styles.drawerShadowStyle]"
       :style="{
         top: offsetTop,
         bottom: 0,
         display: isActuallyOpen ? undefined : 'none',
+        width: width,
+        right: place === 'right' ? 0 : undefined,
       }"
     >
-      <div
-        ref="containerRef"
-        :class="[
-          styles.drawerContainerItemsStyle,
-          shadow && styles.drawerShadowStyle,
-        ]"
-        :style="{
-          width: width,
-          right: place === 'right' ? 0 : undefined,
-        }"
-      >
-        <slot />
-      </div>
+      <slot />
     </div>
   </teleport>
 </template>

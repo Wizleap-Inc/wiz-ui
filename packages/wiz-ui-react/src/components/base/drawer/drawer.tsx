@@ -86,26 +86,20 @@ const Drawer: FC<Props> = ({
   return (
     <WizPortal container={document.body}>
       <div
-        className={styles.drawerContainerStyle}
+        ref={containerRef}
+        className={clsx([
+          styles.drawerStyle,
+          shadow && styles.drawerShadowStyle,
+        ])}
         style={{
           top: offsetTop,
           bottom: 0,
           display: isActuallyOpen ? undefined : "none",
+          width: width,
+          right: place === "right" ? 0 : undefined,
         }}
       >
-        <div
-          ref={containerRef}
-          className={clsx([
-            styles.drawerContainerItemsStyle,
-            shadow && styles.drawerShadowStyle,
-          ])}
-          style={{
-            width: width,
-            right: place === "right" ? 0 : undefined,
-          }}
-        >
-          {children}
-        </div>
+        {children}
       </div>
     </WizPortal>
   );
