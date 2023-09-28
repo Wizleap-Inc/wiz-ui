@@ -123,7 +123,6 @@ export const SearchPopupPanel: FC<Props> = ({
                         ]}
                         values={values}
                         onChange={handleChangeValues}
-                        expand
                       />
                     </div>
                     {optionTag && (
