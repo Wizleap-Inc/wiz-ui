@@ -44,7 +44,7 @@ export const Default: Story = {
           onClose={() => setIsOpen(false)}
         >
           <h1>FullModalView</h1>
-          <div>{DUMMY_TEXT_1}</div>
+          <div style={{ height: "120vh" }}>{DUMMY_TEXT_1}</div>
         </WizFullModalView>
         <WizTextButton onClick={() => setIsOpen(true)}>Open</WizTextButton>
         <div>{DUMMY_TEXT_2}</div>
