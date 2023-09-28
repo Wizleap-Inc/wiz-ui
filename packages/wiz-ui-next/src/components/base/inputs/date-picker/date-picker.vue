@@ -228,7 +228,7 @@ const props = defineProps({
   formatYear: {
     type: Function as PropType<(year: number) => string>,
     required: false,
-    default: (year: number) => `${year}年`,
+    default: (year: number) => `${year}`,
   },
 });
 

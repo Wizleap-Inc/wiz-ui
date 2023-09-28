@@ -50,7 +50,7 @@ const DatePicker: FC<Props> = ({
   onChangeDate,
   error,
   disabledDate = () => false,
-  formatYear = (year) => `${year}年`,
+  formatYear = (year) => `${year}`,
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
