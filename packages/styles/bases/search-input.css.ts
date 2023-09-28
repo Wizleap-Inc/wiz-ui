@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -179,5 +179,11 @@ export const searchCheckboxBlockCheckedStyle = style({
 
 export const searchInputLabelStyle = style({
   lineHeight: THEME.fontSize.xl3,
+  width: "100%",
+});
+
+export const searchInputCheckboxStyle = style({});
+// FIXME: WizCheckBoxNewで置換する際に消す。
+globalStyle(`${searchInputCheckboxStyle} > div`, {
   width: "100%",
 });
