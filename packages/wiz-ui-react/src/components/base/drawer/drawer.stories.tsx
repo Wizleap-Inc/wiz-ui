@@ -139,6 +139,17 @@ export const Right: Story = {
         <div style={{ zIndex: 3000, position: "fixed", width: "100%" }}>
           <WizHeader sticky onToggle={dummy} />
         </div>
+        <button
+          style={{
+            inset: 0,
+            margin: "auto",
+            position: "fixed",
+            width: "80%",
+            height: "100px",
+          }}
+        >
+          button
+        </button>
         <WizDrawer {...args}>
           <WizNavigationItem
             icon={WizIDashboard}
