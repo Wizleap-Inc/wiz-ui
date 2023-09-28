@@ -7,3 +7,5 @@
 
 Feat(WizTag): Variant を追加
 Feat(WizSearchInput): tag 機能を追加
+Feat(WizStack, WizHStack, WizVStack): className, style を公開
+Feat(WizCheckBox): className, style を公開
