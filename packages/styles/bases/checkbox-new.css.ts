@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const labelBaseStyle = style({
+  position: "relative",
   display: "inline-flex",
   alignItems: "center",
   gap: THEME.spacing.xs,
