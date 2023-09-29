@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui
 
+## 2.11.0
+
+### Minor Changes
+
+- [#1036](https://github.com/Wizleap-Inc/wiz-ui/pull/1036) [`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(WizTag): Variant を追加
+  Feat(WizSearchInput): tag 機能を追加
+  Feat(WizStack, WizHStack, WizVStack): className, style を公開
+  Feat(WizCheckBox): className, style を公開
+
+### Patch Changes
+
+- Updated dependencies [[`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.0
+
 ## 2.10.0
 
 ### Minor Changes

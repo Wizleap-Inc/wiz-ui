@@ -1,5 +1,23 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.35.0
+
+### Minor Changes
+
+- [#1062](https://github.com/Wizleap-Inc/wiz-ui/pull/1062) [`f780af28`](https://github.com/Wizleap-Inc/wiz-ui/commit/f780af28b83180028de9e4ce19e033bb4a046852) Thanks [@okakyo](https://github.com/okakyo)! - [#989] Notification の Panel. color Props の変更 (React)
+
+- [#1036](https://github.com/Wizleap-Inc/wiz-ui/pull/1036) [`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(WizTag): Variant を追加
+  Feat(WizSearchInput): tag 機能を追加
+  Feat(WizStack, WizHStack, WizVStack): className, style を公開
+  Feat(WizCheckBox): className, style を公開
+
+### Patch Changes
+
+- [#1063](https://github.com/Wizleap-Inc/wiz-ui/pull/1063) [`0cc93707`](https://github.com/Wizleap-Inc/wiz-ui/commit/0cc937074823b0d0d45c8b3050a27a5ea2d0020d) Thanks [@okakyo](https://github.com/okakyo)! - [#979] Fade In Out のバグ修正(React)
+
+- Updated dependencies [[`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.0
+
 ## 0.34.0
 
 ### Minor Changes
