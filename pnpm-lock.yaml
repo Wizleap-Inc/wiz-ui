@@ -267,7 +267,7 @@ importers:
         specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: workspace:*
+        specifier: 0.3.0
         version: link:../utils
       portal-vue:
         specifier: ^2.1.7
