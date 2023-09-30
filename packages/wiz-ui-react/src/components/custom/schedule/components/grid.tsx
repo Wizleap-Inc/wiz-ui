@@ -2,18 +2,20 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as constants from "@wizleap-inc/wiz-ui-constants/component/custom/schedule";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/schedule.css";
 
-import { ScheduleTime, ScheduleItem } from "../types";
+import { BaseProps } from "@/types";
+
+import { ScheduleItem, ScheduleTime } from "../types";
 
 import { getSteppedTime } from "./time";
 
 import { WizScheduleCard } from ".";
 
-interface Props {
+type Props = BaseProps & {
   startHour: number;
   endHour: number;
   schedules: ScheduleItem[];
   onScheduleClick?: (id: string) => void;
-}
+};
 
 const getRowFromTime = (time: ScheduleTime) => {
   return (
@@ -23,6 +25,8 @@ const getRowFromTime = (time: ScheduleTime) => {
 };
 
 export const WizScheduleGrid = ({
+  className,
+  style,
   startHour,
   endHour,
   schedules,
@@ -83,6 +87,8 @@ export const WizScheduleGrid = ({
     >
       {schedules.map((schedule) => (
         <WizScheduleCard
+          className={className}
+          style={style}
           key={schedule.id}
           id={schedule.id}
           text={schedule.text}
