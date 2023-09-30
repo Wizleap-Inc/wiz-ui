@@ -47,6 +47,7 @@
           ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
+            paddingRight: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           @click="popupButtonMouseDown(item.item)"
           @mousedown="onHoldClick(item.item)"
@@ -58,7 +59,6 @@
         >
           <span :class="popupButtonGroupInnerContainerStyle">
             <span>{{ item.item.option.label }}</span>
-
             <WizIcon
               v-if="item.item.option.icon"
               :icon="item.item.option.icon"
@@ -74,6 +74,7 @@
               size="md"
             />
           </span>
+          <span>{{ item.item.option.exLabel }}</span>
         </div>
       </div>
     </div>

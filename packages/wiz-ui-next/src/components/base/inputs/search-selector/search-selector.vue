@@ -369,6 +369,7 @@ const selectButtons = computed(() => {
       option: {
         label: opt.label,
         value: opt.value,
+        exLabel: opt.exLabel,
         onClick: () => onSelect(opt.value),
       },
     };

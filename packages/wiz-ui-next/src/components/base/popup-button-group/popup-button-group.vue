@@ -47,6 +47,7 @@
           ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
+            paddingRight: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           @click="popupButtonMouseDown(item.item)"
           @mouseover="popupButtonMouseOver(item.item)"
@@ -74,6 +75,7 @@
               size="md"
             />
           </span>
+          <span>{{ item.item.option.exLabel }}</span>
         </div>
       </div>
     </div>
