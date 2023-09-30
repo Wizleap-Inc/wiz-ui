@@ -38,6 +38,7 @@ type Props = {
   error?: boolean;
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
+  dropdownHeight: string;
   onChange: (value: number | null) => void;
 };
 
@@ -51,6 +52,7 @@ const SelectBox: FC<Props> = ({
   error,
   isDirectionFixed = false,
   showExLabel = false,
+  dropdownHeight,
   onChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -161,7 +163,7 @@ const SelectBox: FC<Props> = ({
           className={styles.selectBoxSelectorStyle}
           style={{ minWidth: width }}
         >
-          <WizVStack gap="xs2">
+          <WizVStack gap="xs2" height={dropdownHeight} nowrap>
             {options.map((option) => (
               <div
                 key={`${option.value}-${option.label}`}
