@@ -38,7 +38,7 @@ type Props = {
   error?: boolean;
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
-  dropdownHeight: string;
+  dropdownHeight?: string;
   onChange: (value: number | null) => void;
 };
 
