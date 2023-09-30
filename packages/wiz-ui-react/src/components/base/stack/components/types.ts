@@ -1,7 +1,9 @@
 import { SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+import { ReactNode } from "react";
 
-export type StackProps = ComponentPropsWithoutRef<"div"> & {
+import { BaseProps } from "@/types";
+
+export type StackProps = BaseProps & {
   direction?: "horizontal" | "vertical";
   align?: "start" | "center" | "end" | "stretch";
   justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
