@@ -1,9 +1,12 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
+import clsx from "clsx";
 import { FC } from "react";
+
+import { BaseProps } from "@/types";
 
 import { Bar } from "./bar";
 
-type Props = {
+type Props = BaseProps & {
   percentage?: number;
   label?: string;
   innerLabel?: string;
@@ -12,6 +15,8 @@ type Props = {
 };
 
 export const Row: FC<Props> = ({
+  className,
+  style,
   percentage,
   label,
   innerLabel,
@@ -19,7 +24,7 @@ export const Row: FC<Props> = ({
   isColorFixed,
 }) => {
   return (
-    <div className={styles.PollRowStyle}>
+    <div className={clsx(className, styles.PollRowStyle)} style={style}>
       <span className={styles.PollLabelStyle} style={{ width: labelWidth }}>
         {label}
       </span>

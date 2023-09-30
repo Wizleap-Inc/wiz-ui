@@ -2,7 +2,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
 import clsx from "clsx";
 import { FC, useEffect, useMemo, useRef } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   label: string;
   frequency: number;
   lastFrequency: number | null;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export const Bar: FC<Props> = ({
+  className,
+  style,
   label,
   frequency,
   lastFrequency,
@@ -122,7 +125,11 @@ export const Bar: FC<Props> = ({
   }, [frequency]);
 
   return (
-    <div ref={wrapperRef} className={styles.graphBarStyle}>
+    <div
+      ref={wrapperRef}
+      className={clsx(className, styles.graphBarStyle)}
+      style={style}
+    >
       <span className={styles.graphBarLabelStyle}>{label}</span>
       {transitionData !== null && (
         <>
