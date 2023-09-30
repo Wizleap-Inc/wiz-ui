@@ -61,3 +61,24 @@ export const getRelativeFontSize = (
   }
   return FONT_SIZE_ACCESSORS[accessor];
 };
+
+export const getTagIconSize = (key: FontSizeKeys): FontSizeKeys => {
+  switch (key) {
+    case "xs2":
+      return "md";
+    case "xs":
+      return "xl";
+    case "sm":
+      return "xl2";
+    case "md":
+      return "xl3";
+    case "lg":
+      return "xl4";
+    case "xl":
+      return "xl5";
+    case "xl2":
+      return "xl6";
+    default:
+      return key;
+  }
+};
