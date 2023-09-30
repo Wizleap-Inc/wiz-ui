@@ -7,10 +7,11 @@ import {
 import { FC, ReactNode } from "react";
 
 import { WizVStack } from "@/components";
+import { BaseProps } from "@/types";
 
 import { FormGroupContext } from "./form-group-context";
 
-type Props = {
+type Props = BaseProps & {
   labelWidth?: string;
   labelColor?: ColorKeys;
   labelFontSize?: FontSizeKeys;
@@ -19,6 +20,8 @@ type Props = {
 };
 
 const FormGroup: FC<Props> = ({
+  className,
+  style,
   labelWidth,
   labelColor = "gray.900",
   labelFontSize = "md",
@@ -33,7 +36,9 @@ const FormGroup: FC<Props> = ({
         labelFontSize,
       }}
     >
-      <WizVStack gap={gap}>{children}</WizVStack>
+      <WizVStack className={className} style={style} gap={gap}>
+        {children}
+      </WizVStack>
     </FormGroupContext.Provider>
   );
 };

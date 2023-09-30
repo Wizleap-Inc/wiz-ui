@@ -9,8 +9,8 @@ import clsx from "clsx";
 import { ReactNode } from "react";
 
 import { WizVStack } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   fontSize?: FontSizeKeys;
   gap?: SpacingKeys;
   lines?: number;
@@ -19,6 +19,8 @@ type Props = {
 };
 
 const SkeletonText = ({
+  className,
+  style,
   fontSize = "lg",
   gap = "sm",
   lines = 1,
@@ -33,7 +35,7 @@ const SkeletonText = ({
   return !isLoading ? (
     <>{children}</>
   ) : (
-    <WizVStack gap={gap}>
+    <WizVStack className={className} style={style} gap={gap}>
       {Array.from({ length: lines }, (_, i) => {
         return (
           <div
