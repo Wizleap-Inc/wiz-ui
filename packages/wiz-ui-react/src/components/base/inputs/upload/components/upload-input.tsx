@@ -4,13 +4,18 @@ import clsx from "clsx";
 import { ChangeEventHandler, DragEventHandler, FC, useState } from "react";
 
 import { WizUploadDisplay, WizVStack } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   setupXHR: () => XMLHttpRequest;
   multiple?: boolean;
 };
 
-const UploadInput: FC<Props> = ({ multiple = false, setupXHR }) => {
+const UploadInput: FC<Props> = ({
+  className,
+  style,
+  multiple = false,
+  setupXHR,
+}) => {
   const [files, setFiles] = useState<File[]>([]);
   const [isDragEnter, setIsDragEnter] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -87,7 +92,7 @@ const UploadInput: FC<Props> = ({ multiple = false, setupXHR }) => {
   };
 
   return (
-    <WizVStack gap="xl3">
+    <WizVStack className={className} style={style} gap="xl3">
       {isUploadable && (
         <label
           className={clsx(
