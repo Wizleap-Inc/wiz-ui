@@ -7,9 +7,9 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
 import clsx from "clsx";
 import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
-import { WizIcon, TIcon, WizHStack } from "@/components";
-
-type Props = {
+import { TIcon, WizHStack, WizIcon } from "@/components";
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   variant?: "primary" | "sub";
   disabled?: boolean;
   rounded?: boolean;
@@ -35,6 +35,8 @@ const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
 const TextButton = forwardRef(
   (
     {
+      className,
+      style,
       variant = "primary",
       disabled = false,
       rounded = true,
@@ -52,12 +54,14 @@ const TextButton = forwardRef(
         ref={ref}
         {...props}
         className={clsx(
+          className,
           styles.textButtonStyle[variant],
           styles.textButtonSizeStyle[size],
           disabled && styles.textButtonDisabledStyle,
           rounded && styles.textButtonRoundStyle,
           expand && styles.textButtonExpandStyle
         )}
+        style={style}
         disabled={disabled}
       >
         <WizHStack
