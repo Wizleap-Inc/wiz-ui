@@ -124,3 +124,11 @@ export const IsDirectionFixed: Story = {
     isDirectionFixed: true,
   },
 };
+
+export const DropdownHeight: Story = {
+  ...Template,
+  args: {
+    options: getDummyOptions("test", 3),
+    dropdownHeight: "200px",
+  },
+};
