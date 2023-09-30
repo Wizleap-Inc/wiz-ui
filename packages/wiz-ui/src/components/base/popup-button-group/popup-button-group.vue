@@ -58,7 +58,10 @@
           :key="`${item.item.option.label}-${item.item.option.value}`"
         >
           <span :class="popupButtonGroupInnerContainerStyle">
-            <span>{{ item.item.option.label }}</span>
+            <span
+              :class="[showExLabel && popupButtonGroupInnerContainerLabel]"
+              >{{ item.item.option.label }}</span
+            >
             <WizIcon
               v-if="item.item.option.icon"
               :icon="item.item.option.icon"
@@ -74,7 +77,9 @@
               size="md"
             />
           </span>
-          <span>{{ item.item.option.exLabel }}</span>
+          <span v-if="item.item.option.exLabel">{{
+            item.item.option.exLabel
+          }}</span>
         </div>
       </div>
     </div>
@@ -97,6 +102,7 @@ import {
   popupButtonGroupTitleVariantStyle,
   popupButtonGroupButtonVariantStyle,
   borderRadiusStyle,
+  popupButtonGroupInnerContainerLabel,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, PropType, ref } from "vue";
 
@@ -151,6 +157,11 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 0,
+  },
+  showExLabel: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 

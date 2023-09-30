@@ -17,7 +17,8 @@
             :class="selectBoxInnerBoxSelectedItemStyle"
           >
             <span :class="selectBoxInnerBoxSelectedLabelStyle">
-              {{ item.label }}
+              {{ item.label
+              }}{{ showExLabel && item.exLabel ? " " + item.exLabel : "" }}
             </span>
             <button
               type="button"
@@ -77,7 +78,10 @@
     >
       <div
         :class="selectBoxSelectorStyle"
-        :style="{ minWidth: width }"
+        :style="{
+          minWidth: width,
+          maxWidth: props.showExLabel ? 'initial' : '15rem',
+        }"
         v-if="
           filteredOptions.length > 0 ||
           (searchValue !== '' && !options.some((v) => v.label === searchValue))
@@ -85,6 +89,7 @@
       >
         <WizVStack gap="xs2">
           <WizPopupButtonGroup
+            :showExLabel="showExLabel"
             :options="
               addButtonEnabled ? [addButton, ...selectButtons] : selectButtons
             "
@@ -194,6 +199,11 @@ const props = defineProps({
     required: true,
   },
   isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  showExLabel: {
     type: Boolean,
     required: false,
     default: false,
@@ -368,7 +378,7 @@ const selectButtons = computed(() => {
       option: {
         label: opt.label,
         value: opt.value,
-        exLabel: opt.exLabel,
+        exLabel: props.showExLabel ? opt.exLabel : undefined,
         onClick: () => onSelect(opt.value),
       },
     };

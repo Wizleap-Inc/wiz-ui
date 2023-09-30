@@ -25,6 +25,9 @@ export default {
     multiSelectable: {
       control: { type: "boolean" },
     },
+    showExLabel: {
+      control: { type: "boolean" },
+    },
   },
   parameters: {
     docs: {
@@ -287,13 +290,33 @@ MultiSelecting.parameters = {
 export const Addable = Template(
   [],
   true,
-  _getDummyOptions("test", 3, "(10)"),
+  _getDummyOptions("test", 3),
   "new option"
 ).bind({});
 Addable.args = {
   addable: true,
 };
 Addable.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
+        addable: true,
+      }),
+    },
+  },
+};
+
+export const Exlabel = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3, "(10)"),
+  "new option"
+).bind({});
+Exlabel.args = {
+  addable: true,
+  showExLabel: true,
+};
+Exlabel.parameters = {
   docs: {
     source: {
       code: code([1, 2, 3], true, _getDummyOptions("test", 3, "(10)"), "", {
@@ -303,6 +326,31 @@ Addable.parameters = {
   },
 };
 
+export const ExlabelWithLongLabel = Template(
+  [],
+  true,
+  _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
+  "new option"
+).bind({});
+ExlabelWithLongLabel.args = {
+  addable: true,
+  showExLabel: true,
+};
+ExlabelWithLongLabel.parameters = {
+  docs: {
+    source: {
+      code: code(
+        [1, 2, 3],
+        true,
+        _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
+        "",
+        {
+          addable: true,
+        }
+      ),
+    },
+  },
+};
 export const IsDirectionFixed = Template(
   [],
   true,

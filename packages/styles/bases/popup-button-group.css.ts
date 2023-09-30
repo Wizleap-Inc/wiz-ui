@@ -87,3 +87,6 @@ export const popupButtonGroupInnerContainerStyle = style({
   alignItems: "center",
   flex: "none",
 });
+export const popupButtonGroupInnerContainerLabel = style({
+  paddingRight: THEME.spacing.xs,
+});
