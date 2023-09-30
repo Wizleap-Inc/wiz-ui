@@ -1,4 +1,4 @@
-import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
 import clsx from "clsx";
 
@@ -7,39 +7,46 @@ import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
 
 import { DivButton } from "./private-div-button";
 
-const PREV_ITEM_LENGTH = 2;
-const NEXT_ITEM_LENGTH = 2;
-const MAX_ITEM_LENGTH = PREV_ITEM_LENGTH + NEXT_ITEM_LENGTH + 1;
-
 type Props = {
   currentPage: number;
   length: number;
   onChangePage: (page: number) => void;
+  /**
+   * 表示ページ数を制御します。(`>=0`)
+   * @default 2
+   */
+  sideLength: number;
 };
 
-const Pagination = ({ currentPage, length, onChangePage }: Props) => {
+const Pagination = ({
+  currentPage,
+  length,
+  onChangePage,
+  sideLength = 2,
+}: Props) => {
+  const maxItemLength = 2 * Math.max(0, sideLength) + 1;
   const handleChangePage = (index: number) => {
     if (index < 1) return onChangePage(1);
     if (index > length) return onChangePage(length);
     onChangePage(index);
   };
   const getActuallyDisplayingPages = () => {
-    if (length < MAX_ITEM_LENGTH) {
+    if (length < maxItemLength) {
       return Array.from({ length }).map((_, index) => index + 1);
     }
     function getStartPage() {
-      if (currentPage <= PREV_ITEM_LENGTH) {
+      if (currentPage <= sideLength) {
         // (ex.)  1 [2] 3 4 5
         return 1;
       }
-      if (currentPage > length - NEXT_ITEM_LENGTH) {
+      if (currentPage > length - sideLength) {
         // (ex.)  6 7 8 [9] 10
-        return length - (PREV_ITEM_LENGTH + NEXT_ITEM_LENGTH);
+        return length - 2 * sideLength;
       }
       // (ex.)  3 4 [5] 6 7
-      return currentPage - PREV_ITEM_LENGTH;
+      return currentPage - sideLength;
     }
-    return Array.from({ length: MAX_ITEM_LENGTH }).map(
+    return Array.from({ length: maxItemLength }).map(
       (_, index) => getStartPage() + index
     );
   };
