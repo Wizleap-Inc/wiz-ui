@@ -55,6 +55,8 @@ type Props<T extends ElementType> = BaseProps & {
  * ```
  */
 const NavigationItem = <T extends ElementType>({
+  className,
+  style,
   icon: Icon,
   label,
   active,
