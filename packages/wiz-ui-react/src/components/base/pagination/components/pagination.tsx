@@ -24,7 +24,8 @@ const Pagination = ({
   onChangePage,
   sideLength = 2,
 }: Props) => {
-  const maxItemLength = 2 * Math.max(0, sideLength) + 1;
+  const sideItemLength = Math.max(0, sideLength);
+  const maxItemLength = 2 * sideItemLength + 1;
   const handleChangePage = (index: number) => {
     if (index < 1) return onChangePage(1);
     if (index > length) return onChangePage(length);
@@ -35,16 +36,16 @@ const Pagination = ({
       return Array.from({ length }).map((_, index) => index + 1);
     }
     function getStartPage() {
-      if (currentPage <= sideLength) {
+      if (currentPage <= sideItemLength) {
         // (ex.)  1 [2] 3 4 5
         return 1;
       }
-      if (currentPage > length - sideLength) {
+      if (currentPage > length - sideItemLength) {
         // (ex.)  6 7 8 [9] 10
-        return length - 2 * sideLength;
+        return length - 2 * sideItemLength;
       }
       // (ex.)  3 4 [5] 6 7
-      return currentPage - sideLength;
+      return currentPage - sideItemLength;
     }
     return Array.from({ length: maxItemLength }).map(
       (_, index) => getStartPage() + index

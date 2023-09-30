@@ -65,8 +65,8 @@ const props = defineProps({
    */
   sideLength: {
     type: Number as PropType<number>,
+    required: false,
     default: 2,
-    validator: (value: number) => value >= 0,
   },
 });
 
@@ -88,15 +88,15 @@ const onUpdatePage = (index: number) => {
 };
 
 const displayIndex = computed(() => {
-  const maxItemLength = props.sideLength * 2 + 1;
+  const sideItemLength = Math.max(0, props.sideLength);
+  const maxItemLength = sideItemLength * 2 + 1;
   // 表示可能幅がページ数より大きい場合は全て表示
   if (props.length <= maxItemLength)
     return Array.from({ length: props.length }, (_, i) => i + 1);
-  // if we have 10 pages
-  let from = activeValue.value - props.sideLength; // (ex.)  3 4 [5] 6 7
-  if (activeValue.value <= props.sideLength) from = 1; // (ex.)  1 [2] 3 4 5
-  if (activeValue.value > props.length - props.sideLength)
-    from = props.length - 2 * props.sideLength; // (ex.)  6 7 8 [9] 10
+  let from = activeValue.value - sideItemLength; // (ex.)  3 4 [5] 6 7
+  if (activeValue.value <= sideItemLength) from = 1; // (ex.)  1 [2] 3 4 5
+  if (activeValue.value > props.length - sideItemLength)
+    from = props.length - 2 * sideItemLength; // (ex.)  6 7 8 [9] 10
   return Array.from({ length: maxItemLength }, (_, i) => from + i);
 });
 </script>
