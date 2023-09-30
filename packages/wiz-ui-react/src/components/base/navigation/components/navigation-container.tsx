@@ -6,15 +6,18 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import { CSSProperties, FC, ReactNode } from "react";
 
-interface Props {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   isOpen: boolean;
   width?: string;
   sticky?: boolean;
   children: ReactNode;
   footer?: ReactNode;
-}
+};
 
 const NavigationContainer: FC<Props> = ({
+  className,
+  style,
   isOpen,
   width,
   sticky = false,

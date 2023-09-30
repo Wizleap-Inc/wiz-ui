@@ -1,9 +1,11 @@
-import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
 import clsx from "clsx";
+import { FC } from "react";
 
 import { WizIcon } from "@/components";
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
+import { BaseProps } from "@/types";
 
 import { DivButton } from "./private-div-button";
 
@@ -11,13 +13,19 @@ const PREV_ITEM_LENGTH = 2;
 const NEXT_ITEM_LENGTH = 2;
 const MAX_ITEM_LENGTH = PREV_ITEM_LENGTH + NEXT_ITEM_LENGTH + 1;
 
-type Props = {
+type Props = BaseProps & {
   currentPage: number;
   length: number;
   onChangePage: (page: number) => void;
 };
 
-const Pagination = ({ currentPage, length, onChangePage }: Props) => {
+const Pagination: FC<Props> = ({
+  className,
+  style,
+  currentPage,
+  length,
+  onChangePage,
+}) => {
   const handleChangePage = (index: number) => {
     if (index < 1) return onChangePage(1);
     if (index > length) return onChangePage(length);
@@ -46,10 +54,12 @@ const Pagination = ({ currentPage, length, onChangePage }: Props) => {
   return (
     <nav
       className={clsx(
+        className,
         styles.paginationStyle,
         currentPage <= 1 && styles.paginationGapStyle["left"],
         currentPage >= length && styles.paginationGapStyle["right"]
       )}
+      style={style}
       aria-label={ARIA_LABELS.PAGINATION}
     >
       {currentPage > 1 && (
