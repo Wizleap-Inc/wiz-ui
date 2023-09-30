@@ -264,7 +264,7 @@ importers:
         specifier: 0.14.0
         version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: workspace:*
+        specifier: 0.21.0
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
         specifier: 0.3.0
