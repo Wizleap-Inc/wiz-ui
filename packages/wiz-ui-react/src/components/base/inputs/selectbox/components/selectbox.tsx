@@ -21,14 +21,14 @@ import {
   WizVStack,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
-
+import { BaseProps } from "@/types";
 type SelectBoxOption = {
   label: string;
   exLabel?: string;
   value: number;
 };
 
-type Props = {
+type Props = BaseProps & {
   options: SelectBoxOption[];
   value: number | null;
   placeholder?: string;
@@ -42,6 +42,8 @@ type Props = {
 };
 
 const SelectBox: FC<Props> = ({
+  className,
+  style,
   options,
   value,
   placeholder = "選択してください",
@@ -106,12 +108,14 @@ const SelectBox: FC<Props> = ({
       <div
         ref={anchorRef}
         className={clsx(
+          className,
           styles.selectBoxStyle,
           inputBorderStyle[getInputBorderStyleKey()],
           disabled && styles.selectBoxDisabledStyle,
           styles.selectBoxCursorStyle[disabled ? "disabled" : "default"]
         )}
         style={{
+          ...style,
           width: expand ? "100%" : width,
         }}
         onClick={toggleOpen}

@@ -6,7 +6,7 @@ import {
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { useContext, useEffect, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 
 import {
   WizDivider,
@@ -18,10 +18,11 @@ import {
   WizVStack,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
+import { BaseProps } from "@/types";
 
 import { HOURS, MINUTES, Time } from "../types/time";
 
-type Props = {
+type Props = BaseProps & {
   time: Time | null;
   placeholder?: string;
   width?: string;
@@ -31,7 +32,9 @@ type Props = {
   onChange: (time: Time | null) => void;
 };
 
-const TimePicker = ({
+const TimePicker: FC<Props> = ({
+  className,
+  style,
   time,
   placeholder = "時間を選択",
   width = "10rem",
@@ -39,7 +42,7 @@ const TimePicker = ({
   isDirectionFixed = false,
   error = false,
   onChange,
-}: Props) => {
+}) => {
   const anchor = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
@@ -77,7 +80,7 @@ const TimePicker = ({
   })();
 
   return (
-    <div>
+    <div className={className} style={style}>
       <div
         ref={anchor}
         className={clsx([
