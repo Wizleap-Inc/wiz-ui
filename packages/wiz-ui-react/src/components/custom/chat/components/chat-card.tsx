@@ -26,6 +26,7 @@ import {
   WizText,
   WizVStack,
 } from "@/components";
+import { BaseProps } from "@/types";
 
 import { DisplayMessage, Message } from "./types";
 
@@ -33,7 +34,7 @@ import { WizChatForm, WizChatItem } from ".";
 
 const TOGGLE_ANIMATION_DURATION = 300;
 
-type Props = {
+type Props = BaseProps & {
   textValue: string;
   username: string;
   placeholder?: string;
@@ -51,6 +52,8 @@ type Props = {
 };
 
 const ChatCard: FC<Props> = ({
+  className,
+  style,
   textValue,
   username,
   placeholder,
@@ -141,6 +144,8 @@ const ChatCard: FC<Props> = ({
 
   return (
     <WizBox
+      className={className}
+      style={style}
       ref={wrapperBoxRef}
       position="fixed"
       right="1.5rem"

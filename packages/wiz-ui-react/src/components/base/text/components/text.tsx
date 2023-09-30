@@ -6,15 +6,16 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text.css";
 import {
-  lineHeightStyle,
-  fontSizeStyle,
   colorStyle,
+  fontSizeStyle,
+  lineHeightStyle,
   whiteSpaceStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ReactNode, memo } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   as?: "p" | "span" | "label";
   htmlFor?: string;
   color?: ColorKeys;
@@ -36,6 +37,8 @@ type Props = {
 };
 
 const _Text = ({
+  className,
+  style,
   as = "p",
   htmlFor,
   color = "gray.900",
@@ -51,7 +54,7 @@ const _Text = ({
   display,
   children,
 }: Props) => {
-  const style = maxLines
+  const textStyle = maxLines
     ? {
         overflow: "hidden",
         display: "-webkit-box",
@@ -59,7 +62,8 @@ const _Text = ({
         WebkitLineClamp: maxLines,
       }
     : undefined;
-  const className = clsx([
+  const textClass = clsx([
+    className,
     styles.textStyle,
     styles.textFontWeightStyle[bold ? "bold" : "default"],
     styles.textAlignStyle[textAlign],
@@ -77,14 +81,18 @@ const _Text = ({
   switch (as) {
     case "p": {
       return (
-        <p className={className} style={style}>
+        <p className={textClass} style={textStyle}>
           {children}
         </p>
       );
     }
     case "label": {
       return (
-        <label htmlFor={htmlFor} className={className} style={style}>
+        <label
+          htmlFor={htmlFor}
+          className={textClass}
+          style={{ ...style, ...textStyle }}
+        >
           {children}
         </label>
       );

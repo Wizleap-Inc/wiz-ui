@@ -13,7 +13,6 @@ import clsx from "clsx";
 import { ComponentProps, ForwardedRef, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
-
 type Props = {
   label: string;
   icon?: TIcon;
@@ -37,6 +36,8 @@ type Props = {
 const Tag = forwardRef(
   (
     {
+      className,
+      style,
       label,
       icon,
       variant = "info",
@@ -52,12 +53,14 @@ const Tag = forwardRef(
       <div
         ref={ref}
         className={clsx(
+          className,
           styles.tagStyle,
           styles.tagColorStyle[variant],
           fontSizeStyle[fontSize],
           fontWeightStyle[fontWeight]
         )}
         style={{
+          ...style,
           width: width || "max-content",
           borderRadius: round ? THEME.spacing.xl2 : THEME.spacing.xs2,
         }}

@@ -10,10 +10,11 @@ import {
   WizText,
   WizVStack,
 } from "@/components";
+import { BaseProps } from "@/types";
 
 import { PanelVariant, TableInfoItem } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   title: string;
   timestamp: Date;
   variant?: PanelVariant;
@@ -24,6 +25,8 @@ type Props = {
 };
 
 const NotificationPanel: FC<Props> = ({
+  className,
+  style,
   title,
   timestamp,
   variant = "primary",
@@ -67,6 +70,8 @@ const NotificationPanel: FC<Props> = ({
   };
   return (
     <WizBox
+      className={className}
+      style={style}
       onMouseOver={useCallback(() => setIsHovered(true), [])}
       onMouseLeave={useCallback(() => setIsHovered(false), [])}
       onPointerDown={useCallback(() => setIsPressed(true), [])}

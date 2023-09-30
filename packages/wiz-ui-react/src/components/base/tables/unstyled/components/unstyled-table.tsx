@@ -19,6 +19,8 @@ type Props = {
 } & ComponentProps<"table">;
 
 const UnstyledTable = ({
+  className,
+  style,
   space = "no",
   spaceX,
   spaceY,
@@ -31,6 +33,7 @@ const UnstyledTable = ({
   return (
     <table
       className={clsx(
+        className,
         spaceX && borderSpacingXStyle[spaceX],
         spaceY && borderSpacingYStyle[spaceY],
         !spaceX && !spaceY && borderSpacingStyle[space],
@@ -38,7 +41,7 @@ const UnstyledTable = ({
         borderCollapse &&
           styles.unstyledTableBorderCollapseStyle[borderCollapse]
       )}
-      style={{ width }}
+      style={{ ...style, width }}
       {...props}
     >
       {children}

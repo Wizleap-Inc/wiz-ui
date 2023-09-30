@@ -2,11 +2,12 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { FC, useMemo, useState } from "react";
 
 import { WizBox, WizTab } from "@/components";
+import { BaseProps } from "@/types";
 
 import { WizNotificationList } from "./notification-list";
 import { NotificationItem, NotificationTabItem } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   tabs: NotificationTabItem[];
   notifications: NotificationItem[];
   height?: string;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const Notification: FC<Props> = ({
+  className,
+  style,
   tabs,
   notifications,
   height,
@@ -41,6 +44,8 @@ const Notification: FC<Props> = ({
   return (
     <div>
       <WizTab
+        className={className}
+        style={style}
         items={tabs}
         activeTabName={activeTabName}
         onClickTab={(name) => setActiveTabName(name)}
