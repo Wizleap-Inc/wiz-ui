@@ -4,6 +4,7 @@ import {
   popupButtonGroupButtonVariantStyle,
   popupButtonGroupDisabledCursorStyle,
   popupButtonGroupInnerContainerStyle,
+  popupButtonGroupInnerContainerLabel,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import clsx from "clsx";
 import { FC, KeyboardEvent, useMemo, useState } from "react";
@@ -16,9 +17,15 @@ interface Props {
   item: ButtonItemType;
   disabled: boolean;
   depth: number;
+  showExLabel?: boolean;
 }
 
-export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
+export const ButtonItem: FC<Props> = ({
+  item,
+  disabled,
+  depth,
+  showExLabel,
+}) => {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
@@ -78,6 +85,7 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
         )}
         style={{
           paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
+          paddingRight: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
         }}
         onClick={handleClick}
         onMouseOver={handleMouseOver}
@@ -87,11 +95,16 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
         tabIndex={0}
       >
         <span className={popupButtonGroupInnerContainerStyle}>
-          <span>{item.option.label}</span>
+          <span
+            className={showExLabel ? popupButtonGroupInnerContainerLabel : ""}
+          >
+            {item.option.label}
+          </span>
           {item.option.icon && (
             <WizIcon icon={item.option.icon} color={iconColor} size="md" />
           )}
         </span>
+        {item.option.exLabel && <span>{item.option.exLabel}</span>}
       </div>
     </div>
   );

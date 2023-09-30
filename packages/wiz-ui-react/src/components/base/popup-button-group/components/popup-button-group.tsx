@@ -25,6 +25,7 @@ interface Props {
   groupDivider?: boolean;
   buttonDivider?: boolean;
   depth?: number;
+  showExLabel?: boolean;
 }
 
 const PopupButtonGroup: FC<Props> = ({
@@ -37,6 +38,7 @@ const PopupButtonGroup: FC<Props> = ({
   groupDivider = false,
   buttonDivider = false,
   depth = 0,
+  showExLabel = false,
 }) => {
   const items = useMemo(() => {
     const divider: ItemElement = { kind: "divider" };
@@ -97,6 +99,7 @@ const PopupButtonGroup: FC<Props> = ({
                 item={item.item}
                 disabled={disabled}
                 depth={depth}
+                showExLabel={showExLabel}
               />
             );
           }

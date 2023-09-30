@@ -41,6 +41,7 @@ type Props = {
   addable?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
+  showExLabel?: boolean;
   onChangeValues: (values: number[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
@@ -57,6 +58,7 @@ const SearchSelector: FC<Props> = ({
   addable = false,
   error,
   isDirectionFixed = false,
+  showExLabel = false,
   onChangeValues,
   onCreate,
   onInputSearchText,
@@ -98,6 +100,7 @@ const SearchSelector: FC<Props> = ({
           option: {
             label: option.label,
             value: option.value,
+            exLabel: option.exLabel,
             onClick: () => {
               setSearchText("");
               if (multiSelectable) {
@@ -242,6 +245,9 @@ const SearchSelector: FC<Props> = ({
               >
                 <span className={styles.selectBoxInnerBoxSelectedLabelStyle}>
                   {selectedOption.label}
+                  {showExLabel &&
+                    selectedOption.exLabel &&
+                    ` (${selectedOption.exLabel})`}
                 </span>
                 <button
                   type="button"
@@ -304,7 +310,10 @@ const SearchSelector: FC<Props> = ({
             className={styles.selectBoxSelectorStyle}
             style={{ minWidth: width }}
           >
-            <WizPopupButtonGroup options={buttonGroupOptions} />
+            <WizPopupButtonGroup
+              showExLabel={showExLabel}
+              options={buttonGroupOptions}
+            />
           </div>
         </WizPopup>
       )}
