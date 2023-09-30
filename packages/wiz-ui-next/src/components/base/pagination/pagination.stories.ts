@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import WizPagination from "./pagination.vue";
@@ -58,4 +58,29 @@ const currentPage = ref(1);
       `,
     },
   },
+};
+
+export const SideSize: StoryFn<typeof WizPagination> = (
+  args,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizPagination },
+  setup() {
+    const page = ref(1);
+    return { page, args };
+  },
+  template: `
+  <div>
+    <WizPagination v-model="page" sideLength="0" @input="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="1" @input="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="2" @input="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="3" @input="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="4" @input="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="5" @input="args.update" v-bind="args" />
+  <div>
+  `,
+});
+SideSize.args = {
+  length: 10,
 };
