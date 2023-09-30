@@ -1,10 +1,11 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
+import { clsx } from "clsx";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 import { WizPortal } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   isOpen: boolean;
   /**
    * オフセットを指定してdrawerの高さを調整します。
@@ -16,7 +17,13 @@ type Props = {
   children: ReactNode;
 };
 
-const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
+const Drawer: FC<Props> = ({
+  className,
+  style,
+  isOpen,
+  offsetTop = "0px",
+  children,
+}: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isActuallyOpen, setIsActuallyOpen] = useState(isOpen);
 
@@ -69,8 +76,9 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
     <WizPortal container={document.body}>
       <div
         ref={containerRef}
-        className={styles.drawerContainerStyle}
+        className={clsx(className, styles.drawerContainerStyle)}
         style={{
+          ...style,
           top: offsetTop,
           bottom: 0,
           display: isActuallyOpen ? undefined : "none",
