@@ -74,7 +74,7 @@ const SearchInput: FC<Props> = ({
 
   return (
     <div
-      className={styles.searchStyle}
+      className={clsx(className, styles.searchStyle)}
       style={{ ...style, width: expand ? "100%" : undefined }}
     >
       <input

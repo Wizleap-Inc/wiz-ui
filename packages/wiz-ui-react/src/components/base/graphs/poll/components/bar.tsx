@@ -46,7 +46,7 @@ export const Bar: FC<Props> = ({
   }, [percentage]);
 
   return (
-    <div className={styles.PollGraphStyle}>
+    <div className={clsx(className, styles.PollGraphStyle)} style={style}>
       <div
         ref={barRef}
         className={clsx(styles.PollBodyStyle, backgroundStyle[barColor])}

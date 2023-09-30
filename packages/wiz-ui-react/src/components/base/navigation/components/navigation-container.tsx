@@ -4,6 +4,7 @@ import {
   navigationContainerItemsStyle,
   navigationContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
+import clsx from "clsx";
 import { CSSProperties, FC, ReactNode } from "react";
 
 import { BaseProps } from "@/types";
@@ -40,8 +41,8 @@ const NavigationContainer: FC<Props> = ({
 
   return (
     <div
-      className={navigationContainerStyle}
-      style={{ ...stickyStyle, width: widthStyle }}
+      className={clsx(className, navigationContainerStyle)}
+      style={{ ...style, ...stickyStyle, width: widthStyle }}
     >
       <div className={navigationContainerItemsStyle}>{children}</div>
       {isOpen && footer && (
