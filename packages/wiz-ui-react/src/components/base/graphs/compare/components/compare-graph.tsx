@@ -3,10 +3,12 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/compare-graph.css";
 import clsx from "clsx";
 import { FC, ReactNode, useMemo } from "react";
 
+import { BaseProps } from "@/types";
+
 import { Bar } from "./bar";
 import { CompareGraphData } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   data: CompareGraphData[];
   /** 縦軸の最大値を設定します。 */
   maxFrequency?: number;
@@ -38,6 +40,8 @@ type Props = {
 };
 
 const CompareGraph: FC<Props> = ({
+  className,
+  style,
   data,
   maxFrequency,
   ceilN = 0,
@@ -65,7 +69,7 @@ const CompareGraph: FC<Props> = ({
   }, [ceilN, data, maxFrequency]);
 
   return (
-    <div className={styles.graphContainerStyle}>
+    <div className={clsx(className, styles.graphContainerStyle)} style={style}>
       <div className={styles.graphSideStyle}>
         {annotationUnit && (
           <span

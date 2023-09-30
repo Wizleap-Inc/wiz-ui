@@ -1,24 +1,33 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/circle-graph.css";
-import { FC, useMemo, ReactNode } from "react";
+import clsx from "clsx";
+import { FC, ReactNode, useMemo } from "react";
+
+import { BaseProps } from "@/types";
 
 import { Bar } from "./bar";
 import { CircleGraphData } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   data: CircleGraphData[];
   otherLabel?: string;
   children?: ReactNode;
 };
 
-const CircleGraph: FC<Props> = ({ data, otherLabel = "その他", children }) => {
+const CircleGraph: FC<Props> = ({
+  className,
+  style,
+  data,
+  otherLabel = "その他",
+  children,
+}) => {
   const percentages = useMemo(
     () => data.map((item) => item.percentage),
     [data]
   );
 
   return (
-    <div className={styles.CircleGraphStyle}>
+    <div className={clsx(className, styles.CircleGraphStyle)} style={style}>
       <Bar percentages={percentages}>{children}</Bar>
       <div className={styles.CircleGraphLabelContainerStyle}>
         {data.map((item, i) => (
