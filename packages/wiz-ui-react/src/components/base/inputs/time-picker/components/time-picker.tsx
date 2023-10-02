@@ -1,8 +1,4 @@
-import {
-  ARIA_LABELS,
-  ComponentName,
-  THEME,
-} from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
@@ -124,31 +120,14 @@ const TimePicker = ({
       <WizPopup
         isOpen={!disabled && isOpen}
         anchorElement={anchor}
-        shadow={true}
         isDirectionFixed={isDirectionFixed}
-        direction="bottomLeft"
-        gap="sm"
+        gap="xs"
         onClose={() => setIsOpen(false)}
       >
-        <div
-          style={{
-            height: "100%",
-            padding: THEME.spacing.xs,
-            background: THEME.color.white["800"],
-            borderRadius: THEME.spacing.xs2,
-            boxSizing: "border-box",
-          }}
-        >
-          <WizHStack overflow="none" gap="xs2">
+        <div className={styles.timePickerSelectorStyle}>
+          <WizHStack overflow="none" gap="xs2" nowrap>
             {/* hh  */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                height: "8rem",
-                alignItems: "center",
-              }}
-            >
+            <WizVStack height="8rem" align="center" nowrap>
               <div
                 className={clsx(
                   styles.timePickerSelectorOptionStyle,
@@ -185,7 +164,7 @@ const TimePicker = ({
                   </div>
                 ))}
               </WizVStack>
-            </div>
+            </WizVStack>
 
             {/* ｜ */}
             <WizVStack gap="xs2">
@@ -193,14 +172,7 @@ const TimePicker = ({
             </WizVStack>
 
             {/* mm */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                height: "8rem",
-                alignItems: "center",
-              }}
-            >
+            <WizVStack height="8rem" align="center" nowrap>
               <div
                 className={clsx(
                   styles.timePickerSelectorOptionStyle,
@@ -239,7 +211,7 @@ const TimePicker = ({
                   </div>
                 ))}
               </WizVStack>
-            </div>
+            </WizVStack>
           </WizHStack>
         </div>
       </WizPopup>
