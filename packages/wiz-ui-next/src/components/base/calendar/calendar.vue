@@ -12,6 +12,7 @@
         :class="calendarCellStyle"
       >
         <button
+          type="button"
           v-if="day"
           :class="[
             calendarItemCommonStyle,

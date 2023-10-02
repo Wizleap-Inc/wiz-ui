@@ -1,5 +1,26 @@
 # @wizleap-inc/wiz-ui-example-vue2
 
+## 0.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03)]:
+  - @wizleap-inc/wiz-ui@2.11.0
+
+## 0.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`d74864b4`](https://github.com/Wizleap-Inc/wiz-ui/commit/d74864b4f97092693d343dba4a991cbf40b22be6)]:
+  - @wizleap-inc/wiz-ui@2.10.0
+
+## 0.1.9
+
+### Patch Changes
+
+- Updated dependencies [[`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2)]:
+  - @wizleap-inc/wiz-ui@2.9.0
+
 ## 0.1.8
 
 ### Patch Changes

@@ -5,9 +5,14 @@ import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { WizSnackbar } from "./snackbar";
 import { SnackbarContext } from "./snackbar-context";
 
+type SnackbarOptionsType = {
+  expand?: boolean;
+};
+
 type SnackbarDataItem = {
   id: string;
   message: string;
+  options?: SnackbarOptionsType;
 };
 
 const marginPx = (() => {
@@ -38,11 +43,12 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
       }, marginPx);
   };
 
-  const showSnackbar = (message: string) => {
+  const showSnackbar = (message: string, options?: SnackbarOptionsType) => {
     setSnackbarData((current) => [
       ...current,
       {
         message,
+        options,
         id: `${new Date().toISOString()}-${countRef.current++}`,
       },
     ]);
@@ -67,6 +73,7 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
         >
           <WizSnackbar
             message={item.message}
+            expand={item.options?.expand}
             onClose={() => {
               setSnackbarData((current) =>
                 current.filter((_item) => _item.id !== item.id)

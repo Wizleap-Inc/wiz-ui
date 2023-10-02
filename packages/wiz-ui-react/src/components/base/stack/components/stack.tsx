@@ -87,10 +87,10 @@ const _Stack = ({
     pb && paddingBottomStyle[pb],
     pl && paddingLeftStyle[pl]
   );
-
   return (
     <div
-      className={`${stackStyle} ${props.className}`}
+      {...props}
+      className={clsx([stackStyle, props.className])}
       style={{ width, height, overflow }}
     >
       {props.children}

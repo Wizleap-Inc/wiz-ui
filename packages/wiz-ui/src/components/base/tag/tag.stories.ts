@@ -19,7 +19,18 @@ export default {
     },
     variant: {
       control: { type: "select" },
-      options: ["info", "red", "green", "yellow", "blue", "mono"],
+      options: [
+        "info",
+        "red",
+        "green",
+        "yellow",
+        "blue",
+        "mono",
+        "gray",
+        "darkGray",
+        "greenFill",
+        "white",
+      ],
     },
     label: {
       control: { type: "text" },
@@ -77,6 +88,14 @@ export const Variant: StoryFn = (_, { argTypes }) => ({
       <div>variant="blue"</div>
       <WizTag label="11/11(月)" variant="mono" :icon="WizIClose" />
       <div>variant="mono"</div>
+      <WizTag label="タグ" variant="gray" :icon="WizIClose" />
+      <div>variant="gray"</div>
+      <WizTag label="タグ" variant="darkGray" :icon="WizIClose" />
+      <div>variant="darkGray"</div>
+      <WizTag label="タグ" variant="greenFill" :icon="WizIClose" />
+      <div>variant="greenFill"</div>
+      <WizTag label="タグ" variant="white" :icon="WizIClose" />
+      <div>variant="white"</div>
     </div>
   `,
 });
