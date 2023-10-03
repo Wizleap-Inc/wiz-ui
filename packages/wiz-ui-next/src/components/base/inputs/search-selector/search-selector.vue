@@ -80,7 +80,6 @@
         :class="selectBoxSelectorStyle"
         :style="{
           minWidth: width,
-          maxWidth: props.showExLabel ? 'initial' : '15rem',
         }"
         v-if="
           filteredOptions.length > 0 ||
