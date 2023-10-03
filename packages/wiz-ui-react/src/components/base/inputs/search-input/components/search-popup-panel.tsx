@@ -32,7 +32,9 @@ export const SearchPopupPanel: FC<Props> = ({
     () => options?.find((option) => activeValue === option.value),
     [activeValue, options]
   );
-  const isOpen = activeOption && activeOption.children;
+
+  const activeOptionChildren = activeOption?.children;
+  const isOpen = activeOptionChildren !== undefined;
 
   const handleChangeValues = useCallback(
     (selectedValues: number[]) => {
@@ -119,7 +121,7 @@ export const SearchPopupPanel: FC<Props> = ({
       </div>
       {isOpen && (
         <SearchPopupPanel
-          options={activeOption.children}
+          options={activeOptionChildren}
           values={values}
           width={width}
           emptyMessage={emptyMessage}
