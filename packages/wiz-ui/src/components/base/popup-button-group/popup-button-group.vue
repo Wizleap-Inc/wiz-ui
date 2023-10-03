@@ -77,7 +77,7 @@
               size="md"
             />
           </span>
-          <span v-if="item.item.option.exLabel">{{
+          <span v-if="showExLabel && item.item.option.exLabel">{{
             item.item.option.exLabel
           }}</span>
         </div>

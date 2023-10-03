@@ -377,7 +377,7 @@ const selectButtons = computed(() => {
       option: {
         label: opt.label,
         value: opt.value,
-        exLabel: props.showExLabel ? opt.exLabel : undefined,
+        exLabel: opt.exLabel,
         onClick: () => onSelect(opt.value),
       },
     };

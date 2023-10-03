@@ -306,6 +306,26 @@ Addable.parameters = {
   },
 };
 
+export const ExlabelWithoutShowExlabel = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3, "(10)"),
+  "new option"
+).bind({});
+ExlabelWithoutShowExlabel.args = {
+  addable: true,
+  showExLabel: false,
+};
+ExlabelWithoutShowExlabel.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3, "(10)"), "", {
+        addable: true,
+      }),
+    },
+  },
+};
+
 export const Exlabel = Template(
   [],
   true,

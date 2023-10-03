@@ -116,6 +116,15 @@ export const Addable: Story = {
   },
 };
 
+export const ExlabelWithoutShowExlabel: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("test", 3, "(9999)"),
+    addable: true,
+    showExLabel: false,
+  },
+};
+
 export const Exlabel: Story = {
   ...getTemplate(),
   args: {
