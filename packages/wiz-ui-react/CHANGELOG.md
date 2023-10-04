@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.35.1
+
+### Patch Changes
+
+- [#1061](https://github.com/Wizleap-Inc/wiz-ui/pull/1061) [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b) Thanks [@okakyo](https://github.com/okakyo)! - [#998] TimePicker の 時、分を固定
+
+- Updated dependencies [[`da10fdc5`](https://github.com/Wizleap-Inc/wiz-ui/commit/da10fdc5b45e4bc05971a94ef40af93e92c9779a), [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.1
+
 ## 0.35.0
 
 ### Minor Changes
