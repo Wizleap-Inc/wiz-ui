@@ -261,13 +261,13 @@ importers:
   packages/wiz-ui:
     dependencies:
       '@wizleap-inc/wiz-ui-constants':
-        specifier: 0.14.0
+        specifier: workspace:*
         version: link:../constants
       '@wizleap-inc/wiz-ui-styles':
-        specifier: 0.21.0
+        specifier: workspace:*
         version: link:../styles
       '@wizleap-inc/wiz-ui-utils':
-        specifier: 0.3.0
+        specifier: workspace:*
         version: link:../utils
       portal-vue:
         specifier: ^2.1.7
