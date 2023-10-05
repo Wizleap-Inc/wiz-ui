@@ -49,7 +49,7 @@
       <div :class="datePickerSelectorStyle">
         <WizHStack align="center" my="xs2" px="xs" justify="between">
           <WizHStack align="center" justify="between" gap="xs2">
-            <WizText as="span" fontSize="xs" line-height="lg" color="gray.700">
+            <WizText as="span" fontSize="xs" line-height="lg" color="gray.800">
               {{ currentMonth.getFullYear() }}年
             </WizText>
             <WizVStack>
@@ -61,7 +61,7 @@
               >
                 <WizIArrowDropUp
                   :class="[
-                    fillStyle['gray.700'],
+                    fillStyle['gray.800'],
                     fontSizeStyle['xs2'],
                     datePickerArrowIconStyle,
                   ]"
@@ -75,7 +75,7 @@
               >
                 <WizIArrowDropDown
                   :class="[
-                    fillStyle['gray.700'],
+                    fillStyle['gray.800'],
                     fontSizeStyle['xs2'],
                     datePickerArrowIconStyle,
                   ]"
@@ -83,7 +83,7 @@
               </button>
             </WizVStack>
           </WizHStack>
-          <WizText as="span" fontSize="xs" color="gray.700">
+          <WizText as="span" fontSize="xs" color="gray.800">
             {{ currentDateTitle }}
           </WizText>
           <div :class="datePickerMonthSelectorStyle">
