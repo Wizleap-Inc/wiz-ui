@@ -116,7 +116,7 @@
                 ]
               : []
           "
-          @click="(date) => (calendarValue = date)"
+          @click="handleClickCalendar"
           :currentMonth="currentMonth"
           filledWeeks
           :disabledDate="disabledDate"
@@ -294,4 +294,6 @@ const variant = computed(() => {
   if (calendarValue.value) return "selected";
   return "default";
 });
+
+const handleClickCalendar = (date: Date) => (calendarValue.value = date);
 </script>
