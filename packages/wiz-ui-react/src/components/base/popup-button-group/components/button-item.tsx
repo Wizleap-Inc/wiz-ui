@@ -104,9 +104,7 @@ export const ButtonItem: FC<Props> = ({
             <WizIcon icon={item.option.icon} color={iconColor} size="md" />
           )}
         </span>
-        {showExLabel && item.option.exLabel && (
-          <span>{item.option.exLabel}</span>
-        )}
+        {item.option.exLabel && <span>{item.option.exLabel}</span>}
       </div>
     </div>
   );
