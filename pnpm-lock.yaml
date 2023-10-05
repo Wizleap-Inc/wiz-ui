@@ -33,8 +33,8 @@ importers:
         specifier: ^7.4.6
         version: 7.4.6(typescript@5.0.2)(vite@4.4.9)
       '@storybook/jest':
-        specifier: ^0.0.10
-        version: 0.0.10(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.2.3
+        version: 0.2.3(jest@28.1.3)(vitest@0.29.8)
       '@storybook/test-runner':
         specifier: ^0.9.4
         version: 0.9.4(eslint@8.37.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
@@ -339,8 +339,8 @@ importers:
 
 packages:
 
-  /@adobe/css-tools@4.2.0:
-    resolution: {integrity: sha512-E09FiIft46CmH5Qnjb0wsW54/YQd69LsxeKUOWawmws1XWvyFGURnAChH0mlr7YPFR1ofwvUQfcL0J3lMxXqPA==}
+  /@adobe/css-tools@4.3.1:
+    resolution: {integrity: sha512-/62yikz7NLScCGAAST5SHdnjaDJQBDq0M2muyRTpf2VQhw6StBg2ALiu73zSJQ4fMVLA+0uBhBHAle7Wg+2kSg==}
     dev: true
 
   /@ampproject/remapping@2.2.0:
@@ -6580,16 +6580,17 @@ packages:
       '@storybook/preview-api': 7.4.6
     dev: true
 
-  /@storybook/jest@0.0.10(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-qeYLIplpcOUQXboJde5pRCjTvkGmF80jEszRUoNYCNcEPfC2sMK68Wq6Ct8EQj3CoEdJqsK54O2YYh+7D9S+ag==}
+  /@storybook/jest@0.2.3(jest@28.1.3)(vitest@0.29.8):
+    resolution: {integrity: sha512-ov5izrmbAFObzKeh9AOC5MlmFxAcf0o5i6YFGae9sDx6DGh6alXsRM+chIbucVkUwVHVlSzdfbLDEFGY/ShaYw==}
     dependencies:
       '@storybook/expect': 28.1.3-5
-      '@storybook/instrumenter': 6.5.16(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/jest-dom': 5.16.5
+      '@testing-library/jest-dom': 6.1.3(@types/jest@28.1.3)(jest@28.1.3)(vitest@0.29.8)
+      '@types/jest': 28.1.3
       jest-mock: 27.5.1
     transitivePeerDependencies:
-      - react
-      - react-dom
+      - '@jest/globals'
+      - jest
+      - vitest
     dev: true
 
   /@storybook/manager-api@7.4.6(react-dom@18.2.0)(react@18.2.0):
@@ -7170,19 +7171,35 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/jest-dom@5.16.5:
-    resolution: {integrity: sha512-N5ixQ2qKpi5OLYfwQmUb/5mSV9LneAcaUfp32pn4yCnpb8r/Yz0pXFPck21dIicKmi+ta5WRAknkZCfA8refMA==}
-    engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
+  /@testing-library/jest-dom@6.1.3(@types/jest@28.1.3)(jest@28.1.3)(vitest@0.29.8):
+    resolution: {integrity: sha512-YzpjRHoCBWPzpPNtg6gnhasqtE/5O4qz8WCwDEaxtfnPO6gkaLrnuXusrGSPyhIGPezr1HM7ZH0CFaUTY9PJEQ==}
+    engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
+    peerDependencies:
+      '@jest/globals': '>= 28'
+      '@types/jest': '>= 28'
+      jest: '>= 28'
+      vitest: '>= 0.32'
+    peerDependenciesMeta:
+      '@jest/globals':
+        optional: true
+      '@types/jest':
+        optional: true
+      jest:
+        optional: true
+      vitest:
+        optional: true
     dependencies:
-      '@adobe/css-tools': 4.2.0
-      '@babel/runtime': 7.21.0
-      '@types/testing-library__jest-dom': 5.14.5
+      '@adobe/css-tools': 4.3.1
+      '@babel/runtime': 7.23.1
+      '@types/jest': 28.1.3
       aria-query: 5.1.3
       chalk: 3.0.0
       css.escape: 1.5.1
       dom-accessibility-api: 0.5.16
+      jest: 28.1.3
       lodash: 4.17.21
       redent: 3.0.0
+      vitest: 0.29.8(jsdom@21.1.1)(playwright@1.32.1)
     dev: true
 
   /@testing-library/user-event@13.5.0(@testing-library/dom@8.20.0):
@@ -14831,7 +14848,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.8.2
+      '@types/node': 18.15.11
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true

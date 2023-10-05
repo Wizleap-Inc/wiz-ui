@@ -31,7 +31,7 @@
     "@storybook/addon-links": "^7.4.6",
     "@storybook/blocks": "^7.4.6",
     "@storybook/builder-vite": "^7.4.6",
-    "@storybook/jest": "^0.0.10",
+    "@storybook/jest": "^0.2.3",
     "@storybook/test-runner": "^0.9.4",
     "@storybook/testing-library": "^0.0.13",
     "@types/testing-library__jest-dom": "^5.14.5",
