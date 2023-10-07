@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 
 import {
-  WizCheckBox,
+  WizCheckBoxNew,
   WizDivider,
   WizHStack,
   WizIChevronRight,
@@ -34,18 +34,17 @@ export const SearchPopupPanel: FC<Props> = ({
   const isOpen = activeOption && activeOption.children.length > 0;
 
   const handleChangeValues = useCallback(
-    (selectedValues: number[]) => {
-      const allValues = options.map((option) => option.value);
-      const unselectedValues = allValues.filter(
-        (value) => !selectedValues.includes(value)
-      );
-      const newValues = [...values, ...selectedValues].filter(
-        (value) => !unselectedValues.includes(value)
-      );
+    (selectedOption: number, isChecked: boolean) => {
+      const newValues = (() => {
+        if (isChecked) {
+          return [...values, selectedOption];
+        }
+        return values.filter((value) => value !== selectedOption);
+      })();
       // Set を使って重複除去
       onChangeValues(Array.from(new Set(newValues)));
     },
-    [onChangeValues, options, values]
+    [onChangeValues, values]
   );
 
   useEffect(() => {
@@ -111,30 +110,30 @@ export const SearchPopupPanel: FC<Props> = ({
               ) : (
                 // CheckBox
                 <div className={styles.searchDropdownCheckboxItemStyle}>
-                  <WizHStack width="100%" align="center" gap="xs2" nowrap>
-                    <div className={styles.searchInputLabelStyle}>
-                      <WizCheckBox
-                        options={[
-                          {
-                            label: option.label,
-                            value: option.value,
-                            key: `${option.label}-${option.value}`,
-                          },
-                        ]}
-                        values={values}
-                        onChange={handleChangeValues}
-                        className={styles.searchInputCheckboxStyle}
-                      />
-                    </div>
-                    {optionTag && (
-                      <WizTag
-                        label={optionTag.label}
-                        variant="white"
-                        width="20px"
-                        fontSize="xs2"
-                      />
-                    )}
-                  </WizHStack>
+                  <WizCheckBoxNew
+                    // TODO: #1076待ち
+                    // style={{ width: "100%" }}
+                    value={option.value}
+                    id={`${option.label}-${option.value}`}
+                    checked={values.includes(option.value)}
+                    onChange={(e) => {
+                      handleChangeValues(option.value, e.target.checked);
+                    }}
+                  >
+                    <WizHStack width="100%" align="center" gap="xs2" nowrap>
+                      <div className={styles.searchInputLabelStyle}>
+                        {option.label}
+                      </div>
+                      {optionTag && (
+                        <WizTag
+                          label={optionTag.label}
+                          variant="white"
+                          width="20px"
+                          fontSize="xs2"
+                        />
+                      )}
+                    </WizHStack>
+                  </WizCheckBoxNew>
                 </div>
               )}
               <WizDivider color="gray.300" />
