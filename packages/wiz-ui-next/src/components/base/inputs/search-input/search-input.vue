@@ -91,6 +91,7 @@
               @mouseout="activeItem = null"
             >
               <WizCheckBoxNew
+                :style="{ width: '100%' }"
                 :checked="checkValues.includes(item.value)"
                 :value="item.value"
                 :id="`${item.label}_${item.value}`"
