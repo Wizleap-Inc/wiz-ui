@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     :class="[
       toggleButtonStyle,
       toggleButtonSizeStyle[size],
@@ -24,13 +25,13 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  toggleButtonStyle,
   toggleButtonActiveStyle,
   toggleButtonDisabledStyle,
   toggleButtonRoundedStyle,
   toggleButtonSizeStyle,
+  toggleButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-button.css";
-import { computed, PropType } from "vue";
+import { PropType, computed } from "vue";
 
 import WizIcon from "@/components/base/icon/icon.vue";
 import WizHStack from "@/components/base/stack/h-stack.vue";
@@ -70,6 +71,10 @@ const props = defineProps({
   value: {
     type: Boolean,
     required: true,
+  },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    required: false,
   },
 });
 

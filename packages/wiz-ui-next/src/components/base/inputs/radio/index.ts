@@ -1,1 +1,1 @@
-export { default as WizRadio } from "./radio.vue";
+export { /** @deprecated */ default as WizRadio } from "./radio.vue";

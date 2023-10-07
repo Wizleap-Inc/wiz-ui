@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizIClose } from "@/components";
 
@@ -8,30 +7,26 @@ import { WizTag } from "../components/tag";
 const meta: Meta<typeof WizTag> = {
   title: "Base/Tag",
   component: WizTag,
-  argTypes: {
-    fontSize: {
-      control: { type: "select" },
-      options: FONT_SIZE_ACCESSORS,
-    },
-    fontWeight: {
-      control: { type: "select" },
-      options: ["normal", "bold"],
-    },
-    variant: {
-      control: { type: "select" },
-      options: ["info", "error", "success", "mono"],
-    },
-    label: {
-      control: { type: "text" },
-    },
-    width: {
-      control: { type: "text" },
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof WizTag>;
+
+const variants = [
+  "info",
+  "red",
+  "green",
+  "yellow",
+  "blue",
+  "mono",
+  "gray",
+  "darkGray",
+  "greenFill",
+  "white",
+] as const;
+
+const fontSizes = ["xs2", "xs", "sm", "md", "lg", "xl", "xl2"] as const;
 
 export const Default: Story = {
   args: {
@@ -40,6 +35,83 @@ export const Default: Story = {
   render: (args) => <WizTag {...args} />,
 };
 
+export const Catalog: Story = {
+  args: {
+    label: "タグ",
+  },
+  render: (args) => {
+    return (
+      <>
+        <div
+          style={{
+            height: "25rem",
+            gap: "1rem",
+            display: "flex",
+            flexDirection: "row",
+            marginBottom: "3rem",
+          }}
+        >
+          {variants.map((variant) => (
+            <>
+              <div
+                style={{
+                  justifyContent: "space-between",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {fontSizes.map((fontSize) => {
+                  return (
+                    <WizTag
+                      {...args}
+                      variant={variant}
+                      fontSize={fontSize}
+                      key={variant + fontSize}
+                    />
+                  );
+                })}
+              </div>
+            </>
+          ))}
+        </div>
+        <div
+          style={{
+            height: "25rem",
+            gap: "1rem",
+            display: "flex",
+            flexDirection: "row",
+            marginBottom: "3rem",
+          }}
+        >
+          {variants.map((variant) => (
+            <>
+              <div
+                style={{
+                  justifyContent: "space-between",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {fontSizes.map((fontSize) => {
+                  return (
+                    <WizTag
+                      {...args}
+                      variant={variant}
+                      fontSize={fontSize}
+                      key={variant + fontSize + "round_icon"}
+                      round
+                      icon={WizIClose}
+                    />
+                  );
+                })}
+              </div>
+            </>
+          ))}
+        </div>
+      </>
+    );
+  },
+};
 export const Bold: Story = {
   args: {
     label: "タグ",
@@ -90,6 +162,14 @@ export const Variant: Story = {
       <div>variant={'"blue"'}</div>
       <WizTag {...args} label="11/11(月)" variant="mono" />
       <div>variant={'"mono"'}</div>
+      <WizTag {...args} label="11/11(月)" variant="gray" />
+      <div>variant={'"gray"'}</div>
+      <WizTag {...args} label="11/11(月)" variant="darkGray" />
+      <div>variant={'"darkGray"'}</div>
+      <WizTag {...args} label="11/11(月)" variant="greenFill" />
+      <div>variant={'"greenFill"'}</div>
+      <WizTag {...args} label="11/11(月)" variant="white" />
+      <div>variant={'"white"'}</div>
     </div>
   ),
 };

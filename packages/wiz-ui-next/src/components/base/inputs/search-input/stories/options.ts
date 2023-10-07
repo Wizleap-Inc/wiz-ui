@@ -428,6 +428,96 @@ export const expandOption: SearchInputOption[] = [
   },
 ];
 
+const tag = {
+  label: "タグ",
+};
+
+export const taggedOptions: SearchInputOption[] = [
+  {
+    label: "テスト会社1",
+    value: 1,
+    tag: tag,
+    children: [
+      {
+        label: "保険商品1",
+        value: 2,
+        tag: tag,
+        children: [],
+      },
+      {
+        label: "保険商品2",
+        value: 3,
+        tag: tag,
+        children: [],
+      },
+      {
+        label: "テスト子会社3",
+        value: 4,
+        tag: tag,
+        children: [
+          {
+            label: "保険商品4",
+            value: 40,
+            tag: tag,
+            children: [
+              {
+                label: "保険商品5",
+                value: 60,
+                tag: tag,
+                children: [],
+              },
+              {
+                label: "保険商品6",
+                value: 70,
+                tag: tag,
+                children: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "寿限無寿限無五劫の擦り切れ 海砂利水魚の水行末",
+    value: 5,
+    tag: tag,
+    children: [
+      {
+        label: "寿限無寿限無五劫の擦り切れ 海砂利水魚の水行末",
+        value: 6,
+        tag: tag,
+        children: [
+          {
+            label: "寿限無寿限無五劫の擦り切れ 海砂利水魚の水行末",
+            value: 7,
+            tag: tag,
+            children: [],
+          },
+          {
+            label: "寿限無寿限無五劫の擦り切れ 海砂利水魚の水行末",
+            value: 8,
+            tag: tag,
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "テスト保険会社3",
+    tag: tag,
+    value: 21,
+    children: [],
+  },
+  {
+    label: "寿限無寿限無五劫の擦り切れ 海砂利水魚の水行末",
+    tag: tag,
+    value: 31,
+    children: [],
+  },
+];
+
 export const simpleOption: SearchInputOption[] = [
   {
     label: "選択肢1",

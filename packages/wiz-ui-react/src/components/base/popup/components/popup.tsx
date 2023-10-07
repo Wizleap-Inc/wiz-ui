@@ -139,6 +139,7 @@ const Popup = ({
           !isActuallyOpen && styles.popupHiddenStyle
         )}
         style={{
+          animationName: "fade",
           position: isPopupFixed ? "fixed" : "absolute",
           transform: "translateZ(0)", // Safariで影が消えない問題の対策
           ...popupPosition,

@@ -29,71 +29,76 @@
       >
         <div :class="timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">
-            <WizVStack
-              :class="timePickerScrollStyle"
-              height="8rem"
-              gap="xs2"
-              align="center"
-              overflow="auto"
-              ><div
+            <WizVStack height="8rem" align="center">
+              <div
                 :class="[
                   timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionTitleStyle,
                   timePickerSelectorOptionTypeStyle,
                 ]"
               >
                 時
               </div>
-              <div
-                v-for="(option, key) in hourOptions"
-                :key="'option' + key"
-                :class="[
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionItemStyle,
-                  option === selectedHour &&
-                    timePickerSelectorOptionItemSelectedStyle,
-                  timePickerSelectorOptionItemColorStyle[
-                    timePickerSelectorOptionItemColor(option === selectedHour)
-                  ],
-                ]"
-                @click="onSelect(option, true)"
+              <WizVStack
+                gap="xs2"
+                overflow="auto"
+                :class="timePickerScrollStyle"
               >
-                {{ option }}
-              </div>
+                <div
+                  v-for="(option, key) in hourOptions"
+                  :key="'option' + key"
+                  :class="[
+                    timePickerSelectorOptionStyle,
+                    timePickerSelectorOptionItemStyle,
+                    option === selectedHour &&
+                      timePickerSelectorOptionItemSelectedStyle,
+                    timePickerSelectorOptionItemColorStyle[
+                      timePickerSelectorOptionItemColor(option === selectedHour)
+                    ],
+                  ]"
+                  @click="onSelect(option, true)"
+                >
+                  {{ option }}
+                </div>
+              </WizVStack>
             </WizVStack>
             <WizVStack gap="xs2">
               <WizDivider direction="vertical" />
             </WizVStack>
-            <WizVStack
-              :class="timePickerScrollStyle"
-              height="8rem"
-              gap="xs2"
-              align="center"
-              overflow="auto"
-            >
+            <WizVStack height="8rem" align="center">
               <div
                 :class="[
                   timePickerSelectorOptionStyle,
+                  timePickerSelectorOptionTitleStyle,
                   timePickerSelectorOptionTypeStyle,
                 ]"
               >
                 分
               </div>
-              <div
-                v-for="(option, key) in minuteOptions"
-                :key="'option' + key"
-                :class="[
-                  timePickerSelectorOptionStyle,
-                  timePickerSelectorOptionItemStyle,
-                  option === selectedMinute &&
-                    timePickerSelectorOptionItemSelectedStyle,
-                  timePickerSelectorOptionItemColorStyle[
-                    timePickerSelectorOptionItemColor(option === selectedMinute)
-                  ],
-                ]"
-                @click="onSelect(option)"
+              <WizVStack
+                gap="xs2"
+                overflow="auto"
+                :class="timePickerScrollStyle"
               >
-                {{ option }}
-              </div>
+                <div
+                  v-for="(option, key) in minuteOptions"
+                  :key="'option' + key"
+                  :class="[
+                    timePickerSelectorOptionStyle,
+                    timePickerSelectorOptionItemStyle,
+                    option === selectedMinute &&
+                      timePickerSelectorOptionItemSelectedStyle,
+                    timePickerSelectorOptionItemColorStyle[
+                      timePickerSelectorOptionItemColor(
+                        option === selectedMinute
+                      )
+                    ],
+                  ]"
+                  @click="onSelect(option)"
+                >
+                  {{ option }}
+                </div>
+              </WizVStack>
             </WizVStack>
           </WizHStack>
         </div>
@@ -117,6 +122,7 @@ import {
   timePickerSelectorOptionTypeStyle,
   timePickerSelectorStyle,
   timePickerStyle,
+  timePickerSelectorOptionTitleStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, inject, ref } from "vue";

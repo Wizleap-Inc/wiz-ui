@@ -89,6 +89,7 @@
       </template>
     </WizCard>
     <button
+      type="button"
       :class="chatCardOpenButtonStyle"
       @click="toggleDisplay"
       :aria-label="ARIA_LABELS.CHAT_CARD.EXPAND"
@@ -98,28 +99,28 @@
 
 <script setup lang="ts">
 import {
-  THEME,
-  ComponentName,
   ARIA_LABELS,
+  ComponentName,
+  THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import { chatCardOpenButtonStyle } from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
-import { computed, nextTick, onMounted, ref, watch, PropType } from "vue";
+import { PropType, computed, nextTick, onMounted, ref, watch } from "vue";
 
 import {
   WizBox,
-  WizDivider,
-  WizIcon,
-  WizText,
-  WizTag,
-  WizVStack,
-  WizHStack,
   WizCard,
   WizChatForm,
   WizChatItem,
-  WizIExpandMore,
+  WizDivider,
+  WizHStack,
   WizIExpandLess,
+  WizIExpandMore,
+  WizIcon,
   WizSelectBox,
+  WizTag,
+  WizText,
+  WizVStack,
 } from "@/components";
 import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
