@@ -56,12 +56,13 @@ const _Text = ({
 }: Props) => {
   const textStyle = maxLines
     ? {
+        ...style,
         overflow: "hidden",
         display: "-webkit-box",
         webkitBoxOrient: "vertical",
         WebkitLineClamp: maxLines,
       }
-    : undefined;
+    : style;
   const textClass = clsx([
     className,
     styles.textStyle,
@@ -88,18 +89,14 @@ const _Text = ({
     }
     case "label": {
       return (
-        <label
-          htmlFor={htmlFor}
-          className={textClass}
-          style={{ ...style, ...textStyle }}
-        >
+        <label htmlFor={htmlFor} className={textClass} style={textStyle}>
           {children}
         </label>
       );
     }
     case "span": {
       return (
-        <span className={className} style={style}>
+        <span className={textClass} style={textStyle}>
           {children}
         </span>
       );
