@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizHStack } from "@/components";
@@ -320,6 +320,23 @@ IsDirectionFixed.parameters = {
       code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
         isDirectionFixed: true,
       }),
+    },
+  },
+};
+
+export const DropdownHeight = Template(
+  [],
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
+DropdownHeight.args = {
+  dropdownHeight: "100px",
+};
+Default.parameters = {
+  docs: {
+    source: {
+      code: code([], false, _getDummyOptions("test", 3), ""),
     },
   },
 };

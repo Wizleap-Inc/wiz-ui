@@ -83,7 +83,7 @@
           (searchValue !== '' && !options.some((v) => v.label === searchValue))
         "
       >
-        <WizVStack gap="xs2">
+        <WizVStack gap="xs2" :height="dropdownHeight">
           <WizPopupButtonGroup
             :options="
               addButtonEnabled ? [addButton, ...selectButtons] : selectButtons
@@ -197,6 +197,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  dropdownHeight: {
+    type: String,
+    required: false,
   },
 });
 

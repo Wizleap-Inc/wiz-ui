@@ -41,6 +41,7 @@ type Props = {
   addable?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
+  dropdownHeight?: string;
   onChangeValues: (values: number[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
@@ -57,6 +58,7 @@ const SearchSelector: FC<Props> = ({
   addable = false,
   error,
   isDirectionFixed = false,
+  dropdownHeight,
   onChangeValues,
   onCreate,
   onInputSearchText,
@@ -302,7 +304,7 @@ const SearchSelector: FC<Props> = ({
           <div
             ref={popupRef}
             className={styles.selectBoxSelectorStyle}
-            style={{ minWidth: width }}
+            style={{ minWidth: width, height: dropdownHeight }}
           >
             <WizPopupButtonGroup options={buttonGroupOptions} />
           </div>
