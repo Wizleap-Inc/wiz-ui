@@ -19,14 +19,13 @@ export default {
   },
 } as Meta<typeof WizPagination>;
 
-const Template: StoryFn<typeof WizPagination> = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template: StoryFn<typeof WizPagination> = (args) => ({
   components: { WizPagination },
   setup() {
     const page = ref(1);
     return { page, args };
   },
-  template: `<WizPagination v-model="page" @input="args.update" v-bind="args" />`,
+  template: `<WizPagination v-model="page" @update:modelValue="args.update" v-bind="args" />`,
 });
 
 export const Default = Template.bind({});
@@ -60,11 +59,7 @@ const currentPage = ref(1);
   },
 };
 
-export const SideSize: StoryFn<typeof WizPagination> = (
-  args,
-  { argTypes }
-) => ({
-  props: Object.keys(argTypes),
+export const SideSize: StoryFn<typeof WizPagination> = (args) => ({
   components: { WizPagination },
   setup() {
     const page = ref(1);
@@ -72,12 +67,12 @@ export const SideSize: StoryFn<typeof WizPagination> = (
   },
   template: `
   <div>
-    <WizPagination v-model="page" sideLength="0" @input="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="1" @input="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="2" @input="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="3" @input="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="4" @input="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="5" @input="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="0" @update:modelValue="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="1" @update:modelValue="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="2" @update:modelValue="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="3" @update:modelValue="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="4" @update:modelValue="args.update" v-bind="args" />
+    <WizPagination v-model="page" sideLength="5" @update:modelValue="args.update" v-bind="args" />
   <div>
   `,
 });
