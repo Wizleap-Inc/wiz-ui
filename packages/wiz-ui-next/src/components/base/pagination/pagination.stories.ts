@@ -59,23 +59,8 @@ const currentPage = ref(1);
   },
 };
 
-export const SideSize: StoryFn<typeof WizPagination> = (args) => ({
-  components: { WizPagination },
-  setup() {
-    const page = ref(1);
-    return { page, args };
-  },
-  template: `
-  <div>
-    <WizPagination v-model="page" sideLength="0" @update:modelValue="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="1" @update:modelValue="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="2" @update:modelValue="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="3" @update:modelValue="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="4" @update:modelValue="args.update" v-bind="args" />
-    <WizPagination v-model="page" sideLength="5" @update:modelValue="args.update" v-bind="args" />
-  <div>
-  `,
-});
-SideSize.args = {
+export const SideLength = Template.bind({});
+SideLength.args = {
   length: 10,
+  sideLength: 1,
 };
