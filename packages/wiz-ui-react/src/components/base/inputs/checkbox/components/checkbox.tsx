@@ -1,13 +1,14 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import clsx from "clsx";
-import { ComponentPropsWithoutRef, FC, useState } from "react";
+import { FC, useState } from "react";
 
 import { WizStack } from "@/components";
+import { BaseProps } from "@/types";
 
 import { CheckBoxOption } from "./types";
 
-type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
+type Props = BaseProps & {
   options: CheckBoxOption[];
   values: number[];
   disabled?: boolean;
