@@ -1,6 +1,7 @@
 <template>
   <WizPopupContainer>
     <button
+      type="button"
       :class="[
         datePickerStyle,
         datePickerVariantStyle[variant],
@@ -25,6 +26,7 @@
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
         <button
+          type="button"
           v-else
           :class="datePickerCancelButtonStyle"
           :aria-label="ARIA_LABELS.DATE_PICKER_CANCEL"
@@ -52,6 +54,7 @@
             </WizText>
             <WizVStack>
               <button
+                type="button"
                 :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
                 :class="[datePickerYearSelectorItemStyle]"
                 @click="clickToNextYear"
@@ -65,6 +68,7 @@
                 />
               </button>
               <button
+                type="button"
                 :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
                 :class="[datePickerYearSelectorItemStyle]"
                 @click="clickToPreviousYear"
@@ -84,6 +88,7 @@
           </WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
+              type="button"
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToPreviousMonth"
@@ -91,6 +96,7 @@
               <WizIcon size="md" color="inherit" :icon="WizIChevronLeft" />
             </button>
             <button
+              type="button"
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToNextMonth"
@@ -110,7 +116,7 @@
                 ]
               : []
           "
-          @click="(date) => (calendarValue = date)"
+          @click="handleClickCalendar"
           :currentMonth="currentMonth"
           filledWeeks
           :disabledDate="disabledDate"
@@ -288,4 +294,6 @@ const variant = computed(() => {
   if (calendarValue.value) return "selected";
   return "default";
 });
+
+const handleClickCalendar = (date: Date) => (calendarValue.value = date);
 </script>

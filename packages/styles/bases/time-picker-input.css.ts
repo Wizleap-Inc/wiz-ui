@@ -56,6 +56,7 @@ export const timePickerSelectorStyle = style({
 
 export const timePickerScrollStyle = style({
   margin: `${THEME.spacing.xs2} 0`,
+  overflow: "auto",
   scrollbarWidth: "thin",
   scrollbarColor: `${THEME.color.gray["400"]} transparent`,
   selectors: {
@@ -78,6 +79,10 @@ export const timePickerSelectorOptionStyle = style({
   textAlign: "center",
   boxSizing: "border-box",
   borderRadius: THEME.spacing.xs2,
+});
+
+export const timePickerSelectorOptionTitleStyle = style({
+  margin: `0 ${THEME.spacing.sm} 0 ${THEME.spacing.xs}`,
 });
 
 export const timePickerSelectorOptionTypeStyle = style({

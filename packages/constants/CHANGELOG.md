@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.14.0
+
+### Minor Changes
+
+- [#1068](https://github.com/Wizleap-Inc/wiz-ui/pull/1068) [`4ec8a235`](https://github.com/Wizleap-Inc/wiz-ui/commit/4ec8a235a19eabd3859f0a0d9b982b557acc4060) Thanks [@wmoai](https://github.com/wmoai)! - WizRadioNew を追加
+
+- [#1067](https://github.com/Wizleap-Inc/wiz-ui/pull/1067) [`888eb872`](https://github.com/Wizleap-Inc/wiz-ui/commit/888eb872237b9f4ce66b6e333eac43de47c886a3) Thanks [@wmoai](https://github.com/wmoai)! - WizCheckBoxNew を追加
+
+## 0.13.0
+
+### Minor Changes
+
+- [#1049](https://github.com/Wizleap-Inc/wiz-ui/pull/1049) [`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): 新規アイコン追加
+  Chore(IconGen): Vue2 サポートを停止
+
 ## 0.12.0
 
 ### Minor Changes

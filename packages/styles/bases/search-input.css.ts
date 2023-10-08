@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -114,7 +114,6 @@ export const searchDropdownLabelStyle = style({
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[700],
-  lineHeight: THEME.fontSize.xl3,
   userSelect: "none",
   "@media": {
     "(any-hover: hover)": {
@@ -143,7 +142,7 @@ export const searchDropdownSelectingItemStyle = style({
 });
 
 export const searchDropdownCheckboxItemStyle = style({
-  padding: `${THEME.spacing.xs} ${THEME.spacing.sm}`,
+  padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
 });
 
 export const searchCheckboxInputStyle = style({
@@ -187,4 +186,15 @@ export const searchCheckboxIconStyle = style({
 
 export const searchCheckboxBlockCheckedStyle = style({
   color: THEME.color.green["800"],
+});
+
+export const searchInputLabelStyle = style({
+  lineHeight: THEME.fontSize.xl3,
+  width: "100%",
+});
+
+export const searchInputCheckboxStyle = style({});
+// FIXME: WizCheckBoxNewで置換する際に消す。
+globalStyle(`${searchInputCheckboxStyle} > div`, {
+  width: "100%",
 });

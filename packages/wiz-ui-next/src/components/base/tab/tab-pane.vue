@@ -5,9 +5,11 @@
     @click="onClick"
   >
     <span :class="tabPaneLabelStyle">{{ label }}</span>
-    <span v-if="notificationCount" :class="tabPaneNotificationStyle">{{
-      notificationCount
-    }}</span>
+    <span
+      v-if="notificationCount"
+      :class="tabPaneNotificationStyle[badgeColor]"
+      >{{ notificationCount }}</span
+    >
     <slot />
   </div>
 </template>
@@ -15,12 +17,12 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  tabPaneStyle,
-  tabPaneVariantStyle,
   tabPaneLabelStyle,
   tabPaneNotificationStyle,
+  tabPaneStyle,
+  tabPaneVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tab.css";
-import { computed } from "vue";
+import { PropType, computed } from "vue";
 
 defineOptions({
   name: ComponentName.TabPane,
@@ -42,6 +44,11 @@ const props = defineProps({
   notificationCount: {
     type: Number,
     required: false,
+  },
+  badgeColor: {
+    type: String as PropType<"red" | "green">,
+    required: false,
+    default: "red",
   },
   width: {
     type: String,

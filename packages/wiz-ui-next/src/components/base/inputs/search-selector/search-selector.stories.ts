@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizHStack } from "@/components";
@@ -187,7 +187,11 @@ const code = (
 export const Default = Template(
   [],
   false,
-  _getDummyOptions("test", 3),
+  [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "テスト3", value: 3 },
+  ],
   ""
 ).bind({});
 Default.parameters = {

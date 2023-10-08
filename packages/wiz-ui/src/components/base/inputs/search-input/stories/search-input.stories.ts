@@ -13,6 +13,7 @@ import {
   longLabelOption,
   openOption,
   simpleOption,
+  taggedOptions,
 } from "./options";
 
 export default {
@@ -105,6 +106,14 @@ LongLabel.args = {
   inputWidth: "15rem",
   popupWidth: "10rem",
   options: longLabelOption,
+};
+
+export const Tag = Template(true).bind({});
+Tag.args = {
+  options: taggedOptions,
+  placeholder: "氏名・ID・電話番号で検索",
+  inputWidth: "15rem",
+  popupWidth: "20rem",
 };
 
 export const Expand = Template(true).bind({});

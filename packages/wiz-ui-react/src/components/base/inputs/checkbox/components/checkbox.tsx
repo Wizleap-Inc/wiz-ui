@@ -1,13 +1,13 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import clsx from "clsx";
-import { FC, useState } from "react";
+import { ComponentPropsWithoutRef, FC, useState } from "react";
 
 import { WizStack } from "@/components";
 
 import { CheckBoxOption } from "./types";
 
-type Props = {
+type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   options: CheckBoxOption[];
   values: number[];
   disabled?: boolean;
@@ -25,13 +25,13 @@ const CheckBox: FC<Props> = ({
   gap = "xl",
   strikeThrough = false,
   onChange,
+  ...props
 }) => {
   const [focusedKey, setFocusedKey] = useState<CheckBoxOption["key"] | null>(
     null
   );
-
   return (
-    <WizStack gap={gap} direction={direction}>
+    <WizStack {...props} gap={gap} direction={direction}>
       {options.map((option) => {
         const isChecked = values.includes(option.value);
         const isDisabled = disabled || option.disabled;
@@ -111,4 +111,7 @@ const CheckBox: FC<Props> = ({
 
 CheckBox.displayName = ComponentName.CheckBox;
 
+/**
+ * @deprecated このコンポーネントは削除予定です。代わりに `CheckBoxNew` コンポーネントを使用してください
+ */
 export const WizCheckBox = CheckBox;

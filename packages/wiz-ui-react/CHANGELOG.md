@@ -1,5 +1,82 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.35.1
+
+### Patch Changes
+
+- [#1061](https://github.com/Wizleap-Inc/wiz-ui/pull/1061) [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b) Thanks [@okakyo](https://github.com/okakyo)! - [#998] TimePicker の 時、分を固定
+
+- Updated dependencies [[`da10fdc5`](https://github.com/Wizleap-Inc/wiz-ui/commit/da10fdc5b45e4bc05971a94ef40af93e92c9779a), [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.1
+
+## 0.35.0
+
+### Minor Changes
+
+- [#1062](https://github.com/Wizleap-Inc/wiz-ui/pull/1062) [`f780af28`](https://github.com/Wizleap-Inc/wiz-ui/commit/f780af28b83180028de9e4ce19e033bb4a046852) Thanks [@okakyo](https://github.com/okakyo)! - [#989] Notification の Panel. color Props の変更 (React)
+
+- [#1036](https://github.com/Wizleap-Inc/wiz-ui/pull/1036) [`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(WizTag): Variant を追加
+  Feat(WizSearchInput): tag 機能を追加
+  Feat(WizStack, WizHStack, WizVStack): className, style を公開
+  Feat(WizCheckBox): className, style を公開
+
+### Patch Changes
+
+- [#1063](https://github.com/Wizleap-Inc/wiz-ui/pull/1063) [`0cc93707`](https://github.com/Wizleap-Inc/wiz-ui/commit/0cc937074823b0d0d45c8b3050a27a5ea2d0020d) Thanks [@okakyo](https://github.com/okakyo)! - [#979] Fade In Out のバグ修正(React)
+
+- Updated dependencies [[`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.0
+
+## 0.34.0
+
+### Minor Changes
+
+- [#1068](https://github.com/Wizleap-Inc/wiz-ui/pull/1068) [`4ec8a235`](https://github.com/Wizleap-Inc/wiz-ui/commit/4ec8a235a19eabd3859f0a0d9b982b557acc4060) Thanks [@wmoai](https://github.com/wmoai)! - WizRadioNew を追加
+
+- [#1067](https://github.com/Wizleap-Inc/wiz-ui/pull/1067) [`888eb872`](https://github.com/Wizleap-Inc/wiz-ui/commit/888eb872237b9f4ce66b6e333eac43de47c886a3) Thanks [@wmoai](https://github.com/wmoai)! - WizCheckBoxNew を追加
+
+### Patch Changes
+
+- Updated dependencies [[`4ec8a235`](https://github.com/Wizleap-Inc/wiz-ui/commit/4ec8a235a19eabd3859f0a0d9b982b557acc4060), [`888eb872`](https://github.com/Wizleap-Inc/wiz-ui/commit/888eb872237b9f4ce66b6e333eac43de47c886a3)]:
+  - @wizleap-inc/wiz-ui-constants@0.14.0
+  - @wizleap-inc/wiz-ui-styles@0.20.0
+
+## 0.33.0
+
+### Minor Changes
+
+- [#1049](https://github.com/Wizleap-Inc/wiz-ui/pull/1049) [`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): 新規アイコン追加
+  Chore(IconGen): Vue2 サポートを停止
+
+- [#1018](https://github.com/Wizleap-Inc/wiz-ui/pull/1018) [`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2) Thanks [@okakyo](https://github.com/okakyo)! - [#1017] Snackbar に expand property を追加
+
+### Patch Changes
+
+- Updated dependencies [[`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730), [`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2)]:
+  - @wizleap-inc/wiz-ui-constants@0.13.0
+  - @wizleap-inc/wiz-ui-styles@0.19.0
+
+## 0.32.0
+
+### Minor Changes
+
+- [#1037](https://github.com/Wizleap-Inc/wiz-ui/pull/1037) [`daf3149c`](https://github.com/Wizleap-Inc/wiz-ui/commit/daf3149c6078daa907dafad3fb84fbce6b65dacb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-picker, calender): 無効な日付を指定する機能の React 対応
+
+- [#1048](https://github.com/Wizleap-Inc/wiz-ui/pull/1048) [`1b162700`](https://github.com/Wizleap-Inc/wiz-ui/commit/1b16270030f01697cce9cfe88959145b68e2df63) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - search-selector に onInput プロパティを追加
+
+## 0.31.0
+
+### Minor Changes
+
+- [#1042](https://github.com/Wizleap-Inc/wiz-ui/pull/1042) [`c36c6521`](https://github.com/Wizleap-Inc/wiz-ui/commit/c36c652152e9a66e114121edfd44d096b7f05b29) Thanks [@okakyo](https://github.com/okakyo)! - [#1014] hover プロパティを isOpen プロパティに変換
+
+- [#1039](https://github.com/Wizleap-Inc/wiz-ui/pull/1039) [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tab-pane): BadgeColor を追加
+
+### Patch Changes
+
+- Updated dependencies [[`32a54995`](https://github.com/Wizleap-Inc/wiz-ui/commit/32a54995b1868c7a66b60dd7fe483c9a72ddc909), [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c)]:
+  - @wizleap-inc/wiz-ui-styles@0.18.0
+
 ## 0.30.2
 
 ### Patch Changes
