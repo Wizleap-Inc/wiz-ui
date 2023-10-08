@@ -50,6 +50,7 @@
                   :class="[
                     timePickerSelectorOptionStyle,
                     timePickerSelectorOptionItemStyle,
+                    timePickerCursorStyle[timePickerCursor],
                     option === selectedHour &&
                       timePickerSelectorOptionItemSelectedStyle,
                     timePickerSelectorOptionItemColorStyle[
@@ -85,6 +86,7 @@
                   :class="[
                     timePickerSelectorOptionStyle,
                     timePickerSelectorOptionItemStyle,
+                    timePickerCursorStyle[timePickerCursor],
                     option === selectedMinute &&
                       timePickerSelectorOptionItemSelectedStyle,
                     timePickerSelectorOptionItemColorStyle[

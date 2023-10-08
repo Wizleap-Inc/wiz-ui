@@ -148,6 +148,7 @@ const TimePicker = ({
                     key={"hh" + option}
                     className={clsx([
                       styles.timePickerSelectorOptionStyle,
+                      styles.timePickerCursorStyle[timePickerCursor],
                       option !== time?.hour &&
                         styles.timePickerSelectorOptionItemStyle,
                       option === time?.hour &&
@@ -193,6 +194,7 @@ const TimePicker = ({
                     key={"mm" + option}
                     className={clsx([
                       styles.timePickerSelectorOptionStyle,
+                      styles.timePickerCursorStyle[timePickerCursor],
                       option !== time?.minute &&
                         styles.timePickerSelectorOptionItemStyle,
                       option === time?.minute &&
