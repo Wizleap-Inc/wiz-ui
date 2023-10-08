@@ -14,7 +14,7 @@ export const searchInputStyle = style({
   padding: `calc(${THEME.spacing.sm} - ${BORDER_WIDTH}) ${THEME.spacing.xl2} calc(${THEME.spacing.sm} - ${BORDER_WIDTH}) ${THEME.spacing.xl3}`,
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.spacing.lg,
-  color: THEME.color.gray[700],
+  color: THEME.color.gray[800],
   boxSizing: "border-box",
   ":focus": {
     outline: "none",
@@ -113,7 +113,7 @@ export const searchDropdownLabelStyle = style({
   paddingLeft: THEME.spacing.xs,
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray[700],
+  color: THEME.color.gray[800],
   userSelect: "none",
   "@media": {
     "(any-hover: hover)": {
