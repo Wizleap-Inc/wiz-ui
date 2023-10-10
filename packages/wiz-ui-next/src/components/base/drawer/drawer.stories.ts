@@ -152,3 +152,11 @@ export const Right: StoryFn<typeof WizDrawer> = (args) => ({
     </div>
   `,
 });
+
+Right.args = {
+  isOpen: true,
+  shadow: true,
+  offsetTop: THEME.share.HEADER_HEIGHT,
+  place: "right",
+  width: "300px",
+};
