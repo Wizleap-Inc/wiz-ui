@@ -1,6 +1,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as constants from "@wizleap-inc/wiz-ui-constants/component/custom/schedule";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/schedule.css";
+import clsx from "clsx";
 
 import { BaseProps } from "@/types";
 
@@ -80,15 +81,14 @@ export const WizScheduleGrid = ({
 
   return (
     <div
-      className={styles.grid}
+      className={clsx(styles.grid, className)}
       style={{
         gridTemplateColumns: `repeat(${colsCount}, 1fr)`,
+        ...style,
       }}
     >
       {schedules.map((schedule) => (
         <WizScheduleCard
-          className={className}
-          style={style}
           key={schedule.id}
           id={schedule.id}
           text={schedule.text}

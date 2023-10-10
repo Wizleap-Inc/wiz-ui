@@ -42,10 +42,8 @@ const Notification: FC<Props> = ({
   );
 
   return (
-    <div>
+    <div className={className} style={style}>
       <WizTab
-        className={className}
-        style={style}
         items={tabs}
         activeTabName={activeTabName}
         onClickTab={(name) => setActiveTabName(name)}
