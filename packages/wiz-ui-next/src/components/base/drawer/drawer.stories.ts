@@ -125,8 +125,17 @@ export const Right: StoryFn<typeof WizDrawer> = (args) => ({
   template: `
     <div style="height: 100vh"> 
       <div style="z-index:3000; position: fixed; width: 100%">
-        <WizHeader />
+        <WizHeader sticky />
       </div>
+      <button :style="{        
+        inset: 0,
+        margin: 'auto',
+        position: 'fixed',
+        width: '80%',
+        height: '100px',
+      }">
+        button
+      </button>
       <WizDrawer v-bind="args">      
         <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="true" />
         <WizNavItem :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
