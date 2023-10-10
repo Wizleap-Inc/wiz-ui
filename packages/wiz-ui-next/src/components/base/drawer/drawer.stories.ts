@@ -104,6 +104,13 @@ WithHeader.args = {
   offsetTop: THEME.share.HEADER_HEIGHT,
 };
 
+export const ShadowAndWidth = Template.bind({});
+ShadowAndWidth.args = {
+  isOpen: true,
+  width: "200px",
+  shadow: true,
+};
+
 export const Right: StoryFn<typeof WizDrawer> = (args) => ({
   components: {
     WizDrawer,
@@ -145,11 +152,3 @@ export const Right: StoryFn<typeof WizDrawer> = (args) => ({
     </div>
   `,
 });
-
-Right.args = {
-  isOpen: true,
-  offsetTop: THEME.share.HEADER_HEIGHT,
-  place: "right",
-  width: "300px",
-  shadow: true,
-};

@@ -28,6 +28,45 @@ const dummy = () => {
   // dummy function
 };
 
+export const NavItems = () => {
+  return (
+    <>
+      <WizNavigationItem
+        icon={WizIDashboard}
+        label="Home"
+        active={true}
+        href={""}
+        onTogglePopup={dummy}
+        onTogglePopupLocking={dummy}
+      />
+      <WizNavigationItem
+        icon={WizIAssignment}
+        label="Page1"
+        active={false}
+        href={""}
+        onTogglePopup={dummy}
+        onTogglePopupLocking={dummy}
+      />
+      <WizNavigationItem
+        icon={WizIBusinessCenter}
+        label="Page2"
+        active={false}
+        href={""}
+        onTogglePopup={dummy}
+        onTogglePopupLocking={dummy}
+      />
+      <WizNavigationItem
+        icon={WizIHelp}
+        label="Page3"
+        active={false}
+        href={""}
+        onTogglePopup={dummy}
+        onTogglePopupLocking={dummy}
+      />
+    </>
+  );
+};
+
 export const Default: Story = {
   args: {
     isOpen: true,
@@ -36,38 +75,7 @@ export const Default: Story = {
   render: (args) => {
     return (
       <WizDrawer {...args}>
-        <WizNavigationItem
-          icon={WizIDashboard}
-          label="Home"
-          active={true}
-          href={""}
-          onTogglePopup={dummy}
-          onTogglePopupLocking={dummy}
-        />
-        <WizNavigationItem
-          icon={WizIAssignment}
-          label="Page1"
-          active={false}
-          href={""}
-          onTogglePopup={dummy}
-          onTogglePopupLocking={dummy}
-        />
-        <WizNavigationItem
-          icon={WizIBusinessCenter}
-          label="Page2"
-          active={false}
-          href={""}
-          onTogglePopup={dummy}
-          onTogglePopupLocking={dummy}
-        />
-        <WizNavigationItem
-          icon={WizIHelp}
-          label="Page3"
-          active={false}
-          href={""}
-          onTogglePopup={dummy}
-          onTogglePopupLocking={dummy}
-        />
+        <NavItems />
       </WizDrawer>
     );
   },
@@ -86,38 +94,7 @@ export const WithHeader: Story = {
           <WizHeader sticky onToggle={dummy} />
         </div>
         <WizDrawer {...args}>
-          <WizNavigationItem
-            icon={WizIDashboard}
-            label="Home"
-            active={true}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
-          <WizNavigationItem
-            icon={WizIAssignment}
-            label="Page1"
-            active={false}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
-          <WizNavigationItem
-            icon={WizIBusinessCenter}
-            label="Page2"
-            active={false}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
-          <WizNavigationItem
-            icon={WizIHelp}
-            label="Page3"
-            active={false}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
+          <NavItems />
         </WizDrawer>
       </div>
     );
@@ -151,40 +128,24 @@ export const Right: Story = {
           button
         </button>
         <WizDrawer {...args}>
-          <WizNavigationItem
-            icon={WizIDashboard}
-            label="Home"
-            active={true}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
-          <WizNavigationItem
-            icon={WizIAssignment}
-            label="Page1"
-            active={false}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
-          <WizNavigationItem
-            icon={WizIBusinessCenter}
-            label="Page2"
-            active={false}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
-          <WizNavigationItem
-            icon={WizIHelp}
-            label="Page3"
-            active={false}
-            href={""}
-            onTogglePopup={dummy}
-            onTogglePopupLocking={dummy}
-          />
+          <NavItems />
         </WizDrawer>
       </div>
+    );
+  },
+};
+
+export const ShadowAndWidth: Story = {
+  args: {
+    isOpen: true,
+    width: "200px",
+    shadow: true,
+  },
+  render: (args) => {
+    return (
+      <WizDrawer {...args}>
+        <NavItems />
+      </WizDrawer>
     );
   },
 };
