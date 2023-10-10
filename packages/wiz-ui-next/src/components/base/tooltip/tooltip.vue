@@ -8,7 +8,7 @@
       <slot />
       <WizPopup
         v-if="$slots.content"
-        :isOpen="isHover || hover"
+        :isOpen="isHover || isOpen"
         :direction="computedDirection"
         :shadow="false"
         :animation="true"
@@ -58,7 +58,7 @@ const props = defineProps({
     required: false,
     default: "top",
   },
-  hover: {
+  isOpen: {
     type: Boolean,
     required: false,
     default: false,

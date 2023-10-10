@@ -3,6 +3,7 @@
     <WizSnackbar
       v-for="(option, i) in snackbarOptions"
       :key="option.created"
+      :expand="option.options?.expand"
       :message="option.message"
       @delete="option.delete"
       :bottom="`${calcBottom(i)}px`"

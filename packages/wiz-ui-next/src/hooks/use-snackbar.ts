@@ -1,26 +1,30 @@
 import { ref, readonly } from "vue";
 
-import { SnackbarOption } from "@/components/base/snackbar/types";
+import {
+  SnackbarOption,
+  SnackbarOptionType,
+} from "@/components/base/snackbar/types";
 
 import { globalInject, globalKey } from "./use-global-provider";
 
 export const useSnackbarManager = () => {
-  const options = ref<SnackbarOption[]>([]);
-  const snack = (message: string) => {
+  const snackOptions = ref<SnackbarOption[]>([]);
+  const snack = (message: string, options?: SnackbarOptionType) => {
     const created = new Date().toISOString();
     const deleteSnackbar = () => {
-      options.value = options.value.filter(
+      snackOptions.value = snackOptions.value.filter(
         (options) => options.created !== created
       );
     };
-    options.value.push({
+    snackOptions.value.push({
       message,
+      options,
       created,
       delete: deleteSnackbar,
     });
   };
   return {
-    snackbarOptions: readonly(options),
+    snackbarOptions: readonly(snackOptions),
     snack,
   };
 };

@@ -1,4 +1,4 @@
-import { StoryFn, StoryObj } from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 
 import {
   WizMenuItem,
@@ -21,11 +21,12 @@ import { useBreakpoint } from "@/hooks/use-breakpoint";
 
 import { WizTimeline, WizTimelineItem } from "..";
 
-export default {
+const meta: Meta<typeof WizTimeline> = {
   title: "Custom/Timeline",
   component: WizTimeline,
 };
 
+export default meta;
 type Story = StoryObj<typeof WizTimeline>;
 
 const Template: StoryFn<typeof WizTimeline> = (args) => (

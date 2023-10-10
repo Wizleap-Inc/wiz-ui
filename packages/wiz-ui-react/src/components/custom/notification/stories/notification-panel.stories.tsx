@@ -58,3 +58,11 @@ export const Read: Story = {
     read: true,
   },
 };
+
+export const Width: Story = {
+  ...Template,
+  args: {
+    ...baseProps,
+    width: "200px",
+  },
+};
