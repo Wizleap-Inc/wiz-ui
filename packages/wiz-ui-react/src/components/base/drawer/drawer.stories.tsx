@@ -28,7 +28,7 @@ const dummy = () => {
   // dummy function
 };
 
-export const NavItems = () => {
+const NavItems = () => {
   return (
     <>
       <WizNavigationItem
