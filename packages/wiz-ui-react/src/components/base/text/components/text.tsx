@@ -59,7 +59,7 @@ const _Text = ({
         ...style,
         overflow: "hidden",
         display: "-webkit-box",
-        webkitBoxOrient: "vertical",
+        WebkitBoxOrient: "vertical",
         WebkitLineClamp: maxLines,
       }
     : style;
