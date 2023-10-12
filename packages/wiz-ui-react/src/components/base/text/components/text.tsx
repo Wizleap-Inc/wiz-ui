@@ -12,7 +12,7 @@ import {
   whiteSpaceStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { CSSProperties, ReactNode, memo } from "react";
 
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
@@ -54,15 +54,15 @@ const _Text = ({
   display,
   children,
 }: Props) => {
-  const textStyle = maxLines
-    ? {
-        ...style,
-        overflow: "hidden",
-        display: "-webkit-box",
-        WebkitBoxOrient: "vertical",
-        WebkitLineClamp: maxLines,
-      }
-    : style;
+  const textStyle: CSSProperties = {
+    ...style,
+    ...(maxLines && {
+      overflow: "hidden",
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      WebkitLineClamp: maxLines,
+    }),
+  };
   const textClass = clsx([
     className,
     styles.textStyle,
