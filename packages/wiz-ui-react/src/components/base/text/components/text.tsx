@@ -12,7 +12,7 @@ import {
   whiteSpaceStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ReactNode, memo } from "react";
+import { CSSProperties, ReactNode, memo } from "react";
 
 type Props = {
   as?: "p" | "span" | "label";
@@ -51,14 +51,14 @@ const _Text = ({
   display,
   children,
 }: Props) => {
-  const style = maxLines
+  const style: CSSProperties = maxLines
     ? {
         overflow: "hidden",
         display: "-webkit-box",
-        webkitBoxOrient: "vertical",
+        WebkitBoxOrient: "vertical",
         WebkitLineClamp: maxLines,
       }
-    : undefined;
+    : {};
   const className = clsx([
     styles.textStyle,
     styles.textFontWeightStyle[bold ? "bold" : "default"],
