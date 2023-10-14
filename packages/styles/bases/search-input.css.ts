@@ -113,7 +113,7 @@ export const searchDropdownLabelStyle = style({
   paddingLeft: THEME.spacing.xs,
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray[700],
+  color: THEME.color.gray[800],
   userSelect: "none",
   "@media": {
     "(any-hover: hover)": {
