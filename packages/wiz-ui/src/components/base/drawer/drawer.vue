@@ -2,16 +2,16 @@
   <MountingPortal mountTo="body" append>
     <div
       ref="containerRef"
-      :class="styles.drawerContainerStyle"
+      :class="[styles.drawerStyle, shadow && styles.drawerShadowStyle]"
       :style="{
         top: offsetTop,
         bottom: 0,
         display: isActuallyOpen ? undefined : 'none',
+        width: width,
+        right: place === 'right' ? 0 : undefined,
       }"
     >
-      <div :class="styles.drawerContainerItemsStyle">
-        <slot />
-      </div>
+      <slot />
     </div>
   </MountingPortal>
 </template>
@@ -19,8 +19,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
-import { MountingPortal } from "portal-vue";
-import { ref, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 
 defineOptions({
   name: ComponentName.Drawer,
@@ -42,6 +41,26 @@ const props = defineProps({
     required: false,
     default: "0px",
   },
+  /**
+   * 左右どちらからスライドインするか指定します。
+   * @type {"left" | "right"}
+   * @default "left"
+   */
+  place: {
+    type: String as PropType<"left" | "right">,
+    required: false,
+    default: "left",
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "100%",
+  },
+  shadow: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
 });
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -54,7 +73,8 @@ watch(props, () => {
     containerRef.value?.animate(
       [
         {
-          transform: "translateX(-100vw)",
+          transform:
+            props.place === "left" ? "translateX(-100%)" : "translateX(100%)",
         },
         {
           transform: "translateX(0)",
@@ -74,7 +94,8 @@ watch(props, () => {
           transform: "translateX(0)",
         },
         {
-          transform: "translateX(-100vw)",
+          transform:
+            props.place === "left" ? "translateX(-100%)" : "translateX(100%)",
         },
       ],
       {

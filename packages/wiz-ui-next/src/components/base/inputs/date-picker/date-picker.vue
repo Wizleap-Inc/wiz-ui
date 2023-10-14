@@ -1,6 +1,7 @@
 <template>
   <WizPopupContainer>
     <button
+      type="button"
       :class="[
         datePickerStyle,
         datePickerVariantStyle[variant],
@@ -25,6 +26,7 @@
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
         <button
+          type="button"
           v-else
           :class="datePickerCancelButtonStyle"
           :aria-label="ARIA_LABELS.DATE_PICKER_CANCEL"
@@ -45,45 +47,55 @@
       :isDirectionFixed="isDirectionFixed"
     >
       <div :class="datePickerSelectorStyle">
-        <WizHStack align="center" my="xs2" px="xs" justify="between">
-          <WizHStack align="center" justify="between" gap="xs2">
-            <WizText as="span" fontSize="xs" line-height="lg" color="gray.700">
-              {{ currentMonth.getFullYear() }}年
+        <WizHStack align="center" my="xs2" justify="between">
+          <WizHStack align="center" pl="xs" gap="xs">
+            <WizHStack align="center" gap="xs2">
+              <WizText
+                as="span"
+                fontSize="xs"
+                line-height="lg"
+                color="gray.700"
+              >
+                {{ formatYear(currentMonth.getFullYear()) }}
+              </WizText>
+              <WizVStack>
+                <button
+                  type="button"
+                  :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
+                  :class="[datePickerYearSelectorItemStyle]"
+                  @click="clickToNextYear"
+                >
+                  <WizIArrowDropUp
+                    :class="[
+                      fillStyle['gray.700'],
+                      fontSizeStyle['xs2'],
+                      datePickerArrowIconStyle,
+                    ]"
+                  />
+                </button>
+                <button
+                  type="button"
+                  :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
+                  :class="[datePickerYearSelectorItemStyle]"
+                  @click="clickToPreviousYear"
+                >
+                  <WizIArrowDropDown
+                    :class="[
+                      fillStyle['gray.700'],
+                      fontSizeStyle['xs2'],
+                      datePickerArrowIconStyle,
+                    ]"
+                  />
+                </button>
+              </WizVStack>
+            </WizHStack>
+            <WizText as="span" fontSize="xs" color="gray.700">
+              {{ currentDateTitle }}
             </WizText>
-            <WizVStack>
-              <button
-                :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
-                :class="[datePickerYearSelectorItemStyle]"
-                @click="clickToNextYear"
-              >
-                <WizIArrowDropUp
-                  :class="[
-                    fillStyle['gray.700'],
-                    fontSizeStyle['xs2'],
-                    datePickerArrowIconStyle,
-                  ]"
-                />
-              </button>
-              <button
-                :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
-                :class="[datePickerYearSelectorItemStyle]"
-                @click="clickToPreviousYear"
-              >
-                <WizIArrowDropDown
-                  :class="[
-                    fillStyle['gray.700'],
-                    fontSizeStyle['xs2'],
-                    datePickerArrowIconStyle,
-                  ]"
-                />
-              </button>
-            </WizVStack>
           </WizHStack>
-          <WizText as="span" fontSize="xs" color="gray.700">
-            {{ currentDateTitle }}
-          </WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
+              type="button"
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToPreviousMonth"
@@ -91,6 +103,7 @@
               <WizIcon size="md" color="inherit" :icon="WizIChevronLeft" />
             </button>
             <button
+              type="button"
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToNextMonth"
@@ -110,7 +123,7 @@
                 ]
               : []
           "
-          @click="(date) => (calendarValue = date)"
+          @click="handleClickCalendar"
           :currentMonth="currentMonth"
           filledWeeks
           :disabledDate="disabledDate"
@@ -214,6 +227,15 @@ const props = defineProps({
     required: false,
     default: () => false,
   },
+  /**
+   * @description 年の表示形式をカスタマイズします。
+   * @default (year) => `${year}年`
+   */
+  formatYear: {
+    type: Function as PropType<(year: number) => string>,
+    required: false,
+    default: (year: number) => `${year}`,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -288,4 +310,6 @@ const variant = computed(() => {
   if (calendarValue.value) return "selected";
   return "default";
 });
+
+const handleClickCalendar = (date: Date) => (calendarValue.value = date);
 </script>

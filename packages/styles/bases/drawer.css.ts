@@ -1,22 +1,15 @@
 import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-export const drawerContainerStyle = style({
+export const drawerStyle = style({
   position: "fixed",
-  width: "100%",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
-  background: THEME.color.white[500],
-  flexShrink: 0,
-  height: "100%",
-  transition: "width 0.2s ease-in-out",
-  overflow: "hidden",
+  overflowY: "auto",
   zIndex: THEME.zIndex.floating,
+  background: THEME.color.white[800],
 });
 
-export const drawerContainerItemsStyle = style({
-  display: "flex",
-  flexDirection: "column",
-  cursor: "pointer",
+export const drawerShadowStyle = style({
+  boxShadow: `-8px 0px 40px 0px rgba(0, 0, 0, 0.20)`,
 });

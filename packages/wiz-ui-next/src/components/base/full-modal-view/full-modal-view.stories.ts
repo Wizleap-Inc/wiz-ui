@@ -57,7 +57,7 @@ export const Default: StoryFn<typeof WizFullModalView> = (args) => ({
     @close="close"
   > 
     <h1>FullModalView</h1>
-    <div> {{ DUMMY_TEXT_1 }}</div>
+    <div style="height:120vh;">  {{ DUMMY_TEXT_1 }}</div>
   </wiz-full-modal-view> 
   <div> {{ DUMMY_TEXT_1 }}</div>
 </div>

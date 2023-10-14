@@ -40,13 +40,13 @@
 
 <script setup lang="ts">
 import {
-  paginationStyle,
-  paginationGapStyle,
   paginationButtonStyle,
   paginationButtonVariantStyle,
+  paginationGapStyle,
   paginationIconStyle,
+  paginationStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/pagination.css";
-import { computed, PropType } from "vue";
+import { PropType, computed } from "vue";
 
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
 
@@ -58,6 +58,15 @@ const props = defineProps({
   length: {
     type: Number as PropType<number>,
     required: true,
+  },
+  /**
+   * 表示ページ数を制御します。(`>=0`)
+   * @default 2
+   */
+  sideLength: {
+    type: Number as PropType<number>,
+    required: false,
+    default: 2,
   },
 });
 
@@ -79,13 +88,15 @@ const onUpdatePage = (index: number) => {
 };
 
 const displayIndex = computed(() => {
-  // if we have less than 5 pages, display all pages
-  if (props.length <= 5)
+  const sideItemLength = Math.max(0, props.sideLength);
+  const maxItemLength = sideItemLength * 2 + 1;
+  // 表示可能幅がページ数より大きい場合は全て表示
+  if (props.length <= maxItemLength)
     return Array.from({ length: props.length }, (_, i) => i + 1);
-  // if we have 10 pages
-  let from = activeValue.value - 2; // -2, -1, [activeValue], 1, 2
-  if (activeValue.value < 3) from = 1; // fixed to 1, 2, 3, 4, 5
-  if (activeValue.value > props.length - 2) from = props.length - 4; //  fixed to 6, 7, 8, 9, 10
-  return Array.from({ length: 5 }, (_, i) => from + i);
+  let from = activeValue.value - sideItemLength; // (ex.)  3 4 [5] 6 7
+  if (activeValue.value <= sideItemLength) from = 1; // (ex.)  1 [2] 3 4 5
+  if (activeValue.value > props.length - sideItemLength)
+    from = props.length - 2 * sideItemLength; // (ex.)  6 7 8 [9] 10
+  return Array.from({ length: maxItemLength }, (_, i) => from + i);
 });
 </script>
