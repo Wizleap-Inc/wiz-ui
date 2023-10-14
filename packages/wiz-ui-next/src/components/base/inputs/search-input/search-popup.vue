@@ -76,16 +76,7 @@
               :checked="checkValues.includes(item.value)"
               :value="item.value"
               :id="`${item.label}_${item.value}`"
-              @update:checked="
-                () => {
-                  if (checkValues.includes(item.value)) {
-                    const index = checkValues.indexOf(item.value);
-                    checkValues.splice(index, 1);
-                  } else {
-                    checkValues.push(item.value);
-                  }
-                }
-              "
+              @update:checked="handleClickCheckbox(item.value)"
             >
               <WizHStack width="100%" align="center" nowrap gap="xs2">
                 <div :class="styles.searchInputLabelStyle">
@@ -233,6 +224,15 @@ const onMouseover = (value: number, options: SearchInputOption[]) => {
   });
   if (!mutableSelectedItem.value.includes(value)) {
     mutableSelectedItem.value.push(value);
+  }
+};
+
+const handleClickCheckbox = (value: number) => {
+  if (checkValues.value.includes(value)) {
+    const index = checkValues.value.indexOf(value);
+    checkValues.value.splice(index, 1);
+  } else {
+    checkValues.value.push(value);
   }
 };
 </script>
