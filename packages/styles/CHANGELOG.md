@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.22.0
+
+### Minor Changes
+
+- [#1073](https://github.com/Wizleap-Inc/wiz-ui/pull/1073) [`c35888db`](https://github.com/Wizleap-Inc/wiz-ui/commit/c35888db4c58a3e59c580e18b981723af005807e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(full-modal-view): React 対応
+
+### Patch Changes
+
+- [#1085](https://github.com/Wizleap-Inc/wiz-ui/pull/1085) [`a7b92df8`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7b92df8683e73747e7682c37069f24454c631f7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(pagination): 表示ページ数を制御する Prop を追加
+  Fix(pagination): アイコン色を修正
+
 ## 0.21.1
 
 ### Patch Changes

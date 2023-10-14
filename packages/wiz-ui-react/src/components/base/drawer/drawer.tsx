@@ -1,5 +1,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/drawer.css";
+import clsx from "clsx";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 import { WizPortal } from "@/components";
@@ -14,9 +15,24 @@ type Props = {
    */
   offsetTop?: string;
   children: ReactNode;
+  /**
+   * 左右どちらからスライドインするか指定します。
+   * @type {"left" | "right"}
+   * @default "left"
+   */
+  place?: "left" | "right";
+  width?: string;
+  shadow?: boolean;
 };
 
-const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
+const Drawer: FC<Props> = ({
+  isOpen,
+  offsetTop = "0px",
+  place = "left",
+  width = "100%",
+  shadow = false,
+  children,
+}: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isActuallyOpen, setIsActuallyOpen] = useState(isOpen);
 
@@ -27,7 +43,8 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
       containerRef.current?.animate(
         [
           {
-            transform: "translateX(-100vw)",
+            transform:
+              place === "left" ? "translateX(-100%)" : "translateX(100%)",
           },
           {
             transform: "translateX(0)",
@@ -47,7 +64,8 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
             transform: "translateX(0)",
           },
           {
-            transform: "translateX(-100vw)",
+            transform:
+              place === "left" ? "translateX(-100%)" : "translateX(100%)",
           },
         ],
         {
@@ -63,20 +81,25 @@ const Drawer: FC<Props> = ({ isOpen, offsetTop = "0px", children }: Props) => {
         };
       }
     }
-  }, [isOpen]);
+  }, [isOpen, place]);
 
   return (
     <WizPortal container={document.body}>
       <div
         ref={containerRef}
-        className={styles.drawerContainerStyle}
+        className={clsx([
+          styles.drawerStyle,
+          shadow && styles.drawerShadowStyle,
+        ])}
         style={{
           top: offsetTop,
           bottom: 0,
           display: isActuallyOpen ? undefined : "none",
+          width: width,
+          right: place === "right" ? 0 : undefined,
         }}
       >
-        <div className={styles.drawerContainerItemsStyle}>{children}</div>
+        {children}
       </div>
     </WizPortal>
   );
