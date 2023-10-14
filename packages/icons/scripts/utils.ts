@@ -24,11 +24,13 @@ export const createIcon = {
   `,
   react: (svg: string, component: string) => {
     return `
+    import { CSSProperties } from "react";
     type Props = {
       className?: string;
+      style?: CSSProperties;
     };
-    export const WizI${component}= ({ className }: Props) => (
-      ${svg.replace(/<svg/, `<svg className={className}`)}
+    export const WizI${component}= ({ className, style }: Props) => (
+      ${svg.replace(/<svg/, `<svg className={className} style={style}`)}
     );
   `;
   },
