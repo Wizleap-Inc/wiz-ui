@@ -77,13 +77,13 @@
     >
       <div
         :class="selectBoxSelectorStyle"
-        :style="{ minWidth: width }"
+        :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
         v-if="
           filteredOptions.length > 0 ||
           (searchValue !== '' && !options.some((v) => v.label === searchValue))
         "
       >
-        <WizVStack gap="xs2" :height="dropdownHeight">
+        <WizVStack gap="xs2">
           <WizPopupButtonGroup
             :options="
               addButtonEnabled ? [addButton, ...selectButtons] : selectButtons
@@ -198,7 +198,7 @@ const props = defineProps({
     required: false,
     default: false,
   },
-  dropdownHeight: {
+  dropdownMaxHeight: {
     type: String,
     required: false,
   },

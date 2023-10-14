@@ -39,8 +39,11 @@
       @onClose="openSelectBox = false"
       :isDirectionFixed="isDirectionFixed"
     >
-      <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
-        <WizVStack gap="xs2" :height="dropdownHeight" nowrap>
+      <div
+        :class="selectBoxSelectorStyle"
+        :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
+      >
+        <WizVStack gap="xs2">
           <div
             :class="selectBoxSelectorOptionStyle"
             v-for="(option, key) in options"
@@ -132,7 +135,7 @@ const props = defineProps({
     required: false,
     default: false,
   },
-  dropdownHeight: {
+  dropdownMaxHeight: {
     type: String,
     required: false,
   },

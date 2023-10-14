@@ -28,7 +28,7 @@ export default {
     isDirectionFixed: {
       control: { type: "boolean" },
     },
-    dropdownHeight: {
+    dropdownMaxHeight: {
       control: { type: "text" },
     },
   },
@@ -113,8 +113,8 @@ IsDirectionFixed.args = {
   isDirectionFixed: true,
 };
 
-export const DropdownHeight = Template.bind({});
-DropdownHeight.args = {
+export const DropdownMaxHeight = Template.bind({});
+DropdownMaxHeight.args = {
   options: _getDummyOptions("test", 3),
-  dropdownHeight: "200px",
+  dropdownMaxHeight: "75px",
 };
