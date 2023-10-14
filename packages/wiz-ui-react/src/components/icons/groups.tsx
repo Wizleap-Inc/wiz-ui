@@ -1,9 +1,12 @@
+import { CSSProperties } from "react";
 type Props = {
   className?: string;
+  style?: CSSProperties;
 };
-export const WizIGroups = ({ className }: Props) => (
+export const WizIGroups = ({ className, style }: Props) => (
   <svg
     className={className}
+    style={style}
     xmlns="http://www.w3.org/2000/svg"
     height="1em"
     width="1em"
