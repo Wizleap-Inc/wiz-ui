@@ -25,6 +25,7 @@ export const popupButtonGroupButtonBaseStyle = style({
   fontSize: THEME.fontSize.sm,
   boxSizing: "border-box",
   userSelect: "none",
+  gap: THEME.spacing.xs2,
 });
 
 export const popupButtonGroupButtonVariantStyle = styleVariants({

@@ -4,7 +4,6 @@ import {
   popupButtonGroupButtonVariantStyle,
   popupButtonGroupDisabledCursorStyle,
   popupButtonGroupInnerContainerStyle,
-  popupButtonGroupInnerContainerLabel,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import clsx from "clsx";
 import { FC, KeyboardEvent, useMemo, useState } from "react";
@@ -89,9 +88,7 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
         tabIndex={0}
       >
         <span className={popupButtonGroupInnerContainerStyle}>
-          <span className={popupButtonGroupInnerContainerLabel}>
-            {item.option.label}
-          </span>
+          <span>{item.option.label}</span>
           {item.option.icon && (
             <WizIcon icon={item.option.icon} color={iconColor} size="md" />
           )}

@@ -58,9 +58,7 @@
           :key="`${item.item.option.label}-${item.item.option.value}`"
         >
           <span :class="popupButtonGroupInnerContainerStyle">
-            <span :class="[popupButtonGroupInnerContainerLabel]">{{
-              item.item.option.label
-            }}</span>
+            <span>{{ item.item.option.label }}</span>
             <WizIcon
               v-if="item.item.option.icon"
               :icon="item.item.option.icon"
@@ -101,7 +99,6 @@ import {
   popupButtonGroupTitleVariantStyle,
   popupButtonGroupButtonVariantStyle,
   borderRadiusStyle,
-  popupButtonGroupInnerContainerLabel,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, PropType, ref } from "vue";
 
