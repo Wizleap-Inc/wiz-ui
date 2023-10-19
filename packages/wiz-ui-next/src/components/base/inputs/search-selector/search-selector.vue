@@ -88,7 +88,6 @@
       >
         <WizVStack gap="xs2">
           <WizPopupButtonGroup
-            :showExLabel="showExLabel"
             :options="
               addButtonEnabled ? [addButton, ...selectButtons] : selectButtons
             "

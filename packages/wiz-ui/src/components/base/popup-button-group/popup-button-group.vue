@@ -58,10 +58,9 @@
           :key="`${item.item.option.label}-${item.item.option.value}`"
         >
           <span :class="popupButtonGroupInnerContainerStyle">
-            <span
-              :class="[showExLabel && popupButtonGroupInnerContainerLabel]"
-              >{{ item.item.option.label }}</span
-            >
+            <span :class="[popupButtonGroupInnerContainerLabel]">{{
+              item.item.option.label
+            }}</span>
             <WizIcon
               v-if="item.item.option.icon"
               :icon="item.item.option.icon"
@@ -157,11 +156,6 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 0,
-  },
-  showExLabel: {
-    type: Boolean,
-    required: false,
-    default: false,
   },
 });
 

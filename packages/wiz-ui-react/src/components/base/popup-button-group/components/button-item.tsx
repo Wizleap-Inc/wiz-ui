@@ -17,15 +17,9 @@ interface Props {
   item: ButtonItemType;
   disabled: boolean;
   depth: number;
-  showExLabel?: boolean;
 }
 
-export const ButtonItem: FC<Props> = ({
-  item,
-  disabled,
-  depth,
-  showExLabel,
-}) => {
+export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
@@ -95,9 +89,7 @@ export const ButtonItem: FC<Props> = ({
         tabIndex={0}
       >
         <span className={popupButtonGroupInnerContainerStyle}>
-          <span
-            className={showExLabel ? popupButtonGroupInnerContainerLabel : ""}
-          >
+          <span className={popupButtonGroupInnerContainerLabel}>
             {item.option.label}
           </span>
           {item.option.icon && (
