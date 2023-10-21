@@ -1,6 +1,7 @@
 <template>
   <WizPopupContainer :expand="expand">
     <button
+      type="button"
       :class="[
         styles.bodyStyle[disabled ? 'disabled' : 'active'],
         styles.widthStyle[expand ? 'expanded' : 'default'],
@@ -9,12 +10,15 @@
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
+      @keydown.left="moveToPrevMonth"
+      @keydown.right="moveToNextMonth"
     >
       <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
         <span v-if="!isHover">
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
         <button
+          type="button"
           v-else
           :class="styles.popupCalendarCancelButtonStyle"
           :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_CANCEL"
@@ -25,7 +29,9 @@
       </span>
       <span
         :class="
-          styles.inputTextStyle[modelValue.start ? 'selected' : 'default']
+          styles.inputTextStyle[
+            modelValue.start && !disabled ? 'selected' : 'default'
+          ]
         "
         >{{
           modelValue.start ? formatDateToYYMMDD(modelValue.start) : "開始日"
@@ -33,7 +39,11 @@
       >
       <span :class="styles.separatorStyle">-</span>
       <span
-        :class="styles.inputTextStyle[modelValue.end ? 'selected' : 'default']"
+        :class="
+          styles.inputTextStyle[
+            modelValue.end && !disabled ? 'selected' : 'default'
+          ]
+        "
         >{{
           modelValue.end ? formatDateToYYMMDD(modelValue.end) : "終了日"
         }}</span
@@ -52,6 +62,7 @@
               ref="selectBoxContainerRef"
             >
               <button
+                type="button"
                 :class="[
                   styles.popupHeaderSelectBoxStyle,
                   inputBorderStyle[isSelectBoxOpen ? 'active' : 'default'],
@@ -71,6 +82,7 @@
                 :class="styles.popupHeaderSelectBoxOptionsStyle"
               >
                 <button
+                  type="button"
                   v-for="(option, index) in selectBoxOptions"
                   :key="index"
                   :class="styles.popupHeaderSelectBoxOptionStyle"
@@ -86,6 +98,7 @@
             <div :class="styles.popupCalendarContainerStyle['left']">
               <div :class="styles.popupCalendarHeaderStyle">
                 <button
+                  type="button"
                   :class="styles.popupCalendarHeaderButtonStyle"
                   :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
                   @click="moveToPrevMonth"
@@ -114,6 +127,7 @@
                   }}月
                 </span>
                 <button
+                  type="button"
                   :class="styles.popupCalendarHeaderButtonStyle"
                   :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
                   @click="moveToNextMonth"
@@ -242,13 +256,15 @@ const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () =>
   emit("update:modelValue", { start: null, end: null });
 
-const moveToNextMonth = () => {
+const moveToNextMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = new Date(
     rightCalendarDate.value.setMonth(rightCalendarDate.value.getMonth() + 1)
   );
 };
 
-const moveToPrevMonth = () => {
+const moveToPrevMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = leftCalendarDate.value;
 };
 

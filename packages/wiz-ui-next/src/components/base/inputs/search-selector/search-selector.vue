@@ -20,11 +20,13 @@
               {{ item.label }}
             </span>
             <button
+              type="button"
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
               @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
               :class="selectBoxInnerBoxCloseButtonStyle"
               :ref="setUnselectableRef(i)"
+              :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -47,9 +49,11 @@
         </WizHStack>
       </div>
       <button
+        type="button"
         :class="selectBoxExpandIconStyle"
         @click="toggleSelectBox"
         :disabled="disabled"
+        :aria-label="ARIA_LABELS.SEARCH_SELECTOR.EXPAND"
       >
         <WizIcon
           v-if="isOpen"
@@ -92,36 +96,36 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  selectBoxStyle,
-  selectBoxDisabledStyle,
   selectBoxCursorStyle,
-  selectBoxInnerBoxStyle,
+  selectBoxDisabledStyle,
+  selectBoxExpandIconStyle,
+  selectBoxInnerBoxCloseButtonStyle,
   selectBoxInnerBoxCloseStyle,
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
-  selectBoxSelectorStyle,
-  selectBoxSearchInputStyle,
-  selectBoxExpandIconStyle,
   selectBoxInnerBoxSelectedItemStyle,
   selectBoxInnerBoxSelectedLabelStyle,
-  selectBoxInnerBoxCloseButtonStyle,
+  selectBoxInnerBoxStyle,
+  selectBoxSearchInputStyle,
+  selectBoxSelectorStyle,
+  selectBoxStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType, ComponentPublicInstance } from "vue";
+import { ComponentPublicInstance, PropType, computed, inject, ref } from "vue";
 
 import {
-  WizPopupContainer,
-  WizPopup,
   WizIcon,
+  WizPopup,
   WizPopupButtonGroup,
+  WizPopupContainer,
 } from "@/components";
 import {
+  WizIAddCircle,
+  WizIClose,
   WizIExpandLess,
   WizIExpandMore,
-  WizIClose,
-  WizIAddCircle,
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
@@ -212,12 +216,24 @@ const toggleDropdown = () => {
 
 const deepCopy = <T>(ary: T): T => JSON.parse(JSON.stringify(ary));
 
-const sortByLevenshtein = (options: SelectBoxOption[], target: string) => {
+const selectByLevenshteinAndPartialMatch = (
+  options: SelectBoxOption[],
+  target: string
+) => {
   const dist = options.reduce((acc, str) => {
     acc[str.label] = levenshteinDistance(str.label, target);
     return acc;
   }, {} as { [key: string]: number });
-  return options.sort((a, b) => dist[a.label] - dist[b.label]);
+  const minLength = Math.min(...Object.values(dist));
+  const closestWords = options.filter(
+    (option) => dist[option.label] === minLength
+  );
+
+  const exactMatch = options.filter((option) => {
+    const isIncluded = option.label.indexOf(target) !== -1;
+    return isIncluded && !closestWords.includes(option);
+  });
+  return closestWords.concat(exactMatch);
 };
 
 const valueToOption = computed(() =>
@@ -240,7 +256,10 @@ const setUnselectableRef =
 const filteredOptions = computed(() => {
   const sortedOptions =
     props.searchValue.length !== 0
-      ? sortByLevenshtein(deepCopy(props.options), props.searchValue)
+      ? selectByLevenshteinAndPartialMatch(
+          deepCopy(props.options),
+          props.searchValue
+        )
       : props.options;
   const removeSelectedOptions = (options: SelectBoxOption[]) => {
     return options.filter((v) => {

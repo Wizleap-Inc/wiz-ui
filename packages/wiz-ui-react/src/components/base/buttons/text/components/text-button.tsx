@@ -22,7 +22,7 @@ type Props = {
 
 const variantColor: Record<"primary" | "sub", ColorKeys> = {
   primary: "white.800",
-  sub: "gray.800",
+  sub: "green.800",
 };
 
 const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {

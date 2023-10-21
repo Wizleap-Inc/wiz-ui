@@ -6,9 +6,17 @@
       fontSizeStyle[fontSize],
       fontWeightStyle[fontWeight],
     ]"
-    :style="{ width: width || 'max-content' }"
+    :style="{
+      width: width || 'max-content',
+      borderRadius: round ? THEME.spacing.xl2 : THEME.spacing.xs2,
+    }"
   >
-    <WizIcon v-if="icon" :icon="icon" :color="tagIconColorStyle[variant]" />
+    <WizIcon
+      v-if="icon"
+      :icon="icon"
+      :color="tagIconColorStyle[variant]"
+      :size="fontSize"
+    />
     {{ label }}
   </span>
 </template>
@@ -18,11 +26,12 @@ import {
   ComponentName,
   FontSizeKeys,
   FontWeightKeys,
+  THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  tagStyle,
   tagColorStyle,
   tagIconColorStyle,
+  tagStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
   fontSizeStyle,
@@ -48,7 +57,16 @@ defineProps({
   },
   variant: {
     type: String as PropType<
-      "info" | "red" | "green" | "yellow" | "blue" | "mono"
+      | "info"
+      | "red"
+      | "green"
+      | "yellow"
+      | "blue"
+      | "mono"
+      | "gray"
+      | "darkGray"
+      | "greenFill"
+      | "white"
     >,
     required: false,
     default: "info",
@@ -62,6 +80,11 @@ defineProps({
     type: String as PropType<FontWeightKeys>,
     required: false,
     default: "normal",
+  },
+  round: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
   width: {
     type: String,

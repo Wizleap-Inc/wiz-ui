@@ -34,13 +34,10 @@ export const messageBoxWidthStyle = styleVariants({
   expand: {
     width: "100%",
   },
-  short: {
-    width: "max-content",
-    minWidth: "12.5rem",
-  },
 });
 
 export const messageBoxIconStyle = style({
+  flexShrink: 0,
   fontSize: THEME.fontSize.xl2,
   minWidth: THEME.fontSize.xl2,
   marginRight: THEME.spacing.sm,
@@ -63,11 +60,12 @@ export const messageBoxTitleStyle = style({
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.xl2,
   color: THEME.color.gray[700],
+  textAlign: "left",
 });
 
-export const messageBoxSlotStyle = style({
+export const messageBoxBodyStyle = style({
+  color: THEME.color.gray[700],
   marginTop: THEME.spacing.xs,
   marginBottom: THEME.spacing.xs,
   fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray[700],
 });

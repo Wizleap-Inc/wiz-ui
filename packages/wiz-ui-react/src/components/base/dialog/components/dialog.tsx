@@ -13,6 +13,7 @@ type Props = {
   footer?: ReactNode;
   children?: ReactNode;
   align?: "start" | "center" | "end";
+  hideClose?: boolean;
   onClose: () => void;
 };
 
@@ -23,12 +24,12 @@ const Dialog: FC<Props> = ({
   footer,
   children,
   align,
+  hideClose,
   onClose,
 }) => {
   const portalRoot = useRef<HTMLDivElement>(
     document.createElement("div")
   ).current;
-  const scrollYRef = useRef(0);
 
   useEffect(() => {
     if (!portalRoot) {
@@ -41,18 +42,22 @@ const Dialog: FC<Props> = ({
   }, [portalRoot]);
 
   useEffect(() => {
-    if (isOpen) {
-      // スクロールバーが表示されている場合
-      if (document.body.scrollHeight > window.innerHeight) {
-        scrollYRef.current = window.scrollY;
-        document.body.style.top = `-${scrollYRef.current}px`;
-        document.body.classList.add(styles.dialogBlockScrollStyle);
-      }
-    } else {
-      document.body.classList.remove(styles.dialogBlockScrollStyle);
-      document.body.style.top = "";
-      window.scrollTo(0, scrollYRef.current);
-      scrollYRef.current = 0;
+    if (!isOpen) {
+      return;
+    }
+    // スクロールバーが表示されている場合
+    if (document.body.scrollHeight > window.innerHeight) {
+      // スクロール位置を記憶して body をスクロール不可に設定
+      const { scrollY } = window;
+      document.body.style.top = `-${scrollY}px`;
+      document.body.classList.add(styles.dialogBlockScrollStyle);
+
+      return () => {
+        // スタイルとスクロール位置を戻す
+        document.body.classList.remove(styles.dialogBlockScrollStyle);
+        document.body.style.top = "";
+        window.scrollTo(0, scrollY);
+      };
     }
   }, [isOpen]);
 
@@ -85,7 +90,7 @@ const Dialog: FC<Props> = ({
           maxWidth={maxWidth}
           align={align}
           mainHeaderArea={title}
-          subHeaderArea={closeButton}
+          subHeaderArea={!hideClose && closeButton}
           footerArea={footer}
           role="dialog"
           aria-modal={true}

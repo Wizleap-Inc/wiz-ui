@@ -12,7 +12,7 @@ import {
 
 import { TIcon } from "@/components";
 import { PrivateBaseInput } from "@/components/base/inputs/base";
-import { FormControlContext } from "@/components/custom/form/form-control-context";
+import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 
 type PrivateBaseInputProps = ComponentProps<typeof PrivateBaseInput>;
 

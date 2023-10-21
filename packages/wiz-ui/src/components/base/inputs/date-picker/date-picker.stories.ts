@@ -42,14 +42,14 @@ const Template: StoryFn = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(null);
+    const date = ref<Date | null>(new Date(2020, 0, 1));
     const isOpen = ref(true);
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { date, isOpen, setIsOpen };
   },
   template: `
     <WizHStack>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
@@ -94,7 +94,29 @@ const input = (value: Date) => {
   },
 };
 
-export const Placeholder = Template.bind({});
+const PlaceholderTemplate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(null);
+    const isOpen = ref(false);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { date, isOpen, setIsOpen };
+  },
+  template: `
+    <WizHStack>
+      <WizDatepicker
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        @input="input"
+        @updateIsOpen="setIsOpen"
+      />
+    </WizHStack>
+  `,
+});
+
+export const Placeholder = PlaceholderTemplate.bind({});
 Placeholder.args = {
   value: null,
   placeholder: "(例) 2000/1/1",
@@ -152,6 +174,31 @@ const input = (value: Date) => {
   },
 };
 
+export const DisabledDate: StoryFn = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const disabledDate = (date: Date) =>
+      date.getDate() >= 10 && date.getDate() < 17;
+    return { date, isOpen, setIsOpen, disabledDate };
+  },
+  template: `
+    <WizHStack>
+      <WizDatepicker 
+        v-bind="$props"
+        v-model="date"
+        :isOpen="isOpen"
+        :disabledDate="disabledDate"
+        @input="input"
+        @updateIsOpen="setIsOpen"
+      />
+    </WizHStack>
+  `,
+});
+
 export const InitialValue: StoryFn<typeof WizDatepicker> = (
   _,
   { argTypes }
@@ -159,14 +206,14 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const date = ref<Date | null>(new Date(2020, 0, 1));
     const isOpen = ref(true);
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { date, isOpen, setIsOpen };
   },
   template: `
     <div>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
@@ -178,7 +225,7 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (
 });
 
 const _formatDateSlash = (date: Date) => {
-  const year = date.getFullYear() % 100;
+  const year = (date.getFullYear() % 100).toString().padStart(2, "0");
   const month = date.getMonth() + 1;
   const day = date.getDate();
   return `${year}/${month}/${day}`;
@@ -200,7 +247,7 @@ export const Hover: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(new Date(1990, 0, 1));
+    const date = ref<Date | null>(new Date(2020, 0, 1));
     const isOpen = ref(true);
     const isHover = ref(true);
     const updateIsOpen = (value: boolean) => (isOpen.value = value);
@@ -209,7 +256,7 @@ export const Hover: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   },
   template: `
     <div>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
@@ -225,7 +272,7 @@ export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { WizDatepicker, WizHStack },
   setup() {
-    const date = ref<Date | null>(null);
+    const date = ref<Date | null>(new Date(2000, 0, 1));
     const isOpen = ref(false);
     const isHover = ref(false);
     const updateIsOpen = (value: boolean) => (isOpen.value = value);
@@ -234,7 +281,7 @@ export const Test: StoryFn<typeof WizDatepicker> = (_, { argTypes }) => ({
   },
   template: `
     <div>
-      <WizDatepicker 
+      <WizDatepicker
         v-bind="$props"
         v-model="date"
         :isOpen="isOpen"
@@ -252,7 +299,7 @@ Test.play = async ({ canvasElement }) => {
   await userEvent.click(button);
   await waitFor(() => expect(button).toHaveFocus());
 
-  const date = new Date();
+  const date = new Date(2000, 1, 0);
 
   // その月の15日を選択
   const body = within(canvasElement.ownerDocument.body);

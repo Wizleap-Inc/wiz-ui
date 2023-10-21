@@ -9,6 +9,7 @@
           :icon="WizIMenu"
           size="lg"
           variant="transparent"
+          :ariaLabel="ARIA_LABELS.MENU"
           @click="toggleMenuOpen"
         />
         <slot name="left" />
@@ -25,16 +26,16 @@ import {
   ComponentName,
   SpacingKeys,
   THEME,
+  ARIA_LABELS,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   headerStyle,
   headerStickyStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/header.css";
-import { PropType } from "vue";
+import { PropType, defineEmits } from "vue";
 
 import { WizHStack, WizIconButton, WizIMenu } from "@/components";
 import { useZIndex } from "@/hooks";
-import { globalInject, globalKey } from "@/hooks/use-global-provider";
 
 defineOptions({
   name: ComponentName.Header,
@@ -55,7 +56,14 @@ defineProps({
   },
 });
 
-const { isMenuOpen, setIsMenuOpen } = globalInject(globalKey);
-const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen.value);
+interface Emit {
+  (e: "onToggle"): void;
+}
+
+const emits = defineEmits<Emit>();
+
+const toggleMenuOpen = () => {
+  emits("onToggle");
+};
 const { currentZIndex } = useZIndex(THEME.zIndex.floating);
 </script>

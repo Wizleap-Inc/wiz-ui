@@ -11,12 +11,12 @@
       :is="icon"
       :class="[messageBoxIconStyle, messageBoxIconFillStyle[variant]]"
     />
-    <div>
+    <WizVStack gap="xs">
       <div :class="messageBoxTitleStyle">{{ title }}</div>
-      <div v-if="!short" :class="messageBoxSlotStyle">
-        <slot></slot>
+      <div v-if="hasDefaultSlot" :class="messageBoxBodyStyle">
+        <slot />
       </div>
-    </div>
+    </WizVStack>
   </div>
 </template>
 
@@ -29,10 +29,11 @@ import {
   messageBoxIconStyle,
   messageBoxIconFillStyle,
   messageBoxTitleStyle,
-  messageBoxSlotStyle,
+  messageBoxBodyStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
-import { computed, PropType } from "vue";
+import { computed, PropType, useSlots } from "vue";
 
+import { WizVStack } from "@/components";
 import type { TIcon } from "@/components/icons";
 
 defineOptions({
@@ -58,16 +59,13 @@ const props = defineProps({
     required: false,
     default: false,
   },
-  short: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
 });
 
 const computedWidth = computed(() => {
   if (props.expand) return "expand";
-  if (props.short) return "short";
   return "default";
 });
+
+const slots = useSlots();
+const hasDefaultSlot = slots.default ? !!slots.default() : false;
 </script>

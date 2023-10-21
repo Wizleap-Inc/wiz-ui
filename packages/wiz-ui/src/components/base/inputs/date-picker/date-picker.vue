@@ -1,6 +1,7 @@
 <template>
   <WizPopupContainer>
     <button
+      type="button"
       :class="[
         datePickerStyle,
         datePickerVariantStyle[variant],
@@ -12,6 +13,10 @@
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
+      @keydown.up="clickToNextYear"
+      @keydown.down="clickToPreviousYear"
+      @keydown.left="clickToPreviousMonth"
+      @keydown.right="clickToNextMonth"
     >
       <WizHStack gap="xs" align="center" height="100%">
         <span
@@ -22,6 +27,7 @@
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
         <button
+          type="button"
           v-else
           :class="datePickerCancelButtonStyle"
           :aria-label="ARIA_LABELS.DATE_PICKER_CANCEL"
@@ -49,6 +55,7 @@
             </WizText>
             <WizVStack>
               <button
+                type="button"
                 :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
                 :class="[datePickerYearSelectorItemStyle]"
                 @click="clickToNextYear"
@@ -62,6 +69,7 @@
                 />
               </button>
               <button
+                type="button"
                 :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
                 :class="[datePickerYearSelectorItemStyle]"
                 @click="clickToPreviousYear"
@@ -81,6 +89,7 @@
           </WizText>
           <div :class="datePickerMonthSelectorStyle">
             <button
+              type="button"
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToPreviousMonth"
@@ -88,6 +97,7 @@
               <WizIcon size="md" color="inherit" :icon="WizIChevronLeft" />
             </button>
             <button
+              type="button"
               :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
               :class="datePickerMonthSelectorItemStyle"
               @click="clickToNextMonth"
@@ -107,9 +117,10 @@
                 ]
               : []
           "
-          @click="(date) => (calendarValue = date)"
+          @click="handleClickCalendar"
           :currentMonth="currentMonth"
           filledWeeks
+          :disabledDate="disabledDate"
         />
       </div>
     </WizPopup>
@@ -199,6 +210,16 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  /**
+   * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
+   * @param date
+   * @returns {boolean} `true`: 無効な日付, `false`: 有効な日付
+   */
+  disabledDate: {
+    type: Function as PropType<(date: Date) => boolean>,
+    required: false,
+    default: () => false,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -210,7 +231,8 @@ const setIsOpen = (value: boolean) => emit("updateIsOpen", value);
 const setIsHover = (value: boolean) => emit("updateIsHover", value);
 const onClickCancel = () => emit("input", null);
 
-const clickToNextMonth = () => {
+const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear(),
     currentMonth.value.getMonth() + 1,
@@ -219,7 +241,8 @@ const clickToNextMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToPreviousMonth = () => {
+const clickToPreviousMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear(),
     currentMonth.value.getMonth() - 1,
@@ -228,7 +251,8 @@ const clickToPreviousMonth = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToNextYear = () => {
+const clickToNextYear = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear() + 1,
     currentMonth.value.getMonth(),
@@ -237,7 +261,8 @@ const clickToNextYear = () => {
   currentMonth.value = new Date(setDateTime);
 };
 
-const clickToPreviousYear = () => {
+const clickToPreviousYear = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   const setDateTime = new Date(
     currentMonth.value.getFullYear() - 1,
     currentMonth.value.getMonth(),
@@ -270,4 +295,6 @@ const variant = computed(() => {
   if (calendarValue.value) return "selected";
   return "default";
 });
+
+const handleClickCalendar = (date: Date) => (calendarValue.value = date);
 </script>

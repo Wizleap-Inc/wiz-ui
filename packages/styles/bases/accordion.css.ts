@@ -14,6 +14,7 @@ export const accordionMessageStyle = style({
 
 export const accordionSummaryStyle = style({
   display: "flex",
+  overflow: "hidden",
   justifyContent: "center",
   cursor: "pointer",
   userSelect: "none",
@@ -22,6 +23,10 @@ export const accordionSummaryStyle = style({
       display: "none",
     },
   },
+});
+
+export const accordionSummaryTextStyle = style({
+  padding: `${THEME.spacing.xs} 0`,
 });
 
 export const accordionContentStyle = style({

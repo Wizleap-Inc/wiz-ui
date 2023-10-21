@@ -3,20 +3,20 @@ import {
   gapStyle,
   gapXStyle,
   gapYStyle,
-  marginStyle,
-  marginXStyle,
-  marginYStyle,
-  marginTopStyle,
-  marginRightStyle,
   marginBottomStyle,
   marginLeftStyle,
-  paddingStyle,
-  paddingXStyle,
-  paddingYStyle,
-  paddingTopStyle,
-  paddingRightStyle,
+  marginRightStyle,
+  marginStyle,
+  marginTopStyle,
+  marginXStyle,
+  marginYStyle,
   paddingBottomStyle,
   paddingLeftStyle,
+  paddingRightStyle,
+  paddingStyle,
+  paddingTopStyle,
+  paddingXStyle,
+  paddingYStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { memo } from "react";
@@ -27,7 +27,7 @@ const _Stack = ({
   direction = "horizontal",
   align = "stretch",
   justify = "start",
-  wrap = true,
+  nowrap = false,
   width = "auto",
   height = "auto",
   overflow = "visible",
@@ -68,7 +68,7 @@ const _Stack = ({
     styles.stackJustifyStyle[justify],
     styles.stackAlignStyle[align],
     position && styles.stackPositionStyle[position],
-    wrap && styles.stackWrapStyle,
+    !nowrap && styles.stackWrapStyle,
     gx && gapXStyle[gx],
     gy && gapYStyle[gy],
     !gx && !gy && gap && gapStyle[gap],
@@ -87,9 +87,12 @@ const _Stack = ({
     pb && paddingBottomStyle[pb],
     pl && paddingLeftStyle[pl]
   );
-
   return (
-    <div className={stackStyle} style={{ width, height, overflow }}>
+    <div
+      {...props}
+      className={clsx([stackStyle, props.className])}
+      style={{ width, height, overflow }}
+    >
       {props.children}
     </div>
   );

@@ -47,3 +47,15 @@ export const textDummyStyle = style({
 export const textLineThroughStyle = style({
   textDecoration: "line-through",
 });
+
+export const textDisplayStyle = styleVariants({
+  inline: {
+    display: "inline",
+  },
+  "inline-block": {
+    display: "inline-block",
+  },
+  "inline-flex": {
+    display: "inline-flex",
+  },
+});

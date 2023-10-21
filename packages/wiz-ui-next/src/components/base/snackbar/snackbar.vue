@@ -2,6 +2,7 @@
   <div
     :class="[
       snackbarStyle,
+      snackbarWidthStyle[snackbarWidthType],
       !isStatic && snackbarFixedStyle,
       isHidden && snackbarHiddenStyle,
     ]"
@@ -16,7 +17,12 @@
       <div :class="snackbarMessageStyle">
         <WizText color="white.800" fontSize="sm">{{ message }}</WizText>
       </div>
-      <button :class="snackbarCloseButtonStyle" @click="onDelete">
+      <button
+        type="button"
+        :class="snackbarCloseButtonStyle"
+        @click="onDelete"
+        :aria-label="ARIA_LABELS.SNACKBAR.CLOSE"
+      >
         <WizIcon color="white.800" :icon="WizIClose" />
       </button>
     </div>
@@ -24,18 +30,19 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  snackbarStyle,
-  snackbarFixedStyle,
+  snackbarCloseButtonStyle,
   snackbarContainerStyle,
+  snackbarFixedStyle,
   snackbarHiddenStyle,
   snackbarMessageStyle,
-  snackbarCloseButtonStyle,
+  snackbarStyle,
+  snackbarWidthStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/snackbar.css";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 
-import { WizText, WizIcon, WizICircleCheck, WizIClose } from "@/components";
+import { WizICircleCheck, WizIClose, WizIcon, WizText } from "@/components";
 
 interface Emits {
   (event: "delete"): void;
@@ -65,12 +72,19 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  expand: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emits = defineEmits<Emits>();
 
 const snackbarRef = ref<HTMLElement | undefined>();
 const isHidden = ref(props.isStatic ? false : true);
+
+const snackbarWidthType = computed(() => (props.expand ? "expand" : "default"));
 
 const onDelete = () => {
   isHidden.value = true;

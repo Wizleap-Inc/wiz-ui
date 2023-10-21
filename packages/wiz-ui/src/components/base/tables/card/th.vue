@@ -1,6 +1,6 @@
 <template>
   <th
-    :class="cardThStyle"
+    :class="isSafari ? styles.cardThOnSafariStyle : styles.cardThStyle"
     :style="{ width }"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
@@ -11,7 +11,9 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import { cardThStyle } from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+
+import { useIsSafari } from "./hooks/use-is-safari";
 
 defineOptions({
   name: ComponentName.CardTh,
@@ -32,4 +34,6 @@ defineProps({
     required: false,
   },
 });
+
+const isSafari = useIsSafari();
 </script>

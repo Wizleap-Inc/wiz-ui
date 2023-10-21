@@ -10,7 +10,7 @@
       ]"
       :style="{
         inset,
-        transform: popupTranslate,
+        transform: `${popupTranslate} translateZ(0)`,
       }"
       ref="popupRef"
       @mouseleave="mouseLeave"
@@ -28,22 +28,22 @@ import {
   ZIndexKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  popupStyle,
-  popupShadowStyle,
-  popupHiddenStyle,
   popupFixedStyle,
+  popupHiddenStyle,
+  popupShadowStyle,
+  popupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup.css";
 import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { MountingPortal } from "portal-vue";
 import {
   computed,
-  watch,
   inject,
-  PropType,
-  ref,
-  reactive,
   nextTick,
   onMounted,
+  PropType,
+  reactive,
+  ref,
+  watch,
 } from "vue";
 
 import { useClickOutside } from "@/hooks/use-click-outside";
@@ -142,6 +142,12 @@ if (!injected) {
 
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
+// safariでアニメーションを有効にするために必要
+onMounted(() => {
+  if (!popupRef.value) return;
+  popupRef.value.style.animationName = "fade";
+});
+
 const togglePopup = () => {
   if (!props.animation) return (isActuallyOpen.value = props.isOpen);
   if (!popupRef.value) return;
@@ -162,11 +168,13 @@ const togglePopup = () => {
   }
 };
 
-const existsFixedParent = (el: HTMLElement | null): HTMLElement | null => {
+const existsFixedOrStickyParent = (
+  el: HTMLElement | null
+): HTMLElement | null => {
   if (!el) return null;
   const position = window.getComputedStyle(el).position;
-  if (position === "fixed") return el;
-  return existsFixedParent(el.parentElement);
+  if (position === "fixed" || position === "sticky") return el;
+  return existsFixedOrStickyParent(el.parentElement);
 };
 
 let removeScrollHandler: (() => void) | null = null;
@@ -344,11 +352,13 @@ watch(
 );
 
 const isFixed = computed(() => {
-  return existsFixedParent(containerRef.value || null) ? true : false;
+  return existsFixedOrStickyParent(containerRef.value || null) ? true : false;
 });
 
 const inset = computed(() => {
-  const { scrollX, scrollY } = window;
+  const { scrollX, scrollY } = isFixed.value
+    ? { scrollX: 0, scrollY: 0 }
+    : window;
   const firstBTop = bodyPxInfo.top + scrollY + bodyPxInfo.height;
   const secondBTop =
     bodyPxInfo.top + scrollY - popupRect.value.height + bodyPxInfo.height;
