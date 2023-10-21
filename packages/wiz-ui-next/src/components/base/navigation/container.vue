@@ -2,7 +2,7 @@
   <div
     :class="navigationContainerStyle"
     :style="{
-      ...computedStickyStyle,
+      ...computedFixedStyle,
       width: computedWidth,
     }"
   >
@@ -35,7 +35,7 @@ const props = defineProps({
     type: String,
     required: false,
   },
-  sticky: {
+  fixed: {
     type: Boolean,
     required: false,
   },
@@ -52,13 +52,13 @@ const computedWidth = computed(() => {
   return `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`;
 });
 
-const computedStickyStyle = computed(() => {
+const computedFixedStyle = computed(() => {
   const styles: StyleValue = {};
-  if (props.sticky) styles.position = "sticky";
-  if (props.sticky) styles.top = `calc(${THEME.share.HEADER_HEIGHT} + 1px)`; // +1px for border of header
-  if (props.sticky) styles.left = 0;
-  if (props.sticky) styles.borderRight = `1px solid ${THEME.color.gray[400]}`;
-  if (props.sticky)
+  if (props.fixed) styles.position = "fixed";
+  if (props.fixed) styles.top = `calc(${THEME.share.HEADER_HEIGHT} + 1px)`; // +1px for border of header
+  if (props.fixed) styles.left = 0;
+  if (props.fixed) styles.borderRight = `1px solid ${THEME.color.gray[400]}`;
+  if (props.fixed)
     styles.height = `calc(100vh - ${THEME.share.HEADER_HEIGHT} - 1px)`;
   return styles;
 });

@@ -10,7 +10,11 @@ import {
 } from "@/components/icons";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
-import { WizNavigationContainer, WizNavigationItem } from "../components";
+import {
+  WizNavigationContainer,
+  WizNavigationItem,
+  WizNavigationContent,
+} from "../components";
 
 const meta: Meta<typeof WizNavigationContainer> = {
   title: "Base/Navigation/Container",
@@ -125,10 +129,9 @@ export const Playground: Story = {
 };
 
 export const Fixed: Story = {
-  ...Template,
   args: {
     isOpen: true,
-    sticky: true,
+    fixed: true,
     footer: (
       <div>
         <h4>Footer</h4>
@@ -137,6 +140,26 @@ export const Fixed: Story = {
       </div>
     ),
   },
+  render: (args) => (
+    <div style={{ display: "flex", height: "100vh" }}>
+      <WizNavigationContainer {...args}>
+        {navItems.map((path) => (
+          <WizNavigationItem
+            key={`path-${path.label}`}
+            icon={path.icon}
+            label={path.label}
+            href="/"
+            active={false}
+          />
+        ))}
+      </WizNavigationContainer>
+      <WizNavigationContent isOpen={args.isOpen}>
+        <div style={{ paddingLeft: "36px", height: "120vh" }}>
+          <div>テスト テスト テスト</div>
+        </div>
+      </WizNavigationContent>
+    </div>
+  ),
 };
 
 const createButton = (n: number): ButtonGroupItem => ({
@@ -206,6 +229,13 @@ const PopupTemplate: Story = {
             onTogglePopupLocking={handleTogglePopupLocking}
           />
         </WizNavigationContainer>
+        {args.fixed && (
+          <WizNavigationContent isOpen={args.isOpen}>
+            <div style={{ paddingLeft: "36px", height: "120vh" }}>
+              <div>テスト テスト テスト</div>
+            </div>
+          </WizNavigationContent>
+        )}
       </div>
     );
   },
@@ -218,18 +248,18 @@ export const Popup: Story = {
   },
 };
 
-export const PopupSticky: Story = {
+export const PopupFixed: Story = {
   ...PopupTemplate,
   args: {
     isOpen: true,
-    sticky: true,
+    fixed: true,
   },
 };
 
 export const Disabled: Story = {
   args: {
     isOpen: true,
-    sticky: true,
+    fixed: true,
   },
   render: (args) => (
     <div style={{ display: "flex", height: "100vh" }}>
@@ -245,6 +275,11 @@ export const Disabled: Story = {
           />
         ))}
       </WizNavigationContainer>
+      <WizNavigationContent isOpen={args.isOpen}>
+        <div style={{ paddingLeft: "36px", height: "120vh" }}>
+          <div>テスト テスト テスト</div>
+        </div>
+      </WizNavigationContent>
     </div>
   ),
 };
@@ -252,7 +287,7 @@ export const Disabled: Story = {
 export const PopupAndTooltip: Story = {
   args: {
     isOpen: true,
-    sticky: true,
+    fixed: true,
   },
   render: (args) => {
     const [isPopupOpen0, setIsPopupOpen0] = useState(false);
@@ -314,6 +349,11 @@ export const PopupAndTooltip: Story = {
             tooltipText="これはヒント4です。"
           />
         </WizNavigationContainer>
+        <WizNavigationContent isOpen={args.isOpen}>
+          <div style={{ paddingLeft: "36px", height: "120vh" }}>
+            <div>テスト テスト テスト</div>
+          </div>
+        </WizNavigationContent>
       </div>
     );
   },
