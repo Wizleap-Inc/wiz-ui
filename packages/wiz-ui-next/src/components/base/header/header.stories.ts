@@ -20,6 +20,9 @@ export default {
     sticky: {
       control: { type: "boolean" },
     },
+    onToggle: {
+      action: "click",
+    },
   },
   decorators: [
     () => ({
@@ -32,7 +35,7 @@ const Template: StoryFn<typeof WizHeader> = (args) => ({
   components: { WizHeader },
   setup: () => ({ args }),
   template: `
-    <wiz-header v-bind="$props"/>
+    <wiz-header v-bind="$props" @onToggle="args.onToggle('menu')" />
   `,
 });
 
@@ -42,7 +45,7 @@ const LeftSlotTemplate: StoryFn<typeof WizHeader> = (args) => ({
   components: { WizHeader, WizTextButton },
   setup: () => ({ args }),
   template: `
-    <wiz-header v-bind="$props">
+    <wiz-header v-bind="$props" @onToggle="args.onToggle('menu')">
       <template #left>
         <wiz-text-button>Click</wiz-text-button>
         <wiz-text-button>Click</wiz-text-button>
@@ -62,7 +65,7 @@ const RightSlotTemplate: StoryFn<typeof WizHeader> = (args) => ({
   components: { WizHeader, WizTextButton },
   setup: () => ({ args }),
   template: `
-    <wiz-header v-bind="$props">
+    <wiz-header v-bind="$props" @onToggle="args.onToggle('menu')">
       <template #right>
         <wiz-text-button>Click</wiz-text-button>
         <wiz-text-button>Click</wiz-text-button>
@@ -83,7 +86,7 @@ export const Fixed: StoryFn<typeof WizHeader> = (args) => ({
   setup: () => ({ args }),
   template: `
     <div style="height: 200vh">
-      <wiz-header sticky>
+      <wiz-header @onToggle="args.onToggle('menu')" sticky>
         <template #left>
           <wiz-text-button>Click</wiz-text-button>
           <wiz-text-button>Click</wiz-text-button>

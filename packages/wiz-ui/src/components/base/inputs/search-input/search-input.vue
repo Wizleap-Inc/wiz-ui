@@ -21,7 +21,7 @@
         "
         autocomplete="off"
       />
-      <WizISearch :class="searchInputIconStyle" />
+      <component :is="icon" :class="searchInputIconStyle" />
     </div>
     <WizPopup
       :isOpen="!disabled && openPopup"
@@ -42,6 +42,7 @@
             v-for="(option, key) in filteredOptions"
             :key="`${option.label}_${option.value}_${key}`"
           >
+            <!-- Dropdown -->
             <div v-if="option.children.length" :class="searchDropdownItemStyle">
               <div
                 :class="[
@@ -52,56 +53,130 @@
                 @mouseover="onMouseover(option.value)"
                 @mouseout="activeItem = null"
               >
-                {{ option.label }}
-                <WizIcon
-                  size="xl2"
-                  :icon="WizIChevronRight"
-                  :color="computedIconColor(option.value)"
-                />
+                <template v-if="option.tag">
+                  <WizHStack width="100%" justify="between" align="center">
+                    <div style="width: calc(100% - 4.5rem)">
+                      {{ option.label }}
+                    </div>
+                    <WizHStack gap="xs" width="70px">
+                      <span :style="{ lineHeight: THEME.fontSize.sm }">
+                        <WizTag
+                          :label="option.tag.label"
+                          variant="white"
+                          width="20px"
+                          font-size="xs2"
+                        />
+                      </span>
+                      <WizIcon
+                        size="xl2"
+                        :icon="WizIChevronRight"
+                        :color="computedIconColor(option.value)"
+                      />
+                    </WizHStack>
+                  </WizHStack>
+                </template>
+                <template v-else>
+                  {{ option.label }}
+                  <WizIcon
+                    size="xl2"
+                    :icon="WizIChevronRight"
+                    :color="computedIconColor(option.value)"
+                  />
+                </template>
               </div>
             </div>
+            <!-- Checkbox -->
             <div
               v-else
               :class="searchDropdownCheckboxItemStyle"
               @mouseover="activeItem = option.value"
               @mouseout="activeItem = null"
             >
-              <input
-                v-model="checkValues"
-                :value="option.value"
-                :class="searchCheckboxInputStyle"
-                type="checkbox"
-                :id="`${option.label}_${option.value}`"
-                :name="`${option.label}_${option.value}`"
-              />
-              <label
-                :class="[
-                  searchCheckboxLabelStyle,
-                  (checkValues.includes(option.value) ||
-                    activeItem === option.value) &&
-                    searchCheckboxLabelCheckedStyle,
-                ]"
-                :for="`${option.label}_${option.value}`"
-                @mouseover="
-                  selectedItem = [];
-                  isBorder = false;
-                "
-              >
-                <WizICheck
-                  v-if="checkValues.includes(option.value)"
-                  :class="searchCheckboxIconStyle"
+              <!-- Tag + Checkbox -->
+              <template v-if="option.tag">
+                <WizHStack width="100%" justify="between" align="center">
+                  <div style="width: `calc(100% - 2.5rem) `">
+                    <input
+                      v-model="checkValues"
+                      :value="option.value"
+                      :class="searchCheckboxInputStyle"
+                      type="checkbox"
+                      :id="`${option.label}_${option.value}`"
+                      :name="`${option.label}_${option.value}`"
+                    />
+                    <label
+                      :class="[
+                        searchCheckboxLabelStyle,
+                        (checkValues.includes(option.value) ||
+                          activeItem === option.value) &&
+                          searchCheckboxLabelCheckedStyle,
+                      ]"
+                      :for="`${option.label}_${option.value}`"
+                      @mouseover="
+                        selectedItem = [];
+                        isBorder = false;
+                      "
+                    >
+                      <WizICheck
+                        v-if="checkValues.includes(option.value)"
+                        :class="searchCheckboxIconStyle"
+                      />
+                      <span
+                        :class="[
+                          (checkValues.includes(option.value) ||
+                            activeItem === option.value) &&
+                            searchCheckboxBlockCheckedStyle,
+                        ]"
+                        >{{ option.label }}</span
+                      >
+                    </label>
+                  </div>
+                  <span :style="{ lineHeight: THEME.fontSize.sm }">
+                    <WizTag
+                      :label="option.tag.label"
+                      variant="white"
+                      width="20px"
+                      font-size="xs2"
+                    />
+                  </span>
+                </WizHStack>
+              </template>
+              <!-- Tagなし -->
+              <template v-else>
+                <input
+                  v-model="checkValues"
+                  :value="option.value"
+                  :class="searchCheckboxInputStyle"
+                  type="checkbox"
+                  :id="`${option.label}_${option.value}`"
+                  :name="`${option.label}_${option.value}`"
                 />
-                <span
+                <label
                   :class="[
+                    searchCheckboxLabelStyle,
                     (checkValues.includes(option.value) ||
                       activeItem === option.value) &&
-                      searchCheckboxBlockCheckedStyle,
+                      searchCheckboxLabelCheckedStyle,
                   ]"
-                  >{{ option.label }}</span
+                  :for="`${option.label}_${option.value}`"
+                  @mouseover=""
                 >
-              </label>
+                  <WizICheck
+                    v-if="checkValues.includes(option.value)"
+                    :class="searchCheckboxIconStyle"
+                  />
+                  <span
+                    :class="[
+                      (checkValues.includes(option.value) ||
+                        activeItem === option.value) &&
+                        searchCheckboxBlockCheckedStyle,
+                    ]"
+                    >{{ option.label }}</span
+                  >
+                </label>
+              </template>
             </div>
-            <WizDivider v-if="key !== options.length - 1" color="gray.300" />
+            <WizDivider color="gray.300" />
           </div>
         </div>
         <WizSearchPopup
@@ -118,7 +193,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   searchBlockBorderRadiusStyle,
   searchBlockBorderStyle,
@@ -148,11 +223,11 @@ import {
   WizPopup,
   WizPopupContainer,
   WizSearchPopup,
+  WizTag,
 } from "@/components";
-import { WizICheck, WizIChevronRight } from "@/components/icons";
+import { TIcon, WizICheck, WizIChevronRight } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
-
 defineOptions({
   name: ComponentName.SearchInput,
 });
@@ -199,6 +274,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+    default: WizISearch,
   },
 });
 

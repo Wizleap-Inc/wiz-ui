@@ -3,7 +3,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
 import clsx from "clsx";
 import { ForwardedRef, ReactNode, forwardRef } from "react";
 
-import { TIcon, WizIcon } from "@/components";
+import { TIcon, WizIcon, WizVStack } from "@/components";
 
 const iconFontColor: Record<string, ColorKeys> = {
   information: "green.800",
@@ -39,10 +39,12 @@ const MessageBox = forwardRef(
             <WizIcon icon={icon} color={iconFontColor[variant]} />
           </div>
         )}
-        <div>
+        <WizVStack gap="xs">
           <div className={styles.messageBoxTitleStyle}>{title}</div>
-          {children}
-        </div>
+          {children && (
+            <div className={styles.messageBoxBodyStyle}>{children}</div>
+          )}
+        </WizVStack>
       </div>
     );
   }

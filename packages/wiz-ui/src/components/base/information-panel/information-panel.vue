@@ -15,13 +15,18 @@
     </WizVStack>
     <div :class="[informationPanelIconStyle]">
       <WizVStack align="center">
-        <WizIconButton variant="transparent" :icon="WizIClose" @click="close" />
+        <WizIconButton
+          variant="transparent"
+          :icon="WizIClose"
+          @click="close"
+          :ariaLabel="ARIA_LABELS.INFORMATION_PANEL.CLOSE"
+        />
       </WizVStack>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   informationPanelStyle,
   informationPanelBorderStyle,

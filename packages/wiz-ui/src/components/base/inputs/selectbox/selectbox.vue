@@ -26,6 +26,7 @@
             :class="selectBoxInnerBoxSelectedValueStyle"
           >
             {{ option.label }}
+            {{ showExLabel && option.exLabel ? " " + option.exLabel : "" }}
           </span>
           <WizIExpandLess
             v-if="openSelectBox"
@@ -71,22 +72,22 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  selectBoxStyle,
-  selectBoxDisabledStyle,
   selectBoxCursorStyle,
-  selectBoxInnerBoxStyle,
-  selectBoxInnerBoxSelectedValueStyle,
+  selectBoxDisabledStyle,
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
-  selectBoxSelectorStyle,
-  selectBoxSelectorOptionStyle,
+  selectBoxInnerBoxSelectedValueStyle,
+  selectBoxInnerBoxStyle,
   selectBoxPlaceholderStyle,
   selectBoxSelectorOptionSelectStyle,
+  selectBoxSelectorOptionStyle,
+  selectBoxSelectorStyle,
+  selectBoxStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType } from "vue";
+import { PropType, computed, inject, ref } from "vue";
 
-import { WizPopupContainer, WizPopup } from "@/components";
+import { WizPopup, WizPopupContainer } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
@@ -132,6 +133,11 @@ const props = defineProps({
     default: false,
   },
   isDirectionFixed: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  showExLabel: {
     type: Boolean,
     required: false,
     default: false,

@@ -58,6 +58,13 @@ NotificationCount.args = {
   notificationCount: 10,
 };
 
+export const BadgeColor = Template.bind({});
+BadgeColor.args = {
+  label: "ほげほげ",
+  notificationCount: 10,
+  badgeColor: "green",
+};
+
 export const Width = Template.bind({});
 Width.args = {
   label: "ほげほげ",

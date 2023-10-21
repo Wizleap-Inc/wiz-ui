@@ -3,7 +3,15 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css"
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
-import { FC, useCallback, useContext, useMemo, useRef, useState } from "react";
+import {
+  FC,
+  KeyboardEvent,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import {
   WizCalendar,
@@ -113,6 +121,18 @@ const DateRangePicker: FC<Props> = ({
     return [];
   }, [dateRange]);
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    switch (e.key) {
+      case "ArrowRight":
+        return moveCalendar("nextMonth");
+      case "ArrowLeft":
+        return moveCalendar("prevMonth");
+      case "Enter":
+        return setIsOpen(!isOpen);
+    }
+  };
+
   const onClickDate = useCallback(
     (date: Date) => {
       const [start, end] = [dateRange.start, dateRange.end];
@@ -156,13 +176,15 @@ const DateRangePicker: FC<Props> = ({
   return (
     <>
       <button
+        type="button"
         ref={anchor}
         aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        onKeyDown={handleKeyDown}
         disabled={disabled}
         className={clsx(
           styles.bodyStyle[disabled ? "disabled" : "active"],
@@ -172,6 +194,7 @@ const DateRangePicker: FC<Props> = ({
       >
         {cancelButtonVisible ? (
           <button
+            type="button"
             className={styles.popupCalendarCancelButtonStyle}
             disabled={disabled}
             onClick={onClickCancel}
@@ -181,6 +204,7 @@ const DateRangePicker: FC<Props> = ({
           </button>
         ) : (
           <button
+            type="button"
             className={styles.popupCalendarCancelButtonStyle}
             disabled={disabled}
           >
@@ -222,6 +246,7 @@ const DateRangePicker: FC<Props> = ({
                   ref={selectBoxRef}
                 >
                   <button
+                    type="button"
                     className={clsx(
                       styles.popupHeaderSelectBoxStyle,
                       inputBorderStyle[isSelectBoxOpen ? "active" : "default"]
@@ -239,6 +264,7 @@ const DateRangePicker: FC<Props> = ({
                       <div className={styles.popupHeaderSelectBoxOptionsStyle}>
                         {selectBoxOptions.map((option) => (
                           <button
+                            type="button"
                             key={option.value}
                             className={styles.popupHeaderSelectBoxOptionStyle}
                             aria-label={option.label}
@@ -259,6 +285,7 @@ const DateRangePicker: FC<Props> = ({
               <div className={styles.popupCalendarContainerStyle["left"]}>
                 <div className={styles.popupCalendarHeaderStyle}>
                   <button
+                    type="button"
                     className={styles.popupCalendarHeaderButtonStyle}
                     onClick={() => moveCalendar("prevMonth")}
                     aria-label={ARIA_LABELS.MONTH_SELECTOR_PREV}
@@ -287,6 +314,7 @@ const DateRangePicker: FC<Props> = ({
                     }月`}
                   </span>
                   <button
+                    type="button"
                     className={styles.popupCalendarHeaderButtonStyle}
                     onClick={() => moveCalendar("nextMonth")}
                     aria-label={ARIA_LABELS.MONTH_SELECTOR_NEXT}

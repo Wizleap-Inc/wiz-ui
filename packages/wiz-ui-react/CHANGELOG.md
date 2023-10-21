@@ -1,5 +1,242 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.36.0
+
+### Minor Changes
+
+- [#1085](https://github.com/Wizleap-Inc/wiz-ui/pull/1085) [`a7b92df8`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7b92df8683e73747e7682c37069f24454c631f7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(pagination): 表示ページ数を制御する Prop を追加
+  Fix(pagination): アイコン色を修正
+
+- [#1073](https://github.com/Wizleap-Inc/wiz-ui/pull/1073) [`c35888db`](https://github.com/Wizleap-Inc/wiz-ui/commit/c35888db4c58a3e59c580e18b981723af005807e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(full-modal-view): React 対応
+
+- [#1040](https://github.com/Wizleap-Inc/wiz-ui/pull/1040) [`e03d8e56`](https://github.com/Wizleap-Inc/wiz-ui/commit/e03d8e56386cd4bf38ac16df94da98de884d726c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(drawer): スライドイン方向、幅、影を指定可能にする
+
+- [#1064](https://github.com/Wizleap-Inc/wiz-ui/pull/1064) [`ec032c2d`](https://github.com/Wizleap-Inc/wiz-ui/commit/ec032c2dd69fbee1a7186754f6fa1b259edcc163) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-picker): 年の表示形式をカスタマイズ可能にする
+
+### Patch Changes
+
+- Updated dependencies [[`a7b92df8`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7b92df8683e73747e7682c37069f24454c631f7), [`c35888db`](https://github.com/Wizleap-Inc/wiz-ui/commit/c35888db4c58a3e59c580e18b981723af005807e)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.0
+
+## 0.35.1
+
+### Patch Changes
+
+- [#1061](https://github.com/Wizleap-Inc/wiz-ui/pull/1061) [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b) Thanks [@okakyo](https://github.com/okakyo)! - [#998] TimePicker の 時、分を固定
+
+- Updated dependencies [[`da10fdc5`](https://github.com/Wizleap-Inc/wiz-ui/commit/da10fdc5b45e4bc05971a94ef40af93e92c9779a), [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.1
+
+## 0.35.0
+
+### Minor Changes
+
+- [#1062](https://github.com/Wizleap-Inc/wiz-ui/pull/1062) [`f780af28`](https://github.com/Wizleap-Inc/wiz-ui/commit/f780af28b83180028de9e4ce19e033bb4a046852) Thanks [@okakyo](https://github.com/okakyo)! - [#989] Notification の Panel. color Props の変更 (React)
+
+- [#1036](https://github.com/Wizleap-Inc/wiz-ui/pull/1036) [`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(WizTag): Variant を追加
+  Feat(WizSearchInput): tag 機能を追加
+  Feat(WizStack, WizHStack, WizVStack): className, style を公開
+  Feat(WizCheckBox): className, style を公開
+
+### Patch Changes
+
+- [#1063](https://github.com/Wizleap-Inc/wiz-ui/pull/1063) [`0cc93707`](https://github.com/Wizleap-Inc/wiz-ui/commit/0cc937074823b0d0d45c8b3050a27a5ea2d0020d) Thanks [@okakyo](https://github.com/okakyo)! - [#979] Fade In Out のバグ修正(React)
+
+- Updated dependencies [[`c15617e2`](https://github.com/Wizleap-Inc/wiz-ui/commit/c15617e2b10300f6fe79293580edff6d13684a03)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.0
+
+## 0.34.0
+
+### Minor Changes
+
+- [#1068](https://github.com/Wizleap-Inc/wiz-ui/pull/1068) [`4ec8a235`](https://github.com/Wizleap-Inc/wiz-ui/commit/4ec8a235a19eabd3859f0a0d9b982b557acc4060) Thanks [@wmoai](https://github.com/wmoai)! - WizRadioNew を追加
+
+- [#1067](https://github.com/Wizleap-Inc/wiz-ui/pull/1067) [`888eb872`](https://github.com/Wizleap-Inc/wiz-ui/commit/888eb872237b9f4ce66b6e333eac43de47c886a3) Thanks [@wmoai](https://github.com/wmoai)! - WizCheckBoxNew を追加
+
+### Patch Changes
+
+- Updated dependencies [[`4ec8a235`](https://github.com/Wizleap-Inc/wiz-ui/commit/4ec8a235a19eabd3859f0a0d9b982b557acc4060), [`888eb872`](https://github.com/Wizleap-Inc/wiz-ui/commit/888eb872237b9f4ce66b6e333eac43de47c886a3)]:
+  - @wizleap-inc/wiz-ui-constants@0.14.0
+  - @wizleap-inc/wiz-ui-styles@0.20.0
+
+## 0.33.0
+
+### Minor Changes
+
+- [#1049](https://github.com/Wizleap-Inc/wiz-ui/pull/1049) [`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): 新規アイコン追加
+  Chore(IconGen): Vue2 サポートを停止
+
+- [#1018](https://github.com/Wizleap-Inc/wiz-ui/pull/1018) [`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2) Thanks [@okakyo](https://github.com/okakyo)! - [#1017] Snackbar に expand property を追加
+
+### Patch Changes
+
+- Updated dependencies [[`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730), [`795783e4`](https://github.com/Wizleap-Inc/wiz-ui/commit/795783e4a52675d6830c0a86de602feca7fddee2)]:
+  - @wizleap-inc/wiz-ui-constants@0.13.0
+  - @wizleap-inc/wiz-ui-styles@0.19.0
+
+## 0.32.0
+
+### Minor Changes
+
+- [#1037](https://github.com/Wizleap-Inc/wiz-ui/pull/1037) [`daf3149c`](https://github.com/Wizleap-Inc/wiz-ui/commit/daf3149c6078daa907dafad3fb84fbce6b65dacb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-picker, calender): 無効な日付を指定する機能の React 対応
+
+- [#1048](https://github.com/Wizleap-Inc/wiz-ui/pull/1048) [`1b162700`](https://github.com/Wizleap-Inc/wiz-ui/commit/1b16270030f01697cce9cfe88959145b68e2df63) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - search-selector に onInput プロパティを追加
+
+## 0.31.0
+
+### Minor Changes
+
+- [#1042](https://github.com/Wizleap-Inc/wiz-ui/pull/1042) [`c36c6521`](https://github.com/Wizleap-Inc/wiz-ui/commit/c36c652152e9a66e114121edfd44d096b7f05b29) Thanks [@okakyo](https://github.com/okakyo)! - [#1014] hover プロパティを isOpen プロパティに変換
+
+- [#1039](https://github.com/Wizleap-Inc/wiz-ui/pull/1039) [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tab-pane): BadgeColor を追加
+
+### Patch Changes
+
+- Updated dependencies [[`32a54995`](https://github.com/Wizleap-Inc/wiz-ui/commit/32a54995b1868c7a66b60dd7fe483c9a72ddc909), [`2197480c`](https://github.com/Wizleap-Inc/wiz-ui/commit/2197480ce538540e480a9f838088f8852fddb19c)]:
+  - @wizleap-inc/wiz-ui-styles@0.18.0
+
+## 0.30.2
+
+### Patch Changes
+
+- [#1033](https://github.com/Wizleap-Inc/wiz-ui/pull/1033) [`65d44893`](https://github.com/Wizleap-Inc/wiz-ui/commit/65d4489363c0a67ca0b08ad100369ea43894f6c1) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(message-box): slot が空のときにタイトル下に margin が入ってしまうのを解消
+
+- Updated dependencies [[`65d44893`](https://github.com/Wizleap-Inc/wiz-ui/commit/65d4489363c0a67ca0b08ad100369ea43894f6c1)]:
+  - @wizleap-inc/wiz-ui-styles@0.17.1
+
+## 0.30.1
+
+### Patch Changes
+
+- [#990](https://github.com/Wizleap-Inc/wiz-ui/pull/990) [`729d34b9`](https://github.com/Wizleap-Inc/wiz-ui/commit/729d34b9faa224a0c2f2cacb1b4e61896e7ff5fe) Thanks [@okakyo](https://github.com/okakyo)! - [#965] DatePicker, DateRangePicker にキーボード操作追加 (React)
+
+- Updated dependencies [[`43504479`](https://github.com/Wizleap-Inc/wiz-ui/commit/43504479c611ab50874964e93a35e4f97ae58bfe)]:
+  - @wizleap-inc/wiz-ui-styles@0.17.0
+
+## 0.30.0
+
+### Minor Changes
+
+- [#1020](https://github.com/Wizleap-Inc/wiz-ui/pull/1020) [`ea3f6694`](https://github.com/Wizleap-Inc/wiz-ui/commit/ea3f6694694506e5e7e701f65c4cf1a3dc3d6317) Thanks [@sor4chi](https://github.com/sor4chi)! - Loading Overlay コンポーネントの実装
+
+### Patch Changes
+
+- Updated dependencies [[`ea3f6694`](https://github.com/Wizleap-Inc/wiz-ui/commit/ea3f6694694506e5e7e701f65c4cf1a3dc3d6317)]:
+  - @wizleap-inc/wiz-ui-constants@0.12.0
+  - @wizleap-inc/wiz-ui-styles@0.16.0
+
+## 0.29.0
+
+### Minor Changes
+
+- [#1013](https://github.com/Wizleap-Inc/wiz-ui/pull/1013) [`710a7fa0`](https://github.com/Wizleap-Inc/wiz-ui/commit/710a7fa02d8339ebbda948177241b714f03e354e) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - react の date-picker の button type を "button" に変更
+
+### Patch Changes
+
+- Updated dependencies [[`7f91e503`](https://github.com/Wizleap-Inc/wiz-ui/commit/7f91e503220bc61a09c889c989793d22b138d18d)]:
+  - @wizleap-inc/wiz-ui-styles@0.15.1
+
+## 0.28.0
+
+### Minor Changes
+
+- [#926](https://github.com/Wizleap-Inc/wiz-ui/pull/926) [`2ba24412`](https://github.com/Wizleap-Inc/wiz-ui/commit/2ba244125c11539842264fd2f7027e00668de991) Thanks [@sor4chi](https://github.com/sor4chi)! - WizText に display props の追加
+
+- [#932](https://github.com/Wizleap-Inc/wiz-ui/pull/932) [`e1ff61b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/e1ff61b697284b4bb775930a10effc26a5282884) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDrawer を追加
+
+- [#926](https://github.com/Wizleap-Inc/wiz-ui/pull/926) [`8842fc17`](https://github.com/Wizleap-Inc/wiz-ui/commit/8842fc175061b58a8a2734ad7546c767ff0592d7) Thanks [@sor4chi](https://github.com/sor4chi)! - WizMenuItem に expand オプションの追加
+
+### Patch Changes
+
+- [#991](https://github.com/Wizleap-Inc/wiz-ui/pull/991) [`c8793dfa`](https://github.com/Wizleap-Inc/wiz-ui/commit/c8793dfa7687a33108747253d9f561d224598781) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizNavItem: onTogglePopup、ontogglePopupLocking をオプショナルに変更
+
+- Updated dependencies [[`2ba24412`](https://github.com/Wizleap-Inc/wiz-ui/commit/2ba244125c11539842264fd2f7027e00668de991), [`e1ff61b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/e1ff61b697284b4bb775930a10effc26a5282884), [`8842fc17`](https://github.com/Wizleap-Inc/wiz-ui/commit/8842fc175061b58a8a2734ad7546c767ff0592d7)]:
+  - @wizleap-inc/wiz-ui-styles@0.15.0
+  - @wizleap-inc/wiz-ui-constants@0.11.0
+
+## 0.27.0
+
+### Minor Changes
+
+- [`76278182`](https://github.com/Wizleap-Inc/wiz-ui/commit/7627818220fd31cac99de56e1c32e24f2c0381af) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(icons): book, pie-chart のアイコンを追加
+
+## 0.26.1
+
+### Patch Changes
+
+- [#731](https://github.com/Wizleap-Inc/wiz-ui/pull/731) [`13a61932`](https://github.com/Wizleap-Inc/wiz-ui/commit/13a619321878bfe0805e67ed66f477393b8a822c) Thanks [@okakyo](https://github.com/okakyo)! - fix(card-table): card-table の safari 対応
+
+- [#978](https://github.com/Wizleap-Inc/wiz-ui/pull/978) [`5f42b7f3`](https://github.com/Wizleap-Inc/wiz-ui/commit/5f42b7f3441f7e099c5f4a3b4d814faeca794f17) Thanks [@okakyo](https://github.com/okakyo)! - [#957] Radio の a11y 化 (React)
+
+- Updated dependencies [[`13a61932`](https://github.com/Wizleap-Inc/wiz-ui/commit/13a619321878bfe0805e67ed66f477393b8a822c)]:
+  - @wizleap-inc/wiz-ui-styles@0.14.1
+
+## 0.26.0
+
+### Minor Changes
+
+- [#996](https://github.com/Wizleap-Inc/wiz-ui/pull/996) [`28ad0967`](https://github.com/Wizleap-Inc/wiz-ui/commit/28ad0967832da564ea9e4202343eac487c5a1d10) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizSelectBox: exLabel の表示切替機能を追加
+
+- [#510](https://github.com/Wizleap-Inc/wiz-ui/pull/510) [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba) Thanks [@RyushiAok](https://github.com/RyushiAok)! - feat: 非テキストボタンに aria-label を付与する
+
+### Patch Changes
+
+- [#980](https://github.com/Wizleap-Inc/wiz-ui/pull/980) [`17e44342`](https://github.com/Wizleap-Inc/wiz-ui/commit/17e443427ba22204a0682ed1426a43f4aa3292ac) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizPopup: 影が残る問題を修正。Fixed・Sticky 上の Popup 位置計算を修正。
+
+- Updated dependencies [[`5861e211`](https://github.com/Wizleap-Inc/wiz-ui/commit/5861e211be49a145ef181136d5aedbb0ea8c903f), [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba), [`1c7e0163`](https://github.com/Wizleap-Inc/wiz-ui/commit/1c7e01631c5192c5d6d9cdf9a63cf78ae3ab5e77)]:
+  - @wizleap-inc/wiz-ui-styles@0.14.0
+  - @wizleap-inc/wiz-ui-constants@0.10.0
+
+## 0.25.0
+
+### Minor Changes
+
+- [#977](https://github.com/Wizleap-Inc/wiz-ui/pull/977) [`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Icon 追加: WizIContract, WizILocationCity, WizISettings, WizISmartphone, WizICircle
+
+### Patch Changes
+
+- Updated dependencies [[`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2)]:
+  - @wizleap-inc/wiz-ui-constants@0.9.0
+  - @wizleap-inc/wiz-ui-styles@0.13.1
+
+## 0.24.0
+
+### Minor Changes
+
+- [#947](https://github.com/Wizleap-Inc/wiz-ui/pull/947) [`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizShowMoreLess: モバイル対応
+
+- [#970](https://github.com/Wizleap-Inc/wiz-ui/pull/970) [`9d64f618`](https://github.com/Wizleap-Inc/wiz-ui/commit/9d64f618cd9a93450ae886712ace4c28b694d0ec) Thanks [@okakyo](https://github.com/okakyo)! - [#955] dialog(React) hideClose Props 追加
+
+- [#964](https://github.com/Wizleap-Inc/wiz-ui/pull/964) [`000beb06`](https://github.com/Wizleap-Inc/wiz-ui/commit/000beb06a5e0744ad29a980d19f43a466b5bb42e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizStack: wrap props を削除し、折り返すかどうかを nowrap により制御する(react)
+
+### Patch Changes
+
+- [#972](https://github.com/Wizleap-Inc/wiz-ui/pull/972) [`50c0e41a`](https://github.com/Wizleap-Inc/wiz-ui/commit/50c0e41ab10322c42d89a172af74b41d74e40109) Thanks [@okakyo](https://github.com/okakyo)! - [#958] MenuItem に FontSize prop を追加 (React)
+
+- [#971](https://github.com/Wizleap-Inc/wiz-ui/pull/971) [`74418b5a`](https://github.com/Wizleap-Inc/wiz-ui/commit/74418b5a3fa196cd6f7999c2b2359ac5e3eb9dd3) Thanks [@okakyo](https://github.com/okakyo)! - [#956] ToggleSwitch に defaultColor を設定
+
+- Updated dependencies [[`24b4b133`](https://github.com/Wizleap-Inc/wiz-ui/commit/24b4b133686d5bf8c0d17e6fa712af6d3d900fbe), [`2c3311f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/2c3311f9271b83b0cb19c0179dc840d6f22c2861)]:
+  - @wizleap-inc/wiz-ui-styles@0.13.0
+
+## 0.23.0
+
+### Minor Changes
+
+- [#975](https://github.com/Wizleap-Inc/wiz-ui/pull/975) [`f835ae35`](https://github.com/Wizleap-Inc/wiz-ui/commit/f835ae35d3cc91b0d29c59c4a768e98b19dc3976) Thanks [@ichi-h](https://github.com/ichi-h)! - Feat(search-input): アイコンを外側から受け付けられるようにする
+
+## 0.22.0
+
+### Minor Changes
+
+- [#961](https://github.com/Wizleap-Inc/wiz-ui/pull/961) [`0f2cebe0`](https://github.com/Wizleap-Inc/wiz-ui/commit/0f2cebe0fd40db0d87d642d04c60ff58ebfb21e1) Thanks [@shuheitachikawa](https://github.com/shuheitachikawa)! - WizAnchor の react-router 対応
+
+### Patch Changes
+
+- [#914](https://github.com/Wizleap-Inc/wiz-ui/pull/914) [`64969436`](https://github.com/Wizleap-Inc/wiz-ui/commit/64969436b6ecf3d2108bf7ccef869dc757d92926) Thanks [@wmoai](https://github.com/wmoai)! - Popup の座標計算方法を変更
+
+- Updated dependencies [[`10bfdbea`](https://github.com/Wizleap-Inc/wiz-ui/commit/10bfdbea2543232819469c1d727af98a373d10fe)]:
+  - @wizleap-inc/wiz-ui-styles@0.12.2
+
 ## 0.21.0
 
 ### Minor Changes

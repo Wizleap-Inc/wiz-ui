@@ -1,6 +1,8 @@
 import { StoryFn } from "@storybook/vue";
 import { ref } from "vue";
 
+import { WizIPublic } from "@/components/icons";
+
 import WizSearchInput from "../search-input.vue";
 
 import {
@@ -10,6 +12,7 @@ import {
   longLabelOption,
   openOption,
   simpleOption,
+  taggedOptions,
 } from "./options";
 
 export default {
@@ -43,6 +46,9 @@ export default {
       control: {
         type: "boolean",
       },
+    },
+    icon: {
+      control: { type: "object" },
     },
   },
 };
@@ -101,6 +107,14 @@ LongLabel.args = {
   options: longLabelOption,
 };
 
+export const Tag = Template(true).bind({});
+Tag.args = {
+  options: taggedOptions,
+  placeholder: "氏名・ID・電話番号で検索",
+  inputWidth: "15rem",
+  popupWidth: "20rem",
+};
+
 export const Expand = Template(true).bind({});
 Expand.args = {
   placeholder: "氏名・ID・電話番号で検索",
@@ -122,6 +136,15 @@ IsDirectionFixed.args = {
   isDirectionFixed: true,
   inputWidth: "15rem",
   options: simpleOption,
+};
+
+export const Icon = Template(true).bind({});
+Icon.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  isDirectionFixed: true,
+  inputWidth: "15rem",
+  options: simpleOption,
+  icon: WizIPublic,
 };
 
 export const Debug = Template(true).bind({});

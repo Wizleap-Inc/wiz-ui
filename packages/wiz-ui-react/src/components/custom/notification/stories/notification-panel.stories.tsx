@@ -32,7 +32,7 @@ const baseProps = {
 const Template: Story = {
   render: (args) => (
     <div style={{ width: 616 }}>
-      <WizHStack gap="md" wrap={false}>
+      <WizHStack gap="md" nowrap>
         <WizVStack gap="md">
           <WizText>variant = primary(default)</WizText>
           <WizNotificationPanel {...args} />
@@ -56,5 +56,13 @@ export const Read: Story = {
   args: {
     ...baseProps,
     read: true,
+  },
+};
+
+export const Width: Story = {
+  ...Template,
+  args: {
+    ...baseProps,
+    width: "200px",
   },
 };

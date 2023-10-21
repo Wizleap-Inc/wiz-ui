@@ -43,6 +43,7 @@ type Props = {
   isDirectionFixed?: boolean;
   onChangeValues: (values: number[]) => void;
   onCreate?: (label: string) => void;
+  onInputSearchText?: (text: string) => void;
 };
 
 const SearchSelector: FC<Props> = ({
@@ -58,6 +59,7 @@ const SearchSelector: FC<Props> = ({
   isDirectionFixed = false,
   onChangeValues,
   onCreate,
+  onInputSearchText,
 }) => {
   const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -242,6 +244,7 @@ const SearchSelector: FC<Props> = ({
                   {selectedOption.label}
                 </span>
                 <button
+                  type="button"
                   ref={(ref) => (clearButtonsRef.current[i] = ref)}
                   className={styles.selectBoxInnerBoxCloseButtonStyle}
                   disabled={disabled}
@@ -265,6 +268,7 @@ const SearchSelector: FC<Props> = ({
                 disabled={disabled}
                 onChange={(e) => {
                   setSearchText(e.target.value);
+                  if (onInputSearchText) onInputSearchText(e.target.value);
                   setIsPopupOpen(true);
                 }}
                 onKeyDown={keyDownHandlers.input}

@@ -12,6 +12,7 @@
         :class="calendarCellStyle"
       >
         <button
+          type="button"
           v-if="day"
           :class="[
             calendarItemCommonStyle,
@@ -25,7 +26,10 @@
               ? '-選択済み'
               : ''
           }`"
-          :disabled="getDateState(row, col) === 'outOfCurrentMonth'"
+          :disabled="
+            getDateState(row, col) === 'outOfCurrentMonth' ||
+            getDateState(row, col) === 'disabledDate'
+          "
           @click="updateSelectedDate(row, col, day)"
         >
           {{ day }}
@@ -68,6 +72,16 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  /**
+   * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
+   * @param date
+   * @returns {boolean} `true`: 無効な日付, `false`: 有効な日付
+   */
+  disabledDate: {
+    type: Function as PropType<(date: Date) => boolean>,
+    required: false,
+    default: () => false,
   },
 });
 
@@ -158,6 +172,7 @@ const getDateState = computed(() => (row: number, col: number) => {
     Number(calendars.value[row][col])
   );
   if (!isCurrentMonth(row, col)) return "outOfCurrentMonth";
+  if (props.disabledDate(pickedUpDate)) return "disabledDate";
   const hitDate = props.activeDates.find(
     (dateState) =>
       dateState.date.getFullYear() === pickedUpDate.getFullYear() &&

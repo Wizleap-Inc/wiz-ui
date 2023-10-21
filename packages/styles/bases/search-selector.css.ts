@@ -54,7 +54,7 @@ export const selectBoxInnerBoxSelectedItemStyle = style({
 });
 
 export const selectBoxInnerBoxSelectedLabelStyle = style({
-  lineHeight: "100%",
+  lineHeight: THEME.fontSize.lg,
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
@@ -135,7 +135,7 @@ export const selectBoxSearchInputStyle = style({
   minWidth: "30%",
   border: "none",
   outline: "none",
-  padding: `calc(${THEME.spacing.xs2} - ${BORDER_WIDTH}) ${THEME.spacing.no}`,
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`,
   lineHeight: THEME.fontSize.xl,
   flexGrow: 1,
   fontSize: THEME.fontSize.sm,

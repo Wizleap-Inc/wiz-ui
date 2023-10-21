@@ -142,6 +142,12 @@ if (!injected) {
 
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
+// safariでアニメーションを有効にするために必要
+onMounted(() => {
+  if (!popupRef.value) return;
+  popupRef.value.style.animationName = "fade";
+});
+
 const togglePopup = () => {
   if (!props.animation) return (isActuallyOpen.value = props.isOpen);
   if (!popupRef.value) return;

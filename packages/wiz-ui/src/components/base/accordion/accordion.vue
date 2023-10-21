@@ -15,7 +15,7 @@
           bgColor && backgroundStyle[bgColor],
         ]"
       >
-        <div>
+        <div :class="accordionSummaryTextStyle">
           {{ isOpen ? closeMessage : openMessage }}
         </div>
         <WizIcon
@@ -44,12 +44,13 @@ import {
   accordionSummaryStyle,
   accordionExpandIconStyle,
   accordionRotateIconStyle,
+  accordionSummaryTextStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
 import {
   backgroundStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, PropType } from "vue";
+import { ref, PropType, nextTick } from "vue";
 
 import { WizHStack, WizIcon } from "@/components";
 import { WizIExpandMore } from "@/components/icons";
@@ -115,13 +116,16 @@ const onClick = (event: MouseEvent) => {
       isAnimating.value = false;
     };
   } else {
-    const openingAnimation = content.animate(
-      openingAnimationKeyframes(content),
-      ANIMATION_CONFIGURATION
-    );
-    openingAnimation.onfinish = () => {
-      isAnimating.value = false;
-    };
+    nextTick(() => {
+      content.style.maxHeight = content.scrollHeight + "px";
+      const openingAnimation = content.animate(
+        openingAnimationKeyframes(content),
+        ANIMATION_CONFIGURATION
+      );
+      openingAnimation.onfinish = () => {
+        isAnimating.value = false;
+      };
+    });
   }
   emit("toggle");
 };

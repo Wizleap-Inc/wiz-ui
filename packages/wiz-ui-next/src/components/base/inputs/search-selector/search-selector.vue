@@ -20,11 +20,13 @@
               {{ item.label }}
             </span>
             <button
+              type="button"
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
               @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
               :class="selectBoxInnerBoxCloseButtonStyle"
               :ref="setUnselectableRef(i)"
+              :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -47,9 +49,11 @@
         </WizHStack>
       </div>
       <button
+        type="button"
         :class="selectBoxExpandIconStyle"
         @click="toggleSelectBox"
         :disabled="disabled"
+        :aria-label="ARIA_LABELS.SEARCH_SELECTOR.EXPAND"
       >
         <WizIcon
           v-if="isOpen"
@@ -92,36 +96,36 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  selectBoxStyle,
-  selectBoxDisabledStyle,
   selectBoxCursorStyle,
-  selectBoxInnerBoxStyle,
+  selectBoxDisabledStyle,
+  selectBoxExpandIconStyle,
+  selectBoxInnerBoxCloseButtonStyle,
   selectBoxInnerBoxCloseStyle,
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
-  selectBoxSelectorStyle,
-  selectBoxSearchInputStyle,
-  selectBoxExpandIconStyle,
   selectBoxInnerBoxSelectedItemStyle,
   selectBoxInnerBoxSelectedLabelStyle,
-  selectBoxInnerBoxCloseButtonStyle,
+  selectBoxInnerBoxStyle,
+  selectBoxSearchInputStyle,
+  selectBoxSelectorStyle,
+  selectBoxStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, computed, inject, PropType, ComponentPublicInstance } from "vue";
+import { ComponentPublicInstance, PropType, computed, inject, ref } from "vue";
 
 import {
-  WizPopupContainer,
-  WizPopup,
   WizIcon,
+  WizPopup,
   WizPopupButtonGroup,
+  WizPopupContainer,
 } from "@/components";
 import {
+  WizIAddCircle,
+  WizIClose,
   WizIExpandLess,
   WizIExpandMore,
-  WizIClose,
-  WizIAddCircle,
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 

@@ -10,6 +10,7 @@ const DISPLAY_DURATION = 3000;
 
 type Props = {
   message: string;
+  expand?: boolean;
   enableAnimation?: boolean;
   autoClose?: boolean;
   onClose: () => void;
@@ -17,11 +18,13 @@ type Props = {
 
 const Snackbar: FC<Props> = ({
   message,
+  expand = false,
   enableAnimation = false,
   autoClose = false,
   onClose,
 }) => {
   const [isHidden, setIsHidden] = useState(enableAnimation ? true : false);
+  const snackbarWidthType = expand ? "expand" : "default";
 
   useEffect(() => {
     if (enableAnimation) {
@@ -56,6 +59,7 @@ const Snackbar: FC<Props> = ({
     <div
       className={clsx(
         styles.snackbarStyle,
+        styles.snackbarWidthStyle[snackbarWidthType],
         isHidden && styles.snackbarHiddenStyle
       )}
     >
@@ -67,6 +71,7 @@ const Snackbar: FC<Props> = ({
           </WizText>
         </div>
         <button
+          type="button"
           className={styles.snackbarCloseButtonStyle}
           onClick={handleClose}
         >

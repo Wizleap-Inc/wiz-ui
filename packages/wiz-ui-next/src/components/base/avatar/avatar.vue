@@ -6,6 +6,7 @@
       colorStyle[color],
       clickable && avatarClickableStyle,
     ]"
+    :aria-label="ariaLabel"
     @click="onClick"
   >
     <img
@@ -46,6 +47,10 @@ defineOptions({
 
 const props = defineProps({
   src: {
+    type: String,
+    required: true,
+  },
+  ariaLabel: {
     type: String,
     required: true,
   },

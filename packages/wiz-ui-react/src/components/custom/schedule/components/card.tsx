@@ -45,6 +45,7 @@ export const WizScheduleCard = ({
 
   return (
     <button
+      type="button"
       className={clsx(styles.card[variant], styles.buttonCard)}
       style={{ gridRow, gridColumn }}
       hidden={!show}

@@ -12,7 +12,7 @@ export default {
       control: { type: "select" },
       options: ["top", "bottom", "left", "right"],
     },
-    hover: { control: { type: "boolean" } },
+    isOpen: { control: { type: "boolean" } },
     isDirectionFixed: { control: { type: "boolean" } },
   },
 };
@@ -56,18 +56,18 @@ contentに改行文字(\\n)を含む文字列を渡すと、改行されて表�
   },
 };
 
-export const Hover = Template.bind({});
-Hover.args = {
-  hover: true,
+export const Open = Template.bind({});
+Open.args = {
+  isOpen: true,
 };
-Hover.parameters = {
+Open.parameters = {
   docs: {
     description: {
-      story: `hoverをtrueにすると、常時表示されます。これはStorybook上でのデモ用などInteractionのMockに使えます。`,
+      story: `isOpenをtrueにすると、常時表示されます。`,
     },
     source: {
       code: `
-<WizTooltip hover>
+<WizTooltip isOpen>
   保険見直し、つみ...
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
@@ -79,7 +79,7 @@ Hover.parameters = {
 export const Direction = Template.bind({});
 Direction.args = {
   direction: "right",
-  hover: true,
+  isOpen: true,
 };
 Direction.parameters = {
   docs: {
@@ -112,7 +112,7 @@ export const LongTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
   `,
 });
 LongTextFixedOutBox.args = {
-  hover: true,
+  isOpen: true,
 };
 LongTextFixedOutBox.parameters = {
   docs: {
@@ -121,7 +121,7 @@ LongTextFixedOutBox.parameters = {
     },
     source: {
       code: `
-<WizTooltip hover>
+<WizTooltip isOpen>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
@@ -145,7 +145,7 @@ export const ShortTextFixedOutBox: StoryFn = (_, { argTypes }) => ({
   `,
 });
 ShortTextFixedOutBox.args = {
-  hover: true,
+  isOpen: true,
 };
 ShortTextFixedOutBox.parameters = {
   docs: {
@@ -154,7 +154,7 @@ ShortTextFixedOutBox.parameters = {
     },
     source: {
       code: `
-<WizTooltip hover>
+<WizTooltip isOpen>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>
@@ -178,7 +178,7 @@ export const IsDirectionFixed: StoryFn = (_, { argTypes }) => ({
   `,
 });
 IsDirectionFixed.args = {
-  hover: true,
+  isOpen: true,
   direction: "right",
   isDirectionFixed: true,
 };
@@ -189,7 +189,7 @@ IsDirectionFixed.parameters = {
     },
     source: {
       code: `
-<WizTooltip hover direction="right" isDirectionFixed>
+<WizTooltip isOpen direction="right" isDirectionFixed>
   <WizText size="xs2">保険見直し、つみたて・投資、ライフプラン</WizText>
   <template #content>保険見直し、つみたて・投資、ライフプラン</template>
 </WizTooltip>

@@ -35,6 +35,17 @@ export const Disabled: Story = {
   },
 };
 
+export const DisabledDate: Story = {
+  args: {
+    date: new Date(2023, 0, 1),
+    disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};
+
 export const WithValue: Story = {
   args: {
     date: new Date(2023, 0, 1),
@@ -66,7 +77,21 @@ export const IsDirectionFixed: Story = {
   },
 };
 
+export const YearStyle: Story = {
+  args: {
+    date: new Date(2023, 0, 1),
+    formatYear: (year: number) => `西暦${year}`,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};
+
 export const Playground: Story = {
+  args: {
+    disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
+  },
   render: (args) => {
     const [date, setDate] = useState<Date | null>(null);
     return <WizDatePicker {...args} date={date} onChangeDate={setDate} />;

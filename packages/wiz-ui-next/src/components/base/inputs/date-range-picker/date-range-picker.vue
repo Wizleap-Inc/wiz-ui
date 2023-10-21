@@ -1,6 +1,7 @@
 <template>
   <WizPopupContainer :expand="expand">
     <button
+      type="button"
       :class="[
         styles.bodyStyle[disabled ? 'disabled' : 'active'],
         styles.widthStyle[expand ? 'expanded' : 'default'],
@@ -17,6 +18,7 @@
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
         <button
+          type="button"
           v-else
           :class="styles.popupCalendarCancelButtonStyle"
           :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_CANCEL"
@@ -60,6 +62,7 @@
               ref="selectBoxContainerRef"
             >
               <button
+                type="button"
                 :class="[
                   styles.popupHeaderSelectBoxStyle,
                   inputBorderStyle[isSelectBoxOpen ? 'active' : 'default'],
@@ -79,6 +82,7 @@
                 :class="styles.popupHeaderSelectBoxOptionsStyle"
               >
                 <button
+                  type="button"
                   v-for="(option, index) in selectBoxOptions"
                   :key="index"
                   :class="styles.popupHeaderSelectBoxOptionStyle"
@@ -94,6 +98,7 @@
             <div :class="styles.popupCalendarContainerStyle['left']">
               <div :class="styles.popupCalendarHeaderStyle">
                 <button
+                  type="button"
                   :class="styles.popupCalendarHeaderButtonStyle"
                   :aria-label="ARIA_LABELS.MONTH_SELECTOR_PREV"
                   @click="moveToPrevMonth"
@@ -122,6 +127,7 @@
                   }}月
                 </span>
                 <button
+                  type="button"
                   :class="styles.popupCalendarHeaderButtonStyle"
                   :aria-label="ARIA_LABELS.MONTH_SELECTOR_NEXT"
                   @click="moveToNextMonth"
@@ -250,13 +256,15 @@ const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () =>
   emit("update:modelValue", { start: null, end: null });
 
-const moveToNextMonth = () => {
+const moveToNextMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = new Date(
     rightCalendarDate.value.setMonth(rightCalendarDate.value.getMonth() + 1)
   );
 };
 
-const moveToPrevMonth = () => {
+const moveToPrevMonth = (e: KeyboardEvent | MouseEvent) => {
+  e.preventDefault();
   rightCalendarDate.value = leftCalendarDate.value;
 };
 

@@ -34,7 +34,7 @@ export const tabPaneLabelStyle = style({
   lineHeight: THEME.fontSize.lg,
 });
 
-export const tabPaneNotificationStyle = style({
+const baseNotificationStyle = style({
   lineHeight: THEME.fontSize.lg,
   width: THEME.fontSize.lg,
   height: THEME.fontSize.lg,
@@ -42,8 +42,22 @@ export const tabPaneNotificationStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: THEME.color.red[800],
   color: THEME.color.white[800],
   fontSize: THEME.fontSize.xs2,
   fontWeight: "normal",
+});
+
+export const tabPaneNotificationStyle = styleVariants({
+  red: [
+    baseNotificationStyle,
+    {
+      background: THEME.color.red[800],
+    },
+  ],
+  green: [
+    baseNotificationStyle,
+    {
+      background: THEME.color.green[800],
+    },
+  ],
 });

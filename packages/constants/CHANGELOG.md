@@ -1,5 +1,46 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.14.0
+
+### Minor Changes
+
+- [#1068](https://github.com/Wizleap-Inc/wiz-ui/pull/1068) [`4ec8a235`](https://github.com/Wizleap-Inc/wiz-ui/commit/4ec8a235a19eabd3859f0a0d9b982b557acc4060) Thanks [@wmoai](https://github.com/wmoai)! - WizRadioNew を追加
+
+- [#1067](https://github.com/Wizleap-Inc/wiz-ui/pull/1067) [`888eb872`](https://github.com/Wizleap-Inc/wiz-ui/commit/888eb872237b9f4ce66b6e333eac43de47c886a3) Thanks [@wmoai](https://github.com/wmoai)! - WizCheckBoxNew を追加
+
+## 0.13.0
+
+### Minor Changes
+
+- [#1049](https://github.com/Wizleap-Inc/wiz-ui/pull/1049) [`dc602da7`](https://github.com/Wizleap-Inc/wiz-ui/commit/dc602da7d1ccdb55972f30ef06520f0b9870e730) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): 新規アイコン追加
+  Chore(IconGen): Vue2 サポートを停止
+
+## 0.12.0
+
+### Minor Changes
+
+- [#1020](https://github.com/Wizleap-Inc/wiz-ui/pull/1020) [`ea3f6694`](https://github.com/Wizleap-Inc/wiz-ui/commit/ea3f6694694506e5e7e701f65c4cf1a3dc3d6317) Thanks [@sor4chi](https://github.com/sor4chi)! - Loading Overlay コンポーネントの実装
+
+## 0.11.0
+
+### Minor Changes
+
+- [#932](https://github.com/Wizleap-Inc/wiz-ui/pull/932) [`e1ff61b6`](https://github.com/Wizleap-Inc/wiz-ui/commit/e1ff61b697284b4bb775930a10effc26a5282884) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizDrawer を追加
+
+## 0.10.0
+
+### Minor Changes
+
+- [#510](https://github.com/Wizleap-Inc/wiz-ui/pull/510) [`6d751e5f`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d751e5f26292b0ca5ef0ba7457af820e1aa53ba) Thanks [@RyushiAok](https://github.com/RyushiAok)! - feat: 非テキストボタンに aria-label を付与する
+
+- [#910](https://github.com/Wizleap-Inc/wiz-ui/pull/910) [`1c7e0163`](https://github.com/Wizleap-Inc/wiz-ui/commit/1c7e01631c5192c5d6d9cdf9a63cf78ae3ab5e77) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizFullModalView を追加
+
+## 0.9.0
+
+### Minor Changes
+
+- [#977](https://github.com/Wizleap-Inc/wiz-ui/pull/977) [`884a86ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/884a86ababbb291af2ef25a4cbea549458370fb2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Icon 追加: WizIContract, WizILocationCity, WizISettings, WizISmartphone, WizICircle
+
 ## 0.8.1
 
 ### Patch Changes

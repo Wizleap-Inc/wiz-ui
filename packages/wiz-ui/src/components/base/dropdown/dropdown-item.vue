@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     :class="dropdownItemStyle"
     :disabled="disabled"
     @click="onClick"

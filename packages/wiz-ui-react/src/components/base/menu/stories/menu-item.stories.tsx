@@ -5,26 +5,6 @@ import { WizMenuItem } from "../components/menu-item";
 const meta: Meta<typeof WizMenuItem> = {
   title: "Base/MenuItem",
   component: WizMenuItem,
-  argTypes: {
-    label: {
-      control: {
-        type: "text",
-      },
-    },
-    active: {
-      control: {
-        type: "boolean",
-      },
-    },
-    clickable: {
-      control: {
-        type: "boolean",
-      },
-    },
-    onClick: {
-      action: "onClick",
-    },
-  },
 };
 
 export default meta;
@@ -71,6 +51,38 @@ export const Disabled: Story = {
       description: {
         story:
           "`clickable = false` とすることで、クリックできないように設定することもできます。default 値は `true` です。",
+      },
+    },
+  },
+  render: (args) => <WizMenuItem {...args} />,
+};
+
+export const Expand: Story = {
+  args: {
+    label: "テスト",
+    expand: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`expand = true` とすることで、親要素の幅いっぱいにメニューを表示することができます。default 値は `false` です。",
+      },
+    },
+  },
+  render: (args) => <WizMenuItem {...args} />,
+};
+
+export const FontSize: Story = {
+  args: {
+    label: "テスト",
+    fontSize: "xl",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "FontSize を設定することで、フォントの大きさを変えることもできます。 default 値は `md` です。",
       },
     },
   },

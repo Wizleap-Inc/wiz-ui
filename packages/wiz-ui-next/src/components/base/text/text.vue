@@ -11,6 +11,7 @@
       colorStyle[color],
       whiteSpaceStyle[whiteSpace],
       lineThrough && textLineThroughStyle,
+      display && textDisplayStyle[display],
     ]"
     :for="htmlFor"
     :style="overflowStyles"
@@ -35,6 +36,7 @@ import {
   textWordBreakStyle,
   textAlignStyle,
   textLineThroughStyle,
+  textDisplayStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text.css";
 import {
   lineHeightStyle,
@@ -103,6 +105,10 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  display: {
+    type: String as PropType<"inline" | "inline-block" | "inline-flex">,
+    required: false,
+  },
 });
 
 const overflowStyles = computed(() => {
@@ -110,7 +116,7 @@ const overflowStyles = computed(() => {
   return {
     overflow: "hidden",
     display: "-webkit-box",
-    webkitBoxOrient: "vertical",
+    WebkitBoxOrient: "vertical",
     WebkitLineClamp: props.maxLines,
   };
 });

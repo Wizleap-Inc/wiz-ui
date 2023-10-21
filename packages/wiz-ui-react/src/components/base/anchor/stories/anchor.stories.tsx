@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import {
-  FONT_SIZE_ACCESSORS,
-  FONT_WEIGHT_ACCESSORS,
-  COLOR_MAP_ACCESSORS,
-} from "@wizleap-inc/wiz-ui-constants";
+import { FC } from "react";
 
 import { WizIArrowRight } from "@/components";
 
@@ -12,39 +8,7 @@ import { WizAnchor } from "../components/anchor";
 const meta: Meta<typeof WizAnchor> = {
   title: "Base/Anchor",
   component: WizAnchor,
-  argTypes: {
-    fontSize: {
-      control: { type: "select" },
-      options: FONT_SIZE_ACCESSORS,
-      defaultValue: "md",
-    },
-    fontWeight: {
-      control: { type: "select" },
-      options: FONT_WEIGHT_ACCESSORS,
-      defaultValue: "normal",
-    },
-    color: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-      defaultValue: "blue.800",
-    },
-    iconPosition: {
-      control: { type: "select" },
-      options: ["left", "right"],
-      defaultValue: "left",
-    },
-    openInNewTab: {
-      control: { type: "boolean" },
-      defaultValue: false,
-    },
-    icon: {
-      control: { type: "object" },
-    },
-    nowrap: {
-      control: { type: "boolean" },
-      defaultValue: false,
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
@@ -159,6 +123,29 @@ export const OpenInNewTab: Story = {
   args: {
     href: "https://wizleap.co.jp",
     openInNewTab: true,
+  },
+  render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
+};
+
+/** react-routerのLink等 */
+const Link: FC<any> = (props) => <a {...props}>{props.children}</a>; // eslint-disable-line @typescript-eslint/no-explicit-any
+
+export const AsComponent: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "アンカーのコンポーネントを指定することができます。asPropsで、渡したコンポーネントにpropsを渡せます。",
+      },
+    },
+  },
+  args: {
+    as: Link,
+    asProps: {
+      href: "https://wizleap.co.jp",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
 };

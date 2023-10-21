@@ -9,6 +9,7 @@
           :icon="WizIMenu"
           size="lg"
           variant="transparent"
+          :ariaLabel="ARIA_LABELS.MENU"
           @click="toggleMenuOpen"
         />
         <slot name="left" />
@@ -25,6 +26,7 @@ import {
   ComponentName,
   SpacingKeys,
   THEME,
+  ARIA_LABELS,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   headerStyle,
@@ -39,12 +41,7 @@ defineOptions({
   name: ComponentName.Header,
 });
 
-const props = defineProps({
-  isOpen: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
+defineProps({
   gapLeft: {
     type: String as PropType<SpacingKeys>,
     required: false,
@@ -60,13 +57,11 @@ const props = defineProps({
 });
 
 interface Emit {
-  (e: "click", value: boolean): void;
+  (e: "onToggle"): void;
 }
 
 const emits = defineEmits<Emit>();
 
-const toggleMenuOpen = () => {
-  emits("click", !props.isOpen);
-};
+const toggleMenuOpen = () => emits("onToggle");
 const { currentZIndex } = useZIndex(THEME.zIndex.floating);
 </script>
