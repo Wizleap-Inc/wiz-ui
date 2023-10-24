@@ -5,6 +5,7 @@ export const messageBoxStyle = style({
   display: "flex",
   height: "max-content",
   padding: THEME.spacing.md,
+  gap: THEME.spacing.xs,
   boxSizing: "border-box",
 });
 
@@ -64,4 +65,7 @@ export const messageBoxTitleStyle = style({
 
 export const messageBoxBodyStyle = style({
   color: THEME.color.gray[700],
+  marginTop: THEME.spacing.xs,
+  marginBottom: THEME.spacing.xs,
+  fontSize: THEME.fontSize.sm,
 });

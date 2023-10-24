@@ -60,7 +60,6 @@ Expand.args = {
   slot: "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
   expand: true,
 };
-
 export const ExpandWithIcon = Template.bind({});
 ExpandWithIcon.args = {
   title: "ヘッダーヘッダーヘッダー",

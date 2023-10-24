@@ -62,7 +62,8 @@ const props = defineProps({
 });
 
 const computedWidth = computed(() => {
-  return props.expand ? "expand" : "default";
+  if (props.expand) return "expand";
+  return "default";
 });
 
 const slots = useSlots();
