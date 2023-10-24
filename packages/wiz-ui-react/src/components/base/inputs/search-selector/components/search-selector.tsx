@@ -283,11 +283,11 @@ const SearchSelector: FC<Props> = ({
         <div className={styles.selectBoxExpandIconStyle}>
           {isPopupOpen ? (
             <div className={styles.selectBoxInnerBoxLessStyle}>
-              <WizIcon icon={WizIExpandLess} color="green.800" />
+              <WizIcon icon={WizIExpandLess} color="inherit" />
             </div>
           ) : (
             <div className={styles.selectBoxInnerBoxMoreStyle}>
-              <WizIcon icon={WizIExpandMore} />
+              <WizIcon icon={WizIExpandMore} color="inherit" />
             </div>
           )}
         </div>
