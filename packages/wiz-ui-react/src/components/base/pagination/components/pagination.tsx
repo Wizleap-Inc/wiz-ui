@@ -4,10 +4,11 @@ import clsx from "clsx";
 
 import { WizIcon } from "@/components";
 import { WizIChevronLeft, WizIChevronRight } from "@/components/icons";
+import { BaseProps } from "@/types";
 
 import { DivButton } from "./private-div-button";
 
-type Props = {
+type Props = BaseProps & {
   currentPage: number;
   length: number;
   onChangePage: (page: number) => void;
@@ -19,6 +20,8 @@ type Props = {
 };
 
 const Pagination = ({
+  className,
+  style,
   currentPage,
   length,
   onChangePage,
@@ -54,10 +57,12 @@ const Pagination = ({
   return (
     <nav
       className={clsx(
+        className,
         styles.paginationStyle,
         currentPage <= 1 && styles.paginationGapStyle["left"],
         currentPage >= length && styles.paginationGapStyle["right"]
       )}
+      style={style}
       aria-label={ARIA_LABELS.PAGINATION}
     >
       {currentPage > 1 && (

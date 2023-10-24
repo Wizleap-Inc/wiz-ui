@@ -3,7 +3,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/tab.css";
 import clsx from "clsx";
 import { FC } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   label: string;
   name: string;
   active?: boolean;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const TabPane: FC<Props> = ({
+  className,
+  style,
   label,
   name,
   active,
@@ -32,8 +35,12 @@ const TabPane: FC<Props> = ({
 
   return (
     <div
-      className={clsx(styles.tabPaneStyle, styles.tabPaneVariantStyle[variant])}
-      style={{ width }}
+      className={clsx(
+        className,
+        styles.tabPaneStyle,
+        styles.tabPaneVariantStyle[variant]
+      )}
+      style={{ ...style, width }}
       onClick={() => disabled || onClick(name)}
     >
       <span className={styles.tabPaneLabelStyle}>{label}</span>

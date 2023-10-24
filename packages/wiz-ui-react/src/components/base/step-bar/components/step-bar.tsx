@@ -1,20 +1,22 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/step-bar.css";
+import clsx from "clsx";
 import { FC } from "react";
 
 import { WizText, WizVStack } from "@/components";
+import { BaseProps } from "@/types";
 
 import { StepItem } from "./types";
 
 import { WizStepLine, WizStepPoint } from "./";
 
-type Props = {
+type Props = BaseProps & {
   contents: StepItem[];
 };
 
-const StepBar: FC<Props> = ({ contents }: Props) => {
+const StepBar: FC<Props> = ({ className, style, contents }: Props) => {
   return (
-    <div className={styles.stepBarStyle}>
+    <div className={clsx(className, styles.stepBarStyle)} style={style}>
       {contents.map((item, index) => {
         const isFirst = index === 0;
         const color = item.status === "done" ? "green.800" : "gray.800";

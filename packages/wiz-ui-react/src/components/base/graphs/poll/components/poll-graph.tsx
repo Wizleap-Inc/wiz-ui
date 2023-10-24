@@ -1,6 +1,9 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/poll-graph.css";
+import clsx from "clsx";
 import { FC } from "react";
+
+import { BaseProps } from "@/types";
 
 import { Row } from "./row";
 
@@ -10,7 +13,7 @@ type PollGraphData = {
   percentage: number;
 };
 
-type Props = {
+type Props = BaseProps & {
   data: PollGraphData[];
   rowCount?: number;
   labelWidth?: string;
@@ -18,6 +21,8 @@ type Props = {
 };
 
 const PollGraph: FC<Props> = ({
+  className,
+  style,
   data,
   rowCount = 0,
   labelWidth = "5rem",
@@ -26,7 +31,10 @@ const PollGraph: FC<Props> = ({
   const emptyRowLength = Math.max(rowCount - data.length, 0);
 
   return (
-    <div className={styles.PollGraphWrapperStyle}>
+    <div
+      className={clsx(className, styles.PollGraphWrapperStyle)}
+      style={style}
+    >
       {data.map((item, i) => (
         <Row
           key={`${i}-${item.label}-${item.percentage}`}

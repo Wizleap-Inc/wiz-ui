@@ -9,10 +9,11 @@ import { forwardRef, useContext, useState } from "react";
 
 import { WizIEye } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
+import { BaseProps } from "@/types";
 
 import { PrivateBaseInput } from "../../base";
 
-type Props = {
+type Props = BaseProps & {
   id?: string;
   value: string;
   placeholder?: string;
@@ -27,6 +28,8 @@ type Props = {
 const PasswordInput = forwardRef<HTMLInputElement, Props>(
   (
     {
+      className,
+      style,
       id,
       value,
       placeholder,
@@ -47,9 +50,11 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
     return (
       <div
         className={clsx(
+          className,
           styles.passwordStyle,
           styles.passwordExpandStyle[expand ? "expand" : "default"]
         )}
+        style={style}
       >
         <PrivateBaseInput
           ref={ref}

@@ -28,10 +28,11 @@ import {
 import { DateStatus } from "@/components/base/calendar/components/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { useClickOutside } from "@/hooks/use-click-outside";
+import { BaseProps } from "@/types";
 
 import { DateRange, DateRangePickerSelectBoxOption } from "../types";
 
-type Props = {
+type Props = BaseProps & {
   dateRange: DateRange;
   expand?: boolean;
   disabled?: boolean;
@@ -44,6 +45,8 @@ type Props = {
 };
 
 const DateRangePicker: FC<Props> = ({
+  className,
+  style,
   dateRange,
   expand = false,
   disabled = false,
@@ -186,7 +189,9 @@ const DateRangePicker: FC<Props> = ({
         onBlur={() => setIsFocused(false)}
         onKeyDown={handleKeyDown}
         disabled={disabled}
+        style={style}
         className={clsx(
+          className,
           styles.bodyStyle[disabled ? "disabled" : "active"],
           styles.widthStyle[expand ? "expanded" : "default"],
           inputBorderStyle[borderStyle]

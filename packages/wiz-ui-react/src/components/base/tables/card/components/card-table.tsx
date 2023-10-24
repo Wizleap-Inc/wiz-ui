@@ -11,15 +11,23 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"table">;
 
-const CardTable = ({ fixed = false, width, children, ...props }: Props) => {
+const CardTable = ({
+  className,
+  style,
+  fixed = false,
+  width,
+  children,
+  ...props
+}: Props) => {
   const isSafari = useIsSafari();
   return (
     <table
       className={clsx(
+        className,
         isSafari ? styles.cardTableOnSafariStyle : styles.cardTableStyle,
         fixed && styles.cardTableFixedStyle
       )}
-      style={{ width }}
+      style={{ ...style, width }}
       {...props}
     >
       {children}

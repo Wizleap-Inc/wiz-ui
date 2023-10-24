@@ -6,19 +6,27 @@ import {
 import clsx from "clsx";
 import { FC } from "react";
 
+import { BaseProps } from "@/types";
+
 import { GroupItem as GroupItemType } from "../types";
 
 import { WizPopupButtonGroup } from "./popup-button-group";
 
-interface Props {
+type Props = BaseProps & {
   item: GroupItemType;
   disabled: boolean;
   depth: number;
-}
+};
 
-export const GroupItem: FC<Props> = ({ item, disabled, depth }) => {
+export const GroupItem: FC<Props> = ({
+  className,
+  style,
+  item,
+  disabled,
+  depth,
+}) => {
   return (
-    <div>
+    <div className={className} style={style}>
       <span
         className={clsx(
           popupButtonGroupTitleBaseStyle,

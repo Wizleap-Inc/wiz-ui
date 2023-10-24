@@ -6,9 +6,11 @@ import {
 import clsx from "clsx";
 import { FC, useEffect, useMemo, useRef } from "react";
 
+import { BaseProps } from "@/types";
+
 import { CompareGraphData } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   data: CompareGraphData;
   maxFrequency: number;
   barGap: number;
@@ -18,6 +20,8 @@ type Props = {
 };
 
 export const Bar: FC<Props> = ({
+  className,
+  style,
   data,
   maxFrequency,
   barGap,
@@ -134,7 +138,11 @@ export const Bar: FC<Props> = ({
   }, []);
 
   return (
-    <div className={styles.graphBarStyle} ref={wrapperRef}>
+    <div
+      className={clsx(className, styles.graphBarStyle)}
+      style={style}
+      ref={wrapperRef}
+    >
       <span className={styles.graphBarLabelStyle} ref={labelRef}>
         {data.label}
       </span>

@@ -10,14 +10,20 @@ type Props = {
 } & ComponentProps<"td">;
 
 const FlatTd = ({
+  className,
+  style,
   align = "center",
   fontSize = "sm",
   children,
   ...props
 }: Props) => (
   <td
-    className={clsx(styles.flatTdStyle, styles.flatTdAlignStyle[align])}
-    style={{ fontSize: THEME.fontSize[fontSize] }}
+    className={clsx(
+      className,
+      styles.flatTdStyle,
+      styles.flatTdAlignStyle[align]
+    )}
+    style={{ ...style, fontSize: THEME.fontSize[fontSize] }}
     {...props}
   >
     {children}

@@ -1,7 +1,8 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { ComponentProps, ReactNode } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   children?: ReactNode;
 } & ComponentProps<"thead">;
 

@@ -4,10 +4,11 @@ import clsx from "clsx";
 import { FC, useId, useState } from "react";
 
 import { WizStack } from "@/components";
+import { BaseProps } from "@/types";
 
 import { RadioOption } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   options: RadioOption[];
   value: number | null;
   name?: string;
@@ -19,6 +20,8 @@ type Props = {
 };
 
 export const Radio: FC<Props> = ({
+  className,
+  style,
   options,
   value,
   name,
@@ -38,7 +41,7 @@ export const Radio: FC<Props> = ({
   };
 
   return (
-    <div className={styles.radioStyle}>
+    <div className={clsx(className, styles.radioStyle)} style={style}>
       <WizStack gap={gap} direction={direction}>
         {options.map((option) => {
           const id = `${idPrefix}-${option.value}`;

@@ -4,8 +4,8 @@ import clsx from "clsx";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 import { WizPortal } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   isOpen: boolean;
   /**
    * オフセットを指定してdrawerの高さを調整します。
@@ -26,6 +26,8 @@ type Props = {
 };
 
 const Drawer: FC<Props> = ({
+  className,
+  style,
   isOpen,
   offsetTop = "0px",
   place = "left",
@@ -87,11 +89,13 @@ const Drawer: FC<Props> = ({
     <WizPortal container={document.body}>
       <div
         ref={containerRef}
-        className={clsx([
+        className={clsx(
+          className,
           styles.drawerStyle,
-          shadow && styles.drawerShadowStyle,
-        ])}
+          shadow && styles.drawerShadowStyle
+        )}
         style={{
+          ...style,
           top: offsetTop,
           bottom: 0,
           display: isActuallyOpen ? undefined : "none",

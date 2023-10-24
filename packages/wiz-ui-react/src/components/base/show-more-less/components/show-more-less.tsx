@@ -18,8 +18,8 @@ import {
 } from "react";
 
 import { WizHStack, WizIExpandMore, WizIcon, WizVStack } from "@/components";
-
-interface Props {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   isOpen: boolean;
   openMessage?: string;
   closeMessage?: string;
@@ -27,9 +27,11 @@ interface Props {
   variant?: "pc" | "mobile";
   onToggle: () => void;
   children: ReactNode;
-}
+};
 
 const ShowMoreLess: FC<Props> = ({
+  className,
+  style,
   isOpen,
   openMessage = "もっと見る",
   closeMessage = "閉じる",
@@ -53,7 +55,10 @@ const ShowMoreLess: FC<Props> = ({
   }, [contentRef]);
 
   return (
-    <div className={clsx(showMoreLessDetailsStyle)} style={{ width: width }}>
+    <div
+      className={clsx(className, showMoreLessDetailsStyle)}
+      style={{ ...style, width: width }}
+    >
       <WizVStack>
         <div
           ref={contentRef}

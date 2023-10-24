@@ -5,8 +5,8 @@ import { FC, ReactNode, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import { WizCard, WizIClose, WizIconButton } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   isOpen: boolean;
   maxWidth?: string;
   title?: ReactNode;
@@ -18,6 +18,8 @@ type Props = {
 };
 
 const Dialog: FC<Props> = ({
+  className,
+  style,
   isOpen,
   maxWidth = "600px",
   title,
@@ -74,8 +76,12 @@ const Dialog: FC<Props> = ({
 
   return createPortal(
     <div
-      className={clsx(styles.dialogStyle, isOpen && styles.dialogVisibleStyle)}
-      style={{ zIndex: THEME.zIndex.dialog }}
+      className={clsx(
+        className,
+        styles.dialogStyle,
+        isOpen && styles.dialogVisibleStyle
+      )}
+      style={{ ...style, zIndex: THEME.zIndex.dialog }}
     >
       <div
         className={styles.dialogMaskStyle}

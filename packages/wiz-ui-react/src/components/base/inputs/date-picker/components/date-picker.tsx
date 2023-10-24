@@ -19,8 +19,8 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
 } from "@/components/icons";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   date: Date | null;
   placeholder?: string;
   width?: string;
@@ -42,6 +42,8 @@ type Props = {
 };
 
 const DatePicker: FC<Props> = ({
+  className,
+  style,
   date,
   placeholder = "日付を選択",
   width = "10rem",
@@ -107,11 +109,12 @@ const DatePicker: FC<Props> = ({
         type="button"
         ref={wrapperButtonRef}
         className={clsx(
+          className,
           styles.datePickerStyle,
           styles.datePickerVariantStyle[variant],
           inputBorderStyle[borderStyle]
         )}
-        style={{ width }}
+        style={{ ...style, width }}
         aria-label={ARIA_LABELS.DATE_PICKER_INPUT}
         disabled={disabled}
         onMouseEnter={() => setIsHover(true)}

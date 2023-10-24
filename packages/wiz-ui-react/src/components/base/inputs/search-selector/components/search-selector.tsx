@@ -26,11 +26,12 @@ import {
 } from "@/components";
 import { ButtonGroupItem } from "@/components/base/popup-button-group/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
+import { BaseProps } from "@/types";
 
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   options: SearchSelectorOption[];
   values: number[];
   placeholder?: string;
@@ -47,6 +48,8 @@ type Props = {
 };
 
 const SearchSelector: FC<Props> = ({
+  className,
+  style,
   options,
   values,
   placeholder = "選択してください",
@@ -219,12 +222,13 @@ const SearchSelector: FC<Props> = ({
       <div
         ref={wrapperRef}
         className={clsx(
+          className,
           styles.selectBoxStyle,
           inputBorderStyle[inputBorderStyleKey()],
           disabled && styles.selectBoxDisabledStyle,
           styles.selectBoxCursorStyle[cursorStyleKey()]
         )}
-        style={{ width: expand ? "100%" : width }}
+        style={{ ...style, width: expand ? "100%" : width }}
         role="group"
         onClick={handleClickWrapper}
         onFocus={() => {
