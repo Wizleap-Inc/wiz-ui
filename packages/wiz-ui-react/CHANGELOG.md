@@ -1,5 +1,23 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.37.0
+
+### Minor Changes
+
+- [#1086](https://github.com/Wizleap-Inc/wiz-ui/pull/1086) [`74f1e55c`](https://github.com/Wizleap-Inc/wiz-ui/commit/74f1e55c33de83ff9dbe57c62001879ebbd91463) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(react): className, style Props を開放
+
+- [#860](https://github.com/Wizleap-Inc/wiz-ui/pull/860) [`114e11ac`](https://github.com/Wizleap-Inc/wiz-ui/commit/114e11aca080ea6abe782109c0f4102e18f10157) Thanks [@RyushiAok](https://github.com/RyushiAok)! - React 版 SVG コンポーネントに className, style を設定できるよう修正
+
+### Patch Changes
+
+- [#1104](https://github.com/Wizleap-Inc/wiz-ui/pull/1104) [`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector, checkbox-new, search-selector): コンポーネントの全体の高さが 44px になるように調整
+  Fix(search-selector): アイコン色を修正
+
+- [#1102](https://github.com/Wizleap-Inc/wiz-ui/pull/1102) [`5621bfd9`](https://github.com/Wizleap-Inc/wiz-ui/commit/5621bfd95333695d0ed6d5a994e568b40f7d4ef9) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(text): webkitBoxOrient の先頭が大文字になっていない問題 & 型エラーの修正
+
+- Updated dependencies [[`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.1
+
 ## 0.36.0
 
 ### Minor Changes
