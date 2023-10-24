@@ -20,7 +20,7 @@ export const checkboxLabelStyle = style({
   position: "relative",
   display: "flex",
   alignItems: "center",
-  color: THEME.color.gray["600"],
+  color: THEME.color.gray["800"],
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
   userSelect: "none",
@@ -58,7 +58,7 @@ export const checkboxIconBaseStyle = style({
 
 export const checkboxIconVariantStyle = styleVariants({
   default: {
-    border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+    border: `${borderWidth} solid ${THEME.color.gray["600"]}`,
   },
   checked: {
     fill: THEME.color.green["800"],
@@ -75,7 +75,7 @@ export const checkboxIconContainerStyle = style({
 
 export const checkboxIconFocusedColorStyle = styleVariants({
   default: {
-    outline: `${focusedBorderWidth} solid ${THEME.color.gray[800]}`,
+    outline: `${focusedBorderWidth} solid ${THEME.color.gray[600]}`,
   },
   checked: {
     fill: THEME.color.green["800"],
