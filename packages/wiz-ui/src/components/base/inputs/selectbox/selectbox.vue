@@ -15,13 +15,15 @@
             placeholder
           }}</span>
           <span
-            v-for="(option, key) in options"
-            v-show="option.value === value"
-            :key="'selected' + key"
+            v-if="selectedOption"
             :class="selectBoxInnerBoxSelectedValueStyle"
           >
-            {{ option.label }}
-            {{ showExLabel && option.exLabel ? " " + option.exLabel : "" }}
+            {{ selectedOption.label }}
+            {{
+              showExLabel && selectedOption.exLabel
+                ? " " + selectedOption.exLabel
+                : ""
+            }}
           </span>
           <WizIExpandLess
             v-if="openSelectBox"
@@ -170,5 +172,9 @@ const state = computed(() => {
 
 const isValueMatched = computed(() => {
   return props.options.some((option) => option.value === props.value);
+});
+
+const selectedOption = computed(() => {
+  return props.options.find((option) => option.value === props.value);
 });
 </script>
