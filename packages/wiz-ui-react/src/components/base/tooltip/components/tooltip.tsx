@@ -11,16 +11,18 @@ import clsx from "clsx";
 import { FC, ReactNode, useCallback, useRef, useState } from "react";
 
 import { WizIChangeHistory, WizPopup } from "@/components";
-
-interface Props {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   direction?: "top" | "bottom" | "left" | "right";
   isOpen?: boolean;
   isDirectionFixed?: boolean;
   children: ReactNode;
   content: ReactNode;
-}
+};
 
 const Tooltip: FC<Props> = ({
+  className,
+  style,
   direction = "top",
   isOpen = false,
   isDirectionFixed = false,
@@ -33,7 +35,8 @@ const Tooltip: FC<Props> = ({
   return (
     <>
       <div
-        className={clsx(tooltipStyle)}
+        className={clsx(className, tooltipStyle)}
+        style={style}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         ref={anchor}

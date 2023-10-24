@@ -9,13 +9,21 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"th">;
 
-const UnstyledTh = ({ width = "auto", divider, children, ...props }: Props) => (
+const UnstyledTh = ({
+  className,
+  style,
+  width = "auto",
+  divider,
+  children,
+  ...props
+}: Props) => (
   <th
     className={clsx(
+      className,
       styles.unstyledTh,
       divider && styles.unstyledThDividerYStyle
     )}
-    style={{ width }}
+    style={{ ...style, width }}
     {...props}
   >
     {children}

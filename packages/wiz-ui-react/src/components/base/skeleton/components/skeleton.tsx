@@ -3,7 +3,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/skeleton.css";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   width?: string;
   height?: string;
   borderRadius?: SpacingKeys;
@@ -12,22 +13,25 @@ type Props = {
 };
 
 const Skeleton = ({
+  className,
+  style,
   width = "100%",
   height = "100%",
   borderRadius = "no",
   isLoading = true,
   children,
 }: Props) => {
-  const className = isLoading
+  const skeletonStyle = isLoading
     ? clsx(
+        className,
         styles.skeletonStyle,
         styles.normalSkeletonStyle,
         styles.borderRadiusStyle[borderRadius]
       )
-    : undefined;
+    : className;
 
   return (
-    <div className={className} style={{ width, height }}>
+    <div className={skeletonStyle} style={{ ...style, width, height }}>
       {children}
     </div>
   );

@@ -3,22 +3,24 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
 import clsx from "clsx";
 import { FC } from "react";
 
+import { BaseProps } from "@/types";
+
 import type { ProgressStatus } from "../types";
 
-type Props = {
+type Props = BaseProps & {
   status: ProgressStatus;
   value?: number;
 };
 
-const ProgressPoint: FC<Props> = ({ status, value }) => {
+const ProgressPoint: FC<Props> = ({ className, style, status, value }) => {
   return (
     <span
-      className={clsx([
-        [
-          styles.progressPointStyle,
-          status !== "none" && styles.progressPointVariantStyle[status],
-        ],
-      ])}
+      className={clsx(
+        className,
+        styles.progressPointStyle,
+        status !== "none" && styles.progressPointVariantStyle[status]
+      )}
+      style={style}
     >
       <span
         className={clsx([

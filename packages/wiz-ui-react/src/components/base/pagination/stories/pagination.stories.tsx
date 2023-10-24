@@ -40,3 +40,27 @@ export const Default: Story = {
     );
   },
 };
+
+export const Length: Story = {
+  args: {
+    length: 10,
+    sideLength: 1,
+  },
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [currentPage, setCurrentPage] = useState(1);
+    return (
+      <>
+        {[0, 1, 2, 3, 4, 5].map((i, length) => (
+          <WizPagination
+            {...args}
+            sideLength={length}
+            key={i}
+            currentPage={currentPage}
+            onChangePage={(page) => setCurrentPage(page)}
+          />
+        ))}
+      </>
+    );
+  },
+};

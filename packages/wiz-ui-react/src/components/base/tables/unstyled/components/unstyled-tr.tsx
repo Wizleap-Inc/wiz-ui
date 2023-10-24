@@ -3,7 +3,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 import clsx from "clsx";
 import { ComponentProps, ReactNode } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   divider?: boolean;
   children?: ReactNode;
 } & ComponentProps<"tr">;

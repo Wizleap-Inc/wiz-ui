@@ -15,9 +15,9 @@ import {
   useState,
 } from "react";
 
-import { WizIcon, WizIChevronRight, WizHStack } from "@/components";
-
-type Props = {
+import { WizHStack, WizIChevronRight, WizIcon } from "@/components";
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   label: string;
   width?: string;
   active?: boolean;
@@ -29,6 +29,8 @@ type Props = {
 const MenuItem = forwardRef(
   (
     {
+      className,
+      style,
       label,
       width = "10rem",
       active = false,
@@ -108,11 +110,12 @@ const MenuItem = forwardRef(
       <div
         ref={ref}
         className={clsx(
+          className,
           styles.menuItemStyle,
           styles.menuItemVariantStyle[getVariant()],
           expand && styles.menuItemExpand
         )}
-        style={{ width }}
+        style={{ ...style, width }}
         {...props}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}

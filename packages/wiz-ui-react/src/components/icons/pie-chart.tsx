@@ -1,5 +1,12 @@
-export const WizIPieChart = () => (
+import { CSSProperties } from "react";
+type Props = {
+  className?: string;
+  style?: CSSProperties;
+};
+export const WizIPieChart = ({ className, style }: Props) => (
   <svg
+    className={className}
+    style={style}
     xmlns="http://www.w3.org/2000/svg"
     height="1em"
     viewBox="0 -960 960 960"

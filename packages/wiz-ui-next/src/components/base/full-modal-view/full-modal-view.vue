@@ -4,13 +4,8 @@
       :class="[
         zIndexStyle['base'],
         !isActuallyOpen && styles.hiddenStyle,
-        backgroundStyle['white.800'],
         styles.containerStyle,
       ]"
-      :style="{
-        left: `${contentLeft}px`,
-        height: `${modalHeight}px`,
-      }"
       ref="modalRef"
     >
       <WizVStack>
@@ -48,10 +43,7 @@ import {
   getSpacingCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/full-modal-view.css";
-import {
-  backgroundStyle,
-  zIndexStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, watch } from "vue";
 
 import {
@@ -87,8 +79,6 @@ const closeModal = () => {
   emit("close");
 };
 const modalRef = ref<HTMLElement | undefined>(undefined);
-const contentLeft = document.documentElement.clientLeft;
-const modalHeight = document.documentElement.scrollHeight;
 
 // Animation + 開閉ロジック
 watch(

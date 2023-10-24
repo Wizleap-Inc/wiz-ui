@@ -2,11 +2,12 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { FC, Fragment } from "react";
 
 import { WizBox, WizDivider, WizHStack, WizText } from "@/components";
+import { BaseProps } from "@/types";
 
 import { WizNotificationPanel } from "./notification-panel";
 import { NotificationItem, PanelVariant } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   variant?: PanelVariant;
   notifications: NotificationItem[];
   height?: string;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const NotificationList: FC<Props> = ({
+  className,
+  style,
   variant,
   notifications,
   height,
@@ -22,7 +25,12 @@ const NotificationList: FC<Props> = ({
   onClick,
 }) => {
   return (
-    <WizBox height={height} overflowY="scroll">
+    <WizBox
+      className={className}
+      style={style}
+      height={height}
+      overflowY="scroll"
+    >
       {notifications.map((notification, i) => (
         <Fragment key={notification.id}>
           <WizNotificationPanel

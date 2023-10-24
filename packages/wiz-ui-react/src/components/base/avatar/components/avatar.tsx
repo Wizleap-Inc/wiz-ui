@@ -6,13 +6,14 @@ import {
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
 import {
   backgroundStyle,
-  sizeStyle,
   colorStyle,
+  sizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ComponentProps, ForwardedRef, forwardRef, useState } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   src: string;
   size?: SpacingKeys;
   color?: ColorKeys;
@@ -25,6 +26,8 @@ type Props = {
 const Avatar = forwardRef(
   (
     {
+      className,
+      style,
       src,
       size = "xl3",
       color = "gray.900",
@@ -43,11 +46,13 @@ const Avatar = forwardRef(
       <div
         ref={ref}
         className={clsx(
+          className,
           styles.avatarStyle,
           sizeStyle[size],
           colorStyle[color],
           clickable && styles.avatarClickableStyle
         )}
+        style={style}
         {...props}
         role={clickable ? "button" : undefined}
         tabIndex={clickable ? 0 : undefined}

@@ -38,7 +38,7 @@ const borderedBaseStyle = style({
   borderRadius: "4px",
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
-  lineHeight: `calc(${THEME.fontSize.xl2} - (${borderedBorderWidth}px * 2))`,
+  lineHeight: `calc(${THEME.fontSize.xl3} - (${borderedBorderWidth}px * 2))`,
   backgroundColor: THEME.color.white[800],
 });
 
