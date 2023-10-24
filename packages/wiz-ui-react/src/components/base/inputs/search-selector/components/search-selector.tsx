@@ -310,10 +310,7 @@ const SearchSelector: FC<Props> = ({
             className={styles.selectBoxSelectorStyle}
             style={{ minWidth: width }}
           >
-            <WizPopupButtonGroup
-              showExLabel={showExLabel}
-              options={buttonGroupOptions}
-            />
+            <WizPopupButtonGroup options={buttonGroupOptions} />
           </div>
         </WizPopup>
       )}
