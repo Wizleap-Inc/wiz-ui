@@ -115,8 +115,7 @@ export const SearchPopupPanel: FC<Props> = ({
                 // CheckBox
                 <div className={styles.searchDropdownCheckboxItemStyle}>
                   <WizCheckBoxNew
-                    // TODO: #1076待ち
-                    // style={{ width: "100%" }}
+                    style={{ width: "100%" }}
                     value={option.value}
                     id={`${option.label}-${option.value}`}
                     checked={values.includes(option.value)}
