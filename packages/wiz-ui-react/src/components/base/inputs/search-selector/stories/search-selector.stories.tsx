@@ -140,6 +140,6 @@ export const DropdownMaxHeight: Story = {
   ...getTemplate(),
   args: {
     options: getDummyOptions("test", 3),
-    dropdownMaxHeight: "200px",
+    dropdownMaxHeight: "100px",
   },
 };
