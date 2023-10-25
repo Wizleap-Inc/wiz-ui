@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui
 
+## 2.11.3
+
+### Patch Changes
+
+- Updated dependencies [[`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.1
+
 ## 2.11.2
 
 ### Patch Changes

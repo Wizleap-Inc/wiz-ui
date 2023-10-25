@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.12.1
+
+### Patch Changes
+
+- [#1104](https://github.com/Wizleap-Inc/wiz-ui/pull/1104) [`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector, checkbox-new, search-selector): コンポーネントの全体の高さが 44px になるように調整
+  Fix(search-selector): アイコン色を修正
+
+- [#1102](https://github.com/Wizleap-Inc/wiz-ui/pull/1102) [`5621bfd9`](https://github.com/Wizleap-Inc/wiz-ui/commit/5621bfd95333695d0ed6d5a994e568b40f7d4ef9) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(text): webkitBoxOrient の先頭が大文字になっていない問題 & 型エラーの修正
+
+- Updated dependencies [[`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.1
+
 ## 2.12.0
 
 ### Minor Changes
