@@ -78,7 +78,7 @@
     >
       <div
         :class="selectBoxSelectorStyle"
-        :style="{ minWidth: width }"
+        :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
         v-if="
           filteredOptions.length > 0 ||
           (searchValue !== '' && !options.some((v) => v.label === searchValue))
@@ -198,6 +198,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  dropdownMaxHeight: {
+    type: String,
+    required: false,
   },
 });
 

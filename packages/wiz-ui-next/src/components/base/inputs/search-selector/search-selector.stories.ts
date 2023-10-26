@@ -327,3 +327,14 @@ IsDirectionFixed.parameters = {
     },
   },
 };
+
+export const DropdownMaxHeight = Template(
+  [],
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
+
+DropdownMaxHeight.args = {
+  dropdownMaxHeight: "100px",
+};

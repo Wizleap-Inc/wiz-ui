@@ -28,6 +28,9 @@ export default {
     isDirectionFixed: {
       control: { type: "boolean" },
     },
+    dropdownMaxHeight: {
+      control: { type: "text" },
+    },
   },
 } as Meta<typeof WizSelectBox>;
 
@@ -108,4 +111,10 @@ IsDirectionFixed.args = {
   options: _getDummyOptions("test", 3),
   isOpen: true,
   isDirectionFixed: true,
+};
+
+export const DropdownMaxHeight = Template.bind({});
+DropdownMaxHeight.args = {
+  options: _getDummyOptions("test", 3),
+  dropdownMaxHeight: "75px",
 };

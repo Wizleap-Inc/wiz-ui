@@ -139,3 +139,11 @@ export const IsDirectionFixed: Story = {
     ),
   ],
 };
+
+export const DropdownMaxHeight: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("test", 3),
+    dropdownMaxHeight: "100px",
+  },
+};
