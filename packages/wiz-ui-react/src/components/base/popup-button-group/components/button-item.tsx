@@ -78,7 +78,7 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
         )}
         style={{
           paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
-          paddingRight: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
+          paddingRight: THEME.spacing.xs2,
         }}
         onClick={handleClick}
         onMouseOver={handleMouseOver}
