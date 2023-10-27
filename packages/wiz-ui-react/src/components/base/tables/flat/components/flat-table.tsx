@@ -9,14 +9,22 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"table">;
 
-const FlatTable = ({ fixed = false, width, children, ...props }: Props) => {
+const FlatTable = ({
+  className,
+  style,
+  fixed = false,
+  width,
+  children,
+  ...props
+}: Props) => {
   return (
     <table
       className={clsx(
+        className,
         styles.flatTableStyle,
         fixed && styles.flatTableFixedStyle
       )}
-      style={{ width }}
+      style={{ ...style, width }}
       {...props}
     >
       {children}

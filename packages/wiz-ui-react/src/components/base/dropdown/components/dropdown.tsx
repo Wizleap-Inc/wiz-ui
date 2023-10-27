@@ -4,8 +4,8 @@ import clsx from "clsx";
 import { ComponentProps, FC, ReactNode, useRef } from "react";
 
 import { WizPopup, WizVStack } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   isOpen: boolean;
   children: ReactNode;
   options: ReactNode;
@@ -16,6 +16,8 @@ type Props = {
 };
 
 const Dropdown: FC<Props> = ({
+  className,
+  style,
   isOpen,
   children,
   options,
@@ -29,8 +31,13 @@ const Dropdown: FC<Props> = ({
   return (
     <>
       <div
+        className={className}
         ref={anchorRef}
-        style={{ width: "fit-content", height: "fit-content" }}
+        style={{
+          ...style,
+          width: "fit-content",
+          height: "fit-content",
+        }}
       >
         {children}
       </div>

@@ -68,7 +68,11 @@ const getTemplate = (initialValues: number[] = []): Story => {
 export const Default: Story = {
   ...getTemplate(),
   args: {
-    options: getDummyOptions("test", 3),
+    options: [
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "テスト3", value: 3 },
+    ],
   },
 };
 
@@ -161,4 +165,12 @@ export const IsDirectionFixed: Story = {
       </div>
     ),
   ],
+};
+
+export const DropdownMaxHeight: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("test", 3),
+    dropdownMaxHeight: "100px",
+  },
 };

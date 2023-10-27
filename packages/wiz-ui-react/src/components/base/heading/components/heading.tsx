@@ -28,20 +28,24 @@ const DEFAULT_COLOR: Record<HeadingLevel, ColorKeys> = {
   6: "gray.700",
 } as const;
 
-interface Props {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   level?: HeadingLevel;
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   children: ReactNode;
-}
+};
 
 const Heading: FC<Props> = ({
+  className,
+  style,
   level = 1,
   color = DEFAULT_COLOR[level],
   fontSize = DEFAULT_FONT_SIZE[level],
   children,
 }) => {
   const headingClassName = clsx(
+    className,
     headingStyle,
     fontSizeStyle[fontSize],
     colorStyle[color]
@@ -49,17 +53,41 @@ const Heading: FC<Props> = ({
 
   switch (level) {
     case 1:
-      return <h1 className={headingClassName}>{children}</h1>;
+      return (
+        <h1 className={headingClassName} style={style}>
+          {children}
+        </h1>
+      );
     case 2:
-      return <h2 className={headingClassName}>{children}</h2>;
+      return (
+        <h2 className={headingClassName} style={style}>
+          {children}
+        </h2>
+      );
     case 3:
-      return <h3 className={headingClassName}>{children}</h3>;
+      return (
+        <h3 className={headingClassName} style={style}>
+          {children}
+        </h3>
+      );
     case 4:
-      return <h4 className={headingClassName}>{children}</h4>;
+      return (
+        <h4 className={headingClassName} style={style}>
+          {children}
+        </h4>
+      );
     case 5:
-      return <h5 className={headingClassName}>{children}</h5>;
+      return (
+        <h5 className={headingClassName} style={style}>
+          {children}
+        </h5>
+      );
     case 6:
-      return <h6 className={headingClassName}>{children}</h6>;
+      return (
+        <h6 className={headingClassName} style={style}>
+          {children}
+        </h6>
+      );
   }
 };
 

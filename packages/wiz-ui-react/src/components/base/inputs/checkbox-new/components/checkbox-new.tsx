@@ -15,10 +15,11 @@ import {
 
 import { WizIcon } from "@/components/base/icon";
 import { WizICheckBold } from "@/components/icons";
+import { BaseProps } from "@/types";
 
 type InputProps = ComponentProps<"input">;
 
-type Props = {
+type Props = BaseProps & {
   checked?: boolean;
   value?: InputProps["value"];
   id?: string;
@@ -33,7 +34,17 @@ type Props = {
 
 const CheckboxNew = forwardRef<HTMLInputElement, Props>(
   (
-    { checked, children, strikeThrough, bordered, error, onChange, ...props },
+    {
+      className,
+      style,
+      checked,
+      children,
+      strikeThrough,
+      bordered,
+      error,
+      onChange,
+      ...props
+    },
     ref
   ) => {
     const isControlled = checked !== undefined;
@@ -70,14 +81,22 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
       })();
 
       return clsx(
+        className,
         styles.labelStyle[props.disabled ? "disabled" : "default"],
         strikeThrough && styles.strikeThroughStyle,
         bordered && styles.borderedStyle[borderedState]
       );
-    }, [actualChecked, bordered, error, props.disabled, strikeThrough]);
+    }, [
+      actualChecked,
+      bordered,
+      className,
+      error,
+      props.disabled,
+      strikeThrough,
+    ]);
 
     return (
-      <label className={labelClassName}>
+      <label className={labelClassName} style={style}>
         <input
           {...props}
           ref={ref}

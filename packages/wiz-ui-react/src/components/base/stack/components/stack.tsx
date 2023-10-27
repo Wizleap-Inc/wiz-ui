@@ -24,6 +24,8 @@ import { memo } from "react";
 import { StackProps } from "@/components/base/stack/components/types";
 
 const _Stack = ({
+  className,
+  style,
   direction = "horizontal",
   align = "stretch",
   justify = "start",
@@ -63,6 +65,7 @@ const _Stack = ({
     }
   })();
   const stackStyle = clsx(
+    className,
     styles.stackStyle,
     styles.stackDirectionStyle[dir],
     styles.stackJustifyStyle[justify],
@@ -90,8 +93,8 @@ const _Stack = ({
   return (
     <div
       {...props}
-      className={clsx([stackStyle, props.className])}
-      style={{ width, height, overflow }}
+      className={stackStyle}
+      style={{ ...style, width, height, overflow }}
     >
       {props.children}
     </div>

@@ -1,5 +1,12 @@
-export const WizIContentCopy = () => (
+import { CSSProperties } from "react";
+type Props = {
+  className?: string;
+  style?: CSSProperties;
+};
+export const WizIContentCopy = ({ className, style }: Props) => (
   <svg
+    className={className}
+    style={style}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     height="1em"

@@ -4,13 +4,13 @@ import clsx from "clsx";
 import { FC } from "react";
 
 import { WizIClose, WizIconButton, WizVStack } from "@/components";
-
+import { BaseProps } from "@/types";
 type Message = {
   text: string;
   type: "default" | "error";
 };
 
-type Props = {
+type Props = BaseProps & {
   messages: Message[];
   width?: string;
   border?: boolean;
@@ -18,6 +18,8 @@ type Props = {
 };
 
 const InformationPanel: FC<Props> = ({
+  className,
+  style,
   messages,
   width,
   border = false,
@@ -26,10 +28,11 @@ const InformationPanel: FC<Props> = ({
   return (
     <div
       className={clsx(
+        className,
         styles.informationPanelStyle,
         border && styles.informationPanelBorderStyle
       )}
-      style={{ width }}
+      style={{ ...style, width }}
     >
       <WizVStack gap="xs">
         {messages.map((message, i) => (

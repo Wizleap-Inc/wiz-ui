@@ -4,11 +4,11 @@ import clsx from "clsx";
 import { FC, useCallback, useEffect, useState } from "react";
 
 import { WizICircleCheck, WizIClose, WizIcon, WizText } from "@/components";
-
+import { BaseProps } from "@/types";
 const ANIMATION_DURATION = 200;
 const DISPLAY_DURATION = 3000;
 
-type Props = {
+type Props = BaseProps & {
   message: string;
   expand?: boolean;
   enableAnimation?: boolean;
@@ -17,6 +17,8 @@ type Props = {
 };
 
 const Snackbar: FC<Props> = ({
+  className,
+  style,
   message,
   expand = false,
   enableAnimation = false,
@@ -58,10 +60,12 @@ const Snackbar: FC<Props> = ({
   return (
     <div
       className={clsx(
+        className,
         styles.snackbarStyle,
         styles.snackbarWidthStyle[snackbarWidthType],
         isHidden && styles.snackbarHiddenStyle
       )}
+      style={style}
     >
       <div className={styles.snackbarContainerStyle}>
         <WizIcon icon={WizICircleCheck} color="white.800" />

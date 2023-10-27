@@ -5,19 +5,28 @@ import { clsx } from "clsx";
 import { memo } from "react";
 
 import { TIcon } from "@/components/icons";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   icon: TIcon;
   color?: ColorKeys | "inherit";
   size?: FontSizeKeys;
 };
 
-const _Icon = ({ color = "gray.700", size = "xl2", ...props }: Props) => {
+const _Icon = ({
+  className,
+  style,
+  color = "gray.700",
+  size = "xl2",
+  ...props
+}: Props) => {
   const colorStyle =
     color === "inherit" ? styles.iconDefaultStyle : fillStyle[color];
   const IconComponent = props.icon;
   return (
-    <div className={clsx(styles.iconStyle, styles.iconSizeStyle[size])}>
+    <div
+      className={clsx(className, styles.iconStyle, styles.iconSizeStyle[size])}
+      style={style}
+    >
       <div className={clsx(fontSizeStyle[size], colorStyle)}>
         <IconComponent />
       </div>

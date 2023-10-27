@@ -24,9 +24,11 @@ export const selectBoxCursorStyle = styleVariants({
   },
 });
 
+const BORDER_SIZE = "1px";
+
 export const selectBoxInnerBoxStyle = style({
   height: "100%",
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs}`,
+  padding: `calc(${THEME.spacing.xs} - ${BORDER_SIZE}) ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
   width: "100%",
@@ -54,7 +56,7 @@ export const selectBoxInnerBoxSelectedItemStyle = style({
 });
 
 export const selectBoxInnerBoxSelectedLabelStyle = style({
-  lineHeight: "100%",
+  lineHeight: THEME.fontSize.lg,
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
@@ -123,14 +125,12 @@ export const selectBoxSelectorOptionLabelStyle = style({
   whiteSpace: "nowrap",
 });
 
-const BORDER_WIDTH = "1px";
-
 export const selectBoxSearchInputStyle = style({
   width: 0,
   minWidth: "30%",
   border: "none",
   outline: "none",
-  padding: `calc(${THEME.spacing.xs2} - ${BORDER_WIDTH}) ${THEME.spacing.no}`,
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`,
   lineHeight: THEME.fontSize.xl,
   flexGrow: 1,
   fontSize: THEME.fontSize.sm,

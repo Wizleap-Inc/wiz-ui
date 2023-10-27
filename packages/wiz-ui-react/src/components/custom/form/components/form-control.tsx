@@ -2,11 +2,12 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { FC, ReactNode, useContext } from "react";
 
 import { WizHStack, WizTag, WizText, WizVStack } from "@/components";
+import { BaseProps } from "@/types";
 
 import { FormControlContext } from "./form-control-context";
 import { FormGroupContext } from "./form-group-context";
 
-type Props = {
+type Props = BaseProps & {
   htmlFor?: string;
   label: string;
   required?: boolean;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const FormControl: FC<Props> = ({
+  className,
+  style,
   htmlFor,
   label,
   required,
@@ -29,7 +32,7 @@ const FormControl: FC<Props> = ({
 
   return (
     <FormControlContext.Provider value={{ error: error !== undefined }}>
-      <WizVStack>
+      <WizVStack className={className} style={style}>
         <WizHStack>
           <WizHStack width={labelWidth} align="center" gap="xs2">
             <WizText

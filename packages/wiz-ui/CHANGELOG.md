@@ -1,5 +1,28 @@
 # @wizleap-inc/wiz-ui
 
+## 2.11.3
+
+### Patch Changes
+
+- Updated dependencies [[`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.1
+
+## 2.11.2
+
+### Patch Changes
+
+- Updated dependencies [[`a7b92df8`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7b92df8683e73747e7682c37069f24454c631f7), [`c35888db`](https://github.com/Wizleap-Inc/wiz-ui/commit/c35888db4c58a3e59c580e18b981723af005807e)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.0
+
+## 2.11.1
+
+### Patch Changes
+
+- [#1061](https://github.com/Wizleap-Inc/wiz-ui/pull/1061) [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b) Thanks [@okakyo](https://github.com/okakyo)! - [#998] TimePicker の 時、分を固定
+
+- Updated dependencies [[`da10fdc5`](https://github.com/Wizleap-Inc/wiz-ui/commit/da10fdc5b45e4bc05971a94ef40af93e92c9779a), [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b)]:
+  - @wizleap-inc/wiz-ui-styles@0.21.1
+
 ## 2.11.0
 
 ### Minor Changes

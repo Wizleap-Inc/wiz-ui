@@ -1,5 +1,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card-table.css";
+import clsx from "clsx";
 import { ComponentProps, ReactNode } from "react";
 
 import { useIsSafari } from "../hooks/use-is-safari";
@@ -9,12 +10,21 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"th">;
 
-const CardTh = ({ width = "auto", children, ...props }: Props) => {
+const CardTh = ({
+  className,
+  style,
+  width = "auto",
+  children,
+  ...props
+}: Props) => {
   const isSafari = useIsSafari();
   return (
     <th
-      className={isSafari ? styles.cardThOnSafariStyle : styles.cardThStyle}
-      style={{ width }}
+      className={clsx(
+        className,
+        isSafari ? styles.cardThOnSafariStyle : styles.cardThStyle
+      )}
+      style={{ ...style, width }}
       {...props}
     >
       {children}

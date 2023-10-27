@@ -1,13 +1,14 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  popupButtonGroupStyle,
-  popupButtonGroupDisabledCursorStyle,
   borderRadiusStyle,
+  popupButtonGroupDisabledCursorStyle,
+  popupButtonGroupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import clsx from "clsx";
 import { FC, useMemo } from "react";
 
 import { WizVStack } from "@/components";
+import { BaseProps } from "@/types";
 
 import { ButtonGroupItem, ItemElement } from "../types";
 
@@ -15,7 +16,7 @@ import { ButtonItem } from "./button-item";
 import { DividerItem } from "./divider-item";
 import { GroupItem } from "./group-item";
 
-interface Props {
+type Props = BaseProps & {
   options: ButtonGroupItem[];
   width?: string;
   p?: SpacingKeys;
@@ -25,9 +26,11 @@ interface Props {
   groupDivider?: boolean;
   buttonDivider?: boolean;
   depth?: number;
-}
+};
 
 const PopupButtonGroup: FC<Props> = ({
+  className,
+  style,
   options,
   width = "10rem",
   p = "no",
@@ -71,11 +74,12 @@ const PopupButtonGroup: FC<Props> = ({
   return (
     <div
       className={clsx(
+        className,
         popupButtonGroupStyle,
         disabled && popupButtonGroupDisabledCursorStyle,
         depth === 0 && borderRadiusStyle[borderRadius]
       )}
-      style={{ minWidth: expand ? "100%" : width }}
+      style={{ ...style, minWidth: expand ? "100%" : width }}
     >
       <WizVStack gap="xs2" p={depth === 0 ? p : "no"}>
         {items.map((item, i) => {

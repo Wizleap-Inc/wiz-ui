@@ -2,6 +2,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const labelBaseStyle = style({
+  position: "relative",
   display: "inline-flex",
   alignItems: "center",
   gap: THEME.spacing.xs,
@@ -38,7 +39,7 @@ export const borderedBaseStyle = style({
   borderRadius: "4px",
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
-  lineHeight: `calc(${THEME.fontSize.xl2} - (${borderedBorderWidth}px * 2))`,
+  lineHeight: `calc(${THEME.fontSize.xl3} - (${borderedBorderWidth}px * 2))`,
   backgroundColor: THEME.color.white[800],
 });
 

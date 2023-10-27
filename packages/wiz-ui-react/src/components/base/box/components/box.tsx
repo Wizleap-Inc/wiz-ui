@@ -11,7 +11,8 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   position?: "absolute" | "relative" | "fixed" | "sticky" | "static";
   top?: string;
   right?: string;
@@ -49,6 +50,8 @@ type Props = {
 const Box = forwardRef(
   (
     {
+      className,
+      style,
       position,
       top,
       right,
@@ -96,7 +99,8 @@ const Box = forwardRef(
       return undefined;
     })();
 
-    const style = {
+    const boxStyle = {
+      ...style,
       position,
       top,
       right,
@@ -126,7 +130,7 @@ const Box = forwardRef(
     };
 
     return (
-      <div ref={ref} style={style} {...props}>
+      <div ref={ref} className={className} style={boxStyle} {...props}>
         {props.children}
       </div>
     );

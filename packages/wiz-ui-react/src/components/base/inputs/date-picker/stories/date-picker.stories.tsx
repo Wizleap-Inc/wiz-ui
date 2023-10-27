@@ -77,6 +77,17 @@ export const IsDirectionFixed: Story = {
   },
 };
 
+export const YearStyle: Story = {
+  args: {
+    date: new Date(2023, 0, 1),
+    formatYear: (year: number) => `西暦${year}`,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};
+
 export const Playground: Story = {
   args: {
     disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
