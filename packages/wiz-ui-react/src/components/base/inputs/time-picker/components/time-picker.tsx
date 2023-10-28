@@ -76,48 +76,44 @@ const TimePicker: FC<Props> = ({
   })();
 
   return (
-    <div className={className} style={style}>
+    <>
       <div
         ref={anchor}
         className={clsx([
+          className,
           styles.timePickerStyle,
           inputBorderStyle[formState],
           disabled && styles.timePickerDisabledStyle,
           styles.timePickerCursorStyle[timePickerCursor],
+          styles.timePickerBoxStyle,
+          styles.timePickerBoxColorStyle[timePickerBoxColor],
         ])}
+        style={{ ...style, width }}
+        onClick={toggleTimePicker}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
       >
-        <div
-          className={clsx(
-            styles.timePickerBoxStyle,
-            styles.timePickerBoxColorStyle[timePickerBoxColor]
-          )}
-          style={{ width }}
-          onClick={toggleTimePicker}
-          onMouseEnter={() => setIsHover(true)}
-          onMouseLeave={() => setIsHover(false)}
-        >
-          <WizHStack gap="sm" align="center" height="100%">
-            <button
-              type="button"
-              className={clsx([
-                styles.cancelButtonStyle,
-                disabled && styles.cancelButtonDisabledStyle,
-              ])}
-              disabled={!cancelButtonVisible}
-              aria-label={ARIA_LABELS.TIME_PICKER_CANCEL}
-              onClick={() => onChange(null)}
-              onFocus={() => setIsCancelButtonFocused(true)}
-              onBlur={() => setIsCancelButtonFocused(false)}
-            >
-              {cancelButtonVisible ? (
-                <WizIcon size="xl2" color="inherit" icon={WizICancel} />
-              ) : (
-                <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
-              )}
-            </button>
-            <span>{label}</span>
-          </WizHStack>
-        </div>
+        <WizHStack gap="sm" align="center" height="100%">
+          <button
+            type="button"
+            className={clsx([
+              styles.cancelButtonStyle,
+              disabled && styles.cancelButtonDisabledStyle,
+            ])}
+            disabled={!cancelButtonVisible}
+            aria-label={ARIA_LABELS.TIME_PICKER_CANCEL}
+            onClick={() => onChange(null)}
+            onFocus={() => setIsCancelButtonFocused(true)}
+            onBlur={() => setIsCancelButtonFocused(false)}
+          >
+            {cancelButtonVisible ? (
+              <WizIcon size="xl2" color="inherit" icon={WizICancel} />
+            ) : (
+              <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
+            )}
+          </button>
+          <span>{label}</span>
+        </WizHStack>
       </div>
 
       <WizPopup
@@ -218,7 +214,7 @@ const TimePicker: FC<Props> = ({
           </WizHStack>
         </div>
       </WizPopup>
-    </div>
+    </>
   );
 };
 

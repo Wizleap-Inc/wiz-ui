@@ -53,6 +53,16 @@ export const Disabled: Story = {
   },
 };
 
+export const Expand: Story = {
+  args: {
+    width: "100%",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await fireEvent.click(canvas.getByRole("button"));
+  },
+};
+
 export const Error: Story = {
   args: {
     error: true,
