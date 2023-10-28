@@ -37,12 +37,12 @@ export const SearchPopupPanel: FC<Props> = ({
   const isOpen = activeOption && activeOption.children.length > 0;
 
   const handleChangeValues = useCallback(
-    (selectedOption: number, isChecked: boolean) => {
+    (selectedOptionValue: number, isChecked: boolean) => {
       const newValues = (() => {
         if (isChecked) {
-          return [...values, selectedOption];
+          return [...values, selectedOptionValue];
         }
-        return values.filter((value) => value !== selectedOption);
+        return values.filter((value) => value !== selectedOptionValue);
       })();
       // Set を使って重複除去
       onChangeValues(Array.from(new Set(newValues)));
