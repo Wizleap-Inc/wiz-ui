@@ -47,7 +47,6 @@
           ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
-            paddingRight: THEME.spacing.xs2,
           }"
           @click="popupButtonMouseDown(item.item)"
           @mouseover="popupButtonMouseOver(item.item)"

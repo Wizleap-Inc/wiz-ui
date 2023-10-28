@@ -22,6 +22,7 @@ export const popupButtonGroupButtonBaseStyle = style({
   alignItems: "center",
   paddingTop: THEME.spacing.xs,
   paddingBottom: THEME.spacing.xs,
+  paddingRight: THEME.spacing.xs2,
   fontSize: THEME.fontSize.sm,
   boxSizing: "border-box",
   userSelect: "none",
