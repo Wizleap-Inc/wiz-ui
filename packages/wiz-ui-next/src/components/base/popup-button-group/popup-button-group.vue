@@ -9,7 +9,7 @@
     :style="{ minWidth: computedWidth }"
     :p="depth === 0 ? p : 'no'"
   >
-    <div v-for="item in items">
+    <div v-for="(item, index) in items">
       <hr
         v-if="item.kind === 'divider'"
         :class="popupButtonGroupDividerStyle"
@@ -44,6 +44,9 @@
               ? popupButtonGroupButtonVariantStyle['disabled']
               : popupButtonGroupButtonVariantStyle['enabled'],
             item.item.option.disabled && popupButtonGroupDisabledCursorStyle,
+            !item.item.option.disabled &&
+              currentSelectOptionIndex === index &&
+              popupButtonGroupSelectOptionStyle,
           ]"
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
@@ -53,6 +56,8 @@
           @mouseout="popupButtonMouseOut(item.item)"
           @mousedown="onHoldClick(item.item)"
           @keypress.enter="popupButtonKeyPressEnter(item.item)"
+          @keydown.up="popupButtonKeyUp"
+          @keydown.down="popupButtonKeyDown"
           :tabIndex="0"
           :key="`${item.item.option.label}-${item.item.option.value}`"
         >
@@ -95,6 +100,7 @@ import {
   popupButtonGroupInnerContainerStyle,
   popupButtonGroupTitleVariantStyle,
   popupButtonGroupButtonVariantStyle,
+  popupButtonGroupSelectOptionStyle,
   borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import { computed, PropType, ref } from "vue";
@@ -190,6 +196,7 @@ const items = computed(() => {
 const isClicking = ref<number | null>(null);
 const isHover = ref<number | null>(null);
 
+const currentSelectOptionIndex = ref<number>(-1);
 const onHoldClick = (item: ButtonGroupItem) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
@@ -225,9 +232,35 @@ const popupButtonMouseOut = (item: ButtonGroupItem) => {
 
 const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
   if (props.disabled) return;
+
+  // 移動操作で option を選択した場合
+  if (currentSelectOptionIndex.value > -1) {
+    const selectValue = items.value[currentSelectOptionIndex.value];
+    if (selectValue.kind === "item") {
+      const selectItem = selectValue.item;
+      if (selectItem.kind === "button" && !selectItem.option.disabled) {
+        selectItem.option.onClick();
+        currentSelectOptionIndex.value = -1;
+        return;
+      }
+    }
+  }
+
+  // タブ操作で option を選択した場合
   if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
+};
+
+const popupButtonKeyUp = () => {
+  if (props.disabled) return;
+  if (currentSelectOptionIndex.value <= 0) return;
+  currentSelectOptionIndex.value--;
+};
+const popupButtonKeyDown = () => {
+  if (props.disabled) return;
+  if (currentSelectOptionIndex.value >= items.value.length - 1) return;
+  currentSelectOptionIndex.value++;
 };
 
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));

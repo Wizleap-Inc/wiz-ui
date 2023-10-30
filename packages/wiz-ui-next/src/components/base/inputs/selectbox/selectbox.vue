@@ -1,6 +1,11 @@
 <template>
   <WizPopupContainer :expand="expand">
     <div
+      :tabIndex="0"
+      @keyup.up="onKeyUp"
+      @keyup.down="onKeyDown"
+      @blur="onBlur"
+      @keyup.enter="onSelect(currentSelectOptionIndex + 1)"
       :class="[
         selectBoxStyle,
         inputBorderStyle[state],
@@ -45,7 +50,11 @@
       >
         <WizVStack gap="xs2">
           <div
-            :class="selectBoxSelectorOptionStyle"
+            :class="[
+              selectBoxSelectorOptionStyle,
+              currentSelectOptionIndex === key &&
+                selectBoxSelectorOptionSelectStyle,
+            ]"
             v-for="(option, key) in options"
             :key="'option' + key"
             @click="onSelect(option.value)"
@@ -73,9 +82,10 @@ import {
   selectBoxInnerBoxSelectedValueStyle,
   selectBoxInnerBoxStyle,
   selectBoxPlaceholderStyle,
+  selectBoxSelectorOptionSelectStyle,
   selectBoxSelectorOptionStyle,
   selectBoxSelectorStyle,
-  selectBoxStyle,
+  selectBoxStyle
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, inject, ref } from "vue";
@@ -142,6 +152,8 @@ const props = defineProps({
 });
 
 const openSelectBox = ref(props.isOpen);
+const currentSelectOptionIndex = ref(-1);
+
 const toggleSelectBox = () => {
   if (props.disabled) {
     return;
@@ -149,6 +161,22 @@ const toggleSelectBox = () => {
   openSelectBox.value = !openSelectBox.value;
 };
 
+const onKeyUp = () => {
+  if (openSelectBox.value && currentSelectOptionIndex.value > 0)
+    currentSelectOptionIndex.value--;
+};
+
+const onKeyDown = () => {
+  if (
+    openSelectBox.value &&
+    currentSelectOptionIndex.value < props.options.length - 1
+  )
+    currentSelectOptionIndex.value++;
+};
+
+const onBlur = () => {
+  currentSelectOptionIndex.value = -1;
+};
 interface Emit {
   (e: "update:modelValue", value: number): void;
 }
@@ -156,7 +184,8 @@ const emit = defineEmits<Emit>();
 
 const onSelect = (value: number) => {
   toggleSelectBox();
-  emit("update:modelValue", value);
+  if (value < 0) return;
+  emit("update:modelValue", props.options[value].value);
 };
 
 const selectBoxCursor = computed(() =>

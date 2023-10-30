@@ -87,3 +87,8 @@ export const popupButtonGroupInnerContainerStyle = style({
   alignItems: "center",
   flex: "none",
 });
+
+export const popupButtonGroupSelectOptionStyle = style({
+  color: THEME.color.green["800"],
+  background: THEME.color.green["300"],
+});
