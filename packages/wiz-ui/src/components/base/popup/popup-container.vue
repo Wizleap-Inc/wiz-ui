@@ -1,6 +1,7 @@
 <template>
   <div
-    :class="popupContainerStyle[expand ? 'expanded' : 'default']"
+    :class="popupContainerStyle"
+    :style="{ width: (expand && '100%') || width }"
     ref="popupContainerRef"
   >
     <slot />
@@ -22,6 +23,11 @@ defineProps({
   expand: {
     type: Boolean,
     required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "fit-content",
   },
 });
 
