@@ -44,16 +44,14 @@ const Template: StoryFn<typeof WizDatepicker> = (args) => ({
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { args, date, isOpen, setIsOpen };
   },
-  template: `
-    <WizHStack>
-      <WizDatepicker
-        v-bind="args"
-        v-model="date"
-        :isOpen="isOpen"
-        @update:modelValue="args.onClick"
-        @update:isOpen="setIsOpen"
-      />
-    </WizHStack>
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    /> 
   `,
 });
 
@@ -93,16 +91,14 @@ const PlaceholderTemplate: StoryFn<typeof WizDatepicker> = (args) => ({
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { args, date, isOpen, setIsOpen };
   },
-  template: `
-    <WizHStack>
-      <WizDatepicker
-        v-bind="args"
-        v-model="date"
-        :isOpen="isOpen"
-        @update:modelValue="args.onClick"
-        @update:isOpen="setIsOpen"
-      />
-    </WizHStack>
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    /> 
   `,
 });
 
@@ -156,6 +152,11 @@ const date = ref<Date | null>(null);
   },
 };
 
+export const Expand = Template.bind({});
+Expand.args = {
+  width: "100%",
+};
+
 export const DisabledDate: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
@@ -166,17 +167,15 @@ export const DisabledDate: StoryFn<typeof WizDatepicker> = (args) => ({
       date.getDate() >= 10 && date.getDate() < 17;
     return { args, date, isOpen, setIsOpen, disabledDate };
   },
-  template: `
-    <div>
-      <WizDatepicker
-        v-bind="args"
-        v-model="date"
-        :isOpen="isOpen"
-        :disabledDate="disabledDate"
-        @update:modelValue="args.onClick"
-        @update:isOpen="setIsOpen"
-      />
-    </div>
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :disabledDate="disabledDate"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    /> 
   `,
 });
 
@@ -188,16 +187,14 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
     const setIsOpen = (value: boolean) => (isOpen.value = value);
     return { args, date, isOpen, setIsOpen };
   },
-  template: `
-    <div>
-      <WizDatepicker
-        v-bind="args"
-        v-model="date"
-        :isOpen="isOpen"
-        @update:modelValue="args.onClick"
-        @update:isOpen="setIsOpen"
-      />
-    </div>
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    />
   `,
 });
 
@@ -210,15 +207,13 @@ export const YearStyle: StoryFn<typeof WizDatepicker> = (args) => ({
     return { args, date, isOpen, setIsOpen };
   },
   template: `
-    <div>
-      <WizDatepicker
-        v-bind="args"
-        v-model="date"
-        :isOpen="isOpen"
-        @update:modelValue="args.onClick"
-        @update:isOpen="setIsOpen"
-      />
-    </div>
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    />
   `,
 });
 YearStyle.args = {
@@ -255,17 +250,15 @@ export const Hover: StoryFn<typeof WizDatepicker> = (args) => ({
     return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
   },
   template: `
-    <div>
-      <WizDatepicker
-        v-bind="args"
-        v-model="date"
-        :isOpen="isOpen"
-        :isHover="isHover"
-        @update:modelValue="args.onClick"
-        @update:isOpen="updateIsOpen"
-        @update:isHover="updateIsHover"
-      />
-    </div>
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :isHover="isHover"
+      @update:modelValue="args.onClick"
+      @update:isOpen="updateIsOpen"
+      @update:isHover="updateIsHover"
+    />
   `,
 });
 
@@ -280,17 +273,15 @@ export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
     return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
   },
   template: `
-    <div>
-      <WizDatepicker
-        v-bind="args"
-        v-model="date"
-        :isOpen="isOpen"
-        :isHover="isHover"
-        @update:modelValue="args.onClick"
-        @update:isOpen="updateIsOpen"
-        @update:isHover="updateIsHover"
-      />
-    </div>
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :isHover="isHover"
+      @update:modelValue="args.onClick"
+      @update:isOpen="updateIsOpen"
+      @update:isHover="updateIsHover"
+    />
   `,
 });
 Test.play = async ({ canvasElement }) => {
