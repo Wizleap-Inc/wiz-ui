@@ -58,14 +58,14 @@ export const radioLabelStrikeThrough = style({
 
 export const radioLabelColorStyle = styleVariants({
   default: {
-    color: THEME.color.gray["600"],
+    color: THEME.color.gray["800"],
     ":before": {
       background: THEME.color.white["800"],
       border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
     },
   },
   focused: {
-    color: THEME.color.gray["600"],
+    color: THEME.color.gray["800"],
     ":before": {
       border: `${focusedBorderWidth} solid ${THEME.color.green["800"]}`,
     },
