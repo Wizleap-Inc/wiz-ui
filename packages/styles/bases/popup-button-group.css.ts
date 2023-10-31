@@ -29,7 +29,7 @@ export const popupButtonGroupButtonBaseStyle = style({
 
 export const popupButtonGroupButtonVariantStyle = styleVariants({
   enabled: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
     cursor: "pointer",
     "@media": {
       "(any-hover: hover)": {
@@ -65,7 +65,7 @@ export const popupButtonGroupTitleBaseStyle = style({
 
 export const popupButtonGroupTitleVariantStyle = styleVariants({
   enabled: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
   },
   disabled: {
     color: THEME.color.gray["400"],
