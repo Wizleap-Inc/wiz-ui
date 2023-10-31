@@ -85,7 +85,6 @@ const TimePicker: FC<Props> = ({
           inputBorderStyle[formState],
           disabled && styles.timePickerDisabledStyle,
           styles.timePickerCursorStyle[timePickerCursor],
-          styles.timePickerBoxStyle,
           styles.timePickerBoxColorStyle[timePickerBoxColor],
         ])}
         style={{ ...style, width }}

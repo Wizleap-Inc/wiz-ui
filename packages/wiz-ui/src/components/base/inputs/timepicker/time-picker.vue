@@ -6,21 +6,15 @@
         inputBorderStyle[state],
         disabled && timePickerDisabledStyle,
         timePickerCursorStyle[timePickerCursor],
+        timePickerBoxColorStyle[timePickerBoxColor],
       ]"
+      :style="{ width }"
+      @click="toggleTimepicker"
     >
-      <div
-        :class="[
-          timePickerBoxStyle,
-          timePickerBoxColorStyle[timePickerBoxColor],
-        ]"
-        :style="{ width }"
-        @click="toggleTimepicker"
-      >
-        <WizHStack gap="sm" align="center" height="100%">
-          <WizIcon size="xl2" color="gray.500" :icon="WizISchedule" />
-          <span>{{ value || placeholder }}</span>
-        </WizHStack>
-      </div>
+      <WizHStack gap="sm" align="center" height="100%">
+        <WizIcon size="xl2" color="gray.500" :icon="WizISchedule" />
+        <span>{{ value || placeholder }}</span>
+      </WizHStack>
       <WizPopup
         :isOpen="openTimepicker"
         @onClose="openTimepicker = false"
@@ -110,7 +104,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   timePickerBoxColorStyle,
-  timePickerBoxStyle,
   timePickerCursorStyle,
   timePickerDisabledStyle,
   timePickerScrollStyle,
@@ -118,10 +111,10 @@ import {
   timePickerSelectorOptionItemSelectedStyle,
   timePickerSelectorOptionItemStyle,
   timePickerSelectorOptionStyle,
+  timePickerSelectorOptionTitleStyle,
   timePickerSelectorOptionTypeStyle,
   timePickerSelectorStyle,
   timePickerStyle,
-  timePickerSelectorOptionTitleStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { computed, inject, ref } from "vue";

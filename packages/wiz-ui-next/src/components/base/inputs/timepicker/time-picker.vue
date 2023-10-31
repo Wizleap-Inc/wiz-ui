@@ -6,10 +6,8 @@
         inputBorderStyle[state],
         disabled && timePickerDisabledStyle,
         timePickerCursorStyle[timePickerCursor],
-        timePickerBoxStyle,
         timePickerBoxColorStyle[timePickerBoxColor],
       ]"
-      :style="{ width: '100%' }"
       @click="toggleTimepicker"
     >
       <WizHStack gap="sm" align="center" height="100%">
@@ -106,7 +104,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   timePickerBoxColorStyle,
-  timePickerBoxStyle,
   timePickerCursorStyle,
   timePickerDisabledStyle,
   timePickerScrollStyle,
