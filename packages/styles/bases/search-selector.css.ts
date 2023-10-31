@@ -91,7 +91,6 @@ export const selectBoxSelectorStyle = style({
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   maxHeight: "25rem",
-  maxWidth: "15rem",
   overflowY: "auto",
 });
 

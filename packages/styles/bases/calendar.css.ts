@@ -39,7 +39,7 @@ export const calendarItemStyle = styleVariants({
     cursor: "pointer",
   },
   inCurrentMonth: {
-    color: THEME.color.gray[700],
+    color: THEME.color.gray[800],
     textAlign: "center",
     borderRadius: THEME.spacing.xs2,
     cursor: "pointer",

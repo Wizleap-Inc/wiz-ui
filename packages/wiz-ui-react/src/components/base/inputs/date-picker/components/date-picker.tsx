@@ -162,7 +162,7 @@ const DatePicker: FC<Props> = ({
                   as="span"
                   fontSize="xs"
                   line-height="lg"
-                  color="gray.700"
+                  color="gray.800"
                 >
                   {formatYear(calendar.year)}
                 </WizText>
@@ -177,7 +177,7 @@ const DatePicker: FC<Props> = ({
                     {/* <WizIArrowDropUp /> */}
                     <svg
                       className={clsx(
-                        fillStyle["gray.700"],
+                        fillStyle["gray.800"],
                         fontSizeStyle["xs2"],
                         styles.datePickerArrowIconStyle
                       )}
@@ -199,7 +199,7 @@ const DatePicker: FC<Props> = ({
                     {/* <WizIArrowDropDown /> */}
                     <svg
                       className={clsx(
-                        fillStyle["gray.700"],
+                        fillStyle["gray.800"],
                         fontSizeStyle["xs2"],
                         styles.datePickerArrowIconStyle
                       )}
@@ -213,7 +213,7 @@ const DatePicker: FC<Props> = ({
                   </button>
                 </WizVStack>
               </WizHStack>
-              <WizText as="span" fontSize="xs" color="gray.700">
+              <WizText as="span" fontSize="xs" color="gray.800">
                 {calendar.title}
               </WizText>
             </WizHStack>

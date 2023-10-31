@@ -17,7 +17,8 @@
             :class="selectBoxInnerBoxSelectedItemStyle"
           >
             <span :class="selectBoxInnerBoxSelectedLabelStyle">
-              {{ item.label }}
+              {{ item.label
+              }}{{ showExLabel && item.exLabel ? " " + item.exLabel : "" }}
             </span>
             <button
               type="button"
@@ -78,7 +79,7 @@
     >
       <div
         :class="selectBoxSelectorStyle"
-        :style="{ minWidth: width }"
+        :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
         v-if="
           filteredOptions.length > 0 ||
           (searchValue !== '' && !options.some((v) => v.label === searchValue))
@@ -198,6 +199,15 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  showExLabel: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  dropdownMaxHeight: {
+    type: String,
+    required: false,
   },
 });
 
@@ -370,6 +380,7 @@ const selectButtons = computed(() => {
       option: {
         label: opt.label,
         value: opt.value,
+        exLabel: opt.exLabel,
         onClick: () => onSelect(opt.value),
       },
     };

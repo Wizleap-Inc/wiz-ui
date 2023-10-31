@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.22.1
+
+### Patch Changes
+
+- [#1104](https://github.com/Wizleap-Inc/wiz-ui/pull/1104) [`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector, checkbox-new, search-selector): コンポーネントの全体の高さが 44px になるように調整
+  Fix(search-selector): アイコン色を修正
+
 ## 0.22.0
 
 ### Minor Changes
