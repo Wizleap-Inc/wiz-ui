@@ -92,6 +92,7 @@ export const inputStyle = style([
 export const markerStyle = style([
   inputShapeStyle,
   {
+    flexShrink: 0,
     borderStyle: "solid",
     borderWidth: "1px",
     borderColor: THEME.color.gray[500],
