@@ -61,8 +61,8 @@ export const DisabledWithValue: Story = {
 export const Expand: Story = {
   args: {
     dateRange: {
-      start: null,
-      end: null,
+      start: new Date("2021-01-01"),
+      end: new Date("2021-01-31"),
     },
     expand: true,
   },

@@ -5,17 +5,17 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card.css";
 import {
+  backgroundStyle,
   paddingStyle,
   paddingXStyle,
   paddingYStyle,
-  backgroundStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { ComponentProps, ReactNode } from "react";
 
 import { WizVStack } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   p?: SpacingKeys;
   px?: SpacingKeys;
   py?: SpacingKeys;
@@ -33,6 +33,8 @@ type Props = {
 } & ComponentProps<"div">;
 
 const Card = ({
+  className,
+  style,
   p = "md",
   px,
   py,
@@ -53,6 +55,7 @@ const Card = ({
     <div
       {...props}
       className={clsx([
+        className,
         styles.cardStyle,
         fit && styles.cardFitStyle,
         shadow && styles.cardShadowStyle,
@@ -62,7 +65,7 @@ const Card = ({
         !px && !py && paddingStyle[p],
         backgroundStyle[backgroundColor],
       ])}
-      style={{ maxWidth }}
+      style={{ ...style, maxWidth }}
     >
       <WizVStack gap={gap} align={align}>
         {(mainHeaderArea || subHeaderArea) && (

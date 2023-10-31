@@ -7,13 +7,14 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/badge.css";
 import {
   backgroundStyle,
   colorStyle,
-  topStyle,
   rightStyle,
+  topStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   label?: string;
   hidden?: boolean;
   color?: ColorKeys;
@@ -24,6 +25,8 @@ type Props = {
 };
 
 const Badge: FC<Props> = ({
+  className,
+  style,
   label,
   hidden = false,
   color = "white.800",
@@ -33,7 +36,7 @@ const Badge: FC<Props> = ({
   children,
 }: Props) => {
   return (
-    <div className={styles.badgeContainerStyle}>
+    <div className={clsx(className, styles.badgeContainerStyle)} style={style}>
       {children}
       {!hidden && (
         <div

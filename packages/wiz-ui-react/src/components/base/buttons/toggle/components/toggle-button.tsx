@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
+import { BaseProps } from "@/types";
 
 const iconSize: Record<string, FontSizeKeys> = {
   sm: "xl",
@@ -11,7 +12,7 @@ const iconSize: Record<string, FontSizeKeys> = {
   lg: "xl3",
 };
 
-type Props = {
+type Props = BaseProps & {
   isActive: boolean;
   inactiveIcon: TIcon;
   activeIcon: TIcon;
@@ -24,6 +25,8 @@ type Props = {
 const ToggleButton = forwardRef(
   (
     {
+      className,
+      style,
       inactiveIcon,
       activeIcon,
       disabled = false,
@@ -38,12 +41,14 @@ const ToggleButton = forwardRef(
       ref={ref}
       {...props}
       className={clsx(
+        className,
         styles.toggleButtonStyle,
         styles.toggleButtonSizeStyle[size],
         isActive && styles.toggleButtonActiveStyle,
         disabled && styles.toggleButtonDisabledStyle,
         rounded && styles.toggleButtonRoundedStyle
       )}
+      style={style}
       disabled={disabled}
     >
       <WizHStack align="center" gap="xs2">

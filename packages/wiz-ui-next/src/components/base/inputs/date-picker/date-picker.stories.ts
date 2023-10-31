@@ -201,6 +201,30 @@ export const InitialValue: StoryFn<typeof WizDatepicker> = (args) => ({
   `,
 });
 
+export const YearStyle: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(2020, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
+  template: `
+    <div>
+      <WizDatepicker
+        v-bind="args"
+        v-model="date"
+        :isOpen="isOpen"
+        @update:modelValue="args.onClick"
+        @update:isOpen="setIsOpen"
+      />
+    </div>
+  `,
+});
+YearStyle.args = {
+  formatYear: (year: number) => `西暦${year}`,
+};
+
 const _formatDateSlash = (date: Date) => {
   const year = (date.getFullYear() % 100).toString().padStart(2, "0");
   const month = date.getMonth() + 1;

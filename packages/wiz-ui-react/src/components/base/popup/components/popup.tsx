@@ -9,6 +9,7 @@ import { zIndexStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   ComponentProps,
+  FC,
   ReactNode,
   RefObject,
   useEffect,
@@ -18,12 +19,13 @@ import {
 
 import { WizPortal } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
+import { BaseProps } from "@/types";
 
 import { usePopupAnimation } from "../hooks/use-popup-animation";
 import { DirectionKey } from "../types/direction";
 import { getPopupPosition } from "../utils";
 
-type Props = {
+type Props = BaseProps & {
   isOpen: boolean;
   onClose: () => void;
   anchorElement: RefObject<HTMLElement>;
@@ -53,7 +55,9 @@ const hasFixedOrStickyParent = (el: HTMLElement | null): boolean => {
   return hasFixedOrStickyParent(el.parentElement);
 };
 
-const Popup = ({
+const Popup: FC<Props> = ({
+  className,
+  style,
   isOpen,
   onClose,
   anchorElement,
@@ -65,7 +69,7 @@ const Popup = ({
   animation = false,
   isDirectionFixed = false,
   children,
-}: Props) => {
+}) => {
   const popupRef = useRef<HTMLDivElement | null>(null);
   const isActuallyOpen = usePopupAnimation(animation, popupRef, isOpen);
   const [popupPosition, setPopupPosition] = useState<{
@@ -133,12 +137,14 @@ const Popup = ({
       <div
         ref={popupRef}
         className={clsx(
+          className,
           styles.popupStyle,
           shadow && styles.popupShadowStyle,
           zIndexStyle[layer],
           !isActuallyOpen && styles.popupHiddenStyle
         )}
         style={{
+          ...style,
           animationName: "fade",
           position: isPopupFixed ? "fixed" : "absolute",
           transform: "translateZ(0)", // Safariで影が消えない問題の対策

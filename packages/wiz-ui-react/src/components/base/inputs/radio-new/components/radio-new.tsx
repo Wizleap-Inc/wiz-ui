@@ -15,7 +15,8 @@ import {
 
 type InputProps = ComponentProps<"input">;
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   checked?: boolean;
   value?: InputProps["value"];
   id?: string;
@@ -30,7 +31,17 @@ type Props = {
 
 const RadioNew = forwardRef<HTMLInputElement, Props>(
   (
-    { checked, strikeThrough, bordered, error, children, onChange, ...props },
+    {
+      className,
+      style,
+      checked,
+      strikeThrough,
+      bordered,
+      error,
+      children,
+      onChange,
+      ...props
+    },
     ref
   ) => {
     const isControlled = checked !== undefined;
@@ -67,14 +78,22 @@ const RadioNew = forwardRef<HTMLInputElement, Props>(
       })();
 
       return clsx(
+        className,
         styles.labelStyle[props.disabled ? "disabled" : "default"],
         strikeThrough && styles.strikeThroughStyle,
         bordered && styles.borderedStyle[borderedState]
       );
-    }, [actualChecked, bordered, error, props.disabled, strikeThrough]);
+    }, [
+      actualChecked,
+      bordered,
+      className,
+      error,
+      props.disabled,
+      strikeThrough,
+    ]);
 
     return (
-      <label className={labelClassName}>
+      <label className={labelClassName} style={style}>
         <input
           {...props}
           ref={ref}

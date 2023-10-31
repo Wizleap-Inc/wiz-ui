@@ -1,12 +1,14 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/circle-graph.css";
+import clsx from "clsx";
 import { FC, ReactNode, useMemo } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   percentages: number[];
   children?: ReactNode;
 };
 
-export const Bar: FC<Props> = ({ percentages, children }) => {
+export const Bar: FC<Props> = ({ className, style, percentages, children }) => {
   const barDisplayData = useMemo(() => {
     let currentRotatedPercentage = 0;
     return percentages
@@ -28,7 +30,10 @@ export const Bar: FC<Props> = ({ percentages, children }) => {
   }`;
 
   return (
-    <div className={styles.CircleBarContainerStyle}>
+    <div
+      className={clsx(className, styles.CircleBarContainerStyle)}
+      style={style}
+    >
       <svg
         className={styles.CircleBarSVGStyle}
         viewBox={`0 0 ${styles.VIEW_BOX_SIZE} ${styles.VIEW_BOX_SIZE}`}

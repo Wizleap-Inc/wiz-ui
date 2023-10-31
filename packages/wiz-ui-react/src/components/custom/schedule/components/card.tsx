@@ -2,9 +2,11 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/schedule.css";
 import { clsx } from "clsx";
 
+import { BaseProps } from "@/types";
+
 import { ScheduleCardVariant } from "../types";
 
-interface Props {
+type Props = BaseProps & {
   id: string;
   variant?: ScheduleCardVariant;
   text: string;
@@ -12,9 +14,11 @@ interface Props {
   gridColumn: string;
   show?: boolean;
   onScheduleClick?: (id: string) => void;
-}
+};
 
 export const WizScheduleCard = ({
+  className,
+  style,
   id,
   variant = "primary",
   text,
@@ -46,8 +50,8 @@ export const WizScheduleCard = ({
   return (
     <button
       type="button"
-      className={clsx(styles.card[variant], styles.buttonCard)}
-      style={{ gridRow, gridColumn }}
+      className={clsx(className, styles.card[variant], styles.buttonCard)}
+      style={{ ...style, gridRow, gridColumn }}
       hidden={!show}
       onClick={() => onScheduleClick(id)}
     >

@@ -11,6 +11,8 @@ type Props = {
 } & ComponentProps<"th">;
 
 const FlatTh = ({
+  className,
+  style,
   width = "auto",
   scope = "col",
   fontSize = "sm",
@@ -18,8 +20,8 @@ const FlatTh = ({
   ...props
 }: Props) => (
   <th
-    className={clsx(styles.flatTh, styles.flatThVariantStyle[scope])}
-    style={{ width, fontSize: THEME.fontSize[fontSize] }}
+    className={clsx(className, styles.flatTh, styles.flatThVariantStyle[scope])}
+    style={{ ...style, width, fontSize: THEME.fontSize[fontSize] }}
     {...props}
   >
     {children}

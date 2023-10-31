@@ -39,7 +39,7 @@ export const borderedBaseStyle = style({
   borderRadius: "4px",
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
-  lineHeight: `calc(${THEME.fontSize.xl2} - (${borderedBorderWidth}px * 2))`,
+  lineHeight: `calc(${THEME.fontSize.xl3} - (${borderedBorderWidth}px * 2))`,
   backgroundColor: THEME.color.white[800],
 });
 
@@ -92,6 +92,7 @@ export const inputStyle = style([
 export const markerStyle = style([
   inputShapeStyle,
   {
+    flexShrink: 0,
     borderStyle: "solid",
     borderWidth: "1px",
     borderColor: THEME.color.gray[500],

@@ -13,17 +13,25 @@ import {
 import { TIcon } from "@/components";
 import { PrivateBaseInput } from "@/components/base/inputs/base";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
-
+import { BaseProps } from "@/types";
 type PrivateBaseInputProps = ComponentProps<typeof PrivateBaseInput>;
 
-export type Props = {
+type Props = BaseProps & {
   icon?: TIcon;
   onChangeValue?: (value: string) => void;
 } & Omit<PrivateBaseInputProps, "type">;
 
 const TextInput = forwardRef(
   (
-    { icon: Icon, onChangeValue, onChange, error, ...props }: Props,
+    {
+      className,
+      style,
+      icon: Icon,
+      onChangeValue,
+      onChange,
+      error,
+      ...props
+    }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const formControl = useContext(FormControlContext);
@@ -39,9 +47,11 @@ const TextInput = forwardRef(
     return (
       <div
         className={clsx(
+          className,
           styles.textInputStyle,
           styles.textInputExpandStyle[props.expand ? "expand" : "default"]
         )}
+        style={style}
       >
         {Icon && (
           <div className={styles.textInputIconStyle}>

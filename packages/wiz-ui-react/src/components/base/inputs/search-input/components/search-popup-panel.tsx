@@ -10,10 +10,11 @@ import {
   WizIcon,
   WizTag,
 } from "@/components";
+import { BaseProps } from "@/types";
 
 import { SearchInputOption } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   options: SearchInputOption[];
   values: number[];
   width?: string;
@@ -21,6 +22,8 @@ type Props = {
 };
 
 export const SearchPopupPanel: FC<Props> = ({
+  className,
+  style,
   options,
   values,
   width,
@@ -57,11 +60,12 @@ export const SearchPopupPanel: FC<Props> = ({
     <>
       <div
         className={clsx(
+          className,
           styles.searchBlockStyle,
           styles.searchBlockBorderRadiusStyle,
           isOpen && styles.searchBlockBorderStyle
         )}
-        style={{ width }}
+        style={{ ...style, width }}
       >
         {options.map((option) => {
           const isActive = activeOption && activeOption.value === option.value;

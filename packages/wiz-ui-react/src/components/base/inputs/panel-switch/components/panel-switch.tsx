@@ -1,21 +1,29 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/panel-switch-input.css";
 import clsx from "clsx";
-import { useId } from "react";
+import { FC, useId } from "react";
+
+import { BaseProps } from "@/types";
 
 import { PanelItems } from "./type";
 
-type Props = {
+type Props = BaseProps & {
   value: number | null;
   items: PanelItems[];
   onChange: (value: number) => void;
 };
 
-const PanelSwitch = ({ value, items, onChange }: Props) => {
+const PanelSwitch: FC<Props> = ({
+  className,
+  style,
+  value,
+  items,
+  onChange,
+}) => {
   const idPrefix = useId();
 
   return (
-    <div className={styles.panelSwitchStyle}>
+    <div className={clsx(className, styles.panelSwitchStyle)} style={style}>
       {items.map((item, index) => {
         const radioId = `${idPrefix}-${item.value}`;
         const isFirstItem = index === 0;
