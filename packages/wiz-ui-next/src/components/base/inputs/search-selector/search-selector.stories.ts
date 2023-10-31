@@ -57,8 +57,8 @@ v-modelには選択中のアイテムを渡します。
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   const options: SelectBoxOption[] = [];
   for (let i = 1; i <= count; i++) {
-    options.push({ label: label + i, value: i, exLabel });
-    options.push({ label: label + i * 10, value: i * 10, exLabel });
+    options.push({ label: label + i, value: i, exLabel: exLabel });
+    options.push({ label: label + i * 10, value: i * 10, exLabel: exLabel });
   }
   return options;
 };
@@ -305,6 +305,72 @@ Addable.parameters = {
       code: code([1, 2, 3], true, _getDummyOptions("test", 3), "", {
         addable: true,
       }),
+    },
+  },
+};
+
+export const ExlabelWithoutShowExlabel = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3, "(10)"),
+  "new option"
+).bind({});
+ExlabelWithoutShowExlabel.args = {
+  addable: true,
+  showExLabel: false,
+};
+ExlabelWithoutShowExlabel.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3, "(10)"), "", {
+        addable: true,
+      }),
+    },
+  },
+};
+
+export const Exlabel = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3, "(10)"),
+  "new option"
+).bind({});
+Exlabel.args = {
+  addable: true,
+  showExLabel: true,
+};
+Exlabel.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3, "(10)"), "", {
+        addable: true,
+      }),
+    },
+  },
+};
+
+export const ExlabelWithLongLabel = Template(
+  [],
+  true,
+  _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
+  "new option"
+).bind({});
+ExlabelWithLongLabel.args = {
+  addable: true,
+  showExLabel: true,
+};
+ExlabelWithLongLabel.parameters = {
+  docs: {
+    source: {
+      code: code(
+        [1, 2, 3],
+        true,
+        _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
+        "",
+        {
+          addable: true,
+        }
+      ),
     },
   },
 };
