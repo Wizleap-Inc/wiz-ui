@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.23.0
+
+### Minor Changes
+
+- [#1087](https://github.com/Wizleap-Inc/wiz-ui/pull/1087) [`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7) Thanks [@okakyo](https://github.com/okakyo)! - [#1081]: Search Selector にて ExLabel を追加
+
+### Patch Changes
+
+- [#1095](https://github.com/Wizleap-Inc/wiz-ui/pull/1095) [`a114ca91`](https://github.com/Wizleap-Inc/wiz-ui/commit/a114ca913ebb33c42b5c45c69e3828d771746d35) Thanks [@okakyo](https://github.com/okakyo)! - [#986] カレンダーの有効日の文字色を変更 (calendar, date-picker, date-range-picker)
+
 ## 0.22.1
 
 ### Patch Changes
