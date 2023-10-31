@@ -4,7 +4,7 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 const BORDER_WIDTH = "1px";
 
 export const datePickerStyle = style({
-  width: "max-content",
+  width: "100%",
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,

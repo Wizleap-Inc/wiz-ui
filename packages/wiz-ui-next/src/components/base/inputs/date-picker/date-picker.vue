@@ -7,7 +7,6 @@
         datePickerVariantStyle[variant],
         inputBorderStyle[borderState],
       ]"
-      :style="{ width: '100%' }"
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       @click="setIsOpen(!isOpen)"
       @keydown.up="clickToNextYear"
