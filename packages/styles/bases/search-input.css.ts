@@ -91,7 +91,7 @@ export const searchPopupBlockStyle = style({
 });
 
 export const searchPopupBlockBorderRightStyle = style({
-  borderRight: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+  borderRight: `${borderWidth} solid ${THEME.color.gray["500"]}`,
 });
 
 export const searchPopupBlockBorderRadiusStyle = style({
@@ -149,7 +149,7 @@ export const searchCheckboxLabelStyle = style({
   cursor: "pointer",
   ":before": {
     content: "",
-    border: `${borderWidth} solid ${THEME.color.gray["800"]}`,
+    border: `${borderWidth} solid ${THEME.color.gray["500"]}`,
     borderRadius: `calc(${THEME.spacing.xs2} / 2)`,
     width: THEME.spacing.md,
     height: THEME.spacing.md,

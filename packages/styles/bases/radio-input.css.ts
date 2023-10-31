@@ -61,7 +61,7 @@ export const radioLabelColorStyle = styleVariants({
     color: THEME.color.gray["800"],
     ":before": {
       background: THEME.color.white["800"],
-      border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+      border: `${borderWidth} solid ${THEME.color.gray["500"]}`,
     },
   },
   focused: {
