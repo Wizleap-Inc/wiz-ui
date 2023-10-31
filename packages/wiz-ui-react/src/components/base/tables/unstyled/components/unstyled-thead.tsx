@@ -8,8 +8,16 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"thead">;
 
-const UnstyledThead = ({ divider = false, children, ...props }: Props) => (
-  <thead className={clsx(divider && unstyledTheadDividerStyle)} {...props}>
+const UnstyledThead = ({
+  className,
+  divider = false,
+  children,
+  ...props
+}: Props) => (
+  <thead
+    className={clsx(className, divider && unstyledTheadDividerStyle)}
+    {...props}
+  >
     {children}
   </thead>
 );

@@ -2,8 +2,8 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import { FC } from "react";
 
 import { WizHStack, WizISend, WizIconButton, WizTextArea } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   value: string;
   disabled?: boolean;
   placeholder?: string;
@@ -13,6 +13,8 @@ type Props = {
 };
 
 const ChatForm: FC<Props> = ({
+  className,
+  style,
   value,
   disabled,
   placeholder,
@@ -21,7 +23,13 @@ const ChatForm: FC<Props> = ({
   onSubmit,
 }) => {
   return (
-    <WizHStack align="center" gap="xs" nowrap>
+    <WizHStack
+      className={className}
+      style={style}
+      align="center"
+      gap="xs"
+      nowrap
+    >
       <WizTextArea
         value={value}
         placeholder={placeholder}

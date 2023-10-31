@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentProps } from "react";
 
-import { WizDivider, Props } from "../components/divider";
+import { WizDivider } from "../components/divider";
 
 const meta: Meta<typeof WizDivider> = {
   title: "Base/Divider",
@@ -25,7 +26,7 @@ const meta: Meta<typeof WizDivider> = {
 export default meta;
 type Story = StoryObj<typeof WizDivider>;
 
-const Template = (args: Props) => (
+const Template = (args: ComponentProps<typeof WizDivider>) => (
   <div
     style={{
       width: "300px",

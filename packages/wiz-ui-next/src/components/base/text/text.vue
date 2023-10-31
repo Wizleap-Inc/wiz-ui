@@ -116,7 +116,7 @@ const overflowStyles = computed(() => {
   return {
     overflow: "hidden",
     display: "-webkit-box",
-    webkitBoxOrient: "vertical",
+    WebkitBoxOrient: "vertical",
     WebkitLineClamp: props.maxLines,
   };
 });

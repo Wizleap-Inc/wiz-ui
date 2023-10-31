@@ -1,18 +1,26 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import clsx from "clsx";
+import { FC } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   value: boolean;
   ariaLabel: string;
   setValue: (value: boolean) => void;
 };
 
-const ToggleSwitch = ({ value, ariaLabel, ...props }: Props) => {
+const ToggleSwitch: FC<Props> = ({
+  className,
+  style,
+  value,
+  ariaLabel,
+  ...props
+}) => {
   const switchState = value ? "checked" : "default";
 
   return (
-    <label className={styles.toggleSwitchStyle}>
+    <label className={clsx(className, styles.toggleSwitchStyle)} style={style}>
       <input
         className={styles.toggleSwitchInputStyle}
         type="checkbox"

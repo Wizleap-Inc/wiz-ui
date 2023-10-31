@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@wizleap-inc/wiz-ui-icons",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "type": "module",
   "main": "index.ts",
   "scripts": {
@@ -11,7 +11,6 @@
     "format:icon": "prettier --write \"../{wiz-ui,wiz-ui-next,wiz-ui-react}/src/components/icons/*.{ts,vue,tsx}\"",
     "format:constants": "prettier --write \"../constants/component/icon-name.ts\"",
     "lint:react": "eslint --fix ../wiz-ui-react/src/components/icons/*.{ts,tsx}",
-    "lint:vue2": "eslint --fix ../wiz-ui/src/components/icons/*.{ts,vue}",
     "lint:vue3": "eslint --fix ../wiz-ui-next/src/components/icons/*.{ts,vue}"
   },
   "dependencies": {

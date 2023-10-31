@@ -15,8 +15,8 @@ import {
 } from "react";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   clickable?: boolean;
   active?: boolean;
   hover?: boolean;
@@ -31,6 +31,8 @@ type Props = {
 const TinyButton = forwardRef(
   (
     {
+      className,
+      style,
       clickable = true,
       active = true,
       hover = false,
@@ -59,6 +61,7 @@ const TinyButton = forwardRef(
         ref={ref}
         {...props}
         className={clsx(
+          className,
           styles.tinyButtonBaseStyle,
           styles.tinyButtonSizeStyle,
           styles.tinyButtonVaraiantStyle[tinyButtonState],
@@ -69,6 +72,7 @@ const TinyButton = forwardRef(
           px && paddingXStyle[px],
           py && paddingYStyle[py]
         )}
+        style={style}
         disabled={!clickable}
         onMouseEnter={(e) => {
           onMouseEnter?.(e);

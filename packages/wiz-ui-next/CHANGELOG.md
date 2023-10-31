@@ -1,5 +1,33 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.12.1
+
+### Patch Changes
+
+- [#1104](https://github.com/Wizleap-Inc/wiz-ui/pull/1104) [`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector, checkbox-new, search-selector): コンポーネントの全体の高さが 44px になるように調整
+  Fix(search-selector): アイコン色を修正
+
+- [#1102](https://github.com/Wizleap-Inc/wiz-ui/pull/1102) [`5621bfd9`](https://github.com/Wizleap-Inc/wiz-ui/commit/5621bfd95333695d0ed6d5a994e568b40f7d4ef9) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(text): webkitBoxOrient の先頭が大文字になっていない問題 & 型エラーの修正
+
+- Updated dependencies [[`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.1
+
+## 2.12.0
+
+### Minor Changes
+
+- [#1085](https://github.com/Wizleap-Inc/wiz-ui/pull/1085) [`a7b92df8`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7b92df8683e73747e7682c37069f24454c631f7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(pagination): 表示ページ数を制御する Prop を追加
+  Fix(pagination): アイコン色を修正
+
+- [#1040](https://github.com/Wizleap-Inc/wiz-ui/pull/1040) [`e03d8e56`](https://github.com/Wizleap-Inc/wiz-ui/commit/e03d8e56386cd4bf38ac16df94da98de884d726c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(drawer): スライドイン方向、幅、影を指定可能にする
+
+- [#1064](https://github.com/Wizleap-Inc/wiz-ui/pull/1064) [`ec032c2d`](https://github.com/Wizleap-Inc/wiz-ui/commit/ec032c2dd69fbee1a7186754f6fa1b259edcc163) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-picker): 年の表示形式をカスタマイズ可能にする
+
+### Patch Changes
+
+- Updated dependencies [[`a7b92df8`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7b92df8683e73747e7682c37069f24454c631f7), [`c35888db`](https://github.com/Wizleap-Inc/wiz-ui/commit/c35888db4c58a3e59c580e18b981723af005807e)]:
+  - @wizleap-inc/wiz-ui-styles@0.22.0
+
 ## 2.11.1
 
 ### Patch Changes

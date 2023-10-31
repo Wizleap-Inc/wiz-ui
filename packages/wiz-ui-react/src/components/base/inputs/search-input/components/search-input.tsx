@@ -4,12 +4,13 @@ import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { FC, useMemo, useRef, useState } from "react";
 
-import { WizHStack, WizISearch, WizPopup, TIcon } from "@/components";
+import { TIcon, WizHStack, WizISearch, WizPopup } from "@/components";
+import { BaseProps } from "@/types";
 
 import { SearchPopupPanel } from "./search-popup-panel";
 import { SearchInputOption } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   options: SearchInputOption[];
   values: number[];
   name?: string;
@@ -46,6 +47,8 @@ function filterOptions(
 }
 
 const SearchInput: FC<Props> = ({
+  className,
+  style,
   options,
   values,
   name,
@@ -73,8 +76,8 @@ const SearchInput: FC<Props> = ({
 
   return (
     <div
-      className={styles.searchStyle}
-      style={expand ? { width: "100%" } : undefined}
+      className={clsx(className, styles.searchStyle)}
+      style={{ ...style, width: expand ? "100%" : undefined }}
     >
       <input
         ref={inputRef}

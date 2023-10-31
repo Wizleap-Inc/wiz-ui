@@ -8,8 +8,8 @@ import clsx from "clsx";
 import { ComponentProps, ForwardedRef, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   icon: TIcon;
   variant?: "primary" | "sub" | "transparent" | "link";
   disabled?: boolean;
@@ -26,6 +26,8 @@ const iconSVGColor: Record<string, ColorKeys> = {
 const IconButton = forwardRef(
   (
     {
+      className,
+      style,
       icon,
       variant = "primary",
       disabled = false,
@@ -39,9 +41,11 @@ const IconButton = forwardRef(
         ref={ref}
         {...props}
         className={clsx(
+          className,
           styles.iconButtonStyle[variant],
           disabled && styles.iconButtonDisabledStyle
         )}
+        style={style}
         disabled={disabled}
       >
         <WizIcon

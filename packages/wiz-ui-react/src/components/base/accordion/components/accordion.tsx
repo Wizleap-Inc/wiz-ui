@@ -8,10 +8,11 @@ import clsx from "clsx";
 import { FC, ReactNode } from "react";
 
 import { WizHStack, WizIExpandMore, WizIcon } from "@/components";
+import { BaseProps } from "@/types";
 
 import { useToggleAnimation } from "./use-toggle-animation";
 
-type Props = {
+type Props = BaseProps & {
   isOpen: boolean;
   openMessage?: string;
   closeMessage?: string;
@@ -23,6 +24,8 @@ type Props = {
 };
 
 const Accordion: FC<Props> = ({
+  className,
+  style,
   isOpen,
   openMessage = "もっと見る",
   closeMessage = "閉じる",
@@ -38,8 +41,9 @@ const Accordion: FC<Props> = ({
   return (
     <details
       open={isActuallyOpen}
-      style={{ width }}
+      style={{ ...style, width }}
       className={clsx(
+        className,
         styles.accordionDetailsStyle,
         bgColor && backgroundStyle[bgColor]
       )}

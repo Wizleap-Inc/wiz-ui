@@ -3,10 +3,12 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import clsx from "clsx";
 import { FC, useMemo } from "react";
 
+import { BaseProps } from "@/types";
+
 import { createCalendarData } from "./calendar-helper";
 import { CalendarDataItem, DateStatus } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   currentMonth?: Date;
   activeDates?: DateStatus[];
   filledWeeks?: boolean;
@@ -20,6 +22,8 @@ type Props = {
 };
 
 const Calendar: FC<Props> = ({
+  className,
+  style,
   currentMonth = new Date(),
   activeDates,
   filledWeeks,
@@ -64,7 +68,7 @@ const Calendar: FC<Props> = ({
   }
 
   return (
-    <table className={styles.calendarStyle}>
+    <table className={clsx(className, styles.calendarStyle)} style={style}>
       <thead>
         <tr>
           {WEEK_LIST_JP.map((dayLabel) => (

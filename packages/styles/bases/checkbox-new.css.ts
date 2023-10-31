@@ -38,7 +38,7 @@ const borderedBaseStyle = style({
   borderRadius: "4px",
   paddingBlock: THEME.spacing.xs,
   paddingInline: THEME.spacing.md,
-  lineHeight: `calc(${THEME.fontSize.xl2} - (${borderedBorderWidth}px * 2))`,
+  lineHeight: `calc(${THEME.fontSize.xl3} - (${borderedBorderWidth}px * 2))`,
   backgroundColor: THEME.color.white[800],
 });
 
@@ -94,6 +94,7 @@ export const iconWrapperStyle = style([
     position: "relative",
     height: THEME.fontSize.md,
     width: THEME.fontSize.md,
+    flexShrink: 0,
     borderRadius: "2px",
     boxSizing: "border-box",
     backgroundColor: THEME.color.white[800],

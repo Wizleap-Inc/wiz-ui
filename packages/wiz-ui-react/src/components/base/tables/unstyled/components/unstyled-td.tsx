@@ -8,9 +8,18 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"td">;
 
-const UnstyledTd = ({ align = "center", children, ...props }: Props) => (
+const UnstyledTd = ({
+  className,
+  align = "center",
+  children,
+  ...props
+}: Props) => (
   <td
-    className={clsx(styles.unstyledTdStyle, styles.unstyledTdAlignStyle[align])}
+    className={clsx(
+      className,
+      styles.unstyledTdStyle,
+      styles.unstyledTdAlignStyle[align]
+    )}
     {...props}
   >
     {children}

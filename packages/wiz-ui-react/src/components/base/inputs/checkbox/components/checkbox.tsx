@@ -1,13 +1,14 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-input.css";
 import clsx from "clsx";
-import { ComponentPropsWithoutRef, FC, useState } from "react";
+import { FC, useState } from "react";
 
 import { WizStack } from "@/components";
+import { BaseProps } from "@/types";
 
 import { CheckBoxOption } from "./types";
 
-type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
+type Props = BaseProps & {
   options: CheckBoxOption[];
   values: number[];
   disabled?: boolean;
@@ -18,6 +19,8 @@ type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
 };
 
 const CheckBox: FC<Props> = ({
+  className,
+  style,
   options,
   values,
   disabled,
@@ -31,7 +34,13 @@ const CheckBox: FC<Props> = ({
     null
   );
   return (
-    <WizStack {...props} gap={gap} direction={direction}>
+    <WizStack
+      className={className}
+      style={style}
+      {...props}
+      gap={gap}
+      direction={direction}
+    >
       {options.map((option) => {
         const isChecked = values.includes(option.value);
         const isDisabled = disabled || option.disabled;
