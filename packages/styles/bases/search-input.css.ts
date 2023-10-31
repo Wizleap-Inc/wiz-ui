@@ -14,7 +14,7 @@ export const searchInputStyle = style({
   padding: `calc(${THEME.spacing.sm} - ${BORDER_WIDTH}) ${THEME.spacing.xl2} calc(${THEME.spacing.sm} - ${BORDER_WIDTH}) ${THEME.spacing.xl3}`,
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.spacing.lg,
-  color: THEME.color.gray[600],
+  color: THEME.color.gray[700],
   boxSizing: "border-box",
   ":focus": {
     outline: "none",
@@ -91,7 +91,7 @@ export const searchPopupBlockStyle = style({
 });
 
 export const searchPopupBlockBorderRightStyle = style({
-  borderRight: `${borderWidth} solid ${THEME.color.gray["500"]}`,
+  borderRight: `${borderWidth} solid ${THEME.color.gray["400"]}`,
 });
 
 export const searchPopupBlockBorderRadiusStyle = style({
@@ -149,7 +149,7 @@ export const searchCheckboxLabelStyle = style({
   cursor: "pointer",
   ":before": {
     content: "",
-    border: `${borderWidth} solid ${THEME.color.gray["500"]}`,
+    border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
     borderRadius: `calc(${THEME.spacing.xs2} / 2)`,
     width: THEME.spacing.md,
     height: THEME.spacing.md,

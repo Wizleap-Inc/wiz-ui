@@ -58,7 +58,7 @@ export const checkboxIconBaseStyle = style({
 
 export const checkboxIconVariantStyle = styleVariants({
   default: {
-    border: `${borderWidth} solid ${THEME.color.gray["600"]}`,
+    border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
   },
   checked: {
     fill: THEME.color.green["800"],
@@ -75,7 +75,7 @@ export const checkboxIconContainerStyle = style({
 
 export const checkboxIconFocusedColorStyle = styleVariants({
   default: {
-    outline: `${focusedBorderWidth} solid ${THEME.color.gray[600]}`,
+    outline: `${focusedBorderWidth} solid ${THEME.color.gray[800]}`,
   },
   checked: {
     fill: THEME.color.green["800"],
