@@ -58,7 +58,6 @@
         >
           <span :class="popupButtonGroupInnerContainerStyle">
             <span>{{ item.item.option.label }}</span>
-
             <WizIcon
               v-if="item.item.option.icon"
               :icon="item.item.option.icon"
@@ -74,6 +73,9 @@
               size="md"
             />
           </span>
+          <span v-if="item.item.option.exLabel">{{
+            item.item.option.exLabel
+          }}</span>
         </div>
       </div>
     </div>
