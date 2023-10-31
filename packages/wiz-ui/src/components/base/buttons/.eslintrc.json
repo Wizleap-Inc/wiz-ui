@@ -1,5 +1,0 @@
-{
-  "rules": {
-    "vue/html-button-has-type": "off"
-  }
-}
