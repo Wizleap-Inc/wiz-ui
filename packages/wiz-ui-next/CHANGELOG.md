@@ -1,5 +1,22 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.13.0
+
+### Minor Changes
+
+- [#1087](https://github.com/Wizleap-Inc/wiz-ui/pull/1087) [`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7) Thanks [@okakyo](https://github.com/okakyo)! - [#1081]: Search Selector にて ExLabel を追加
+
+- [#1113](https://github.com/Wizleap-Inc/wiz-ui/pull/1113) [`be535cd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/be535cd05fa571145cef9a1bc2dfe9874007d2b4) Thanks [@ichi-h](https://github.com/ichi-h)! - Feat(select-box): dropdown の高さを制御するプロパティを追加
+
+### Patch Changes
+
+- [#1098](https://github.com/Wizleap-Inc/wiz-ui/pull/1098) [`a479e3bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/a479e3bb56c002e962b7effc22a948fca973b58d) Thanks [@okakyo](https://github.com/okakyo)! - [#1096] Input タグの 入力中、選択中、選択肢 を gray.800 に変更
+
+- [#1107](https://github.com/Wizleap-Inc/wiz-ui/pull/1107) [`bd9dbc7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/bd9dbc7e67231e386efe298009a40ad9a973393c) Thanks [@okakyo](https://github.com/okakyo)! - [#1094] Selectbox の未選択の選択肢を display:none で非表示になっていた仕様を修正
+
+- Updated dependencies [[`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7), [`a479e3bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/a479e3bb56c002e962b7effc22a948fca973b58d), [`be535cd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/be535cd05fa571145cef9a1bc2dfe9874007d2b4)]:
+  - @wizleap-inc/wiz-ui-styles@0.23.0
+
 ## 2.12.1
 
 ### Patch Changes
