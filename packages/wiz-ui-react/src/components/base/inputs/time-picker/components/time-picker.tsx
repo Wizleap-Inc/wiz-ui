@@ -151,6 +151,7 @@ const TimePicker: FC<Props> = ({
                     key={"hh" + option}
                     className={clsx([
                       styles.timePickerSelectorOptionStyle,
+                      styles.timePickerCursorStyle[timePickerCursor],
                       option !== time?.hour &&
                         styles.timePickerSelectorOptionItemStyle,
                       option === time?.hour &&
@@ -196,6 +197,7 @@ const TimePicker: FC<Props> = ({
                     key={"mm" + option}
                     className={clsx([
                       styles.timePickerSelectorOptionStyle,
+                      styles.timePickerCursorStyle[timePickerCursor],
                       option !== time?.minute &&
                         styles.timePickerSelectorOptionItemStyle,
                       option === time?.minute &&

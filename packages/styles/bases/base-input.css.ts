@@ -5,7 +5,7 @@ export const baseInputStyle = style({
   borderRadius: THEME.spacing.xs2,
   fontSize: THEME.fontSize.sm,
   lineHeight: THEME.fontSize.lg,
-  color: THEME.color.gray[700],
+  color: THEME.color.gray[800],
   boxSizing: "border-box",
 
   "::placeholder": {
