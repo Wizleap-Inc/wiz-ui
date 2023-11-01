@@ -14,7 +14,7 @@ export const dropdownSkeletonStyle = style({
 export const dropdownItemStyle = style({
   border: "none",
   font: "inherit",
-  color: "inherit",
+  color: THEME.color.gray[800],
   background: "none",
   width: "100%",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,

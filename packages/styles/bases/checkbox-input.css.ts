@@ -20,7 +20,7 @@ export const checkboxLabelStyle = style({
   position: "relative",
   display: "flex",
   alignItems: "center",
-  color: THEME.color.gray["600"],
+  color: THEME.color.gray["800"],
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,
   userSelect: "none",
