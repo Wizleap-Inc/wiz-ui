@@ -1,18 +1,5 @@
 # @wizleap-inc/wiz-ui-next
 
-## 2.13.0
-
-### Minor Changes
-
-- [#1087](https://github.com/Wizleap-Inc/wiz-ui/pull/1087) [`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7) Thanks [@okakyo](https://github.com/okakyo)! - [#1081]: Search Selector にて ExLabel を追加
-
-- [#1084](https://github.com/Wizleap-Inc/wiz-ui/pull/1084) [`468eff9c`](https://github.com/Wizleap-Inc/wiz-ui/commit/468eff9c4ac68f8d45be1f0330120dc8795503f4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(select-box): dropdown の高さを制御するプロパティを追加
-
-### Patch Changes
-
-- Updated dependencies [[`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7), [`a114ca91`](https://github.com/Wizleap-Inc/wiz-ui/commit/a114ca913ebb33c42b5c45c69e3828d771746d35)]:
-  - @wizleap-inc/wiz-ui-styles@0.23.0
-
 ## 2.12.1
 
 ### Patch Changes
