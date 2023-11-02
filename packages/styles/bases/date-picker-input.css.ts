@@ -19,7 +19,7 @@ export const datePickerVariantStyle = styleVariants({
     cursor: "pointer",
   },
   selected: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
     background: THEME.color.white["800"],
     cursor: "pointer",
   },
@@ -49,7 +49,7 @@ export const datePickerMonthSelectorItemStyle = style({
   borderRadius: THEME.spacing.xs2,
   border: "none",
   background: "transparent",
-  fill: THEME.color.gray["700"],
+  fill: THEME.color.gray["800"],
   "@media": {
     "(any-hover: hover)": {
       ":hover": {
@@ -72,7 +72,7 @@ export const datePickerYearSelectorItemStyle = style({
   borderRadius: THEME.spacing.xs2,
   border: "none",
   background: "transparent",
-  fill: THEME.color.gray["700"],
+  fill: THEME.color.gray["800"],
   "@media": {
     "(any-hover: hover)": {
       ":hover": {

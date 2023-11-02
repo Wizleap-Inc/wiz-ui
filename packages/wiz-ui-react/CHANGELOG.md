@@ -1,5 +1,20 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.38.0
+
+### Minor Changes
+
+- [#1087](https://github.com/Wizleap-Inc/wiz-ui/pull/1087) [`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7) Thanks [@okakyo](https://github.com/okakyo)! - [#1081]: Search Selector にて ExLabel を追加
+
+- [#1113](https://github.com/Wizleap-Inc/wiz-ui/pull/1113) [`be535cd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/be535cd05fa571145cef9a1bc2dfe9874007d2b4) Thanks [@ichi-h](https://github.com/ichi-h)! - Feat(select-box): dropdown の高さを制御するプロパティを追加
+
+### Patch Changes
+
+- [#1098](https://github.com/Wizleap-Inc/wiz-ui/pull/1098) [`a479e3bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/a479e3bb56c002e962b7effc22a948fca973b58d) Thanks [@okakyo](https://github.com/okakyo)! - [#1096] Input タグの 入力中、選択中、選択肢 を gray.800 に変更
+
+- Updated dependencies [[`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7), [`a479e3bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/a479e3bb56c002e962b7effc22a948fca973b58d), [`be535cd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/be535cd05fa571145cef9a1bc2dfe9874007d2b4)]:
+  - @wizleap-inc/wiz-ui-styles@0.23.0
+
 ## 0.37.0
 
 ### Minor Changes

@@ -52,7 +52,7 @@ export const selectBoxInnerBoxSelectedItemStyle = style({
   border: `1px solid ${THEME.color.gray["400"]}`,
   borderRadius: THEME.spacing.xs2,
 
-  color: THEME.color.gray["700"],
+  color: THEME.color.gray["800"],
 });
 
 export const selectBoxInnerBoxSelectedLabelStyle = style({
@@ -91,7 +91,6 @@ export const selectBoxSelectorStyle = style({
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
   maxHeight: "25rem",
-  maxWidth: "15rem",
   overflowY: "auto",
 });
 
@@ -102,7 +101,7 @@ export const selectBoxSelectorOptionStyle = style({
   alignItems: "center",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray["700"],
+  color: THEME.color.gray["800"],
   boxSizing: "border-box",
   cursor: "pointer",
   "@media": {
@@ -135,7 +134,7 @@ export const selectBoxSearchInputStyle = style({
   lineHeight: THEME.fontSize.xl,
   flexGrow: 1,
   fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray["500"],
+  color: THEME.color.gray["800"],
   "::placeholder": {
     color: THEME.color.gray["500"],
     userSelect: "none",

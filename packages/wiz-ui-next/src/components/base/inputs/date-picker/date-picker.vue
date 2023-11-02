@@ -51,7 +51,7 @@
                 as="span"
                 fontSize="xs"
                 line-height="lg"
-                color="gray.700"
+                color="gray.800"
               >
                 {{ formatYear(currentMonth.getFullYear()) }}
               </WizText>
@@ -64,7 +64,7 @@
                 >
                   <WizIArrowDropUp
                     :class="[
-                      fillStyle['gray.700'],
+                      fillStyle['gray.800'],
                       fontSizeStyle['xs2'],
                       datePickerArrowIconStyle,
                     ]"
@@ -78,7 +78,7 @@
                 >
                   <WizIArrowDropDown
                     :class="[
-                      fillStyle['gray.700'],
+                      fillStyle['gray.800'],
                       fontSizeStyle['xs2'],
                       datePickerArrowIconStyle,
                     ]"
@@ -86,7 +86,7 @@
                 </button>
               </WizVStack>
             </WizHStack>
-            <WizText as="span" fontSize="xs" color="gray.700">
+            <WizText as="span" fontSize="xs" color="gray.800">
               {{ currentDateTitle }}
             </WizText>
           </WizHStack>

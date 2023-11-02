@@ -32,7 +32,7 @@ export const timePickerBoxColorStyle = styleVariants({
     color: THEME.color.gray["500"],
   },
   selected: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
   },
   disabled: {
     color: THEME.color.gray["500"],
@@ -103,7 +103,7 @@ export const timePickerSelectorOptionItemSelectedStyle = style({
 
 export const timePickerSelectorOptionItemColorStyle = styleVariants({
   default: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
   },
   selected: {
     color: THEME.color.white["800"],

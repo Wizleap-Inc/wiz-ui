@@ -94,6 +94,7 @@ export const iconWrapperStyle = style([
     position: "relative",
     height: THEME.fontSize.md,
     width: THEME.fontSize.md,
+    flexShrink: 0,
     borderRadius: "2px",
     boxSizing: "border-box",
     backgroundColor: THEME.color.white[800],
