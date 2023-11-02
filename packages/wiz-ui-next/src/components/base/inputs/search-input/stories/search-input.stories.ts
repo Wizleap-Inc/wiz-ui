@@ -49,6 +49,9 @@ export default {
     icon: {
       control: { type: "object" },
     },
+    emptyMessage: {
+      content: { type: "text" },
+    },
   },
 } as Meta<typeof WizSearchInput>;
 

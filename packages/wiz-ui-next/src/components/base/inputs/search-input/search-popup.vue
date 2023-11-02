@@ -16,14 +16,20 @@
         ]"
         :style="{ width: computedPopupWidth }"
       >
-        <div v-if="option.children.length">
+        <div
+          v-if="option.children.length === 0"
+          :class="[styles.searchDropdownEmptyMessageStyle]"
+        >
+          {{ emptyMessage }}
+        </div>
+        <div v-else>
           <div
             v-for="(item, key) in option.children"
             :key="`${item.label}_${item.value}_${key}`"
           >
             <!-- Dropdown -->
             <div
-              v-if="item.children && item.children.length"
+              v-if="item.children"
               :class="styles.searchPopupDropdownItemStyle"
             >
               <WizHStack
@@ -124,9 +130,6 @@
             <WizDivider color="gray.300" />
           </div>
         </div>
-        <div v-else :class="[styles.searchDropdownEmptyMessageStyle]">
-          {{ emptyMessage }}
-        </div>
       </div>
       <WizSearchPopup
         v-model="checkValues"
@@ -135,6 +138,7 @@
         :popupWidth="computedPopupWidth"
         :dy="activeItemIndex || 0"
         :parentScrollAmount="scrollAmount"
+        :emptyMessage="emptyMessage"
       />
     </div>
   </template>
@@ -179,8 +183,7 @@ const props = defineProps({
   },
   emptyMessage: {
     type: String,
-    required: false,
-    default: "選択肢がありません。",
+    required: true,
   },
 });
 
