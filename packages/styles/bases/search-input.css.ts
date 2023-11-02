@@ -113,7 +113,7 @@ export const searchDropdownLabelStyle = style({
   paddingLeft: THEME.spacing.xs,
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray[700],
+  color: THEME.color.gray[800],
   userSelect: "none",
   "@media": {
     "(any-hover: hover)": {
@@ -153,7 +153,7 @@ export const searchCheckboxLabelStyle = style({
   position: "relative",
   display: "flex",
   alignItems: "center",
-  color: THEME.color.gray["600"],
+  color: THEME.color.gray["800"],
   lineHeight: THEME.fontSize.xl3,
   fontSize: THEME.fontSize.sm,
   gap: THEME.spacing.sm,

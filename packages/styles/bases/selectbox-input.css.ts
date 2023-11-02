@@ -38,7 +38,7 @@ export const selectBoxInnerBoxSelectedValueStyle = style({
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
-  color: THEME.color.gray["700"],
+  color: THEME.color.gray["800"],
 });
 
 export const selectBoxInnerBoxLessStyle = style({
@@ -67,7 +67,7 @@ export const selectBoxSelectorOptionStyle = style({
   alignItems: "center",
   padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
   fontSize: THEME.fontSize.sm,
-  color: THEME.color.gray["700"],
+  color: THEME.color.gray["800"],
   boxSizing: "border-box",
   cursor: "pointer",
   "@media": {

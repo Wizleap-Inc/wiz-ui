@@ -36,20 +36,20 @@
           :style="{ width: computedPopupWidth }"
         >
           <div
-            v-for="(option, key) in filteredOptions"
-            :key="`${option.label}_${option.value}_${key}`"
+            v-for="(item, key) in filteredOptions"
+            :key="`${item.label}_${item.value}_${key}`"
           >
             <!-- Dropdown -->
-            <div v-if="option.children" :class="styles.searchDropdownItemStyle">
+            <div v-if="item.children" :class="styles.searchDropdownItemStyle">
               <WizHStack
                 align="center"
                 justify="between"
                 :class="[
                   styles.searchDropdownLabelStyle,
-                  selectedItem.includes(option.value) &&
+                  selectedItem.includes(item.value) &&
                     styles.searchDropdownSelectingItemStyle,
                 ]"
-                @mouseover="onMouseover(option.value)"
+                @mouseover="onMouseover(item.value)"
                 @mouseout="activeItem = null"
               >
                 <WizHStack
@@ -60,12 +60,12 @@
                   gap="xs2"
                 >
                   <div :class="styles.searchInputLabelStyle">
-                    {{ option.label }}
+                    {{ item.label }}
                   </div>
                   <WizHStack gap="xs" nowrap>
-                    <template v-if="option.tag">
+                    <template v-if="item.tag">
                       <WizTag
-                        :label="option.tag.label"
+                        :label="item.tag.label"
                         variant="white"
                         width="20px"
                         font-size="xs2"
@@ -74,7 +74,7 @@
                     <WizIcon
                       size="xl2"
                       :icon="WizIChevronRight"
-                      :color="computedIconColor(option.value)"
+                      :color="computedIconColor(item.value)"
                     />
                   </WizHStack>
                 </WizHStack>
@@ -84,55 +84,30 @@
             <div
               v-else
               :class="styles.searchDropdownCheckboxItemStyle"
-              @mouseover="activeItem = option.value"
+              @mouseover="activeItem = item.value"
               @mouseout="activeItem = null"
             >
-              <WizHStack width="100%" align="center" nowrap gap="xs2">
-                <div :class="styles.searchInputLabelStyle" width="100%">
-                  <input
-                    v-model="checkValues"
-                    :value="option.value"
-                    :class="styles.searchCheckboxInputStyle"
-                    type="checkbox"
-                    :id="`${option.label}_${option.value}`"
-                    :name="`${option.label}_${option.value}`"
-                  />
-                  <label
-                    :class="[
-                      styles.searchCheckboxLabelStyle,
-                      (checkValues.includes(option.value) ||
-                        activeItem === option.value) &&
-                        styles.searchCheckboxLabelCheckedStyle,
-                    ]"
-                    :for="`${option.label}_${option.value}`"
-                    @mouseover="
-                      selectedItem = [];
-                      isBorder = false;
-                    "
-                  >
-                    <WizICheck
-                      v-if="checkValues.includes(option.value)"
-                      :class="styles.searchCheckboxIconStyle"
+              <WizCheckBoxNew
+                :style="{ width: '100%' }"
+                :checked="checkValues.includes(item.value)"
+                :value="item.value"
+                :id="`${item.label}_${item.value}`"
+                @update:checked="handleClickCheckbox(item.value)"
+              >
+                <WizHStack width="100%" align="center" nowrap gap="xs2">
+                  <div :class="styles.searchInputLabelStyle">
+                    {{ item.label }}
+                  </div>
+                  <template v-if="item.tag">
+                    <WizTag
+                      :label="item.tag.label"
+                      variant="white"
+                      width="20px"
+                      font-size="xs2"
                     />
-                    <span
-                      :class="[
-                        (checkValues.includes(option.value) ||
-                          activeItem === option.value) &&
-                          styles.searchCheckboxBlockCheckedStyle,
-                      ]"
-                      >{{ option.label }}</span
-                    >
-                  </label>
-                </div>
-                <template v-if="option.tag">
-                  <WizTag
-                    :label="option.tag.label"
-                    variant="white"
-                    width="20px"
-                    font-size="xs2"
-                  />
-                </template>
-              </WizHStack>
+                  </template>
+                </WizHStack>
+              </WizCheckBoxNew>
             </div>
             <WizDivider color="gray.300" />
           </div>
@@ -157,6 +132,7 @@ import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, onMounted, ref, watch } from "vue";
 
 import {
+  WizCheckBoxNew,
   WizDivider,
   WizHStack,
   WizISearch,
@@ -166,7 +142,7 @@ import {
   WizSearchPopup,
   WizTag,
 } from "@/components";
-import { TIcon, WizICheck, WizIChevronRight } from "@/components/icons";
+import { TIcon, WizIChevronRight } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -273,6 +249,15 @@ const onMouseover = (value: number) => {
   selectedItem.value = [];
   if (!selectedItem.value.includes(value)) {
     selectedItem.value.push(value);
+  }
+};
+
+const handleClickCheckbox = (value: number) => {
+  if (checkValues.value.includes(value)) {
+    const index = checkValues.value.indexOf(value);
+    checkValues.value.splice(index, 1);
+  } else {
+    checkValues.value.push(value);
   }
 };
 
