@@ -27,6 +27,7 @@ const baseToggleSwitchSliderStyle = style({
   bottom: 0,
   borderRadius: THEME.spacing.xl,
   boxSizing: "border-box",
+  transition: "0.4s",
   ":before": {
     backgroundColor: THEME.color.white[800],
     position: "absolute",
