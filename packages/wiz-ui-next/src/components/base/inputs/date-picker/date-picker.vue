@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer>
+  <WizPopupContainer :width="width">
     <button
       type="button"
       :class="[
@@ -7,9 +7,6 @@
         datePickerVariantStyle[variant],
         inputBorderStyle[borderState],
       ]"
-      :style="{
-        width,
-      }"
       :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
       @click="setIsOpen(!isOpen)"
       @keydown.up="clickToNextYear"

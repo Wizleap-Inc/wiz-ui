@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import WizTimePicker from "./time-picker.vue";
@@ -42,6 +42,11 @@ export const Default = Template.bind({});
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+
+export const Expand = Template.bind({});
+Expand.args = {
+  width: "100%",
 };
 
 export const IsDirectionFixed = Template.bind({});

@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const popupStyle = style({
@@ -10,14 +10,8 @@ export const popupShadowStyle = style({
   filter: `drop-shadow(${THEME.shadow.sm})`,
 });
 
-export const popupContainerStyle = styleVariants({
-  default: {
-    width: "fit-content",
-    height: "fit-content",
-  },
-  expanded: {
-    width: "100%",
-  },
+export const popupContainerStyle = style({
+  height: "fit-content",
 });
 
 export const popupHiddenStyle = style({
