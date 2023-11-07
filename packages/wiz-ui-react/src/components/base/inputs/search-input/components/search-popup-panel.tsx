@@ -71,7 +71,7 @@ export const SearchPopupPanel: FC<Props> = ({
         style={{ ...style, width }}
       >
         {options.length > 0 ? (
-          options.map((option, i) => {
+          options.map((option) => {
             const isActive =
               activeOption && activeOption.value === option.value;
             const optionTag = option.tag;
