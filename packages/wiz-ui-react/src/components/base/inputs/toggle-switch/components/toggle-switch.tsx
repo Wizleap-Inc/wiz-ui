@@ -7,6 +7,7 @@ import { BaseProps } from "@/types";
 type Props = BaseProps & {
   value: boolean;
   ariaLabel: string;
+  disabled?: boolean;
   setValue: (value: boolean) => void;
 };
 
@@ -15,6 +16,7 @@ const ToggleSwitch: FC<Props> = ({
   style,
   value,
   ariaLabel,
+  disabled,
   ...props
 }) => {
   const switchState = value ? "checked" : "default";
@@ -24,14 +26,16 @@ const ToggleSwitch: FC<Props> = ({
       <input
         className={styles.toggleSwitchInputStyle}
         type="checkbox"
+        disabled={disabled}
         aria-label={ariaLabel}
         onChange={(e) => props.setValue(e.target.checked)}
       />
       <span
         className={clsx(
-          styles.toggleSwitchSliderStyle,
-          styles.toggleSwitchColorStyle[switchState],
-          value && styles.toggleSwitchSliderCheckedStyle
+          styles.toggleSwitchSliderStyle[switchState],
+          disabled
+            ? styles.toggleSwitchDisabledColorStyle[switchState]
+            : styles.toggleSwitchColorStyle[switchState]
         )}
       />
     </label>
