@@ -20,6 +20,7 @@ type Props = BaseProps & {
   inputWidth?: string;
   popupWidth?: string;
   isDirectionFixed?: boolean;
+  emptyMessage?: string;
   icon?: TIcon;
   onChangeValues: (values: number[]) => void;
 };
@@ -30,7 +31,7 @@ function filterOptions(
 ): SearchInputOption[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
-    if (option.children.length === 0) {
+    if (!option.children || option.children.length === 0) {
       return isMatched ? [option] : [];
     }
     if (isMatched) return [option];
@@ -57,6 +58,7 @@ const SearchInput: FC<Props> = ({
   inputWidth = "10rem",
   popupWidth,
   isDirectionFixed = false,
+  emptyMessage = "選択肢がありません。",
   onChangeValues,
   icon = WizISearch,
 }) => {
@@ -114,6 +116,7 @@ const SearchInput: FC<Props> = ({
               options={filteredOptions}
               values={values}
               width={popupWidth}
+              emptyMessage={emptyMessage}
               onChangeValues={(changed) => onChangeValues(changed)}
             />
           </WizHStack>

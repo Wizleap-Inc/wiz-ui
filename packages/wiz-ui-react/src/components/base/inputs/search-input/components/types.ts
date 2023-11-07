@@ -5,6 +5,6 @@ export type Tag = {
 export type SearchInputOption = {
   label: string;
   value: number;
+  children?: SearchInputOption[];
   tag?: Tag;
-  children: SearchInputOption[];
 };

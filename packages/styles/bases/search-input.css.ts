@@ -125,6 +125,17 @@ export const searchDropdownLabelStyle = style({
   },
 });
 
+export const searchDropdownEmptyMessageStyle = style({
+  display: "flex",
+  height: "100%",
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: THEME.fontSize.sm,
+  color: THEME.color.gray[600],
+  lineHeight: THEME.fontSize.xl3,
+  userSelect: "none",
+});
+
 export const searchDropdownSelectingItemStyle = style({
   background: THEME.color.green[300],
   color: THEME.color.green[800],

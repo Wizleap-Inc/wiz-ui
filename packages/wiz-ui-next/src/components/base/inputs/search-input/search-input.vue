@@ -40,10 +40,7 @@
             :key="`${item.label}_${item.value}_${key}`"
           >
             <!-- Dropdown -->
-            <div
-              v-if="item.children.length"
-              :class="styles.searchDropdownItemStyle"
-            >
+            <div v-if="item.children" :class="styles.searchDropdownItemStyle">
               <WizHStack
                 align="center"
                 justify="between"
@@ -120,6 +117,7 @@
           :options="filteredOptions"
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
+          :emptyMessage="emptyMessage"
           :dy="activeItemIndex || 0"
         />
       </WizHStack>
@@ -200,6 +198,11 @@ const props = defineProps({
     required: false,
     default: WizISearch,
   },
+  emptyMessage: {
+    type: String,
+    required: false,
+    default: "選択肢がありません。",
+  },
 });
 
 const emit = defineEmits<{
@@ -262,16 +265,17 @@ const filterOptions =
   (match: (label: string) => boolean) =>
   (options: SearchInputOption[]): SearchInputOption[] =>
     options.flatMap((option) => {
-      if (option.children.length === 0) {
-        return match(option.label) ? [option] : [];
+      const isMatched = match(option.label);
+      if (!option.children || option.children.length === 0) {
+        return isMatched ? [option] : [];
       }
-      if (match(option.label)) return [option];
+      if (isMatched) return [option];
       const children = filterOptions(match)(option.children);
       if (children.length === 0) return [];
       return [
         {
           ...option,
-          children: children,
+          children,
         },
       ];
     });
