@@ -41,16 +41,10 @@ const baseToggleSwitchSliderStyle = style({
 });
 
 export const toggleSwitchSliderStyle = styleVariants({
-  default: [
-    baseToggleSwitchSliderStyle,
-    {
-      backgroundColor: THEME.color.gray[600],
-    },
-  ],
+  default: [baseToggleSwitchSliderStyle],
   checked: [
     baseToggleSwitchSliderStyle,
     {
-      backgroundColor: THEME.color.green[800],
       ":before": {
         WebkitTransform: `translateX(calc(100% + ${borderWidth} * 2))`,
         msTransform: `translateX(calc(100% + ${borderWidth} * 2))`,
@@ -58,4 +52,24 @@ export const toggleSwitchSliderStyle = styleVariants({
       },
     },
   ],
+});
+
+export const toggleSwitchColorStyle = styleVariants({
+  default: {
+    backgroundColor: THEME.color.gray[500],
+  },
+  checked: {
+    backgroundColor: THEME.color.green[800],
+  },
+});
+
+export const toggleSwitchDisabledColorStyle = styleVariants({
+  default: {
+    backgroundColor: THEME.color.gray[400],
+    cursor: "not-allowed",
+  },
+  checked: {
+    backgroundColor: THEME.color.green[500],
+    cursor: "not-allowed",
+  },
 });

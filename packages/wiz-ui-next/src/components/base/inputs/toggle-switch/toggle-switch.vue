@@ -1,22 +1,26 @@
 <template>
-  <label :class="toggleSwitchStyle">
+  <label :class="styles.toggleSwitchStyle">
     <input
-      :class="toggleSwitchInputStyle"
+      :class="styles.toggleSwitchInputStyle"
       type="checkbox"
+      :disabled="disabled"
       :aria-label="ariaLabel"
       v-model="switchValue"
     />
-    <span :class="toggleSwitchSliderStyle[switchState]"></span>
+    <span
+      :class="[
+        styles.toggleSwitchSliderStyle[switchState],
+        disabled
+          ? styles.toggleSwitchDisabledColorStyle[switchState]
+          : styles.toggleSwitchColorStyle[switchState],
+      ]"
+    ></span>
   </label>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  toggleSwitchInputStyle,
-  toggleSwitchSliderStyle,
-  toggleSwitchStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import { computed } from "vue";
 
 defineOptions({
@@ -31,6 +35,11 @@ const props = defineProps({
   ariaLabel: {
     type: String,
     required: true,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
