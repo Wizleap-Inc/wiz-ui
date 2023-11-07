@@ -27,13 +27,7 @@ const ToggleSwitch: FC<Props> = ({
         aria-label={ariaLabel}
         onChange={(e) => props.setValue(e.target.checked)}
       />
-      <span
-        className={clsx(
-          styles.toggleSwitchSliderStyle,
-          styles.toggleSwitchColorStyle[switchState],
-          value && styles.toggleSwitchSliderCheckedStyle
-        )}
-      />
+      <span className={styles.toggleSwitchSliderStyle[switchState]} />
     </label>
   );
 };

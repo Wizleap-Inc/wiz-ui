@@ -12,55 +12,50 @@ export const toggleSwitchStyle = style({
   height: switchHeight,
 });
 
-export const toggleSwitchColorStyle = styleVariants({
-  default: {
-    backgroundColor: THEME.color.gray["600"],
-    border: `${borderWidth} solid ${THEME.color.gray["600"]}`,
-    ":before": {
-      backgroundColor: THEME.color.gray["600"],
-    },
-  },
-  checked: {
-    backgroundColor: THEME.color.green["800"],
-    border: `${borderWidth} solid ${THEME.color.green["800"]}`,
-    ":before": {
-      backgroundColor: THEME.color.green["800"],
-    },
-  },
-});
-
 export const toggleSwitchInputStyle = style({
   opacity: 0,
   width: 0,
   height: 0,
 });
 
-export const toggleSwitchSliderStyle = style({
+const baseToggleSwitchSliderStyle = style({
   position: "absolute",
   cursor: "pointer",
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: THEME.color.white["800"],
   borderRadius: THEME.spacing.xl,
   boxSizing: "border-box",
   ":before": {
+    backgroundColor: THEME.color.white[800],
     position: "absolute",
     content: '""',
-    height: `calc(${switchWidth} / 3)`,
-    width: `calc(${switchWidth} / 3)`,
-    top: `calc((${switchHeight} - ${borderWidth} * 2 - calc(${switchWidth} / 3)) / 2)`,
-    left: THEME.spacing.xs2,
+    height: `calc(${switchHeight} - ${borderWidth} * 2)`, // 高さを調整
+    width: `calc(${switchHeight} - ${borderWidth} * 2)`, // 幅を調整
+    top: `calc(50% - (${switchHeight} - ${borderWidth} * 2) / 2)`, // 中央に来るように調整
+    left: borderWidth,
     borderRadius: THEME.spacing.max,
     transition: "0.4s",
   },
 });
 
-export const toggleSwitchSliderCheckedStyle = style({
-  ":before": {
-    WebkitTransform: `translateX(calc(${switchWidth} - calc((${THEME.spacing.xs2} + ${borderWidth}) * 2) - calc(${switchWidth} / 3)))`,
-    msTransform: `translateX(calc(${switchWidth} - calc((${THEME.spacing.xs2} + ${borderWidth}) * 2) - calc(${switchWidth} / 3)))`,
-    transform: `translateX(calc(${switchWidth} - calc((${THEME.spacing.xs2} + ${borderWidth}) * 2) - calc(${switchWidth} / 3)))`,
-  },
+export const toggleSwitchSliderStyle = styleVariants({
+  default: [
+    baseToggleSwitchSliderStyle,
+    {
+      backgroundColor: THEME.color.gray[600],
+    },
+  ],
+  checked: [
+    baseToggleSwitchSliderStyle,
+    {
+      backgroundColor: THEME.color.green[800],
+      ":before": {
+        WebkitTransform: `translateX(calc(100% + ${borderWidth} * 2))`,
+        msTransform: `translateX(calc(100% + ${borderWidth} * 2))`,
+        transform: `translateX(calc(100% + ${borderWidth} * 2))`,
+      },
+    },
+  ],
 });

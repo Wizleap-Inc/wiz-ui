@@ -6,24 +6,16 @@
       :aria-label="ariaLabel"
       v-model="switchValue"
     />
-    <span
-      :class="[
-        toggleSwitchSliderStyle,
-        toggleSwitchColorStyle[switchState],
-        switchValue && toggleSwitchSliderCheckedStyle,
-      ]"
-    ></span>
+    <span :class="toggleSwitchSliderStyle[switchState]"></span>
   </label>
 </template>
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  toggleSwitchStyle,
   toggleSwitchInputStyle,
   toggleSwitchSliderStyle,
-  toggleSwitchColorStyle,
-  toggleSwitchSliderCheckedStyle,
+  toggleSwitchStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/toggle-switch-input.css";
 import { computed } from "vue";
 
