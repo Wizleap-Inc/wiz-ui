@@ -36,6 +36,24 @@ export const textButtonStyle = styleVariants({
       border: "none",
     },
   ],
+  danger: [
+    baseTextButtonStyle,
+    {
+      background: THEME.color.red[800],
+      color: THEME.color.white[800],
+      boxShadow: THEME.shadow.md,
+      border: "none",
+    },
+  ],
+  "sub-danger": [
+    baseTextButtonStyle,
+    {
+      background: THEME.color.white[800],
+      color: THEME.color.red[800],
+      boxShadow: THEME.shadow.md,
+      border: "none",
+    },
+  ],
 });
 
 export const textButtonDisabledStyle = style({

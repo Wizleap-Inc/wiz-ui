@@ -20,8 +20,8 @@
       <WizIcon
         v-if="icon"
         :icon="icon"
-        :color="variantColor"
-        :size="iconSize"
+        :color="variantColor[variant]"
+        :size="iconSize[size]"
       />
       <slot />
     </WizHStack>
@@ -29,7 +29,11 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  FontSizeKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import {
   textButtonDisabledStyle,
   textButtonExpandStyle,
@@ -37,7 +41,7 @@ import {
   textButtonSizeStyle,
   textButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
-import { PropType, computed } from "vue";
+import { PropType } from "vue";
 
 import { TIcon, WizHStack, WizIcon } from "@/components";
 
@@ -51,7 +55,7 @@ interface Emits {
 
 const props = defineProps({
   variant: {
-    type: String as PropType<"primary" | "sub">,
+    type: String as PropType<"primary" | "sub" | "danger" | "sub-danger">,
     required: false,
     default: "primary",
   },
@@ -94,17 +98,20 @@ const emit = defineEmits<Emits>();
 
 const onClick = () => props.disabled || emit("click");
 
-const variantColor = computed(() => {
-  if (props.variant === "primary") return "white.800";
-  if (props.variant === "sub") return "green.800";
-  return undefined;
-});
+const variantColor: Record<
+  "primary" | "sub" | "danger" | "sub-danger",
+  ColorKeys
+> = {
+  primary: "white.800",
+  sub: "green.800",
+  danger: "white.800",
+  "sub-danger": "red.800",
+};
 
-const iconSize = computed(() => {
-  if (props.size === "xs") return "lg";
-  if (props.size === "sm") return "xl";
-  if (props.size === "md") return "xl2";
-  if (props.size === "lg") return "xl3";
-  return undefined;
-});
+const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
+  xs: "lg",
+  sm: "xl",
+  md: "xl2",
+  lg: "xl3",
+};
 </script>

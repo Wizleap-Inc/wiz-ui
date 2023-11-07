@@ -10,7 +10,7 @@ import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 import { TIcon, WizHStack, WizIcon } from "@/components";
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
-  variant?: "primary" | "sub";
+  variant?: "primary" | "sub" | "danger" | "sub-danger";
   disabled?: boolean;
   rounded?: boolean;
   expand?: boolean;
@@ -20,9 +20,14 @@ type Props = BaseProps & {
   children?: ReactNode;
 } & ComponentProps<"button">;
 
-const variantColor: Record<"primary" | "sub", ColorKeys> = {
+const variantColor: Record<
+  "primary" | "sub" | "danger" | "sub-danger",
+  ColorKeys
+> = {
   primary: "white.800",
   sub: "green.800",
+  danger: "white.800",
+  "sub-danger": "red.800",
 };
 
 const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
