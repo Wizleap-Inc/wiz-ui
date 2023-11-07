@@ -3,6 +3,8 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/transition-graph.css";
 import clsx from "clsx";
 import { FC, ReactNode, useMemo } from "react";
 
+import { BaseProps } from "@/types";
+
 import { Bar } from "./bar";
 
 type TransitionGraphData = {
@@ -10,12 +12,12 @@ type TransitionGraphData = {
   frequency: number;
 };
 
-type Props = {
+type Props = BaseProps & {
   data: TransitionGraphData[];
   children?: ReactNode;
 };
 
-const TransitionGraph: FC<Props> = ({ data, children }) => {
+const TransitionGraph: FC<Props> = ({ className, style, data, children }) => {
   const maxFrequency = useMemo(
     () => Math.max(...data.map((item) => item.frequency)),
     [data]
@@ -31,7 +33,7 @@ const TransitionGraph: FC<Props> = ({ data, children }) => {
   );
 
   return (
-    <div className={styles.graphContainerStyle}>
+    <div className={clsx(className, styles.graphContainerStyle)} style={style}>
       <div className={styles.graphSideStyle}>
         <span
           className={clsx(

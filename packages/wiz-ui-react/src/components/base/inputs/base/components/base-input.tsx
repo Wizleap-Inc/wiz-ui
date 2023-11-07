@@ -10,7 +10,8 @@ import {
   useState,
 } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   id?: string;
   value?: string;
   placeholder?: string;
@@ -25,6 +26,8 @@ type Props = {
 const _PrivateBaseInput = forwardRef(
   (
     {
+      className,
+      style,
       id,
       value,
       placeholder,
@@ -51,12 +54,13 @@ const _PrivateBaseInput = forwardRef(
         ref={ref}
         {...props}
         className={clsx(
+          className,
           styles.baseInputStyle,
           styles.baseInputPaddingStyle[spaceType],
           disabled && styles.baseInputDisabledStyle,
           inputBorderStyle[state]
         )}
-        style={{ width: expand ? "100%" : width }}
+        style={{ ...style, width: expand ? "100%" : width }}
         placeholder={placeholder}
         disabled={disabled}
         type={type}

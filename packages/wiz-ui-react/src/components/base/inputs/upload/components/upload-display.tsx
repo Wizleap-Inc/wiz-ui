@@ -10,8 +10,8 @@ import {
   WizLineGraph,
   WizVStack,
 } from "@/components";
-
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   files: File[];
   uploadingFileCount: number;
   completedFileCount: number;
@@ -22,6 +22,8 @@ type Props = {
 };
 
 const UploadDisplay: FC<Props> = ({
+  className,
+  style,
   files,
   uploadingFileCount,
   completedFileCount,
@@ -45,7 +47,7 @@ const UploadDisplay: FC<Props> = ({
   };
 
   return (
-    <WizVStack gap="sm">
+    <WizVStack className={className} style={style} gap="sm">
       {isUploading && (
         <div
           className={clsx(

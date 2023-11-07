@@ -4,26 +4,29 @@ import {
   THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  headerStyle,
   headerStickyStyle,
+  headerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/header.css";
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
 
 import { WizHStack, WizIMenu } from "@/components";
+import { BaseProps } from "@/types";
 
 import { WizIconButton } from "../../buttons/icon";
 
-interface Props {
+type Props = BaseProps & {
   gapLeft?: SpacingKeys;
   gapRight?: SpacingKeys;
   sticky?: boolean;
   leftContent?: ReactNode;
   rightContent?: ReactNode;
   onToggle: () => void;
-}
+};
 
 const Header: FC<Props> = ({
+  className,
+  style,
   gapLeft,
   gapRight,
   sticky,
@@ -33,8 +36,8 @@ const Header: FC<Props> = ({
 }) => {
   return (
     <div
-      className={clsx(headerStyle, sticky && headerStickyStyle)}
-      style={{ zIndex: THEME.zIndex.floating }}
+      className={clsx(className, headerStyle, sticky && headerStickyStyle)}
+      style={{ ...style, zIndex: THEME.zIndex.floating }}
     >
       <WizHStack align="center" justify="between" height="100%">
         <WizHStack align="center" gap={gapLeft} pl="lg">

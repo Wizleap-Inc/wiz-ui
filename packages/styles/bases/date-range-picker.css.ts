@@ -59,7 +59,7 @@ export const inputTextStyle = styleVariants({
   selected: [
     inputTextBaseStyle,
     {
-      color: THEME.color.gray["700"],
+      color: THEME.color.gray["800"],
     },
   ],
 });
@@ -91,7 +91,7 @@ export const popupHeaderSelectBoxStyle = style({
   background: THEME.color.white["800"],
   gap: THEME.spacing.xs,
   cursor: "pointer",
-  color: THEME.color.gray["700"],
+  color: THEME.color.gray["800"],
 });
 
 export const popupHeaderSelectBoxOptionsStyle = style({
@@ -114,7 +114,7 @@ export const popupHeaderSelectBoxOptionStyle = style({
   border: "none",
   cursor: "pointer",
   background: "transparent",
-  color: THEME.color.gray["700"],
+  color: THEME.color.gray["800"],
 
   "@media": {
     "(any-hover: hover)": {
@@ -163,7 +163,7 @@ export const popupCalendarHeaderStyle = style({
 
 export const popupCalendarMonthStyle = style({
   fontSize: THEME.fontSize.xs,
-  color: THEME.color.gray["700"],
+  color: THEME.color.gray["800"],
 });
 
 export const popupCalendarHeaderButtonStyle = style({
@@ -172,7 +172,7 @@ export const popupCalendarHeaderButtonStyle = style({
   borderRadius: THEME.spacing.xs2,
   border: "none",
   background: "transparent",
-  fill: THEME.color.gray["700"],
+  fill: THEME.color.gray["800"],
   ":hover": {
     backgroundColor: THEME.color.green["300"],
     fill: THEME.color.green["800"],

@@ -66,10 +66,32 @@ export const Hover: Story = {
   },
 };
 
+export const Expand: Story = {
+  args: {
+    date: new Date(2023, 0, 1),
+    width: "100%",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    userEvent.hover(canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT));
+  },
+};
+
 export const IsDirectionFixed: Story = {
   args: {
     date: new Date(2023, 0, 1),
     isDirectionFixed: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};
+
+export const YearStyle: Story = {
+  args: {
+    date: new Date(2023, 0, 1),
+    formatYear: (year: number) => `西暦${year}`,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

@@ -148,7 +148,7 @@ export const WithTag: Story = {
   ),
 };
 
-export const WithAnnotation = {
+export const WithAnnotation: Story = {
   render: () => (
     <WizTimelineItem
       variant="success"
@@ -158,7 +158,7 @@ export const WithAnnotation = {
   ),
 };
 
-export const VariantFailure = {
+export const VariantFailure: Story = {
   render: () => (
     <WizTimelineItem
       variant="failure"

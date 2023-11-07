@@ -5,14 +5,14 @@ import clsx from "clsx";
 import { forwardRef, useContext, useState } from "react";
 
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
-
+import { BaseProps } from "@/types";
 function getInputBorderStyleKey(isError?: boolean, hasFocus?: boolean) {
   if (isError) return "error";
   if (hasFocus) return "active";
   return "default";
 }
 
-type Props = {
+type Props = BaseProps & {
   id?: string;
   value: string;
   placeholder?: string;
@@ -25,7 +25,18 @@ type Props = {
 
 const TextArea = forwardRef<HTMLTextAreaElement, Props>(
   (
-    { id, value, placeholder, disabled, expand, rows = 3, error, onChange },
+    {
+      className,
+      style,
+      id,
+      value,
+      placeholder,
+      disabled,
+      expand,
+      rows = 3,
+      error,
+      onChange,
+    },
     ref
   ) => {
     const [hasFocus, setHasFocus] = useState(false);
@@ -41,7 +52,9 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
         placeholder={placeholder}
         disabled={disabled}
         rows={rows}
+        style={style}
         className={clsx(
+          className,
           styles.textAreaStyle,
           styles.textAreaVariantStyle[disabled ? "disabled" : "default"],
           expand && styles.textAreaExpandStyle,

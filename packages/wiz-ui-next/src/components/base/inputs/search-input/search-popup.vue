@@ -1,7 +1,7 @@
 <template>
   <template v-for="(option, key) in options">
     <div
-      v-if="option.children.length && selectedItem.includes(option.value)"
+      v-if="option.children && selectedItem.includes(option.value)"
       :class="styles.searchPopupStyle"
       :key="`${option.label}_${option.value}_${key}`"
     >
@@ -17,36 +17,78 @@
         :style="{ width: computedPopupWidth }"
       >
         <div
-          v-for="(item, key) in option.children"
-          :key="`${item.label}_${item.value}_${key}`"
+          v-if="option.children.length === 0"
+          :class="[styles.searchDropdownEmptyMessageStyle]"
         >
-          <!-- Dropdown -->
+          {{ emptyMessage }}
+        </div>
+        <div v-else>
           <div
-            v-if="item.children.length"
-            :class="styles.searchPopupDropdownItemStyle"
+            v-for="(item, key) in option.children"
+            :key="`${item.label}_${item.value}_${key}`"
           >
-            <WizHStack
-              align="center"
-              justify="between"
-              :class="[
-                styles.searchDropdownLabelStyle,
-                selectedItem.includes(item.value) &&
-                  styles.searchDropdownSelectingItemStyle,
-              ]"
-              @mouseover="onMouseover(item.value, option.children)"
-              @mouseout="activeItem = null"
+            <!-- Dropdown -->
+            <div
+              v-if="item.children"
+              :class="styles.searchPopupDropdownItemStyle"
             >
               <WizHStack
-                width="100%"
-                justify="between"
                 align="center"
-                nowrap
-                gap="xs2"
+                justify="between"
+                :class="[
+                  styles.searchDropdownLabelStyle,
+                  selectedItem.includes(item.value) &&
+                    styles.searchDropdownSelectingItemStyle,
+                ]"
+                @mouseover="onMouseover(item.value, option.children)"
+                @mouseout="activeItem = null"
               >
-                <div :class="styles.searchInputLabelStyle">
-                  {{ item.label }}
-                </div>
-                <WizHStack gap="xs" :width="item.tag ? '70px' : '24px'">
+                <WizHStack
+                  width="100%"
+                  justify="between"
+                  align="center"
+                  nowrap
+                  gap="xs2"
+                >
+                  <div :class="styles.searchInputLabelStyle">
+                    {{ item.label }}
+                  </div>
+                  <WizHStack gap="xs" :width="item.tag ? '70px' : '24px'">
+                    <template v-if="item.tag">
+                      <WizTag
+                        :label="item.tag.label"
+                        variant="white"
+                        width="20px"
+                        font-size="xs2"
+                      />
+                    </template>
+                    <WizIcon
+                      size="xl2"
+                      :icon="WizIChevronRight"
+                      :color="computedIconColor(item.value)"
+                    />
+                  </WizHStack>
+                </WizHStack>
+              </WizHStack>
+            </div>
+            <!-- Checkbox -->
+            <div
+              v-else
+              :class="styles.searchDropdownCheckboxItemStyle"
+              @mouseover="activeItem = item.value"
+              @mouseout="activeItem = null"
+            >
+              <WizCheckBoxNew
+                :style="{ width: '100%' }"
+                :checked="checkValues.includes(item.value)"
+                :value="item.value"
+                :id="`${item.label}_${item.value}`"
+                @update:checked="handleClickCheckbox(item.value)"
+              >
+                <WizHStack width="100%" align="center" nowrap gap="xs2">
+                  <div :class="styles.searchInputLabelStyle">
+                    {{ item.label }}
+                  </div>
                   <template v-if="item.tag">
                     <WizTag
                       :label="item.tag.label"
@@ -55,72 +97,11 @@
                       font-size="xs2"
                     />
                   </template>
-                  <WizIcon
-                    size="xl2"
-                    :icon="WizIChevronRight"
-                    :color="computedIconColor(item.value)"
-                  />
                 </WizHStack>
-              </WizHStack>
-            </WizHStack>
+              </WizCheckBoxNew>
+            </div>
+            <WizDivider color="gray.300" />
           </div>
-          <!-- Checkbox -->
-          <div
-            v-else
-            :class="styles.searchDropdownCheckboxItemStyle"
-            @mouseover="activeItem = item.value"
-            @mouseout="activeItem = null"
-          >
-            <WizHStack
-              width="100%"
-              justify="between"
-              align="center"
-              nowrap
-              gap="xs2"
-            >
-              <div :class="styles.searchInputLabelStyle">
-                <input
-                  v-model="checkValues"
-                  :value="item.value"
-                  :class="styles.searchCheckboxInputStyle"
-                  type="checkbox"
-                  :id="`${item.label}_${item.value}`"
-                  :name="`${item.label}_${item.value}`"
-                />
-                <label
-                  :class="[
-                    styles.searchCheckboxLabelStyle,
-                    (checkValues.includes(item.value) ||
-                      activeItem === item.value) &&
-                      styles.searchCheckboxLabelCheckedStyle,
-                  ]"
-                  :for="`${item.label}_${item.value}`"
-                >
-                  <WizICheck
-                    v-if="checkValues.includes(item.value)"
-                    :class="styles.searchCheckboxIconStyle"
-                  />
-                  <span
-                    :class="[
-                      (checkValues.includes(item.value) ||
-                        activeItem === item.value) &&
-                        styles.searchCheckboxBlockCheckedStyle,
-                    ]"
-                    >{{ item.label }}</span
-                  >
-                </label>
-              </div>
-              <template v-if="item.tag">
-                <WizTag
-                  :label="item.tag.label"
-                  variant="white"
-                  width="20px"
-                  font-size="xs2"
-                />
-              </template>
-            </WizHStack>
-          </div>
-          <WizDivider color="gray.300" />
         </div>
       </div>
       <WizSearchPopup
@@ -130,6 +111,7 @@
         :popupWidth="computedPopupWidth"
         :dy="activeItemIndex || 0"
         :parentScrollAmount="scrollAmount"
+        :emptyMessage="emptyMessage"
       />
     </div>
   </template>
@@ -141,13 +123,14 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { PropType, computed, ref, watch } from "vue";
 
 import {
+  WizCheckBoxNew,
   WizDivider,
   WizHStack,
   WizIcon,
   WizSearchPopup,
   WizTag,
 } from "@/components";
-import { WizICheck, WizIChevronRight } from "@/components/icons";
+import { WizIChevronRight } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -171,6 +154,10 @@ const props = defineProps({
   popupWidth: {
     type: String,
     required: false,
+  },
+  emptyMessage: {
+    type: String,
+    required: true,
   },
 });
 
@@ -199,7 +186,7 @@ const scrollAmount = ref<number>(0);
 const scrollItems = ref<SearchInputOption[]>([]);
 const onScroll = (parentOrder: number) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
-  scrollItems.value = props.options[parentOrder].children;
+  scrollItems.value = props.options[parentOrder].children ?? [];
 };
 
 watch(
@@ -238,9 +225,10 @@ const computedIconColor = computed(() => (value: number) => {
   return "gray.500";
 });
 
-const onMouseover = (value: number, options: SearchInputOption[]) => {
+const onMouseover = (value: number, options?: SearchInputOption[]) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
   activeItem.value = value;
+  if (!options) return;
   activeItemIndex.value = options.findIndex((option) => option.value === value);
   options.forEach((option: SearchInputOption) => {
     if (mutableSelectedItem.value.includes(option.value)) {
@@ -250,6 +238,15 @@ const onMouseover = (value: number, options: SearchInputOption[]) => {
   });
   if (!mutableSelectedItem.value.includes(value)) {
     mutableSelectedItem.value.push(value);
+  }
+};
+
+const handleClickCheckbox = (value: number) => {
+  if (checkValues.value.includes(value)) {
+    const index = checkValues.value.indexOf(value);
+    checkValues.value.splice(index, 1);
+  } else {
+    checkValues.value.push(value);
   }
 };
 </script>

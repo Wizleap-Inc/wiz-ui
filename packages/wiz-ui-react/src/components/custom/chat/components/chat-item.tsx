@@ -10,6 +10,7 @@ import {
   WizTooltip,
   WizVStack,
 } from "@/components";
+import { BaseProps } from "@/types";
 
 import { Message } from "./types";
 
@@ -19,17 +20,26 @@ function getReadLabel(count: number) {
   return `既読${count}`;
 }
 
-type Props = {
+type Props = BaseProps & {
   content: Message;
   maxChatItemWidth?: string;
 };
 
-const ChatItem: FC<Props> = ({ content, maxChatItemWidth }) => {
+const ChatItem: FC<Props> = ({
+  className,
+  style,
+  content,
+  maxChatItemWidth,
+}) => {
   const messageParts = linkify(content.message);
   const isMyMessage = content.sender === "me";
 
   return (
-    <WizVStack align={isMyMessage ? "end" : "start"}>
+    <WizVStack
+      className={className}
+      style={style}
+      align={isMyMessage ? "end" : "start"}
+    >
       {content.username && (
         <WizText as="span" fontSize="xs2" color="gray.600">
           {content.username}

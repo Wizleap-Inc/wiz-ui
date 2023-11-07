@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.9.0
+
+### Minor Changes
+
+- [#860](https://github.com/Wizleap-Inc/wiz-ui/pull/860) [`114e11ac`](https://github.com/Wizleap-Inc/wiz-ui/commit/114e11aca080ea6abe782109c0f4102e18f10157) Thanks [@RyushiAok](https://github.com/RyushiAok)! - React 版 SVG コンポーネントに className, style を設定できるよう修正
+
 ## 0.8.0
 
 ### Minor Changes

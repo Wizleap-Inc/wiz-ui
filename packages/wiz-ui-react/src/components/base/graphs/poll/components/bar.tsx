@@ -12,13 +12,20 @@ function getBarColor(percentage: number, isColorFixed?: boolean): ColorKeys {
   return "red.700";
 }
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   percentage: number;
   label?: string;
   isColorFixed?: boolean;
 };
 
-export const Bar: FC<Props> = ({ percentage, label, isColorFixed }) => {
+export const Bar: FC<Props> = ({
+  className,
+  style,
+  percentage,
+  label,
+  isColorFixed,
+}) => {
   const barRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
 
@@ -39,7 +46,7 @@ export const Bar: FC<Props> = ({ percentage, label, isColorFixed }) => {
   }, [percentage]);
 
   return (
-    <div className={styles.PollGraphStyle}>
+    <div className={clsx(className, styles.PollGraphStyle)} style={style}>
       <div
         ref={barRef}
         className={clsx(styles.PollBodyStyle, backgroundStyle[barColor])}

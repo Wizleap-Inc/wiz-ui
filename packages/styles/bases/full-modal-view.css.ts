@@ -8,7 +8,11 @@ export const hiddenStyle = style({
 export const containerStyle = style({
   position: "fixed",
   top: "0px",
+  left: "0px",
+  bottom: "0px",
   width: "100%",
+  overflowY: "auto",
+  backgroundColor: THEME.color.white[800],
 });
 
 export const headerStyle = style({

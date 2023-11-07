@@ -59,5 +59,6 @@ export const paginationButtonVariantStyle = styleVariants({
 });
 
 export const paginationIconStyle = style({
+  fill: THEME.color.gray[700],
   fontSize: THEME.fontSize.xl2,
 });

@@ -1,5 +1,43 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.23.0
+
+### Minor Changes
+
+- [#1087](https://github.com/Wizleap-Inc/wiz-ui/pull/1087) [`c97702f4`](https://github.com/Wizleap-Inc/wiz-ui/commit/c97702f47a928ded3525c55bff969df0f4e54ee7) Thanks [@okakyo](https://github.com/okakyo)! - [#1081]: Search Selector にて ExLabel を追加
+
+### Patch Changes
+
+- [#1098](https://github.com/Wizleap-Inc/wiz-ui/pull/1098) [`a479e3bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/a479e3bb56c002e962b7effc22a948fca973b58d) Thanks [@okakyo](https://github.com/okakyo)! - [#1096] Input タグの 入力中、選択中、選択肢 を gray.800 に変更
+
+- [#1113](https://github.com/Wizleap-Inc/wiz-ui/pull/1113) [`be535cd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/be535cd05fa571145cef9a1bc2dfe9874007d2b4) Thanks [@ichi-h](https://github.com/ichi-h)! - [#986] カレンダーの有効日の文字色を変更 (calendar, date-picker, date-range-picker)
+
+## 0.22.1
+
+### Patch Changes
+
+- [#1104](https://github.com/Wizleap-Inc/wiz-ui/pull/1104) [`b6cade17`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6cade17daa7a71eb35047a17c93d5cbc4028460) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector, checkbox-new, search-selector): コンポーネントの全体の高さが 44px になるように調整
+  Fix(search-selector): アイコン色を修正
+
+## 0.22.0
+
+### Minor Changes
+
+- [#1073](https://github.com/Wizleap-Inc/wiz-ui/pull/1073) [`c35888db`](https://github.com/Wizleap-Inc/wiz-ui/commit/c35888db4c58a3e59c580e18b981723af005807e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(full-modal-view): React 対応
+
+### Patch Changes
+
+- [#1085](https://github.com/Wizleap-Inc/wiz-ui/pull/1085) [`a7b92df8`](https://github.com/Wizleap-Inc/wiz-ui/commit/a7b92df8683e73747e7682c37069f24454c631f7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(pagination): 表示ページ数を制御する Prop を追加
+  Fix(pagination): アイコン色を修正
+
+## 0.21.1
+
+### Patch Changes
+
+- [#1065](https://github.com/Wizleap-Inc/wiz-ui/pull/1065) [`da10fdc5`](https://github.com/Wizleap-Inc/wiz-ui/commit/da10fdc5b45e4bc05971a94ef40af93e92c9779a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector): 単一選択モードでアイテムが選択されると高さがガタつく問題を修正
+
+- [#1061](https://github.com/Wizleap-Inc/wiz-ui/pull/1061) [`6056168c`](https://github.com/Wizleap-Inc/wiz-ui/commit/6056168c511176c46dea5f2d3368c227e464db9b) Thanks [@okakyo](https://github.com/okakyo)! - [#998] TimePicker の 時、分を固定
+
 ## 0.21.0
 
 ### Minor Changes

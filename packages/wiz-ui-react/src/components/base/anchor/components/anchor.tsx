@@ -21,8 +21,9 @@ import {
 } from "react";
 
 import { TIcon, WizIcon } from "@/components";
+import { BaseProps } from "@/types";
 
-type Props<T extends ElementType> = {
+type Props<T extends ElementType> = BaseProps & {
   color?: ColorKeys;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
@@ -31,23 +32,25 @@ type Props<T extends ElementType> = {
   nowrap?: boolean;
   children: ReactNode;
 } & (
-  | {
-      href: string;
-      as?: never;
-      asProps?: never;
-      openInNewTab?: boolean;
-    }
-  | {
-      href?: never;
-      as: T;
-      asProps: ComponentProps<T>;
-      openInNewTab?: never;
-    }
-);
+    | {
+        href: string;
+        as?: never;
+        asProps?: never;
+        openInNewTab?: boolean;
+      }
+    | {
+        href?: never;
+        as: T;
+        asProps: ComponentProps<T>;
+        openInNewTab?: never;
+      }
+  );
 
 const Anchor = forwardRef(
   <T extends ElementType>(
     {
+      className,
+      style,
       color = "blue.800",
       fontSize = "md",
       fontWeight = "normal",
@@ -71,6 +74,7 @@ const Anchor = forwardRef(
       : props.asProps;
 
     const anchorStyle = clsx([
+      className,
       styles.anchorStyle,
       colorStyle[color],
       fontSizeStyle[fontSize],
@@ -87,7 +91,12 @@ const Anchor = forwardRef(
     );
 
     return (
-      <LinkComponent {...linkProps} ref={ref} className={anchorStyle}>
+      <LinkComponent
+        {...linkProps}
+        ref={ref}
+        className={anchorStyle}
+        style={style}
+      >
         {iconPosition === "left" && iconContent}
         {children}
         {iconPosition === "right" && iconContent}

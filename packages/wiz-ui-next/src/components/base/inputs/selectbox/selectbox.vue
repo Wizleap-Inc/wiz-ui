@@ -15,13 +15,15 @@
             placeholder
           }}</span>
           <span
-            v-for="(option, key) in options"
-            v-show="option.value === modelValue"
-            :key="'selected' + key"
+            v-if="selectedOption"
             :class="selectBoxInnerBoxSelectedValueStyle"
           >
-            {{ option.label }}
-            {{ showExLabel && option.exLabel ? " " + option.exLabel : "" }}
+            {{ selectedOption.label }}
+            {{
+              showExLabel && selectedOption.exLabel
+                ? " " + selectedOption.exLabel
+                : ""
+            }}
           </span>
           <WizIExpandLess
             v-if="openSelectBox"
@@ -39,7 +41,10 @@
       @onClose="openSelectBox = false"
       :isDirectionFixed="isDirectionFixed"
     >
-      <div :class="selectBoxSelectorStyle" :style="{ minWidth: width }">
+      <div
+        :class="selectBoxSelectorStyle"
+        :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
+      >
         <WizVStack gap="xs2">
           <div
             :class="selectBoxSelectorOptionStyle"
@@ -132,6 +137,10 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  dropdownMaxHeight: {
+    type: String,
+    required: false,
+  },
 });
 
 const openSelectBox = ref(props.isOpen);
@@ -170,5 +179,9 @@ const state = computed(() => {
 
 const isValueMatched = computed(() => {
   return props.options.some((option) => option.value === props.modelValue);
+});
+
+const selectedOption = computed(() => {
+  return props.options.find((option) => option.value === props.modelValue);
 });
 </script>

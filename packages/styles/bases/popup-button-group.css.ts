@@ -22,14 +22,16 @@ export const popupButtonGroupButtonBaseStyle = style({
   alignItems: "center",
   paddingTop: THEME.spacing.xs,
   paddingBottom: THEME.spacing.xs,
+  paddingRight: THEME.spacing.xs2,
   fontSize: THEME.fontSize.sm,
   boxSizing: "border-box",
   userSelect: "none",
+  gap: THEME.spacing.xs2,
 });
 
 export const popupButtonGroupButtonVariantStyle = styleVariants({
   enabled: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
     cursor: "pointer",
     "@media": {
       "(any-hover: hover)": {
@@ -65,7 +67,7 @@ export const popupButtonGroupTitleBaseStyle = style({
 
 export const popupButtonGroupTitleVariantStyle = styleVariants({
   enabled: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
   },
   disabled: {
     color: THEME.color.gray["400"],
@@ -86,4 +88,7 @@ export const popupButtonGroupInnerContainerStyle = style({
   flexDirection: "row",
   alignItems: "center",
   flex: "none",
+});
+export const popupButtonGroupInnerContainerLabel = style({
+  paddingRight: THEME.spacing.xs,
 });

@@ -1,12 +1,17 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
+const BORDER_WIDTH = "1px";
+
 export const timePickerStyle = style({
-  width: "max-content",
-  padding: `0 ${THEME.spacing.xs2}`,
+  width: "100%",
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
+  height: "100%",
+  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
+  fontSize: THEME.fontSize.sm,
+  lineHeight: THEME.fontSize.xl3,
 });
 
 export const timePickerDisabledStyle = style({
@@ -22,21 +27,12 @@ export const timePickerCursorStyle = styleVariants({
   },
 });
 
-const BORDER_WIDTH = "1px";
-
-export const timePickerBoxStyle = style({
-  height: "100%",
-  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
-  fontSize: THEME.fontSize.sm,
-  lineHeight: THEME.fontSize.xl3,
-});
-
 export const timePickerBoxColorStyle = styleVariants({
   default: {
     color: THEME.color.gray["500"],
   },
   selected: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
   },
   disabled: {
     color: THEME.color.gray["500"],
@@ -56,6 +52,7 @@ export const timePickerSelectorStyle = style({
 
 export const timePickerScrollStyle = style({
   margin: `${THEME.spacing.xs2} 0`,
+  overflow: "auto",
   scrollbarWidth: "thin",
   scrollbarColor: `${THEME.color.gray["400"]} transparent`,
   selectors: {
@@ -80,6 +77,10 @@ export const timePickerSelectorOptionStyle = style({
   borderRadius: THEME.spacing.xs2,
 });
 
+export const timePickerSelectorOptionTitleStyle = style({
+  margin: `0 ${THEME.spacing.sm} 0 ${THEME.spacing.xs}`,
+});
+
 export const timePickerSelectorOptionTypeStyle = style({
   color: THEME.color.gray["600"],
 });
@@ -102,7 +103,7 @@ export const timePickerSelectorOptionItemSelectedStyle = style({
 
 export const timePickerSelectorOptionItemColorStyle = styleVariants({
   default: {
-    color: THEME.color.gray["700"],
+    color: THEME.color.gray["800"],
   },
   selected: {
     color: THEME.color.white["800"],

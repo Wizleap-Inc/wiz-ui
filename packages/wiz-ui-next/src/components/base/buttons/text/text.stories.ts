@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import { WizIAdd } from "@/components/icons";
 
@@ -21,7 +21,7 @@ export default {
     },
     variant: {
       control: { type: "select" },
-      options: ["primary", "sub"],
+      options: ["primary", "sub", "danger", "sub-danger"],
     },
     size: {
       control: { type: "select" },
@@ -44,6 +44,23 @@ const Template: StoryFn<typeof WizTextButton> = (args) => ({
   components: { WizTextButton },
   setup: () => ({ args }),
   template: `<WizTextButton v-bind="args" @click="() => args.click">{{ "保存する" }}</WizTextButton>`,
+});
+
+const TemplateVariant: StoryFn<typeof WizTextButton> = (args) => ({
+  components: { WizTextButton },
+  setup: () => ({ args }),
+  template: `
+    <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
+      <WizTextButton v-bind="args" @click="() => args.click" variant="primary">保存する</WizTextButton>
+      <div>variant = primary</div>
+      <WizTextButton v-bind="args" @click="() => args.click" variant="sub">保存する</WizTextButton>
+      <div>variant = sub</div>
+      <WizTextButton v-bind="args" @click="() => args.click" variant="danger">保存する</WizTextButton>
+      <div>variant = danger</div>
+      <WizTextButton v-bind="args" @click="() => args.click" variant="sub-danger">保存する</WizTextButton>
+      <div>variant = sub-danger</div>
+    </div>
+  `,
 });
 
 export const Default = Template.bind({});
@@ -116,7 +133,7 @@ Expand.parameters = {
   },
 };
 
-export const Icon = Template.bind({});
+export const Icon = TemplateVariant.bind({});
 Icon.args = {
   icon: WizIAdd,
 };
@@ -155,26 +172,21 @@ IconPosition.parameters = {
     source: {
       code: `
 <template>
-  <WizTextButton :icon="WizIAdd" iconPosition="right" @click="click">{{ "保存する" }}</WizTextButton>
+  <WizTextButton v-bind="args" @click="click" :icon="WizIAdd" iconPosition="right" variant="primary">保存する</WizTextButton>
+  <div>variant = primary</div>
+  <WizTextButton v-bind="args" @click="click" :icon="WizIAdd" iconPosition="right" variant="sub">保存する</WizTextButton>
+  <div>variant = sub</div>
+  <WizTextButton v-bind="args" @click="click" :icon="WizIAdd" iconPosition="right" variant="danger">保存する</WizTextButton>
+  <div>variant = danger</div>
+  <WizTextButton v-bind="args" @click="click" :icon="WizIAdd" iconPosition="right" variant="sub-danger">保存する</WizTextButton>
+  <div>variant = sub-danger</div>
 </template>
       `,
     },
   },
 };
 
-export const Variant: StoryFn<typeof WizTextButton> = (args) => ({
-  components: { WizTextButton },
-  setup: () => ({ args }),
-  template: `
-    <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
-      <WizTextButton variant="primary">保存する</WizTextButton>
-      <div>variant = primary</div>
-      <WizTextButton variant="sub">保存する</WizTextButton>
-      <div>variant = sub</div>
-    </div>
-  `,
-});
-
+export const Variant: StoryFn<typeof WizTextButton> = TemplateVariant.bind({});
 Variant.parameters = {
   docs: {
     description: {
@@ -185,10 +197,14 @@ Variant.parameters = {
       code: `
 <template>
   <div style="display: grid; grid-template-columns: max-content max-content; grid-gap: 1rem; align-items: center;">
-    <WizTextButton variant="primary">保存する</WizTextButton>
+    <WizTextButton v-bind="args" variant="primary">保存する</WizTextButton>
     <div>variant = primary</div>
-    <WizTextButton variant="sub">保存する</WizTextButton>
+    <WizTextButton v-bind="args" variant="sub">保存する</WizTextButton>
     <div>variant = sub</div>
+    <WizTextButton v-bind="args" variant="danger">保存する</WizTextButton>
+    <div>variant = danger</div>
+    <WizTextButton v-bind="args" variant="sub-danger">保存する</WizTextButton>
+    <div>variant = sub-danger</div>
   </div>
 </template>
       `,

@@ -21,14 +21,14 @@ import {
   WizVStack,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
-
+import { BaseProps } from "@/types";
 type SelectBoxOption = {
   label: string;
   exLabel?: string;
   value: number;
 };
 
-type Props = {
+type Props = BaseProps & {
   options: SelectBoxOption[];
   value: number | null;
   placeholder?: string;
@@ -38,10 +38,13 @@ type Props = {
   error?: boolean;
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
+  dropdownMaxHeight?: string;
   onChange: (value: number | null) => void;
 };
 
 const SelectBox: FC<Props> = ({
+  className,
+  style,
   options,
   value,
   placeholder = "選択してください",
@@ -51,6 +54,7 @@ const SelectBox: FC<Props> = ({
   error,
   isDirectionFixed = false,
   showExLabel = false,
+  dropdownMaxHeight,
   onChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,12 +110,14 @@ const SelectBox: FC<Props> = ({
       <div
         ref={anchorRef}
         className={clsx(
+          className,
           styles.selectBoxStyle,
           inputBorderStyle[getInputBorderStyleKey()],
           disabled && styles.selectBoxDisabledStyle,
           styles.selectBoxCursorStyle[disabled ? "disabled" : "default"]
         )}
         style={{
+          ...style,
           width: expand ? "100%" : width,
         }}
         onClick={toggleOpen}
@@ -159,7 +165,7 @@ const SelectBox: FC<Props> = ({
       >
         <div
           className={styles.selectBoxSelectorStyle}
-          style={{ minWidth: width }}
+          style={{ minWidth: width, maxHeight: dropdownMaxHeight }}
         >
           <WizVStack gap="xs2">
             {options.map((option) => (

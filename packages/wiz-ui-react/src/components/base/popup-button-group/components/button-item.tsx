@@ -9,16 +9,23 @@ import clsx from "clsx";
 import { FC, KeyboardEvent, useMemo, useState } from "react";
 
 import { WizIcon } from "@/components";
+import { BaseProps } from "@/types";
 
 import { ButtonItem as ButtonItemType } from "../types";
 
-interface Props {
+type Props = BaseProps & {
   item: ButtonItemType;
   disabled: boolean;
   depth: number;
-}
+};
 
-export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
+export const ButtonItem: FC<Props> = ({
+  className,
+  style,
+  item,
+  disabled,
+  depth,
+}) => {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
@@ -67,7 +74,7 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
   };
 
   return (
-    <div>
+    <div className={className} style={style}>
       <div
         className={clsx(
           popupButtonGroupButtonBaseStyle,
@@ -92,6 +99,7 @@ export const ButtonItem: FC<Props> = ({ item, disabled, depth }) => {
             <WizIcon icon={item.option.icon} color={iconColor} size="md" />
           )}
         </span>
+        {item.option.exLabel && <span>{item.option.exLabel}</span>}
       </div>
     </div>
   );

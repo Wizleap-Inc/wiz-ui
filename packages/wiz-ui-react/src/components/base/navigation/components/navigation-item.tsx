@@ -1,23 +1,24 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  navigationItemIconStyle,
-  navigationItemIconActiveStyle,
-  navigationItemTextStyle,
-  navigationItemTextActiveStyle,
-  navigationItemIconDisabledStyle,
-  navigationPopupContainerStyle,
-  navigationItemStyle,
   navigationItemActiveStyle,
   navigationItemDisabledStyle,
+  navigationItemIconActiveStyle,
+  navigationItemIconDisabledStyle,
+  navigationItemIconStyle,
+  navigationItemStyle,
+  navigationItemTextActiveStyle,
+  navigationItemTextStyle,
+  navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
 import { ComponentProps, ElementType, useCallback, useRef } from "react";
 
 import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
+import { BaseProps } from "@/types";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
 
-type Props<T extends ElementType> = {
+type Props<T extends ElementType> = BaseProps & {
   icon: TIcon;
   label: string;
   active: boolean;
@@ -29,17 +30,17 @@ type Props<T extends ElementType> = {
   onTogglePopup?: (isPopup: boolean) => void;
   onTogglePopupLocking?: (lock: boolean) => void;
 } & (
-  | {
-      href: string;
-      as?: never;
-      asProps?: never;
-    }
-  | {
-      href?: never;
-      as: T;
-      asProps: ComponentProps<T>;
-    }
-);
+    | {
+        href: string;
+        as?: never;
+        asProps?: never;
+      }
+    | {
+        href?: never;
+        as: T;
+        asProps: ComponentProps<T>;
+      }
+  );
 
 /**
  * aタグでの使い方
@@ -54,6 +55,8 @@ type Props<T extends ElementType> = {
  * ```
  */
 const NavigationItem = <T extends ElementType>({
+  className,
+  style,
   icon: Icon,
   label,
   active,
@@ -106,7 +109,8 @@ const NavigationItem = <T extends ElementType>({
       <div
         ref={popupAnchor}
         onClick={handleClick}
-        style={{ display: tooltipText ? "block" : "inline-block" }}
+        className={className}
+        style={{ ...style, display: tooltipText ? "block" : "inline-block" }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

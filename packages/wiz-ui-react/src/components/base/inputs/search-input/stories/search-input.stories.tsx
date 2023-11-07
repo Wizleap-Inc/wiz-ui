@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/testing-library";
+import { screen, userEvent, within } from "@storybook/testing-library";
 import { useState } from "react";
 
 import { WizIPublic } from "@/components/icons";
@@ -9,6 +9,7 @@ import { WizSearchInput } from "..";
 
 import {
   debugOptions,
+  emptyMessageOptions,
   longLabelOptions,
   normalOptions,
   taggedOptions,
@@ -119,5 +120,18 @@ export const Debug: Story = {
     placeholder: "氏名・ID・電話番号で検索",
     inputWidth: "15rem",
     popupWidth: "25rem",
+  },
+};
+
+export const EmptyMessage: Story = {
+  ...Template,
+  args: {
+    options: emptyMessageOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    inputWidth: "15rem",
+  },
+  play: async (args) => {
+    await Template.play?.(args);
+    userEvent.hover(screen.getByText("テスト会社1"));
   },
 };

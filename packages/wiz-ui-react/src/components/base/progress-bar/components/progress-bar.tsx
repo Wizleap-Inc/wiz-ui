@@ -1,8 +1,10 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
+import clsx from "clsx";
 import { FC } from "react";
 
 import { WizTooltip } from "@/components";
+import { BaseProps } from "@/types";
 
 import { ProgressItem } from "../types";
 
@@ -10,13 +12,13 @@ import { Progress } from "./progress";
 
 import { WizProgressLine } from ".";
 
-type Props = {
+type Props = BaseProps & {
   contents: ProgressItem[];
 };
 
-const ProgressBar: FC<Props> = ({ contents }) => {
+const ProgressBar: FC<Props> = ({ className, style, contents }) => {
   return (
-    <div className={styles.progressBarStyle}>
+    <div className={clsx(className, styles.progressBarStyle)} style={style}>
       {contents.map((content, index) => (
         <div
           className={

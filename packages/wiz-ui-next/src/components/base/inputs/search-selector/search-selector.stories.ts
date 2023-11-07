@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizHStack } from "@/components";
@@ -57,8 +57,8 @@ v-modelには選択中のアイテムを渡します。
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
   const options: SelectBoxOption[] = [];
   for (let i = 1; i <= count; i++) {
-    options.push({ label: label + i, value: i, exLabel });
-    options.push({ label: label + i * 10, value: i * 10, exLabel });
+    options.push({ label: label + i, value: i, exLabel: exLabel });
+    options.push({ label: label + i * 10, value: i * 10, exLabel: exLabel });
   }
   return options;
 };
@@ -187,7 +187,11 @@ const code = (
 export const Default = Template(
   [],
   false,
-  _getDummyOptions("test", 3),
+  [
+    { label: "test1", value: 1 },
+    { label: "test2", value: 2 },
+    { label: "テスト3", value: 3 },
+  ],
   ""
 ).bind({});
 Default.parameters = {
@@ -305,6 +309,72 @@ Addable.parameters = {
   },
 };
 
+export const ExlabelWithoutShowExlabel = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3, "(10)"),
+  "new option"
+).bind({});
+ExlabelWithoutShowExlabel.args = {
+  addable: true,
+  showExLabel: false,
+};
+ExlabelWithoutShowExlabel.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3, "(10)"), "", {
+        addable: true,
+      }),
+    },
+  },
+};
+
+export const Exlabel = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3, "(10)"),
+  "new option"
+).bind({});
+Exlabel.args = {
+  addable: true,
+  showExLabel: true,
+};
+Exlabel.parameters = {
+  docs: {
+    source: {
+      code: code([1, 2, 3], true, _getDummyOptions("test", 3, "(10)"), "", {
+        addable: true,
+      }),
+    },
+  },
+};
+
+export const ExlabelWithLongLabel = Template(
+  [],
+  true,
+  _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
+  "new option"
+).bind({});
+ExlabelWithLongLabel.args = {
+  addable: true,
+  showExLabel: true,
+};
+ExlabelWithLongLabel.parameters = {
+  docs: {
+    source: {
+      code: code(
+        [1, 2, 3],
+        true,
+        _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
+        "",
+        {
+          addable: true,
+        }
+      ),
+    },
+  },
+};
+
 export const IsDirectionFixed = Template(
   [],
   true,
@@ -322,4 +392,15 @@ IsDirectionFixed.parameters = {
       }),
     },
   },
+};
+
+export const DropdownMaxHeight = Template(
+  [],
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
+
+DropdownMaxHeight.args = {
+  dropdownMaxHeight: "100px",
 };

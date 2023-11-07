@@ -4,12 +4,13 @@ import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { FC, useMemo, useRef, useState } from "react";
 
-import { WizHStack, WizISearch, WizPopup, TIcon } from "@/components";
+import { TIcon, WizHStack, WizISearch, WizPopup } from "@/components";
+import { BaseProps } from "@/types";
 
 import { SearchPopupPanel } from "./search-popup-panel";
 import { SearchInputOption } from "./types";
 
-type Props = {
+type Props = BaseProps & {
   options: SearchInputOption[];
   values: number[];
   name?: string;
@@ -19,6 +20,7 @@ type Props = {
   inputWidth?: string;
   popupWidth?: string;
   isDirectionFixed?: boolean;
+  emptyMessage?: string;
   icon?: TIcon;
   onChangeValues: (values: number[]) => void;
 };
@@ -29,7 +31,7 @@ function filterOptions(
 ): SearchInputOption[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
-    if (option.children.length === 0) {
+    if (!option.children || option.children.length === 0) {
       return isMatched ? [option] : [];
     }
     if (isMatched) return [option];
@@ -45,6 +47,8 @@ function filterOptions(
 }
 
 const SearchInput: FC<Props> = ({
+  className,
+  style,
   options,
   values,
   name,
@@ -54,6 +58,7 @@ const SearchInput: FC<Props> = ({
   inputWidth = "10rem",
   popupWidth,
   isDirectionFixed = false,
+  emptyMessage = "選択肢がありません。",
   onChangeValues,
   icon = WizISearch,
 }) => {
@@ -71,8 +76,8 @@ const SearchInput: FC<Props> = ({
 
   return (
     <div
-      className={styles.searchStyle}
-      style={expand ? { width: "100%" } : undefined}
+      className={clsx(className, styles.searchStyle)}
+      style={{ ...style, width: expand ? "100%" : undefined }}
     >
       <input
         ref={inputRef}
@@ -111,6 +116,7 @@ const SearchInput: FC<Props> = ({
               options={filteredOptions}
               values={values}
               width={popupWidth}
+              emptyMessage={emptyMessage}
               onChangeValues={(changed) => onChangeValues(changed)}
             />
           </WizHStack>

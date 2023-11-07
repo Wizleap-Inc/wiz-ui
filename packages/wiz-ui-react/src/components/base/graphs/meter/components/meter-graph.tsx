@@ -4,7 +4,8 @@ import { strokeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import { FC, ReactNode } from "react";
 
-type Props = {
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
   percentage: number;
   children?: ReactNode;
 };
@@ -22,7 +23,7 @@ function getBarWidthRatio(percentage: number) {
   return percentage / 100;
 }
 
-const MeterGraph: FC<Props> = ({ percentage, children }) => {
+const MeterGraph: FC<Props> = ({ className, style, percentage, children }) => {
   const pathD = `
     M${styles.HALF_VIEW_BOX_SIZE} ${styles.MARGIN_OF_CIRCLE}
     a ${styles.RADIUS} ${styles.RADIUS} 0 0 1 0 ${styles.DIAMETER}
@@ -35,7 +36,10 @@ const MeterGraph: FC<Props> = ({ percentage, children }) => {
   `;
 
   return (
-    <div className={styles.MeterBarContainerStyle}>
+    <div
+      className={clsx(className, styles.MeterBarContainerStyle)}
+      style={style}
+    >
       <svg
         className={styles.MeterBarSVGStyle}
         viewBox={`0 0 ${styles.VIEW_BOX_SIZE} ${styles.VIEW_BOX_SIZE}`}

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { ForwardedRef, ReactNode, forwardRef } from "react";
 
 import { TIcon, WizIcon, WizVStack } from "@/components";
+import { BaseProps } from "@/types";
 
 const iconFontColor: Record<string, ColorKeys> = {
   information: "green.800",
@@ -11,7 +12,7 @@ const iconFontColor: Record<string, ColorKeys> = {
   warning: "red.800",
 };
 
-type Props = {
+type Props = BaseProps & {
   title: string;
   variant?: "information" | "caution" | "warning";
   icon?: TIcon;
@@ -21,7 +22,15 @@ type Props = {
 
 const MessageBox = forwardRef(
   (
-    { title, variant = "information", icon, expand = false, children }: Props,
+    {
+      className,
+      style,
+      title,
+      variant = "information",
+      icon,
+      expand = false,
+      children,
+    }: Props,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const width = expand ? "expand" : "default";
@@ -29,10 +38,12 @@ const MessageBox = forwardRef(
       <div
         ref={ref}
         className={clsx(
+          className,
           styles.messageBoxStyle,
           styles.messageBoxWidthStyle[width],
           styles.messageBoxVariantStyle[variant]
         )}
+        style={style}
       >
         {icon && (
           <div className={styles.messageBoxIconStyle}>

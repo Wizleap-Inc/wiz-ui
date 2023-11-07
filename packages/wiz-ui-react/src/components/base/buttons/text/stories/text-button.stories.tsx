@@ -7,35 +7,6 @@ import { WizTextButton } from "../components/text-button";
 const meta: Meta<typeof WizTextButton> = {
   title: "Base/Buttons/Text",
   component: WizTextButton,
-  argTypes: {
-    disabled: {
-      control: { type: "boolean" },
-    },
-    rounded: {
-      control: { type: "boolean" },
-    },
-    expand: {
-      control: { type: "boolean" },
-    },
-    variant: {
-      control: { type: "select" },
-      options: ["primary", "sub"],
-    },
-    size: {
-      control: { type: "select" },
-      options: ["xs", "sm", "md", "lg"],
-    },
-    icon: {
-      control: { type: "object" },
-    },
-    iconPosition: {
-      control: { type: "select" },
-      options: ["left", "right"],
-    },
-    onClick: {
-      action: "click",
-    },
-  },
 };
 
 export default meta;
@@ -95,7 +66,33 @@ export const Icon: Story = {
   args: {
     icon: WizIAdd,
   },
-  render: (args) => <WizTextButton {...args}>保存する</WizTextButton>,
+  render: (args) => (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "max-content max-content",
+        gridGap: "1rem",
+        alignItems: "center",
+      }}
+    >
+      <WizTextButton {...args} variant="primary">
+        保存する
+      </WizTextButton>
+      <div>variant = primary</div>
+      <WizTextButton {...args} variant="sub">
+        保存する
+      </WizTextButton>
+      <div>variant = sub</div>
+      <WizTextButton {...args} variant="danger">
+        保存する
+      </WizTextButton>
+      <div>variant = danger</div>
+      <WizTextButton {...args} variant="sub-danger">
+        保存する
+      </WizTextButton>
+      <div>variant = sub-danger</div>
+    </div>
+  ),
   parameters: {
     docs: {
       description: {
@@ -144,6 +141,14 @@ export const Variant: Story = {
         保存する
       </WizTextButton>
       <div>variant = sub</div>
+      <WizTextButton {...args} variant="danger">
+        保存する
+      </WizTextButton>
+      <div>variant = danger</div>
+      <WizTextButton {...args} variant="sub-danger">
+        保存する
+      </WizTextButton>
+      <div>variant = sub-danger</div>
     </div>
   ),
 };

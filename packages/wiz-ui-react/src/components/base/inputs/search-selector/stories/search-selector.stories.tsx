@@ -68,7 +68,11 @@ const getTemplate = (initialValues: number[] = []): Story => {
 export const Default: Story = {
   ...getTemplate(),
   args: {
-    options: getDummyOptions("test", 3),
+    options: [
+      { label: "test1", value: 1 },
+      { label: "test2", value: 2 },
+      { label: "テスト3", value: 3 },
+    ],
   },
 };
 
@@ -116,6 +120,33 @@ export const Addable: Story = {
   },
 };
 
+export const ExlabelWithoutShowExlabel: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("test", 3, "(9999)"),
+    addable: true,
+    showExLabel: false,
+  },
+};
+
+export const Exlabel: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("test", 3, "(9999)"),
+    addable: true,
+    showExLabel: true,
+  },
+};
+
+export const ExlabelWithLongLabel: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("testtesttesttesttest", 3, "(9999)"),
+    addable: true,
+    showExLabel: true,
+  },
+};
+
 export const IsDirectionFixed: Story = {
   ...getTemplate(),
   args: {
@@ -134,4 +165,12 @@ export const IsDirectionFixed: Story = {
       </div>
     ),
   ],
+};
+
+export const DropdownMaxHeight: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("test", 3),
+    dropdownMaxHeight: "100px",
+  },
 };

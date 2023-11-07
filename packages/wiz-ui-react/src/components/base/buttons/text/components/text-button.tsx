@@ -7,10 +7,10 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-button.css";
 import clsx from "clsx";
 import { ComponentProps, ForwardedRef, ReactNode, forwardRef } from "react";
 
-import { WizIcon, TIcon, WizHStack } from "@/components";
-
-type Props = {
-  variant?: "primary" | "sub";
+import { TIcon, WizHStack, WizIcon } from "@/components";
+import { BaseProps } from "@/types";
+type Props = BaseProps & {
+  variant?: "primary" | "sub" | "danger" | "sub-danger";
   disabled?: boolean;
   rounded?: boolean;
   expand?: boolean;
@@ -20,9 +20,14 @@ type Props = {
   children?: ReactNode;
 } & ComponentProps<"button">;
 
-const variantColor: Record<"primary" | "sub", ColorKeys> = {
+const variantColor: Record<
+  "primary" | "sub" | "danger" | "sub-danger",
+  ColorKeys
+> = {
   primary: "white.800",
   sub: "green.800",
+  danger: "white.800",
+  "sub-danger": "red.800",
 };
 
 const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
@@ -35,6 +40,8 @@ const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
 const TextButton = forwardRef(
   (
     {
+      className,
+      style,
       variant = "primary",
       disabled = false,
       rounded = true,
@@ -52,12 +59,14 @@ const TextButton = forwardRef(
         ref={ref}
         {...props}
         className={clsx(
+          className,
           styles.textButtonStyle[variant],
           styles.textButtonSizeStyle[size],
           disabled && styles.textButtonDisabledStyle,
           rounded && styles.textButtonRoundStyle,
           expand && styles.textButtonExpandStyle
         )}
+        style={style}
         disabled={disabled}
       >
         <WizHStack
