@@ -1,5 +1,22 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.39.0
+
+### Minor Changes
+
+- [#1121](https://github.com/Wizleap-Inc/wiz-ui/pull/1121) [`215a3507`](https://github.com/Wizleap-Inc/wiz-ui/commit/215a35075208ef186442806694222e2ee69794cd) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(toggle-switch): 新デザインに更新, Disabled プロパティを追加
+
+- [#1120](https://github.com/Wizleap-Inc/wiz-ui/pull/1120) [`047439ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/047439ce3c190cd3b5654062f78d38e398202d27) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(text-button): add danger variants
+
+### Patch Changes
+
+- [#1097](https://github.com/Wizleap-Inc/wiz-ui/pull/1097) [`b5f10999`](https://github.com/Wizleap-Inc/wiz-ui/commit/b5f1099974f02facd8247415aed20199d93babf2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Refactor(search-input): WIzCheckboxNew に差し替え
+
+- [#1110](https://github.com/Wizleap-Inc/wiz-ui/pull/1110) [`76c95e85`](https://github.com/Wizleap-Inc/wiz-ui/commit/76c95e853cbc01d5152468fa5586ff0eb7c90cd9) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(DatePicker/TimePicker): `width:100%`が反映されない問題を修正
+  Feat(PopupContainer): width プロパティを追加
+- Updated dependencies [[`215a3507`](https://github.com/Wizleap-Inc/wiz-ui/commit/215a35075208ef186442806694222e2ee69794cd), [`b5f10999`](https://github.com/Wizleap-Inc/wiz-ui/commit/b5f1099974f02facd8247415aed20199d93babf2), [`76c95e85`](https://github.com/Wizleap-Inc/wiz-ui/commit/76c95e853cbc01d5152468fa5586ff0eb7c90cd9), [`f0d45f50`](https://github.com/Wizleap-Inc/wiz-ui/commit/f0d45f50b8c9eecf1ae63b9312abf2f78581866b), [`047439ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/047439ce3c190cd3b5654062f78d38e398202d27)]:
+  - @wizleap-inc/wiz-ui-styles@0.24.0
+
 ## 0.38.0
 
 ### Minor Changes
