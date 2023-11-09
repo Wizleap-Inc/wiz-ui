@@ -32,6 +32,7 @@ export const IconComponentName = {
   IContentCopy: "WizIContentCopy",
   IContract: "WizIContract",
   IDashboard: "WizIDashboard",
+  IDemography: "WizIDemography",
   IDescription: "WizIDescription",
   IDownload: "WizIDownload",
   IEditNote: "WizIEditNote",

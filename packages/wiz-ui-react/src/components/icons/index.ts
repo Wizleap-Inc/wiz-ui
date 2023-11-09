@@ -31,6 +31,7 @@ import { WizIContactPageFilled } from "./contact-page-filled";
 import { WizIContentCopy } from "./content-copy";
 import { WizIContract } from "./contract";
 import { WizIDashboard } from "./dashboard";
+import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
 import { WizIDownload } from "./download";
 import { WizIEditNote } from "./edit-note";
@@ -106,6 +107,7 @@ export type TIcon =
   | typeof WizIContentCopy
   | typeof WizIContract
   | typeof WizIDashboard
+  | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDownload
   | typeof WizIEditNote
@@ -181,6 +183,7 @@ export {
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
+  WizIDemography,
   WizIDescription,
   WizIDownload,
   WizIEditNote,
