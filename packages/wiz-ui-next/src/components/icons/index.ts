@@ -31,6 +31,7 @@ import { default as WizIContactPageFilled } from "./contact-page-filled.vue";
 import { default as WizIContentCopy } from "./content-copy.vue";
 import { default as WizIContract } from "./contract.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
+import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
 import { default as WizIDownload } from "./download.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
@@ -106,6 +107,7 @@ export type TIcon =
   | typeof WizIContentCopy
   | typeof WizIContract
   | typeof WizIDashboard
+  | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDownload
   | typeof WizIEditNote
@@ -181,6 +183,7 @@ export {
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
+  WizIDemography,
   WizIDescription,
   WizIDownload,
   WizIEditNote,
