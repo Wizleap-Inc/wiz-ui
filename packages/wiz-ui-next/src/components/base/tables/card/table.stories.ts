@@ -216,6 +216,50 @@ export const onClick = (text: string) => {
   },
 };
 
+export const TextAlign: StoryFn<typeof WizCardTable> = (args) => ({
+  setup: () => ({ args }),
+  components: {
+    WizCardTable,
+    WizCardThead,
+    WizCardTbody,
+    WizCardTr,
+    WizCardTh,
+    WizCardTd,
+    WizVStack,
+  },
+  template: `
+    <WizCardTable v-bind="args">
+      <WizCardThead>
+        <WizCardTr>
+          <WizCardTh align="left">Column 1</WizCardTh>
+          <WizCardTh align="center">Column 2</WizCardTh>
+          <WizCardTh align="right">Column 3</WizCardTh>
+        </WizCardTr>
+      </WizCardThead>
+      <WizCardTbody>
+        <WizCardTr @click="args.onClick('Row 1')">
+          <WizCardTd align="left" v-for="j in 3" :key="j">
+            Row {{ i }}
+          </WizCardTd>
+        </WizCardTr>
+        <WizCardTr align="center" @click="args.onClick('Row 2')">
+          <WizCardTd v-for="j in 3" :key="j">
+            Row {{ i }}
+          </WizCardTd>
+        </WizCardTr>
+        <WizCardTr @click="args.onClick('Row 3')">
+          <WizCardTd align="right" v-for="j in 3" :key="j">
+            Row {{ i }}
+          </WizCardTd>
+        </WizCardTr>
+      </WizCardTbody>
+    </WizCardTable>
+  `,
+});
+TextAlign.args = {
+  width: "600px",
+};
+
 export const Example: StoryFn<typeof WizCardTable> = (args) => ({
   components: {
     WizCardTable,

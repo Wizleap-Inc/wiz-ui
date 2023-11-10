@@ -102,6 +102,40 @@ Fixed.args = {
   width: "600px",
 };
 
+export const TextAlign: StoryFn<typeof WizUnstyledTable> = (args) => ({
+  setup: () => ({ args }),
+  components: {
+    WizUnstyledTable,
+    WizUnstyledThead,
+    WizUnstyledTbody,
+    WizUnstyledTr,
+    WizUnstyledTh,
+    WizUnstyledTd,
+  },
+  template: `
+    <WizUnstyledTable v-bind="args">
+      <WizUnstyledThead>
+        <WizUnstyledTr>
+          <WizUnstyledTh width="200px" align="left">Column 1</WizUnstyledTh>
+          <WizUnstyledTh width="200px" align="center">Column 2</WizUnstyledTh>
+          <WizUnstyledTh width="200px" align="right">Column 3</WizUnstyledTh>
+        </WizUnstyledTr>
+      </WizUnstyledThead>
+      <WizUnstyledTbody>
+        <WizUnstyledTr>
+          <WizUnstyledTd v-for="j in 3" :key="j" align="left">Row 1</WizUnstyledTd>
+        </WizUnstyledTr>
+        <WizUnstyledTr>
+          <WizUnstyledTd v-for="j in 3" :key="j" align="center">Row 2</WizUnstyledTd>
+        </WizUnstyledTr>
+        <WizUnstyledTr>
+          <WizUnstyledTd v-for="j in 3" :key="j" align="right">Row 3</WizUnstyledTd>
+        </WizUnstyledTr>
+      </WizUnstyledTbody>
+    </WizUnstyledTable>
+  `,
+});
+
 export const WithRowHeader: StoryFn<typeof WizUnstyledTable> = (args) => ({
   setup: () => ({ args }),
   components: {
