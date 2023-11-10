@@ -1,6 +1,6 @@
 <template>
   <td
-    :class="[unstyledTdStyle, unstyledTdAlignStyle[align]]"
+    :class="[unstyledTdStyle, unstyledTableAlignStyle[align]]"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
   >
@@ -12,7 +12,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   unstyledTdStyle,
-  unstyledTdAlignStyle,
+  unstyledTableAlignStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 import { PropType } from "vue";
 
