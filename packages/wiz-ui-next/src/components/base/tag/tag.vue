@@ -26,10 +26,10 @@ import {
   ComponentName,
   FontSizeKeys,
   FontWeightKeys,
-  getTagIconSize,
   THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
+  getTagIconSize,
   tagColorStyle,
   tagIconColorStyle,
   tagStyle,
