@@ -1,6 +1,6 @@
 <template>
   <th
-    :class="[unstyledTh, divider && unstyledThDividerYStyle]"
+    :class="[styles.unstyledTh, divider && styles.unstyledThDividerYStyle]"
     :style="{ width }"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
@@ -11,10 +11,7 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  unstyledTh,
-  unstyledThDividerYStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
 
 defineOptions({
   name: ComponentName.FlatTh,
