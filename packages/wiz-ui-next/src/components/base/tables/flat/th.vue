@@ -1,6 +1,10 @@
 <template>
   <th
-    :class="[styles.flatTh, styles.flatThVariantStyle[scope]]"
+    :class="[
+      styles.flatTableAlignStyle[align],
+      styles.flatTh,
+      styles.flatThVariantStyle[scope],
+    ]"
     :style="{ width, fontSize: THEME.fontSize[fontSize] }"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
@@ -19,6 +23,11 @@ defineOptions({
 });
 
 defineProps({
+  align: {
+    type: String as PropType<"left" | "center" | "right">,
+    required: false,
+    default: "center",
+  },
   width: {
     type: String,
     required: false,

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { ComponentProps, ReactNode } from "react";
 
 type Props = {
+  align?: "left" | "center" | "right";
   width?: string;
   divider?: boolean;
   children?: ReactNode;
@@ -12,6 +13,7 @@ type Props = {
 const UnstyledTh = ({
   className,
   style,
+  align = "center",
   width = "auto",
   divider,
   children,
@@ -21,6 +23,7 @@ const UnstyledTh = ({
     className={clsx(
       className,
       styles.unstyledTh,
+      styles.unstyledTableAlignStyle[align],
       divider && styles.unstyledThDividerYStyle
     )}
     style={{ ...style, width }}
