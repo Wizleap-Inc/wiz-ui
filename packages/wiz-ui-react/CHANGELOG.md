@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.40.0
+
+### Minor Changes
+
+- [#1124](https://github.com/Wizleap-Inc/wiz-ui/pull/1124) [`39f7ef70`](https://github.com/Wizleap-Inc/wiz-ui/commit/39f7ef7035cbfb27f27f50e9ac0a6001fc2a6cf4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIDemography を追加
+
+### Patch Changes
+
+- [`2b31c730`](https://github.com/Wizleap-Inc/wiz-ui/commit/2b31c730c98b8507b0023e21263719498b5ec592) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(card): card の仕様を vue 側と統一
+
+- Updated dependencies [[`39f7ef70`](https://github.com/Wizleap-Inc/wiz-ui/commit/39f7ef7035cbfb27f27f50e9ac0a6001fc2a6cf4)]:
+  - @wizleap-inc/wiz-ui-constants@0.15.0
+  - @wizleap-inc/wiz-ui-styles@0.24.1
+
 ## 0.39.0
 
 ### Minor Changes
