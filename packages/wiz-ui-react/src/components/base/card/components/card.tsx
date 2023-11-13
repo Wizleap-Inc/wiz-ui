@@ -67,14 +67,14 @@ const Card = ({
       ])}
       style={{ ...style, maxWidth }}
     >
-      <WizVStack gap={gap} align={align}>
+      <WizVStack gap={gap} align={align} nowrap={true}>
         {(mainHeaderArea || subHeaderArea) && (
           <div className={styles.cardHeaderStyle}>
             <div>{mainHeaderArea}</div>
             <div>{subHeaderArea}</div>
           </div>
         )}
-        <div className={styles.cardBodyStyle}>{children}</div>
+        {children && <div className={styles.cardBodyStyle}>{children}</div>}
         {footerArea && <div>{footerArea}</div>}
       </WizVStack>
     </div>
