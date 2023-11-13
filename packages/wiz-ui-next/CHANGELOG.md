@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.15.0
+
+### Minor Changes
+
+- [#1124](https://github.com/Wizleap-Inc/wiz-ui/pull/1124) [`39f7ef70`](https://github.com/Wizleap-Inc/wiz-ui/commit/39f7ef7035cbfb27f27f50e9ac0a6001fc2a6cf4) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIDemography を追加
+
+### Patch Changes
+
+- Updated dependencies [[`39f7ef70`](https://github.com/Wizleap-Inc/wiz-ui/commit/39f7ef7035cbfb27f27f50e9ac0a6001fc2a6cf4)]:
+  - @wizleap-inc/wiz-ui-constants@0.15.0
+  - @wizleap-inc/wiz-ui-styles@0.24.1
+
 ## 2.14.0
 
 ### Minor Changes
