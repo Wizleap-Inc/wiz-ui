@@ -8,6 +8,7 @@ import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./auto-renew.vue";
+import { default as WizIBarChart4Bars } from "./bar-chart-4-bars.vue";
 import { default as WizIBook } from "./book.vue";
 import { default as WizIBrightFilled } from "./bright-filled.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
@@ -46,6 +47,7 @@ import { default as WizIHome } from "./home.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizILocationCity } from "./location-city.vue";
+import { default as WizILocationOn } from "./location-on.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
@@ -84,6 +86,7 @@ export type TIcon =
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
+  | typeof WizIBarChart4Bars
   | typeof WizIBook
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
@@ -122,6 +125,7 @@ export type TIcon =
   | typeof WizIInfoBold
   | typeof WizIInfo
   | typeof WizILocationCity
+  | typeof WizILocationOn
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -160,6 +164,7 @@ export {
   WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
+  WizIBarChart4Bars,
   WizIBook,
   WizIBrightFilled,
   WizIBusinessCenter,
@@ -198,6 +203,7 @@ export {
   WizIInfoBold,
   WizIInfo,
   WizILocationCity,
+  WizILocationOn,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
