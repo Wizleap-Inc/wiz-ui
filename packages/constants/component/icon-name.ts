@@ -48,6 +48,7 @@ export const IconComponentName = {
   IInfoBold: "WizIInfoBold",
   IInfo: "WizIInfo",
   ILocationCity: "WizILocationCity",
+  ILocationOn: "WizILocationOn",
   IManageAccounts: "WizIManageAccounts",
   IMenu: "WizIMenu",
   IMonitoring: "WizIMonitoring",

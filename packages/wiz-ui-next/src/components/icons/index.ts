@@ -47,6 +47,7 @@ import { default as WizIHome } from "./home.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizILocationCity } from "./location-city.vue";
+import { default as WizILocationOn } from "./location-on.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
@@ -124,6 +125,7 @@ export type TIcon =
   | typeof WizIInfoBold
   | typeof WizIInfo
   | typeof WizILocationCity
+  | typeof WizILocationOn
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -201,6 +203,7 @@ export {
   WizIInfoBold,
   WizIInfo,
   WizILocationCity,
+  WizILocationOn,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,

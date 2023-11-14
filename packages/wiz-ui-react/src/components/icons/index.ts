@@ -47,6 +47,7 @@ import { WizIHome } from "./home";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizILocationCity } from "./location-city";
+import { WizILocationOn } from "./location-on";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMonitoring } from "./monitoring";
@@ -124,6 +125,7 @@ export type TIcon =
   | typeof WizIInfoBold
   | typeof WizIInfo
   | typeof WizILocationCity
+  | typeof WizILocationOn
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -201,6 +203,7 @@ export {
   WizIInfoBold,
   WizIInfo,
   WizILocationCity,
+  WizILocationOn,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
