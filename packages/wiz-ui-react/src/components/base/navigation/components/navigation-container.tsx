@@ -25,9 +25,9 @@ const NavigationContainer: FC<Props> = ({
   children,
   footer,
 }) => {
-  const widthStyle =
-    width ??
-    (isOpen ? "180px" : `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`);
+  const widthStyle = isOpen
+    ? width ?? "180px"
+    : `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`;
 
   const stickyStyle: CSSProperties = sticky
     ? {
