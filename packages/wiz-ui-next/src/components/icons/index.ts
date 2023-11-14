@@ -8,6 +8,7 @@ import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./auto-renew.vue";
+import { default as WizIBarChart4Bars } from "./bar-chart-4-bars.vue";
 import { default as WizIBook } from "./book.vue";
 import { default as WizIBrightFilled } from "./bright-filled.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
@@ -84,6 +85,7 @@ export type TIcon =
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
+  | typeof WizIBarChart4Bars
   | typeof WizIBook
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
@@ -160,6 +162,7 @@ export {
   WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
+  WizIBarChart4Bars,
   WizIBook,
   WizIBrightFilled,
   WizIBusinessCenter,

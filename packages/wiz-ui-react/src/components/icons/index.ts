@@ -8,6 +8,7 @@ import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
 import { WizIAttachFile } from "./attach-file";
 import { WizIAutoRenew } from "./auto-renew";
+import { WizIBarChart4Bars } from "./bar-chart-4-bars";
 import { WizIBook } from "./book";
 import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
@@ -84,6 +85,7 @@ export type TIcon =
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
+  | typeof WizIBarChart4Bars
   | typeof WizIBook
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
@@ -160,6 +162,7 @@ export {
   WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
+  WizIBarChart4Bars,
   WizIBook,
   WizIBrightFilled,
   WizIBusinessCenter,

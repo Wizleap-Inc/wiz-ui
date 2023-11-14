@@ -9,6 +9,7 @@ export const IconComponentName = {
   IAssignment: "WizIAssignment",
   IAttachFile: "WizIAttachFile",
   IAutoRenew: "WizIAutoRenew",
+  IBarChart4Bars: "WizIBarChart4Bars",
   IBook: "WizIBook",
   IBrightFilled: "WizIBrightFilled",
   IBusinessCenter: "WizIBusinessCenter",
