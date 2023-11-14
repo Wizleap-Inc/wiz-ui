@@ -72,6 +72,14 @@ export const Overview: Story = {
   },
 };
 
+export const Width: Story = {
+  ...Template,
+  args: {
+    isOpen: true,
+    width: "15rem",
+  },
+};
+
 export const WithFooter: Story = {
   ...Template,
   args: {
