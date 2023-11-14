@@ -50,7 +50,10 @@ const navItems = [
 const Template: Story = {
   render: (args) => (
     <div style={{ display: "flex", height: "100vh" }}>
-      <WizNavigationContainer {...args}>
+      <WizNavigationContainer
+        {...args}
+        style={{ backgroundColor: "RGBA(0, 0, 0, 0.04)" }}
+      >
         {navItems.map((path) => (
           <WizNavigationItem
             key={`path-${path.label}`}
