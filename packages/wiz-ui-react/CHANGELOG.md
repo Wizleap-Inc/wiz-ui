@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.41.0
+
+### Minor Changes
+
+- [#1131](https://github.com/Wizleap-Inc/wiz-ui/pull/1131) [`7579275a`](https://github.com/Wizleap-Inc/wiz-ui/commit/7579275a6eede2afe8862b2c1d9829df1b9f16eb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): WizIBarChart4Bars, WizILocationOn を追加
+
+### Patch Changes
+
+- Updated dependencies [[`7579275a`](https://github.com/Wizleap-Inc/wiz-ui/commit/7579275a6eede2afe8862b2c1d9829df1b9f16eb)]:
+  - @wizleap-inc/wiz-ui-constants@0.16.0
+  - @wizleap-inc/wiz-ui-styles@0.24.2
+
 ## 0.40.0
 
 ### Minor Changes

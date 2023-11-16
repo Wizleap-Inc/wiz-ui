@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.16.0
+
+### Minor Changes
+
+- [#1131](https://github.com/Wizleap-Inc/wiz-ui/pull/1131) [`7579275a`](https://github.com/Wizleap-Inc/wiz-ui/commit/7579275a6eede2afe8862b2c1d9829df1b9f16eb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): WizIBarChart4Bars, WizILocationOn を追加
+
+### Patch Changes
+
+- [#1135](https://github.com/Wizleap-Inc/wiz-ui/pull/1135) [`1d25ccae`](https://github.com/Wizleap-Inc/wiz-ui/commit/1d25ccaeb8c047c7ccc6f783435498f1704f5e1c) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(search-input): emit が機能しない問題の解消
+
+- Updated dependencies [[`7579275a`](https://github.com/Wizleap-Inc/wiz-ui/commit/7579275a6eede2afe8862b2c1d9829df1b9f16eb)]:
+  - @wizleap-inc/wiz-ui-constants@0.16.0
+  - @wizleap-inc/wiz-ui-styles@0.24.2
+
 ## 2.15.0
 
 ### Minor Changes
