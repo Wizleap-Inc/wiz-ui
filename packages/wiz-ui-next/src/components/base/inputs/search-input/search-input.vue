@@ -118,7 +118,6 @@
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
           :emptyMessage="emptyMessage"
-          :dy="activeItemIndex || 0"
         />
       </WizHStack>
     </WizPopup>
@@ -254,10 +253,9 @@ const onMouseover = (value: number) => {
 
 const handleClickCheckbox = (value: number) => {
   if (checkValues.value.includes(value)) {
-    const index = checkValues.value.indexOf(value);
-    checkValues.value.splice(index, 1);
+    checkValues.value = checkValues.value.filter((v) => v !== value);
   } else {
-    checkValues.value.push(value);
+    checkValues.value = [...checkValues.value, value];
   }
 };
 

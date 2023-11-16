@@ -109,8 +109,6 @@
         :options="option.children"
         :selectedItem="selectedItem"
         :popupWidth="computedPopupWidth"
-        :dy="activeItemIndex || 0"
-        :parentScrollAmount="scrollAmount"
         :emptyMessage="emptyMessage"
       />
     </div>
@@ -243,10 +241,9 @@ const onMouseover = (value: number, options?: SearchInputOption[]) => {
 
 const handleClickCheckbox = (value: number) => {
   if (checkValues.value.includes(value)) {
-    const index = checkValues.value.indexOf(value);
-    checkValues.value.splice(index, 1);
+    checkValues.value = checkValues.value.filter((v) => v !== value);
   } else {
-    checkValues.value.push(value);
+    checkValues.value = [...checkValues.value, value];
   }
 };
 </script>
