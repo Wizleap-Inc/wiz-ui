@@ -66,24 +66,17 @@ export const tagIconColorStyle: Record<string, ColorKeys> = {
   greenFill: "white.800",
   white: "gray.800",
 };
-
-export const convertTagIconSize = (key: FontSizeKeys): FontSizeKeys => {
-  switch (key) {
-    case "xs2":
-      return "md";
-    case "xs":
-      return "xl";
-    case "sm":
-      return "xl2";
-    case "md":
-      return "xl3";
-    case "lg":
-      return "xl4";
-    case "xl":
-      return "xl5";
-    case "xl2":
-      return "xl6";
-    default:
-      return key;
-  }
+export const tagIconSize: { [key in FontSizeKeys]: FontSizeKeys } = {
+  xs3: "xs",
+  xs2: "md",
+  xs: "xl",
+  sm: "xl2",
+  md: "xl3",
+  lg: "xl4",
+  xl: "xl5",
+  xl2: "xl6",
+  xl3: "xl6",
+  xl4: "xl6",
+  xl5: "xl6",
+  xl6: "xl6",
 };

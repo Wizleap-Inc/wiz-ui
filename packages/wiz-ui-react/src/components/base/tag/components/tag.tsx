@@ -70,7 +70,7 @@ const Tag = forwardRef(
           <WizIcon
             icon={icon}
             color={styles.tagIconColorStyle[variant]}
-            size={styles.convertTagIconSize(fontSize)}
+            size={styles.tagIconSize[fontSize]}
           />
         )}
         {label}

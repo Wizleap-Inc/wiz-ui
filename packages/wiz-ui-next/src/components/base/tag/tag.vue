@@ -15,7 +15,7 @@
       v-if="icon"
       :icon="icon"
       :color="tagIconColorStyle[variant]"
-      :size="convertTagIconSize(fontSize)"
+      :size="tagIconSize[fontSize]"
     />
     {{ label }}
   </span>
@@ -29,10 +29,10 @@ import {
   THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  convertTagIconSize,
   tagColorStyle,
   tagIconColorStyle,
   tagStyle,
+  tagIconSize,
 } from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
   fontSizeStyle,
