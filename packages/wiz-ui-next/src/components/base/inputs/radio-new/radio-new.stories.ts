@@ -84,3 +84,50 @@ export const Variations: Story = () => ({
     </WizVStack>
   `,
 });
+
+export const MultipleLine: Story = () => ({
+  components: { WizRadioNew, WizVStack, WizHStack },
+  setup() {
+    return {
+      variations: [
+        [
+          { checked: false },
+          { checked: false, disabled: true },
+          { checked: false, strikeThrough: true },
+        ],
+        [
+          { checked: true },
+          { checked: true, disabled: true },
+          { checked: true, strikeThrough: true },
+        ],
+        [
+          { checked: false, bordered: true },
+          { checked: false, bordered: true, disabled: true },
+          { checked: false, bordered: true, error: true },
+          { checked: false, bordered: true, strikeThrough: true },
+        ],
+        [
+          { checked: true, bordered: true },
+          { checked: true, bordered: true, disabled: true },
+          { checked: true, bordered: true, error: true },
+          { checked: true, bordered: true, strikeThrough: true },
+        ],
+      ],
+    };
+  },
+  template: `
+    <WizVStack gap="md">
+      <WizHStack v-for="(row, i) in variations" gap="xl">
+        <template v-for="(props, j) in row">
+          <WizRadioNew v-bind="props" :name="i + ',' + j">
+            <div>
+              <div>Label</div>
+              <div>Label</div>
+              <div>Label</div>
+            </div>
+          </WizRadioNew>
+        </template>
+      </WizHStack>
+    </WizVStack>
+  `,
+});
