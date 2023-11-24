@@ -108,7 +108,7 @@ export const TextAlign: StoryObj<typeof WizCardTable> = {
             <WizCardTr key={i}>
               {textAligns.map((align, index) => (
                 <WizCardTd key={index} width="200px" align={align}>
-                  Column {index + 1}
+                  Row {index + 1}
                 </WizCardTd>
               ))}
             </WizCardTr>

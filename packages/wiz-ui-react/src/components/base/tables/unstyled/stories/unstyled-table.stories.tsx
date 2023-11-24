@@ -91,7 +91,7 @@ export const TextAlign: StoryObj<typeof WizUnstyledTable> = {
             <WizUnstyledTr key={i}>
               {textAligns.map((align, index) => (
                 <WizUnstyledTd key={index} width="200px" align={align}>
-                  Column {index + 1}
+                  Row {index + 1}
                 </WizUnstyledTd>
               ))}
             </WizUnstyledTr>

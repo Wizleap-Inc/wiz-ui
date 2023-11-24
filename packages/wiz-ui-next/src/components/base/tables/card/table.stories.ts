@@ -237,19 +237,9 @@ export const TextAlign: StoryFn<typeof WizCardTable> = (args) => ({
         </WizCardTr>
       </WizCardThead>
       <WizCardTbody>
-        <WizCardTr @click="args.onClick('Row 1')">
-          <WizCardTd align="left" v-for="j in 3" :key="j">
-            Row {{ i }}
-          </WizCardTd>
-        </WizCardTr>
-        <WizCardTr align="center" @click="args.onClick('Row 2')">
-          <WizCardTd v-for="j in 3" :key="j">
-            Row {{ i }}
-          </WizCardTd>
-        </WizCardTr>
-        <WizCardTr @click="args.onClick('Row 3')">
-          <WizCardTd align="right" v-for="j in 3" :key="j">
-            Row {{ i }}
+        <WizCardTr v-for="i in 3" @click="args.onClick('Row ' + i)">
+          <WizCardTd :key="j" :align="align" v-for="(align,j) in ['left','center','right']">
+            Row {{ j+1 }}
           </WizCardTd>
         </WizCardTr>
       </WizCardTbody>

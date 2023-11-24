@@ -161,14 +161,10 @@ export const TextAlign: StoryFn<typeof WizFlatTable> = (args) => ({
         </WizFlatTr>
       </WizFlatThead>
       <WizFlatTbody>
-        <WizFlatTr>
-          <WizFlatTd v-for="j in 3" :key="j" align="left">Row 1</WizFlatTd>
-        </WizFlatTr>
-        <WizFlatTr>
-          <WizFlatTd v-for="j in 3" :key="j" align="center">Row 2</WizFlatTd>
-        </WizFlatTr>
-        <WizFlatTr>
-          <WizFlatTd v-for="j in 3" :key="j" align="right">Row 2</WizFlatTd>
+        <WizFlatTr v-for="i in 3" @click="args.onClick('Row ' + i)">
+          <WizFlatTd :key="j" :align="align" v-for="(align,j) in ['left','center','right']">
+            Row {{ j+1 }}
+          </WizFlatTd>
         </WizFlatTr>
       </WizFlatTbody>
     </WizFlatTable>

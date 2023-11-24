@@ -156,7 +156,7 @@ export const TextAlign: StoryObj<typeof WizFlatTable> = {
             <WizFlatTr key={i}>
               {textAligns.map((align, index) => (
                 <WizFlatTd key={index} width="200px" align={align}>
-                  Column {index + 1}
+                  Row {index + 1}
                 </WizFlatTd>
               ))}
             </WizFlatTr>
