@@ -4,7 +4,6 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 const labelBaseStyle = style({
   position: "relative",
   display: "inline-flex",
-  alignItems: "center",
   gap: THEME.spacing.xs,
   color: THEME.color.gray[800],
   cursor: "pointer",
@@ -75,6 +74,15 @@ const inputShapeStyle = style({
   height: THEME.fontSize.md,
   width: THEME.fontSize.md,
   borderRadius: THEME.spacing.max,
+});
+
+export const inputMarginStyle = styleVariants({
+  default: {
+    margin: "0.05rem 0",
+  },
+  bordered: {
+    margin: "0.25rem 0",
+  },
 });
 
 export const inputStyle = style([
