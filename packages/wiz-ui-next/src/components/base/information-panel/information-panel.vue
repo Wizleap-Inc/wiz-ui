@@ -5,13 +5,13 @@
     v-show="visible"
   >
     <WizVStack gap="xs">
+      <!--メッセージの内容はv-htmlで描画される-->
       <div
         v-for="message in messages"
         :key="message.text"
+        v-html="message.text"
         :class="[informationPanelFontStyle[message.type]]"
-      >
-        {{ message.text }}
-      </div>
+      />
     </WizVStack>
     <div :class="[informationPanelIconStyle]">
       <WizVStack align="center">
@@ -28,14 +28,14 @@
 <script setup lang="ts">
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  informationPanelStyle,
   informationPanelBorderStyle,
   informationPanelFontStyle,
   informationPanelIconStyle,
+  informationPanelStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
 import { PropType, computed } from "vue";
 
-import { WizIconButton, WizIClose } from "@/components";
+import { WizIClose, WizIconButton } from "@/components";
 
 import { WizVStack } from "../stack";
 

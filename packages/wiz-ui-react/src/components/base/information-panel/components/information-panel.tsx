@@ -1,12 +1,12 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 import { WizIClose, WizIconButton, WizVStack } from "@/components";
 import { BaseProps } from "@/types";
 type Message = {
-  text: string;
+  text: ReactNode;
   type: "default" | "error";
 };
 

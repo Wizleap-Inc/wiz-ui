@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import WizInformationPanel from "./information-panel.vue";
@@ -38,6 +38,16 @@ const Template: StoryFn<typeof WizInformationPanel> = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   messages: [{ text: "メッセージ1", type: "default" }],
+};
+
+export const Link = Template.bind({});
+Link.args = {
+  messages: [
+    {
+      text: '<a href="https://github.com/Wizleap-Inc/wiz-ui">wiz-ui repository</a>',
+      type: "default",
+    },
+  ],
 };
 
 export const Multiple = Template.bind({});
