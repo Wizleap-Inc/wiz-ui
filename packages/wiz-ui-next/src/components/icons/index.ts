@@ -40,6 +40,7 @@ import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
+import { default as WizIFamilyHome } from "./family-home.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
@@ -113,12 +114,14 @@ export type TIcon =
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDownload
+  | typeof WizIDomain
   | typeof WizIEditNote
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
   | typeof WizIEye
   | typeof WizIGroups
+  | typeof WizIFamilyHome
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
@@ -191,12 +194,14 @@ export {
   WizIDemography,
   WizIDescription,
   WizIDownload,
+  WizIDomain,
   WizIEditNote,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,
   WizIEye,
   WizIGroups,
+  WizIFamilyHome,
   WizIHelp,
   WizIHistory,
   WizIHome,

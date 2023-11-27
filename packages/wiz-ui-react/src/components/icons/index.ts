@@ -34,12 +34,14 @@ import { WizIContract } from "./contract";
 import { WizIDashboard } from "./dashboard";
 import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
+import { WizIDomain } from "./domain";
 import { WizIDownload } from "./download";
 import { WizIEditNote } from "./edit-note";
 import { WizIExpandLess } from "./expand-less";
 import { WizIExpandMore } from "./expand-more";
 import { WizIExpandMoreBold } from "./expand-more-bold";
 import { WizIEye } from "./eye";
+import { WizIFamilyHome } from "./family-home";
 import { WizIGroups } from "./groups";
 import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
@@ -113,12 +115,14 @@ export type TIcon =
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDownload
+  | typeof WizIDomain
   | typeof WizIEditNote
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
   | typeof WizIEye
   | typeof WizIGroups
+  | typeof WizIFamilyHome
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
@@ -154,14 +158,14 @@ export type TIcon =
   | typeof WizIWarning;
 
 export {
-  WizIAddCircle,
   WizIAdd,
+  WizIAddCircle,
   WizIApprovalFilled,
   WizIArrowDropDown,
   WizIArrowDropUp,
   WizIArrowRight,
-  WizIAssignmentAdd,
   WizIAssignment,
+  WizIAssignmentAdd,
   WizIAttachFile,
   WizIAutoRenew,
   WizIBarChart4Bars,
@@ -172,36 +176,38 @@ export {
   WizICamera,
   WizICancel,
   WizIChangeHistory,
-  WizIChatBubbleFilled,
   WizIChat,
+  WizIChatBubbleFilled,
+  WizICheck,
   WizICheckBold,
   WizICheckCircleFilled,
-  WizICheck,
-  WizIChevronLeftBold,
   WizIChevronLeft,
+  WizIChevronLeftBold,
   WizIChevronRight,
-  WizICircleCheck,
   WizICircle,
-  WizICloseBold,
+  WizICircleCheck,
   WizIClose,
+  WizICloseBold,
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
   WizIDemography,
   WizIDescription,
+  WizIDomain,
   WizIDownload,
   WizIEditNote,
   WizIExpandLess,
-  WizIExpandMoreBold,
   WizIExpandMore,
+  WizIExpandMoreBold,
   WizIEye,
+  WizIFamilyHome,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
-  WizIInfoBold,
   WizIInfo,
+  WizIInfoBold,
   WizILocationCity,
   WizILocationOn,
   WizIManageAccounts,
@@ -215,8 +221,8 @@ export {
   WizIPieChart,
   WizIPinDrop,
   WizIPublic,
-  WizIRemoveBold,
   WizIRemove,
+  WizIRemoveBold,
   WizISchedule,
   WizISearch,
   WizISend,
