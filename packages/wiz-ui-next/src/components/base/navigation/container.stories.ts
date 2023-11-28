@@ -249,7 +249,7 @@ export const Popup: StoryFn<typeof WizNavContainer> = (args) => ({
   },
   template: `
   <div style="display: flex; height: 100vh;">
-    <WizNavContainer :style="style={backgroundColor: 'RGBA(0, 0, 0, 0.04)'}">
+    <WizNavContainer>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
       <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
