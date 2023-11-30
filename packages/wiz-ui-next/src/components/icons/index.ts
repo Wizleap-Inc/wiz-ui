@@ -34,12 +34,14 @@ import { default as WizIContract } from "./contract.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
 import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
+import { default as WizIDomain } from "./domain.vue";
 import { default as WizIDownload } from "./download.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
+import { default as WizIFamilyHome } from "./family-home.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
@@ -113,12 +115,14 @@ export type TIcon =
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDownload
+  | typeof WizIDomain
   | typeof WizIEditNote
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
   | typeof WizIEye
   | typeof WizIGroups
+  | typeof WizIFamilyHome
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
@@ -154,14 +158,14 @@ export type TIcon =
   | typeof WizIWarning;
 
 export {
-  WizIAddCircle,
   WizIAdd,
+  WizIAddCircle,
   WizIApprovalFilled,
   WizIArrowDropDown,
   WizIArrowDropUp,
   WizIArrowRight,
-  WizIAssignmentAdd,
   WizIAssignment,
+  WizIAssignmentAdd,
   WizIAttachFile,
   WizIAutoRenew,
   WizIBarChart4Bars,
@@ -172,36 +176,38 @@ export {
   WizICamera,
   WizICancel,
   WizIChangeHistory,
-  WizIChatBubbleFilled,
   WizIChat,
+  WizIChatBubbleFilled,
+  WizICheck,
   WizICheckBold,
   WizICheckCircleFilled,
-  WizICheck,
-  WizIChevronLeftBold,
   WizIChevronLeft,
+  WizIChevronLeftBold,
   WizIChevronRight,
-  WizICircleCheck,
   WizICircle,
-  WizICloseBold,
+  WizICircleCheck,
   WizIClose,
+  WizICloseBold,
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
   WizIDemography,
   WizIDescription,
+  WizIDomain,
   WizIDownload,
   WizIEditNote,
   WizIExpandLess,
-  WizIExpandMoreBold,
   WizIExpandMore,
+  WizIExpandMoreBold,
   WizIEye,
+  WizIFamilyHome,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
-  WizIInfoBold,
   WizIInfo,
+  WizIInfoBold,
   WizILocationCity,
   WizILocationOn,
   WizIManageAccounts,
@@ -215,8 +221,8 @@ export {
   WizIPieChart,
   WizIPinDrop,
   WizIPublic,
-  WizIRemoveBold,
   WizIRemove,
+  WizIRemoveBold,
   WizISchedule,
   WizISearch,
   WizISend,
