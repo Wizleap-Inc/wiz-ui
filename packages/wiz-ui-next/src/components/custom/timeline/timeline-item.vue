@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/timeline.css";
-import { PropType, computed, useSlots, inject } from "vue";
+import { PropType, computed, inject, useSlots } from "vue";
 
 import { WizIcon, WizTag } from "@/components/base";
 import { WizICalendar } from "@/components/icons";
@@ -62,7 +62,7 @@ defineOptions({
   name: ComponentName.TimelineItem,
 });
 
-type TimelineVariant = "success" | "failure";
+type TimelineVariant = "success" | "failure" | "warning" | "neutral";
 
 const props = defineProps({
   variant: {

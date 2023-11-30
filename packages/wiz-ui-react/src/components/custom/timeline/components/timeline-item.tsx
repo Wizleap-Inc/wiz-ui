@@ -8,7 +8,7 @@ import { WizICalendar } from "../../../icons";
 
 import { TimelineContext } from "./use-timeline";
 
-type TimelineVariant = "success" | "failure";
+type TimelineVariant = "success" | "failure" | "warning" | "neutral";
 
 interface TimelineItemProps {
   variant?: TimelineVariant;

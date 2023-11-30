@@ -1,17 +1,17 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import {
-  WizUnstyledTable,
-  WizUnstyledTbody,
-  WizUnstyledTr,
-  WizUnstyledTd,
-  WizText,
+  WizDivider,
   WizHStack,
-  WizIInfo,
   WizIHelp,
+  WizIInfo,
   WizIcon,
   WizMenuItem,
-  WizDivider,
+  WizText,
+  WizUnstyledTable,
+  WizUnstyledTbody,
+  WizUnstyledTd,
+  WizUnstyledTr,
 } from "@/components";
 
 import { WizTimelineItem } from "..";
@@ -164,6 +164,26 @@ export const VariantFailure: Story = {
       variant="failure"
       tag="タグは赤くなります"
       title="失敗ステータスのバリエーションです"
+    />
+  ),
+};
+
+export const VariantWarning: Story = {
+  render: () => (
+    <WizTimelineItem
+      variant="warning"
+      tag="タグは黄色になります"
+      title="警告ステータスのバリエーションです"
+    />
+  ),
+};
+
+export const VariantNeutral: Story = {
+  render: () => (
+    <WizTimelineItem
+      variant="neutral"
+      tag="タグは灰色になります"
+      title="中立ステータスのバリエーションです"
     />
   ),
 };

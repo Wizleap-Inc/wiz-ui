@@ -2,17 +2,17 @@ import { StoryFn } from "@storybook/vue3";
 import { computed, provide, ref } from "vue";
 
 import {
-  WizUnstyledTable,
-  WizUnstyledTbody,
-  WizUnstyledTr,
-  WizUnstyledTd,
-  WizText,
+  WizDivider,
   WizHStack,
-  WizIInfo,
   WizIHelp,
+  WizIInfo,
   WizIcon,
   WizMenuItem,
-  WizDivider,
+  WizText,
+  WizUnstyledTable,
+  WizUnstyledTbody,
+  WizUnstyledTd,
+  WizUnstyledTr,
 } from "@/components";
 import { useBreakpoint } from "@/hooks/use-breakpoint";
 
@@ -25,7 +25,7 @@ export default {
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: ["success", "failure"],
+      options: ["success", "failure", "warning", "neutral"],
     },
     title: {
       control: { type: "text" },
@@ -231,6 +231,20 @@ VariantFailure.args = {
   variant: "failure",
   tag: "タグは赤くなります",
   title: "失敗ステータスのバリエーションです",
+};
+
+export const VariantWarning = Template.bind({});
+VariantWarning.args = {
+  variant: "warning",
+  tag: "タグは黄色になります",
+  title: "警告ステータスのバリエーションです",
+};
+
+export const VariantNeutral = Template.bind({});
+VariantNeutral.args = {
+  variant: "neutral",
+  tag: "タグは灰色になります",
+  title: "中立ステータスのバリエーションです",
 };
 
 export const MobileDevice = Template.bind({});
