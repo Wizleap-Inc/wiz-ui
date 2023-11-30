@@ -25,7 +25,7 @@
                 fontSize="xs"
                 :label="tag"
                 fontWeight="bold"
-                :variant="variant === 'success' ? 'green' : 'red'"
+                :variant="TAG_COLOR_MAP[variant]"
               />
               <span v-if="!isTitleEscape" :class="styles.title">
                 {{ title }}
@@ -93,6 +93,13 @@ const props = defineProps({
     default: false,
   },
 });
+
+const TAG_COLOR_MAP = {
+  success: "green",
+  failure: "red",
+  warning: "yellow",
+  neutral: "gray",
+} as const;
 
 const slot = useSlots();
 

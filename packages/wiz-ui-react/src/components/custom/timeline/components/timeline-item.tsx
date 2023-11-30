@@ -20,6 +20,13 @@ interface TimelineItemProps {
   disabled?: boolean;
 }
 
+const TAG_COLOR_MAP = {
+  success: "green",
+  failure: "red",
+  warning: "yellow",
+  neutral: "gray",
+} as const;
+
 const TimelineItem: FC<TimelineItemProps> = ({
   variant = "success",
   title,
@@ -76,7 +83,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
                     fontSize="xs"
                     label={tag}
                     fontWeight="bold"
-                    variant={variant === "success" ? "green" : "red"}
+                    variant={TAG_COLOR_MAP[variant]}
                   />
                 )}
                 {!isTitleEscape && (
