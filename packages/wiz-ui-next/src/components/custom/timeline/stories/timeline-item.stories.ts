@@ -219,11 +219,28 @@ WithTag.args = {
   tag: "これはタグです",
 };
 
-export const WithAnnotation = Template.bind({});
+export const WithAnnotation: StoryFn<typeof WizTimelineItem> = (
+  args,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizTimelineItem, WizText },
+  setup: () => ({
+    args,
+  }),
+  template: `
+    <WizTimelineItem v-bind="args">
+      <template #annotation>
+        <WizText bold fontSize="sm" color="gray.500">
+          2021年01月01日
+        </WizText>
+      </template>
+    </WizTimelineItem>  
+  `,
+});
 WithAnnotation.args = {
   variant: "success",
   title: "注釈（日付）を設定できます",
-  annotation: "2021年01月01日",
 };
 
 export const VariantFailure = Template.bind({});

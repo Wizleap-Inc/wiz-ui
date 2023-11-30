@@ -33,6 +33,7 @@
             </span>
             <span :class="styles.annotation">
               {{ annotation }}
+              <slot name="annotation" />
             </span>
           </div>
           <span v-if="isTitleEscape" :class="styles.title">
@@ -78,6 +79,10 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  /**
+   * @deprecated
+   * このプロパティは非推奨です。代わりにslot="annotation"を使用してください。
+   */
   annotation: {
     type: String,
     required: false,

@@ -153,7 +153,11 @@ export const WithAnnotation: Story = {
     <WizTimelineItem
       variant="success"
       title="注釈（日付）を設定できます"
-      annotation="2021年01月01日"
+      annotation={
+        <WizText bold fontSize="sm" color="gray.500">
+          2021年01月01日
+        </WizText>
+      }
     />
   ),
 };

@@ -14,7 +14,7 @@ interface TimelineItemProps {
   variant?: TimelineVariant;
   title: string;
   tag?: string;
-  annotation?: string;
+  annotation?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
   disabled?: boolean;
