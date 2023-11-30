@@ -133,6 +133,40 @@ export const Fixed: StoryObj<typeof WizFlatTable> = {
   ),
 };
 
+export const TextAlign: StoryObj<typeof WizFlatTable> = {
+  render: (args) => {
+    const textAligns: ("left" | "center" | "right")[] = [
+      "left",
+      "center",
+      "right",
+    ];
+    return (
+      <WizFlatTable {...args}>
+        <WizFlatThead>
+          <WizFlatTr>
+            {textAligns.map((align, index) => (
+              <WizFlatTh key={index} width="200px" align={align}>
+                Column {index + 1}
+              </WizFlatTh>
+            ))}
+          </WizFlatTr>
+        </WizFlatThead>
+        <WizFlatTbody>
+          {[1, 2, 3].map((i) => (
+            <WizFlatTr key={i}>
+              {textAligns.map((align, index) => (
+                <WizFlatTd key={index} width="200px" align={align}>
+                  Row {index + 1}
+                </WizFlatTd>
+              ))}
+            </WizFlatTr>
+          ))}
+        </WizFlatTbody>
+      </WizFlatTable>
+    );
+  },
+};
+
 export const WithRowHeader: StoryObj<typeof WizFlatTable> = {
   render: (args) => (
     <WizFlatTable {...args}>

@@ -1,6 +1,6 @@
 <template>
   <td
-    :class="[flatTdStyle, flatTdAlignStyle[align]]"
+    :class="[flatTdStyle, flatTableAlignStyle[align]]"
     :style="{ fontSize: THEME.fontSize[fontSize] }"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
@@ -13,7 +13,7 @@
 import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   flatTdStyle,
-  flatTdAlignStyle,
+  flatTableAlignStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
 import { PropType } from "vue";
 

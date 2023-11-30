@@ -21,7 +21,7 @@ const FlatTd = ({
     className={clsx(
       className,
       styles.flatTdStyle,
-      styles.flatTdAlignStyle[align]
+      styles.flatTableAlignStyle[align]
     )}
     style={{ ...style, fontSize: THEME.fontSize[fontSize] }}
     {...props}

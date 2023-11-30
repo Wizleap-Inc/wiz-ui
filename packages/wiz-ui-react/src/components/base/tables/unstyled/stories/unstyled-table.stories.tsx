@@ -68,6 +68,40 @@ export const Fixed: StoryObj<typeof WizUnstyledTable> = {
   ),
 };
 
+export const TextAlign: StoryObj<typeof WizUnstyledTable> = {
+  render: (args) => {
+    const textAligns: ("left" | "center" | "right")[] = [
+      "left",
+      "center",
+      "right",
+    ];
+    return (
+      <WizUnstyledTable {...args}>
+        <WizUnstyledThead>
+          <WizUnstyledTr>
+            {textAligns.map((align, index) => (
+              <WizUnstyledTh key={index} width="200px" align={align}>
+                Column {index + 1}
+              </WizUnstyledTh>
+            ))}
+          </WizUnstyledTr>
+        </WizUnstyledThead>
+        <WizUnstyledTbody>
+          {[1, 2, 3].map((i) => (
+            <WizUnstyledTr key={i}>
+              {textAligns.map((align, index) => (
+                <WizUnstyledTd key={index} width="200px" align={align}>
+                  Row {index + 1}
+                </WizUnstyledTd>
+              ))}
+            </WizUnstyledTr>
+          ))}
+        </WizUnstyledTbody>
+      </WizUnstyledTable>
+    );
+  },
+};
+
 export const WithRowHeader: StoryObj<typeof WizUnstyledTable> = {
   render: (args) => (
     <WizUnstyledTable {...args}>

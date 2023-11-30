@@ -1,6 +1,10 @@
 <template>
   <th
-    :class="[unstyledTh, divider && unstyledThDividerYStyle]"
+    :class="[
+      styles.unstyledTableAlignStyle[align],
+      styles.unstyledTh,
+      divider && styles.unstyledThDividerYStyle,
+    ]"
     :style="{ width }"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
@@ -11,16 +15,19 @@
 
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
-import {
-  unstyledTh,
-  unstyledThDividerYStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/unstyled-table.css";
+import { PropType } from "vue";
 
 defineOptions({
   name: ComponentName.FlatTh,
 });
 
 defineProps({
+  align: {
+    type: String as PropType<"left" | "center" | "right">,
+    required: false,
+    default: "center",
+  },
   width: {
     type: String,
     required: false,

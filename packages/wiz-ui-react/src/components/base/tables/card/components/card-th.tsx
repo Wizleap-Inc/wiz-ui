@@ -6,6 +6,7 @@ import { ComponentProps, ReactNode } from "react";
 import { useIsSafari } from "../hooks/use-is-safari";
 
 type Props = {
+  align?: "left" | "center" | "right";
   width?: string;
   children?: ReactNode;
 } & ComponentProps<"th">;
@@ -14,6 +15,7 @@ const CardTh = ({
   className,
   style,
   width = "auto",
+  align = "center",
   children,
   ...props
 }: Props) => {
@@ -22,6 +24,7 @@ const CardTh = ({
     <th
       className={clsx(
         className,
+        styles.cardTableAlignStyle[align],
         isSafari ? styles.cardThOnSafariStyle : styles.cardThStyle
       )}
       style={{ ...style, width }}

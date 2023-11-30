@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { ComponentProps, ReactNode } from "react";
 
 type Props = {
+  align?: "left" | "center" | "right";
   width?: string;
   scope?: "col" | "row";
   fontSize?: "xs2" | "xs" | "sm" | "md";
@@ -13,6 +14,7 @@ type Props = {
 const FlatTh = ({
   className,
   style,
+  align = "center",
   width = "auto",
   scope = "col",
   fontSize = "sm",
@@ -20,7 +22,12 @@ const FlatTh = ({
   ...props
 }: Props) => (
   <th
-    className={clsx(className, styles.flatTh, styles.flatThVariantStyle[scope])}
+    className={clsx(
+      className,
+      styles.flatTh,
+      styles.flatTableAlignStyle[align],
+      styles.flatThVariantStyle[scope]
+    )}
     style={{ ...style, width, fontSize: THEME.fontSize[fontSize] }}
     {...props}
   >

@@ -13,6 +13,10 @@ export default {
   title: "Base/Tables/Flat",
   component: WizFlatTable,
   argTypes: {
+    align: {
+      control: { type: "select" },
+      options: ["left", "center", "right"],
+    },
     fixed: {
       control: { type: "boolean" },
     },
@@ -134,6 +138,39 @@ export const Fixed: StoryFn<typeof WizFlatTable> = (args) => ({
 });
 Fixed.args = {
   fixed: true,
+  width: "600px",
+};
+
+export const TextAlign: StoryFn<typeof WizFlatTable> = (args) => ({
+  setup: () => ({ args }),
+  components: {
+    WizFlatTable,
+    WizFlatThead,
+    WizFlatTbody,
+    WizFlatTr,
+    WizFlatTh,
+    WizFlatTd,
+  },
+  template: `
+    <WizFlatTable v-bind="args">
+      <WizFlatThead>
+        <WizFlatTr>
+          <WizFlatTh align="left">Column 1</WizFlatTh>
+          <WizFlatTh align="center">Column 2</WizFlatTh>
+          <WizFlatTh align="right">Column 3</WizFlatTh>
+        </WizFlatTr>
+      </WizFlatThead>
+      <WizFlatTbody>
+        <WizFlatTr v-for="i in 3" @click="args.onClick('Row ' + i)">
+          <WizFlatTd :key="j" :align="align" v-for="(align,j) in ['left','center','right']">
+            Row {{ j+1 }}
+          </WizFlatTd>
+        </WizFlatTr>
+      </WizFlatTbody>
+    </WizFlatTable>
+  `,
+});
+TextAlign.args = {
   width: "600px",
 };
 

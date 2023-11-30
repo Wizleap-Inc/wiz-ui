@@ -81,6 +81,44 @@ export const Fixed: StoryObj<typeof WizCardTable> = {
   ),
 };
 
+export const TextAlign: StoryObj<typeof WizCardTable> = {
+  args: {
+    fixed: true,
+    width: "600px",
+  },
+  render: (args) => {
+    const textAligns: ("left" | "center" | "right")[] = [
+      "left",
+      "center",
+      "right",
+    ];
+    return (
+      <WizCardTable {...args}>
+        <WizCardThead>
+          <WizCardTr>
+            {textAligns.map((align, index) => (
+              <WizCardTh key={index} width="200px" align={align}>
+                Column {index + 1}
+              </WizCardTh>
+            ))}
+          </WizCardTr>
+        </WizCardThead>
+        <WizCardTbody>
+          {[1, 2, 3].map((i) => (
+            <WizCardTr key={i}>
+              {textAligns.map((align, index) => (
+                <WizCardTd key={index} width="200px" align={align}>
+                  Row {index + 1}
+                </WizCardTd>
+              ))}
+            </WizCardTr>
+          ))}
+        </WizCardTbody>
+      </WizCardTable>
+    );
+  },
+};
+
 export const UnionColumn: StoryObj<typeof WizCardTable> = {
   render: (args) => (
     <WizCardTable {...args}>

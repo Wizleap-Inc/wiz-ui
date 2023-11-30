@@ -18,7 +18,7 @@ const UnstyledTd = ({
     className={clsx(
       className,
       styles.unstyledTdStyle,
-      styles.unstyledTdAlignStyle[align]
+      styles.unstyledTableAlignStyle[align]
     )}
     {...props}
   >

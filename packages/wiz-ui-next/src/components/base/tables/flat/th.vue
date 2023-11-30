@@ -1,6 +1,10 @@
 <template>
   <th
-    :class="[flatTh, flatThVariantStyle[scope]]"
+    :class="[
+      styles.flatTableAlignStyle[align],
+      styles.flatTh,
+      styles.flatThVariantStyle[scope],
+    ]"
     :style="{ width, fontSize: THEME.fontSize[fontSize] }"
     :rowSpan="rowSpan"
     :colSpan="colSpan"
@@ -11,10 +15,7 @@
 
 <script setup lang="ts">
 import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
-import {
-  flatTh,
-  flatThVariantStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/flat-table.css";
 import { PropType } from "vue";
 
 defineOptions({
@@ -22,6 +23,11 @@ defineOptions({
 });
 
 defineProps({
+  align: {
+    type: String as PropType<"left" | "center" | "right">,
+    required: false,
+    default: "center",
+  },
   width: {
     type: String,
     required: false,

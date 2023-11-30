@@ -17,7 +17,7 @@ export const flatTdStyle = style({
   border: `1px solid ${THEME.color.gray[300]}`,
 });
 
-export const flatTdAlignStyle = styleVariants({
+export const flatTableAlignStyle = styleVariants({
   left: {
     textAlign: "left",
   },
@@ -40,12 +40,10 @@ export const flatThVariantStyle = styleVariants({
     color: THEME.color.white[800],
     background: THEME.color.green[800],
     border: `1px solid ${THEME.color.gray[300]}`,
-    textAlign: "center",
   },
   row: {
     color: THEME.color.gray[700],
     background: THEME.color.gray[300],
     border: `1px solid ${THEME.color.gray[400]}`,
-    textAlign: "left",
   },
 });

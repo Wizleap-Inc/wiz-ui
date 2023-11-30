@@ -27,7 +27,7 @@ export const unstyledTdStyle = style({
   padding: 0,
 });
 
-export const unstyledTdAlignStyle = styleVariants({
+export const unstyledTableAlignStyle = styleVariants({
   left: {
     textAlign: "left",
   },
