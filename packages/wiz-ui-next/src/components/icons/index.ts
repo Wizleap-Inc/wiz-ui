@@ -36,12 +36,14 @@ import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
 import { default as WizIDomain } from "./domain.vue";
 import { default as WizIDownload } from "./download.vue";
+import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIFamilyHome } from "./family-home.vue";
+import { default as WizIForwardToInbox } from "./forward-to-inbox.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
@@ -114,15 +116,17 @@ export type TIcon =
   | typeof WizIDashboard
   | typeof WizIDemography
   | typeof WizIDescription
-  | typeof WizIDownload
   | typeof WizIDomain
+  | typeof WizIDownload
+  | typeof WizIDrafts
   | typeof WizIEditNote
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
   | typeof WizIEye
-  | typeof WizIGroups
   | typeof WizIFamilyHome
+  | typeof WizIForwardToInbox
+  | typeof WizIGroups
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
@@ -158,14 +162,14 @@ export type TIcon =
   | typeof WizIWarning;
 
 export {
-  WizIAdd,
   WizIAddCircle,
+  WizIAdd,
   WizIApprovalFilled,
   WizIArrowDropDown,
   WizIArrowDropUp,
   WizIArrowRight,
-  WizIAssignment,
   WizIAssignmentAdd,
+  WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
   WizIBarChart4Bars,
@@ -176,18 +180,18 @@ export {
   WizICamera,
   WizICancel,
   WizIChangeHistory,
-  WizIChat,
   WizIChatBubbleFilled,
-  WizICheck,
+  WizIChat,
   WizICheckBold,
   WizICheckCircleFilled,
-  WizIChevronLeft,
+  WizICheck,
   WizIChevronLeftBold,
+  WizIChevronLeft,
   WizIChevronRight,
-  WizICircle,
   WizICircleCheck,
-  WizIClose,
+  WizICircle,
   WizICloseBold,
+  WizIClose,
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
@@ -196,18 +200,20 @@ export {
   WizIDescription,
   WizIDomain,
   WizIDownload,
+  WizIDrafts,
   WizIEditNote,
   WizIExpandLess,
-  WizIExpandMore,
   WizIExpandMoreBold,
+  WizIExpandMore,
   WizIEye,
   WizIFamilyHome,
+  WizIForwardToInbox,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
-  WizIInfo,
   WizIInfoBold,
+  WizIInfo,
   WizILocationCity,
   WizILocationOn,
   WizIManageAccounts,
@@ -221,8 +227,8 @@ export {
   WizIPieChart,
   WizIPinDrop,
   WizIPublic,
-  WizIRemove,
   WizIRemoveBold,
+  WizIRemove,
   WizISchedule,
   WizISearch,
   WizISend,
