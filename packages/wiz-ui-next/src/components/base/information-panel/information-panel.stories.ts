@@ -44,8 +44,19 @@ export const Link = Template.bind({});
 Link.args = {
   messages: [
     {
-      text: '<a href="https://github.com/Wizleap-Inc/wiz-ui">wiz-ui repository</a>',
-      type: "default",
+      text: "wiz-ui repository",
+      type: "anchor",
+      anchorProps: {
+        to: "https://github.com/Wizleap-Inc/wiz-ui",
+      },
+    },
+    {
+      text: "wiz-ui repository",
+      type: "anchor",
+      anchorProps: {
+        to: "https://github.com/Wizleap-Inc/wiz-ui",
+        fontSize: "xl3",
+      },
     },
   ],
 };

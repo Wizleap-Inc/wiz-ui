@@ -5,13 +5,18 @@
     v-show="visible"
   >
     <WizVStack gap="xs">
-      <!--メッセージの内容はv-htmlで描画される-->
-      <div
-        v-for="message in messages"
-        :key="message.text"
-        v-html="message.text"
-        :class="[informationPanelFontStyle[message.type]]"
-      />
+      <div v-for="message in messages" :key="message.text || message.type">
+        <WizAnchor
+          v-if="message.type === 'anchor'"
+          v-bind="message.anchorProps"
+          :to="message.anchorProps?.to"
+        >
+          {{ message.text }}
+        </WizAnchor>
+        <div v-else :class="[informationPanelFontStyle[message.type]]">
+          {{ message.text }}
+        </div>
+      </div>
     </WizVStack>
     <div :class="[informationPanelIconStyle]">
       <WizVStack align="center">
@@ -35,13 +40,14 @@ import {
 } from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
 import { PropType, computed } from "vue";
 
-import { WizIClose, WizIconButton } from "@/components";
+import { WizAnchor, WizIClose, WizIconButton } from "@/components";
 
 import { WizVStack } from "../stack";
 
-type messageType = {
+type MessageType = {
   text: string;
-  type: "default" | "error";
+  type: "default" | "error" | "anchor";
+  anchorProps?: typeof WizAnchor;
 };
 
 defineOptions({
@@ -53,8 +59,12 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  /**
+   * typeによって表示するメッセージをカスタマイズします。
+   * リンクを表示する場合は、`type=anchor`とし、`anchorProps`に`WizAnchor`のpropsを渡してください。
+   */
   messages: {
-    type: Array as PropType<messageType[]>,
+    type: Array as PropType<MessageType[]>,
     required: true,
   },
   width: {
