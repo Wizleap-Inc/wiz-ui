@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.25.0
+
+### Minor Changes
+
+- [#1128](https://github.com/Wizleap-Inc/wiz-ui/pull/1128) [`3c30bbb0`](https://github.com/Wizleap-Inc/wiz-ui/commit/3c30bbb05296a0938d62296f667c576731140aee) Thanks [@okakyo](https://github.com/okakyo)! - [#1119] Th で text-align の設定ができるようにした
+
+### Patch Changes
+
+- Updated dependencies [[`4e1bdd73`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e1bdd7312284e667e6bbbc875db8724ebe65108)]:
+  - @wizleap-inc/wiz-ui-constants@0.17.0
+
 ## 0.24.2
 
 ### Patch Changes
