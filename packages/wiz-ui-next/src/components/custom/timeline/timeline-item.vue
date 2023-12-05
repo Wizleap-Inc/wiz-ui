@@ -81,7 +81,7 @@ const props = defineProps({
   },
   /**
    * @deprecated
-   * このプロパティは非推奨です。代わりにslot="annotation"を使用してください。
+   * このプロパティは非推奨です。代わりに`slot name="annotation"`を使用してください。
    */
   annotation: {
     type: String,
