@@ -86,6 +86,16 @@ Test.args = {
   placeholder: "入力してください",
 };
 
+export const Resize = Template.bind({});
+Resize.args = {
+  resize: "both",
+  placeholder: "入力してください",
+  minWidth: "200px",
+  maxWidth: "400px",
+  minHeight: "100px",
+  maxHeight: "200px",
+};
+
 Test.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textarea = canvas.getByPlaceholderText("入力してください");
