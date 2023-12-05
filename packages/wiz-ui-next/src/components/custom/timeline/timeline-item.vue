@@ -97,8 +97,8 @@ const props = defineProps({
 const TAG_COLOR_MAP = {
   success: "green",
   failure: "red",
-  warning: "yellow",
-  neutral: "gray",
+  yellow: "yellow",
+  gray: "gray",
 } as const;
 
 const slot = useSlots();
