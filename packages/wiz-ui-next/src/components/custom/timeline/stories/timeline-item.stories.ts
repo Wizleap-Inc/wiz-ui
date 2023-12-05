@@ -231,9 +231,7 @@ export const WithAnnotation: StoryFn<typeof WizTimelineItem> = (
   template: `
     <WizTimelineItem v-bind="args">
       <template #annotation>
-        <WizText bold fontSize="sm" color="gray.500">
           2021年01月01日
-        </WizText>
       </template>
     </WizTimelineItem>  
   `,
