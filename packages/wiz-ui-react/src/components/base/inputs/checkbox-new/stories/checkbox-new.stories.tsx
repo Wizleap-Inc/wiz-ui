@@ -69,28 +69,8 @@ export const Variations: Story = {
 export const MultipleLines: Story = {
   render: () => {
     const multipleLines: ComponentProps<typeof WizCheckBoxNew>[][] = [
-      [
-        { checked: false },
-        { checked: false, disabled: true },
-        { checked: false, strikeThrough: true },
-      ],
-      [
-        { checked: true },
-        { checked: true, disabled: true },
-        { checked: true, strikeThrough: true },
-      ],
-      [
-        { checked: false, bordered: true },
-        { checked: false, bordered: true, disabled: true },
-        { checked: false, bordered: true, error: true },
-        { checked: false, bordered: true, strikeThrough: true },
-      ],
-      [
-        { checked: true, bordered: true },
-        { checked: true, bordered: true, disabled: true },
-        { checked: true, bordered: true, error: true },
-        { checked: true, bordered: true, strikeThrough: true },
-      ],
+      [{ checked: false }],
+      [{ checked: false, bordered: true }],
     ];
     return (
       <WizVStack gap="md">

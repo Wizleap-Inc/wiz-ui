@@ -96,30 +96,7 @@ export const MultipleLine: Story = () => ({
   components: { WizCheckBoxNew, WizVStack, WizHStack },
   setup() {
     return {
-      variations: [
-        [
-          { checked: false },
-          { checked: false, disabled: true },
-          { checked: false, strikeThrough: true },
-        ],
-        [
-          { checked: true },
-          { checked: true, disabled: true },
-          { checked: true, strikeThrough: true },
-        ],
-        [
-          { checked: false, bordered: true },
-          { checked: false, bordered: true, disabled: true },
-          { checked: false, bordered: true, error: true },
-          { checked: false, bordered: true, strikeThrough: true },
-        ],
-        [
-          { checked: true, bordered: true },
-          { checked: true, bordered: true, disabled: true },
-          { checked: true, bordered: true, error: true },
-          { checked: true, bordered: true, strikeThrough: true },
-        ],
-      ],
+      variations: [[{ checked: false }], [{ checked: false, bordered: true }]],
     };
   },
   template: `
