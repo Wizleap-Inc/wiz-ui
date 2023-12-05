@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.18.0
+
+### Minor Changes
+
+- [#1152](https://github.com/Wizleap-Inc/wiz-ui/pull/1152) [`3ea5ea51`](https://github.com/Wizleap-Inc/wiz-ui/commit/3ea5ea51e57243045a48588e6b82d3c660f670b5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): WizIDrafts, WizIForwardToInbox を追加
+
+### Patch Changes
+
+- [#1133](https://github.com/Wizleap-Inc/wiz-ui/pull/1133) [`daa250ff`](https://github.com/Wizleap-Inc/wiz-ui/commit/daa250ff76db1f756e8d28b29ddb7f3be8312aa9) Thanks [@okakyo](https://github.com/okakyo)! - [#1130] NavigationContainer で任意の width を指定しても isOpen が使えるように修正
+
+- Updated dependencies [[`3ea5ea51`](https://github.com/Wizleap-Inc/wiz-ui/commit/3ea5ea51e57243045a48588e6b82d3c660f670b5)]:
+  - @wizleap-inc/wiz-ui-constants@0.18.0
+  - @wizleap-inc/wiz-ui-styles@0.25.1
+
 ## 2.17.0
 
 ### Minor Changes
