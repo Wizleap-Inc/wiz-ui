@@ -198,23 +198,23 @@ const DateRangePicker: FC<Props> = ({
         )}
       >
         {cancelButtonVisible ? (
-          <button
-            type="button"
+          <div
+            role="button"
             className={styles.popupCalendarCancelButtonStyle}
-            disabled={disabled}
-            onClick={onClickCancel}
+            onClick={!disabled && onClickCancel}
             aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
+            onKeyDown={(event) => {
+              if (!disabled && (event.key === "Enter" || event.key === " ")) {
+                onClickCancel();
+              }
+            }}
           >
             <WizIcon size="xl2" color="inherit" icon={WizICancel} />
-          </button>
+          </div>
         ) : (
-          <button
-            type="button"
-            className={styles.popupCalendarCancelButtonStyle}
-            disabled={disabled}
-          >
+          <div role="button" className={styles.popupCalendarCancelButtonStyle}>
             <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
-          </button>
+          </div>
         )}
         <span
           className={
