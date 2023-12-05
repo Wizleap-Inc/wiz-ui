@@ -30,16 +30,13 @@ export const Default: Story = {
   },
 };
 
+const linkComponent = (
+  <a href="https://github.com/Wizleap-Inc/wiz-ui">wiz-ui repository</a>
+);
+
 export const Link: Story = {
   args: {
-    messages: [
-      {
-        text: (
-          <a href="https://github.com/Wizleap-Inc/wiz-ui">wiz-ui repository</a>
-        ),
-        type: "default",
-      },
-    ],
+    messages: [linkComponent],
   },
 };
 
