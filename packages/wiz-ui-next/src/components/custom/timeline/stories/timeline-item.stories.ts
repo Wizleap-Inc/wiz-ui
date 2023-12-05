@@ -25,7 +25,7 @@ export default {
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: ["success", "failure", "warning", "neutral"],
+      options: ["success", "failure", "yellow", "gray"],
     },
     title: {
       control: { type: "text" },
@@ -248,18 +248,18 @@ VariantFailure.args = {
   title: "失敗ステータスのバリエーションです",
 };
 
-export const VariantWarning = Template.bind({});
-VariantWarning.args = {
-  variant: "warning",
+export const VariantYellow = Template.bind({});
+VariantYellow.args = {
+  variant: "yellow",
   tag: "タグは黄色になります",
-  title: "警告ステータスのバリエーションです",
+  title: "黄色のバリエーションです",
 };
 
-export const VariantNeutral = Template.bind({});
-VariantNeutral.args = {
-  variant: "neutral",
+export const VariantGray = Template.bind({});
+VariantGray.args = {
+  variant: "gray",
   tag: "タグは灰色になります",
-  title: "中立ステータスのバリエーションです",
+  title: "灰色のバリエーションです",
 };
 
 export const MobileDevice = Template.bind({});

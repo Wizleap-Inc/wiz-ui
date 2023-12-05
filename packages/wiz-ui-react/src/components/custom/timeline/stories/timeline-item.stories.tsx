@@ -168,22 +168,22 @@ export const VariantFailure: Story = {
   ),
 };
 
-export const VariantWarning: Story = {
+export const VariantYellow: Story = {
   render: () => (
     <WizTimelineItem
-      variant="warning"
+      variant="yellow"
       tag="タグは黄色になります"
-      title="警告ステータスのバリエーションです"
+      title="黄色のバリエーションです"
     />
   ),
 };
 
-export const VariantNeutral: Story = {
+export const VariantGray: Story = {
   render: () => (
     <WizTimelineItem
-      variant="neutral"
+      variant="gray"
       tag="タグは灰色になります"
-      title="中立ステータスのバリエーションです"
+      title="灰色のバリエーションです"
     />
   ),
 };

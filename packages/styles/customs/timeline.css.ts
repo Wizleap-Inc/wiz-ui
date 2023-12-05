@@ -81,10 +81,10 @@ export const iconVariant = styleVariants({
   failure: {
     backgroundColor: THEME.color.red[800],
   },
-  warning: {
+  yellow: {
     backgroundColor: THEME.color.yellow[800],
   },
-  neutral: {
+  gray: {
     backgroundColor: THEME.color.gray[500],
   },
 });

@@ -8,7 +8,7 @@ import { WizICalendar } from "../../../icons";
 
 import { TimelineContext } from "./use-timeline";
 
-type TimelineVariant = "success" | "failure" | "warning" | "neutral";
+type TimelineVariant = "success" | "failure" | "yellow" | "gray";
 
 interface TimelineItemProps {
   variant?: TimelineVariant;
@@ -23,8 +23,8 @@ interface TimelineItemProps {
 const TAG_COLOR_MAP = {
   success: "green",
   failure: "red",
-  warning: "yellow",
-  neutral: "gray",
+  yellow: "yellow",
+  gray: "gray",
 } as const;
 
 const TimelineItem: FC<TimelineItemProps> = ({
