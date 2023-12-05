@@ -11,6 +11,7 @@
       expand && textAreaExpandStyle,
       inputBorderStyle[state],
     ]"
+    :style="{ resize, maxWidth, minWidth, maxHeight, minHeight }"
     @focusin="hasFocus = true"
     @focusout="hasFocus = false"
   />
@@ -19,12 +20,12 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
+  textAreaExpandStyle,
   textAreaStyle,
   textAreaVariantStyle,
-  textAreaExpandStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, inject, ref } from "vue";
+import { PropType, computed, inject, ref } from "vue";
 
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
@@ -57,6 +58,26 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 3,
+  },
+  resize: {
+    type: String as PropType<"none" | "both" | "horizontal" | "vertical">,
+    default: "none",
+  },
+  maxWidth: {
+    type: String,
+    required: false,
+  },
+  minWidth: {
+    type: String,
+    required: false,
+  },
+  maxHeight: {
+    type: String,
+    required: false,
+  },
+  minHeight: {
+    type: String,
+    required: false,
   },
 });
 

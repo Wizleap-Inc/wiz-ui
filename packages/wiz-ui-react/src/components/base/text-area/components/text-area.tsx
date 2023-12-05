@@ -20,6 +20,11 @@ type Props = BaseProps & {
   expand?: boolean;
   rows?: number;
   error?: boolean;
+  resize?: "none" | "both" | "horizontal" | "vertical";
+  maxWidth?: string;
+  minWidth?: string;
+  maxHeight?: string;
+  minHeight?: string;
   onChange: (value: string) => void;
 };
 
@@ -35,6 +40,11 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
       expand,
       rows = 3,
       error,
+      resize = "none",
+      maxWidth,
+      minWidth,
+      maxHeight,
+      minHeight,
       onChange,
     },
     ref
@@ -52,7 +62,14 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
         placeholder={placeholder}
         disabled={disabled}
         rows={rows}
-        style={style}
+        style={{
+          ...style,
+          resize,
+          maxWidth,
+          minWidth,
+          maxHeight,
+          minHeight,
+        }}
         className={clsx(
           className,
           styles.textAreaStyle,
