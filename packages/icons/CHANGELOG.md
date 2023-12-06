@@ -1,11 +1,5 @@
 # @wizleap-inc/wiz-ui-icons
 
-## 0.13.0
-
-### Minor Changes
-
-- [#1152](https://github.com/Wizleap-Inc/wiz-ui/pull/1152) [`3ea5ea51`](https://github.com/Wizleap-Inc/wiz-ui/commit/3ea5ea51e57243045a48588e6b82d3c660f670b5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): WizIDrafts, WizIForwardToInbox を追加
-
 ## 0.12.0
 
 ### Minor Changes
