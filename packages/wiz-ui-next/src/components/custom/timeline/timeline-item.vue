@@ -63,7 +63,7 @@ defineOptions({
   name: ComponentName.TimelineItem,
 });
 
-type TimelineVariant = "success" | "failure" | "warning" | "neutral";
+type TimelineVariant = "success" | "failure" | "yellow" | "gray";
 
 const props = defineProps({
   variant: {
