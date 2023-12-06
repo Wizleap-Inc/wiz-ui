@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { FC, ReactNode, useContext, useMemo } from "react";
 
 import { WizIcon, WizTag } from "../../../base";
-import { WizICalendar } from "../../../icons";
+import { TIcon, WizICalendar } from "../../../icons";
 
 import { TimelineContext } from "./use-timeline";
 
@@ -18,6 +18,7 @@ interface TimelineItemProps {
   children?: ReactNode;
   footer?: ReactNode;
   disabled?: boolean;
+  icon?: TIcon;
 }
 
 const TimelineItem: FC<TimelineItemProps> = ({
@@ -28,6 +29,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
   children,
   footer,
   disabled = false,
+  icon = WizICalendar,
 }) => {
   const ctx = useContext(TimelineContext);
   if (!ctx) {
@@ -64,7 +66,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
           disabled && styles.disabled
         )}
       >
-        <WizIcon size={iconSize} icon={WizICalendar} color="white.800" />
+        <WizIcon size={iconSize} icon={icon} color="white.800" />
       </div>
       <div className={clsx(styles.card, disabled && styles.disabled)}>
         <div className={styles.contents}>
