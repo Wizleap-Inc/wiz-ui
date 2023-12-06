@@ -1,17 +1,18 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import {
-  WizUnstyledTable,
-  WizUnstyledTbody,
-  WizUnstyledTr,
-  WizUnstyledTd,
-  WizText,
+  WizDivider,
   WizHStack,
-  WizIInfo,
+  WizIAdd,
   WizIHelp,
+  WizIInfo,
   WizIcon,
   WizMenuItem,
-  WizDivider,
+  WizText,
+  WizUnstyledTable,
+  WizUnstyledTbody,
+  WizUnstyledTd,
+  WizUnstyledTr,
 } from "@/components";
 
 import { WizTimelineItem } from "..";
@@ -136,6 +137,16 @@ export const Overview: Story = {
       },
     },
   },
+};
+
+export const Icon: Story = {
+  render: () => (
+    <WizTimelineItem
+      variant="success"
+      title="Iconをカスタマイズできます。"
+      icon={WizIAdd}
+    />
+  ),
 };
 
 export const WithTag: Story = {
