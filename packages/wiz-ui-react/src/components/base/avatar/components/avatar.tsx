@@ -2,6 +2,7 @@ import {
   ColorKeys,
   ComponentName,
   SpacingKeys,
+  THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
 import {
@@ -10,11 +11,18 @@ import {
   sizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ForwardedRef, forwardRef, useState } from "react";
+import {
+  ComponentProps,
+  ForwardedRef,
+  forwardRef,
+  useMemo,
+  useState,
+} from "react";
 
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
-  src: string;
+  src?: string;
+  name?: string;
   size?: SpacingKeys;
   color?: ColorKeys;
   bgColor?: ColorKeys;
@@ -29,6 +37,7 @@ const Avatar = forwardRef(
       className,
       style,
       src,
+      name,
       size = "xl3",
       color = "gray.900",
       bgColor = "gray.400",
@@ -41,6 +50,29 @@ const Avatar = forwardRef(
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const [isImgLoadSuccess, setIsLoadSuccess] = useState(true);
+
+    const altHeader = useMemo(() => {
+      if (name) {
+        const InitialWords = name.split(/ |　/);
+        if (InitialWords.length > 1) {
+          return (
+            InitialWords[0][0].toUpperCase() + InitialWords[1][0].toUpperCase()
+          );
+        }
+        return InitialWords[0][0].toUpperCase();
+      }
+      if (fallback) return fallback;
+      "";
+    }, [name, fallback]);
+
+    const defaultBgColor = useMemo(() => {
+      if (!name) return THEME.color.gray[400];
+      const getNum = Array.from(name)
+        .map((ch) => ch.charCodeAt(0))
+        .reduce((a, b) => a + b);
+      const extractHue = (getNum * getNum) % 360;
+      return `hsl(${extractHue}, 80%, 64%)`;
+    }, [name, fallback]);
 
     return (
       <div
@@ -78,10 +110,13 @@ const Avatar = forwardRef(
           <div
             className={clsx(
               styles.avatarFallbackStyle,
-              backgroundStyle[bgColor]
+              bgColor && backgroundStyle[bgColor]
             )}
+            style={{
+              backgroundColor: defaultBgColor,
+            }}
           >
-            {fallback}
+            {altHeader}
           </div>
         )}
       </div>

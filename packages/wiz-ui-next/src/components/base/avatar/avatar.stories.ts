@@ -10,6 +10,9 @@ export default {
   title: "Base/Avatar",
   component: WizAvatar,
   argTypes: {
+    name: {
+      control: { type: "text" },
+    },
     size: {
       control: { type: "select" },
       options: SPACING_ACCESSORS,
@@ -75,6 +78,7 @@ export const FailToLoadImage = Template.bind({});
 FailToLoadImage.args = {
   src: "./public/images/avatar-0.png",
   ariaLabel: "avatar",
+  name: "山田 tarou",
   alt: "avatar",
 };
 
@@ -87,7 +91,7 @@ FailToLoadImage.parameters = {
     source: {
       code: `
 <template>
-  <WizAvatar src="./public/images/avatar-0.png" alt="avatar"/>
+  <WizAvatar src="./public/images/avatar-0.png" name="avatar"/>
 </template>
       `,
     },
@@ -106,7 +110,7 @@ FailToLoadImageWithFallback.parameters = {
   docs: {
     description: {
       story:
-        "`fallback` を設定した場合、画像の表示に失敗した際に、`alt`の代わりに `fallback` で指定されたテキストが表示されます。",
+        "`fallback` を設定した場合、画像の表示に失敗した際に、`alt`の代わりに `fallback` で指定されたテキストが表示されます。（廃止予定）",
     },
     source: {
       code: `

@@ -16,8 +16,14 @@
       :alt="alt"
       @error="onError"
     />
-    <div v-else :class="[avatarFallbackStyle, backgroundStyle[bgColor]]">
-      {{ fallback }}
+    <div
+      v-else
+      :class="[avatarFallbackStyle, bgColor && backgroundStyle[bgColor]]"
+      :style="{
+        backgroundColor: defaultBgColor,
+      }"
+    >
+      {{ altHeader }}
     </div>
   </div>
 </template>
@@ -27,6 +33,7 @@ import {
   ComponentName,
   ColorKeys,
   SpacingKeys,
+  THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   avatarStyle,
@@ -39,16 +46,20 @@ import {
   sizeStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, PropType } from "vue";
+import { ref, PropType, computed } from "vue";
 
 defineOptions({
   name: ComponentName.Anchor,
 });
 
 const props = defineProps({
+  name: {
+    type: String,
+    required: false,
+  },
   src: {
     type: String,
-    required: true,
+    required: false,
   },
   ariaLabel: {
     type: String,
@@ -67,7 +78,6 @@ const props = defineProps({
   bgColor: {
     type: String as PropType<ColorKeys>,
     required: false,
-    default: "gray.400",
   },
   alt: {
     type: String,
@@ -96,4 +106,27 @@ const isImgLoadSuccess = ref(true);
 const onError = () => {
   isImgLoadSuccess.value = false;
 };
+
+const altHeader = computed(() => {
+  if (props.name) {
+    const InitialWords = props.name.split(/ |　/);
+    if (InitialWords.length > 1) {
+      return (
+        InitialWords[0][0].toUpperCase() + InitialWords[1][0].toUpperCase()
+      );
+    }
+    return InitialWords[0][0].toUpperCase();
+  }
+  if (props.fallback) return props.fallback;
+  "";
+});
+
+const defaultBgColor = computed(() => {
+  if (!props.name) return THEME.color.gray[400];
+  const getNum = Array.from(props.name)
+    .map((ch) => ch.charCodeAt(0))
+    .reduce((a, b) => a + b);
+  const extractHue = (getNum * getNum) % 360;
+  return `hsl(${extractHue}, 80%, 64%)`;
+});
 </script>

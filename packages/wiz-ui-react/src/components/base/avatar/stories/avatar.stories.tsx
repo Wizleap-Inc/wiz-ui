@@ -28,6 +28,9 @@ const meta: Meta<typeof WizAvatar> = {
     alt: {
       control: { type: "text" },
     },
+    name: {
+      control: { type: "text" },
+    },
     fallback: {
       control: { type: "text" },
     },
@@ -63,13 +66,14 @@ export const FailToLoadImage: Story = {
     docs: {
       description: {
         story:
-          "イメージの表示に失敗した場合は、画像の代わりに `alt` で指定した代替テキストが表示されます。",
+          "イメージの表示に失敗した場合は、画像の代わりに `name` で指定した代替テキストが表示されます。",
       },
     },
   },
   args: {
     src: "./public/images/avatar-0.png",
     alt: "avatar",
+    name: "John Due",
   },
   render: (args) => <WizAvatar {...args} />,
 };
