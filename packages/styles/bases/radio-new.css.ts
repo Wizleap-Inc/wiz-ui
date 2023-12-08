@@ -92,7 +92,6 @@ export const inputStyle = style([
     WebkitAppearance: "none",
     MozAppearance: "none",
     appearance: "none",
-    margin: 0,
     padding: 0,
   },
 ]);
