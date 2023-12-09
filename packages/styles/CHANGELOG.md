@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.26.0
+
+### Minor Changes
+
+- [#1153](https://github.com/Wizleap-Inc/wiz-ui/pull/1153) [`04e4580c`](https://github.com/Wizleap-Inc/wiz-ui/commit/04e4580c0e5a74fbdcdc9c2de644491141029a73) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(TimeLine): 黄色・灰色アイコンを追加
+  Feat(TimeLine): Annotation をカスタマイズ可能にする
+
 ## 0.25.1
 
 ### Patch Changes
