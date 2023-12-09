@@ -8,18 +8,25 @@ import { TIcon, WizICalendar } from "../../../icons";
 
 import { TimelineContext } from "./use-timeline";
 
-type TimelineVariant = "success" | "failure";
+type TimelineVariant = "success" | "failure" | "yellow" | "gray";
 
 interface TimelineItemProps {
   variant?: TimelineVariant;
   title: string;
   tag?: string;
-  annotation?: string;
+  annotation?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
   disabled?: boolean;
   icon?: TIcon;
 }
+
+const TAG_COLOR_MAP = {
+  success: "green",
+  failure: "red",
+  yellow: "yellow",
+  gray: "gray",
+} as const;
 
 const TimelineItem: FC<TimelineItemProps> = ({
   variant = "success",
@@ -78,7 +85,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
                     fontSize="xs"
                     label={tag}
                     fontWeight="bold"
-                    variant={variant === "success" ? "green" : "red"}
+                    variant={TAG_COLOR_MAP[variant]}
                   />
                 )}
                 {!isTitleEscape && (

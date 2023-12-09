@@ -25,7 +25,7 @@
                 fontSize="xs"
                 :label="tag"
                 fontWeight="bold"
-                :variant="variant === 'success' ? 'green' : 'red'"
+                :variant="TAG_COLOR_MAP[variant]"
               />
               <span v-if="!isTitleEscape" :class="styles.title">
                 {{ title }}
@@ -33,6 +33,7 @@
             </span>
             <span :class="styles.annotation">
               {{ annotation }}
+              <slot name="annotation" />
             </span>
           </div>
           <span v-if="isTitleEscape" :class="styles.title">
@@ -62,7 +63,7 @@ defineOptions({
   name: ComponentName.TimelineItem,
 });
 
-type TimelineVariant = "success" | "failure";
+type TimelineVariant = "success" | "failure" | "yellow" | "gray";
 
 const props = defineProps({
   variant: {
@@ -78,6 +79,10 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  /**
+   * @deprecated
+   * このプロパティは非推奨です。代わりに`slot name="annotation"`を使用してください。
+   */
   annotation: {
     type: String,
     required: false,
@@ -92,6 +97,13 @@ const props = defineProps({
     default: WizICalendar,
   },
 });
+
+const TAG_COLOR_MAP = {
+  success: "green",
+  failure: "red",
+  yellow: "yellow",
+  gray: "gray",
+} as const;
 
 const slot = useSlots();
 

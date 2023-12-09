@@ -179,6 +179,26 @@ export const VariantFailure: Story = {
   ),
 };
 
+export const VariantYellow: Story = {
+  render: () => (
+    <WizTimelineItem
+      variant="yellow"
+      tag="タグは黄色になります"
+      title="黄色のバリエーションです"
+    />
+  ),
+};
+
+export const VariantGray: Story = {
+  render: () => (
+    <WizTimelineItem
+      variant="gray"
+      tag="タグは灰色になります"
+      title="灰色のバリエーションです"
+    />
+  ),
+};
+
 export const MobileDevice: Story = {
   render: () => (
     <WizTimelineItem

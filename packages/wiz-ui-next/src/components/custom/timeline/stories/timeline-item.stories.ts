@@ -26,7 +26,7 @@ export default {
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: ["success", "failure"],
+      options: ["success", "failure", "yellow", "gray"],
     },
     title: {
       control: { type: "text" },
@@ -227,11 +227,26 @@ WithTag.args = {
   tag: "これはタグです",
 };
 
-export const WithAnnotation = Template.bind({});
+export const WithAnnotation: StoryFn<typeof WizTimelineItem> = (
+  args,
+  { argTypes }
+) => ({
+  props: Object.keys(argTypes),
+  components: { WizTimelineItem, WizText },
+  setup: () => ({
+    args,
+  }),
+  template: `
+    <WizTimelineItem v-bind="args">
+      <template #annotation>
+          2021年01月01日
+      </template>
+    </WizTimelineItem>  
+  `,
+});
 WithAnnotation.args = {
   variant: "success",
   title: "注釈（日付）を設定できます",
-  annotation: "2021年01月01日",
 };
 
 export const VariantFailure = Template.bind({});
@@ -239,6 +254,20 @@ VariantFailure.args = {
   variant: "failure",
   tag: "タグは赤くなります",
   title: "失敗ステータスのバリエーションです",
+};
+
+export const VariantYellow = Template.bind({});
+VariantYellow.args = {
+  variant: "yellow",
+  tag: "タグは黄色になります",
+  title: "黄色のバリエーションです",
+};
+
+export const VariantGray = Template.bind({});
+VariantGray.args = {
+  variant: "gray",
+  tag: "タグは灰色になります",
+  title: "灰色のバリエーションです",
 };
 
 export const MobileDevice = Template.bind({});

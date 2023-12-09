@@ -81,6 +81,12 @@ export const iconVariant = styleVariants({
   failure: {
     backgroundColor: THEME.color.red[800],
   },
+  yellow: {
+    backgroundColor: THEME.color.yellow[800],
+  },
+  gray: {
+    backgroundColor: THEME.color.gray[500],
+  },
 });
 
 export const disabled = style({
