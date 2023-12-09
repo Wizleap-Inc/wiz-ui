@@ -15,7 +15,7 @@
       v-if="icon"
       :icon="icon"
       :color="tagIconColorStyle[variant]"
-      :size="fontSize"
+      :size="tagIconSize[fontSize]"
     />
     {{ label }}
   </span>
@@ -32,6 +32,7 @@ import {
   tagColorStyle,
   tagIconColorStyle,
   tagStyle,
+  tagIconSize,
 } from "@wizleap-inc/wiz-ui-styles/bases/tag.css";
 import {
   fontSizeStyle,

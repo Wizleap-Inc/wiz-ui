@@ -49,6 +49,17 @@ export const Error: Story = {
   },
 };
 
+export const Resize: Story = {
+  args: {
+    resize: "both",
+    placeholder: "入力してください",
+    minWidth: "200px",
+    maxWidth: "400px",
+    minHeight: "100px",
+    maxHeight: "200px",
+  },
+};
+
 export const Test: Story = {
   args: {
     placeholder: "入力してください",

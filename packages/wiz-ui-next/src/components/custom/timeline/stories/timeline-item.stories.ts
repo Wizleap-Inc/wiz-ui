@@ -4,6 +4,7 @@ import { computed, provide, ref } from "vue";
 import {
   WizDivider,
   WizHStack,
+  WizIAdd,
   WizIHelp,
   WizIInfo,
   WizIcon,
@@ -211,6 +212,13 @@ const Template: StoryFn<typeof WizTimelineItem> = (_, { argTypes }) => ({
   components: { WizTimelineItem },
   template: `<WizTimelineItem v-bind="$props"/>`,
 });
+
+export const Icon = Template.bind({});
+Icon.args = {
+  variant: "success",
+  title: "Iconをカスタマイズできます。",
+  icon: WizIAdd,
+};
 
 export const WithTag = Template.bind({});
 WithTag.args = {

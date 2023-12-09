@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { ColorKeys, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, FontSizeKeys, THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const tagStyle = style({
   borderRadius: THEME.spacing.xs2,
@@ -65,4 +65,18 @@ export const tagIconColorStyle: Record<string, ColorKeys> = {
   darkGray: "white.800",
   greenFill: "white.800",
   white: "gray.800",
+};
+export const tagIconSize: { [key in FontSizeKeys]: FontSizeKeys } = {
+  xs3: "xs",
+  xs2: "md",
+  xs: "xl",
+  sm: "xl2",
+  md: "xl3",
+  lg: "xl4",
+  xl: "xl5",
+  xl2: "xl6",
+  xl3: "xl6",
+  xl4: "xl6",
+  xl5: "xl6",
+  xl6: "xl6",
 };

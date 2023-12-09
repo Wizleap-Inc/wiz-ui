@@ -34,6 +34,7 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
+    default: "180px",
   },
   sticky: {
     type: Boolean,
@@ -47,9 +48,9 @@ const props = defineProps({
 });
 
 const computedWidth = computed(() => {
-  if (props.width) return props.width;
-  if (props.isOpen) return "180px";
-  return `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`;
+  if (!props.isOpen)
+    return `calc(${THEME.spacing.xl} * 2 + ${THEME.spacing.sm})`;
+  return props.width;
 });
 
 const computedStickyStyle = computed(() => {

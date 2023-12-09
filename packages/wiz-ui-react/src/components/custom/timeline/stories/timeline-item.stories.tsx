@@ -3,6 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import {
   WizDivider,
   WizHStack,
+  WizIAdd,
   WizIHelp,
   WizIInfo,
   WizIcon,
@@ -136,6 +137,16 @@ export const Overview: Story = {
       },
     },
   },
+};
+
+export const Icon: Story = {
+  render: () => (
+    <WizTimelineItem
+      variant="success"
+      title="Iconをカスタマイズできます。"
+      icon={WizIAdd}
+    />
+  ),
 };
 
 export const WithTag: Story = {

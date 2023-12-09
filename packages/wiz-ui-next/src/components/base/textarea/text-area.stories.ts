@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
@@ -34,6 +34,12 @@ export default {
       control: {
         type: "boolean",
       },
+    },
+    resize: {
+      control: {
+        type: "select",
+      },
+      options: ["both", "horizontal", "vertical", "none"],
     },
     update: {
       action: "update:modelValue",
@@ -78,6 +84,16 @@ Row.args = {
 export const Test = Template.bind({});
 Test.args = {
   placeholder: "入力してください",
+};
+
+export const Resize = Template.bind({});
+Resize.args = {
+  resize: "both",
+  placeholder: "入力してください",
+  minWidth: "200px",
+  maxWidth: "400px",
+  minHeight: "100px",
+  maxHeight: "200px",
 };
 
 Test.play = async ({ canvasElement }) => {

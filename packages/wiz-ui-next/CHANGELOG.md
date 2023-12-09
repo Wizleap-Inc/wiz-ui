@@ -1,5 +1,37 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.18.0
+
+### Minor Changes
+
+- [#1158](https://github.com/Wizleap-Inc/wiz-ui/pull/1158) [`51d8d092`](https://github.com/Wizleap-Inc/wiz-ui/commit/51d8d0928dbd90b0f3f48afc0d11fbd33ee67d4a) Thanks [@ichi-h](https://github.com/ichi-h)! - Feat(icons): WizIDrafts, WizIForwardToInbox を追加
+
+- [#1151](https://github.com/Wizleap-Inc/wiz-ui/pull/1151) [`27e5d35d`](https://github.com/Wizleap-Inc/wiz-ui/commit/27e5d35d0a3db9975f1be952bc6e639de216b07a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(TextArea): resize, min-height, max-height, min-width, max-width 対応
+
+### Patch Changes
+
+- [#1088](https://github.com/Wizleap-Inc/wiz-ui/pull/1088) [`2f42c18f`](https://github.com/Wizleap-Inc/wiz-ui/commit/2f42c18f7af81cc6bb92630d5bc9edaef383f43b) Thanks [@okakyo](https://github.com/okakyo)! - Icon の大きさを一回り大きくした
+
+- [#1158](https://github.com/Wizleap-Inc/wiz-ui/pull/1158) [`51d8d092`](https://github.com/Wizleap-Inc/wiz-ui/commit/51d8d0928dbd90b0f3f48afc0d11fbd33ee67d4a) Thanks [@ichi-h](https://github.com/ichi-h)! - [#1130] NavigationContainer で任意の width を指定しても isOpen が使えるように修正
+
+- Updated dependencies [[`51d8d092`](https://github.com/Wizleap-Inc/wiz-ui/commit/51d8d0928dbd90b0f3f48afc0d11fbd33ee67d4a)]:
+  - @wizleap-inc/wiz-ui-constants@0.18.0
+  - @wizleap-inc/wiz-ui-styles@0.25.1
+
+## 2.17.0
+
+### Minor Changes
+
+- [#1146](https://github.com/Wizleap-Inc/wiz-ui/pull/1146) [`4e1bdd73`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e1bdd7312284e667e6bbbc875db8724ebe65108) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): family-home, domain アイコンを追加
+
+- [#1128](https://github.com/Wizleap-Inc/wiz-ui/pull/1128) [`3c30bbb0`](https://github.com/Wizleap-Inc/wiz-ui/commit/3c30bbb05296a0938d62296f667c576731140aee) Thanks [@okakyo](https://github.com/okakyo)! - [#1119] Th で text-align の設定ができるようにした
+
+### Patch Changes
+
+- Updated dependencies [[`4e1bdd73`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e1bdd7312284e667e6bbbc875db8724ebe65108), [`3c30bbb0`](https://github.com/Wizleap-Inc/wiz-ui/commit/3c30bbb05296a0938d62296f667c576731140aee)]:
+  - @wizleap-inc/wiz-ui-constants@0.17.0
+  - @wizleap-inc/wiz-ui-styles@0.25.0
+
 ## 2.16.0
 
 ### Minor Changes

@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.18.0
+
+### Minor Changes
+
+- [#1158](https://github.com/Wizleap-Inc/wiz-ui/pull/1158) [`51d8d092`](https://github.com/Wizleap-Inc/wiz-ui/commit/51d8d0928dbd90b0f3f48afc0d11fbd33ee67d4a) Thanks [@ichi-h](https://github.com/ichi-h)! - Feat(icons): WizIDrafts, WizIForwardToInbox を追加
+
+## 0.17.0
+
+### Minor Changes
+
+- [#1146](https://github.com/Wizleap-Inc/wiz-ui/pull/1146) [`4e1bdd73`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e1bdd7312284e667e6bbbc875db8724ebe65108) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): family-home, domain アイコンを追加
+
 ## 0.16.0
 
 ### Minor Changes
