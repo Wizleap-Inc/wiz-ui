@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.44.0
+
+### Minor Changes
+
+- [#1160](https://github.com/Wizleap-Inc/wiz-ui/pull/1160) [`b0ed2f19`](https://github.com/Wizleap-Inc/wiz-ui/commit/b0ed2f1935f2848fb4f37bf01a9685ed383450c3) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline): icon をカスタマイズする機能を追加
+
+- [#1153](https://github.com/Wizleap-Inc/wiz-ui/pull/1153) [`04e4580c`](https://github.com/Wizleap-Inc/wiz-ui/commit/04e4580c0e5a74fbdcdc9c2de644491141029a73) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(TimeLine): 黄色・灰色アイコンを追加
+  Feat(TimeLine): Annotation をカスタマイズ可能にする
+
+### Patch Changes
+
+- Updated dependencies [[`04e4580c`](https://github.com/Wizleap-Inc/wiz-ui/commit/04e4580c0e5a74fbdcdc9c2de644491141029a73)]:
+  - @wizleap-inc/wiz-ui-styles@0.26.0
+
 ## 0.43.0
 
 ### Minor Changes
