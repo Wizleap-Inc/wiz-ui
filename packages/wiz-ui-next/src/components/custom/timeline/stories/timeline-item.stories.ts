@@ -2,17 +2,18 @@ import { StoryFn } from "@storybook/vue3";
 import { computed, provide, ref } from "vue";
 
 import {
-  WizUnstyledTable,
-  WizUnstyledTbody,
-  WizUnstyledTr,
-  WizUnstyledTd,
-  WizText,
+  WizDivider,
   WizHStack,
-  WizIInfo,
+  WizIAdd,
   WizIHelp,
+  WizIInfo,
   WizIcon,
   WizMenuItem,
-  WizDivider,
+  WizText,
+  WizUnstyledTable,
+  WizUnstyledTbody,
+  WizUnstyledTd,
+  WizUnstyledTr,
 } from "@/components";
 import { useBreakpoint } from "@/hooks/use-breakpoint";
 
@@ -211,6 +212,13 @@ const Template: StoryFn<typeof WizTimelineItem> = (_, { argTypes }) => ({
   components: { WizTimelineItem },
   template: `<WizTimelineItem v-bind="$props"/>`,
 });
+
+export const Icon = Template.bind({});
+Icon.args = {
+  variant: "success",
+  title: "Iconをカスタマイズできます。",
+  icon: WizIAdd,
+};
 
 export const WithTag = Template.bind({});
 WithTag.args = {

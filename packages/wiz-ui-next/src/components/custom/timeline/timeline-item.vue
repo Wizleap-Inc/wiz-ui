@@ -13,7 +13,7 @@
         disabled && styles.disabled,
       ]"
     >
-      <WizIcon :size="iconSize" :icon="WizICalendar" color="white.800" />
+      <WizIcon :size="iconSize" :icon="icon" color="white.800" />
     </div>
     <div :class="[styles.card, disabled && styles.disabled]">
       <div :class="styles.contents">
@@ -51,10 +51,10 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/timeline.css";
-import { PropType, computed, useSlots, inject } from "vue";
+import { PropType, computed, inject, useSlots } from "vue";
 
 import { WizIcon, WizTag } from "@/components/base";
-import { WizICalendar } from "@/components/icons";
+import { TIcon, WizICalendar } from "@/components/icons";
 
 import { TIMELINE_KEY } from "./use-timeline";
 
@@ -86,6 +86,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  icon: {
+    type: Object as PropType<TIcon>,
+    default: WizICalendar,
   },
 });
 
