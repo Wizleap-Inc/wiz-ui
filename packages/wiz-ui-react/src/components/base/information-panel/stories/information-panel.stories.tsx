@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { WizAnchor } from "@/components";
+
 import { WizInformationPanel } from "..";
 
 const meta: Meta<typeof WizInformationPanel> = {
@@ -31,7 +33,12 @@ export const Default: Story = {
 };
 
 const linkComponent = (
-  <a href="https://github.com/Wizleap-Inc/wiz-ui">wiz-ui repository</a>
+  <div>
+    wiz-ui repository:{" "}
+    <WizAnchor href="https://github.com/Wizleap-Inc/wiz-ui">
+      https://github.com/Wizleap-Inc/wiz-ui
+    </WizAnchor>
+  </div>
 );
 
 export const Link: Story = {

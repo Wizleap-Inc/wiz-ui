@@ -1,5 +1,7 @@
 import { Meta, StoryFn } from "@storybook/vue3";
-import { ref } from "vue";
+import { ref, h } from "vue";
+
+import { WizAnchor } from "@/components";
 
 import WizInformationPanel from "./information-panel.vue";
 
@@ -40,25 +42,51 @@ Default.args = {
   messages: [{ text: "メッセージ1", type: "default" }],
 };
 
+const linkComponent = h("div", [
+  h("div", [
+    "wiz-ui repository: ",
+    h(
+      WizAnchor,
+      { to: "https://github.com/Wizleap-Inc/wiz-ui" },
+      "https://github.com/Wizleap-Inc/wiz-ui"
+    ),
+  ]),
+]);
+
 export const Link = Template.bind({});
 Link.args = {
-  messages: [
-    {
-      text: "wiz-ui repository",
-      type: "anchor",
-      anchorProps: {
-        to: "https://github.com/Wizleap-Inc/wiz-ui",
-      },
+  messages: [linkComponent],
+};
+Link.parameters = {
+  docs: {
+    source: {
+      code: `
+<script setup lang="ts">
+import { WizAnchor, WizInformationPanel } from "@wizleap-inc/wiz-ui-next";
+import { h, ref } from "vue";
+
+const isShow = ref(true);
+
+// 基本的にimportしたコンポーネントをそのままmessagesの配列に含めるほうが良い
+// コンポーネントに対して何らかのpropsやslotを渡す必要がある場合は、h関数を使ってVNodeを作成する
+const messages = [
+  h("div", [
+    "wiz-ui repository: ",
+    h(
+      WizAnchor,
+      { to: "https://github.com/Wizleap-Inc/wiz-ui" },
+      "https://github.com/Wizleap-Inc/wiz-ui"
+    ),
+  ]),
+];
+</script>
+
+<template>
+  <WizInformationPanel :messages="messages" v-model="isShow" />
+</template>
+      `,
     },
-    {
-      text: "wiz-ui repository",
-      type: "anchor",
-      anchorProps: {
-        to: "https://github.com/Wizleap-Inc/wiz-ui",
-        fontSize: "xl3",
-      },
-    },
-  ],
+  },
 };
 
 export const Multiple = Template.bind({});
