@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.20.1
+
+### Patch Changes
+
+- [#1167](https://github.com/Wizleap-Inc/wiz-ui/pull/1167) [`4fa63f01`](https://github.com/Wizleap-Inc/wiz-ui/commit/4fa63f01c7e6831b07454f5831cb18aa19ff2695) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(information-panel): コンポーネントが受け付ける型を修正
+
 ## 2.20.0
 
 ### Minor Changes
