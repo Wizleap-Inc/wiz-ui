@@ -36,7 +36,7 @@ import {
   informationPanelIconStyle,
   informationPanelStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
-import { PropType, computed, VNode } from "vue";
+import { PropType, computed, Component as ComponentType } from "vue"; // Componentの場合、<component>タグと競合するためエイリアスをつける
 
 import { WizIClose, WizIconButton } from "@/components";
 
@@ -56,12 +56,8 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  /**
-   * typeによって表示するメッセージをカスタマイズします。
-   * リンクを表示する場合は、`type=anchor`とし、`anchorProps`に`WizAnchor`のpropsを渡してください。
-   */
   messages: {
-    type: Array as PropType<(TextMessage | VNode)[]>,
+    type: Array as PropType<(TextMessage | ComponentType)[]>,
     required: true,
   },
   width: {
@@ -82,7 +78,7 @@ interface Emit {
 const emit = defineEmits<Emit>();
 
 const isTextMessage = (
-  message: TextMessage | VNode
+  message: TextMessage | ComponentType
 ): message is TextMessage => {
   return (
     typeof message === "object" &&
