@@ -5,12 +5,15 @@
     v-show="visible"
   >
     <WizVStack gap="xs">
-      <div
-        v-for="message in messages"
-        :key="message.text"
-        :class="[informationPanelFontStyle[message.type]]"
-      >
-        {{ message.text }}
+      <div v-for="(message, i) in messages" :key="i">
+        <template v-if="isTextMessage(message)">
+          <div :class="[informationPanelFontStyle[message.type]]">
+            {{ message.text }}
+          </div>
+        </template>
+        <template v-else>
+          <component :is="message" />
+        </template>
       </div>
     </WizVStack>
     <div :class="[informationPanelIconStyle]">
@@ -28,18 +31,18 @@
 <script setup lang="ts">
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  informationPanelStyle,
   informationPanelBorderStyle,
   informationPanelFontStyle,
   informationPanelIconStyle,
+  informationPanelStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
-import { PropType, computed } from "vue";
+import { PropType, computed, VNode } from "vue";
 
-import { WizIconButton, WizIClose } from "@/components";
+import { WizIClose, WizIconButton } from "@/components";
 
 import { WizVStack } from "../stack";
 
-type messageType = {
+type TextMessage = {
   text: string;
   type: "default" | "error";
 };
@@ -53,8 +56,12 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  /**
+   * typeによって表示するメッセージをカスタマイズします。
+   * リンクを表示する場合は、`type=anchor`とし、`anchorProps`に`WizAnchor`のpropsを渡してください。
+   */
   messages: {
-    type: Array as PropType<messageType[]>,
+    type: Array as PropType<(TextMessage | VNode)[]>,
     required: true,
   },
   width: {
@@ -73,6 +80,18 @@ interface Emit {
 }
 
 const emit = defineEmits<Emit>();
+
+const isTextMessage = (
+  message: TextMessage | VNode
+): message is TextMessage => {
+  return (
+    typeof message === "object" &&
+    message !== null &&
+    "text" in message &&
+    "type" in message &&
+    (message.type === "default" || message.type === "error")
+  );
+};
 
 const visible = computed({
   get: () => props.modelValue,

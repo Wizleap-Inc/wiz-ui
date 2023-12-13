@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { WizAnchor } from "@/components";
+
 import { WizInformationPanel } from "..";
 
 const meta: Meta<typeof WizInformationPanel> = {
@@ -27,6 +29,21 @@ type Story = StoryObj<typeof WizInformationPanel>;
 export const Default: Story = {
   args: {
     messages: [{ text: "メッセージ1", type: "default" }],
+  },
+};
+
+const linkComponent = (
+  <div>
+    wiz-ui repository:{" "}
+    <WizAnchor href="https://github.com/Wizleap-Inc/wiz-ui">
+      https://github.com/Wizleap-Inc/wiz-ui
+    </WizAnchor>
+  </div>
+);
+
+export const Link: Story = {
+  args: {
+    messages: [linkComponent],
   },
 };
 

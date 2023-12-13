@@ -1,20 +1,33 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 import { WizIClose, WizIconButton, WizVStack } from "@/components";
 import { BaseProps } from "@/types";
-type Message = {
+
+type TextMessage = {
   text: string;
   type: "default" | "error";
 };
 
 type Props = BaseProps & {
-  messages: Message[];
+  messages: (TextMessage | ReactNode)[];
   width?: string;
   border?: boolean;
   onClose: () => void;
+};
+
+const isTextMessage = (
+  message: TextMessage | ReactNode
+): message is TextMessage => {
+  return (
+    typeof message === "object" &&
+    message !== null &&
+    "text" in message &&
+    "type" in message &&
+    (message.type === "default" || message.type === "error")
+  );
 };
 
 const InformationPanel: FC<Props> = ({
@@ -35,14 +48,18 @@ const InformationPanel: FC<Props> = ({
       style={{ ...style, width }}
     >
       <WizVStack gap="xs">
-        {messages.map((message, i) => (
-          <div
-            key={i}
-            className={styles.informationPanelFontStyle[message.type]}
-          >
-            {message.text}
-          </div>
-        ))}
+        {messages.map((message, i) =>
+          isTextMessage(message) ? (
+            <div
+              key={i}
+              className={styles.informationPanelFontStyle[message.type]}
+            >
+              {message.text}
+            </div>
+          ) : (
+            message
+          )
+        )}
       </WizVStack>
       <div className={styles.informationPanelIconStyle}>
         <WizVStack align="center">
