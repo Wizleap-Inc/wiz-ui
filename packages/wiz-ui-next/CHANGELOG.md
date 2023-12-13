@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.20.0
+
+### Minor Changes
+
+- [#1147](https://github.com/Wizleap-Inc/wiz-ui/pull/1147) [`6b55cedd`](https://github.com/Wizleap-Inc/wiz-ui/commit/6b55cedd8a0c4c60a082ff0681e11dffdd19a9d5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(InformationPanel): リンクを表示可能にする
+
 ## 2.19.0
 
 ### Minor Changes
