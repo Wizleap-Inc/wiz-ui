@@ -50,6 +50,7 @@ export const IconComponentName = {
   IHistory: "WizIHistory",
   IHome: "WizIHome",
   IInfoBold: "WizIInfoBold",
+  IInfoFilled: "WizIInfoFilled",
   IInfo: "WizIInfo",
   ILocationCity: "WizILocationCity",
   ILocationOn: "WizILocationOn",
