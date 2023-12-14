@@ -59,7 +59,6 @@ globalStyle(
     transform: "translateX(-50%)",
     height: `calc(100% + ${THEME.spacing[TIMELINES_GAP]})`,
     backgroundColor: THEME.color.gray[300],
-    zIndex: -1,
   }
 );
 
@@ -72,6 +71,7 @@ export const icon = style({
   justifyContent: "center",
   borderRadius: "50%",
   padding: timelineItemVars.iconPadding,
+  zIndex: 1,
 });
 
 export const iconVariant = styleVariants({
