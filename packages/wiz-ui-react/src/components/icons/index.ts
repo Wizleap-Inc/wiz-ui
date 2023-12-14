@@ -50,6 +50,7 @@ import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
+import { WizIInfoFilled } from "./info-filled";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
 import { WizIManageAccounts } from "./manage-accounts";
@@ -131,6 +132,7 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIInfoBold
+  | typeof WizIInfoFilled
   | typeof WizIInfo
   | typeof WizILocationCity
   | typeof WizILocationOn
@@ -213,6 +215,7 @@ export {
   WizIHistory,
   WizIHome,
   WizIInfoBold,
+  WizIInfoFilled,
   WizIInfo,
   WizILocationCity,
   WizILocationOn,
