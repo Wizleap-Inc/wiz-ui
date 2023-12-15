@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.21.0
+
+### Minor Changes
+
+- [#1169](https://github.com/Wizleap-Inc/wiz-ui/pull/1169) [`50cefb96`](https://github.com/Wizleap-Inc/wiz-ui/commit/50cefb96cdfbd7d4b8e9729ccad4aad011c34667) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIInfoFilled を追加
+
+### Patch Changes
+
+- Updated dependencies [[`5a9fb6d6`](https://github.com/Wizleap-Inc/wiz-ui/commit/5a9fb6d67c82f23529cfa902ee79ed0c2e333dfd), [`50cefb96`](https://github.com/Wizleap-Inc/wiz-ui/commit/50cefb96cdfbd7d4b8e9729ccad4aad011c34667)]:
+  - @wizleap-inc/wiz-ui-styles@0.27.0
+  - @wizleap-inc/wiz-ui-constants@0.19.0
+
 ## 2.20.1
 
 ### Patch Changes

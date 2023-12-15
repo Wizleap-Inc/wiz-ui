@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.14.0
+
+### Minor Changes
+
+- [#1169](https://github.com/Wizleap-Inc/wiz-ui/pull/1169) [`50cefb96`](https://github.com/Wizleap-Inc/wiz-ui/commit/50cefb96cdfbd7d4b8e9729ccad4aad011c34667) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIInfoFilled を追加
+
 ## 0.13.0
 
 ### Minor Changes
