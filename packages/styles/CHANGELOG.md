@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.27.0
+
+### Minor Changes
+
+- [#1171](https://github.com/Wizleap-Inc/wiz-ui/pull/1171) [`5a9fb6d6`](https://github.com/Wizleap-Inc/wiz-ui/commit/5a9fb6d67c82f23529cfa902ee79ed0c2e333dfd) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(timeline): item を繋ぐ線が表示されないことがある問題を修正
+
+### Patch Changes
+
+- Updated dependencies [[`50cefb96`](https://github.com/Wizleap-Inc/wiz-ui/commit/50cefb96cdfbd7d4b8e9729ccad4aad011c34667)]:
+  - @wizleap-inc/wiz-ui-constants@0.19.0
+
 ## 0.26.0
 
 ### Minor Changes
