@@ -83,6 +83,9 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  /**
+   * @deprecated この プロパティ は削除予定です。代わりに `name` プロパティを使ってください。
+   */
   fallback: {
     type: String,
     required: false,
@@ -109,16 +112,17 @@ const onError = () => {
 
 const altHeader = computed(() => {
   if (props.name) {
+    // eslint-disable-next-line no-irregular-whitespace
     const InitialWords = props.name.split(/ |　/);
     if (InitialWords.length > 1) {
-      return (
-        InitialWords[0][0].toUpperCase() + InitialWords[1][0].toUpperCase()
-      );
+      const firstWord = InitialWords[0][0]?.toUpperCase() ?? "";
+      const secondWord = InitialWords[1][0]?.toUpperCase() ?? "";
+      return firstWord + secondWord;
     }
     return InitialWords[0][0].toUpperCase();
   }
   if (props.fallback) return props.fallback;
-  "";
+  return "";
 });
 
 const defaultBgColor = computed(() => {

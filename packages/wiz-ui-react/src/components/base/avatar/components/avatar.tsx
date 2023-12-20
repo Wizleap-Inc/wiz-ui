@@ -27,6 +27,10 @@ type Props = BaseProps & {
   color?: ColorKeys;
   bgColor?: ColorKeys;
   alt?: string;
+
+  /**
+   * @deprecated この プロパティ は削除予定です。代わりに `name` プロパティを使ってください。
+   */
   fallback?: string;
   clickable?: boolean;
 } & ComponentProps<"div">;
@@ -53,6 +57,7 @@ const Avatar = forwardRef(
 
     const altHeader = useMemo(() => {
       if (name) {
+        // eslint-disable-next-line no-irregular-whitespace
         const InitialWords = name.split(/ |　/);
         if (InitialWords.length > 1) {
           return (
@@ -62,7 +67,7 @@ const Avatar = forwardRef(
         return InitialWords[0][0].toUpperCase();
       }
       if (fallback) return fallback;
-      "";
+      ("");
     }, [name, fallback]);
 
     const defaultBgColor = useMemo(() => {
@@ -71,7 +76,7 @@ const Avatar = forwardRef(
         .map((ch) => ch.charCodeAt(0))
         .reduce((a, b) => a + b);
       const extractHue = (getNum * getNum) % 360;
-      return `hsl(${extractHue}, 80%, 64%)`;
+      return `hsl(${extractHue}, 80%, 65%)`;
     }, [name, fallback]);
 
     return (
