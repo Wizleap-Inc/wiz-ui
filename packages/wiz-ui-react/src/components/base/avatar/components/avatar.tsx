@@ -6,7 +6,6 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
 import {
-  backgroundStyle,
   colorStyle,
   sizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
@@ -60,23 +59,24 @@ const Avatar = forwardRef(
         // eslint-disable-next-line no-irregular-whitespace
         const InitialWords = name.split(/ |　/);
         if (InitialWords.length > 1) {
-          return (
-            InitialWords[0][0].toUpperCase() + InitialWords[1][0].toUpperCase()
-          );
+          const firstWord = InitialWords[0][0]?.toUpperCase() ?? "";
+          const secondWord = InitialWords[1][0]?.toUpperCase() ?? "";
+          return firstWord + secondWord;
         }
         return InitialWords[0][0].toUpperCase();
       }
       if (fallback) return fallback;
-      ("");
+      return "";
     }, [name, fallback]);
 
-    const defaultBgColor = useMemo(() => {
+    const avatarBgColor = useMemo(() => {
+      if (bgColor) return bgColor;
       if (!name) return THEME.color.gray[400];
       const getNum = Array.from(name)
         .map((ch) => ch.charCodeAt(0))
         .reduce((a, b) => a + b);
       const extractHue = (getNum * getNum) % 360;
-      return `hsl(${extractHue}, 80%, 65%)`;
+      return `hsl(${extractHue}, 50%, 48%)`;
     }, [name, fallback]);
 
     return (
@@ -113,12 +113,9 @@ const Avatar = forwardRef(
           />
         ) : (
           <div
-            className={clsx(
-              styles.avatarFallbackStyle,
-              bgColor && backgroundStyle[bgColor]
-            )}
+            className={clsx(styles.avatarFallbackStyle)}
             style={{
-              backgroundColor: defaultBgColor,
+              backgroundColor: avatarBgColor,
             }}
           >
             {altHeader}

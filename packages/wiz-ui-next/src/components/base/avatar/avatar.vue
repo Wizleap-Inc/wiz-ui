@@ -18,9 +18,9 @@
     />
     <div
       v-else
-      :class="[avatarFallbackStyle, bgColor && backgroundStyle[bgColor]]"
+      :class="[avatarFallbackStyle]"
       :style="{
-        backgroundColor: defaultBgColor,
+        backgroundColor: avatarBgColor,
       }"
     >
       {{ altHeader }}
@@ -42,7 +42,6 @@ import {
   avatarClickableStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
 import {
-  backgroundStyle,
   sizeStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
@@ -125,12 +124,13 @@ const altHeader = computed(() => {
   return "";
 });
 
-const defaultBgColor = computed(() => {
+const avatarBgColor = computed(() => {
+  if (props.bgColor) return;
   if (!props.name) return THEME.color.gray[400];
   const getNum = Array.from(props.name)
     .map((ch) => ch.charCodeAt(0))
     .reduce((a, b) => a + b);
   const extractHue = (getNum * getNum) % 360;
-  return `hsl(${extractHue}, 80%, 64%)`;
+  return `hsl(${extractHue}, 50%, 48%)`;
 });
 </script>
