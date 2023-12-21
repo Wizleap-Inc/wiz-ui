@@ -68,17 +68,21 @@ export const Variations: Story = {
 
 export const MultipleLines: Story = {
   render: () => {
-    const multipleLines: ComponentProps<typeof WizRadioNew>[][] = [
+    const variations: ComponentProps<typeof WizRadioNew>[][] = [
       [{ checked: false }],
-      [{ checked: false, bordered: true }],
+      [{ checked: true, bordered: true }],
     ];
     return (
       <WizVStack gap="md">
-        {multipleLines.map((row, i) => (
+        {variations.map((row, i) => (
           <WizHStack gap="xl" key={i}>
             {row.map((props, j) => (
               <WizRadioNew {...props} name={`${i},${j}`} key={j}>
-                Label
+                <div>
+                  <div>Label</div>
+                  <div>Label</div>
+                  <div>Label</div>
+                </div>
               </WizRadioNew>
             ))}
           </WizHStack>

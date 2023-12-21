@@ -79,12 +79,7 @@ export const Variations: Story = () => ({
       <WizHStack v-for="row in variations" gap="xl">
         <template v-for="props in row">
           <WizCheckBoxNew v-bind="props">
-          <div>
-            <p>Label</p>
-            <p>Label</p>
-            <p>Label</p>
-            <p>Label</p>
-          </div>
+            Label
           </WizCheckBoxNew>
         </template>
       </WizHStack>
