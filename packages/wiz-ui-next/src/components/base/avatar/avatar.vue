@@ -20,7 +20,7 @@
       v-else
       :class="[avatarFallbackStyle]"
       :style="{
-        backgroundColor: avatarBgColor,
+        background: avatarBgColor,
       }"
     >
       {{ altHeader }}
@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import {
+  getColorCss,
   ComponentName,
   ColorKeys,
   SpacingKeys,
@@ -41,10 +42,7 @@ import {
   avatarFallbackStyle,
   avatarClickableStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import {
-  sizeStyle,
-  colorStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import { sizeStyle, colorStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ref, PropType, computed } from "vue";
 
 defineOptions({
@@ -125,7 +123,7 @@ const altHeader = computed(() => {
 });
 
 const avatarBgColor = computed(() => {
-  if (props.bgColor) return;
+  if (props.bgColor) return getColorCss(props.bgColor);
   if (!props.name) return THEME.color.gray[400];
   const getNum = Array.from(props.name)
     .map((ch) => ch.charCodeAt(0))

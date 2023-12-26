@@ -3,12 +3,10 @@ import {
   ComponentName,
   SpacingKeys,
   THEME,
+  getColorCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import {
-  colorStyle,
-  sizeStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import { colorStyle, sizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   ComponentProps,
@@ -70,7 +68,7 @@ const Avatar = forwardRef(
     }, [name, fallback]);
 
     const avatarBgColor = useMemo(() => {
-      if (bgColor) return bgColor;
+      if (bgColor) return getColorCss(bgColor);
       if (!name) return THEME.color.gray[400];
       const getNum = Array.from(name)
         .map((ch) => ch.charCodeAt(0))
@@ -115,7 +113,7 @@ const Avatar = forwardRef(
           <div
             className={clsx(styles.avatarFallbackStyle)}
             style={{
-              backgroundColor: avatarBgColor,
+              background: avatarBgColor,
             }}
           >
             {altHeader}
