@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.47.0
+
+### Minor Changes
+
+- [#1176](https://github.com/Wizleap-Inc/wiz-ui/pull/1176) [`ac1b6f04`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac1b6f04725934857478495f8818e4ad494db156) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizIChevronRightBold を追加
+
+### Patch Changes
+
+- Updated dependencies [[`ac1b6f04`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac1b6f04725934857478495f8818e4ad494db156)]:
+  - @wizleap-inc/wiz-ui-constants@0.20.0
+  - @wizleap-inc/wiz-ui-styles@0.27.2
+
 ## 0.46.1
 
 ### Patch Changes
