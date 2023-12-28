@@ -65,3 +65,34 @@ export const Variations: Story = {
     },
   },
 };
+
+export const MultipleLines: Story = {
+  render: () => {
+    const multipleLines: ComponentProps<typeof WizCheckBoxNew>[][] = [
+      [{ checked: false }],
+      [{ checked: false, bordered: true }],
+    ];
+    return (
+      <WizVStack gap="md">
+        {multipleLines.map((row, i) => (
+          <WizHStack gap="xl" key={i}>
+            {row.map((props, j) => (
+              <WizCheckBoxNew {...props} key={j}>
+                <div>
+                  <div>Label</div>
+                  <div>Label</div>
+                  <div>Label</div>
+                </div>
+              </WizCheckBoxNew>
+            ))}
+          </WizHStack>
+        ))}
+      </WizVStack>
+    );
+  },
+  parameters: {
+    controls: {
+      disabled: true,
+    },
+  },
+};

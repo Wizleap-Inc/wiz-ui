@@ -98,11 +98,19 @@ const RadioNew = forwardRef<HTMLInputElement, Props>(
           {...props}
           ref={ref}
           type="radio"
-          className={styles.inputStyle}
+          className={clsx(
+            styles.inputStyle,
+            styles.inputMarginStyle[bordered ? "bordered" : "default"]
+          )}
           checked={actualChecked}
           onChange={handleChange}
         />
-        <div className={styles.markerStyle} />
+        <div
+          className={clsx(
+            styles.markerStyle,
+            styles.inputMarginStyle[bordered ? "bordered" : "default"]
+          )}
+        />
         {children}
       </label>
     );

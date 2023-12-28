@@ -78,7 +78,33 @@ export const Variations: Story = () => ({
     <WizVStack gap="md">
       <WizHStack v-for="row in variations" gap="xl">
         <template v-for="props in row">
-          <WizCheckBoxNew v-bind="props">Label</WizCheckBoxNew>
+          <WizCheckBoxNew v-bind="props">
+            Label
+          </WizCheckBoxNew>
+        </template>
+      </WizHStack>
+    </WizVStack>
+  `,
+});
+
+export const MultipleLine: Story = () => ({
+  components: { WizCheckBoxNew, WizVStack, WizHStack },
+  setup() {
+    return {
+      variations: [[{ checked: false }], [{ checked: false, bordered: true }]],
+    };
+  },
+  template: `
+    <WizVStack gap="md">
+      <WizHStack v-for="row in variations" gap="xl">
+        <template v-for="props in row">
+          <WizCheckBoxNew v-bind="props">
+            <div>
+              <div>Label</div>
+              <div>Label</div>
+              <div>Label</div>
+            </div>
+          </WizCheckBoxNew>
         </template>
       </WizHStack>
     </WizVStack>

@@ -2,7 +2,7 @@
   <label :class="labelClass">
     <input
       type="checkbox"
-      :class="styles.inputStyle"
+      :class="[styles.inputStyle, styles.inputMarginStyle[borderState]]"
       :checked="actualChecked"
       :value="value"
       :id="id"
@@ -10,7 +10,9 @@
       :disabled="disabled"
       @change="handleChange"
     />
-    <div :class="styles.iconWrapperStyle">
+    <div
+      :class="[styles.iconWrapperStyle, styles.inputMarginStyle[borderState]]"
+    >
       <div :class="styles.iconPositionStyle">
         <WizIcon :icon="WizICheckBold" color="white.800" size="md" />
       </div>
@@ -78,4 +80,8 @@ const handleChange = (e: Event) => {
     actualChecked.value = e.target.checked;
   }
 };
+
+const borderState: "bordered" | "default" = props.bordered
+  ? "bordered"
+  : "default";
 </script>

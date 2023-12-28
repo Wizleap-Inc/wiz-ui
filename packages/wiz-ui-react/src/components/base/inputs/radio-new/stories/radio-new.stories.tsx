@@ -65,3 +65,34 @@ export const Variations: Story = {
     },
   },
 };
+
+export const MultipleLines: Story = {
+  render: () => {
+    const variations: ComponentProps<typeof WizRadioNew>[][] = [
+      [{ checked: false }],
+      [{ checked: true, bordered: true }],
+    ];
+    return (
+      <WizVStack gap="md">
+        {variations.map((row, i) => (
+          <WizHStack gap="xl" key={i}>
+            {row.map((props, j) => (
+              <WizRadioNew {...props} name={`${i},${j}`} key={j}>
+                <div>
+                  <div>Label</div>
+                  <div>Label</div>
+                  <div>Label</div>
+                </div>
+              </WizRadioNew>
+            ))}
+          </WizHStack>
+        ))}
+      </WizVStack>
+    );
+  },
+  parameters: {
+    controls: {
+      disabled: true,
+    },
+  },
+};

@@ -101,11 +101,19 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
           {...props}
           ref={ref}
           type="checkbox"
-          className={styles.inputStyle}
+          className={clsx(
+            styles.inputStyle,
+            styles.inputMarginStyle[bordered ? "bordered" : "default"]
+          )}
           checked={actualChecked}
           onChange={handleChange}
         />
-        <div className={styles.iconWrapperStyle}>
+        <div
+          className={clsx(
+            styles.iconWrapperStyle,
+            styles.inputMarginStyle[bordered ? "bordered" : "default"]
+          )}
+        >
           {actualChecked && (
             <div className={styles.iconPositionStyle}>
               <WizIcon icon={WizICheckBold} color="white.800" size="md" />

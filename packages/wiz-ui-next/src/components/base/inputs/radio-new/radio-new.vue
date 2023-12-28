@@ -2,7 +2,7 @@
   <label :class="labelClass">
     <input
       type="radio"
-      :class="styles.inputStyle"
+      :class="[styles.inputStyle, styles.inputMarginStyle[borderState]]"
       :checked="actualChecked"
       :value="value"
       :id="id"
@@ -10,7 +10,7 @@
       :disabled="disabled"
       @change="handleChange"
     />
-    <div :class="styles.markerStyle" />
+    <div :class="[styles.markerStyle, styles.inputMarginStyle[borderState]]" />
     <slot />
   </label>
 </template>
@@ -66,4 +66,6 @@ const handleChange = (e: Event) => {
     actualChecked.value = e.target.checked;
   }
 };
+
+const borderState = computed(() => (props.bordered ? "bordered" : "default"));
 </script>
