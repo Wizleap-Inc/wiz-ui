@@ -24,6 +24,7 @@ export const IconComponentName = {
   ICheck: "WizICheck",
   IChevronLeftBold: "WizIChevronLeftBold",
   IChevronLeft: "WizIChevronLeft",
+  IChevronRightBold: "WizIChevronRightBold",
   IChevronRight: "WizIChevronRight",
   ICircleCheck: "WizICircleCheck",
   ICircle: "WizICircle",

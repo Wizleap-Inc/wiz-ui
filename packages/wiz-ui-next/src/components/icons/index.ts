@@ -23,6 +23,7 @@ import { default as WizICheckCircleFilled } from "./check-circle-filled.vue";
 import { default as WizICheck } from "./check.vue";
 import { default as WizIChevronLeftBold } from "./chevron-left-bold.vue";
 import { default as WizIChevronLeft } from "./chevron-left.vue";
+import { default as WizIChevronRightBold } from "./chevron-right-bold.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizICircle } from "./circle.vue";
@@ -106,6 +107,7 @@ export type TIcon =
   | typeof WizICheck
   | typeof WizIChevronLeftBold
   | typeof WizIChevronLeft
+  | typeof WizIChevronRightBold
   | typeof WizIChevronRight
   | typeof WizICircleCheck
   | typeof WizICircle
@@ -189,6 +191,7 @@ export {
   WizICheck,
   WizIChevronLeftBold,
   WizIChevronLeft,
+  WizIChevronRightBold,
   WizIChevronRight,
   WizICircleCheck,
   WizICircle,
