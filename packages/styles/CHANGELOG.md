@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.27.1
+
+### Patch Changes
+
+- [#1142](https://github.com/Wizleap-Inc/wiz-ui/pull/1142) [`c168efd0`](https://github.com/Wizleap-Inc/wiz-ui/commit/c168efd0dff332a069b1d84692c7b6e47515dd9d) Thanks [@okakyo](https://github.com/okakyo)! - [#1139] Checkbox, Radio における複数行の Label に対しての input の位置調整
+
 ## 0.27.0
 
 ### Minor Changes
