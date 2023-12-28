@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.15.0
+
+### Minor Changes
+
+- [#1176](https://github.com/Wizleap-Inc/wiz-ui/pull/1176) [`ac1b6f04`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac1b6f04725934857478495f8818e4ad494db156) Thanks [@RyushiAok](https://github.com/RyushiAok)! - WizIChevronRightBold を追加
+
 ## 0.14.0
 
 ### Minor Changes
