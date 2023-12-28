@@ -24,6 +24,7 @@ import { WizICheckCircleFilled } from "./check-circle-filled";
 import { WizIChevronLeft } from "./chevron-left";
 import { WizIChevronLeftBold } from "./chevron-left-bold";
 import { WizIChevronRight } from "./chevron-right";
+import { WizIChevronRightBold } from "./chevron-right-bold";
 import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClose } from "./close";
@@ -106,6 +107,7 @@ export type TIcon =
   | typeof WizICheck
   | typeof WizIChevronLeftBold
   | typeof WizIChevronLeft
+  | typeof WizIChevronRightBold
   | typeof WizIChevronRight
   | typeof WizICircleCheck
   | typeof WizICircle
@@ -189,6 +191,7 @@ export {
   WizICheck,
   WizIChevronLeftBold,
   WizIChevronLeft,
+  WizIChevronRightBold,
   WizIChevronRight,
   WizICircleCheck,
   WizICircle,
