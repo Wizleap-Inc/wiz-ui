@@ -75,7 +75,7 @@ const Avatar = forwardRef(
         .reduce((a, b) => a + b);
       const extractHue = (getNum * getNum) % 360;
       return `hsl(${extractHue}, 50%, 48%)`;
-    }, [name, fallback]);
+    }, [bgColor, name]);
 
     return (
       <div
