@@ -72,6 +72,7 @@ export const IconComponentName = {
   ISearch: "WizISearch",
   ISend: "WizISend",
   ISettings: "WizISettings",
+  IShoppingmode: "WizIShoppingmode",
   ISmartphone: "WizISmartphone",
   IStarFilled: "WizIStarFilled",
   IStars: "WizIStars",
