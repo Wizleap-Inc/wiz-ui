@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.21.0
+
+### Minor Changes
+
+- [#1182](https://github.com/Wizleap-Inc/wiz-ui/pull/1182) [`830b1524`](https://github.com/Wizleap-Inc/wiz-ui/commit/830b1524f2d8e1231fefb9c260601b7302011517) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(icon): shoppingmode のアイコンを追加
+
 ## 0.20.0
 
 ### Minor Changes
