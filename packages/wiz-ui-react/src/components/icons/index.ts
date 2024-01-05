@@ -71,6 +71,7 @@ import { WizISchedule } from "./schedule";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
 import { WizISettings } from "./settings";
+import { WizIShoppingmode } from "./shoppingmode";
 import { WizISmartphone } from "./smartphone";
 import { WizIStarFilled } from "./star-filled";
 import { WizIStars } from "./stars";
@@ -155,6 +156,7 @@ export type TIcon =
   | typeof WizISearch
   | typeof WizISend
   | typeof WizISettings
+  | typeof WizIShoppingmode
   | typeof WizISmartphone
   | typeof WizIStarFilled
   | typeof WizIStars
@@ -239,6 +241,7 @@ export {
   WizISearch,
   WizISend,
   WizISettings,
+  WizIShoppingmode,
   WizISmartphone,
   WizIStarFilled,
   WizIStars,
