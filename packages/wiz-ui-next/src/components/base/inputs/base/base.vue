@@ -10,8 +10,8 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :type="type"
-    @focusin="hasFocus = true"
-    @focusout="hasFocus = false"
+    @focusin="onFocusIn"
+    @focusout="onFocusOut"
     v-model="textValue"
     :id="id"
     :autocomplete="autocomplete"
@@ -80,6 +80,8 @@ const props = defineProps({
 
 interface Emit {
   (e: "update:modelValue", value: string): void;
+  (e: "focusin"): void;
+  (e: "focusout"): void;
 }
 
 const emit = defineEmits<Emit>();
@@ -98,4 +100,13 @@ const state = computed(() => {
   if (hasFocus.value) return "active";
   return "default";
 });
+
+const onFocusIn = () => {
+  hasFocus.value = true;
+  emit("focusin");
+};
+const onFocusOut = () => {
+  hasFocus.value = true;
+  emit("focusout");
+};
 </script>

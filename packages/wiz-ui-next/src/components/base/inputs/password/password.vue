@@ -11,6 +11,8 @@
       :type="isPasswordVisible ? 'text' : 'password'"
       :autocomplete="autocomplete"
       space-type="right"
+      @focusin="emit('focusin')"
+      @focusout="emit('focusout')"
     />
     <button
       type="button"
@@ -48,6 +50,8 @@ defineOptions({
 
 interface Emit {
   (e: "update:modelValue", value: string): void;
+  (e: "focusin"): void;
+  (e: "focusout"): void;
 }
 
 const props = defineProps({

@@ -12,6 +12,8 @@
       type="text"
       :space-type="icon ? 'left' : 'none'"
       :autocomplete="autocomplete"
+      @focusin="emit('focusin')"
+      @focusout="emit('focusout')"
     />
   </div>
 </template>
@@ -72,6 +74,8 @@ const props = defineProps({
 });
 interface Emit {
   (e: "update:modelValue", value: string): void;
+  (e: "focusin"): void;
+  (e: "focusout"): void;
 }
 
 const emit = defineEmits<Emit>();
