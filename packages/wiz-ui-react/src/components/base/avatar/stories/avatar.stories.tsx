@@ -57,6 +57,7 @@ export const HaveImage: Story = {
   args: {
     src: "./public/images/avatar-1.png",
     alt: "avatar",
+    name: "John Due",
   },
   render: (args) => <WizAvatar {...args} />,
 };

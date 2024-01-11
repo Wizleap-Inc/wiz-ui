@@ -41,7 +41,7 @@ const Avatar = forwardRef(
       name,
       size = "xl3",
       color = "gray.900",
-      bgColor = "gray.400",
+      bgColor,
       alt,
       fallback,
       clickable,
