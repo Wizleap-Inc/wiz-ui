@@ -139,6 +139,7 @@
                 :currentMonth="rightCalendarDate"
                 :activeDates="selectedDates"
                 @click="handleDayClick"
+                :disabledDate="disabledDate"
               />
             </div>
           </div>
@@ -223,6 +224,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  disabledDate: {
+    type: Function as PropType<(date: Date) => boolean>,
+    required: false,
+    default: () => false,
   },
 });
 

@@ -58,6 +58,20 @@ export const DisabledWithValue: Story = {
   },
 };
 
+export const DisabledDate: Story = {
+  args: {
+    dateRange: {
+      start: new Date("2021-01-01"),
+      end: new Date("2021-01-31"),
+    },
+    disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};
+
 export const Expand: Story = {
   args: {
     dateRange: {

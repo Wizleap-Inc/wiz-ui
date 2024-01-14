@@ -42,6 +42,7 @@ type Props = BaseProps & {
   error?: boolean;
   onChangeDateRange: (dateRange: DateRange) => void;
   onChangeSelectBoxValue?: (value: string) => void;
+  disabledDate?: (date: Date) => boolean;
 };
 
 const DateRangePicker: FC<Props> = ({
@@ -56,6 +57,7 @@ const DateRangePicker: FC<Props> = ({
   error,
   onChangeDateRange,
   onChangeSelectBoxValue,
+  disabledDate = () => false,
 }: Props) => {
   const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -335,6 +337,7 @@ const DateRangePicker: FC<Props> = ({
                   currentMonth={rightCalendarDate}
                   activeDates={selectedDates}
                   onClickDate={onClickDate}
+                  disabledDate={disabledDate}
                 />
               </div>
             </div>

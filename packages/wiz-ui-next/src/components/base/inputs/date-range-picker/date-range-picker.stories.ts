@@ -100,6 +100,7 @@ interface Props {
   expand: boolean;
   selectBoxOptions: boolean;
   isDirectionFixed: boolean;
+  disabledDate: (date: Date) => boolean;
 }
 
 const CODE_TEMPLATE = (props: Partial<Props>) => `
@@ -195,12 +196,35 @@ export const DisabledWithValue: StoryFn<typeof WizDateRangePicker> = (
     </div>
   `,
 });
+
 DisabledWithValue.args = {
   modelValue: {
     start: new Date(2000, 0, 15),
     end: new Date(2000, 1, 15),
   },
   disabled: true,
+};
+
+export const DisabledDate = Template.bind({});
+DisabledDate.args = {
+  modelValue: {
+    start: new Date(2020, 0, 15),
+    end: new Date(2020, 1, 15),
+  },
+  disabledDate: (date: Date) => date.getDate() >= 2 && date.getDate() < 7,
+};
+DisabledDate.parameters = {
+  docs: {
+    description: {
+      story: "disabledをtrueにすると、入力ができなくなります。",
+    },
+    source: {
+      code: CODE_TEMPLATE({
+        disabledDate: (date: Date) =>
+          date.getDate() >= 10 && date.getDate() < 17,
+      }),
+    },
+  },
 };
 
 export const Expand = Template.bind({});
