@@ -80,8 +80,8 @@ const props = defineProps({
 
 interface Emit {
   (e: "update:modelValue", value: string): void;
-  (e: "focusin"): void;
-  (e: "focusout"): void;
+  (e: "focusin", value: FocusEvent): void;
+  (e: "focusout", value: FocusEvent): void;
 }
 
 const emit = defineEmits<Emit>();
@@ -101,12 +101,12 @@ const state = computed(() => {
   return "default";
 });
 
-const onFocusIn = () => {
+const onFocusIn = (e: FocusEvent) => {
   hasFocus.value = true;
-  emit("focusin");
+  emit("focusin", e);
 };
-const onFocusOut = () => {
+const onFocusOut = (e: FocusEvent) => {
   hasFocus.value = true;
-  emit("focusout");
+  emit("focusout", e);
 };
 </script>

@@ -11,8 +11,8 @@
       :type="isPasswordVisible ? 'text' : 'password'"
       :autocomplete="autocomplete"
       space-type="right"
-      @focusin="emit('focusin')"
-      @focusout="emit('focusout')"
+      @focusin="onFocusIn"
+      @focusout="onFocusOut"
     />
     <button
       type="button"
@@ -50,8 +50,8 @@ defineOptions({
 
 interface Emit {
   (e: "update:modelValue", value: string): void;
-  (e: "focusin"): void;
-  (e: "focusout"): void;
+  (e: "focusin", value: FocusEvent): void;
+  (e: "focusout", value: FocusEvent): void;
 }
 
 const props = defineProps({
@@ -102,4 +102,8 @@ const computedExpand = computed(() => (props.expand ? "expand" : "default"));
 // Form Control
 const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
+
+const onFocusIn = (e: FocusEvent) => emit("focusin", e);
+
+const onFocusOut = (e: FocusEvent) => emit("focusout", e);
 </script>

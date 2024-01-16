@@ -12,8 +12,8 @@
       type="text"
       :space-type="icon ? 'left' : 'none'"
       :autocomplete="autocomplete"
-      @focusin="emit('focusin')"
-      @focusout="emit('focusout')"
+      @focusin="onFocusIn"
+      @focusout="onFocusOut"
     />
   </div>
 </template>
@@ -74,8 +74,8 @@ const props = defineProps({
 });
 interface Emit {
   (e: "update:modelValue", value: string): void;
-  (e: "focusin"): void;
-  (e: "focusout"): void;
+  (e: "focusin", value: FocusEvent): void;
+  (e: "focusout", value: FocusEvent): void;
 }
 
 const emit = defineEmits<Emit>();
@@ -90,4 +90,7 @@ const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
 
 const computedExpand = computed(() => (props.expand ? "expand" : "default"));
+
+const onFocusIn = (e: FocusEvent) => emit("focusin", e);
+const onFocusOut = (e: FocusEvent) => emit("focusout", e);
 </script>
