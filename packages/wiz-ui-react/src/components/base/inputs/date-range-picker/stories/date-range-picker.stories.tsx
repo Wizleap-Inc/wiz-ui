@@ -68,7 +68,7 @@ export const DisabledDate: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+    canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT).click();
   },
 };
 

@@ -96,6 +96,7 @@ const Template: StoryFn<typeof WizDateRangePicker> = (args) => ({
 });
 
 interface Props {
+  isOpen: boolean;
   disabled: boolean;
   expand: boolean;
   selectBoxOptions: boolean;
@@ -211,6 +212,7 @@ DisabledDate.args = {
     start: new Date(2020, 0, 15),
     end: new Date(2020, 1, 15),
   },
+  isOpen: true,
   disabledDate: (date: Date) => date.getDate() >= 2 && date.getDate() < 7,
 };
 DisabledDate.parameters = {
@@ -220,8 +222,8 @@ DisabledDate.parameters = {
     },
     source: {
       code: CODE_TEMPLATE({
-        disabledDate: (date: Date) =>
-          date.getDate() >= 10 && date.getDate() < 17,
+        isOpen: true,
+        disabledDate: (date: Date) => date.getDate() >= 2 && date.getDate() < 7,
       }),
     },
   },
