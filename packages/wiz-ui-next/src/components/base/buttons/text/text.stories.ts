@@ -21,7 +21,7 @@ export default {
     },
     variant: {
       control: { type: "select" },
-      options: ["primary", "sub", "danger", "sub-danger"],
+      options: ["primary", "sub", "danger", "sub-danger", "gray"],
     },
     size: {
       control: { type: "select" },
@@ -59,6 +59,8 @@ const TemplateVariant: StoryFn<typeof WizTextButton> = (args) => ({
       <div>variant = danger</div>
       <WizTextButton v-bind="args" @click="() => args.click" variant="sub-danger">保存する</WizTextButton>
       <div>variant = sub-danger</div>
+       <WizTextButton v-bind="args" @click="() => args.click" variant="gray">保存する</WizTextButton>
+      <div>variant = gray</div>
     </div>
   `,
 });
@@ -180,6 +182,8 @@ IconPosition.parameters = {
   <div>variant = danger</div>
   <WizTextButton v-bind="args" @click="click" :icon="WizIAdd" iconPosition="right" variant="sub-danger">保存する</WizTextButton>
   <div>variant = sub-danger</div>
+  <WizTextButton v-bind="args" @click="click" :icon="WizIAdd" iconPosition="right" variant="gray">保存する</WizTextButton>
+  <div>variant = gray</div>
 </template>
       `,
     },
