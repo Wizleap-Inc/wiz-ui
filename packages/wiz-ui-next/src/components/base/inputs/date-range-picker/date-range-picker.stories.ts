@@ -192,8 +192,8 @@ export const DisabledWithValue: StoryFn<typeof WizDateRangePicker> = (
     };
   },
   template: `
-    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem"> 
-      <WizDateRangePicker v-bind="args" /> 
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem">
+      <WizDateRangePicker v-bind="args" />
     </div>
   `,
 });
@@ -212,7 +212,6 @@ DisabledDate.args = {
     start: new Date(2020, 0, 15),
     end: new Date(2020, 1, 15),
   },
-  isOpen: true,
   disabledDate: (date: Date) => date.getDate() >= 2 && date.getDate() < 7,
 };
 DisabledDate.parameters = {
