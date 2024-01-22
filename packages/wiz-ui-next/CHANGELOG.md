@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.24.0
+
+### Minor Changes
+
+- [#1194](https://github.com/Wizleap-Inc/wiz-ui/pull/1194) [`ff94b942`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff94b942d3ff89d9fe6a33a15d5913c06cc311ce) Thanks [@okakyo](https://github.com/okakyo)! - [#1193] Text Button の variant に "gray" 追加
+
+- [#1192](https://github.com/Wizleap-Inc/wiz-ui/pull/1192) [`86fb7cdc`](https://github.com/Wizleap-Inc/wiz-ui/commit/86fb7cdcdb7523b134fcca14e5409bf14c9b3b3b) Thanks [@okakyo](https://github.com/okakyo)! - [#1180] WizDateRangePicker: disabledDate props を追加
+
+### Patch Changes
+
+- Updated dependencies [[`ff94b942`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff94b942d3ff89d9fe6a33a15d5913c06cc311ce)]:
+  - @wizleap-inc/wiz-ui-styles@0.28.0
+
 ## 2.23.0
 
 ### Minor Changes

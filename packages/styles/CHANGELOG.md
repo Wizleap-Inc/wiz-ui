@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.28.0
+
+### Minor Changes
+
+- [#1194](https://github.com/Wizleap-Inc/wiz-ui/pull/1194) [`ff94b942`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff94b942d3ff89d9fe6a33a15d5913c06cc311ce) Thanks [@okakyo](https://github.com/okakyo)! - [#1193] Text Button の variant に "gray" 追加
+
 ## 0.27.3
 
 ### Patch Changes
