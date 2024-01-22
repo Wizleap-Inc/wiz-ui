@@ -96,10 +96,12 @@ const Template: StoryFn<typeof WizDateRangePicker> = (args) => ({
 });
 
 interface Props {
+  isOpen: boolean;
   disabled: boolean;
   expand: boolean;
   selectBoxOptions: boolean;
   isDirectionFixed: boolean;
+  disabledDate: (date: Date) => boolean;
 }
 
 const CODE_TEMPLATE = (props: Partial<Props>) => `
@@ -190,17 +192,40 @@ export const DisabledWithValue: StoryFn<typeof WizDateRangePicker> = (
     };
   },
   template: `
-    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem"> 
-      <WizDateRangePicker v-bind="args" /> 
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem">
+      <WizDateRangePicker v-bind="args" />
     </div>
   `,
 });
+
 DisabledWithValue.args = {
   modelValue: {
     start: new Date(2000, 0, 15),
     end: new Date(2000, 1, 15),
   },
   disabled: true,
+};
+
+export const DisabledDate = Template.bind({});
+DisabledDate.args = {
+  modelValue: {
+    start: new Date(2020, 0, 15),
+    end: new Date(2020, 1, 15),
+  },
+  disabledDate: (date: Date) => date.getDate() >= 2 && date.getDate() < 7,
+};
+DisabledDate.parameters = {
+  docs: {
+    description: {
+      story: "disabledをtrueにすると、入力ができなくなります。",
+    },
+    source: {
+      code: CODE_TEMPLATE({
+        isOpen: true,
+        disabledDate: (date: Date) => date.getDate() >= 2 && date.getDate() < 7,
+      }),
+    },
+  },
 };
 
 export const Expand = Template.bind({});
