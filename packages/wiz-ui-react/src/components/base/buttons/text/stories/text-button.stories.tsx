@@ -91,6 +91,10 @@ export const Icon: Story = {
         保存する
       </WizTextButton>
       <div>variant = sub-danger</div>
+      <WizTextButton {...args} variant="gray">
+        保存する
+      </WizTextButton>
+      <div>variant = sub-danger</div>
     </div>
   ),
   parameters: {
@@ -149,6 +153,10 @@ export const Variant: Story = {
         保存する
       </WizTextButton>
       <div>variant = sub-danger</div>
+      <WizTextButton {...args} variant="gray">
+        保存する
+      </WizTextButton>
+      <div>variant = gray</div>
     </div>
   ),
 };

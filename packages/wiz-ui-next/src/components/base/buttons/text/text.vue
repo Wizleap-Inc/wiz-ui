@@ -55,7 +55,9 @@ interface Emits {
 
 const props = defineProps({
   variant: {
-    type: String as PropType<"primary" | "sub" | "danger" | "sub-danger">,
+    type: String as PropType<
+      "primary" | "sub" | "danger" | "sub-danger" | "gray"
+    >,
     required: false,
     default: "primary",
   },
@@ -99,13 +101,14 @@ const emit = defineEmits<Emits>();
 const onClick = () => props.disabled || emit("click");
 
 const variantColor: Record<
-  "primary" | "sub" | "danger" | "sub-danger",
+  "primary" | "sub" | "danger" | "sub-danger" | "gray",
   ColorKeys
 > = {
   primary: "white.800",
   sub: "green.800",
   danger: "white.800",
   "sub-danger": "red.800",
+  gray: "white.800",
 };
 
 const iconSize: Record<"xs" | "sm" | "md" | "lg", FontSizeKeys> = {
