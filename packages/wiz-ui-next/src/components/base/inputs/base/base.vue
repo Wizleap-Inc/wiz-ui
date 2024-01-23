@@ -106,7 +106,7 @@ const onFocusIn = (e: FocusEvent) => {
   emit("focusin", e);
 };
 const onFocusOut = (e: FocusEvent) => {
-  hasFocus.value = true;
+  hasFocus.value = false;
   emit("focusout", e);
 };
 </script>
