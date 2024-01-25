@@ -5,7 +5,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/password-input.css";
 import clsx from "clsx";
-import { forwardRef, useContext, useState } from "react";
+import { ComponentProps, forwardRef, useContext, useState } from "react";
 
 import { WizIEye } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
@@ -13,6 +13,7 @@ import { BaseProps } from "@/types";
 
 import { PrivateBaseInput } from "../../base";
 
+type PrivateBaseInputProps = ComponentProps<typeof PrivateBaseInput>;
 type Props = BaseProps & {
   id?: string;
   value: string;
@@ -23,7 +24,7 @@ type Props = BaseProps & {
   autocomplete?: Extract<AutoCompleteKeys, "currentPassword" | "newPassword">;
   error?: boolean;
   onChange: (value: string) => void;
-};
+} & Omit<PrivateBaseInputProps, "onChange">;
 
 const PasswordInput = forwardRef<HTMLInputElement, Props>(
   (
@@ -39,6 +40,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
       autocomplete = "off",
       error,
       onChange,
+      ...props
     },
     ref
   ) => {
@@ -69,6 +71,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           autoComplete={autocomplete}
           space-type="right"
           onChange={(e) => onChange(e.target.value)}
+          {...props}
         />
         <button
           type="button"
