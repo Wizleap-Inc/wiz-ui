@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.24.1
+
+### Patch Changes
+
+- [#1187](https://github.com/Wizleap-Inc/wiz-ui/pull/1187) [`3548d63c`](https://github.com/Wizleap-Inc/wiz-ui/commit/3548d63ce16078a9d2daad88a20bbbd09a44a5d0) Thanks [@okakyo](https://github.com/okakyo)! - [#1184] base-input の focusin, focusout の Event を受け取れるように修正
+
 ## 2.24.0
 
 ### Minor Changes
