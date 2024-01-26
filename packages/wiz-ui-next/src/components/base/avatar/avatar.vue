@@ -70,7 +70,7 @@ const props = defineProps({
   color: {
     type: String as PropType<ColorKeys>,
     required: false,
-    default: "gray.900",
+    default: "white.800",
   },
   bgColor: {
     type: String as PropType<ColorKeys>,
@@ -109,14 +109,7 @@ const onError = () => {
 
 const altHeader = computed(() => {
   if (props.name) {
-    // eslint-disable-next-line no-irregular-whitespace
-    const InitialWords = props.name.split(/ |　/);
-    if (InitialWords.length > 1) {
-      const firstWord = InitialWords[0][0]?.toUpperCase() ?? "";
-      const secondWord = InitialWords[1][0]?.toUpperCase() ?? "";
-      return firstWord + secondWord;
-    }
-    return InitialWords[0][0].toUpperCase();
+    return props.name;
   }
   if (props.fallback) return props.fallback;
   return "";

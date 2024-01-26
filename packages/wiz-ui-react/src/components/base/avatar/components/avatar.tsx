@@ -40,7 +40,7 @@ const Avatar = forwardRef(
       src,
       name,
       size = "xl3",
-      color = "gray.900",
+      color = "white.800",
       bgColor,
       alt,
       fallback,
@@ -54,14 +54,7 @@ const Avatar = forwardRef(
 
     const altHeader = useMemo(() => {
       if (name) {
-        // eslint-disable-next-line no-irregular-whitespace
-        const InitialWords = name.split(/ |　/);
-        if (InitialWords.length > 1) {
-          const firstWord = InitialWords[0][0]?.toUpperCase() ?? "";
-          const secondWord = InitialWords[1][0]?.toUpperCase() ?? "";
-          return firstWord + secondWord;
-        }
-        return InitialWords[0][0].toUpperCase();
+        return name;
       }
       if (fallback) return fallback;
       return "";
