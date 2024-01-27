@@ -83,6 +83,7 @@
                 :checked="checkValues.includes(item.value)"
                 :value="item.value"
                 :id="`${item.label}_${item.value}`"
+                checkbox-input-margin-y="5px"
                 @update:checked="handleClickCheckbox(item.value)"
               >
                 <WizHStack width="100%" align="center" nowrap gap="xs2">

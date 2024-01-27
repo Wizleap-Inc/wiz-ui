@@ -125,6 +125,7 @@ export const SearchPopupPanel: FC<Props> = ({
                       value={option.value}
                       id={`${option.label}-${option.value}`}
                       checked={values.includes(option.value)}
+                      checkboxInputMarginY="5px"
                       onChange={(e) => {
                         handleChangeValues(option.value, e.target.checked);
                       }}
