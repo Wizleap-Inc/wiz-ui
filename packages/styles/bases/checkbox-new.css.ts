@@ -75,15 +75,6 @@ const inputShapeStyle = style({
   borderRadius: "2px",
 });
 
-export const inputMarginStyle = styleVariants({
-  default: {
-    margin: "0.05rem 0",
-  },
-  bordered: {
-    margin: "0.25rem 0",
-  },
-});
-
 export const inputStyle = style([
   inputShapeStyle,
   {

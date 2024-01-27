@@ -2,16 +2,18 @@
   <label :class="labelClass">
     <input
       type="checkbox"
-      :class="[styles.inputStyle, styles.inputMarginStyle[borderState]]"
+      :class="[styles.inputStyle]"
       :checked="actualChecked"
       :value="value"
       :id="id"
       :name="name"
       :disabled="disabled"
       @change="handleChange"
+      :style="{ margin: `${checkboxInputMargin} 0` }"
     />
     <div
-      :class="[styles.iconWrapperStyle, styles.inputMarginStyle[borderState]]"
+      :class="[styles.iconWrapperStyle]"
+      :style="{ margin: `${checkboxInputMargin} 0` }"
     >
       <div :class="styles.iconPositionStyle">
         <WizIcon :icon="WizICheckBold" color="white.800" size="md" />
@@ -36,6 +38,7 @@ interface Props {
   strikeThrough?: boolean;
   bordered?: boolean;
   error?: boolean;
+  checkboxInputMarginY?: string;
 }
 const props = defineProps<Props>();
 
@@ -81,7 +84,9 @@ const handleChange = (e: Event) => {
   }
 };
 
-const borderState: "bordered" | "default" = props.bordered
-  ? "bordered"
-  : "default";
+const checkboxInputMargin = computed(() => {
+  if (props.checkboxInputMarginY) return props.checkboxInputMarginY;
+  if (props.bordered) return "5px";
+  return "0px";
+});
 </script>

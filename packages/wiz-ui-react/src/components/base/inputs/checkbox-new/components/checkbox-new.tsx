@@ -29,6 +29,7 @@ type Props = BaseProps & {
   bordered?: boolean;
   error?: boolean;
   children?: ReactNode;
+  checkboxInputMarginY?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -41,6 +42,7 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
       children,
       strikeThrough,
       bordered,
+      checkboxInputMarginY,
       error,
       onChange,
       ...props
@@ -65,6 +67,12 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
       },
       [isControlled, onChange]
     );
+
+    const inputMarginStyle = () => {
+      if (checkboxInputMarginY) return checkboxInputMarginY;
+      if (bordered) return "5px";
+      return "0px";
+    };
 
     const labelClassName = useMemo(() => {
       const borderedState = (() => {
@@ -101,18 +109,18 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
           {...props}
           ref={ref}
           type="checkbox"
-          className={clsx(
-            styles.inputStyle,
-            styles.inputMarginStyle[bordered ? "bordered" : "default"]
-          )}
+          className={clsx(styles.inputStyle)}
           checked={actualChecked}
           onChange={handleChange}
+          style={{
+            margin: `${inputMarginStyle()} 0px`,
+          }}
         />
         <div
-          className={clsx(
-            styles.iconWrapperStyle,
-            styles.inputMarginStyle[bordered ? "bordered" : "default"]
-          )}
+          className={clsx(styles.iconWrapperStyle)}
+          style={{
+            margin: `${inputMarginStyle()} 0px`,
+          }}
         >
           {actualChecked && (
             <div className={styles.iconPositionStyle}>
