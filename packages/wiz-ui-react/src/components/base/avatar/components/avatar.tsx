@@ -2,23 +2,32 @@ import {
   ColorKeys,
   ComponentName,
   SpacingKeys,
+  THEME,
+  getColorCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import {
-  backgroundStyle,
-  colorStyle,
-  sizeStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import { colorStyle, sizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { ComponentProps, ForwardedRef, forwardRef, useState } from "react";
+import {
+  ComponentProps,
+  ForwardedRef,
+  forwardRef,
+  useMemo,
+  useState,
+} from "react";
 
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
-  src: string;
+  src?: string;
+  name?: string;
   size?: SpacingKeys;
   color?: ColorKeys;
   bgColor?: ColorKeys;
   alt?: string;
+
+  /**
+   * @deprecated この プロパティ は削除予定です。代わりに `name` プロパティを使ってください。
+   */
   fallback?: string;
   clickable?: boolean;
 } & ComponentProps<"div">;
@@ -29,9 +38,10 @@ const Avatar = forwardRef(
       className,
       style,
       src,
+      name,
       size = "xl3",
-      color = "gray.900",
-      bgColor = "gray.400",
+      color,
+      bgColor,
       alt,
       fallback,
       clickable,
@@ -42,6 +52,30 @@ const Avatar = forwardRef(
   ) => {
     const [isImgLoadSuccess, setIsLoadSuccess] = useState(true);
 
+    const altHeader = useMemo(() => {
+      if (name) {
+        return name;
+      }
+      if (fallback) return fallback;
+      return "";
+    }, [name, fallback]);
+
+    const fontColor = useMemo(() => {
+      if (color) return color;
+      if (fallback && !name) return "gray.900";
+      return "white.800";
+    }, [color, fallback, name]);
+
+    const avatarBgColor = useMemo(() => {
+      if (bgColor) return getColorCss(bgColor);
+      if (!name) return THEME.color.gray[400];
+      const getNum = Array.from(name)
+        .map((ch) => ch.charCodeAt(0))
+        .reduce((a, b) => a + b);
+      const extractHue = (getNum * getNum) % 360;
+      return `hsl(${extractHue}, 50%, 48%)`;
+    }, [bgColor, name]);
+
     return (
       <div
         ref={ref}
@@ -49,7 +83,7 @@ const Avatar = forwardRef(
           className,
           styles.avatarStyle,
           sizeStyle[size],
-          colorStyle[color],
+          colorStyle[fontColor],
           clickable && styles.avatarClickableStyle
         )}
         style={style}
@@ -76,12 +110,12 @@ const Avatar = forwardRef(
           />
         ) : (
           <div
-            className={clsx(
-              styles.avatarFallbackStyle,
-              backgroundStyle[bgColor]
-            )}
+            className={clsx(styles.avatarFallbackStyle)}
+            style={{
+              background: avatarBgColor,
+            }}
           >
-            {fallback}
+            {altHeader}
           </div>
         )}
       </div>
