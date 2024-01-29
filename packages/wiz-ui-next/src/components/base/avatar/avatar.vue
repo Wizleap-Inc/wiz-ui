@@ -3,7 +3,7 @@
     :class="[
       avatarStyle,
       sizeStyle[size],
-      colorStyle[color],
+      colorStyle[fontColor],
       clickable && avatarClickableStyle,
     ]"
     :aria-label="ariaLabel"
@@ -70,7 +70,6 @@ const props = defineProps({
   color: {
     type: String as PropType<ColorKeys>,
     required: false,
-    default: "white.800",
   },
   bgColor: {
     type: String as PropType<ColorKeys>,
@@ -123,5 +122,13 @@ const avatarBgColor = computed(() => {
     .reduce((a, b) => a + b);
   const extractHue = (getNum * getNum) % 360;
   return `hsl(${extractHue}, 50%, 48%)`;
+});
+
+const fontColor = computed(() => {
+  if (props.color) return props.color;
+  if (props.fallback && !props.name) {
+    return "gray.900";
+  }
+  return "white.800";
 });
 </script>

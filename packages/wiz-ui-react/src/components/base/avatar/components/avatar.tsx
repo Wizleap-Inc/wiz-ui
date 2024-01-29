@@ -40,7 +40,7 @@ const Avatar = forwardRef(
       src,
       name,
       size = "xl3",
-      color = "white.800",
+      color,
       bgColor,
       alt,
       fallback,
@@ -60,6 +60,12 @@ const Avatar = forwardRef(
       return "";
     }, [name, fallback]);
 
+    const fontColor = useMemo(() => {
+      if (color) return color;
+      if (fallback && !name) return "gray.900";
+      return "white.800";
+    }, [color, fallback, name]);
+
     const avatarBgColor = useMemo(() => {
       if (bgColor) return getColorCss(bgColor);
       if (!name) return THEME.color.gray[400];
@@ -77,7 +83,7 @@ const Avatar = forwardRef(
           className,
           styles.avatarStyle,
           sizeStyle[size],
-          colorStyle[color],
+          colorStyle[fontColor],
           clickable && styles.avatarClickableStyle
         )}
         style={style}
