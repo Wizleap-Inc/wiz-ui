@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.25.0
+
+### Minor Changes
+
+- [#1162](https://github.com/Wizleap-Inc/wiz-ui/pull/1162) [`53f7a882`](https://github.com/Wizleap-Inc/wiz-ui/commit/53f7a8820e628c3e8235697693b5e5f9db810264) Thanks [@okakyo](https://github.com/okakyo)! - [#1137] Avatar のブランク画像の設定修正
+
 ## 2.24.1
 
 ### Patch Changes

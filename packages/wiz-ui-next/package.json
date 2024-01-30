@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-next",
-  "version": "2.24.1",
+  "version": "2.25.0",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
