@@ -38,7 +38,9 @@
             </button>
           </span>
           <input
-            v-if="multiSelectable || !isValueMatched"
+            v-if="
+              multiSelectable || !isValueMatched || selectedItem.length === 0
+            "
             :class="selectBoxSearchInputStyle"
             :value="searchValue"
             @input="onSetSearchValue"
