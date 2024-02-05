@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.25.1
+
+### Patch Changes
+
+- [#1204](https://github.com/Wizleap-Inc/wiz-ui/pull/1204) [`30ce4029`](https://github.com/Wizleap-Inc/wiz-ui/commit/30ce4029395fda0b239ccbe8c3f96210d81931dc) Thanks [@okakyo](https://github.com/okakyo)! - fix(search-selector): options に存在しない modelValue/values を突っ込むと動かなくなる/UI がバグる箇所の修正
+
 ## 2.25.0
 
 ### Minor Changes
