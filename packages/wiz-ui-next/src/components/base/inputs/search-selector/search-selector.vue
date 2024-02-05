@@ -38,7 +38,9 @@
             </button>
           </span>
           <input
-            v-if="multiSelectable || !isValueMatched"
+            v-if="
+              multiSelectable || !isValueMatched || selectedItem.length === 0
+            "
             :class="selectBoxSearchInputStyle"
             :value="searchValue"
             @input="onSetSearchValue"
@@ -255,7 +257,11 @@ const valueToOption = computed(() =>
 );
 
 const selectedItem = computed(() => {
-  return props.modelValue.map((v) => valueToOption.value[v]);
+  // props.options.values の値の配列
+  const values = props.options.map((v) => v.value);
+  return props.modelValue
+    .filter((v) => values.includes(v))
+    .map((v) => valueToOption.value[v]);
 });
 
 const setUnselectableRef =

@@ -269,7 +269,9 @@ const SearchSelector: FC<Props> = ({
                 </button>
               </span>
             ))}
-            {(multiSelectable || values.length === 0) && (
+            {(multiSelectable ||
+              values.length === 0 ||
+              selectedOptions.length === 0) && (
               <input
                 ref={searchTextboxRef}
                 className={styles.selectBoxSearchInputStyle}
