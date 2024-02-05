@@ -270,25 +270,6 @@ Selecting.parameters = {
   },
 };
 
-export const NotExistOptionSelected = Template(
-  [-1],
-  false,
-  _getDummyOptions("test", 3),
-  ""
-).bind({});
-NotExistOptionSelected.args = {
-  multiSelectable: false,
-};
-NotExistOptionSelected.parameters = {
-  docs: {
-    source: {
-      code: code([-1], false, _getDummyOptions("test", 3), "", {
-        multiSelectable: false,
-      }),
-    },
-  },
-};
-
 export const MultiSelecting = Template(
   [1, 2, 3],
   false,

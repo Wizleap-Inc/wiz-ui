@@ -98,13 +98,6 @@ export const Selecting: Story = {
   },
 };
 
-export const NotExistOptionSelected: Story = {
-  ...getTemplate([-1]),
-  args: {
-    options: getDummyOptions("test", 3),
-  },
-};
-
 export const MultiSelecting: Story = {
   ...getTemplate([1, 2, 3]),
   args: {
