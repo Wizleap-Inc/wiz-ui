@@ -15,3 +15,10 @@ export const Default: Story = {
     percentage: 56,
   },
 };
+
+export const HiddenBg: Story = {
+  args: {
+    percentage: 56,
+    hiddenBg: true,
+  },
+};

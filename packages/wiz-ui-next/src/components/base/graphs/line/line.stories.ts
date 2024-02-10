@@ -22,3 +22,16 @@ export const Default: StoryFn<typeof WizLineGraph> = (args) => ({
 Default.args = {
   percentage: 56,
 };
+
+export const HiddenBg: StoryFn<typeof WizLineGraph> = (args) => ({
+  setup: () => ({ args }),
+  components: { WizLineGraph },
+  template: `
+    <WizLineGraph v-bind="$props"/>
+  `,
+});
+
+HiddenBg.args = {
+  percentage: 56,
+  hiddenBg: true,
+};
