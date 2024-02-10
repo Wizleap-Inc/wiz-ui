@@ -1,5 +1,5 @@
 <template>
-  <div :class="lineGraphBgStyle">
+  <div :class="[lineGraphBaseBgStyle, lineGraphBgStyle[bgStyle]]">
     <div :class="lineGraphBarStyle" :style="{ width: `${percentage}%` }" />
   </div>
 </template>
@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
+  lineGraphBaseBgStyle,
   lineGraphBgStyle,
   lineGraphBarStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/line-graph.css";
@@ -15,10 +16,17 @@ defineOptions({
   name: ComponentName.LineGraph,
 });
 
-defineProps({
+const props = defineProps({
   percentage: {
     type: Number,
     required: true,
   },
+  hiddenBg: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
+
+const bgStyle = props.hiddenBg ? "hidden" : "default";
 </script>
