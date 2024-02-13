@@ -18,6 +18,7 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   children: ReactNode;
   content: ReactNode;
+  expand: boolean;
 };
 
 const Tooltip: FC<Props> = ({
@@ -28,6 +29,7 @@ const Tooltip: FC<Props> = ({
   isDirectionFixed = false,
   children,
   content,
+  expand,
 }) => {
   const [isHover, setIsHover] = useState(false);
   const anchor = useRef<HTMLDivElement | null>(null);
@@ -36,7 +38,10 @@ const Tooltip: FC<Props> = ({
     <>
       <div
         className={clsx(className, tooltipStyle)}
-        style={style}
+        style={{
+          ...style,
+          width: expand ? "100%" : "initial",
+        }}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         ref={anchor}

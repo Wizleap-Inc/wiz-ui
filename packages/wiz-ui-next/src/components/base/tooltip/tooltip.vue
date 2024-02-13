@@ -3,6 +3,7 @@
     :class="tooltipStyle"
     @mouseenter="isHover = true"
     @mouseleave="isHover = false"
+    :style="{ width: expand ? '100%' : 'initial' }"
   >
     <WizPopupContainer :expand="expand">
       <slot />
