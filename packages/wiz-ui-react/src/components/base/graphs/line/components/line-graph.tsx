@@ -6,7 +6,7 @@ import { FC } from "react";
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
   percentage: number;
-  hiddenBg: boolean;
+  hiddenBg?: boolean;
 };
 
 const LineGraph: FC<Props> = ({ className, style, percentage, hiddenBg }) => {

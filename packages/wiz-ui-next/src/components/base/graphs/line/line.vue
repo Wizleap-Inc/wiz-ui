@@ -11,6 +11,7 @@ import {
   lineGraphBgStyle,
   lineGraphBarStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/line-graph.css";
+import { computed } from "vue";
 
 defineOptions({
   name: ComponentName.LineGraph,
@@ -28,5 +29,8 @@ const props = defineProps({
   },
 });
 
-const bgStyle = props.hiddenBg ? "hidden" : "default";
+const bgStyle = computed(() => {
+  if (props.hiddenBg) return "hidden";
+  return "default";
+});
 </script>
