@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.29.0
+
+### Minor Changes
+
+- [#1207](https://github.com/Wizleap-Inc/wiz-ui/pull/1207) [`ef1e6d2a`](https://github.com/Wizleap-Inc/wiz-ui/commit/ef1e6d2aa719e530e9739761899d87f6679e325b) Thanks [@okakyo](https://github.com/okakyo)! - [#1205] hiddenBg property 追加
+
 ## 0.28.0
 
 ### Minor Changes
