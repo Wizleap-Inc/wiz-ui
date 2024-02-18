@@ -31,9 +31,9 @@ import { BaseProps } from "@/types";
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchSelectorOption[];
-  values: number[];
+type Props<T = number> = BaseProps & {
+  options: SearchSelectorOption<T>[];
+  values: T[];
   placeholder?: string;
   width?: string;
   disabled?: boolean;
