@@ -10,9 +10,9 @@ import { BaseProps } from "@/types";
 import { SearchPopupPanel } from "./search-popup-panel";
 import { SearchInputOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchInputOption[];
-  values: number[];
+type Props<T = number> = BaseProps & {
+  options: SearchInputOption<T>[];
+  values: T[];
   name?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -26,9 +26,9 @@ type Props = BaseProps & {
 };
 
 function filterOptions(
-  options: SearchInputOption[],
+  options: SearchInputOption<number>[],
   text: string
-): SearchInputOption[] {
+): SearchInputOption<number>[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
     if (!option.children || option.children.length === 0) {

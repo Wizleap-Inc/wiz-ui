@@ -14,8 +14,8 @@ import { BaseProps } from "@/types";
 
 import { SearchInputOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchInputOption[];
+type Props<T = number> = BaseProps & {
+  options: SearchInputOption<T>[];
   values: number[];
   width?: string;
   emptyMessage: string;

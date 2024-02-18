@@ -22,15 +22,15 @@ import {
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
-type SelectBoxOption = {
+type SelectBoxOption<T> = {
   label: string;
   exLabel?: string;
-  value: number;
+  value: T;
 };
 
-type Props = BaseProps & {
-  options: SelectBoxOption[];
-  value: number | null;
+type Props<T = number | null> = BaseProps & {
+  options: SelectBoxOption<T>[];
+  value: T;
   placeholder?: string;
   width?: string;
   disabled?: boolean;
@@ -39,7 +39,7 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
-  onChange: (value: number | null) => void;
+  onChange: (value: unknown) => void;
 };
 
 const SelectBox: FC<Props> = ({
