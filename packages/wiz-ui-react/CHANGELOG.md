@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.51.1
+
+### Patch Changes
+
+- [#1215](https://github.com/Wizleap-Inc/wiz-ui/pull/1215) [`a6d50a13`](https://github.com/Wizleap-Inc/wiz-ui/commit/a6d50a13ca6a8952094b1f6004d5bdde1e9f0397) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(avatar): src が undefined の場合は img タグを表示しない
+
 ## 0.51.0
 
 ### Minor Changes
