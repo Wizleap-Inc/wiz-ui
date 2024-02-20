@@ -11,7 +11,7 @@
   >
     <img
       :class="avatarImageStyle"
-      v-if="isImgLoadSuccess"
+      v-if="src !== undefined && isImgLoadSuccess"
       :src="src"
       :alt="alt"
       @error="onError"

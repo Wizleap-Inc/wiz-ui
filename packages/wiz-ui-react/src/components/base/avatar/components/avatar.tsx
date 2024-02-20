@@ -101,7 +101,7 @@ const Avatar = forwardRef(
           }
         }}
       >
-        {isImgLoadSuccess ? (
+        {src !== undefined && isImgLoadSuccess ? (
           <img
             className={styles.avatarImageStyle}
             src={src}
