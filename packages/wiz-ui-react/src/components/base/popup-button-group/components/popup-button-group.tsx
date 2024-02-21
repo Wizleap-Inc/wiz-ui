@@ -16,8 +16,8 @@ import { ButtonItem } from "./button-item";
 import { DividerItem } from "./divider-item";
 import { GroupItem } from "./group-item";
 
-type Props = BaseProps & {
-  options: ButtonGroupItem[];
+type Props<T> = BaseProps & {
+  options: ButtonGroupItem<T>[];
   width?: string;
   p?: SpacingKeys;
   borderRadius?: SpacingKeys;
@@ -28,7 +28,7 @@ type Props = BaseProps & {
   depth?: number;
 };
 
-const PopupButtonGroup: FC<Props> = ({
+const PopupButtonGroup: FC<Props<unknown>> = ({
   className,
   style,
   options,
@@ -42,13 +42,13 @@ const PopupButtonGroup: FC<Props> = ({
   depth = 0,
 }) => {
   const items = useMemo(() => {
-    const divider: ItemElement = { kind: "divider" };
+    const divider: ItemElement<unknown> = { kind: "divider" };
     const items = options
       .map((opt, i) => {
         if (opt.kind === "divider") {
           return [divider];
         }
-        const optionItem: ItemElement = {
+        const optionItem: ItemElement<unknown> = {
           kind: "item",
           item: opt,
         };

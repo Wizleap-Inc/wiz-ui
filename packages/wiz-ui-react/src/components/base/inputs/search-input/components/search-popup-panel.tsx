@@ -14,15 +14,15 @@ import { BaseProps } from "@/types";
 
 import { SearchInputOption } from "./types";
 
-type Props<T = number> = BaseProps & {
+type Props<T> = BaseProps & {
   options: SearchInputOption<T>[];
-  values: number[];
+  values: T[];
   width?: string;
   emptyMessage: string;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
 };
 
-export const SearchPopupPanel: FC<Props> = ({
+export const SearchPopupPanel: FC<Props<unknown>> = ({
   className,
   style,
   options,
@@ -31,7 +31,7 @@ export const SearchPopupPanel: FC<Props> = ({
   emptyMessage,
   onChangeValues,
 }) => {
-  const [activeValue, setActiveValue] = useState<number | null>(null);
+  const [activeValue, setActiveValue] = useState<unknown | null>(null);
   const activeOption = useMemo(
     () => options.find((option) => activeValue === option.value),
     [activeValue, options]
@@ -41,7 +41,7 @@ export const SearchPopupPanel: FC<Props> = ({
   const isOpen = activeOptionChildren !== undefined;
 
   const handleChangeValues = useCallback(
-    (selectedOptionValue: number, isChecked: boolean) => {
+    (selectedOptionValue: string, isChecked: boolean) => {
       const newValues = (() => {
         if (isChecked) {
           return [...values, selectedOptionValue];
@@ -123,11 +123,14 @@ export const SearchPopupPanel: FC<Props> = ({
                   <div className={styles.searchDropdownCheckboxItemStyle}>
                     <WizCheckBoxNew
                       style={{ width: "100%" }}
-                      value={option.value}
+                      value={String(option.value)}
                       id={`${option.label}-${option.value}`}
                       checked={values.includes(option.value)}
                       onChange={(e) => {
-                        handleChangeValues(option.value, e.target.checked);
+                        handleChangeValues(
+                          String(option.value),
+                          e.target.checked
+                        );
                       }}
                     >
                       <WizHStack width="100%" align="center" gap="xs2" nowrap>

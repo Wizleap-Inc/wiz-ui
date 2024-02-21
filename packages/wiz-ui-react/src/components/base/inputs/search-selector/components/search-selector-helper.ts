@@ -20,7 +20,7 @@ function levenshteinDistance(s1: string, s2: string): number {
 }
 
 export function filterOptions(
-  options: SearchSelectorOption[],
+  options: SearchSelectorOption<unknown>[],
   searchText: string
 ) {
   if (searchText.length === 0) {

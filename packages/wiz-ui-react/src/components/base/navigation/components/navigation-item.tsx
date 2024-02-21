@@ -18,14 +18,14 @@ import { BaseProps } from "@/types";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
 
-type Props<T extends ElementType> = BaseProps & {
+type Props<T extends ElementType, K> = BaseProps & {
   icon: TIcon;
   label: string;
   active: boolean;
   disabled?: boolean;
   tooltipText?: string;
   isPopupLocking?: boolean;
-  buttons?: ButtonGroupItem[];
+  buttons?: ButtonGroupItem<K>[];
   isPopupOpen?: boolean;
   onTogglePopup?: (isPopup: boolean) => void;
   onTogglePopupLocking?: (lock: boolean) => void;
@@ -54,7 +54,7 @@ type Props<T extends ElementType> = BaseProps & {
  * <WizNavigationItem as={Link} asProps={{ to: "/page1" }} { ...otherProps } />
  * ```
  */
-const NavigationItem = <T extends ElementType>({
+const NavigationItem = <T extends ElementType, K>({
   className,
   style,
   icon: Icon,
@@ -68,7 +68,7 @@ const NavigationItem = <T extends ElementType>({
   onTogglePopup,
   onTogglePopupLocking,
   ...props
-}: Props<T>) => {
+}: Props<T, K>) => {
   const isAnchor = "href" in props;
   const LinkComponent = isAnchor ? "a" : props.as;
   const isExternalLink = !!props?.href?.startsWith("http");

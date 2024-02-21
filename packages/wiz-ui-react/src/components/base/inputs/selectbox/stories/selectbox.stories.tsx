@@ -23,12 +23,12 @@ const getDummyOptions = (label: string, length: number, exLabel?: string) => {
 
 const Template: Story = {
   render: (args) => {
-    const [value, setValue] = useState<number | null>(null);
+    const [value, setValue] = useState<unknown | null>();
     return (
       <WizSelectBox
         {...args}
         value={value}
-        onChange={(updated) => setValue(updated)}
+        onChange={(updated: unknown) => setValue(updated)}
       />
     );
   },
@@ -81,7 +81,7 @@ export const ExtraLabel: Story = {
     value: 1,
   },
   render: (args) => {
-    const [value, setValue] = useState<number | null>(args.value);
+    const [value, setValue] = useState<unknown | null>(args.value);
     return (
       <div
         style={{
