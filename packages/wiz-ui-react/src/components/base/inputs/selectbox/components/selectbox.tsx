@@ -28,7 +28,7 @@ type SelectBoxOption<T> = {
   value: T;
 };
 
-type Props<T = number | null> = BaseProps & {
+type Props<T> = BaseProps & {
   options: SelectBoxOption<T>[];
   value: T;
   placeholder?: string;
@@ -39,10 +39,10 @@ type Props<T = number | null> = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
-  onChange: (value: unknown) => void;
+  onChange: (value: T) => void;
 };
 
-const SelectBox: FC<Props> = ({
+const SelectBox: FC<Props<unknown>> = ({
   className,
   style,
   options,
@@ -79,7 +79,7 @@ const SelectBox: FC<Props> = ({
     setIsOpen(!isOpen);
   };
 
-  const handleClickOption = (option: SelectBoxOption) => {
+  const handleClickOption = (option: SelectBoxOption<unknown>) => {
     setIsOpen(false);
     onChange(option.value);
   };

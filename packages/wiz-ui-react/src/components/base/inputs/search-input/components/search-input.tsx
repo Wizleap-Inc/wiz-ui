@@ -10,7 +10,7 @@ import { BaseProps } from "@/types";
 import { SearchPopupPanel } from "./search-popup-panel";
 import { SearchInputOption } from "./types";
 
-type Props<T = number> = BaseProps & {
+type Props<T> = BaseProps & {
   options: SearchInputOption<T>[];
   values: T[];
   name?: string;
@@ -22,13 +22,13 @@ type Props<T = number> = BaseProps & {
   isDirectionFixed?: boolean;
   emptyMessage?: string;
   icon?: TIcon;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
 };
 
 function filterOptions(
-  options: SearchInputOption<number>[],
+  options: SearchInputOption<unknown>[],
   text: string
-): SearchInputOption<number>[] {
+): SearchInputOption<unknown>[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
     if (!option.children || option.children.length === 0) {
@@ -46,7 +46,7 @@ function filterOptions(
   });
 }
 
-const SearchInput: FC<Props> = ({
+const SearchInput: FC<Props<unknown>> = ({
   className,
   style,
   options,
@@ -117,7 +117,7 @@ const SearchInput: FC<Props> = ({
               values={values}
               width={popupWidth}
               emptyMessage={emptyMessage}
-              onChangeValues={(changed) => onChangeValues(changed)}
+              onChangeValues={(changed: unknown[]) => onChangeValues(changed)}
             />
           </WizHStack>
         </WizPopup>

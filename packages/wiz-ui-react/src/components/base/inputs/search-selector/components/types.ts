@@ -1,4 +1,4 @@
-export type SearchSelectorOption<T = number> = {
+export type SearchSelectorOption<T> = {
   label: string;
   value: T;
   exLabel?: string;
