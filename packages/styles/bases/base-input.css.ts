@@ -12,9 +12,6 @@ export const baseInputStyle = style({
     color: THEME.color.gray[500],
     fontSize: `calc((${THEME.fontSize.sm} + ${THEME.fontSize.xs}) / 2)`,
   },
-  ":focus": {
-    outline: "none",
-  },
 });
 
 export const baseInputPaddingStyle = styleVariants({

@@ -26,7 +26,7 @@ import {
   baseInputPaddingStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, ref, PropType } from "vue";
+import { computed, PropType } from "vue";
 
 defineOptions({
   name: ComponentName.BaseInput,
@@ -91,22 +91,17 @@ const textValue = computed({
   set: (value) => emit("update:modelValue", value),
 });
 
-const hasFocus = ref(false);
-
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 const state = computed(() => {
   if (props.error) return "error";
-  if (hasFocus.value) return "active";
   return "default";
 });
 
 const onFocusIn = (e: FocusEvent) => {
-  hasFocus.value = true;
   emit("focusin", e);
 };
 const onFocusOut = (e: FocusEvent) => {
-  hasFocus.value = false;
   emit("focusout", e);
 };
 </script>

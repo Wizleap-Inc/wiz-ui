@@ -2,13 +2,7 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { clsx } from "clsx";
-import {
-  ComponentProps,
-  ForwardedRef,
-  forwardRef,
-  memo,
-  useState,
-} from "react";
+import { ComponentProps, ForwardedRef, forwardRef, memo } from "react";
 
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
@@ -41,11 +35,8 @@ const _PrivateBaseInput = forwardRef(
     }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
-    const [hasFocus, setHasFocus] = useState(false);
-
     const state = (() => {
       if (error) return "error";
-      if (hasFocus) return "active";
       return "default";
     })();
 
@@ -66,11 +57,9 @@ const _PrivateBaseInput = forwardRef(
         type={type}
         id={id}
         onFocus={(e) => {
-          setHasFocus(true);
           props.onFocus?.(e);
         }}
         onBlur={(e) => {
-          setHasFocus(false);
           props.onBlur?.(e);
         }}
         onChange={props.onChange}
