@@ -147,7 +147,7 @@ export const Fixed: Story = {
   },
 };
 
-const createButton = (n: number): ButtonGroupItem => ({
+const createButton = (n: number): ButtonGroupItem<number> => ({
   kind: "button",
   option: {
     label: `label ${n}`,

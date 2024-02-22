@@ -43,10 +43,10 @@ type Props = BaseProps & {
   haveNewMessage?: boolean;
   formRows?: number;
   typingUsername?: string;
-  status?: number | null;
+  status?: unknown;
   statusOptions?: ComponentProps<typeof WizSelectBox>["options"];
   statusPlaceholder?: string;
-  onChangeStatus?: (status: number | null) => void;
+  onChangeStatus?: (status: unknown) => void;
   onChangeTextValue: (value: string) => void;
   onSubmit: () => void;
   onToggle: () => void;

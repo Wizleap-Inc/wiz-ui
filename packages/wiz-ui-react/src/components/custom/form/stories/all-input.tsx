@@ -19,7 +19,7 @@ const TemplateComponent = ({
   args: ComponentProps<typeof WizFormGroup>;
   error?: string;
 }) => {
-  const [selectBoxValue, setSelectBoxValue] = useState<number | null>(null);
+  const [selectBoxValue, setSelectBoxValue] = useState<unknown | null>(null);
   const [checkBoxValues, setCheckBoxValues] = useState<number[]>([]);
   const [radioValue, setRadioValue] = useState<number | null>(null);
   const [timePickerValue, setTimePickerValue] =

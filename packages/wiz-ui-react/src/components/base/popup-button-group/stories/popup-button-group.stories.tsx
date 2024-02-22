@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<typeof WizPopupButtonGroup>;
 
 const getDummyOptions = (count: number) => {
-  const options: PopupButtonOption[] = [];
+  const options: PopupButtonOption<number>[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
       return undefined;
@@ -43,7 +43,7 @@ const getDummyOptions = (count: number) => {
     });
   });
   return options.map(
-    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem)
+    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem<number>)
   );
 };
 
@@ -51,7 +51,7 @@ const createButton = (
   n: number,
   disabled?: boolean,
   icon?: TIcon
-): ButtonGroupItem => ({
+): ButtonGroupItem<number> => ({
   kind: "button",
   option: {
     label: `item ${n}`,
@@ -63,7 +63,7 @@ const createButton = (
   },
 });
 
-const dummyItems: ButtonGroupItem[] = [
+const dummyItems: ButtonGroupItem<number>[] = [
   {
     kind: "group",
     title: "タイトル1",
