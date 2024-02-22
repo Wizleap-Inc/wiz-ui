@@ -18,7 +18,7 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   children: ReactNode;
   content: ReactNode;
-  expand: boolean;
+  expand?: boolean;
 };
 
 const Tooltip: FC<Props> = ({
@@ -29,7 +29,7 @@ const Tooltip: FC<Props> = ({
   isDirectionFixed = false,
   children,
   content,
-  expand,
+  expand = false,
 }) => {
   const [isHover, setIsHover] = useState(false);
   const anchor = useRef<HTMLDivElement | null>(null);
