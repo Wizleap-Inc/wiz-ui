@@ -13,7 +13,7 @@ import { GroupItem as GroupItemType } from "../types";
 import { WizPopupButtonGroup } from "./popup-button-group";
 
 type Props = BaseProps & {
-  item: GroupItemType;
+  item: GroupItemType<unknown>;
   disabled: boolean;
   depth: number;
 };

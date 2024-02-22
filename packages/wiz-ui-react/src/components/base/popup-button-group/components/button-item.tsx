@@ -14,7 +14,7 @@ import { BaseProps } from "@/types";
 import { ButtonItem as ButtonItemType } from "../types";
 
 type Props = BaseProps & {
-  item: ButtonItemType;
+  item: ButtonItemType<unknown>;
   disabled: boolean;
   depth: number;
 };
