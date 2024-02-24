@@ -189,7 +189,6 @@ export const searchCheckboxBlockCheckedStyle = style({
 });
 
 export const searchInputLabelStyle = style({
-  lineHeight: THEME.fontSize.xl3,
   width: "100%",
 });
 
