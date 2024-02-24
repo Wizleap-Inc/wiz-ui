@@ -142,7 +142,7 @@ export const searchDropdownSelectingItemStyle = style({
 });
 
 export const searchDropdownCheckboxItemStyle = style({
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
+  padding: `${THEME.spacing.sm} ${THEME.spacing.xs2}`,
 });
 
 export const searchCheckboxInputStyle = style({

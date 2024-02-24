@@ -90,6 +90,7 @@ export const SearchPopupPanel: FC<Props> = ({
                       )}
                     >
                       <WizHStack
+                        py="xs2"
                         width="100%"
                         justify="between"
                         align="center"
