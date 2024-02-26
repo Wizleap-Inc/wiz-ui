@@ -62,6 +62,44 @@ export const Open: Story = {
   },
 };
 
+const ExpandTemplate: Story = {
+  render: (args) => (
+    <div
+      style={{
+        width: "700px",
+        height: "500px",
+        backgroundColor: "#eee",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "10px",
+      }}
+    >
+      <WizTooltip {...args}>
+        <WizText textAlign="center" style={{ backgroundColor: "white" }}>
+          保険見直し、つみ...
+        </WizText>
+      </WizTooltip>
+    </div>
+  ),
+};
+
+export const Expand: Story = {
+  ...ExpandTemplate,
+  args: {
+    content,
+    isOpen: true,
+    expand: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "expandをtrueにすると、幅100%で表示されます。",
+      },
+    },
+  },
+};
+
 export const Direction: Story = {
   ...Template,
   args: {

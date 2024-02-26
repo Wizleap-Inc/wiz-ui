@@ -84,6 +84,39 @@ Open.parameters = {
   },
 };
 
+const ExpandTemplate: StoryFn<typeof WizTooltip> = (args) => ({
+  setup: () => ({ args }),
+  components: { WizTooltip, WizText },
+  template: `
+    <div style="width: 700px; height: 500px; background-color: #eee; display: flex; justify-content: center; align-items: center;padding: 10px; ">
+      <WizTooltip v-bind="args">
+          <div style="width: 100%; background-color:white; text-align: center;">保険見直し、つみ...</div>
+        <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+      </WizTooltip>
+    </div>`,
+});
+
+export const Expand = ExpandTemplate.bind({});
+Expand.args = {
+  isOpen: true,
+  expand: true,
+};
+Expand.parameters = {
+  docs: {
+    description: {
+      story: `Expand をtrueにすると、Tooltip が親コンポーネントの幅100%で表示されます。`,
+    },
+    source: {
+      code: `
+<WizTooltip isOpen expand>
+  保険見直し、つみ...
+  <template #content>保険見直し、つみたて・投資、ライフプラン</template>
+</WizTooltip>
+`,
+    },
+  },
+};
+
 export const Direction = Template.bind({});
 Direction.args = {
   direction: "right",
