@@ -1,4 +1,4 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { FC, ReactNode, useContext } from "react";
 
 import { WizHStack, WizTag, WizText, WizVStack } from "@/components";
@@ -47,13 +47,13 @@ const FormControl: FC<Props> = ({
           </WizHStack>
           <WizVStack>{children}</WizVStack>
         </WizHStack>
-        {error && (
+        <WizHStack height={THEME.fontSize.sm}>
           <div style={{ marginInlineStart: labelWidth }}>
             <WizText fontSize="xs2" lineHeight="sm" color="red.800">
               {error}
             </WizText>
           </div>
-        )}
+        </WizHStack>
       </WizVStack>
     </FormControlContext.Provider>
   );
