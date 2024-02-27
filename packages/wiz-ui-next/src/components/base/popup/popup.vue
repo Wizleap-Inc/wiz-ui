@@ -39,6 +39,7 @@ import {
   inject,
   nextTick,
   onMounted,
+  onUnmounted,
   PropType,
   reactive,
   ref,
@@ -130,6 +131,11 @@ const popupSize = reactive({
   width: 0,
   height: 0,
 });
+const updatePopupSize = () => {
+  popupSize.width = popupRef.value?.offsetWidth ?? 0;
+  popupSize.height = popupRef.value?.offsetHeight ?? 0;
+};
+const popupSizeObserver = new ResizeObserver(updatePopupSize);
 
 const injected = inject(POPUP_KEY);
 
@@ -141,11 +147,13 @@ if (!injected) {
 
 const { bodyPxInfo, updateBodyPxInfo, containerRef } = injected;
 
-// safariでアニメーションを有効にするために必要
 onMounted(() => {
   if (!popupRef.value) return;
+  popupSizeObserver.observe(popupRef.value);
+  // safariでアニメーションを有効にするために必要
   popupRef.value.style.animationName = "fade";
 });
+onUnmounted(() => popupSizeObserver.disconnect());
 
 const togglePopup = () => {
   if (!props.animation) return (isActuallyOpen.value = props.isOpen);
@@ -182,8 +190,7 @@ const onChangeIsOpen = (newValue: boolean) => {
     togglePopup();
     removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
     nextTick(() => {
-      popupSize.width = popupRef.value?.offsetWidth ?? 0;
-      popupSize.height = popupRef.value?.offsetHeight ?? 0;
+      updatePopupSize();
       updateBodyPxInfo();
     });
   } else {
