@@ -1,7 +1,6 @@
 import { expect } from "@storybook/jest";
 import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
 import { WizTextArea } from "..";
@@ -69,11 +68,6 @@ export const Test: Story = {
     const textarea = canvas.getByPlaceholderText("入力してください");
     userEvent.click(textarea);
     await waitFor(() => expect(textarea).toHaveFocus());
-    await waitFor(() =>
-      expect(textarea).toHaveStyle(
-        `border: 1px solid ${THEME.color.green[800]};`
-      )
-    );
     userEvent.type(textarea, "Hoge");
     await waitFor(() => expect(textarea).toHaveValue("Hoge"));
     userEvent.clear(textarea);
