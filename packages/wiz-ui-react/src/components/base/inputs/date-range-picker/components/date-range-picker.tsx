@@ -310,6 +310,7 @@ const DateRangePicker: FC<Props> = ({
                   currentMonth={leftCalendarDate}
                   activeDates={selectedDates}
                   onClickDate={onClickDate}
+                  disabledDate={disabledDate}
                 />
               </div>
               <div className={styles.popupCalendarContainerStyle["right"]}>

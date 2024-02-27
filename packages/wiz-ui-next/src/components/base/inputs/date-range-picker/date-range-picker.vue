@@ -116,6 +116,7 @@
                 :currentMonth="leftCalendarDate"
                 :activeDates="selectedDates"
                 @click="handleDayClick"
+                :disabledDate="disabledDate"
               />
             </div>
             <div :class="styles.popupCalendarContainerStyle['right']">
