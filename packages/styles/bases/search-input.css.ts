@@ -99,11 +99,11 @@ export const searchPopupBlockBorderRadiusStyle = style({
 });
 
 export const searchDropdownItemStyle = style({
-  padding: `${THEME.spacing.xs} ${THEME.spacing.no}`,
+  padding: `0.375rem ${THEME.spacing.no}`,
 });
 
 export const searchPopupDropdownItemStyle = style({
-  padding: `${THEME.spacing.xs} ${THEME.spacing.no}`,
+  padding: `${THEME.spacing.sm} ${THEME.spacing.no}`,
 });
 
 export const searchDropdownLabelStyle = style({
