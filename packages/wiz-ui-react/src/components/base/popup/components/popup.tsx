@@ -12,7 +12,9 @@ import {
   FC,
   ReactNode,
   RefObject,
+  useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -81,38 +83,42 @@ const Popup: FC<Props> = ({
 
   const isPopupFixed = hasFixedOrStickyParent(anchorElement.current);
 
+  const updatePopupPosition = useCallback(() => {
+    if (!anchorElement.current || !popupRef.current) {
+      return;
+    }
+
+    const fontSize = window.getComputedStyle(document.body).fontSize;
+    const contentRect = popupRef.current.getBoundingClientRect();
+
+    setPopupPosition(
+      getPopupPosition({
+        anchorRect: anchorElement.current.getBoundingClientRect(),
+        popupSize: {
+          width: contentRect.width,
+          height: contentRect.height,
+        },
+        directionKey: direction,
+        gap: parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize),
+        screenSize: {
+          width: document.body.clientWidth,
+          height: Math.max(document.body.clientHeight, window.innerHeight),
+        },
+        scroll: {
+          x: isPopupFixed ? 0 : window.scrollX,
+          y: isPopupFixed ? 0 : window.scrollY,
+        },
+        isDirectionFixed,
+      })
+    );
+  }, [anchorElement, direction, gap, isDirectionFixed, isPopupFixed]);
+
   useEffect(() => {
     const anchor = anchorElement.current;
     const content = popupRef.current;
     if (!isActuallyOpen || !anchor || !content) {
       return;
     }
-    const updatePopupPosition = () => {
-      const fontSize = window.getComputedStyle(document.body).fontSize;
-      const contentRect = content.getBoundingClientRect();
-
-      setPopupPosition(
-        getPopupPosition({
-          anchorRect: anchor.getBoundingClientRect(),
-          popupSize: {
-            width: contentRect.width,
-            height: contentRect.height,
-          },
-          directionKey: direction,
-          gap: parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize),
-          screenSize: {
-            width: document.body.clientWidth,
-            height: Math.max(document.body.clientHeight, window.innerHeight),
-          },
-          scroll: {
-            x: isPopupFixed ? 0 : window.scrollX,
-            y: isPopupFixed ? 0 : window.scrollY,
-          },
-          isDirectionFixed,
-        })
-      );
-    };
-
     updatePopupPosition();
     window.addEventListener("scroll", updatePopupPosition);
     window.addEventListener("resize", updatePopupPosition);
@@ -123,14 +129,13 @@ const Popup: FC<Props> = ({
       window.removeEventListener("scroll", updatePopupPosition);
       anchorResizeObserver.disconnect();
     };
-  }, [
-    anchorElement,
-    direction,
-    gap,
-    isActuallyOpen,
-    isDirectionFixed,
-    isPopupFixed,
-  ]);
+  }, [anchorElement, isActuallyOpen, updatePopupPosition]);
+
+  useLayoutEffect(() => {
+    if (children) {
+      updatePopupPosition();
+    }
+  }, [children, updatePopupPosition]);
 
   return (
     <WizPortal container={document.body}>
