@@ -26,24 +26,18 @@ export class Popup {
     screenSize: Size;
     scroll: Position;
     isDirectionFixed?: boolean;
-    isPopupFixed?: boolean;
+    visualViewport?: { offsetTop: number; offsetLeft: number } | null;
   }) {
-    const visualViewportOffset = {
-      top: window.visualViewport?.offsetTop ?? 0,
-      left: window.visualViewport?.offsetLeft ?? 0,
-    };
-    this.anchorRect = args.isPopupFixed
-      ? new DOMRect(
-          args.anchorRect.x + visualViewportOffset.left,
-          args.anchorRect.y + visualViewportOffset.top,
-          args.anchorRect.width,
-          args.anchorRect.height
-        )
-      : args.anchorRect;
+    this.anchorRect = new Rect(
+      args.anchorRect.x + (args.visualViewport?.offsetLeft ?? 0),
+      args.anchorRect.y + (args.visualViewport?.offsetTop ?? 0),
+      args.anchorRect.width,
+      args.anchorRect.height
+    );
     this.popupSize = args.popupSize;
     this.gap = args.gap;
     this.screenSize = args.screenSize;
-    this.scroll = args.isPopupFixed ? { x: 0, y: 0 } : args.scroll;
+    this.scroll = args.scroll;
     this.isDirectionFixed = args.isDirectionFixed ?? false;
   }
 
@@ -246,7 +240,7 @@ export function getPopupPosition({
   screenSize,
   scroll,
   isDirectionFixed,
-  isPopupFixed,
+  visualViewport,
 }: {
   anchorRect: Rect;
   popupSize: Size;
@@ -255,7 +249,7 @@ export function getPopupPosition({
   screenSize: Size;
   scroll: Position;
   isDirectionFixed?: boolean;
-  isPopupFixed?: boolean;
+  visualViewport?: { offsetTop: number; offsetLeft: number } | null;
 }): { top: number; left: number } {
   const popup = new Popup({
     anchorRect,
@@ -264,7 +258,7 @@ export function getPopupPosition({
     screenSize,
     scroll,
     isDirectionFixed,
-    isPopupFixed,
+    visualViewport,
   });
   return popup.getPosition(directionKey);
 }

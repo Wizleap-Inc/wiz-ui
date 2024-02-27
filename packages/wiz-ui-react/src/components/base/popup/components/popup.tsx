@@ -108,7 +108,7 @@ const Popup: FC<Props> = ({
           y: isPopupFixed ? 0 : window.scrollY,
         },
         isDirectionFixed,
-        isPopupFixed,
+        visualViewport: isPopupFixed ? window.visualViewport : null,
       })
     );
   }, [anchorElement, direction, gap, isDirectionFixed, isPopupFixed]);
