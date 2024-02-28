@@ -99,11 +99,12 @@ export const searchPopupBlockBorderRadiusStyle = style({
 });
 
 export const searchDropdownItemStyle = style({
-  padding: `${THEME.spacing.xs} ${THEME.spacing.no}`,
+  // FIXME: デザインシステムを使った値で再定義する
+  padding: `0.375rem ${THEME.spacing.no}`,
 });
 
 export const searchPopupDropdownItemStyle = style({
-  padding: `${THEME.spacing.xs} ${THEME.spacing.no}`,
+  padding: `${THEME.spacing.sm} ${THEME.spacing.no}`,
 });
 
 export const searchDropdownLabelStyle = style({
@@ -142,7 +143,7 @@ export const searchDropdownSelectingItemStyle = style({
 });
 
 export const searchDropdownCheckboxItemStyle = style({
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
+  padding: `${THEME.spacing.sm} ${THEME.spacing.xs2}`,
 });
 
 export const searchCheckboxInputStyle = style({
@@ -189,7 +190,6 @@ export const searchCheckboxBlockCheckedStyle = style({
 });
 
 export const searchInputLabelStyle = style({
-  lineHeight: THEME.fontSize.xl3,
   width: "100%",
 });
 

@@ -42,6 +42,7 @@
             <!-- Dropdown -->
             <div v-if="item.children" :class="styles.searchDropdownItemStyle">
               <WizHStack
+                py="xs2"
                 align="center"
                 justify="between"
                 :class="[

@@ -33,6 +33,7 @@
               :class="styles.searchPopupDropdownItemStyle"
             >
               <WizHStack
+                py="xs2"
                 align="center"
                 justify="between"
                 :class="[
