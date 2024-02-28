@@ -1,5 +1,24 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.27.0
+
+### Minor Changes
+
+- [#1212](https://github.com/Wizleap-Inc/wiz-ui/pull/1212) [`bdbe4a7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/bdbe4a7eed8ad66657c6983593f2f921b56e47be) Thanks [@okakyo](https://github.com/okakyo)! - [#1188] Tooltip に expand の有効化
+
+### Patch Changes
+
+- [#1225](https://github.com/Wizleap-Inc/wiz-ui/pull/1225) [`4e04bd11`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e04bd1126913c1b00734953390228190923989e) Thanks [@okakyo](https://github.com/okakyo)! - [#1220] text_area の focus を default のものに修正
+
+- [#1228](https://github.com/Wizleap-Inc/wiz-ui/pull/1228) [`76008dec`](https://github.com/Wizleap-Inc/wiz-ui/commit/76008decb50f9f383387b5251c16272699bfa0cf) Thanks [@wmoai](https://github.com/wmoai)! - ポップアップの座標計算を修正
+
+- [#1233](https://github.com/Wizleap-Inc/wiz-ui/pull/1233) [`8734d4ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/8734d4ab17cb721958ead6b00850f0f71a50828d) Thanks [@wmoai](https://github.com/wmoai)! - fix: popup の座標計算で visualViewport を加味するように修正
+
+- [#1211](https://github.com/Wizleap-Inc/wiz-ui/pull/1211) [`7142f418`](https://github.com/Wizleap-Inc/wiz-ui/commit/7142f4182c8c4b6d4e7fe9ca9317e9164d1a8e4e) Thanks [@okakyo](https://github.com/okakyo)! - [#1198] focus 時の色をブラウザーデフォルトのものに修正
+
+- Updated dependencies [[`4e04bd11`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e04bd1126913c1b00734953390228190923989e), [`7142f418`](https://github.com/Wizleap-Inc/wiz-ui/commit/7142f4182c8c4b6d4e7fe9ca9317e9164d1a8e4e), [`a4842104`](https://github.com/Wizleap-Inc/wiz-ui/commit/a4842104e83600b971504f200ed300550bf1b6ea)]:
+  - @wizleap-inc/wiz-ui-styles@0.29.1
+
 ## 2.26.1
 
 ### Patch Changes

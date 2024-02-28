@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.16.1
+
+### Patch Changes
+
+- [#1233](https://github.com/Wizleap-Inc/wiz-ui/pull/1233) [`8734d4ab`](https://github.com/Wizleap-Inc/wiz-ui/commit/8734d4ab17cb721958ead6b00850f0f71a50828d) Thanks [@wmoai](https://github.com/wmoai)! - fix: popup の座標計算で visualViewport を加味するように修正
+
 ## 0.16.0
 
 ### Minor Changes
