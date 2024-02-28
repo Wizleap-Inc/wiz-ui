@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.29.1
+
+### Patch Changes
+
+- [#1225](https://github.com/Wizleap-Inc/wiz-ui/pull/1225) [`4e04bd11`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e04bd1126913c1b00734953390228190923989e) Thanks [@okakyo](https://github.com/okakyo)! - [#1220] text_area の focus を default のものに修正
+
+- [#1211](https://github.com/Wizleap-Inc/wiz-ui/pull/1211) [`7142f418`](https://github.com/Wizleap-Inc/wiz-ui/commit/7142f4182c8c4b6d4e7fe9ca9317e9164d1a8e4e) Thanks [@okakyo](https://github.com/okakyo)! - [#1198] focus 時の色をブラウザーデフォルトのものに修正
+
+- [#1224](https://github.com/Wizleap-Inc/wiz-ui/pull/1224) [`a4842104`](https://github.com/Wizleap-Inc/wiz-ui/commit/a4842104e83600b971504f200ed300550bf1b6ea) Thanks [@okakyo](https://github.com/okakyo)! - [#1210] Search Input の checkbox の位置調整のため、line-height を無効化
+
 ## 0.29.0
 
 ### Minor Changes
