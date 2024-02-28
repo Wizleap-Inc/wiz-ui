@@ -37,6 +37,7 @@ import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
 import { WizIDomain } from "./domain";
 import { WizIDownload } from "./download";
+import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
 import { WizIExpandLess } from "./expand-less";
@@ -54,6 +55,7 @@ import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
+import { WizILogin } from "./login";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMonitoring } from "./monitoring";
@@ -122,6 +124,7 @@ export type TIcon =
   | typeof WizIDescription
   | typeof WizIDomain
   | typeof WizIDownload
+  | typeof WizIDraft
   | typeof WizIDrafts
   | typeof WizIEditNote
   | typeof WizIExpandLess
@@ -139,6 +142,7 @@ export type TIcon =
   | typeof WizIInfo
   | typeof WizILocationCity
   | typeof WizILocationOn
+  | typeof WizILogin
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -207,6 +211,7 @@ export {
   WizIDescription,
   WizIDomain,
   WizIDownload,
+  WizIDraft,
   WizIDrafts,
   WizIEditNote,
   WizIExpandLess,
@@ -224,6 +229,7 @@ export {
   WizIInfo,
   WizILocationCity,
   WizILocationOn,
+  WizILogin,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,

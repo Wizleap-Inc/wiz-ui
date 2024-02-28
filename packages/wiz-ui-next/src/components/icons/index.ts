@@ -37,6 +37,7 @@ import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
 import { default as WizIDomain } from "./domain.vue";
 import { default as WizIDownload } from "./download.vue";
+import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
@@ -54,6 +55,7 @@ import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
+import { default as WizILogin } from "./login.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
@@ -122,6 +124,7 @@ export type TIcon =
   | typeof WizIDescription
   | typeof WizIDomain
   | typeof WizIDownload
+  | typeof WizIDraft
   | typeof WizIDrafts
   | typeof WizIEditNote
   | typeof WizIExpandLess
@@ -139,6 +142,7 @@ export type TIcon =
   | typeof WizIInfo
   | typeof WizILocationCity
   | typeof WizILocationOn
+  | typeof WizILogin
   | typeof WizIManageAccounts
   | typeof WizIMenu
   | typeof WizIMonitoring
@@ -207,6 +211,7 @@ export {
   WizIDescription,
   WizIDomain,
   WizIDownload,
+  WizIDraft,
   WizIDrafts,
   WizIEditNote,
   WizIExpandLess,
@@ -224,6 +229,7 @@ export {
   WizIInfo,
   WizILocationCity,
   WizILocationOn,
+  WizILogin,
   WizIManageAccounts,
   WizIMenu,
   WizIMonitoring,
