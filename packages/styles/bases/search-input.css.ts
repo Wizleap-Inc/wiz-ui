@@ -99,6 +99,7 @@ export const searchPopupBlockBorderRadiusStyle = style({
 });
 
 export const searchDropdownItemStyle = style({
+  // FIXME: デザインシステムを使った値で再定義する
   padding: `0.375rem ${THEME.spacing.no}`,
 });
 
