@@ -184,14 +184,21 @@ const existsFixedOrStickyParent = (
   return existsFixedOrStickyParent(el.parentElement);
 };
 
+const isFixed = computed(() => {
+  return existsFixedOrStickyParent(containerRef.value || null) ? true : false;
+});
+
 let removeScrollHandler: (() => void) | null = null;
 const onChangeIsOpen = (newValue: boolean) => {
   if (newValue) {
     togglePopup();
-    removeScrollHandler = useScroll(updateBodyPxInfo, containerRef.value);
+    removeScrollHandler = useScroll(
+      () => updateBodyPxInfo(isFixed.value),
+      containerRef.value
+    );
     nextTick(() => {
       updatePopupSize();
-      updateBodyPxInfo();
+      updateBodyPxInfo(isFixed.value);
     });
   } else {
     togglePopup();
@@ -211,7 +218,7 @@ useClickOutside(containerRef, (e) => {
   }
 });
 
-const observer = new ResizeObserver(updateBodyPxInfo);
+const observer = new ResizeObserver(() => updateBodyPxInfo(isFixed.value));
 observer.observe(document.body);
 
 const popupRect = computed(() => {
@@ -354,10 +361,6 @@ watch(
     emit("onTurn", newVal);
   }
 );
-
-const isFixed = computed(() => {
-  return existsFixedOrStickyParent(containerRef.value || null) ? true : false;
-});
 
 const inset = computed(() => {
   const { scrollX, scrollY } = isFixed.value

@@ -26,8 +26,14 @@ export class Popup {
     screenSize: Size;
     scroll: Position;
     isDirectionFixed?: boolean;
+    visualViewport?: { offsetTop: number; offsetLeft: number } | null;
   }) {
-    this.anchorRect = args.anchorRect;
+    this.anchorRect = new Rect(
+      args.anchorRect.x + (args.visualViewport?.offsetLeft ?? 0),
+      args.anchorRect.y + (args.visualViewport?.offsetTop ?? 0),
+      args.anchorRect.width,
+      args.anchorRect.height
+    );
     this.popupSize = args.popupSize;
     this.gap = args.gap;
     this.screenSize = args.screenSize;
@@ -234,6 +240,7 @@ export function getPopupPosition({
   screenSize,
   scroll,
   isDirectionFixed,
+  visualViewport,
 }: {
   anchorRect: Rect;
   popupSize: Size;
@@ -242,6 +249,7 @@ export function getPopupPosition({
   screenSize: Size;
   scroll: Position;
   isDirectionFixed?: boolean;
+  visualViewport?: { offsetTop: number; offsetLeft: number } | null;
 }): { top: number; left: number } {
   const popup = new Popup({
     anchorRect,
@@ -250,6 +258,7 @@ export function getPopupPosition({
     screenSize,
     scroll,
     isDirectionFixed,
+    visualViewport,
   });
   return popup.getPosition(directionKey);
 }

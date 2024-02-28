@@ -22,15 +22,19 @@ export const usePopupProvider = (
   };
   const bodyPxInfo = reactive<PxInfo>(initialPxInfo);
 
-  const updateBodyPxInfo = () => {
+  const updateBodyPxInfo = (isPopupFixed: boolean) => {
     if (containerRef.value) {
       const { top, left, right, bottom, width, height } =
         containerRef.value.getBoundingClientRect();
+      const visualViewportOffset = {
+        top: isPopupFixed ? window.visualViewport?.offsetTop ?? 0 : 0,
+        left: isPopupFixed ? window.visualViewport?.offsetLeft ?? 0 : 0,
+      };
       Object.assign(bodyPxInfo, {
-        top,
-        left,
-        right,
-        bottom,
+        top: top + visualViewportOffset.top,
+        left: left + visualViewportOffset.left,
+        right: right + visualViewportOffset.left,
+        bottom: bottom + visualViewportOffset.top,
         width,
         height,
       });

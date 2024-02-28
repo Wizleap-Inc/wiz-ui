@@ -89,14 +89,13 @@ const Popup: FC<Props> = ({
     }
 
     const fontSize = window.getComputedStyle(document.body).fontSize;
-    const contentRect = popupRef.current.getBoundingClientRect();
 
     setPopupPosition(
       getPopupPosition({
         anchorRect: anchorElement.current.getBoundingClientRect(),
         popupSize: {
-          width: contentRect.width,
-          height: contentRect.height,
+          width: popupRef.current.clientWidth,
+          height: popupRef.current.clientHeight,
         },
         directionKey: direction,
         gap: parseFloat(getSpacingCss(gap) || "0") * parseFloat(fontSize),
@@ -109,6 +108,7 @@ const Popup: FC<Props> = ({
           y: isPopupFixed ? 0 : window.scrollY,
         },
         isDirectionFixed,
+        visualViewport: isPopupFixed ? window.visualViewport : null,
       })
     );
   }, [anchorElement, direction, gap, isDirectionFixed, isPopupFixed]);
