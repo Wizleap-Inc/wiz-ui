@@ -2,13 +2,12 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useContext } from "react";
 
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
-function getInputBorderStyleKey(isError?: boolean, hasFocus?: boolean) {
+function getInputBorderStyleKey(isError?: boolean) {
   if (isError) return "error";
-  if (hasFocus) return "active";
   return "default";
 }
 
@@ -49,7 +48,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
     },
     ref
   ) => {
-    const [hasFocus, setHasFocus] = useState(false);
     const formControl = useContext(FormControlContext);
 
     const isError = error || formControl.error;
@@ -75,10 +73,8 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           styles.textAreaStyle,
           styles.textAreaVariantStyle[disabled ? "disabled" : "default"],
           expand && styles.textAreaExpandStyle,
-          inputBorderStyle[getInputBorderStyleKey(isError, hasFocus)]
+          inputBorderStyle[getInputBorderStyleKey(isError)]
         )}
-        onFocus={() => setHasFocus(true)}
-        onBlur={() => setHasFocus(false)}
         onChange={(e) => onChange(e.target.value)}
       />
     );

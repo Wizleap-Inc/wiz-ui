@@ -12,10 +12,6 @@ export const textAreaStyle = style({
   "::placeholder": {
     color: THEME.color.gray[500],
   },
-
-  ":focus": {
-    outline: "none",
-  },
 });
 
 export const textAreaVariantStyle = styleVariants({

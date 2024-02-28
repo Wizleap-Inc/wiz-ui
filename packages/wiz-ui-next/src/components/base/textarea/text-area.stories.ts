@@ -1,7 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { Meta, StoryFn } from "@storybook/vue3";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import WizTextArea from "./text-area.vue";
@@ -101,9 +100,6 @@ Test.play = async ({ canvasElement }) => {
   const textarea = canvas.getByPlaceholderText("入力してください");
   await userEvent.click(textarea);
   await waitFor(() => expect(textarea).toHaveFocus());
-  await waitFor(() =>
-    expect(textarea).toHaveStyle(`border: 1px solid ${THEME.color.green[800]};`)
-  );
   await userEvent.type(textarea, "Hoge");
   await waitFor(() => expect(textarea).toHaveValue("Hoge"));
   await userEvent.clear(textarea);

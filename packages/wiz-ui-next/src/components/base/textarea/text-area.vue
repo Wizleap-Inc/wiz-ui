@@ -12,8 +12,6 @@
       inputBorderStyle[state],
     ]"
     :style="{ resize, maxWidth, minWidth, maxHeight, minHeight }"
-    @focusin="hasFocus = true"
-    @focusout="hasFocus = false"
   />
 </template>
 
@@ -25,7 +23,7 @@ import {
   textAreaVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, computed, inject, ref } from "vue";
+import { PropType, computed, inject } from "vue";
 
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
@@ -95,11 +93,9 @@ const textValue = computed({
 // Form Control
 const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
-const hasFocus = ref(false);
 
 const state = computed(() => {
   if (isError.value) return "error";
-  if (hasFocus.value) return "active";
   return "default";
 });
 </script>
