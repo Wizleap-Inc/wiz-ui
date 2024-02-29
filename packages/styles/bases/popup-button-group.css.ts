@@ -20,9 +20,7 @@ export const popupButtonGroupButtonBaseStyle = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  paddingTop: THEME.spacing.xs,
-  paddingBottom: THEME.spacing.xs,
-  paddingRight: THEME.spacing.xs2,
+  padding: THEME.spacing.xs,
   fontSize: THEME.fontSize.sm,
   boxSizing: "border-box",
   userSelect: "none",
@@ -36,7 +34,6 @@ export const popupButtonGroupButtonVariantStyle = styleVariants({
     "@media": {
       "(any-hover: hover)": {
         ":hover": {
-          color: THEME.color.green["800"],
           background: THEME.color.green["300"],
         },
       },
@@ -82,7 +79,7 @@ export const popupButtonGroupDividerStyle = style({
 });
 
 export const popupButtonGroupInnerContainerStyle = style({
-  lineHeight: "130%",
+  lineHeight: THEME.fontSize.xl,
   gap: THEME.spacing.xs2,
   display: "flex",
   flexDirection: "row",

@@ -86,7 +86,6 @@ export const selectBoxInnerBoxMoreStyle = style({
 });
 
 export const selectBoxSelectorStyle = style({
-  padding: THEME.spacing.xs,
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",

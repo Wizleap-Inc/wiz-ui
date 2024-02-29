@@ -167,7 +167,7 @@ const SelectBox: FC<Props> = ({
           className={styles.selectBoxSelectorStyle}
           style={{ minWidth: width, maxHeight: dropdownMaxHeight }}
         >
-          <WizVStack gap="xs2">
+          <WizVStack>
             {options.map((option) => (
               <div
                 key={`${option.value}-${option.label}`}
