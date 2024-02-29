@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.22.0
+
+### Minor Changes
+
+- [#1237](https://github.com/Wizleap-Inc/wiz-ui/pull/1237) [`99c08e2a`](https://github.com/Wizleap-Inc/wiz-ui/commit/99c08e2a6db35defc22bd563e2ac886b68147e4b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizILogin, WizIDraft を追加
+
 ## 0.21.0
 
 ### Minor Changes
