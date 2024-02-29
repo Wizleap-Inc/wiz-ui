@@ -89,7 +89,7 @@ export const Icon: Story = {
     const icons = () =>
       Object.values(Icons).map((icon) => (
         <>
-          <div>Icon = {icon.name} </div>
+          <div>Icon = {icon.displayName} </div>
           <WizIcon icon={icon} />
         </>
       ));
