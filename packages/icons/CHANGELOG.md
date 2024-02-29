@@ -1,5 +1,15 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.17.0
+
+### Minor Changes
+
+- [#1237](https://github.com/Wizleap-Inc/wiz-ui/pull/1237) [`99c08e2a`](https://github.com/Wizleap-Inc/wiz-ui/commit/99c08e2a6db35defc22bd563e2ac886b68147e4b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizILogin, WizIDraft を追加
+
+### Patch Changes
+
+- [#1239](https://github.com/Wizleap-Inc/wiz-ui/pull/1239) [`bb204f45`](https://github.com/Wizleap-Inc/wiz-ui/commit/bb204f459bb2ae43131575f1e855ec3f97f90bbc) Thanks [@wmoai](https://github.com/wmoai)! - アイコンに displayName を追加
+
 ## 0.16.1
 
 ### Patch Changes
