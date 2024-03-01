@@ -37,7 +37,7 @@ export default meta;
 type Story = StoryObj<typeof WizSearchSelector>;
 
 const getDummyOptions = (label: string, count: number, exLabel?: string) => {
-  const options: SearchSelectorOption<unknown>[] = [];
+  const options: SearchSelectorOption<number>[] = [];
   for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i, exLabel });
     options.push({ label: label + i * 10, value: i * 10, exLabel });
@@ -45,10 +45,10 @@ const getDummyOptions = (label: string, count: number, exLabel?: string) => {
   return options;
 };
 
-const getTemplate = (initialValues: unknown[] = []): Story => {
+const getTemplate = (initialValues: number[] = []): Story => {
   return {
     render: (args) => {
-      const [values, setValues] = useState<unknown[]>(initialValues);
+      const [values, setValues] = useState<number[]>(initialValues);
       return (
         <WizSearchSelector
           {...args}

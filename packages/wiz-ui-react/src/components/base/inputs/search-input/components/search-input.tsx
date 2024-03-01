@@ -2,7 +2,7 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import { TIcon, WizHStack, WizISearch, WizPopup } from "@/components";
 import { BaseProps } from "@/types";
@@ -10,9 +10,9 @@ import { BaseProps } from "@/types";
 import { SearchPopupPanel } from "./search-popup-panel";
 import { SearchInputOption } from "./types";
 
-type Props<T> = BaseProps & {
-  options: SearchInputOption<T>[];
-  values: T[];
+type Props = BaseProps & {
+  options: SearchInputOption<number>[];
+  values: number[];
   name?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -22,13 +22,13 @@ type Props<T> = BaseProps & {
   isDirectionFixed?: boolean;
   emptyMessage?: string;
   icon?: TIcon;
-  onChangeValues: (values: T[]) => void;
+  onChangeValues: (values: number[]) => void;
 };
 
 function filterOptions(
-  options: SearchInputOption<unknown>[],
+  options: SearchInputOption<number>[],
   text: string
-): SearchInputOption<unknown>[] {
+): SearchInputOption<number>[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
     if (!option.children || option.children.length === 0) {
@@ -46,7 +46,7 @@ function filterOptions(
   });
 }
 
-const SearchInput: FC<Props<unknown>> = ({
+const SearchInput = <T,>({
   className,
   style,
   options,
@@ -61,7 +61,7 @@ const SearchInput: FC<Props<unknown>> = ({
   emptyMessage = "選択肢がありません。",
   onChangeValues,
   icon = WizISearch,
-}) => {
+}: Props) => {
   const [filteringText, setFilteringText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -117,7 +117,7 @@ const SearchInput: FC<Props<unknown>> = ({
               values={values}
               width={popupWidth}
               emptyMessage={emptyMessage}
-              onChangeValues={(changed: unknown[]) => onChangeValues(changed)}
+              onChangeValues={(changed: number[]) => onChangeValues(changed)}
             />
           </WizHStack>
         </WizPopup>

@@ -3,7 +3,6 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
 import {
   ComponentProps,
-  FC,
   Fragment,
   useCallback,
   useEffect,
@@ -34,7 +33,7 @@ import { WizChatForm, WizChatItem } from ".";
 
 const TOGGLE_ANIMATION_DURATION = 300;
 
-type Props = BaseProps & {
+type Props<T> = BaseProps & {
   textValue: string;
   username: string;
   isOpen: boolean;
@@ -43,16 +42,16 @@ type Props = BaseProps & {
   haveNewMessage?: boolean;
   formRows?: number;
   typingUsername?: string;
-  status?: unknown;
+  status?: T;
   statusOptions?: ComponentProps<typeof WizSelectBox>["options"];
   statusPlaceholder?: string;
-  onChangeStatus?: (status: unknown) => void;
+  onChangeStatus?: (status: T) => void;
   onChangeTextValue: (value: string) => void;
   onSubmit: () => void;
   onToggle: () => void;
 };
 
-const ChatCard: FC<Props> = ({
+const ChatCard = <T,>({
   className,
   style,
   isOpen,
@@ -70,7 +69,7 @@ const ChatCard: FC<Props> = ({
   onChangeTextValue,
   onSubmit,
   onToggle,
-}) => {
+}:Props<T>) => {
   const wrapperBoxRef = useRef<HTMLDivElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
   const listBoxRef = useRef<HTMLDivElement>(null);
@@ -194,7 +193,9 @@ const ChatCard: FC<Props> = ({
                 <WizSelectBox
                   options={statusOptions}
                   value={status}
-                  onChange={(selectedValue) => onChangeStatus?.(selectedValue)}
+                  onChange={(selectedValue) =>
+                    onChangeStatus?.(selectedValue as T)
+                  }
                   placeholder={statusPlaceholder}
                   expand
                 />

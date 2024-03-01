@@ -5,7 +5,7 @@ import {
   popupButtonGroupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
 import clsx from "clsx";
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 
 import { WizVStack } from "@/components";
 import { BaseProps } from "@/types";
@@ -28,7 +28,7 @@ type Props<T> = BaseProps & {
   depth?: number;
 };
 
-const PopupButtonGroup: FC<Props<unknown>> = ({
+const PopupButtonGroup = <T,>({
   className,
   style,
   options,
@@ -40,15 +40,15 @@ const PopupButtonGroup: FC<Props<unknown>> = ({
   groupDivider = false,
   buttonDivider = false,
   depth = 0,
-}) => {
+}: Props<T>) => {
   const items = useMemo(() => {
-    const divider: ItemElement<unknown> = { kind: "divider" };
+    const divider: ItemElement<T> = { kind: "divider" };
     const items = options
       .map((opt, i) => {
         if (opt.kind === "divider") {
           return [divider];
         }
-        const optionItem: ItemElement<unknown> = {
+        const optionItem: ItemElement<T> = {
           kind: "item",
           item: opt,
         };

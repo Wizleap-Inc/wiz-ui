@@ -1,6 +1,6 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import clsx from "clsx";
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   WizCheckBoxNew,
@@ -14,15 +14,15 @@ import { BaseProps } from "@/types";
 
 import { SearchInputOption } from "./types";
 
-type Props<T> = BaseProps & {
-  options: SearchInputOption<T>[];
-  values: T[];
+type Props = BaseProps & {
+  options: SearchInputOption<number>[];
+  values: number[];
   width?: string;
   emptyMessage: string;
-  onChangeValues: (values: T[]) => void;
+  onChangeValues: (values: number[]) => void;
 };
 
-export const SearchPopupPanel: FC<Props<unknown>> = ({
+export const SearchPopupPanel = <T,>({
   className,
   style,
   options,
@@ -30,8 +30,9 @@ export const SearchPopupPanel: FC<Props<unknown>> = ({
   width,
   emptyMessage,
   onChangeValues,
-}) => {
-  const [activeValue, setActiveValue] = useState<unknown | null>(null);
+}: Props) => {
+  // TODO: value は number に固定
+  const [activeValue, setActiveValue] = useState<number | null>(null);
   const activeOption = useMemo(
     () => options.find((option) => activeValue === option.value),
     [activeValue, options]
@@ -41,7 +42,7 @@ export const SearchPopupPanel: FC<Props<unknown>> = ({
   const isOpen = activeOptionChildren !== undefined;
 
   const handleChangeValues = useCallback(
-    (selectedOptionValue: string, isChecked: boolean) => {
+    (selectedOptionValue: number, isChecked: boolean) => {
       const newValues = (() => {
         if (isChecked) {
           return [...values, selectedOptionValue];
@@ -127,10 +128,7 @@ export const SearchPopupPanel: FC<Props<unknown>> = ({
                       id={`${option.label}-${option.value}`}
                       checked={values.includes(option.value)}
                       onChange={(e) => {
-                        handleChangeValues(
-                          String(option.value),
-                          e.target.checked
-                        );
+                        handleChangeValues(option.value, e.target.checked);
                       }}
                     >
                       <WizHStack width="100%" align="center" gap="xs2" nowrap>

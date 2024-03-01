@@ -3,7 +3,6 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
-  FC,
   KeyboardEventHandler,
   useCallback,
   useContext,
@@ -22,6 +21,7 @@ import {
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
+
 type SelectBoxOption<T> = {
   label: string;
   exLabel?: string;
@@ -42,7 +42,7 @@ type Props<T> = BaseProps & {
   onChange: (value: T) => void;
 };
 
-const SelectBox: FC<Props<unknown>> = ({
+const SelectBox = <T,>({
   className,
   style,
   options,
@@ -56,7 +56,7 @@ const SelectBox: FC<Props<unknown>> = ({
   showExLabel = false,
   dropdownMaxHeight,
   onChange,
-}) => {
+}: Props<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
   const formControl = useContext(FormControlContext);
@@ -79,7 +79,7 @@ const SelectBox: FC<Props<unknown>> = ({
     setIsOpen(!isOpen);
   };
 
-  const handleClickOption = (option: SelectBoxOption<unknown>) => {
+  const handleClickOption = (option: SelectBoxOption<T>) => {
     setIsOpen(false);
     onChange(option.value);
   };
