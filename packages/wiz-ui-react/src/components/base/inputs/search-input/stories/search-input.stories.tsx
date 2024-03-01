@@ -25,7 +25,7 @@ type Story = StoryObj<typeof WizSearchInput>;
 
 const Template: Story = {
   render: (args) => {
-    const [values, setValues] = useState<unknown[]>([]);
+    const [values, setValues] = useState<number[]>([]);
     return (
       <div>
         values:[{values.join(", ")}]
