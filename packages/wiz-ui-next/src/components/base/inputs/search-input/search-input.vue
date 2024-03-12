@@ -88,7 +88,25 @@
               @mouseover="activeItem = item.value"
               @mouseout="activeItem = null"
             >
+              <button
+                v-if="singleSelect"
+                :id="`${item.label}_${item.value}`"
+                :class="[
+                  styles.searchDropdownSingleSelectItemStyle,
+                  styles.searchDropdownSingleSeletedItemStyle[
+                    selectedStatus(item.value)
+                  ],
+                ]"
+                width="100%"
+                gap="xs2"
+                @click="handleClickButton(item.value)"
+              >
+                <div :class="styles.searchInputLabelStyle">
+                  {{ item.label }}
+                </div>
+              </button>
               <WizCheckBoxNew
+                v-else
                 :style="{ width: '100%' }"
                 :checked="checkValues.includes(item.value)"
                 :value="item.value"
@@ -175,6 +193,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
+  singleSelect: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
   inputWidth: {
     type: String,
     required: false,
@@ -258,6 +281,18 @@ const handleClickCheckbox = (value: number) => {
   } else {
     checkValues.value = [...checkValues.value, value];
   }
+};
+
+const handleClickButton = (value: number) => {
+  if (checkValues.value.includes(value)) {
+    checkValues.value = [];
+  } else {
+    checkValues.value = [value];
+  }
+};
+
+const selectedStatus = (value: number) => {
+  return checkValues.value.includes(value) ? "selected" : "default";
 };
 
 const filterOptions =

@@ -92,6 +92,15 @@ export const Disabled: Story = {
   },
 };
 
+export const singleSelect: Story = {
+  ...Template,
+  args: {
+    options: normalOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    singleSelect: true,
+  },
+};
+
 export const IsDirectionFixed: Story = {
   ...Template,
   args: {
