@@ -289,6 +289,7 @@ const handleClickButton = (value: number) => {
   } else {
     checkValues.value = [value];
   }
+  emit("toggle", false);
 };
 
 const selectedStatus = (value: number) => {

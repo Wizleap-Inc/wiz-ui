@@ -21,6 +21,7 @@ type Props = BaseProps & {
   emptyMessage: string;
   singleSelect?: boolean;
   onChangeValues: (values: number[]) => void;
+  closePopup: () => void;
 };
 
 export const SearchPopupPanel: FC<Props> = ({
@@ -32,6 +33,7 @@ export const SearchPopupPanel: FC<Props> = ({
   emptyMessage,
   singleSelect,
   onChangeValues,
+  closePopup,
 }) => {
   const [activeValue, setActiveValue] = useState<number | null>(null);
   const activeOption = useMemo(
@@ -62,6 +64,7 @@ export const SearchPopupPanel: FC<Props> = ({
     } else {
       onChangeValues([value]);
     }
+    closePopup();
   };
   const selectedStatus = (value: number) => {
     return values.includes(value) ? "selected" : "default";
@@ -202,6 +205,7 @@ export const SearchPopupPanel: FC<Props> = ({
           options={activeOptionChildren}
           values={values}
           width={width}
+          closePopup={closePopup}
           singleSelect={singleSelect}
           emptyMessage={emptyMessage}
           onChangeValues={onChangeValues}

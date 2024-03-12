@@ -116,6 +116,7 @@ const SearchInput: FC<Props> = ({
           <WizHStack nowrap>
             <SearchPopupPanel
               options={filteredOptions}
+              closePopup={() => setIsPopupOpen(false)}
               values={values}
               width={popupWidth}
               emptyMessage={emptyMessage}
