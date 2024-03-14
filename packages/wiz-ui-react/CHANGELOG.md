@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.53.1
+
+### Patch Changes
+
+- [#1250](https://github.com/Wizleap-Inc/wiz-ui/pull/1250) [`a5d9fe8f`](https://github.com/Wizleap-Inc/wiz-ui/commit/a5d9fe8fc89872fc951836bc555731fbe05f65f6) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(toggle-switch): 初回クリックが反映されない問題を修正
+
 ## 0.53.0
 
 ### Minor Changes
