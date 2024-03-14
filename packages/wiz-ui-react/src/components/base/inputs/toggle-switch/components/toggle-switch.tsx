@@ -28,6 +28,7 @@ const ToggleSwitch: FC<Props> = ({
         type="checkbox"
         disabled={disabled}
         aria-label={ariaLabel}
+        checked={value}
         onChange={(e) => props.setValue(e.target.checked)}
       />
       <span
