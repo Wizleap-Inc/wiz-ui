@@ -98,9 +98,9 @@ export const searchPopupBlockBorderRadiusStyle = style({
   borderRadius: `${THEME.spacing.no} ${THEME.spacing.xs2} ${THEME.spacing.xs2} ${THEME.spacing.no}`,
 });
 
+export const DIVIDER_HEIGHT = "1px";
 export const searchDropdownItemStyle = style({
-  // FIXME: デザインシステムを使った値で再定義する
-  padding: `0.375rem ${THEME.spacing.no}`,
+  padding: `calc(${THEME.spacing.xs} - ${DIVIDER_HEIGHT}) ${THEME.spacing.no}`,
 });
 
 export const searchPopupDropdownItemStyle = style({
