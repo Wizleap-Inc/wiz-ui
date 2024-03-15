@@ -84,7 +84,7 @@ export const ButtonItem: FC<Props> = ({
           item.option.disabled && popupButtonGroupDisabledCursorStyle
         )}
         style={{
-          paddingLeft: `calc(${THEME.spacing.xs} + ${depth} * ${THEME.spacing.lg})`,
+          paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
         }}
         onClick={handleClick}
         onMouseOver={handleMouseOver}

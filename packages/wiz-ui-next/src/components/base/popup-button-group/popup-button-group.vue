@@ -1,5 +1,6 @@
 <template>
   <WizVStack
+    gap="xs2"
     :class="[
       popupButtonGroupStyle,
       disabled && popupButtonGroupDisabledCursorStyle,
@@ -45,7 +46,7 @@
             item.item.option.disabled && popupButtonGroupDisabledCursorStyle,
           ]"
           :style="{
-            paddingLeft: `calc(${THEME.spacing.xs} + ${depth} * ${THEME.spacing.lg})`,
+            paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           @click="popupButtonMouseDown(item.item)"
           @mouseover="popupButtonMouseOver(item.item)"

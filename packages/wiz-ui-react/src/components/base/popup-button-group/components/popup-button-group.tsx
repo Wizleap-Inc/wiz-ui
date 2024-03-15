@@ -81,7 +81,7 @@ const PopupButtonGroup: FC<Props> = ({
       )}
       style={{ ...style, minWidth: expand ? "100%" : width }}
     >
-      <WizVStack p={depth === 0 ? p : "no"}>
+      <WizVStack gap="xs2" p={depth === 0 ? p : "no"}>
         {items.map((item, i) => {
           if (item.kind === "divider") {
             return <DividerItem key={`divider-${i}`} />;
