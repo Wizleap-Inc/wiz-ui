@@ -30,7 +30,9 @@
             <!-- Dropdown -->
             <div
               v-if="item.children"
-              :class="styles.searchPopupDropdownItemStyle"
+              :class="
+                styles.searchDropdownItemStyle[key === 0 ? 'first' : 'default']
+              "
             >
               <WizHStack
                 py="xs2"
