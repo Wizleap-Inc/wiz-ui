@@ -83,11 +83,16 @@
             </div>
             <div
               v-else-if="singleSelect"
-              :class="styles.searchDropdownItemStyle"
+              :class="[styles.searchDropdownItemStyle]"
             >
               <button
                 :id="`${item.label}_${item.value}`"
-                :class="[styles.searchDropdownSingleSelectItemStyle]"
+                :class="[
+                  styles.searchDropdownSingleSelectItemStyle,
+                  styles.searchDropdownSingleSelectItemBgStyle[
+                    checkValues.includes(item.value) ? 'selected' : 'default'
+                  ],
+                ]"
                 width="100%"
                 gap="xs2"
                 @click="handleClickButton(item.value)"

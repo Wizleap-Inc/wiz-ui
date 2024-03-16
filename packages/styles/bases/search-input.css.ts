@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -207,7 +207,7 @@ export const searchDropdownSingleSelectItemStyle = style({
   fontSize: THEME.fontSize.sm,
   userSelect: "none",
   border: "none",
-  backgroundColor: "transparent",
+  backgroundColor: THEME.color.transparent,
   color: THEME.color.gray[800],
   padding: `0.375rem ${THEME.spacing.xs2}`,
   "@media": {
@@ -217,5 +217,16 @@ export const searchDropdownSingleSelectItemStyle = style({
         color: THEME.color.green[800],
       },
     },
+  },
+});
+
+export const searchDropdownSingleSelectItemBgStyle = styleVariants({
+  default: {
+    background: THEME.color.transparent,
+    color: THEME.color.gray[800],
+  },
+  selected: {
+    background: THEME.color.green[300],
+    color: THEME.color.green[800],
   },
 });
