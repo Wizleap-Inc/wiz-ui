@@ -81,22 +81,13 @@
                 </WizHStack>
               </WizHStack>
             </div>
-            <!-- Checkbox -->
             <div
-              v-else
-              :class="styles.searchDropdownCheckboxItemStyle"
-              @mouseover="activeItem = item.value"
-              @mouseout="activeItem = null"
+              v-else-if="singleSelect"
+              :class="styles.searchDropdownItemStyle"
             >
               <button
-                v-if="singleSelect"
                 :id="`${item.label}_${item.value}`"
-                :class="[
-                  styles.searchDropdownSingleSelectItemStyle,
-                  styles.searchDropdownSingleSeletedItemStyle[
-                    selectedStatus(item.value)
-                  ],
-                ]"
+                :class="[styles.searchDropdownSingleSelectItemStyle]"
                 width="100%"
                 gap="xs2"
                 @click="handleClickButton(item.value)"
@@ -105,8 +96,10 @@
                   {{ item.label }}
                 </div>
               </button>
+            </div>
+            <!-- Checkbox -->
+            <div v-else :class="styles.searchDropdownCheckboxItemStyle">
               <WizCheckBoxNew
-                v-else
                 :style="{ width: '100%' }"
                 :checked="checkValues.includes(item.value)"
                 :value="item.value"
@@ -137,6 +130,7 @@
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
           :emptyMessage="emptyMessage"
+          :singleSelect="singleSelect"
         />
       </WizHStack>
     </WizPopup>
