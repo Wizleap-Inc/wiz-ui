@@ -97,7 +97,7 @@
   </WizBox>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import {
   ARIA_LABELS,
   ComponentName,
@@ -105,7 +105,7 @@ import {
 } from "@wizleap-inc/wiz-ui-constants";
 import { chatCardOpenButtonStyle } from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, computed, nextTick, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 
 import {
   WizBox,
@@ -130,62 +130,30 @@ defineOptions({
   name: ComponentName.ChatCard,
 });
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    required: true,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  placeholder: {
-    type: String,
-    required: false,
-  },
-  messages: {
-    type: Array as PropType<Message[]>,
-    required: true,
-  },
-  isOpen: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  haveNewMessage: {
-    type: Boolean,
-    required: false,
-  },
-  formRows: {
-    type: Number,
-    required: false,
-  },
-  typingUsername: {
-    type: String,
-    required: false,
-  },
-  status: {
-    type: Number,
-    required: false,
-  },
-  statusOptions: {
-    type: Array as PropType<SelectBoxOption[]>,
-    required: false,
-  },
-  statusPlaceholder: {
-    type: String,
-    required: false,
-  },
+type Props<T> = {
+  modelValue: string;
+  username: string;
+  placeholder?: string;
+  messages: Message[];
+  isOpen?: boolean;
+  haveNewMessage?: boolean;
+  formRows?: number;
+  typingUsername?: string;
+  status?: T;
+  statusOptions?: SelectBoxOption<T>[];
+  statusPlaceholder?: string;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  placeholder: "",
+  isOpen: false,
 });
-
-interface Emit {
-  (e: "update:modelValue", value: string): void;
-  (e: "submit"): void;
-  (e: "toggleDisplay"): void;
-  (e: "update:status", value: number): void;
-}
-
-const emits = defineEmits<Emit>();
+const emits = defineEmits<{
+  "update:modelValue": [value: string];
+  submit: [];
+  toggleDisplay: [];
+  "update:status": [value: T];
+}>();
 
 const canAnimate = ref(false);
 
@@ -246,7 +214,7 @@ const textValue = computed({
 });
 
 const statusValue = computed({
-  get: () => props.status || NaN,
+  get: () => props.status,
   set: (value) => value && emits("update:status", value),
 });
 

@@ -9,14 +9,14 @@ import {
 import { ref } from "vue";
 
 import {
-  WizDateRangePicker,
-  WizTextInput,
-  WizPasswordInput,
-  WizSelectBox,
   WizCheckBox,
-  WizRadio,
-  WizTextArea,
   WizDatePicker,
+  WizDateRangePicker,
+  WizPasswordInput,
+  WizRadio,
+  WizSelectBox,
+  WizTextArea,
+  WizTextInput,
   WizTimePicker,
 } from "@/components";
 import { CheckBoxOption } from "@/components/base/inputs/checkbox/types";
@@ -27,7 +27,7 @@ import {
 import { RadioOption } from "@/components/base/inputs/radio/types";
 import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
-import { WizFormGroup, WizFormControl } from ".";
+import { WizFormControl, WizFormGroup } from ".";
 
 export default {
   title: "Custom/Form/Group",
@@ -187,7 +187,7 @@ LabelFontSize.parameters = {
   },
 };
 
-const SELECT_BOX_CHOICES: SelectBoxOption[] = [
+const SELECT_BOX_CHOICES: SelectBoxOption<number>[] = [
   {
     label: "選択肢1",
     value: 1,
@@ -216,7 +216,7 @@ export const AllInput: StoryFn<typeof WizFormControl> = () => ({
     const textInput = ref("");
     const passwordInput = ref("");
     const textareaInput = ref("");
-    const SELECT_OPTIONS: SelectBoxOption[] = SELECT_BOX_CHOICES;
+    const SELECT_OPTIONS: SelectBoxOption<number>[] = SELECT_BOX_CHOICES;
     const selectInput = ref<string | null>(null);
     const checkBoxOptions: CheckBoxOption[] = [
       {
@@ -324,7 +324,7 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
     const textInput = ref("");
     const passwordInput = ref("");
     const textareaInput = ref("");
-    const SELECT_OPTIONS: SelectBoxOption[] = SELECT_BOX_CHOICES;
+    const SELECT_OPTIONS: SelectBoxOption<number>[] = SELECT_BOX_CHOICES;
     const selectInput = ref(0);
     const checkBoxOptions: CheckBoxOption[] = [
       {
