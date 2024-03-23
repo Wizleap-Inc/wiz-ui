@@ -31,9 +31,9 @@ import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
 // TODO: Search Selector は number で固定
-type Props = BaseProps & {
-  options: SearchSelectorOption<number>[];
-  values: number[];
+type Props<T> = BaseProps & {
+  options: SearchSelectorOption<T>[];
+  values: T[];
   placeholder?: string;
   width?: string;
   disabled?: boolean;
@@ -44,11 +44,12 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
 };
 
+// FIXME: value の default 値を -1 で固定されているため、number 型に固定
 const SearchSelector = ({
   className,
   style,
@@ -67,7 +68,7 @@ const SearchSelector = ({
   onChangeValues,
   onCreate,
   onInputSearchText,
-}: Props) => {
+}: Props<number>) => {
   const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -93,7 +94,7 @@ const SearchSelector = ({
   }, [selectedOptions.length]);
 
   const buttonGroupOptions: ButtonGroupItem<number>[] = useMemo(() => {
-    const filteredOptions = filterOptions(options, searchText).filter(
+    const filteredOptions = filterOptions<number>(options, searchText).filter(
       (matchedOption) => {
         return !values.some((value) => matchedOption.value === value);
       }
@@ -125,7 +126,7 @@ const SearchSelector = ({
       searchText !== "" &&
       options.every((option) => option.label !== searchText);
 
-    // MEMO： この value が -1 であるため number で固定
+    // FIXME: value の default 値が -1 なので number 型に固定
     return shouldShowAddButton
       ? [
           {

@@ -279,7 +279,7 @@ MobileDevice.args = {
 MobileDevice.decorators = [
   () => ({
     setup() {
-      const device = ref("mobile");
+      const device = ref<"mobile" | "pc">("mobile");
       provide(TIMELINE_KEY, { device });
     },
     template: `<story />`,

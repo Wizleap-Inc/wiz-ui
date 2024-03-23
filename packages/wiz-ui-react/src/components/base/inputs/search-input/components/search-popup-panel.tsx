@@ -14,12 +14,12 @@ import { BaseProps } from "@/types";
 
 import { SearchInputOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchInputOption<number>[];
-  values: number[];
+type Props<T> = BaseProps & {
+  options: SearchInputOption<T>[];
+  values: T[];
   width?: string;
   emptyMessage: string;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
 };
 
 export const SearchPopupPanel = <T,>({
@@ -30,9 +30,9 @@ export const SearchPopupPanel = <T,>({
   width,
   emptyMessage,
   onChangeValues,
-}: Props) => {
+}: Props<T>) => {
   // TODO: value は number に固定
-  const [activeValue, setActiveValue] = useState<number | null>(null);
+  const [activeValue, setActiveValue] = useState<T | null>(null);
   const activeOption = useMemo(
     () => options.find((option) => activeValue === option.value),
     [activeValue, options]
@@ -42,7 +42,7 @@ export const SearchPopupPanel = <T,>({
   const isOpen = activeOptionChildren !== undefined;
 
   const handleChangeValues = useCallback(
-    (selectedOptionValue: number, isChecked: boolean) => {
+    (selectedOptionValue: T, isChecked: boolean) => {
       const newValues = (() => {
         if (isChecked) {
           return [...values, selectedOptionValue];

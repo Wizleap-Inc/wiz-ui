@@ -10,9 +10,9 @@ import { BaseProps } from "@/types";
 import { SearchPopupPanel } from "./search-popup-panel";
 import { SearchInputOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchInputOption<number>[];
-  values: number[];
+type Props<T> = BaseProps & {
+  options: SearchInputOption<T>[];
+  values: T[];
   name?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -22,13 +22,13 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   emptyMessage?: string;
   icon?: TIcon;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
 };
 
-function filterOptions(
-  options: SearchInputOption<number>[],
+function filterOptions<T>(
+  options: SearchInputOption<T>[],
   text: string
-): SearchInputOption<number>[] {
+): SearchInputOption<T>[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
     if (!option.children || option.children.length === 0) {
@@ -61,7 +61,7 @@ const SearchInput = <T,>({
   emptyMessage = "選択肢がありません。",
   onChangeValues,
   icon = WizISearch,
-}: Props) => {
+}: Props<T>) => {
   const [filteringText, setFilteringText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -117,7 +117,7 @@ const SearchInput = <T,>({
               values={values}
               width={popupWidth}
               emptyMessage={emptyMessage}
-              onChangeValues={(changed: number[]) => onChangeValues(changed)}
+              onChangeValues={(changed: T[]) => onChangeValues(changed)}
             />
           </WizHStack>
         </WizPopup>
