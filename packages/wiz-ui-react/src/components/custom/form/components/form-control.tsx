@@ -34,29 +34,39 @@ const FormControl: FC<Props> = ({
 
   return (
     <FormControlContext.Provider value={{ error: error !== undefined }}>
-      <WizVStack className={className} style={style}>
-        <WizStack direction={direction}>
-          <WizHStack width={labelWidth} align="center" gap="xs2" py="xs2">
-            <WizText
-              as="label"
-              htmlFor={htmlFor}
-              color={labelColor}
-              fontSize={labelFontSize}
-            >
-              {label}
-            </WizText>
-            {required && <WizTag fontSize="xs2" label="必須" />}
-          </WizHStack>
-          <WizVStack>{children}</WizVStack>
-        </WizStack>
-        <WizHStack height={THEME.fontSize.sm}>
-          <div style={{ marginInlineStart: labelWidth }}>
-            <WizText fontSize="xs2" lineHeight="sm" color="red.800">
-              {error}
-            </WizText>
-          </div>
+      <WizStack
+        direction={direction}
+        align={direction === "horizontal" ? "center" : undefined}
+        className={className}
+        style={style}
+      >
+        <WizHStack width={labelWidth} align="center" gap="xs2" py="xs2">
+          <WizText
+            as="label"
+            htmlFor={htmlFor}
+            color={labelColor}
+            fontSize={labelFontSize}
+          >
+            {label}
+          </WizText>
+          {required && <WizTag fontSize="xs2" label="必須" />}
         </WizHStack>
-      </WizVStack>
+        <WizVStack gap="xs2" position="relative">
+          {children}
+          <WizText
+            fontSize="xs2"
+            lineHeight="sm"
+            color="red.800"
+            style={{
+              position: "absolute",
+              bottom: 0,
+              transform: "translateY(100%)",
+            }}
+          >
+            <div style={{ paddingTop: THEME.spacing.xs2 }}>{error}</div>
+          </WizText>
+        </WizVStack>
+      </WizStack>
     </FormControlContext.Provider>
   );
 };
