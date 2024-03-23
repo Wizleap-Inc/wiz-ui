@@ -1,7 +1,7 @@
 <template>
   <WizVStack>
-    <WizHStack>
-      <WizHStack :width="labelWidth" align="center" gap="xs2">
+    <WizStack :direction="direction">
+      <WizHStack :width="labelWidth" align="center" gap="xs2" py="xs2">
         <WizText
           as="label"
           :htmlFor="htmlFor"
@@ -14,7 +14,7 @@
       <WizVStack>
         <slot />
       </WizVStack>
-    </WizHStack>
+    </WizStack>
     <WizHStack :height="THEME.fontSize.sm">
       <WizBox :width="labelWidth" />
       <WizText font-size="xs2" line-height="sm" color="red.800">{{
@@ -26,14 +26,15 @@
 
 <script setup lang="ts">
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { onMounted, provide, watch, inject, computed } from "vue";
+import { PropType, computed, inject, onMounted, provide, watch } from "vue";
 
 import {
+  WizBox,
+  WizHStack,
+  WizStack,
   WizTag,
   WizText,
-  WizHStack,
   WizVStack,
-  WizBox,
 } from "@/components/base";
 import {
   formControlKey,
@@ -57,6 +58,10 @@ const props = defineProps({
   error: {
     type: String,
     required: false,
+  },
+  direction: {
+    type: String as PropType<"horizontal" | "vertical">,
+    default: "horizontal",
   },
 });
 
