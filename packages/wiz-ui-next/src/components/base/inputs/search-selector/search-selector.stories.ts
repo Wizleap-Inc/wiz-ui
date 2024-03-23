@@ -55,7 +55,7 @@ v-modelには選択中のアイテムを渡します。
 } as Meta<typeof WizSearchSelector>;
 
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
-  const options: SelectBoxOption[] = [];
+  const options: SelectBoxOption<number>[] = [];
   for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i, exLabel: exLabel });
     options.push({ label: label + i * 10, value: i * 10, exLabel: exLabel });
@@ -67,7 +67,7 @@ const Template =
   (
     initValue: number[],
     open: boolean,
-    initOptions: SelectBoxOption[],
+    initOptions: SelectBoxOption<number>[],
     initSearchValue: string
   ): StoryFn<typeof WizSearchSelector> =>
   (args) => ({
@@ -76,7 +76,8 @@ const Template =
       const currentValue = ref(initValue);
       const isOpen = ref(open);
       const searchValue = ref(initSearchValue);
-      const options = ref<SelectBoxOption[]>(initOptions);
+      const options = ref<SelectBoxOption<number>[]>(initOptions);
+
       const emits = {
         select: (n: number) => {
           currentValue.value.push(n);
@@ -98,7 +99,14 @@ const Template =
           currentValue.value.push(options.value.length);
         },
       };
-      return { args, currentValue, options, searchValue, isOpen, emits };
+      return {
+        args,
+        currentValue,
+        options,
+        searchValue,
+        isOpen,
+        emits,
+      };
     },
     template: `
     <WizHStack>
@@ -108,6 +116,7 @@ const Template =
         :options="options"
         :isOpen="isOpen"
         :searchValue="searchValue"
+        :valueToOption="value2Option"
         @toggle="emits.toggle"
         @update:modelValue="emits.select"
         @unselect="emits.unselect"
@@ -121,7 +130,7 @@ const Template =
 const code = (
   initValue: number[],
   open: boolean,
-  initOptions: SelectBoxOption[],
+  initOptions: SelectBoxOption<number>[],
   initSearchValue: string,
   opts?: {
     disabled?: boolean;
