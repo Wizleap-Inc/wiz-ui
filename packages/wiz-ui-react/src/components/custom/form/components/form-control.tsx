@@ -35,10 +35,13 @@ const FormControl: FC<Props> = ({
   return (
     <FormControlContext.Provider value={{ error: error !== undefined }}>
       <WizStack
+        className={className}
         direction={direction}
         align={direction === "horizontal" ? "center" : undefined}
-        className={className}
-        style={style}
+        style={{
+          ...style,
+          paddingBottom: `calc(${THEME.spacing.xs} + ${THEME.fontSize.sm})`,
+        }}
       >
         <WizHStack width={labelWidth} align="center" gap="xs2" py="xs2">
           <WizText
@@ -51,7 +54,7 @@ const FormControl: FC<Props> = ({
           </WizText>
           {required && <WizTag fontSize="xs2" label="必須" />}
         </WizHStack>
-        <WizVStack gap="xs2" position="relative">
+        <WizVStack position="relative">
           {children}
           <WizText
             fontSize="xs2"
@@ -63,7 +66,7 @@ const FormControl: FC<Props> = ({
               transform: "translateY(100%)",
             }}
           >
-            <div style={{ paddingTop: THEME.spacing.xs2 }}>{error}</div>
+            <div style={{ padding: `${THEME.spacing.xs2} 0` }}>{error}</div>
           </WizText>
         </WizVStack>
       </WizStack>
