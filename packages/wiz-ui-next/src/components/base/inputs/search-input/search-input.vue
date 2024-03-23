@@ -125,7 +125,7 @@
   </WizPopupContainer>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
@@ -152,7 +152,7 @@ defineOptions({
 
 const props = defineProps({
   options: {
-    type: Array as PropType<SearchInputOption[]>,
+    type: Array as PropType<SearchInputOption<T>[]>,
     required: true,
   },
   modelValue: {
@@ -217,7 +217,7 @@ const checkValues = computed({
 });
 
 const searchValue = ref("");
-const filteredOptions = ref<SearchInputOption[]>([]);
+const filteredOptions = ref<SearchInputOption<T>[]>([]);
 const selectedItem = ref<number[]>([]);
 const activeItem = ref<number | null>();
 const activeItemIndex = ref<number | null>(null);
@@ -262,7 +262,7 @@ const handleClickCheckbox = (value: number) => {
 
 const filterOptions =
   (match: (label: string) => boolean) =>
-  (options: SearchInputOption[]): SearchInputOption[] =>
+  (options: SearchInputOption<T>[]): SearchInputOption<T>[] =>
     options.flatMap((option) => {
       const isMatched = match(option.label);
       if (!option.children || option.children.length === 0) {

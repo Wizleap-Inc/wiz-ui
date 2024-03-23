@@ -8,11 +8,11 @@ import WizSearchInput from "../search-input.vue";
 import {
   debugOption,
   defaultOption,
+  emptyMessageOptions,
   expandOption,
   longLabelOption,
   openOption,
   simpleOption,
-  emptyMessageOptions,
   taggedOptions,
 } from "./options";
 
