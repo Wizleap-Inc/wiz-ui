@@ -37,7 +37,10 @@ export const Bar: FC<Props> = ({
     if (!barElm || !labelElm) return;
 
     const resizeObserver = new ResizeObserver(() => {
-      barElm.style.width = `max(${percentage}%, ${labelElm.offsetWidth}px)`;
+      barElm.style.width =
+        percentage === 0
+          ? "0"
+          : `max(${percentage}%, ${labelElm.offsetWidth}px)`;
     });
     resizeObserver.observe(labelElm);
     return () => {
