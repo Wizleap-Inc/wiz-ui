@@ -129,7 +129,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 import {
   WizCheckBoxNew,
@@ -150,65 +150,32 @@ defineOptions({
   name: ComponentName.SearchInput,
 });
 
-const props = defineProps({
-  options: {
-    type: Array as PropType<SearchInputOption<T>[]>,
-    required: true,
-  },
-  modelValue: {
-    type: Array as PropType<number[]>,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  placeholder: {
-    type: String,
-    required: false,
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-  },
-  expand: {
-    type: Boolean,
-    required: false,
-  },
-  inputWidth: {
-    type: String,
-    required: false,
-    default: "10rem",
-  },
-  popupWidth: {
-    type: String,
-    required: false,
-  },
-  openPopup: {
-    type: Boolean,
-    required: true,
-  },
-  isDirectionFixed: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  icon: {
-    type: Object as PropType<TIcon>,
-    required: false,
-    default: WizISearch,
-  },
-  emptyMessage: {
-    type: String,
-    required: false,
-    default: "選択肢がありません。",
-  },
+type Props<T> = {
+  options: SearchInputOption<T>[];
+  modelValue: number[];
+  name: string;
+  placeholder?: string;
+  disabled?: boolean;
+  expand?: boolean;
+  inputWidth?: string;
+  popupWidth?: string;
+  openPopup: boolean;
+  isDirectionFixed?: boolean;
+  icon?: TIcon;
+  emptyMessage?: string;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  inputWidth: "10rem",
+  isDirectionFixed: false,
+  icon: WizISearch,
+  emptyMessage: "選択肢がありません。",
 });
 
 const emit = defineEmits<{
-  (e: "update:modelValue", value: number[]): void;
-  (e: "click"): void;
-  (e: "toggle", value: boolean): void;
+  "update:modelValue": [value: number[]];
+  toggle: [value: boolean];
+  click: [];
 }>();
 
 const checkValues = computed({
