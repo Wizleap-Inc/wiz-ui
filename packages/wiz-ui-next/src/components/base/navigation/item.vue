@@ -66,7 +66,7 @@
   </WizTooltip>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   navigationItemActiveStyle,
@@ -129,7 +129,7 @@ const props = defineProps({
     default: true,
   },
   buttons: {
-    type: Array as PropType<ButtonGroupItem<number>[]>,
+    type: Array as PropType<ButtonGroupItem<T>[]>,
     required: false,
   },
   isOpen: {
