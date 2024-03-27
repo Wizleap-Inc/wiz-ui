@@ -82,24 +82,24 @@
   </WizVStack>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import {
   ComponentName,
   SpacingKeys,
   THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  popupButtonGroupStyle,
-  popupButtonGroupDisabledCursorStyle,
+  borderRadiusStyle,
   popupButtonGroupButtonBaseStyle,
-  popupButtonGroupTitleBaseStyle,
+  popupButtonGroupButtonVariantStyle,
+  popupButtonGroupDisabledCursorStyle,
   popupButtonGroupDividerStyle,
   popupButtonGroupInnerContainerStyle,
+  popupButtonGroupStyle,
+  popupButtonGroupTitleBaseStyle,
   popupButtonGroupTitleVariantStyle,
-  popupButtonGroupButtonVariantStyle,
-  borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
-import { computed, PropType, ref } from "vue";
+import { PropType, UnwrapRef, computed, ref } from "vue";
 
 import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
 
@@ -111,7 +111,7 @@ defineOptions({
 
 const props = defineProps({
   options: {
-    type: Array as PropType<ButtonGroupItem[]>,
+    type: Array as PropType<ButtonGroupItem<T>[]>,
     required: true,
   },
   width: {
@@ -157,7 +157,10 @@ const props = defineProps({
 
 type ItemElement =
   | { kind: "divider" }
-  | { kind: "item"; item: Exclude<ButtonGroupItem, { kind: "divider" }> };
+  | {
+      kind: "item";
+      item: Exclude<ButtonGroupItem<T>, { kind: "divider" }>;
+    };
 
 const items = computed(() => {
   const divider: ItemElement = { kind: "divider" };
@@ -189,13 +192,15 @@ const items = computed(() => {
   return items;
 });
 
-const isClicking = ref<number | null>(null);
-const isHover = ref<number | null>(null);
+const isClicking = ref<T | null>(null);
+const isHover = ref<T | null>(null);
 
-const onHoldClick = (item: ButtonGroupItem) => {
+const onHoldClick = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
-    isClicking.value = item.option.value;
+    isClicking.value = item.option.value
+      ? (item.option.value as UnwrapRef<T>)
+      : null;
     const mouseup = () => {
       isClicking.value = null;
       document.removeEventListener("mouseup", mouseup);
@@ -204,28 +209,30 @@ const onHoldClick = (item: ButtonGroupItem) => {
   }
 };
 
-const popupButtonMouseDown = (item: ButtonGroupItem) => {
+const popupButtonMouseDown = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };
 
-const popupButtonMouseOver = (item: ButtonGroupItem) => {
+const popupButtonMouseOver = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
-    isHover.value = item.option.value;
+    isHover.value = item.option.value
+      ? (item.option.value as UnwrapRef<T>)
+      : null;
   }
 };
 
-const popupButtonMouseOut = (item: ButtonGroupItem) => {
+const popupButtonMouseOut = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
     isHover.value = null;
   }
 };
 
-const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
+const popupButtonKeyPressEnter = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
