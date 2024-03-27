@@ -99,7 +99,7 @@ import {
   popupButtonGroupTitleBaseStyle,
   popupButtonGroupTitleVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
-import { PropType, UnwrapRef, computed, ref } from "vue";
+import { UnwrapRef, computed, ref } from "vue";
 
 import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
 
@@ -109,50 +109,27 @@ defineOptions({
   name: ComponentName.PopupButtonGroup,
 });
 
-const props = defineProps({
-  options: {
-    type: Array as PropType<ButtonGroupItem<T>[]>,
-    required: true,
-  },
-  width: {
-    type: String,
-    required: false,
-    default: "10rem",
-  },
-  p: {
-    type: String as PropType<SpacingKeys>,
-    required: false,
-    default: "no",
-  },
-  borderRadius: {
-    type: String as PropType<SpacingKeys>,
-    required: false,
-    default: "no",
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  expand: {
-    type: Boolean,
-    required: false,
-  },
-  groupDivider: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  buttonDivider: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  depth: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
+type Props<T> = {
+  options: ButtonGroupItem<T>[];
+  width?: string;
+  p?: SpacingKeys;
+  borderRadius?: SpacingKeys;
+  disabled?: boolean;
+  expand?: boolean;
+  groupDivider?: boolean;
+  buttonDivider?: boolean;
+  depth?: number;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  width: "10rem",
+  p: "no",
+  borderRadius: "no",
+  disabled: false,
+  expand: false,
+  groupDivider: false,
+  buttonDivider: false,
+  depth: 0,
 });
 
 type ItemElement =
