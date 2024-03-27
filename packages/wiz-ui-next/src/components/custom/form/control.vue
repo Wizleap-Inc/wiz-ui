@@ -1,7 +1,7 @@
 <template>
   <WizStack
     :direction="direction"
-    align="center"
+    :align="direction === 'horizontal' ? 'center' : undefined"
     :style="{
       paddingBottom: `calc(${THEME.spacing.xs} + ${THEME.fontSize.sm})`,
     }"
