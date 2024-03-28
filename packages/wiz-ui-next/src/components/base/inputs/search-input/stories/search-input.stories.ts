@@ -34,6 +34,9 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
+    singleSelect: {
+      control: { type: "boolean" },
+    },
     inputWidth: {
       control: { type: "text" },
     },
@@ -129,6 +132,14 @@ export const IsDirectionFixed = Template(true).bind({});
 IsDirectionFixed.args = {
   placeholder: "氏名・ID・電話番号で検索",
   isDirectionFixed: true,
+  inputWidth: "15rem",
+  options: simpleOption,
+};
+
+export const SingleSelect = Template(true).bind({});
+SingleSelect.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
   inputWidth: "15rem",
   options: simpleOption,
 };

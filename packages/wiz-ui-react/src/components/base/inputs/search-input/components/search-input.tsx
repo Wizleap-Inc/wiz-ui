@@ -17,6 +17,7 @@ type Props = BaseProps & {
   placeholder?: string;
   disabled?: boolean;
   expand?: boolean;
+  singleSelect?: boolean;
   inputWidth?: string;
   popupWidth?: string;
   isDirectionFixed?: boolean;
@@ -55,6 +56,7 @@ const SearchInput: FC<Props> = ({
   placeholder,
   disabled,
   expand,
+  singleSelect,
   inputWidth = "10rem",
   popupWidth,
   isDirectionFixed = false,
@@ -114,9 +116,11 @@ const SearchInput: FC<Props> = ({
           <WizHStack nowrap>
             <SearchPopupPanel
               options={filteredOptions}
+              closePopup={() => setIsPopupOpen(false)}
               values={values}
               width={popupWidth}
               emptyMessage={emptyMessage}
+              singleSelect={singleSelect}
               onChangeValues={(changed) => onChangeValues(changed)}
             />
           </WizHStack>
