@@ -45,7 +45,7 @@
         :class="selectBoxSelectorStyle"
         :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
       >
-        <WizVStack gap="xs2">
+        <WizVStack>
           <div
             :class="selectBoxSelectorOptionStyle"
             v-for="(option, key) in options"

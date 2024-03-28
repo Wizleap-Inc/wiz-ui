@@ -52,7 +52,6 @@ export const selectBoxInnerBoxMoreStyle = style({
 });
 
 export const selectBoxSelectorStyle = style({
-  padding: THEME.spacing.xs,
   background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
@@ -65,15 +64,15 @@ export const selectBoxSelectorOptionStyle = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: `${THEME.spacing.xs} ${THEME.spacing.xs2}`,
+  padding: THEME.spacing.xs,
   fontSize: THEME.fontSize.sm,
+  lineHeight: THEME.fontSize.xl,
   color: THEME.color.gray["800"],
   boxSizing: "border-box",
   cursor: "pointer",
   "@media": {
     "(any-hover: hover)": {
       ":hover": {
-        color: THEME.color.green["800"],
         background: THEME.color.green["300"],
       },
     },
