@@ -3,7 +3,6 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
-  FC,
   KeyboardEvent,
   KeyboardEventHandler,
   MouseEventHandler,
@@ -31,9 +30,10 @@ import { BaseProps } from "@/types";
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchSelectorOption[];
-  values: number[];
+// TODO: Search Selector は number で固定
+type Props<T> = BaseProps & {
+  options: SearchSelectorOption<T>[];
+  values: T[];
   placeholder?: string;
   width?: string;
   disabled?: boolean;
@@ -44,12 +44,13 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
 };
 
-const SearchSelector: FC<Props> = ({
+// FIXME: value の default 値を -1 で固定されているため、number 型に固定
+const SearchSelector = ({
   className,
   style,
   options,
@@ -67,7 +68,7 @@ const SearchSelector: FC<Props> = ({
   onChangeValues,
   onCreate,
   onInputSearchText,
-}) => {
+}: Props<number>) => {
   const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -92,13 +93,13 @@ const SearchSelector: FC<Props> = ({
     );
   }, [selectedOptions.length]);
 
-  const buttonGroupOptions: ButtonGroupItem[] = useMemo(() => {
-    const filteredOptions = filterOptions(options, searchText).filter(
+  const buttonGroupOptions: ButtonGroupItem<number>[] = useMemo(() => {
+    const filteredOptions = filterOptions<number>(options, searchText).filter(
       (matchedOption) => {
         return !values.some((value) => matchedOption.value === value);
       }
     );
-    const buttonGroupOptions: ButtonGroupItem[] = filteredOptions.map(
+    const buttonGroupOptions: ButtonGroupItem<number>[] = filteredOptions.map(
       (option) => {
         return {
           kind: "button",
@@ -124,6 +125,8 @@ const SearchSelector: FC<Props> = ({
       addable &&
       searchText !== "" &&
       options.every((option) => option.label !== searchText);
+
+    // FIXME: value の default 値が -1 なので number 型に固定
     return shouldShowAddButton
       ? [
           {
@@ -149,7 +152,7 @@ const SearchSelector: FC<Props> = ({
     values,
   ]);
 
-  const unselectOption = (option: SearchSelectorOption) => {
+  const unselectOption = (option: SearchSelectorOption<number>) => {
     onChangeValues(values.filter((value) => value !== option.value));
     setTimeout(() => {
       // input 要素が描画されるのを待ってフォーカス
@@ -158,7 +161,7 @@ const SearchSelector: FC<Props> = ({
   };
 
   const handleClickClearButton = (
-    option: SearchSelectorOption
+    option: SearchSelectorOption<number>
   ): MouseEventHandler => {
     return (e) => {
       e.stopPropagation();
@@ -180,7 +183,9 @@ const SearchSelector: FC<Props> = ({
   };
 
   const keyDownHandlers = {
-    clearButton: (option: SearchSelectorOption): KeyboardEventHandler => {
+    clearButton: (
+      option: SearchSelectorOption<number>
+    ): KeyboardEventHandler => {
       return (e) => {
         if (e.key === "Backspace") {
           unselectOption(option);

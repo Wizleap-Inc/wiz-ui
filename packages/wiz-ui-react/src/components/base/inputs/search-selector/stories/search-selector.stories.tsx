@@ -37,7 +37,7 @@ export default meta;
 type Story = StoryObj<typeof WizSearchSelector>;
 
 const getDummyOptions = (label: string, count: number, exLabel?: string) => {
-  const options: SearchSelectorOption[] = [];
+  const options: SearchSelectorOption<number>[] = [];
   for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i, exLabel });
     options.push({ label: label + i * 10, value: i * 10, exLabel });

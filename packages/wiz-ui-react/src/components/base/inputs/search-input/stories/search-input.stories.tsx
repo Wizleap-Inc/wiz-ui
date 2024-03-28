@@ -21,7 +21,7 @@ const meta: Meta<typeof WizSearchInput> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof WizSearchInput>;
+type Story = StoryObj<typeof WizSearchInput<number>>;
 
 const Template: Story = {
   render: (args) => {

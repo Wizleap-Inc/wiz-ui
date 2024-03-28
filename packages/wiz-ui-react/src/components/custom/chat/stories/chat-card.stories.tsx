@@ -155,7 +155,7 @@ export const Playground: Story = {
     const [messages, setMessages] = useState(dummyMessages);
     const [textValue, setTextValue] = useState("");
     const [haveNewMessage, setHaveNewMessage] = useState(true);
-    const [status, setStatus] = useState<number | null>(null);
+    const [status, setStatus] = useState<number | null>();
     return (
       <WizChatCard
         messages={messages}
