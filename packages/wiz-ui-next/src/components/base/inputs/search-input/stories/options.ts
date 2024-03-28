@@ -1,6 +1,6 @@
 import { SearchInputOption } from "../types";
 
-export const defaultOption: SearchInputOption[] = [
+export const defaultOption: SearchInputOption<number>[] = [
   {
     label: "テスト会社1",
     value: 1,
@@ -204,7 +204,7 @@ export const defaultOption: SearchInputOption[] = [
   },
 ];
 
-export const openOption: SearchInputOption[] = [
+export const openOption: SearchInputOption<number>[] = [
   {
     label: "テスト会社1",
     value: 1,
@@ -299,7 +299,7 @@ export const openOption: SearchInputOption[] = [
   },
 ];
 
-export const longLabelOption: SearchInputOption[] = [
+export const longLabelOption: SearchInputOption<number>[] = [
   {
     label: "テスト会社1",
     value: 1,
@@ -324,7 +324,7 @@ export const longLabelOption: SearchInputOption[] = [
   },
 ];
 
-export const expandOption: SearchInputOption[] = [
+export const expandOption: SearchInputOption<number>[] = [
   {
     label: "親要素1",
     value: 1,
@@ -373,7 +373,7 @@ const tag = {
   label: "タグ",
 };
 
-export const taggedOptions: SearchInputOption[] = [
+export const taggedOptions: SearchInputOption<number>[] = [
   {
     label: "テスト会社1",
     value: 1,
@@ -459,7 +459,7 @@ export const taggedOptions: SearchInputOption[] = [
   },
 ];
 
-export const simpleOption: SearchInputOption[] = [
+export const simpleOption: SearchInputOption<number>[] = [
   {
     label: "選択肢1",
     value: 1,
@@ -484,8 +484,8 @@ const getNextValue = (): number => {
 const generateGrandchildren = (
   startValue: number,
   count: number
-): SearchInputOption[] => {
-  const grandchildren: SearchInputOption[] = [];
+): SearchInputOption<number>[] => {
+  const grandchildren: SearchInputOption<number>[] = [];
   for (let i = 0; i < count; i++) {
     const grandchildValue = getNextValue();
     grandchildren.push({
@@ -500,8 +500,8 @@ const generateGrandchildren = (
 const generateChildren = (
   startValue: number,
   count: number
-): SearchInputOption[] => {
-  const children: SearchInputOption[] = [];
+): SearchInputOption<number>[] => {
+  const children: SearchInputOption<number>[] = [];
   for (let i = 0; i < count; i++) {
     const childValue = getNextValue();
     children.push({
@@ -520,8 +520,8 @@ const generateChildren = (
 const generateParentElements = (
   startValue: number,
   count: number
-): SearchInputOption[] => {
-  const parentElements: SearchInputOption[] = [];
+): SearchInputOption<number>[] => {
+  const parentElements: SearchInputOption<number>[] = [];
   for (let i = 0; i < count; i++) {
     const parentValue = getNextValue();
     parentElements.push({
@@ -533,7 +533,7 @@ const generateParentElements = (
   return parentElements;
 };
 
-export const debugOption: SearchInputOption[] = [
+export const debugOption: SearchInputOption<number>[] = [
   {
     label: "親要素1",
     value: getNextValue(),
@@ -552,7 +552,7 @@ export const debugOption: SearchInputOption[] = [
   ...generateParentElements(getNextValue(), 13),
 ];
 
-export const emptyMessageOptions: SearchInputOption[] = [
+export const emptyMessageOptions: SearchInputOption<number>[] = [
   {
     label: "テスト会社1",
     value: 1,

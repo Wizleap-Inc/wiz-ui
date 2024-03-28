@@ -116,7 +116,7 @@
   </template>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { PropType, computed, ref, watch } from "vue";
@@ -139,7 +139,7 @@ defineOptions({
 
 const props = defineProps({
   options: {
-    type: Array as PropType<SearchInputOption[]>,
+    type: Array as PropType<SearchInputOption<T>[]>,
     required: true,
   },
   modelValue: {
@@ -182,7 +182,7 @@ const mutableSelectedItem = computed(() => {
 
 const optionsRef = ref<HTMLElement[]>();
 const scrollAmount = ref<number>(0);
-const scrollItems = ref<SearchInputOption[]>([]);
+const scrollItems = ref<SearchInputOption<T>[]>([]);
 const onScroll = (parentOrder: number) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
   scrollItems.value = props.options[parentOrder].children ?? [];
@@ -209,7 +209,7 @@ watch(
   }
 );
 
-const isBorder = computed(() => (options: SearchInputOption[]) => {
+const isBorder = computed(() => (options: SearchInputOption<T>[]) => {
   return options.some((option) =>
     mutableSelectedItem.value.includes(option.value)
   );
@@ -224,12 +224,12 @@ const computedIconColor = computed(() => (value: number) => {
   return "gray.500";
 });
 
-const onMouseover = (value: number, options?: SearchInputOption[]) => {
+const onMouseover = (value: number, options?: SearchInputOption<T>[]) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
   activeItem.value = value;
   if (!options) return;
   activeItemIndex.value = options.findIndex((option) => option.value === value);
-  options.forEach((option: SearchInputOption) => {
+  options.forEach((option: SearchInputOption<T>) => {
     if (mutableSelectedItem.value.includes(option.value)) {
       const index = mutableSelectedItem.value.indexOf(option.value);
       mutableSelectedItem.value.splice(index, 1);

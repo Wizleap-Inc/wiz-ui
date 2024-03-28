@@ -66,26 +66,26 @@
   </WizTooltip>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  navigationItemStyle,
   navigationItemActiveStyle,
-  navigationItemIconStyle,
-  navigationItemIconActiveStyle,
-  navigationItemTextStyle,
-  navigationItemTextActiveStyle,
   navigationItemDisabledStyle,
+  navigationItemIconActiveStyle,
   navigationItemIconDisabledStyle,
+  navigationItemIconStyle,
+  navigationItemStyle,
+  navigationItemTextActiveStyle,
+  navigationItemTextStyle,
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
-import { computed, PropType, ref } from "vue";
+import { PropType, computed, ref } from "vue";
 import { RouterLinkProps } from "vue-router";
 
 import {
-  WizPopupContainer,
   WizPopup,
   WizPopupButtonGroup,
+  WizPopupContainer,
   WizTooltip,
 } from "@/components";
 import type { TIcon } from "@/components/icons";
@@ -129,7 +129,7 @@ const props = defineProps({
     default: true,
   },
   buttons: {
-    type: Array as PropType<ButtonGroupItem[]>,
+    type: Array as PropType<ButtonGroupItem<T>[]>,
     required: false,
   },
   isOpen: {
