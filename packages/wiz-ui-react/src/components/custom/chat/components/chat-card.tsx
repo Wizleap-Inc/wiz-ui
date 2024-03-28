@@ -37,6 +37,7 @@ const TOGGLE_ANIMATION_DURATION = 300;
 type Props = BaseProps & {
   textValue: string;
   username: string;
+  isOpen: boolean;
   placeholder?: string;
   messages: Message[];
   haveNewMessage?: boolean;
@@ -48,12 +49,13 @@ type Props = BaseProps & {
   onChangeStatus?: (status: number | null) => void;
   onChangeTextValue: (value: string) => void;
   onSubmit: () => void;
-  onToggleOpen?: (isOpen: boolean) => void;
+  onToggle: () => void;
 };
 
 const ChatCard: FC<Props> = ({
   className,
   style,
+  isOpen,
   textValue,
   username,
   placeholder,
@@ -67,13 +69,12 @@ const ChatCard: FC<Props> = ({
   onChangeStatus,
   onChangeTextValue,
   onSubmit,
-  onToggleOpen,
+  onToggle,
 }) => {
   const wrapperBoxRef = useRef<HTMLDivElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
   const listBoxRef = useRef<HTMLDivElement>(null);
   const [closedWrapperBottom, setClosedWrapperBottom] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
 
   const displayMessages = useMemo(() => {
     const displayMessages: DisplayMessage[] = [];
@@ -103,12 +104,7 @@ const ChatCard: FC<Props> = ({
     setTimeout(() => {
       setIsToggleAnimating(false);
     }, TOGGLE_ANIMATION_DURATION);
-    setIsOpen((current) => {
-      const updated = !current;
-      onToggleOpen?.(updated);
-      return updated;
-    });
-  }, [onToggleOpen]);
+  }, []);
 
   useLayoutEffect(() => {
     const wrapperBox = wrapperBoxRef.current;

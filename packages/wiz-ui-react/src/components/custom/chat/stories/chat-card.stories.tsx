@@ -86,6 +86,7 @@ const dummyStatusOptions: ComponentProps<typeof WizChatCard>["statusOptions"] =
   ];
 
 const templateArgs = {
+  isOpen: true,
   username: "マネーキャリアスタッフ",
   placeholder: "入力してください",
   messages: dummyMessages,
@@ -156,9 +157,11 @@ export const Playground: Story = {
     const [textValue, setTextValue] = useState("");
     const [haveNewMessage, setHaveNewMessage] = useState(true);
     const [status, setStatus] = useState<number | null>(null);
+    const [isOpen, setIsOpen] = useState(false);
     return (
       <WizChatCard
         messages={messages}
+        isOpen={isOpen}
         haveNewMessage={haveNewMessage}
         textValue={textValue}
         username="マネーキャリアスタッフ"
@@ -167,7 +170,10 @@ export const Playground: Story = {
         typingUsername="なんとかかんとか"
         status={status}
         statusOptions={dummyStatusOptions}
-        onToggleOpen={() => setHaveNewMessage(false)}
+        onToggle={() => {
+          setHaveNewMessage(false);
+          setIsOpen((current) => !current);
+        }}
         onChangeTextValue={(changed) => setTextValue(changed)}
         onChangeStatus={(changed) => setStatus(changed)}
         onSubmit={() => {
