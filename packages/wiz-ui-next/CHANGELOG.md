@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.28.1
+
+### Patch Changes
+
+- [#1262](https://github.com/Wizleap-Inc/wiz-ui/pull/1262) [`06f21fe0`](https://github.com/Wizleap-Inc/wiz-ui/commit/06f21fe0f979f3f6c7a86e51b45843d1001f4ff2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(PollGraph): 0%での表示を Vue 版と揃える
+
+- Updated dependencies [[`80a88bf3`](https://github.com/Wizleap-Inc/wiz-ui/commit/80a88bf39b4d378b4357e2531525561e574940b3)]:
+  - @wizleap-inc/wiz-ui-styles@0.29.3
+
 ## 2.28.0
 
 ### Minor Changes
