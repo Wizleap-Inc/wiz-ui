@@ -59,11 +59,7 @@ export const SearchPopupPanel: FC<Props> = ({
   );
 
   const handleClickButton = (value: number) => {
-    if (values.includes(value)) {
-      onChangeValues([]);
-    } else {
-      onChangeValues([value]);
-    }
+    onChangeValues([value]);
     closePopup();
   };
   const selectedStatus = (value: number) => {
@@ -141,13 +137,14 @@ export const SearchPopupPanel: FC<Props> = ({
                         <button
                           id={`${option.label}-${option.value}`}
                           style={{ width: "100%" }}
+                          type="button"
                           className={clsx(
                             styles.searchDropdownSingleSelectItemStyle,
                             styles.searchDropdownSingleSelectItemBgStyle[
                               selectedStatus(option.value)
                             ]
                           )}
-                          onClick={(e) => handleClickButton(option.value)}
+                          onClick={() => handleClickButton(option.value)}
                         >
                           <div className={styles.searchInputLabelStyle}>
                             {option.label}

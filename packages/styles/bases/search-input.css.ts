@@ -209,7 +209,8 @@ export const searchDropdownSingleSelectItemStyle = style({
   border: "none",
   backgroundColor: THEME.color.transparent,
   color: THEME.color.gray[800],
-  padding: `0.375rem ${THEME.spacing.xs2}`,
+  textAlign: "left",
+  padding: `0.375rem  ${THEME.spacing.xs}`,
   "@media": {
     "(any-hover: hover)": {
       ":hover": {

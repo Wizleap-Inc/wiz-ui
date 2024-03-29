@@ -87,12 +87,8 @@
             >
               <button
                 :id="`${item.label}_${item.value}`"
-                :class="[
-                  styles.searchDropdownSingleSelectItemStyle,
-                  styles.searchDropdownSingleSelectItemBgStyle[
-                    checkValues.includes(item.value) ? 'selected' : 'default'
-                  ],
-                ]"
+                type="button"
+                :class="[styles.searchDropdownSingleSelectItemStyle]"
                 width="100%"
                 gap="xs2"
                 @click="handleClickButton(item.value)"
@@ -283,11 +279,7 @@ const handleClickCheckbox = (value: number) => {
 };
 
 const handleClickButton = (value: number) => {
-  if (checkValues.value.includes(value)) {
-    checkValues.value = [];
-  } else {
-    checkValues.value = [value];
-  }
+  checkValues.value = [value];
   emit("toggle", false);
 };
 
