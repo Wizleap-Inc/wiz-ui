@@ -47,7 +47,8 @@
                 justify="between"
                 :class="[
                   styles.searchDropdownLabelStyle,
-                  selectedItem.includes(item.value) &&
+                  // selectedItem?.includes(item.value) &&
+                  isItemSelected(item.value) &&
                     styles.searchDropdownSelectingItemStyle,
                 ]"
                 @mouseover="onMouseover(item.value)"
@@ -90,7 +91,7 @@
             >
               <WizCheckBoxNew
                 :style="{ width: '100%' }"
-                :checked="checkValues.includes(item.value)"
+                :checked="checkValuesUnwrapRef.includes(item.value)"
                 :value="item.value"
                 :id="`${item.label}_${item.value}`"
                 @update:checked="handleClickCheckbox(item.value)"
@@ -114,9 +115,9 @@
           </div>
         </div>
         <WizSearchPopup
-          v-model="checkValues"
+          v-model="checkValuesUnwrapRef"
           :options="filteredOptions"
-          :selectedItem="selectedItem"
+          :selectedItem="selectedItems"
           :popupWidth="computedPopupWidth"
           :emptyMessage="emptyMessage"
         />
@@ -125,34 +126,33 @@
   </WizPopupContainer>
 </template>
 
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T extends CheckboxOption">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, onMounted, ref, watch } from "vue";
+import { UnwrapRef, computed, onMounted, ref, watch } from "vue";
 
 import {
   WizCheckBoxNew,
-  WizDivider,
   WizHStack,
+  WizIChevronRight,
   WizISearch,
-  WizIcon,
   WizPopup,
   WizPopupContainer,
-  WizSearchPopup,
-  WizTag,
 } from "@/components";
-import { TIcon, WizIChevronRight } from "@/components/icons";
+import { TIcon } from "@/components/icons";
 
-import { SearchInputOption } from "./types";
+import { CheckboxOption, SearchInputOption } from "./types";
+
+import { WizSearchPopup } from ".";
 
 defineOptions({
   name: ComponentName.SearchInput,
 });
 
-type Props<T> = {
+type Props<T extends CheckboxOption> = {
   options: SearchInputOption<T>[];
-  modelValue: number[];
+  modelValue: T[];
   name: string;
   placeholder?: string;
   disabled?: boolean;
@@ -172,21 +172,36 @@ const props = withDefaults(defineProps<Props<T>>(), {
   emptyMessage: "選択肢がありません。",
 });
 
-const emit = defineEmits<{
-  "update:modelValue": [value: number[]];
+type Emits = {
+  "update:modelValue": [value: T[]];
   toggle: [value: boolean];
   click: [];
-}>();
+};
+const emit = defineEmits<Emits>();
+// const emit = defineEmits<{
+//   "update:modelValue": [value: UnwrapRef<T>[]];
+//   toggle: [value: boolean];
+//   click: [];
+// }>();
 
-const checkValues = computed({
-  get: () => props.modelValue,
-  set: (value: number[]) => emit("update:modelValue", value),
+// const checkValues = computed({
+//   get: () => props.modelValue,
+//   set: (value: T[]) => emit("update:modelValue", value as T[]),
+// });
+
+const checkValuesUnwrapRef = computed({
+  get: () => props.modelValue as UnwrapRef<T>[],
+  set: (value: UnwrapRef<T>[]) => emit("update:modelValue", value as T[]),
 });
+
+// const checkedValues = ref<T[]>(props.modelValue);
+// const checkedValues = computed(() => props.modelValue);
 
 const searchValue = ref("");
 const filteredOptions = ref<SearchInputOption<T>[]>([]);
-const selectedItem = ref<number[]>([]);
-const activeItem = ref<number | null>();
+const selectedItem = ref<T[] | null>();
+// const selectedItem = computed(() => props.modelValue);
+const activeItem = ref<UnwrapRef<T> | null>();
 const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
 const isBorder = ref(false);
@@ -200,30 +215,37 @@ const computedInputWidth = computed(() =>
   props.expand ? "100%" : props.inputWidth
 );
 const computedPopupWidth = computed(() => props.popupWidth);
-const computedIconColor = computed(() => (value: number) => {
-  if (activeItem.value === value) {
-    return "green.800";
-  }
-  return "gray.500";
+const computedIconColor = computed(() => (value: UnwrapRef<T>) => {
+  const v = value as T;
+  return activeItem.value === v ? "green.800" : "gray.500";
 });
 
-const onMouseover = (value: number) => {
+const isItemSelected = (value: UnwrapRef<T>) =>
+  selectedItem.value?.includes(value as T);
+
+const onMouseover = (value: UnwrapRef<T>) => {
   isBorder.value = true;
   activeItem.value = value;
   activeItemIndex.value = filteredOptions.value.findIndex(
     (option) => option.value === value
   );
   selectedItem.value = [];
-  if (!selectedItem.value.includes(value)) {
-    selectedItem.value.push(value);
+  if (!selectedItem.value.includes(value as T)) {
+    selectedItem.value.push(value as T);
   }
 };
 
-const handleClickCheckbox = (value: number) => {
-  if (checkValues.value.includes(value)) {
-    checkValues.value = checkValues.value.filter((v) => v !== value);
+const selectedItems = computed(
+  () => (selectedItem.value ?? []) as UnwrapRef<T>[]
+);
+
+const handleClickCheckbox = (value: UnwrapRef<T>) => {
+  if (checkValuesUnwrapRef.value.includes(value)) {
+    checkValuesUnwrapRef.value = checkValuesUnwrapRef.value.filter(
+      (v) => v !== value
+    );
   } else {
-    checkValues.value = [...checkValues.value, value];
+    checkValuesUnwrapRef.value = [...checkValuesUnwrapRef.value, value];
   }
 };
 
@@ -252,15 +274,14 @@ watch(searchValue, () => {
   selectedItem.value = [];
   emit("toggle", true);
   if (searchValue.value.length) {
-    filteredOptions.value = filterOptions(searchBy(searchValue.value))(
-      props.options
-    );
+    const opts = filterOptions(searchBy(searchValue.value))(props.options);
+    filteredOptions.value = opts as UnwrapRef<SearchInputOption<T>[]>;
   } else {
-    filteredOptions.value = props.options;
+    filteredOptions.value = props.options as UnwrapRef<SearchInputOption<T>[]>;
   }
 });
 
 onMounted(() => {
-  filteredOptions.value = props.options;
+  filteredOptions.value = props.options as UnwrapRef<SearchInputOption<T>[]>;
 });
 </script>

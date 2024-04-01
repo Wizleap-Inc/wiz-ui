@@ -116,10 +116,10 @@
   </template>
 </template>
 
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T extends CheckboxOption">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
-import { PropType, computed, ref, watch } from "vue";
+import { UnwrapRef, computed, ref, watch } from "vue";
 
 import {
   WizCheckBoxNew,
@@ -131,41 +131,28 @@ import {
 } from "@/components";
 import { WizIChevronRight } from "@/components/icons";
 
-import { SearchInputOption } from "./types";
+import { CheckboxOption, SearchInputOption } from "./types";
 
 defineOptions({
   name: ComponentName.SearchPopup,
 });
 
-const props = defineProps({
-  options: {
-    type: Array as PropType<SearchInputOption<T>[]>,
-    required: true,
-  },
-  modelValue: {
-    type: Array as PropType<number[]>,
-    required: true,
-  },
-  selectedItem: {
-    type: Array as PropType<number[]>,
-    required: true,
-  },
-  popupWidth: {
-    type: String,
-    required: false,
-  },
-  emptyMessage: {
-    type: String,
-    required: true,
-  },
-});
+type Props<T extends CheckboxOption> = {
+  options: SearchInputOption<T>[];
+  modelValue: T[];
+  selectedItem: T[];
+  popupWidth?: string;
+  emptyMessage: string;
+};
+const props = defineProps<Props<T>>();
 
-const emit = defineEmits<{
-  (e: "update:modelValue", value: number[]): void;
-  (e: "mouseover", id: number, isChild: boolean): void;
-}>();
+type Emits<T extends CheckboxOption> = {
+  "update:modelValue": [value: T[]];
+  mouseover: [id: number, isChild: boolean];
+};
+const emit = defineEmits<Emits<T>>();
 
-const activeItem = ref<number | null>();
+const activeItem = ref<T | null>();
 const activeItemIndex = ref<number | null>(null);
 
 const ITEM_HEIGHT = 44;
@@ -185,7 +172,13 @@ const scrollAmount = ref<number>(0);
 const scrollItems = ref<SearchInputOption<T>[]>([]);
 const onScroll = (parentOrder: number) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
-  scrollItems.value = props.options[parentOrder].children ?? [];
+  // scrollItems.value = props.options[parentOrder].children ?? null;
+  scrollItems.value =
+    props.options[parentOrder].children !== undefined
+      ? (props.options[parentOrder].children as UnwrapRef<
+          SearchInputOption<T>[]
+        >)
+      : [];
 };
 
 watch(
@@ -201,8 +194,8 @@ watch(
       return scrollItems.slice(0, showFrom - 1);
     })();
     hiddenItems.forEach((item) => {
-      if (mutableSelectedItem.value.includes(item.value)) {
-        const index = mutableSelectedItem.value.indexOf(item.value);
+      if (mutableSelectedItem.value.includes(item.value as T)) {
+        const index = mutableSelectedItem.value.indexOf(item.value as T);
         mutableSelectedItem.value.splice(index, 1);
       }
     });
@@ -217,14 +210,11 @@ const isBorder = computed(() => (options: SearchInputOption<T>[]) => {
 
 const computedPopupWidth = computed(() => props.popupWidth);
 
-const computedIconColor = computed(() => (value: number) => {
-  if (activeItem.value === value) {
-    return "green.800";
-  }
-  return "gray.500";
+const computedIconColor = computed(() => (value: T) => {
+  return activeItem.value === value ? "green.800" : "gray.500";
 });
 
-const onMouseover = (value: number, options?: SearchInputOption<T>[]) => {
+const onMouseover = (value: T, options?: SearchInputOption<T>[]) => {
   scrollAmount.value = optionsRef.value?.[0].scrollTop || 0;
   activeItem.value = value;
   if (!options) return;
@@ -240,7 +230,7 @@ const onMouseover = (value: number, options?: SearchInputOption<T>[]) => {
   }
 };
 
-const handleClickCheckbox = (value: number) => {
+const handleClickCheckbox = (value: T) => {
   if (checkValues.value.includes(value)) {
     checkValues.value = checkValues.value.filter((v) => v !== value);
   } else {
