@@ -27,7 +27,7 @@
     >
       <WizHStack nowrap>
         <WizSearchPopup
-          v-model="checkValuesUnwrapRef"
+          v-model="checkValues"
           :options="filteredOptions"
           :selectedItem="selectedItems"
           :popupWidth="computedPopupWidth"
@@ -42,7 +42,7 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { UnwrapRef, computed, ref } from "vue";
+import { computed, ref } from "vue";
 
 import {
   WizHStack,
@@ -89,9 +89,9 @@ type Emits = {
 };
 const emit = defineEmits<Emits>();
 
-const checkValuesUnwrapRef = computed({
-  get: () => props.modelValue as UnwrapRef<T>[],
-  set: (value: UnwrapRef<T>[]) => emit("update:modelValue", value as T[]),
+const checkValues = computed({
+  get: () => props.modelValue,
+  set: (value: T[]) => emit("update:modelValue", value),
 });
 
 const searchValue = ref("");
@@ -107,9 +107,7 @@ const computedInputWidth = computed(() =>
 );
 const computedPopupWidth = computed(() => props.popupWidth);
 
-const selectedItems = computed(
-  () => (selectedItem.value ?? []) as UnwrapRef<T>[]
-);
+const selectedItems = computed(() => selectedItem.value ?? []);
 
 const filterOptions =
   (match: (label: string) => boolean) =>
@@ -135,8 +133,8 @@ const searchBy = (keyword: string) => (str: string) => str.includes(keyword);
 const filteredOptions = computed(() => {
   if (searchValue.value.length) {
     const opts = filterOptions(searchBy(searchValue.value))(props.options);
-    return opts as UnwrapRef<SearchInputOption<T>[]>;
+    return opts;
   }
-  return props.options as UnwrapRef<SearchInputOption<T>[]>;
+  return props.options;
 });
 </script>
