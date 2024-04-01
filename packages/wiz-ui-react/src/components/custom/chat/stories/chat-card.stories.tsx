@@ -141,6 +141,7 @@ export const Status: Story = {
 export const Closed: Story = {
   args: {
     ...templateArgs,
+    isOpen: false,
   },
 };
 
@@ -148,6 +149,7 @@ export const HaveNewMessage: Story = {
   args: {
     ...templateArgs,
     haveNewMessage: true,
+    isOpen: false,
   },
 };
 
