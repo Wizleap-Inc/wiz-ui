@@ -25,95 +25,7 @@
       @onClose="emit('toggle', false)"
       :isDirectionFixed="isDirectionFixed"
     >
-      <WizHStack>
-        <div
-          v-if="filteredOptions.length"
-          :class="[
-            styles.searchBlockStyle,
-            styles.searchBlockBorderRadiusStyle,
-            isBorder && styles.searchBlockBorderStyle,
-          ]"
-          :style="{ width: computedPopupWidth }"
-        >
-          <div
-            v-for="(item, key) in filteredOptions"
-            :key="`${item.label}_${item.value}_${key}`"
-          >
-            <!-- Dropdown -->
-            <div v-if="item.children" :class="styles.searchDropdownItemStyle">
-              <WizHStack
-                py="xs2"
-                align="center"
-                justify="between"
-                :class="[
-                  styles.searchDropdownLabelStyle,
-                  // selectedItem?.includes(item.value) &&
-                  isItemSelected(item.value) &&
-                    styles.searchDropdownSelectingItemStyle,
-                ]"
-                @mouseover="onMouseover(item.value)"
-                @mouseout="activeItem = null"
-              >
-                <WizHStack
-                  width="100%"
-                  justify="between"
-                  align="center"
-                  nowrap
-                  gap="xs2"
-                >
-                  <div :class="styles.searchInputLabelStyle">
-                    {{ item.label }}
-                  </div>
-                  <WizHStack gap="xs" nowrap>
-                    <template v-if="item.tag">
-                      <WizTag
-                        :label="item.tag.label"
-                        variant="white"
-                        width="20px"
-                        font-size="xs2"
-                      />
-                    </template>
-                    <WizIcon
-                      size="xl2"
-                      :icon="WizIChevronRight"
-                      :color="computedIconColor(item.value)"
-                    />
-                  </WizHStack>
-                </WizHStack>
-              </WizHStack>
-            </div>
-            <!-- Checkbox -->
-            <div
-              v-else
-              :class="styles.searchDropdownCheckboxItemStyle"
-              @mouseover="activeItem = item.value"
-              @mouseout="activeItem = null"
-            >
-              <WizCheckBoxNew
-                :style="{ width: '100%' }"
-                :checked="checkValuesUnwrapRef.includes(item.value)"
-                :value="item.value"
-                :id="`${item.label}_${item.value}`"
-                @update:checked="handleClickCheckbox(item.value)"
-              >
-                <WizHStack width="100%" align="center" nowrap gap="xs2">
-                  <div :class="styles.searchInputLabelStyle">
-                    {{ item.label }}
-                  </div>
-                  <template v-if="item.tag">
-                    <WizTag
-                      :label="item.tag.label"
-                      variant="white"
-                      width="20px"
-                      font-size="xs2"
-                    />
-                  </template>
-                </WizHStack>
-              </WizCheckBoxNew>
-            </div>
-            <WizDivider color="gray.300" />
-          </div>
-        </div>
+      <WizHStack nowrap>
         <WizSearchPopup
           v-model="checkValuesUnwrapRef"
           :options="filteredOptions"
@@ -130,12 +42,10 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { UnwrapRef, computed, onMounted, ref, watch } from "vue";
+import { UnwrapRef, computed, ref } from "vue";
 
 import {
-  WizCheckBoxNew,
   WizHStack,
-  WizIChevronRight,
   WizISearch,
   WizPopup,
   WizPopupContainer,
@@ -178,76 +88,28 @@ type Emits = {
   click: [];
 };
 const emit = defineEmits<Emits>();
-// const emit = defineEmits<{
-//   "update:modelValue": [value: UnwrapRef<T>[]];
-//   toggle: [value: boolean];
-//   click: [];
-// }>();
-
-// const checkValues = computed({
-//   get: () => props.modelValue,
-//   set: (value: T[]) => emit("update:modelValue", value as T[]),
-// });
 
 const checkValuesUnwrapRef = computed({
   get: () => props.modelValue as UnwrapRef<T>[],
   set: (value: UnwrapRef<T>[]) => emit("update:modelValue", value as T[]),
 });
 
-// const checkedValues = ref<T[]>(props.modelValue);
-// const checkedValues = computed(() => props.modelValue);
-
 const searchValue = ref("");
-const filteredOptions = ref<SearchInputOption<T>[]>([]);
 const selectedItem = ref<T[] | null>();
-// const selectedItem = computed(() => props.modelValue);
-const activeItem = ref<UnwrapRef<T> | null>();
-const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
-const isBorder = ref(false);
 
 const state = computed(() => {
-  if (hasFocus.value) return "active";
-  return "default";
+  return hasFocus.value ? "active" : "default";
 });
 
 const computedInputWidth = computed(() =>
   props.expand ? "100%" : props.inputWidth
 );
 const computedPopupWidth = computed(() => props.popupWidth);
-const computedIconColor = computed(() => (value: UnwrapRef<T>) => {
-  const v = value as T;
-  return activeItem.value === v ? "green.800" : "gray.500";
-});
-
-const isItemSelected = (value: UnwrapRef<T>) =>
-  selectedItem.value?.includes(value as T);
-
-const onMouseover = (value: UnwrapRef<T>) => {
-  isBorder.value = true;
-  activeItem.value = value;
-  activeItemIndex.value = filteredOptions.value.findIndex(
-    (option) => option.value === value
-  );
-  selectedItem.value = [];
-  if (!selectedItem.value.includes(value as T)) {
-    selectedItem.value.push(value as T);
-  }
-};
 
 const selectedItems = computed(
   () => (selectedItem.value ?? []) as UnwrapRef<T>[]
 );
-
-const handleClickCheckbox = (value: UnwrapRef<T>) => {
-  if (checkValuesUnwrapRef.value.includes(value)) {
-    checkValuesUnwrapRef.value = checkValuesUnwrapRef.value.filter(
-      (v) => v !== value
-    );
-  } else {
-    checkValuesUnwrapRef.value = [...checkValuesUnwrapRef.value, value];
-  }
-};
 
 const filterOptions =
   (match: (label: string) => boolean) =>
@@ -270,18 +132,11 @@ const filterOptions =
 
 const searchBy = (keyword: string) => (str: string) => str.includes(keyword);
 
-watch(searchValue, () => {
-  selectedItem.value = [];
-  emit("toggle", true);
+const filteredOptions = computed(() => {
   if (searchValue.value.length) {
     const opts = filterOptions(searchBy(searchValue.value))(props.options);
-    filteredOptions.value = opts as UnwrapRef<SearchInputOption<T>[]>;
-  } else {
-    filteredOptions.value = props.options as UnwrapRef<SearchInputOption<T>[]>;
+    return opts as UnwrapRef<SearchInputOption<T>[]>;
   }
-});
-
-onMounted(() => {
-  filteredOptions.value = props.options as UnwrapRef<SearchInputOption<T>[]>;
+  return props.options as UnwrapRef<SearchInputOption<T>[]>;
 });
 </script>

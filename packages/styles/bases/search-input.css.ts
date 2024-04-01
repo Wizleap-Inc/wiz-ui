@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -45,14 +45,6 @@ export const searchInputIconStyle = style({
   fill: THEME.color.gray["400"],
 });
 
-export const searchContainerStyle = style({
-  position: "absolute",
-});
-
-export const searchPopupStyle = style({
-  display: "flex",
-});
-
 export const searchBlockStyle = style({
   backgroundColor: THEME.color.white[800],
   paddingRight: THEME.spacing.xs,
@@ -76,35 +68,9 @@ export const searchBlockBorderRadiusStyle = style({
   borderRadius: `${THEME.spacing.xs2} ${THEME.spacing.no} ${THEME.spacing.no} ${THEME.spacing.xs2}`,
 });
 
-export const searchPopupBlockStyle = style({
-  backgroundColor: THEME.color.white[800],
-  padding: `${THEME.spacing.no} ${THEME.spacing.xs}`,
-  height: "25rem",
-  overflowY: "auto",
-  "::-webkit-scrollbar": {
-    width: THEME.spacing.xs2,
-  },
-  "::-webkit-scrollbar-thumb": {
-    backgroundColor: THEME.color.gray[400],
-    borderRadius: THEME.spacing.xs,
-  },
-});
-
-export const searchPopupBlockBorderRightStyle = style({
-  borderRight: `${borderWidth} solid ${THEME.color.gray["400"]}`,
-});
-
-export const searchPopupBlockBorderRadiusStyle = style({
-  borderRadius: `${THEME.spacing.no} ${THEME.spacing.xs2} ${THEME.spacing.xs2} ${THEME.spacing.no}`,
-});
-
 export const searchDropdownItemStyle = style({
   // FIXME: デザインシステムを使った値で再定義する
   padding: `0.375rem ${THEME.spacing.no}`,
-});
-
-export const searchPopupDropdownItemStyle = style({
-  padding: `${THEME.spacing.sm} ${THEME.spacing.no}`,
 });
 
 export const searchDropdownLabelStyle = style({
@@ -146,55 +112,6 @@ export const searchDropdownCheckboxItemStyle = style({
   padding: `${THEME.spacing.sm} ${THEME.spacing.xs2}`,
 });
 
-export const searchCheckboxInputStyle = style({
-  display: "none",
-});
-
-export const searchCheckboxLabelStyle = style({
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
-  color: THEME.color.gray["800"],
-  lineHeight: THEME.fontSize.xl3,
-  fontSize: THEME.fontSize.sm,
-  gap: THEME.spacing.sm,
-  cursor: "pointer",
-  ":before": {
-    content: "",
-    border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
-    borderRadius: `calc(${THEME.spacing.xs2} / 2)`,
-    width: THEME.spacing.md,
-    height: THEME.spacing.md,
-    boxSizing: "border-box",
-    display: "inline-block",
-    flexShrink: 0,
-  },
-});
-
-export const searchCheckboxLabelCheckedStyle = style({
-  ":before": {
-    border: `${borderWidth} solid ${THEME.color.green["800"]}`,
-  },
-});
-
-export const searchCheckboxIconStyle = style({
-  position: "absolute",
-  top: "50%",
-  transform: "translateY(-50%)",
-  left: borderWidth,
-  fill: THEME.color.green["800"],
-});
-
-export const searchCheckboxBlockCheckedStyle = style({
-  color: THEME.color.green["800"],
-});
-
 export const searchInputLabelStyle = style({
-  width: "100%",
-});
-
-export const searchInputCheckboxStyle = style({});
-// FIXME: WizCheckBoxNewで置換する際に消す。
-globalStyle(`${searchInputCheckboxStyle} > div`, {
   width: "100%",
 });
