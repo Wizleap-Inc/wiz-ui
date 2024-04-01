@@ -79,7 +79,7 @@ import {
   navigationItemTextStyle,
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
-import { PropType, computed, ref } from "vue";
+import { computed, ref } from "vue";
 import { RouterLinkProps } from "vue-router";
 
 import {
@@ -96,46 +96,22 @@ defineOptions({
   name: ComponentName.NavigationItem,
 });
 
-const props = defineProps({
-  icon: {
-    type: Object as PropType<TIcon>,
-    required: true,
-  },
-  label: {
-    type: String,
-    required: true,
-  },
-  active: {
-    type: Boolean,
-    required: true,
-  },
-  to: {
-    type: [Object, String] as PropType<RouterLinkProps["to"]>,
-    required: true,
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  tooltipText: {
-    type: String,
-    required: false,
-    default: null,
-  },
-  lockingPopup: {
-    type: Boolean,
-    required: false,
-    default: true,
-  },
-  buttons: {
-    type: Array as PropType<ButtonGroupItem<T>[]>,
-    required: false,
-  },
-  isOpen: {
-    type: Boolean,
-    required: false,
-  },
+type Props<T> = {
+  icon: TIcon;
+  label: string;
+  active: boolean;
+  to: RouterLinkProps["to"];
+  disabled?: boolean;
+  tooltipText?: string;
+  lockingPopup?: boolean;
+  buttons?: ButtonGroupItem<T>[];
+  isOpen?: boolean;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  disabled: false,
+  lockingPopup: true,
+  isOpen: false,
 });
 
 const isExternalLink = computed(
