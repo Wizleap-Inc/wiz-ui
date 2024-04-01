@@ -100,11 +100,12 @@ const ChatCard: FC<Props> = ({
 
   const [isToggleAnimating, setIsToggleAnimating] = useState(false);
   const handleClickToggleButton = useCallback(() => {
+    onToggle();
     setIsToggleAnimating(true);
     setTimeout(() => {
       setIsToggleAnimating(false);
     }, TOGGLE_ANIMATION_DURATION);
-  }, []);
+  }, [onToggle]);
 
   useLayoutEffect(() => {
     const wrapperBox = wrapperBoxRef.current;
