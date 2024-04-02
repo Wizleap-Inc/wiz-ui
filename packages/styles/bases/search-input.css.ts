@@ -231,3 +231,61 @@ export const searchDropdownSingleSelectItemBgStyle = styleVariants({
     color: THEME.color.green[800],
   },
 });
+
+export const searchInputInnerBoxStyle = style({
+  height: "100%",
+  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
+  fontSize: THEME.fontSize.sm,
+  color: THEME.color.gray["500"],
+  width: "100%",
+  boxSizing: "border-box",
+  display: "inline-block",
+});
+
+export const searchInputSelectedItemStyle = style({
+  height: "100%",
+  fontSize: THEME.fontSize.sm,
+  color: THEME.color.gray["500"],
+  width: "100%",
+  boxSizing: "border-box",
+  display: "inline-block",
+});
+
+export const searchInputInnerBoxSelectedItemStyle = style({
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+
+  display: "flex",
+  flexDirection: "row",
+  float: "left",
+  alignItems: "center",
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
+  gap: THEME.spacing.xs,
+
+  background: THEME.color.gray["300"],
+  border: `1px solid ${THEME.color.gray["400"]}`,
+  borderRadius: THEME.spacing.xs2,
+
+  color: THEME.color.gray["800"],
+});
+
+export const searchInputInnerBoxSelectedLabelStyle = style({
+  lineHeight: THEME.fontSize.lg,
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+  userSelect: "none",
+});
+
+export const searchInputInnerBoxCloseStyle = style({
+  fill: THEME.color.gray["500"],
+  fontSize: THEME.spacing.xs,
+});
+
+export const searchInputInnerBoxCloseButtonStyle = style({
+  border: "none",
+  background: "none",
+  padding: 0,
+  cursor: "pointer",
+});

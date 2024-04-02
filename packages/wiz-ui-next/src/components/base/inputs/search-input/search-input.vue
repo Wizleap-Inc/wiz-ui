@@ -1,6 +1,42 @@
 <template>
   <WizPopupContainer :expand="expand">
-    <div :class="styles.searchStyle">
+    <div
+      v-if="showSelectedItem && checkValues.length > 0"
+      :class="[
+        styles.searchInputSelectedItemStyle,
+        disabled && styles.searchInputDisabledStyle,
+        inputBorderStyle[state],
+      ]"
+      :style="{ width: computedInputWidth }"
+    >
+      <div :class="styles.searchInputInnerBoxStyle">
+        <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
+          <div v-for="item in checkValues" :key="item">
+            <span :class="styles.searchInputInnerBoxSelectedItemStyle">
+              <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
+                {{ item }}
+              </span>
+              <button
+                type="button"
+                @click="onClear(item)"
+                @keypress.enter="onClear(item)"
+                :class="styles.searchInputInnerBoxCloseButtonStyle"
+                :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+              >
+                <WizIcon
+                  :icon="WizIClose"
+                  :class="styles.searchInputInnerBoxCloseStyle"
+                  :size="'xs'"
+                  :color="'gray.700'"
+                />
+              </button>
+            </span>
+          </div>
+        </WizHStack>
+      </div>
+    </div>
+
+    <div v-else :class="styles.searchStyle">
       <input
         type="text"
         :class="[
@@ -139,7 +175,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, onMounted, ref, watch } from "vue";
@@ -155,7 +191,7 @@ import {
   WizSearchPopup,
   WizTag,
 } from "@/components";
-import { TIcon, WizIChevronRight } from "@/components/icons";
+import { TIcon, WizIChevronRight, WizIClose } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -220,6 +256,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: "選択肢がありません。",
+  },
+  showSelectedItem: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
@@ -315,6 +356,12 @@ watch(searchValue, () => {
     filteredOptions.value = props.options;
   }
 });
+
+const onClear = (value: number) => {
+  checkValues.value = checkValues.value.filter((v) => v !== value);
+  hasFocus.value = true;
+  emit("toggle", true);
+};
 
 onMounted(() => {
   filteredOptions.value = props.options;

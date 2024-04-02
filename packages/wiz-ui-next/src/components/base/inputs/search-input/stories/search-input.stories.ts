@@ -168,3 +168,12 @@ EmptyMessage.args = {
   popupWidth: "25rem",
   options: emptyMessageOptions,
 };
+
+export const ShowSelectedItemTag = Template(true).bind({});
+ShowSelectedItemTag.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
+  inputWidth: "15rem",
+  options: simpleOption,
+  showSelectedItem: true,
+};
