@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.54.0
+
+### Minor Changes
+
+- [#1266](https://github.com/Wizleap-Inc/wiz-ui/pull/1266) [`75eeecde`](https://github.com/Wizleap-Inc/wiz-ui/commit/75eeecdec6559df41af8f1080121db4da53f4377) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(chat-card): 開閉状態を指定可能にする
+
 ## 0.53.2
 
 ### Patch Changes
