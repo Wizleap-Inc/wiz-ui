@@ -1,40 +1,36 @@
 <template>
-  <WizStack
-    :direction="direction"
-    :align="direction === 'horizontal' ? 'center' : undefined"
+  <WizVStack
     :style="{
-      paddingBottom: `calc(${THEME.spacing.xs} + ${THEME.fontSize.sm})`,
+      paddingBottom: error === undefined ? THEME.fontSize.sm : undefined,
     }"
   >
-    <WizHStack :width="labelWidth" align="center" gap="xs2" py="xs2">
-      <WizText
-        as="label"
-        :htmlFor="htmlFor"
-        :color="labelColor"
-        :font-size="labelFontSize"
-      >
-        {{ label }}
-      </WizText>
-      <WizTag font-size="xs2" label="必須" v-if="required" />
-    </WizHStack>
-    <WizVStack position="relative">
+    <WizStack
+      :direction="direction"
+      :align="direction === 'horizontal' ? 'center' : undefined"
+      nowrap
+    >
+      <WizHStack :width="labelWidth" align="center" gap="xs2" py="xs2">
+        <WizText
+          as="label"
+          :htmlFor="htmlFor"
+          :color="labelColor"
+          :font-size="labelFontSize"
+        >
+          {{ label }}
+        </WizText>
+        <WizTag font-size="xs2" label="必須" v-if="required" />
+      </WizHStack>
       <slot />
-      <WizText
-        font-size="xs2"
-        line-height="sm"
-        color="red.800"
-        :style="{
-          position: 'absolute',
-          bottom: '0',
-          transform: 'translateY(100%)',
-        }"
-      >
-        <div :style="{ padding: `${THEME.spacing.xs2} 0` }">
-          {{ error }}
-        </div>
-      </WizText>
-    </WizVStack>
-  </WizStack>
+    </WizStack>
+    <WizText
+      font-size="xs2"
+      line-height="sm"
+      color="red.800"
+      :style="{ marginInlineStart: errorLeft }"
+    >
+      {{ error }}
+    </WizText>
+  </WizVStack>
 </template>
 
 <script setup lang="ts">
@@ -82,6 +78,10 @@ const fromGroup = inject(formGroupKey);
 const labelWidth = computed(() => fromGroup?.labelWidth.value || "8rem");
 const labelColor = computed(() => fromGroup?.labelColor.value || "gray.900");
 const labelFontSize = computed(() => fromGroup?.labelFontSize.value || "md");
+
+const errorLeft = computed(() =>
+  props.direction === "horizontal" ? labelWidth.value : "0"
+);
 
 // Form Control
 const provider = useFormControlProvider();
