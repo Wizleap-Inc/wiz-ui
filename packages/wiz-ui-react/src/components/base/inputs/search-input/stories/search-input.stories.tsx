@@ -144,3 +144,14 @@ export const EmptyMessage: Story = {
     userEvent.hover(screen.getByText("テスト会社1"));
   },
 };
+
+export const ShowSelectedItemTag: Story = {
+  ...Template,
+  args: {
+    options: normalOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    singleSelect: true,
+    inputWidth: "15rem",
+    showSelectedItem: true,
+  },
+};
