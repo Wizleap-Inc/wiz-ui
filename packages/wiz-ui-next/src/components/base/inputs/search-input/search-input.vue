@@ -20,6 +20,7 @@
                 type="button"
                 @click="onClear(item)"
                 @keypress.enter="onClear(item)"
+                @keydown="(e) => onBackspace(item, e)"
                 :class="styles.searchInputInnerBoxCloseButtonStyle"
                 :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
               >
@@ -361,6 +362,12 @@ const onClear = (value: number) => {
   checkValues.value = checkValues.value.filter((v) => v !== value);
   hasFocus.value = true;
   emit("toggle", true);
+};
+
+const onBackspace = (n: number, event: KeyboardEvent) => {
+  if (event.key === "Backspace") {
+    onClear(n);
+  }
 };
 
 onMounted(() => {

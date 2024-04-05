@@ -2,7 +2,7 @@ import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, useMemo, useRef, useState } from "react";
+import { FC, KeyboardEventHandler, useMemo, useRef, useState } from "react";
 
 import {
   TIcon,
@@ -90,6 +90,14 @@ const SearchInput: FC<Props> = ({
     onChangeValues(newValues);
   };
 
+  const handleKeyDown = (value: number): KeyboardEventHandler => {
+    return (e) => {
+      if (e.key === "Backspace") {
+        onClear(value);
+      }
+    };
+  };
+
   return (
     <div
       className={clsx(className, styles.searchStyle)}
@@ -120,7 +128,7 @@ const SearchInput: FC<Props> = ({
                     className={styles.searchInputInnerBoxCloseButtonStyle}
                     aria-label={ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}
                     onClick={() => onClear(value)}
-                    onKeyDown={() => onClear(value)}
+                    onKeyDown={handleKeyDown(value)}
                   >
                     <WizIcon icon={WizIClose} size="xs" color="gray.700" />
                   </button>
