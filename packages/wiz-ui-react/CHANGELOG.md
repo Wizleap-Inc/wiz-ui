@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.55.0
+
+### Minor Changes
+
+- [#1275](https://github.com/Wizleap-Inc/wiz-ui/pull/1275) [`2fc87c27`](https://github.com/Wizleap-Inc/wiz-ui/commit/2fc87c277cb125ff6d6860018f073d8d0ca46c5f) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(nav-item): 外部リンクを新しいタブで開く
+
 ## 0.54.0
 
 ### Minor Changes
