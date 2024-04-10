@@ -20,8 +20,8 @@ type Story = StoryObj<typeof WizDateRangePicker>;
 export const Default: Story = {
   args: {
     dateRange: {
-      start: null,
-      end: null,
+      start: new Date("2021-01-01"),
+      end: new Date("2021-01-31"),
     },
   },
   play: async ({ canvasElement }) => {
@@ -89,8 +89,8 @@ export const Expand: Story = {
 export const SelectBoxOptions: Story = {
   args: {
     dateRange: {
-      start: null,
-      end: null,
+      start: new Date("2021-01-01"),
+      end: new Date("2021-01-31"),
     },
     selectBoxOptions: [
       { label: "選択肢1", value: "1" },
