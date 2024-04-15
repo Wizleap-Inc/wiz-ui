@@ -158,6 +158,15 @@ importers:
 
   examples/react:
     dependencies:
+      '@wizleap-inc/wiz-ui-constants':
+        specifier: 'workspace:'
+        version: link:../../packages/constants
+      '@wizleap-inc/wiz-ui-next':
+        specifier: 'workspace:'
+        version: link:../../packages/wiz-ui-next
+      '@wizleap-inc/wiz-ui-utils':
+        specifier: 'workspace:'
+        version: link:../../packages/utils
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -169,7 +178,7 @@ importers:
         specifier: ^18.0.31
         version: 18.2.78
       '@types/react-dom':
-        specifier: ^18.2.4
+        specifier: ^18.2.25
         version: 18.2.25
       '@vitejs/plugin-react':
         specifier: ^3.1.0
