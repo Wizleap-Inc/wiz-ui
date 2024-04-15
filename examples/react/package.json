@@ -11,9 +11,10 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@wizleap-inc/wiz-ui-next": "workspace:",
-    "@wizleap-inc/wiz-ui-utils": "workspace:",
-    "@wizleap-inc/wiz-ui-constants": "workspace:"
+    "react-router-dom": "^6.22.3",
+    "@wizleap-inc/wiz-ui-constants": "workspace:",
+    "@wizleap-inc/wiz-ui-react": "workspace:",
+    "@wizleap-inc/wiz-ui-utils": "workspace:"
   },
   "devDependencies": {
     "@types/react": "^18.0.31",
