@@ -40,16 +40,19 @@ import { default as WizIDownload } from "./download.vue";
 import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
+import { default as WizIEmergencyHome } from "./emergency-home.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIFamilyHome } from "./family-home.vue";
+import { default as WizIFeedback } from "./feedback.vue";
 import { default as WizIForwardToInbox } from "./forward-to-inbox.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
 import { default as WizIHome } from "./home.vue";
+import { default as WizIHourglassTop } from "./hourglass-top.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
@@ -57,6 +60,7 @@ import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
 import { default as WizILogin } from "./login.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
+import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVert } from "./more-vert.vue";
@@ -127,16 +131,19 @@ export type TIcon =
   | typeof WizIDraft
   | typeof WizIDrafts
   | typeof WizIEditNote
+  | typeof WizIEmergencyHome
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
   | typeof WizIEye
   | typeof WizIFamilyHome
+  | typeof WizIFeedback
   | typeof WizIForwardToInbox
   | typeof WizIGroups
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
+  | typeof WizIHourglassTop
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
@@ -144,6 +151,7 @@ export type TIcon =
   | typeof WizILocationOn
   | typeof WizILogin
   | typeof WizIManageAccounts
+  | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMonitoring
   | typeof WizIMoreVert
@@ -214,16 +222,19 @@ export {
   WizIDraft,
   WizIDrafts,
   WizIEditNote,
+  WizIEmergencyHome,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,
   WizIEye,
   WizIFamilyHome,
+  WizIFeedback,
   WizIForwardToInbox,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
+  WizIHourglassTop,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
@@ -231,6 +242,7 @@ export {
   WizILocationOn,
   WizILogin,
   WizIManageAccounts,
+  WizIMenuOpen,
   WizIMenu,
   WizIMonitoring,
   WizIMoreVert,
