@@ -9,7 +9,7 @@
       :align="direction === 'horizontal' ? 'center' : undefined"
       nowrap
     >
-      <WizHStack :width="labelWidth" align="center" gap="xs2" py="xs2">
+      <WizHStack :width="labelWidth" align="center" gap="xs2">
         <WizText
           as="label"
           :htmlFor="htmlFor"
