@@ -102,7 +102,7 @@ type Props<T> = {
   active: boolean;
   to: RouterLinkProps["to"];
   disabled?: boolean;
-  tooltipText?: string;
+  tooltipText?: string | null;
   lockingPopup?: boolean;
   buttons?: ButtonGroupItem<T>[];
   isOpen?: boolean;
@@ -112,6 +112,7 @@ const props = withDefaults(defineProps<Props<T>>(), {
   disabled: false,
   lockingPopup: true,
   isOpen: false,
+  tooltipText: null,
 });
 
 const isExternalLink = computed(
