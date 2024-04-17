@@ -283,10 +283,6 @@ const handleClickButton = (value: number) => {
   emit("toggle", false);
 };
 
-const selectedStatus = (value: number) => {
-  return checkValues.value.includes(value) ? "selected" : "default";
-};
-
 const filterOptions =
   (match: (label: string) => boolean) =>
   (options: SearchInputOption[]): SearchInputOption[] =>
