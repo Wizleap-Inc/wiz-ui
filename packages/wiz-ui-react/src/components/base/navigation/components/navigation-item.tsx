@@ -162,7 +162,7 @@ const NavigationItem = <T extends ElementType>({
                 )}
                 style={{ display: "flex", alignItems: "center" }}
               >
-                <Icon />
+                <WizIcon icon={Icon} color="inherit" />
               </div>
               <div
                 className={clsx(
@@ -173,30 +173,33 @@ const NavigationItem = <T extends ElementType>({
                 {label}
               </div>
             </WizHStack>
-            {existPopup && <WizIcon icon={WizIChevronRight} />}
+            {existPopup && (
+              <WizIcon
+                icon={WizIChevronRight}
+                color={!disabled && active ? "green.800" : "gray.700"}
+              />
+            )}
           </WizHStack>
         </LinkComponent>
       </div>
       {existPopup && (
-        <div>
-          <WizPopup
-            anchorElement={popupAnchor}
-            isOpen={isPopupOpen}
-            onClose={handleClosePopup}
-            direction="rightTop"
-            layer="popover"
-            isDirectionFixed
-          >
-            <div className={navigationPopupContainerStyle}>
-              <WizPopupButtonGroup
-                options={popupButtons}
-                p="xs"
-                borderRadius="xs2"
-                disabled={disabled}
-              />
-            </div>
-          </WizPopup>
-        </div>
+        <WizPopup
+          anchorElement={popupAnchor}
+          isOpen={isPopupOpen}
+          onClose={handleClosePopup}
+          direction="rightTop"
+          layer="popover"
+          isDirectionFixed
+        >
+          <div className={navigationPopupContainerStyle}>
+            <WizPopupButtonGroup
+              options={popupButtons}
+              p="xs"
+              borderRadius="xs2"
+              disabled={disabled}
+            />
+          </div>
+        </WizPopup>
       )}
     </>
   );
