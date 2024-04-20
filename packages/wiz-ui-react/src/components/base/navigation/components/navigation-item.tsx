@@ -13,7 +13,15 @@ import {
 import clsx from "clsx";
 import { ComponentProps, ElementType, useCallback, useRef } from "react";
 
-import { TIcon, WizPopup, WizPopupButtonGroup, WizTooltip } from "@/components";
+import {
+  TIcon,
+  WizHStack,
+  WizIChevronRight,
+  WizIcon,
+  WizPopup,
+  WizPopupButtonGroup,
+  WizTooltip,
+} from "@/components";
 import { BaseProps } from "@/types";
 
 import { ButtonGroupItem } from "../../popup-button-group/types";
@@ -127,25 +135,30 @@ const NavigationItem = <T extends ElementType>({
               : active && navigationItemActiveStyle
           )}
         >
-          <div
-            className={clsx(
-              navigationItemIconStyle,
-              disabled
-                ? navigationItemIconDisabledStyle
-                : active && navigationItemIconActiveStyle
-            )}
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <Icon />
-          </div>
-          <div
-            className={clsx(
-              navigationItemTextStyle,
-              !disabled && active && navigationItemTextActiveStyle
-            )}
-          >
-            {label}
-          </div>
+          <WizHStack justify="between" align="center" width="100%" nowrap>
+            <WizHStack nowrap gap="sm">
+              <div
+                className={clsx(
+                  navigationItemIconStyle,
+                  disabled
+                    ? navigationItemIconDisabledStyle
+                    : active && navigationItemIconActiveStyle
+                )}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Icon />
+              </div>
+              <div
+                className={clsx(
+                  navigationItemTextStyle,
+                  !disabled && active && navigationItemTextActiveStyle
+                )}
+              >
+                {label}
+              </div>
+            </WizHStack>
+            {existPopup && <WizIcon icon={WizIChevronRight} />}
+          </WizHStack>
         </LinkComponent>
       </div>
       {existPopup && (
