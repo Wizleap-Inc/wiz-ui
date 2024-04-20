@@ -16,7 +16,7 @@
           :aria-label="label"
         >
           <WizHStack justify="between" align="center" width="100%" nowrap>
-            <WizHStack nowrap gap="sm">
+            <WizHStack nowrap gap="sm" align="center">
               <component
                 :is="icon"
                 :class="[
