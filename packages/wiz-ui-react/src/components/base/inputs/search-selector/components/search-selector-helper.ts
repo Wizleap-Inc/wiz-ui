@@ -37,15 +37,6 @@ export function filterOptions(
   const minLevenshteinDistance = Math.min(
     ...Object.values(levenshteinDistanceMap)
   );
-
-  options.map((option) => {
-    console.log(
-      searchText,
-      option.label,
-      levenshteinDistanceMap[option.label],
-      option.label.includes(searchText)
-    );
-  });
   return (
     options
       // 類似度が閾値以下 or 全て閾値を上回る場合は部分一致
