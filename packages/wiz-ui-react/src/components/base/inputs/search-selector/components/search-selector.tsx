@@ -44,9 +44,11 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
+  searchText: string;
   onChangeValues: (values: number[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
+  setSearchText: (text: string) => void;
 };
 
 const SearchSelector: FC<Props> = ({
@@ -64,11 +66,12 @@ const SearchSelector: FC<Props> = ({
   isDirectionFixed = false,
   showExLabel = false,
   dropdownMaxHeight,
+  searchText,
   onChangeValues,
   onCreate,
   onInputSearchText,
+  setSearchText,
 }) => {
-  const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -133,7 +136,10 @@ const SearchSelector: FC<Props> = ({
               icon: WizIAddCircle,
               iconDefaultColor: "green.800",
               value: -1,
-              onClick: () => onCreate?.(searchText),
+              onClick: () => {
+                onCreate?.(searchText);
+                setSearchText("");
+              },
             },
           },
           ...buttonGroupOptions,
@@ -146,6 +152,7 @@ const SearchSelector: FC<Props> = ({
     onCreate,
     options,
     searchText,
+    setSearchText,
     values,
   ]);
 
