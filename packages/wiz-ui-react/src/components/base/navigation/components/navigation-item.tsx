@@ -11,7 +11,13 @@ import {
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
 import clsx from "clsx";
-import { ComponentProps, ElementType, useCallback, useRef } from "react";
+import {
+  ComponentProps,
+  ElementType,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react";
 
 import {
   TIcon,
@@ -24,7 +30,7 @@ import {
 } from "@/components";
 import { BaseProps } from "@/types";
 
-import { ButtonGroupItem } from "../../popup-button-group/types";
+import { ButtonGroupItem, ButtonItem } from "../../popup-button-group/types";
 
 type Props<T extends ElementType> = BaseProps & {
   icon: TIcon;
@@ -97,27 +103,36 @@ const NavigationItem = <T extends ElementType>({
     onTogglePopup?.(!isPopupOpen);
   };
 
-  const handleMouseEnter = () => {
-    if (!isPopupLocking) onTogglePopup?.(true);
-  };
+  const buttonsWithClickOnClose = useCallback(
+    (buttons: ButtonGroupItem[]): ButtonGroupItem[] => {
+      return buttons.map((button) => {
+        if (button.kind === "divider") return button;
+        if (button.kind === "button") {
+          const buttonWithClickOnClose: ButtonItem = {
+            kind: "button",
+            option: {
+              ...button.option,
+              onClick: () => {
+                button.option.onClick();
+                handleClosePopup();
+              },
+            },
+          };
+          return buttonWithClickOnClose;
+        }
+        return {
+          ...button,
+          items: buttonsWithClickOnClose(button.items),
+        };
+      });
+    },
+    [handleClosePopup]
+  );
 
-  const handleMouseLeave = () => {
-    if (!isPopupLocking) onTogglePopup?.(false);
-  };
-
-  const handleClosePopup = useCallback(() => {
-    if (!isPopupOpen) return;
-    onTogglePopup?.(false);
-    onTogglePopupLocking?.(false);
-  }, [isPopupOpen, onTogglePopup, onTogglePopupLocking]);
-
-  const handleMouseEnterToPopup = () => {
-    if (!isPopupLocking) onTogglePopup?.(true);
-  };
-
-  const handleMouseLeaveFromPopup = () => {
-    if (!isPopupLocking) onTogglePopup?.(false);
-  };
+  const popupButtons = useMemo(() => {
+    if (!buttons) return [];
+    return buttonsWithClickOnClose(buttons);
+  }, [buttons, buttonsWithClickOnClose]);
 
   const body = (
     <>
@@ -174,7 +189,7 @@ const NavigationItem = <T extends ElementType>({
           >
             <div className={navigationPopupContainerStyle}>
               <WizPopupButtonGroup
-                options={buttons}
+                options={popupButtons}
                 p="xs"
                 borderRadius="xs2"
                 disabled={disabled}
