@@ -32,10 +32,12 @@ type Props<T extends ElementType> = BaseProps & {
   active: boolean;
   disabled?: boolean;
   tooltipText?: string;
+  /** @deprecated このプロパティは削除予定です */
   isPopupLocking?: boolean;
   buttons?: ButtonGroupItem[];
   isPopupOpen?: boolean;
   onTogglePopup?: (isPopup: boolean) => void;
+  /** @deprecated このプロパティは削除予定です */
   onTogglePopupLocking?: (lock: boolean) => void;
 } & (
     | {
@@ -70,11 +72,9 @@ const NavigationItem = <T extends ElementType>({
   active,
   disabled = false,
   tooltipText,
-  isPopupLocking = true,
   buttons,
   isPopupOpen = false,
   onTogglePopup,
-  onTogglePopupLocking,
   ...props
 }: Props<T>) => {
   const isAnchor = "href" in props;
@@ -89,9 +89,12 @@ const NavigationItem = <T extends ElementType>({
   const popupAnchor = useRef<HTMLDivElement>(null);
   const existPopup = buttons && buttons.length > 0;
 
+  const handleClosePopup = useCallback(() => {
+    onTogglePopup?.(false);
+  }, [onTogglePopup]);
+
   const handleClick = () => {
-    onTogglePopup?.(true);
-    if (existPopup) onTogglePopupLocking?.(true);
+    onTogglePopup?.(!isPopupOpen);
   };
 
   const handleMouseEnter = () => {
@@ -123,8 +126,6 @@ const NavigationItem = <T extends ElementType>({
         onClick={handleClick}
         className={className}
         style={{ ...style, display: tooltipText ? "block" : "inline-block" }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <LinkComponent
           {...linkProps}
@@ -171,11 +172,7 @@ const NavigationItem = <T extends ElementType>({
             layer="popover"
             isDirectionFixed
           >
-            <div
-              className={navigationPopupContainerStyle}
-              onMouseEnter={handleMouseEnterToPopup}
-              onMouseLeave={handleMouseLeaveFromPopup}
-            >
+            <div className={navigationPopupContainerStyle}>
               <WizPopupButtonGroup
                 options={buttons}
                 p="xs"
