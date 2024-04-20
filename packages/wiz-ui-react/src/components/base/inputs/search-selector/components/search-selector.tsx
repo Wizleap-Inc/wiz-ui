@@ -44,6 +44,13 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
+  /**
+   * 検索対象に含む類似度の閾値を，0から1の範囲で指定します。
+   * 類似度は標準化レーベンシュタイン距離に基づいて計算され，0に近いほど類似しています。
+   * ただし，類似度の最小値が閾値を上回る場合は部分一致で検索します。
+   * @default 0.75
+   */
+  threshold?: number;
   onChangeValues: (values: number[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
@@ -64,6 +71,7 @@ const SearchSelector: FC<Props> = ({
   isDirectionFixed = false,
   showExLabel = false,
   dropdownMaxHeight,
+  threshold = 0.75,
   onChangeValues,
   onCreate,
   onInputSearchText,
@@ -93,11 +101,13 @@ const SearchSelector: FC<Props> = ({
   }, [selectedOptions.length]);
 
   const buttonGroupOptions: ButtonGroupItem[] = useMemo(() => {
-    const filteredOptions = filterOptions(options, searchText).filter(
-      (matchedOption) => {
-        return !values.some((value) => matchedOption.value === value);
-      }
-    );
+    const filteredOptions = filterOptions(
+      options,
+      searchText,
+      threshold
+    ).filter((matchedOption) => {
+      return !values.some((value) => matchedOption.value === value);
+    });
     const buttonGroupOptions: ButtonGroupItem[] = filteredOptions.map(
       (option) => {
         return {
