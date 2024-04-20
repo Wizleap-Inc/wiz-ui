@@ -158,6 +158,7 @@ const createButton = (n: number): ButtonGroupItem => ({
 
 const PopupTemplate: Story = {
   render: (args) => {
+    const [activeItem, setActiveItem] = useState<number>(-1);
     const [isPopupOpen2, setIsPopupOpen2] = useState(false);
     const [isPopupOpen3, setIsPopupOpen3] = useState(false);
 
@@ -168,17 +169,17 @@ const PopupTemplate: Story = {
             icon={WizIDashboard}
             label="Jump to /"
             href="/"
-            active={false}
+            active={activeItem === 0}
           />
           <WizNavigationItem
             icon={WizIAssignment}
             label="Jump to /"
             href="/"
-            active={false}
+            active={activeItem === 1}
           />
           <WizNavigationItem
             icon={WizIBusinessCenter}
-            label="Popup Menu 1"
+            label="Nav-Item 1"
             as="button"
             asProps={{
               style: {
@@ -187,14 +188,17 @@ const PopupTemplate: Story = {
                 width: "100%",
               },
             }}
-            active={false}
+            active={activeItem === 2}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
+            onTogglePopup={(isPopupOpen) => {
+              setActiveItem(2);
+              setIsPopupOpen2(isPopupOpen);
+            }}
           />
           <WizNavigationItem
             icon={WizIHelp}
-            label="Popup Menu 02"
+            label="Nav-Item 02"
             as="button"
             asProps={{
               style: {
@@ -203,10 +207,13 @@ const PopupTemplate: Story = {
                 width: "100%",
               },
             }}
-            active={false}
+            active={activeItem === 3}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
+            onTogglePopup={(isPopupOpen) => {
+              setActiveItem(3);
+              setIsPopupOpen3(isPopupOpen);
+            }}
           />
         </WizNavigationContainer>
       </div>
