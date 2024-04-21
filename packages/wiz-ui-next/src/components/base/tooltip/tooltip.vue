@@ -18,6 +18,7 @@
         :isDirectionFixed="isDirectionFixed"
       >
         <div
+          v-if="hasContent"
           :class="[tooltipPositionStyle[actuallyDirection], tooltipPopupStyle]"
         >
           <div :class="tooltipContentStyle">
@@ -45,7 +46,7 @@ import {
   tooltipPositionStyle,
   tooltipPopupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
-import { PropType, ref, computed } from "vue";
+import { PropType, ref, computed, useSlots } from "vue";
 
 import { WizIChangeHistory, WizPopup, WizPopupContainer } from "@/components";
 
@@ -78,6 +79,10 @@ const props = defineProps({
 
 const isHover = ref(false);
 const actuallyDirection = ref(props.direction);
+
+const slots = useSlots();
+const getSlots = slots.content?.() ?? [];
+const hasContent = getSlots.length > 0;
 
 const computedDirection = computed(() => {
   if (props.direction === "top") return "tc";
