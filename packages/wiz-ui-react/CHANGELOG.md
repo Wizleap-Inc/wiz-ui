@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.56.0
+
+### Minor Changes
+
+- [#1284](https://github.com/Wizleap-Inc/wiz-ui/pull/1284) [`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): emergency_home, hourglass_top, feedback, menu_open アイコンを追加
+
+### Patch Changes
+
+- [#1277](https://github.com/Wizleap-Inc/wiz-ui/pull/1277) [`7c97d8b7`](https://github.com/Wizleap-Inc/wiz-ui/commit/7c97d8b791ccc73df783f68620d1ee18b9d6cdc7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(text-button): 横幅によって Icon の下に Text が回り込む問題を修正
+
+- Updated dependencies [[`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a)]:
+  - @wizleap-inc/wiz-ui-constants@0.23.0
+  - @wizleap-inc/wiz-ui-styles@0.29.4
+
 ## 0.55.0
 
 ### Minor Changes
