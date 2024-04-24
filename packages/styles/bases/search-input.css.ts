@@ -101,6 +101,7 @@ export const searchPopupBlockBorderRadiusStyle = style({
 export const searchDropdownItemStyle = style({
   // FIXME: デザインシステムを使った値で再定義する
   padding: `0.375rem ${THEME.spacing.no}`,
+  width: "100%",
 });
 
 export const searchDropdownLabelStyle = style({
@@ -200,6 +201,7 @@ globalStyle(`${searchInputCheckboxStyle} > div`, {
 });
 
 export const searchDropdownSingleSelectItemStyle = style({
+  width: "100%",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",

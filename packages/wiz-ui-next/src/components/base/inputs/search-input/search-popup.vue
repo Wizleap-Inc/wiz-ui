@@ -126,6 +126,7 @@
         :popupWidth="computedPopupWidth"
         :emptyMessage="emptyMessage"
         :singleSelect="singleSelect"
+        @toggle="emit('toggle', $event)"
       />
     </div>
   </template>
@@ -181,6 +182,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits<{
+  (e: "toggle", value: boolean): void;
   (e: "update:modelValue", value: number[]): void;
   (e: "mouseover", id: number, isChild: boolean): void;
 }>();
@@ -270,5 +272,6 @@ const handleClickCheckbox = (value: number) => {
 
 const handleClickButton = (value: number) => {
   checkValues.value = [value];
+  emit("toggle", false);
 };
 </script>
