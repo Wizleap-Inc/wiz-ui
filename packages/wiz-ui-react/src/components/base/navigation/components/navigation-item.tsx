@@ -42,6 +42,17 @@ type Props<T extends ElementType> = BaseProps & {
   isPopupLocking?: boolean;
   buttons?: ButtonGroupItem[];
   isPopupOpen?: boolean;
+  /**
+   * @example
+   * ```tsx
+   * onTogglePopup={(isPopupOpen) => {
+   *  if (isPopupOpen) {
+   *   setActiveItem(2);
+   *  }
+   *  setIsPopupOpen2(isPopupOpen);
+   * }}
+   * ```
+   */
   onTogglePopup?: (isPopup: boolean) => void;
   /** @deprecated このプロパティは削除予定です */
   onTogglePopupLocking?: (lock: boolean) => void;
