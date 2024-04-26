@@ -280,17 +280,33 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIDashboard}
             label="Home"
-            href="/"
+            as="button"
+            asProps={{
+              style: {
+                backgroundColor: "white",
+                border: "none",
+                width: "100%",
+              },
+            }}
             active={false}
             buttons={[createButton(0)]}
             isPopupOpen={isPopupOpen0}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
+            onTogglePopup={(isPopupOpen) => {
+              setIsPopupOpen0(isPopupOpen);
+            }}
             tooltipText="これはヒント1です。"
           />
           <WizNavigationItem
             icon={WizIAssignment}
             label="Page1"
-            href="/"
+            as="button"
+            asProps={{
+              style: {
+                backgroundColor: "white",
+                border: "none",
+                width: "100%",
+              },
+            }}
             active={false}
             buttons={[createButton(1), createButton(2)]}
             isPopupOpen={isPopupOpen1}
@@ -300,7 +316,14 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Page2"
-            href="/"
+            as="button"
+            asProps={{
+              style: {
+                backgroundColor: "white",
+                border: "none",
+                width: "100%",
+              },
+            }}
             active={false}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
@@ -310,7 +333,14 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIHelp}
             label="Page3"
-            href="/"
+            as="button"
+            asProps={{
+              style: {
+                backgroundColor: "white",
+                border: "none",
+                width: "100%",
+              },
+            }}
             active={false}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
