@@ -192,7 +192,9 @@ const PopupTemplate: Story = {
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
             onTogglePopup={(isPopupOpen) => {
-              setActiveItem(2);
+              if (isPopupOpen) {
+                setActiveItem(2);
+              }
               setIsPopupOpen2(isPopupOpen);
             }}
           />
@@ -211,7 +213,9 @@ const PopupTemplate: Story = {
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
             onTogglePopup={(isPopupOpen) => {
-              setActiveItem(3);
+              if (isPopupOpen) {
+                setActiveItem(3);
+              }
               setIsPopupOpen3(isPopupOpen);
             }}
           />
