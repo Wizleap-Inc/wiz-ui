@@ -3,15 +3,15 @@ import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import {
-  WizPopupContainer,
-  WizPopup,
-  WizIOpenInNew,
-  WizIAddCircle,
-  WizPopupButtonGroup,
   TIcon,
+  WizIAddCircle,
+  WizIOpenInNew,
+  WizPopup,
+  WizPopupButtonGroup,
+  WizPopupContainer,
 } from "@/components";
 
-import { PopupButtonOption, ButtonGroupItem } from "./types";
+import { ButtonGroupItem, PopupButtonOption } from "./types";
 
 export default {
   title: "Base/PopupButtonGroup",
@@ -49,7 +49,7 @@ const _getDummyOptions = (
   click: (n: number) => void,
   exLabel?: string
 ) => {
-  const options: PopupButtonOption[] = [];
+  const options: PopupButtonOption<number>[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
       return undefined;
@@ -74,7 +74,7 @@ const _getDummyOptions = (
     });
   });
   return options.map(
-    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem)
+    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem<number>)
   );
 };
 
@@ -83,7 +83,7 @@ const createButton = (
   click: (n: number) => void,
   disabled?: boolean,
   icon?: TIcon
-): ButtonGroupItem => ({
+): ButtonGroupItem<number> => ({
   kind: "button",
   option: {
     label: `item ${n}`,
@@ -95,7 +95,9 @@ const createButton = (
   },
 });
 
-const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
+const _getDummyItems = (
+  click: (arg: number) => void
+): ButtonGroupItem<number>[] => [
   {
     kind: "group",
     title: "タイトル1",
@@ -136,7 +138,9 @@ Disabled.args = {
 export const DisabledButton: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup },
   setup() {
-    const createOptions = (click: (arg: number) => void): ButtonGroupItem[] => [
+    const createOptions = (
+      click: (arg: number) => void
+    ): ButtonGroupItem<number>[] => [
       createButton(1, click, true, WizIOpenInNew),
       createButton(2, click, false, WizIOpenInNew),
       createButton(3, click, true),
@@ -177,7 +181,9 @@ Popup.args = {
 export const Divider: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup },
   setup() {
-    const createOptions = (click: (arg: number) => void): ButtonGroupItem[] => [
+    const createOptions = (
+      click: (arg: number) => void
+    ): ButtonGroupItem<number>[] => [
       createButton(1, click),
       createButton(2, click),
       { kind: "divider" },

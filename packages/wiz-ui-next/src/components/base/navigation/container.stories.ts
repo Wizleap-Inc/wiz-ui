@@ -214,7 +214,7 @@ export const Fixed: StoryFn = (_, { argTypes }) => ({
 const createButton = (
   n: number,
   click: (n: number) => void
-): ButtonGroupItem => ({
+): ButtonGroupItem<number> => ({
   kind: "button",
   option: {
     label: `label ${n}`,
