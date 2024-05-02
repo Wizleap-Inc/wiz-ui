@@ -33,6 +33,7 @@ import { WizIContactPageFilled } from "./contact-page-filled";
 import { WizIContentCopy } from "./content-copy";
 import { WizIContract } from "./contract";
 import { WizIDashboard } from "./dashboard";
+import { WizIDelete } from "./delete";
 import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
 import { WizIDomain } from "./domain";
@@ -73,6 +74,7 @@ import { WizIPinDrop } from "./pin-drop";
 import { WizIPublic } from "./public";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
+import { WizIReviews } from "./reviews";
 import { WizISchedule } from "./schedule";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
@@ -124,6 +126,7 @@ export type TIcon =
   | typeof WizIContentCopy
   | typeof WizIContract
   | typeof WizIDashboard
+  | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDomain
@@ -164,6 +167,7 @@ export type TIcon =
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
+  | typeof WizIReviews
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
@@ -215,6 +219,7 @@ export {
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
+  WizIDelete,
   WizIDemography,
   WizIDescription,
   WizIDomain,
@@ -255,6 +260,7 @@ export {
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
+  WizIReviews,
   WizISchedule,
   WizISearch,
   WizISend,

@@ -33,6 +33,7 @@ import { default as WizIContactPageFilled } from "./contact-page-filled.vue";
 import { default as WizIContentCopy } from "./content-copy.vue";
 import { default as WizIContract } from "./contract.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
+import { default as WizIDelete } from "./delete.vue";
 import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
 import { default as WizIDomain } from "./domain.vue";
@@ -73,6 +74,7 @@ import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIPublic } from "./public.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
+import { default as WizIReviews } from "./reviews.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
@@ -124,6 +126,7 @@ export type TIcon =
   | typeof WizIContentCopy
   | typeof WizIContract
   | typeof WizIDashboard
+  | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDomain
@@ -164,6 +167,7 @@ export type TIcon =
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
+  | typeof WizIReviews
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
@@ -215,6 +219,7 @@ export {
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
+  WizIDelete,
   WizIDemography,
   WizIDescription,
   WizIDomain,
@@ -255,6 +260,7 @@ export {
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
+  WizIReviews,
   WizISchedule,
   WizISearch,
   WizISend,
