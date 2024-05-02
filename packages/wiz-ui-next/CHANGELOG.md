@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.30.0
+
+### Minor Changes
+
+- [#1293](https://github.com/Wizleap-Inc/wiz-ui/pull/1293) [`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIDelete, WizIReviews
+
+### Patch Changes
+
+- Updated dependencies [[`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1)]:
+  - @wizleap-inc/wiz-ui-constants@0.24.0
+  - @wizleap-inc/wiz-ui-styles@0.29.5
+
 ## 2.29.0
 
 ### Minor Changes
