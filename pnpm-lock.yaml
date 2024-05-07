@@ -34,7 +34,7 @@ importers:
         version: 7.6.19(typescript@5.4.5)(vite@5.2.11(@types/node@18.19.32))
       '@storybook/jest':
         specifier: ^0.2.3
-        version: 0.2.3(@jest/globals@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.44.0))
+        version: 0.2.3(@jest/globals@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.32.1))
       '@storybook/test-runner':
         specifier: ^0.9.4
         version: 0.9.4(@types/node@18.19.32)(eslint@8.57.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5))(typescript@5.4.5)(vue-template-compiler@2.7.16)
@@ -99,8 +99,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       playwright:
-        specifier: ^1.44.0
-        version: 1.44.0
+        specifier: 1.32.1
+        version: 1.32.1
       prettier:
         specifier: ^2.7.1
         version: 2.8.8
@@ -151,7 +151,7 @@ importers:
         version: 1.7.3(@types/node@18.19.32)(rollup@4.17.2)(vite@5.2.11(@types/node@18.19.32))
       vitest:
         specifier: ^0.29.8
-        version: 0.29.8(jsdom@21.1.2)(playwright@1.44.0)
+        version: 0.29.8(jsdom@21.1.2)(playwright@1.32.1)
       wait-on:
         specifier: ^7.0.1
         version: 7.2.0
@@ -4917,11 +4917,6 @@ packages:
     os: [darwin]
     deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
 
-  fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -6926,14 +6921,19 @@ packages:
   pkg-types@1.1.0:
     resolution: {integrity: sha512-/RpmvKdxKf8uILTtoOhAgf30wYbP2Qw+L9p3Rvshx1JZVX+XQNZQFjlbmGHEGIm4CkVPlSn+NXmIM8+9oWQaSA==}
 
+  playwright-core@1.32.1:
+    resolution: {integrity: sha512-KZYUQC10mXD2Am1rGlidaalNGYk3LU1vZqqNk0gT4XPty1jOqgup8KDP8l2CUlqoNKhXM5IfGjWgW37xvGllBA==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   playwright-core@1.44.0:
     resolution: {integrity: sha512-ZTbkNpFfYcGWohvTTl+xewITm7EOuqIqex0c7dNZ+aXsbrLj0qI8XlGKfPpipjm0Wny/4Lt4CJsWJk1stVS5qQ==}
     engines: {node: '>=16'}
     hasBin: true
 
-  playwright@1.44.0:
-    resolution: {integrity: sha512-F9b3GUCLQ3Nffrfb6dunPOkE5Mh68tR7zN32L4jCk4FjQamgesGay7/dAAe1WaMEGV04DkdJfcJzjoCKygUaRQ==}
-    engines: {node: '>=16'}
+  playwright@1.32.1:
+    resolution: {integrity: sha512-GnEizysWMvoqHC3I9l8+4/ZxeLwLNdJJG76xdKGxzOcIZDcw5RSk/FKrFb5CuA+zcLpjIM2p9eR9Z4CuUDkWXg==}
+    engines: {node: '>=14'}
     hasBin: true
 
   pngjs@6.0.0:
@@ -11790,10 +11790,10 @@ snapshots:
       - react
       - react-dom
 
-  '@storybook/jest@0.2.3(@jest/globals@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.44.0))':
+  '@storybook/jest@0.2.3(@jest/globals@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.32.1))':
     dependencies:
       '@storybook/expect': 28.1.3-5
-      '@testing-library/jest-dom': 6.4.5(@jest/globals@28.1.3)(@types/jest@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.44.0))
+      '@testing-library/jest-dom': 6.4.5(@jest/globals@28.1.3)(@types/jest@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.32.1))
       '@types/jest': 28.1.3
       jest-mock: 27.5.1
     transitivePeerDependencies:
@@ -12011,7 +12011,7 @@ snapshots:
       jest-serializer-html: 7.1.0
       jest-watch-typeahead: 2.2.2(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))
       node-fetch: 2.7.0
-      playwright: 1.44.0
+      playwright: 1.32.1
       read-pkg-up: 7.0.1
       regenerator-runtime: 0.13.11
       semver: 7.6.0
@@ -12116,7 +12116,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.4.5(@jest/globals@28.1.3)(@types/jest@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.44.0))':
+  '@testing-library/jest-dom@6.4.5(@jest/globals@28.1.3)(@types/jest@28.1.3)(jest@28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5)))(vitest@0.29.8(jsdom@21.1.2)(playwright@1.32.1))':
     dependencies:
       '@adobe/css-tools': 4.3.3
       '@babel/runtime': 7.24.5
@@ -12130,7 +12130,7 @@ snapshots:
       '@jest/globals': 28.1.3
       '@types/jest': 28.1.3
       jest: 28.1.3(@types/node@18.19.32)(ts-node@10.9.2(@types/node@18.19.32)(typescript@5.4.5))
-      vitest: 0.29.8(jsdom@21.1.2)(playwright@1.44.0)
+      vitest: 0.29.8(jsdom@21.1.2)(playwright@1.32.1)
 
   '@testing-library/user-event@13.5.0(@testing-library/dom@8.20.1)':
     dependencies:
@@ -15155,9 +15155,6 @@ snapshots:
       nan: 2.19.0
     optional: true
 
-  fsevents@2.3.2:
-    optional: true
-
   fsevents@2.3.3:
     optional: true
 
@@ -17621,13 +17618,13 @@ snapshots:
       mlly: 1.7.0
       pathe: 1.1.2
 
+  playwright-core@1.32.1: {}
+
   playwright-core@1.44.0: {}
 
-  playwright@1.44.0:
+  playwright@1.32.1:
     dependencies:
-      playwright-core: 1.44.0
-    optionalDependencies:
-      fsevents: 2.3.2
+      playwright-core: 1.32.1
 
   pngjs@6.0.0: {}
 
@@ -19607,7 +19604,7 @@ snapshots:
       '@types/node': 18.19.32
       fsevents: 2.3.3
 
-  vitest@0.29.8(jsdom@21.1.2)(playwright@1.44.0):
+  vitest@0.29.8(jsdom@21.1.2)(playwright@1.32.1):
     dependencies:
       '@types/chai': 4.3.16
       '@types/chai-subset': 1.3.5
@@ -19635,7 +19632,7 @@ snapshots:
       why-is-node-running: 2.2.2
     optionalDependencies:
       jsdom: 21.1.2
-      playwright: 1.44.0
+      playwright: 1.32.1
     transitivePeerDependencies:
       - less
       - lightningcss
