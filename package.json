@@ -10,7 +10,7 @@
     "dev": "turbo dev --parallel",
     "test": "turbo test",
     "vrt": "reg-suit run",
-    "storycap": "turbo storycap",
+    "storycap": "turbo storycap --no-cache",
     "storybook:build": "turbo storybook:build",
     "postinstall": "turbo build:tools"
   },
