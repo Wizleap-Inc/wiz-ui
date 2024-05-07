@@ -352,7 +352,7 @@ Test.play = async ({ canvasElement }) => {
 
 export const IsDirectionFixed = Template.bind({});
 IsDirectionFixed.args = {
-  value: null,
+  modelValue: null,
   isDirectionFixed: true,
 };
 IsDirectionFixed.parameters = {
