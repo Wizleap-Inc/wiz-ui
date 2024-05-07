@@ -73,7 +73,6 @@
     "vitest": "^0.29.8",
     "wait-on": "^7.0.1"
   },
-  "packageManager": "pnpm@9.1.0",
   "engines": {
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!",
