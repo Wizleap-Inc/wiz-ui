@@ -1,6 +1,7 @@
 export const IconComponentName = {
   IAddCircle: "WizIAddCircle",
   IAdd: "WizIAdd",
+  IAdjust: "WizIAdjust",
   IApprovalFilled: "WizIApprovalFilled",
   IArrowDropDown: "WizIArrowDropDown",
   IArrowDropUp: "WizIArrowDropUp",
