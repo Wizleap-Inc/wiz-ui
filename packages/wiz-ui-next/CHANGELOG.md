@@ -1,5 +1,38 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.30.0
+
+### Minor Changes
+
+- [#1293](https://github.com/Wizleap-Inc/wiz-ui/pull/1293) [`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIDelete, WizIReviews
+
+### Patch Changes
+
+- Updated dependencies [[`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1)]:
+  - @wizleap-inc/wiz-ui-constants@0.24.0
+  - @wizleap-inc/wiz-ui-styles@0.29.5
+
+## 2.29.0
+
+### Minor Changes
+
+- [#1284](https://github.com/Wizleap-Inc/wiz-ui/pull/1284) [`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): emergency_home, hourglass_top, feedback, menu_open アイコンを追加
+
+### Patch Changes
+
+- Updated dependencies [[`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a)]:
+  - @wizleap-inc/wiz-ui-constants@0.23.0
+  - @wizleap-inc/wiz-ui-styles@0.29.4
+
+## 2.28.1
+
+### Patch Changes
+
+- [#1262](https://github.com/Wizleap-Inc/wiz-ui/pull/1262) [`06f21fe0`](https://github.com/Wizleap-Inc/wiz-ui/commit/06f21fe0f979f3f6c7a86e51b45843d1001f4ff2) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(PollGraph): 0%での表示を Vue 版と揃える
+
+- Updated dependencies [[`80a88bf3`](https://github.com/Wizleap-Inc/wiz-ui/commit/80a88bf39b4d378b4357e2531525561e574940b3)]:
+  - @wizleap-inc/wiz-ui-styles@0.29.3
+
 ## 2.28.0
 
 ### Minor Changes

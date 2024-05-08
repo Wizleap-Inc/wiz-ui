@@ -33,6 +33,7 @@ import { default as WizIContactPageFilled } from "./contact-page-filled.vue";
 import { default as WizIContentCopy } from "./content-copy.vue";
 import { default as WizIContract } from "./contract.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
+import { default as WizIDelete } from "./delete.vue";
 import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
 import { default as WizIDomain } from "./domain.vue";
@@ -40,16 +41,19 @@ import { default as WizIDownload } from "./download.vue";
 import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
+import { default as WizIEmergencyHome } from "./emergency-home.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIFamilyHome } from "./family-home.vue";
+import { default as WizIFeedback } from "./feedback.vue";
 import { default as WizIForwardToInbox } from "./forward-to-inbox.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
 import { default as WizIHome } from "./home.vue";
+import { default as WizIHourglassTop } from "./hourglass-top.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
@@ -57,6 +61,7 @@ import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
 import { default as WizILogin } from "./login.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
+import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVert } from "./more-vert.vue";
@@ -69,6 +74,7 @@ import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIPublic } from "./public.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
+import { default as WizIReviews } from "./reviews.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
@@ -120,6 +126,7 @@ export type TIcon =
   | typeof WizIContentCopy
   | typeof WizIContract
   | typeof WizIDashboard
+  | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDomain
@@ -127,16 +134,19 @@ export type TIcon =
   | typeof WizIDraft
   | typeof WizIDrafts
   | typeof WizIEditNote
+  | typeof WizIEmergencyHome
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
   | typeof WizIEye
   | typeof WizIFamilyHome
+  | typeof WizIFeedback
   | typeof WizIForwardToInbox
   | typeof WizIGroups
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
+  | typeof WizIHourglassTop
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
@@ -144,6 +154,7 @@ export type TIcon =
   | typeof WizILocationOn
   | typeof WizILogin
   | typeof WizIManageAccounts
+  | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMonitoring
   | typeof WizIMoreVert
@@ -156,6 +167,7 @@ export type TIcon =
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
+  | typeof WizIReviews
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
@@ -207,6 +219,7 @@ export {
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
+  WizIDelete,
   WizIDemography,
   WizIDescription,
   WizIDomain,
@@ -214,16 +227,19 @@ export {
   WizIDraft,
   WizIDrafts,
   WizIEditNote,
+  WizIEmergencyHome,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,
   WizIEye,
   WizIFamilyHome,
+  WizIFeedback,
   WizIForwardToInbox,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
+  WizIHourglassTop,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
@@ -231,6 +247,7 @@ export {
   WizILocationOn,
   WizILogin,
   WizIManageAccounts,
+  WizIMenuOpen,
   WizIMenu,
   WizIMonitoring,
   WizIMoreVert,
@@ -243,6 +260,7 @@ export {
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
+  WizIReviews,
   WizISchedule,
   WizISearch,
   WizISend,

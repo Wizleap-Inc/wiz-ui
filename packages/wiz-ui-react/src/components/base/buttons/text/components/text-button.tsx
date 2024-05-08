@@ -75,6 +75,7 @@ const TextButton = forwardRef(
           justify="center"
           gap="xs2"
           reverse={iconPosition === "right"}
+          nowrap
         >
           {icon && (
             <WizIcon

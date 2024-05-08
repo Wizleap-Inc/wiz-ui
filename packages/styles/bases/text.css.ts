@@ -42,6 +42,7 @@ export const textWordBreakStyle = style({
 
 export const textDummyStyle = style({
   filter: `blur(${THEME.spacing.xs2})`,
+  userSelect: "none",
 });
 
 export const textLineThroughStyle = style({

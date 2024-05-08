@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.19.0
+
+### Minor Changes
+
+- [#1293](https://github.com/Wizleap-Inc/wiz-ui/pull/1293) [`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIDelete, WizIReviews
+
+## 0.18.0
+
+### Minor Changes
+
+- [#1284](https://github.com/Wizleap-Inc/wiz-ui/pull/1284) [`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): emergency_home, hourglass_top, feedback, menu_open アイコンを追加
+
 ## 0.17.0
 
 ### Minor Changes

@@ -1,5 +1,25 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.29.5
+
+### Patch Changes
+
+- Updated dependencies [[`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1)]:
+  - @wizleap-inc/wiz-ui-constants@0.24.0
+
+## 0.29.4
+
+### Patch Changes
+
+- Updated dependencies [[`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a)]:
+  - @wizleap-inc/wiz-ui-constants@0.23.0
+
+## 0.29.3
+
+### Patch Changes
+
+- [#1261](https://github.com/Wizleap-Inc/wiz-ui/pull/1261) [`80a88bf3`](https://github.com/Wizleap-Inc/wiz-ui/commit/80a88bf39b4d378b4357e2531525561e574940b3) Thanks [@okakyo](https://github.com/okakyo)! - [#1259] feat: text の dummyText にて、user-select: none を適用
+
 ## 0.29.2
 
 ### Patch Changes
