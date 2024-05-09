@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.58.0
+
+### Minor Changes
+
+- [#1299](https://github.com/Wizleap-Inc/wiz-ui/pull/1299) [`6c7ad817c49345a1ea438463aee0fd830dc90242`](https://github.com/Wizleap-Inc/wiz-ui/commit/6c7ad817c49345a1ea438463aee0fd830dc90242) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIAdjust を追加
+
+- [#1263](https://github.com/Wizleap-Inc/wiz-ui/pull/1263) [`ff8c81bd7037d9ead50c2a682ffde6c4934872b3`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff8c81bd7037d9ead50c2a682ffde6c4934872b3) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(form-control): 縦揃えオプションを追加
+
+### Patch Changes
+
+- Updated dependencies [[`6c7ad817c49345a1ea438463aee0fd830dc90242`](https://github.com/Wizleap-Inc/wiz-ui/commit/6c7ad817c49345a1ea438463aee0fd830dc90242)]:
+  - @wizleap-inc/wiz-ui-constants@0.25.0
+  - @wizleap-inc/wiz-ui-styles@0.29.6
+
 ## 0.57.0
 
 ### Minor Changes
