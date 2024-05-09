@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.20.0
+
+### Minor Changes
+
+- [#1299](https://github.com/Wizleap-Inc/wiz-ui/pull/1299) [`6c7ad817c49345a1ea438463aee0fd830dc90242`](https://github.com/Wizleap-Inc/wiz-ui/commit/6c7ad817c49345a1ea438463aee0fd830dc90242) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIAdjust を追加
+
 ## 0.19.0
 
 ### Minor Changes
