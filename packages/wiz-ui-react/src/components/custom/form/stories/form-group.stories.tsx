@@ -4,7 +4,12 @@ import { WizTextInput } from "@/components";
 
 import { WizFormControl, WizFormGroup } from "..";
 
-import { AllInputErrorStory, AllInputStory } from "./all-input";
+import {
+  AllInputErrorStory,
+  AllInputErrorVerticalAlinedStory as AllInputErrorVerticalAlignedStory,
+  AllInputStory,
+  AllInputVerticalAlinedStory as AllInputVerticalAlignedStory,
+} from "./all-input";
 
 const meta: Meta<typeof WizFormGroup> = {
   title: "Custom/Form/Group",
@@ -102,3 +107,8 @@ export const LabelFontSize: Story = {
 export const AllInput: Story = AllInputStory;
 
 export const AllInputError: Story = AllInputErrorStory;
+
+export const AllInputVerticalAligned: Story = AllInputVerticalAlignedStory;
+
+export const AllInputErrorVerticalAligned: Story =
+  AllInputErrorVerticalAlignedStory;
