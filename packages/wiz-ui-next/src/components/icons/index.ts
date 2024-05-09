@@ -1,5 +1,6 @@
 import { default as WizIAddCircle } from "./add-circle.vue";
 import { default as WizIAdd } from "./add.vue";
+import { default as WizIAdjust } from "./adjust.vue";
 import { default as WizIApprovalFilled } from "./approval-filled.vue";
 import { default as WizIArrowDropDown } from "./arrow-drop-down.vue";
 import { default as WizIArrowDropUp } from "./arrow-drop-up.vue";
@@ -93,6 +94,7 @@ import { default as WizIWarning } from "./warning.vue";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIAdjust
   | typeof WizIApprovalFilled
   | typeof WizIArrowDropDown
   | typeof WizIArrowDropUp
@@ -186,6 +188,7 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIAdjust,
   WizIApprovalFilled,
   WizIArrowDropDown,
   WizIArrowDropUp,
