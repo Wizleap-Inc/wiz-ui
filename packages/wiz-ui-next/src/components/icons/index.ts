@@ -2,9 +2,11 @@ import { default as WizIAddCircle } from "./add-circle.vue";
 import { default as WizIAdd } from "./add.vue";
 import { default as WizIAdjust } from "./adjust.vue";
 import { default as WizIApprovalFilled } from "./approval-filled.vue";
+import { default as WizIArrowDownward } from "./arrow-downward.vue";
 import { default as WizIArrowDropDown } from "./arrow-drop-down.vue";
 import { default as WizIArrowDropUp } from "./arrow-drop-up.vue";
 import { default as WizIArrowRight } from "./arrow-right.vue";
+import { default as WizIArrowUpward } from "./arrow-upward.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
@@ -96,9 +98,11 @@ export type TIcon =
   | typeof WizIAdd
   | typeof WizIAdjust
   | typeof WizIApprovalFilled
+  | typeof WizIArrowDownward
   | typeof WizIArrowDropDown
   | typeof WizIArrowDropUp
   | typeof WizIArrowRight
+  | typeof WizIArrowUpward
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
   | typeof WizIAttachFile
@@ -190,9 +194,11 @@ export {
   WizIAdd,
   WizIAdjust,
   WizIApprovalFilled,
+  WizIArrowDownward,
   WizIArrowDropDown,
   WizIArrowDropUp,
   WizIArrowRight,
+  WizIArrowUpward,
   WizIAssignmentAdd,
   WizIAssignment,
   WizIAttachFile,
