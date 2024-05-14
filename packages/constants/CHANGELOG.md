@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.26.0
+
+### Minor Changes
+
+- [#1304](https://github.com/Wizleap-Inc/wiz-ui/pull/1304) [`a31d32d4af9750cc59288ed73ed4faada9791011`](https://github.com/Wizleap-Inc/wiz-ui/commit/a31d32d4af9750cc59288ed73ed4faada9791011) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIArrowDownward, WizIArrowUpward を追加
+
 ## 0.25.0
 
 ### Minor Changes

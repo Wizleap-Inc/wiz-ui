@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.59.0
+
+### Minor Changes
+
+- [#1304](https://github.com/Wizleap-Inc/wiz-ui/pull/1304) [`a31d32d4af9750cc59288ed73ed4faada9791011`](https://github.com/Wizleap-Inc/wiz-ui/commit/a31d32d4af9750cc59288ed73ed4faada9791011) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIArrowDownward, WizIArrowUpward を追加
+
+### Patch Changes
+
+- Updated dependencies [[`a31d32d4af9750cc59288ed73ed4faada9791011`](https://github.com/Wizleap-Inc/wiz-ui/commit/a31d32d4af9750cc59288ed73ed4faada9791011)]:
+  - @wizleap-inc/wiz-ui-constants@0.26.0
+  - @wizleap-inc/wiz-ui-styles@0.29.7
+
 ## 0.58.0
 
 ### Minor Changes
