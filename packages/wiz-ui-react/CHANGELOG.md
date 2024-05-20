@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.60.0
+
+### Minor Changes
+
+- [#1309](https://github.com/Wizleap-Inc/wiz-ui/pull/1309) [`5f2481a827e84f88eaa74f97bb63fc907aa1f1fe`](https://github.com/Wizleap-Inc/wiz-ui/commit/5f2481a827e84f88eaa74f97bb63fc907aa1f1fe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIMail, WizIInboxCustomize を追加
+
+### Patch Changes
+
+- Updated dependencies [[`5f2481a827e84f88eaa74f97bb63fc907aa1f1fe`](https://github.com/Wizleap-Inc/wiz-ui/commit/5f2481a827e84f88eaa74f97bb63fc907aa1f1fe)]:
+  - @wizleap-inc/wiz-ui-constants@0.27.0
+  - @wizleap-inc/wiz-ui-styles@0.29.8
+
 ## 0.59.0
 
 ### Minor Changes
