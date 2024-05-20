@@ -1,9 +1,12 @@
 import { WizIAdd } from "./add";
 import { WizIAddCircle } from "./add-circle";
+import { WizIAdjust } from "./adjust";
 import { WizIApprovalFilled } from "./approval-filled";
+import { WizIArrowDownward } from "./arrow-downward";
 import { WizIArrowDropDown } from "./arrow-drop-down";
 import { WizIArrowDropUp } from "./arrow-drop-up";
 import { WizIArrowRight } from "./arrow-right";
+import { WizIArrowUpward } from "./arrow-upward";
 import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
 import { WizIAttachFile } from "./attach-file";
@@ -93,10 +96,13 @@ import { WizIWarning } from "./warning";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIAdjust
   | typeof WizIApprovalFilled
+  | typeof WizIArrowDownward
   | typeof WizIArrowDropDown
   | typeof WizIArrowDropUp
   | typeof WizIArrowRight
+  | typeof WizIArrowUpward
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
   | typeof WizIAttachFile
@@ -186,10 +192,13 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIAdjust,
   WizIApprovalFilled,
+  WizIArrowDownward,
   WizIArrowDropDown,
   WizIArrowDropUp,
   WizIArrowRight,
+  WizIArrowUpward,
   WizIAssignmentAdd,
   WizIAssignment,
   WizIAttachFile,

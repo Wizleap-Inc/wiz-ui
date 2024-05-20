@@ -20,6 +20,9 @@ export default {
     error: {
       control: { type: "text" },
     },
+    direction: {
+      control: { type: "select", options: ["horizontal", "vertical"] },
+    },
   },
 } as Meta<typeof WizFormControl>;
 
@@ -40,14 +43,21 @@ interface Options {
   label: string;
   required: boolean;
   error: string;
+  direction: "horizontal" | "vertical";
 }
 
-const CODE_TEMPLATE = ({ label, required, error }: Partial<Options>) => `
+const CODE_TEMPLATE = ({
+  label,
+  required,
+  error,
+  direction,
+}: Partial<Options>) => `
 <template>
   <WizFormControl${
     (label ? ` label="${label}"` : "") +
     (required ? ` required` : "") +
-    (error ? ` error="${error}"` : "")
+    (error ? ` error="${error}"` : "") +
+    (direction ? ` direction="${direction}"` : "")
   }>
     <WizTextInput v-model="input" name="input" placeholder="入力してください" />
   </WizFormControl>
@@ -75,6 +85,26 @@ Default.parameters = {
     source: {
       code: CODE_TEMPLATE({
         label: "Label",
+      }),
+    },
+  },
+};
+
+export const Direction = Template.bind({});
+Direction.args = {
+  label: "Label",
+  direction: "vertical",
+};
+Direction.parameters = {
+  docs: {
+    description: {
+      story:
+        "directionには、horizontal, verticalのいずれかを渡すことができます。デフォルトはhorizontalです。",
+    },
+    source: {
+      code: CODE_TEMPLATE({
+        label: "Label",
+        direction: "vertical",
       }),
     },
   },

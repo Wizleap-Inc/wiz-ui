@@ -1,10 +1,13 @@
 export const IconComponentName = {
   IAddCircle: "WizIAddCircle",
   IAdd: "WizIAdd",
+  IAdjust: "WizIAdjust",
   IApprovalFilled: "WizIApprovalFilled",
+  IArrowDownward: "WizIArrowDownward",
   IArrowDropDown: "WizIArrowDropDown",
   IArrowDropUp: "WizIArrowDropUp",
   IArrowRight: "WizIArrowRight",
+  IArrowUpward: "WizIArrowUpward",
   IAssignmentAdd: "WizIAssignmentAdd",
   IAssignment: "WizIAssignment",
   IAttachFile: "WizIAttachFile",
