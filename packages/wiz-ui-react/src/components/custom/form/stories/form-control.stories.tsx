@@ -29,6 +29,14 @@ export const Default: Story = {
   },
 };
 
+export const Direction: Story = {
+  args: {
+    label: "Label",
+    direction: "vertical",
+    children: <WizTextInput placeholder="入力してください" />,
+  },
+};
+
 export const HtmlFor: Story = {
   args: {
     label: "Label",

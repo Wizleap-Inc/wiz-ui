@@ -14,9 +14,11 @@ import { Story } from "./form-group.stories";
 
 const TemplateComponent = ({
   args,
+  direction,
   error,
 }: {
   args: ComponentProps<typeof WizFormGroup>;
+  direction?: "horizontal" | "vertical";
   error?: string;
 }) => {
   const [selectBoxValue, setSelectBoxValue] = useState<number | null>(null);
@@ -26,11 +28,11 @@ const TemplateComponent = ({
     useState<ComponentProps<typeof WizTimePicker>["time"]>(null);
   return (
     <WizFormGroup {...args}>
-      <WizFormControl label="WizTextInput" error={error}>
+      <WizFormControl label="WizTextInput" direction={direction} error={error}>
         <WizTextInput placeholder="入力してください" />
       </WizFormControl>
       {/* TODO: WizPasswordInput 追加待ち */}
-      <WizFormControl label="WizSelectBox" error={error}>
+      <WizFormControl label="WizSelectBox" direction={direction} error={error}>
         <WizSelectBox
           value={selectBoxValue}
           onChange={(value) => setSelectBoxValue(value)}
@@ -46,7 +48,7 @@ const TemplateComponent = ({
           ]}
         />
       </WizFormControl>
-      <WizFormControl label="WizCheckBox" error={error}>
+      <WizFormControl label="WizCheckBox" direction={direction} error={error}>
         <WizCheckBox
           values={checkBoxValues}
           onChange={(values) => setCheckBoxValues(values)}
@@ -64,7 +66,7 @@ const TemplateComponent = ({
           ]}
         />
       </WizFormControl>
-      <WizFormControl label="WizRadio" error={error}>
+      <WizFormControl label="WizRadio" direction={direction} error={error}>
         <WizRadio
           value={radioValue}
           onChange={(value) => setRadioValue(value)}
@@ -81,7 +83,7 @@ const TemplateComponent = ({
         />
       </WizFormControl>
       {/* TODO: DatePicker 追加待ち */}
-      <WizFormControl label="WizTimePicker" error={error}>
+      <WizFormControl label="WizTimePicker" direction={direction} error={error}>
         <WizTimePicker
           time={timePickerValue}
           onChange={(time) => setTimePickerValue(time)}
@@ -108,5 +110,26 @@ export const AllInputErrorStory: Story = {
   },
   render: (args) => (
     <TemplateComponent args={args} error="エラーが発生しました" />
+  ),
+};
+
+export const AllInputVerticalAlinedStory: Story = {
+  args: {
+    labelWidth: "10rem",
+    gap: "xl2",
+  },
+  render: (args) => <TemplateComponent args={args} direction="vertical" />,
+};
+export const AllInputErrorVerticalAlinedStory: Story = {
+  args: {
+    labelWidth: "10rem",
+    gap: "xl2",
+  },
+  render: (args) => (
+    <TemplateComponent
+      args={args}
+      direction="vertical"
+      error="エラーが発生しました"
+    />
   ),
 };

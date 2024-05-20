@@ -1,5 +1,39 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.29.7
+
+### Patch Changes
+
+- Updated dependencies [[`a31d32d4af9750cc59288ed73ed4faada9791011`](https://github.com/Wizleap-Inc/wiz-ui/commit/a31d32d4af9750cc59288ed73ed4faada9791011)]:
+  - @wizleap-inc/wiz-ui-constants@0.26.0
+
+## 0.29.6
+
+### Patch Changes
+
+- Updated dependencies [[`6c7ad817c49345a1ea438463aee0fd830dc90242`](https://github.com/Wizleap-Inc/wiz-ui/commit/6c7ad817c49345a1ea438463aee0fd830dc90242)]:
+  - @wizleap-inc/wiz-ui-constants@0.25.0
+
+## 0.29.5
+
+### Patch Changes
+
+- Updated dependencies [[`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1)]:
+  - @wizleap-inc/wiz-ui-constants@0.24.0
+
+## 0.29.4
+
+### Patch Changes
+
+- Updated dependencies [[`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a)]:
+  - @wizleap-inc/wiz-ui-constants@0.23.0
+
+## 0.29.3
+
+### Patch Changes
+
+- [#1261](https://github.com/Wizleap-Inc/wiz-ui/pull/1261) [`80a88bf3`](https://github.com/Wizleap-Inc/wiz-ui/commit/80a88bf39b4d378b4357e2531525561e574940b3) Thanks [@okakyo](https://github.com/okakyo)! - [#1259] feat: text の dummyText にて、user-select: none を適用
+
 ## 0.29.2
 
 ### Patch Changes
