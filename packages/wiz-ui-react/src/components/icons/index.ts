@@ -57,12 +57,14 @@ import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIHourglassTop } from "./hourglass-top";
+import { WizIInboxCustomize } from "./inbox-customize";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
 import { WizILogin } from "./login";
+import { WizIMail } from "./mail";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
@@ -153,12 +155,14 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
+  | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
   | typeof WizILocationCity
   | typeof WizILocationOn
   | typeof WizILogin
+  | typeof WizIMail
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
@@ -249,12 +253,14 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
+  WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
   WizILocationCity,
   WizILocationOn,
   WizILogin,
+  WizIMail,
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,

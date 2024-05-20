@@ -57,12 +57,14 @@ import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
 import { default as WizIHome } from "./home.vue";
 import { default as WizIHourglassTop } from "./hourglass-top.vue";
+import { default as WizIInboxCustomize } from "./inbox-customize.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
 import { default as WizILogin } from "./login.vue";
+import { default as WizIMail } from "./mail.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
@@ -153,12 +155,14 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
+  | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
   | typeof WizILocationCity
   | typeof WizILocationOn
   | typeof WizILogin
+  | typeof WizIMail
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
@@ -249,12 +253,14 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
+  WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
   WizILocationCity,
   WizILocationOn,
   WizILogin,
+  WizIMail,
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
