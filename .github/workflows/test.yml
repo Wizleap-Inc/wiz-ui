@@ -35,7 +35,7 @@ jobs:
 
       - name: Install Playwright's dependencies
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
 
       - name: Test
-        run: pnpm lint
+        run: pnpm test
