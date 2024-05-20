@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.27.0
+
+### Minor Changes
+
+- [#1309](https://github.com/Wizleap-Inc/wiz-ui/pull/1309) [`5f2481a827e84f88eaa74f97bb63fc907aa1f1fe`](https://github.com/Wizleap-Inc/wiz-ui/commit/5f2481a827e84f88eaa74f97bb63fc907aa1f1fe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIMail, WizIInboxCustomize を追加
+
 ## 0.26.0
 
 ### Minor Changes
