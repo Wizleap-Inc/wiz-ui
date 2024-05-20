@@ -138,12 +138,7 @@ export const SearchPopupPanel: FC<Props> = ({
                           id={`${option.label}-${option.value}`}
                           style={{ width: "100%" }}
                           type="button"
-                          className={clsx(
-                            styles.searchDropdownSingleSelectItemStyle,
-                            styles.searchDropdownSingleSelectItemBgStyle[
-                              selectedStatus(option.value)
-                            ]
-                          )}
+                          className={styles.searchDropdownSingleSelectItemStyle}
                           onClick={() => handleClickButton(option.value)}
                         >
                           <div className={styles.searchInputLabelStyle}>
