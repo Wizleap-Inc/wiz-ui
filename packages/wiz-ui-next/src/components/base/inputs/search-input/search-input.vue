@@ -1,8 +1,8 @@
 <template>
   <WizPopupContainer :expand="expand">
     <div
-      v-if="showSelectedItem && checkValues.length > 0"
       :class="[
+        styles.searchStyle,
         styles.searchInputSelectedItemStyle,
         disabled && styles.searchInputDisabledStyle,
         inputBorderStyle[state],
@@ -11,52 +11,51 @@
     >
       <div :class="styles.searchInputInnerBoxStyle">
         <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
-          <div v-for="item in checkValues" :key="item">
-            <span :class="styles.searchInputInnerBoxSelectedItemStyle">
-              <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
-                {{ item }}
+          <template v-if="showSelectedItem">
+            <div v-for="item in checkValues" :key="item">
+              <span :class="styles.searchInputInnerBoxSelectedItemStyle">
+                <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
+                  {{ item }}
+                </span>
+                <button
+                  type="button"
+                  @click="onClear(item)"
+                  @keypress.enter="onClear(item)"
+                  @keydown="(e) => onBackspace(item, e)"
+                  :class="styles.searchInputInnerBoxCloseButtonStyle"
+                  :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+                >
+                  <WizIcon
+                    :icon="WizIClose"
+                    :class="styles.searchInputInnerBoxCloseStyle"
+                    :size="'xs'"
+                    :color="'gray.700'"
+                  />
+                </button>
               </span>
-              <button
-                type="button"
-                @click="onClear(item)"
-                @keypress.enter="onClear(item)"
-                @keydown="(e) => onBackspace(item, e)"
-                :class="styles.searchInputInnerBoxCloseButtonStyle"
-                :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
-              >
-                <WizIcon
-                  :icon="WizIClose"
-                  :class="styles.searchInputInnerBoxCloseStyle"
-                  :size="'xs'"
-                  :color="'gray.700'"
-                />
-              </button>
-            </span>
-          </div>
+            </div>
+          </template>
+          <component
+            v-if="!displayingSelectedItems"
+            :is="icon"
+            :class="styles.searchInputIconStyle"
+          />
+          <input
+            type="text"
+            :class="[styles.searchInputInnerInputStyle]"
+            v-model="searchValue"
+            :placeholder="!displayingSelectedItems ? placeholder : undefined"
+            :name="name"
+            :disabled="disabled"
+            @focusin="hasFocus = true"
+            @focusout="hasFocus = false"
+            @click="emit('toggle', !openPopup)"
+            autocomplete="off"
+          />
         </WizHStack>
       </div>
     </div>
 
-    <div v-else :class="styles.searchStyle">
-      <input
-        type="text"
-        :class="[
-          styles.searchInputStyle,
-          disabled && styles.searchInputDisabledStyle,
-          inputBorderStyle[state],
-        ]"
-        :style="{ width: computedInputWidth }"
-        v-model="searchValue"
-        :placeholder="placeholder"
-        :name="name"
-        :disabled="disabled"
-        @focusin="hasFocus = true"
-        @focusout="hasFocus = false"
-        @click="emit('toggle', !openPopup)"
-        autocomplete="off"
-      />
-      <component :is="icon" :class="styles.searchInputIconStyle" />
-    </div>
     <WizPopup
       :isOpen="!disabled && openPopup"
       @onClose="emit('toggle', false)"
@@ -299,6 +298,10 @@ const computedIconColor = computed(() => (value: number) => {
   }
   return "gray.500";
 });
+
+const displayingSelectedItems = computed(
+  () => props.showSelectedItem && checkValues.value.length > 0
+);
 
 const onMouseover = (value: number) => {
   isBorder.value = true;

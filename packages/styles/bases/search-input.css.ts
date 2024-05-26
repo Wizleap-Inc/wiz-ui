@@ -5,6 +5,9 @@ const borderWidth = "1px";
 
 export const searchStyle = style({
   position: "relative",
+  background: THEME.color.white["800"],
+  borderRadius: THEME.spacing.xs2,
+  boxSizing: "border-box",
 });
 
 const BORDER_WIDTH = "1px";
@@ -31,9 +34,6 @@ export const searchInputDisabledStyle = style({
 });
 
 export const searchInputIconStyle = style({
-  position: "absolute",
-  top: "50%",
-  transform: "translateY(-50%)",
   left: THEME.spacing.xs,
   display: "flex",
   alignItems: "center",
@@ -246,7 +246,7 @@ export const searchInputSelectedItemStyle = style({
   height: "100%",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
-  width: "100%",
+  // width: "100%",
   boxSizing: "border-box",
   display: "inline-block",
 });
@@ -288,4 +288,24 @@ export const searchInputInnerBoxCloseButtonStyle = style({
   background: "none",
   padding: 0,
   cursor: "pointer",
+});
+
+export const searchInputInnerInputStyle = style({
+  width: 0,
+  minWidth: "30%",
+  border: "none",
+  outline: "none",
+  padding: `${THEME.spacing.xs2} ${THEME.spacing.no}`,
+  lineHeight: THEME.fontSize.xl,
+  flexGrow: 1,
+  fontSize: THEME.fontSize.sm,
+  color: THEME.color.gray["800"],
+  "::placeholder": {
+    color: THEME.color.gray["500"],
+    userSelect: "none",
+  },
+  ":disabled": {
+    cursor: "not-allowed",
+    backgroundColor: THEME.color.gray["300"],
+  },
 });

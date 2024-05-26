@@ -98,23 +98,25 @@ const SearchInput: FC<Props> = ({
     };
   };
 
+  const displayingSelectedItems = showSelectedItem && values.length > 0;
+
   return (
-    <div
-      className={clsx(className, styles.searchStyle)}
-      style={{ ...style, width: expand ? "100%" : undefined }}
-    >
-      {showSelectedItem && values.length > 0 ? (
-        <div
-          className={clsx(
-            styles.searchInputSelectedItemStyle,
-            disabled && styles.searchInputDisabledStyle,
-            inputBorderStyle[isFocused ? "active" : "default"]
-          )}
-          style={{ width: expand ? "100%" : inputWidth }}
-        >
-          <div className={styles.searchInputInnerBoxStyle}>
-            <WizHStack align="center" height="100%" gap="xs" pr="xl">
-              {values.map((value) => (
+    <>
+      <div
+        ref={inputRef}
+        className={clsx(
+          className,
+          styles.searchStyle,
+          styles.searchInputSelectedItemStyle,
+          disabled && styles.searchInputDisabledStyle,
+          inputBorderStyle[isFocused ? "active" : "default"]
+        )}
+        style={{ ...style, width: expand ? "100%" : inputWidth }}
+      >
+        <div className={styles.searchInputInnerBoxStyle}>
+          <WizHStack align="center" height="100%" gap="xs" pr="xl">
+            {showSelectedItem &&
+              values.map((value) => (
                 <span
                   key={value}
                   className={styles.searchInputInnerBoxSelectedItemStyle}
@@ -125,6 +127,7 @@ const SearchInput: FC<Props> = ({
                     {value}
                   </span>
                   <button
+                    type="button"
                     className={styles.searchInputInnerBoxCloseButtonStyle}
                     aria-label={ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}
                     onClick={() => onClear(value)}
@@ -134,35 +137,30 @@ const SearchInput: FC<Props> = ({
                   </button>
                 </span>
               ))}
-            </WizHStack>
-          </div>
+
+            {!displayingSelectedItems && (
+              <div className={styles.searchInputIconStyle}>
+                <IconComponent />
+              </div>
+            )}
+            <input
+              type="text"
+              className={styles.searchInputInnerInputStyle}
+              value={filteringText}
+              placeholder={!displayingSelectedItems ? placeholder : undefined}
+              name={name}
+              disabled={disabled}
+              onChange={(e) => {
+                setIsPopupOpen(true);
+                setFilteringText(e.target.value);
+              }}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onClick={() => setIsPopupOpen(!isPopupOpen)}
+              autoComplete="off"
+            />
+          </WizHStack>
         </div>
-      ) : (
-        <input
-          ref={inputRef}
-          type="text"
-          className={clsx(
-            styles.searchInputStyle,
-            disabled && styles.searchInputDisabledStyle,
-            inputBorderStyle[isFocused ? "active" : "default"]
-          )}
-          style={{ width: expand ? "100%" : inputWidth }}
-          value={filteringText}
-          placeholder={placeholder}
-          name={name}
-          disabled={disabled}
-          onChange={(e) => {
-            setIsPopupOpen(true);
-            setFilteringText(e.target.value);
-          }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          onClick={() => setIsPopupOpen(!isPopupOpen)}
-          autoComplete="off"
-        />
-      )}
-      <div className={styles.searchInputIconStyle}>
-        <IconComponent />
       </div>
       {filteredOptions.length > 0 && (
         <WizPopup
@@ -184,7 +182,7 @@ const SearchInput: FC<Props> = ({
           </WizHStack>
         </WizPopup>
       )}
-    </div>
+    </>
   );
 };
 
