@@ -28,7 +28,7 @@ const Template: Story = {
     const [values, setValues] = useState<number[]>([]);
     return (
       <div>
-        values:[{values.join(", ")}]
+        <div>values:[{values.join(", ")}]</div>
         <WizSearchInput
           {...args}
           values={values}
