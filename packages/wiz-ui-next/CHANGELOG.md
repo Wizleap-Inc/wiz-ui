@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.33.1
+
+### Patch Changes
+
+- Updated dependencies [[`feff5408c33863051f83c86b7b8ef465d3497e48`](https://github.com/Wizleap-Inc/wiz-ui/commit/feff5408c33863051f83c86b7b8ef465d3497e48)]:
+  - @wizleap-inc/wiz-ui-styles@0.29.9
+
 ## 2.33.0
 
 ### Minor Changes
