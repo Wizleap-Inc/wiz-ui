@@ -25,6 +25,7 @@ const { snackbarOptions } = globalInject(globalKey);
 const containerRef = ref<HTMLElement | undefined>();
 
 const space2px = (key: SpacingKeys) => {
+  if (!window) return 0;
   const rem = getSpacingCss(key);
   if (!rem || rem === "0") return 0;
   if (rem === "auto") return 0;

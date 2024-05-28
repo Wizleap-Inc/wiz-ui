@@ -16,6 +16,7 @@ type SnackbarDataItem = {
 };
 
 const marginPx = (() => {
+  if (!window) return 0;
   const mdRem = getSpacingCss("md");
   if (!mdRem || mdRem === "auto") return 0;
   if (mdRem === "9999px") return 9999;
