@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.60.2
+
+### Patch Changes
+
+- [`afedbea3bacbf5dc8736101c1721036f4fc57ac8`](https://github.com/Wizleap-Inc/wiz-ui/commit/afedbea3bacbf5dc8736101c1721036f4fc57ac8) Thanks [@ichi-h](https://github.com/ichi-h)! - chore: window.getComputedStyle に変更
+
 ## 0.60.1
 
 ### Patch Changes
