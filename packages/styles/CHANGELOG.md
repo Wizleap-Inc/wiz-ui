@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.29.9
+
+### Patch Changes
+
+- [`feff5408c33863051f83c86b7b8ef465d3497e48`](https://github.com/Wizleap-Inc/wiz-ui/commit/feff5408c33863051f83c86b7b8ef465d3497e48) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(radio): フォントサイズが大きい問題の解消
+
 ## 0.29.8
 
 ### Patch Changes
