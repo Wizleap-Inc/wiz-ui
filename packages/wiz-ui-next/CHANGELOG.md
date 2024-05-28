@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.33.3
+
+### Patch Changes
+
+- [`f34b8fcee5cd609f5acf3a95f18d9d4538f1e987`](https://github.com/Wizleap-Inc/wiz-ui/commit/f34b8fcee5cd609f5acf3a95f18d9d4538f1e987) Thanks [@ichi-h](https://github.com/ichi-h)! - chore: window がない場合の対策を追加
+
 ## 2.33.2
 
 ### Patch Changes
