@@ -21,7 +21,7 @@ const marginPx = (() => {
   if (mdRem === "9999px") return 9999;
   return (
     parseFloat(mdRem) *
-    parseFloat(getComputedStyle(document.documentElement).fontSize)
+    parseFloat(window.getComputedStyle(document.documentElement).fontSize)
   );
 })();
 

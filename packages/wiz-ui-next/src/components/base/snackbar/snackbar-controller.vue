@@ -31,7 +31,7 @@ const space2px = (key: SpacingKeys) => {
   if (rem === "9999px") return 9999;
   return (
     parseFloat(rem) *
-    parseFloat(getComputedStyle(document.documentElement).fontSize)
+    parseFloat(window.getComputedStyle(document.documentElement).fontSize)
   );
 };
 
