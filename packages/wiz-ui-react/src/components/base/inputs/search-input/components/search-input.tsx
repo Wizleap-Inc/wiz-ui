@@ -181,7 +181,7 @@ const SearchInput: FC<Props> = ({
           </WizHStack>
         </div>
       </div>
-      {filteredOptions.length > 0 && (
+      {filteredOptions.length > 0 && !disabled && (
         <WizPopup
           anchorElement={inputRef}
           isOpen={isPopupOpen}
