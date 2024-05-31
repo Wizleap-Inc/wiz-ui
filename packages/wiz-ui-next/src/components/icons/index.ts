@@ -1,5 +1,6 @@
 import { default as WizIAddCircle } from "./add-circle.vue";
 import { default as WizIAdd } from "./add.vue";
+import { default as WizIAdjustBold } from "./adjust-bold.vue";
 import { default as WizIAdjust } from "./adjust.vue";
 import { default as WizIApprovalFilled } from "./approval-filled.vue";
 import { default as WizIArrowDownward } from "./arrow-downward.vue";
@@ -98,6 +99,7 @@ import { default as WizIWarning } from "./warning.vue";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIAdjustBold
   | typeof WizIAdjust
   | typeof WizIApprovalFilled
   | typeof WizIArrowDownward
@@ -196,6 +198,7 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIAdjustBold,
   WizIAdjust,
   WizIApprovalFilled,
   WizIArrowDownward,
