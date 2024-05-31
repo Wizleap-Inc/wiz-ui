@@ -16,6 +16,7 @@ import {
 import {
   WizCalendar,
   WizCard,
+  WizHStack,
   WizICalendar,
   WizICancel,
   WizIChevronLeft,
@@ -59,12 +60,9 @@ const DateRangePicker: FC<Props> = ({
   onChangeSelectBoxValue,
   disabledDate = () => false,
 }: Props) => {
-  const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const [isSelectBoxOpen, setIsSelectBoxOpen] = useState(false);
-  const cancelButtonVisible =
-    !disabled && !!dateRange.start && (isHover || isFocused);
+  const cancelButtonVisible = !disabled && !!dateRange.start;
   const [rightCalendarDate, setRightCalendarDate] = useState(
     (() => {
       const [start, end] = [dateRange.start, dateRange.end];
@@ -185,10 +183,6 @@ const DateRangePicker: FC<Props> = ({
         ref={anchor}
         aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
         onClick={() => setIsOpen(!isOpen)}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         style={style}
@@ -199,44 +193,48 @@ const DateRangePicker: FC<Props> = ({
           inputBorderStyle[borderStyle]
         )}
       >
-        {cancelButtonVisible ? (
+        <WizHStack
+          gap="xs"
+          align="center"
+          height="100%"
+          nowrap
+          overflow="hidden"
+        >
+          <div className={styles.popupCalendarCancelIconStyle}>
+            <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
+          </div>
+          <div
+            className={
+              styles.inputTextStyle[
+                dateRange.start && !disabled ? "selected" : "default"
+              ]
+            }
+          >
+            {dateRange.start ? formatDateToYYMMDD(dateRange.start) : "開始日"}
+          </div>
+          <div className={styles.separatorStyle}>-</div>
+          <div
+            className={
+              styles.inputTextStyle[
+                dateRange.end && !disabled ? "selected" : "default"
+              ]
+            }
+          >
+            {dateRange.end ? formatDateToYYMMDD(dateRange.end) : "終了日"}
+          </div>
+        </WizHStack>
+
+        {cancelButtonVisible && (
           <button
             type="button"
-            className={styles.popupCalendarCancelButtonStyle}
+            className={styles.popupCalendarCancelIconStyle}
             disabled={disabled}
             onClick={onClickCancel}
             aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
           >
             <WizIcon size="xl2" color="inherit" icon={WizICancel} />
           </button>
-        ) : (
-          <button
-            type="button"
-            className={styles.popupCalendarCancelButtonStyle}
-            disabled={disabled}
-          >
-            <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
-          </button>
         )}
-        <span
-          className={
-            styles.inputTextStyle[
-              dateRange.start && !disabled ? "selected" : "default"
-            ]
-          }
-        >
-          {dateRange.start ? formatDateToYYMMDD(dateRange.start) : "開始日"}
-        </span>
-        <span className={styles.separatorStyle}>-</span>
-        <span
-          className={
-            styles.inputTextStyle[
-              dateRange.end && !disabled ? "selected" : "default"
-            ]
-          }
-        >
-          {dateRange.end ? formatDateToYYMMDD(dateRange.end) : "終了日"}
-        </span>
       </button>
       <WizPopup
         isOpen={!disabled && isOpen}
