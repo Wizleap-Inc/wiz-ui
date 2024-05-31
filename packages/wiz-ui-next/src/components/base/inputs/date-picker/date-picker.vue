@@ -14,28 +14,24 @@
       @keydown.left="clickToPreviousMonth"
       @keydown.right="clickToNextMonth"
     >
-      <WizHStack gap="xs" align="center" height="100%">
-        <span
-          v-if="!isHover"
-          @mouseenter="setIsHover(true)"
-          @mouseleave="setIsHover(false)"
-        >
-          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
-        </span>
+      <WizHStack align="center" height="100%" justify="between">
+        <WizHStack gap="xs" align="center" height="100%">
+          <span>
+            <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+          </span>
+          <span>{{
+            (calendarValue && formatDateToYYMMDD(calendarValue)) || placeholder
+          }}</span>
+        </WizHStack>
         <button
+          v-if="!disabled && !!calendarValue"
           type="button"
-          v-else
-          :class="datePickerCancelButtonStyle"
+          :class="datePickerCancelIconStyle"
           :aria-label="ARIA_LABELS.DATE_PICKER_CANCEL"
           @click="onClickCancel"
-          @mouseenter="setIsHover(true)"
-          @mouseleave="setIsHover(false)"
         >
           <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
         </button>
-        <span>{{
-          (calendarValue && formatDateToYYMMDD(calendarValue)) || placeholder
-        }}</span>
       </WizHStack>
     </button>
     <WizPopup
@@ -134,7 +130,7 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   datePickerArrowIconStyle,
-  datePickerCancelButtonStyle,
+  datePickerCancelIconStyle,
   datePickerMonthSelectorItemStyle,
   datePickerMonthSelectorStyle,
   datePickerSelectorStyle,
@@ -172,7 +168,6 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 interface Emit {
   (e: "update:modelValue", value: Date | null): void;
   (e: "update:isOpen", value: boolean): void;
-  (e: "update:isHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -199,13 +194,6 @@ const props = defineProps({
    * カレンダー（Popup）の開閉状態を指定します。
    */
   isOpen: {
-    type: Boolean,
-    required: true,
-  },
-  /**
-   * `isHover=true`の時、キャンセルアイコンを緑色にします。
-   */
-  isHover: {
     type: Boolean,
     required: true,
   },
@@ -241,7 +229,6 @@ const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () => emit("update:modelValue", null);
 
 const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
