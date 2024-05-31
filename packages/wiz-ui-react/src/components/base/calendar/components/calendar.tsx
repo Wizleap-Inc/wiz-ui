@@ -73,12 +73,7 @@ const Calendar: FC<Props> = ({
         <tr>
           {WEEK_LIST_JP.map((dayLabel) => (
             <td key={dayLabel} className={styles.calendarCellStyle}>
-              <div
-                className={clsx(
-                  styles.calendarItemCommonStyle,
-                  styles.calendarItemStyle["dayOfWeek"]
-                )}
-              >
+              <div className={styles.calendarItemStyle["dayOfWeek"]}>
                 {dayLabel}
               </div>
             </td>
