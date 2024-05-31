@@ -5,7 +5,6 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
 import { FC, KeyboardEvent, useContext, useRef, useState } from "react";
 
@@ -39,6 +38,12 @@ type Props = BaseProps & {
    * @default (year) => `${year}年`
    */
   formatYear?: (year: number) => string;
+
+  /**
+   * @description 日付の表示形式をカスタマイズします。
+   * @default (date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+   */
+  formatDate?: (date: Date) => string;
 };
 
 const DatePicker: FC<Props> = ({
@@ -46,13 +51,15 @@ const DatePicker: FC<Props> = ({
   style,
   date,
   placeholder = "日付を選択",
-  width = "10rem",
+  width = "12rem",
   disabled = false,
   isDirectionFixed = false,
   onChangeDate,
   error,
   disabledDate = () => false,
   formatYear = (year) => `${year}`,
+  formatDate = (date) =>
+    `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const cancelButtonVisible = !disabled && !!date;
@@ -118,12 +125,14 @@ const DatePicker: FC<Props> = ({
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
       >
-        <WizHStack align="center" height="100%" justify="between">
-          <WizHStack gap="xs" align="center" height="100%">
+        <WizHStack align="center" height="100%" justify="between" nowrap>
+          <WizHStack gap="xs" align="center" height="100%" nowrap>
             <span className={styles.datePickerCancelIconStyle}>
               <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
             </span>
-            <span>{(date && formatDateToYYMMDD(date)) || placeholder}</span>
+            <span style={{ whiteSpace: "nowrap" }}>
+              {(date && formatDate(date)) || placeholder}
+            </span>
           </WizHStack>
           {cancelButtonVisible && (
             <button

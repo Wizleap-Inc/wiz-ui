@@ -24,7 +24,7 @@
             ]
           "
           >{{
-            modelValue.start ? formatDateToYYMMDD(modelValue.start) : "開始日"
+            modelValue.start ? formatDate(modelValue.start) : "開始日"
           }}</span
         >
         <span :class="styles.separatorStyle">-</span>
@@ -34,9 +34,7 @@
               modelValue.end && !disabled ? 'selected' : 'default'
             ]
           "
-          >{{
-            modelValue.end ? formatDateToYYMMDD(modelValue.end) : "終了日"
-          }}</span
+          >{{ modelValue.end ? formatDate(modelValue.end) : "終了日" }}</span
         ></WizHStack
       >
       <button
@@ -154,7 +152,6 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { computed, inject, PropType, ref } from "vue";
 
 import {
@@ -223,6 +220,16 @@ const props = defineProps({
     type: Function as PropType<(date: Date) => boolean>,
     required: false,
     default: () => false,
+  },
+  /**
+   * @description 日付の表示形式をカスタマイズします。
+   * @default (date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+   */
+  formatDate: {
+    type: Function as PropType<(date: Date) => string>,
+    required: false,
+    default: (date: Date) =>
+      `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   },
 });
 

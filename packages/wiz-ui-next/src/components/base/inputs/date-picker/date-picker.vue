@@ -14,13 +14,13 @@
       @keydown.left="clickToPreviousMonth"
       @keydown.right="clickToNextMonth"
     >
-      <WizHStack align="center" height="100%" justify="between">
-        <WizHStack gap="xs" align="center" height="100%">
+      <WizHStack align="center" height="100%" justify="between" nowrap>
+        <WizHStack gap="xs" align="center" height="100%" nowrap>
           <span>
             <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
           </span>
-          <span>{{
-            (calendarValue && formatDateToYYMMDD(calendarValue)) || placeholder
+          <span :style="{ whiteSpace: 'nowrap' }">{{
+            (calendarValue && formatDate(calendarValue)) || placeholder
           }}</span>
         </WizHStack>
         <button
@@ -143,7 +143,6 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, computed, inject, ref } from "vue";
 
 import {
@@ -183,7 +182,7 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
-    default: "10rem",
+    default: "12rem",
   },
   disabled: {
     type: Boolean,
@@ -220,6 +219,17 @@ const props = defineProps({
     type: Function as PropType<(year: number) => string>,
     required: false,
     default: (year: number) => `${year}`,
+  },
+
+  /**
+   * @description 日付の表示形式をカスタマイズします。
+   * @default (date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+   */
+  formatDate: {
+    type: Function as PropType<(date: Date) => string>,
+    required: false,
+    default: (date: Date) =>
+      `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   },
 });
 
