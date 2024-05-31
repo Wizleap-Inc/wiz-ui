@@ -83,6 +83,25 @@ const SearchInput: FC<Props> = ({
     [filteringText, options]
   );
 
+  const valueToOptions = useMemo(() => {
+    const map = new Map<number, SearchInputOption>();
+
+    const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
+      return options.flatMap((option) => {
+        if (option.children) {
+          return [option, ...flatten(option.children)];
+        }
+        return [option];
+      });
+    };
+
+    flatten(options).forEach((option) => {
+      map.set(option.value, option);
+    });
+
+    return map;
+  }, [options]);
+
   const IconComponent = icon;
 
   const onClear = (value: number) => {
@@ -124,7 +143,7 @@ const SearchInput: FC<Props> = ({
                   <span
                     className={styles.searchInputInnerBoxSelectedLabelStyle}
                   >
-                    {value}
+                    {valueToOptions.get(value)?.label}
                   </span>
                   <button
                     type="button"

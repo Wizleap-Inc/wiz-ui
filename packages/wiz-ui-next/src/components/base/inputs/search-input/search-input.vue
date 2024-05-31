@@ -15,7 +15,7 @@
             <div v-for="item in checkValues" :key="item">
               <span :class="styles.searchInputInnerBoxSelectedItemStyle">
                 <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
-                  {{ item }}
+                  {{ valueToOption.get(item)?.label }}
                 </span>
                 <button
                   type="button"
@@ -282,6 +282,25 @@ const activeItem = ref<number | null>();
 const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
 const isBorder = ref(false);
+
+const valueToOption = computed(() => {
+  const map = new Map<number, SearchInputOption>();
+
+  const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
+    return options.flatMap((option) => {
+      if (option.children) {
+        return [option, ...flatten(option.children)];
+      }
+      return [option];
+    });
+  };
+
+  flatten(props.options).forEach((option) => {
+    map.set(option.value, option);
+  });
+
+  return map;
+});
 
 const state = computed(() => {
   if (hasFocus.value) return "active";
