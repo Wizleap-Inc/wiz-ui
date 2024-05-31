@@ -28,6 +28,7 @@
               :class="selectBoxInnerBoxCloseButtonStyle"
               :ref="setUnselectableRef(i)"
               :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+              :disabled="disabled"
             >
               <WizIcon
                 :icon="WizIClose"
