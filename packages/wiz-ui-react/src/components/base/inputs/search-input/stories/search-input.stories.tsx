@@ -28,7 +28,7 @@ const Template: Story = {
     const [values, setValues] = useState<number[]>([]);
     return (
       <div>
-        values:[{values.join(", ")}]
+        <div>values:[{values.join(", ")}]</div>
         <WizSearchInput
           {...args}
           values={values}
@@ -142,5 +142,16 @@ export const EmptyMessage: Story = {
   play: async (args) => {
     await Template.play?.(args);
     userEvent.hover(screen.getByText("テスト会社1"));
+  },
+};
+
+export const ShowSelectedItemTag: Story = {
+  ...Template,
+  args: {
+    options: normalOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    singleSelect: true,
+    inputWidth: "15rem",
+    showSelectedItem: true,
   },
 };

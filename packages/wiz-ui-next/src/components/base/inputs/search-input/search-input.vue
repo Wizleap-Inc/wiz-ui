@@ -1,25 +1,61 @@
 <template>
   <WizPopupContainer :expand="expand">
-    <div :class="styles.searchStyle">
-      <input
-        type="text"
-        :class="[
-          styles.searchInputStyle,
-          disabled && styles.searchInputDisabledStyle,
-          inputBorderStyle[state],
-        ]"
-        :style="{ width: computedInputWidth }"
-        v-model="searchValue"
-        :placeholder="placeholder"
-        :name="name"
-        :disabled="disabled"
-        @focusin="hasFocus = true"
-        @focusout="hasFocus = false"
-        @click="emit('toggle', !openPopup)"
-        autocomplete="off"
-      />
-      <component :is="icon" :class="styles.searchInputIconStyle" />
+    <div
+      :class="[
+        styles.searchStyle,
+        styles.searchInputSelectedItemStyle,
+        disabled && styles.searchInputDisabledStyle,
+        inputBorderStyle[state],
+      ]"
+      :style="{ width: computedInputWidth }"
+    >
+      <div :class="styles.searchInputInnerBoxStyle">
+        <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
+          <template v-if="showSelectedItem">
+            <div v-for="item in checkValues" :key="item">
+              <span :class="styles.searchInputInnerBoxSelectedItemStyle">
+                <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
+                  {{ valueToOption.get(item)?.label }}
+                </span>
+                <button
+                  type="button"
+                  @click="onClear(item)"
+                  @keypress.enter="onClear(item)"
+                  @keydown="(e) => onBackspace(item, e)"
+                  :class="styles.searchInputInnerBoxCloseButtonStyle"
+                  :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+                >
+                  <WizIcon
+                    :icon="WizIClose"
+                    :class="styles.searchInputInnerBoxCloseStyle"
+                    :size="'xs'"
+                    :color="'gray.700'"
+                  />
+                </button>
+              </span>
+            </div>
+          </template>
+          <component
+            v-if="!displayingSelectedItems"
+            :is="icon"
+            :class="styles.searchInputIconStyle"
+          />
+          <input
+            type="text"
+            :class="[styles.searchInputInnerInputStyle]"
+            v-model="searchValue"
+            :placeholder="!displayingSelectedItems ? placeholder : undefined"
+            :name="name"
+            :disabled="disabled"
+            @focusin="hasFocus = true"
+            @focusout="hasFocus = false"
+            @click="emit('toggle', !openPopup)"
+            autocomplete="off"
+          />
+        </WizHStack>
+      </div>
     </div>
+
     <WizPopup
       :isOpen="!disabled && openPopup"
       @onClose="emit('toggle', false)"
@@ -139,7 +175,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, onMounted, ref, watch } from "vue";
@@ -155,7 +191,7 @@ import {
   WizSearchPopup,
   WizTag,
 } from "@/components";
-import { TIcon, WizIChevronRight } from "@/components/icons";
+import { TIcon, WizIChevronRight, WizIClose } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -221,6 +257,11 @@ const props = defineProps({
     required: false,
     default: "選択肢がありません。",
   },
+  showSelectedItem: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -242,6 +283,25 @@ const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
 const isBorder = ref(false);
 
+const valueToOption = computed(() => {
+  const map = new Map<number, SearchInputOption>();
+
+  const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
+    return options.flatMap((option) => {
+      if (option.children) {
+        return [option, ...flatten(option.children)];
+      }
+      return [option];
+    });
+  };
+
+  flatten(props.options).forEach((option) => {
+    map.set(option.value, option);
+  });
+
+  return map;
+});
+
 const state = computed(() => {
   if (hasFocus.value) return "active";
   return "default";
@@ -257,6 +317,10 @@ const computedIconColor = computed(() => (value: number) => {
   }
   return "gray.500";
 });
+
+const displayingSelectedItems = computed(
+  () => props.showSelectedItem && checkValues.value.length > 0
+);
 
 const onMouseover = (value: number) => {
   isBorder.value = true;
@@ -315,6 +379,18 @@ watch(searchValue, () => {
     filteredOptions.value = props.options;
   }
 });
+
+const onClear = (value: number) => {
+  checkValues.value = checkValues.value.filter((v) => v !== value);
+  hasFocus.value = true;
+  emit("toggle", true);
+};
+
+const onBackspace = (n: number, event: KeyboardEvent) => {
+  if (event.key === "Backspace") {
+    onClear(n);
+  }
+};
 
 onMounted(() => {
   filteredOptions.value = props.options;

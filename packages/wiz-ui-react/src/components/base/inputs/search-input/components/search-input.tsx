@@ -1,10 +1,17 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, useMemo, useRef, useState } from "react";
+import { FC, KeyboardEventHandler, useMemo, useRef, useState } from "react";
 
-import { TIcon, WizHStack, WizISearch, WizPopup } from "@/components";
+import {
+  TIcon,
+  WizHStack,
+  WizIClose,
+  WizISearch,
+  WizIcon,
+  WizPopup,
+} from "@/components";
 import { BaseProps } from "@/types";
 
 import { SearchPopupPanel } from "./search-popup-panel";
@@ -23,6 +30,7 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   emptyMessage?: string;
   icon?: TIcon;
+  showSelectedItem?: boolean;
   onChangeValues: (values: number[]) => void;
 };
 
@@ -61,6 +69,7 @@ const SearchInput: FC<Props> = ({
   popupWidth,
   isDirectionFixed = false,
   emptyMessage = "選択肢がありません。",
+  showSelectedItem = false,
   onChangeValues,
   icon = WizISearch,
 }) => {
@@ -74,39 +83,105 @@ const SearchInput: FC<Props> = ({
     [filteringText, options]
   );
 
+  const valueToOptions = useMemo(() => {
+    const map = new Map<number, SearchInputOption>();
+
+    const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
+      return options.flatMap((option) => {
+        if (option.children) {
+          return [option, ...flatten(option.children)];
+        }
+        return [option];
+      });
+    };
+
+    flatten(options).forEach((option) => {
+      map.set(option.value, option);
+    });
+
+    return map;
+  }, [options]);
+
   const IconComponent = icon;
 
+  const onClear = (value: number) => {
+    const newValues = values.filter((v) => v !== value);
+    onChangeValues(newValues);
+  };
+
+  const handleKeyDown = (value: number): KeyboardEventHandler => {
+    return (e) => {
+      if (e.key === "Backspace") {
+        onClear(value);
+      }
+    };
+  };
+
+  const displayingSelectedItems = showSelectedItem && values.length > 0;
+
   return (
-    <div
-      className={clsx(className, styles.searchStyle)}
-      style={{ ...style, width: expand ? "100%" : undefined }}
-    >
-      <input
+    <>
+      <div
         ref={inputRef}
-        type="text"
         className={clsx(
-          styles.searchInputStyle,
+          className,
+          styles.searchStyle,
+          styles.searchInputSelectedItemStyle,
           disabled && styles.searchInputDisabledStyle,
           inputBorderStyle[isFocused ? "active" : "default"]
         )}
-        style={{ width: expand ? "100%" : inputWidth }}
-        value={filteringText}
-        placeholder={placeholder}
-        name={name}
-        disabled={disabled}
-        onChange={(e) => {
-          setIsPopupOpen(true);
-          setFilteringText(e.target.value);
-        }}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        onClick={() => setIsPopupOpen(!isPopupOpen)}
-        autoComplete="off"
-      />
-      <div className={styles.searchInputIconStyle}>
-        <IconComponent />
+        style={{ ...style, width: expand ? "100%" : inputWidth }}
+      >
+        <div className={styles.searchInputInnerBoxStyle}>
+          <WizHStack align="center" height="100%" gap="xs" pr="xl">
+            {showSelectedItem &&
+              values.map((value) => (
+                <span
+                  key={value}
+                  className={styles.searchInputInnerBoxSelectedItemStyle}
+                >
+                  <span
+                    className={styles.searchInputInnerBoxSelectedLabelStyle}
+                  >
+                    {valueToOptions.get(value)?.label}
+                  </span>
+                  <button
+                    type="button"
+                    className={styles.searchInputInnerBoxCloseButtonStyle}
+                    aria-label={ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}
+                    onClick={() => onClear(value)}
+                    onKeyDown={handleKeyDown(value)}
+                  >
+                    <WizIcon icon={WizIClose} size="xs" color="gray.700" />
+                  </button>
+                </span>
+              ))}
+
+            {!displayingSelectedItems && (
+              <div className={styles.searchInputIconStyle}>
+                <IconComponent />
+              </div>
+            )}
+            <input
+              type="text"
+              className={styles.searchInputInnerInputStyle}
+              value={filteringText}
+              placeholder={!displayingSelectedItems ? placeholder : undefined}
+              name={name}
+              disabled={disabled}
+              onChange={(e) => {
+                setIsPopupOpen(true);
+                setFilteringText(e.target.value);
+              }}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onClick={() => setIsPopupOpen(!isPopupOpen)}
+              autoComplete="off"
+            />
+          </WizHStack>
+        </div>
       </div>
-      {filteredOptions.length > 0 && (
+      {filteredOptions.length > 0 && !disabled && (
         <WizPopup
           anchorElement={inputRef}
           isOpen={isPopupOpen}
@@ -126,7 +201,7 @@ const SearchInput: FC<Props> = ({
           </WizHStack>
         </WizPopup>
       )}
-    </div>
+    </>
   );
 };
 
