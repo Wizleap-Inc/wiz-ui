@@ -73,6 +73,9 @@ export const selectBoxInnerBoxCloseButtonStyle = style({
   background: "none",
   padding: 0,
   cursor: "pointer",
+  ":disabled": {
+    cursor: "not-allowed",
+  },
 });
 
 export const selectBoxInnerBoxLessStyle = style({
