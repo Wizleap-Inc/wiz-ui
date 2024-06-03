@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.23.0
+
+### Minor Changes
+
+- [#1318](https://github.com/Wizleap-Inc/wiz-ui/pull/1318) [`a136ec08b05d989bb23262018af080a1d3053ae5`](https://github.com/Wizleap-Inc/wiz-ui/commit/a136ec08b05d989bb23262018af080a1d3053ae5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): add WizIAdjustBold
+
 ## 0.22.0
 
 ### Minor Changes
