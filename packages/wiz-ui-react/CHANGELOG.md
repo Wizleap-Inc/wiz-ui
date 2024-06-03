@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.61.0
+
+### Minor Changes
+
+- [#1318](https://github.com/Wizleap-Inc/wiz-ui/pull/1318) [`a136ec08b05d989bb23262018af080a1d3053ae5`](https://github.com/Wizleap-Inc/wiz-ui/commit/a136ec08b05d989bb23262018af080a1d3053ae5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): add WizIAdjustBold
+
+### Patch Changes
+
+- Updated dependencies [[`a827d6316eef09139a3c581b6f840d1288351309`](https://github.com/Wizleap-Inc/wiz-ui/commit/a827d6316eef09139a3c581b6f840d1288351309), [`a136ec08b05d989bb23262018af080a1d3053ae5`](https://github.com/Wizleap-Inc/wiz-ui/commit/a136ec08b05d989bb23262018af080a1d3053ae5)]:
+  - @wizleap-inc/wiz-ui-styles@0.29.10
+  - @wizleap-inc/wiz-ui-constants@0.28.0
+
 ## 0.60.3
 
 ### Patch Changes
