@@ -125,7 +125,6 @@
                 :id="`${item.label}_${item.value}`"
                 type="button"
                 :class="[styles.searchDropdownSingleSelectItemStyle]"
-                width="100%"
                 gap="xs2"
                 @click="handleClickButton(item.value)"
               >
@@ -168,6 +167,7 @@
           :popupWidth="computedPopupWidth"
           :emptyMessage="emptyMessage"
           :singleSelect="singleSelect"
+          @toggle="emit('toggle', $event)"
         />
       </WizHStack>
     </WizPopup>

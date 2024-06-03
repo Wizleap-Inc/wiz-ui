@@ -1,4 +1,4 @@
-import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -101,6 +101,7 @@ export const searchPopupBlockBorderRadiusStyle = style({
 export const searchDropdownItemStyle = style({
   // FIXME: デザインシステムを使った値で再定義する
   padding: `0.375rem ${THEME.spacing.no}`,
+  width: "100%",
 });
 
 export const searchDropdownLabelStyle = style({
@@ -200,6 +201,7 @@ globalStyle(`${searchInputCheckboxStyle} > div`, {
 });
 
 export const searchDropdownSingleSelectItemStyle = style({
+  width: "100%",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -218,17 +220,6 @@ export const searchDropdownSingleSelectItemStyle = style({
         color: THEME.color.green[800],
       },
     },
-  },
-});
-
-export const searchDropdownSingleSelectItemBgStyle = styleVariants({
-  default: {
-    background: THEME.color.transparent,
-    color: THEME.color.gray[800],
-  },
-  selected: {
-    background: THEME.color.green[300],
-    color: THEME.color.green[800],
   },
 });
 

@@ -37,6 +37,15 @@ export const Active: Story = {
   },
 };
 
+export const External: Story = {
+  ...Template,
+  args: {
+    icon: WizIDashboard,
+    label: "Home",
+    href: "https://wizleap.co.jp",
+  },
+};
+
 export const Disabled: Story = {
   ...Template,
   args: {

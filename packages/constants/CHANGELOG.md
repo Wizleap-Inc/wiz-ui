@@ -1,5 +1,29 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.26.0
+
+### Minor Changes
+
+- [#1304](https://github.com/Wizleap-Inc/wiz-ui/pull/1304) [`a31d32d4af9750cc59288ed73ed4faada9791011`](https://github.com/Wizleap-Inc/wiz-ui/commit/a31d32d4af9750cc59288ed73ed4faada9791011) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIArrowDownward, WizIArrowUpward を追加
+
+## 0.25.0
+
+### Minor Changes
+
+- [#1299](https://github.com/Wizleap-Inc/wiz-ui/pull/1299) [`6c7ad817c49345a1ea438463aee0fd830dc90242`](https://github.com/Wizleap-Inc/wiz-ui/commit/6c7ad817c49345a1ea438463aee0fd830dc90242) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIAdjust を追加
+
+## 0.24.0
+
+### Minor Changes
+
+- [#1293](https://github.com/Wizleap-Inc/wiz-ui/pull/1293) [`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIDelete, WizIReviews
+
+## 0.23.0
+
+### Minor Changes
+
+- [#1284](https://github.com/Wizleap-Inc/wiz-ui/pull/1284) [`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): emergency_home, hourglass_top, feedback, menu_open アイコンを追加
+
 ## 0.22.0
 
 ### Minor Changes

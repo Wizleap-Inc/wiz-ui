@@ -1,9 +1,12 @@
 import { WizIAdd } from "./add";
 import { WizIAddCircle } from "./add-circle";
+import { WizIAdjust } from "./adjust";
 import { WizIApprovalFilled } from "./approval-filled";
+import { WizIArrowDownward } from "./arrow-downward";
 import { WizIArrowDropDown } from "./arrow-drop-down";
 import { WizIArrowDropUp } from "./arrow-drop-up";
 import { WizIArrowRight } from "./arrow-right";
+import { WizIArrowUpward } from "./arrow-upward";
 import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
 import { WizIAttachFile } from "./attach-file";
@@ -33,6 +36,7 @@ import { WizIContactPageFilled } from "./contact-page-filled";
 import { WizIContentCopy } from "./content-copy";
 import { WizIContract } from "./contract";
 import { WizIDashboard } from "./dashboard";
+import { WizIDelete } from "./delete";
 import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
 import { WizIDomain } from "./domain";
@@ -40,16 +44,19 @@ import { WizIDownload } from "./download";
 import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
+import { WizIEmergencyHome } from "./emergency-home";
 import { WizIExpandLess } from "./expand-less";
 import { WizIExpandMore } from "./expand-more";
 import { WizIExpandMoreBold } from "./expand-more-bold";
 import { WizIEye } from "./eye";
 import { WizIFamilyHome } from "./family-home";
+import { WizIFeedback } from "./feedback";
 import { WizIForwardToInbox } from "./forward-to-inbox";
 import { WizIGroups } from "./groups";
 import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
+import { WizIHourglassTop } from "./hourglass-top";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
@@ -58,6 +65,7 @@ import { WizILocationOn } from "./location-on";
 import { WizILogin } from "./login";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
+import { WizIMenuOpen } from "./menu-open";
 import { WizIMonitoring } from "./monitoring";
 import { WizIMoreVert } from "./more-vert";
 import { WizINoteAdd } from "./note-add";
@@ -69,6 +77,7 @@ import { WizIPinDrop } from "./pin-drop";
 import { WizIPublic } from "./public";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
+import { WizIReviews } from "./reviews";
 import { WizISchedule } from "./schedule";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
@@ -87,10 +96,13 @@ import { WizIWarning } from "./warning";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIAdjust
   | typeof WizIApprovalFilled
+  | typeof WizIArrowDownward
   | typeof WizIArrowDropDown
   | typeof WizIArrowDropUp
   | typeof WizIArrowRight
+  | typeof WizIArrowUpward
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
   | typeof WizIAttachFile
@@ -120,6 +132,7 @@ export type TIcon =
   | typeof WizIContentCopy
   | typeof WizIContract
   | typeof WizIDashboard
+  | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDomain
@@ -127,16 +140,19 @@ export type TIcon =
   | typeof WizIDraft
   | typeof WizIDrafts
   | typeof WizIEditNote
+  | typeof WizIEmergencyHome
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
   | typeof WizIEye
   | typeof WizIFamilyHome
+  | typeof WizIFeedback
   | typeof WizIForwardToInbox
   | typeof WizIGroups
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
+  | typeof WizIHourglassTop
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
@@ -144,6 +160,7 @@ export type TIcon =
   | typeof WizILocationOn
   | typeof WizILogin
   | typeof WizIManageAccounts
+  | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMonitoring
   | typeof WizIMoreVert
@@ -156,6 +173,7 @@ export type TIcon =
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
+  | typeof WizIReviews
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
@@ -174,10 +192,13 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIAdjust,
   WizIApprovalFilled,
+  WizIArrowDownward,
   WizIArrowDropDown,
   WizIArrowDropUp,
   WizIArrowRight,
+  WizIArrowUpward,
   WizIAssignmentAdd,
   WizIAssignment,
   WizIAttachFile,
@@ -207,6 +228,7 @@ export {
   WizIContentCopy,
   WizIContract,
   WizIDashboard,
+  WizIDelete,
   WizIDemography,
   WizIDescription,
   WizIDomain,
@@ -214,16 +236,19 @@ export {
   WizIDraft,
   WizIDrafts,
   WizIEditNote,
+  WizIEmergencyHome,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,
   WizIEye,
   WizIFamilyHome,
+  WizIFeedback,
   WizIForwardToInbox,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
+  WizIHourglassTop,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
@@ -231,6 +256,7 @@ export {
   WizILocationOn,
   WizILogin,
   WizIManageAccounts,
+  WizIMenuOpen,
   WizIMenu,
   WizIMonitoring,
   WizIMoreVert,
@@ -243,6 +269,7 @@ export {
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
+  WizIReviews,
   WizISchedule,
   WizISearch,
   WizISend,
