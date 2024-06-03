@@ -1,6 +1,6 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import clsx from "clsx";
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   WizCheckBoxNew,
@@ -14,15 +14,15 @@ import { BaseProps } from "@/types";
 
 import { SearchInputOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchInputOption[];
-  values: number[];
+type Props<T> = BaseProps & {
+  options: SearchInputOption<T>[];
+  values: T[];
   width?: string;
   emptyMessage: string;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
 };
 
-export const SearchPopupPanel: FC<Props> = ({
+export const SearchPopupPanel = <T,>({
   className,
   style,
   options,
@@ -30,8 +30,9 @@ export const SearchPopupPanel: FC<Props> = ({
   width,
   emptyMessage,
   onChangeValues,
-}) => {
-  const [activeValue, setActiveValue] = useState<number | null>(null);
+}: Props<T>) => {
+  // TODO: value は number に固定
+  const [activeValue, setActiveValue] = useState<T | null>(null);
   const activeOption = useMemo(
     () => options.find((option) => activeValue === option.value),
     [activeValue, options]
@@ -41,7 +42,7 @@ export const SearchPopupPanel: FC<Props> = ({
   const isOpen = activeOptionChildren !== undefined;
 
   const handleChangeValues = useCallback(
-    (selectedOptionValue: number, isChecked: boolean) => {
+    (selectedOptionValue: T, isChecked: boolean) => {
       const newValues = (() => {
         if (isChecked) {
           return [...values, selectedOptionValue];
@@ -123,7 +124,7 @@ export const SearchPopupPanel: FC<Props> = ({
                   <div className={styles.searchDropdownCheckboxItemStyle}>
                     <WizCheckBoxNew
                       style={{ width: "100%" }}
-                      value={option.value}
+                      value={String(option.value)}
                       id={`${option.label}-${option.value}`}
                       checked={values.includes(option.value)}
                       onChange={(e) => {

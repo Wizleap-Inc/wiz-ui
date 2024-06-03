@@ -1,5 +1,5 @@
-export type SearchSelectorOption = {
+export type SearchSelectorOption<T> = {
   label: string;
-  value: number;
+  value: T;
   exLabel?: string;
 };
