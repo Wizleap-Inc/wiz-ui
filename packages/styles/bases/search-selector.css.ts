@@ -212,11 +212,11 @@ export const popupButtonGroupButtonVariantStyle = styleVariants({
         ":hover": {
           background: THEME.color.green["300"],
         },
+        ":active": {
+          color: THEME.color.white["800"],
+          background: THEME.color.green["800"],
+        },
       },
-    },
-    ":active": {
-      color: THEME.color.white["800"],
-      background: THEME.color.green["800"],
     },
   },
   disabled: {
