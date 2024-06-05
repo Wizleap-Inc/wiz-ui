@@ -8,11 +8,11 @@ import WizSearchInput from "../search-input.vue";
 import {
   debugOption,
   defaultOption,
+  emptyMessageOptions,
   expandOption,
   longLabelOption,
   openOption,
   simpleOption,
-  emptyMessageOptions,
   taggedOptions,
 } from "./options";
 
@@ -141,7 +141,7 @@ SingleSelect.args = {
   placeholder: "氏名・ID・電話番号で検索",
   singleSelect: true,
   inputWidth: "15rem",
-  options: simpleOption,
+  options: defaultOption,
 };
 
 export const Icon = Template(true).bind({});
