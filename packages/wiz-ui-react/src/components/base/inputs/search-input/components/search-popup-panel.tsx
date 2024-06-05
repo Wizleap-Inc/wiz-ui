@@ -62,9 +62,6 @@ export const SearchPopupPanel: FC<Props> = ({
     onChangeValues([value]);
     closePopup();
   };
-  const selectedStatus = (value: number) => {
-    return values.includes(value) ? "selected" : "default";
-  };
 
   useEffect(() => {
     // reset active
