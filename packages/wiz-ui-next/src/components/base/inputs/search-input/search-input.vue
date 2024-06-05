@@ -10,7 +10,7 @@
       :style="{ width: computedInputWidth }"
     >
       <div :class="styles.searchInputInnerBoxStyle">
-        <WizHStack align="center" height="100%" gap="xs" pr="xl" :wrap="true">
+        <WizHStack align="center" height="100%" gap="xs" :wrap="true">
           <template v-if="showSelectedItem">
             <div v-for="item in checkValues" :key="item">
               <span :class="styles.searchInputInnerBoxSelectedItemStyle">

@@ -133,7 +133,7 @@ const SearchInput: FC<Props> = ({
         style={{ ...style, width: expand ? "100%" : inputWidth }}
       >
         <div className={styles.searchInputInnerBoxStyle}>
-          <WizHStack align="center" height="100%" gap="xs" pr="xl">
+          <WizHStack align="center" height="100%" gap="xs">
             {showSelectedItem &&
               values.map((value) => (
                 <span
