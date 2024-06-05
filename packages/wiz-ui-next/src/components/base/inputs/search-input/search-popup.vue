@@ -28,10 +28,7 @@
             :key="`${item.label}_${item.value}_${key}`"
           >
             <!-- Dropdown -->
-            <div
-              v-if="item.children"
-              :class="styles.searchPopupDropdownItemStyle"
-            >
+            <div v-if="item.children" :class="styles.searchDropdownItemStyle">
               <WizHStack
                 py="xs2"
                 align="center"
@@ -72,6 +69,23 @@
                 </WizHStack>
               </WizHStack>
             </div>
+            <div
+              v-else-if="singleSelect"
+              :class="[styles.searchDropdownItemStyle]"
+            >
+              <button
+                :id="`${item.label}_${item.value}`"
+                type="button"
+                :class="[styles.searchDropdownSingleSelectItemStyle]"
+                width="100%"
+                gap="xs2"
+                @click="handleClickButton(item.value)"
+              >
+                <div :class="styles.searchInputLabelStyle">
+                  {{ item.label }}
+                </div>
+              </button>
+            </div>
             <!-- Checkbox -->
             <div
               v-else
@@ -111,6 +125,8 @@
         :selectedItem="selectedItem"
         :popupWidth="computedPopupWidth"
         :emptyMessage="emptyMessage"
+        :singleSelect="singleSelect"
+        @toggle="emit('toggle', $event)"
       />
     </div>
   </template>
@@ -158,9 +174,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  singleSelect: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
+  (e: "toggle", value: boolean): void;
   (e: "update:modelValue", value: number[]): void;
   (e: "mouseover", id: number, isChild: boolean): void;
 }>();
@@ -246,5 +268,10 @@ const handleClickCheckbox = (value: number) => {
   } else {
     checkValues.value = [...checkValues.value, value];
   }
+};
+
+const handleClickButton = (value: number) => {
+  checkValues.value = [value];
+  emit("toggle", false);
 };
 </script>

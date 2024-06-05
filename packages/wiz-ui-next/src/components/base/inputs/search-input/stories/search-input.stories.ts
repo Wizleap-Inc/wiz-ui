@@ -8,11 +8,11 @@ import WizSearchInput from "../search-input.vue";
 import {
   debugOption,
   defaultOption,
+  emptyMessageOptions,
   expandOption,
   longLabelOption,
   openOption,
   simpleOption,
-  emptyMessageOptions,
   taggedOptions,
 } from "./options";
 
@@ -32,6 +32,9 @@ export default {
       control: { type: "boolean" },
     },
     expand: {
+      control: { type: "boolean" },
+    },
+    singleSelect: {
       control: { type: "boolean" },
     },
     inputWidth: {
@@ -133,6 +136,14 @@ IsDirectionFixed.args = {
   options: simpleOption,
 };
 
+export const SingleSelect = Template(true).bind({});
+SingleSelect.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
+  inputWidth: "15rem",
+  options: defaultOption,
+};
+
 export const Icon = Template(true).bind({});
 Icon.args = {
   placeholder: "氏名・ID・電話番号で検索",
@@ -156,4 +167,13 @@ EmptyMessage.args = {
   inputWidth: "15rem",
   popupWidth: "25rem",
   options: emptyMessageOptions,
+};
+
+export const ShowSelectedItemTag = Template(true).bind({});
+ShowSelectedItemTag.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
+  inputWidth: "15rem",
+  options: simpleOption,
+  showSelectedItem: true,
 };
