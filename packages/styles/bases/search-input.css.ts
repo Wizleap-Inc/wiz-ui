@@ -279,6 +279,9 @@ export const searchInputInnerBoxCloseButtonStyle = style({
   background: "none",
   padding: 0,
   cursor: "pointer",
+  ":disabled": {
+    cursor: "not-allowed",
+  },
 });
 
 export const searchInputInnerInputStyle = style({

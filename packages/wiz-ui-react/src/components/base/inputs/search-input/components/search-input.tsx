@@ -151,6 +151,7 @@ const SearchInput: FC<Props> = ({
                     aria-label={ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}
                     onClick={() => onClear(value)}
                     onKeyDown={handleKeyDown(value)}
+                    disabled={disabled}
                   >
                     <WizIcon icon={WizIClose} size="xs" color="gray.700" />
                   </button>
