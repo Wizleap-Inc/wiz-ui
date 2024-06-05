@@ -92,12 +92,13 @@ export const Disabled: Story = {
   },
 };
 
-export const singleSelect: Story = {
+export const SingleSelect: Story = {
   ...Template,
   args: {
     options: normalOptions,
     placeholder: "氏名・ID・電話番号で検索",
     singleSelect: true,
+    inputWidth: "15rem",
   },
 };
 
