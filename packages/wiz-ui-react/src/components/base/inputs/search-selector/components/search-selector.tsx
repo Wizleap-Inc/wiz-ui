@@ -106,6 +106,7 @@ const SearchSelector: FC<Props> = ({
             label: option.label,
             value: option.value,
             exLabel: option.exLabel,
+            disabled: option.disabled,
             onClick: () => {
               setSearchText("");
               if (multiSelectable) {
