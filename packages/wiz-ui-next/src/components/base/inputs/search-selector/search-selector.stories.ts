@@ -250,6 +250,31 @@ Disabled.parameters = {
     },
   },
 };
+export const DisabledItems = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3).map((option, i) => ({
+    ...option,
+    disabled: i % 2 === 0,
+  })),
+  ""
+).bind({});
+DisabledItems.parameters = {
+  docs: {
+    source: {
+      code: code(
+        [],
+        false,
+        _getDummyOptions("test", 3).map((option, i) => ({
+          ...option,
+          disabled: i % 2 === 0,
+        })),
+        "",
+        {}
+      ),
+    },
+  },
+};
 
 export const Selecting = Template(
   [1],
