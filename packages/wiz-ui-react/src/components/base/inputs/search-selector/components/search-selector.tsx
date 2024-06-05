@@ -23,11 +23,11 @@ import {
   WizIcon,
   WizPopup,
 } from "@/components";
-import { ButtonGroupItem } from "@/components/base/popup-button-group/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
 
 import { PopupButtonGroup } from "./popup-button-group";
+import { ButtonGroupItem } from "./popup-button-group/types";
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
