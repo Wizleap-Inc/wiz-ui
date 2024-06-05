@@ -70,6 +70,8 @@ export const selectBoxSelectorOptionStyle = style({
   color: THEME.color.gray["800"],
   boxSizing: "border-box",
   cursor: "pointer",
+  border: "none",
+  backgroundColor: "white",
   "@media": {
     "(any-hover: hover)": {
       ":hover": {
@@ -80,6 +82,10 @@ export const selectBoxSelectorOptionStyle = style({
   ":active": {
     color: THEME.color.white["800"],
     background: THEME.color.green["800"],
+  },
+  ":disabled": {
+    color: THEME.color.gray["400"],
+    cursor: "not-allowed",
   },
 });
 

@@ -46,8 +46,10 @@
         :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
       >
         <WizVStack>
-          <div
+          <button
+            type="button"
             :class="selectBoxSelectorOptionStyle"
+            :disabled="option.disabled"
             v-for="(option, key) in options"
             :key="'option' + key"
             @click="onSelect(option.value)"
@@ -58,7 +60,7 @@
             <span v-if="option.exLabel">
               {{ option.exLabel }}
             </span>
-          </div>
+          </button>
         </WizVStack>
       </div>
     </WizPopup>
