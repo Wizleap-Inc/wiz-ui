@@ -89,7 +89,7 @@
         "
       >
         <WizVStack gap="xs2">
-          <WizPopupButtonGroup
+          <PopupButtonGroup
             :options="
               addButtonEnabled ? [addButton, ...selectButtons] : selectButtons
             "
@@ -120,12 +120,7 @@ import {
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { ComponentPublicInstance, PropType, computed, inject, ref } from "vue";
 
-import {
-  WizIcon,
-  WizPopup,
-  WizPopupButtonGroup,
-  WizPopupContainer,
-} from "@/components";
+import { WizIcon, WizPopup, WizPopupContainer } from "@/components";
 import {
   WizIAddCircle,
   WizIClose,
@@ -134,10 +129,10 @@ import {
 } from "@/components/icons";
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
-import { ButtonGroupItem } from "../../popup-button-group/types";
 import { WizHStack, WizVStack } from "../../stack";
 
 import { levenshteinDistance } from "./levenshtein-distance";
+import { ButtonGroupItem, PopupButtonGroup } from "./popup-button-group";
 import { SelectBoxOption } from "./types";
 
 defineOptions({
@@ -388,6 +383,7 @@ const selectButtons = computed(() => {
         label: opt.label,
         value: opt.value,
         exLabel: opt.exLabel,
+        disabled: opt.disabled,
         onClick: () => onSelect(opt.value),
       },
     };
