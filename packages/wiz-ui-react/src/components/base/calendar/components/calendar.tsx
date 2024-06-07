@@ -1,4 +1,8 @@
-import { ComponentName, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ComponentName,
+  THEME,
+  WEEK_LIST_JP,
+} from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import clsx from "clsx";
 import { FC, useMemo } from "react";
@@ -66,6 +70,66 @@ const Calendar: FC<Props> = ({
       )
     );
   }
+  type CalenderItem = {
+    item: CalendarDataItem;
+    itemStyle: keyof typeof styles.calendarItemStyle;
+    activeDateStatus: DateStatus | undefined;
+  };
+  const calendarItems = calendarData.map((weekDateItems) => {
+    return weekDateItems.map((item) => {
+      const activeDateStatus = findActiveDateStatus(item);
+      const itemStyle = getItemStyleState(item, activeDateStatus);
+      const r: CalenderItem = {
+        item,
+        itemStyle,
+        activeDateStatus,
+      };
+      return r;
+    });
+  });
+
+  type AdjacentItems = {
+    current: CalenderItem;
+    top?: DateStatus | undefined;
+    bottom?: DateStatus | undefined;
+    left?: DateStatus | undefined;
+    right?: DateStatus | undefined;
+  };
+
+  const adjacentItems = calendarItems.map((weekItems, row) => {
+    return weekItems.map((item, col) => {
+      const current = item;
+      const top = calendarItems[row - 1]?.[col]?.activeDateStatus;
+      const bottom = calendarItems[row + 1]?.[col]?.activeDateStatus;
+      const left = calendarItems[row]?.[col - 1]?.activeDateStatus;
+      const right = calendarItems[row]?.[col + 1]?.activeDateStatus;
+      const r: AdjacentItems = {
+        current,
+        top,
+        bottom,
+        left,
+        right,
+      };
+      return r;
+    });
+  });
+
+  const itemRadiusStyle = (adjacent: AdjacentItems) => {
+    const top = adjacent.top;
+    const bottom = !!adjacent.bottom;
+    const left = adjacent.left;
+    const right = !!adjacent.right;
+    // if primary
+
+    return {
+      borderTopLeftRadius: (!top && !left && THEME.spacing.xs2) || undefined,
+      borderTopRightRadius: (!top && !right && THEME.spacing.xs2) || undefined,
+      borderBottomLeftRadius:
+        (!bottom && !left && THEME.spacing.xs2) || undefined,
+      borderBottomRightRadius:
+        (!bottom && !right && THEME.spacing.xs2) || undefined,
+    };
+  };
 
   return (
     <table className={clsx(className, styles.calendarStyle)} style={style}>
@@ -81,11 +145,12 @@ const Calendar: FC<Props> = ({
         </tr>
       </thead>
       <tbody>
-        {calendarData.map((weekDataItems, row) => (
+        {adjacentItems.map((weekDataItems, row) => (
           <tr key={`week-${row}`}>
-            {weekDataItems.map((item, col) => {
-              const activeDateStatus = findActiveDateStatus(item);
-              const itemStyle = getItemStyleState(item, activeDateStatus);
+            {weekDataItems.map((adjacent, col) => {
+              const item = adjacent.current.item;
+              const itemStyle = adjacent.current.itemStyle;
+              const activeDateStatus = adjacent.current.activeDateStatus;
               return (
                 <td
                   key={`${item.label}-${col}`}
@@ -104,6 +169,9 @@ const Calendar: FC<Props> = ({
                       styles.calendarItemStyle[itemStyle]
                     )}
                     onClick={() => handleClickDate(item)}
+                    style={{
+                      ...itemRadiusStyle(adjacent),
+                    }}
                   >
                     {item.label}
                   </button>

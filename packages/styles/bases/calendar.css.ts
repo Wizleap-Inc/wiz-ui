@@ -42,7 +42,6 @@ export const calendarItemStyle = styleVariants({
     color: THEME.color.green[800],
     textAlign: "center",
     background: THEME.color.green[300],
-    borderRadius: THEME.spacing.xs2,
     cursor: "pointer",
   },
   inCurrentMonth: {
