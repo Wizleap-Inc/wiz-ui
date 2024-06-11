@@ -14,9 +14,15 @@ export const calendarItemCommonStyle = style({
   border: "none",
   width: "2rem",
   height: "2rem",
-  padding: `${THEME.spacing.xs2} 0`,
+  padding: 0,
+  display: "flex",
   fontSize: THEME.fontSize.xs2,
   lineHeight: THEME.fontSize.xs,
+  backgroundColor: "transparent",
+});
+
+export const calendarItemPrimaryButtonStyle = style({
+  background: THEME.color.green[300],
 });
 
 export const calendarItemStyle = styleVariants({
