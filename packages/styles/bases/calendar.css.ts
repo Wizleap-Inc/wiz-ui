@@ -21,64 +21,97 @@ export const calendarItemCommonStyle = style({
   backgroundColor: "transparent",
 });
 
-export const calendarItemPrimaryButtonStyle = style({
+export const calendarItemContainerStyle = style({
+  height: "100%",
+  width: "100%",
+  overflow: "hidden",
+});
+
+export const calendarPrimaryItemContainerStyle = style({
   background: THEME.color.green[300],
 });
 
+const calendarItemBaseStyle = style({
+  height: "100%",
+  width: "100%",
+  textAlign: "center",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
 export const calendarItemStyle = styleVariants({
-  dayOfWeek: {
-    background: "none",
-    color: THEME.color.gray[600],
-    textAlign: "center",
-    border: "none",
-    width: "100%",
-    height: THEME.spacing.lg,
-    padding: `${THEME.spacing.xs2} 0`,
-    fontSize: THEME.fontSize.xs2,
-    lineHeight: THEME.fontSize.xs,
-  },
-  primary: {
-    color: THEME.color.white[800],
-    textAlign: "center",
-    background: THEME.color.green[800],
-    borderRadius: THEME.spacing.xs2,
-    cursor: "pointer",
-  },
-  secondary: {
-    color: THEME.color.green[800],
-    textAlign: "center",
-    background: THEME.color.green[300],
-    cursor: "pointer",
-  },
-  inCurrentMonth: {
-    color: THEME.color.gray[800],
-    textAlign: "center",
-    borderRadius: THEME.spacing.xs2,
-    cursor: "pointer",
-    background: "none",
-    "@media": {
-      "(any-hover: hover)": {
-        ":hover": {
-          backgroundColor: THEME.color.green[300],
-          color: THEME.color.green[800],
+  dayOfWeek: [
+    calendarItemBaseStyle,
+    {
+      background: "none",
+      color: THEME.color.gray[600],
+      textAlign: "center",
+      border: "none",
+      width: "100%",
+      height: THEME.spacing.lg,
+      padding: `${THEME.spacing.xs2} 0`,
+      fontSize: THEME.fontSize.xs2,
+      lineHeight: THEME.fontSize.xs,
+    },
+  ],
+  primary: [
+    calendarItemBaseStyle,
+    {
+      color: THEME.color.white[800],
+      textAlign: "center",
+      background: THEME.color.green[800],
+      borderRadius: THEME.spacing.xs2,
+      cursor: "pointer",
+    },
+  ],
+  secondary: [
+    calendarItemBaseStyle,
+    {
+      color: THEME.color.green[800],
+      textAlign: "center",
+      background: THEME.color.green[300],
+      cursor: "pointer",
+    },
+  ],
+  inCurrentMonth: [
+    calendarItemBaseStyle,
+    {
+      color: THEME.color.gray[800],
+      textAlign: "center",
+      borderRadius: THEME.spacing.xs2,
+      cursor: "pointer",
+      background: "none",
+      "@media": {
+        "(any-hover: hover)": {
+          ":hover": {
+            backgroundColor: THEME.color.green[300],
+            color: THEME.color.green[800],
+          },
         },
       },
+      ":active": {
+        backgroundColor: THEME.color.green[800],
+        color: THEME.color.white[800],
+      },
     },
-    ":active": {
-      backgroundColor: THEME.color.green[800],
-      color: THEME.color.white[800],
+  ],
+  outOfCurrentMonth: [
+    calendarItemBaseStyle,
+    {
+      background: "none",
+      color: THEME.color.gray[500],
+      textAlign: "center",
+      borderRadius: THEME.spacing.xs2,
     },
-  },
-  outOfCurrentMonth: {
-    background: "none",
-    color: THEME.color.gray[500],
-    textAlign: "center",
-    borderRadius: THEME.spacing.xs2,
-  },
-  disabledDate: {
-    background: "none",
-    color: THEME.color.gray[500],
-    textAlign: "center",
-    borderRadius: THEME.spacing.xs2,
-  },
+  ],
+  disabledDate: [
+    calendarItemBaseStyle,
+    {
+      background: "none",
+      color: THEME.color.gray[500],
+      textAlign: "center",
+      borderRadius: THEME.spacing.xs2,
+    },
+  ],
 });

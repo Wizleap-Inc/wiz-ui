@@ -24,8 +24,6 @@ type AdjacentItems = {
   bottom?: DateStatus;
   left?: DateStatus;
   right?: DateStatus;
-  next?: DateStatus;
-  prev?: DateStatus;
 };
 
 type RadiusStyle = {
@@ -34,13 +32,32 @@ type RadiusStyle = {
   borderBottomLeftRadius?: string;
   borderBottomRightRadius?: string;
 };
-const itemRadiusStyle1 = (adjacent: AdjacentItems): RadiusStyle => {
+const itemRadiusStyle1 = (
+  adjacent: AdjacentItems,
+  isActiveDate: (date: Date) => boolean
+): RadiusStyle => {
   const top = adjacent.top;
   const bottom = adjacent.bottom;
   const left = adjacent.left;
   const right = adjacent.right;
-  const next = adjacent.next;
-  const prev = adjacent.prev;
+  const currentDate = adjacent.current.activeDateStatus;
+  if (!currentDate) {
+    return {
+      borderTopLeftRadius: undefined,
+      borderTopRightRadius: undefined,
+      borderBottomLeftRadius: undefined,
+      borderBottomRightRadius: undefined,
+    };
+  }
+  const nextDate = new Date(currentDate.date);
+  nextDate.setDate(nextDate.getDate() + 1);
+
+  const prevDate = new Date(currentDate.date);
+  prevDate.setDate(prevDate.getDate() - 1);
+
+  const next = isActiveDate(nextDate);
+  const prev = isActiveDate(prevDate);
+
   const radius = THEME.spacing.xs2;
 
   const r = {
@@ -67,7 +84,7 @@ const itemRadiusStyle1 = (adjacent: AdjacentItems): RadiusStyle => {
   return r;
 };
 
-const itemRadiusStyle2 = (adjacent: AdjacentItems, parent: RadiusStyle) => {
+const itemRadiusStyle2 = (adjacent: AdjacentItems) => {
   const top = adjacent.top;
   const bottom = adjacent.bottom;
   const left = adjacent.left;
@@ -86,8 +103,7 @@ const itemRadiusStyle2 = (adjacent: AdjacentItems, parent: RadiusStyle) => {
     borderTopLeftRadius: (!top && !left && radius) || undefined,
     borderTopRightRadius: (!top && !right && radius) || undefined,
     borderBottomLeftRadius: (!bottom && !left && radius) || undefined,
-    borderBottomRightRadius:
-      (!bottom && !right && radius) || parent.borderBottomRightRadius,
+    borderBottomRightRadius: (!bottom && !right && radius) || undefined,
   };
 };
 
@@ -163,7 +179,6 @@ const Calendar: FC<Props> = ({
   });
 
   const adjacentItems = (() => {
-    const flattenItems = calendarItems.flat();
     return calendarItems.map((weekItems, row) => {
       return weekItems.map((item, col) => {
         const current = item;
@@ -171,23 +186,32 @@ const Calendar: FC<Props> = ({
         const bottom = calendarItems[row + 1]?.[col]?.activeDateStatus;
         const left = calendarItems[row]?.[col - 1]?.activeDateStatus;
         const right = calendarItems[row]?.[col + 1]?.activeDateStatus;
-        const next = flattenItems?.[7 * row + col + 1]?.activeDateStatus;
-        const prev = flattenItems?.[7 * row + col - 1]?.activeDateStatus;
-
         const r: AdjacentItems = {
           current,
           top,
           bottom,
           left,
           right,
-          next,
-          prev,
         };
         return r;
       });
     });
   })();
 
+  const activeDatesSet = new Set(
+    activeDates?.map((activeDate) => {
+      return new Date(
+        activeDate.date.getFullYear(),
+        activeDate.date.getMonth(),
+        activeDate.date.getDate()
+      ).getTime();
+    })
+  );
+
+  const isActiveDate = (date: Date) =>
+    activeDatesSet.has(
+      new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+    );
   return (
     <table className={clsx(className, styles.calendarStyle)} style={style}>
       <thead>
@@ -221,36 +245,20 @@ const Calendar: FC<Props> = ({
                     aria-label={`${currentMonth.getFullYear()}年${
                       currentMonth.getMonth() + 1
                     }月${item.label}日${activeDateStatus ? "-選択済み" : ""}`}
-                    className={clsx(styles.calendarItemCommonStyle)}
+                    className={styles.calendarItemCommonStyle}
                     onClick={() => handleClickDate(item)}
                   >
                     <div
                       className={clsx(
+                        styles.calendarItemContainerStyle,
                         itemStyle === "primary" &&
-                          styles.calendarItemPrimaryButtonStyle
+                          styles.calendarPrimaryItemContainerStyle
                       )}
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                        ...itemRadiusStyle1(adjacent),
-                      }}
+                      style={itemRadiusStyle1(adjacent, isActiveDate)}
                     >
                       <div
-                        className={clsx(styles.calendarItemStyle[itemStyle])}
-                        style={{
-                          height: "100%",
-                          width: "100%",
-                          textAlign: "center",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          // borderRadius:
-                          //   itemStyle === "primary" ? "50%" : undefined,
-                          ...itemRadiusStyle2(
-                            adjacent,
-                            itemRadiusStyle1(adjacent)
-                          ),
-                        }}
+                        className={styles.calendarItemStyle[itemStyle]}
+                        style={itemRadiusStyle2(adjacent)}
                       >
                         {item.label}
                       </div>
