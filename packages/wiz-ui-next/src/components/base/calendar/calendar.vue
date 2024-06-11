@@ -5,34 +5,70 @@
         {{ row }}
       </div>
     </td>
-    <tr v-for="(week, row) in calendars" :key="[week, row].join('-')">
+    <tr v-for="(week, row) in adjacentItems" :key="[week, row].join('-')">
       <td
-        v-for="(day, col) in week"
+        v-for="(
+          { current: { state, day: day, date }, top, left, right, bottom }, col
+        ) in week"
         :key="[day, col].join('-')"
         :class="calendarCellStyle"
       >
         <button
           type="button"
           v-if="day"
-          :class="[
-            calendarItemCommonStyle,
-            calendarItemStyle[getDateState(row, col)],
-          ]"
+          :class="[calendarItemCommonStyle, state && calendarItemStyle[state]]"
           :aria-label="`${currentMonth.getFullYear()}年${
             currentMonth.getMonth() + 1
           }月${day}日${
-            getDateState(row, col) === 'primary' ||
-            getDateState(row, col) === 'secondary'
-              ? '-選択済み'
-              : ''
+            state === 'primary' || state === 'secondary' ? '-選択済み' : ''
           }`"
-          :disabled="
-            getDateState(row, col) === 'outOfCurrentMonth' ||
-            getDateState(row, col) === 'disabledDate'
-          "
+          :disabled="state === 'outOfCurrentMonth' || state === 'disabledDate'"
           @click="updateSelectedDate(row, col, day)"
         >
-          {{ day }}
+          <div
+            :class="[
+              styles.calendarItemCommonStyle,
+              state === 'primary' && styles.calendarPrimaryItemContainerStyle,
+            ]"
+            :style="
+              itemRadiusStyle1(
+                {
+                  top,
+                  left,
+                  right,
+                  bottom,
+                  current: {
+                    day,
+                    state,
+                    date,
+                  },
+                },
+                isActiveDate
+              )
+            "
+          >
+            <div
+              :class="[state && styles.calendarItemStyle[state]]"
+              :style="
+                itemRadiusStyle1(
+                  {
+                    top,
+                    left,
+                    right,
+                    bottom,
+                    current: {
+                      day,
+                      state,
+                      date,
+                    },
+                  },
+                  isActiveDate
+                )
+              "
+            >
+              {{ day }}
+            </div>
+          </div>
         </button>
       </td>
     </tr>
@@ -40,7 +76,8 @@
 </template>
 
 <script setup lang="ts">
-import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
+import { THEME, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import {
   calendarCellStyle,
   calendarItemCommonStyle,
@@ -183,6 +220,44 @@ const getDateState = computed(() => (row: number, col: number) => {
   }
   return "inCurrentMonth";
 });
+type DateState =
+  | "outOfCurrentMonth"
+  | "disabledDate"
+  | "primary"
+  | "secondary"
+  | "inCurrentMonth";
+const adjacentItems = computed(() => {
+  const tryGetDateState = (row: number, col: number) => {
+    if (!calendars.value?.[row]?.[col]) return undefined;
+    const state: DateState = getDateState.value(row, col);
+    return state;
+  };
+  return calendars.value.map((week, row) => {
+    return week.map((day, col) => {
+      const current = tryGetDateState(row, col);
+      // if (!current) throw Error("never");
+      const top = tryGetDateState(row - 1, col);
+      const bottom = tryGetDateState(row + 1, col);
+      const left = tryGetDateState(row, col - 1);
+      const right = tryGetDateState(row, col + 1);
+      return {
+        current: {
+          state: current,
+          day: day,
+          date: new Date(
+            props.currentMonth.getFullYear(),
+            props.currentMonth.getMonth(),
+            Number(day)
+          ),
+        },
+        top,
+        left,
+        right,
+        bottom,
+      };
+    });
+  });
+});
 
 const updateSelectedDate = (row: number, col: number, day: string) => {
   if (isCurrentMonth(row, col)) {
@@ -193,5 +268,87 @@ const updateSelectedDate = (row: number, col: number, day: string) => {
     );
     emits("click", selectedValue);
   }
+};
+
+const activeDatesSet = new Set(
+  props.activeDates?.map((activeDate) => {
+    return new Date(
+      activeDate.date.getFullYear(),
+      activeDate.date.getMonth(),
+      activeDate.date.getDate()
+    ).getTime();
+  })
+);
+
+const isActiveDate = (date: Date) =>
+  activeDatesSet.has(
+    new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+  );
+type RadiusStyle = {
+  borderTopLeftRadius?: string;
+  borderTopRightRadius?: string;
+  borderBottomLeftRadius?: string;
+  borderBottomRightRadius?: string;
+};
+const itemRadiusStyle1 = (
+  adjacent: {
+    current: {
+      state: DateState | undefined;
+      day: string;
+      date: Date;
+    };
+    top: DateState | undefined;
+    left: DateState | undefined;
+    right: DateState | undefined;
+    bottom: DateState | undefined;
+  },
+  isActiveDate: (date: Date) => boolean
+): RadiusStyle => {
+  const top = adjacent.top;
+  const bottom = adjacent.bottom;
+  const left = adjacent.left;
+  const right = adjacent.right;
+  const currentDate = adjacent.current.state;
+  if (!currentDate) {
+    return {
+      borderTopLeftRadius: undefined,
+      borderTopRightRadius: undefined,
+      borderBottomLeftRadius: undefined,
+      borderBottomRightRadius: undefined,
+    };
+  }
+  const nextDate = new Date(adjacent.current.date);
+  nextDate.setDate(nextDate.getDate() + 1);
+
+  const prevDate = new Date(adjacent.current.date);
+  prevDate.setDate(prevDate.getDate() - 1);
+
+  const next = isActiveDate(nextDate);
+  const prev = isActiveDate(prevDate);
+
+  const radius = THEME.spacing.xs2;
+
+  const r = {
+    borderTopLeftRadius:
+      (!left && !top && radius) ||
+      (!left && top === "primary" && radius) ||
+      undefined,
+    borderTopRightRadius: (!top && !right && radius) || undefined,
+    borderBottomLeftRadius: (!bottom && !left && radius) || undefined,
+    borderBottomRightRadius:
+      (!right && !bottom && radius) ||
+      (!right && bottom === "primary" && radius) ||
+      undefined,
+  };
+
+  if (adjacent.current.state === "primary") {
+    return {
+      borderTopLeftRadius: (!prev && "50%") || r.borderTopLeftRadius,
+      borderBottomLeftRadius: (!prev && "50%") || r.borderBottomLeftRadius,
+      borderTopRightRadius: (!next && "50%") || r.borderTopRightRadius,
+      borderBottomRightRadius: (!next && "50%") || r.borderBottomRightRadius,
+    };
+  }
+  return r;
 };
 </script>
