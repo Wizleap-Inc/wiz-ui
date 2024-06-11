@@ -72,6 +72,15 @@ Disabled.args = {
   disabled: true,
 };
 
+export const DisabledItems = Template.bind({});
+DisabledItems.args = {
+  options: _getDummyOptions("test", 6).map((option, index) => ({
+    ...option,
+    disabled: index % 2 === 0,
+  })),
+  isOpen: true,
+};
+
 export const LongLabel = Template.bind({});
 LongLabel.args = {
   options: _getDummyOptions("ThisIsTooLongLabelThisIsTooLongLabel", 3),
