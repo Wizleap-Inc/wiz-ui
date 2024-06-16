@@ -1,72 +1,54 @@
 <template>
-  <table :class="calendarStyle">
-    <td v-for="row in WEEK_LIST_JP" :class="calendarCellStyle" :key="row">
-      <div :class="[calendarItemStyle['dayOfWeek']]">
+  <table :class="styles.calendarStyle">
+    <td
+      v-for="row in WEEK_LIST_JP"
+      :class="styles.calendarCellStyle"
+      :key="row"
+    >
+      <div :class="[styles.calendarItemStyle['dayOfWeek']]">
         {{ row }}
       </div>
     </td>
     <tr v-for="(week, row) in adjacentItems" :key="[week, row].join('-')">
       <td
-        v-for="(
-          { current: { state, day: day, date }, top, left, right, bottom }, col
-        ) in week"
-        :key="[day, col].join('-')"
-        :class="calendarCellStyle"
+        v-for="(adjacent, col) in week"
+        :key="[adjacent.current.day, col].join('-')"
+        :class="styles.calendarCellStyle"
       >
         <button
           type="button"
-          v-if="day"
-          :class="[calendarItemCommonStyle, state && calendarItemStyle[state]]"
+          v-if="adjacent.current.day"
+          :class="styles.calendarItemCommonStyle"
           :aria-label="`${currentMonth.getFullYear()}年${
             currentMonth.getMonth() + 1
-          }月${day}日${
-            state === 'primary' || state === 'secondary' ? '-選択済み' : ''
+          }月${adjacent.current.day}日${
+            adjacent.current.state === 'primary' ||
+            adjacent.current.state === 'secondary'
+              ? '-選択済み'
+              : ''
           }`"
-          :disabled="state === 'outOfCurrentMonth' || state === 'disabledDate'"
-          @click="updateSelectedDate(row, col, day)"
+          :disabled="
+            adjacent.current.state === 'outOfCurrentMonth' ||
+            adjacent.current.state === 'disabledDate'
+          "
+          @click="updateSelectedDate(row, col, adjacent.current.day)"
         >
           <div
             :class="[
-              styles.calendarItemCommonStyle,
-              state === 'primary' && styles.calendarPrimaryItemContainerStyle,
+              styles.calendarItemContainerStyle,
+              adjacent.current.state === 'primary' &&
+                styles.calendarPrimaryItemContainerStyle,
             ]"
-            :style="
-              itemRadiusStyle1(
-                {
-                  top,
-                  left,
-                  right,
-                  bottom,
-                  current: {
-                    day,
-                    state,
-                    date,
-                  },
-                },
-                isActiveDate
-              )
-            "
+            :style="itemRadiusStyle1(adjacent, isActiveDate)"
           >
             <div
-              :class="[state && styles.calendarItemStyle[state]]"
-              :style="
-                itemRadiusStyle1(
-                  {
-                    top,
-                    left,
-                    right,
-                    bottom,
-                    current: {
-                      day,
-                      state,
-                      date,
-                    },
-                  },
-                  isActiveDate
-                )
-              "
+              :class="[
+                adjacent.current.state &&
+                  styles.calendarItemStyle[adjacent.current.state],
+              ]"
+              :style="itemRadiusStyle2(adjacent)"
             >
-              {{ day }}
+              {{ adjacent.current.day }}
             </div>
           </div>
         </button>
@@ -78,12 +60,6 @@
 <script setup lang="ts">
 import { THEME, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
-import {
-  calendarCellStyle,
-  calendarItemCommonStyle,
-  calendarItemStyle,
-  calendarStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import { PropType, computed } from "vue";
 
 import { DateStatus } from "./types";
@@ -270,31 +246,34 @@ const updateSelectedDate = (row: number, col: number, day: string) => {
   }
 };
 
-const activeDatesSet = new Set(
-  props.activeDates?.map((activeDate) => {
-    return new Date(
-      activeDate.date.getFullYear(),
-      activeDate.date.getMonth(),
-      activeDate.date.getDate()
-    ).getTime();
-  })
-);
-
-const isActiveDate = (date: Date) =>
-  activeDatesSet.has(
-    new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+const isActiveDate = computed(() => {
+  const activeDatesSet = new Set(
+    props.activeDates?.map((activeDate) => {
+      return new Date(
+        activeDate.date.getFullYear(),
+        activeDate.date.getMonth(),
+        activeDate.date.getDate()
+      ).getTime();
+    })
   );
+
+  return (date: Date) =>
+    activeDatesSet.has(
+      new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+    );
+});
+
 type RadiusStyle = {
   borderTopLeftRadius?: string;
   borderTopRightRadius?: string;
   borderBottomLeftRadius?: string;
   borderBottomRightRadius?: string;
 };
+
 const itemRadiusStyle1 = (
   adjacent: {
     current: {
       state: DateState | undefined;
-      day: string;
       date: Date;
     };
     top: DateState | undefined;
@@ -350,5 +329,36 @@ const itemRadiusStyle1 = (
     };
   }
   return r;
+};
+
+const itemRadiusStyle2 = (adjacent: {
+  current: {
+    state: DateState | undefined;
+    date: Date;
+  };
+  top: DateState | undefined;
+  left: DateState | undefined;
+  right: DateState | undefined;
+  bottom: DateState | undefined;
+}): RadiusStyle => {
+  const top = adjacent.top;
+  const bottom = adjacent.bottom;
+  const left = adjacent.left;
+  const right = adjacent.right;
+  const radius = THEME.spacing.xs2;
+  if (adjacent.current.state === "primary") {
+    return {
+      borderTopLeftRadius: "50%",
+      borderTopRightRadius: "50%",
+      borderBottomLeftRadius: "50%",
+      borderBottomRightRadius: "50%",
+    };
+  }
+  return {
+    borderTopLeftRadius: (!top && !left && radius) || undefined,
+    borderTopRightRadius: (!top && !right && radius) || undefined,
+    borderBottomLeftRadius: (!bottom && !left && radius) || undefined,
+    borderBottomRightRadius: (!bottom && !right && radius) || undefined,
+  };
 };
 </script>

@@ -1,6 +1,7 @@
 import { WizIAdd } from "./add";
 import { WizIAddCircle } from "./add-circle";
 import { WizIAdjust } from "./adjust";
+import { WizIAdjustBold } from "./adjust-bold";
 import { WizIApprovalFilled } from "./approval-filled";
 import { WizIArrowDownward } from "./arrow-downward";
 import { WizIArrowDropDown } from "./arrow-drop-down";
@@ -98,6 +99,7 @@ import { WizIWarning } from "./warning";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIAdjustBold
   | typeof WizIAdjust
   | typeof WizIApprovalFilled
   | typeof WizIArrowDownward
@@ -196,6 +198,7 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIAdjustBold,
   WizIAdjust,
   WizIApprovalFilled,
   WizIArrowDownward,

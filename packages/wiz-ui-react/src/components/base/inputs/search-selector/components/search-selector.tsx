@@ -22,12 +22,12 @@ import {
   WizIExpandMore,
   WizIcon,
   WizPopup,
-  WizPopupButtonGroup,
 } from "@/components";
-import { ButtonGroupItem } from "@/components/base/popup-button-group/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
 
+import { PopupButtonGroup } from "./popup-button-group";
+import { ButtonGroupItem } from "./popup-button-group/types";
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
@@ -106,6 +106,7 @@ const SearchSelector: FC<Props> = ({
             label: option.label,
             value: option.value,
             exLabel: option.exLabel,
+            disabled: option.disabled,
             onClick: () => {
               setSearchText("");
               if (multiSelectable) {
@@ -318,7 +319,7 @@ const SearchSelector: FC<Props> = ({
             className={styles.selectBoxSelectorStyle}
             style={{ minWidth: width, maxHeight: dropdownMaxHeight }}
           >
-            <WizPopupButtonGroup options={buttonGroupOptions} />
+            <PopupButtonGroup options={buttonGroupOptions} />
           </div>
         </WizPopup>
       )}
