@@ -48,7 +48,9 @@
               ]"
               :style="itemRadiusStyle2(adjacent)"
             >
-              {{ adjacent.current.day }}
+              <div :class="styles.calendarItemInteractiveStyle">
+                {{ adjacent.current.day }}
+              </div>
             </div>
           </div>
         </button>

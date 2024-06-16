@@ -82,18 +82,6 @@ export const calendarItemStyle = styleVariants({
       borderRadius: THEME.spacing.xs2,
       cursor: "pointer",
       background: "none",
-      "@media": {
-        "(any-hover: hover)": {
-          ":hover": {
-            backgroundColor: THEME.color.green[300],
-            color: THEME.color.green[800],
-          },
-        },
-      },
-      ":active": {
-        backgroundColor: THEME.color.green[800],
-        color: THEME.color.white[800],
-      },
     },
   ],
   outOfCurrentMonth: [
@@ -115,3 +103,25 @@ export const calendarItemStyle = styleVariants({
     },
   ],
 });
+
+export const calendarItemInteractiveStyle = style([
+  calendarItemBaseStyle,
+  {
+    selectors: {
+      [`${calendarItemStyle.inCurrentMonth}:active &`]: {
+        backgroundColor: THEME.color.green[800],
+        color: THEME.color.white[800],
+        borderRadius: "50%",
+      },
+      [`${calendarItemStyle.inCurrentMonth}:hover:not(:active) &`]: {
+        "@media": {
+          "(any-hover: hover)": {
+            backgroundColor: THEME.color.green[300],
+            color: THEME.color.green[800],
+            borderRadius: "50%",
+          },
+        },
+      },
+    },
+  },
+]);

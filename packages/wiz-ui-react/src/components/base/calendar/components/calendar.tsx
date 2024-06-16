@@ -260,7 +260,9 @@ const Calendar: FC<Props> = ({
                         className={styles.calendarItemStyle[itemStyle]}
                         style={itemRadiusStyle2(adjacent)}
                       >
-                        {item.label}
+                        <div className={styles.calendarItemInteractiveStyle}>
+                          {item.label}
+                        </div>
                       </div>
                     </div>
                   </button>
