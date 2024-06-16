@@ -35,8 +35,8 @@
             ]
           "
           >{{ modelValue.end ? formatDate(modelValue.end) : "終了日" }}</span
-        ></WizHStack
-      >
+        >
+      </WizHStack>
       <button
         v-if="!disabled && !!modelValue.start"
         type="button"
@@ -115,6 +115,7 @@
                 :activeDates="selectedDates"
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
+                :filledWeeks="true"
               />
             </div>
             <div :class="styles.popupCalendarContainerStyle['right']">
@@ -139,6 +140,7 @@
                 :activeDates="selectedDates"
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
+                :filledWeeks="true"
               />
             </div>
           </div>
