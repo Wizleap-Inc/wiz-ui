@@ -39,14 +39,16 @@
               adjacent.current.state === 'primary' &&
                 styles.calendarPrimaryItemContainerStyle,
             ]"
-            :style="itemRadiusStyle1(adjacent, isActiveDate)"
+            :style="activeItemRadiusStyle(adjacent, isActiveDate)"
           >
             <div
-              :class="[
-                adjacent.current.state &&
-                  styles.calendarItemStyle[adjacent.current.state],
-              ]"
-              :style="itemRadiusStyle2(adjacent)"
+              v-if="adjacent.current.state"
+              :class="styles.calendarItemStyle[adjacent.current.state]"
+              :style="
+                primaryItemInnerRadiusStyle(
+                  adjacent.current.state === 'primary'
+                )
+              "
             >
               <div :class="styles.calendarItemInteractiveStyle">
                 {{ adjacent.current.day }}
@@ -272,7 +274,7 @@ type RadiusStyle = {
   borderBottomRightRadius?: string;
 };
 
-const itemRadiusStyle1 = (
+const activeItemRadiusStyle = (
   adjacent: {
     current: {
       state: DateState | undefined;
@@ -285,31 +287,28 @@ const itemRadiusStyle1 = (
   },
   isActiveDate: (date: Date) => boolean
 ): RadiusStyle => {
-  const top = adjacent.top;
-  const bottom = adjacent.bottom;
-  const left = adjacent.left;
-  const right = adjacent.right;
-  const currentDate = adjacent.current.state;
-  if (!currentDate) {
-    return {
-      borderTopLeftRadius: undefined,
-      borderTopRightRadius: undefined,
-      borderBottomLeftRadius: undefined,
-      borderBottomRightRadius: undefined,
-    };
-  }
-  const nextDate = new Date(adjacent.current.date);
-  nextDate.setDate(nextDate.getDate() + 1);
+  const { top, bottom, left, right, current } = adjacent;
+  const { state: currentState, date: currentDate } = current;
 
-  const prevDate = new Date(adjacent.current.date);
-  prevDate.setDate(prevDate.getDate() - 1);
+  if (!currentState) {
+    return {};
+  }
+
+  const calculateDate = (date: Date, offset: number): Date => {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + offset);
+    return newDate;
+  };
+
+  const nextDate = calculateDate(currentDate, 1);
+  const prevDate = calculateDate(currentDate, -1);
 
   const next = isActiveDate(nextDate);
   const prev = isActiveDate(prevDate);
 
   const radius = THEME.spacing.xs2;
 
-  const r = {
+  const radiusStyle = {
     borderTopLeftRadius:
       (!left && !top && radius) ||
       (!left && top === "primary" && radius) ||
@@ -322,45 +321,22 @@ const itemRadiusStyle1 = (
       undefined,
   };
 
-  if (adjacent.current.state === "primary") {
+  if (currentState === "primary") {
     return {
-      borderTopLeftRadius: (!prev && "50%") || r.borderTopLeftRadius,
-      borderBottomLeftRadius: (!prev && "50%") || r.borderBottomLeftRadius,
-      borderTopRightRadius: (!next && "50%") || r.borderTopRightRadius,
-      borderBottomRightRadius: (!next && "50%") || r.borderBottomRightRadius,
+      borderTopLeftRadius: (!prev && "50%") || radiusStyle.borderTopLeftRadius,
+      borderBottomLeftRadius:
+        (!prev && "50%") || radiusStyle.borderBottomLeftRadius,
+      borderTopRightRadius:
+        (!next && "50%") || radiusStyle.borderTopRightRadius,
+      borderBottomRightRadius:
+        (!next && "50%") || radiusStyle.borderBottomRightRadius,
     };
   }
-  return r;
+
+  return radiusStyle;
 };
 
-const itemRadiusStyle2 = (adjacent: {
-  current: {
-    state: DateState | undefined;
-    date: Date;
-  };
-  top: DateState | undefined;
-  left: DateState | undefined;
-  right: DateState | undefined;
-  bottom: DateState | undefined;
-}): RadiusStyle => {
-  const top = adjacent.top;
-  const bottom = adjacent.bottom;
-  const left = adjacent.left;
-  const right = adjacent.right;
-  const radius = THEME.spacing.xs2;
-  if (adjacent.current.state === "primary") {
-    return {
-      borderTopLeftRadius: "50%",
-      borderTopRightRadius: "50%",
-      borderBottomLeftRadius: "50%",
-      borderBottomRightRadius: "50%",
-    };
-  }
-  return {
-    borderTopLeftRadius: (!top && !left && radius) || undefined,
-    borderTopRightRadius: (!top && !right && radius) || undefined,
-    borderBottomLeftRadius: (!bottom && !left && radius) || undefined,
-    borderBottomRightRadius: (!bottom && !right && radius) || undefined,
-  };
-};
+const primaryItemInnerRadiusStyle = (isPrimary: boolean) => ({
+  borderRadius: isPrimary ? "50%" : undefined,
+});
 </script>

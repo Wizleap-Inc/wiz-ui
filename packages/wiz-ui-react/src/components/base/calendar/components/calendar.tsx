@@ -32,35 +32,32 @@ type RadiusStyle = {
   borderBottomLeftRadius?: string;
   borderBottomRightRadius?: string;
 };
-const itemRadiusStyle1 = (
+
+const activeItemRadiusStyle = (
   adjacent: AdjacentItems,
   isActiveDate: (date: Date) => boolean
 ): RadiusStyle => {
-  const top = adjacent.top;
-  const bottom = adjacent.bottom;
-  const left = adjacent.left;
-  const right = adjacent.right;
-  const currentDate = adjacent.current.activeDateStatus;
+  const { top, bottom, left, right, current } = adjacent;
+  const { activeDateStatus: currentDate, itemStyle } = current;
+
   if (!currentDate) {
-    return {
-      borderTopLeftRadius: undefined,
-      borderTopRightRadius: undefined,
-      borderBottomLeftRadius: undefined,
-      borderBottomRightRadius: undefined,
-    };
+    return {};
   }
-  const nextDate = new Date(currentDate.date);
-  nextDate.setDate(nextDate.getDate() + 1);
 
-  const prevDate = new Date(currentDate.date);
-  prevDate.setDate(prevDate.getDate() - 1);
+  const calculateDate = (date: Date, offset: number): Date => {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + offset);
+    return newDate;
+  };
 
+  const nextDate = calculateDate(currentDate.date, 1);
+  const prevDate = calculateDate(currentDate.date, -1);
   const next = isActiveDate(nextDate);
   const prev = isActiveDate(prevDate);
 
   const radius = THEME.spacing.xs2;
 
-  const r = {
+  const radiusStyle = {
     borderTopLeftRadius:
       (!left && !top && radius) ||
       (!left && top?.state === "primary" && radius) ||
@@ -73,39 +70,24 @@ const itemRadiusStyle1 = (
       undefined,
   };
 
-  if (adjacent.current.itemStyle === "primary") {
+  if (itemStyle === "primary") {
     return {
-      borderTopLeftRadius: (!prev && "50%") || r.borderTopLeftRadius,
-      borderBottomLeftRadius: (!prev && "50%") || r.borderBottomLeftRadius,
-      borderTopRightRadius: (!next && "50%") || r.borderTopRightRadius,
-      borderBottomRightRadius: (!next && "50%") || r.borderBottomRightRadius,
-    };
-  }
-  return r;
-};
-
-const itemRadiusStyle2 = (adjacent: AdjacentItems) => {
-  const top = adjacent.top;
-  const bottom = adjacent.bottom;
-  const left = adjacent.left;
-  const right = adjacent.right;
-  const radius = THEME.spacing.xs2;
-  if (adjacent.current.itemStyle === "primary") {
-    return {
-      borderTopLeftRadius: "50%",
-      borderTopRightRadius: "50%",
-      borderBottomLeftRadius: "50%",
-      borderBottomRightRadius: "50%",
+      borderTopLeftRadius: (!prev && "50%") || radiusStyle.borderTopLeftRadius,
+      borderBottomLeftRadius:
+        (!prev && "50%") || radiusStyle.borderBottomLeftRadius,
+      borderTopRightRadius:
+        (!next && "50%") || radiusStyle.borderTopRightRadius,
+      borderBottomRightRadius:
+        (!next && "50%") || radiusStyle.borderBottomRightRadius,
     };
   }
 
-  return {
-    borderTopLeftRadius: (!top && !left && radius) || undefined,
-    borderTopRightRadius: (!top && !right && radius) || undefined,
-    borderBottomLeftRadius: (!bottom && !left && radius) || undefined,
-    borderBottomRightRadius: (!bottom && !right && radius) || undefined,
-  };
+  return radiusStyle;
 };
+
+const primaryItemInnerRadiusStyle = (isPrimary: boolean) => ({
+  borderRadius: isPrimary ? "50%" : undefined,
+});
 
 type Props = BaseProps & {
   currentMonth?: Date;
@@ -254,11 +236,13 @@ const Calendar: FC<Props> = ({
                         itemStyle === "primary" &&
                           styles.calendarPrimaryItemContainerStyle
                       )}
-                      style={itemRadiusStyle1(adjacent, isActiveDate)}
+                      style={activeItemRadiusStyle(adjacent, isActiveDate)}
                     >
                       <div
                         className={styles.calendarItemStyle[itemStyle]}
-                        style={itemRadiusStyle2(adjacent)}
+                        style={primaryItemInnerRadiusStyle(
+                          adjacent.current.itemStyle === "primary"
+                        )}
                       >
                         <div className={styles.calendarItemInteractiveStyle}>
                           {item.label}
