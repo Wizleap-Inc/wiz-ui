@@ -158,7 +158,7 @@ const createButton = (n: number): ButtonGroupItem => ({
 
 const PopupTemplate: Story = {
   render: (args) => {
-    const [activeItem, setActiveItem] = useState<number>(-1);
+    const [activeItem] = useState<number>(-1);
     const [isPopupOpen2, setIsPopupOpen2] = useState(false);
     const [isPopupOpen3, setIsPopupOpen3] = useState(false);
 
@@ -181,43 +181,21 @@ const PopupTemplate: Story = {
             icon={WizIBusinessCenter}
             label="Nav-Item 1"
             as="button"
-            asProps={{
-              style: {
-                backgroundColor: "white",
-                border: "none",
-                width: "100%",
-              },
-            }}
-            active={activeItem === 2}
+            asProps={{}}
+            active={isPopupOpen2}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
-            onTogglePopup={(isPopupOpen) => {
-              if (isPopupOpen) {
-                setActiveItem(2);
-              }
-              setIsPopupOpen2(isPopupOpen);
-            }}
+            onTogglePopup={setIsPopupOpen2}
           />
           <WizNavigationItem
             icon={WizIHelp}
             label="Nav-Item 02"
             as="button"
-            asProps={{
-              style: {
-                backgroundColor: "white",
-                border: "none",
-                width: "100%",
-              },
-            }}
-            active={activeItem === 3}
+            asProps={{}}
+            active={isPopupOpen3}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
-            onTogglePopup={(isPopupOpen) => {
-              if (isPopupOpen) {
-                setActiveItem(3);
-              }
-              setIsPopupOpen3(isPopupOpen);
-            }}
+            onTogglePopup={setIsPopupOpen3}
           />
         </WizNavigationContainer>
       </div>
@@ -281,70 +259,44 @@ export const PopupAndTooltip: Story = {
             icon={WizIDashboard}
             label="Home"
             as="button"
-            asProps={{
-              style: {
-                backgroundColor: "white",
-                border: "none",
-                width: "100%",
-              },
-            }}
-            active={false}
+            asProps={{}}
+            active={isPopupOpen0}
             buttons={[createButton(0)]}
             isPopupOpen={isPopupOpen0}
-            onTogglePopup={(isPopupOpen) => {
-              setIsPopupOpen0(isPopupOpen);
-            }}
+            onTogglePopup={setIsPopupOpen0}
             tooltipText="これはヒント1です。"
           />
           <WizNavigationItem
             icon={WizIAssignment}
             label="Page1"
             as="button"
-            asProps={{
-              style: {
-                backgroundColor: "white",
-                border: "none",
-                width: "100%",
-              },
-            }}
-            active={false}
+            asProps={{}}
+            active={isPopupOpen1}
             buttons={[createButton(1), createButton(2)]}
             isPopupOpen={isPopupOpen1}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
+            onTogglePopup={setIsPopupOpen1}
             tooltipText="これはヒント2です。"
           />
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Page2"
             as="button"
-            asProps={{
-              style: {
-                backgroundColor: "white",
-                border: "none",
-                width: "100%",
-              },
-            }}
-            active={false}
+            asProps={{}}
+            active={isPopupOpen2}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
+            onTogglePopup={setIsPopupOpen2}
             tooltipText="これはヒント3です。"
           />
           <WizNavigationItem
             icon={WizIHelp}
             label="Page3"
             as="button"
-            asProps={{
-              style: {
-                backgroundColor: "white",
-                border: "none",
-                width: "100%",
-              },
-            }}
-            active={false}
+            asProps={{}}
+            active={isPopupOpen3}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
+            onTogglePopup={setIsPopupOpen3}
             tooltipText="これはヒント4です。"
           />
         </WizNavigationContainer>

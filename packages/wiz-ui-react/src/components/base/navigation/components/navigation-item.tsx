@@ -45,12 +45,7 @@ type Props<T extends ElementType> = BaseProps & {
   /**
    * @example
    * ```tsx
-   * onTogglePopup={(isPopupOpen) => {
-   *  if (isPopupOpen) {
-   *   setActiveItem(2);
-   *  }
-   *  setIsPopupOpen2(isPopupOpen);
-   * }}
+   * onTogglePopup={setIsPopupOpen}
    * ```
    */
   onTogglePopup?: (isPopup: boolean) => void;
