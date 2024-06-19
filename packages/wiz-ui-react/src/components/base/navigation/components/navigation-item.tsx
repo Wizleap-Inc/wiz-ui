@@ -150,53 +150,61 @@ const NavigationItem = <T extends ElementType>({
   }, [buttons, buttonsWithClickOnClose]);
 
   const body = (
-    <>
-      <div
-        ref={popupAnchor}
-        onClick={handleClick}
-        className={className}
-        style={{ ...style, display: tooltipText ? "block" : "inline-block" }}
+    <div
+      ref={popupAnchor}
+      onClick={handleClick}
+      className={className}
+      style={{ ...style, display: tooltipText ? "block" : "inline-block" }}
+    >
+      <LinkComponent
+        {...linkProps}
+        className={clsx(
+          navigationItemStyle,
+          disabled
+            ? navigationItemDisabledStyle
+            : active && navigationItemActiveStyle
+        )}
       >
-        <LinkComponent
-          {...linkProps}
-          className={clsx(
-            navigationItemStyle,
-            disabled
-              ? navigationItemDisabledStyle
-              : active && navigationItemActiveStyle
-          )}
-        >
-          <WizHStack justify="between" align="center" width="100%" nowrap>
-            <WizHStack nowrap gap="sm">
-              <div
-                className={clsx(
-                  navigationItemIconStyle,
-                  disabled
-                    ? navigationItemIconDisabledStyle
-                    : active && navigationItemIconActiveStyle
-                )}
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                <WizIcon icon={Icon} color="inherit" />
-              </div>
-              <div
-                className={clsx(
-                  navigationItemTextStyle,
-                  !disabled && active && navigationItemTextActiveStyle
-                )}
-              >
-                {label}
-              </div>
-            </WizHStack>
-            {existPopup && (
-              <WizIcon
-                icon={WizIChevronRight}
-                color={!disabled && active ? "green.800" : "gray.700"}
-              />
-            )}
+        <WizHStack justify="between" align="center" width="100%" nowrap>
+          <WizHStack nowrap gap="sm">
+            <div
+              className={clsx(
+                navigationItemIconStyle,
+                disabled
+                  ? navigationItemIconDisabledStyle
+                  : active && navigationItemIconActiveStyle
+              )}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <WizIcon icon={Icon} color="inherit" />
+            </div>
+            <div
+              className={clsx(
+                navigationItemTextStyle,
+                !disabled && active && navigationItemTextActiveStyle
+              )}
+            >
+              {label}
+            </div>
           </WizHStack>
-        </LinkComponent>
-      </div>
+          {existPopup && (
+            <WizIcon
+              icon={WizIChevronRight}
+              color={!disabled && active ? "green.800" : "gray.700"}
+            />
+          )}
+        </WizHStack>
+      </LinkComponent>
+    </div>
+  );
+
+  if (!tooltipText) return body;
+
+  return (
+    <>
+      <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
+        {body}
+      </WizTooltip>
       {existPopup && (
         <WizPopup
           anchorElement={popupAnchor}
@@ -217,14 +225,6 @@ const NavigationItem = <T extends ElementType>({
         </WizPopup>
       )}
     </>
-  );
-
-  if (!tooltipText) return body;
-
-  return (
-    <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
-      {body}
-    </WizTooltip>
   );
 };
 
