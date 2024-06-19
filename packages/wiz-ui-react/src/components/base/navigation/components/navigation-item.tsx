@@ -102,7 +102,16 @@ const NavigationItem = <T extends ElementType>({
         href: disabled ? undefined : props.href ?? "",
         target: !disabled && isExternalLink ? "_blank" : undefined,
       }
-    : props.asProps;
+    : {
+        ...props.asProps,
+        style: {
+          cursor: disabled ? "not-allowed" : "pointer",
+          backgroundColor: "white",
+          border: "none",
+          width: "100%",
+          ...props.asProps.style,
+        },
+      };
   const popupAnchor = useRef<HTMLDivElement>(null);
   const existPopup = buttons && buttons.length > 0;
 
