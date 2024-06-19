@@ -1,7 +1,6 @@
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
 import {
   FC,
@@ -44,6 +43,11 @@ type Props = BaseProps & {
   onChangeDateRange: (dateRange: DateRange) => void;
   onChangeSelectBoxValue?: (value: string) => void;
   disabledDate?: (date: Date) => boolean;
+  /**
+   * @description 日付の表示形式をカスタマイズします。
+   * @default (date: Date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+   */
+  formatDate?: (date: Date) => string;
 };
 
 const DateRangePicker: FC<Props> = ({
@@ -59,6 +63,8 @@ const DateRangePicker: FC<Props> = ({
   onChangeDateRange,
   onChangeSelectBoxValue,
   disabledDate = () => false,
+  formatDate = (date: Date) =>
+    `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSelectBoxOpen, setIsSelectBoxOpen] = useState(false);
@@ -210,7 +216,7 @@ const DateRangePicker: FC<Props> = ({
               ]
             }
           >
-            {dateRange.start ? formatDateToYYMMDD(dateRange.start) : "開始日"}
+            {dateRange.start ? formatDate(dateRange.start) : "開始日"}
           </div>
           <div className={styles.separatorStyle}>-</div>
           <div
@@ -220,7 +226,7 @@ const DateRangePicker: FC<Props> = ({
               ]
             }
           >
-            {dateRange.end ? formatDateToYYMMDD(dateRange.end) : "終了日"}
+            {dateRange.end ? formatDate(dateRange.end) : "終了日"}
           </div>
         </WizHStack>
 
