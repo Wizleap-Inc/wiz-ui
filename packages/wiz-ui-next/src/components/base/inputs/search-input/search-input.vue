@@ -12,29 +12,31 @@
       <div :class="styles.searchInputInnerBoxStyle">
         <WizHStack align="center" height="100%" gap="xs" :wrap="true">
           <template v-if="showSelectedItem">
-            <div v-for="item in checkValues" :key="item">
-              <span :class="styles.searchInputInnerBoxSelectedItemStyle">
-                <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
-                  {{ valueToOption.get(item)?.label }}
-                </span>
-                <button
-                  type="button"
-                  @click="onClear(item)"
-                  @keypress.enter="onClear(item)"
-                  @keydown="(e) => onBackspace(item, e)"
-                  :class="styles.searchInputInnerBoxCloseButtonStyle"
-                  :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
-                  :disabled="disabled"
-                >
-                  <WizIcon
-                    :icon="WizIClose"
-                    :class="styles.searchInputInnerBoxCloseStyle"
-                    :size="'xs'"
-                    :color="'gray.700'"
-                  />
-                </button>
+            <span
+              v-for="item in checkValues"
+              :key="item"
+              :class="styles.searchInputInnerBoxSelectedItemStyle"
+            >
+              <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
+                {{ valueToOption.get(item)?.label }}
               </span>
-            </div>
+              <button
+                type="button"
+                @click="onClear(item)"
+                @keypress.enter="onClear(item)"
+                @keydown="(e) => onBackspace(item, e)"
+                :class="styles.searchInputInnerBoxCloseButtonStyle"
+                :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+                :disabled="disabled"
+              >
+                <WizIcon
+                  :icon="WizIClose"
+                  :class="styles.searchInputInnerBoxCloseStyle"
+                  :size="'xs'"
+                  :color="'gray.700'"
+                />
+              </button>
+            </span>
           </template>
           <component
             v-if="!displayingSelectedItems"
