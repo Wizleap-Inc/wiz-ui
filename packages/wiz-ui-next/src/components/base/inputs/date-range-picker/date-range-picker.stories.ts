@@ -410,51 +410,6 @@ export const InitialValueStart: StoryFn<typeof WizDateRangePicker> = (
   `,
 });
 
-export const Hover: StoryFn<typeof WizDateRangePicker> = (args) => ({
-  components: { WizDateRangePicker },
-  setup() {
-    const dateRange = ref<DateRange>({
-      start: new Date(2020, 0, 15),
-      end: new Date(2020, 1, 15),
-    });
-    const selectBoxValue = ref<string>();
-
-    const isOpen = ref(true);
-    const isHover = ref(true);
-    const updateIsOpen = (value: boolean) => {
-      isOpen.value = value;
-    };
-    const updateIsHover = (value: boolean) => {
-      isHover.value = value;
-    };
-    return {
-      dateRange,
-      selectBoxValue,
-      selectBoxOptions,
-      isOpen,
-      isHover,
-      updateIsOpen,
-      updateIsHover,
-      args,
-    };
-  },
-  template: `
-    <div>
-      <WizDateRangePicker
-        v-model="dateRange"
-        v-model:selectBoxValue="selectBoxValue"
-        :selectBoxOptions="selectBoxOptions"
-        :isOpen="isOpen"
-        :isHover="isHover"
-        @update:modelValue="args.onDateSelected"
-        @update:isOpen="updateIsOpen"
-        @update:isHover="updateIsHover"
-        @update:selectBoxValue="args.onSelectBoxValueChange"
-      />
-    </div>
-  `,
-});
-
 export const Test: StoryFn<typeof WizDateRangePicker> = (args) => ({
   components: { WizDateRangePicker },
   setup() {
