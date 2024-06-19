@@ -6,6 +6,7 @@ const labelBaseStyle = style({
   display: "inline-flex",
   gap: THEME.spacing.xs,
   color: THEME.color.gray[800],
+  fontSize: THEME.fontSize.sm,
   cursor: "pointer",
 });
 

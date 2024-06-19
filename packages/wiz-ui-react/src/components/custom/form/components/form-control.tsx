@@ -1,7 +1,7 @@
 import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
-import { FC, ReactNode, useContext } from "react";
+import { FC, ReactNode, useContext, useMemo } from "react";
 
-import { WizHStack, WizTag, WizText, WizVStack } from "@/components";
+import { WizHStack, WizStack, WizTag, WizText, WizVStack } from "@/components";
 import { BaseProps } from "@/types";
 
 import { FormControlContext } from "./form-control-context";
@@ -13,6 +13,7 @@ type Props = BaseProps & {
   required?: boolean;
   error?: string;
   children: ReactNode;
+  direction?: "horizontal" | "vertical";
 };
 
 const FormControl: FC<Props> = ({
@@ -22,6 +23,7 @@ const FormControl: FC<Props> = ({
   label,
   required,
   error,
+  direction = "horizontal",
   children,
 }) => {
   const {
@@ -30,11 +32,25 @@ const FormControl: FC<Props> = ({
     labelFontSize,
   } = useContext(FormGroupContext);
 
+  const errorLeft = useMemo(() => {
+    return direction === "horizontal" ? labelWidth : undefined;
+  }, [labelWidth, direction]);
+
   return (
     <FormControlContext.Provider value={{ error: error !== undefined }}>
-      <WizVStack className={className} style={style}>
-        <WizHStack>
-          <WizHStack width={labelWidth} align="center" gap="xs2">
+      <WizVStack
+        style={{
+          ...style,
+          paddingBottom: error === undefined ? THEME.fontSize.sm : undefined,
+        }}
+      >
+        <WizStack
+          className={className}
+          direction={direction}
+          nowrap
+          align={direction === "horizontal" ? "center" : undefined}
+        >
+          <WizHStack width={labelWidth} align="center" gap="xs2" py="xs2">
             <WizText
               as="label"
               htmlFor={htmlFor}
@@ -45,15 +61,16 @@ const FormControl: FC<Props> = ({
             </WizText>
             {required && <WizTag fontSize="xs2" label="必須" />}
           </WizHStack>
-          <WizVStack>{children}</WizVStack>
-        </WizHStack>
-        <WizHStack height={THEME.fontSize.sm}>
-          <div style={{ marginInlineStart: labelWidth }}>
-            <WizText fontSize="xs2" lineHeight="sm" color="red.800">
-              {error}
-            </WizText>
-          </div>
-        </WizHStack>
+          {children}
+        </WizStack>
+        <WizText
+          fontSize="xs2"
+          lineHeight="sm"
+          color="red.800"
+          style={{ marginInlineStart: errorLeft }}
+        >
+          {error}
+        </WizText>
       </WizVStack>
     </FormControlContext.Provider>
   );
