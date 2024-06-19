@@ -10,51 +10,60 @@
       :style="{ width: computedInputWidth }"
     >
       <div :class="styles.searchInputInnerBoxStyle">
-        <WizHStack align="center" height="100%" gap="xs" :wrap="true">
-          <template v-if="showSelectedItem">
-            <span
-              v-for="item in checkValues"
-              :key="item"
-              :class="styles.searchInputInnerBoxSelectedItemStyle"
-            >
-              <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
-                {{ valueToOption.get(item)?.label }}
-              </span>
-              <button
-                type="button"
-                @click="onClear(item)"
-                @keypress.enter="onClear(item)"
-                @keydown="(e) => onBackspace(item, e)"
-                :class="styles.searchInputInnerBoxCloseButtonStyle"
-                :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
-                :disabled="disabled"
-              >
-                <WizIcon
-                  :icon="WizIClose"
-                  :class="styles.searchInputInnerBoxCloseStyle"
-                  :size="'xs'"
-                  :color="'gray.700'"
-                />
-              </button>
-            </span>
-          </template>
+        <WizHStack align="center">
           <component
-            v-if="!displayingSelectedItems"
             :is="icon"
             :class="styles.searchInputIconStyle"
+            :style="{ flexShrink: 0 }"
           />
-          <input
-            type="text"
-            :class="[styles.searchInputInnerInputStyle]"
-            v-model="searchValue"
-            :placeholder="!displayingSelectedItems ? placeholder : undefined"
-            :name="name"
-            :disabled="disabled"
-            @focusin="hasFocus = true"
-            @focusout="hasFocus = false"
-            @click="emit('toggle', !openPopup)"
-            autocomplete="off"
-          />
+          <WizHStack
+            align="center"
+            height="100%"
+            width="100%"
+            gap="xs"
+            :wrap="true"
+            overflow="hidden"
+          >
+            <template v-if="showSelectedItem">
+              <span
+                v-for="item in checkValues"
+                :key="item"
+                :class="styles.searchInputInnerBoxSelectedItemStyle"
+              >
+                <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
+                  {{ valueToOption.get(item)?.label }}
+                </span>
+                <button
+                  type="button"
+                  @click="onClear(item)"
+                  @keypress.enter="onClear(item)"
+                  @keydown="(e) => onBackspace(item, e)"
+                  :class="styles.searchInputInnerBoxCloseButtonStyle"
+                  :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+                  :disabled="disabled"
+                >
+                  <WizIcon
+                    :icon="WizIClose"
+                    :class="styles.searchInputInnerBoxCloseStyle"
+                    :size="'xs'"
+                    :color="'gray.700'"
+                  />
+                </button>
+              </span>
+            </template>
+            <input
+              type="text"
+              :class="[styles.searchInputInnerInputStyle]"
+              v-model="searchValue"
+              :placeholder="!displayingSelectedItems ? placeholder : undefined"
+              :name="name"
+              :disabled="disabled"
+              @focusin="hasFocus = true"
+              @focusout="hasFocus = false"
+              @click="emit('toggle', !openPopup)"
+              autocomplete="off"
+            />
+          </WizHStack>
         </WizHStack>
       </div>
     </div>
