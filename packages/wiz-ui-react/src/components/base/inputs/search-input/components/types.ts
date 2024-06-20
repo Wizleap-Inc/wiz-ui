@@ -5,6 +5,7 @@ export type Tag = {
 export type SearchInputOption = {
   label: string;
   value: number;
+  selectedItemLabel?: string;
   children?: SearchInputOption[];
   tag?: Tag;
 };
