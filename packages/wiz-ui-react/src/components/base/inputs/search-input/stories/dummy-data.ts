@@ -12,7 +12,6 @@ export const normalOptions: SearchInputOption[] = [
       {
         label: "保険商品1",
         value: 2,
-        selectedItemLabel: "保険商品1 / プランA",
       },
       {
         label: "保険商品2",

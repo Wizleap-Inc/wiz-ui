@@ -63,7 +63,7 @@ const Template =
   (args) => ({
     components: { WizSearchInput },
     setup() {
-      const values = ref<number[]>(args.modelValue ? args.modelValue : []);
+      const values = ref<number[]>([]);
       const openPopup = ref(open);
       const toggle = (value: boolean) => {
         openPopup.value = value;
@@ -176,14 +176,4 @@ ShowSelectedItemTag.args = {
   inputWidth: "15rem",
   options: simpleOption,
   showSelectedItem: true,
-};
-
-export const SelectedItemLabel = Template(true).bind({});
-SelectedItemLabel.args = {
-  placeholder: "氏名・ID・電話番号で検索",
-  singleSelect: true,
-  inputWidth: "15rem",
-  options: simpleOption,
-  showSelectedItem: true,
-  modelValue: [3],
 };
