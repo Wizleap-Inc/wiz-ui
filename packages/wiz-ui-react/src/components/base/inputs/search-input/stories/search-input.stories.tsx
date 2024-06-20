@@ -156,3 +156,15 @@ export const ShowSelectedItemTag: Story = {
     showSelectedItem: true,
   },
 };
+
+export const ShowParentLabel: Story = {
+  ...Template,
+  args: {
+    options: normalOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    singleSelect: true,
+    inputWidth: "15rem",
+    showSelectedItem: true,
+    showParentLabel: true,
+  },
+};

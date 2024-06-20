@@ -263,6 +263,11 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  showParentLabel: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -289,10 +294,17 @@ const valueToOption = computed(() => {
 
   const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
     return options.flatMap((option) => {
-      if (option.children) {
-        return [option, ...flatten(option.children)];
-      }
-      return [option];
+      if (!option.children) return [option];
+
+      if (!props.showParentLabel) return [option, ...flatten(option.children)];
+
+      const children = option.children.map((child) => ({
+        ...child,
+        // 要件上、全角空白のため無視
+        // eslint-disable-next-line no-irregular-whitespace
+        label: `${option.label}　${child.label}`,
+      }));
+      return [option, ...flatten(children)];
     });
   };
 

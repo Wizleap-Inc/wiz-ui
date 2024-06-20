@@ -55,6 +55,12 @@ export default {
     emptyMessage: {
       content: { type: "text" },
     },
+    showSelectedItem: {
+      control: { type: "boolean" },
+    },
+    showParentLabel: {
+      control: { type: "boolean" },
+    },
   },
 } as Meta<typeof WizSearchInput>;
 
@@ -176,4 +182,14 @@ ShowSelectedItemTag.args = {
   inputWidth: "15rem",
   options: simpleOption,
   showSelectedItem: true,
+};
+
+export const ShowParentLabel = Template(true).bind({});
+ShowParentLabel.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
+  inputWidth: "15rem",
+  options: defaultOption,
+  showSelectedItem: true,
+  showParentLabel: true,
 };
