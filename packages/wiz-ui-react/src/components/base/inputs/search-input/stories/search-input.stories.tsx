@@ -25,9 +25,7 @@ type Story = StoryObj<typeof WizSearchInput>;
 
 const Template: Story = {
   render: (args) => {
-    const [values, setValues] = useState<number[]>(
-      args.values ? args.values : []
-    );
+    const [values, setValues] = useState<number[]>([]);
     return (
       <div>
         <div>values:[{values.join(", ")}]</div>
@@ -156,17 +154,5 @@ export const ShowSelectedItemTag: Story = {
     singleSelect: true,
     inputWidth: "15rem",
     showSelectedItem: true,
-  },
-};
-
-export const SelectedItemLabel: Story = {
-  ...Template,
-  args: {
-    options: normalOptions,
-    placeholder: "氏名・ID・電話番号で検索",
-    singleSelect: true,
-    inputWidth: "15rem",
-    showSelectedItem: true,
-    values: [2],
   },
 };

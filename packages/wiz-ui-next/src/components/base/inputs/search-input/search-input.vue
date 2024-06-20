@@ -15,11 +15,7 @@
             <div v-for="item in checkValues" :key="item">
               <span :class="styles.searchInputInnerBoxSelectedItemStyle">
                 <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
-                  {{
-                    valueToOption.get(item)?.selectedItemLabel
-                      ? valueToOption.get(item)?.selectedItemLabel
-                      : valueToOption.get(item)?.label
-                  }}
+                  {{ valueToOption.get(item)?.label }}
                 </span>
                 <button
                   type="button"
@@ -293,15 +289,10 @@ const valueToOption = computed(() => {
 
   const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
     return options.flatMap((option) => {
-      if (!option.children) return [option];
-
-      const children = option.children.map((child) => ({
-        ...child,
-        // 要件上、全角空白のため無視
-        // eslint-disable-next-line no-irregular-whitespace
-        label: `${option.label}　${child.label}`,
-      }));
-      return [option, ...flatten(children)];
+      if (option.children) {
+        return [option, ...flatten(option.children)];
+      }
+      return [option];
     });
   };
 

@@ -88,15 +88,10 @@ const SearchInput: FC<Props> = ({
 
     const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
       return options.flatMap((option) => {
-        if (!option.children) return [option];
-
-        const children = option.children.map((child) => ({
-          ...child,
-          // 要件上、全角空白のため無視
-          // eslint-disable-next-line no-irregular-whitespace
-          label: `${option.label}　${child.label}`,
-        }));
-        return [option, ...flatten(children)];
+        if (option.children) {
+          return [option, ...flatten(option.children)];
+        }
+        return [option];
       });
     };
 
@@ -148,9 +143,7 @@ const SearchInput: FC<Props> = ({
                   <span
                     className={styles.searchInputInnerBoxSelectedLabelStyle}
                   >
-                    {valueToOptions.get(value)?.selectedItemLabel
-                      ? valueToOptions.get(value)?.selectedItemLabel
-                      : valueToOptions.get(value)?.label}
+                    {valueToOptions.get(value)?.label}
                   </span>
                   <button
                     type="button"

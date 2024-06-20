@@ -8,7 +8,6 @@ export const defaultOption: SearchInputOption[] = [
       {
         label: "保険商品1",
         value: 2,
-        selectedItemLabel: "保険商品1 / プランA",
       },
       {
         label: "保険商品2",
@@ -472,7 +471,6 @@ export const simpleOption: SearchInputOption[] = [
   {
     label: "選択肢3",
     value: 3,
-    selectedItemLabel: "選択肢3 / サンプル",
   },
 ];
 
