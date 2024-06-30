@@ -1,6 +1,7 @@
 import { WizIAdd } from "./add";
 import { WizIAddCircle } from "./add-circle";
 import { WizIAdjust } from "./adjust";
+import { WizIAdjustBold } from "./adjust-bold";
 import { WizIApprovalFilled } from "./approval-filled";
 import { WizIArrowDownward } from "./arrow-downward";
 import { WizIArrowDropDown } from "./arrow-drop-down";
@@ -57,12 +58,14 @@ import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIHourglassTop } from "./hourglass-top";
+import { WizIInboxCustomize } from "./inbox-customize";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
 import { WizILogin } from "./login";
+import { WizIMail } from "./mail";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
@@ -96,6 +99,7 @@ import { WizIWarning } from "./warning";
 export type TIcon =
   | typeof WizIAddCircle
   | typeof WizIAdd
+  | typeof WizIAdjustBold
   | typeof WizIAdjust
   | typeof WizIApprovalFilled
   | typeof WizIArrowDownward
@@ -153,12 +157,14 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
+  | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
   | typeof WizILocationCity
   | typeof WizILocationOn
   | typeof WizILogin
+  | typeof WizIMail
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
@@ -192,6 +198,7 @@ export type TIcon =
 export {
   WizIAddCircle,
   WizIAdd,
+  WizIAdjustBold,
   WizIAdjust,
   WizIApprovalFilled,
   WizIArrowDownward,
@@ -249,12 +256,14 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
+  WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
   WizILocationCity,
   WizILocationOn,
   WizILogin,
+  WizIMail,
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,

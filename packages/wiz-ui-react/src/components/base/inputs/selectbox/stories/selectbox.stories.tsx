@@ -53,6 +53,16 @@ export const Disabled: Story = {
   },
 };
 
+export const DisabledItems: Story = {
+  ...Template,
+  args: {
+    options: getDummyOptions("test", 3).map((option, index) => ({
+      ...option,
+      disabled: index % 2 === 0,
+    })),
+  },
+};
+
 export const LongLabel: Story = {
   ...Template,
   args: {

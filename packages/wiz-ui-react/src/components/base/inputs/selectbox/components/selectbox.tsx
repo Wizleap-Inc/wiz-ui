@@ -26,6 +26,7 @@ type SelectBoxOption = {
   label: string;
   exLabel?: string;
   value: number;
+  disabled?: boolean;
 };
 
 type Props = BaseProps & {
@@ -167,16 +168,18 @@ const SelectBox: FC<Props> = ({
           className={styles.selectBoxSelectorStyle}
           style={{ minWidth: width, maxHeight: dropdownMaxHeight }}
         >
-          <WizVStack gap="xs2">
+          <WizVStack>
             {options.map((option) => (
-              <div
+              <button
+                type="button"
+                disabled={option.disabled}
                 key={`${option.value}-${option.label}`}
                 className={styles.selectBoxSelectorOptionStyle}
                 onClick={() => handleClickOption(option)}
               >
                 <span>{option.label}</span>
                 {option.exLabel && <span>{option.exLabel}</span>}
-              </div>
+              </button>
             ))}
           </WizVStack>
         </div>
