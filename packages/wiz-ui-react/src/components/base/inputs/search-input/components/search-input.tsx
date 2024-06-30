@@ -109,7 +109,7 @@ const SearchInput: FC<Props> = ({
     });
 
     return map;
-  }, [options]);
+  }, [options, showParentLabel]);
 
   const IconComponent = icon;
 
