@@ -276,12 +276,16 @@ const emit = defineEmits<{
   (e: "toggle", value: boolean): void;
 }>();
 
+const searchValue = ref("");
+
 const checkValues = computed({
   get: () => props.modelValue,
-  set: (value: number[]) => emit("update:modelValue", value),
+  set: (value: number[]) => {
+    emit("update:modelValue", value);
+    searchValue.value = "";
+  },
 });
 
-const searchValue = ref("");
 const filteredOptions = ref<SearchInputOption[]>([]);
 const selectedItem = ref<number[]>([]);
 const activeItem = ref<number | null>();
