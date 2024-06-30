@@ -15,11 +15,11 @@ export default {
   },
 };
 
-const Template: StoryFn<typeof WizScheduleSheet> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template: StoryFn<typeof WizScheduleSheet> = (args) => ({
+  setup: () => ({ args }),
   components: { WizScheduleSheet },
   template: `
-    <WizScheduleSheet v-bind="$props"  />
+    <WizScheduleSheet v-bind="args"  />
   `,
 });
 
