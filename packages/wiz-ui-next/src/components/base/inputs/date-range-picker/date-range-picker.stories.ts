@@ -14,7 +14,7 @@ export default {
   argTypes: {
     modelValue: {
       control: {
-        type: "date",
+        type: "object",
       },
     },
     disabled: {
