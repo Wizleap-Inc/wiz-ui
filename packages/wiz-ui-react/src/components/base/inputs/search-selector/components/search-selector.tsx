@@ -156,6 +156,7 @@ const SearchSelector: FC<Props> = ({
     onCreate,
     options,
     searchText,
+    threshold,
     values,
   ]);
 
