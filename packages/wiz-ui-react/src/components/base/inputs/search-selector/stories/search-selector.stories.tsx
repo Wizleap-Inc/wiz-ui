@@ -49,7 +49,6 @@ const getTemplate = (initialValues: number[] = []): Story => {
   return {
     render: (args) => {
       const [values, setValues] = useState<number[]>(initialValues);
-      const [searchText, setSearchText] = useState<string>("");
       const [options, setOptions] = useState<SearchSelectorOption[]>(
         args.options
       );
@@ -63,15 +62,15 @@ const getTemplate = (initialValues: number[] = []): Story => {
         [options]
       );
       return (
-        <WizSearchSelector
-          {...args}
-          options={options}
-          values={values}
-          searchText={searchText}
-          onChangeValues={(changed) => setValues(changed)}
-          setSearchText={setSearchText}
-          onCreate={onCreate}
-        />
+        <>
+          <WizSearchSelector
+            {...args}
+            options={options}
+            values={values}
+            onChangeValues={(changed) => setValues(changed)}
+            onCreate={onCreate}
+          />
+        </>
       );
     },
     play: async ({ canvasElement }) => {
