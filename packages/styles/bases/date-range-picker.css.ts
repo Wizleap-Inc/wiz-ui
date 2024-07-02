@@ -32,7 +32,7 @@ export const bodyStyle = styleVariants({
 
 export const widthStyle = styleVariants({
   default: {
-    width: "12rem",
+    width: "20rem",
   },
   expanded: {
     width: "100%",
@@ -47,6 +47,7 @@ const inputTextBaseStyle = style({
   fontSize: THEME.fontSize.sm,
   width: "100%",
   lineHeight: THEME.fontSize.xl3,
+  whiteSpace: "nowrap",
 });
 
 export const inputTextStyle = styleVariants({
@@ -188,7 +189,7 @@ export const popupCalendarHeaderSpacerStyle = style({
   height: THEME.spacing.xl,
 });
 
-export const popupCalendarCancelButtonStyle = style({
+export const popupCalendarCancelIconStyle = style({
   cursor: "pointer",
   padding: THEME.spacing.no,
   borderRadius: THEME.spacing.xs2,

@@ -1,38 +1,60 @@
 <template>
-  <table :class="calendarStyle">
-    <td v-for="row in WEEK_LIST_JP" :class="calendarCellStyle" :key="row">
-      <div :class="[calendarItemCommonStyle, calendarItemStyle['dayOfWeek']]">
+  <table :class="styles.calendarStyle">
+    <td
+      v-for="row in WEEK_LIST_JP"
+      :class="styles.calendarCellStyle"
+      :key="row"
+    >
+      <div :class="[styles.calendarItemStyle['dayOfWeek']]">
         {{ row }}
       </div>
     </td>
-    <tr v-for="(week, row) in calendars" :key="[week, row].join('-')">
+    <tr v-for="(week, row) in adjacentItems" :key="[week, row].join('-')">
       <td
-        v-for="(day, col) in week"
-        :key="[day, col].join('-')"
-        :class="calendarCellStyle"
+        v-for="(adjacent, col) in week"
+        :key="[adjacent.current.day, col].join('-')"
+        :class="styles.calendarCellStyle"
       >
         <button
           type="button"
-          v-if="day"
-          :class="[
-            calendarItemCommonStyle,
-            calendarItemStyle[getDateState(row, col)],
-          ]"
+          v-if="adjacent.current.day"
+          :class="styles.calendarItemCommonStyle"
           :aria-label="`${currentMonth.getFullYear()}年${
             currentMonth.getMonth() + 1
-          }月${day}日${
-            getDateState(row, col) === 'primary' ||
-            getDateState(row, col) === 'secondary'
+          }月${adjacent.current.day}日${
+            adjacent.current.state === 'primary' ||
+            adjacent.current.state === 'secondary'
               ? '-選択済み'
               : ''
           }`"
           :disabled="
-            getDateState(row, col) === 'outOfCurrentMonth' ||
-            getDateState(row, col) === 'disabledDate'
+            adjacent.current.state === 'outOfCurrentMonth' ||
+            adjacent.current.state === 'disabledDate'
           "
-          @click="updateSelectedDate(row, col, day)"
+          @click="updateSelectedDate(row, col, adjacent.current.day)"
         >
-          {{ day }}
+          <div
+            :class="[
+              styles.calendarItemContainerStyle,
+              adjacent.current.state === 'primary' &&
+                styles.calendarPrimaryItemContainerStyle,
+            ]"
+            :style="activeItemRadiusStyle(adjacent, isActiveDate)"
+          >
+            <div
+              v-if="adjacent.current.state"
+              :class="styles.calendarItemStyle[adjacent.current.state]"
+              :style="
+                primaryItemInnerRadiusStyle(
+                  adjacent.current.state === 'primary'
+                )
+              "
+            >
+              <div :class="styles.calendarItemInteractiveStyle">
+                {{ adjacent.current.day }}
+              </div>
+            </div>
+          </div>
         </button>
       </td>
     </tr>
@@ -40,13 +62,8 @@
 </template>
 
 <script setup lang="ts">
-import { WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
-import {
-  calendarCellStyle,
-  calendarItemCommonStyle,
-  calendarItemStyle,
-  calendarStyle,
-} from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
+import { THEME, WEEK_LIST_JP } from "@wizleap-inc/wiz-ui-constants";
+import * as styles from "@wizleap-inc/wiz-ui-styles/bases/calendar.css";
 import { PropType, computed } from "vue";
 
 import { DateStatus } from "./types";
@@ -183,6 +200,44 @@ const getDateState = computed(() => (row: number, col: number) => {
   }
   return "inCurrentMonth";
 });
+type DateState =
+  | "outOfCurrentMonth"
+  | "disabledDate"
+  | "primary"
+  | "secondary"
+  | "inCurrentMonth";
+const adjacentItems = computed(() => {
+  const tryGetDateState = (row: number, col: number) => {
+    if (!calendars.value?.[row]?.[col]) return undefined;
+    const state: DateState = getDateState.value(row, col);
+    return state;
+  };
+  return calendars.value.map((week, row) => {
+    return week.map((day, col) => {
+      const current = tryGetDateState(row, col);
+      // if (!current) throw Error("never");
+      const top = tryGetDateState(row - 1, col);
+      const bottom = tryGetDateState(row + 1, col);
+      const left = tryGetDateState(row, col - 1);
+      const right = tryGetDateState(row, col + 1);
+      return {
+        current: {
+          state: current,
+          day: day,
+          date: new Date(
+            props.currentMonth.getFullYear(),
+            props.currentMonth.getMonth(),
+            Number(day)
+          ),
+        },
+        top,
+        left,
+        right,
+        bottom,
+      };
+    });
+  });
+});
 
 const updateSelectedDate = (row: number, col: number, day: string) => {
   if (isCurrentMonth(row, col)) {
@@ -194,4 +249,94 @@ const updateSelectedDate = (row: number, col: number, day: string) => {
     emits("click", selectedValue);
   }
 };
+
+const isActiveDate = computed(() => {
+  const activeDatesSet = new Set(
+    props.activeDates?.map((activeDate) => {
+      return new Date(
+        activeDate.date.getFullYear(),
+        activeDate.date.getMonth(),
+        activeDate.date.getDate()
+      ).getTime();
+    })
+  );
+
+  return (date: Date) =>
+    activeDatesSet.has(
+      new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+    );
+});
+
+type RadiusStyle = {
+  borderTopLeftRadius?: string;
+  borderTopRightRadius?: string;
+  borderBottomLeftRadius?: string;
+  borderBottomRightRadius?: string;
+};
+
+const activeItemRadiusStyle = (
+  adjacent: {
+    current: {
+      state: DateState | undefined;
+      date: Date;
+    };
+    top: DateState | undefined;
+    left: DateState | undefined;
+    right: DateState | undefined;
+    bottom: DateState | undefined;
+  },
+  isActiveDate: (date: Date) => boolean
+): RadiusStyle => {
+  const { top, bottom, left, right, current } = adjacent;
+  const { state: currentState, date: currentDate } = current;
+
+  if (!currentState) {
+    return {};
+  }
+
+  const calculateDate = (date: Date, offset: number): Date => {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + offset);
+    return newDate;
+  };
+
+  const nextDate = calculateDate(currentDate, 1);
+  const prevDate = calculateDate(currentDate, -1);
+
+  const next = isActiveDate(nextDate);
+  const prev = isActiveDate(prevDate);
+
+  const radius = THEME.spacing.xs2;
+
+  const radiusStyle = {
+    borderTopLeftRadius:
+      (!left && !top && radius) ||
+      (!left && top === "primary" && radius) ||
+      undefined,
+    borderTopRightRadius: (!top && !right && radius) || undefined,
+    borderBottomLeftRadius: (!bottom && !left && radius) || undefined,
+    borderBottomRightRadius:
+      (!right && !bottom && radius) ||
+      (!right && bottom === "primary" && radius) ||
+      undefined,
+  };
+
+  if (currentState === "primary") {
+    return {
+      borderTopLeftRadius: (!prev && "50%") || radiusStyle.borderTopLeftRadius,
+      borderBottomLeftRadius:
+        (!prev && "50%") || radiusStyle.borderBottomLeftRadius,
+      borderTopRightRadius:
+        (!next && "50%") || radiusStyle.borderTopRightRadius,
+      borderBottomRightRadius:
+        (!next && "50%") || radiusStyle.borderBottomRightRadius,
+    };
+  }
+
+  return radiusStyle;
+};
+
+const primaryItemInnerRadiusStyle = (isPrimary: boolean) => ({
+  borderRadius: isPrimary ? "50%" : undefined,
+});
 </script>

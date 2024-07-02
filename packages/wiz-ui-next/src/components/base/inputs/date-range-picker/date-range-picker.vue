@@ -13,41 +13,39 @@
       @keydown.left="moveToPrevMonth"
       @keydown.right="moveToNextMonth"
     >
-      <span @mouseenter="setIsHover(true)" @mouseleave="setIsHover(false)">
-        <span v-if="!isHover">
+      <WizHStack gap="xs" align="center" height="100%" nowrap>
+        <span>
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
-        <button
-          type="button"
-          v-else
-          :class="styles.popupCalendarCancelButtonStyle"
-          :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_CANCEL"
-          @click="onClickCancel"
+        <span
+          :class="
+            styles.inputTextStyle[
+              modelValue.start && !disabled ? 'selected' : 'default'
+            ]
+          "
+          >{{
+            modelValue.start ? formatDate(modelValue.start) : "開始日"
+          }}</span
         >
-          <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
-        </button>
-      </span>
-      <span
-        :class="
-          styles.inputTextStyle[
-            modelValue.start && !disabled ? 'selected' : 'default'
-          ]
-        "
-        >{{
-          modelValue.start ? formatDateToYYMMDD(modelValue.start) : "開始日"
-        }}</span
+        <span :class="styles.separatorStyle">-</span>
+        <span
+          :class="
+            styles.inputTextStyle[
+              modelValue.end && !disabled ? 'selected' : 'default'
+            ]
+          "
+          >{{ modelValue.end ? formatDate(modelValue.end) : "終了日" }}</span
+        >
+      </WizHStack>
+      <button
+        v-if="!disabled && !!modelValue.start"
+        type="button"
+        :class="styles.popupCalendarCancelIconStyle"
+        :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_CANCEL"
+        @click="onClickCancel"
       >
-      <span :class="styles.separatorStyle">-</span>
-      <span
-        :class="
-          styles.inputTextStyle[
-            modelValue.end && !disabled ? 'selected' : 'default'
-          ]
-        "
-        >{{
-          modelValue.end ? formatDateToYYMMDD(modelValue.end) : "終了日"
-        }}</span
-      >
+        <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
+      </button>
     </button>
     <WizPopup
       :isOpen="!disabled && isOpen"
@@ -117,6 +115,7 @@
                 :activeDates="selectedDates"
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
+                :filledWeeks="true"
               />
             </div>
             <div :class="styles.popupCalendarContainerStyle['right']">
@@ -141,6 +140,7 @@
                 :activeDates="selectedDates"
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
+                :filledWeeks="true"
               />
             </div>
           </div>
@@ -154,12 +154,12 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { computed, inject, PropType, ref } from "vue";
 
 import {
   WizCalendar,
   WizCard,
+  WizHStack,
   WizICalendar,
   WizICancel,
   WizIChevronLeft,
@@ -181,7 +181,6 @@ interface Emit {
   (e: "update:modelValue", value: DateRange): void;
   (e: "update:selectBoxValue", value: string): void;
   (e: "update:isOpen", value: boolean): void;
-  (e: "update:isHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -214,13 +213,6 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  /**
-   * `isHover=true`の時、キャンセルアイコンを緑色にします。
-   */
-  isHover: {
-    type: Boolean,
-    required: true,
-  },
   isDirectionFixed: {
     type: Boolean,
     required: false,
@@ -230,6 +222,16 @@ const props = defineProps({
     type: Function as PropType<(date: Date) => boolean>,
     required: false,
     default: () => false,
+  },
+  /**
+   * @description 日付の表示形式をカスタマイズします。
+   * @default (date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+   */
+  formatDate: {
+    type: Function as PropType<(date: Date) => string>,
+    required: false,
+    default: (date: Date) =>
+      `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   },
 });
 
@@ -259,7 +261,6 @@ const leftCalendarDate = computed(() => {
 });
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () =>
   emit("update:modelValue", { start: null, end: null });
 

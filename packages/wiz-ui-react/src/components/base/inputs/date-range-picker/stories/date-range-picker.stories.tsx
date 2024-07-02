@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/testing-library";
+import { within } from "@storybook/testing-library";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
@@ -155,21 +155,6 @@ export const InitialValueStart: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT).click();
-  },
-};
-
-export const Hover: Story = {
-  args: {
-    dateRange: {
-      start: new Date(2000, 0, 15),
-      end: new Date(2000, 1, 15),
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT);
-    button.click();
-    userEvent.hover(button);
   },
 };
 

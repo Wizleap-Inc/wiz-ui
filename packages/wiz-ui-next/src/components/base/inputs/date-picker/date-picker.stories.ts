@@ -239,29 +239,6 @@ const _formatDateJpMonth = (date: Date) => {
   return `${month}月`;
 };
 
-export const Hover: StoryFn<typeof WizDatepicker> = (args) => ({
-  components: { WizDatepicker, WizHStack },
-  setup() {
-    const date = ref<Date | null>(new Date(2020, 0, 1));
-    const isOpen = ref(true);
-    const isHover = ref(true);
-    const updateIsOpen = (value: boolean) => (isOpen.value = value);
-    const updateIsHover = (value: boolean) => (isHover.value = value);
-    return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
-  },
-  template: `
-    <WizDatepicker
-      v-bind="args"
-      v-model="date"
-      :isOpen="isOpen"
-      :isHover="isHover"
-      @update:modelValue="args.onClick"
-      @update:isOpen="updateIsOpen"
-      @update:isHover="updateIsHover"
-    />
-  `,
-});
-
 export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
   setup() {
