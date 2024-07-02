@@ -48,7 +48,6 @@ const _PrivateBaseInput = forwardRef(
           className,
           styles.baseInputStyle,
           styles.baseInputPaddingStyle[spaceType],
-          disabled && styles.baseInputDisabledStyle,
           inputBorderStyle[state]
         )}
         style={{ ...style, width: expand ? "100%" : width }}
