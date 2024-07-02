@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.36.0
+
+### Minor Changes
+
+- [`e18ae627ff9ef38e1325e7281291663bcef3019c`](https://github.com/Wizleap-Inc/wiz-ui/commit/e18ae627ff9ef38e1325e7281291663bcef3019c) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(search-input): option 選択時に、任意に親階層の label が表示できるようにする
+
 ## 2.35.0
 
 ### Minor Changes
