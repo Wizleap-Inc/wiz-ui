@@ -22,7 +22,7 @@ export const labelStyle = styleVariants({
     labelBaseStyle,
     {
       color: THEME.color.gray[500],
-      cursor: "not-allows",
+      cursor: "not-allowed",
     },
   ],
 });
@@ -94,6 +94,9 @@ export const inputStyle = style([
     MozAppearance: "none",
     appearance: "none",
     padding: 0,
+    ":disabled": {
+      cursor: "not-allowed",
+    },
   },
 ]);
 

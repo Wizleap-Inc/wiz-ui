@@ -31,6 +31,7 @@ type Props = BaseProps & {
   emptyMessage?: string;
   icon?: TIcon;
   showSelectedItem?: boolean;
+  showParentLabel?: boolean;
   onChangeValues: (values: number[]) => void;
 };
 
@@ -71,6 +72,7 @@ const SearchInput: FC<Props> = ({
   emptyMessage = "選択肢がありません。",
   showSelectedItem = false,
   onChangeValues,
+  showParentLabel,
   icon = WizISearch,
 }) => {
   const [filteringText, setFilteringText] = useState("");
@@ -88,10 +90,17 @@ const SearchInput: FC<Props> = ({
 
     const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
       return options.flatMap((option) => {
-        if (option.children) {
-          return [option, ...flatten(option.children)];
-        }
-        return [option];
+        if (!option.children) return [option];
+
+        if (!showParentLabel) return [option, ...flatten(option.children)];
+
+        const children = option.children.map((child) => ({
+          ...child,
+          // 要件上、全角空白のため無視
+          // eslint-disable-next-line no-irregular-whitespace
+          label: `${option.label}　${child.label}`,
+        }));
+        return [option, ...flatten(children)];
       });
     };
 
@@ -100,7 +109,7 @@ const SearchInput: FC<Props> = ({
     });
 
     return map;
-  }, [options]);
+  }, [options, showParentLabel]);
 
   const IconComponent = icon;
 
@@ -118,6 +127,11 @@ const SearchInput: FC<Props> = ({
   };
 
   const displayingSelectedItems = showSelectedItem && values.length > 0;
+
+  const handleClickPanelItem = (value: number[]) => {
+    onChangeValues(value);
+    setFilteringText("");
+  };
 
   return (
     <>
@@ -197,7 +211,7 @@ const SearchInput: FC<Props> = ({
               width={popupWidth}
               emptyMessage={emptyMessage}
               singleSelect={singleSelect}
-              onChangeValues={(changed) => onChangeValues(changed)}
+              onChangeValues={handleClickPanelItem}
             />
           </WizHStack>
         </WizPopup>

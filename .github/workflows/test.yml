@@ -23,7 +23,7 @@ jobs:
 
       - name: Get installed Playwright version
         id: playwright-version
-        run: echo "::set-output name=version::$(yarn list playwright | grep playwright | sed 's/.*@//' | tail -1)"
+        run: echo "::set-output name=version::$(pnpm list playwright | grep playwright | sed 's/.*@//' | tail -1)"
 
       - uses: actions/cache@v3
         id: playwright-cache

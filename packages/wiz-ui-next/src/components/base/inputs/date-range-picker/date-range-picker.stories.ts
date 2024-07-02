@@ -14,7 +14,7 @@ export default {
   argTypes: {
     modelValue: {
       control: {
-        type: "date",
+        type: "object",
       },
     },
     disabled: {
@@ -69,6 +69,7 @@ const Template: StoryFn<typeof WizDateRangePicker> = (args) => ({
     const updateSelectBoxValue = (value: string) => {
       args["onUpdate:selectBoxValue"]?.(value);
       selectBoxValue.value = value;
+      args["onUpdate:selectBoxValue"]?.(value);
     };
     return {
       args,
