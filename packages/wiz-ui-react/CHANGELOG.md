@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.64.0
+
+### Minor Changes
+
+- [#1289](https://github.com/Wizleap-Inc/wiz-ui/pull/1289) [`2162188a54c69e60de1559f21f62797f891a4a19`](https://github.com/Wizleap-Inc/wiz-ui/commit/2162188a54c69e60de1559f21f62797f891a4a19) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(search-selector): 検索機能を改善
+
+### Patch Changes
+
+- [#1335](https://github.com/Wizleap-Inc/wiz-ui/pull/1335) [`23fea26d91d852324053314984f0f6813d04fc4d`](https://github.com/Wizleap-Inc/wiz-ui/commit/23fea26d91d852324053314984f0f6813d04fc4d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector): 選択時に検索文字列をクリアする
+
+- Updated dependencies [[`e058c22b1e0f1e3b1410898cd86686f01cd740ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/e058c22b1e0f1e3b1410898cd86686f01cd740ca)]:
+  - @wizleap-inc/wiz-ui-styles@0.30.1
+
 ## 0.63.0
 
 ### Minor Changes
