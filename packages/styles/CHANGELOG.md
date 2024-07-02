@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.30.1
+
+### Patch Changes
+
+- [#1329](https://github.com/Wizleap-Inc/wiz-ui/pull/1329) [`e058c22b1e0f1e3b1410898cd86686f01cd740ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/e058c22b1e0f1e3b1410898cd86686f01cd740ca) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(radio-new): disabled 時に cursor: not-allowed を適用する
+
 ## 0.30.0
 
 ### Minor Changes
