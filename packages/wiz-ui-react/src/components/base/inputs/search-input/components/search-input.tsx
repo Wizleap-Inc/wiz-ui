@@ -109,7 +109,7 @@ const SearchInput: FC<Props> = ({
     });
 
     return map;
-  }, [options]);
+  }, [options, showParentLabel]);
 
   const IconComponent = icon;
 
@@ -127,6 +127,11 @@ const SearchInput: FC<Props> = ({
   };
 
   const displayingSelectedItems = showSelectedItem && values.length > 0;
+
+  const handleClickPanelItem = (value: number[]) => {
+    onChangeValues(value);
+    setFilteringText("");
+  };
 
   return (
     <>
@@ -206,7 +211,7 @@ const SearchInput: FC<Props> = ({
               width={popupWidth}
               emptyMessage={emptyMessage}
               singleSelect={singleSelect}
-              onChangeValues={(changed) => onChangeValues(changed)}
+              onChangeValues={handleClickPanelItem}
             />
           </WizHStack>
         </WizPopup>
