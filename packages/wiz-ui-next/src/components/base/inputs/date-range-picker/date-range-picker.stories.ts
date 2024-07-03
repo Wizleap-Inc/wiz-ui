@@ -290,12 +290,8 @@ IsDirectionFixed.parameters = {
   },
 };
 
-const _formatDateJp = (date: Date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}年${month}月${day}日`;
-};
+const _formatDateJp = (date: Date) =>
+  `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 
 const selectBoxOptions = [
   { label: "選択肢1選択肢1", value: "1" },
