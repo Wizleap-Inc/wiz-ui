@@ -1,3 +1,5 @@
+import { SelectBoxOption } from "./types";
+
 export const levenshteinDistance = (s1: string, s2: string): number => {
   const dist: number[][] = Array.from({ length: s1.length + 1 }, () =>
     Array(s2.length + 1).fill(0)
@@ -16,3 +18,38 @@ export const levenshteinDistance = (s1: string, s2: string): number => {
   }
   return dist[s1.length][s2.length] / Math.max(s1.length, s2.length);
 };
+
+export function filterOptions(
+  options: SelectBoxOption[],
+  searchText: string,
+  threshold: number
+) {
+  if (searchText.length === 0) {
+    return options;
+  }
+  const levenshteinDistanceMap = options.reduce<Record<string, number>>(
+    (map, option) => {
+      map[option.label] = levenshteinDistance(option.label, searchText);
+      return map;
+    },
+    {}
+  );
+  const minLevenshteinDistance = Math.min(
+    ...Object.values(levenshteinDistanceMap)
+  );
+  return (
+    options
+      // 類似度が閾値以下 or 全て閾値を上回る場合は部分一致
+      .filter(
+        (option) =>
+          levenshteinDistanceMap[option.label] <= threshold ||
+          (minLevenshteinDistance > threshold &&
+            option.label.includes(searchText))
+      )
+      // 類似度でソート
+      .sort(
+        (a, b) =>
+          levenshteinDistanceMap[a.label] - levenshteinDistanceMap[b.label]
+      )
+  );
+}
