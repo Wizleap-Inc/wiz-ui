@@ -36,11 +36,12 @@
               </span>
             </div>
           </template>
-          <component
+          <div
             v-if="!displayingSelectedItems"
-            :is="icon"
             :class="styles.searchInputIconStyle"
-          />
+          >
+            <WizIcon :icon="icon" :color="disabled ? 'gray.700' : 'gray.400'" />
+          </div>
           <input
             type="text"
             :class="[styles.searchInputInnerInputStyle]"

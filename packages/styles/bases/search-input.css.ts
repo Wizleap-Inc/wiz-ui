@@ -29,6 +29,8 @@ export const searchInputStyle = style({
 });
 
 export const searchInputDisabledStyle = style({
+  opacity: 0.5,
+  color: THEME.color.gray[700],
   backgroundColor: THEME.color.gray[300],
   cursor: "not-allowed",
 });
@@ -42,7 +44,6 @@ export const searchInputIconStyle = style({
   lineHeight: THEME.fontSize.xl2,
   width: THEME.fontSize.xl2,
   height: THEME.fontSize.xl2,
-  fill: THEME.color.gray["400"],
 });
 
 export const searchContainerStyle = style({
@@ -301,5 +302,10 @@ export const searchInputInnerInputStyle = style({
   ":disabled": {
     cursor: "not-allowed",
     backgroundColor: THEME.color.gray["300"],
+  },
+  selectors: {
+    "&:disabled::placeholder": {
+      color: THEME.color.gray[700],
+    },
   },
 });

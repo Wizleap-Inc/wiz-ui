@@ -109,9 +109,7 @@ const SearchInput: FC<Props> = ({
     });
 
     return map;
-  }, [options]);
-
-  const IconComponent = icon;
+  }, [options, showParentLabel]);
 
   const onClear = (value: number) => {
     const newValues = values.filter((v) => v !== value);
@@ -169,7 +167,10 @@ const SearchInput: FC<Props> = ({
 
             {!displayingSelectedItems && (
               <div className={styles.searchInputIconStyle}>
-                <IconComponent />
+                <WizIcon
+                  icon={icon}
+                  color={disabled ? "gray.700" : "gray.400"}
+                />
               </div>
             )}
             <input
