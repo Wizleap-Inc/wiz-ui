@@ -2,7 +2,6 @@ import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { Meta, StoryFn } from "@storybook/vue3";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { ref } from "vue";
 
 import WizDateRangePicker from "./date-range-picker.vue";
@@ -477,9 +476,7 @@ Test.play = async ({ canvasElement }) => {
   );
   // Input内が選択した日付になることを確認
   await waitFor(() =>
-    expect(button.textContent).toBe(
-      formatDateToYYMMDD(leftClickDate) + "-終了日"
-    )
+    expect(button.textContent).toBe(_formatDateJp(leftClickDate) + "-終了日")
   );
 
   // 右のCalenderから15日を選択
@@ -500,9 +497,7 @@ Test.play = async ({ canvasElement }) => {
   // Input内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent?.replace(/\s+/g, "")).toBe(
-      `${formatDateToYYMMDD(leftClickDate)}-${formatDateToYYMMDD(
-        rightClickDate
-      )}`
+      `${_formatDateJp(leftClickDate)}-${_formatDateJp(rightClickDate)}`
     )
   );
   // data-is-selectedなボタンがrightClickedDate ~ leftClickedDateの間の数だけあることを確認
