@@ -54,10 +54,9 @@ const getTemplate = (initialValues: number[] = []): Story => {
       );
       const onCreate = useCallback(
         (newOption: string) => {
-          setOptions([
-            ...options,
-            { label: newOption, value: options.length + 1000 },
-          ]);
+          const option = { label: newOption, value: options.length + 1000 };
+          setOptions([...options, option]);
+          setValues((vs) => [...vs, option.value]);
         },
         [options]
       );
