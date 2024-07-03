@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.36.1
+
+### Patch Changes
+
+- [#1335](https://github.com/Wizleap-Inc/wiz-ui/pull/1335) [`23fea26d91d852324053314984f0f6813d04fc4d`](https://github.com/Wizleap-Inc/wiz-ui/commit/23fea26d91d852324053314984f0f6813d04fc4d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector): 選択時に検索文字列をクリアする
+
+- Updated dependencies [[`e058c22b1e0f1e3b1410898cd86686f01cd740ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/e058c22b1e0f1e3b1410898cd86686f01cd740ca)]:
+  - @wizleap-inc/wiz-ui-styles@0.30.1
+
 ## 2.36.0
 
 ### Minor Changes

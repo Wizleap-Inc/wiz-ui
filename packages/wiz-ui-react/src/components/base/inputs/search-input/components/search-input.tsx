@@ -126,6 +126,11 @@ const SearchInput: FC<Props> = ({
 
   const displayingSelectedItems = showSelectedItem && values.length > 0;
 
+  const handleClickPanelItem = (value: number[]) => {
+    onChangeValues(value);
+    setFilteringText("");
+  };
+
   return (
     <>
       <div
@@ -204,7 +209,7 @@ const SearchInput: FC<Props> = ({
               width={popupWidth}
               emptyMessage={emptyMessage}
               singleSelect={singleSelect}
-              onChangeValues={(changed) => onChangeValues(changed)}
+              onChangeValues={handleClickPanelItem}
             />
           </WizHStack>
         </WizPopup>
