@@ -221,7 +221,9 @@ const DateRangePicker: FC<Props> = ({
         <span
           className={
             styles.inputTextStyle[
-              dateRange.start && !disabled ? "selected" : "default"
+              (disabled && "disabled") ||
+                (dateRange.start && "selected") ||
+                "default"
             ]
           }
         >
@@ -231,7 +233,9 @@ const DateRangePicker: FC<Props> = ({
         <span
           className={
             styles.inputTextStyle[
-              dateRange.end && !disabled ? "selected" : "default"
+              (disabled && "disabled") ||
+                (dateRange.end && "selected") ||
+                "default"
             ]
           }
         >
