@@ -10,7 +10,7 @@
       :style="{ width: computedInputWidth }"
     >
       <div :class="styles.searchInputInnerBoxStyle">
-        <WizHStack align="center">
+        <WizHStack align="center" gap="xs">
           <component
             :is="icon"
             :class="styles.searchInputIconStyle"

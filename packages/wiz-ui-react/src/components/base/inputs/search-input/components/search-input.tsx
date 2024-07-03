@@ -147,7 +147,7 @@ const SearchInput: FC<Props> = ({
         style={{ ...style, width: expand ? "100%" : inputWidth }}
       >
         <div className={styles.searchInputInnerBoxStyle}>
-          <WizHStack align="center" nowrap>
+          <WizHStack align="center" nowrap gap="xs">
             <IconComponent
               className={styles.searchInputIconStyle}
               style={{ flexShrink: 0 }}
