@@ -1,5 +1,128 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.36.1
+
+### Patch Changes
+
+- [#1335](https://github.com/Wizleap-Inc/wiz-ui/pull/1335) [`23fea26d91d852324053314984f0f6813d04fc4d`](https://github.com/Wizleap-Inc/wiz-ui/commit/23fea26d91d852324053314984f0f6813d04fc4d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector): 選択時に検索文字列をクリアする
+
+- Updated dependencies [[`e058c22b1e0f1e3b1410898cd86686f01cd740ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/e058c22b1e0f1e3b1410898cd86686f01cd740ca)]:
+  - @wizleap-inc/wiz-ui-styles@0.30.1
+
+## 2.36.0
+
+### Minor Changes
+
+- [`e18ae627ff9ef38e1325e7281291663bcef3019c`](https://github.com/Wizleap-Inc/wiz-ui/commit/e18ae627ff9ef38e1325e7281291663bcef3019c) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(search-input): option 選択時に、任意に親階層の label が表示できるようにする
+
+## 2.35.0
+
+### Minor Changes
+
+- [#1254](https://github.com/Wizleap-Inc/wiz-ui/pull/1254) [`1b82a3af66ecaeddd1bebbb912775c026b685a74`](https://github.com/Wizleap-Inc/wiz-ui/commit/1b82a3af66ecaeddd1bebbb912775c026b685a74) Thanks [@okakyo](https://github.com/okakyo)! - [#1222] Search Input に選択肢から１つのみ選択する機能を追加
+
+- [#1240](https://github.com/Wizleap-Inc/wiz-ui/pull/1240) [`f1778ff77aeb248be64cc8eb8c7d54d8043bcd89`](https://github.com/Wizleap-Inc/wiz-ui/commit/f1778ff77aeb248be64cc8eb8c7d54d8043bcd89) Thanks [@wmoai](https://github.com/wmoai)! - SearchSelector, SelectBox のデザイン変更
+
+### Patch Changes
+
+- Updated dependencies [[`1b82a3af66ecaeddd1bebbb912775c026b685a74`](https://github.com/Wizleap-Inc/wiz-ui/commit/1b82a3af66ecaeddd1bebbb912775c026b685a74), [`f1778ff77aeb248be64cc8eb8c7d54d8043bcd89`](https://github.com/Wizleap-Inc/wiz-ui/commit/f1778ff77aeb248be64cc8eb8c7d54d8043bcd89)]:
+  - @wizleap-inc/wiz-ui-styles@0.30.0
+
+## 2.34.0
+
+### Minor Changes
+
+- [#1318](https://github.com/Wizleap-Inc/wiz-ui/pull/1318) [`a136ec08b05d989bb23262018af080a1d3053ae5`](https://github.com/Wizleap-Inc/wiz-ui/commit/a136ec08b05d989bb23262018af080a1d3053ae5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Icon): add WizIAdjustBold
+
+### Patch Changes
+
+- [#1319](https://github.com/Wizleap-Inc/wiz-ui/pull/1319) [`a827d6316eef09139a3c581b6f840d1288351309`](https://github.com/Wizleap-Inc/wiz-ui/commit/a827d6316eef09139a3c581b6f840d1288351309) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector): Disabled 時に選択解除できる問題を修正
+
+- Updated dependencies [[`a827d6316eef09139a3c581b6f840d1288351309`](https://github.com/Wizleap-Inc/wiz-ui/commit/a827d6316eef09139a3c581b6f840d1288351309), [`a136ec08b05d989bb23262018af080a1d3053ae5`](https://github.com/Wizleap-Inc/wiz-ui/commit/a136ec08b05d989bb23262018af080a1d3053ae5)]:
+  - @wizleap-inc/wiz-ui-styles@0.29.10
+  - @wizleap-inc/wiz-ui-constants@0.28.0
+
+## 2.33.3
+
+### Patch Changes
+
+- [`f34b8fcee5cd609f5acf3a95f18d9d4538f1e987`](https://github.com/Wizleap-Inc/wiz-ui/commit/f34b8fcee5cd609f5acf3a95f18d9d4538f1e987) Thanks [@ichi-h](https://github.com/ichi-h)! - chore: window がない場合の対策を追加
+
+## 2.33.2
+
+### Patch Changes
+
+- [`afedbea3bacbf5dc8736101c1721036f4fc57ac8`](https://github.com/Wizleap-Inc/wiz-ui/commit/afedbea3bacbf5dc8736101c1721036f4fc57ac8) Thanks [@ichi-h](https://github.com/ichi-h)! - chore: window.getComputedStyle に変更
+
+## 2.33.1
+
+### Patch Changes
+
+- Updated dependencies [[`feff5408c33863051f83c86b7b8ef465d3497e48`](https://github.com/Wizleap-Inc/wiz-ui/commit/feff5408c33863051f83c86b7b8ef465d3497e48)]:
+  - @wizleap-inc/wiz-ui-styles@0.29.9
+
+## 2.33.0
+
+### Minor Changes
+
+- [#1309](https://github.com/Wizleap-Inc/wiz-ui/pull/1309) [`5f2481a827e84f88eaa74f97bb63fc907aa1f1fe`](https://github.com/Wizleap-Inc/wiz-ui/commit/5f2481a827e84f88eaa74f97bb63fc907aa1f1fe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIMail, WizIInboxCustomize を追加
+
+### Patch Changes
+
+- Updated dependencies [[`5f2481a827e84f88eaa74f97bb63fc907aa1f1fe`](https://github.com/Wizleap-Inc/wiz-ui/commit/5f2481a827e84f88eaa74f97bb63fc907aa1f1fe)]:
+  - @wizleap-inc/wiz-ui-constants@0.27.0
+  - @wizleap-inc/wiz-ui-styles@0.29.8
+
+## 2.32.0
+
+### Minor Changes
+
+- [#1304](https://github.com/Wizleap-Inc/wiz-ui/pull/1304) [`a31d32d4af9750cc59288ed73ed4faada9791011`](https://github.com/Wizleap-Inc/wiz-ui/commit/a31d32d4af9750cc59288ed73ed4faada9791011) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIArrowDownward, WizIArrowUpward を追加
+
+### Patch Changes
+
+- Updated dependencies [[`a31d32d4af9750cc59288ed73ed4faada9791011`](https://github.com/Wizleap-Inc/wiz-ui/commit/a31d32d4af9750cc59288ed73ed4faada9791011)]:
+  - @wizleap-inc/wiz-ui-constants@0.26.0
+  - @wizleap-inc/wiz-ui-styles@0.29.7
+
+## 2.31.0
+
+### Minor Changes
+
+- [#1299](https://github.com/Wizleap-Inc/wiz-ui/pull/1299) [`6c7ad817c49345a1ea438463aee0fd830dc90242`](https://github.com/Wizleap-Inc/wiz-ui/commit/6c7ad817c49345a1ea438463aee0fd830dc90242) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIAdjust を追加
+
+- [#1263](https://github.com/Wizleap-Inc/wiz-ui/pull/1263) [`ff8c81bd7037d9ead50c2a682ffde6c4934872b3`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff8c81bd7037d9ead50c2a682ffde6c4934872b3) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(form-control): 縦揃えオプションを追加
+
+### Patch Changes
+
+- Updated dependencies [[`6c7ad817c49345a1ea438463aee0fd830dc90242`](https://github.com/Wizleap-Inc/wiz-ui/commit/6c7ad817c49345a1ea438463aee0fd830dc90242)]:
+  - @wizleap-inc/wiz-ui-constants@0.25.0
+  - @wizleap-inc/wiz-ui-styles@0.29.6
+
+## 2.30.0
+
+### Minor Changes
+
+- [#1293](https://github.com/Wizleap-Inc/wiz-ui/pull/1293) [`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): WizIDelete, WizIReviews
+
+### Patch Changes
+
+- Updated dependencies [[`f2a295ce`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a295cee04e680b1b2cfb35be955eafea65edf1)]:
+  - @wizleap-inc/wiz-ui-constants@0.24.0
+  - @wizleap-inc/wiz-ui-styles@0.29.5
+
+## 2.29.0
+
+### Minor Changes
+
+- [#1284](https://github.com/Wizleap-Inc/wiz-ui/pull/1284) [`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): emergency_home, hourglass_top, feedback, menu_open アイコンを追加
+
+### Patch Changes
+
+- Updated dependencies [[`d8e63723`](https://github.com/Wizleap-Inc/wiz-ui/commit/d8e6372313d7e1ccba97c266166d829a148e112a)]:
+  - @wizleap-inc/wiz-ui-constants@0.23.0
+  - @wizleap-inc/wiz-ui-styles@0.29.4
+
 ## 2.28.1
 
 ### Patch Changes

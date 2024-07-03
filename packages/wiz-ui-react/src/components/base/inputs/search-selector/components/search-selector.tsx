@@ -22,12 +22,12 @@ import {
   WizIExpandMore,
   WizIcon,
   WizPopup,
-  WizPopupButtonGroup,
 } from "@/components";
-import { ButtonGroupItem } from "@/components/base/popup-button-group/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
 
+import { PopupButtonGroup } from "./popup-button-group";
+import { ButtonGroupItem } from "./popup-button-group/types";
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
@@ -44,6 +44,13 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
+  /**
+   * 検索対象に含む類似度の閾値を，0から1の範囲で指定します。
+   * 類似度は標準化レーベンシュタイン距離に基づいて計算され，0に近いほど類似しています。
+   * ただし，類似度の最小値が閾値を上回る場合は部分一致で検索します。
+   * @default 0.75
+   */
+  threshold?: number;
   onChangeValues: (values: number[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
@@ -64,6 +71,7 @@ const SearchSelector: FC<Props> = ({
   isDirectionFixed = false,
   showExLabel = false,
   dropdownMaxHeight,
+  threshold = 0.75,
   onChangeValues,
   onCreate,
   onInputSearchText,
@@ -93,11 +101,13 @@ const SearchSelector: FC<Props> = ({
   }, [selectedOptions.length]);
 
   const buttonGroupOptions: ButtonGroupItem[] = useMemo(() => {
-    const filteredOptions = filterOptions(options, searchText).filter(
-      (matchedOption) => {
-        return !values.some((value) => matchedOption.value === value);
-      }
-    );
+    const filteredOptions = filterOptions(
+      options,
+      searchText,
+      threshold
+    ).filter((matchedOption) => {
+      return !values.some((value) => matchedOption.value === value);
+    });
     const buttonGroupOptions: ButtonGroupItem[] = filteredOptions.map(
       (option) => {
         return {
@@ -106,6 +116,7 @@ const SearchSelector: FC<Props> = ({
             label: option.label,
             value: option.value,
             exLabel: option.exLabel,
+            disabled: option.disabled,
             onClick: () => {
               setSearchText("");
               if (multiSelectable) {
@@ -150,6 +161,7 @@ const SearchSelector: FC<Props> = ({
     options,
     searchText,
     setSearchText,
+    threshold,
     values,
   ]);
 
@@ -322,7 +334,7 @@ const SearchSelector: FC<Props> = ({
             className={styles.selectBoxSelectorStyle}
             style={{ minWidth: width, maxHeight: dropdownMaxHeight }}
           >
-            <WizPopupButtonGroup options={buttonGroupOptions} />
+            <PopupButtonGroup options={buttonGroupOptions} />
           </div>
         </WizPopup>
       )}

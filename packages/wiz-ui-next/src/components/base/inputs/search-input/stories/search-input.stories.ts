@@ -8,11 +8,11 @@ import WizSearchInput from "../search-input.vue";
 import {
   debugOption,
   defaultOption,
+  emptyMessageOptions,
   expandOption,
   longLabelOption,
   openOption,
   simpleOption,
-  emptyMessageOptions,
   taggedOptions,
 } from "./options";
 
@@ -34,6 +34,9 @@ export default {
     expand: {
       control: { type: "boolean" },
     },
+    singleSelect: {
+      control: { type: "boolean" },
+    },
     inputWidth: {
       control: { type: "text" },
     },
@@ -51,6 +54,12 @@ export default {
     },
     emptyMessage: {
       content: { type: "text" },
+    },
+    showSelectedItem: {
+      control: { type: "boolean" },
+    },
+    showParentLabel: {
+      control: { type: "boolean" },
     },
   },
 } as Meta<typeof WizSearchInput>;
@@ -133,6 +142,14 @@ IsDirectionFixed.args = {
   options: simpleOption,
 };
 
+export const SingleSelect = Template(true).bind({});
+SingleSelect.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
+  inputWidth: "15rem",
+  options: defaultOption,
+};
+
 export const Icon = Template(true).bind({});
 Icon.args = {
   placeholder: "氏名・ID・電話番号で検索",
@@ -156,4 +173,23 @@ EmptyMessage.args = {
   inputWidth: "15rem",
   popupWidth: "25rem",
   options: emptyMessageOptions,
+};
+
+export const ShowSelectedItemTag = Template(true).bind({});
+ShowSelectedItemTag.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
+  inputWidth: "15rem",
+  options: simpleOption,
+  showSelectedItem: true,
+};
+
+export const ShowParentLabel = Template(true).bind({});
+ShowParentLabel.args = {
+  placeholder: "氏名・ID・電話番号で検索",
+  singleSelect: true,
+  inputWidth: "15rem",
+  options: defaultOption,
+  showSelectedItem: true,
+  showParentLabel: true,
 };

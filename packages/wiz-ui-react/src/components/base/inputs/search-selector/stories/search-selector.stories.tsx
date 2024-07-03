@@ -107,6 +107,16 @@ export const Disabled: Story = {
   },
 };
 
+export const DisabledItems: Story = {
+  ...getTemplate(),
+  args: {
+    options: getDummyOptions("test", 3).map((option, i) => ({
+      ...option,
+      disabled: i % 2 === 0,
+    })),
+  },
+};
+
 export const Selecting: Story = {
   ...getTemplate([1]),
   args: {
