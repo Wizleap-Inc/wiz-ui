@@ -40,7 +40,7 @@
             v-if="!displayingSelectedItems"
             :class="styles.searchInputIconStyle"
           >
-            <WizIcon :icon="icon" :color="disabled ? 'gray.700' : 'gray.400'" />
+            <WizIcon :icon="icon" color="gray.500" />
           </div>
           <input
             type="text"
