@@ -198,13 +198,15 @@ const NavigationItem = <T extends ElementType>({
     </div>
   );
 
-  if (!tooltipText) return body;
-
   return (
     <>
-      <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
-        {body}
-      </WizTooltip>
+      {tooltipText ? (
+        <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
+          {body}
+        </WizTooltip>
+      ) : (
+        <> {body} </>
+      )}
       {existPopup && (
         <WizPopup
           anchorElement={popupAnchor}
