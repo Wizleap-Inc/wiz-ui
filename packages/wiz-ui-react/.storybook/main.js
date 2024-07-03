@@ -1,6 +1,6 @@
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
-import path from "path";
-import { mergeConfig } from "vite";
+const { vanillaExtractPlugin } = require("@vanilla-extract/vite-plugin");
+const path = require("path");
+const { mergeConfig } = require("vite");
 
 module.exports = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],

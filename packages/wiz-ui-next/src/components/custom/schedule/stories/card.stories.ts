@@ -25,12 +25,12 @@ export default {
   },
 };
 
-const Template: StoryFn<typeof WizScheduleCard> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template: StoryFn<typeof WizScheduleCard> = (args) => ({
+  setup: () => ({ args }),
   components: { WizScheduleCard },
   template: `
     <div style="display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: repeat(24, 6px); width: 30rem; position: relative; background: #eee;">
-      <WizScheduleCard v-bind="$props" @click="click" />
+      <WizScheduleCard v-bind="args" @click="click" />
     </div>
   `,
 });

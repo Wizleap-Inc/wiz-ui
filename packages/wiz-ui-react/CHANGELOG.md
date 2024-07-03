@@ -1,5 +1,24 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.64.0
+
+### Minor Changes
+
+- [#1289](https://github.com/Wizleap-Inc/wiz-ui/pull/1289) [`2162188a54c69e60de1559f21f62797f891a4a19`](https://github.com/Wizleap-Inc/wiz-ui/commit/2162188a54c69e60de1559f21f62797f891a4a19) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(search-selector): 検索機能を改善
+
+### Patch Changes
+
+- [#1335](https://github.com/Wizleap-Inc/wiz-ui/pull/1335) [`23fea26d91d852324053314984f0f6813d04fc4d`](https://github.com/Wizleap-Inc/wiz-ui/commit/23fea26d91d852324053314984f0f6813d04fc4d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-selector): 選択時に検索文字列をクリアする
+
+- Updated dependencies [[`e058c22b1e0f1e3b1410898cd86686f01cd740ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/e058c22b1e0f1e3b1410898cd86686f01cd740ca)]:
+  - @wizleap-inc/wiz-ui-styles@0.30.1
+
+## 0.63.0
+
+### Minor Changes
+
+- [`e18ae627ff9ef38e1325e7281291663bcef3019c`](https://github.com/Wizleap-Inc/wiz-ui/commit/e18ae627ff9ef38e1325e7281291663bcef3019c) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(search-input): option 選択時に、任意に親階層の label が表示できるようにする
+
 ## 0.62.0
 
 ### Minor Changes
