@@ -220,47 +220,12 @@ YearStyle.args = {
   formatYear: (year: number) => `西暦${year}`,
 };
 
-const _formatDateSlash = (date: Date) => {
-  const year = (date.getFullYear() % 100).toString().padStart(2, "0");
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}/${month}/${day}`;
-};
-
-const _formatDateJp = (date: Date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}年${month}月${day}日`;
-};
-
+const _formatDateJp = (date: Date) =>
+  `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 const _formatDateJpMonth = (date: Date) => {
   const month = date.getMonth() + 1;
   return `${month}月`;
 };
-
-export const Hover: StoryFn<typeof WizDatepicker> = (args) => ({
-  components: { WizDatepicker, WizHStack },
-  setup() {
-    const date = ref<Date | null>(new Date(2020, 0, 1));
-    const isOpen = ref(true);
-    const isHover = ref(true);
-    const updateIsOpen = (value: boolean) => (isOpen.value = value);
-    const updateIsHover = (value: boolean) => (isHover.value = value);
-    return { args, date, isOpen, updateIsOpen, isHover, updateIsHover };
-  },
-  template: `
-    <WizDatepicker
-      v-bind="args"
-      v-model="date"
-      :isOpen="isOpen"
-      :isHover="isHover"
-      @update:modelValue="args.onClick"
-      @update:isOpen="updateIsOpen"
-      @update:isHover="updateIsHover"
-    />
-  `,
-});
 
 export const Test: StoryFn<typeof WizDatepicker> = (args) => ({
   components: { WizDatepicker, WizHStack },
@@ -307,7 +272,7 @@ Test.play = async ({ canvasElement }) => {
   );
   // Input内が選択した日付になることを確認
   await waitFor(() =>
-    expect(button.textContent).toBe(_formatDateSlash(clickDate))
+    expect(button.textContent).toBe(_formatDateJp(clickDate))
   );
 
   // 月セレクターのPrevを1回押して操作月を1ヶ月前にする
@@ -333,7 +298,7 @@ Test.play = async ({ canvasElement }) => {
 
   // Input内が選択した日付になることを確認
   await waitFor(() =>
-    expect(button.textContent).toBe(_formatDateSlash(new Date(pastClickDate)))
+    expect(button.textContent).toBe(_formatDateJp(new Date(pastClickDate)))
   );
 
   // 月セレクターのNextを1回押して操作月を1ヶ月後にする
