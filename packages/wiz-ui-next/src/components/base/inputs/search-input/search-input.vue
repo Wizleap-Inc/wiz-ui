@@ -10,10 +10,26 @@
       :style="{ width: computedInputWidth }"
     >
       <div :class="styles.searchInputInnerBoxStyle">
-        <WizHStack align="center" height="100%" gap="xs" :wrap="true">
-          <template v-if="showSelectedItem">
-            <div v-for="item in checkValues" :key="item">
-              <span :class="styles.searchInputInnerBoxSelectedItemStyle">
+        <WizHStack align="center" gap="xs">
+          <component
+            :is="icon"
+            :class="styles.searchInputIconStyle"
+            :style="{ flexShrink: 0 }"
+          />
+          <WizHStack
+            align="center"
+            height="100%"
+            width="100%"
+            gap="xs"
+            :wrap="true"
+            overflow="hidden"
+          >
+            <template v-if="showSelectedItem">
+              <span
+                v-for="item in checkValues"
+                :key="item"
+                :class="styles.searchInputInnerBoxSelectedItemStyle"
+              >
                 <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
                   {{ valueToOption.get(item)?.label }}
                 </span>
@@ -34,25 +50,20 @@
                   />
                 </button>
               </span>
-            </div>
-          </template>
-          <component
-            v-if="!displayingSelectedItems"
-            :is="icon"
-            :class="styles.searchInputIconStyle"
-          />
-          <input
-            type="text"
-            :class="[styles.searchInputInnerInputStyle]"
-            v-model="searchValue"
-            :placeholder="!displayingSelectedItems ? placeholder : undefined"
-            :name="name"
-            :disabled="disabled"
-            @focusin="hasFocus = true"
-            @focusout="hasFocus = false"
-            @click="emit('toggle', !openPopup)"
-            autocomplete="off"
-          />
+            </template>
+            <input
+              type="text"
+              :class="[styles.searchInputInnerInputStyle]"
+              v-model="searchValue"
+              :placeholder="!displayingSelectedItems ? placeholder : undefined"
+              :name="name"
+              :disabled="disabled"
+              @focusin="hasFocus = true"
+              @focusout="hasFocus = false"
+              @click="emit('toggle', !openPopup)"
+              autocomplete="off"
+            />
+          </WizHStack>
         </WizHStack>
       </div>
     </div>
