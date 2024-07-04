@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { WizSearchSelector } from "..";
 import { SearchSelectorOption } from "../components/types";
@@ -49,12 +49,27 @@ const getTemplate = (initialValues: number[] = []): Story => {
   return {
     render: (args) => {
       const [values, setValues] = useState<number[]>(initialValues);
+      const [options, setOptions] = useState<SearchSelectorOption[]>(
+        args.options
+      );
+      const onCreate = useCallback(
+        (newOption: string) => {
+          const option = { label: newOption, value: options.length + 1000 };
+          setOptions([...options, option]);
+          setValues((vs) => [...vs, option.value]);
+        },
+        [options]
+      );
       return (
-        <WizSearchSelector
-          {...args}
-          values={values}
-          onChangeValues={(changed) => setValues(changed)}
-        />
+        <>
+          <WizSearchSelector
+            {...args}
+            options={options}
+            values={values}
+            onChangeValues={(changed) => setValues(changed)}
+            onCreate={onCreate}
+          />
+        </>
       );
     },
     play: async ({ canvasElement }) => {
