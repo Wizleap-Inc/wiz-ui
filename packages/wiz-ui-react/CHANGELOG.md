@@ -1,5 +1,21 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.65.0
+
+### Minor Changes
+
+- [#1320](https://github.com/Wizleap-Inc/wiz-ui/pull/1320) [`7d84fe2a318e67ffa2fe8a28502ab9fac3666482`](https://github.com/Wizleap-Inc/wiz-ui/commit/7d84fe2a318e67ffa2fe8a28502ab9fac3666482) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-range-picker, date-picker): 選択解除ボタンの改修
+  Feat(calendar): 選択済みアイテムのスタイル改修
+
+- [#1288](https://github.com/Wizleap-Inc/wiz-ui/pull/1288) [`326f879f1c01032551d52b9f631bb414223776f7`](https://github.com/Wizleap-Inc/wiz-ui/commit/326f879f1c01032551d52b9f631bb414223776f7) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(search-selector): 検索文字列を Props から渡す
+
+### Patch Changes
+
+- [#1328](https://github.com/Wizleap-Inc/wiz-ui/pull/1328) [`7afe37b51a47d488e319befaf12fa6f0ec3384ed`](https://github.com/Wizleap-Inc/wiz-ui/commit/7afe37b51a47d488e319befaf12fa6f0ec3384ed) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-input): アイテム選択でアイコンが非表示になる問題、長いラベルが...で省略されない問題を修正
+
+- Updated dependencies [[`7afe37b51a47d488e319befaf12fa6f0ec3384ed`](https://github.com/Wizleap-Inc/wiz-ui/commit/7afe37b51a47d488e319befaf12fa6f0ec3384ed), [`7d84fe2a318e67ffa2fe8a28502ab9fac3666482`](https://github.com/Wizleap-Inc/wiz-ui/commit/7d84fe2a318e67ffa2fe8a28502ab9fac3666482)]:
+  - @wizleap-inc/wiz-ui-styles@0.31.0
+
 ## 0.64.0
 
 ### Minor Changes
