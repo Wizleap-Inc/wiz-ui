@@ -2,7 +2,6 @@ import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { Meta, StoryFn } from "@storybook/vue3";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { ref } from "vue";
 
 import WizDateRangePicker from "./date-range-picker.vue";
@@ -67,6 +66,7 @@ const Template: StoryFn<typeof WizDateRangePicker> = (args) => ({
     };
     const selectBoxValue = ref("");
     const updateSelectBoxValue = (value: string) => {
+      args["onUpdate:selectBoxValue"]?.(value);
       selectBoxValue.value = value;
       args["onUpdate:selectBoxValue"]?.(value);
     };
@@ -289,12 +289,8 @@ IsDirectionFixed.parameters = {
   },
 };
 
-const _formatDateJp = (date: Date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}年${month}月${day}日`;
-};
+const _formatDateJp = (date: Date) =>
+  `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 
 const selectBoxOptions = [
   { label: "選択肢1選択肢1", value: "1" },
@@ -531,9 +527,7 @@ Test.play = async ({ canvasElement }) => {
   );
   // Input内が選択した日付になることを確認
   await waitFor(() =>
-    expect(button.textContent).toBe(
-      formatDateToYYMMDD(leftClickDate) + "-終了日"
-    )
+    expect(button.textContent).toBe(_formatDateJp(leftClickDate) + "-終了日")
   );
 
   // 右のCalenderから15日を選択
@@ -554,9 +548,7 @@ Test.play = async ({ canvasElement }) => {
   // Input内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent?.replace(/\s+/g, "")).toBe(
-      `${formatDateToYYMMDD(leftClickDate)}-${formatDateToYYMMDD(
-        rightClickDate
-      )}`
+      `${_formatDateJp(leftClickDate)}-${_formatDateJp(rightClickDate)}`
     )
   );
   // data-is-selectedなボタンがrightClickedDate ~ leftClickedDateの間の数だけあることを確認

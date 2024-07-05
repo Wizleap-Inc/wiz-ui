@@ -145,52 +145,63 @@ const SearchInput: FC<Props> = ({
         style={{ ...style, width: expand ? "100%" : inputWidth }}
       >
         <div className={styles.searchInputInnerBoxStyle}>
-          <WizHStack align="center" height="100%" gap="xs">
-            {showSelectedItem &&
-              values.map((value) => (
-                <span
-                  key={value}
-                  className={styles.searchInputInnerBoxSelectedItemStyle}
-                >
+          <WizHStack align="center" nowrap gap="xs">
+            <div className={styles.searchInputIconStyle}>
+              <WizIcon
+                // className={styles.searchInputIconStyle}
+                style={{ flexShrink: 0 }}
+                icon={icon}
+                color={"gray.500"}
+              />
+            </div>
+            <WizHStack
+              align="center"
+              height="100%"
+              width="100%"
+              gap="xs"
+              overflow="hidden"
+            >
+              {showSelectedItem &&
+                values.map((value) => (
                   <span
-                    className={styles.searchInputInnerBoxSelectedLabelStyle}
+                    key={value}
+                    className={styles.searchInputInnerBoxSelectedItemStyle}
                   >
-                    {valueToOptions.get(value)?.label}
+                    <span
+                      className={styles.searchInputInnerBoxSelectedLabelStyle}
+                    >
+                      {valueToOptions.get(value)?.label}
+                    </span>
+                    <button
+                      type="button"
+                      className={styles.searchInputInnerBoxCloseButtonStyle}
+                      aria-label={ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}
+                      onClick={() => onClear(value)}
+                      onKeyDown={handleKeyDown(value)}
+                      disabled={disabled}
+                    >
+                      <WizIcon icon={WizIClose} size="xs" color="gray.700" />
+                    </button>
                   </span>
-                  <button
-                    type="button"
-                    className={styles.searchInputInnerBoxCloseButtonStyle}
-                    aria-label={ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}
-                    onClick={() => onClear(value)}
-                    onKeyDown={handleKeyDown(value)}
-                    disabled={disabled}
-                  >
-                    <WizIcon icon={WizIClose} size="xs" color="gray.700" />
-                  </button>
-                </span>
-              ))}
+                ))}
 
-            {!displayingSelectedItems && (
-              <div className={styles.searchInputIconStyle}>
-                <WizIcon icon={icon} color={"gray.500"} />
-              </div>
-            )}
-            <input
-              type="text"
-              className={styles.searchInputInnerInputStyle}
-              value={filteringText}
-              placeholder={!displayingSelectedItems ? placeholder : undefined}
-              name={name}
-              disabled={disabled}
-              onChange={(e) => {
-                setIsPopupOpen(true);
-                setFilteringText(e.target.value);
-              }}
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-              onClick={() => setIsPopupOpen(!isPopupOpen)}
-              autoComplete="off"
-            />
+              <input
+                type="text"
+                className={styles.searchInputInnerInputStyle}
+                value={filteringText}
+                placeholder={!displayingSelectedItems ? placeholder : undefined}
+                name={name}
+                disabled={disabled}
+                onChange={(e) => {
+                  setIsPopupOpen(true);
+                  setFilteringText(e.target.value);
+                }}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                onClick={() => setIsPopupOpen(!isPopupOpen)}
+                autoComplete="off"
+              />
+            </WizHStack>
           </WizHStack>
         </div>
       </div>

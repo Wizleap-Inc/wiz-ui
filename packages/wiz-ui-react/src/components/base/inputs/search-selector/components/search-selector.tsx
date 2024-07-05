@@ -144,7 +144,10 @@ const SearchSelector: FC<Props> = ({
               icon: WizIAddCircle,
               iconDefaultColor: "green.800",
               value: -1,
-              onClick: () => onCreate?.(searchText),
+              onClick: () => {
+                onCreate?.(searchText);
+                setSearchText("");
+              },
             },
           },
           ...buttonGroupOptions,
@@ -157,6 +160,7 @@ const SearchSelector: FC<Props> = ({
     onCreate,
     options,
     searchText,
+    setSearchText,
     threshold,
     values,
   ]);
@@ -339,5 +343,4 @@ const SearchSelector: FC<Props> = ({
 };
 
 SearchSelector.displayName = ComponentName.SearchSelector;
-
 export const WizSearchSelector = SearchSelector;

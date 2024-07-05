@@ -286,7 +286,6 @@ export const searchInputInnerBoxCloseButtonStyle = style({
 });
 
 export const searchInputInnerInputStyle = style({
-  width: 0,
   minWidth: "30%",
   border: "none",
   outline: "none",
