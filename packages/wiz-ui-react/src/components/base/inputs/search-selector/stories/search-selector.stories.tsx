@@ -45,10 +45,10 @@ const getDummyOptions = (label: string, count: number, exLabel?: string) => {
   return options;
 };
 
-const getTemplate = (initialValues: number[] = []): Story => {
+const getTemplate = (): Story => {
   return {
     render: (args) => {
-      const [values, setValues] = useState<number[]>(initialValues);
+      const [values, setValues] = useState<number[]>(args.values || []);
       return (
         <WizSearchSelector
           {...args}
@@ -91,6 +91,15 @@ export const Disabled: Story = {
   },
 };
 
+export const DisabledWithValues: Story = {
+  ...getTemplate(),
+  args: {
+    values: [1, 2],
+    options: getDummyOptions("test", 3),
+    disabled: true,
+  },
+};
+
 export const DisabledItems: Story = {
   ...getTemplate(),
   args: {
@@ -102,15 +111,17 @@ export const DisabledItems: Story = {
 };
 
 export const Selecting: Story = {
-  ...getTemplate([1]),
+  ...getTemplate(),
   args: {
+    values: [1],
     options: getDummyOptions("test", 3),
   },
 };
 
 export const MultiSelecting: Story = {
-  ...getTemplate([1, 2, 3]),
+  ...getTemplate(),
   args: {
+    values: [1, 2, 3],
     options: getDummyOptions("test", 3),
     multiSelectable: true,
     width: "300px",
