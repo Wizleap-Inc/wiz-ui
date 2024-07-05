@@ -11,11 +11,7 @@
     >
       <div :class="styles.searchInputInnerBoxStyle">
         <WizHStack align="center" gap="xs">
-          <component
-            :is="icon"
-            :class="styles.searchInputIconStyle"
-            :style="{ flexShrink: 0 }"
-          />
+          <WizIcon :icon="icon" color="gray.500" :style="{ flexShrink: 0 }" />
           <WizHStack
             align="center"
             height="100%"
@@ -51,12 +47,12 @@
                 </button>
               </span>
             </template>
-            <div
+            <!-- <div
               v-if="!displayingSelectedItems"
               :class="styles.searchInputIconStyle"
             >
               <WizIcon :icon="icon" color="gray.500" />
-            </div>
+            </div> -->
             <input
               type="text"
               :class="[styles.searchInputInnerInputStyle]"
