@@ -326,6 +326,7 @@ export const InitialValueRange: StoryFn<typeof WizDateRangePicker> = (
   template: `
     <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem">
       <WizDateRangePicker
+        v-bind="args"
         v-model="dateRange1"
         v-model:selectBoxValue="selectBoxValue1"
         :selectBoxOptions="selectBoxOptions"
@@ -362,6 +363,7 @@ export const InitialValueRange2: StoryFn<typeof WizDateRangePicker> = (
   template: `
     <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem">
       <WizDateRangePicker
+        v-bind="args"
         v-model="dateRange1"
         v-model:selectBoxValue="selectBoxValue1"
         :selectBoxOptions="selectBoxOptions"
@@ -398,6 +400,7 @@ export const InitialValueStart: StoryFn<typeof WizDateRangePicker> = (
   template: `
     <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem">
       <WizDateRangePicker
+        v-bind="args"
         v-model="dateRange3"
         v-model:selectBoxValue="selectBoxValue3"
         :selectBoxOptions="selectBoxOptions"
@@ -441,6 +444,8 @@ export const Hover: StoryFn<typeof WizDateRangePicker> = (args) => ({
   template: `
     <div>
       <WizDateRangePicker
+
+        v-bind="args"
         v-model="dateRange"
         v-model:selectBoxValue="selectBoxValue"
         :selectBoxOptions="selectBoxOptions"
@@ -486,6 +491,7 @@ export const Test: StoryFn<typeof WizDateRangePicker> = (args) => ({
   template: `
     <div>
       <WizDateRangePicker
+        v-bind="args"
         v-model="dateRange"
         v-model:selectBoxValue="selectBoxValue"
         :selectBoxOptions="selectBoxOptions"
