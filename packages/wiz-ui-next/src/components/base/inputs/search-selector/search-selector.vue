@@ -131,7 +131,7 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizHStack, WizVStack } from "../../stack";
 
-import { levenshteinDistance } from "./levenshtein-distance";
+import { filterOptions } from "./levenshtein-distance";
 import { ButtonGroupItem, PopupButtonGroup } from "./popup-button-group";
 import { SelectBoxOption } from "./types";
 
@@ -207,6 +207,18 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  /**
+   * 検索対象に含む類似度の閾値を，0から1の範囲で指定します。
+   * 類似度は標準化レーベンシュタイン距離に基づいて計算され，0に近いほど類似しています。
+   * ただし，類似度の最小値が閾値を上回る場合は部分一致で検索します。
+   * @default 0.75
+   *
+   */
+  threshold: {
+    type: Number,
+    required: false,
+    default: 0.75,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -224,26 +236,6 @@ const toggleDropdown = () => {
 };
 
 const deepCopy = <T>(ary: T): T => JSON.parse(JSON.stringify(ary));
-
-const selectByLevenshteinAndPartialMatch = (
-  options: SelectBoxOption[],
-  target: string
-) => {
-  const dist = options.reduce((acc, str) => {
-    acc[str.label] = levenshteinDistance(str.label, target);
-    return acc;
-  }, {} as { [key: string]: number });
-  const minLength = Math.min(...Object.values(dist));
-  const closestWords = options.filter(
-    (option) => dist[option.label] === minLength
-  );
-
-  const exactMatch = options.filter((option) => {
-    const isIncluded = option.label.indexOf(target) !== -1;
-    return isIncluded && !closestWords.includes(option);
-  });
-  return closestWords.concat(exactMatch);
-};
 
 const valueToOption = computed(() =>
   props.options.reduce((acc, item) => {
@@ -268,12 +260,16 @@ const setUnselectableRef =
 
 const filteredOptions = computed(() => {
   const sortedOptions =
-    props.searchValue.length !== 0
-      ? selectByLevenshteinAndPartialMatch(
+    props.searchValue.length === 0
+      ? props.options
+      : filterOptions(
           deepCopy(props.options),
-          props.searchValue
-        )
-      : props.options;
+          props.searchValue,
+          props.threshold
+        ).filter(
+          (matchedOption) =>
+            !props.modelValue.some((value) => matchedOption.value === value)
+        );
   const removeSelectedOptions = (options: SelectBoxOption[]) => {
     return options.filter((v) => {
       return !selectedItem.value.some((item) => item.value === v.value);
