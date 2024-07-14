@@ -23,9 +23,7 @@ export const Default: Story = {
       },
     },
   },
-  args: {
-    href: "#",
-  },
+  args: {},
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
 };
 
@@ -39,7 +37,6 @@ export const Color: Story = {
     },
   },
   args: {
-    href: "#",
     color: "red.800",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -55,7 +52,6 @@ export const FontSize: Story = {
     },
   },
   args: {
-    href: "#",
     fontSize: "sm",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -70,7 +66,6 @@ export const FontWeight: Story = {
     },
   },
   args: {
-    href: "#",
     fontWeight: "bold",
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -86,7 +81,6 @@ export const Icon: Story = {
     },
   },
   args: {
-    href: "#",
     icon: WizIArrowRight,
   },
   render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
@@ -105,7 +99,6 @@ export const IconPosition: Story = {
     },
   },
   args: {
-    href: "#",
     icon: WizIArrowRight,
     iconPosition: "right",
   },
