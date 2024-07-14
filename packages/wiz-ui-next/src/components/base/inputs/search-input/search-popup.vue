@@ -47,6 +47,11 @@
                   align="center"
                   nowrap
                   gap="xs2"
+                  :pl="
+                    !allOptionsHaveChildren(option.children) && !singleSelect
+                      ? 'lg'
+                      : 'no'
+                  "
                 >
                   <div :class="styles.searchInputLabelStyle">
                     {{ item.label }}
@@ -192,6 +197,8 @@ const activeItemIndex = ref<number | null>(null);
 
 const ITEM_HEIGHT = 44;
 const DIVIDER_HEIGHT = 0.8;
+const allOptionsHaveChildren = (options: SearchInputOption[]) =>
+  options.every((option) => !!option.children);
 
 const checkValues = computed({
   get: () => props.modelValue,
