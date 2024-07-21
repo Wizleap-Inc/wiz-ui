@@ -14,19 +14,37 @@
       width,
     }"
   >
-    <WizHStack px="md" py="xs" justify="between" align="center">
+    <WizHStack px="md" py="xs" justify="between" align="center" nowrap>
       <WizVStack gap="xs" position="relative" width="100%">
         <WizHStack v-if="variant === 'primary'" justify="between" align="start">
-          <WizVStack gap="xs">
-            <WizHStack gap="xl" v-for="(item, i) in tableInfo" :key="i">
-              <WizText :bold="!read" fontSize="xs" color="gray.700">{{
-                item.title
-              }}</WizText>
-              <WizText :bold="!read" fontSize="xs" color="gray.700">{{
-                item.content
-              }}</WizText>
-            </WizHStack>
-          </WizVStack>
+          <WizUnstyledTable>
+            <WizUnstyledTbody>
+              <WizUnstyledTr
+                v-for="(item, i) in tableInfo"
+                :key="`${item.title}_${i}`"
+              >
+                <WizUnstyledTd
+                  align="left"
+                  :style="{
+                    paddingRight: THEME.spacing.xl,
+                    paddingBottom: THEME.spacing.xs,
+                  }"
+                >
+                  <WizText :bold="!read" fontSize="xs" color="gray.700">
+                    {{ item.title }}
+                  </WizText>
+                </WizUnstyledTd>
+                <WizUnstyledTd
+                  align="left"
+                  :style="{ paddingBottom: THEME.spacing.xs }"
+                >
+                  <WizText :bold="!read" fontSize="xs" color="gray.700">
+                    {{ item.content }}
+                  </WizText>
+                </WizUnstyledTd>
+              </WizUnstyledTr>
+            </WizUnstyledTbody>
+          </WizUnstyledTable>
           <WizText color="gray.600" fontSize="xs2">
             {{ displayHowPast }}
           </WizText>
@@ -47,16 +65,20 @@
 </template>
 
 <script setup lang="ts">
-import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToYMDHM, formatHowPast } from "@wizleap-inc/wiz-ui-utils";
-import { computed, ref, PropType } from "vue";
+import { computed, PropType, ref } from "vue";
 
 import {
   WizBox,
   WizHStack,
   WizIcon,
-  WizVStack,
   WizText,
+  WizUnstyledTable,
+  WizUnstyledTbody,
+  WizUnstyledTd,
+  WizUnstyledTr,
+  WizVStack,
 } from "@/components/base";
 import { WizIChevronRight } from "@/components/icons";
 

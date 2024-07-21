@@ -1,4 +1,4 @@
-import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToYMDHM, formatHowPast } from "@wizleap-inc/wiz-ui-utils";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 
@@ -8,6 +8,10 @@ import {
   WizIChevronRight,
   WizIcon,
   WizText,
+  WizUnstyledTable,
+  WizUnstyledTbody,
+  WizUnstyledTd,
+  WizUnstyledTr,
   WizVStack,
 } from "@/components";
 import { BaseProps } from "@/types";
@@ -86,18 +90,33 @@ const NotificationPanel: FC<Props> = ({
         <WizVStack gap="xs" position="relative" width="100%">
           {variant === "primary" && (
             <WizHStack justify="between" align="start">
-              <WizVStack gap="xs">
-                {tableInfo?.map((item, i) => (
-                  <WizHStack key={i} gap="xl">
-                    <WizText bold={!read} fontSize="xs" color="gray.700">
-                      {item.title}
-                    </WizText>
-                    <WizText bold={!read} fontSize="xs" color="gray.700">
-                      {item.content}
-                    </WizText>
-                  </WizHStack>
-                ))}
-              </WizVStack>
+              <WizUnstyledTable>
+                <WizUnstyledTbody>
+                  {tableInfo?.map((item, i) => (
+                    <WizUnstyledTr key={`${item.title}_${i}`}>
+                      <WizUnstyledTd
+                        align="left"
+                        style={{
+                          paddingRight: THEME.spacing.xl,
+                          paddingBottom: THEME.spacing.xs,
+                        }}
+                      >
+                        <WizText bold={!read} fontSize="xs" color="gray.700">
+                          {item.title}
+                        </WizText>
+                      </WizUnstyledTd>
+                      <WizUnstyledTd
+                        align="left"
+                        style={{ paddingBottom: THEME.spacing.xs }}
+                      >
+                        <WizText bold={!read} fontSize="xs" color="gray.700">
+                          {item.content}
+                        </WizText>
+                      </WizUnstyledTd>
+                    </WizUnstyledTr>
+                  ))}
+                </WizUnstyledTbody>
+              </WizUnstyledTable>
               <WizText color="gray.600" fontSize="xs2">
                 {displayHowPast}
               </WizText>
