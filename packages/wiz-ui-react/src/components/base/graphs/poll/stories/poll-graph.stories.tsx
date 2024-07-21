@@ -29,6 +29,7 @@ const DUMMY_DATA: ComponentProps<typeof WizPollGraph>["data"] = [
   { label: "2022/2", percentage: 20 },
   { label: "2022/1", percentage: 5 },
   { label: "2021/12", percentage: 50 },
+  { label: "2021/11", percentage: 0 },
 ].map((data) => ({
   ...data,
   innerLabel: `${data.percentage}%`,

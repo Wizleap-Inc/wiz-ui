@@ -92,7 +92,7 @@ export const datePickerArrowIconStyle = style({
   pointerEvents: "none",
 });
 
-export const datePickerCancelButtonStyle = style({
+export const datePickerCancelIconStyle = style({
   cursor: "pointer",
   padding: THEME.spacing.no,
   borderRadius: THEME.spacing.xs2,

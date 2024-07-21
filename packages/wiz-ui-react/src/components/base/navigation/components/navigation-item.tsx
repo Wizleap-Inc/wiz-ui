@@ -71,8 +71,12 @@ const NavigationItem = <T extends ElementType>({
 }: Props<T>) => {
   const isAnchor = "href" in props;
   const LinkComponent = isAnchor ? "a" : props.as;
+  const isExternalLink = !!props?.href?.startsWith("http");
   const linkProps = isAnchor
-    ? { href: disabled ? undefined : props.href }
+    ? {
+        href: disabled ? undefined : props.href ?? "",
+        target: !disabled && isExternalLink ? "_blank" : undefined,
+      }
     : props.asProps;
   const popupAnchor = useRef<HTMLDivElement>(null);
   const existPopup = buttons && buttons.length > 0;

@@ -23,13 +23,17 @@ export default {
   },
 } as Meta<typeof WizPollGraph>;
 
-const LABELS = ["2022/5", "2022/4", "2022/3", "2022/2", "2022/1", "2021/12"];
-const PERCENTAGES = [50, 85, 40, 20, 50, 50];
-
-const DUMMY_DATA: PollGraphData[] = Array.from({ length: 6 }).map((_, i) => ({
-  label: LABELS[i],
-  innerLabel: `${PERCENTAGES[i]}%`,
-  percentage: PERCENTAGES[i],
+const DUMMY_DATA: PollGraphData[] = [
+  { label: "2022/5", percentage: 50 },
+  { label: "2022/4", percentage: 85 },
+  { label: "2022/3", percentage: 40 },
+  { label: "2022/2", percentage: 20 },
+  { label: "2022/1", percentage: 5 },
+  { label: "2021/12", percentage: 50 },
+  { label: "2021/11", percentage: 0 },
+].map((data) => ({
+  ...data,
+  innerLabel: `${data.percentage}%`,
 }));
 
 const Template: StoryFn<typeof WizPollGraph> = (args) => ({
@@ -140,13 +144,10 @@ LabelWidth.parameters = {
   },
 };
 
-const DUMMY_DATA_NL: PollGraphData[] = Array.from({ length: 6 }).map(
-  (_, i) => ({
-    label: `${LABELS[i]}\n${LABELS[i]}`,
-    innerLabel: `${PERCENTAGES[i]}%`,
-    percentage: PERCENTAGES[i],
-  })
-);
+const DUMMY_DATA_NL: PollGraphData[] = DUMMY_DATA.map((data) => ({
+  ...data,
+  label: `${data.label}\n${data.label}`,
+}));
 
 const TemplateNL: StoryFn<typeof WizPollGraph> = (args) => ({
   setup: () => ({ args, data: DUMMY_DATA_NL }),

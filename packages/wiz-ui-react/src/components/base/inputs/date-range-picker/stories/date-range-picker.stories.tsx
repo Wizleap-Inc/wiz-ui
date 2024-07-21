@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/testing-library";
+import { within } from "@storybook/testing-library";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
@@ -20,8 +20,8 @@ type Story = StoryObj<typeof WizDateRangePicker>;
 export const Default: Story = {
   args: {
     dateRange: {
-      start: null,
-      end: null,
+      start: new Date("2021-01-15"),
+      end: new Date("2021-02-15"),
     },
   },
   play: async ({ canvasElement }) => {
@@ -75,8 +75,8 @@ export const DisabledDate: Story = {
 export const Expand: Story = {
   args: {
     dateRange: {
-      start: new Date("2021-01-01"),
-      end: new Date("2021-01-31"),
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 1, 15),
     },
     expand: true,
   },
@@ -89,8 +89,8 @@ export const Expand: Story = {
 export const SelectBoxOptions: Story = {
   args: {
     dateRange: {
-      start: null,
-      end: null,
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 1, 15),
     },
     selectBoxOptions: [
       { label: "選択肢1", value: "1" },
@@ -155,21 +155,6 @@ export const InitialValueStart: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT).click();
-  },
-};
-
-export const Hover: Story = {
-  args: {
-    dateRange: {
-      start: new Date(2000, 0, 15),
-      end: new Date(2000, 1, 15),
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT);
-    button.click();
-    userEvent.hover(button);
   },
 };
 

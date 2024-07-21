@@ -37,7 +37,7 @@ export default {
 const Template: StoryFn<typeof WizSelectBox> = (args) => ({
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref(args.value);
+    const value = ref(args.modelValue);
     return { value, args };
   },
   template: `
@@ -72,6 +72,15 @@ Disabled.args = {
   disabled: true,
 };
 
+export const DisabledItems = Template.bind({});
+DisabledItems.args = {
+  options: _getDummyOptions("test", 6).map((option, index) => ({
+    ...option,
+    disabled: index % 2 === 0,
+  })),
+  isOpen: true,
+};
+
 export const LongLabel = Template.bind({});
 LongLabel.args = {
   options: _getDummyOptions("ThisIsTooLongLabelThisIsTooLongLabel", 3),
@@ -95,7 +104,7 @@ export const WithExtraLabel = Template.bind({});
 WithExtraLabel.args = {
   options: _getDummyOptions("test", 3, "(10)"),
   isOpen: true,
-  value: 1,
+  modelValue: 1,
 };
 
 export const ExtraLabel = Template.bind({});
@@ -103,7 +112,7 @@ ExtraLabel.args = {
   options: _getDummyOptions("test", 3, "(10)"),
   isOpen: true,
   showExLabel: true,
-  value: 1,
+  modelValue: 1,
 };
 
 export const IsDirectionFixed = Template.bind({});

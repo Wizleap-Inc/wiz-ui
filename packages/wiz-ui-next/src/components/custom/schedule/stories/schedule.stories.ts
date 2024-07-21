@@ -3,8 +3,8 @@ import { StoryFn } from "@storybook/vue3";
 import {
   WizSchedule,
   WizScheduleCard,
-  WizScheduleSheet,
   WizScheduleGrid,
+  WizScheduleSheet,
 } from "..";
 import { Schedule } from "../types";
 
@@ -29,11 +29,11 @@ export default {
   },
 };
 
-const Template: StoryFn<typeof WizSchedule> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template: StoryFn<typeof WizSchedule> = (args) => ({
+  setup: () => ({ args }),
   components: { WizSchedule },
   template: `
-    <WizSchedule v-bind="$props" />
+    <WizSchedule v-bind="args" />
   `,
 });
 

@@ -250,6 +250,31 @@ Disabled.parameters = {
     },
   },
 };
+export const DisabledItems = Template(
+  [],
+  true,
+  _getDummyOptions("test", 3).map((option, i) => ({
+    ...option,
+    disabled: i % 2 === 0,
+  })),
+  ""
+).bind({});
+DisabledItems.parameters = {
+  docs: {
+    source: {
+      code: code(
+        [],
+        false,
+        _getDummyOptions("test", 3).map((option, i) => ({
+          ...option,
+          disabled: i % 2 === 0,
+        })),
+        "",
+        {}
+      ),
+    },
+  },
+};
 
 export const Selecting = Template(
   [1],
@@ -313,7 +338,7 @@ export const ExlabelWithoutShowExlabel = Template(
   [],
   true,
   _getDummyOptions("test", 3, "(10)"),
-  "new option"
+  ""
 ).bind({});
 ExlabelWithoutShowExlabel.args = {
   addable: true,
@@ -333,7 +358,7 @@ export const Exlabel = Template(
   [],
   true,
   _getDummyOptions("test", 3, "(10)"),
-  "new option"
+  ""
 ).bind({});
 Exlabel.args = {
   addable: true,
@@ -353,7 +378,7 @@ export const ExlabelWithLongLabel = Template(
   [],
   true,
   _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
-  "new option"
+  ""
 ).bind({});
 ExlabelWithLongLabel.args = {
   addable: true,

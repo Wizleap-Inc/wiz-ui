@@ -1,25 +1,73 @@
 <template>
   <WizPopupContainer :expand="expand">
-    <div :class="styles.searchStyle">
-      <input
-        type="text"
-        :class="[
-          styles.searchInputStyle,
-          disabled && styles.searchInputDisabledStyle,
-          inputBorderStyle[state],
-        ]"
-        :style="{ width: computedInputWidth }"
-        v-model="searchValue"
-        :placeholder="placeholder"
-        :name="name"
-        :disabled="disabled"
-        @focusin="hasFocus = true"
-        @focusout="hasFocus = false"
-        @click="emit('toggle', !openPopup)"
-        autocomplete="off"
-      />
-      <component :is="icon" :class="styles.searchInputIconStyle" />
+    <div
+      :class="[
+        styles.searchStyle,
+        styles.searchInputSelectedItemStyle,
+        disabled && styles.searchInputDisabledStyle,
+        inputBorderStyle[state],
+      ]"
+      :style="{ width: computedInputWidth }"
+    >
+      <div :class="styles.searchInputInnerBoxStyle">
+        <WizHStack align="center" gap="xs">
+          <component
+            :is="icon"
+            :class="styles.searchInputIconStyle"
+            :style="{ flexShrink: 0 }"
+          />
+          <WizHStack
+            align="center"
+            height="100%"
+            width="100%"
+            gap="xs"
+            :wrap="true"
+            overflow="hidden"
+          >
+            <template v-if="showSelectedItem">
+              <span
+                v-for="item in checkValues"
+                :key="item"
+                :class="styles.searchInputInnerBoxSelectedItemStyle"
+              >
+                <span :class="styles.searchInputInnerBoxSelectedLabelStyle">
+                  {{ valueToOption.get(item)?.label }}
+                </span>
+                <button
+                  type="button"
+                  @click="onClear(item)"
+                  @keypress.enter="onClear(item)"
+                  @keydown="(e) => onBackspace(item, e)"
+                  :class="styles.searchInputInnerBoxCloseButtonStyle"
+                  :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+                  :disabled="disabled"
+                >
+                  <WizIcon
+                    :icon="WizIClose"
+                    :class="styles.searchInputInnerBoxCloseStyle"
+                    :size="'xs'"
+                    :color="'gray.700'"
+                  />
+                </button>
+              </span>
+            </template>
+            <input
+              type="text"
+              :class="[styles.searchInputInnerInputStyle]"
+              v-model="searchValue"
+              :placeholder="!displayingSelectedItems ? placeholder : undefined"
+              :name="name"
+              :disabled="disabled"
+              @focusin="hasFocus = true"
+              @focusout="hasFocus = false"
+              @click="emit('toggle', !openPopup)"
+              autocomplete="off"
+            />
+          </WizHStack>
+        </WizHStack>
+      </div>
     </div>
+
     <WizPopup
       :isOpen="!disabled && openPopup"
       @onClose="emit('toggle', false)"
@@ -81,13 +129,24 @@
                 </WizHStack>
               </WizHStack>
             </div>
-            <!-- Checkbox -->
             <div
-              v-else
-              :class="styles.searchDropdownCheckboxItemStyle"
-              @mouseover="activeItem = item.value"
-              @mouseout="activeItem = null"
+              v-else-if="singleSelect"
+              :class="[styles.searchDropdownItemStyle]"
             >
+              <button
+                :id="`${item.label}_${item.value}`"
+                type="button"
+                :class="[styles.searchDropdownSingleSelectItemStyle]"
+                gap="xs2"
+                @click="handleClickButton(item.value)"
+              >
+                <div :class="styles.searchInputLabelStyle">
+                  {{ item.label }}
+                </div>
+              </button>
+            </div>
+            <!-- Checkbox -->
+            <div v-else :class="styles.searchDropdownCheckboxItemStyle">
               <WizCheckBoxNew
                 :style="{ width: '100%' }"
                 :checked="checkValues.includes(item.value)"
@@ -119,6 +178,8 @@
           :selectedItem="selectedItem"
           :popupWidth="computedPopupWidth"
           :emptyMessage="emptyMessage"
+          :singleSelect="singleSelect"
+          @toggle="emit('toggle', $event)"
         />
       </WizHStack>
     </WizPopup>
@@ -126,7 +187,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, onMounted, ref, watch } from "vue";
@@ -142,7 +203,7 @@ import {
   WizSearchPopup,
   WizTag,
 } from "@/components";
-import { TIcon, WizIChevronRight } from "@/components/icons";
+import { TIcon, WizIChevronRight, WizIClose } from "@/components/icons";
 
 import { SearchInputOption } from "./types";
 
@@ -175,6 +236,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
+  singleSelect: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
   inputWidth: {
     type: String,
     required: false,
@@ -203,6 +269,16 @@ const props = defineProps({
     required: false,
     default: "選択肢がありません。",
   },
+  showSelectedItem: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  showParentLabel: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
@@ -211,18 +287,48 @@ const emit = defineEmits<{
   (e: "toggle", value: boolean): void;
 }>();
 
+const searchValue = ref("");
+
 const checkValues = computed({
   get: () => props.modelValue,
-  set: (value: number[]) => emit("update:modelValue", value),
+  set: (value: number[]) => {
+    emit("update:modelValue", value);
+    searchValue.value = "";
+  },
 });
 
-const searchValue = ref("");
 const filteredOptions = ref<SearchInputOption[]>([]);
 const selectedItem = ref<number[]>([]);
 const activeItem = ref<number | null>();
 const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
 const isBorder = ref(false);
+
+const valueToOption = computed(() => {
+  const map = new Map<number, SearchInputOption>();
+
+  const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
+    return options.flatMap((option) => {
+      if (!option.children) return [option];
+
+      if (!props.showParentLabel) return [option, ...flatten(option.children)];
+
+      const children = option.children.map((child) => ({
+        ...child,
+        // 要件上、全角空白のため無視
+        // eslint-disable-next-line no-irregular-whitespace
+        label: `${option.label}　${child.label}`,
+      }));
+      return [option, ...flatten(children)];
+    });
+  };
+
+  flatten(props.options).forEach((option) => {
+    map.set(option.value, option);
+  });
+
+  return map;
+});
 
 const state = computed(() => {
   if (hasFocus.value) return "active";
@@ -239,6 +345,10 @@ const computedIconColor = computed(() => (value: number) => {
   }
   return "gray.500";
 });
+
+const displayingSelectedItems = computed(
+  () => props.showSelectedItem && checkValues.value.length > 0
+);
 
 const onMouseover = (value: number) => {
   isBorder.value = true;
@@ -258,6 +368,11 @@ const handleClickCheckbox = (value: number) => {
   } else {
     checkValues.value = [...checkValues.value, value];
   }
+};
+
+const handleClickButton = (value: number) => {
+  checkValues.value = [value];
+  emit("toggle", false);
 };
 
 const filterOptions =
@@ -292,6 +407,18 @@ watch(searchValue, () => {
     filteredOptions.value = props.options;
   }
 });
+
+const onClear = (value: number) => {
+  checkValues.value = checkValues.value.filter((v) => v !== value);
+  hasFocus.value = true;
+  emit("toggle", true);
+};
+
+const onBackspace = (n: number, event: KeyboardEvent) => {
+  if (event.key === "Backspace") {
+    onClear(n);
+  }
+};
 
 onMounted(() => {
   filteredOptions.value = props.options;

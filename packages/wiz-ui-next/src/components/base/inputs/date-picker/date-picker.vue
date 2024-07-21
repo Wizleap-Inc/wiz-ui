@@ -14,28 +14,24 @@
       @keydown.left="clickToPreviousMonth"
       @keydown.right="clickToNextMonth"
     >
-      <WizHStack gap="xs" align="center" height="100%">
-        <span
-          v-if="!isHover"
-          @mouseenter="setIsHover(true)"
-          @mouseleave="setIsHover(false)"
-        >
-          <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
-        </span>
+      <WizHStack align="center" height="100%" justify="between" nowrap>
+        <WizHStack gap="xs" align="center" height="100%" nowrap>
+          <span>
+            <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
+          </span>
+          <span :style="{ whiteSpace: 'nowrap' }">{{
+            (calendarValue && formatDate(calendarValue)) || placeholder
+          }}</span>
+        </WizHStack>
         <button
+          v-if="!disabled && !!calendarValue"
           type="button"
-          v-else
-          :class="datePickerCancelButtonStyle"
+          :class="datePickerCancelIconStyle"
           :aria-label="ARIA_LABELS.DATE_PICKER_CANCEL"
           @click="onClickCancel"
-          @mouseenter="setIsHover(true)"
-          @mouseleave="setIsHover(false)"
         >
           <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
         </button>
-        <span>{{
-          (calendarValue && formatDateToYYMMDD(calendarValue)) || placeholder
-        }}</span>
       </WizHStack>
     </button>
     <WizPopup
@@ -134,7 +130,7 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import {
   datePickerArrowIconStyle,
-  datePickerCancelButtonStyle,
+  datePickerCancelIconStyle,
   datePickerMonthSelectorItemStyle,
   datePickerMonthSelectorStyle,
   datePickerSelectorStyle,
@@ -147,7 +143,6 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import { PropType, computed, inject, ref } from "vue";
 
 import {
@@ -172,7 +167,6 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 interface Emit {
   (e: "update:modelValue", value: Date | null): void;
   (e: "update:isOpen", value: boolean): void;
-  (e: "update:isHover", value: boolean): void;
 }
 
 const props = defineProps({
@@ -188,7 +182,7 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
-    default: "10rem",
+    default: "12rem",
   },
   disabled: {
     type: Boolean,
@@ -199,13 +193,6 @@ const props = defineProps({
    * カレンダー（Popup）の開閉状態を指定します。
    */
   isOpen: {
-    type: Boolean,
-    required: true,
-  },
-  /**
-   * `isHover=true`の時、キャンセルアイコンを緑色にします。
-   */
-  isHover: {
     type: Boolean,
     required: true,
   },
@@ -233,6 +220,17 @@ const props = defineProps({
     required: false,
     default: (year: number) => `${year}`,
   },
+
+  /**
+   * @description 日付の表示形式をカスタマイズします。
+   * @default (date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+   */
+  formatDate: {
+    type: Function as PropType<(date: Date) => string>,
+    required: false,
+    default: (date: Date) =>
+      `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -241,7 +239,6 @@ const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const setIsHover = (value: boolean) => emit("update:isHover", value);
 const onClickCancel = () => emit("update:modelValue", null);
 
 const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
