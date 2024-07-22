@@ -107,6 +107,7 @@
                   align="center"
                   nowrap
                   gap="xs2"
+                  :pl="!allOptionsHaveChildren && !singleSelect ? 'lg' : 'no'"
                 >
                   <div :class="styles.searchInputLabelStyle">
                     {{ item.label }}
@@ -303,6 +304,9 @@ const activeItem = ref<number | null>();
 const activeItemIndex = ref<number | null>(null);
 const hasFocus = ref(false);
 const isBorder = ref(false);
+const allOptionsHaveChildren = props.options.every(
+  (option) => !!option.children
+);
 
 const valueToOption = computed(() => {
   const map = new Map<number, SearchInputOption>();

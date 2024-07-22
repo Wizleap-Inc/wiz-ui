@@ -68,6 +68,8 @@ export const SearchPopupPanel: FC<Props> = ({
     setActiveValue(null);
   }, [options]);
 
+  const allOptionsHaveChildren = options.every((option) => !!option.children);
+
   return (
     <>
       <div
@@ -99,6 +101,9 @@ export const SearchPopupPanel: FC<Props> = ({
                       )}
                     >
                       <WizHStack
+                        pl={
+                          !allOptionsHaveChildren && !singleSelect ? "lg" : "no"
+                        }
                         py="xs2"
                         width="100%"
                         justify="between"
