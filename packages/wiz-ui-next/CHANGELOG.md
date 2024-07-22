@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.38.0
+
+### Minor Changes
+
+- [#1338](https://github.com/Wizleap-Inc/wiz-ui/pull/1338) [`3cf02c14e7415417520b62cad717c987b5218b9c`](https://github.com/Wizleap-Inc/wiz-ui/commit/3cf02c14e7415417520b62cad717c987b5218b9c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-input): 検索機能を改善
+
+- [#1342](https://github.com/Wizleap-Inc/wiz-ui/pull/1342) [`eb0e7ece1c969f3b4e2438942f5a5d35be37b28a`](https://github.com/Wizleap-Inc/wiz-ui/commit/eb0e7ece1c969f3b4e2438942f5a5d35be37b28a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(search-input): ラベルの位置を揃える
+
 ## 2.37.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.66.0
+
+### Minor Changes
+
+- [#1342](https://github.com/Wizleap-Inc/wiz-ui/pull/1342) [`eb0e7ece1c969f3b4e2438942f5a5d35be37b28a`](https://github.com/Wizleap-Inc/wiz-ui/commit/eb0e7ece1c969f3b4e2438942f5a5d35be37b28a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(search-input): ラベルの位置を揃える
+
 ## 0.65.0
 
 ### Minor Changes
