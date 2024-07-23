@@ -25,8 +25,6 @@ export const navigationContainerFooterStyle = style({
 
 export const navigationItemStyle = style({
   display: "flex",
-  alignItems: "center",
-  gap: THEME.spacing.sm,
   padding: `${THEME.spacing.xs} ${THEME.spacing.sm} ${THEME.spacing.xs} ${THEME.spacing.xl}`,
   borderRadius: THEME.spacing.xs2,
   color: THEME.color.gray["700"],

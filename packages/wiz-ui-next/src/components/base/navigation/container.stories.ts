@@ -231,7 +231,9 @@ export const Popup: StoryFn<typeof WizNavContainer> = (args) => ({
       lockingPopup.value = isLock;
     };
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
-    const toggles = isOpens.map((isOpen) => (value: boolean) => {
+    const actives = Array.from({ length: 4 }).map(() => ref(false));
+    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+      actives[i].value = value;
       isOpen.value = value;
     });
     return {
@@ -245,17 +247,50 @@ export const Popup: StoryFn<typeof WizNavContainer> = (args) => ({
       createButton,
       isOpens,
       toggles,
+      actives,
     };
   },
-  template: `
-  <div style="display: flex; height: 100vh;">
-    <WizNavContainer>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(5, args.click), createButton(6, args.click)]" :icon="WizIHelp" label="Page3" to="/page3" :active="false" :isOpen="isOpens[3].value" @toggle="toggles[3]"/>
-    </WizNavContainer>
-  </div>
+  template: /* HTML */ `
+    <div style="display: flex; height: 100vh;">
+      <WizNavContainer>
+        <WizNavItem
+          :buttons="[createButton(0, args.click)]"
+          :icon="WizIDashboard"
+          label="Home"
+          to="/"
+          :active="actives[0].value"
+          :isOpen="isOpens[0].value"
+          @toggle="toggles[0]"
+        />
+        <WizNavItem
+          :buttons="[createButton(1, args.click), createButton(2, args.click)]"
+          :icon="WizIAssignment"
+          label="Page1"
+          to="/page1"
+          :active="actives[1].value"
+          :isOpen="isOpens[1].value"
+          @toggle="toggles[1]"
+        />
+        <WizNavItem
+          :buttons="[createButton(3, args.click), createButton(4, args.click)]"
+          :icon="WizIBusinessCenter"
+          label="Page2"
+          to="/page2"
+          :active="actives[2].value"
+          :isOpen="isOpens[2].value"
+          @toggle="toggles[2]"
+        />
+        <WizNavItem
+          :buttons="[createButton(5, args.click), createButton(6, args.click)]"
+          :icon="WizIHelp"
+          label="Page3"
+          to="/page3"
+          :active="actives[3].value"
+          :isOpen="isOpens[3].value"
+          @toggle="toggles[3]"
+        />
+      </WizNavContainer>
+    </div>
   `,
 });
 
@@ -266,7 +301,9 @@ export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
     const setLock = (isLock: boolean) => (lockingPopup.value = isLock);
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
     isOpens[2].value = true;
-    const toggles = isOpens.map((isOpen) => (value: boolean) => {
+    const actives = Array.from({ length: 4 }).map(() => ref(false));
+    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+      actives[i].value = value;
       isOpen.value = value;
     });
     return {
@@ -280,17 +317,50 @@ export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
       createButton,
       isOpens,
       toggles,
+      actives,
     };
   },
-  template: `
-  <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(5, args.click), createButton(6, args.click)]" :icon="WizIHelp" label="Page3" to="/page3" :active="false" :isOpen="isOpens[3].value" @toggle="toggles[3]"/>
-    </WizNavContainer>
-  </div>
+  template: /* HTML */ `
+    <div style="display: flex; height: 100vh;">
+      <WizNavContainer sticky>
+        <WizNavItem
+          :buttons="[createButton(0, args.click)]"
+          :icon="WizIDashboard"
+          label="Home"
+          to="/"
+          :active="actives[0].value"
+          :isOpen="isOpens[0].value"
+          @toggle="toggles[0]"
+        />
+        <WizNavItem
+          :buttons="[createButton(1, args.click), createButton(2, args.click)]"
+          :icon="WizIAssignment"
+          label="Page1"
+          to="/page1"
+          :active="actives[1].value"
+          :isOpen="isOpens[1].value"
+          @toggle="toggles[1]"
+        />
+        <WizNavItem
+          :buttons="[createButton(3, args.click), createButton(4, args.click)]"
+          :icon="WizIBusinessCenter"
+          label="Page2"
+          to="/page2"
+          :active="actives[2].value"
+          :isOpen="isOpens[2].value"
+          @toggle="toggles[2]"
+        />
+        <WizNavItem
+          :buttons="[createButton(5, args.click), createButton(6, args.click)]"
+          :icon="WizIHelp"
+          label="Page3"
+          to="/page3"
+          :active="actives[3].value"
+          :isOpen="isOpens[3].value"
+          @toggle="toggles[3]"
+        />
+      </WizNavContainer>
+    </div>
   `,
 });
 
@@ -303,7 +373,9 @@ export const PopupStickyOpen: StoryFn<typeof WizNavContainer> = (args) => ({
     };
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
     isOpens[0].value = true;
-    const toggles = isOpens.map((isOpen) => (value: boolean) => {
+    const actives = Array.from({ length: 4 }).map(() => ref(false));
+    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+      actives[i].value = value;
       isOpen.value = value;
     });
     return {
@@ -317,17 +389,50 @@ export const PopupStickyOpen: StoryFn<typeof WizNavContainer> = (args) => ({
       createButton,
       isOpens,
       toggles,
+      actives,
     };
   },
-  template: `
-  <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
-      <WizNavItem :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(5, args.click), createButton(6, args.click)]" :icon="WizIHelp" label="Page3" to="/page3" :active="false" :isOpen="isOpens[3].value" @toggle="toggles[3]"/>
-    </WizNavContainer>
-  </div>
+  template: /* HTML */ `
+    <div style="display: flex; height: 100vh;">
+      <WizNavContainer sticky>
+        <WizNavItem
+          :buttons="[createButton(0, args.click)]"
+          :icon="WizIDashboard"
+          label="Home"
+          to="/"
+          :active="actives[0].value"
+          :isOpen="isOpens[0].value"
+          @toggle="toggles[0]"
+        />
+        <WizNavItem
+          :buttons="[createButton(1, args.click), createButton(2, args.click)]"
+          :icon="WizIAssignment"
+          label="Page1"
+          to="/page1"
+          :active="actives[1].value"
+          :isOpen="isOpens[1].value"
+          @toggle="toggles[1]"
+        />
+        <WizNavItem
+          :buttons="[createButton(3, args.click), createButton(4, args.click)]"
+          :icon="WizIBusinessCenter"
+          label="Page2"
+          to="/page2"
+          :active="actives[2].value"
+          :isOpen="isOpens[2].value"
+          @toggle="toggles[2]"
+        />
+        <WizNavItem
+          :buttons="[createButton(5, args.click), createButton(6, args.click)]"
+          :icon="WizIHelp"
+          label="Page3"
+          to="/page3"
+          :active="actives[3].value"
+          :isOpen="isOpens[3].value"
+          @toggle="toggles[3]"
+        />
+      </WizNavContainer>
+    </div>
   `,
 });
 
@@ -352,10 +457,10 @@ export const Disabled: StoryFn<typeof WizNavContainer> = (args) => ({
   template: `
   <div style="display: flex; height: 100vh;">
     <WizNavContainer sticky>
-      <WizNavItem :disabled="true"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" />
-      <WizNavItem :disabled="true"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
-      <WizNavItem :disabled="true"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
-      <WizNavItem :disabled="true"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(5, args.click), createButton(6, args.click)]" :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
+      <WizNavItem :disabled="true"  :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" />
+      <WizNavItem :disabled="true"  :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" />
+      <WizNavItem :disabled="true"  :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" />
+      <WizNavItem :disabled="true"  :buttons="[createButton(5, args.click), createButton(6, args.click)]" :icon="WizIHelp" label="Page3" to="/page3" :active="false" />
     </WizNavContainer>
   </div>
   `,
@@ -369,7 +474,9 @@ export const PopupAndTooltip: StoryFn<typeof WizNavContainer> = (args) => ({
       lockingPopup.value = isLock;
     };
     const isOpens = Array.from({ length: 4 }).map(() => ref(false));
-    const toggles = isOpens.map((isOpen) => (value: boolean) => {
+    const actives = Array.from({ length: 4 }).map(() => ref(false));
+    const toggles = isOpens.map((isOpen, i) => (value: boolean) => {
+      actives[i].value = value;
       isOpen.value = value;
     });
     return {
@@ -383,16 +490,53 @@ export const PopupAndTooltip: StoryFn<typeof WizNavContainer> = (args) => ({
       createButton,
       isOpens,
       toggles,
+      actives,
     };
   },
-  template: `
-  <div style="display: flex; height: 100vh;">
-    <WizNavContainer sticky>
-      <WizNavItem tooltipText="これはヒント1です。"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(0, args.click)]" :icon="WizIDashboard" label="Home" to="/" :active="false" :isOpen="isOpens[0].value" @toggle="toggles[0]"/>
-      <WizNavItem tooltipText="これはヒント2です。"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(1, args.click), createButton(2, args.click)]" :icon="WizIAssignment" label="Page1" to="/page1" :active="false" :isOpen="isOpens[1].value" @toggle="toggles[1]"/>
-      <WizNavItem tooltipText="これはヒント3です。"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(3, args.click), createButton(4, args.click)]" :icon="WizIBusinessCenter" label="Page2" to="/page2" :active="false" :isOpen="isOpens[2].value" @toggle="toggles[2]"/>
-      <WizNavItem tooltipText="これはヒント4です。"  :lockingPopup="lockingPopup" @setLock="setLock" :buttons="[createButton(5, args.click), createButton(6, args.click)]" :icon="WizIHelp" label="Page3" to="/page3" :active="false" :isOpen="isOpens[3].value" @toggle="toggles[3]"/>
-    </WizNavContainer>
-  </div>
+  template: /* HTML */ `
+    <div style="display: flex; height: 100vh;">
+      <WizNavContainer sticky>
+        <WizNavItem
+          tooltipText="これはヒント1です。"
+          :buttons="[createButton(0, args.click)]"
+          :icon="WizIDashboard"
+          label="Home"
+          to="/"
+          :active="actives[0].value"
+          :isOpen="isOpens[0].value"
+          @toggle="toggles[0]"
+        />
+        <WizNavItem
+          tooltipText="これはヒント2です。"
+          :buttons="[createButton(1, args.click), createButton(2, args.click)]"
+          :icon="WizIAssignment"
+          label="Page1"
+          to="/page1"
+          :active="actives[1].value"
+          :isOpen="isOpens[1].value"
+          @toggle="toggles[1]"
+        />
+        <WizNavItem
+          tooltipText="これはヒント3です。"
+          :buttons="[createButton(3, args.click), createButton(4, args.click)]"
+          :icon="WizIBusinessCenter"
+          label="Page2"
+          to="/page2"
+          :active="actives[2].value"
+          :isOpen="isOpens[2].value"
+          @toggle="toggles[2]"
+        />
+        <WizNavItem
+          tooltipText="これはヒント4です。"
+          :buttons="[createButton(5, args.click), createButton(6, args.click)]"
+          :icon="WizIHelp"
+          label="Page3"
+          to="/page3"
+          :active="actives[3].value"
+          :isOpen="isOpens[3].value"
+          @toggle="toggles[3]"
+        />
+      </WizNavContainer>
+    </div>
   `,
 });
