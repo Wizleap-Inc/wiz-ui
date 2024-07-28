@@ -1,4 +1,6 @@
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { WizHeader, WizHStack } from "@wizleap-inc/wiz-ui-react";
+import { useReducer } from "react";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 import { Navigation } from "@/components/layout/navigation";
 import { About } from "@/pages/about";
@@ -31,11 +33,20 @@ const routes = [
 ];
 
 const Layout = () => {
+  const [isNavigationOpen, toggleNavigation] = useReducer((v) => !v, true);
   return (
-    <div>
-      <Navigation />
-      <Outlet />
-    </div>
+    <>
+      <WizHeader
+        onToggle={toggleNavigation}
+        gapLeft="sm"
+        gapRight="xl"
+        sticky
+      />
+      <WizHStack>
+        <Navigation isOpen={isNavigationOpen} />
+        <Outlet />
+      </WizHStack>
+    </>
   );
 };
 
