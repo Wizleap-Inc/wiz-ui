@@ -8,8 +8,9 @@ export const selectBoxStyle = style({
 });
 
 export const selectBoxDisabledStyle = style({
-  color: THEME.color.gray["700"],
-  backgroundColor: THEME.color.gray["300"],
+  opacity: 0.5,
+  color: THEME.color.gray[700],
+  backgroundColor: THEME.color.gray[300],
 });
 
 export const selectBoxCursorStyle = styleVariants({
@@ -144,6 +145,11 @@ export const selectBoxSearchInputStyle = style({
   ":disabled": {
     cursor: "not-allowed",
     backgroundColor: THEME.color.gray["300"],
+  },
+  selectors: {
+    "&:disabled::placeholder": {
+      color: THEME.color.gray[700],
+    },
   },
 });
 

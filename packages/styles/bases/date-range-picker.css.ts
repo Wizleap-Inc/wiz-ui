@@ -24,7 +24,9 @@ export const bodyStyle = styleVariants({
   disabled: [
     baseBodyStyle,
     {
-      background: THEME.color.gray["300"],
+      opacity: 0.5,
+      color: THEME.color.gray[700],
+      backgroundColor: THEME.color.gray[300],
       cursor: "not-allowed",
     },
   ],
@@ -61,6 +63,12 @@ export const inputTextStyle = styleVariants({
     inputTextBaseStyle,
     {
       color: THEME.color.gray["800"],
+    },
+  ],
+  disabled: [
+    inputTextBaseStyle,
+    {
+      color: "inherit",
     },
   ],
 });
@@ -198,5 +206,8 @@ export const popupCalendarCancelIconStyle = style({
   fill: THEME.color.gray["500"],
   ":active": {
     fill: THEME.color.green["800"],
+  },
+  ":disabled": {
+    cursor: "not-allowed",
   },
 });

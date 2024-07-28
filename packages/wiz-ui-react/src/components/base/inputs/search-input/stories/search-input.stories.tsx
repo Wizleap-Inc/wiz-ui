@@ -25,7 +25,7 @@ type Story = StoryObj<typeof WizSearchInput>;
 
 const Template: Story = {
   render: (args) => {
-    const [values, setValues] = useState<number[]>([]);
+    const [values, setValues] = useState<number[]>(args.values || []);
     return (
       <div>
         <div>values:[{values.join(", ")}]</div>
@@ -89,6 +89,18 @@ export const Disabled: Story = {
     placeholder: "氏名・ID・電話番号で検索",
     inputWidth: "15rem",
     disabled: true,
+  },
+};
+
+export const DisabledWithValues: Story = {
+  ...Template,
+  args: {
+    values: [2, 3],
+    options: normalOptions,
+    placeholder: "氏名・ID・電話番号で検索",
+    inputWidth: "15rem",
+    disabled: true,
+    showSelectedItem: true,
   },
 };
 

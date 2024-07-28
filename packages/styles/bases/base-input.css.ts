@@ -12,6 +12,20 @@ export const baseInputStyle = style({
     color: THEME.color.gray[500],
     fontSize: `calc((${THEME.fontSize.sm} + ${THEME.fontSize.xs}) / 2)`,
   },
+  ":disabled": {
+    opacity: 0.5,
+    color: THEME.color.gray[700],
+    backgroundColor: THEME.color.gray[300],
+    cursor: "not-allowed",
+  },
+  selectors: {
+    "&:disabled::placeholder": {
+      color: THEME.color.gray[700],
+    },
+    "&::-ms-reveal": {
+      display: "none",
+    },
+  },
 });
 
 export const baseInputPaddingStyle = styleVariants({
@@ -29,9 +43,4 @@ export const baseInputPaddingStyle = styleVariants({
   none: {
     padding: `${THEME.spacing.sm} ${THEME.spacing.xs}`,
   },
-});
-
-export const baseInputDisabledStyle = style({
-  backgroundColor: THEME.color.gray[300],
-  cursor: "not-allowed",
 });
