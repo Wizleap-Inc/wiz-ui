@@ -19,6 +19,7 @@
       :aria-label="ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE"
       :class="passwordVisibleIconStyle"
       @click="isPasswordVisible = !isPasswordVisible"
+      :disabled="disabled"
     >
       <WizIEye :class="isPasswordVisible && passwordVisibleIconActiveStyle" />
     </button>
