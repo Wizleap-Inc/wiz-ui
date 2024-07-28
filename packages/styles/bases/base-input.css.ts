@@ -22,6 +22,9 @@ export const baseInputStyle = style({
     "&:disabled::placeholder": {
       color: THEME.color.gray[700],
     },
+    "&::-ms-reveal": {
+      display: "none",
+    },
   },
 });
 
