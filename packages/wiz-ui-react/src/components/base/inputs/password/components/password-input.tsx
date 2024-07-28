@@ -67,7 +67,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           expand={expand}
           width={width}
           error={isError}
-          type={isPasswordVisible ? "text" : "password"}
+          type={!disabled && isPasswordVisible ? "text" : "password"}
           autoComplete={autocomplete}
           spaceType="right"
           onChange={(e) => onChange(e.target.value)}
@@ -82,7 +82,9 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
         >
           <WizIEye
             className={clsx(
-              isPasswordVisible && styles.passwordVisibleIconActiveStyle
+              !disabled &&
+                isPasswordVisible &&
+                styles.passwordVisibleIconActiveStyle
             )}
           />
         </button>

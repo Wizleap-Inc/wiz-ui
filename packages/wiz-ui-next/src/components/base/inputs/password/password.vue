@@ -8,7 +8,7 @@
       :expand="expand"
       :width="width"
       :error="isError"
-      :type="isPasswordVisible ? 'text' : 'password'"
+      :type="!disabled && isPasswordVisible ? 'text' : 'password'"
       :autocomplete="autocomplete"
       space-type="right"
       @focusin="onFocusIn"
@@ -21,7 +21,11 @@
       @click="isPasswordVisible = !isPasswordVisible"
       :disabled="disabled"
     >
-      <WizIEye :class="isPasswordVisible && passwordVisibleIconActiveStyle" />
+      <WizIEye
+        :class="
+          !disabled && isPasswordVisible && passwordVisibleIconActiveStyle
+        "
+      />
     </button>
   </div>
 </template>
