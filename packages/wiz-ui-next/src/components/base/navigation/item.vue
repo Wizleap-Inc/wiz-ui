@@ -66,26 +66,26 @@
   </WizTooltip>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  navigationItemStyle,
   navigationItemActiveStyle,
-  navigationItemIconStyle,
-  navigationItemIconActiveStyle,
-  navigationItemTextStyle,
-  navigationItemTextActiveStyle,
   navigationItemDisabledStyle,
+  navigationItemIconActiveStyle,
   navigationItemIconDisabledStyle,
+  navigationItemIconStyle,
+  navigationItemStyle,
+  navigationItemTextActiveStyle,
+  navigationItemTextStyle,
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
-import { computed, PropType, ref } from "vue";
+import { computed, ref } from "vue";
 import { RouterLinkProps } from "vue-router";
 
 import {
-  WizPopupContainer,
   WizPopup,
   WizPopupButtonGroup,
+  WizPopupContainer,
   WizTooltip,
 } from "@/components";
 import type { TIcon } from "@/components/icons";
@@ -96,46 +96,23 @@ defineOptions({
   name: ComponentName.NavigationItem,
 });
 
-const props = defineProps({
-  icon: {
-    type: Object as PropType<TIcon>,
-    required: true,
-  },
-  label: {
-    type: String,
-    required: true,
-  },
-  active: {
-    type: Boolean,
-    required: true,
-  },
-  to: {
-    type: [Object, String] as PropType<RouterLinkProps["to"]>,
-    required: true,
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  tooltipText: {
-    type: String,
-    required: false,
-    default: null,
-  },
-  lockingPopup: {
-    type: Boolean,
-    required: false,
-    default: true,
-  },
-  buttons: {
-    type: Array as PropType<ButtonGroupItem[]>,
-    required: false,
-  },
-  isOpen: {
-    type: Boolean,
-    required: false,
-  },
+type Props<T> = {
+  icon: TIcon;
+  label: string;
+  active: boolean;
+  to: RouterLinkProps["to"];
+  disabled?: boolean;
+  tooltipText?: string | null;
+  lockingPopup?: boolean;
+  buttons?: ButtonGroupItem<T>[];
+  isOpen?: boolean;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  disabled: false,
+  lockingPopup: true,
+  isOpen: false,
+  tooltipText: null,
 });
 
 const isExternalLink = computed(
