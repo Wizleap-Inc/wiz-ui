@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
 import { WizBox } from "@/components";
@@ -155,7 +155,7 @@ SomeonesTyping.args = {
   isOpen: true,
   typingUsername: "なんとかかんとか",
 };
-const STATUS_OPTIONS: SelectBoxOption[] = [
+const STATUS_OPTIONS: SelectBoxOption<number>[] = [
   {
     label: "ステータス１",
     value: 1,
