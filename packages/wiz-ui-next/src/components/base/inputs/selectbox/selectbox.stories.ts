@@ -11,7 +11,7 @@ export default {
   title: "Base/Input/SelectBox",
   component: WizSelectBox,
   argTypes: {
-    value: {
+    modelValue: {
       control: {
         type: "text",
       },
@@ -37,8 +37,8 @@ export default {
 const Template: StoryFn<typeof WizSelectBox> = (args) => ({
   components: { WizSelectBox, WizHStack },
   setup() {
-    const value = ref(args.modelValue);
-    return { value, args };
+    const modelValue = ref(args.modelValue);
+    return { modelValue, args };
   },
   template: `
     <WizHStack>
@@ -48,7 +48,7 @@ const Template: StoryFn<typeof WizSelectBox> = (args) => ({
 });
 
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
-  const options: SelectBoxOption[] = [];
+  const options: SelectBoxOption<number>[] = [];
   for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i, exLabel });
   }

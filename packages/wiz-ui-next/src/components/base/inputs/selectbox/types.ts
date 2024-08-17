@@ -1,6 +1,6 @@
-export interface SelectBoxOption {
+export interface SelectBoxOption<T> {
   label: string;
   exLabel?: string;
-  value: number;
+  value: T;
   disabled?: boolean;
 }

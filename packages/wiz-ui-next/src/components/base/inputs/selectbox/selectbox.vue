@@ -67,7 +67,7 @@
   </WizPopupContainer>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   selectBoxCursorStyle,
@@ -82,7 +82,7 @@ import {
   selectBoxStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, computed, inject, ref } from "vue";
+import { computed, inject, ref } from "vue";
 
 import { WizPopup, WizPopupContainer } from "@/components";
 import { WizIExpandLess, WizIExpandMore } from "@/components/icons";
@@ -96,53 +96,27 @@ defineOptions({
   name: ComponentName.SelectBox,
 });
 
-const props = defineProps({
-  options: {
-    type: Array as PropType<SelectBoxOption[]>,
-    required: true,
-  },
-  modelValue: {
-    type: Number,
-    required: true,
-  },
-  placeholder: {
-    type: String,
-    required: false,
-    default: "選択してください",
-  },
-  width: {
-    type: String,
-    required: false,
-    default: "10rem",
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  expand: {
-    type: Boolean,
-    required: false,
-  },
-  isOpen: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  isDirectionFixed: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  showExLabel: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  dropdownMaxHeight: {
-    type: String,
-    required: false,
-  },
+type Props<T> = {
+  options: SelectBoxOption<T>[];
+  modelValue: T;
+  placeholder?: string;
+  width?: string;
+  disabled?: boolean;
+  expand?: boolean;
+  isOpen?: boolean;
+  isDirectionFixed?: boolean;
+  showExLabel?: boolean;
+  dropdownMaxHeight?: string;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  placeholder: "選択してください",
+  width: "10rem",
+  disabled: false,
+  expand: false,
+  isOpen: false,
+  isDirectionFixed: false,
+  showExLabel: false,
 });
 
 const openSelectBox = ref(props.isOpen);
@@ -153,12 +127,9 @@ const toggleSelectBox = () => {
   openSelectBox.value = !openSelectBox.value;
 };
 
-interface Emit {
-  (e: "update:modelValue", value: number): void;
-}
-const emit = defineEmits<Emit>();
+const emit = defineEmits<{ "update:modelValue": [value: T] }>();
 
-const onSelect = (value: number) => {
+const onSelect = (value: T) => {
   toggleSelectBox();
   emit("update:modelValue", value);
 };
