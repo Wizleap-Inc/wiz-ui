@@ -19,8 +19,8 @@ export const levenshteinDistance = (s1: string, s2: string): number => {
   return dist[s1.length][s2.length] / Math.max(s1.length, s2.length);
 };
 
-export function filterOptions(
-  options: SelectBoxOption[],
+export function filterOptions<T>(
+  options: SelectBoxOption<T>[],
   searchText: string,
   threshold: number
 ) {
