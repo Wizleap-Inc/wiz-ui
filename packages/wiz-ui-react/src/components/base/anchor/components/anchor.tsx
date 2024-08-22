@@ -44,7 +44,8 @@ type Props<T extends ElementType> = BaseProps & {
         asProps: ComponentProps<T>;
         openInNewTab?: never;
       }
-  );
+  ) &
+  Pick<ComponentProps<"a">, "onClick">;
 
 const Anchor = forwardRef(
   <T extends ElementType>(
@@ -58,6 +59,7 @@ const Anchor = forwardRef(
       iconPosition = "left",
       openInNewTab,
       nowrap = false,
+      onClick,
       children,
       ...props
     }: Props<T>,
@@ -96,6 +98,7 @@ const Anchor = forwardRef(
         ref={ref}
         className={anchorStyle}
         style={style}
+        onClick={onClick}
       >
         {iconPosition === "left" && iconContent}
         {children}
