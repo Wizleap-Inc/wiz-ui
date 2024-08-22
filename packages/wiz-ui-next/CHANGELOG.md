@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.38.1
+
+### Patch Changes
+
+- [#1350](https://github.com/Wizleap-Inc/wiz-ui/pull/1350) [`7c8c812e5740cef1bd3c7d6e9cbb1d3455008d9e`](https://github.com/Wizleap-Inc/wiz-ui/commit/7c8c812e5740cef1bd3c7d6e9cbb1d3455008d9e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(dialog): unmount 時にスクロール固定のスタイル等を解除する
+
 ## 2.38.0
 
 ### Minor Changes
