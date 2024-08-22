@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.67.0
+
+### Minor Changes
+
+- [#1351](https://github.com/Wizleap-Inc/wiz-ui/pull/1351) [`79098e60e9408913e4ef6da9d2a39785a3c1cdbe`](https://github.com/Wizleap-Inc/wiz-ui/commit/79098e60e9408913e4ef6da9d2a39785a3c1cdbe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(anchor): onClick を追加
+
 ## 0.66.0
 
 ### Minor Changes
