@@ -29,17 +29,17 @@
 
 <script setup lang="ts">
 import {
-  THEME,
-  ComponentName,
   ARIA_LABELS,
+  ComponentName,
+  THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
+  dialogBlockScrollStyle,
+  dialogMaskStyle,
   dialogStyle,
   dialogVisibleStyle,
-  dialogMaskStyle,
-  dialogBlockScrollStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/dialog.css";
-import { computed, PropType, watch } from "vue";
+import { computed, onUnmounted, PropType, watch } from "vue";
 
 import { WizIconButton } from "@/components/base/buttons";
 import { WizCard } from "@/components/base/card";
@@ -92,6 +92,14 @@ const { currentZIndex } = useZIndex(THEME.zIndex.dialog);
 
 let scrollY = 0;
 
+// スクロールロックを解除する関数を定義
+const cleanupScrollLock = () => {
+  document.body.classList.remove(dialogBlockScrollStyle);
+  document.body.style.top = "";
+  window.scrollTo(0, scrollY);
+  scrollY = 0;
+};
+
 watch(
   () => visible.value,
   (value) => {
@@ -103,11 +111,14 @@ watch(
         document.body.classList.add(dialogBlockScrollStyle);
       }
     } else {
-      document.body.classList.remove(dialogBlockScrollStyle);
-      document.body.style.top = "";
-      window.scrollTo(0, scrollY);
-      scrollY = 0;
+      cleanupScrollLock();
     }
   }
 );
+
+onUnmounted(() => {
+  if (visible.value) {
+    cleanupScrollLock();
+  }
+});
 </script>
