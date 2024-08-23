@@ -93,7 +93,7 @@ export const Navigation = ({ isOpen }: NavigationProps) => {
           key={`path-${path.label}`}
           icon={path.icon}
           label={path.label}
-          href="/"
+          href={path.href}
           active={false}
         />
       ))}
