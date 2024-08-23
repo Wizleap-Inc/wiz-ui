@@ -15,7 +15,7 @@
     }"
   >
     <WizHStack px="md" py="xs" justify="between" align="center" nowrap>
-      <WizVStack gap="xs" position="relative" width="100%">
+      <WizVStack position="relative" width="100%">
         <WizHStack v-if="variant === 'primary'" justify="between" align="start">
           <WizUnstyledTable>
             <WizUnstyledTbody>
