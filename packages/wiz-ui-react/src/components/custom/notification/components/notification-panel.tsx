@@ -122,14 +122,16 @@ const NotificationPanel: FC<Props> = ({
               </WizText>
             </WizHStack>
           )}
-          <WizText color="gray.700" fontSize="xs" maxLines={2} bold={!read}>
-            {title}
-          </WizText>
-          {variant === "secondary" && (
-            <WizText color="gray.600" fontSize="xs2">
-              {displayDatetime}
+          <WizHStack gap="xs">
+            <WizText color="gray.700" fontSize="xs" maxLines={2} bold={!read}>
+              {title}
             </WizText>
-          )}
+            {variant === "secondary" && (
+              <WizText color="gray.600" fontSize="xs2">
+                {displayDatetime}
+              </WizText>
+            )}
+          </WizHStack>
         </WizVStack>
         <WizIcon icon={WizIChevronRight} color="green.800" />
       </WizHStack>

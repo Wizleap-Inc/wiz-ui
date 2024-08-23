@@ -49,12 +49,18 @@
             {{ displayHowPast }}
           </WizText>
         </WizHStack>
-        <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="!read">
-          {{ title }}
-        </WizText>
-        <WizText v-if="variant === 'secondary'" color="gray.600" fontSize="xs2">
-          {{ displayDatetime }}
-        </WizText>
+        <WizStack gap="xs">
+          <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="!read">
+            {{ title }}
+          </WizText>
+          <WizText
+            v-if="variant === 'secondary'"
+            color="gray.600"
+            fontSize="xs2"
+          >
+            {{ displayDatetime }}
+          </WizText>
+        </WizStack>
       </WizVStack>
       <WizIcon
         :icon="WizIChevronRight"
@@ -73,6 +79,7 @@ import {
   WizBox,
   WizHStack,
   WizIcon,
+  WizStack,
   WizText,
   WizUnstyledTable,
   WizUnstyledTbody,
