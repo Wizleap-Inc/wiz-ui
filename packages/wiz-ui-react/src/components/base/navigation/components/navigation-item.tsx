@@ -201,9 +201,7 @@ const NavigationItem = <T extends ElementType>({
   return (
     <>
       {tooltipText ? (
-        <WizTooltip content={tooltipText && <div>{tooltipText}</div>}>
-          {body}
-        </WizTooltip>
+        <WizTooltip content={<div>{tooltipText}</div>}>{body}</WizTooltip>
       ) : (
         <> {body} </>
       )}
