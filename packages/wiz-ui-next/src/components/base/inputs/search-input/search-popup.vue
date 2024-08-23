@@ -52,6 +52,11 @@
                   align="center"
                   nowrap
                   gap="xs2"
+                  :pl="
+                    !allOptionsHaveChildren(option.children) && !singleSelect
+                      ? 'lg'
+                      : 'no'
+                  "
                 >
                   <div :class="styles.searchInputLabelStyle">
                     {{ item.label }}
@@ -73,6 +78,23 @@
                   </WizHStack>
                 </WizHStack>
               </WizHStack>
+            </div>
+            <div
+              v-else-if="singleSelect"
+              :class="[styles.searchDropdownItemStyle]"
+            >
+              <button
+                :id="`${item.label}_${item.value}`"
+                type="button"
+                :class="[styles.searchDropdownSingleSelectItemStyle]"
+                width="100%"
+                gap="xs2"
+                @click="handleClickButton(item.value)"
+              >
+                <div :class="styles.searchInputLabelStyle">
+                  {{ item.label }}
+                </div>
+              </button>
             </div>
             <!-- Checkbox -->
             <div
@@ -113,6 +135,8 @@
         :selectedItem="selectedItem"
         :popupWidth="computedPopupWidth"
         :emptyMessage="emptyMessage"
+        :singleSelect="singleSelect"
+        @toggle="emit('toggle', $event)"
       />
     </div>
   </template>
@@ -160,9 +184,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  singleSelect: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const emit = defineEmits<{
+  (e: "toggle", value: boolean): void;
   (e: "update:modelValue", value: number[]): void;
   (e: "mouseover", id: number, isChild: boolean): void;
 }>();
@@ -172,6 +202,8 @@ const activeItemIndex = ref<number | null>(null);
 
 const ITEM_HEIGHT = 44;
 const DIVIDER_HEIGHT = 0.8;
+const allOptionsHaveChildren = (options: SearchInputOption[]) =>
+  options.every((option) => !!option.children);
 
 const checkValues = computed({
   get: () => props.modelValue,
@@ -248,5 +280,10 @@ const handleClickCheckbox = (value: number) => {
   } else {
     checkValues.value = [...checkValues.value, value];
   }
+};
+
+const handleClickButton = (value: number) => {
+  checkValues.value = [value];
+  emit("toggle", false);
 };
 </script>

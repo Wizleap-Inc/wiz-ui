@@ -5,7 +5,6 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { formatDateToYYMMDD } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
 import { FC, KeyboardEvent, useContext, useRef, useState } from "react";
 
@@ -39,6 +38,12 @@ type Props = BaseProps & {
    * @default (year) => `${year}年`
    */
   formatYear?: (year: number) => string;
+
+  /**
+   * @description 日付の表示形式をカスタマイズします。
+   * @default (date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+   */
+  formatDate?: (date: Date) => string;
 };
 
 const DatePicker: FC<Props> = ({
@@ -46,18 +51,18 @@ const DatePicker: FC<Props> = ({
   style,
   date,
   placeholder = "日付を選択",
-  width = "10rem",
+  width = "12rem",
   disabled = false,
   isDirectionFixed = false,
   onChangeDate,
   error,
   disabledDate = () => false,
   formatYear = (year) => `${year}`,
+  formatDate = (date) =>
+    `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
 }: Props) => {
-  const [isHover, setIsHover] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const cancelButtonVisible = !disabled && !!date && (isHover || isFocused);
+  const cancelButtonVisible = !disabled && !!date;
   const [currentMonth, setCurrentMonth] = useState(date || new Date());
   const moveCalendar = (deltaYear: number, deltaMonth: number) => {
     setCurrentMonth(
@@ -117,34 +122,29 @@ const DatePicker: FC<Props> = ({
         style={{ ...style, width }}
         aria-label={ARIA_LABELS.DATE_PICKER_INPUT}
         disabled={disabled}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
       >
-        <WizHStack gap="xs" align="center" height="100%">
-          {cancelButtonVisible ? (
+        <WizHStack align="center" height="100%" justify="between" nowrap>
+          <WizHStack gap="xs" align="center" height="100%" nowrap>
+            <span className={styles.datePickerCancelIconStyle}>
+              <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
+            </span>
+            <span style={{ whiteSpace: "nowrap" }}>
+              {(date && formatDate(date)) || placeholder}
+            </span>
+          </WizHStack>
+          {cancelButtonVisible && (
             <button
               type="button"
-              className={styles.datePickerCancelButtonStyle}
+              className={styles.datePickerCancelIconStyle}
               disabled={disabled}
               onClick={() => onChangeDate(null)}
               aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
             >
               <WizIcon size="xl2" color="inherit" icon={WizICancel} />
             </button>
-          ) : (
-            <button
-              type="button"
-              className={styles.datePickerCancelButtonStyle}
-              disabled={disabled}
-            >
-              <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
-            </button>
           )}
-          <span>{(date && formatDateToYYMMDD(date)) || placeholder}</span>
         </WizHStack>
       </button>
       <WizPopup

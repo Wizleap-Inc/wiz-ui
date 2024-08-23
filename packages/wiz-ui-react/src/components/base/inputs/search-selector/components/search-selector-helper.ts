@@ -21,7 +21,8 @@ function levenshteinDistance(s1: string, s2: string): number {
 
 export function filterOptions(
   options: SearchSelectorOption[],
-  searchText: string
+  searchText: string,
+  threshold: number
 ) {
   if (searchText.length === 0) {
     return options;
@@ -36,16 +37,19 @@ export function filterOptions(
   const minLevenshteinDistance = Math.min(
     ...Object.values(levenshteinDistanceMap)
   );
-
-  return options.filter((option) => {
-    if (levenshteinDistanceMap[option.label] === minLevenshteinDistance) {
-      // レーベンシュタイン距離が最小に等しい
-      return true;
-    }
-    if (option.label.includes(searchText)) {
-      // 部分一致
-      return true;
-    }
-    return false;
-  });
+  return (
+    options
+      // 類似度が閾値以下 or 全て閾値を上回る場合は部分一致
+      .filter(
+        (option) =>
+          levenshteinDistanceMap[option.label] <= threshold ||
+          (minLevenshteinDistance > threshold &&
+            option.label.includes(searchText))
+      )
+      // 類似度でソート
+      .sort(
+        (a, b) =>
+          levenshteinDistanceMap[a.label] - levenshteinDistanceMap[b.label]
+      )
+  );
 }
