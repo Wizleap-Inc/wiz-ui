@@ -20,11 +20,10 @@
             justify="between"
             :class="[
               styles.searchDropdownLabelStyle,
-              modelValue.includes(option.value) &&
+              activeItem === option.value &&
                 styles.searchDropdownSelectingItemStyle,
             ]"
             @mouseover="onMouseover(option.value, option.children)"
-            @mouseout="activeItem = null"
           >
             <WizHStack
               width="100%"
@@ -33,23 +32,20 @@
               nowrap
               gap="xs2"
               :pl="
-                !allOptionsHaveChildren(option.children) && !singleSelect
-                  ? 'lg'
-                  : 'no'
+                !allOptionsHaveChildren(options) && !singleSelect ? 'lg' : 'no'
               "
             >
               <div :class="styles.searchInputLabelStyle">
                 {{ option.label }}
               </div>
               <WizHStack gap="xs" :width="option.tag ? '70px' : '24px'">
-                <template v-if="option.tag">
-                  <WizTag
-                    :label="option.tag.label"
-                    variant="white"
-                    width="20px"
-                    font-size="xs2"
-                  />
-                </template>
+                <WizTag
+                  v-if="option.tag"
+                  :label="option.tag.label"
+                  variant="white"
+                  width="20px"
+                  font-size="xs2"
+                />
                 <WizIcon
                   size="xl2"
                   :icon="WizIChevronRight"
@@ -75,12 +71,7 @@
           </button>
         </div>
         <!-- Checkbox -->
-        <div
-          v-else
-          :class="styles.searchDropdownCheckboxItemStyle"
-          @mouseover="activeItem = option.value"
-          @mouseout="activeItem = null"
-        >
+        <div v-else :class="styles.searchDropdownCheckboxItemStyle">
           <WizCheckBoxNew
             :style="{ width: '100%' }"
             :checked="checkValues.includes(option.value)"
@@ -125,7 +116,14 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { computed, ref } from "vue";
 
-import { WizIChevronRight } from "@/components/icons";
+import {
+  WizCheckBoxNew,
+  WizDivider,
+  WizHStack,
+  WizIChevronRight,
+  WizIcon,
+  WizTag,
+} from "@/components";
 
 import { CheckboxOption, SearchInputOption } from "./types";
 
