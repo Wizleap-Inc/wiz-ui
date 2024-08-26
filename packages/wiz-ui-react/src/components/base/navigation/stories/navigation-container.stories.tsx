@@ -158,60 +158,44 @@ const createButton = (n: number): ButtonGroupItem => ({
 
 const PopupTemplate: Story = {
   render: (args) => {
-    const [isPopupOpen0, setIsPopupOpen0] = useState(false);
-    const [isPopupOpen1, setIsPopupOpen1] = useState(false);
+    const [activeItem] = useState<number>(-1);
     const [isPopupOpen2, setIsPopupOpen2] = useState(false);
     const [isPopupOpen3, setIsPopupOpen3] = useState(false);
-    const [isPopupLocking, setIsPopupLocking] = useState(false);
-    const handleTogglePopupLocking = (isPopupLocking: boolean) =>
-      setIsPopupLocking(isPopupLocking);
 
     return (
       <div style={{ display: "flex", height: "100vh" }}>
         <WizNavigationContainer {...args}>
           <WizNavigationItem
             icon={WizIDashboard}
-            label="Home"
+            label="Jump to /"
             href="/"
-            active={false}
-            buttons={[createButton(0)]}
-            isPopupOpen={isPopupOpen0}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={handleTogglePopupLocking}
+            active={activeItem === 0}
           />
           <WizNavigationItem
             icon={WizIAssignment}
-            label="Page1"
+            label="Jump to /"
             href="/"
-            active={false}
-            buttons={[createButton(1), createButton(2)]}
-            isPopupOpen={isPopupOpen1}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={handleTogglePopupLocking}
+            active={activeItem === 1}
           />
           <WizNavigationItem
             icon={WizIBusinessCenter}
-            label="Page2"
-            href="/"
-            active={false}
+            label="Nav-Item 1"
+            as="button"
+            asProps={{}}
+            active={isPopupOpen2}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={handleTogglePopupLocking}
+            onTogglePopup={setIsPopupOpen2}
           />
           <WizNavigationItem
             icon={WizIHelp}
-            label="Page3"
-            href="/"
-            active={false}
+            label="Nav-Item 02"
+            as="button"
+            asProps={{}}
+            active={isPopupOpen3}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={handleTogglePopupLocking}
+            onTogglePopup={setIsPopupOpen3}
           />
         </WizNavigationContainer>
       </div>
@@ -267,9 +251,6 @@ export const PopupAndTooltip: Story = {
     const [isPopupOpen1, setIsPopupOpen1] = useState(false);
     const [isPopupOpen2, setIsPopupOpen2] = useState(false);
     const [isPopupOpen3, setIsPopupOpen3] = useState(false);
-    const [isPopupLocking, setIsPopupLocking] = useState(false);
-    const handleTogglePopupLocking = (isPopupLocking: boolean) =>
-      setIsPopupLocking(isPopupLocking);
 
     return (
       <div style={{ display: "flex", height: "100vh" }}>
@@ -277,48 +258,45 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIDashboard}
             label="Home"
-            href="/"
-            active={false}
+            as="button"
+            asProps={{}}
+            active={isPopupOpen0}
             buttons={[createButton(0)]}
             isPopupOpen={isPopupOpen0}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen0(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={handleTogglePopupLocking}
+            onTogglePopup={setIsPopupOpen0}
             tooltipText="これはヒント1です。"
           />
           <WizNavigationItem
             icon={WizIAssignment}
             label="Page1"
-            href="/"
-            active={false}
+            as="button"
+            asProps={{}}
+            active={isPopupOpen1}
             buttons={[createButton(1), createButton(2)]}
             isPopupOpen={isPopupOpen1}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen1(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={handleTogglePopupLocking}
+            onTogglePopup={setIsPopupOpen1}
             tooltipText="これはヒント2です。"
           />
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Page2"
-            href="/"
-            active={false}
+            as="button"
+            asProps={{}}
+            active={isPopupOpen2}
             buttons={[createButton(3), createButton(4)]}
             isPopupOpen={isPopupOpen2}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen2(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
-            onTogglePopupLocking={handleTogglePopupLocking}
+            onTogglePopup={setIsPopupOpen2}
             tooltipText="これはヒント3です。"
           />
           <WizNavigationItem
             icon={WizIHelp}
             label="Page3"
-            href="/"
-            active={false}
+            as="button"
+            asProps={{}}
+            active={isPopupOpen3}
             buttons={[createButton(5), createButton(6)]}
             isPopupOpen={isPopupOpen3}
-            onTogglePopup={(isPopupOpen) => setIsPopupOpen3(isPopupOpen)}
-            isPopupLocking={isPopupLocking}
+            onTogglePopup={setIsPopupOpen3}
             tooltipText="これはヒント4です。"
           />
         </WizNavigationContainer>
