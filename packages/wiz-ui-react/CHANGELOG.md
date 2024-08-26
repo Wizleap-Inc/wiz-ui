@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.69.0
+
+### Minor Changes
+
+- [#1287](https://github.com/Wizleap-Inc/wiz-ui/pull/1287) [`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(nav-item): hover イベントに依らない Popup 制御
+
+- [#1341](https://github.com/Wizleap-Inc/wiz-ui/pull/1341) [`f2a178640506f58e26f8867022a9506c7c431548`](https://github.com/Wizleap-Inc/wiz-ui/commit/f2a178640506f58e26f8867022a9506c7c431548) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(anchor): href を任意プロパティに変更する
+
+### Patch Changes
+
+- Updated dependencies [[`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8)]:
+  - @wizleap-inc/wiz-ui-styles@0.32.0
+
 ## 0.68.0
 
 ### Minor Changes
