@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.32.0
+
+### Minor Changes
+
+- [#1287](https://github.com/Wizleap-Inc/wiz-ui/pull/1287) [`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(nav-item): hover イベントに依らない Popup 制御
+
 ## 0.31.1
 
 ### Patch Changes
