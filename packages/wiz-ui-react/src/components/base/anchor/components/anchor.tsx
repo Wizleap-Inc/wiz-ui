@@ -33,7 +33,7 @@ type Props<T extends ElementType> = BaseProps & {
   children: ReactNode;
 } & (
     | {
-        href: string;
+        href?: string;
         as?: never;
         asProps?: never;
         openInNewTab?: boolean;
@@ -65,8 +65,9 @@ const Anchor = forwardRef(
     }: Props<T>,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
-    const isAnchor = "href" in props;
-    const LinkComponent = isAnchor ? "a" : props.as;
+    const isAnchor = "href" in props && props.as === undefined;
+    const LinkComponent = props.as || "a";
+
     const linkProps = isAnchor
       ? {
           href: props.href,
