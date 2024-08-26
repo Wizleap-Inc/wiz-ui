@@ -63,7 +63,7 @@ const Anchor = forwardRef(
     }: Props<T>,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
-    const isAnchor = "href" in props;
+    const isAnchor = "href" in props && props.as === undefined;
     const LinkComponent = props.as || "a";
 
     const linkProps = isAnchor
