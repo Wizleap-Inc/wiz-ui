@@ -1,0 +1,26 @@
+{
+  "name": "@wizleap-inc/wiz-ui-example-react",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "@wizleap-inc/wiz-ui-constants": "workspace:",
+    "@wizleap-inc/wiz-ui-react": "workspace:",
+    "@wizleap-inc/wiz-ui-utils": "workspace:"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.31",
+    "@types/react-dom": "^18.2.25",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.0.2",
+    "vite": "^5.3.5"
+  }
+}
