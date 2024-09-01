@@ -191,12 +191,11 @@ const SearchInput: FC<Props> = ({
                 name={name}
                 disabled={disabled}
                 onChange={(e) => {
-                  setIsPopupOpen(true);
                   setFilteringText(e.target.value);
                 }}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                onClick={() => setIsPopupOpen(!isPopupOpen)}
+                onClick={() => setIsPopupOpen(true)}
                 autoComplete="off"
               />
             </WizHStack>

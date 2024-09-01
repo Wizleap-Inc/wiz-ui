@@ -60,7 +60,7 @@
               :disabled="disabled"
               @focusin="hasFocus = true"
               @focusout="hasFocus = false"
-              @click="emit('toggle', !openPopup)"
+              @click="emit('toggle', true)"
               autocomplete="off"
             />
           </WizHStack>
@@ -77,7 +77,6 @@
         <WizSearchPopup
           v-model="checkValues"
           :options="filteredOptions"
-          :selectedItem="modelValue"
           :popupWidth="computedPopupWidth"
           :emptyMessage="emptyMessage"
           :singleSelect="singleSelect"
