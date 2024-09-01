@@ -1,5 +1,4 @@
 import { Meta, StoryFn } from "@storybook/vue3";
-import { ref } from "vue";
 
 import { WizHStack } from "@/components";
 
@@ -37,12 +36,11 @@ export default {
 const Template: StoryFn<typeof WizSelectBox> = (args) => ({
   components: { WizSelectBox, WizHStack },
   setup() {
-    const modelValue = ref(args.modelValue);
-    return { modelValue, args };
+    return { args };
   },
   template: `
     <WizHStack>
-      <WizSelectBox v-bind="args" v-model="value" @update:modelValue="args.input"/>
+      <WizSelectBox v-bind="args" v-model="args.modelValue"/>
     </WizHStack>
   `,
 });
