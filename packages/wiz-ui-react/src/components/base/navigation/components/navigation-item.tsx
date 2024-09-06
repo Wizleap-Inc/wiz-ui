@@ -101,7 +101,6 @@ const NavigationItem = <T extends ElementType>({
         ...props.asProps,
         style: {
           cursor: disabled ? "not-allowed" : "pointer",
-          backgroundColor: "white",
           border: "none",
           width: "100%",
           ...props.asProps.style,
