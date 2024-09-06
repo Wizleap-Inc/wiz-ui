@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.69.1
+
+### Patch Changes
+
+- [`a41948a7effec322ac09871cc28ac4850d231e23`](https://github.com/Wizleap-Inc/wiz-ui/commit/a41948a7effec322ac09871cc28ac4850d231e23) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(navigation-item): as コンポーネント利用時に backgroundColor をつけない
+
 ## 0.69.0
 
 ### Minor Changes
