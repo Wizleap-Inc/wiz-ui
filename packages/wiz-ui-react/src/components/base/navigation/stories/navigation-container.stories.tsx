@@ -180,7 +180,7 @@ const PopupTemplate: Story = {
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Nav-Item 1"
-            as="button"
+            as="a"
             asProps={{}}
             active={isPopupOpen2}
             buttons={[createButton(3), createButton(4)]}
@@ -190,7 +190,7 @@ const PopupTemplate: Story = {
           <WizNavigationItem
             icon={WizIHelp}
             label="Nav-Item 02"
-            as="button"
+            as="a"
             asProps={{}}
             active={isPopupOpen3}
             buttons={[createButton(5), createButton(6)]}
@@ -258,7 +258,7 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIDashboard}
             label="Home"
-            as="button"
+            as="a"
             asProps={{}}
             active={isPopupOpen0}
             buttons={[createButton(0)]}
@@ -269,7 +269,7 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIAssignment}
             label="Page1"
-            as="button"
+            as="a"
             asProps={{}}
             active={isPopupOpen1}
             buttons={[createButton(1), createButton(2)]}
@@ -280,7 +280,7 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIBusinessCenter}
             label="Page2"
-            as="button"
+            as="a"
             asProps={{}}
             active={isPopupOpen2}
             buttons={[createButton(3), createButton(4)]}
@@ -291,7 +291,7 @@ export const PopupAndTooltip: Story = {
           <WizNavigationItem
             icon={WizIHelp}
             label="Page3"
-            as="button"
+            as="a"
             asProps={{}}
             active={isPopupOpen3}
             buttons={[createButton(5), createButton(6)]}
