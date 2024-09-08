@@ -62,6 +62,7 @@ import { WizIInboxCustomize } from "./inbox-customize";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
+import { WizILinkOff } from "./link-off";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
 import { WizILogin } from "./login";
@@ -161,6 +162,7 @@ export type TIcon =
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
+  | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
   | typeof WizILogin
@@ -260,6 +262,7 @@ export {
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
+  WizILinkOff,
   WizILocationCity,
   WizILocationOn,
   WizILogin,

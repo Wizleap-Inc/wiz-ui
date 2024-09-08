@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.29.0
+
+### Minor Changes
+
+- [`95487aa96f9e0b027b42717ef73d3257eb6112bd`](https://github.com/Wizleap-Inc/wiz-ui/commit/95487aa96f9e0b027b42717ef73d3257eb6112bd) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(icon): link-off アイコンの追加
+
 ## 0.28.0
 
 ### Minor Changes

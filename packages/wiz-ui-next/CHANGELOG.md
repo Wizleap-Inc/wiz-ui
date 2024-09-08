@@ -1,5 +1,34 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.40.0
+
+### Minor Changes
+
+- [#1287](https://github.com/Wizleap-Inc/wiz-ui/pull/1287) [`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(nav-item): hover イベントに依らない Popup 制御
+
+### Patch Changes
+
+- Updated dependencies [[`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8)]:
+  - @wizleap-inc/wiz-ui-styles@0.32.0
+
+## 2.39.0
+
+### Minor Changes
+
+- [`95487aa96f9e0b027b42717ef73d3257eb6112bd`](https://github.com/Wizleap-Inc/wiz-ui/commit/95487aa96f9e0b027b42717ef73d3257eb6112bd) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(icon): link-off アイコンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`95487aa96f9e0b027b42717ef73d3257eb6112bd`](https://github.com/Wizleap-Inc/wiz-ui/commit/95487aa96f9e0b027b42717ef73d3257eb6112bd)]:
+  - @wizleap-inc/wiz-ui-constants@0.29.0
+  - @wizleap-inc/wiz-ui-styles@0.31.1
+
+## 2.38.1
+
+### Patch Changes
+
+- [#1350](https://github.com/Wizleap-Inc/wiz-ui/pull/1350) [`7c8c812e5740cef1bd3c7d6e9cbb1d3455008d9e`](https://github.com/Wizleap-Inc/wiz-ui/commit/7c8c812e5740cef1bd3c7d6e9cbb1d3455008d9e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(dialog): unmount 時にスクロール固定のスタイル等を解除する
+
 ## 2.38.0
 
 ### Minor Changes
