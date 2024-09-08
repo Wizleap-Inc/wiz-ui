@@ -202,26 +202,24 @@ const SearchInput: FC<Props> = ({
           </WizHStack>
         </div>
       </div>
-      {filteredOptions.length > 0 && !disabled && (
-        <WizPopup
-          anchorElement={inputRef}
-          isOpen={isPopupOpen}
-          onClose={() => setIsPopupOpen(false)}
-          isDirectionFixed={isDirectionFixed}
-        >
-          <WizHStack nowrap>
-            <SearchPopupPanel
-              options={filteredOptions}
-              closePopup={() => setIsPopupOpen(false)}
-              values={values}
-              width={popupWidth}
-              emptyMessage={emptyMessage}
-              singleSelect={singleSelect}
-              onChangeValues={handleClickPanelItem}
-            />
-          </WizHStack>
-        </WizPopup>
-      )}
+      <WizPopup
+        anchorElement={inputRef}
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        isDirectionFixed={isDirectionFixed}
+      >
+        <WizHStack nowrap>
+          <SearchPopupPanel
+            options={filteredOptions}
+            closePopup={() => setIsPopupOpen(false)}
+            values={values}
+            width={popupWidth}
+            emptyMessage={emptyMessage}
+            singleSelect={singleSelect}
+            onChangeValues={handleClickPanelItem}
+          />
+        </WizHStack>
+      </WizPopup>
     </>
   );
 };
