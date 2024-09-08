@@ -52,6 +52,9 @@ export default {
     nowrap: {
       control: { type: "boolean" },
     },
+    onClick: {
+      action: "onClick",
+    },
   },
 } as Meta<typeof WizAnchor>;
 
