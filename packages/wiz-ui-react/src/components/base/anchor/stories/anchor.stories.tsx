@@ -8,7 +8,11 @@ import { WizAnchor } from "../components/anchor";
 const meta: Meta<typeof WizAnchor> = {
   title: "Base/Anchor",
   component: WizAnchor,
-  argTypes: {},
+  argTypes: {
+    onClick: {
+      action: "onClick",
+    },
+  },
 };
 
 export default meta;
