@@ -53,7 +53,7 @@ type Props<T extends ElementType> = BaseProps & {
   onTogglePopupLocking?: (lock: boolean) => void;
 } & (
     | {
-        href: string;
+        href?: string;
         as?: never;
         asProps?: never;
       }
@@ -89,8 +89,8 @@ const NavigationItem = <T extends ElementType>({
   onTogglePopup,
   ...props
 }: Props<T>) => {
-  const isAnchor = "href" in props;
-  const LinkComponent = isAnchor ? "a" : props.as;
+  const isAnchor = "href" in props && props.as === undefined;
+  const LinkComponent = props.as || "a";
   const isExternalLink = !!props?.href?.startsWith("http");
   const linkProps = isAnchor
     ? {
@@ -101,7 +101,7 @@ const NavigationItem = <T extends ElementType>({
         ...props.asProps,
         style: {
           cursor: disabled ? "not-allowed" : "pointer",
-          ...props.asProps.style,
+          ...props.asProps?.style,
         },
       };
   const popupAnchor = useRef<HTMLDivElement>(null);

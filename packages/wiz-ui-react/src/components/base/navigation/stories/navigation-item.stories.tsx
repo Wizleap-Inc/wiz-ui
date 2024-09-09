@@ -69,3 +69,12 @@ export const WithToolTip: Story = {
     </div>
   ),
 };
+
+export const WithoutHref: Story = {
+  ...Template,
+  args: {
+    icon: WizIDashboard,
+    label: "Home",
+    active: false,
+  },
+};
