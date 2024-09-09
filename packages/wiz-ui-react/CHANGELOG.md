@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.70.0
+
+### Minor Changes
+
+- [#1361](https://github.com/Wizleap-Inc/wiz-ui/pull/1361) [`1be2e752ba72ae5943d7e540b7fb1b3d749bd08e`](https://github.com/Wizleap-Inc/wiz-ui/commit/1be2e752ba72ae5943d7e540b7fb1b3d749bd08e) Thanks [@k-tada](https://github.com/k-tada)! - feat(nav-item): href を任意にする
+
 ## 0.69.1
 
 ### Patch Changes
