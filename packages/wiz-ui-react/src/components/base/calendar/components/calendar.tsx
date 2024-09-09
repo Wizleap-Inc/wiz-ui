@@ -93,6 +93,7 @@ type Props = BaseProps & {
   currentMonth?: Date;
   activeDates?: DateStatus[];
   filledWeeks?: boolean;
+  _today?: Date;
   onClickDate?: (selectedValue: Date) => void;
   /**
    * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
@@ -108,6 +109,7 @@ const Calendar: FC<Props> = ({
   currentMonth = new Date(),
   activeDates,
   filledWeeks,
+  _today,
   onClickDate,
   disabledDate,
 }) => {
@@ -126,6 +128,18 @@ const Calendar: FC<Props> = ({
     });
   }
 
+  function getItemDate(item: CalendarDataItem) {
+    return new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      Number(item.label)
+    );
+  }
+
+  function getIsToday(a: Date) {
+    return a.toDateString() === (_today || new Date()).toDateString();
+  }
+
   function getItemStyleState(
     item: CalendarDataItem,
     dateStatus?: DateStatus
@@ -139,13 +153,7 @@ const Calendar: FC<Props> = ({
     if (item.isOutOfCurrentMonth) {
       return;
     }
-    onClickDate?.(
-      new Date(
-        currentMonth.getFullYear(),
-        currentMonth.getMonth(),
-        Number(item.label)
-      )
-    );
+    onClickDate?.(getItemDate(item));
   }
   const calendarItems = calendarData.map((weekDateItems) => {
     return weekDateItems.map((item) => {
@@ -214,6 +222,7 @@ const Calendar: FC<Props> = ({
               const item = adjacent.current.item;
               const itemStyle = adjacent.current.itemStyle;
               const activeDateStatus = adjacent.current.activeDateStatus;
+              const isToday = getIsToday(getItemDate(item));
               return (
                 <td
                   key={`${item.label}-${col}`}
@@ -244,7 +253,14 @@ const Calendar: FC<Props> = ({
                           adjacent.current.itemStyle === "primary"
                         )}
                       >
-                        <div className={styles.calendarItemInteractiveStyle}>
+                        <div
+                          className={clsx(
+                            styles.calendarItemInteractiveStyle,
+                            !item.isOutOfCurrentMonth &&
+                              isToday &&
+                              styles.calendarItemInteractiveTodayStyle
+                          )}
+                        >
                           {item.label}
                         </div>
                       </div>

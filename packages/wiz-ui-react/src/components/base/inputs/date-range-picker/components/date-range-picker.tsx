@@ -40,6 +40,7 @@ type Props = BaseProps & {
   selectBoxValue?: string;
   isDirectionFixed?: boolean;
   error?: boolean;
+  _today?: Date;
   onChangeDateRange: (dateRange: DateRange) => void;
   onChangeSelectBoxValue?: (value: string) => void;
   disabledDate?: (date: Date) => boolean;
@@ -60,6 +61,7 @@ const DateRangePicker: FC<Props> = ({
   selectBoxValue,
   isDirectionFixed = false,
   error,
+  _today,
   onChangeDateRange,
   onChangeSelectBoxValue,
   disabledDate = () => false,
@@ -316,6 +318,7 @@ const DateRangePicker: FC<Props> = ({
                   onClickDate={onClickDate}
                   disabledDate={disabledDate}
                   filledWeeks={true}
+                  _today={_today || new Date()}
                 />
               </div>
               <div className={styles.popupCalendarContainerStyle["right"]}>
@@ -345,6 +348,7 @@ const DateRangePicker: FC<Props> = ({
                   onClickDate={onClickDate}
                   disabledDate={disabledDate}
                   filledWeeks={true}
+                  _today={_today || new Date()}
                 />
               </div>
             </div>

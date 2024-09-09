@@ -26,6 +26,7 @@ type Props = BaseProps & {
   disabled?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
+  _today?: Date;
   onChangeDate: (selectedValue: Date | null) => void;
   /**
    * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
@@ -60,6 +61,7 @@ const DatePicker: FC<Props> = ({
   formatYear = (year) => `${year}`,
   formatDate = (date) =>
     `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  _today,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const cancelButtonVisible = !disabled && !!date;
@@ -243,6 +245,7 @@ const DatePicker: FC<Props> = ({
             onClickDate={(date) => onChangeDate(date)}
             currentMonth={currentMonth}
             filledWeeks
+            _today={_today || new Date()}
             disabledDate={disabledDate}
           />
         </div>
