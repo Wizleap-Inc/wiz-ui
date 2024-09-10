@@ -49,7 +49,7 @@
     </button>
     <WizPopup
       :isOpen="!disabled && isOpen"
-      @onClose="setIsOpen(false)"
+      @onClose="onClose"
       :isDirectionFixed="isDirectionFixed"
     >
       <WizCard p="no">
@@ -146,6 +146,15 @@
               />
             </div>
           </div>
+          <WizDivider color="gray.300" />
+          <WizHStack p="sm" gap="sm" justify="end">
+            <WizTextButton @click="onClose" variant="sub">
+              {{ ARIA_LABELS.CANCEL }}
+            </WizTextButton>
+            <WizTextButton @click="onSubmit">
+              {{ ARIA_LABELS.APPLY }}
+            </WizTextButton>
+          </WizHStack>
         </div>
       </WizCard>
     </WizPopup>
@@ -161,6 +170,7 @@ import { computed, inject, PropType, ref } from "vue";
 import {
   WizCalendar,
   WizCard,
+  WizDivider,
   WizHStack,
   WizICalendar,
   WizICancel,
@@ -171,6 +181,7 @@ import {
   WizIExpandMore,
   WizPopup,
   WizPopupContainer,
+  WizTextButton,
 } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { formControlKey } from "@/hooks/use-form-control-provider";
@@ -272,6 +283,8 @@ const setIsOpen = (value: boolean) => emit("update:isOpen", value);
 const onClickCancel = () =>
   emit("update:modelValue", { start: null, end: null });
 
+const tempDateRange = ref(props.modelValue);
+
 const moveToNextMonth = (e: KeyboardEvent | MouseEvent) => {
   e.preventDefault();
   rightCalendarDate.value = new Date(
@@ -289,7 +302,7 @@ const selectedDates = computed<DateStatus[]>(() => {
     date,
     state,
   });
-  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  const [start, end] = [tempDateRange.value.start, tempDateRange.value.end];
   if (start && end) {
     const secondaries: DateStatus[] = [];
     const tomorrowOfStart = new Date(start);
@@ -310,17 +323,17 @@ const selectedDates = computed<DateStatus[]>(() => {
 });
 
 const handleDayClick = (date: Date) => {
-  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  const [start, end] = [tempDateRange.value.start, tempDateRange.value.end];
   if (start && end) {
-    emit("update:modelValue", { start: date, end: null });
+    tempDateRange.value = { start: date, end: null };
     return;
   }
   if (start) {
     const [nextStart, nextEnd] = start > date ? [date, start] : [start, date];
-    emit("update:modelValue", { start: nextStart, end: nextEnd });
+    tempDateRange.value = { start: nextStart, end: nextEnd };
     return;
   }
-  emit("update:modelValue", { start: date, end: null });
+  tempDateRange.value = { start: date, end: null };
 };
 
 const toggleSelectBoxOpen = () => {
@@ -353,4 +366,14 @@ const borderState = computed(() => {
   if (props.isOpen && !props.disabled) return "active";
   return "default";
 });
+
+const onClose = () => {
+  tempDateRange.value = props.modelValue;
+  setIsOpen(false);
+};
+
+const onSubmit = () => {
+  emit("update:modelValue", tempDateRange.value);
+  setIsOpen(false);
+};
 </script>
