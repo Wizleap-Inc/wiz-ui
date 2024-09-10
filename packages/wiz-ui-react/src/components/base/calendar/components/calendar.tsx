@@ -254,12 +254,11 @@ const Calendar: FC<Props> = ({
                         )}
                       >
                         <div
-                          className={clsx(
-                            styles.calendarItemInteractiveStyle,
-                            !item.isOutOfCurrentMonth &&
-                              isToday &&
-                              styles.calendarItemInteractiveTodayStyle
-                          )}
+                          className={
+                            !item.isOutOfCurrentMonth && isToday
+                              ? styles.calendarItemInteractiveTodayStyle
+                              : styles.calendarItemInteractiveStyle
+                          }
                         >
                           {item.label}
                         </div>
