@@ -116,6 +116,7 @@
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
                 :filledWeeks="true"
+                :_today="_today || new Date()"
               />
             </div>
             <div :class="styles.popupCalendarContainerStyle['right']">
@@ -141,6 +142,7 @@
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
                 :filledWeeks="true"
+                :_today="_today || new Date()"
               />
             </div>
           </div>
@@ -232,6 +234,12 @@ const props = defineProps({
     required: false,
     default: (date: Date) =>
       `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  },
+  // eslint-disable-next-line vue/prop-name-casing
+  _today: {
+    type: Date as PropType<Date>,
+    required: false,
+    default: new Date(),
   },
 });
 

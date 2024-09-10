@@ -340,3 +340,48 @@ const date = ref<Date | null>(null);
     },
   },
 };
+
+export const Today: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(2023, 2, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const today = new Date(2023, 2, 5);
+    return { args, date, isOpen, setIsOpen, today };
+  },
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :_today="today"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    /> 
+  `,
+});
+
+export const DisabledToday: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(2023, 2, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const today = new Date(2023, 2, 15);
+    const disabledDate = (date: Date) =>
+      date.getDate() >= 10 && date.getDate() < 17;
+    return { args, date, isOpen, setIsOpen, today, disabledDate };
+  },
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :_today="today"
+      :disabledDate="disabledDate"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    /> 
+  `,
+});

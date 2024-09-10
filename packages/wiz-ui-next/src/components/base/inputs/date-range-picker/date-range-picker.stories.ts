@@ -539,3 +539,81 @@ Test.play = async ({ canvasElement }) => {
   await userEvent.tab();
   await userEvent.tab();
 };
+
+export const Today: StoryFn<typeof WizDateRangePicker> = (args) => ({
+  components: { WizDateRangePicker },
+  setup() {
+    const dateRange1 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 1, 15),
+    });
+    const selectBoxValue1 = ref<string>();
+    const isOpen1 = ref(true);
+    const setIsOpen1 = (value: boolean) => (isOpen1.value = value);
+    const today = new Date(2000, 0, 28);
+    return {
+      dateRange1,
+      selectBoxValue1,
+      selectBoxOptions,
+      isOpen1,
+      setIsOpen1,
+      today,
+      args,
+    };
+  },
+  template: `
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem">
+      <WizDateRangePicker
+        v-model="dateRange1"
+        v-model:selectBoxValue="selectBoxValue1"
+        :selectBoxOptions="selectBoxOptions"
+        @update:modelValue="args.onDateSelected"
+        @update:selectBoxValue="args.onSelectBoxValueChange"
+        :isOpen="isOpen1"
+        @update:isOpen="setIsOpen1"
+        :_today="today"
+      />
+    </div>
+  `,
+});
+
+export const DisabledToday: StoryFn<typeof WizDateRangePicker> = (args) => ({
+  components: { WizDateRangePicker },
+  setup() {
+    const dateRange1 = ref<DateRange>({
+      start: new Date(2000, 0, 15),
+      end: new Date(2000, 1, 15),
+    });
+    const selectBoxValue1 = ref<string>();
+    const isOpen1 = ref(true);
+    const setIsOpen1 = (value: boolean) => (isOpen1.value = value);
+    const today = new Date(2000, 0, 28);
+    const disabledDate = (date: Date) =>
+      date.getDate() >= 20 && date.getDate() < 31;
+    return {
+      dateRange1,
+      selectBoxValue1,
+      selectBoxOptions,
+      isOpen1,
+      setIsOpen1,
+      today,
+      disabledDate,
+      args,
+    };
+  },
+  template: `
+    <div style="display: flex; gap: 20rem; flex-direction: column; height: 90rem">
+      <WizDateRangePicker
+        v-model="dateRange1"
+        v-model:selectBoxValue="selectBoxValue1"
+        :selectBoxOptions="selectBoxOptions"
+        @update:modelValue="args.onDateSelected"
+        @update:selectBoxValue="args.onSelectBoxValueChange"
+        :isOpen="isOpen1"
+        @update:isOpen="setIsOpen1"
+        :_today="today"
+        :disabledDate="disabledDate"
+      />
+    </div>
+  `,
+});
