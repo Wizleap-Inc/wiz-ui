@@ -15,6 +15,7 @@ import {
 import {
   WizCalendar,
   WizCard,
+  WizDivider,
   WizHStack,
   WizICalendar,
   WizICancel,
@@ -24,6 +25,7 @@ import {
   WizIExpandMore,
   WizIcon,
   WizPopup,
+  WizTextButton,
 } from "@/components";
 import { DateStatus } from "@/components/base/calendar/components/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
@@ -70,6 +72,7 @@ const DateRangePicker: FC<Props> = ({
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSelectBoxOpen, setIsSelectBoxOpen] = useState(false);
+  const [tempDateRange, setTempDateRange] = useState(dateRange);
   const cancelButtonVisible = !disabled && !!dateRange.start;
   const [rightCalendarDate, setRightCalendarDate] = useState(
     (() => {
@@ -112,7 +115,7 @@ const DateRangePicker: FC<Props> = ({
       date,
       state,
     });
-    const [start, end] = [dateRange.start, dateRange.end];
+    const [start, end] = [tempDateRange.start, tempDateRange.end];
     if (start && end) {
       const secondaries: DateStatus[] = [];
       const tomorrowOfStart = new Date(start);
@@ -130,7 +133,7 @@ const DateRangePicker: FC<Props> = ({
       return [getDateStatus(start, "primary")];
     }
     return [];
-  }, [dateRange]);
+  }, [tempDateRange]);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -146,18 +149,18 @@ const DateRangePicker: FC<Props> = ({
 
   const onClickDate = useCallback(
     (date: Date) => {
-      const [start, end] = [dateRange.start, dateRange.end];
+      const [start, end] = [tempDateRange.start, tempDateRange.end];
       if (start && end) {
-        onChangeDateRange({ start: date, end: null });
+        setTempDateRange({ start: date, end: null });
       } else if (start) {
         const [nextStart, nextEnd] =
           start > date ? [date, start] : [start, date];
-        onChangeDateRange({ start: nextStart, end: nextEnd });
+        setTempDateRange({ start: nextStart, end: nextEnd });
       } else {
-        onChangeDateRange({ start: date, end: null });
+        setTempDateRange({ start: date, end: null });
       }
     },
-    [dateRange, onChangeDateRange]
+    [tempDateRange]
   );
 
   const selectedOption = (() => {
@@ -184,6 +187,17 @@ const DateRangePicker: FC<Props> = ({
     if (isOpen && !disabled) return "active";
     return "default";
   })();
+
+  const onClose = () => {
+    setTempDateRange(dateRange);
+    setIsOpen(false);
+  };
+
+  const onSubmit = () => {
+    onChangeDateRange(tempDateRange);
+    setIsOpen(false);
+  };
+
   return (
     <>
       <button
@@ -352,6 +366,15 @@ const DateRangePicker: FC<Props> = ({
                 />
               </div>
             </div>
+            <WizDivider color="gray.300" />
+            <WizHStack p="sm" gap="sm" justify="end">
+              <WizTextButton onClick={onClose} variant="sub">
+                {ARIA_LABELS.CANCEL}
+              </WizTextButton>
+              <WizTextButton onClick={onSubmit}>
+                {ARIA_LABELS.APPLY}
+              </WizTextButton>
+            </WizHStack>
           </div>
         </WizCard>
       </WizPopup>

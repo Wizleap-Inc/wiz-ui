@@ -8,7 +8,13 @@ import {
 import clsx from "clsx";
 import { FC, KeyboardEvent, useContext, useRef, useState } from "react";
 
-import { WizCalendar, WizPopup, WizText } from "@/components";
+import {
+  WizCalendar,
+  WizDivider,
+  WizPopup,
+  WizText,
+  WizTextButton,
+} from "@/components";
 import { WizIcon } from "@/components/base/icon";
 import { WizHStack, WizVStack } from "@/components/base/stack";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
@@ -75,6 +81,7 @@ const DatePicker: FC<Props> = ({
       )
     );
   };
+  const [tempDate, setTempDate] = useState(date);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -110,6 +117,17 @@ const DatePicker: FC<Props> = ({
     return "default";
   })();
   const wrapperButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const onClose = () => {
+    setTempDate(date);
+    setIsOpen(false);
+  };
+
+  const onSubmit = () => {
+    onChangeDate(tempDate);
+    setIsOpen(false);
+  };
+
   return (
     <>
       <button
@@ -151,7 +169,7 @@ const DatePicker: FC<Props> = ({
       </button>
       <WizPopup
         isOpen={!disabled && isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={onClose}
         direction="bottomLeft"
         isDirectionFixed={isDirectionFixed}
         anchorElement={wrapperButtonRef}
@@ -240,14 +258,23 @@ const DatePicker: FC<Props> = ({
           </WizHStack>
           <WizCalendar
             activeDates={
-              (date && [{ date: date, state: "primary" }]) || undefined
+              (tempDate && [{ date: tempDate, state: "primary" }]) || undefined
             }
-            onClickDate={(date) => onChangeDate(date)}
+            onClickDate={(date) => setTempDate(date)}
             currentMonth={currentMonth}
             filledWeeks
             _today={_today || new Date()}
             disabledDate={disabledDate}
           />
+          <WizDivider color="gray.300" />
+          <WizHStack p="sm" gap="sm" justify="end">
+            <WizTextButton onClick={onClose} variant="sub">
+              {ARIA_LABELS.CANCEL}
+            </WizTextButton>
+            <WizTextButton onClick={onSubmit}>
+              {ARIA_LABELS.APPLY}
+            </WizTextButton>
+          </WizHStack>
         </div>
       </WizPopup>
     </>
