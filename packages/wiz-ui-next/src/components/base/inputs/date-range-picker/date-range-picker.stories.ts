@@ -460,6 +460,16 @@ Test.play = async ({ canvasElement }) => {
 
   //左のCalenderから15日を選択
   const body = within(canvasElement.ownerDocument.body);
+  const initialLeftDate = new Date(
+    intermediateDate.getFullYear(),
+    intermediateDate.getMonth(),
+    0
+  );
+  const initialRightDate = new Date(
+    intermediateDate.getFullYear(),
+    intermediateDate.getMonth() + 1,
+    0
+  );
   const leftClickDate = new Date(
     intermediateDate.getFullYear(),
     intermediateDate.getMonth() - 1,
@@ -474,10 +484,25 @@ Test.play = async ({ canvasElement }) => {
       `${_formatDateJp(leftClickDate)}-選択済み`
     )
   );
+
+  // クリックした段階ではまだInputに反映されていないこと
+  await waitFor(() =>
+    expect(button.textContent).toBe(
+      `${_formatDateJp(initialLeftDate)}-${_formatDateJp(initialRightDate)}`
+    )
+  );
+
+  // 適用ボタンをクリック
+  const applyButton = body.getByText(ARIA_LABELS.APPLY);
+  await userEvent.click(applyButton);
+
   // Input内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent).toBe(_formatDateJp(leftClickDate) + "-終了日")
   );
+
+  // カレンダー再オープン
+  await userEvent.click(button);
 
   // 右のCalenderから15日を選択
   const rightClickDate = new Date(
@@ -494,12 +519,24 @@ Test.play = async ({ canvasElement }) => {
       `${_formatDateJp(rightClickDate)}-選択済み`
     )
   );
+  // クリックした段階ではまだInputに反映されていないこと
+  await waitFor(() =>
+    expect(button.textContent).toBe(_formatDateJp(leftClickDate) + "-終了日")
+  );
+
+  // 適用ボタンをクリック
+  await userEvent.click(applyButton);
+
   // Input内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent?.replace(/\s+/g, "")).toBe(
       `${_formatDateJp(leftClickDate)}-${_formatDateJp(rightClickDate)}`
     )
   );
+
+  // カレンダー再オープン
+  await userEvent.click(button);
+
   // data-is-selectedなボタンがrightClickedDate ~ leftClickedDateの間の数だけあることを確認
   const diff = Math.floor(
     (rightClickDate.getTime() - leftClickDate.getTime()) / (1000 * 60 * 60 * 24)
