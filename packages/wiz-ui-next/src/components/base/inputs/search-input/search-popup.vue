@@ -28,7 +28,12 @@
             :key="`${item.label}_${item.value}_${key}`"
           >
             <!-- Dropdown -->
-            <div v-if="item.children" :class="styles.searchDropdownItemStyle">
+            <div
+              v-if="item.children"
+              :class="
+                styles.searchDropdownItemStyle[key === 0 ? 'first' : 'default']
+              "
+            >
               <WizHStack
                 py="xs2"
                 align="center"

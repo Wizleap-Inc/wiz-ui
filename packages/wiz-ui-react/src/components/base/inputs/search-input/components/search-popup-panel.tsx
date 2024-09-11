@@ -82,7 +82,7 @@ export const SearchPopupPanel: FC<Props> = ({
         style={{ ...style, width }}
       >
         {options.length > 0 ? (
-          options.map((option) => {
+          options.map((option, i) => {
             const isActive =
               activeOption && activeOption.value === option.value;
             const optionTag = option.tag;
@@ -91,7 +91,11 @@ export const SearchPopupPanel: FC<Props> = ({
                 {option.children ? (
                   // Dropdown
                   <div
-                    className={styles.searchDropdownItemStyle}
+                    className={
+                      styles.searchDropdownItemStyle[
+                        i === 0 ? "first" : "default"
+                      ]
+                    }
                     onMouseOver={() => setActiveValue(option.value)}
                   >
                     <div

@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = "1px";
@@ -98,10 +98,16 @@ export const searchPopupBlockBorderRadiusStyle = style({
   borderRadius: `${THEME.spacing.no} ${THEME.spacing.xs2} ${THEME.spacing.xs2} ${THEME.spacing.no}`,
 });
 
-export const searchDropdownItemStyle = style({
-  // FIXME: デザインシステムを使った値で再定義する
-  padding: `0.375rem ${THEME.spacing.no}`,
-  width: "100%",
+// Item間に引く線の高さを考慮する
+export const DIVIDER_HEIGHT = "1px";
+export const searchDropdownItemStyle = styleVariants({
+  first: {
+    paddingTop: `${THEME.spacing.xs}`,
+    paddingBottom: `calc(${THEME.spacing.xs} - ${DIVIDER_HEIGHT})`,
+  },
+  default: {
+    padding: `calc(${THEME.spacing.xs} - ${DIVIDER_HEIGHT}) ${THEME.spacing.no}`,
+  },
 });
 
 export const searchDropdownLabelStyle = style({
