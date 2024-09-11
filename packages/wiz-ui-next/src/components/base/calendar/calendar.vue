@@ -50,7 +50,13 @@
                 )
               "
             >
-              <div :class="styles.calendarItemInteractiveStyle">
+              <div
+                :class="
+                  isToday(row, col, adjacent.current.day)
+                    ? styles.calendarItemInteractiveTodayStyle
+                    : styles.calendarItemInteractiveStyle
+                "
+              >
                 {{ adjacent.current.day }}
               </div>
             </div>
@@ -98,6 +104,12 @@ const props = defineProps({
     type: Function as PropType<(date: Date) => boolean>,
     required: false,
     default: () => false,
+  },
+  // eslint-disable-next-line vue/prop-name-casing
+  _today: {
+    type: Date as PropType<Date>,
+    required: false,
+    default: new Date(),
   },
 });
 
@@ -248,6 +260,17 @@ const updateSelectedDate = (row: number, col: number, day: string) => {
     );
     emits("click", selectedValue);
   }
+};
+
+const isToday = (row: number, col: number, day: string) => {
+  if (!isCurrentMonth(row, col)) return false;
+  const date = new Date(
+    props.currentMonth.getFullYear(),
+    props.currentMonth.getMonth(),
+    Number(day)
+  );
+
+  return date.toDateString() === (props._today || new Date()).toDateString();
 };
 
 const isActiveDate = computed(() => {
