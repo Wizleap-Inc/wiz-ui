@@ -1,8 +1,8 @@
 import { TIcon } from "@/components";
 
-export interface PopupButtonOption {
+export interface PopupButtonOption<T> {
   label: string;
-  value: number;
+  value?: T;
   exLabel?: string;
   icon?: TIcon;
   iconDefaultColor?: "green.800" | "gray.500";
@@ -10,27 +10,27 @@ export interface PopupButtonOption {
   onClick: () => void;
 }
 
-export interface ButtonItem {
+export interface ButtonItem<T> {
   kind: "button";
-  option: PopupButtonOption;
+  option: PopupButtonOption<T>;
 }
 
 interface DividerItem {
   kind: "divider";
 }
 
-export interface GroupItem {
+export interface GroupItem<T> {
   kind: "group";
   title: string;
   // 再帰参照を許可するためにno-use-before-define無効化
   // eslint-disable-next-line no-use-before-define
-  items: ButtonGroupItem[];
+  items: ButtonGroupItem<T>[];
   groupDivider?: boolean;
   buttonDivider?: boolean;
 }
 
-export type ButtonGroupItem = ButtonItem | DividerItem | GroupItem;
+export type ButtonGroupItem<T> = ButtonItem<T> | DividerItem | GroupItem<T>;
 
-export type ItemElement =
+export type ItemElement<T> =
   | DividerItem
-  | { kind: "item"; item: Exclude<ButtonGroupItem, DividerItem> };
+  | { kind: "item"; item: Exclude<ButtonGroupItem<T>, DividerItem> };

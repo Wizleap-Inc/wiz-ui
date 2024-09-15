@@ -34,10 +34,10 @@ v-modelには選択中のアイテムを渡します。
 };
 
 export default meta;
-type Story = StoryObj<typeof WizSearchSelector>;
+type Story = StoryObj<typeof WizSearchSelector<number>>;
 
 const getDummyOptions = (label: string, count: number, exLabel?: string) => {
-  const options: SearchSelectorOption[] = [];
+  const options: SearchSelectorOption<number>[] = [];
   for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i, exLabel });
     options.push({ label: label + i * 10, value: i * 10, exLabel });
@@ -49,7 +49,7 @@ const getTemplate = (initialValues: number[] = []): Story => {
   return {
     render: (args) => {
       const [values, setValues] = useState<number[]>(initialValues);
-      const [options, setOptions] = useState<SearchSelectorOption[]>(
+      const [options, setOptions] = useState<SearchSelectorOption<number>[]>(
         args.options
       );
       const onCreate = useCallback(
