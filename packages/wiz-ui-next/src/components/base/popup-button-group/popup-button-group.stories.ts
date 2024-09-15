@@ -49,7 +49,7 @@ const _getDummyOptions = (
   click: (n: number) => void,
   exLabel?: string
 ) => {
-  const options: PopupButtonOption<number>[] = [];
+  const options: PopupButtonOption[] = [];
   const createIcon = (i: number) => {
     if (i % 3 === 0) {
       return undefined;
@@ -74,7 +74,7 @@ const _getDummyOptions = (
     });
   });
   return options.map(
-    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem<number>)
+    (opt) => ({ kind: "button", option: opt } as ButtonGroupItem)
   );
 };
 
@@ -83,7 +83,7 @@ const createButton = (
   click: (n: number) => void,
   disabled?: boolean,
   icon?: TIcon
-): ButtonGroupItem<number> => ({
+): ButtonGroupItem => ({
   kind: "button",
   option: {
     label: `item ${n}`,
@@ -95,9 +95,7 @@ const createButton = (
   },
 });
 
-const _getDummyItems = (
-  click: (arg: number) => void
-): ButtonGroupItem<number>[] => [
+const _getDummyItems = (click: (arg: number) => void): ButtonGroupItem[] => [
   {
     kind: "group",
     title: "タイトル1",
@@ -138,9 +136,7 @@ Disabled.args = {
 export const DisabledButton: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup },
   setup() {
-    const createOptions = (
-      click: (arg: number) => void
-    ): ButtonGroupItem<number>[] => [
+    const createOptions = (click: (arg: number) => void): ButtonGroupItem[] => [
       createButton(1, click, true, WizIOpenInNew),
       createButton(2, click, false, WizIOpenInNew),
       createButton(3, click, true),
@@ -181,9 +177,7 @@ Popup.args = {
 export const Divider: StoryFn<typeof WizPopupButtonGroup> = (args) => ({
   components: { WizPopupButtonGroup },
   setup() {
-    const createOptions = (
-      click: (arg: number) => void
-    ): ButtonGroupItem<number>[] => [
+    const createOptions = (click: (arg: number) => void): ButtonGroupItem[] => [
       createButton(1, click),
       createButton(2, click),
       { kind: "divider" },

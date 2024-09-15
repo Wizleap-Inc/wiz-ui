@@ -97,7 +97,7 @@
   </WizBox>
 </template>
 
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T=number">
 import {
   ARIA_LABELS,
   ComponentName,

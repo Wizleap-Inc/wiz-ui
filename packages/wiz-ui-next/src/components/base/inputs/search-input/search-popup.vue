@@ -111,7 +111,7 @@
   />
 </template>
 
-<script setup lang="ts" generic="T extends CheckboxOption">
+<script setup lang="ts" generic="T extends CheckboxOption = number">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { computed, ref } from "vue";

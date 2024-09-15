@@ -4,7 +4,7 @@ export type Tag = {
   label: string;
 };
 
-export type SearchInputOption<T extends CheckboxOption> = {
+export type SearchInputOption<T extends CheckboxOption = number> = {
   label: string;
   value: T;
   children?: SearchInputOption<T>[];

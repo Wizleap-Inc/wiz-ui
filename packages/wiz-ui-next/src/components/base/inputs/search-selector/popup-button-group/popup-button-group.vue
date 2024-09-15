@@ -81,7 +81,7 @@
   </WizVStack>
 </template>
 
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T = number">
 import { SpacingKeys, THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   borderRadiusStyle,

@@ -155,7 +155,7 @@ SomeonesTyping.args = {
   isOpen: true,
   typingUsername: "なんとかかんとか",
 };
-const STATUS_OPTIONS: SelectBoxOption<number>[] = [
+const STATUS_OPTIONS: SelectBoxOption[] = [
   {
     label: "ステータス１",
     value: 1,

@@ -1,5 +1,5 @@
 import { TIcon } from "@/components";
-export interface PopupButtonOption<T> {
+export interface PopupButtonOption<T = number> {
   label: string;
   value?: T;
   exLabel?: string;
@@ -9,7 +9,7 @@ export interface PopupButtonOption<T> {
   onClick: () => void;
 }
 
-export type ButtonGroupItem<T> =
+export type ButtonGroupItem<T = number> =
   | { kind: "button"; option: PopupButtonOption<T> }
   | { kind: "divider" }
   | {

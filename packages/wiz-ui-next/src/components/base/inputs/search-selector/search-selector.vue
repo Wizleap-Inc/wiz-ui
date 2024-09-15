@@ -100,7 +100,7 @@
   </WizPopupContainer>
 </template>
 
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T = number">
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   selectBoxCursorStyle,

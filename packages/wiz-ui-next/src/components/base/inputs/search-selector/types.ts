@@ -1,4 +1,4 @@
-export interface SelectBoxOption<T> {
+export interface SelectBoxOption<T = number> {
   label: string;
   value: T;
   exLabel?: string;

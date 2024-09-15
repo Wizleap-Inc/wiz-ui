@@ -67,7 +67,7 @@
   </WizTooltip>
 </template>
 
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T = number">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   navigationItemActiveStyle,

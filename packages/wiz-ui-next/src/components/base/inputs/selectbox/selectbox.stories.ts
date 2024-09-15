@@ -46,7 +46,7 @@ const Template: StoryFn<typeof WizSelectBox> = (args) => ({
 });
 
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
-  const options: SelectBoxOption<number>[] = [];
+  const options: SelectBoxOption[] = [];
   for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i, exLabel });
   }

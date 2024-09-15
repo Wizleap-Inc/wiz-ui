@@ -187,7 +187,7 @@ LabelFontSize.parameters = {
   },
 };
 
-const SELECT_BOX_CHOICES: SelectBoxOption<number>[] = [
+const SELECT_BOX_CHOICES: SelectBoxOption[] = [
   {
     label: "選択肢1",
     value: 1,
@@ -216,7 +216,7 @@ export const AllInput: StoryFn<typeof WizFormControl> = () => ({
     const textInput = ref("");
     const passwordInput = ref("");
     const textareaInput = ref("");
-    const SELECT_OPTIONS: SelectBoxOption<number>[] = SELECT_BOX_CHOICES;
+    const SELECT_OPTIONS: SelectBoxOption[] = SELECT_BOX_CHOICES;
     const selectInput = ref<string | null>(null);
     const checkBoxOptions: CheckBoxOption[] = [
       {
@@ -324,7 +324,7 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
     const textInput = ref("");
     const passwordInput = ref("");
     const textareaInput = ref("");
-    const SELECT_OPTIONS: SelectBoxOption<number>[] = SELECT_BOX_CHOICES;
+    const SELECT_OPTIONS: SelectBoxOption[] = SELECT_BOX_CHOICES;
     const selectInput = ref(0);
     const checkBoxOptions: CheckBoxOption[] = [
       {

@@ -55,7 +55,7 @@ v-modelには選択中のアイテムを渡します。
 } as Meta<typeof WizSearchSelector>;
 
 const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
-  const options: SelectBoxOption<number>[] = [];
+  const options: SelectBoxOption[] = [];
   for (let i = 1; i <= count; i++) {
     options.push({ label: label + i, value: i, exLabel: exLabel });
     options.push({ label: label + i * 10, value: i * 10, exLabel: exLabel });
@@ -67,7 +67,7 @@ const Template =
   (
     initValue: number[],
     open: boolean,
-    initOptions: SelectBoxOption<number>[],
+    initOptions: SelectBoxOption[],
     initSearchValue: string
   ): StoryFn<typeof WizSearchSelector> =>
   (args) => ({
@@ -76,7 +76,7 @@ const Template =
       const currentValue = ref(initValue);
       const isOpen = ref(open);
       const searchValue = ref(initSearchValue);
-      const options = ref<SelectBoxOption<number>[]>(initOptions);
+      const options = ref<SelectBoxOption[]>(initOptions);
       const emits = {
         select: (n: number) => {
           currentValue.value.push(n);
@@ -121,7 +121,7 @@ const Template =
 const code = (
   initValue: number[],
   open: boolean,
-  initOptions: SelectBoxOption<number>[],
+  initOptions: SelectBoxOption[],
   initSearchValue: string,
   opts?: {
     disabled?: boolean;
@@ -134,12 +134,12 @@ const code = (
   import { ref } from "vue";
   import { WizHStack } from "@/components"; 
   import { WizSearchSelector } from ".";
-  import { SelectBoxOption<number> } from "./types";
+  import { SelectBoxOption } from "./types";
   
   const value = ref(${initValue});
   const isOpen = ref(${open});
   const searchValue = ref(${initSearchValue});
-  const options = ref<SelectBoxOption<number>[]>([]);
+  const options = ref<SelectBoxOption[]>([]);
   
   const emits = {
     select: (n: number) => {
