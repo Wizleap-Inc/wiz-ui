@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script setup lang="ts" generic="T">
+<script setup lang="ts">
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 import {
   WizBox,
@@ -72,7 +72,7 @@ const props = defineProps({
     required: false,
   },
   statusOptions: {
-    type: Array as PropType<SelectBoxOption<T>[]>,
+    type: Array as PropType<SelectBoxOption<number>[]>,
     required: false,
   },
   statusPlaceholder: {
