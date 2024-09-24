@@ -191,38 +191,35 @@ const SearchInput: FC<Props> = ({
                 name={name}
                 disabled={disabled}
                 onChange={(e) => {
-                  setIsPopupOpen(true);
                   setFilteringText(e.target.value);
                 }}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                onClick={() => setIsPopupOpen(!isPopupOpen)}
+                onClick={() => setIsPopupOpen(true)}
                 autoComplete="off"
               />
             </WizHStack>
           </WizHStack>
         </div>
       </div>
-      {filteredOptions.length > 0 && !disabled && (
-        <WizPopup
-          anchorElement={inputRef}
-          isOpen={isPopupOpen}
-          onClose={() => setIsPopupOpen(false)}
-          isDirectionFixed={isDirectionFixed}
-        >
-          <WizHStack nowrap>
-            <SearchPopupPanel
-              options={filteredOptions}
-              closePopup={() => setIsPopupOpen(false)}
-              values={values}
-              width={popupWidth}
-              emptyMessage={emptyMessage}
-              singleSelect={singleSelect}
-              onChangeValues={handleClickPanelItem}
-            />
-          </WizHStack>
-        </WizPopup>
-      )}
+      <WizPopup
+        anchorElement={inputRef}
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        isDirectionFixed={isDirectionFixed}
+      >
+        <WizHStack nowrap>
+          <SearchPopupPanel
+            options={filteredOptions}
+            closePopup={() => setIsPopupOpen(false)}
+            values={values}
+            width={popupWidth}
+            emptyMessage={emptyMessage}
+            singleSelect={singleSelect}
+            onChangeValues={handleClickPanelItem}
+          />
+        </WizHStack>
+      </WizPopup>
     </>
   );
 };

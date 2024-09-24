@@ -9,14 +9,14 @@ import {
 import { ref } from "vue";
 
 import {
-  WizDateRangePicker,
-  WizTextInput,
-  WizPasswordInput,
-  WizSelectBox,
   WizCheckBox,
-  WizRadio,
-  WizTextArea,
   WizDatePicker,
+  WizDateRangePicker,
+  WizPasswordInput,
+  WizRadio,
+  WizSelectBox,
+  WizTextArea,
+  WizTextInput,
   WizTimePicker,
 } from "@/components";
 import { CheckBoxOption } from "@/components/base/inputs/checkbox/types";
@@ -27,7 +27,7 @@ import {
 import { RadioOption } from "@/components/base/inputs/radio/types";
 import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
-import { WizFormGroup, WizFormControl } from ".";
+import { WizFormControl, WizFormGroup } from ".";
 
 export default {
   title: "Custom/Form/Group",
