@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-example-vue3
 
+## 0.2.0
+
+### Minor Changes
+
+- [#1345](https://github.com/Wizleap-Inc/wiz-ui/pull/1345) [`73c5b87cfc3c75239de8814e97a26c42d1b3fcff`](https://github.com/Wizleap-Inc/wiz-ui/commit/73c5b87cfc3c75239de8814e97a26c42d1b3fcff) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(selects): ジェネリックコンポーネント化
+
+### Patch Changes
+
+- Updated dependencies [[`73c5b87cfc3c75239de8814e97a26c42d1b3fcff`](https://github.com/Wizleap-Inc/wiz-ui/commit/73c5b87cfc3c75239de8814e97a26c42d1b3fcff)]:
+  - @wizleap-inc/wiz-ui-next@2.41.0
+
 ## 0.1.0
 
 ### Minor Changes
