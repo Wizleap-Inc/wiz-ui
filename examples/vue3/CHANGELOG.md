@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui-example-vue3
 
+## 0.2.1
+
+### Patch Changes
+
+- [#1372](https://github.com/Wizleap-Inc/wiz-ui/pull/1372) [`c041edba88dbd007b3af58a541c30ba090d87898`](https://github.com/Wizleap-Inc/wiz-ui/commit/c041edba88dbd007b3af58a541c30ba090d87898) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(wiz-ui-next): ジェネリクスの型がうまく生成できない問題の解消
+
+- Updated dependencies [[`c041edba88dbd007b3af58a541c30ba090d87898`](https://github.com/Wizleap-Inc/wiz-ui/commit/c041edba88dbd007b3af58a541c30ba090d87898)]:
+  - @wizleap-inc/wiz-ui-next@2.41.1
+
 ## 0.2.0
 
 ### Minor Changes
