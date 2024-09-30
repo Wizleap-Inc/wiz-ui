@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.33.0
+
+### Minor Changes
+
+- [#1375](https://github.com/Wizleap-Inc/wiz-ui/pull/1375) [`ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Chore(infomation-panel): update close button position
+
+### Patch Changes
+
+- Updated dependencies [[`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b)]:
+  - @wizleap-inc/wiz-ui-constants@0.30.0
+
 ## 0.32.0
 
 ### Minor Changes
