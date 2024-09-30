@@ -25,7 +25,3 @@ export const informationPanelFontStyle = styleVariants({
     color: THEME.color.red["800"],
   },
 });
-
-export const informationPanelIconStyle = style({
-  margin: "auto 0",
-});
