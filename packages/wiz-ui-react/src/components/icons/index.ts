@@ -33,9 +33,19 @@ import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClose } from "./close";
 import { WizICloseBold } from "./close-bold";
+import { WizICloudUpload } from "./cloud-upload";
 import { WizIContactPageFilled } from "./contact-page-filled";
 import { WizIContentCopy } from "./content-copy";
 import { WizIContract } from "./contract";
+import { WizICounter1 } from "./counter-1";
+import { WizICounter2 } from "./counter-2";
+import { WizICounter3 } from "./counter-3";
+import { WizICounter4 } from "./counter-4";
+import { WizICounter5 } from "./counter-5";
+import { WizICounter6 } from "./counter-6";
+import { WizICounter7 } from "./counter-7";
+import { WizICounter8 } from "./counter-8";
+import { WizICounter9 } from "./counter-9";
 import { WizIDashboard } from "./dashboard";
 import { WizIDelete } from "./delete";
 import { WizIDemography } from "./demography";
@@ -94,6 +104,7 @@ import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
 import { WizITimerFilled } from "./timer-filled";
+import { WizITune } from "./tune";
 import { WizIUpload } from "./upload";
 import { WizIWarning } from "./warning";
 
@@ -133,9 +144,19 @@ export type TIcon =
   | typeof WizICircle
   | typeof WizICloseBold
   | typeof WizIClose
+  | typeof WizICloudUpload
   | typeof WizIContactPageFilled
   | typeof WizIContentCopy
   | typeof WizIContract
+  | typeof WizICounter1
+  | typeof WizICounter2
+  | typeof WizICounter3
+  | typeof WizICounter4
+  | typeof WizICounter5
+  | typeof WizICounter6
+  | typeof WizICounter7
+  | typeof WizICounter8
+  | typeof WizICounter9
   | typeof WizIDashboard
   | typeof WizIDelete
   | typeof WizIDemography
@@ -194,6 +215,7 @@ export type TIcon =
   | typeof WizITab
   | typeof WizITask
   | typeof WizITimerFilled
+  | typeof WizITune
   | typeof WizIUpload
   | typeof WizIWarning;
 
@@ -233,9 +255,19 @@ export {
   WizICircle,
   WizICloseBold,
   WizIClose,
+  WizICloudUpload,
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
+  WizICounter1,
+  WizICounter2,
+  WizICounter3,
+  WizICounter4,
+  WizICounter5,
+  WizICounter6,
+  WizICounter7,
+  WizICounter8,
+  WizICounter9,
   WizIDashboard,
   WizIDelete,
   WizIDemography,
@@ -294,6 +326,7 @@ export {
   WizITab,
   WizITask,
   WizITimerFilled,
+  WizITune,
   WizIUpload,
   WizIWarning,
 };
