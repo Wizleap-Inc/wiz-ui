@@ -21,7 +21,7 @@ import {
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
-type SelectBoxOption<T> = {
+type SelectBoxOption<T = number> = {
   label: string;
   exLabel?: string;
   value: T;
