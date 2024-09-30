@@ -3,7 +3,6 @@
     :class="[
       baseInputStyle,
       baseInputPaddingStyle[spaceType],
-      disabled && baseInputDisabledStyle,
       inputBorderStyle[state],
     ]"
     :style="{ width: computedWidth }"
@@ -19,14 +18,13 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName, AutoCompleteKeys } from "@wizleap-inc/wiz-ui-constants";
+import { AutoCompleteKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  baseInputStyle,
-  baseInputDisabledStyle,
   baseInputPaddingStyle,
+  baseInputStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/base-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, PropType } from "vue";
+import { PropType, computed } from "vue";
 
 defineOptions({
   name: ComponentName.BaseInput,

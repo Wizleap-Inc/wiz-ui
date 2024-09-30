@@ -111,8 +111,6 @@ const SearchInput: FC<Props> = ({
     return map;
   }, [options, showParentLabel]);
 
-  const IconComponent = icon;
-
   const onClear = (value: number) => {
     const newValues = values.filter((v) => v !== value);
     onChangeValues(newValues);
@@ -148,10 +146,14 @@ const SearchInput: FC<Props> = ({
       >
         <div className={styles.searchInputInnerBoxStyle}>
           <WizHStack align="center" nowrap gap="xs">
-            <IconComponent
-              className={styles.searchInputIconStyle}
-              style={{ flexShrink: 0 }}
-            />
+            <div className={styles.searchInputIconStyle}>
+              <WizIcon
+                // className={styles.searchInputIconStyle}
+                style={{ flexShrink: 0 }}
+                icon={icon}
+                color={"gray.500"}
+              />
+            </div>
             <WizHStack
               align="center"
               height="100%"

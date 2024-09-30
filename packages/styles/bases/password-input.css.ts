@@ -32,6 +32,9 @@ export const passwordVisibleIconStyle = style({
   height: THEME.fontSize.xl2,
   padding: THEME.spacing.no,
   fill: THEME.color.gray["400"],
+  ":disabled": {
+    cursor: "not-allowed",
+  },
 });
 
 export const passwordVisibleIconActiveStyle = style({

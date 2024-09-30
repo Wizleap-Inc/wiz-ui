@@ -67,9 +67,9 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           expand={expand}
           width={width}
           error={isError}
-          type={isPasswordVisible ? "text" : "password"}
+          type={!disabled && isPasswordVisible ? "text" : "password"}
           autoComplete={autocomplete}
-          space-type="right"
+          spaceType="right"
           onChange={(e) => onChange(e.target.value)}
           {...props}
         />
@@ -78,15 +78,15 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           aria-label={ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE}
           className={styles.passwordVisibleIconStyle}
           onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          disabled={disabled}
         >
-          <div
+          <WizIEye
             className={clsx(
-              isPasswordVisible && styles.passwordVisibleIconActiveStyle
+              !disabled &&
+                isPasswordVisible &&
+                styles.passwordVisibleIconActiveStyle
             )}
-            style={{ display: "flex" }}
-          >
-            <WizIEye />
-          </div>
+          />
         </button>
       </div>
     );

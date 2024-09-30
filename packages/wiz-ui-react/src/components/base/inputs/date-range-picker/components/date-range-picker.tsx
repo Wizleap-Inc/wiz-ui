@@ -209,25 +209,30 @@ const DateRangePicker: FC<Props> = ({
           <div className={styles.popupCalendarCancelIconStyle}>
             <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
           </div>
-          <div
+
+          <span
             className={
               styles.inputTextStyle[
-                dateRange.start && !disabled ? "selected" : "default"
+                (disabled && "disabled") ||
+                  (dateRange.start && "selected") ||
+                  "default"
               ]
             }
           >
             {dateRange.start ? formatDate(dateRange.start) : "開始日"}
-          </div>
-          <div className={styles.separatorStyle}>-</div>
-          <div
+          </span>
+          <span className={styles.separatorStyle}>-</span>
+          <span
             className={
               styles.inputTextStyle[
-                dateRange.end && !disabled ? "selected" : "default"
+                (disabled && "disabled") ||
+                  (dateRange.end && "selected") ||
+                  "default"
               ]
             }
           >
             {dateRange.end ? formatDate(dateRange.end) : "終了日"}
-          </div>
+          </span>
         </WizHStack>
 
         {cancelButtonVisible && (

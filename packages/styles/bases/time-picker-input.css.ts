@@ -15,7 +15,9 @@ export const timePickerStyle = style({
 });
 
 export const timePickerDisabledStyle = style({
-  backgroundColor: THEME.color.gray["300"],
+  opacity: 0.5,
+  color: THEME.color.gray[700],
+  backgroundColor: THEME.color.gray[300],
 });
 
 export const timePickerCursorStyle = styleVariants({
@@ -35,7 +37,7 @@ export const timePickerBoxColorStyle = styleVariants({
     color: THEME.color.gray["800"],
   },
   disabled: {
-    color: THEME.color.gray["500"],
+    color: THEME.color.gray["700"],
   },
 });
 
@@ -119,8 +121,7 @@ export const cancelButtonStyle = style({
   ":active": {
     fill: THEME.color.green["800"],
   },
-});
-
-export const cancelButtonDisabledStyle = style({
-  cursor: "not-allowed",
+  ":disabled": {
+    cursor: "not-allowed",
+  },
 });
