@@ -42,7 +42,7 @@ const Layout = () => {
         gapRight="xl"
         sticky
       />
-      <WizHStack>
+      <WizHStack nowrap>
         <Navigation isOpen={isNavigationOpen} />
         <Outlet />
       </WizHStack>
