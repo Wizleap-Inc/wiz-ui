@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
+import { useState } from "react";
 
 import { WizNumberInput } from "..";
 
@@ -14,10 +15,18 @@ type Story = StoryObj<typeof WizNumberInput>;
 
 const Template: Story = {
   render: (args) => {
+    const [value, setValue] = useState<number | null>(0);
     return (
-      <div>
-        <WizNumberInput {...args} />
-      </div>
+      <>
+        <WizNumberInput
+          {...args}
+          value={value}
+          onChange={(e) => {
+            setValue(e.currentTarget.valueAsNumber);
+          }}
+        />
+        <div> value : {value} </div>
+      </>
     );
   },
   play: async ({ canvasElement }) => {
@@ -31,4 +40,11 @@ const Template: Story = {
 export const Default: Story = {
   ...Template,
   args: {},
+};
+
+export const Placeholder: Story = {
+  ...Template,
+  args: {
+    placeholder: "数字を入力",
+  },
 };

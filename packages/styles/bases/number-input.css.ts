@@ -1,18 +1,20 @@
 import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-const BORDER_WIDTH = "1px";
-
-export const datePickerStyle = style({
-  width: "100%",
+export const container = style({
+  position: "relative",
+  background: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
-  fontSize: THEME.fontSize.sm,
-  lineHeight: THEME.fontSize.xl3,
+  overflow: "hidden",
 });
 
-export const InputStyle = style({
+export const disabled = style({
+  backgroundColor: THEME.color.gray[300],
+  cursor: "not-allowed",
+});
+
+export const input = style({
   "::-webkit-outer-spin-button": {
     appearance: "none",
     margin: 0,
@@ -22,6 +24,7 @@ export const InputStyle = style({
     margin: 0,
   },
   MozAppearance: "textfield",
+  textAlign: "center",
   minWidth: "30%",
   border: "none",
   outline: "none",
@@ -40,13 +43,16 @@ export const InputStyle = style({
   },
 });
 
-export const ButtonStyle = style({
+export const button = style({
   lineHeight: 0.2,
   position: "relative",
   cursor: "pointer",
-  padding: THEME.spacing.no,
-  borderRadius: THEME.spacing.xs2,
+  padding: THEME.spacing.xs2,
+  borderRadius: THEME.spacing.no,
+  boxSizing: "border-box",
+  borderColor: THEME.color.gray["400"],
   border: "none",
+  borderLeft: `1px solid ${THEME.color.gray["400"]}`,
   background: "transparent",
   fill: THEME.color.gray["800"],
   "@media": {
@@ -63,7 +69,7 @@ export const ButtonStyle = style({
   },
 });
 
-export const ArrowIconStyle = style({
+export const arrowIcon = style({
   transform: "scale(2)",
   pointerEvents: "none",
 });
