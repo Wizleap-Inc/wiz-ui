@@ -68,6 +68,7 @@ export const ComponentName = {
   ChatCard: "WizChatCard",
   ChatForm: "WizChatForm",
   ChatItem: "WizChatItem",
+  NumberInput: "WizNumberInput",
   Notification: "WizNotification",
   NotificationList: "WizNotificationList",
   NotificationPanel: "WizNotificationPanel",
