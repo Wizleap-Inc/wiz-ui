@@ -24,6 +24,7 @@ import {
   DateRange,
   DateRangePickerSelectBoxOption,
 } from "@/components/base/inputs/date-range-picker/types";
+import { WizNumberInput } from "@/components/base/inputs/number-input";
 import { RadioOption } from "@/components/base/inputs/radio/types";
 import { SelectBoxOption } from "@/components/base/inputs/selectbox/types";
 
@@ -211,6 +212,7 @@ export const AllInput: StoryFn<typeof WizFormControl> = () => ({
     WizDatePicker,
     WizTimePicker,
     WizDateRangePicker,
+    WizNumberInput,
   },
   setup() {
     const textInput = ref("");
@@ -256,6 +258,7 @@ export const AllInput: StoryFn<typeof WizFormControl> = () => ({
       { label: "選択肢3", value: "3" },
     ]);
     const selectBoxInput = ref("");
+    const numberInput = ref<number>();
     return {
       textInput,
       passwordInput,
@@ -271,6 +274,7 @@ export const AllInput: StoryFn<typeof WizFormControl> = () => ({
       dateRangeInput,
       selectBoxOptions,
       selectBoxInput,
+      numberInput,
     };
   },
   template: `
@@ -302,6 +306,9 @@ export const AllInput: StoryFn<typeof WizFormControl> = () => ({
       <WizFormControl label="WizDateRangePicker">
         <WizDateRangePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" v-model:selectBoxValue="selectBoxInput" />
       </WizFormControl>
+      <WizFormControl label="WizNumberInput">
+        <WizNumberInput v-model="numberInput" name="numberInput" />
+      </WizFormControl>
     </WizFormGroup>
   `,
 });
@@ -319,6 +326,7 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
     WizDatePicker,
     WizTimePicker,
     WizDateRangePicker,
+    WizNumberInput,
   },
   setup() {
     const textInput = ref("");
@@ -364,6 +372,7 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
       { label: "選択肢3", value: "3" },
     ]);
     const selectBoxInput = ref("");
+    const numberInput = ref<number>();
     return {
       textInput,
       passwordInput,
@@ -379,6 +388,7 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
       dateRangeInput,
       selectBoxOptions,
       selectBoxInput,
+      numberInput,
     };
   },
   template: `
@@ -409,6 +419,9 @@ export const AllInputError: StoryFn<typeof WizFormControl> = () => ({
       </WizFormControl>
       <WizFormControl label="WizDateRangePicker" error="エラーが発生しました">
         <WizDateRangePicker v-model="dateRangeInput" name="dateRangeInput" :selectBoxOptions="selectBoxOptions" v-model:selectBoxValue="selectBoxInput" />
+      </WizFormControl>
+      <WizFormControl label="WizNumberInput" error="エラーが発生しました">
+        <WizNumberInput v-model="numberInput" name="numberInput" />
       </WizFormControl>
     </WizFormGroup>
   `,

@@ -28,3 +28,14 @@ export const Placeholder = Template.bind({});
 Placeholder.args = {
   placeholder: "数字を入力",
 };
+
+export const WithValue = Template.bind({});
+WithValue.args = {
+  modelValue: 100,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  modelValue: 100,
+  disabled: true,
+};

@@ -40,6 +40,7 @@ export const input = style({
   ":disabled": {
     cursor: "not-allowed",
     backgroundColor: THEME.color.gray["300"],
+    color: THEME.color.gray["500"],
   },
 });
 
@@ -54,18 +55,23 @@ export const button = style({
   border: "none",
   borderLeft: `1px solid ${THEME.color.gray["400"]}`,
   background: "transparent",
-  fill: THEME.color.gray["800"],
-  "@media": {
-    "(any-hover: hover)": {
-      ":hover": {
-        backgroundColor: THEME.color.green["300"],
-        fill: THEME.color.green["800"],
+  fill: THEME.color.gray["500"],
+  selectors: {
+    "&:hover:not(:disabled)": {
+      "@media": {
+        "(any-hover: hover)": {
+          backgroundColor: THEME.color.green["300"],
+          fill: THEME.color.green["800"],
+        },
       },
     },
+    "&:active:not(:disabled)": {
+      backgroundColor: THEME.color.green["800"],
+      fill: THEME.color.white["800"],
+    },
   },
-  ":active": {
-    backgroundColor: THEME.color.green["800"],
-    fill: THEME.color.white["800"],
+  ":disabled": {
+    cursor: "not-allowed",
   },
 });
 

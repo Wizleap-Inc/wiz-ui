@@ -3,9 +3,11 @@
     :class="[
       styles.container,
       disabled && styles.disabled,
-      inputBorderStyle['default'],
+      inputBorderStyle[isError ? 'error' : hasFocus ? 'active' : 'default'],
     ]"
     :style="{ display: 'flex', width: width }"
+    @focusin="hasFocus = true"
+    @focusout="hasFocus = false"
   >
     <input
       :class="styles.input"
@@ -14,20 +16,20 @@
       ref="inputRef"
       @input="onInput"
       v-bind="restProps"
+      :disabled="disabled"
     />
     <WizVStack>
       <button
         type="button"
         @click="handleStepUp"
         :class="styles.button"
-        :aria-label="ARIA_LABELS.YEAR_SELECTOR_NEXT"
+        :disabled="disabled"
       >
-        <WizIArrowDropUp
-          :class="[
-            fillStyle['gray.500'],
-            fontSizeStyle['xs2'],
-            styles.arrowIcon,
-          ]"
+        <WizIcon
+          :icon="WizIArrowDropUp"
+          :class="[styles.arrowIcon]"
+          size="xs2"
+          color="inherit"
         />
       </button>
       <WizDivider />
@@ -35,14 +37,13 @@
         type="button"
         @click="handleStepDown"
         :class="styles.button"
-        :aria-label="ARIA_LABELS.YEAR_SELECTOR_PREV"
+        :disabled="disabled"
       >
-        <WizIArrowDropDown
-          :class="[
-            fillStyle['gray.500'],
-            fontSizeStyle['xs2'],
-            styles.arrowIcon,
-          ]"
+        <WizIcon
+          :icon="WizIArrowDropDown"
+          :class="[styles.arrowIcon]"
+          size="xs2"
+          color="inherit"
         />
       </button>
     </WizVStack>
@@ -50,21 +51,19 @@
 </template>
 
 <script setup lang="ts" generic="T = number">
-import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/number-input.css";
-import {
-  fillStyle,
-  fontSizeStyle,
-  inputBorderStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, ref } from "vue";
+import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { computed, inject, ref } from "vue";
 
 import {
   WizDivider,
   WizIArrowDropDown,
   WizIArrowDropUp,
+  WizIcon,
   WizVStack,
 } from "@/components";
+import { formControlKey } from "@/hooks/use-form-control-provider";
 
 defineOptions({
   name: ComponentName.NumberInput,
@@ -87,6 +86,10 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits(["update:modelValue"]);
+
+const form = inject(formControlKey);
+const isError = computed(() => (form ? form.isError.value : false));
+const hasFocus = ref(false);
 
 const inputRef = ref<HTMLInputElement | null>(null);
 
