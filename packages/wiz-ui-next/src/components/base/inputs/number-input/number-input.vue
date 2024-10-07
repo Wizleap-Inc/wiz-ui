@@ -25,12 +25,7 @@
         :class="styles.button"
         :disabled="disabled"
       >
-        <WizIcon
-          :icon="WizIArrowDropUp"
-          :class="[styles.arrowIcon]"
-          size="xs2"
-          color="inherit"
-        />
+        <WizIArrowDropUp :class="[styles.arrowIcon]" />
       </button>
       <WizDivider />
       <button
@@ -39,12 +34,7 @@
         :class="styles.button"
         :disabled="disabled"
       >
-        <WizIcon
-          :icon="WizIArrowDropDown"
-          :class="[styles.arrowIcon]"
-          size="xs2"
-          color="inherit"
-        />
+        <WizIArrowDropDown :class="[styles.arrowIcon]" />
       </button>
     </WizVStack>
   </div>
@@ -60,7 +50,6 @@ import {
   WizDivider,
   WizIArrowDropDown,
   WizIArrowDropUp,
-  WizIcon,
   WizVStack,
 } from "@/components";
 import { formControlKey } from "@/hooks/use-form-control-provider";

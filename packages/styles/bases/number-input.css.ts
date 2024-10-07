@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { fontSizeStyle } from "commons";
 
 export const container = style({
   position: "relative",
@@ -75,7 +76,11 @@ export const button = style({
   },
 });
 
-export const arrowIcon = style({
-  transform: "scale(2)",
-  pointerEvents: "none",
-});
+export const arrowIcon = style([
+  fontSizeStyle.xs2,
+  {
+    transform: "scale(2)",
+    pointerEvents: "none",
+    color: "currentcolor",
+  },
+]);

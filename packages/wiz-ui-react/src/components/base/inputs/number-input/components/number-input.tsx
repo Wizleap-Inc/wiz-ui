@@ -8,7 +8,6 @@ import {
   WizDivider,
   WizIArrowDropDown,
   WizIArrowDropUp,
-  WizIcon,
   WizVStack,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
@@ -96,12 +95,7 @@ const NumberInput = (props: Props) => {
           className={styles.button}
           disabled={disabled}
         >
-          <WizIcon
-            className={styles.arrowIcon}
-            icon={WizIArrowDropUp}
-            size="xs2"
-            color="inherit"
-          />
+          <WizIArrowDropUp className={styles.arrowIcon} />
         </button>
         <WizDivider />
         <button
@@ -110,12 +104,7 @@ const NumberInput = (props: Props) => {
           className={styles.button}
           disabled={disabled}
         >
-          <WizIcon
-            className={styles.arrowIcon}
-            icon={WizIArrowDropDown}
-            size="xs2"
-            color="inherit"
-          />
+          <WizIArrowDropDown className={styles.arrowIcon} />
         </button>
       </WizVStack>
     </div>
