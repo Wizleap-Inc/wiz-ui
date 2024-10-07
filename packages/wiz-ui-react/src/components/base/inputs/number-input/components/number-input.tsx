@@ -59,12 +59,17 @@ const NumberInput = (props: Props) => {
   };
 
   const [isFocused, setIsFocused] = useState(false);
+  const borderStyle = (() => {
+    if (isError) return "error";
+    if (isFocused) return "active";
+    return "default";
+  })();
   return (
     <div
       className={clsx(
         styles.container,
         disabled && styles.disabled,
-        inputBorderStyle[isError ? "error" : isFocused ? "active" : "default"],
+        inputBorderStyle[borderStyle],
         className
       )}
       style={{
