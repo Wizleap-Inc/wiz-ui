@@ -14,8 +14,8 @@ import { FormControlContext } from "@/components/custom/form/components/form-con
 import { BaseProps } from "@/types";
 
 type Props = BaseProps & {
-  value: number | null;
-  onChange: (e: number | null) => void;
+  value?: number;
+  onChange?: (e: number | undefined) => void;
   placeholder?: string;
   disabled?: boolean;
   width?: string;
@@ -82,9 +82,15 @@ const NumberInput = (props: Props) => {
       <input
         className={clsx(styles.input)}
         type="number"
-        value={value === null ? "" : value}
+        value={value}
         ref={inputRef}
-        onChange={(e) => onChange(e.currentTarget.valueAsNumber)}
+        onChange={(e) => {
+          onChange?.(
+            isNaN(e.currentTarget.valueAsNumber)
+              ? undefined
+              : e.currentTarget.valueAsNumber
+          );
+        }}
         disabled={disabled}
         {...rest}
       />

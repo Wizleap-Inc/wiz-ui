@@ -59,7 +59,7 @@ defineOptions({
 });
 
 type Props = {
-  modelValue: number | null;
+  modelValue?: number;
   placeholder?: string;
   disabled?: boolean;
   width?: string;

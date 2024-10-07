@@ -14,7 +14,7 @@ type Story = StoryObj<typeof WizNumberInput>;
 
 const Template: Story = {
   render: (args) => {
-    const [value, setValue] = useState<number | null>(args.value);
+    const [value, setValue] = useState<number | undefined>(args.value);
     return (
       <>
         <WizNumberInput {...args} value={value} onChange={setValue} />
