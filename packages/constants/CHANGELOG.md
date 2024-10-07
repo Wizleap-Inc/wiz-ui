@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.32.0
+
+### Minor Changes
+
+- [#1379](https://github.com/Wizleap-Inc/wiz-ui/pull/1379) [`d0e8556a47433c4e40226fe171b638e593103061`](https://github.com/Wizleap-Inc/wiz-ui/commit/d0e8556a47433c4e40226fe171b638e593103061) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat: WizNumberInput
+
 ## 0.31.0
 
 ### Minor Changes
