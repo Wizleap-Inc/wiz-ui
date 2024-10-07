@@ -25,7 +25,7 @@ const TemplateComponent = ({
   const [selectBoxValue, setSelectBoxValue] = useState<number | null>(null);
   const [checkBoxValues, setCheckBoxValues] = useState<number[]>([]);
   const [radioValue, setRadioValue] = useState<number | null>(null);
-  const [numberValue, setNumberValue] = useState<number | null>(null);
+  const [numberValue, setNumberValue] = useState<number | undefined>(undefined);
   const [timePickerValue, setTimePickerValue] =
     useState<ComponentProps<typeof WizTimePicker>["time"]>(null);
   return (

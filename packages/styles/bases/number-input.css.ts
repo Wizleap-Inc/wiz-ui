@@ -1,6 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
-import { fontSizeStyle } from "commons";
+
+import { fontSizeStyle } from "../commons";
 
 export const container = style({
   position: "relative",
