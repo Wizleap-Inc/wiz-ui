@@ -7,6 +7,7 @@ import {
   WizTextInput,
   WizTimePicker,
 } from "@/components";
+import { WizNumberInput } from "@/components/base/inputs/number-input";
 
 import { WizFormControl, WizFormGroup } from "..";
 
@@ -24,6 +25,7 @@ const TemplateComponent = ({
   const [selectBoxValue, setSelectBoxValue] = useState<number | null>(null);
   const [checkBoxValues, setCheckBoxValues] = useState<number[]>([]);
   const [radioValue, setRadioValue] = useState<number | null>(null);
+  const [numberValue, setNumberValue] = useState<number | undefined>(undefined);
   const [timePickerValue, setTimePickerValue] =
     useState<ComponentProps<typeof WizTimePicker>["time"]>(null);
   return (
@@ -91,6 +93,13 @@ const TemplateComponent = ({
       </WizFormControl>
       {/* TODO: WizTextarea 追加待ち */}
       {/* TODO: WizDateRangePicker 追加待ち */}
+      <WizFormControl
+        label="WizNumberInput"
+        direction={direction}
+        error={error}
+      >
+        <WizNumberInput value={numberValue} onChange={setNumberValue} />
+      </WizFormControl>
     </WizFormGroup>
   );
 };
