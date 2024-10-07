@@ -34,7 +34,7 @@ v-modelには選択中のアイテムを渡します。
 };
 
 export default meta;
-type Story = StoryObj<typeof WizSearchSelector>;
+type Story = StoryObj<typeof WizSearchSelector<number>>;
 
 const getDummyOptions = (label: string, count: number, exLabel?: string) => {
   const options: SearchSelectorOption[] = [];

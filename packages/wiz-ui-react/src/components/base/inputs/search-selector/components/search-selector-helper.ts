@@ -19,8 +19,8 @@ function levenshteinDistance(s1: string, s2: string): number {
   return dist[s1.length][s2.length] / Math.max(s1.length, s2.length);
 }
 
-export function filterOptions(
-  options: SearchSelectorOption[],
+export function filterOptions<T>(
+  options: SearchSelectorOption<T>[],
   searchText: string,
   threshold: number
 ) {

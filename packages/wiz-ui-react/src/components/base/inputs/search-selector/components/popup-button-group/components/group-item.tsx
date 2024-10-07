@@ -4,7 +4,6 @@ import {
   popupButtonGroupTitleVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import clsx from "clsx";
-import { FC } from "react";
 
 import { BaseProps } from "@/types";
 
@@ -12,19 +11,19 @@ import { GroupItem as GroupItemType } from "../types";
 
 import { PopupButtonGroup } from "./popup-button-group";
 
-type Props = BaseProps & {
-  item: GroupItemType;
+type Props<T> = BaseProps & {
+  item: GroupItemType<T>;
   disabled: boolean;
   depth: number;
 };
 
-export const GroupItem: FC<Props> = ({
+export const GroupItem = <T,>({
   className,
   style,
   item,
   disabled,
   depth,
-}) => {
+}: Props<T>) => {
   return (
     <div className={className} style={style}>
       <span
