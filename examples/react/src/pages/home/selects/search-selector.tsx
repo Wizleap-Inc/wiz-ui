@@ -26,13 +26,14 @@ export const SearchSelectorNum = () => {
   );
   return (
     <div>
-      <div>Selected values: [{values.join(", ")}]</div>
+      <div>Selected number values: [{values.join(", ")}]</div>
 
       <WizSearchSelector
         options={options}
         values={values}
         onChangeValues={(changed) => setValues(changed)}
         onCreate={onCreate}
+        addable
       />
     </div>
   );
@@ -43,13 +44,16 @@ export const SearchSelectorStr = () => {
   const [options, setOptions] = useState<SearchSelectorOption<string>[]>(
     getDummyOptions("Option", 3).map((option) => ({
       ...option,
-      value: option.value.toString(),
+      value: option.value.toString().padStart(4, "0"),
     }))
   );
 
   const onCreate = useCallback(
     (newOption: string) => {
-      const option = { label: newOption, value: options.length.toString() };
+      const option = {
+        label: newOption,
+        value: options.length.toString().padStart(4, "0"),
+      };
       setOptions([...options, option]);
       setValues((vs) => [...vs, option.value]);
     },
@@ -57,12 +61,13 @@ export const SearchSelectorStr = () => {
   );
   return (
     <div>
-      <div>Selected values: [{values.join(", ")}]</div>
+      <div>Selected string values: [{values.join(", ")}]</div>
       <WizSearchSelector
         options={options}
         values={values}
         onChangeValues={(changed) => setValues(changed)}
         onCreate={onCreate}
+        addable
       />
     </div>
   );

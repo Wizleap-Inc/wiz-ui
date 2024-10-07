@@ -11,7 +11,7 @@ export const SearchInputNum = () => {
   const [values, setValues] = useState<number[]>([]);
   return (
     <div>
-      <div>Selected values: [{values.join(", ")}]</div>
+      <div>Selected number values: [{values.join(", ")}]</div>
       <WizSearchInput
         options={normalOptions}
         values={values}
@@ -24,14 +24,14 @@ export const SearchInputNum = () => {
 export const SearchInputStr = () => {
   const stringOptions = normalOptions.map((option) => ({
     ...option,
-    value: option.value.toString(),
+    value: option.value.toString().padStart(4, "0"),
   }));
 
   const [values, setValues] = useState<string[]>([]);
 
   return (
     <div>
-      <div>Selected values: [{values.join(", ")}]</div>
+      <div>Selected string values: [{values.join(", ")}]</div>
       <WizSearchInput
         options={stringOptions}
         values={values}
