@@ -100,7 +100,7 @@
   </WizPopupContainer>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T = number">
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   selectBoxCursorStyle,
@@ -118,7 +118,7 @@ import {
   selectBoxStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ComponentPublicInstance, PropType, computed, inject, ref } from "vue";
+import { ComponentPublicInstance, computed, inject, ref } from "vue";
 
 import { WizIcon, WizPopup, WizPopupContainer } from "@/components";
 import {
@@ -139,74 +139,20 @@ defineOptions({
   name: ComponentName.SearchSelector,
 });
 
-interface Emit {
-  (e: "update:modelValue", modelValue: number): void;
-  (e: "unselect", value: number): void;
-  (e: "add", label: string): void;
-  (e: "toggle", value: boolean): void;
-  (e: "setSearchValue", value: string): void;
-}
-
-const props = defineProps({
-  options: {
-    type: Array as PropType<SelectBoxOption[]>,
-    required: true,
-  },
-  modelValue: {
-    type: Array as PropType<number[]>,
-    required: true,
-  },
-  searchValue: {
-    type: String,
-    required: true,
-  },
-  placeholder: {
-    type: String,
-    required: false,
-    default: "選択してください",
-  },
-  width: {
-    type: String,
-    required: false,
-    default: "10rem",
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  expand: {
-    type: Boolean,
-    required: false,
-  },
-  multiSelectable: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  addable: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  isOpen: {
-    type: Boolean,
-    required: true,
-  },
-  isDirectionFixed: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  showExLabel: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  dropdownMaxHeight: {
-    type: String,
-    required: false,
-  },
+type Props<T> = {
+  options: SelectBoxOption<T>[];
+  modelValue: T[];
+  searchValue: string;
+  placeholder?: string;
+  width?: string;
+  disabled?: boolean;
+  expand?: boolean;
+  multiSelectable?: boolean;
+  addable?: boolean;
+  isOpen: boolean;
+  isDirectionFixed?: boolean;
+  showExLabel?: boolean;
+  dropdownMaxHeight?: string;
   /**
    * 検索対象に含む類似度の閾値を，0から1の範囲で指定します。
    * 類似度は標準化レーベンシュタイン距離に基づいて計算され，0に近いほど類似しています。
@@ -214,14 +160,27 @@ const props = defineProps({
    * @default 0.75
    *
    */
-  threshold: {
-    type: Number,
-    required: false,
-    default: 0.75,
-  },
+  threshold?: number;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  placeholder: "選択してください",
+  width: "10rem",
+  disabled: false,
+  multiSelectable: false,
+  addable: false,
+  isDirectionFixed: false,
+  showExLabel: false,
+  threshold: 0.75,
 });
 
-const emit = defineEmits<Emit>();
+const emit = defineEmits<{
+  "update:modelValue": [modelValue: T];
+  unselect: [value: T];
+  add: [label: string];
+  toggle: [value: boolean];
+  setSearchValue: [value: string];
+}>();
 
 const inputRef = ref<HTMLElement | undefined>();
 const backspaceUnselectableRef = ref();
@@ -236,22 +195,20 @@ const toggleDropdown = () => {
 };
 
 const deepCopy = <T>(ary: T): T => JSON.parse(JSON.stringify(ary));
-
-const valueToOption = computed(() =>
-  props.options.reduce((acc, item) => {
-    acc[item.value] = item;
-    return acc;
-  }, {} as { [value: number]: SelectBoxOption })
+const optionMap = computed(
+  () =>
+    new Map(
+      props.options
+        .filter((v) => v.value !== undefined)
+        .map((v) => [v.value, v])
+    ) as Map<T, SelectBoxOption<T>>
 );
-
 const selectedItem = computed(() => {
-  // props.options.values の値の配列
-  const values = props.options.map((v) => v.value);
   return props.modelValue
-    .filter((v) => values.includes(v))
-    .map((v) => valueToOption.value[v]);
+    .filter((v) => optionMap.value.has(v))
+    .map((v) => optionMap.value.get(v))
+    .filter((v) => v !== undefined) as SelectBoxOption<T>[];
 });
-
 const setUnselectableRef =
   (index: number) => (el: ComponentPublicInstance | Element | null) => {
     if (el && index === selectedItem.value.length - 1)
@@ -270,9 +227,10 @@ const filteredOptions = computed(() => {
           (matchedOption) =>
             !props.modelValue.some((value) => matchedOption.value === value)
         );
-  const removeSelectedOptions = (options: SelectBoxOption[]) => {
+
+  const removeSelectedOptions = (options: SelectBoxOption<T>[]) => {
     return options.filter((v) => {
-      return !selectedItem.value.some((item) => item.value === v.value);
+      return !selectedItem.value.some((item) => item && item.value === v.value);
     });
   };
   return removeSelectedOptions(sortedOptions);
@@ -282,7 +240,7 @@ const toggleSelectBox = () => {
   if (!props.disabled) emit("toggle", !props.isOpen);
 };
 
-const onClear = (n: number) => {
+const onClear = (n: T) => {
   emit("unselect", n);
   inputRef.value?.focus();
 };
@@ -302,14 +260,14 @@ const onKeydownBackspace = {
       backspaceUnselectableRef.value?.focus();
     }
   },
-  unselect: (n: number, event: KeyboardEvent) => {
+  unselect: (n: T, event: KeyboardEvent) => {
     if (event.key === "Backspace") {
       onClear(n);
     }
   },
 };
 
-const onSelect = (value: number) => {
+const onSelect = (value: T) => {
   if (!props.multiSelectable) {
     toggleSelectBox();
     props.modelValue.forEach((v) => {
@@ -356,13 +314,12 @@ const addButtonEnabled = computed(
 );
 
 const addButton = computed(() => {
-  const option: ButtonGroupItem = {
+  const option: ButtonGroupItem<T> = {
     kind: "button",
     option: {
       label: props.searchValue,
       icon: addButtonEnabled.value ? WizIAddCircle : undefined,
       iconDefaultColor: "green.800",
-      value: -1,
       onClick: () => {
         onCreate(props.searchValue);
       },
@@ -373,7 +330,7 @@ const addButton = computed(() => {
 
 const selectButtons = computed(() => {
   return filteredOptions.value.map((opt) => {
-    const option: ButtonGroupItem = {
+    const option: ButtonGroupItem<T> = {
       kind: "button",
       option: {
         label: opt.label,

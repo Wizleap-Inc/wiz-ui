@@ -72,7 +72,7 @@ const props = defineProps({
     required: false,
   },
   statusOptions: {
-    type: Array as PropType<SelectBoxOption[]>,
+    type: Array as PropType<SelectBoxOption<number>[]>,
     required: false,
   },
   statusPlaceholder: {

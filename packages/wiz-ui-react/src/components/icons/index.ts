@@ -33,9 +33,28 @@ import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClose } from "./close";
 import { WizICloseBold } from "./close-bold";
+import { WizICloudUpload } from "./cloud-upload";
 import { WizIContactPageFilled } from "./contact-page-filled";
 import { WizIContentCopy } from "./content-copy";
 import { WizIContract } from "./contract";
+import { WizICounter1 } from "./counter-1";
+import { WizICounter1Filled } from "./counter-1-filled";
+import { WizICounter2 } from "./counter-2";
+import { WizICounter2Filled } from "./counter-2-filled";
+import { WizICounter3 } from "./counter-3";
+import { WizICounter3Filled } from "./counter-3-filled";
+import { WizICounter4 } from "./counter-4";
+import { WizICounter4Filled } from "./counter-4-filled";
+import { WizICounter5 } from "./counter-5";
+import { WizICounter5Filled } from "./counter-5-filled";
+import { WizICounter6 } from "./counter-6";
+import { WizICounter6Filled } from "./counter-6-filled";
+import { WizICounter7 } from "./counter-7";
+import { WizICounter7Filled } from "./counter-7-filled";
+import { WizICounter8 } from "./counter-8";
+import { WizICounter8Filled } from "./counter-8-filled";
+import { WizICounter9 } from "./counter-9";
+import { WizICounter9Filled } from "./counter-9-filled";
 import { WizIDashboard } from "./dashboard";
 import { WizIDelete } from "./delete";
 import { WizIDemography } from "./demography";
@@ -94,6 +113,7 @@ import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
 import { WizITimerFilled } from "./timer-filled";
+import { WizITune } from "./tune";
 import { WizIUpload } from "./upload";
 import { WizIWarning } from "./warning";
 
@@ -133,9 +153,28 @@ export type TIcon =
   | typeof WizICircle
   | typeof WizICloseBold
   | typeof WizIClose
+  | typeof WizICloudUpload
   | typeof WizIContactPageFilled
   | typeof WizIContentCopy
   | typeof WizIContract
+  | typeof WizICounter1Filled
+  | typeof WizICounter1
+  | typeof WizICounter2Filled
+  | typeof WizICounter2
+  | typeof WizICounter3Filled
+  | typeof WizICounter3
+  | typeof WizICounter4Filled
+  | typeof WizICounter4
+  | typeof WizICounter5Filled
+  | typeof WizICounter5
+  | typeof WizICounter6Filled
+  | typeof WizICounter6
+  | typeof WizICounter7Filled
+  | typeof WizICounter7
+  | typeof WizICounter8Filled
+  | typeof WizICounter8
+  | typeof WizICounter9Filled
+  | typeof WizICounter9
   | typeof WizIDashboard
   | typeof WizIDelete
   | typeof WizIDemography
@@ -194,6 +233,7 @@ export type TIcon =
   | typeof WizITab
   | typeof WizITask
   | typeof WizITimerFilled
+  | typeof WizITune
   | typeof WizIUpload
   | typeof WizIWarning;
 
@@ -233,9 +273,28 @@ export {
   WizICircle,
   WizICloseBold,
   WizIClose,
+  WizICloudUpload,
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
+  WizICounter1Filled,
+  WizICounter1,
+  WizICounter2Filled,
+  WizICounter2,
+  WizICounter3Filled,
+  WizICounter3,
+  WizICounter4Filled,
+  WizICounter4,
+  WizICounter5Filled,
+  WizICounter5,
+  WizICounter6Filled,
+  WizICounter6,
+  WizICounter7Filled,
+  WizICounter7,
+  WizICounter8Filled,
+  WizICounter8,
+  WizICounter9Filled,
+  WizICounter9,
   WizIDashboard,
   WizIDelete,
   WizIDemography,
@@ -294,6 +353,7 @@ export {
   WizITab,
   WizITask,
   WizITimerFilled,
+  WizITune,
   WizIUpload,
   WizIWarning,
 };

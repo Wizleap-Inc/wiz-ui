@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.31.0
+
+### Minor Changes
+
+- [#1377](https://github.com/Wizleap-Inc/wiz-ui/pull/1377) [`4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): filled counter
+
+## 0.30.0
+
+### Minor Changes
+
+- [#1374](https://github.com/Wizleap-Inc/wiz-ui/pull/1374) [`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): add counter, tunes, cloud_upload
+
 ## 0.29.0
 
 ### Minor Changes

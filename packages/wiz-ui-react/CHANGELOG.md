@@ -1,5 +1,31 @@
 # @wizleap-inc/wiz-ui-react
 
+## 0.72.0
+
+### Minor Changes
+
+- [#1377](https://github.com/Wizleap-Inc/wiz-ui/pull/1377) [`4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): filled counter
+
+### Patch Changes
+
+- Updated dependencies [[`4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8)]:
+  - @wizleap-inc/wiz-ui-constants@0.31.0
+  - @wizleap-inc/wiz-ui-styles@0.33.1
+
+## 0.71.0
+
+### Minor Changes
+
+- [#1375](https://github.com/Wizleap-Inc/wiz-ui/pull/1375) [`ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Chore(infomation-panel): update close button position
+
+- [#1374](https://github.com/Wizleap-Inc/wiz-ui/pull/1374) [`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): add counter, tunes, cloud_upload
+
+### Patch Changes
+
+- Updated dependencies [[`ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e), [`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b)]:
+  - @wizleap-inc/wiz-ui-styles@0.33.0
+  - @wizleap-inc/wiz-ui-constants@0.30.0
+
 ## 0.70.0
 
 ### Minor Changes
