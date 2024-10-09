@@ -13,3 +13,4 @@ export * from "./time-picker";
 export * from "./upload";
 export * from "./date-picker";
 export * from "./date-range-picker";
+export * from "./number-input";
