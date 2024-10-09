@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 1.0.1
+
+### Patch Changes
+
+- [`ad663cc041712cd091532542a10058ef14769551`](https://github.com/Wizleap-Inc/wiz-ui/commit/ad663cc041712cd091532542a10058ef14769551) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(number-input): number-input を export
+
 ## 1.0.0
 
 ### Major Changes
