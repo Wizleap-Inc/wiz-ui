@@ -94,7 +94,7 @@ const NumberInput = (props: Props) => {
         disabled={disabled}
         {...rest}
       />
-      <WizVStack>
+      <WizVStack justify="center" nowrap>
         <button
           type="button"
           onClick={handleStepUp}
