@@ -1,5 +1,14 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.44.1
+
+### Patch Changes
+
+- [#1383](https://github.com/Wizleap-Inc/wiz-ui/pull/1383) [`9286a5810c7e1d0a88065254b246f4efa05efd31`](https://github.com/Wizleap-Inc/wiz-ui/commit/9286a5810c7e1d0a88065254b246f4efa05efd31) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(number-input): height
+
+- Updated dependencies [[`9286a5810c7e1d0a88065254b246f4efa05efd31`](https://github.com/Wizleap-Inc/wiz-ui/commit/9286a5810c7e1d0a88065254b246f4efa05efd31)]:
+  - @wizleap-inc/wiz-ui-styles@0.34.1
+
 ## 2.44.0
 
 ### Minor Changes
