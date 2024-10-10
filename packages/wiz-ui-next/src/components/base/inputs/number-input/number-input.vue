@@ -18,7 +18,7 @@
       v-bind="restProps"
       :disabled="disabled"
     />
-    <WizVStack>
+    <WizVStack justify="center" nowrap>
       <button
         type="button"
         @click="handleStepUp"

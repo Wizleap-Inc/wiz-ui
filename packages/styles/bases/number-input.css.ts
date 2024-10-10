@@ -30,10 +30,10 @@ export const input = style({
   minWidth: "30%",
   border: "none",
   outline: "none",
-  padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
-  lineHeight: THEME.fontSize.xl,
   flexGrow: 1,
   fontSize: THEME.fontSize.sm,
+  lineHeight: THEME.fontSize.lg,
+  padding: `${THEME.spacing.sm} ${THEME.spacing.xs}`,
   color: THEME.color.gray["800"],
   "::placeholder": {
     color: THEME.color.gray["500"],
@@ -56,6 +56,7 @@ export const button = style({
   borderColor: THEME.color.gray["400"],
   border: "none",
   borderLeft: `1px solid ${THEME.color.gray["400"]}`,
+  height: "100%",
   background: "transparent",
   fill: THEME.color.gray["500"],
   selectors: {
@@ -78,7 +79,7 @@ export const button = style({
 });
 
 export const arrowIcon = style([
-  fontSizeStyle.xs2,
+  fontSizeStyle.xs,
   {
     transform: "scale(2)",
     pointerEvents: "none",
