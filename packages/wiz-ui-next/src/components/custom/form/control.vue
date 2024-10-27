@@ -1,5 +1,6 @@
 <template>
   <WizVStack
+    nowrap
     :style="{
       paddingBottom: error === undefined ? THEME.fontSize.sm : undefined,
     }"
