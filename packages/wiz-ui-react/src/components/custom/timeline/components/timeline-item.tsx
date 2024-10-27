@@ -16,6 +16,7 @@ interface TimelineItemProps {
   tag?: string;
   annotation?: ReactNode;
   children?: ReactNode;
+  header?: ReactNode;
   footer?: ReactNode;
   disabled?: boolean;
   icon?: TIcon;
@@ -35,6 +36,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
   annotation,
   children,
   footer,
+  header,
   disabled = false,
   icon = WizICalendar,
 }) => {
@@ -95,6 +97,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
               <span className={styles.annotation}>{annotation}</span>
             </div>
             {isTitleEscape && <span className={styles.title}>{title}</span>}
+            <div>{header}</div>
           </div>
           {children && <div className={styles.body}>{children}</div>}
         </div>

@@ -292,3 +292,21 @@ Disabled.args = {
   title: "disabledにすると、タイムラインのアイテムがグレーアウトします",
   disabled: true,
 };
+
+export const Header: StoryFn<typeof WizTimelineItem> = (args) => ({
+  setup() {
+    return { args };
+  },
+  components: { WizTimelineItem, WizText },
+  template: `
+    <WizTimelineItem v-bind="args">
+      <template #header>
+        <WizText fontSize="sm">header content</WizText>
+      </template>
+    </WizTimelineItem>
+  `,
+});
+
+Header.args = {
+  title: "タイトルの下にコンテンツを表示できます",
+};

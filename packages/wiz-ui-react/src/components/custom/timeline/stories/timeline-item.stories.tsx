@@ -198,6 +198,18 @@ export const VariantGray: Story = {
     />
   ),
 };
+export const Header: Story = {
+  render: () => (
+    <WizTimelineItem
+      title="タイトルの下にコンテンツを表示できます"
+      header={
+        <>
+          <WizText fontSize="sm">header content</WizText>
+        </>
+      }
+    />
+  ),
+};
 
 export const MobileDevice: Story = {
   render: () => (
