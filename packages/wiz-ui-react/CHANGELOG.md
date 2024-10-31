@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 1.1.0
+
+### Minor Changes
+
+- [#1336](https://github.com/Wizleap-Inc/wiz-ui/pull/1336) [`5ed4d076b472d9d441b752dc007d9ca0e14ec4bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5ed4d076b472d9d441b752dc007d9ca0e14ec4bb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - chore: update disabled styles
+
+### Patch Changes
+
+- Updated dependencies [[`5ed4d076b472d9d441b752dc007d9ca0e14ec4bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5ed4d076b472d9d441b752dc007d9ca0e14ec4bb)]:
+  - @wizleap-inc/wiz-ui-styles@0.35.0
+
 ## 1.0.3
 
 ### Patch Changes
