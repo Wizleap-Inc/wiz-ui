@@ -24,8 +24,9 @@ export const datePickerVariantStyle = styleVariants({
     cursor: "pointer",
   },
   disabled: {
-    color: THEME.color.gray["500"],
-    background: THEME.color.gray["300"],
+    opacity: 0.5,
+    color: THEME.color.gray[700],
+    backgroundColor: THEME.color.gray[300],
     cursor: "not-allowed",
   },
 });
@@ -101,5 +102,8 @@ export const datePickerCancelIconStyle = style({
   fill: THEME.color.gray["500"],
   ":active": {
     fill: THEME.color.green["800"],
+  },
+  ":disabled": {
+    cursor: "not-allowed",
   },
 });

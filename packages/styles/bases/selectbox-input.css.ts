@@ -9,7 +9,8 @@ export const selectBoxStyle = style({
 });
 
 export const selectBoxDisabledStyle = style({
-  color: THEME.color.gray["700"],
+  opacity: 0.5,
+  color: THEME.color.gray[700],
   backgroundColor: THEME.color.gray["300"],
 });
 
@@ -86,6 +87,11 @@ export const selectBoxSelectorOptionStyle = style({
   ":disabled": {
     color: THEME.color.gray["400"],
     cursor: "not-allowed",
+  },
+  selectors: {
+    "&:disabled::placeholder": {
+      color: THEME.color.gray[700],
+    },
   },
 });
 
