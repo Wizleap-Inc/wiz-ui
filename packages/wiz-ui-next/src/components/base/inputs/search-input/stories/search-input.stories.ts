@@ -69,7 +69,7 @@ const Template =
   (args) => ({
     components: { WizSearchInput },
     setup() {
-      const values = ref<number[]>(args.modelValue || []);
+      const values = ref<number[]>([]);
       const openPopup = ref(open);
       const toggle = (value: boolean) => {
         openPopup.value = value;
