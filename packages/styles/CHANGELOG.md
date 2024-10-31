@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.35.0
+
+### Minor Changes
+
+- [#1336](https://github.com/Wizleap-Inc/wiz-ui/pull/1336) [`5ed4d076b472d9d441b752dc007d9ca0e14ec4bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5ed4d076b472d9d441b752dc007d9ca0e14ec4bb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - chore: update disabled styles
+
 ## 0.34.2
 
 ### Patch Changes
