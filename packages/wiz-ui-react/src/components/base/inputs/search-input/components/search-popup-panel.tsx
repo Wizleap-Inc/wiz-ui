@@ -1,6 +1,6 @@
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import clsx from "clsx";
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   WizCheckBoxNew,
@@ -12,19 +12,19 @@ import {
 } from "@/components";
 import { BaseProps } from "@/types";
 
-import { SearchInputOption } from "./types";
+import { CheckboxOption, SearchInputOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchInputOption[];
-  values: number[];
+type Props<T extends CheckboxOption> = BaseProps & {
+  options: SearchInputOption<T>[];
+  values: T[];
   width?: string;
   emptyMessage: string;
   singleSelect?: boolean;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues: (values: T[]) => void;
   closePopup: () => void;
 };
 
-export const SearchPopupPanel: FC<Props> = ({
+export const SearchPopupPanel = <T extends CheckboxOption>({
   className,
   style,
   options,
@@ -34,8 +34,8 @@ export const SearchPopupPanel: FC<Props> = ({
   singleSelect,
   onChangeValues,
   closePopup,
-}) => {
-  const [activeValue, setActiveValue] = useState<number | null>(null);
+}: Props<T>) => {
+  const [activeValue, setActiveValue] = useState<T | null>(null);
   const activeOption = useMemo(
     () => options.find((option) => activeValue === option.value),
     [activeValue, options]
@@ -45,7 +45,7 @@ export const SearchPopupPanel: FC<Props> = ({
   const isOpen = activeOptionChildren !== undefined;
 
   const handleChangeValues = useCallback(
-    (selectedOptionValue: number, isChecked: boolean) => {
+    (selectedOptionValue: T, isChecked: boolean) => {
       const newValues = (() => {
         if (isChecked) {
           return [...values, selectedOptionValue];
@@ -58,7 +58,7 @@ export const SearchPopupPanel: FC<Props> = ({
     [onChangeValues, values]
   );
 
-  const handleClickButton = (value: number) => {
+  const handleClickButton = (value: T) => {
     onChangeValues([value]);
     closePopup();
   };
@@ -67,6 +67,8 @@ export const SearchPopupPanel: FC<Props> = ({
     // reset active
     setActiveValue(null);
   }, [options]);
+
+  const allOptionsHaveChildren = options.every((option) => !!option.children);
 
   return (
     <>
@@ -99,6 +101,9 @@ export const SearchPopupPanel: FC<Props> = ({
                       )}
                     >
                       <WizHStack
+                        pl={
+                          !allOptionsHaveChildren && !singleSelect ? "lg" : "no"
+                        }
                         py="xs2"
                         width="100%"
                         justify="between"

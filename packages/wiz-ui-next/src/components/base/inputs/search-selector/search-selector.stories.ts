@@ -345,7 +345,7 @@ Addable.parameters = {
 export const ExlabelWithoutShowExlabel = Template(
   true,
   _getDummyOptions("test", 3, "(10)"),
-  "new option"
+  ""
 ).bind({});
 ExlabelWithoutShowExlabel.args = {
   addable: true,
@@ -364,7 +364,7 @@ ExlabelWithoutShowExlabel.parameters = {
 export const Exlabel = Template(
   true,
   _getDummyOptions("test", 3, "(10)"),
-  "new option"
+  ""
 ).bind({});
 Exlabel.args = {
   addable: true,
@@ -383,7 +383,7 @@ Exlabel.parameters = {
 export const ExlabelWithLongLabel = Template(
   true,
   _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
-  "new option"
+  ""
 ).bind({});
 ExlabelWithLongLabel.args = {
   addable: true,

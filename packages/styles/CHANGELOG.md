@@ -1,5 +1,60 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.34.2
+
+### Patch Changes
+
+- Updated dependencies [[`05d4af989a31a93a8f01919346ebd5980ce1d87f`](https://github.com/Wizleap-Inc/wiz-ui/commit/05d4af989a31a93a8f01919346ebd5980ce1d87f)]:
+  - @wizleap-inc/wiz-ui-constants@0.33.0
+
+## 0.34.1
+
+### Patch Changes
+
+- [#1383](https://github.com/Wizleap-Inc/wiz-ui/pull/1383) [`9286a5810c7e1d0a88065254b246f4efa05efd31`](https://github.com/Wizleap-Inc/wiz-ui/commit/9286a5810c7e1d0a88065254b246f4efa05efd31) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(number-input): height
+
+## 0.34.0
+
+### Minor Changes
+
+- [#1379](https://github.com/Wizleap-Inc/wiz-ui/pull/1379) [`d0e8556a47433c4e40226fe171b638e593103061`](https://github.com/Wizleap-Inc/wiz-ui/commit/d0e8556a47433c4e40226fe171b638e593103061) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat: WizNumberInput
+
+### Patch Changes
+
+- Updated dependencies [[`d0e8556a47433c4e40226fe171b638e593103061`](https://github.com/Wizleap-Inc/wiz-ui/commit/d0e8556a47433c4e40226fe171b638e593103061)]:
+  - @wizleap-inc/wiz-ui-constants@0.32.0
+
+## 0.33.1
+
+### Patch Changes
+
+- Updated dependencies [[`4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8)]:
+  - @wizleap-inc/wiz-ui-constants@0.31.0
+
+## 0.33.0
+
+### Minor Changes
+
+- [#1375](https://github.com/Wizleap-Inc/wiz-ui/pull/1375) [`ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Chore(infomation-panel): update close button position
+
+### Patch Changes
+
+- Updated dependencies [[`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b)]:
+  - @wizleap-inc/wiz-ui-constants@0.30.0
+
+## 0.32.0
+
+### Minor Changes
+
+- [#1287](https://github.com/Wizleap-Inc/wiz-ui/pull/1287) [`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(nav-item): hover イベントに依らない Popup 制御
+
+## 0.31.1
+
+### Patch Changes
+
+- Updated dependencies [[`95487aa96f9e0b027b42717ef73d3257eb6112bd`](https://github.com/Wizleap-Inc/wiz-ui/commit/95487aa96f9e0b027b42717ef73d3257eb6112bd)]:
+  - @wizleap-inc/wiz-ui-constants@0.29.0
+
 ## 0.31.0
 
 ### Minor Changes
