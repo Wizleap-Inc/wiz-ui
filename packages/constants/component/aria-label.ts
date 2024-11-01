@@ -36,4 +36,6 @@ export const ARIA_LABELS = {
   FULL_MODAL_VIEW: {
     CLOSE: "モーダルを閉じる",
   },
+  APPLY: "適用",
+  CANCEL: "キャンセル",
 } as const;

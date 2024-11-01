@@ -107,3 +107,29 @@ export const FilledWeeks: Story = {
     },
   },
 };
+
+export const Today: Story = {
+  ...Template,
+  args: {
+    currentMonth: new Date("2023-03"),
+    _today: new Date("2023-03-05"),
+  },
+};
+
+export const DisabledToday: Story = {
+  ...Template,
+  args: {
+    currentMonth: new Date("2023-03"),
+    _today: new Date("2023-03-05"),
+    disabledDate: (date: Date) => date.getDate() === 5,
+  },
+};
+
+export const SelectedToday: Story = {
+  ...Template,
+  args: {
+    currentMonth: new Date("2023-03"),
+    _today: new Date("2023-03-05"),
+    activeDates: [{ date: new Date("2023-03-05"), state: "primary" }],
+  },
+};
