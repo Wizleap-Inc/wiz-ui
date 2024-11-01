@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.45.1
+
+### Patch Changes
+
+- [#1397](https://github.com/Wizleap-Inc/wiz-ui/pull/1397) [`f34a91b28cf53af8fa0c712c84dd33b053c5a44c`](https://github.com/Wizleap-Inc/wiz-ui/commit/f34a91b28cf53af8fa0c712c84dd33b053c5a44c) Thanks [@k-tada](https://github.com/k-tada)! - FormControl の nowrap 実装を修正
+
 ## 2.45.0
 
 ### Minor Changes
