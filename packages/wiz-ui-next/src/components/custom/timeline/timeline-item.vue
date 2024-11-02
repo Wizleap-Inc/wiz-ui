@@ -39,6 +39,7 @@
           <span v-if="isTitleEscape" :class="styles.title">
             {{ title }}
           </span>
+          <slot name="header" />
         </div>
         <div :class="styles.body" v-if="slot.default">
           <slot />
