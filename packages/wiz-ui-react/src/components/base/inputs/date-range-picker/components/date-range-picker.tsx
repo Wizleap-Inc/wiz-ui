@@ -107,6 +107,19 @@ const DateRangePicker: FC<Props> = ({
     );
   };
 
+  const initiaizeRightCalendarDate = () => {
+    const [start, end] = [dateRange.start, dateRange.end];
+    if (end) {
+      setRightCalendarDate(new Date(end));
+    } else if (start) {
+      setRightCalendarDate(
+        new Date(start.getFullYear(), start.getMonth() + 1, 1)
+      );
+    } else {
+      setRightCalendarDate(new Date());
+    }
+  };
+
   const selectedDates = useMemo(() => {
     const getDateStatus = (
       date: Date,
@@ -189,6 +202,7 @@ const DateRangePicker: FC<Props> = ({
   })();
 
   const onClose = () => {
+    initiaizeRightCalendarDate();
     setTempDateRange(dateRange);
     setIsOpen(false);
   };
@@ -265,7 +279,7 @@ const DateRangePicker: FC<Props> = ({
       </button>
       <WizPopup
         isOpen={!disabled && isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={onClose}
         isDirectionFixed={isDirectionFixed}
         anchorElement={anchor}
       >
