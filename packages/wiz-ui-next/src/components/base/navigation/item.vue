@@ -67,7 +67,7 @@
   </WizTooltip>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T = number">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   navigationItemActiveStyle,
@@ -80,7 +80,7 @@ import {
   navigationItemTextStyle,
   navigationPopupContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/navigation.css";
-import { PropType, computed, ref } from "vue";
+import { computed, ref } from "vue";
 import { RouterLinkProps } from "vue-router";
 
 import {
@@ -103,50 +103,22 @@ defineOptions({
   name: ComponentName.NavigationItem,
 });
 
-const props = defineProps({
-  icon: {
-    type: Object as PropType<TIcon>,
-    required: true,
-  },
-  label: {
-    type: String,
-    required: true,
-  },
-  active: {
-    type: Boolean,
-    required: true,
-  },
-  to: {
-    type: [Object, String] as PropType<RouterLinkProps["to"]>,
-    required: true,
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  tooltipText: {
-    type: String,
-    required: false,
-    default: null,
-  },
-  /**
-   * @deprecated この プロパティ は削除予定です。
-   */
-  // eslint-disable-next-line vue/no-unused-properties
-  lockingPopup: {
-    type: Boolean,
-    required: false,
-    default: true,
-  },
-  buttons: {
-    type: Array as PropType<ButtonGroupItem[]>,
-    required: false,
-  },
-  isOpen: {
-    type: Boolean,
-    required: false,
-  },
+type Props<T> = {
+  icon: TIcon;
+  label: string;
+  active: boolean;
+  to: RouterLinkProps["to"];
+  disabled?: boolean;
+  tooltipText?: string | null;
+  buttons?: ButtonGroupItem<T>[];
+  isOpen?: boolean;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  disabled: false,
+  lockingPopup: true,
+  isOpen: false,
+  tooltipText: null,
 });
 
 const isExternalLink = computed(
@@ -174,14 +146,14 @@ const navItemOnClick = () => emit("toggle", !props.isOpen);
 const popupOnClose = () => emit("toggle", false);
 
 const buttonsWithClickOnClose = (
-  buttons: ButtonGroupItem[]
-): ButtonGroupItem[] => {
+  buttons: ButtonGroupItem<T>[]
+): ButtonGroupItem<T>[] => {
   return buttons.map((button) => {
     if (button.kind === "divider") return button;
     if (button.kind === "button") {
       const buttonWithClickOnClose: {
         kind: "button";
-        option: PopupButtonOption;
+        option: PopupButtonOption<T>;
       } = {
         kind: "button",
         option: {

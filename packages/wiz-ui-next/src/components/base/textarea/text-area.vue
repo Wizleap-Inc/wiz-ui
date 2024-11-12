@@ -7,7 +7,6 @@
     :rows="rows"
     :class="[
       textAreaStyle,
-      textAreaVariantStyle[disabled ? 'disabled' : 'default'],
       expand && textAreaExpandStyle,
       inputBorderStyle[state],
     ]"
@@ -20,7 +19,6 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   textAreaExpandStyle,
   textAreaStyle,
-  textAreaVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, inject } from "vue";

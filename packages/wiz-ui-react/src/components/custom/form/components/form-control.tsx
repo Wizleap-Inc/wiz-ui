@@ -39,6 +39,7 @@ const FormControl: FC<Props> = ({
   return (
     <FormControlContext.Provider value={{ error: error !== undefined }}>
       <WizVStack
+        nowrap
         style={{
           ...style,
           paddingBottom: error === undefined ? THEME.fontSize.sm : undefined,

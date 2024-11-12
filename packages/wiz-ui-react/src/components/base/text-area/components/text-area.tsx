@@ -71,7 +71,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
         className={clsx(
           className,
           styles.textAreaStyle,
-          styles.textAreaVariantStyle[disabled ? "disabled" : "default"],
           expand && styles.textAreaExpandStyle,
           inputBorderStyle[getInputBorderStyleKey(isError)]
         )}

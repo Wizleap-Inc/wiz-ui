@@ -65,25 +65,26 @@ const dummyMessages: Message[] = [
     time: new Date("2021-08-02T04:00:00.000+09:00"),
   },
 ];
-const dummyStatusOptions: ComponentProps<typeof WizChatCard>["statusOptions"] =
-  [
-    {
-      label: "ステータス１",
-      value: 1,
-    },
-    {
-      label: "ステータス２",
-      value: 2,
-    },
-    {
-      label: "ステータス３",
-      value: 3,
-    },
-    {
-      label: "ステータス４",
-      value: 4,
-    },
-  ];
+const dummyStatusOptions: ComponentProps<
+  typeof WizChatCard<number>
+>["statusOptions"] = [
+  {
+    label: "ステータス１",
+    value: 1,
+  },
+  {
+    label: "ステータス２",
+    value: 2,
+  },
+  {
+    label: "ステータス３",
+    value: 3,
+  },
+  {
+    label: "ステータス４",
+    value: 4,
+  },
+];
 
 const templateArgs = {
   isOpen: true,

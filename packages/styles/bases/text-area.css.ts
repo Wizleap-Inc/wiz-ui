@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const textAreaStyle = style({
@@ -8,20 +8,20 @@ export const textAreaStyle = style({
   padding: THEME.spacing.xs,
   fontSize: THEME.fontSize.sm,
   lineHeight: 1.5,
-
+  color: THEME.color.gray[700],
   "::placeholder": {
     color: THEME.color.gray[500],
   },
-});
-
-export const textAreaVariantStyle = styleVariants({
-  default: {
+  ":disabled": {
+    opacity: 0.5,
     color: THEME.color.gray[700],
-  },
-  disabled: {
     backgroundColor: THEME.color.gray[300],
-    color: THEME.color.gray[500],
     cursor: "not-allowed",
+  },
+  selectors: {
+    "&:disabled::placeholder": {
+      color: THEME.color.gray[700],
+    },
   },
 });
 
