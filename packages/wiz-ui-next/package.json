@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-next",
-  "version": "2.40.0",
+  "version": "2.45.1",
   "description": "A Vue3 UI Framework for Wizleap Inc.",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
@@ -13,11 +13,11 @@
     "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6007 --silent\" \"wait-on tcp:6007 && test-storybook --url http://localhost:6007\""
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.1.0",
-    "unplugin-vue-define-options": "^1.1.1",
+    "@vitejs/plugin-vue": "5.1.2",
+    "unplugin-vue-define-options": "1.4.9",
     "@storybook/vue3": "^7.0.2",
     "@storybook/vue3-vite": "^7.0.2",
-    "vue-tsc": "^1.0.9"
+    "vue-tsc": "2.0.29"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "@wizleap-inc/wiz-ui-constants": "workspace:*",
     "@wizleap-inc/wiz-ui-styles": "workspace:*",
     "@wizleap-inc/wiz-ui-utils": "workspace:*",
-    "vue": "^3.2.45",
+    "vue": "3.4.38",
     "vue-router": "^4.1.6"
   }
 }

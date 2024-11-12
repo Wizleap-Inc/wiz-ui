@@ -56,6 +56,7 @@ const Tooltip: FC<Props> = ({
         shadow={false}
         animation
         gap="xs2"
+        layer="tooltip"
         isDirectionFixed={isDirectionFixed}
       >
         <div

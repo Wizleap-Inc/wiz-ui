@@ -33,9 +33,28 @@ import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizICircle } from "./circle.vue";
 import { default as WizICloseBold } from "./close-bold.vue";
 import { default as WizIClose } from "./close.vue";
+import { default as WizICloudUpload } from "./cloud-upload.vue";
 import { default as WizIContactPageFilled } from "./contact-page-filled.vue";
 import { default as WizIContentCopy } from "./content-copy.vue";
 import { default as WizIContract } from "./contract.vue";
+import { default as WizICounter1Filled } from "./counter-1-filled.vue";
+import { default as WizICounter1 } from "./counter-1.vue";
+import { default as WizICounter2Filled } from "./counter-2-filled.vue";
+import { default as WizICounter2 } from "./counter-2.vue";
+import { default as WizICounter3Filled } from "./counter-3-filled.vue";
+import { default as WizICounter3 } from "./counter-3.vue";
+import { default as WizICounter4Filled } from "./counter-4-filled.vue";
+import { default as WizICounter4 } from "./counter-4.vue";
+import { default as WizICounter5Filled } from "./counter-5-filled.vue";
+import { default as WizICounter5 } from "./counter-5.vue";
+import { default as WizICounter6Filled } from "./counter-6-filled.vue";
+import { default as WizICounter6 } from "./counter-6.vue";
+import { default as WizICounter7Filled } from "./counter-7-filled.vue";
+import { default as WizICounter7 } from "./counter-7.vue";
+import { default as WizICounter8Filled } from "./counter-8-filled.vue";
+import { default as WizICounter8 } from "./counter-8.vue";
+import { default as WizICounter9Filled } from "./counter-9-filled.vue";
+import { default as WizICounter9 } from "./counter-9.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
 import { default as WizIDelete } from "./delete.vue";
 import { default as WizIDemography } from "./demography.vue";
@@ -94,6 +113,7 @@ import { default as WizIStoreFront } from "./store-front.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
 import { default as WizITimerFilled } from "./timer-filled.vue";
+import { default as WizITune } from "./tune.vue";
 import { default as WizIUpload } from "./upload.vue";
 import { default as WizIWarning } from "./warning.vue";
 
@@ -133,9 +153,28 @@ export type TIcon =
   | typeof WizICircle
   | typeof WizICloseBold
   | typeof WizIClose
+  | typeof WizICloudUpload
   | typeof WizIContactPageFilled
   | typeof WizIContentCopy
   | typeof WizIContract
+  | typeof WizICounter1Filled
+  | typeof WizICounter1
+  | typeof WizICounter2Filled
+  | typeof WizICounter2
+  | typeof WizICounter3Filled
+  | typeof WizICounter3
+  | typeof WizICounter4Filled
+  | typeof WizICounter4
+  | typeof WizICounter5Filled
+  | typeof WizICounter5
+  | typeof WizICounter6Filled
+  | typeof WizICounter6
+  | typeof WizICounter7Filled
+  | typeof WizICounter7
+  | typeof WizICounter8Filled
+  | typeof WizICounter8
+  | typeof WizICounter9Filled
+  | typeof WizICounter9
   | typeof WizIDashboard
   | typeof WizIDelete
   | typeof WizIDemography
@@ -194,6 +233,7 @@ export type TIcon =
   | typeof WizITab
   | typeof WizITask
   | typeof WizITimerFilled
+  | typeof WizITune
   | typeof WizIUpload
   | typeof WizIWarning;
 
@@ -233,9 +273,28 @@ export {
   WizICircle,
   WizICloseBold,
   WizIClose,
+  WizICloudUpload,
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
+  WizICounter1Filled,
+  WizICounter1,
+  WizICounter2Filled,
+  WizICounter2,
+  WizICounter3Filled,
+  WizICounter3,
+  WizICounter4Filled,
+  WizICounter4,
+  WizICounter5Filled,
+  WizICounter5,
+  WizICounter6Filled,
+  WizICounter6,
+  WizICounter7Filled,
+  WizICounter7,
+  WizICounter8Filled,
+  WizICounter8,
+  WizICounter9Filled,
+  WizICounter9,
   WizIDashboard,
   WizIDelete,
   WizIDemography,
@@ -294,6 +353,7 @@ export {
   WizITab,
   WizITask,
   WizITimerFilled,
+  WizITune,
   WizIUpload,
   WizIWarning,
 };

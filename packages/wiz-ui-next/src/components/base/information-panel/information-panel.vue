@@ -16,16 +16,14 @@
         </template>
       </div>
     </WizVStack>
-    <div :class="[informationPanelIconStyle]">
-      <WizVStack align="center">
-        <WizIconButton
-          variant="transparent"
-          :icon="WizIClose"
-          @click="close"
-          :ariaLabel="ARIA_LABELS.INFORMATION_PANEL.CLOSE"
-        />
-      </WizVStack>
-    </div>
+    <WizVStack>
+      <WizIconButton
+        variant="transparent"
+        :icon="WizIClose"
+        @click="close"
+        :ariaLabel="ARIA_LABELS.INFORMATION_PANEL.CLOSE"
+      />
+    </WizVStack>
   </div>
 </template>
 <script setup lang="ts">
@@ -33,10 +31,9 @@ import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   informationPanelBorderStyle,
   informationPanelFontStyle,
-  informationPanelIconStyle,
   informationPanelStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
-import { PropType, computed, Component as ComponentType } from "vue"; // Componentの場合、<component>タグと競合するためエイリアスをつける
+import { Component as ComponentType, PropType, computed } from "vue"; // Componentの場合、<component>タグと競合するためエイリアスをつける
 
 import { WizIClose, WizIconButton } from "@/components";
 

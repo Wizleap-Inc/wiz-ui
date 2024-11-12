@@ -95,10 +95,7 @@ const TimePicker: FC<Props> = ({
         <WizHStack gap="sm" align="center" height="100%">
           <button
             type="button"
-            className={clsx([
-              styles.cancelButtonStyle,
-              disabled && styles.cancelButtonDisabledStyle,
-            ])}
+            className={styles.cancelButtonStyle}
             disabled={!cancelButtonVisible}
             aria-label={ARIA_LABELS.TIME_PICKER_CANCEL}
             onClick={() => onChange(null)}

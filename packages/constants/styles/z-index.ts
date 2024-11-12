@@ -13,13 +13,17 @@ export const Z_INDEX_MAP = {
    */
   dialog: "2000",
   /**
-   * dropdown(選択系),tooltip(情報系),alert
+   * dropdown(選択系), alert
    */
   popover: "3000",
   /**
+   * tooltip(情報系)
+   */
+  tooltip: "4000",
+  /**
    * overlay(全画面系)
    */
-  overlay: "4000",
+  overlay: "5000",
 } as const;
 
 export type ZIndexKeys = keyof typeof Z_INDEX_MAP;

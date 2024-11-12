@@ -134,6 +134,16 @@ Disabled.args = {
   options: simpleOption,
 };
 
+export const DisabledWithValues = Template(true).bind({});
+DisabledWithValues.args = {
+  modelValue: [1, 2],
+  placeholder: "氏名・ID・電話番号で検索",
+  disabled: true,
+  inputWidth: "15rem",
+  options: simpleOption,
+  showSelectedItem: true,
+};
+
 export const IsDirectionFixed = Template(true).bind({});
 IsDirectionFixed.args = {
   placeholder: "氏名・ID・電話番号で検索",

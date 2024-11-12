@@ -82,24 +82,24 @@
   </WizVStack>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import {
   ComponentName,
   SpacingKeys,
   THEME,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  popupButtonGroupStyle,
-  popupButtonGroupDisabledCursorStyle,
+  borderRadiusStyle,
   popupButtonGroupButtonBaseStyle,
-  popupButtonGroupTitleBaseStyle,
+  popupButtonGroupButtonVariantStyle,
+  popupButtonGroupDisabledCursorStyle,
   popupButtonGroupDividerStyle,
   popupButtonGroupInnerContainerStyle,
+  popupButtonGroupStyle,
+  popupButtonGroupTitleBaseStyle,
   popupButtonGroupTitleVariantStyle,
-  popupButtonGroupButtonVariantStyle,
-  borderRadiusStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/popup-button-group.css";
-import { computed, PropType, ref } from "vue";
+import { computed, ref, UnwrapRef } from "vue";
 
 import { WizIcon, WizPopupButtonGroup, WizVStack } from "@/components";
 
@@ -109,55 +109,32 @@ defineOptions({
   name: ComponentName.PopupButtonGroup,
 });
 
-const props = defineProps({
-  options: {
-    type: Array as PropType<ButtonGroupItem[]>,
-    required: true,
-  },
-  width: {
-    type: String,
-    required: false,
-    default: "10rem",
-  },
-  p: {
-    type: String as PropType<SpacingKeys>,
-    required: false,
-    default: "no",
-  },
-  borderRadius: {
-    type: String as PropType<SpacingKeys>,
-    required: false,
-    default: "no",
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  expand: {
-    type: Boolean,
-    required: false,
-  },
-  groupDivider: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  buttonDivider: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  depth: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
+type Props<T> = {
+  options: ButtonGroupItem<T>[];
+  width?: string;
+  p?: SpacingKeys;
+  borderRadius?: SpacingKeys;
+  disabled?: boolean;
+  expand?: boolean;
+  groupDivider?: boolean;
+  buttonDivider?: boolean;
+  depth?: number;
+};
+
+const props = withDefaults(defineProps<Props<T>>(), {
+  width: "10rem",
+  p: "no",
+  borderRadius: "no",
+  disabled: false,
+  expand: false,
+  groupDivider: false,
+  buttonDivider: false,
+  depth: 0,
 });
 
 type ItemElement =
   | { kind: "divider" }
-  | { kind: "item"; item: Exclude<ButtonGroupItem, { kind: "divider" }> };
+  | { kind: "item"; item: Exclude<ButtonGroupItem<T>, { kind: "divider" }> };
 
 const items = computed(() => {
   const divider: ItemElement = { kind: "divider" };
@@ -188,14 +165,15 @@ const items = computed(() => {
     .flat();
   return items;
 });
+const isClicking = ref<T | null>(null);
+const isHover = ref<T | null>(null);
 
-const isClicking = ref<number | null>(null);
-const isHover = ref<number | null>(null);
-
-const onHoldClick = (item: ButtonGroupItem) => {
+const onHoldClick = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
-    isClicking.value = item.option.value;
+    isClicking.value = item.option.value
+      ? (item.option.value as UnwrapRef<T>)
+      : null;
     const mouseup = () => {
       isClicking.value = null;
       document.removeEventListener("mouseup", mouseup);
@@ -204,28 +182,30 @@ const onHoldClick = (item: ButtonGroupItem) => {
   }
 };
 
-const popupButtonMouseDown = (item: ButtonGroupItem) => {
+const popupButtonMouseDown = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();
   }
 };
 
-const popupButtonMouseOver = (item: ButtonGroupItem) => {
+const popupButtonMouseOver = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
-    isHover.value = item.option.value;
+    isHover.value = item.option.value
+      ? (item.option.value as UnwrapRef<T>)
+      : null;
   }
 };
 
-const popupButtonMouseOut = (item: ButtonGroupItem) => {
+const popupButtonMouseOut = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
     isHover.value = null;
   }
 };
 
-const popupButtonKeyPressEnter = (item: ButtonGroupItem) => {
+const popupButtonKeyPressEnter = (item: ButtonGroupItem<T>) => {
   if (props.disabled) return;
   if (item.kind === "button" && !item.option.disabled) {
     item.option.onClick();

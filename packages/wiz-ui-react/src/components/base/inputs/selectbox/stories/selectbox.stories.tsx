@@ -11,7 +11,7 @@ const meta: Meta<typeof WizSelectBox> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof WizSelectBox>;
+type Story = StoryObj<typeof WizSelectBox<number>>;
 
 const getDummyOptions = (label: string, length: number, exLabel?: string) => {
   return Array.from({ length }).map((_, i) => ({

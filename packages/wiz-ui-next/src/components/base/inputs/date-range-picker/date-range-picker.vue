@@ -20,7 +20,9 @@
         <span
           :class="
             styles.inputTextStyle[
-              modelValue.start && !disabled ? 'selected' : 'default'
+              (disabled && 'disabled') ||
+                (modelValue.start && 'selected') ||
+                'default'
             ]
           "
           >{{
@@ -31,7 +33,9 @@
         <span
           :class="
             styles.inputTextStyle[
-              modelValue.end && !disabled ? 'selected' : 'default'
+              (disabled && 'disabled') ||
+                (modelValue.end && 'selected') ||
+                'default'
             ]
           "
           >{{ modelValue.end ? formatDate(modelValue.end) : "終了日" }}</span
