@@ -120,6 +120,7 @@ const DatePicker: FC<Props> = ({
 
   const onClose = () => {
     setTempDate(date);
+    setCurrentMonth(date || new Date());
     setIsOpen(false);
   };
 
