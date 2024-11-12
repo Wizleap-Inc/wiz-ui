@@ -329,6 +329,7 @@ const handleClickCalendar = (date: Date) => (tempDate.value = date);
 
 const onClose = () => {
   tempDate.value = calendarValue.value;
+  currentMonth.value = new Date(defaultCurrentMonth);
   setIsOpen(false);
 };
 
