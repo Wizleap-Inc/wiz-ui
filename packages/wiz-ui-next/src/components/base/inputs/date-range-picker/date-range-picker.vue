@@ -282,6 +282,21 @@ const leftCalendarDate = computed(() => {
   );
   return date;
 });
+const initializeRightCalendarDate = () => {
+  rightCalendarDate.value = new Date();
+  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  if (end) {
+    rightCalendarDate.value = new Date(end);
+  } else if (start) {
+    rightCalendarDate.value = new Date(
+      start.getFullYear(),
+      start.getMonth() + 1,
+      1
+    );
+  } else {
+    rightCalendarDate.value = new Date();
+  }
+};
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
 const onClickCancel = () =>
@@ -373,6 +388,7 @@ const borderState = computed(() => {
 
 const onClose = () => {
   tempDateRange.value = props.modelValue;
+  initializeRightCalendarDate();
   setIsOpen(false);
 };
 
