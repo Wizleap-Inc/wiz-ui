@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 1.1.1
+
+### Patch Changes
+
+- [#1400](https://github.com/Wizleap-Inc/wiz-ui/pull/1400) [`b0e1dca55605a507f490b4ca6591590c948b4d59`](https://github.com/Wizleap-Inc/wiz-ui/commit/b0e1dca55605a507f490b4ca6591590c948b4d59) Thanks [@k-tada](https://github.com/k-tada)! - add WizFullModalView
+
 ## 1.1.0
 
 ### Minor Changes
