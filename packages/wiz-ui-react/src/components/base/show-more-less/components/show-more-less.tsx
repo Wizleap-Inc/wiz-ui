@@ -63,13 +63,14 @@ const ShowMoreLess: FC<Props> = ({
         <div
           ref={contentRef}
           className={showMoreLessContentStyle}
-          style={{ maxHeight: isOpen ? height : 0 }}
+          style={{ maxHeight: isOpen ? height : 0, width }}
         >
           {children}
         </div>
         <div
           className={showMoreLessSummaryStyle[variant]}
           onClick={handleClick}
+          style={{ width }}
         >
           <div className={clsx(showMoreLessMessageStyle)}>
             <WizHStack align="center" justify="between" gap="xs2">
