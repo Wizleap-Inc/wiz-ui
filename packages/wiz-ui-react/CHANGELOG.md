@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 1.1.2
+
+### Patch Changes
+
+- [#1402](https://github.com/Wizleap-Inc/wiz-ui/pull/1402) [`7e7c405132c8cb2c9a0541cec3915a313467610e`](https://github.com/Wizleap-Inc/wiz-ui/commit/7e7c405132c8cb2c9a0541cec3915a313467610e) Thanks [@k-tada](https://github.com/k-tada)! - WizShowMoreLess のデザイン修正
+
 ## 1.1.1
 
 ### Patch Changes
