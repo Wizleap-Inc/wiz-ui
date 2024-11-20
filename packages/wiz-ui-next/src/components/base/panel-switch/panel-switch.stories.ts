@@ -27,12 +27,20 @@ const Template: StoryFn<typeof WizPanelSwitch> = (args) => ({
 `,
 });
 
+const items = [
+  { label: "test1", value: 1 },
+  { label: "test2", value: 2 },
+  { label: "test3", value: 3 },
+  { label: "test4", value: 4 },
+];
+
 export const Default = Template.bind({});
 Default.args = {
-  items: [
-    { label: "test1", value: 1 },
-    { label: "test2", value: 2 },
-    { label: "test3", value: 3 },
-    { label: "test4", value: 4 },
-  ],
+  items,
+};
+
+export const Width = Template.bind({});
+Width.args = {
+  items,
+  width: "300px",
 };
