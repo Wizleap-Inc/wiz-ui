@@ -5,4 +5,4 @@
 "@wizleap-inc/wiz-ui-icons": minor
 ---
 
-Feat(icon): add image, play_circle, pause_circle icons
+Feat(icon): add image, play_circle, pause_circle icons, keep

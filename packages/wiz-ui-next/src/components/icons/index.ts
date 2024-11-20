@@ -82,6 +82,7 @@ import { default as WizIInboxCustomize } from "./inbox-customize.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
+import { default as WizIKeep } from "./keep.vue";
 import { default as WizILinkOff } from "./link-off.vue";
 import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
@@ -205,6 +206,7 @@ export type TIcon =
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
+  | typeof WizIKeep
   | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
@@ -328,6 +330,7 @@ export {
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
+  WizIKeep,
   WizILinkOff,
   WizILocationCity,
   WizILocationOn,
