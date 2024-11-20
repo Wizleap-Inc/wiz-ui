@@ -77,6 +77,7 @@ import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIHourglassTop } from "./hourglass-top";
+import { WizIImage } from "./image";
 import { WizIInboxCustomize } from "./inbox-customize";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
@@ -94,9 +95,11 @@ import { WizIMoreVert } from "./more-vert";
 import { WizINoteAdd } from "./note-add";
 import { WizINotification } from "./notification";
 import { WizIOpenInNew } from "./open-in-new";
+import { WizIPauseCircle } from "./pause-circle";
 import { WizIPersonFilled } from "./person-filled";
 import { WizIPieChart } from "./pie-chart";
 import { WizIPinDrop } from "./pin-drop";
+import { WizIPlayCircle } from "./play-circle";
 import { WizIPublic } from "./public";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
@@ -197,6 +200,7 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
+  | typeof WizIImage
   | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
@@ -214,9 +218,11 @@ export type TIcon =
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
+  | typeof WizIPauseCircle
   | typeof WizIPersonFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
+  | typeof WizIPlayCircle
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
@@ -317,6 +323,7 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
+  WizIImage,
   WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
@@ -334,9 +341,11 @@ export {
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
+  WizIPauseCircle,
   WizIPersonFilled,
   WizIPieChart,
   WizIPinDrop,
+  WizIPlayCircle,
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
