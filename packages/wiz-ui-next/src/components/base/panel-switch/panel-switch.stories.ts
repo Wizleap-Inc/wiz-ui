@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { WizPanelSwitch } from ".";
 
 export default {
-  title: "Base/Input/PanelSwitch",
+  title: "Base/PanelSwitch",
   component: WizPanelSwitch,
   argTypes: {
     input: {
