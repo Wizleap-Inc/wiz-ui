@@ -11,6 +11,7 @@ export const panelSwitchStyle = style({
 });
 
 export const panelSwitchBlockStyle = style({
+  flex: 1,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
