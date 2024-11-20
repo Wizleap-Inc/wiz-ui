@@ -4,7 +4,6 @@ import { THEME } from "@wizleap-inc/wiz-ui-constants";
 export const panelSwitchStyle = style({
   display: "flex",
   width: "max-content",
-  height: THEME.spacing.xl2,
   backgroundColor: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
   boxShadow: THEME.shadow.sm,
@@ -15,7 +14,7 @@ export const panelSwitchBlockStyle = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  padding: `${THEME.spacing.no} ${THEME.spacing.sm}`,
+  padding: `${THEME.spacing.xs} ${THEME.spacing.sm}`,
   fontSize: THEME.fontSize.xs,
   borderTop: `1px solid ${THEME.color.gray["400"]}`,
   borderBottom: `1px solid ${THEME.color.gray["400"]}`,
