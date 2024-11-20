@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { WizPanelSwitch } from "../components";
 const meta: Meta<typeof WizPanelSwitch> = {
-  title: "Base/Input/PanelSwitch",
+  title: "Base/PanelSwitch",
   component: WizPanelSwitch,
   argTypes: {},
 };
