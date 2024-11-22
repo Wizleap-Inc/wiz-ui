@@ -16,6 +16,18 @@ export const parameters = {
       },
     ],
   },
+  screenshot: {
+    viewports: {
+      mobile: {
+        width: 428,
+        height: 926,
+      },
+      desktop: {
+        width: 1440,
+        height: 1024,
+      },
+    },
+  },
 };
 
 export const decorators = [withScreenshot];
