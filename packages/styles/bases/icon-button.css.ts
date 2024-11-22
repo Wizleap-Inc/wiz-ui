@@ -5,7 +5,7 @@ const baseIconButtonStyle = style({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: "50%",
+  borderRadius: "49%",
   cursor: "pointer",
 });
 
