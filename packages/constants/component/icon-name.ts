@@ -66,6 +66,7 @@ export const IconComponentName = {
   IDrafts: "WizIDrafts",
   IEditNote: "WizIEditNote",
   IEmergencyHome: "WizIEmergencyHome",
+  IErrorFilled: "WizIErrorFilled",
   IExpandLess: "WizIExpandLess",
   IExpandMoreBold: "WizIExpandMoreBold",
   IExpandMore: "WizIExpandMore",
