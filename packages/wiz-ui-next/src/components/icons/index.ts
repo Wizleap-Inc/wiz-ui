@@ -77,7 +77,6 @@ import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
 import { default as WizIHome } from "./home.vue";
 import { default as WizIHourglassTop } from "./hourglass-top.vue";
-import { default as WizIImage } from "./image.vue";
 import { default as WizIInboxCustomize } from "./inbox-customize.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfoFilled } from "./info-filled.vue";
@@ -96,11 +95,9 @@ import { default as WizIMoreVert } from "./more-vert.vue";
 import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
-import { default as WizIPauseCircle } from "./pause-circle.vue";
 import { default as WizIPersonFilled } from "./person-filled.vue";
 import { default as WizIPieChart } from "./pie-chart.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
-import { default as WizIPlayCircle } from "./play-circle.vue";
 import { default as WizIPublic } from "./public.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
@@ -201,7 +198,6 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
-  | typeof WizIImage
   | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
@@ -220,11 +216,9 @@ export type TIcon =
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
-  | typeof WizIPauseCircle
   | typeof WizIPersonFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
-  | typeof WizIPlayCircle
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
@@ -325,7 +319,6 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
-  WizIImage,
   WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
@@ -344,11 +337,9 @@ export {
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
-  WizIPauseCircle,
   WizIPersonFilled,
   WizIPieChart,
   WizIPinDrop,
-  WizIPlayCircle,
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
