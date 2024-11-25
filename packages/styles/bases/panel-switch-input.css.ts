@@ -6,7 +6,6 @@ export const panelSwitchStyle = style({
   width: "max-content",
   backgroundColor: THEME.color.white["800"],
   borderRadius: THEME.spacing.xs2,
-  boxShadow: THEME.shadow.sm,
 });
 
 export const panelSwitchBlockStyle = style({
