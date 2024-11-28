@@ -21,7 +21,7 @@ type Props = BaseProps & {
   sticky?: boolean;
   leftContent?: ReactNode;
   rightContent?: ReactNode;
-  onToggle: () => void;
+  onToggle?: () => void;
 };
 
 const Header: FC<Props> = ({
@@ -45,7 +45,7 @@ const Header: FC<Props> = ({
             icon={WizIMenu}
             size="lg"
             variant="transparent"
-            onClick={onToggle}
+            onClick={() => onToggle?.()}
           />
           {leftContent}
         </WizHStack>

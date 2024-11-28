@@ -40,7 +40,7 @@ type Props = BaseProps & {
   selectBoxValue?: string;
   isDirectionFixed?: boolean;
   error?: boolean;
-  onChangeDateRange: (dateRange: DateRange) => void;
+  onChangeDateRange?: (dateRange: DateRange) => void;
   onChangeSelectBoxValue?: (value: string) => void;
   disabledDate?: (date: Date) => boolean;
   /**
@@ -90,7 +90,7 @@ const DateRangePicker: FC<Props> = ({
       ),
     [rightCalendarDate]
   );
-  const onClickCancel = () => onChangeDateRange({ start: null, end: null });
+  const onClickCancel = () => onChangeDateRange?.({ start: null, end: null });
   const moveCalendar = (command: "nextMonth" | "prevMonth") => {
     const dm = command === "nextMonth" ? 1 : -1;
     setRightCalendarDate(
@@ -146,13 +146,13 @@ const DateRangePicker: FC<Props> = ({
     (date: Date) => {
       const [start, end] = [dateRange.start, dateRange.end];
       if (start && end) {
-        onChangeDateRange({ start: date, end: null });
+        onChangeDateRange?.({ start: date, end: null });
       } else if (start) {
         const [nextStart, nextEnd] =
           start > date ? [date, start] : [start, date];
-        onChangeDateRange({ start: nextStart, end: nextEnd });
+        onChangeDateRange?.({ start: nextStart, end: nextEnd });
       } else {
-        onChangeDateRange({ start: date, end: null });
+        onChangeDateRange?.({ start: date, end: null });
       }
     },
     [dateRange, onChangeDateRange]

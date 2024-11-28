@@ -26,7 +26,7 @@ type Props = BaseProps & {
   disabled?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
-  onChangeDate: (selectedValue: Date | null) => void;
+  onChangeDate?: (selectedValue: Date | null) => void;
   /**
    * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
    * @param date
@@ -139,7 +139,7 @@ const DatePicker: FC<Props> = ({
               type="button"
               className={styles.datePickerCancelIconStyle}
               disabled={disabled}
-              onClick={() => onChangeDate(null)}
+              onClick={() => onChangeDate?.(null)}
               aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
             >
               <WizIcon size="xl2" color="inherit" icon={WizICancel} />
@@ -240,7 +240,7 @@ const DatePicker: FC<Props> = ({
             activeDates={
               (date && [{ date: date, state: "primary" }]) || undefined
             }
-            onClickDate={(date) => onChangeDate(date)}
+            onClickDate={(date) => onChangeDate?.(date)}
             currentMonth={currentMonth}
             filledWeeks
             disabledDate={disabledDate}
