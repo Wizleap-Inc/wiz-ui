@@ -1,5 +1,5 @@
 ---
-"@wizleap-inc/wiz-ui-next": patch
+"@wizleap-inc/wiz-ui-next": minor
 ---
 
 PanelSwitch のデザイン変更
