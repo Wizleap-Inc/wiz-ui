@@ -62,3 +62,25 @@ export const Width: Story = {
     );
   },
 };
+
+export const Active: Story = {
+  args: {
+    items,
+    value: 1,
+  },
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState<number | null>(null);
+    return (
+      <div>
+        <p>入力値：{value}</p>
+        <WizPanelSwitch
+          {...args}
+          onChange={(changed) => {
+            setValue(changed);
+          }}
+        />
+      </div>
+    );
+  },
+};
