@@ -7,6 +7,9 @@ export default {
   title: "Base/PanelSwitch",
   component: WizPanelSwitch,
   argTypes: {
+    modelValue: {
+      control: { type: "number" },
+    },
     input: {
       action: "input",
     },
@@ -43,4 +46,22 @@ export const Width = Template.bind({});
 Width.args = {
   items,
   width: "300px",
+};
+
+const ActiveTemplate: StoryFn<typeof WizPanelSwitch> = (args) => ({
+  components: { WizPanelSwitch },
+  setup() {
+    return { args };
+  },
+  template: `
+  <div>
+    <p>入力値：{{ args.modelValue }}</p>
+    <WizPanelSwitch v-bind="args" @update:modelValue="args.input"/>
+  </div>
+`,
+});
+export const Active = ActiveTemplate.bind({});
+Active.args = {
+  items,
+  modelValue: 1,
 };
