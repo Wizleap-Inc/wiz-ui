@@ -1,5 +1,5 @@
 <template>
-  <div :class="panelSwitchStyle">
+  <div :class="panelSwitchStyle" :style="{ ...(width ? { width } : {}) }">
     <label
       v-for="(item, key) in items"
       :key="key"
@@ -54,6 +54,10 @@ const props = defineProps({
   items: {
     type: Array as PropType<panelItems[]>,
     required: true,
+  },
+  width: {
+    type: String,
+    required: false,
   },
 });
 

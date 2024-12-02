@@ -35,3 +35,4 @@ export * from "./popup-button-group";
 export * from "./show-more-less";
 export * from "./information-panel";
 export * from "./loading-overlay";
+export * from "./panel-switch";
