@@ -11,7 +11,7 @@ import { DivButton } from "./private-div-button";
 type Props = BaseProps & {
   currentPage: number;
   length: number;
-  onChangePage: (page: number) => void;
+  onChangePage?: (page: number) => void;
   /**
    * 表示ページ数を制御します。(`>=0`)
    * @default 2
@@ -30,9 +30,9 @@ const Pagination = ({
   const sideItemLength = Math.max(0, sideLength);
   const maxItemLength = 2 * sideItemLength + 1;
   const handleChangePage = (index: number) => {
-    if (index < 1) return onChangePage(1);
-    if (index > length) return onChangePage(length);
-    onChangePage(index);
+    if (index < 1) return onChangePage?.(1);
+    if (index > length) return onChangePage?.(length);
+    onChangePage?.(index);
   };
   const getActuallyDisplayingPages = () => {
     if (length < maxItemLength) {

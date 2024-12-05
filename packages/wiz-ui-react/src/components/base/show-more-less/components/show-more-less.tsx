@@ -25,7 +25,7 @@ type Props = BaseProps & {
   closeMessage?: string;
   width?: string;
   variant?: "pc" | "mobile";
-  onToggle: () => void;
+  onToggle?: () => void;
   children: ReactNode;
 };
 
@@ -45,7 +45,7 @@ const ShowMoreLess: FC<Props> = ({
 
   const handleClick: MouseEventHandler = (event) => {
     event.preventDefault();
-    onToggle();
+    onToggle?.();
   };
 
   useEffect(() => {
