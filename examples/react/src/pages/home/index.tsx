@@ -18,6 +18,16 @@ export const Home = () => {
         <SearchInputStr />
         <SelectBoxNum />
         <SelectBoxStr />
+        <div
+          style={{
+            width: "200px",
+            height: "200px",
+            overflow: "scroll",
+          }}
+        >
+          <div style={{ width: "100vw", height: "100vh" }}>test2</div>
+        </div>
+        <div style={{ width: "100vw", height: "100vh" }}>test</div>
       </WizVStack>
     </div>
   );
