@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.35.1
+
+### Patch Changes
+
+- [#1423](https://github.com/Wizleap-Inc/wiz-ui/pull/1423) [`ac0e286dbd06852327f369e47529f779e81dd28e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac0e286dbd06852327f369e47529f779e81dd28e) Thanks [@k-tada](https://github.com/k-tada)! - SnackBar の CSS に word-break を追加
+
 ## 0.35.0
 
 ### Minor Changes
