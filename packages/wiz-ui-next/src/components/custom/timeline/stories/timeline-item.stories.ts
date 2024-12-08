@@ -40,6 +40,10 @@ export default {
     disabled: {
       control: { type: "boolean" },
     },
+    backgroundColor: {
+      control: { type: "select" },
+      options: ["white.800", "gray.200"],
+    },
   },
   decorators: [
     () => ({
@@ -207,10 +211,10 @@ Overview.parameters = {
   },
 };
 
-const Template: StoryFn<typeof WizTimelineItem> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template: StoryFn<typeof WizTimelineItem> = (args) => ({
+  setup: () => ({ args }),
   components: { WizTimelineItem },
-  template: `<WizTimelineItem v-bind="$props"/>`,
+  template: `<WizTimelineItem v-bind="args"/>`,
 });
 
 export const Icon = Template.bind({});
@@ -291,4 +295,10 @@ Disabled.args = {
   variant: "success",
   title: "disabledにすると、タイムラインのアイテムがグレーアウトします",
   disabled: true,
+};
+
+export const BackgroundColor = Template.bind({});
+BackgroundColor.args = {
+  title: "背景色を設定できます",
+  backgroundColor: "gray.200",
 };

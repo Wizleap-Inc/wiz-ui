@@ -112,7 +112,6 @@ export const card = style({
   width: "100%",
   borderRadius: THEME.spacing.xs2,
   overflow: "hidden",
-  backgroundColor: THEME.color.white[800],
 });
 
 export const contents = style({
