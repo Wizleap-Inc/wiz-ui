@@ -10,6 +10,7 @@ import { PanelItems } from "./type";
 type Props = BaseProps & {
   value: number | null;
   items: PanelItems[];
+  width?: string;
   onChange: (value: number) => void;
 };
 
@@ -18,12 +19,16 @@ const PanelSwitch: FC<Props> = ({
   style,
   value,
   items,
+  width,
   onChange,
 }) => {
   const idPrefix = useId();
 
   return (
-    <div className={clsx(className, styles.panelSwitchStyle)} style={style}>
+    <div
+      className={clsx(className, styles.panelSwitchStyle)}
+      style={{ ...style, ...(width ? { width } : {}) }}
+    >
       {items.map((item, index) => {
         const radioId = `${idPrefix}-${item.value}`;
         const isFirstItem = index === 0;
