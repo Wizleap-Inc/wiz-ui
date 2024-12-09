@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.46.0
+
+### Minor Changes
+
+- [#1407](https://github.com/Wizleap-Inc/wiz-ui/pull/1407) [`684209c361ebf26995bc9bb318d930082d2be2f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/684209c361ebf26995bc9bb318d930082d2be2f9) Thanks [@k-tada](https://github.com/k-tada)! - PanelSwitch のデザイン変更
+
+- [#1425](https://github.com/Wizleap-Inc/wiz-ui/pull/1425) [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline-item): 背景色として gray.200 を選択可能に
+
+### Patch Changes
+
+- Updated dependencies [[`d45ddae774b60d0bfca45911fff4e678f20368cd`](https://github.com/Wizleap-Inc/wiz-ui/commit/d45ddae774b60d0bfca45911fff4e678f20368cd), [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404)]:
+  - @wizleap-inc/wiz-ui-styles@0.36.0
+
 ## 2.45.2
 
 ### Patch Changes
