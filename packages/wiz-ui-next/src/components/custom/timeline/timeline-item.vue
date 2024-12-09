@@ -15,7 +15,13 @@
     >
       <WizIcon :size="iconSize" :icon="icon" color="white.800" />
     </div>
-    <div :class="[styles.card, disabled && styles.disabled]">
+    <div
+      :class="[
+        styles.card,
+        disabled && styles.disabled,
+        backgroundStyle[backgroundColor],
+      ]"
+    >
       <div :class="styles.contents">
         <div :class="styles.header">
           <div :class="styles.headerRow">
@@ -50,7 +56,8 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { backgroundStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/timeline.css";
 import { PropType, computed, inject, useSlots } from "vue";
 
@@ -95,6 +102,11 @@ const props = defineProps({
   icon: {
     type: Object as PropType<TIcon>,
     default: WizICalendar,
+  },
+  backgroundColor: {
+    type: String as PropType<Extract<ColorKeys, "white.800" | "gray.200">>,
+    required: false,
+    default: "white.800",
   },
 });
 
