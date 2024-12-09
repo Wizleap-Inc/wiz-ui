@@ -39,7 +39,7 @@ type Props<T> = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
-  onChange: (value: T | null) => void;
+  onChange?: (value: T | null) => void;
 };
 
 const SelectBox = <T,>({
@@ -81,7 +81,7 @@ const SelectBox = <T,>({
 
   const handleClickOption = (option: SelectBoxOption<T>) => {
     setIsOpen(false);
-    onChange(option.value);
+    onChange?.(option.value);
   };
 
   const getInputBorderStyleKey = () => {

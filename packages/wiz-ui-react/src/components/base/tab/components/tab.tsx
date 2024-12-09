@@ -13,7 +13,7 @@ type Props = BaseProps & {
   gap?: SpacingKeys;
   width?: string;
   center?: boolean;
-  onClickTab: (name: string) => void;
+  onClickTab?: (name: string) => void;
 };
 
 const Tab: FC<Props> = ({
@@ -40,7 +40,7 @@ const Tab: FC<Props> = ({
           {...tab}
           width={width}
           active={tab.name === activeTabName}
-          onClick={onClickTab}
+          onClick={(name: string) => onClickTab?.(name)}
         />
       ))}
     </WizHStack>

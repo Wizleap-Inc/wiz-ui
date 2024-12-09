@@ -32,7 +32,7 @@ type Props<T extends CheckboxOption> = BaseProps & {
   icon?: TIcon;
   showSelectedItem?: boolean;
   showParentLabel?: boolean;
-  onChangeValues: (values: T[]) => void;
+  onChangeValues?: (values: T[]) => void;
 };
 
 function filterOptions<T extends CheckboxOption>(
@@ -115,7 +115,7 @@ const SearchInput = <T extends CheckboxOption>({
 
   const onClear = (value: T) => {
     const newValues = values.filter((v) => v !== value);
-    onChangeValues(newValues);
+    onChangeValues?.(newValues);
   };
 
   const handleKeyDown = (value: T): KeyboardEventHandler => {
@@ -129,7 +129,7 @@ const SearchInput = <T extends CheckboxOption>({
   const displayingSelectedItems = showSelectedItem && values.length > 0;
 
   const handleClickPanelItem = (value: T[]) => {
-    onChangeValues(value);
+    onChangeValues?.(value);
     setFilteringText("");
   };
 

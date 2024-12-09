@@ -23,7 +23,7 @@ type Props = BaseProps & {
   width?: string;
   autocomplete?: Extract<AutoCompleteKeys, "currentPassword" | "newPassword">;
   error?: boolean;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 } & Omit<PrivateBaseInputProps, "onChange">;
 
 const PasswordInput = forwardRef<HTMLInputElement, Props>(
@@ -70,7 +70,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           type={!disabled && isPasswordVisible ? "text" : "password"}
           autoComplete={autocomplete}
           spaceType="right"
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange?.(e.target.value)}
           {...props}
         />
         <button

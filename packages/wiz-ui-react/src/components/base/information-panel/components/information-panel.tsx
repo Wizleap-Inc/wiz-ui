@@ -15,7 +15,7 @@ type Props = BaseProps & {
   messages: (TextMessage | ReactNode)[];
   width?: string;
   border?: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const isTextMessage = (
@@ -65,7 +65,7 @@ const InformationPanel: FC<Props> = ({
         <WizIconButton
           variant="transparent"
           icon={WizIClose}
-          onClick={onClose}
+          onClick={() => onClose?.()}
         />
       </WizVStack>
     </div>

@@ -29,7 +29,7 @@ import { getPopupPosition } from "../utils";
 
 type Props = BaseProps & {
   isOpen: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   anchorElement: RefObject<HTMLElement>;
   direction?: DirectionKey;
   gap?: Exclude<SpacingKeys, "at">;
@@ -79,7 +79,7 @@ const Popup: FC<Props> = ({
     left?: number;
   }>({});
 
-  useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose());
+  useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose?.());
 
   const isPopupFixed = hasFixedOrStickyParent(anchorElement.current);
 

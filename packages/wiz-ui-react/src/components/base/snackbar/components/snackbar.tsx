@@ -13,7 +13,7 @@ type Props = BaseProps & {
   expand?: boolean;
   enableAnimation?: boolean;
   autoClose?: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const Snackbar: FC<Props> = ({
@@ -37,12 +37,12 @@ const Snackbar: FC<Props> = ({
 
   const handleClose = useCallback(() => {
     if (!enableAnimation) {
-      onClose();
+      onClose?.();
       return;
     }
     setIsHidden(true);
     setTimeout(() => {
-      onClose();
+      onClose?.();
     }, ANIMATION_DURATION);
   }, [enableAnimation, onClose]);
 
