@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.36.0
+
+### Minor Changes
+
+- [#1406](https://github.com/Wizleap-Inc/wiz-ui/pull/1406) [`d45ddae774b60d0bfca45911fff4e678f20368cd`](https://github.com/Wizleap-Inc/wiz-ui/commit/d45ddae774b60d0bfca45911fff4e678f20368cd) Thanks [@k-tada](https://github.com/k-tada)! - WizPanelSwitch のデザイン修正
+
+- [#1425](https://github.com/Wizleap-Inc/wiz-ui/pull/1425) [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline-item): 背景色として gray.200 を選択可能に
+
 ## 0.35.1
 
 ### Patch Changes

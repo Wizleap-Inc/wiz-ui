@@ -1,6 +1,6 @@
 {
   "name": "@wizleap-inc/wiz-ui-styles",
-  "version": "0.35.1",
+  "version": "0.36.0",
   "main": "./dist/wiz-ui-styles.umd.js",
   "module": "./dist/wiz-ui-styles.es.js",
   "types": "./dist/index.d.ts",
