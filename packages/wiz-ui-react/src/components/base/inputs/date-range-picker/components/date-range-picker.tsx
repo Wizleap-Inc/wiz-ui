@@ -5,6 +5,7 @@ import clsx from "clsx";
 import {
   FC,
   KeyboardEvent,
+  MouseEvent,
   useCallback,
   useContext,
   useMemo,
@@ -95,7 +96,6 @@ const DateRangePicker: FC<Props> = ({
       ),
     [rightCalendarDate]
   );
-  const onClickCancel = () => onChangeDateRange({ start: null, end: null });
   const moveCalendar = (command: "nextMonth" | "prevMonth") => {
     const dm = command === "nextMonth" ? 1 : -1;
     setRightCalendarDate(
@@ -200,6 +200,14 @@ const DateRangePicker: FC<Props> = ({
     if (isOpen && !disabled) return "active";
     return "default";
   })();
+
+  const onClickCancel = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    initiaizeRightCalendarDate();
+    setTempDateRange({ start: null, end: null });
+    onChangeDateRange({ start: null, end: null });
+    setIsOpen(false);
+  };
 
   const onClose = () => {
     initiaizeRightCalendarDate();

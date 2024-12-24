@@ -6,7 +6,14 @@ import {
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, KeyboardEvent, useContext, useRef, useState } from "react";
+import {
+  FC,
+  KeyboardEvent,
+  MouseEvent,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 
 import {
   WizCalendar,
@@ -118,6 +125,14 @@ const DatePicker: FC<Props> = ({
   })();
   const wrapperButtonRef = useRef<HTMLButtonElement | null>(null);
 
+  const onCancel = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setTempDate(null);
+    setCurrentMonth(new Date());
+    onChangeDate(null);
+    setIsOpen(false);
+  };
+
   const onClose = () => {
     setTempDate(date);
     setCurrentMonth(date || new Date());
@@ -160,7 +175,7 @@ const DatePicker: FC<Props> = ({
               type="button"
               className={styles.datePickerCancelIconStyle}
               disabled={disabled}
-              onClick={() => onChangeDate(null)}
+              onClick={onCancel}
               aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
             >
               <WizIcon size="xl2" color="inherit" icon={WizICancel} />
