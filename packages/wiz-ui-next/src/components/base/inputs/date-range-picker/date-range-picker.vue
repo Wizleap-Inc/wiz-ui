@@ -299,9 +299,6 @@ const initializeRightCalendarDate = () => {
 };
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const onClickCancel = () =>
-  emit("update:modelValue", { start: null, end: null });
-
 const tempDateRange = ref(props.modelValue);
 
 const moveToNextMonth = (e: KeyboardEvent | MouseEvent) => {
@@ -385,6 +382,14 @@ const borderState = computed(() => {
   if (props.isOpen && !props.disabled) return "active";
   return "default";
 });
+
+const onClickCancel = (e: MouseEvent) => {
+  e.stopPropagation();
+  tempDateRange.value = { start: null, end: null };
+  initializeRightCalendarDate();
+  emit("update:modelValue", tempDateRange.value);
+  setIsOpen(false);
+};
 
 const onClose = () => {
   tempDateRange.value = props.modelValue;

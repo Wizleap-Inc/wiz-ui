@@ -257,8 +257,6 @@ const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const onClickCancel = () => emit("update:modelValue", null);
-
 const tempDate = ref(props.modelValue);
 
 const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
@@ -326,6 +324,14 @@ const variant = computed(() => {
 });
 
 const handleClickCalendar = (date: Date) => (tempDate.value = date);
+
+const onClickCancel = (e: MouseEvent) => {
+  e.stopPropagation();
+  tempDate.value = null;
+  currentMonth.value = new Date(defaultCurrentMonth);
+  calendarValue.value = null;
+  setIsOpen(false);
+};
 
 const onClose = () => {
   tempDate.value = calendarValue.value;
