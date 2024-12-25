@@ -4,18 +4,17 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #d3d8d7; /* gray400 */
-  border-radius: 4px;
+  background-color: #afb8b6; /* gray500 */
+  border-radius: 6px; /* デザインシステム外だが、アクセシビリティのため少し大きめに設定 */
 }
 
 *::-webkit-scrollbar-track {
   background-color: #eef0ef; /* gray300 */
-  border-radius: 4px;
 }
 
 *::-webkit-scrollbar-button {
