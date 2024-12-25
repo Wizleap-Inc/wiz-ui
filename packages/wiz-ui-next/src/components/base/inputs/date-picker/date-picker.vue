@@ -319,7 +319,7 @@ const borderState = computed(() => {
 
 const variant = computed(() => {
   if (props.disabled) return "disabled";
-  if (tempDate.value) return "selected";
+  if (calendarValue.value) return "selected";
   return "default";
 });
 
@@ -329,7 +329,7 @@ const onClickCancel = (e: MouseEvent) => {
   e.stopPropagation();
   tempDate.value = null;
   currentMonth.value = new Date(defaultCurrentMonth);
-  calendarValue.value = null;
+  emit("update:modelValue", null);
   setIsOpen(false);
 };
 
