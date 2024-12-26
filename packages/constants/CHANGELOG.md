@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.34.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
 ## 0.33.0
 
 ### Minor Changes

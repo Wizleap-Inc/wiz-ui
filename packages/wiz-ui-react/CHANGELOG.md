@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-react
 
+## 1.3.0
+
+### Minor Changes
+
+- [#1419](https://github.com/Wizleap-Inc/wiz-ui/pull/1419) [`79eb57fdd83084ef8794cac4943b8dc82f40aa11`](https://github.com/Wizleap-Inc/wiz-ui/commit/79eb57fdd83084ef8794cac4943b8dc82f40aa11) Thanks [@k-tada](https://github.com/k-tada)! - イベントハンドラを任意に修正
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772), [`751115b5b08bbc3178eca2b71f4b1bd61a57de43`](https://github.com/Wizleap-Inc/wiz-ui/commit/751115b5b08bbc3178eca2b71f4b1bd61a57de43)]:
+  - @wizleap-inc/wiz-ui-constants@0.34.0
+  - @wizleap-inc/wiz-ui-styles@0.37.0
+
 ## 1.2.0
 
 ### Minor Changes
