@@ -185,3 +185,32 @@ export const Playground: Story = {
     );
   },
 };
+
+export const Today: Story = {
+  args: {
+    dateRange: {
+      start: new Date("2021-01-15"),
+      end: new Date("2021-02-15"),
+    },
+    _today: new Date("2021-01-28"),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT).click();
+  },
+};
+
+export const DisabledWithToday: Story = {
+  args: {
+    dateRange: {
+      start: new Date("2021-01-01"),
+      end: new Date("2021-01-31"),
+    },
+    disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
+    _today: new Date("2021-01-15"),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.RANGE_DATE_PICKER_INPUT).click();
+  },
+};

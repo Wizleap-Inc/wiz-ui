@@ -179,3 +179,72 @@ FilledWeeks.parameters = {
     },
   },
 };
+
+export const Today = Template.bind({});
+Today.args = {
+  currentMonth: new Date("2023-03"),
+  _today: new Date("2023-03-05"),
+};
+Today.parameters = {
+  docs: {
+    description: {
+      story:
+        "本日の日付が丸で囲われるようになっています。通常利用では `_today` パラメータの設定は不要ですが、 `_today`パラメータを設定することで任意の日付を本日の日付として扱うことができます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizCalendar :_today="new Date('2023-03-05')" />
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
+export const DisabledToday = Template.bind({});
+DisabledToday.args = {
+  currentMonth: new Date("2023-03"),
+  _today: new Date("2023-03-05"),
+  disabledDate: (date: Date) => date.getDate() === 5,
+};
+DisabledToday.parameters = {
+  docs: {
+    description: {
+      story: "本日の日付がdisabledの場合も丸で囲われます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizCalendar :_today="new Date('2023-03-05')" :disabledDate="(date: Date) => date.getDate() === 5" />
+  </div>
+</template>
+      `,
+    },
+  },
+};
+
+export const SelectedToday = Template.bind({});
+SelectedToday.args = {
+  currentMonth: new Date("2023-03"),
+  _today: new Date("2023-03-05"),
+  activeDates: [{ date: new Date("2023-03-05"), state: "primary" }],
+};
+SelectedToday.parameters = {
+  docs: {
+    description: {
+      story: "本日の日付がActiveの場合はActiveの見た目が優先されます。",
+    },
+    source: {
+      code: `
+<template>
+  <div>
+    <WizCalendar :_today="new Date('2023-03-05')" :activeDates="[{ date: new Date("2023-03-05"), state: "primary" }]" />
+  </div>
+</template>
+      `,
+    },
+  },
+};

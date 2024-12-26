@@ -259,6 +259,7 @@ Test.play = async ({ canvasElement }) => {
 
   // その月の15日を選択
   const body = within(canvasElement.ownerDocument.body);
+  const initialDate = new Date(date.getFullYear(), date.getMonth(), 1);
   const clickDate = new Date(date.getFullYear(), date.getMonth(), 15);
   const pastClickDate = new Date(date.getFullYear(), date.getMonth() - 1, 15);
   const clickDateEl = body.getByLabelText(_formatDateJp(clickDate));
@@ -270,10 +271,23 @@ Test.play = async ({ canvasElement }) => {
       `${_formatDateJp(clickDate)}-選択済み`
     )
   );
+
+  // クリックした段階ではまだInputに反映されていないこと
+  await waitFor(() =>
+    expect(button.textContent).toBe(_formatDateJp(initialDate))
+  );
+
+  // 適用ボタンをクリック
+  const applyButton = body.getByText(ARIA_LABELS.APPLY);
+  await userEvent.click(applyButton);
+
   // Input内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent).toBe(_formatDateJp(clickDate))
   );
+
+  // カレンダー再オープン
+  await userEvent.click(button);
 
   // 月セレクターのPrevを1回押して操作月を1ヶ月前にする
   const monthSelectorPrev = body.getByLabelText(
@@ -295,6 +309,14 @@ Test.play = async ({ canvasElement }) => {
       `${_formatDateJp(pastClickDate)}-選択済み`
     )
   );
+
+  // Input内が選択した日付になることを確認
+  await waitFor(() =>
+    expect(button.textContent).toBe(_formatDateJp(new Date(clickDate)))
+  );
+
+  // 適用ボタンをクリック
+  await userEvent.click(applyButton);
 
   // Input内が選択した日付になることを確認
   await waitFor(() =>
@@ -340,3 +362,48 @@ const date = ref<Date | null>(null);
     },
   },
 };
+
+export const Today: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(2023, 2, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const today = new Date(2023, 2, 5);
+    return { args, date, isOpen, setIsOpen, today };
+  },
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :_today="today"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    /> 
+  `,
+});
+
+export const DisabledToday: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(2023, 2, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const today = new Date(2023, 2, 15);
+    const disabledDate = (date: Date) =>
+      date.getDate() >= 10 && date.getDate() < 17;
+    return { args, date, isOpen, setIsOpen, today, disabledDate };
+  },
+  template: ` 
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :_today="today"
+      :disabledDate="disabledDate"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    /> 
+  `,
+});

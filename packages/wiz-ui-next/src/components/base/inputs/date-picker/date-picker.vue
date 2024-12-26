@@ -36,7 +36,7 @@
     </button>
     <WizPopup
       :isOpen="!disabled && isOpen"
-      @onClose="setIsOpen(false)"
+      @onClose="onClose"
       :isDirectionFixed="isDirectionFixed"
     >
       <div :class="datePickerSelectorStyle">
@@ -107,10 +107,10 @@
         </WizHStack>
         <WizCalendar
           :activeDates="
-            calendarValue
+            tempDate
               ? [
                   {
-                    date: calendarValue,
+                    date: tempDate,
                     state: 'primary',
                   },
                 ]
@@ -120,7 +120,17 @@
           :currentMonth="currentMonth"
           filledWeeks
           :disabledDate="disabledDate"
+          :_today="_today || new Date()"
         />
+        <WizDivider color="gray.300" />
+        <WizHStack p="sm" gap="sm" justify="end">
+          <WizTextButton @click="onClose" variant="sub">
+            {{ ARIA_LABELS.CANCEL }}
+          </WizTextButton>
+          <WizTextButton @click="onSubmit">
+            {{ ARIA_LABELS.APPLY }}
+          </WizTextButton>
+        </WizHStack>
       </div>
     </WizPopup>
   </WizPopupContainer>
@@ -147,11 +157,13 @@ import { PropType, computed, inject, ref } from "vue";
 
 import {
   WizCalendar,
+  WizDivider,
   WizHStack,
   WizIcon,
   WizPopup,
   WizPopupContainer,
   WizText,
+  WizTextButton,
   WizVStack,
 } from "@/components";
 import {
@@ -231,6 +243,12 @@ const props = defineProps({
     default: (date: Date) =>
       `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   },
+  // eslint-disable-next-line vue/prop-name-casing
+  _today: {
+    type: Date as PropType<Date>,
+    required: false,
+    default: new Date(),
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -239,7 +257,7 @@ const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const onClickCancel = () => emit("update:modelValue", null);
+const tempDate = ref(props.modelValue);
 
 const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
   e.preventDefault();
@@ -305,5 +323,24 @@ const variant = computed(() => {
   return "default";
 });
 
-const handleClickCalendar = (date: Date) => (calendarValue.value = date);
+const handleClickCalendar = (date: Date) => (tempDate.value = date);
+
+const onClickCancel = (e: MouseEvent) => {
+  e.stopPropagation();
+  tempDate.value = null;
+  currentMonth.value = new Date(defaultCurrentMonth);
+  emit("update:modelValue", null);
+  setIsOpen(false);
+};
+
+const onClose = () => {
+  tempDate.value = calendarValue.value;
+  currentMonth.value = new Date(defaultCurrentMonth);
+  setIsOpen(false);
+};
+
+const onSubmit = () => {
+  calendarValue.value = tempDate.value;
+  setIsOpen(false);
+};
 </script>
