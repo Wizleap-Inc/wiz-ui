@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-example-react
 
+## 1.1.0
+
+### Minor Changes
+
+- [#1410](https://github.com/Wizleap-Inc/wiz-ui/pull/1410) [`751115b5b08bbc3178eca2b71f4b1bd61a57de43`](https://github.com/Wizleap-Inc/wiz-ui/commit/751115b5b08bbc3178eca2b71f4b1bd61a57de43) Thanks [@k-tada](https://github.com/k-tada)! - スクロールバーデザインを修正
+
+### Patch Changes
+
+- Updated dependencies [[`79eb57fdd83084ef8794cac4943b8dc82f40aa11`](https://github.com/Wizleap-Inc/wiz-ui/commit/79eb57fdd83084ef8794cac4943b8dc82f40aa11), [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772)]:
+  - @wizleap-inc/wiz-ui-react@1.3.0
+  - @wizleap-inc/wiz-ui-constants@0.34.0
+
 ## 1.0.0
 
 ### Major Changes

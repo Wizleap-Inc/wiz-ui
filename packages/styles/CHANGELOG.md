@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.37.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+- [#1410](https://github.com/Wizleap-Inc/wiz-ui/pull/1410) [`751115b5b08bbc3178eca2b71f4b1bd61a57de43`](https://github.com/Wizleap-Inc/wiz-ui/commit/751115b5b08bbc3178eca2b71f4b1bd61a57de43) Thanks [@k-tada](https://github.com/k-tada)! - スクロールバーデザインを修正
+
+### Patch Changes
+
+- Updated dependencies [[`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772)]:
+  - @wizleap-inc/wiz-ui-constants@0.34.0
+
 ## 0.36.0
 
 ### Minor Changes
