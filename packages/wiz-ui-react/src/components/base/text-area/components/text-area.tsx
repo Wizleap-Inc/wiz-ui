@@ -24,7 +24,7 @@ type Props = BaseProps & {
   minWidth?: string;
   maxHeight?: string;
   minHeight?: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 
 const TextArea = forwardRef<HTMLTextAreaElement, Props>(
@@ -74,7 +74,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           expand && styles.textAreaExpandStyle,
           inputBorderStyle[getInputBorderStyleKey(isError)]
         )}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange?.(e.target.value)}
       />
     );
   }

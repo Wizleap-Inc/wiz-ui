@@ -44,7 +44,7 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   error?: boolean;
   _today?: Date;
-  onChangeDateRange: (dateRange: DateRange) => void;
+  onChangeDateRange?: (dateRange: DateRange) => void;
   onChangeSelectBoxValue?: (value: string) => void;
   disabledDate?: (date: Date) => boolean;
   /**
@@ -205,7 +205,7 @@ const DateRangePicker: FC<Props> = ({
     e.stopPropagation();
     initiaizeRightCalendarDate();
     setTempDateRange({ start: null, end: null });
-    onChangeDateRange({ start: null, end: null });
+    onChangeDateRange?.({ start: null, end: null });
     setIsOpen(false);
   };
 
@@ -216,7 +216,7 @@ const DateRangePicker: FC<Props> = ({
   };
 
   const onSubmit = () => {
-    onChangeDateRange(tempDateRange);
+    onChangeDateRange?.(tempDateRange);
     setIsOpen(false);
   };
 

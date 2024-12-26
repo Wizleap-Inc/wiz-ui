@@ -40,7 +40,7 @@ type Props = BaseProps & {
   error?: boolean;
   isDirectionFixed?: boolean;
   _today?: Date;
-  onChangeDate: (selectedValue: Date | null) => void;
+  onChangeDate?: (selectedValue: Date | null) => void;
   /**
    * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
    * @param date
@@ -129,7 +129,7 @@ const DatePicker: FC<Props> = ({
     e.stopPropagation();
     setTempDate(null);
     setCurrentMonth(new Date());
-    onChangeDate(null);
+    onChangeDate?.(null);
     setIsOpen(false);
   };
 
@@ -140,7 +140,7 @@ const DatePicker: FC<Props> = ({
   };
 
   const onSubmit = () => {
-    onChangeDate(tempDate);
+    onChangeDate?.(tempDate);
     setIsOpen(false);
   };
 

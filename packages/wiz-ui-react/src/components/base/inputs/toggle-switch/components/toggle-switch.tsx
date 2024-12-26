@@ -8,7 +8,7 @@ type Props = BaseProps & {
   value: boolean;
   ariaLabel: string;
   disabled?: boolean;
-  setValue: (value: boolean) => void;
+  setValue?: (value: boolean) => void;
 };
 
 const ToggleSwitch: FC<Props> = ({
@@ -29,7 +29,7 @@ const ToggleSwitch: FC<Props> = ({
         disabled={disabled}
         aria-label={ariaLabel}
         checked={value}
-        onChange={(e) => props.setValue(e.target.checked)}
+        onChange={(e) => props.setValue?.(e.target.checked)}
       />
       <span
         className={clsx(

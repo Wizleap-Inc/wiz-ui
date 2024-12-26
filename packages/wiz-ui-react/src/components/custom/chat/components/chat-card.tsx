@@ -46,9 +46,9 @@ type Props<T> = BaseProps & {
   statusOptions?: ComponentProps<typeof WizSelectBox<T>>["options"];
   statusPlaceholder?: string;
   onChangeStatus?: (status: T | null) => void;
-  onChangeTextValue: (value: string) => void;
-  onSubmit: () => void;
-  onToggle: () => void;
+  onChangeTextValue?: (value: string) => void;
+  onSubmit?: () => void;
+  onToggle?: () => void;
 };
 
 const ChatCard = <T,>({
@@ -99,7 +99,7 @@ const ChatCard = <T,>({
 
   const [isToggleAnimating, setIsToggleAnimating] = useState(false);
   const handleClickToggleButton = useCallback(() => {
-    onToggle();
+    onToggle?.();
     setIsToggleAnimating(true);
     setTimeout(() => {
       setIsToggleAnimating(false);
