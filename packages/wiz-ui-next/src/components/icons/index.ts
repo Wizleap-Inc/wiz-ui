@@ -65,6 +65,7 @@ import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIEmergencyHome } from "./emergency-home.vue";
+import { default as WizIErrorFilled } from "./error-filled.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
@@ -77,10 +78,12 @@ import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
 import { default as WizIHome } from "./home.vue";
 import { default as WizIHourglassTop } from "./hourglass-top.vue";
+import { default as WizIImageBold } from "./image-bold.vue";
 import { default as WizIInboxCustomize } from "./inbox-customize.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
+import { default as WizIKeep } from "./keep.vue";
 import { default as WizILinkOff } from "./link-off.vue";
 import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
@@ -94,9 +97,11 @@ import { default as WizIMoreVert } from "./more-vert.vue";
 import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
+import { default as WizIPauseCircleBold } from "./pause-circle-bold.vue";
 import { default as WizIPersonFilled } from "./person-filled.vue";
 import { default as WizIPieChart } from "./pie-chart.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
+import { default as WizIPlayCircleBold } from "./play-circle-bold.vue";
 import { default as WizIPublic } from "./public.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
@@ -185,6 +190,7 @@ export type TIcon =
   | typeof WizIDrafts
   | typeof WizIEditNote
   | typeof WizIEmergencyHome
+  | typeof WizIErrorFilled
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
@@ -197,10 +203,12 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
+  | typeof WizIImageBold
   | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
+  | typeof WizIKeep
   | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
@@ -214,9 +222,11 @@ export type TIcon =
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
+  | typeof WizIPauseCircleBold
   | typeof WizIPersonFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
+  | typeof WizIPlayCircleBold
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
@@ -305,6 +315,7 @@ export {
   WizIDrafts,
   WizIEditNote,
   WizIEmergencyHome,
+  WizIErrorFilled,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,
@@ -317,10 +328,12 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
+  WizIImageBold,
   WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
+  WizIKeep,
   WizILinkOff,
   WizILocationCity,
   WizILocationOn,
@@ -334,9 +347,11 @@ export {
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
+  WizIPauseCircleBold,
   WizIPersonFilled,
   WizIPieChart,
   WizIPinDrop,
+  WizIPlayCircleBold,
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
