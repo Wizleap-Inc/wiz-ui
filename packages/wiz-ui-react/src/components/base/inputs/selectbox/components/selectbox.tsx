@@ -39,6 +39,7 @@ type Props<T> = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
+  variant?: "regular" | "mini";
   onChange?: (value: T | null) => void;
 };
 
@@ -50,6 +51,7 @@ const SelectBox = <T,>({
   placeholder = "選択してください",
   width = "10rem",
   disabled = false,
+  variant = "regular",
   expand,
   error,
   isDirectionFixed = false,
@@ -125,7 +127,7 @@ const SelectBox = <T,>({
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? undefined : 0}
       >
-        <div className={styles.selectBoxInnerBoxStyle}>
+        <div className={styles.selectBoxInnerBoxStyles[variant]}>
           <WizHStack align="center" justify="between" height="100%" nowrap>
             {selectedOption ? (
               <span className={styles.selectBoxInnerBoxSelectedValueStyle}>

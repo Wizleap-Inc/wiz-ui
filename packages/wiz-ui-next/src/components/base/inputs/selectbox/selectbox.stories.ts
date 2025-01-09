@@ -125,3 +125,9 @@ DropdownMaxHeight.args = {
   options: _getDummyOptions("test", 3),
   dropdownMaxHeight: "75px",
 };
+
+export const Mini = Template.bind({});
+Mini.args = {
+  options: _getDummyOptions("test", 3),
+  variant: "mini",
+};
