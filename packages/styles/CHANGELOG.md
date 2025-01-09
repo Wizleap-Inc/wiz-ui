@@ -1,5 +1,32 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.37.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+- [#1410](https://github.com/Wizleap-Inc/wiz-ui/pull/1410) [`751115b5b08bbc3178eca2b71f4b1bd61a57de43`](https://github.com/Wizleap-Inc/wiz-ui/commit/751115b5b08bbc3178eca2b71f4b1bd61a57de43) Thanks [@k-tada](https://github.com/k-tada)! - スクロールバーデザインを修正
+
+### Patch Changes
+
+- Updated dependencies [[`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772)]:
+  - @wizleap-inc/wiz-ui-constants@0.34.0
+
+## 0.36.0
+
+### Minor Changes
+
+- [#1406](https://github.com/Wizleap-Inc/wiz-ui/pull/1406) [`d45ddae774b60d0bfca45911fff4e678f20368cd`](https://github.com/Wizleap-Inc/wiz-ui/commit/d45ddae774b60d0bfca45911fff4e678f20368cd) Thanks [@k-tada](https://github.com/k-tada)! - WizPanelSwitch のデザイン修正
+
+- [#1425](https://github.com/Wizleap-Inc/wiz-ui/pull/1425) [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline-item): 背景色として gray.200 を選択可能に
+
+## 0.35.1
+
+### Patch Changes
+
+- [#1423](https://github.com/Wizleap-Inc/wiz-ui/pull/1423) [`ac0e286dbd06852327f369e47529f779e81dd28e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac0e286dbd06852327f369e47529f779e81dd28e) Thanks [@k-tada](https://github.com/k-tada)! - SnackBar の CSS に word-break を追加
+
 ## 0.35.0
 
 ### Minor Changes

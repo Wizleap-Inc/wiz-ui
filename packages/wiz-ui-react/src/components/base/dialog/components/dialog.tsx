@@ -14,7 +14,7 @@ type Props = BaseProps & {
   children?: ReactNode;
   align?: "start" | "center" | "end";
   hideClose?: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const Dialog: FC<Props> = ({
@@ -68,7 +68,7 @@ const Dialog: FC<Props> = ({
       <WizIconButton
         icon={WizIClose}
         variant="transparent"
-        onClick={() => onClose()}
+        onClick={() => onClose?.()}
       />
     ),
     [onClose]
@@ -87,7 +87,7 @@ const Dialog: FC<Props> = ({
         className={styles.dialogMaskStyle}
         onClick={(e) => {
           if (e.target === e.currentTarget) {
-            onClose();
+            onClose?.();
           }
         }}
       >

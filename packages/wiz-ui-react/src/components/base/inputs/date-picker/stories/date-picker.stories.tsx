@@ -98,3 +98,26 @@ export const Playground: Story = {
     return <WizDatePicker {...args} date={date} onChangeDate={setDate} />;
   },
 };
+
+export const Today: Story = {
+  args: {
+    date: new Date(2023, 0, 1),
+    _today: new Date("2023-01-15"),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};
+
+export const DisabledToday: Story = {
+  args: {
+    date: new Date(2023, 0, 1),
+    disabledDate: (date: Date) => date.getDate() >= 10 && date.getDate() < 17,
+    _today: new Date("2023-01-15"),
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};

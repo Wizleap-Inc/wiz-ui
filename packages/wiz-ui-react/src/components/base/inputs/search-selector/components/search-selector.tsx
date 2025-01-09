@@ -50,7 +50,7 @@ type Props<T> = BaseProps & {
    * @default 0.75
    */
   threshold?: number;
-  onChangeValues: (values: T[]) => void;
+  onChangeValues?: (values: T[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
 };
@@ -119,10 +119,10 @@ const SearchSelector = <T,>({
             onClick: () => {
               setSearchText("");
               if (multiSelectable) {
-                onChangeValues([...values, option.value]);
+                onChangeValues?.([...values, option.value]);
                 searchTextboxRef.current?.focus();
               } else {
-                onChangeValues([option.value]);
+                onChangeValues?.([option.value]);
                 setIsPopupOpen(false);
               }
             },
@@ -164,7 +164,7 @@ const SearchSelector = <T,>({
   ]);
 
   const unselectOption = (option: SearchSelectorOption<T>) => {
-    onChangeValues(values.filter((value) => value !== option.value));
+    onChangeValues?.(values.filter((value) => value !== option.value));
     setTimeout(() => {
       // input 要素が描画されるのを待ってフォーカス
       searchTextboxRef.current?.focus();

@@ -1,5 +1,37 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.47.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772), [`751115b5b08bbc3178eca2b71f4b1bd61a57de43`](https://github.com/Wizleap-Inc/wiz-ui/commit/751115b5b08bbc3178eca2b71f4b1bd61a57de43)]:
+  - @wizleap-inc/wiz-ui-constants@0.34.0
+  - @wizleap-inc/wiz-ui-styles@0.37.0
+
+## 2.46.0
+
+### Minor Changes
+
+- [#1407](https://github.com/Wizleap-Inc/wiz-ui/pull/1407) [`684209c361ebf26995bc9bb318d930082d2be2f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/684209c361ebf26995bc9bb318d930082d2be2f9) Thanks [@k-tada](https://github.com/k-tada)! - PanelSwitch のデザイン変更
+
+- [#1425](https://github.com/Wizleap-Inc/wiz-ui/pull/1425) [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline-item): 背景色として gray.200 を選択可能に
+
+### Patch Changes
+
+- Updated dependencies [[`d45ddae774b60d0bfca45911fff4e678f20368cd`](https://github.com/Wizleap-Inc/wiz-ui/commit/d45ddae774b60d0bfca45911fff4e678f20368cd), [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404)]:
+  - @wizleap-inc/wiz-ui-styles@0.36.0
+
+## 2.45.2
+
+### Patch Changes
+
+- Updated dependencies [[`ac0e286dbd06852327f369e47529f779e81dd28e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac0e286dbd06852327f369e47529f779e81dd28e)]:
+  - @wizleap-inc/wiz-ui-styles@0.35.1
+
 ## 2.45.1
 
 ### Patch Changes

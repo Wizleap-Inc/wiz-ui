@@ -6,9 +6,22 @@ import {
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, KeyboardEvent, useContext, useRef, useState } from "react";
+import {
+  FC,
+  KeyboardEvent,
+  MouseEvent,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 
-import { WizCalendar, WizPopup, WizText } from "@/components";
+import {
+  WizCalendar,
+  WizDivider,
+  WizPopup,
+  WizText,
+  WizTextButton,
+} from "@/components";
 import { WizIcon } from "@/components/base/icon";
 import { WizHStack, WizVStack } from "@/components/base/stack";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
@@ -26,7 +39,8 @@ type Props = BaseProps & {
   disabled?: boolean;
   error?: boolean;
   isDirectionFixed?: boolean;
-  onChangeDate: (selectedValue: Date | null) => void;
+  _today?: Date;
+  onChangeDate?: (selectedValue: Date | null) => void;
   /**
    * @description 日付が無効かどうかを判定する関数です。無効な日付はクリック不可になります。
    * @param date
@@ -60,6 +74,7 @@ const DatePicker: FC<Props> = ({
   formatYear = (year) => `${year}`,
   formatDate = (date) =>
     `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  _today,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const cancelButtonVisible = !disabled && !!date;
@@ -73,6 +88,7 @@ const DatePicker: FC<Props> = ({
       )
     );
   };
+  const [tempDate, setTempDate] = useState(date);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -108,6 +124,26 @@ const DatePicker: FC<Props> = ({
     return "default";
   })();
   const wrapperButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const onCancel = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setTempDate(null);
+    setCurrentMonth(new Date());
+    onChangeDate?.(null);
+    setIsOpen(false);
+  };
+
+  const onClose = () => {
+    setTempDate(date);
+    setCurrentMonth(date || new Date());
+    setIsOpen(false);
+  };
+
+  const onSubmit = () => {
+    onChangeDate?.(tempDate);
+    setIsOpen(false);
+  };
+
   return (
     <>
       <button
@@ -139,7 +175,7 @@ const DatePicker: FC<Props> = ({
               type="button"
               className={styles.datePickerCancelIconStyle}
               disabled={disabled}
-              onClick={() => onChangeDate(null)}
+              onClick={onCancel}
               aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
             >
               <WizIcon size="xl2" color="inherit" icon={WizICancel} />
@@ -149,7 +185,7 @@ const DatePicker: FC<Props> = ({
       </button>
       <WizPopup
         isOpen={!disabled && isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={onClose}
         direction="bottomLeft"
         isDirectionFixed={isDirectionFixed}
         anchorElement={wrapperButtonRef}
@@ -238,13 +274,23 @@ const DatePicker: FC<Props> = ({
           </WizHStack>
           <WizCalendar
             activeDates={
-              (date && [{ date: date, state: "primary" }]) || undefined
+              (tempDate && [{ date: tempDate, state: "primary" }]) || undefined
             }
-            onClickDate={(date) => onChangeDate(date)}
+            onClickDate={(date) => setTempDate(date)}
             currentMonth={currentMonth}
             filledWeeks
+            _today={_today || new Date()}
             disabledDate={disabledDate}
           />
+          <WizDivider color="gray.300" />
+          <WizHStack p="sm" gap="sm" justify="end">
+            <WizTextButton onClick={onClose} variant="sub">
+              {ARIA_LABELS.CANCEL}
+            </WizTextButton>
+            <WizTextButton onClick={onSubmit}>
+              {ARIA_LABELS.APPLY}
+            </WizTextButton>
+          </WizHStack>
         </div>
       </WizPopup>
     </>

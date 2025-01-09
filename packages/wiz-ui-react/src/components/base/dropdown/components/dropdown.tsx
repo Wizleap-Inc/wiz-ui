@@ -12,7 +12,7 @@ type Props = BaseProps & {
   skeleton?: boolean;
   gap?: ComponentProps<typeof WizPopup>["gap"];
   isDirectionFixed?: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const Dropdown: FC<Props> = ({
@@ -43,7 +43,7 @@ const Dropdown: FC<Props> = ({
       </div>
       <WizPopup
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={() => onClose?.()}
         anchorElement={anchorRef}
         gap={gap}
         isDirectionFixed={isDirectionFixed}

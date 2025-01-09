@@ -20,7 +20,7 @@ type Props = BaseProps & {
   bgColor?: ColorKeys;
   fontColor?: ColorKeys;
   children?: ReactNode;
-  onToggle: () => void;
+  onToggle?: () => void;
 };
 
 const Accordion: FC<Props> = ({
@@ -53,7 +53,7 @@ const Accordion: FC<Props> = ({
         onClick={(e) => {
           e.preventDefault();
           if (!isAnimating) {
-            onToggle();
+            onToggle?.();
           }
         }}
       >

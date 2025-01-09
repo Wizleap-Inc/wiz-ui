@@ -1,4 +1,5 @@
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { backgroundStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/timeline.css";
 import clsx from "clsx";
 import { FC, ReactNode, useContext, useMemo } from "react";
@@ -19,6 +20,7 @@ interface TimelineItemProps {
   footer?: ReactNode;
   disabled?: boolean;
   icon?: TIcon;
+  backgroundColor?: Extract<ColorKeys, "white.800" | "gray.200">;
 }
 
 const TAG_COLOR_MAP = {
@@ -37,6 +39,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
   footer,
   disabled = false,
   icon = WizICalendar,
+  backgroundColor = "white.800",
 }) => {
   const ctx = useContext(TimelineContext);
   if (!ctx) {
@@ -75,7 +78,13 @@ const TimelineItem: FC<TimelineItemProps> = ({
       >
         <WizIcon size={iconSize} icon={icon} color="white.800" />
       </div>
-      <div className={clsx(styles.card, disabled && styles.disabled)}>
+      <div
+        className={clsx(
+          styles.card,
+          disabled && styles.disabled,
+          backgroundStyle[backgroundColor]
+        )}
+      >
         <div className={styles.contents}>
           <div className={styles.header}>
             <div className={styles.headerRow}>
