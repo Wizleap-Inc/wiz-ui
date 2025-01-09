@@ -42,6 +42,7 @@ type Props = BaseProps & {
   selectBoxOptions?: DateRangePickerSelectBoxOption[];
   selectBoxValue?: string;
   isDirectionFixed?: boolean;
+  variant?: "regular" | "mini";
   error?: boolean;
   _today?: Date;
   onChangeDateRange?: (dateRange: DateRange) => void;
@@ -63,6 +64,7 @@ const DateRangePicker: FC<Props> = ({
   selectBoxOptions,
   selectBoxValue,
   isDirectionFixed = false,
+  variant = "regular",
   error,
   _today,
   onChangeDateRange,
@@ -233,6 +235,7 @@ const DateRangePicker: FC<Props> = ({
         className={clsx(
           className,
           styles.bodyStyle[disabled ? "disabled" : "active"],
+          styles.variantStyles[variant],
           styles.widthStyle[expand ? "expanded" : "default"],
           inputBorderStyle[borderStyle]
         )}

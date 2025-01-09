@@ -158,6 +158,16 @@ export const InitialValueStart: Story = {
   },
 };
 
+export const Mini: Story = {
+  args: {
+    dateRange: {
+      start: new Date(2000, 0, 15),
+      end: null,
+    },
+    variant: "mini",
+  },
+};
+
 export const Playground: Story = {
   args: {
     selectBoxOptions: [
