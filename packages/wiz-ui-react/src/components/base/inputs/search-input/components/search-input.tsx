@@ -32,7 +32,7 @@ type Props<T extends CheckboxOption> = BaseProps & {
   icon?: TIcon;
   showSelectedItem?: boolean;
   showParentLabel?: boolean;
-  onChangeValues: (values: T[]) => void;
+  onChangeValues?: (values: T[]) => void;
 };
 
 function filterOptions<T extends CheckboxOption>(
@@ -113,11 +113,9 @@ const SearchInput = <T extends CheckboxOption>({
     return map;
   }, [options, showParentLabel]);
 
-  const IconComponent = icon;
-
   const onClear = (value: T) => {
     const newValues = values.filter((v) => v !== value);
-    onChangeValues(newValues);
+    onChangeValues?.(newValues);
   };
 
   const handleKeyDown = (value: T): KeyboardEventHandler => {
@@ -131,7 +129,7 @@ const SearchInput = <T extends CheckboxOption>({
   const displayingSelectedItems = showSelectedItem && values.length > 0;
 
   const handleClickPanelItem = (value: T[]) => {
-    onChangeValues(value);
+    onChangeValues?.(value);
     setFilteringText("");
   };
 
@@ -150,10 +148,14 @@ const SearchInput = <T extends CheckboxOption>({
       >
         <div className={styles.searchInputInnerBoxStyle}>
           <WizHStack align="center" nowrap gap="xs">
-            <IconComponent
-              className={styles.searchInputIconStyle}
-              style={{ flexShrink: 0 }}
-            />
+            <div className={styles.searchInputIconStyle}>
+              <WizIcon
+                // className={styles.searchInputIconStyle}
+                style={{ flexShrink: 0 }}
+                icon={icon}
+                color={"gray.500"}
+              />
+            </div>
             <WizHStack
               align="center"
               height="100%"

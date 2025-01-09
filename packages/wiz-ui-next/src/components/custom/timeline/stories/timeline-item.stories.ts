@@ -40,6 +40,10 @@ export default {
     disabled: {
       control: { type: "boolean" },
     },
+    backgroundColor: {
+      control: { type: "select" },
+      options: ["white.800", "gray.200"],
+    },
   },
   decorators: [
     () => ({
@@ -207,9 +211,9 @@ Overview.parameters = {
   },
 };
 
-const Template: StoryFn<typeof WizTimelineItem> = (args, { argTypes }) => ({
+const Template: StoryFn<typeof WizTimelineItem> = (args) => ({
+  setup: () => ({ args }),
   components: { WizTimelineItem },
-  setup: () => ({ args, argTypes }),
   template: `<WizTimelineItem v-bind="args"/>`,
 });
 
@@ -310,4 +314,10 @@ export const Header: StoryFn<typeof WizTimelineItem> = (args) => ({
 Header.args = {
   title: "タイトルの下にコンテンツを表示できます",
   annotation: "2021年01月01日",
+};
+
+export const BackgroundColor = Template.bind({});
+BackgroundColor.args = {
+  title: "背景色を設定できます",
+  backgroundColor: "gray.200",
 };

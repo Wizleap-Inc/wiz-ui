@@ -1,5 +1,66 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.47.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772), [`751115b5b08bbc3178eca2b71f4b1bd61a57de43`](https://github.com/Wizleap-Inc/wiz-ui/commit/751115b5b08bbc3178eca2b71f4b1bd61a57de43)]:
+  - @wizleap-inc/wiz-ui-constants@0.34.0
+  - @wizleap-inc/wiz-ui-styles@0.37.0
+
+## 2.46.0
+
+### Minor Changes
+
+- [#1407](https://github.com/Wizleap-Inc/wiz-ui/pull/1407) [`684209c361ebf26995bc9bb318d930082d2be2f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/684209c361ebf26995bc9bb318d930082d2be2f9) Thanks [@k-tada](https://github.com/k-tada)! - PanelSwitch のデザイン変更
+
+- [#1425](https://github.com/Wizleap-Inc/wiz-ui/pull/1425) [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline-item): 背景色として gray.200 を選択可能に
+
+### Patch Changes
+
+- Updated dependencies [[`d45ddae774b60d0bfca45911fff4e678f20368cd`](https://github.com/Wizleap-Inc/wiz-ui/commit/d45ddae774b60d0bfca45911fff4e678f20368cd), [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404)]:
+  - @wizleap-inc/wiz-ui-styles@0.36.0
+
+## 2.45.2
+
+### Patch Changes
+
+- Updated dependencies [[`ac0e286dbd06852327f369e47529f779e81dd28e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac0e286dbd06852327f369e47529f779e81dd28e)]:
+  - @wizleap-inc/wiz-ui-styles@0.35.1
+
+## 2.45.1
+
+### Patch Changes
+
+- [#1397](https://github.com/Wizleap-Inc/wiz-ui/pull/1397) [`f34a91b28cf53af8fa0c712c84dd33b053c5a44c`](https://github.com/Wizleap-Inc/wiz-ui/commit/f34a91b28cf53af8fa0c712c84dd33b053c5a44c) Thanks [@k-tada](https://github.com/k-tada)! - FormControl の nowrap 実装を修正
+
+## 2.45.0
+
+### Minor Changes
+
+- [#1336](https://github.com/Wizleap-Inc/wiz-ui/pull/1336) [`5ed4d076b472d9d441b752dc007d9ca0e14ec4bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5ed4d076b472d9d441b752dc007d9ca0e14ec4bb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - chore: update disabled styles
+
+### Patch Changes
+
+- Updated dependencies [[`5ed4d076b472d9d441b752dc007d9ca0e14ec4bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5ed4d076b472d9d441b752dc007d9ca0e14ec4bb)]:
+  - @wizleap-inc/wiz-ui-styles@0.35.0
+
+## 2.44.2
+
+### Patch Changes
+
+- [#1392](https://github.com/Wizleap-Inc/wiz-ui/pull/1392) [`1a1753205d42d02853b46491cfc299fd7ce5cb10`](https://github.com/Wizleap-Inc/wiz-ui/commit/1a1753205d42d02853b46491cfc299fd7ce5cb10) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix: nowrap form control
+
+- [#1391](https://github.com/Wizleap-Inc/wiz-ui/pull/1391) [`05d4af989a31a93a8f01919346ebd5980ce1d87f`](https://github.com/Wizleap-Inc/wiz-ui/commit/05d4af989a31a93a8f01919346ebd5980ce1d87f) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix: tooltip を dropdown より上に表示する
+
+- Updated dependencies [[`05d4af989a31a93a8f01919346ebd5980ce1d87f`](https://github.com/Wizleap-Inc/wiz-ui/commit/05d4af989a31a93a8f01919346ebd5980ce1d87f)]:
+  - @wizleap-inc/wiz-ui-constants@0.33.0
+  - @wizleap-inc/wiz-ui-styles@0.34.2
+
 ## 2.44.1
 
 ### Patch Changes

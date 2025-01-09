@@ -12,7 +12,7 @@ type Props = BaseProps & {
   notificationCount?: number;
   badgeColor?: "red" | "green";
   width?: string;
-  onClick: (name: string) => void;
+  onClick?: (name: string) => void;
 };
 
 const TabPane: FC<Props> = ({
@@ -41,7 +41,7 @@ const TabPane: FC<Props> = ({
         styles.tabPaneVariantStyle[variant]
       )}
       style={{ ...style, width }}
-      onClick={() => disabled || onClick(name)}
+      onClick={() => disabled || onClick?.(name)}
     >
       <span className={styles.tabPaneLabelStyle}>{label}</span>
       {notificationCount > 0 && (

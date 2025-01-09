@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.34.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+## 0.33.0
+
+### Minor Changes
+
+- [#1391](https://github.com/Wizleap-Inc/wiz-ui/pull/1391) [`05d4af989a31a93a8f01919346ebd5980ce1d87f`](https://github.com/Wizleap-Inc/wiz-ui/commit/05d4af989a31a93a8f01919346ebd5980ce1d87f) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix: tooltip を dropdown より上に表示する
+
 ## 0.32.0
 
 ### Minor Changes

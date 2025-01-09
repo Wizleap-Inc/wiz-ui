@@ -1,5 +1,6 @@
 <template>
   <WizVStack
+    nowrap
     :style="{
       paddingBottom: error === undefined ? THEME.fontSize.sm : undefined,
     }"
@@ -7,7 +8,7 @@
     <WizStack
       :direction="direction"
       :align="direction === 'horizontal' ? 'center' : undefined"
-      nowrap
+      :wrap="false"
     >
       <WizHStack :width="labelWidth" align="center" gap="xs2" py="xs2">
         <WizText

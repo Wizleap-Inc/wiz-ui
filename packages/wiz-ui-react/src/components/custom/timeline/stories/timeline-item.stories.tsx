@@ -140,63 +140,51 @@ export const Overview: Story = {
 };
 
 export const Icon: Story = {
-  render: () => (
-    <WizTimelineItem
-      variant="success"
-      title="Iconをカスタマイズできます。"
-      icon={WizIAdd}
-    />
-  ),
+  args: {
+    variant: "success",
+    title: "Iconをカスタマイズできます。",
+    icon: WizIAdd,
+  },
 };
 
 export const WithTag: Story = {
-  render: () => (
-    <WizTimelineItem
-      variant="success"
-      tag="これはタグです"
-      title="タグを設定できます"
-    />
-  ),
+  args: {
+    variant: "success",
+    title: "タグを設定できます",
+    tag: "これはタグです",
+  },
 };
 
 export const WithAnnotation: Story = {
-  render: () => (
-    <WizTimelineItem
-      variant="success"
-      title="注釈（日付）を設定できます"
-      annotation="2021年01月01日"
-    />
-  ),
+  args: {
+    variant: "success",
+    title: "注釈（日付）を設定できます",
+    annotation: "2021年01月01日",
+  },
 };
 
 export const VariantFailure: Story = {
-  render: () => (
-    <WizTimelineItem
-      variant="failure"
-      tag="タグは赤くなります"
-      title="失敗ステータスのバリエーションです"
-    />
-  ),
+  args: {
+    variant: "failure",
+    tag: "タグは赤くなります",
+    title: "失敗ステータスのバリエーションです",
+  },
 };
 
 export const VariantYellow: Story = {
-  render: () => (
-    <WizTimelineItem
-      variant="yellow"
-      tag="タグは黄色になります"
-      title="黄色のバリエーションです"
-    />
-  ),
+  args: {
+    variant: "yellow",
+    tag: "タグは黄色になります",
+    title: "黄色のバリエーションです",
+  },
 };
 
 export const VariantGray: Story = {
-  render: () => (
-    <WizTimelineItem
-      variant="gray"
-      tag="タグは灰色になります"
-      title="灰色のバリエーションです"
-    />
-  ),
+  args: {
+    variant: "gray",
+    tag: "タグは灰色になります",
+    title: "灰色のバリエーションです",
+  },
 };
 export const Header: Story = {
   render: () => (
@@ -258,5 +246,14 @@ export const MobileDeviceTag: Story = {
 };
 
 export const Disabled: Story = {
-  render: () => <Template disabled />,
+  args: {
+    disabled: true,
+  },
+};
+
+export const BackgroundColor: Story = {
+  args: {
+    backgroundColor: "gray.200",
+    title: "背景色を設定できます",
+  },
 };

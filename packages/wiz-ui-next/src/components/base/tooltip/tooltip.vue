@@ -15,6 +15,7 @@
         :animation="true"
         @onTurn="turnPopup"
         gap="xs2"
+        layer="tooltip"
         :isDirectionFixed="isDirectionFixed"
       >
         <div
@@ -38,14 +39,14 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  tooltipStyle,
   tooltipContentStyle,
-  tooltipIconStyle,
   tooltipIconDirectionStyle,
-  tooltipPositionStyle,
+  tooltipIconStyle,
   tooltipPopupStyle,
+  tooltipPositionStyle,
+  tooltipStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/tooltip.css";
-import { PropType, ref, computed } from "vue";
+import { computed, PropType, ref } from "vue";
 
 import { WizIChangeHistory, WizPopup, WizPopupContainer } from "@/components";
 

@@ -37,3 +37,5 @@ export * from "./skeleton";
 export * from "./tables";
 export * from "./loading-overlay";
 export * from "./pagination";
+export * from "./full-modal-view";
+export * from "./panel-switch";

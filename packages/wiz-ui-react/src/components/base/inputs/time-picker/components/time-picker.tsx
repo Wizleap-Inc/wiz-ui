@@ -25,7 +25,7 @@ type Props = BaseProps & {
   disabled?: boolean;
   isDirectionFixed?: boolean;
   error?: boolean;
-  onChange: (time: Time | null) => void;
+  onChange?: (time: Time | null) => void;
 };
 
 const TimePicker: FC<Props> = ({
@@ -95,13 +95,10 @@ const TimePicker: FC<Props> = ({
         <WizHStack gap="sm" align="center" height="100%">
           <button
             type="button"
-            className={clsx([
-              styles.cancelButtonStyle,
-              disabled && styles.cancelButtonDisabledStyle,
-            ])}
+            className={styles.cancelButtonStyle}
             disabled={!cancelButtonVisible}
             aria-label={ARIA_LABELS.TIME_PICKER_CANCEL}
-            onClick={() => onChange(null)}
+            onClick={() => onChange?.(null)}
             onFocus={() => setIsCancelButtonFocused(true)}
             onBlur={() => setIsCancelButtonFocused(false)}
           >
@@ -156,7 +153,7 @@ const TimePicker: FC<Props> = ({
                       ],
                     ])}
                     onClick={() =>
-                      onChange({ hour: option, minute: time?.minute || 0 })
+                      onChange?.({ hour: option, minute: time?.minute || 0 })
                     }
                   >
                     {option}
@@ -204,7 +201,7 @@ const TimePicker: FC<Props> = ({
                       ],
                     ])}
                     onClick={() =>
-                      onChange({ hour: time?.hour || 0, minute: option })
+                      onChange?.({ hour: time?.hour || 0, minute: option })
                     }
                   >
                     {String(option).padStart(2, "0")}
