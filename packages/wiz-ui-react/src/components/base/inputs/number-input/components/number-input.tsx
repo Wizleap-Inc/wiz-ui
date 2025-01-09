@@ -67,7 +67,6 @@ const NumberInput = (props: Props) => {
     <div
       className={clsx(
         styles.container,
-        disabled && styles.disabled,
         inputBorderStyle[borderStyle],
         className
       )}
