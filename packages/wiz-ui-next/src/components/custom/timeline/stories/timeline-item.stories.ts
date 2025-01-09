@@ -207,10 +207,10 @@ Overview.parameters = {
   },
 };
 
-const Template: StoryFn<typeof WizTimelineItem> = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template: StoryFn<typeof WizTimelineItem> = (args, { argTypes }) => ({
   components: { WizTimelineItem },
-  template: `<WizTimelineItem v-bind="$props"/>`,
+  setup: () => ({ args, argTypes }),
+  template: `<WizTimelineItem v-bind="args"/>`,
 });
 
 export const Icon = Template.bind({});
@@ -309,4 +309,5 @@ export const Header: StoryFn<typeof WizTimelineItem> = (args) => ({
 
 Header.args = {
   title: "タイトルの下にコンテンツを表示できます",
+  annotation: "2021年01月01日",
 };

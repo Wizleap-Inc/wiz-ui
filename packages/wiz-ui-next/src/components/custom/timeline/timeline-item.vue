@@ -18,28 +18,49 @@
     <div :class="[styles.card, disabled && styles.disabled]">
       <div :class="styles.contents">
         <div :class="styles.header">
-          <div :class="styles.headerRow">
-            <span :class="styles.titleContainer">
-              <WizTag
-                v-if="tag"
-                fontSize="xs"
-                :label="tag"
-                fontWeight="bold"
-                :variant="TAG_COLOR_MAP[variant]"
-              />
-              <span v-if="!isTitleEscape" :class="styles.title">
+          <template v-if="device === 'pc'">
+            <WizHStack justify="between">
+              <WizVStack gap="xs">
+                <WizHStack gap="xs" align="center">
+                  <WizTag
+                    v-if="tag"
+                    fontSize="xs"
+                    :label="tag"
+                    fontWeight="bold"
+                    :variant="TAG_COLOR_MAP[variant]"
+                  />
+                  <div :class="styles.title">{{ title }}</div>
+                </WizHStack>
+                <slot name="header" />
+              </WizVStack>
+              <div :class="styles.annotation">
+                {{ annotation }}
+                <slot name="annotation" />
+              </div>
+            </WizHStack>
+          </template>
+          <template v-else>
+            <WizVStack gap="xs">
+              <WizHStack nowrap justify="between" align="center">
+                <WizTag
+                  v-if="tag"
+                  fontSize="xs"
+                  :label="tag"
+                  fontWeight="bold"
+                  :variant="TAG_COLOR_MAP[variant]"
+                />
+                <span v-else :class="styles.title">{{ title }}</span>
+                <div :class="styles.annotation">
+                  {{ annotation }}
+                  <slot name="annotation" />
+                </div>
+              </WizHStack>
+              <div v-if="tag" :class="styles.title">
                 {{ title }}
-              </span>
-            </span>
-            <span :class="styles.annotation">
-              {{ annotation }}
-              <slot name="annotation" />
-            </span>
-          </div>
-          <span v-if="isTitleEscape" :class="styles.title">
-            {{ title }}
-          </span>
-          <slot name="header" />
+              </div>
+              <slot name="header" />
+            </WizVStack>
+          </template>
         </div>
         <div :class="styles.body" v-if="slot.default">
           <slot />
@@ -55,7 +76,7 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/customs/timeline.css";
 import { PropType, computed, inject, useSlots } from "vue";
 
-import { WizIcon, WizTag } from "@/components/base";
+import { WizHStack, WizIcon, WizTag, WizVStack } from "@/components/base";
 import { TIcon, WizICalendar } from "@/components/icons";
 
 import { TIMELINE_KEY } from "./use-timeline";

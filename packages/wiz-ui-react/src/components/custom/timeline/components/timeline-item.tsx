@@ -52,10 +52,6 @@ const TimelineItem: FC<TimelineItemProps> = ({
     () => (device === "mobile" ? "md" : "xl2"),
     [device]
   );
-  const isTitleEscape = useMemo(
-    () => device === "mobile" && tag,
-    [device, tag]
-  );
 
   return (
     <div
