@@ -3,7 +3,6 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
-  FC,
   KeyboardEvent,
   KeyboardEventHandler,
   MouseEventHandler,
@@ -31,9 +30,9 @@ import { ButtonGroupItem } from "./popup-button-group/types";
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchSelectorOption[];
-  values: number[];
+type Props<T> = BaseProps & {
+  options: SearchSelectorOption<T>[];
+  values: T[];
   placeholder?: string;
   width?: string;
   disabled?: boolean;
@@ -51,12 +50,12 @@ type Props = BaseProps & {
    * @default 0.75
    */
   threshold?: number;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues?: (values: T[]) => void;
   onCreate?: (label: string) => void;
   onInputSearchText?: (text: string) => void;
 };
 
-const SearchSelector: FC<Props> = ({
+const SearchSelector = <T,>({
   className,
   style,
   options,
@@ -75,7 +74,7 @@ const SearchSelector: FC<Props> = ({
   onChangeValues,
   onCreate,
   onInputSearchText,
-}) => {
+}: Props<T>) => {
   const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -100,7 +99,7 @@ const SearchSelector: FC<Props> = ({
     );
   }, [selectedOptions.length]);
 
-  const buttonGroupOptions: ButtonGroupItem[] = useMemo(() => {
+  const buttonGroupOptions: ButtonGroupItem<T>[] = useMemo(() => {
     const filteredOptions = filterOptions(
       options,
       searchText,
@@ -108,7 +107,7 @@ const SearchSelector: FC<Props> = ({
     ).filter((matchedOption) => {
       return !values.some((value) => matchedOption.value === value);
     });
-    const buttonGroupOptions: ButtonGroupItem[] = filteredOptions.map(
+    const buttonGroupOptions: ButtonGroupItem<T>[] = filteredOptions.map(
       (option) => {
         return {
           kind: "button",
@@ -120,10 +119,10 @@ const SearchSelector: FC<Props> = ({
             onClick: () => {
               setSearchText("");
               if (multiSelectable) {
-                onChangeValues([...values, option.value]);
+                onChangeValues?.([...values, option.value]);
                 searchTextboxRef.current?.focus();
               } else {
-                onChangeValues([option.value]);
+                onChangeValues?.([option.value]);
                 setIsPopupOpen(false);
               }
             },
@@ -143,7 +142,6 @@ const SearchSelector: FC<Props> = ({
               label: searchText,
               icon: WizIAddCircle,
               iconDefaultColor: "green.800",
-              value: -1,
               onClick: () => {
                 onCreate?.(searchText);
                 setSearchText("");
@@ -165,8 +163,8 @@ const SearchSelector: FC<Props> = ({
     values,
   ]);
 
-  const unselectOption = (option: SearchSelectorOption) => {
-    onChangeValues(values.filter((value) => value !== option.value));
+  const unselectOption = (option: SearchSelectorOption<T>) => {
+    onChangeValues?.(values.filter((value) => value !== option.value));
     setTimeout(() => {
       // input 要素が描画されるのを待ってフォーカス
       searchTextboxRef.current?.focus();
@@ -174,7 +172,7 @@ const SearchSelector: FC<Props> = ({
   };
 
   const handleClickClearButton = (
-    option: SearchSelectorOption
+    option: SearchSelectorOption<T>
   ): MouseEventHandler => {
     return (e) => {
       e.stopPropagation();
@@ -196,7 +194,7 @@ const SearchSelector: FC<Props> = ({
   };
 
   const keyDownHandlers = {
-    clearButton: (option: SearchSelectorOption): KeyboardEventHandler => {
+    clearButton: (option: SearchSelectorOption<T>): KeyboardEventHandler => {
       return (e) => {
         if (e.key === "Backspace") {
           unselectOption(option);

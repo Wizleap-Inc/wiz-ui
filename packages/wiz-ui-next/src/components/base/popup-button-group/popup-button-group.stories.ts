@@ -3,15 +3,15 @@ import { SPACING_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import {
-  WizPopupContainer,
-  WizPopup,
-  WizIOpenInNew,
-  WizIAddCircle,
-  WizPopupButtonGroup,
   TIcon,
+  WizIAddCircle,
+  WizIOpenInNew,
+  WizPopup,
+  WizPopupButtonGroup,
+  WizPopupContainer,
 } from "@/components";
 
-import { PopupButtonOption, ButtonGroupItem } from "./types";
+import { ButtonGroupItem, PopupButtonOption } from "./types";
 
 export default {
   title: "Base/PopupButtonGroup",

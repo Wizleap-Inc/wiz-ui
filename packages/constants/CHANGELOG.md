@@ -1,5 +1,41 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.34.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+## 0.33.0
+
+### Minor Changes
+
+- [#1391](https://github.com/Wizleap-Inc/wiz-ui/pull/1391) [`05d4af989a31a93a8f01919346ebd5980ce1d87f`](https://github.com/Wizleap-Inc/wiz-ui/commit/05d4af989a31a93a8f01919346ebd5980ce1d87f) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix: tooltip を dropdown より上に表示する
+
+## 0.32.0
+
+### Minor Changes
+
+- [#1379](https://github.com/Wizleap-Inc/wiz-ui/pull/1379) [`d0e8556a47433c4e40226fe171b638e593103061`](https://github.com/Wizleap-Inc/wiz-ui/commit/d0e8556a47433c4e40226fe171b638e593103061) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat: WizNumberInput
+
+## 0.31.0
+
+### Minor Changes
+
+- [#1377](https://github.com/Wizleap-Inc/wiz-ui/pull/1377) [`4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): filled counter
+
+## 0.30.0
+
+### Minor Changes
+
+- [#1374](https://github.com/Wizleap-Inc/wiz-ui/pull/1374) [`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): add counter, tunes, cloud_upload
+
+## 0.29.0
+
+### Minor Changes
+
+- [`95487aa96f9e0b027b42717ef73d3257eb6112bd`](https://github.com/Wizleap-Inc/wiz-ui/commit/95487aa96f9e0b027b42717ef73d3257eb6112bd) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(icon): link-off アイコンの追加
+
 ## 0.28.0
 
 ### Minor Changes

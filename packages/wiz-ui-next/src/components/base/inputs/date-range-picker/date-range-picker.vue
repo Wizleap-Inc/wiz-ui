@@ -20,7 +20,9 @@
         <span
           :class="
             styles.inputTextStyle[
-              modelValue.start && !disabled ? 'selected' : 'default'
+              (disabled && 'disabled') ||
+                (modelValue.start && 'selected') ||
+                'default'
             ]
           "
           >{{
@@ -31,7 +33,9 @@
         <span
           :class="
             styles.inputTextStyle[
-              modelValue.end && !disabled ? 'selected' : 'default'
+              (disabled && 'disabled') ||
+                (modelValue.end && 'selected') ||
+                'default'
             ]
           "
           >{{ modelValue.end ? formatDate(modelValue.end) : "終了日" }}</span
@@ -49,7 +53,7 @@
     </button>
     <WizPopup
       :isOpen="!disabled && isOpen"
-      @onClose="setIsOpen(false)"
+      @onClose="onClose"
       :isDirectionFixed="isDirectionFixed"
     >
       <WizCard p="no">
@@ -116,6 +120,7 @@
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
                 :filledWeeks="true"
+                :_today="_today || new Date()"
               />
             </div>
             <div :class="styles.popupCalendarContainerStyle['right']">
@@ -141,9 +146,19 @@
                 @click="handleDayClick"
                 :disabledDate="disabledDate"
                 :filledWeeks="true"
+                :_today="_today || new Date()"
               />
             </div>
           </div>
+          <WizDivider color="gray.300" />
+          <WizHStack p="sm" gap="sm" justify="end">
+            <WizTextButton @click="onClose" variant="sub">
+              {{ ARIA_LABELS.CANCEL }}
+            </WizTextButton>
+            <WizTextButton @click="onSubmit">
+              {{ ARIA_LABELS.APPLY }}
+            </WizTextButton>
+          </WizHStack>
         </div>
       </WizCard>
     </WizPopup>
@@ -159,6 +174,7 @@ import { computed, inject, PropType, ref } from "vue";
 import {
   WizCalendar,
   WizCard,
+  WizDivider,
   WizHStack,
   WizICalendar,
   WizICancel,
@@ -169,6 +185,7 @@ import {
   WizIExpandMore,
   WizPopup,
   WizPopupContainer,
+  WizTextButton,
 } from "@/components";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import { formControlKey } from "@/hooks/use-form-control-provider";
@@ -233,6 +250,12 @@ const props = defineProps({
     default: (date: Date) =>
       `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   },
+  // eslint-disable-next-line vue/prop-name-casing
+  _today: {
+    type: Date as PropType<Date>,
+    required: false,
+    default: new Date(),
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -259,10 +282,24 @@ const leftCalendarDate = computed(() => {
   );
   return date;
 });
+const initializeRightCalendarDate = () => {
+  rightCalendarDate.value = new Date();
+  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  if (end) {
+    rightCalendarDate.value = new Date(end);
+  } else if (start) {
+    rightCalendarDate.value = new Date(
+      start.getFullYear(),
+      start.getMonth() + 1,
+      1
+    );
+  } else {
+    rightCalendarDate.value = new Date();
+  }
+};
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const onClickCancel = () =>
-  emit("update:modelValue", { start: null, end: null });
+const tempDateRange = ref(props.modelValue);
 
 const moveToNextMonth = (e: KeyboardEvent | MouseEvent) => {
   e.preventDefault();
@@ -281,7 +318,7 @@ const selectedDates = computed<DateStatus[]>(() => {
     date,
     state,
   });
-  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  const [start, end] = [tempDateRange.value.start, tempDateRange.value.end];
   if (start && end) {
     const secondaries: DateStatus[] = [];
     const tomorrowOfStart = new Date(start);
@@ -302,17 +339,17 @@ const selectedDates = computed<DateStatus[]>(() => {
 });
 
 const handleDayClick = (date: Date) => {
-  const [start, end] = [props.modelValue.start, props.modelValue.end];
+  const [start, end] = [tempDateRange.value.start, tempDateRange.value.end];
   if (start && end) {
-    emit("update:modelValue", { start: date, end: null });
+    tempDateRange.value = { start: date, end: null };
     return;
   }
   if (start) {
     const [nextStart, nextEnd] = start > date ? [date, start] : [start, date];
-    emit("update:modelValue", { start: nextStart, end: nextEnd });
+    tempDateRange.value = { start: nextStart, end: nextEnd };
     return;
   }
-  emit("update:modelValue", { start: date, end: null });
+  tempDateRange.value = { start: date, end: null };
 };
 
 const toggleSelectBoxOpen = () => {
@@ -345,4 +382,23 @@ const borderState = computed(() => {
   if (props.isOpen && !props.disabled) return "active";
   return "default";
 });
+
+const onClickCancel = (e: MouseEvent) => {
+  e.stopPropagation();
+  tempDateRange.value = { start: null, end: null };
+  initializeRightCalendarDate();
+  emit("update:modelValue", tempDateRange.value);
+  setIsOpen(false);
+};
+
+const onClose = () => {
+  tempDateRange.value = props.modelValue;
+  initializeRightCalendarDate();
+  setIsOpen(false);
+};
+
+const onSubmit = () => {
+  emit("update:modelValue", tempDateRange.value);
+  setIsOpen(false);
+};
 </script>

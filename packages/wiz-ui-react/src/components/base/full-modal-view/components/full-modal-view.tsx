@@ -22,7 +22,7 @@ type Props = {
   title: string;
   header?: ReactNode;
   children: ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const FullModalView: FC<Props> = ({
@@ -100,7 +100,7 @@ const FullModalView: FC<Props> = ({
               <WizHStack gap="md">
                 {header}
                 <WizIconButton
-                  onClick={onClose}
+                  onClick={() => onClose?.()}
                   icon={WizIClose}
                   variant="transparent"
                   aria-label={ARIA_LABELS.FULL_MODAL_VIEW.CLOSE}

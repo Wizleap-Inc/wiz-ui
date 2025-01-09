@@ -6,26 +6,26 @@ import {
   popupButtonGroupInnerContainerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import clsx from "clsx";
-import { FC, KeyboardEvent, useMemo, useState } from "react";
+import { KeyboardEvent, useMemo, useState } from "react";
 
 import { WizIcon } from "@/components";
 import { BaseProps } from "@/types";
 
 import { ButtonItem as ButtonItemType } from "../types";
 
-type Props = BaseProps & {
-  item: ButtonItemType;
+type Props<T> = BaseProps & {
+  item: ButtonItemType<T>;
   disabled: boolean;
   depth: number;
 };
 
-export const ButtonItem: FC<Props> = ({
+export const ButtonItem = <T,>({
   className,
   style,
   item,
   disabled,
   depth,
-}) => {
+}: Props<T>) => {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 

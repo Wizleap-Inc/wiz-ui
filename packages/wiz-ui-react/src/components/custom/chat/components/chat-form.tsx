@@ -8,8 +8,8 @@ type Props = BaseProps & {
   disabled?: boolean;
   placeholder?: string;
   formRows?: number;
-  onChange: (value: string) => void;
-  onSubmit: () => void;
+  onChange?: (value: string) => void;
+  onSubmit?: () => void;
 };
 
 const ChatForm: FC<Props> = ({

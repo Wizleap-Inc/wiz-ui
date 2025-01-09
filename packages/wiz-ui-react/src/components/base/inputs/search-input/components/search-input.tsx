@@ -2,7 +2,7 @@ import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, KeyboardEventHandler, useMemo, useRef, useState } from "react";
+import { KeyboardEventHandler, useMemo, useRef, useState } from "react";
 
 import {
   TIcon,
@@ -15,11 +15,11 @@ import {
 import { BaseProps } from "@/types";
 
 import { SearchPopupPanel } from "./search-popup-panel";
-import { SearchInputOption } from "./types";
+import { CheckboxOption, SearchInputOption } from "./types";
 
-type Props = BaseProps & {
-  options: SearchInputOption[];
-  values: number[];
+type Props<T extends CheckboxOption> = BaseProps & {
+  options: SearchInputOption<T>[];
+  values: T[];
   name?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -32,13 +32,13 @@ type Props = BaseProps & {
   icon?: TIcon;
   showSelectedItem?: boolean;
   showParentLabel?: boolean;
-  onChangeValues: (values: number[]) => void;
+  onChangeValues?: (values: T[]) => void;
 };
 
-function filterOptions(
-  options: SearchInputOption[],
+function filterOptions<T extends CheckboxOption>(
+  options: SearchInputOption<T>[],
   text: string
-): SearchInputOption[] {
+): SearchInputOption<T>[] {
   return options.flatMap((option) => {
     const isMatched = option.label.includes(text);
     if (!option.children || option.children.length === 0) {
@@ -56,7 +56,7 @@ function filterOptions(
   });
 }
 
-const SearchInput: FC<Props> = ({
+const SearchInput = <T extends CheckboxOption>({
   className,
   style,
   options,
@@ -74,21 +74,23 @@ const SearchInput: FC<Props> = ({
   onChangeValues,
   showParentLabel,
   icon = WizISearch,
-}) => {
+}: Props<T>) => {
   const [filteringText, setFilteringText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const filteredOptions = useMemo(
-    () => filterOptions(options, filteringText),
+    () => filterOptions<T>(options, filteringText),
     [filteringText, options]
   );
 
   const valueToOptions = useMemo(() => {
-    const map = new Map<number, SearchInputOption>();
+    const map = new Map<T, SearchInputOption<T>>();
 
-    const flatten = (options: SearchInputOption[]): SearchInputOption[] => {
+    const flatten = (
+      options: SearchInputOption<T>[]
+    ): SearchInputOption<T>[] => {
       return options.flatMap((option) => {
         if (!option.children) return [option];
 
@@ -111,14 +113,12 @@ const SearchInput: FC<Props> = ({
     return map;
   }, [options, showParentLabel]);
 
-  const IconComponent = icon;
-
-  const onClear = (value: number) => {
+  const onClear = (value: T) => {
     const newValues = values.filter((v) => v !== value);
-    onChangeValues(newValues);
+    onChangeValues?.(newValues);
   };
 
-  const handleKeyDown = (value: number): KeyboardEventHandler => {
+  const handleKeyDown = (value: T): KeyboardEventHandler => {
     return (e) => {
       if (e.key === "Backspace") {
         onClear(value);
@@ -128,8 +128,8 @@ const SearchInput: FC<Props> = ({
 
   const displayingSelectedItems = showSelectedItem && values.length > 0;
 
-  const handleClickPanelItem = (value: number[]) => {
-    onChangeValues(value);
+  const handleClickPanelItem = (value: T[]) => {
+    onChangeValues?.(value);
     setFilteringText("");
   };
 
@@ -148,10 +148,14 @@ const SearchInput: FC<Props> = ({
       >
         <div className={styles.searchInputInnerBoxStyle}>
           <WizHStack align="center" nowrap gap="xs">
-            <IconComponent
-              className={styles.searchInputIconStyle}
-              style={{ flexShrink: 0 }}
-            />
+            <div className={styles.searchInputIconStyle}>
+              <WizIcon
+                // className={styles.searchInputIconStyle}
+                style={{ flexShrink: 0 }}
+                icon={icon}
+                color={"gray.500"}
+              />
+            </div>
             <WizHStack
               align="center"
               height="100%"
@@ -162,7 +166,7 @@ const SearchInput: FC<Props> = ({
               {showSelectedItem &&
                 values.map((value) => (
                   <span
-                    key={value}
+                    key={value.toString()}
                     className={styles.searchInputInnerBoxSelectedItemStyle}
                   >
                     <span
@@ -191,38 +195,35 @@ const SearchInput: FC<Props> = ({
                 name={name}
                 disabled={disabled}
                 onChange={(e) => {
-                  setIsPopupOpen(true);
                   setFilteringText(e.target.value);
                 }}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                onClick={() => setIsPopupOpen(!isPopupOpen)}
+                onClick={() => setIsPopupOpen(true)}
                 autoComplete="off"
               />
             </WizHStack>
           </WizHStack>
         </div>
       </div>
-      {filteredOptions.length > 0 && !disabled && (
-        <WizPopup
-          anchorElement={inputRef}
-          isOpen={isPopupOpen}
-          onClose={() => setIsPopupOpen(false)}
-          isDirectionFixed={isDirectionFixed}
-        >
-          <WizHStack nowrap>
-            <SearchPopupPanel
-              options={filteredOptions}
-              closePopup={() => setIsPopupOpen(false)}
-              values={values}
-              width={popupWidth}
-              emptyMessage={emptyMessage}
-              singleSelect={singleSelect}
-              onChangeValues={handleClickPanelItem}
-            />
-          </WizHStack>
-        </WizPopup>
-      )}
+      <WizPopup
+        anchorElement={inputRef}
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        isDirectionFixed={isDirectionFixed}
+      >
+        <WizHStack nowrap>
+          <SearchPopupPanel
+            options={filteredOptions}
+            closePopup={() => setIsPopupOpen(false)}
+            values={values}
+            width={popupWidth}
+            emptyMessage={emptyMessage}
+            singleSelect={singleSelect}
+            onChangeValues={handleClickPanelItem}
+          />
+        </WizHStack>
+      </WizPopup>
     </>
   );
 };

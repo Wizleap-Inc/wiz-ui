@@ -6,6 +6,7 @@ export const snackbarStyle = style({
   borderRadius: THEME.spacing.xs2,
   transitionDuration: "0.2s",
   boxShadow: THEME.shadow.sm,
+  wordBreak: "break-all",
 });
 
 export const snackbarFixedStyle = style({

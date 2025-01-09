@@ -1,5 +1,162 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.47.0
+
+### Minor Changes
+
+- [#1364](https://github.com/Wizleap-Inc/wiz-ui/pull/1364) [`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772) Thanks [@k-tada](https://github.com/k-tada)! - 今日の日付を目立つようにする & キャンセル・適用ボタンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`689100e2df32a9c66a2f8f193668cbea60270772`](https://github.com/Wizleap-Inc/wiz-ui/commit/689100e2df32a9c66a2f8f193668cbea60270772), [`751115b5b08bbc3178eca2b71f4b1bd61a57de43`](https://github.com/Wizleap-Inc/wiz-ui/commit/751115b5b08bbc3178eca2b71f4b1bd61a57de43)]:
+  - @wizleap-inc/wiz-ui-constants@0.34.0
+  - @wizleap-inc/wiz-ui-styles@0.37.0
+
+## 2.46.0
+
+### Minor Changes
+
+- [#1407](https://github.com/Wizleap-Inc/wiz-ui/pull/1407) [`684209c361ebf26995bc9bb318d930082d2be2f9`](https://github.com/Wizleap-Inc/wiz-ui/commit/684209c361ebf26995bc9bb318d930082d2be2f9) Thanks [@k-tada](https://github.com/k-tada)! - PanelSwitch のデザイン変更
+
+- [#1425](https://github.com/Wizleap-Inc/wiz-ui/pull/1425) [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline-item): 背景色として gray.200 を選択可能に
+
+### Patch Changes
+
+- Updated dependencies [[`d45ddae774b60d0bfca45911fff4e678f20368cd`](https://github.com/Wizleap-Inc/wiz-ui/commit/d45ddae774b60d0bfca45911fff4e678f20368cd), [`68514731756f38ac0fce1cc785ed29f8c26ae404`](https://github.com/Wizleap-Inc/wiz-ui/commit/68514731756f38ac0fce1cc785ed29f8c26ae404)]:
+  - @wizleap-inc/wiz-ui-styles@0.36.0
+
+## 2.45.2
+
+### Patch Changes
+
+- Updated dependencies [[`ac0e286dbd06852327f369e47529f779e81dd28e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ac0e286dbd06852327f369e47529f779e81dd28e)]:
+  - @wizleap-inc/wiz-ui-styles@0.35.1
+
+## 2.45.1
+
+### Patch Changes
+
+- [#1397](https://github.com/Wizleap-Inc/wiz-ui/pull/1397) [`f34a91b28cf53af8fa0c712c84dd33b053c5a44c`](https://github.com/Wizleap-Inc/wiz-ui/commit/f34a91b28cf53af8fa0c712c84dd33b053c5a44c) Thanks [@k-tada](https://github.com/k-tada)! - FormControl の nowrap 実装を修正
+
+## 2.45.0
+
+### Minor Changes
+
+- [#1336](https://github.com/Wizleap-Inc/wiz-ui/pull/1336) [`5ed4d076b472d9d441b752dc007d9ca0e14ec4bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5ed4d076b472d9d441b752dc007d9ca0e14ec4bb) Thanks [@RyushiAok](https://github.com/RyushiAok)! - chore: update disabled styles
+
+### Patch Changes
+
+- Updated dependencies [[`5ed4d076b472d9d441b752dc007d9ca0e14ec4bb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5ed4d076b472d9d441b752dc007d9ca0e14ec4bb)]:
+  - @wizleap-inc/wiz-ui-styles@0.35.0
+
+## 2.44.2
+
+### Patch Changes
+
+- [#1392](https://github.com/Wizleap-Inc/wiz-ui/pull/1392) [`1a1753205d42d02853b46491cfc299fd7ce5cb10`](https://github.com/Wizleap-Inc/wiz-ui/commit/1a1753205d42d02853b46491cfc299fd7ce5cb10) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix: nowrap form control
+
+- [#1391](https://github.com/Wizleap-Inc/wiz-ui/pull/1391) [`05d4af989a31a93a8f01919346ebd5980ce1d87f`](https://github.com/Wizleap-Inc/wiz-ui/commit/05d4af989a31a93a8f01919346ebd5980ce1d87f) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix: tooltip を dropdown より上に表示する
+
+- Updated dependencies [[`05d4af989a31a93a8f01919346ebd5980ce1d87f`](https://github.com/Wizleap-Inc/wiz-ui/commit/05d4af989a31a93a8f01919346ebd5980ce1d87f)]:
+  - @wizleap-inc/wiz-ui-constants@0.33.0
+  - @wizleap-inc/wiz-ui-styles@0.34.2
+
+## 2.44.1
+
+### Patch Changes
+
+- [#1383](https://github.com/Wizleap-Inc/wiz-ui/pull/1383) [`9286a5810c7e1d0a88065254b246f4efa05efd31`](https://github.com/Wizleap-Inc/wiz-ui/commit/9286a5810c7e1d0a88065254b246f4efa05efd31) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(number-input): height
+
+- Updated dependencies [[`9286a5810c7e1d0a88065254b246f4efa05efd31`](https://github.com/Wizleap-Inc/wiz-ui/commit/9286a5810c7e1d0a88065254b246f4efa05efd31)]:
+  - @wizleap-inc/wiz-ui-styles@0.34.1
+
+## 2.44.0
+
+### Minor Changes
+
+- [#1379](https://github.com/Wizleap-Inc/wiz-ui/pull/1379) [`d0e8556a47433c4e40226fe171b638e593103061`](https://github.com/Wizleap-Inc/wiz-ui/commit/d0e8556a47433c4e40226fe171b638e593103061) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat: WizNumberInput
+
+### Patch Changes
+
+- Updated dependencies [[`d0e8556a47433c4e40226fe171b638e593103061`](https://github.com/Wizleap-Inc/wiz-ui/commit/d0e8556a47433c4e40226fe171b638e593103061)]:
+  - @wizleap-inc/wiz-ui-constants@0.32.0
+  - @wizleap-inc/wiz-ui-styles@0.34.0
+
+## 2.43.0
+
+### Minor Changes
+
+- [#1377](https://github.com/Wizleap-Inc/wiz-ui/pull/1377) [`4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): filled counter
+
+### Patch Changes
+
+- Updated dependencies [[`4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f2aad5fbbf8ac28f0d63c3a6fded155761fe5a8)]:
+  - @wizleap-inc/wiz-ui-constants@0.31.0
+  - @wizleap-inc/wiz-ui-styles@0.33.1
+
+## 2.42.0
+
+### Minor Changes
+
+- [#1375](https://github.com/Wizleap-Inc/wiz-ui/pull/1375) [`ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Chore(infomation-panel): update close button position
+
+- [#1374](https://github.com/Wizleap-Inc/wiz-ui/pull/1374) [`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icons): add counter, tunes, cloud_upload
+
+### Patch Changes
+
+- Updated dependencies [[`ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ff7f53984d4a7f6a9315bb9d95f1fc9f5a268a7e), [`576c3c1b9795136d3df465a989bb4d8eef520b5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/576c3c1b9795136d3df465a989bb4d8eef520b5b)]:
+  - @wizleap-inc/wiz-ui-styles@0.33.0
+  - @wizleap-inc/wiz-ui-constants@0.30.0
+
+## 2.41.1
+
+### Patch Changes
+
+- [#1372](https://github.com/Wizleap-Inc/wiz-ui/pull/1372) [`c041edba88dbd007b3af58a541c30ba090d87898`](https://github.com/Wizleap-Inc/wiz-ui/commit/c041edba88dbd007b3af58a541c30ba090d87898) Thanks [@ichi-h](https://github.com/ichi-h)! - fix(wiz-ui-next): ジェネリクスの型がうまく生成できない問題の解消
+
+## 2.41.0
+
+### Minor Changes
+
+- [#1345](https://github.com/Wizleap-Inc/wiz-ui/pull/1345) [`73c5b87cfc3c75239de8814e97a26c42d1b3fcff`](https://github.com/Wizleap-Inc/wiz-ui/commit/73c5b87cfc3c75239de8814e97a26c42d1b3fcff) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(selects): ジェネリックコンポーネント化
+
+## 2.40.0
+
+### Minor Changes
+
+- [#1287](https://github.com/Wizleap-Inc/wiz-ui/pull/1287) [`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(nav-item): hover イベントに依らない Popup 制御
+
+### Patch Changes
+
+- Updated dependencies [[`6740cc60a94cbde0ac192f2f826a3dd130e194c8`](https://github.com/Wizleap-Inc/wiz-ui/commit/6740cc60a94cbde0ac192f2f826a3dd130e194c8)]:
+  - @wizleap-inc/wiz-ui-styles@0.32.0
+
+## 2.39.0
+
+### Minor Changes
+
+- [`95487aa96f9e0b027b42717ef73d3257eb6112bd`](https://github.com/Wizleap-Inc/wiz-ui/commit/95487aa96f9e0b027b42717ef73d3257eb6112bd) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(icon): link-off アイコンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`95487aa96f9e0b027b42717ef73d3257eb6112bd`](https://github.com/Wizleap-Inc/wiz-ui/commit/95487aa96f9e0b027b42717ef73d3257eb6112bd)]:
+  - @wizleap-inc/wiz-ui-constants@0.29.0
+  - @wizleap-inc/wiz-ui-styles@0.31.1
+
+## 2.38.1
+
+### Patch Changes
+
+- [#1350](https://github.com/Wizleap-Inc/wiz-ui/pull/1350) [`7c8c812e5740cef1bd3c7d6e9cbb1d3455008d9e`](https://github.com/Wizleap-Inc/wiz-ui/commit/7c8c812e5740cef1bd3c7d6e9cbb1d3455008d9e) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(dialog): unmount 時にスクロール固定のスタイル等を解除する
+
+## 2.38.0
+
+### Minor Changes
+
+- [#1338](https://github.com/Wizleap-Inc/wiz-ui/pull/1338) [`3cf02c14e7415417520b62cad717c987b5218b9c`](https://github.com/Wizleap-Inc/wiz-ui/commit/3cf02c14e7415417520b62cad717c987b5218b9c) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(search-input): 検索機能を改善
+
+- [#1342](https://github.com/Wizleap-Inc/wiz-ui/pull/1342) [`eb0e7ece1c969f3b4e2438942f5a5d35be37b28a`](https://github.com/Wizleap-Inc/wiz-ui/commit/eb0e7ece1c969f3b4e2438942f5a5d35be37b28a) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(search-input): ラベルの位置を揃える
+
 ## 2.37.0
 
 ### Minor Changes

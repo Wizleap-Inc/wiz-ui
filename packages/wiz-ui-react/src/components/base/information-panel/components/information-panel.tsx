@@ -15,7 +15,7 @@ type Props = BaseProps & {
   messages: (TextMessage | ReactNode)[];
   width?: string;
   border?: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 const isTextMessage = (
@@ -61,15 +61,13 @@ const InformationPanel: FC<Props> = ({
           )
         )}
       </WizVStack>
-      <div className={styles.informationPanelIconStyle}>
-        <WizVStack align="center">
-          <WizIconButton
-            variant="transparent"
-            icon={WizIClose}
-            onClick={onClose}
-          />
-        </WizVStack>
-      </div>
+      <WizVStack align="start">
+        <WizIconButton
+          variant="transparent"
+          icon={WizIClose}
+          onClick={() => onClose?.()}
+        />
+      </WizVStack>
     </div>
   );
 };

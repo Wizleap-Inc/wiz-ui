@@ -65,7 +65,6 @@ const _getDummyOptions = (label: string, count: number, exLabel?: string) => {
 
 const Template =
   (
-    initValue: number[],
     open: boolean,
     initOptions: SelectBoxOption[],
     initSearchValue: string
@@ -73,7 +72,7 @@ const Template =
   (args) => ({
     components: { WizSearchSelector, WizHStack },
     setup() {
-      const currentValue = ref(initValue);
+      const currentValue = ref(args.modelValue || []);
       const isOpen = ref(open);
       const searchValue = ref(initSearchValue);
       const options = ref<SelectBoxOption[]>(initOptions);
@@ -185,7 +184,6 @@ const code = (
   `;
 
 export const Default = Template(
-  [],
   false,
   [
     { label: "test1", value: 1 },
@@ -202,9 +200,7 @@ Default.parameters = {
   },
 };
 
-export const Open = Template([], true, _getDummyOptions("test", 3), "").bind(
-  {}
-);
+export const Open = Template(true, _getDummyOptions("test", 3), "").bind({});
 Open.parameters = {
   docs: {
     source: {
@@ -214,7 +210,6 @@ Open.parameters = {
 };
 
 export const LongWordSelector = Template(
-  [],
   true,
   _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3),
   ""
@@ -232,12 +227,9 @@ LongWordSelector.parameters = {
   },
 };
 
-export const Disabled = Template(
-  [],
-  false,
-  _getDummyOptions("test", 3),
-  ""
-).bind({});
+export const Disabled = Template(false, _getDummyOptions("test", 3), "").bind(
+  {}
+);
 Disabled.args = {
   disabled: true,
 };
@@ -250,8 +242,27 @@ Disabled.parameters = {
     },
   },
 };
+
+export const DisabledWithValues = Template(
+  false,
+  _getDummyOptions("test", 3),
+  ""
+).bind({});
+DisabledWithValues.args = {
+  modelValue: [1, 2],
+  disabled: true,
+};
+DisabledWithValues.parameters = {
+  docs: {
+    source: {
+      code: code([], false, _getDummyOptions("test", 3), "", {
+        disabled: true,
+      }),
+    },
+  },
+};
+
 export const DisabledItems = Template(
-  [],
   true,
   _getDummyOptions("test", 3).map((option, i) => ({
     ...option,
@@ -276,13 +287,11 @@ DisabledItems.parameters = {
   },
 };
 
-export const Selecting = Template(
-  [1],
-  false,
-  _getDummyOptions("test", 3),
-  ""
-).bind({});
+export const Selecting = Template(false, _getDummyOptions("test", 3), "").bind(
+  {}
+);
 Selecting.args = {
+  modelValue: [1],
   multiSelectable: false,
 };
 Selecting.parameters = {
@@ -296,12 +305,12 @@ Selecting.parameters = {
 };
 
 export const MultiSelecting = Template(
-  [1, 2, 3],
   false,
   _getDummyOptions("test", 3),
   ""
 ).bind({});
 MultiSelecting.args = {
+  modelValue: [1, 2, 3],
   multiSelectable: true,
   width: "300px",
 };
@@ -316,7 +325,6 @@ MultiSelecting.parameters = {
 };
 
 export const Addable = Template(
-  [],
   true,
   _getDummyOptions("test", 3),
   "new option"
@@ -335,7 +343,6 @@ Addable.parameters = {
 };
 
 export const ExlabelWithoutShowExlabel = Template(
-  [],
   true,
   _getDummyOptions("test", 3, "(10)"),
   ""
@@ -355,7 +362,6 @@ ExlabelWithoutShowExlabel.parameters = {
 };
 
 export const Exlabel = Template(
-  [],
   true,
   _getDummyOptions("test", 3, "(10)"),
   ""
@@ -375,7 +381,6 @@ Exlabel.parameters = {
 };
 
 export const ExlabelWithLongLabel = Template(
-  [],
   true,
   _getDummyOptions("testtesttesttesttesttesttesttesttesttest", 3, "(10)"),
   ""
@@ -401,7 +406,6 @@ ExlabelWithLongLabel.parameters = {
 };
 
 export const IsDirectionFixed = Template(
-  [],
   true,
   _getDummyOptions("test", 3),
   ""
@@ -420,7 +424,6 @@ IsDirectionFixed.parameters = {
 };
 
 export const DropdownMaxHeight = Template(
-  [],
   false,
   _getDummyOptions("test", 3),
   ""

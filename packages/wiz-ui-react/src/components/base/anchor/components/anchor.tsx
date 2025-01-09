@@ -33,7 +33,7 @@ type Props<T extends ElementType> = BaseProps & {
   children: ReactNode;
 } & (
     | {
-        href: string;
+        href?: string;
         as?: never;
         asProps?: never;
         openInNewTab?: boolean;
@@ -44,7 +44,8 @@ type Props<T extends ElementType> = BaseProps & {
         asProps: ComponentProps<T>;
         openInNewTab?: never;
       }
-  );
+  ) &
+  Pick<ComponentProps<"a">, "onClick">;
 
 const Anchor = forwardRef(
   <T extends ElementType>(
@@ -58,13 +59,15 @@ const Anchor = forwardRef(
       iconPosition = "left",
       openInNewTab,
       nowrap = false,
+      onClick,
       children,
       ...props
     }: Props<T>,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
-    const isAnchor = "href" in props;
-    const LinkComponent = isAnchor ? "a" : props.as;
+    const isAnchor = "href" in props && props.as === undefined;
+    const LinkComponent = props.as || "a";
+
     const linkProps = isAnchor
       ? {
           href: props.href,
@@ -96,6 +99,7 @@ const Anchor = forwardRef(
         ref={ref}
         className={anchorStyle}
         style={style}
+        onClick={onClick}
       >
         {iconPosition === "left" && iconContent}
         {children}

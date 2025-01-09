@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
@@ -83,17 +83,16 @@ Test.play = async ({ canvasElement }) => {
   await waitFor(() => expect(input).toHaveValue(DUMMY_PASSWORD));
 };
 
-const PlaygroundTemplate: StoryFn = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const PlaygroundTemplate: StoryFn = (args) => ({
   components: { WizPasswordInput },
   setup() {
     const value = ref("");
-    return { value };
+    return { value, args };
   },
   template: `
     <div>
       <p>入力値：{{ value }}</p>
-      <WizPasswordInput Placeholder="パスワードを入力" v-model="value" name="text-input" />
+      <WizPasswordInput v-bind="args" v-model="value" name="text-input" />
     </div>
   `,
 });

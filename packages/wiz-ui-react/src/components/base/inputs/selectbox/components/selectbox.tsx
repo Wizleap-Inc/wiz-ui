@@ -3,7 +3,6 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/bases/selectbox-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
-  FC,
   KeyboardEventHandler,
   useCallback,
   useContext,
@@ -22,16 +21,16 @@ import {
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
-type SelectBoxOption = {
+type SelectBoxOption<T = number> = {
   label: string;
   exLabel?: string;
-  value: number;
+  value: T;
   disabled?: boolean;
 };
 
-type Props = BaseProps & {
-  options: SelectBoxOption[];
-  value: number | null;
+type Props<T> = BaseProps & {
+  options: SelectBoxOption<T>[];
+  value: T | null;
   placeholder?: string;
   width?: string;
   disabled?: boolean;
@@ -40,10 +39,10 @@ type Props = BaseProps & {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
-  onChange: (value: number | null) => void;
+  onChange?: (value: T | null) => void;
 };
 
-const SelectBox: FC<Props> = ({
+const SelectBox = <T,>({
   className,
   style,
   options,
@@ -57,7 +56,7 @@ const SelectBox: FC<Props> = ({
   showExLabel = false,
   dropdownMaxHeight,
   onChange,
-}) => {
+}: Props<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
   const formControl = useContext(FormControlContext);
@@ -80,9 +79,9 @@ const SelectBox: FC<Props> = ({
     setIsOpen(!isOpen);
   };
 
-  const handleClickOption = (option: SelectBoxOption) => {
+  const handleClickOption = (option: SelectBoxOption<T>) => {
     setIsOpen(false);
-    onChange(option.value);
+    onChange?.(option.value);
   };
 
   const getInputBorderStyleKey = () => {

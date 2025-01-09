@@ -1,0 +1,4 @@
+{
+  "root": true,
+  "extends": ["../../.eslintrc.json", "../../.eslintrc.react.json"]
+}
