@@ -1,46 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
-import {
-  COLOR_MAP_ACCESSORS,
-  SPACING_ACCESSORS,
-} from "@wizleap-inc/wiz-ui-constants";
 
 import { WizAvatar } from "../components/avatar";
 
 const meta: Meta<typeof WizAvatar> = {
   title: "Base/Avatar",
   component: WizAvatar,
-  argTypes: {
-    size: {
-      control: { type: "select" },
-      options: SPACING_ACCESSORS,
-    },
-    color: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    bgColor: {
-      control: { type: "select" },
-      options: COLOR_MAP_ACCESSORS,
-    },
-    src: {
-      control: { type: "text" },
-    },
-    alt: {
-      control: { type: "text" },
-    },
-    name: {
-      control: { type: "text" },
-    },
-    fallback: {
-      control: { type: "text" },
-    },
-    clickable: {
-      control: { type: "boolean" },
-    },
-    onClick: {
-      action: "onClick",
-    },
-  },
 };
 
 export default meta;

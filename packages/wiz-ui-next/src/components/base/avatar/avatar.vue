@@ -3,6 +3,7 @@
     :class="[
       avatarStyle,
       sizeStyle[size],
+
       colorStyle[fontColor],
       clickable && avatarClickableStyle,
     ]"
@@ -18,7 +19,7 @@
     />
     <div
       v-else
-      :class="[avatarFallbackStyle]"
+      :class="[avatarFallbackStyle, fontSizeStyle[fontSizeMap[size]]]"
       :style="{
         background: avatarBgColor,
       }"
@@ -30,20 +31,25 @@
 
 <script setup lang="ts">
 import {
-  getColorCss,
-  ComponentName,
   ColorKeys,
+  ComponentName,
+  FontSizeKeys,
   SpacingKeys,
   THEME,
+  getColorCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  avatarStyle,
-  avatarImageStyle,
-  avatarFallbackStyle,
   avatarClickableStyle,
+  avatarFallbackStyle,
+  avatarImageStyle,
+  avatarStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import { sizeStyle, colorStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, PropType, computed } from "vue";
+import {
+  colorStyle,
+  fontSizeStyle,
+  sizeStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType, computed, ref } from "vue";
 
 defineOptions({
   name: ComponentName.Anchor,
@@ -63,7 +69,9 @@ const props = defineProps({
     required: true,
   },
   size: {
-    type: String as PropType<SpacingKeys>,
+    type: String as PropType<
+      Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">
+    >,
     required: false,
     default: "xl3",
   },
@@ -131,4 +139,16 @@ const fontColor = computed(() => {
   }
   return "white.800";
 });
+
+const fontSizeMap: Record<
+  Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">,
+  Extract<FontSizeKeys, "xs2" | "xs" | "sm" | "md" | "lg">
+> = {
+  md: "xs2",
+  lg: "xs2",
+  xl: "xs",
+  xl2: "sm",
+  xl3: "md",
+  xl4: "lg",
+};
 </script>
