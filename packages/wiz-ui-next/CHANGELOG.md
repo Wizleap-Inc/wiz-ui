@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-next
 
+## 2.48.0
+
+### Minor Changes
+
+- [#1405](https://github.com/Wizleap-Inc/wiz-ui/pull/1405) [`275a8350462778446a1168a244afaa3895203c43`](https://github.com/Wizleap-Inc/wiz-ui/commit/275a8350462778446a1168a244afaa3895203c43) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): add image, play_circle, pause_circle icons, keep, error
+
+### Patch Changes
+
+- [#1432](https://github.com/Wizleap-Inc/wiz-ui/pull/1432) [`0d9d099817dcf5b3f67596fb6a07e70eb0676ffe`](https://github.com/Wizleap-Inc/wiz-ui/commit/0d9d099817dcf5b3f67596fb6a07e70eb0676ffe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(number-input): disabled style
+
+- Updated dependencies [[`0d9d099817dcf5b3f67596fb6a07e70eb0676ffe`](https://github.com/Wizleap-Inc/wiz-ui/commit/0d9d099817dcf5b3f67596fb6a07e70eb0676ffe), [`275a8350462778446a1168a244afaa3895203c43`](https://github.com/Wizleap-Inc/wiz-ui/commit/275a8350462778446a1168a244afaa3895203c43)]:
+  - @wizleap-inc/wiz-ui-styles@0.37.1
+  - @wizleap-inc/wiz-ui-constants@0.35.0
+
 ## 2.47.0
 
 ### Minor Changes
