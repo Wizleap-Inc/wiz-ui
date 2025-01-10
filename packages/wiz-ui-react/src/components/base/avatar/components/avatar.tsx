@@ -1,12 +1,17 @@
 import {
   ColorKeys,
   ComponentName,
+  FontSizeKeys,
   SpacingKeys,
   THEME,
   getColorCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import { colorStyle, sizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import {
+  colorStyle,
+  fontSizeStyle,
+  sizeStyle,
+} from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   ComponentProps,
@@ -20,7 +25,7 @@ import { BaseProps } from "@/types";
 type Props = BaseProps & {
   src?: string;
   name?: string;
-  size?: SpacingKeys;
+  size?: Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">;
   color?: ColorKeys;
   bgColor?: ColorKeys;
   alt?: string;
@@ -76,6 +81,18 @@ const Avatar = forwardRef(
       return `hsl(${extractHue}, 50%, 48%)`;
     }, [bgColor, name]);
 
+    const fontSizeMap: Record<
+      Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">,
+      Extract<FontSizeKeys, "xs2" | "xs" | "sm" | "md" | "lg">
+    > = {
+      md: "xs2",
+      lg: "xs2",
+      xl: "xs",
+      xl2: "sm",
+      xl3: "md",
+      xl4: "lg",
+    };
+
     return (
       <div
         ref={ref}
@@ -110,7 +127,10 @@ const Avatar = forwardRef(
           />
         ) : (
           <div
-            className={clsx(styles.avatarFallbackStyle)}
+            className={clsx(
+              styles.avatarFallbackStyle,
+              fontSizeStyle[fontSizeMap[size]]
+            )}
             style={{
               background: avatarBgColor,
             }}
