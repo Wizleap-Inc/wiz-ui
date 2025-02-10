@@ -186,12 +186,50 @@ export const VariantGray: Story = {
     title: "灰色のバリエーションです",
   },
 };
+export const Header: Story = {
+  render: () => (
+    <WizTimelineItem
+      title="タイトルの下にコンテンツを表示できます"
+      annotation="2022年6月17日"
+      header={
+        <>
+          <WizText fontSize="sm">header content</WizText>
+        </>
+      }
+    />
+  ),
+};
 
 export const MobileDevice: Story = {
   render: () => (
     <WizTimelineItem
       variant="success"
       title="Timeline（親）コンポーネントのdeviceがmobileの場合は、TimelineItem(子)コンポーネントも小さくなります"
+      annotation="2022年6月17日"
+      header={<WizText fontSize="sm">header content</WizText>}
+    />
+  ),
+  decorators: [
+    (Story) => (
+      <TimelineContext.Provider
+        value={{
+          device: "mobile",
+        }}
+      >
+        <Story />
+      </TimelineContext.Provider>
+    ),
+  ],
+};
+
+export const MobileDeviceTag: Story = {
+  render: () => (
+    <WizTimelineItem
+      variant="success"
+      title="Timeline（親）コンポーネントのdeviceがmobileの場合は、TimelineItem(子)コンポーネントも小さくなります"
+      annotation="2022年6月17日"
+      header={<WizText fontSize="sm">header content</WizText>}
+      tag="タグ"
     />
   ),
   decorators: [
