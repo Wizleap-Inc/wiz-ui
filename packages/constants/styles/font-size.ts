@@ -1,3 +1,5 @@
+import { SpacingKeys } from "./spacing";
+
 export const FONT_SIZE_MAP = {
   /** 8px */
   xs3: "0.5rem",
@@ -60,4 +62,17 @@ export const getRelativeFontSize = (
     return FONT_SIZE_ACCESSORS[FONT_SIZE_ACCESSORS.length - 1];
   }
   return FONT_SIZE_ACCESSORS[accessor];
+};
+
+// 画面サイズに合わせて可変となるフォントサイズのマップ
+export const fontSizeMap: Record<
+  Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">,
+  Extract<FontSizeKeys, "xs2" | "xs" | "sm" | "md" | "lg">
+> = {
+  md: "xs2",
+  lg: "xs2",
+  xl: "xs",
+  xl2: "sm",
+  xl3: "md",
+  xl4: "lg",
 };

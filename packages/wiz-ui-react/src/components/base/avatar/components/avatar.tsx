@@ -1,7 +1,7 @@
 import {
   ColorKeys,
   ComponentName,
-  FontSizeKeys,
+  fontSizeMap,
   SpacingKeys,
   THEME,
   getColorCss,
@@ -80,18 +80,6 @@ const Avatar = forwardRef(
       const extractHue = (getNum * getNum) % 360;
       return `hsl(${extractHue}, 50%, 48%)`;
     }, [bgColor, name]);
-
-    const fontSizeMap: Record<
-      Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">,
-      Extract<FontSizeKeys, "xs2" | "xs" | "sm" | "md" | "lg">
-    > = {
-      md: "xs2",
-      lg: "xs2",
-      xl: "xs",
-      xl2: "sm",
-      xl3: "md",
-      xl4: "lg",
-    };
 
     return (
       <div
