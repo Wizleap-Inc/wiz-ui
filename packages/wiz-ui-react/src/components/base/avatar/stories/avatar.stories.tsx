@@ -39,6 +39,7 @@ export const FailToLoadImage: Story = {
     src: "./public/images/avatar-0.png",
     alt: "avatar",
     name: "John Due",
+    size: "md",
   },
   render: (args) => <WizAvatar {...args} />,
 };

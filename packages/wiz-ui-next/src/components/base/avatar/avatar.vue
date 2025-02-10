@@ -19,7 +19,7 @@
     />
     <div
       v-else
-      :class="[avatarFallbackStyle, fontSizeStyle[fontSizeMap[size]]]"
+      :class="[fontSizeStyle[fontSizeMap[size]], avatarFallbackStyle]"
       :style="{
         background: avatarBgColor,
       }"

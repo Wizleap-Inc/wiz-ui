@@ -116,8 +116,8 @@ const Avatar = forwardRef(
         ) : (
           <div
             className={clsx(
-              styles.avatarFallbackStyle,
-              fontSizeStyle[fontSizeMap[size]]
+              fontSizeStyle[fontSizeMap[size]],
+              styles.avatarFallbackStyle
             )}
             style={{
               background: avatarBgColor,
