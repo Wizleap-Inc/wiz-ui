@@ -289,6 +289,16 @@ IsDirectionFixed.parameters = {
   },
 };
 
+export const Mini = Template.bind({});
+Mini.args = {
+  modelValue: {
+    start: new Date(2020, 0, 15),
+    end: new Date(2020, 1, 15),
+  },
+  isDirectionFixed: true,
+  variant: "mini",
+};
+
 const _formatDateJp = (date: Date) =>
   `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 
