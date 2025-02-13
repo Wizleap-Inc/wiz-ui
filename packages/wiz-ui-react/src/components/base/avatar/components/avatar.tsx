@@ -6,11 +6,7 @@ import {
   getColorCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import {
-  colorStyle,
-  fontSizeStyle,
-  sizeStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import { colorStyle, sizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   ComponentProps,
@@ -115,7 +111,7 @@ const Avatar = forwardRef(
         ) : (
           <div
             className={clsx(
-              fontSizeStyle[styles.fontSizeMap[size]],
+              styles.avatarFontSizeStyle[size],
               styles.avatarFallbackStyle
             )}
             style={{

@@ -19,7 +19,7 @@
     />
     <div
       v-else
-      :class="[avatarFallbackStyle, fontSizeStyle[fontSizeMap[size]]]"
+      :class="[avatarFallbackStyle, avatarFontSizeStyle[size]]"
       :style="{
         background: avatarBgColor,
       }"
@@ -42,13 +42,9 @@ import {
   avatarFallbackStyle,
   avatarImageStyle,
   avatarStyle,
-  fontSizeMap,
+  avatarFontSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import {
-  colorStyle,
-  fontSizeStyle,
-  sizeStyle,
-} from "@wizleap-inc/wiz-ui-styles/commons";
+import { colorStyle, sizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
 
 defineOptions({
