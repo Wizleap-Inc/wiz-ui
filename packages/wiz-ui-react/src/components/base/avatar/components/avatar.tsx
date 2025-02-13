@@ -1,7 +1,6 @@
 import {
   ColorKeys,
   ComponentName,
-  fontSizeMap,
   SpacingKeys,
   THEME,
   getColorCss,
@@ -116,7 +115,7 @@ const Avatar = forwardRef(
         ) : (
           <div
             className={clsx(
-              fontSizeStyle[fontSizeMap[size]],
+              fontSizeStyle[styles.fontSizeMap[size]],
               styles.avatarFallbackStyle
             )}
             style={{

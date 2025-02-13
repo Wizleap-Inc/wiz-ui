@@ -1,5 +1,9 @@
 import { style } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import {
+  FontSizeKeys,
+  SpacingKeys,
+  THEME,
+} from "@wizleap-inc/wiz-ui-constants";
 
 export const avatarStyle = style({
   lineHeight: 1,
@@ -25,3 +29,16 @@ export const avatarFallbackStyle = style({
   height: "100%",
   fontSize: THEME.fontSize.sm,
 });
+
+// サイズに合わせて可変となるフォントサイズのマップ
+export const fontSizeMap: Record<
+  Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">,
+  Extract<FontSizeKeys, "xs2" | "xs" | "sm" | "md" | "lg">
+> = {
+  md: "xs2",
+  lg: "xs2",
+  xl: "xs",
+  xl2: "sm",
+  xl3: "md",
+  xl4: "lg",
+};

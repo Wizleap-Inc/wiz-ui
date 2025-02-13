@@ -19,7 +19,7 @@
     />
     <div
       v-else
-      :class="[fontSizeStyle[fontSizeMap[size]], avatarFallbackStyle]"
+      :class="[avatarFallbackStyle, fontSizeStyle[fontSizeMap[size]]]"
       :style="{
         background: avatarBgColor,
       }"
@@ -33,7 +33,6 @@
 import {
   ColorKeys,
   ComponentName,
-  fontSizeMap,
   SpacingKeys,
   THEME,
   getColorCss,
@@ -43,6 +42,7 @@ import {
   avatarFallbackStyle,
   avatarImageStyle,
   avatarStyle,
+  fontSizeMap,
 } from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
 import {
   colorStyle,
