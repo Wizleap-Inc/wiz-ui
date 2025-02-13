@@ -2,7 +2,6 @@
   <div
     :class="[
       styles.container,
-      disabled && styles.disabled,
       inputBorderStyle[isError ? 'error' : hasFocus ? 'active' : 'default'],
     ]"
     :style="{ display: 'flex', width: width }"

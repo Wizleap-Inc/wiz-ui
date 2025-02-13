@@ -65,6 +65,7 @@ import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
 import { WizIEmergencyHome } from "./emergency-home";
+import { WizIErrorFilled } from "./error-filled";
 import { WizIExpandLess } from "./expand-less";
 import { WizIExpandMore } from "./expand-more";
 import { WizIExpandMoreBold } from "./expand-more-bold";
@@ -77,10 +78,12 @@ import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIHourglassTop } from "./hourglass-top";
+import { WizIImageBold } from "./image-bold";
 import { WizIInboxCustomize } from "./inbox-customize";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
+import { WizIKeepBold } from "./keep-bold";
 import { WizILinkOff } from "./link-off";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
@@ -94,9 +97,11 @@ import { WizIMoreVert } from "./more-vert";
 import { WizINoteAdd } from "./note-add";
 import { WizINotification } from "./notification";
 import { WizIOpenInNew } from "./open-in-new";
+import { WizIPauseCircleBold } from "./pause-circle-bold";
 import { WizIPersonFilled } from "./person-filled";
 import { WizIPieChart } from "./pie-chart";
 import { WizIPinDrop } from "./pin-drop";
+import { WizIPlayCircleBold } from "./play-circle-bold";
 import { WizIPublic } from "./public";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
@@ -185,6 +190,7 @@ export type TIcon =
   | typeof WizIDrafts
   | typeof WizIEditNote
   | typeof WizIEmergencyHome
+  | typeof WizIErrorFilled
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
@@ -197,10 +203,13 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
+  | typeof WizIImageBold
   | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
+  | typeof WizIKeepBold
+  | typeof WizIKeep
   | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
@@ -214,9 +223,11 @@ export type TIcon =
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
+  | typeof WizIPauseCircleBold
   | typeof WizIPersonFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
+  | typeof WizIPlayCircleBold
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
@@ -238,18 +249,18 @@ export type TIcon =
   | typeof WizIWarning;
 
 export {
-  WizIAddCircle,
   WizIAdd,
-  WizIAdjustBold,
+  WizIAddCircle,
   WizIAdjust,
+  WizIAdjustBold,
   WizIApprovalFilled,
   WizIArrowDownward,
   WizIArrowDropDown,
   WizIArrowDropUp,
   WizIArrowRight,
   WizIArrowUpward,
-  WizIAssignmentAdd,
   WizIAssignment,
+  WizIAssignmentAdd,
   WizIAttachFile,
   WizIAutoRenew,
   WizIBarChart4Bars,
@@ -260,41 +271,41 @@ export {
   WizICamera,
   WizICancel,
   WizIChangeHistory,
-  WizIChatBubbleFilled,
   WizIChat,
+  WizIChatBubbleFilled,
+  WizICheck,
   WizICheckBold,
   WizICheckCircleFilled,
-  WizICheck,
-  WizIChevronLeftBold,
   WizIChevronLeft,
-  WizIChevronRightBold,
+  WizIChevronLeftBold,
   WizIChevronRight,
-  WizICircleCheck,
+  WizIChevronRightBold,
   WizICircle,
-  WizICloseBold,
+  WizICircleCheck,
   WizIClose,
+  WizICloseBold,
   WizICloudUpload,
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
-  WizICounter1Filled,
   WizICounter1,
-  WizICounter2Filled,
+  WizICounter1Filled,
   WizICounter2,
-  WizICounter3Filled,
+  WizICounter2Filled,
   WizICounter3,
-  WizICounter4Filled,
+  WizICounter3Filled,
   WizICounter4,
-  WizICounter5Filled,
+  WizICounter4Filled,
   WizICounter5,
-  WizICounter6Filled,
+  WizICounter5Filled,
   WizICounter6,
-  WizICounter7Filled,
+  WizICounter6Filled,
   WizICounter7,
-  WizICounter8Filled,
+  WizICounter7Filled,
   WizICounter8,
-  WizICounter9Filled,
+  WizICounter8Filled,
   WizICounter9,
+  WizICounter9Filled,
   WizIDashboard,
   WizIDelete,
   WizIDemography,
@@ -305,9 +316,10 @@ export {
   WizIDrafts,
   WizIEditNote,
   WizIEmergencyHome,
+  WizIErrorFilled,
   WizIExpandLess,
-  WizIExpandMoreBold,
   WizIExpandMore,
+  WizIExpandMoreBold,
   WizIEye,
   WizIFamilyHome,
   WizIFeedback,
@@ -317,29 +329,34 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
+  WizIImageBold,
   WizIInboxCustomize,
+  WizIInfo,
   WizIInfoBold,
   WizIInfoFilled,
-  WizIInfo,
+  WizIKeep,
+  WizIKeepBold,
   WizILinkOff,
   WizILocationCity,
   WizILocationOn,
   WizILogin,
   WizIMail,
   WizIManageAccounts,
-  WizIMenuOpen,
   WizIMenu,
+  WizIMenuOpen,
   WizIMonitoring,
   WizIMoreVert,
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
+  WizIPauseCircleBold,
   WizIPersonFilled,
   WizIPieChart,
   WizIPinDrop,
+  WizIPlayCircleBold,
   WizIPublic,
-  WizIRemoveBold,
   WizIRemove,
+  WizIRemoveBold,
   WizIReviews,
   WizISchedule,
   WizISearch,

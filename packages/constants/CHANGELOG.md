@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.35.0
+
+### Minor Changes
+
+- [#1405](https://github.com/Wizleap-Inc/wiz-ui/pull/1405) [`275a8350462778446a1168a244afaa3895203c43`](https://github.com/Wizleap-Inc/wiz-ui/commit/275a8350462778446a1168a244afaa3895203c43) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): add image, play_circle, pause_circle icons, keep, error
+
 ## 0.34.0
 
 ### Minor Changes
