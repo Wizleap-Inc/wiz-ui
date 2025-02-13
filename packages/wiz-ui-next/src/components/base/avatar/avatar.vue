@@ -3,6 +3,7 @@
     :class="[
       avatarStyle,
       sizeStyle[size],
+
       colorStyle[fontColor],
       clickable && avatarClickableStyle,
     ]"
@@ -18,7 +19,7 @@
     />
     <div
       v-else
-      :class="[avatarFallbackStyle]"
+      :class="[avatarFallbackStyle, avatarFontSizeStyle[size]]"
       :style="{
         background: avatarBgColor,
       }"
@@ -30,20 +31,21 @@
 
 <script setup lang="ts">
 import {
-  getColorCss,
-  ComponentName,
   ColorKeys,
+  ComponentName,
   SpacingKeys,
   THEME,
+  getColorCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  avatarStyle,
-  avatarImageStyle,
-  avatarFallbackStyle,
   avatarClickableStyle,
+  avatarFallbackStyle,
+  avatarImageStyle,
+  avatarStyle,
+  avatarFontSizeStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/avatar.css";
-import { sizeStyle, colorStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, PropType, computed } from "vue";
+import { colorStyle, sizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { PropType, computed, ref } from "vue";
 
 defineOptions({
   name: ComponentName.Anchor,
@@ -63,7 +65,9 @@ const props = defineProps({
     required: true,
   },
   size: {
-    type: String as PropType<SpacingKeys>,
+    type: String as PropType<
+      Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">
+    >,
     required: false,
     default: "xl3",
   },
