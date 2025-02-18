@@ -209,7 +209,6 @@ export type TIcon =
   | typeof WizIInfoFilled
   | typeof WizIInfo
   | typeof WizIKeepBold
-  | typeof WizIKeep
   | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
@@ -334,7 +333,6 @@ export {
   WizIInfo,
   WizIInfoBold,
   WizIInfoFilled,
-  WizIKeep,
   WizIKeepBold,
   WizILinkOff,
   WizILocationCity,
