@@ -91,8 +91,20 @@ export const iconVariant = styleVariants({
 
 export const disabled = style({
   pointerEvents: "none",
+  position: "relative",
   overflow: "hidden",
-  opacity: 0.5,
+
+  ":before": {
+    content: "''",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: THEME.color.white[800],
+    zIndex: 1,
+    opacity: 0.5,
+  },
 });
 
 export const card = style({
