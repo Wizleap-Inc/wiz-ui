@@ -65,9 +65,6 @@ const TimelineItem: FC<TimelineItemProps> = ({
         styles.timelineItemVariant[device],
         styles.TIMELINE_ITEM_IDENTIFIER_CLASS
       )}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      inert={disabled ? "" : undefined}
     >
       <div
         className={clsx(
