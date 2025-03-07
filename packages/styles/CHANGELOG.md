@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.38.0
+
+### Minor Changes
+
+- [#1437](https://github.com/Wizleap-Inc/wiz-ui/pull/1437) [`b6d0da35bb1faebaa6a463353ec5e53feda8d5d6`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6d0da35bb1faebaa6a463353ec5e53feda8d5d6) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Feat(TimelineItem): change style of disabled
+
 ## 0.37.1
 
 ### Patch Changes
