@@ -20,7 +20,7 @@ import { BaseProps } from "@/types";
 type Props = BaseProps & {
   src?: string;
   name?: string;
-  size?: SpacingKeys;
+  size?: Extract<SpacingKeys, "md" | "lg" | "xl" | "xl2" | "xl3" | "xl4">;
   color?: ColorKeys;
   bgColor?: ColorKeys;
   alt?: string;
@@ -110,7 +110,10 @@ const Avatar = forwardRef(
           />
         ) : (
           <div
-            className={clsx(styles.avatarFallbackStyle)}
+            className={clsx(
+              styles.avatarFontSizeStyle[size],
+              styles.avatarFallbackStyle
+            )}
             style={{
               background: avatarBgColor,
             }}

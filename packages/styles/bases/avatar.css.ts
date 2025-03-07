@@ -1,5 +1,7 @@
-import { style } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { style, styleVariants } from "@vanilla-extract/css";
+import {
+  THEME,
+} from "@wizleap-inc/wiz-ui-constants";
 
 export const avatarStyle = style({
   lineHeight: 1,
@@ -23,5 +25,13 @@ export const avatarFallbackStyle = style({
   justifyContent: "center",
   width: "100%",
   height: "100%",
-  fontSize: THEME.fontSize.sm,
+});
+
+export const avatarFontSizeStyle = styleVariants({
+  md: { fontSize: THEME.fontSize.xs2 },
+  lg: { fontSize: THEME.fontSize.xs2 },
+  xl: { fontSize: THEME.fontSize.xs },
+  xl2: { fontSize: THEME.fontSize.sm },
+  xl3: { fontSize: THEME.fontSize.md },
+  xl4: { fontSize: THEME.fontSize.lg },
 });
