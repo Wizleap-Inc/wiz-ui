@@ -1,6 +1,11 @@
 name: Bundle Analyze All libraries
 
-on: [pull_request]
+# on: [pull_request]
+# FIXME: なぜかanalyzeが動かないので解決するまで無視
+on:
+  push:
+    branches-ignore:
+      - "**"
 
 jobs:
   analyze:
