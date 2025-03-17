@@ -1,8 +1,5 @@
-import { StoryFn, Meta } from "@storybook/vue3";
-import {
-  COLOR_MAP_ACCESSORS,
-  SPACING_ACCESSORS,
-} from "@wizleap-inc/wiz-ui-constants";
+import { Meta, StoryFn } from "@storybook/vue3";
+import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
 import { WizAvatar } from ".";
 
@@ -15,7 +12,7 @@ export default {
     },
     size: {
       control: { type: "select" },
-      options: SPACING_ACCESSORS,
+      options: ["md", "lg", "xl", "xl2", "xl3", "xl4"],
     },
     color: {
       control: { type: "select" },
