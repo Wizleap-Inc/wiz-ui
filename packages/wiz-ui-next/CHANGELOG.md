@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.0.0
+
+### Major Changes
+
+- [#1431](https://github.com/Wizleap-Inc/wiz-ui/pull/1431) [`b3afe7db655c2213983ae0da5dccbe539d05e56d`](https://github.com/Wizleap-Inc/wiz-ui/commit/b3afe7db655c2213983ae0da5dccbe539d05e56d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(avatar): fallback font size を修正しました．これに伴い，size プロパティで指定可能な値を`"md" | "lg" | "xl" | "xl2" | "xl3" | "xl4"` のみに限定しました．
+
 ## 2.48.1
 
 ### Patch Changes
