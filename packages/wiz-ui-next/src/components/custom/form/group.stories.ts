@@ -126,7 +126,7 @@ Default.parameters = {
 
 export const LabelWidth = Template.bind({});
 LabelWidth.args = {
-  labelWidth: "6rem",
+  labelWidth: "6.25rem",
 };
 LabelWidth.parameters = {
   docs: {
