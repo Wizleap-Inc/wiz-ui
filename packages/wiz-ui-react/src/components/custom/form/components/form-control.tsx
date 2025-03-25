@@ -58,7 +58,7 @@ const FormControl: FC<Props> = ({
           nowrap
           align={direction === "horizontal" ? "center" : undefined}
         >
-          <WizHStack width={labelWidth} align="center" gap="xs2" py="xs2">
+          <WizHStack width={labelWidth} align="center" gap="xs" py="xs2">
             <WizText
               as="label"
               htmlFor={htmlFor}
