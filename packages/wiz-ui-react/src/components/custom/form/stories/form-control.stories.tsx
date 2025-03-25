@@ -75,3 +75,19 @@ export const Error: Story = {
     },
   },
 };
+
+export const BorderLeft: Story = {
+  args: {
+    label: "Label",
+    borderLeft: true,
+    children: <WizTextInput placeholder="入力してください" />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "borderLeftを指定すると、labelの左側にボーダーが表示されます。`borderColor` で色を指定できます。default は `green.800` です。",
+      },
+    },
+  },
+};
