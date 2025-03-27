@@ -10,12 +10,22 @@
       :align="direction === 'horizontal' ? 'center' : undefined"
       :wrap="false"
     >
-      <WizHStack :width="labelWidth" align="center" gap="xs2" py="xs2">
+      <WizHStack
+        :width="labelWidth"
+        align="center"
+        gap="xs"
+        my="xs2"
+        :class="[
+          borderLeft && [borderLeftStyle, borderColorStyle[borderColor]],
+        ]"
+      >
         <WizText
           as="label"
           :htmlFor="htmlFor"
           :color="labelColor"
           :font-size="labelFontSize"
+          :bold="borderLeft"
+          :class="[borderLeft && borderLeftTextStyle]"
         >
           {{ label }}
         </WizText>
@@ -35,7 +45,12 @@
 </template>
 
 <script setup lang="ts">
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { borderColorStyle } from "@wizleap-inc/wiz-ui-styles/commons/border-color.css";
+import {
+  borderLeftStyle,
+  borderLeftTextStyle,
+} from "@wizleap-inc/wiz-ui-styles/customs/form-control.css";
 import { PropType, computed, inject, onMounted, provide, watch } from "vue";
 
 import {
@@ -71,6 +86,14 @@ const props = defineProps({
   direction: {
     type: String as PropType<"horizontal" | "vertical">,
     default: "horizontal",
+  },
+  borderLeft: {
+    type: Boolean,
+    default: false,
+  },
+  borderColor: {
+    type: String as PropType<ColorKeys>,
+    default: "green.800",
   },
 });
 

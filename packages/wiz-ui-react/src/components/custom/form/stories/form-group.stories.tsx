@@ -49,7 +49,7 @@ export const Default: Story = {
 export const LabelWidth: Story = {
   ...Template,
   args: {
-    labelWidth: "6rem",
+    labelWidth: "6.25rem",
   },
   parameters: {
     docs: {
