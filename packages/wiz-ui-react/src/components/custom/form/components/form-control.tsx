@@ -58,17 +58,23 @@ const FormControl: FC<Props> = ({
           nowrap
           align={direction === "horizontal" ? "center" : undefined}
         >
-          <WizHStack width={labelWidth} align="center" gap="xs" py="xs2">
+          <WizHStack
+            width={labelWidth}
+            align="center"
+            gap="xs"
+            my="xs2"
+            className={clsx({
+              [styles.borderLeftStyle]: borderLeft,
+              [borderColorStyle[borderColor]]: borderLeft,
+            })}
+          >
             <WizText
               as="label"
               htmlFor={htmlFor}
               color={labelColor}
               fontSize={labelFontSize}
               bold={borderLeft}
-              className={clsx({
-                [styles.textBorderLeftStyle]: borderLeft,
-                [borderColorStyle[borderColor]]: borderLeft,
-              })}
+              className={styles.borderLeftTextStyle}
             >
               {label}
             </WizText>
