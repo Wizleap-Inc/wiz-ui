@@ -74,7 +74,9 @@ const FormControl: FC<Props> = ({
               color={labelColor}
               fontSize={labelFontSize}
               bold={borderLeft}
-              className={styles.borderLeftTextStyle}
+              className={clsx({
+                [styles.borderLeftTextStyle]: borderLeft,
+              })}
             >
               {label}
             </WizText>
