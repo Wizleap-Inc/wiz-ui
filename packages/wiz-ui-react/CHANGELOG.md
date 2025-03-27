@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.1.0
+
+### Minor Changes
+
+- [#1445](https://github.com/Wizleap-Inc/wiz-ui/pull/1445) [`8d1e91bb25a3229a95ab0abe3130046891e2b2be`](https://github.com/Wizleap-Inc/wiz-ui/commit/8d1e91bb25a3229a95ab0abe3130046891e2b2be) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Added borderLeft and borderColor props to FormControl.
+
+### Patch Changes
+
+- Updated dependencies [[`8d1e91bb25a3229a95ab0abe3130046891e2b2be`](https://github.com/Wizleap-Inc/wiz-ui/commit/8d1e91bb25a3229a95ab0abe3130046891e2b2be)]:
+  - @wizleap-inc/wiz-ui-styles@0.39.0
+
 ## 2.0.0
 
 ### Major Changes
