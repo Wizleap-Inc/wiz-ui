@@ -52,8 +52,6 @@ watch(props, (p) => p.labelColor && setLabelColor(p.labelColor));
 onMounted(() => props.labelColor && setLabelColor(props.labelColor));
 watch(props, (p) => p.labelFontSize && setLabelFontSize(p.labelFontSize));
 onMounted(() => props.labelFontSize && setLabelFontSize(props.labelFontSize));
-watch(props, (p) => p.labelFontSize && setLabelFontSize(p.labelFontSize));
-onMounted(() => props.labelFontSize && setLabelFontSize(props.labelFontSize));
 watch(
   props,
   (p) => p.labelTagPosition && setLabelTagPosition(p.labelTagPosition)
