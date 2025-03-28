@@ -95,6 +95,7 @@ export const BorderLeft: Story = {
 export const labelTagPosition: Story = {
   args: {
     label: "Label",
+    required: true,
     labelTagPosition: "left",
     children: <WizTextInput placeholder="入力してください" required />,
   },

@@ -113,7 +113,7 @@ export const labelTagPosition: Story = {
     docs: {
       description: {
         story:
-          "**FormControl**の子要素すべてに対して、ラベルタグの位置を一括で指定できます。ただし、各**FormControl**に個別でlabelTagPositionが指定されている場合は、そちらがの設定が優先されます。",
+          "子要素の**FormControl**の各要素のラベルタグの位置を一括指定できます。ただし、各**FormControl**に個別でlabelTagPositionが指定されている場合は、そちらがの設定が優先されます。",
       },
     },
   },

@@ -203,7 +203,7 @@ LabelTagPosition.parameters = {
   docs: {
     description: {
       story:
-        "slotに持っている**FormControl**の各要素のラベルサイズを一括指定できます。",
+        "slotに持っている**FormControl**の各要素のラベルタグの位置を一括指定できます。ただし、各**FormControl**に個別でlabelTagPositionが指定されている場合は、そちらがの設定が優先されます。",
     },
     source: {
       code: CODE_TEMPLATE({ labelTagPosition: "left" }),
