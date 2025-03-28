@@ -22,12 +22,17 @@ export default {
       control: { type: "text" },
     },
     direction: {
-      control: { type: "select", options: ["horizontal", "vertical"] },
+      control: { type: "select" },
+      options: ["horizontal", "vertical"],
     },
     borderLeft: { control: { type: "boolean" } },
     borderColor: {
       control: { type: "select" },
       options: COLOR_MAP_ACCESSORS,
+    },
+    labelTagPosition: {
+      control: { type: "select" },
+      options: ["right", "left"],
     },
   },
 } as Meta<typeof WizFormControl>;
@@ -52,6 +57,7 @@ interface Options {
   direction: "horizontal" | "vertical";
   borderLeft: boolean;
   borderColor: ColorKeys;
+  LabelTagPosition: "right" | "left";
 }
 
 const CODE_TEMPLATE = ({
@@ -61,6 +67,7 @@ const CODE_TEMPLATE = ({
   direction,
   borderLeft,
   borderColor,
+  LabelTagPosition,
 }: Partial<Options>) => `
 <template>
   <WizFormControl${
@@ -69,7 +76,8 @@ const CODE_TEMPLATE = ({
     (error ? ` error="${error}"` : "") +
     (direction ? ` direction="${direction}"` : "") +
     (borderLeft ? ` border-left` : "") +
-    (borderColor ? ` border-color="${borderColor}"` : "")
+    (borderColor ? ` border-color="${borderColor}"` : "") +
+    (LabelTagPosition ? ` label-tag-position="${LabelTagPosition}"` : "")
   }>
     <WizTextInput v-model="input" name="input" placeholder="入力してください" />
   </WizFormControl>
@@ -192,6 +200,28 @@ BorderLeft.parameters = {
     description: {
       story:
         "borderLeft を指定すると左にラインが表示され、borderColor で色を変更できます。",
+    },
+    source: {
+      code: CODE_TEMPLATE({
+        label: "Label",
+        borderLeft: true,
+        borderColor: "green.800",
+      }),
+    },
+  },
+};
+
+export const LabelTagPosition = Template.bind({});
+LabelTagPosition.args = {
+  label: "Label",
+  required: true,
+  labelTagPosition: "left",
+};
+LabelTagPosition.parameters = {
+  docs: {
+    description: {
+      story:
+        "labelTagPositionを指定すると、labelのTagの位置を変更できます。`left` または `right` を指定できます。default は `right` です。",
     },
     source: {
       code: CODE_TEMPLATE({

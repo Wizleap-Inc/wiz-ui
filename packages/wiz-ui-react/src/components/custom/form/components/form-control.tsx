@@ -19,6 +19,7 @@ type Props = BaseProps & {
   direction?: "horizontal" | "vertical";
   borderLeft?: boolean;
   borderColor?: ColorKeys;
+  labelTagPosition?: "left" | "right";
 };
 
 const FormControl: FC<Props> = ({
@@ -32,12 +33,17 @@ const FormControl: FC<Props> = ({
   children,
   borderLeft = false,
   borderColor = "green.800",
+  labelTagPosition,
 }) => {
   const {
     labelWidth = "8rem",
     labelColor,
     labelFontSize,
+    labelTagPosition: labelTagPositionContext,
   } = useContext(FormGroupContext);
+
+  const resolvedLabelTagPosition =
+    labelTagPosition || labelTagPositionContext || "right";
 
   const errorLeft = useMemo(() => {
     return direction === "horizontal" ? labelWidth : undefined;
@@ -61,6 +67,8 @@ const FormControl: FC<Props> = ({
           <WizHStack
             width={labelWidth}
             align="center"
+            reverse={resolvedLabelTagPosition === "left"}
+            justify={resolvedLabelTagPosition === "left" ? "end" : "start"}
             gap="xs"
             my="xs2"
             className={clsx({

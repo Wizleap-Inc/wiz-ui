@@ -15,6 +15,7 @@ type Props = BaseProps & {
   labelWidth?: string;
   labelColor?: ColorKeys;
   labelFontSize?: FontSizeKeys;
+  labelTagPosition?: "left" | "right";
   gap?: SpacingKeys;
   children: ReactNode;
 };
@@ -25,6 +26,7 @@ const FormGroup: FC<Props> = ({
   labelWidth,
   labelColor = "gray.900",
   labelFontSize = "md",
+  labelTagPosition,
   gap = "md",
   children,
 }) => {
@@ -34,6 +36,7 @@ const FormGroup: FC<Props> = ({
         labelWidth,
         labelColor,
         labelFontSize,
+        labelTagPosition,
       }}
     >
       <WizVStack className={className} style={style} gap={gap}>
