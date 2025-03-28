@@ -13,6 +13,8 @@
       <WizHStack
         :width="labelWidth"
         align="center"
+        :reverse="labelTagPosition === 'left'"
+        :justify="labelTagPosition === 'left' ? 'end' : 'start'"
         gap="xs"
         my="xs2"
         :class="[
@@ -95,6 +97,10 @@ const props = defineProps({
     type: String as PropType<ColorKeys>,
     default: "green.800",
   },
+  labelTagPosition: {
+    type: String as PropType<"left" | "right">,
+    required: false,
+  },
 });
 
 // Form Group
@@ -102,6 +108,9 @@ const fromGroup = inject(formGroupKey);
 const labelWidth = computed(() => fromGroup?.labelWidth.value || "8rem");
 const labelColor = computed(() => fromGroup?.labelColor.value || "gray.900");
 const labelFontSize = computed(() => fromGroup?.labelFontSize.value || "md");
+const labelTagPosition = computed(
+  () => props.labelTagPosition || fromGroup?.labelTagPosition.value || "right"
+);
 
 const errorLeft = computed(() =>
   props.direction === "horizontal" ? labelWidth.value : "0"

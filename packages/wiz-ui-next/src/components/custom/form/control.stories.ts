@@ -22,12 +22,17 @@ export default {
       control: { type: "text" },
     },
     direction: {
-      control: { type: "select", options: ["horizontal", "vertical"] },
+      control: { type: "select" },
+      options: ["horizontal", "vertical"],
     },
     borderLeft: { control: { type: "boolean" } },
     borderColor: {
       control: { type: "select" },
       options: COLOR_MAP_ACCESSORS,
+    },
+    labelTagPosition: {
+      control: { type: "select" },
+      options: ["right", "left"],
     },
   },
 } as Meta<typeof WizFormControl>;

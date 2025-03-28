@@ -35,16 +35,30 @@ const props = defineProps({
     type: String as PropType<FontSizeKeys>,
     required: false,
   },
+  labelTagPosition: {
+    type: String as PropType<"right" | "left">,
+    required: false,
+  },
 });
 
 // Form Group
 const provider = useFormGroupProvider();
 provide(formGroupKey, provider);
-const { setLabelWidth, setLabelColor, setLabelFontSize } = provider;
+const { setLabelWidth, setLabelColor, setLabelFontSize, setLabelTagPosition } =
+  provider;
 watch(props, (p) => p.labelWidth && setLabelWidth(p.labelWidth));
 onMounted(() => props.labelWidth && setLabelWidth(props.labelWidth));
 watch(props, (p) => p.labelColor && setLabelColor(p.labelColor));
 onMounted(() => props.labelColor && setLabelColor(props.labelColor));
 watch(props, (p) => p.labelFontSize && setLabelFontSize(p.labelFontSize));
 onMounted(() => props.labelFontSize && setLabelFontSize(props.labelFontSize));
+watch(props, (p) => p.labelFontSize && setLabelFontSize(p.labelFontSize));
+onMounted(() => props.labelFontSize && setLabelFontSize(props.labelFontSize));
+watch(
+  props,
+  (p) => p.labelTagPosition && setLabelTagPosition(p.labelTagPosition)
+);
+onMounted(
+  () => props.labelTagPosition && setLabelTagPosition(props.labelTagPosition)
+);
 </script>

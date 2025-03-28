@@ -104,6 +104,21 @@ export const LabelFontSize: Story = {
   },
 };
 
+export const labelTagPosition: Story = {
+  ...Template,
+  args: {
+    labelTagPosition: "left",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "**FormControl**の子要素すべてに対して、ラベルタグの位置を一括で指定できます。ただし、各**FormControl**に個別でlabelTagPositionが指定されている場合は、そちらがの設定が優先されます。",
+      },
+    },
+  },
+};
+
 export const AllInput: Story = AllInputStory;
 
 export const AllInputError: Story = AllInputErrorStory;

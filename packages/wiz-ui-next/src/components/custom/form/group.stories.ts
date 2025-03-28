@@ -50,6 +50,10 @@ export default {
       control: { type: "select" },
       options: FONT_SIZE_ACCESSORS,
     },
+    labelTagPosition: {
+      control: { type: "select" },
+      options: ["left", "right"],
+    },
   },
 } as Meta<typeof WizFormGroup>;
 
@@ -77,6 +81,7 @@ interface Options {
   gap: string;
   labelColor: ColorKeys;
   labelFontSize: FontSizeKeys;
+  labelTagPosition: "right" | "left";
 }
 
 const CODE_TEMPLATE = ({
@@ -84,13 +89,15 @@ const CODE_TEMPLATE = ({
   gap,
   labelColor,
   labelFontSize,
+  labelTagPosition,
 }: Partial<Options>) => `
 <template>
   <WizFormGroup${
     (labelWidth ? ` label-width="${labelWidth}"` : "") +
     (gap ? ` gap="${gap}"` : "") +
     (labelColor ? ` label-color="${labelColor}"` : "") +
-    (labelFontSize ? ` label-font-size="${labelFontSize}"` : "")
+    (labelFontSize ? ` label-font-size="${labelFontSize}"` : "") +
+    (labelTagPosition ? ` label-tag-position="${labelTagPosition}"` : "")
   }>
     <WizFormControl label="Label1">
       <WizTextInput v-model="input" name="input" />
@@ -184,6 +191,22 @@ LabelFontSize.parameters = {
     },
     source: {
       code: CODE_TEMPLATE({ labelFontSize: "xl3" }),
+    },
+  },
+};
+
+export const LabelTagPosition = Template.bind({});
+LabelTagPosition.args = {
+  labelTagPosition: "left",
+};
+LabelTagPosition.parameters = {
+  docs: {
+    description: {
+      story:
+        "slotに持っている**FormControl**の各要素のラベルサイズを一括指定できます。",
+    },
+    source: {
+      code: CODE_TEMPLATE({ labelTagPosition: "left" }),
     },
   },
 };
