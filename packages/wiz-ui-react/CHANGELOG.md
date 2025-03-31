@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.2.0
+
+### Minor Changes
+
+- [#1448](https://github.com/Wizleap-Inc/wiz-ui/pull/1448) [`d6ef011cdf4588b0a6c07350979896cc675ffe0c`](https://github.com/Wizleap-Inc/wiz-ui/commit/d6ef011cdf4588b0a6c07350979896cc675ffe0c) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - FormControl 内のラベルタグの位置を指定できるようにする
+
+### Patch Changes
+
+- [#1449](https://github.com/Wizleap-Inc/wiz-ui/pull/1449) [`21992fc1b516c44bacb193cee375c511b71f791e`](https://github.com/Wizleap-Inc/wiz-ui/commit/21992fc1b516c44bacb193cee375c511b71f791e) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - border の太さを定数（xs, sm, md, lg）として@wizleap-inc/wiz-ui-constants に追加し、各パッケージ内で該当定数を使用するようにリファクタリングしました。
+
+- Updated dependencies [[`21992fc1b516c44bacb193cee375c511b71f791e`](https://github.com/Wizleap-Inc/wiz-ui/commit/21992fc1b516c44bacb193cee375c511b71f791e)]:
+  - @wizleap-inc/wiz-ui-constants@0.35.1
+  - @wizleap-inc/wiz-ui-styles@0.39.1
+
 ## 2.1.0
 
 ### Minor Changes

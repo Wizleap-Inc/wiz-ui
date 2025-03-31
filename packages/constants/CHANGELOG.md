@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.35.1
+
+### Patch Changes
+
+- [#1449](https://github.com/Wizleap-Inc/wiz-ui/pull/1449) [`21992fc1b516c44bacb193cee375c511b71f791e`](https://github.com/Wizleap-Inc/wiz-ui/commit/21992fc1b516c44bacb193cee375c511b71f791e) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - border の太さを定数（xs, sm, md, lg）として@wizleap-inc/wiz-ui-constants に追加し、各パッケージ内で該当定数を使用するようにリファクタリングしました。
+
 ## 0.35.0
 
 ### Minor Changes
