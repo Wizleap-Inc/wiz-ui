@@ -91,3 +91,20 @@ export const BorderLeft: Story = {
     },
   },
 };
+
+export const labelTagPosition: Story = {
+  args: {
+    label: "Label",
+    required: true,
+    labelTagPosition: "left",
+    children: <WizTextInput placeholder="入力してください" required />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "labelTagPositionを指定すると、labelのTagの位置を変更できます。`left` または `right` を指定できます。default は `right` です。",
+      },
+    },
+  },
+};

@@ -5,6 +5,7 @@ type FormGroupContextType = {
   labelWidth?: string;
   labelColor?: ColorKeys;
   labelFontSize?: FontSizeKeys;
+  labelTagPosition?: "left" | "right";
 };
 
 export const FormGroupContext = createContext<FormGroupContextType>({});
