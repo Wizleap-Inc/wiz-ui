@@ -81,7 +81,7 @@ export const graphSideLabelPositionStyle = styleVariants({
 export const graphContainerBodyStyle = style({
   flex: 1,
   border: `solid ${THEME.color.gray[600]}`,
-  borderWidth: "0 0 1px 1px",
+  borderWidth: `0 0 ${THEME.borderWidth.xs} ${THEME.borderWidth.xs}`,
   position: "relative",
   maxWidth: "100%",
 });
@@ -145,7 +145,7 @@ export const graphBarCompareLineStyle = style({
   left: 0,
   right: 0,
   margin: "auto",
-  border: `1px solid ${THEME.color.gray[400]}`,
+  border: `${THEME.borderWidth.xs} solid ${THEME.color.gray[400]}`,
   transformOrigin: "left top",
 });
 

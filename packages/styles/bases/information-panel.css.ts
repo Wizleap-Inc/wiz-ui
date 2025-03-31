@@ -12,7 +12,7 @@ export const informationPanelStyle = style({
 });
 
 export const informationPanelBorderStyle = style({
-  border: `1px solid ${THEME.color.gray["400"]}`,
+  border: `${THEME.borderWidth.xs} solid ${THEME.color.gray["400"]}`,
 });
 
 export const informationPanelFontStyle = styleVariants({

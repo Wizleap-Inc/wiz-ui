@@ -14,7 +14,7 @@ export const flatTdStyle = style({
   padding: THEME.spacing.sm,
   color: THEME.color.gray[700],
   background: THEME.color.white[800],
-  border: `1px solid ${THEME.color.gray[300]}`,
+  border: `${THEME.borderWidth.xs} solid ${THEME.color.gray[300]}`,
 });
 
 export const flatTableAlignStyle = styleVariants({
@@ -39,11 +39,11 @@ export const flatThVariantStyle = styleVariants({
   col: {
     color: THEME.color.white[800],
     background: THEME.color.green[800],
-    border: `1px solid ${THEME.color.gray[300]}`,
+    border: `${THEME.borderWidth.xs} solid ${THEME.color.gray[300]}`,
   },
   row: {
     color: THEME.color.gray[700],
     background: THEME.color.gray[300],
-    border: `1px solid ${THEME.color.gray[400]}`,
+    border: `${THEME.borderWidth.xs} solid ${THEME.color.gray[400]}`,
   },
 });

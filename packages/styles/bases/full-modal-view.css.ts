@@ -18,7 +18,7 @@ export const containerStyle = style({
 export const headerStyle = style({
   padding: "8px 16px",
   margin: 0,
-  borderTop: `2px solid ${THEME.color.green[800]}`,
+  borderTop: `${THEME.borderWidth.sm} solid ${THEME.color.green[800]}`,
 });
 
 export const contentStyle = style({

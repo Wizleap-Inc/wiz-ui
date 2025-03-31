@@ -51,7 +51,7 @@ export const button = style({
   boxSizing: "border-box",
   borderColor: THEME.color.gray["400"],
   border: "none",
-  borderLeft: `1px solid ${THEME.color.gray["400"]}`,
+  borderLeft: `${THEME.borderWidth.xs} solid ${THEME.color.gray["400"]}`,
   height: "100%",
   background: "transparent",
   fill: THEME.color.gray["500"],

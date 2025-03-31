@@ -15,11 +15,11 @@ export const unstyledTableFixedStyle = style({
 });
 
 export const unstyledTheadDividerStyle = style({
-  borderBottom: `1px solid ${THEME.color.gray["400"]}`,
+  borderBottom: `${THEME.borderWidth.xs} solid ${THEME.color.gray["400"]}`,
 });
 
 export const unstyledTrDividerStyle = style({
-  borderBottom: `1px solid ${THEME.color.gray["300"]}`,
+  borderBottom: `${THEME.borderWidth.xs} solid ${THEME.color.gray["300"]}`,
 });
 
 export const unstyledTdStyle = style({
@@ -47,7 +47,7 @@ export const unstyledTh = style({
 export const unstyledThDividerYStyle = style({
   selectors: {
     "&:not(:last-child)": {
-      borderRight: `1px solid ${THEME.color.gray["400"]}`,
+      borderRight: `${THEME.borderWidth.xs} solid ${THEME.color.gray["400"]}`,
     },
   },
 });
