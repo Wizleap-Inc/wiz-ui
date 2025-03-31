@@ -150,7 +150,7 @@ export const annotation = style({
 });
 
 export const body = style({
-  borderTop: `1px solid ${THEME.color.gray[400]}`,
+  borderTop: `${THEME.borderWidth.xs} solid ${THEME.color.gray[400]}`,
   paddingTop: THEME.spacing.md,
   marginTop: THEME.spacing.md,
 });

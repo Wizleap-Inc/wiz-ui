@@ -1,8 +1,8 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-const borderWidth = "1px";
-const focusedBorderWidth = "2px";
+const borderWidth = THEME.borderWidth.xs;
+const focusedBorderWidth = THEME.borderWidth.sm;
 
 export const radioStyle = style({
   width: "fit-content",
