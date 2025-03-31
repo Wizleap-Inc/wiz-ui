@@ -11,5 +11,5 @@ export const BORDER_WIDTH_ACCESSORS = Object.keys(
   BORDER_WIDTH_MAP
 ) as BorderWidthKeys[];
 
-export const getFontWIDTHCss = (key: BorderWidthKeys): string =>
+export const getFontWidthCss = (key: BorderWidthKeys): string =>
   BORDER_WIDTH_MAP[key];
