@@ -17,7 +17,7 @@ export const variantStyles = styleVariants({
     padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
   },
   mini: {
-    padding: `1px ${THEME.spacing.xs2}`,
+    padding: `1px ${THEME.spacing.xs}`,
   },
 });
 
