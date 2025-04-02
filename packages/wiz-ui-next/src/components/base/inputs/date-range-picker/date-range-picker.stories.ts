@@ -40,6 +40,10 @@ export default {
     isDirectionFixed: {
       control: { type: "boolean" },
     },
+    variant: {
+      control: { type: "select" },
+      options: ["regular", "mini"],
+    },
   },
   parameters: {
     screenshot: {
