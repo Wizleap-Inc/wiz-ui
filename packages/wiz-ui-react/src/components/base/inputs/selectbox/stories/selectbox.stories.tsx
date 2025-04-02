@@ -142,3 +142,11 @@ export const DropdownMaxHeight: Story = {
     dropdownMaxHeight: "75px",
   },
 };
+
+export const Mini: Story = {
+  ...Template,
+  args: {
+    options: getDummyOptions("test", 3),
+    variant: "mini",
+  },
+};

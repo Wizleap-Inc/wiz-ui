@@ -17,6 +17,11 @@ export const useFormGroupProvider = () => {
     labelFontSize.value = value;
   };
 
+  const labelTagPosition = ref<"right" | "left">("right");
+  const setLabelTagPosition = (value: "right" | "left") => {
+    labelTagPosition.value = value;
+  };
+
   return {
     labelWidth: readonly(labelWidth),
     setLabelWidth,
@@ -24,6 +29,8 @@ export const useFormGroupProvider = () => {
     setLabelColor,
     labelFontSize: readonly(labelFontSize),
     setLabelFontSize,
+    labelTagPosition: readonly(labelTagPosition),
+    setLabelTagPosition,
   };
 };
 

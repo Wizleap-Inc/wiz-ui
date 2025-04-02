@@ -25,14 +25,28 @@ export const selectBoxCursorStyle = styleVariants({
 
 const BORDER_WIDTH = "1px";
 
-export const selectBoxInnerBoxStyle = style({
+const selectBoxInnerBoxBaseStyle = style({
   height: "100%",
-  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray["500"],
   width: "100%",
   boxSizing: "border-box",
   lineHeight: THEME.fontSize.xl3,
+});
+
+export const selectBoxInnerBoxStyles = styleVariants({
+  regular: [
+    selectBoxInnerBoxBaseStyle,
+    {
+      padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
+    },
+  ],
+  mini: [
+    selectBoxInnerBoxBaseStyle,
+    {
+      padding: `1px ${THEME.spacing.xs}`,
+    },
+  ],
 });
 
 export const selectBoxInnerBoxSelectedValueStyle = style({

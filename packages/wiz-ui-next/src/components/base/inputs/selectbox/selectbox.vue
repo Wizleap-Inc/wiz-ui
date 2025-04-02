@@ -9,7 +9,7 @@
       ]"
       :style="{ width: computedWidth }"
     >
-      <div :class="selectBoxInnerBoxStyle" @click="toggleSelectBox">
+      <div :class="selectBoxInnerBoxStyles[variant]" @click="toggleSelectBox">
         <WizHStack align="center" justify="between" height="100%">
           <span v-if="!isValueMatched" :class="selectBoxPlaceholderStyle">{{
             placeholder
@@ -75,7 +75,7 @@ import {
   selectBoxInnerBoxLessStyle,
   selectBoxInnerBoxMoreStyle,
   selectBoxInnerBoxSelectedValueStyle,
-  selectBoxInnerBoxStyle,
+  selectBoxInnerBoxStyles,
   selectBoxPlaceholderStyle,
   selectBoxSelectorOptionStyle,
   selectBoxSelectorStyle,
@@ -107,6 +107,7 @@ type Props<T> = {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
+  variant?: "regular" | "mini";
 };
 
 const props = withDefaults(defineProps<Props<T>>(), {
@@ -117,6 +118,7 @@ const props = withDefaults(defineProps<Props<T>>(), {
   isOpen: false,
   isDirectionFixed: false,
   showExLabel: false,
+  variant: "regular",
 });
 
 const openSelectBox = ref(props.isOpen);

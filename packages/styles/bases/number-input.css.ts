@@ -11,11 +11,6 @@ export const container = style({
   overflow: "hidden",
 });
 
-export const disabled = style({
-  backgroundColor: THEME.color.gray[300],
-  cursor: "not-allowed",
-});
-
 export const input = style({
   "::-webkit-outer-spin-button": {
     appearance: "none",
@@ -41,8 +36,9 @@ export const input = style({
   },
   ":disabled": {
     cursor: "not-allowed",
-    backgroundColor: THEME.color.gray["300"],
-    color: THEME.color.gray["500"],
+    opacity: 0.5,
+    color: THEME.color.gray[700],
+    backgroundColor: THEME.color.gray[300],
   },
 });
 
@@ -55,7 +51,7 @@ export const button = style({
   boxSizing: "border-box",
   borderColor: THEME.color.gray["400"],
   border: "none",
-  borderLeft: `1px solid ${THEME.color.gray["400"]}`,
+  borderLeft: `${THEME.borderWidth.xs} solid ${THEME.color.gray["400"]}`,
   height: "100%",
   background: "transparent",
   fill: THEME.color.gray["500"],
@@ -75,6 +71,9 @@ export const button = style({
   },
   ":disabled": {
     cursor: "not-allowed",
+    opacity: 0.5,
+    color: THEME.color.gray[700],
+    backgroundColor: THEME.color.gray[300],
   },
 });
 
