@@ -147,6 +147,10 @@ export const annotation = style({
   fontSize: timelineItemVars.dateFontSize,
   color: THEME.color.gray[600],
   lineHeight: THEME.fontSize.xl2,
+  display: "flex",
+  alignItems: "center",
+  // no shurink
+  flexShrink: 0,
 });
 
 export const body = style({
