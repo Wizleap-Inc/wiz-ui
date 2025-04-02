@@ -17,6 +17,7 @@ import { WizIBook } from "./book";
 import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
+import { WizICallBold } from "./call-bold";
 import { WizICamera } from "./camera";
 import { WizICancel } from "./cancel";
 import { WizIChangeHistory } from "./change-history";
@@ -89,11 +90,14 @@ import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
 import { WizILogin } from "./login";
 import { WizIMail } from "./mail";
+import { WizIMailBold } from "./mail-bold";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
+import { WizIMicBold } from "./mic-bold";
 import { WizIMonitoring } from "./monitoring";
 import { WizIMoreVert } from "./more-vert";
+import { WizIMoreVertBold } from "./more-vert-bold";
 import { WizINoteAdd } from "./note-add";
 import { WizINotification } from "./notification";
 import { WizIOpenInNew } from "./open-in-new";
@@ -101,6 +105,7 @@ import { WizIPauseCircleBold } from "./pause-circle-bold";
 import { WizIPersonFilled } from "./person-filled";
 import { WizIPieChart } from "./pie-chart";
 import { WizIPinDrop } from "./pin-drop";
+import { WizIPlayArrowFilled } from "./play-arrow-filled";
 import { WizIPlayCircleBold } from "./play-circle-bold";
 import { WizIPublic } from "./public";
 import { WizIRemove } from "./remove";
@@ -112,8 +117,11 @@ import { WizISend } from "./send";
 import { WizISettings } from "./settings";
 import { WizIShoppingmode } from "./shoppingmode";
 import { WizISmartphone } from "./smartphone";
+import { WizISmartphoneBold } from "./smartphone-bold";
+import { WizISmsBold } from "./sms-bold";
 import { WizIStarFilled } from "./star-filled";
 import { WizIStars } from "./stars";
+import { WizIStopFilled } from "./stop-filled";
 import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
@@ -142,6 +150,7 @@ export type TIcon =
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
   | typeof WizICalendar
+  | typeof WizICallBold
   | typeof WizICamera
   | typeof WizICancel
   | typeof WizIChangeHistory
@@ -213,11 +222,14 @@ export type TIcon =
   | typeof WizILocationCity
   | typeof WizILocationOn
   | typeof WizILogin
+  | typeof WizIMailBold
   | typeof WizIMail
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
+  | typeof WizIMicBold
   | typeof WizIMonitoring
+  | typeof WizIMoreVertBold
   | typeof WizIMoreVert
   | typeof WizINoteAdd
   | typeof WizINotification
@@ -226,6 +238,7 @@ export type TIcon =
   | typeof WizIPersonFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
+  | typeof WizIPlayArrowFilled
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
   | typeof WizIRemoveBold
@@ -236,9 +249,12 @@ export type TIcon =
   | typeof WizISend
   | typeof WizISettings
   | typeof WizIShoppingmode
+  | typeof WizISmartphoneBold
   | typeof WizISmartphone
+  | typeof WizISmsBold
   | typeof WizIStarFilled
   | typeof WizIStars
+  | typeof WizIStopFilled
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -267,6 +283,7 @@ export {
   WizIBrightFilled,
   WizIBusinessCenter,
   WizICalendar,
+  WizICallBold,
   WizICamera,
   WizICancel,
   WizIChangeHistory,
@@ -338,11 +355,14 @@ export {
   WizILocationCity,
   WizILocationOn,
   WizILogin,
+  WizIMailBold,
   WizIMail,
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
+  WizIMicBold,
   WizIMonitoring,
+  WizIMoreVertBold,
   WizIMoreVert,
   WizINoteAdd,
   WizINotification,
@@ -351,6 +371,7 @@ export {
   WizIPersonFilled,
   WizIPieChart,
   WizIPinDrop,
+  WizIPlayArrowFilled,
   WizIPlayCircleBold,
   WizIPublic,
   WizIRemoveBold,
@@ -361,9 +382,12 @@ export {
   WizISend,
   WizISettings,
   WizIShoppingmode,
+  WizISmartphoneBold,
   WizISmartphone,
+  WizISmsBold,
   WizIStarFilled,
   WizIStars,
+  WizIStopFilled,
   WizIStoreFront,
   WizITab,
   WizITask,
