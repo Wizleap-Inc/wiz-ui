@@ -14,29 +14,53 @@
       width,
     }"
   >
-    <WizHStack px="md" py="xs" justify="between" align="center">
-      <WizVStack gap="xs" position="relative" width="100%">
+    <WizHStack px="md" py="xs" justify="between" align="center" nowrap>
+      <WizVStack position="relative" width="100%">
         <WizHStack v-if="variant === 'primary'" justify="between" align="start">
-          <WizVStack gap="xs">
-            <WizHStack gap="xl" v-for="(item, i) in tableInfo" :key="i">
-              <WizText :bold="!read" fontSize="xs" color="gray.700">{{
-                item.title
-              }}</WizText>
-              <WizText :bold="!read" fontSize="xs" color="gray.700">{{
-                item.content
-              }}</WizText>
-            </WizHStack>
-          </WizVStack>
+          <WizUnstyledTable>
+            <WizUnstyledTbody>
+              <WizUnstyledTr
+                v-for="(item, i) in tableInfo"
+                :key="`${item.title}_${i}`"
+              >
+                <WizUnstyledTd
+                  align="left"
+                  :style="{
+                    paddingRight: THEME.spacing.xl,
+                    paddingBottom: THEME.spacing.xs,
+                  }"
+                >
+                  <WizText :bold="!read" fontSize="xs" color="gray.700">
+                    {{ item.title }}
+                  </WizText>
+                </WizUnstyledTd>
+                <WizUnstyledTd
+                  align="left"
+                  :style="{ paddingBottom: THEME.spacing.xs }"
+                >
+                  <WizText :bold="!read" fontSize="xs" color="gray.700">
+                    {{ item.content }}
+                  </WizText>
+                </WizUnstyledTd>
+              </WizUnstyledTr>
+            </WizUnstyledTbody>
+          </WizUnstyledTable>
           <WizText color="gray.600" fontSize="xs2">
             {{ displayHowPast }}
           </WizText>
         </WizHStack>
-        <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="!read">
-          {{ title }}
-        </WizText>
-        <WizText v-if="variant === 'secondary'" color="gray.600" fontSize="xs2">
-          {{ displayDatetime }}
-        </WizText>
+        <WizVStack gap="xs">
+          <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="!read">
+            {{ title }}
+          </WizText>
+          <WizText
+            v-if="variant === 'secondary'"
+            color="gray.600"
+            fontSize="xs2"
+          >
+            {{ displayDatetime }}
+          </WizText>
+        </WizVStack>
       </WizVStack>
       <WizIcon
         :icon="WizIChevronRight"
@@ -47,16 +71,20 @@
 </template>
 
 <script setup lang="ts">
-import { ColorKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import { ColorKeys, ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToYMDHM, formatHowPast } from "@wizleap-inc/wiz-ui-utils";
-import { computed, ref, PropType } from "vue";
+import { computed, PropType, ref } from "vue";
 
 import {
   WizBox,
   WizHStack,
   WizIcon,
-  WizVStack,
   WizText,
+  WizUnstyledTable,
+  WizUnstyledTbody,
+  WizUnstyledTd,
+  WizUnstyledTr,
+  WizVStack,
 } from "@/components/base";
 import { WizIChevronRight } from "@/components/icons";
 
