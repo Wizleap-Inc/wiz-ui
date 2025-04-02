@@ -49,7 +49,7 @@
             {{ displayHowPast }}
           </WizText>
         </WizHStack>
-        <WizStack gap="xs">
+        <WizVStack gap="xs">
           <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="!read">
             {{ title }}
           </WizText>
@@ -60,7 +60,7 @@
           >
             {{ displayDatetime }}
           </WizText>
-        </WizStack>
+        </WizVStack>
       </WizVStack>
       <WizIcon
         :icon="WizIChevronRight"
@@ -79,7 +79,6 @@ import {
   WizBox,
   WizHStack,
   WizIcon,
-  WizStack,
   WizText,
   WizUnstyledTable,
   WizUnstyledTbody,

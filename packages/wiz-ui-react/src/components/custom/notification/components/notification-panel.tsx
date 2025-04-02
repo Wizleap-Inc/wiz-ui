@@ -122,7 +122,7 @@ const NotificationPanel: FC<Props> = ({
               </WizText>
             </WizHStack>
           )}
-          <WizHStack gap="xs">
+          <WizVStack gap="xs">
             <WizText color="gray.700" fontSize="xs" maxLines={2} bold={!read}>
               {title}
             </WizText>
@@ -131,7 +131,7 @@ const NotificationPanel: FC<Props> = ({
                 {displayDatetime}
               </WizText>
             )}
-          </WizHStack>
+          </WizVStack>
         </WizVStack>
         <WizIcon icon={WizIChevronRight} color="green.800" />
       </WizHStack>
