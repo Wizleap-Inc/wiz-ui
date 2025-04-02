@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.4.0
+
+### Minor Changes
+
+- [#1433](https://github.com/Wizleap-Inc/wiz-ui/pull/1433) [`a16689f0bdae8c79850b358b992279dea9ef9926`](https://github.com/Wizleap-Inc/wiz-ui/commit/a16689f0bdae8c79850b358b992279dea9ef9926) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Selectbox): mini 版を追加
+
+### Patch Changes
+
+- Updated dependencies [[`a16689f0bdae8c79850b358b992279dea9ef9926`](https://github.com/Wizleap-Inc/wiz-ui/commit/a16689f0bdae8c79850b358b992279dea9ef9926)]:
+  - @wizleap-inc/wiz-ui-styles@0.40.0
+
 ## 3.3.0
 
 ### Minor Changes
