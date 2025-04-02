@@ -1,3 +1,4 @@
+import { BORDER_WIDTH_MAP } from "./border-width";
 import { BREAKPOINT_MAP } from "./breakpoint";
 import { COLOR_MAP } from "./color";
 import { FONT_SIZE_MAP } from "./font-size";
@@ -16,6 +17,7 @@ export const THEME = {
   shadow: SHADOW_MAP,
   zIndex: Z_INDEX_MAP,
   share: SHARE,
+  borderWidth: BORDER_WIDTH_MAP,
 } as const;
 
 export * from "./breakpoint";
@@ -27,3 +29,4 @@ export * from "./share";
 export * from "./spacing";
 export * from "./z-index";
 export * from "./white-space";
+export * from "./border-width";

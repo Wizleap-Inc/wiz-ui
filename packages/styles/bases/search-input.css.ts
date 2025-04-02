@@ -1,7 +1,7 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
-const borderWidth = "1px";
+const borderWidth = THEME.borderWidth.xs;
 
 export const searchStyle = style({
   position: "relative",
@@ -10,7 +10,7 @@ export const searchStyle = style({
   boxSizing: "border-box",
 });
 
-const BORDER_WIDTH = "1px";
+const BORDER_WIDTH = THEME.borderWidth.xs;
 
 export const searchInputStyle = style({
   borderRadius: THEME.spacing.xs2,
@@ -256,7 +256,7 @@ export const searchInputInnerBoxSelectedItemStyle = style({
   gap: THEME.spacing.xs,
 
   background: THEME.color.gray["300"],
-  border: `1px solid ${THEME.color.gray["400"]}`,
+  border: `${THEME.borderWidth.xs} solid ${THEME.color.gray["400"]}`,
   borderRadius: THEME.spacing.xs2,
 
   color: THEME.color.gray["800"],

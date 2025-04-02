@@ -91,7 +91,6 @@ export const iconVariant = styleVariants({
 
 export const disabled = style({
   pointerEvents: "none",
-  userSelect: "none",
   position: "relative",
   overflow: "hidden",
 
@@ -102,8 +101,9 @@ export const disabled = style({
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: THEME.color.white[500],
+    backgroundColor: THEME.color.white[800],
     zIndex: 1,
+    opacity: 0.5,
   },
 });
 
@@ -150,7 +150,7 @@ export const annotation = style({
 });
 
 export const body = style({
-  borderTop: `1px solid ${THEME.color.gray[400]}`,
+  borderTop: `${THEME.borderWidth.xs} solid ${THEME.color.gray[400]}`,
   paddingTop: THEME.spacing.md,
   marginTop: THEME.spacing.md,
 });

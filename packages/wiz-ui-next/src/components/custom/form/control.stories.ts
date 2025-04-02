@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from "@storybook/vue3";
+import { ColorKeys, COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
 import { WizTextInput } from "@/components";
@@ -21,7 +22,17 @@ export default {
       control: { type: "text" },
     },
     direction: {
-      control: { type: "select", options: ["horizontal", "vertical"] },
+      control: { type: "select" },
+      options: ["horizontal", "vertical"],
+    },
+    borderLeft: { control: { type: "boolean" } },
+    borderColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    labelTagPosition: {
+      control: { type: "select" },
+      options: ["right", "left"],
     },
   },
 } as Meta<typeof WizFormControl>;
@@ -44,6 +55,9 @@ interface Options {
   required: boolean;
   error: string;
   direction: "horizontal" | "vertical";
+  borderLeft: boolean;
+  borderColor: ColorKeys;
+  LabelTagPosition: "right" | "left";
 }
 
 const CODE_TEMPLATE = ({
@@ -51,13 +65,19 @@ const CODE_TEMPLATE = ({
   required,
   error,
   direction,
+  borderLeft,
+  borderColor,
+  LabelTagPosition,
 }: Partial<Options>) => `
 <template>
   <WizFormControl${
     (label ? ` label="${label}"` : "") +
     (required ? ` required` : "") +
     (error ? ` error="${error}"` : "") +
-    (direction ? ` direction="${direction}"` : "")
+    (direction ? ` direction="${direction}"` : "") +
+    (borderLeft ? ` border-left` : "") +
+    (borderColor ? ` border-color="${borderColor}"` : "") +
+    (LabelTagPosition ? ` label-tag-position="${LabelTagPosition}"` : "")
   }>
     <WizTextInput v-model="input" name="input" placeholder="入力してください" />
   </WizFormControl>
@@ -164,6 +184,50 @@ Error.parameters = {
       code: CODE_TEMPLATE({
         label: "Label",
         error: "空白にはできません",
+      }),
+    },
+  },
+};
+
+export const BorderLeft = Template.bind({});
+BorderLeft.args = {
+  label: "Label",
+  borderLeft: true,
+  borderColor: "green.800",
+};
+BorderLeft.parameters = {
+  docs: {
+    description: {
+      story:
+        "borderLeft を指定すると左にラインが表示され、borderColor で色を変更できます。",
+    },
+    source: {
+      code: CODE_TEMPLATE({
+        label: "Label",
+        borderLeft: true,
+        borderColor: "green.800",
+      }),
+    },
+  },
+};
+
+export const LabelTagPosition = Template.bind({});
+LabelTagPosition.args = {
+  label: "Label",
+  required: true,
+  labelTagPosition: "left",
+};
+LabelTagPosition.parameters = {
+  docs: {
+    description: {
+      story:
+        "labelTagPositionを指定すると、labelのTagの位置を変更できます。`left` または `right` を指定できます。default は `right` です。",
+    },
+    source: {
+      code: CODE_TEMPLATE({
+        label: "Label",
+        borderLeft: true,
+        borderColor: "green.800",
       }),
     },
   },
