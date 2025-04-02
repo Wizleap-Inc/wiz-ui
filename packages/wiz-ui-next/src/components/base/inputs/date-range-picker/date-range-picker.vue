@@ -3,6 +3,7 @@
     <button
       type="button"
       :class="[
+        styles.variantStyles[variant],
         styles.bodyStyle[disabled ? 'disabled' : 'active'],
         styles.widthStyle[expand ? 'expanded' : 'default'],
         inputBorderStyle[borderState],
@@ -222,6 +223,11 @@ const props = defineProps({
   selectBoxValue: {
     type: String,
     required: false,
+  },
+  variant: {
+    type: String as PropType<"regular" | "mini">,
+    required: false,
+    default: "regular",
   },
   /**
    * カレンダー（Popup）の開閉状態を指定します。
