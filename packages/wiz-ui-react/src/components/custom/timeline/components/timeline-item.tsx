@@ -83,7 +83,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
         <div className={styles.contents}>
           <div className={styles.header}>
             {device === "pc" ? (
-              <WizHStack justify="between">
+              <WizHStack nowrap justify="between" gap="xs">
                 <WizVStack gap="xs">
                   <WizHStack gap="xs" align="center">
                     {tag && (

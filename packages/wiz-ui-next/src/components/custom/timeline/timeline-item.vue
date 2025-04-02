@@ -25,7 +25,7 @@
       <div :class="styles.contents">
         <div :class="styles.header">
           <template v-if="device === 'pc'">
-            <WizHStack justify="between">
+            <WizHStack nowrap justify="between" gap="xs">
               <WizVStack gap="xs">
                 <WizHStack gap="xs" align="center">
                   <WizTag
