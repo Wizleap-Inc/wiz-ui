@@ -17,6 +17,7 @@ import { default as WizIBook } from "./book.vue";
 import { default as WizIBrightFilled } from "./bright-filled.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendar } from "./calendar.vue";
+import { default as WizICallBold } from "./call-bold.vue";
 import { default as WizICamera } from "./camera.vue";
 import { default as WizICancel } from "./cancel.vue";
 import { default as WizIChangeHistory } from "./change-history.vue";
@@ -88,11 +89,14 @@ import { default as WizILinkOff } from "./link-off.vue";
 import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
 import { default as WizILogin } from "./login.vue";
+import { default as WizIMailBold } from "./mail-bold.vue";
 import { default as WizIMail } from "./mail.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
+import { default as WizIMicBold } from "./mic-bold.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
+import { default as WizIMoreVertBold } from "./more-vert-bold.vue";
 import { default as WizIMoreVert } from "./more-vert.vue";
 import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
@@ -101,6 +105,7 @@ import { default as WizIPauseCircleBold } from "./pause-circle-bold.vue";
 import { default as WizIPersonFilled } from "./person-filled.vue";
 import { default as WizIPieChart } from "./pie-chart.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
+import { default as WizIPlayArrowFilled } from "./play-arrow-filled.vue";
 import { default as WizIPlayCircleBold } from "./play-circle-bold.vue";
 import { default as WizIPublic } from "./public.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
@@ -111,9 +116,12 @@ import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizISettings } from "./settings.vue";
 import { default as WizIShoppingmode } from "./shoppingmode.vue";
+import { default as WizISmartphoneBold } from "./smartphone-bold.vue";
 import { default as WizISmartphone } from "./smartphone.vue";
+import { default as WizISmsBold } from "./sms-bold.vue";
 import { default as WizIStarFilled } from "./star-filled.vue";
 import { default as WizIStars } from "./stars.vue";
+import { default as WizIStopFilled } from "./stop-filled.vue";
 import { default as WizIStoreFront } from "./store-front.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
@@ -142,6 +150,7 @@ export type TIcon =
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
   | typeof WizICalendar
+  | typeof WizICallBold
   | typeof WizICamera
   | typeof WizICancel
   | typeof WizIChangeHistory
@@ -213,11 +222,14 @@ export type TIcon =
   | typeof WizILocationCity
   | typeof WizILocationOn
   | typeof WizILogin
+  | typeof WizIMailBold
   | typeof WizIMail
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
+  | typeof WizIMicBold
   | typeof WizIMonitoring
+  | typeof WizIMoreVertBold
   | typeof WizIMoreVert
   | typeof WizINoteAdd
   | typeof WizINotification
@@ -226,6 +238,7 @@ export type TIcon =
   | typeof WizIPersonFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
+  | typeof WizIPlayArrowFilled
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
   | typeof WizIRemoveBold
@@ -236,9 +249,12 @@ export type TIcon =
   | typeof WizISend
   | typeof WizISettings
   | typeof WizIShoppingmode
+  | typeof WizISmartphoneBold
   | typeof WizISmartphone
+  | typeof WizISmsBold
   | typeof WizIStarFilled
   | typeof WizIStars
+  | typeof WizIStopFilled
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -267,6 +283,7 @@ export {
   WizIBrightFilled,
   WizIBusinessCenter,
   WizICalendar,
+  WizICallBold,
   WizICamera,
   WizICancel,
   WizIChangeHistory,
@@ -338,11 +355,14 @@ export {
   WizILocationCity,
   WizILocationOn,
   WizILogin,
+  WizIMailBold,
   WizIMail,
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
+  WizIMicBold,
   WizIMonitoring,
+  WizIMoreVertBold,
   WizIMoreVert,
   WizINoteAdd,
   WizINotification,
@@ -351,6 +371,7 @@ export {
   WizIPersonFilled,
   WizIPieChart,
   WizIPinDrop,
+  WizIPlayArrowFilled,
   WizIPlayCircleBold,
   WizIPublic,
   WizIRemoveBold,
@@ -361,9 +382,12 @@ export {
   WizISend,
   WizISettings,
   WizIShoppingmode,
+  WizISmartphoneBold,
   WizISmartphone,
+  WizISmsBold,
   WizIStarFilled,
   WizIStars,
+  WizIStopFilled,
   WizIStoreFront,
   WizITab,
   WizITask,
