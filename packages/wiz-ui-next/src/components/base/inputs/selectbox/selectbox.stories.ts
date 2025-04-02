@@ -30,6 +30,10 @@ export default {
     dropdownMaxHeight: {
       control: { type: "text" },
     },
+    variant: {
+      control: { type: "select" },
+      options: ["regular", "mini"],
+    },
   },
 } as Meta<typeof WizSelectBox>;
 
@@ -123,11 +127,13 @@ IsDirectionFixed.args = {
 export const DropdownMaxHeight = Template.bind({});
 DropdownMaxHeight.args = {
   options: _getDummyOptions("test", 3),
+  isOpen: true,
   dropdownMaxHeight: "75px",
 };
 
 export const Mini = Template.bind({});
 Mini.args = {
   options: _getDummyOptions("test", 3),
+  isOpen: true,
   variant: "mini",
 };
