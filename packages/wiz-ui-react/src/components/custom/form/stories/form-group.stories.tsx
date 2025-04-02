@@ -49,7 +49,7 @@ export const Default: Story = {
 export const LabelWidth: Story = {
   ...Template,
   args: {
-    labelWidth: "6rem",
+    labelWidth: "6.25rem",
   },
   parameters: {
     docs: {
@@ -99,6 +99,21 @@ export const LabelFontSize: Story = {
       description: {
         story:
           "子要素の**FormControl**の各要素のラベルサイズを一括指定できます。",
+      },
+    },
+  },
+};
+
+export const labelTagPosition: Story = {
+  ...Template,
+  args: {
+    labelTagPosition: "left",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "子要素の**FormControl**の各要素のラベルタグの位置を一括指定できます。ただし、各**FormControl**に個別でlabelTagPositionが指定されている場合は、そちらがの設定が優先されます。",
       },
     },
   },

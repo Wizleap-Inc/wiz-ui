@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{
-      borderTop: '1px solid #E2E8F0',
+      borderTop: `${THEME.borderWidth.xs} solid #E2E8F0`,
       paddingTop: '10px',
       width: '100%',
     }"

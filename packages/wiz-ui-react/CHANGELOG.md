@@ -1,5 +1,73 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.3.0
+
+### Minor Changes
+
+- [#1452](https://github.com/Wizleap-Inc/wiz-ui/pull/1452) [`7bcadc10e1530b320eaab7f9927a5ce3c521aa17`](https://github.com/Wizleap-Inc/wiz-ui/commit/7bcadc10e1530b320eaab7f9927a5ce3c521aa17) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): call-bold, mail-bold, mic-bold, more-vert-bold, play-arrow-filled, smartphone-bold, sms-bold, stop-filled
+
+### Patch Changes
+
+- Updated dependencies [[`7bcadc10e1530b320eaab7f9927a5ce3c521aa17`](https://github.com/Wizleap-Inc/wiz-ui/commit/7bcadc10e1530b320eaab7f9927a5ce3c521aa17)]:
+  - @wizleap-inc/wiz-ui-constants@0.36.0
+  - @wizleap-inc/wiz-ui-styles@0.39.2
+
+## 2.2.0
+
+### Minor Changes
+
+- [#1448](https://github.com/Wizleap-Inc/wiz-ui/pull/1448) [`d6ef011cdf4588b0a6c07350979896cc675ffe0c`](https://github.com/Wizleap-Inc/wiz-ui/commit/d6ef011cdf4588b0a6c07350979896cc675ffe0c) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - FormControl 内のラベルタグの位置を指定できるようにする
+
+### Patch Changes
+
+- [#1449](https://github.com/Wizleap-Inc/wiz-ui/pull/1449) [`21992fc1b516c44bacb193cee375c511b71f791e`](https://github.com/Wizleap-Inc/wiz-ui/commit/21992fc1b516c44bacb193cee375c511b71f791e) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - border の太さを定数（xs, sm, md, lg）として@wizleap-inc/wiz-ui-constants に追加し、各パッケージ内で該当定数を使用するようにリファクタリングしました。
+
+- Updated dependencies [[`21992fc1b516c44bacb193cee375c511b71f791e`](https://github.com/Wizleap-Inc/wiz-ui/commit/21992fc1b516c44bacb193cee375c511b71f791e)]:
+  - @wizleap-inc/wiz-ui-constants@0.35.1
+  - @wizleap-inc/wiz-ui-styles@0.39.1
+
+## 2.1.0
+
+### Minor Changes
+
+- [#1445](https://github.com/Wizleap-Inc/wiz-ui/pull/1445) [`8d1e91bb25a3229a95ab0abe3130046891e2b2be`](https://github.com/Wizleap-Inc/wiz-ui/commit/8d1e91bb25a3229a95ab0abe3130046891e2b2be) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Added borderLeft and borderColor props to FormControl.
+
+### Patch Changes
+
+- Updated dependencies [[`8d1e91bb25a3229a95ab0abe3130046891e2b2be`](https://github.com/Wizleap-Inc/wiz-ui/commit/8d1e91bb25a3229a95ab0abe3130046891e2b2be)]:
+  - @wizleap-inc/wiz-ui-styles@0.39.0
+
+## 2.0.0
+
+### Major Changes
+
+- [#1431](https://github.com/Wizleap-Inc/wiz-ui/pull/1431) [`b3afe7db655c2213983ae0da5dccbe539d05e56d`](https://github.com/Wizleap-Inc/wiz-ui/commit/b3afe7db655c2213983ae0da5dccbe539d05e56d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(avatar): fallback font size を修正しました．これに伴い，size プロパティで指定可能な値を`"md" | "lg" | "xl" | "xl2" | "xl3" | "xl4"` のみに限定しました．
+
+## 1.5.0
+
+### Minor Changes
+
+- [#1437](https://github.com/Wizleap-Inc/wiz-ui/pull/1437) [`b6d0da35bb1faebaa6a463353ec5e53feda8d5d6`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6d0da35bb1faebaa6a463353ec5e53feda8d5d6) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Feat(TimelineItem): change style of disabled
+
+### Patch Changes
+
+- Updated dependencies [[`b6d0da35bb1faebaa6a463353ec5e53feda8d5d6`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6d0da35bb1faebaa6a463353ec5e53feda8d5d6)]:
+  - @wizleap-inc/wiz-ui-styles@0.38.0
+
+## 1.4.0
+
+### Minor Changes
+
+- [#1405](https://github.com/Wizleap-Inc/wiz-ui/pull/1405) [`275a8350462778446a1168a244afaa3895203c43`](https://github.com/Wizleap-Inc/wiz-ui/commit/275a8350462778446a1168a244afaa3895203c43) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): add image, play_circle, pause_circle icons, keep, error
+
+### Patch Changes
+
+- [#1432](https://github.com/Wizleap-Inc/wiz-ui/pull/1432) [`0d9d099817dcf5b3f67596fb6a07e70eb0676ffe`](https://github.com/Wizleap-Inc/wiz-ui/commit/0d9d099817dcf5b3f67596fb6a07e70eb0676ffe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(number-input): disabled style
+
+- Updated dependencies [[`0d9d099817dcf5b3f67596fb6a07e70eb0676ffe`](https://github.com/Wizleap-Inc/wiz-ui/commit/0d9d099817dcf5b3f67596fb6a07e70eb0676ffe), [`275a8350462778446a1168a244afaa3895203c43`](https://github.com/Wizleap-Inc/wiz-ui/commit/275a8350462778446a1168a244afaa3895203c43)]:
+  - @wizleap-inc/wiz-ui-styles@0.37.1
+  - @wizleap-inc/wiz-ui-constants@0.35.0
+
 ## 1.3.0
 
 ### Minor Changes

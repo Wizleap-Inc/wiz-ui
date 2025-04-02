@@ -17,6 +17,7 @@ import { WizIBook } from "./book";
 import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
+import { WizICallBold } from "./call-bold";
 import { WizICamera } from "./camera";
 import { WizICancel } from "./cancel";
 import { WizIChangeHistory } from "./change-history";
@@ -65,6 +66,7 @@ import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
 import { WizIEmergencyHome } from "./emergency-home";
+import { WizIErrorFilled } from "./error-filled";
 import { WizIExpandLess } from "./expand-less";
 import { WizIExpandMore } from "./expand-more";
 import { WizIExpandMoreBold } from "./expand-more-bold";
@@ -77,26 +79,34 @@ import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIHourglassTop } from "./hourglass-top";
+import { WizIImageBold } from "./image-bold";
 import { WizIInboxCustomize } from "./inbox-customize";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
+import { WizIKeepBold } from "./keep-bold";
 import { WizILinkOff } from "./link-off";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
 import { WizILogin } from "./login";
 import { WizIMail } from "./mail";
+import { WizIMailBold } from "./mail-bold";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
+import { WizIMicBold } from "./mic-bold";
 import { WizIMonitoring } from "./monitoring";
 import { WizIMoreVert } from "./more-vert";
+import { WizIMoreVertBold } from "./more-vert-bold";
 import { WizINoteAdd } from "./note-add";
 import { WizINotification } from "./notification";
 import { WizIOpenInNew } from "./open-in-new";
+import { WizIPauseCircleBold } from "./pause-circle-bold";
 import { WizIPersonFilled } from "./person-filled";
 import { WizIPieChart } from "./pie-chart";
 import { WizIPinDrop } from "./pin-drop";
+import { WizIPlayArrowFilled } from "./play-arrow-filled";
+import { WizIPlayCircleBold } from "./play-circle-bold";
 import { WizIPublic } from "./public";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
@@ -107,8 +117,11 @@ import { WizISend } from "./send";
 import { WizISettings } from "./settings";
 import { WizIShoppingmode } from "./shoppingmode";
 import { WizISmartphone } from "./smartphone";
+import { WizISmartphoneBold } from "./smartphone-bold";
+import { WizISmsBold } from "./sms-bold";
 import { WizIStarFilled } from "./star-filled";
 import { WizIStars } from "./stars";
+import { WizIStopFilled } from "./stop-filled";
 import { WizIStoreFront } from "./store-front";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
@@ -137,6 +150,7 @@ export type TIcon =
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
   | typeof WizICalendar
+  | typeof WizICallBold
   | typeof WizICamera
   | typeof WizICancel
   | typeof WizIChangeHistory
@@ -185,6 +199,7 @@ export type TIcon =
   | typeof WizIDrafts
   | typeof WizIEditNote
   | typeof WizIEmergencyHome
+  | typeof WizIErrorFilled
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
@@ -197,26 +212,34 @@ export type TIcon =
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
+  | typeof WizIImageBold
   | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
+  | typeof WizIKeepBold
   | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
   | typeof WizILogin
+  | typeof WizIMailBold
   | typeof WizIMail
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
+  | typeof WizIMicBold
   | typeof WizIMonitoring
+  | typeof WizIMoreVertBold
   | typeof WizIMoreVert
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
+  | typeof WizIPauseCircleBold
   | typeof WizIPersonFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
+  | typeof WizIPlayArrowFilled
+  | typeof WizIPlayCircleBold
   | typeof WizIPublic
   | typeof WizIRemoveBold
   | typeof WizIRemove
@@ -226,9 +249,12 @@ export type TIcon =
   | typeof WizISend
   | typeof WizISettings
   | typeof WizIShoppingmode
+  | typeof WizISmartphoneBold
   | typeof WizISmartphone
+  | typeof WizISmsBold
   | typeof WizIStarFilled
   | typeof WizIStars
+  | typeof WizIStopFilled
   | typeof WizIStoreFront
   | typeof WizITab
   | typeof WizITask
@@ -257,6 +283,7 @@ export {
   WizIBrightFilled,
   WizIBusinessCenter,
   WizICalendar,
+  WizICallBold,
   WizICamera,
   WizICancel,
   WizIChangeHistory,
@@ -305,6 +332,7 @@ export {
   WizIDrafts,
   WizIEditNote,
   WizIEmergencyHome,
+  WizIErrorFilled,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,
@@ -317,26 +345,34 @@ export {
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
+  WizIImageBold,
   WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
+  WizIKeepBold,
   WizILinkOff,
   WizILocationCity,
   WizILocationOn,
   WizILogin,
+  WizIMailBold,
   WizIMail,
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
+  WizIMicBold,
   WizIMonitoring,
+  WizIMoreVertBold,
   WizIMoreVert,
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
+  WizIPauseCircleBold,
   WizIPersonFilled,
   WizIPieChart,
   WizIPinDrop,
+  WizIPlayArrowFilled,
+  WizIPlayCircleBold,
   WizIPublic,
   WizIRemoveBold,
   WizIRemove,
@@ -346,9 +382,12 @@ export {
   WizISend,
   WizISettings,
   WizIShoppingmode,
+  WizISmartphoneBold,
   WizISmartphone,
+  WizISmsBold,
   WizIStarFilled,
   WizIStars,
+  WizIStopFilled,
   WizIStoreFront,
   WizITab,
   WizITask,

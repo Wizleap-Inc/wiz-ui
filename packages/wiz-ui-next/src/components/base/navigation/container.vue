@@ -58,7 +58,8 @@ const computedStickyStyle = computed(() => {
   if (props.sticky) styles.position = "sticky";
   if (props.sticky) styles.top = `calc(${THEME.share.HEADER_HEIGHT} + 1px)`; // +1px for border of header
   if (props.sticky) styles.left = 0;
-  if (props.sticky) styles.borderRight = `1px solid ${THEME.color.gray[400]}`;
+  if (props.sticky)
+    styles.borderRight = `${THEME.borderWidth.xs} solid ${THEME.color.gray[400]}`;
   if (props.sticky)
     styles.height = `calc(100vh - ${THEME.share.HEADER_HEIGHT} - 1px)`;
   return styles;

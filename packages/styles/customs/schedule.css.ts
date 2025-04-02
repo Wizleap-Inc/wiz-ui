@@ -55,7 +55,7 @@ export const time = style({
   color: THEME.color.gray[600],
   verticalAlign: "top",
   textAlign: "center",
-  borderRight: `2px solid ${THEME.color.gray[400]}`,
+  borderRight: `${THEME.borderWidth.sm} solid ${THEME.color.gray[400]}`,
   boxSizing: "border-box",
   padding: 0,
 });
@@ -67,7 +67,7 @@ export const timeSpace = style({
 export const cols = style({});
 
 globalStyle(`${cols} + ${cols} > ${timeSpace}`, {
-  borderTop: `1px solid ${THEME.color.gray[300]}`,
+  borderTop: `${THEME.borderWidth.xs} solid ${THEME.color.gray[300]}`,
 });
 
 export const grid = style({

@@ -128,7 +128,7 @@ export const calendarItemInteractiveStyle = style([
 export const calendarItemInteractiveTodayStyle = style([
   calendarItemInteractiveStyle,
   {
-    border: `1px solid ${THEME.color.green[800]}`,
+    border: `${THEME.borderWidth.xs} solid ${THEME.color.green[800]}`,
     borderRadius: "50%",
     boxSizing: "border-box",
   },

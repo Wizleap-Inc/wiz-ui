@@ -1,4 +1,7 @@
-import { ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
+import { ComponentName, THEME, ColorKeys } from "@wizleap-inc/wiz-ui-constants";
+import { borderColorStyle } from "@wizleap-inc/wiz-ui-styles/commons/border-color.css";
+import * as styles from "@wizleap-inc/wiz-ui-styles/customs/form-control.css";
+import clsx from "clsx";
 import { FC, ReactNode, useContext, useMemo } from "react";
 
 import { WizHStack, WizStack, WizTag, WizText, WizVStack } from "@/components";
@@ -14,6 +17,9 @@ type Props = BaseProps & {
   error?: string;
   children: ReactNode;
   direction?: "horizontal" | "vertical";
+  borderLeft?: boolean;
+  borderColor?: ColorKeys;
+  labelTagPosition?: "left" | "right";
 };
 
 const FormControl: FC<Props> = ({
@@ -25,12 +31,19 @@ const FormControl: FC<Props> = ({
   error,
   direction = "horizontal",
   children,
+  borderLeft = false,
+  borderColor = "green.800",
+  labelTagPosition,
 }) => {
   const {
     labelWidth = "8rem",
     labelColor,
     labelFontSize,
+    labelTagPosition: labelTagPositionContext,
   } = useContext(FormGroupContext);
+
+  const resolvedLabelTagPosition =
+    labelTagPosition || labelTagPositionContext || "right";
 
   const errorLeft = useMemo(() => {
     return direction === "horizontal" ? labelWidth : undefined;
@@ -51,12 +64,27 @@ const FormControl: FC<Props> = ({
           nowrap
           align={direction === "horizontal" ? "center" : undefined}
         >
-          <WizHStack width={labelWidth} align="center" gap="xs2" py="xs2">
+          <WizHStack
+            width={labelWidth}
+            align="center"
+            reverse={resolvedLabelTagPosition === "left"}
+            justify={resolvedLabelTagPosition === "left" ? "end" : "start"}
+            gap="xs"
+            my="xs2"
+            className={clsx({
+              [styles.borderLeftStyle]: borderLeft,
+              [borderColorStyle[borderColor]]: borderLeft,
+            })}
+          >
             <WizText
               as="label"
               htmlFor={htmlFor}
               color={labelColor}
               fontSize={labelFontSize}
+              bold={borderLeft}
+              className={clsx({
+                [styles.borderLeftTextStyle]: borderLeft,
+              })}
             >
               {label}
             </WizText>

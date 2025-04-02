@@ -11,17 +11,17 @@ export const messageBoxStyle = style({
 export const messageBoxVariantStyle = styleVariants({
   information: {
     backgroundColor: THEME.color.green[300],
-    border: `1px solid ${THEME.color.green[800]}`,
+    border: `${THEME.borderWidth.xs} solid ${THEME.color.green[800]}`,
     borderRadius: THEME.spacing.xs2,
   },
   caution: {
     backgroundColor: THEME.color.yellow[300],
-    border: `1px solid ${THEME.color.yellow[800]}`,
+    border: `${THEME.borderWidth.xs} solid ${THEME.color.yellow[800]}`,
     borderRadius: THEME.spacing.xs2,
   },
   warning: {
     backgroundColor: THEME.color.red[300],
-    border: `1px solid ${THEME.color.red[800]}`,
+    border: `${THEME.borderWidth.xs} solid ${THEME.color.red[800]}`,
     borderRadius: THEME.spacing.xs2,
   },
 });

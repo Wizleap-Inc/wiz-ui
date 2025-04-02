@@ -82,7 +82,7 @@ export const popupHeaderStyle = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
-  borderBottom: `1px solid ${THEME.color.gray["300"]}`,
+  borderBottom: `${THEME.borderWidth.xs} solid ${THEME.color.gray["300"]}`,
   padding: THEME.spacing.xs,
 });
 
@@ -91,7 +91,7 @@ export const popupHeaderSelectBoxContainerStyle = style({
 });
 
 export const popupHeaderSelectBoxStyle = style({
-  border: `1px solid ${THEME.color.gray["300"]}`,
+  border: `${THEME.borderWidth.xs} solid ${THEME.color.gray["300"]}`,
   borderRadius: THEME.spacing.xs2,
   padding: `${THEME.spacing.xs2} ${THEME.spacing.xs}`,
   display: "flex",
@@ -156,7 +156,7 @@ export const popupCalendarContainerStyle = styleVariants({
   left: [
     popupCalendarContainerBaseStyle,
     {
-      borderRight: `1px solid ${THEME.color.gray["300"]}`,
+      borderRight: `${THEME.borderWidth.xs} solid ${THEME.color.gray["300"]}`,
     },
   ],
   right: [popupCalendarContainerBaseStyle],
