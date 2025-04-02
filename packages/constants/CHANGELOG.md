@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.36.0
+
+### Minor Changes
+
+- [#1452](https://github.com/Wizleap-Inc/wiz-ui/pull/1452) [`7bcadc10e1530b320eaab7f9927a5ce3c521aa17`](https://github.com/Wizleap-Inc/wiz-ui/commit/7bcadc10e1530b320eaab7f9927a5ce3c521aa17) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(icon): call-bold, mail-bold, mic-bold, more-vert-bold, play-arrow-filled, smartphone-bold, sms-bold, stop-filled
+
 ## 0.35.1
 
 ### Patch Changes
