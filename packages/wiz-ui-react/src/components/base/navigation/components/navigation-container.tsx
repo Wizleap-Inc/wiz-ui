@@ -34,7 +34,7 @@ const NavigationContainer: FC<Props> = ({
         position: "sticky",
         top: `calc(${THEME.share.HEADER_HEIGHT} + 1px)`,
         left: 0,
-        borderRight: `1px solid ${THEME.color.gray[400]}`,
+        borderRight: `${THEME.borderWidth.xs} solid ${THEME.color.gray[400]}`,
         height: `calc(100vh - ${THEME.share.HEADER_HEIGHT} - 1px)`,
       }
     : {};

@@ -29,7 +29,7 @@ export const cardTableAlignStyle = styleVariants({
 
 export const cardTdStyle = style({
   padding: `${THEME.spacing.xs2} ${THEME.spacing.sm}`,
-  borderLeft: `1px solid ${THEME.color.gray[300]}`,
+  borderLeft: `${THEME.borderWidth.xs} solid ${THEME.color.gray[300]}`,
 
   ":first-child": {
     borderLeft: "none",
@@ -87,12 +87,12 @@ export const cardTrStyle = style({
       background: THEME.color.white[800],
       zIndex: -1,
       boxSizing: "border-box",
-      border: `1px solid ${THEME.color.gray[300]}`,
+      border: `${THEME.borderWidth.xs} solid ${THEME.color.gray[300]}`,
     },
     "tbody > &:hover::after": {
       "@media": {
         "(any-hover: hover)": {
-          border: `2px solid ${THEME.color.green[800]}`,
+          border: `${THEME.borderWidth.sm} solid ${THEME.color.green[800]}`,
         },
       },
     },
@@ -116,7 +116,7 @@ export const cardTrOnSafariStyle = style({
       background: THEME.color.white[800],
       zIndex: -1,
       boxSizing: "border-box",
-      outline: `1px solid ${THEME.color.gray[300]}`,
+      outline: `${THEME.borderWidth.xs} solid ${THEME.color.gray[300]}`,
     },
     "tbody > &:hover": {
       "@media": {

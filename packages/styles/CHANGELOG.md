@@ -1,5 +1,35 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.39.1
+
+### Patch Changes
+
+- [#1449](https://github.com/Wizleap-Inc/wiz-ui/pull/1449) [`21992fc1b516c44bacb193cee375c511b71f791e`](https://github.com/Wizleap-Inc/wiz-ui/commit/21992fc1b516c44bacb193cee375c511b71f791e) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - border の太さを定数（xs, sm, md, lg）として@wizleap-inc/wiz-ui-constants に追加し、各パッケージ内で該当定数を使用するようにリファクタリングしました。
+
+- Updated dependencies [[`21992fc1b516c44bacb193cee375c511b71f791e`](https://github.com/Wizleap-Inc/wiz-ui/commit/21992fc1b516c44bacb193cee375c511b71f791e)]:
+  - @wizleap-inc/wiz-ui-constants@0.35.1
+
+## 0.39.0
+
+### Minor Changes
+
+- [#1445](https://github.com/Wizleap-Inc/wiz-ui/pull/1445) [`8d1e91bb25a3229a95ab0abe3130046891e2b2be`](https://github.com/Wizleap-Inc/wiz-ui/commit/8d1e91bb25a3229a95ab0abe3130046891e2b2be) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Added borderLeft and borderColor props to FormControl.
+
+## 0.38.0
+
+### Minor Changes
+
+- [#1437](https://github.com/Wizleap-Inc/wiz-ui/pull/1437) [`b6d0da35bb1faebaa6a463353ec5e53feda8d5d6`](https://github.com/Wizleap-Inc/wiz-ui/commit/b6d0da35bb1faebaa6a463353ec5e53feda8d5d6) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Feat(TimelineItem): change style of disabled
+
+## 0.37.1
+
+### Patch Changes
+
+- [#1432](https://github.com/Wizleap-Inc/wiz-ui/pull/1432) [`0d9d099817dcf5b3f67596fb6a07e70eb0676ffe`](https://github.com/Wizleap-Inc/wiz-ui/commit/0d9d099817dcf5b3f67596fb6a07e70eb0676ffe) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Fix(number-input): disabled style
+
+- Updated dependencies [[`275a8350462778446a1168a244afaa3895203c43`](https://github.com/Wizleap-Inc/wiz-ui/commit/275a8350462778446a1168a244afaa3895203c43)]:
+  - @wizleap-inc/wiz-ui-constants@0.35.0
+
 ## 0.37.0
 
 ### Minor Changes
