@@ -27,6 +27,8 @@ jobs:
 
       - name: 📥 Monorepo install
         uses: ./.github/composite/prepare_node
+      - name: Install fonts
+        run: sudo apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
 
       - name: workaround for detached HEAD
         run: |
