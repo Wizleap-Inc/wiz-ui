@@ -154,7 +154,4 @@ const { device } = injected;
 const iconSize = computed(() =>
   injected.device.value === "mobile" ? "md" : "xl2"
 );
-const isTitleEscape = computed(
-  () => injected.device.value === "mobile" && props.tag
-);
 </script>
