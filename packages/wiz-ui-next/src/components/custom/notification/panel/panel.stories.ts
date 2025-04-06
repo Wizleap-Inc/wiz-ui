@@ -1,6 +1,6 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
-import { WizText, WizVStack, WizHStack, WizBox } from "@/components";
+import { WizBox, WizHStack, WizText, WizVStack } from "@/components";
 
 import { WizNotificationPanel } from ".";
 
@@ -40,7 +40,7 @@ const baseProps = {
       content: "データ1",
     },
     {
-      title: "情報2",
+      title: "情報002",
       content: "データ2",
     },
   ],
