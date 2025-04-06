@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.40.0
+
+### Minor Changes
+
+- [#1433](https://github.com/Wizleap-Inc/wiz-ui/pull/1433) [`a16689f0bdae8c79850b358b992279dea9ef9926`](https://github.com/Wizleap-Inc/wiz-ui/commit/a16689f0bdae8c79850b358b992279dea9ef9926) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Selectbox): mini 版を追加
+
+- [#1434](https://github.com/Wizleap-Inc/wiz-ui/pull/1434) [`078c35691ec623f3a30c8beb16b383c6369cb169`](https://github.com/Wizleap-Inc/wiz-ui/commit/078c35691ec623f3a30c8beb16b383c6369cb169) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-range-picker): mini
+
 ## 0.39.2
 
 ### Patch Changes

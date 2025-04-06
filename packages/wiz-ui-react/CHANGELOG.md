@@ -1,5 +1,22 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.4.0
+
+### Minor Changes
+
+- [#1393](https://github.com/Wizleap-Inc/wiz-ui/pull/1393) [`4048e511c2745d2a3b881d348297c2a58de80a7d`](https://github.com/Wizleap-Inc/wiz-ui/commit/4048e511c2745d2a3b881d348297c2a58de80a7d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(timeline-item): header content
+
+- [#1433](https://github.com/Wizleap-Inc/wiz-ui/pull/1433) [`a16689f0bdae8c79850b358b992279dea9ef9926`](https://github.com/Wizleap-Inc/wiz-ui/commit/a16689f0bdae8c79850b358b992279dea9ef9926) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Selectbox): mini 版を追加
+
+- [#1434](https://github.com/Wizleap-Inc/wiz-ui/pull/1434) [`078c35691ec623f3a30c8beb16b383c6369cb169`](https://github.com/Wizleap-Inc/wiz-ui/commit/078c35691ec623f3a30c8beb16b383c6369cb169) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(date-range-picker): mini
+
+- [#1343](https://github.com/Wizleap-Inc/wiz-ui/pull/1343) [`449e4cbe41bb5fea7f2f11d660102f7402dcae2d`](https://github.com/Wizleap-Inc/wiz-ui/commit/449e4cbe41bb5fea7f2f11d660102f7402dcae2d) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(notification-panel): table-info layout
+
+### Patch Changes
+
+- Updated dependencies [[`a16689f0bdae8c79850b358b992279dea9ef9926`](https://github.com/Wizleap-Inc/wiz-ui/commit/a16689f0bdae8c79850b358b992279dea9ef9926), [`078c35691ec623f3a30c8beb16b383c6369cb169`](https://github.com/Wizleap-Inc/wiz-ui/commit/078c35691ec623f3a30c8beb16b383c6369cb169)]:
+  - @wizleap-inc/wiz-ui-styles@0.40.0
+
 ## 2.3.0
 
 ### Minor Changes
