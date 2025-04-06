@@ -89,7 +89,7 @@ const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
         <WizUnstyledTable space="sm" width="100%">
           <WizUnstyledTbody>
             <WizUnstyledTr>
-              <WizUnstyledTd align="left" width="80px">
+              <WizUnstyledTd align="left" width="180px">
                 <WizText fontSize="xs">相談日時</WizText>
               </WizUnstyledTd>
               <WizUnstyledTd align="left">

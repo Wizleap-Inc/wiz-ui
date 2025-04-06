@@ -52,7 +52,7 @@ const Template = ({ disabled }: { disabled?: boolean }) => (
       </>
     }
   >
-    <WizUnstyledTable space="xs2" width="100%">
+    <WizUnstyledTable space="xs2" width="50%">
       <WizUnstyledTbody>
         <WizUnstyledTr>
           <WizUnstyledTd align="left" width="80px">
@@ -68,7 +68,7 @@ const Template = ({ disabled }: { disabled?: boolean }) => (
                   10:00 ~ 11:00
                 </WizText>
               </WizText>
-              <WizIcon icon={WizIInfo} color="yellow.800" />
+              <WizIcon icon={WizIInfo} color="green.800" />
             </WizHStack>
           </WizUnstyledTd>
         </WizUnstyledTr>

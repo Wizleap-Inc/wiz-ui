@@ -61,7 +61,7 @@ const FormControl: FC<Props> = ({
           <WizHStack
             width={labelWidth}
             align="center"
-            gap="xs"
+            gap="md"
             my="xs2"
             className={clsx({
               [styles.borderLeftStyle]: borderLeft,
