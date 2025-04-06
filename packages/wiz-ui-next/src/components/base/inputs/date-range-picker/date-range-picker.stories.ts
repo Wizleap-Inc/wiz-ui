@@ -40,6 +40,10 @@ export default {
     isDirectionFixed: {
       control: { type: "boolean" },
     },
+    variant: {
+      control: { type: "select" },
+      options: ["regular", "mini"],
+    },
   },
   parameters: {
     screenshot: {
@@ -287,6 +291,16 @@ IsDirectionFixed.parameters = {
       code: CODE_TEMPLATE({ isDirectionFixed: true }),
     },
   },
+};
+
+export const Mini = Template.bind({});
+Mini.args = {
+  modelValue: {
+    start: new Date(2020, 0, 15),
+    end: new Date(2020, 1, 15),
+  },
+  isDirectionFixed: true,
+  variant: "mini",
 };
 
 const _formatDateJp = (date: Date) =>

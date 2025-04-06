@@ -6,11 +6,19 @@ const BORDER_WIDTH = "1px";
 const baseBodyStyle = style({
   borderRadius: THEME.spacing.xs2,
   boxSizing: "border-box",
-  padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
   fontSize: THEME.fontSize.sm,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+});
+
+export const variantStyles = styleVariants({
+  regular: {
+    padding: `calc(${THEME.spacing.xs} - ${BORDER_WIDTH}) ${THEME.spacing.xs}`,
+  },
+  mini: {
+    padding: `1px ${THEME.spacing.xs}`,
+  },
 });
 
 export const bodyStyle = styleVariants({
