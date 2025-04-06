@@ -19,7 +19,7 @@ const meta: Meta<typeof WizTooltip> = {
 export default meta;
 type Story = StoryObj<typeof WizTooltip>;
 
-const content = <div>保険見直し、つみたて・投資、ライフプラン</div>;
+const content = <div>保険見直し、つみたて・投資、ライフプラン！</div>;
 
 const Template: Story = {
   render: (args) => (

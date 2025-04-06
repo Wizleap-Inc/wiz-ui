@@ -83,7 +83,7 @@ const PlaygroundTemplate: StoryFn<typeof WizTimeline> = () => {
       <WizTimelineItem
         variant="success"
         tag="面談終了"
-        title="面談レポート提出完了しました"
+        title="面談レポート提出完了しました?"
         annotation="2022年6月17日"
       >
         <WizUnstyledTable space="sm" width="100%">
