@@ -297,6 +297,25 @@ Disabled.args = {
   disabled: true,
 };
 
+export const Header: StoryFn<typeof WizTimelineItem> = (args) => ({
+  setup() {
+    return { args };
+  },
+  components: { WizTimelineItem, WizText },
+  template: `
+    <WizTimelineItem v-bind="args">
+      <template #header>
+        <WizText fontSize="sm">header content</WizText>
+      </template>
+    </WizTimelineItem>
+  `,
+});
+
+Header.args = {
+  title: "タイトルの下にコンテンツを表示できます",
+  annotation: "2021年01月01日",
+};
+
 export const BackgroundColor = Template.bind({});
 BackgroundColor.args = {
   title: "背景色を設定できます",

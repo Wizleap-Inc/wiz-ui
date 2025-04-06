@@ -4,7 +4,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/customs/timeline.css";
 import clsx from "clsx";
 import { FC, ReactNode, useContext, useMemo } from "react";
 
-import { WizIcon, WizTag } from "../../../base";
+import { WizHStack, WizIcon, WizTag, WizVStack } from "../../../base";
 import { TIcon, WizICalendar } from "../../../icons";
 
 import { TimelineContext } from "./use-timeline";
@@ -17,6 +17,7 @@ interface TimelineItemProps {
   tag?: string;
   annotation?: ReactNode;
   children?: ReactNode;
+  header?: ReactNode;
   footer?: ReactNode;
   disabled?: boolean;
   icon?: TIcon;
@@ -37,6 +38,7 @@ const TimelineItem: FC<TimelineItemProps> = ({
   annotation,
   children,
   footer,
+  header,
   disabled = false,
   icon = WizICalendar,
   backgroundColor = "white.800",
@@ -52,10 +54,6 @@ const TimelineItem: FC<TimelineItemProps> = ({
   const iconSize = useMemo(
     () => (device === "mobile" ? "md" : "xl2"),
     [device]
-  );
-  const isTitleEscape = useMemo(
-    () => device === "mobile" && tag,
-    [device, tag]
   );
 
   return (
@@ -84,23 +82,41 @@ const TimelineItem: FC<TimelineItemProps> = ({
       >
         <div className={styles.contents}>
           <div className={styles.header}>
-            <div className={styles.headerRow}>
-              <span className={styles.titleContainer}>
-                {tag && (
-                  <WizTag
-                    fontSize="xs"
-                    label={tag}
-                    fontWeight="bold"
-                    variant={TAG_COLOR_MAP[variant]}
-                  />
-                )}
-                {!isTitleEscape && (
-                  <span className={styles.title}>{title}</span>
-                )}
-              </span>
-              <span className={styles.annotation}>{annotation}</span>
-            </div>
-            {isTitleEscape && <span className={styles.title}>{title}</span>}
+            {device === "pc" ? (
+              <WizHStack nowrap justify="between" gap="xs">
+                <WizVStack gap="xs">
+                  <WizHStack gap="xs" align="center">
+                    {tag && (
+                      <WizTag
+                        fontSize="xs"
+                        label={tag}
+                        fontWeight="bold"
+                        variant={TAG_COLOR_MAP[variant]}
+                      />
+                    )}
+                    <div className={styles.title}>{title}</div>
+                  </WizHStack>
+                  {header && <div>{header}</div>}
+                </WizVStack>
+                <div className={styles.annotation}>{annotation}</div>
+              </WizHStack>
+            ) : (
+              <WizVStack gap="xs">
+                <WizHStack nowrap justify="between" align="center">
+                  {(tag && (
+                    <WizTag
+                      fontSize="xs"
+                      label={tag}
+                      fontWeight="bold"
+                      variant={TAG_COLOR_MAP[variant]}
+                    />
+                  )) || <span className={styles.title}>{title}</span>}
+                  <div className={styles.annotation}>{annotation}</div>
+                </WizHStack>
+                {tag && <div className={styles.title}>{title}</div>}
+                {header && <div>{header}</div>}
+              </WizVStack>
+            )}
           </div>
           {children && <div className={styles.body}>{children}</div>}
         </div>
