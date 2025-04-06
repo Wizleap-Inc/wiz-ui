@@ -22,7 +22,7 @@ const baseProps = {
       content: "データ1",
     },
     {
-      title: "情報2",
+      title: "情報002",
       content: "データ2",
     },
   ],
