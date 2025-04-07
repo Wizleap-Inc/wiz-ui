@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer :expand="expand">
+  <WizPopupContainer :width="computedInputWidth">
     <div
       :class="[
         styles.searchStyle,
@@ -7,7 +7,7 @@
         disabled && styles.searchInputDisabledStyle,
         inputBorderStyle[state],
       ]"
-      :style="{ width: computedInputWidth }"
+      style="width: '100%'"
     >
       <div :class="styles.searchInputInnerBoxStyle">
         <WizHStack align="center" gap="xs">
@@ -116,6 +116,9 @@ type Props<T extends CheckboxOption> = {
   name: string;
   placeholder?: string;
   disabled?: boolean;
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `inputWidth="100%"` を使用してください。
+   */
   expand?: boolean;
   inputWidth?: string;
   popupWidth?: string;

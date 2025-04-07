@@ -44,14 +44,12 @@ const TextInput = forwardRef(
       [onChange, onChangeValue]
     );
 
+    const computedWidth = props.expand ? "100%" : props.width || "fit-content";
+
     return (
       <div
-        className={clsx(
-          className,
-          styles.textInputStyle,
-          styles.textInputExpandStyle[props.expand ? "expand" : "default"]
-        )}
-        style={style}
+        className={clsx(className, styles.textInputStyle)}
+        style={{ ...style, width: computedWidth }}
       >
         {Icon && (
           <div className={styles.textInputIconStyle}>
@@ -61,6 +59,7 @@ const TextInput = forwardRef(
         <PrivateBaseInput
           {...props}
           ref={ref}
+          width="100%"
           error={error ?? formControl.error}
           type="text"
           onChange={handleChange}

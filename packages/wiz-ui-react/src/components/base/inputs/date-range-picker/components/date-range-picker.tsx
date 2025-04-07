@@ -37,7 +37,11 @@ import { DateRange, DateRangePickerSelectBoxOption } from "../types";
 
 type Props = BaseProps & {
   dateRange: DateRange;
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand?: boolean;
+  width?: string;
   disabled?: boolean;
   selectBoxOptions?: DateRangePickerSelectBoxOption[];
   selectBoxValue?: string;
@@ -60,6 +64,8 @@ const DateRangePicker: FC<Props> = ({
   style,
   dateRange,
   expand = false,
+  // width = '20rem',
+  width,
   disabled = false,
   selectBoxOptions,
   selectBoxValue,
@@ -89,6 +95,9 @@ const DateRangePicker: FC<Props> = ({
       return new Date();
     })()
   );
+
+  const computedWidth = width || (expand ? "100%" : "20rem");
+
   const leftCalendarDate = useMemo(
     () =>
       new Date(
@@ -231,12 +240,11 @@ const DateRangePicker: FC<Props> = ({
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
         disabled={disabled}
-        style={style}
+        style={{ ...style, width: computedWidth }}
         className={clsx(
           className,
           styles.bodyStyle[disabled ? "disabled" : "active"],
           styles.variantStyles[variant],
-          styles.widthStyle[expand ? "expanded" : "default"],
           inputBorderStyle[borderStyle]
         )}
       >

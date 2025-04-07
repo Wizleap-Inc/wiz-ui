@@ -47,6 +47,9 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand: {
     type: Boolean,
     required: false,

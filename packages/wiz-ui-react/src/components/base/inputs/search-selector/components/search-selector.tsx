@@ -36,6 +36,9 @@ type Props<T> = BaseProps & {
   placeholder?: string;
   width?: string;
   disabled?: boolean;
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand?: boolean;
   multiSelectable?: boolean;
   addable?: boolean;
