@@ -44,7 +44,7 @@ const TextInput = forwardRef(
       [onChange, onChangeValue]
     );
 
-    const computedWidth = props.expand ? "100%" : props.width || "fit-content";
+    const computedWidth = props.expand ? "100%" : props.width || "10em";
 
     return (
       <div

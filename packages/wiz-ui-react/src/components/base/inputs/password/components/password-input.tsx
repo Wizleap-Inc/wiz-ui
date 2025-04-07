@@ -39,7 +39,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
       placeholder,
       disabled,
       expand,
-      width = "fit-content",
+      width = "10em",
       autocomplete = "off",
       error,
       onChange,

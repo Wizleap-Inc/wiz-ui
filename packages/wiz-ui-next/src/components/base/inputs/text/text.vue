@@ -6,7 +6,6 @@
       :id="id"
       :placeholder="placeholder"
       :disabled="disabled"
-      :expand="expand"
       width="100%"
       :error="isError"
       type="text"
@@ -56,7 +55,7 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
-    default: "fit-content",
+    default: "10em",
   },
   /**
    * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。

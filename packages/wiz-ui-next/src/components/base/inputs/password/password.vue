@@ -5,7 +5,6 @@
       :placeholder="placeholder"
       :id="id"
       :disabled="disabled"
-      :expand="expand"
       width="100%"
       :error="isError"
       :type="!disabled && isPasswordVisible ? 'text' : 'password'"
@@ -85,7 +84,7 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
-    default: "fit-content",
+    default: "10em",
   },
   autocomplete: {
     type: String as PropType<
