@@ -7,7 +7,7 @@
         disabled && styles.searchInputDisabledStyle,
         inputBorderStyle[state],
       ]"
-      style="width: '100%'"
+      style="width: 100%"
     >
       <div :class="styles.searchInputInnerBoxStyle">
         <WizHStack align="center" gap="xs">
