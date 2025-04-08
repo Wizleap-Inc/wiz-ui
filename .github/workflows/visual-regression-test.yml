@@ -30,6 +30,27 @@ jobs:
       - name: Install fonts
         run: sudo apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
 
+      - name: Log font information
+        run: |
+          echo "=== System Font Information ==="
+          echo "--- All Installed Fonts ---"
+          fc-list | sort
+
+          echo "--- Japanese Fonts ---"
+          fc-list :lang=ja
+
+          echo "--- IPA Fonts Details ---"
+          fc-list | grep -i ipa
+
+          echo "--- Font Cache Information ---"
+          fc-cache -v
+
+          echo "--- Font Configuration ---"
+          ls -la /etc/fonts/
+
+          echo "=== Font Log Summary ==="
+          echo "Japanese Fonts Count: $(fc-list :lang=ja | wc -l)"
+
       - name: workaround for detached HEAD
         run: |
           git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
