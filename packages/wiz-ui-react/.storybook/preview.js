@@ -1,7 +1,10 @@
 import { withScreenshot } from "storycap";
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: {
+    // TODO: https://storybook.js.org/docs/essentials/actions#via-storybooktest-fn-spy-function
+    argTypesRegex: "^on[A-Z].*",
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -27,3 +30,4 @@ export const parameters = {
 };
 
 export const decorators = [withScreenshot];
+export const tags = ["autodocs"];

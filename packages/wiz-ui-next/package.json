@@ -13,10 +13,11 @@
     "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6007 --silent\" \"wait-on tcp:6007 && test-storybook --url http://localhost:6007\""
   },
   "devDependencies": {
+    "@storybook/theming": "^8.6.12",
+    "@storybook/vue3": "^8.6.12",
+    "@storybook/vue3-vite": "^8.6.12",
     "@vitejs/plugin-vue": "5.1.2",
     "unplugin-vue-define-options": "1.4.9",
-    "@storybook/vue3": "^7.0.2",
-    "@storybook/vue3-vite": "^7.0.2",
     "vue-tsc": "2.0.29"
   },
   "repository": {
