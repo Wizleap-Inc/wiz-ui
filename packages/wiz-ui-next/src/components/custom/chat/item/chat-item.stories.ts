@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import { Message } from "..";
 
@@ -12,7 +12,7 @@ export default {
       control: { type: "object" },
     },
     maxChatItemWidth: {
-      control: { type: "string" },
+      control: { type: "text" },
     },
   },
 } as Meta<typeof WizChatItem>;

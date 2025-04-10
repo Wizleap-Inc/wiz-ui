@@ -14,7 +14,7 @@ export default {
       control: { type: "text" },
     },
     data: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
   },
 } as Meta<typeof WizCircleGraph>;

@@ -9,7 +9,7 @@ export default {
   component: WizTransitionGraph,
   argTypes: {
     data: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
   },
 } as Meta<typeof WizTransitionGraph>;

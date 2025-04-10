@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import { WizSchedule } from "..";
 import { Schedule } from "../types";
@@ -14,7 +14,7 @@ const meta: Meta<typeof WizSchedule> = {
       control: { type: "number" },
     },
     schedules: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
   },
 };

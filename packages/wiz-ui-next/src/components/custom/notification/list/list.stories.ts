@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import { WizHStack } from "@/components";
 
@@ -13,10 +13,10 @@ export default {
       options: ["primary", "secondary"],
     },
     notifications: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
     height: {
-      control: { type: "string" },
+      control: { type: "text" },
     },
     click: {
       action: "click",

@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import { WizStepBar } from ".";
 
@@ -7,7 +7,7 @@ export default {
   component: WizStepBar,
   argTypes: {
     content: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
   },
 } as Meta<typeof WizStepBar>;

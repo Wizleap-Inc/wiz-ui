@@ -13,7 +13,7 @@ export default {
     },
     activeDates: {
       control: {
-        type: "array",
+        type: "object",
       },
     },
     filledWeeks: {
