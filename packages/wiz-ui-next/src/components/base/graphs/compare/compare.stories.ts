@@ -9,7 +9,7 @@ export default {
   component: WizCompareGraph,
   argTypes: {
     data: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
     barGap: {
       control: { type: "number" },

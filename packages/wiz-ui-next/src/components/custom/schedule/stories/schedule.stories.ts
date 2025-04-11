@@ -24,7 +24,7 @@ export default {
       control: { type: "number" },
     },
     schedules: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
   },
 };

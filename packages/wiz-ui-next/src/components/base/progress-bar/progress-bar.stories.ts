@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import { WizProgressBar } from ".";
 
@@ -7,7 +7,7 @@ export default {
   component: WizProgressBar,
   argTypes: {
     content: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
   },
 } as Meta<typeof WizProgressBar>;

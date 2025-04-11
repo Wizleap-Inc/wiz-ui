@@ -1,7 +1,15 @@
+import { fn } from "@storybook/test";
 import { withScreenshot } from "storycap";
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  // https://storybook.js.org/docs/essentials/actions#via-storybooktest-fn-spy-function
+  args: {
+    onClick: fn(),
+    onToggle: fn(),
+    onDateSelected: fn(),
+    onSelectBoxValueChange: fn(),
+    onTurn: fn(),
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,

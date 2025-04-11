@@ -8,7 +8,7 @@ export default {
   component: WizFullModalView,
   argTypes: {
     title: {
-      control: { type: "string" },
+      control: { type: "text" },
     },
     duration: {
       control: { type: "number" },

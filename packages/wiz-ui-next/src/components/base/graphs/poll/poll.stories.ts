@@ -15,7 +15,7 @@ export default {
       control: { type: "number" },
     },
     data: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
     labelWidth: {
       control: { type: "text" },
