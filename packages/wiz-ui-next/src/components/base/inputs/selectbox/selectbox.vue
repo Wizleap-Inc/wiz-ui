@@ -1,5 +1,5 @@
 <template>
-  <WizPopupContainer :expand="expand">
+  <WizPopupContainer :width="computedWidth">
     <div
       :class="[
         selectBoxStyle,
@@ -7,7 +7,7 @@
         disabled && selectBoxDisabledStyle,
         selectBoxCursorStyle[selectBoxCursor],
       ]"
-      :style="{ width: computedWidth }"
+      style="width: 100%"
     >
       <div :class="selectBoxInnerBoxStyles[variant]" @click="toggleSelectBox">
         <WizHStack align="center" justify="between" height="100%">
@@ -102,6 +102,9 @@ type Props<T> = {
   placeholder?: string;
   width?: string;
   disabled?: boolean;
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand?: boolean;
   isOpen?: boolean;
   isDirectionFixed?: boolean;

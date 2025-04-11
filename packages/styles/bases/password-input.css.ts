@@ -1,17 +1,8 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const passwordStyle = style({
   position: "relative",
-});
-
-export const passwordExpandStyle = styleVariants({
-  default: {
-    width: "fit-content",
-  },
-  expand: {
-    width: "100%",
-  },
 });
 
 export const passwordVisibleIconStyle = style({

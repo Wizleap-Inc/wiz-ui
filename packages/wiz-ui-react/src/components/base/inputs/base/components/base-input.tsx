@@ -10,6 +10,9 @@ type Props = BaseProps & {
   value?: string;
   placeholder?: string;
   disabled?: boolean;
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand?: boolean;
   type?: "text" | "password";
   width?: string;

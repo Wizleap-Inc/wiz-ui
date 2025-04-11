@@ -40,15 +40,6 @@ export const bodyStyle = styleVariants({
   ],
 });
 
-export const widthStyle = styleVariants({
-  default: {
-    width: "20rem",
-  },
-  expanded: {
-    width: "100%",
-  },
-});
-
 export const separatorStyle = style({
   color: THEME.color.gray["500"],
 });
