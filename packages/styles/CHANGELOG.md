@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.41.0
+
+### Minor Changes
+
+- [#1462](https://github.com/Wizleap-Inc/wiz-ui/pull/1462) [`f57d96ff9206a3c3df63b81ee35b0af85e63ebe5`](https://github.com/Wizleap-Inc/wiz-ui/commit/f57d96ff9206a3c3df63b81ee35b0af85e63ebe5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(FlatTableTh): ヘッダのコンテンツを上揃えに変更
+
 ## 0.40.0
 
 ### Minor Changes
