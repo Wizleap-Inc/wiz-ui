@@ -1,9 +1,10 @@
+import { fn } from "@storybook/test";
 import { withScreenshot } from "storycap";
-
 export const parameters = {
-  actions: {
-    // TODO: https://storybook.js.org/docs/essentials/actions#via-storybooktest-fn-spy-function
-    argTypesRegex: "^on[A-Z].*",
+  // https://storybook.js.org/docs/essentials/actions#via-storybooktest-fn-spy-function
+  args: {
+    onClick: fn(),
+    onChange: fn(),
   },
   controls: {
     matchers: {
