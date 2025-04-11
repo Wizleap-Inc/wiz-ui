@@ -33,6 +33,7 @@ export const flatTh = style({
   fontSize: THEME.fontSize.sm,
   fontWeight: "bold",
   padding: THEME.spacing.sm,
+  verticalAlign: "top",
 });
 
 export const flatThVariantStyle = styleVariants({
