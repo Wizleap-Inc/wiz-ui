@@ -1,7 +1,8 @@
-const { vanillaExtractPlugin } = require("@vanilla-extract/vite-plugin");
-const path = require("path");
-const { mergeConfig } = require("vite");
-module.exports = {
+import type { StorybookConfig } from "@storybook/vue3-vite";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
+import path from "path";
+import { mergeConfig } from "vite";
+const config: StorybookConfig = {
   stories: ["../src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"],
 
   addons: [
@@ -16,10 +17,6 @@ module.exports = {
   framework: {
     name: "@storybook/vue3-vite",
     options: {},
-  },
-
-  features: {
-    interactionsDebugger: true,
   },
 
   viteFinal: async (config) => {
@@ -43,3 +40,5 @@ module.exports = {
     defaultName: "Docs",
   },
 };
+
+export default config;

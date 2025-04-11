@@ -8,5 +8,10 @@
     "jsx": "react-jsx",
     "types": ["vite/client", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    ".storybook/**/*.ts"
+  ]
 }
