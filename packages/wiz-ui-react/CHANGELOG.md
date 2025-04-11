@@ -1,5 +1,12 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`f57d96ff9206a3c3df63b81ee35b0af85e63ebe5`](https://github.com/Wizleap-Inc/wiz-ui/commit/f57d96ff9206a3c3df63b81ee35b0af85e63ebe5)]:
+  - @wizleap-inc/wiz-ui-styles@0.41.0
+
 ## 2.4.0
 
 ### Minor Changes
