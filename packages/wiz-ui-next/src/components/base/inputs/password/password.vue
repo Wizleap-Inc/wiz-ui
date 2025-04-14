@@ -1,12 +1,11 @@
 <template>
-  <div :class="[passwordStyle, passwordExpandStyle[computedExpand]]">
+  <div :class="[passwordStyle]" :style="{ width: computedWidth }">
     <PrivateBaseInput
       v-model="passwordValue"
       :placeholder="placeholder"
       :id="id"
       :disabled="disabled"
-      :expand="expand"
-      :width="width"
+      width="100%"
       :error="isError"
       :type="!disabled && isPasswordVisible ? 'text' : 'password'"
       :autocomplete="autocomplete"
@@ -37,7 +36,6 @@ import {
   ComponentName,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  passwordExpandStyle,
   passwordStyle,
   passwordVisibleIconActiveStyle,
   passwordVisibleIconStyle,
@@ -76,6 +74,9 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand: {
     type: Boolean,
     required: false,
@@ -83,6 +84,7 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
+    default: "10em",
   },
   autocomplete: {
     type: String as PropType<
@@ -102,7 +104,7 @@ const passwordValue = computed({
   set: (value) => emit("update:modelValue", value),
 });
 
-const computedExpand = computed(() => (props.expand ? "expand" : "default"));
+const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 // Form Control
 const form = inject(formControlKey);

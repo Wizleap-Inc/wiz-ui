@@ -1,13 +1,13 @@
 <template>
-  <WizPopupContainer :expand="expand">
+  <WizPopupContainer :width="computedWidth">
     <button
       type="button"
       :class="[
         styles.variantStyles[variant],
         styles.bodyStyle[disabled ? 'disabled' : 'active'],
-        styles.widthStyle[expand ? 'expanded' : 'default'],
         inputBorderStyle[borderState],
       ]"
+      style="width: 100%"
       :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
       :disabled="disabled"
       @click="setIsOpen(!isOpen)"
@@ -206,10 +206,18 @@ const props = defineProps({
     type: Object as PropType<DateRange>,
     required: true,
   },
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand: {
     type: Boolean,
     required: false,
     default: false,
+  },
+  width: {
+    type: String,
+    required: false,
+    default: "20rem",
   },
   disabled: {
     type: Boolean,
@@ -265,6 +273,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits<Emit>();
+
+const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 const isSelectBoxOpen = ref(false);
 const selectBoxContainerRef = ref<HTMLElement>();

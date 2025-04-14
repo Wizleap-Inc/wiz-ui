@@ -1,13 +1,12 @@
 <template>
-  <div :class="[textInputStyle, textInputExpandStyle[computedExpand]]">
+  <div :class="[textInputStyle]" :style="{ width: computedWidth }">
     <component :class="textInputIconStyle" :is="icon" />
     <PrivateBaseInput
       v-model="textValue"
       :id="id"
       :placeholder="placeholder"
       :disabled="disabled"
-      :expand="expand"
-      :width="width"
+      width="100%"
       :error="isError"
       type="text"
       :space-type="icon ? 'left' : 'none'"
@@ -22,7 +21,6 @@
 import { AutoCompleteKeys, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   textInputStyle,
-  textInputExpandStyle,
   textInputIconStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/text-input.css";
 import { computed, inject, PropType } from "vue";
@@ -57,7 +55,11 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
+    default: "10em",
   },
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand: {
     type: Boolean,
     required: false,
@@ -89,7 +91,9 @@ const textValue = computed({
 const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
 
-const computedExpand = computed(() => (props.expand ? "expand" : "default"));
+const computedWidth = computed(() =>
+  props.expand ? "100%" : props.width || "fit-content"
+);
 
 const onFocusIn = (e: FocusEvent) => emit("focusin", e);
 const onFocusOut = (e: FocusEvent) => emit("focusout", e);

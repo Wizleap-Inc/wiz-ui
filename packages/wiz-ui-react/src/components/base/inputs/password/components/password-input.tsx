@@ -19,6 +19,9 @@ type Props = BaseProps & {
   value: string;
   placeholder?: string;
   disabled?: boolean;
+  /**
+   * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
+   */
   expand?: boolean;
   width?: string;
   autocomplete?: Extract<AutoCompleteKeys, "currentPassword" | "newPassword">;
@@ -36,7 +39,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
       placeholder,
       disabled,
       expand,
-      width,
+      width = "10em",
       autocomplete = "off",
       error,
       onChange,
@@ -49,14 +52,12 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
 
     const isError = error || formControl.error;
 
+    const computedWidth = expand ? "100%" : width;
+
     return (
       <div
-        className={clsx(
-          className,
-          styles.passwordStyle,
-          styles.passwordExpandStyle[expand ? "expand" : "default"]
-        )}
-        style={style}
+        className={clsx(className, styles.passwordStyle)}
+        style={{ ...style, width: computedWidth }}
       >
         <PrivateBaseInput
           ref={ref}
@@ -65,7 +66,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           id={id}
           disabled={disabled}
           expand={expand}
-          width={width}
+          width="100%"
           error={isError}
           type={!disabled && isPasswordVisible ? "text" : "password"}
           autoComplete={autocomplete}
