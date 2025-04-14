@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.5.0
+
+### Minor Changes
+
+- [#1457](https://github.com/Wizleap-Inc/wiz-ui/pull/1457) [`152abdbfa79c7a0244d335983df63bf845e8296b`](https://github.com/Wizleap-Inc/wiz-ui/commit/152abdbfa79c7a0244d335983df63bf845e8296b) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - base/input の中で width プロパティに対応していない Component を使用可能にして、expand を非推奨にしました。
+
+### Patch Changes
+
+- Updated dependencies [[`152abdbfa79c7a0244d335983df63bf845e8296b`](https://github.com/Wizleap-Inc/wiz-ui/commit/152abdbfa79c7a0244d335983df63bf845e8296b)]:
+  - @wizleap-inc/wiz-ui-styles@0.42.0
+
 ## 3.4.1
 
 ### Patch Changes
