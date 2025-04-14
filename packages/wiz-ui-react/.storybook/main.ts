@@ -1,25 +1,21 @@
-const { vanillaExtractPlugin } = require("@vanilla-extract/vite-plugin");
-const path = require("path");
-const { mergeConfig } = require("vite");
+import type { StorybookConfig } from "@storybook/react-vite";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
+import path from "path";
+import { mergeConfig } from "vite";
 
-module.exports = {
-  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
+const config: StorybookConfig = {
+  stories: ["../src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "storycap",
+    "@chromatic-com/storybook",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
-  },
-  features: {
-    interactionsDebugger: true,
-  },
-  core: {
-    builder: "@storybook/builder-vite",
   },
   viteFinal: async (config) => {
     return mergeConfig(config, {
@@ -36,9 +32,14 @@ module.exports = {
       to: "/public",
     },
   ],
+
   docs: {
-    docsPage: "automatic",
     defaultName: "Docs",
-    autodocs: true,
+  },
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };
+
+export default config;

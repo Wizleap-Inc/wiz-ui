@@ -14,8 +14,9 @@
     "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"NODE_OPTIONS=--max_old_space_size=4096 storybook build --quiet && npx http-server storybook-static --port 6008 --silent\" \"wait-on tcp:6008 && test-storybook --url http://localhost:6008\""
   },
   "devDependencies": {
-    "@storybook/react": "^7.0.2",
-    "@storybook/react-vite": "^7.0.2",
+    "@storybook/react": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
+    "@storybook/theming": "^8.6.12",
     "@types/react": "^18.0.31",
     "@types/react-dom": "^18.2.25",
     "@vitejs/plugin-react": "^3.1.0"

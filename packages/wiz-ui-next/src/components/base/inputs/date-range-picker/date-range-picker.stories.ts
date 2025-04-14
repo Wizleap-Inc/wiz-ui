@@ -28,7 +28,7 @@ export default {
     },
     selectBoxOptions: {
       control: {
-        type: "array",
+        type: "object",
       },
     },
     onDateSelected: {

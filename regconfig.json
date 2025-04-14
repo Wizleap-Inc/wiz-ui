@@ -16,7 +16,10 @@
       "clientId": "$REG_NOTICE_CLIENT_ID"
     },
     "reg-publish-s3-plugin": {
-      "bucketName": "visual-regression-test.wiz-ui"
+      "bucketName": "visual-regression-test.wiz-ui",
+      "sdkOptions": {
+        "region": "ap-northeast-1"
+      }
     }
   }
 }

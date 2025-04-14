@@ -19,7 +19,7 @@ export default {
       options: ["primary", "secondary"],
     },
     tableInfo: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
     read: {
       control: { type: "boolean" },

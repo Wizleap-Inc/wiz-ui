@@ -18,7 +18,7 @@ export default {
   component: WizPopupButtonGroup,
   argTypes: {
     width: {
-      control: { type: "string" },
+      control: { type: "text" },
       default: "10rem",
     },
     p: {

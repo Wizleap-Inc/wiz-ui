@@ -13,7 +13,7 @@ export default {
       options: SPACING_ACCESSORS,
     },
     items: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
     width: {
       control: { type: "text" },

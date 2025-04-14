@@ -1,6 +1,6 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
-import { WizVStack, WizHStack } from "@/components";
+import { WizHStack, WizVStack } from "@/components";
 
 import { WizRadioNew } from ".";
 
@@ -15,10 +15,10 @@ export default {
       control: { type: "object" },
     },
     id: {
-      control: { type: "string" },
+      control: { type: "text" },
     },
     name: {
-      control: { type: "string" },
+      control: { type: "text" },
     },
     disabled: {
       control: { type: "boolean" },

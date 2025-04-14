@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 
 import { WizNotification } from ".";
 
@@ -7,10 +7,10 @@ export default {
   component: WizNotification,
   argTypes: {
     tabs: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
     notifications: {
-      control: { type: "array" },
+      control: { type: "object" },
     },
     click: {
       action: "click",
