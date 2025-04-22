@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.6.0
+
+### Minor Changes
+
+- [#1470](https://github.com/Wizleap-Inc/wiz-ui/pull/1470) [`e4b23b175a780180e88a69403caa820d5dac3a26`](https://github.com/Wizleap-Inc/wiz-ui/commit/e4b23b175a780180e88a69403caa820d5dac3a26) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - clinical-notes アイコンを追加しました。
+
+### Patch Changes
+
+- Updated dependencies [[`e4b23b175a780180e88a69403caa820d5dac3a26`](https://github.com/Wizleap-Inc/wiz-ui/commit/e4b23b175a780180e88a69403caa820d5dac3a26)]:
+  - @wizleap-inc/wiz-ui-constants@0.37.0
+  - @wizleap-inc/wiz-ui-styles@0.42.1
+
 ## 3.5.0
 
 ### Minor Changes
