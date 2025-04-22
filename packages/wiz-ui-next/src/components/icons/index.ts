@@ -32,6 +32,7 @@ import { default as WizIChevronRightBold } from "./chevron-right-bold.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizICircle } from "./circle.vue";
+import { default as WizIClinicalNotes } from "./clinical-notes.vue";
 import { default as WizICloseBold } from "./close-bold.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizICloudUpload } from "./cloud-upload.vue";
@@ -261,7 +262,8 @@ export type TIcon =
   | typeof WizITimerFilled
   | typeof WizITune
   | typeof WizIUpload
-  | typeof WizIWarning;
+  | typeof WizIWarning
+  | typeof WizIClinicalNotes;
 
 export {
   WizIAddCircle,
@@ -395,4 +397,5 @@ export {
   WizITune,
   WizIUpload,
   WizIWarning,
+  WizIClinicalNotes,
 };

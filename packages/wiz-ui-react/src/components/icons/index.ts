@@ -32,6 +32,7 @@ import { WizIChevronRight } from "./chevron-right";
 import { WizIChevronRightBold } from "./chevron-right-bold";
 import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
+import { WizIClinicalNotes } from "./clinical-notes";
 import { WizIClose } from "./close";
 import { WizICloseBold } from "./close-bold";
 import { WizICloudUpload } from "./cloud-upload";
@@ -261,7 +262,8 @@ export type TIcon =
   | typeof WizITimerFilled
   | typeof WizITune
   | typeof WizIUpload
-  | typeof WizIWarning;
+  | typeof WizIWarning
+  | typeof WizIClinicalNotes;
 
 export {
   WizIAddCircle,
@@ -395,4 +397,5 @@ export {
   WizITune,
   WizIUpload,
   WizIWarning,
+  WizIClinicalNotes,
 };
