@@ -166,6 +166,7 @@ export type TIcon =
   | typeof WizIChevronRight
   | typeof WizICircleCheck
   | typeof WizICircle
+  | typeof WizIClinicalNotes
   | typeof WizICloseBold
   | typeof WizIClose
   | typeof WizICloudUpload
@@ -262,8 +263,7 @@ export type TIcon =
   | typeof WizITimerFilled
   | typeof WizITune
   | typeof WizIUpload
-  | typeof WizIWarning
-  | typeof WizIClinicalNotes;
+  | typeof WizIWarning;
 
 export {
   WizIAddCircle,
@@ -300,6 +300,7 @@ export {
   WizIChevronRight,
   WizICircleCheck,
   WizICircle,
+  WizIClinicalNotes,
   WizICloseBold,
   WizIClose,
   WizICloudUpload,
@@ -397,5 +398,4 @@ export {
   WizITune,
   WizIUpload,
   WizIWarning,
-  WizIClinicalNotes,
 };

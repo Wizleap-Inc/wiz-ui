@@ -33,6 +33,7 @@ export const IconComponentName = {
   IChevronRight: "WizIChevronRight",
   ICircleCheck: "WizICircleCheck",
   ICircle: "WizICircle",
+  IClinicalNotes: "WizIClinicalNotes",
   ICloseBold: "WizICloseBold",
   IClose: "WizIClose",
   ICloudUpload: "WizICloudUpload",
@@ -130,5 +131,4 @@ export const IconComponentName = {
   ITune: "WizITune",
   IUpload: "WizIUpload",
   IWarning: "WizIWarning",
-  IClinicalNotes: "WizIClinicalNotes",
 };
