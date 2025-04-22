@@ -130,4 +130,5 @@ export const IconComponentName = {
   ITune: "WizITune",
   IUpload: "WizIUpload",
   IWarning: "WizIWarning",
+  IClinicalNotes: "IClinicalNotes",
 };
