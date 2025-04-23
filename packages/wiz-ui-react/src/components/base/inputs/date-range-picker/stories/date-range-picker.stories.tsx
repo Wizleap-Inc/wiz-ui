@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { within } from "@storybook/testing-library";
+import { within } from "@storybook/test";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
