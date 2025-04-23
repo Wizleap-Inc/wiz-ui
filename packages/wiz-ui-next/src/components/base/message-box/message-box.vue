@@ -23,13 +23,13 @@
 <script setup lang="ts">
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
-  messageBoxStyle,
-  messageBoxWidthStyle,
-  messageBoxVariantStyle,
-  messageBoxIconStyle,
-  messageBoxIconFillStyle,
-  messageBoxTitleStyle,
   messageBoxBodyStyle,
+  messageBoxIconFillStyle,
+  messageBoxIconStyle,
+  messageBoxStyle,
+  messageBoxTitleStyle,
+  messageBoxVariantStyle,
+  messageBoxWidthStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/message-box.css";
 import { computed, PropType, useSlots } from "vue";
 
@@ -66,5 +66,5 @@ const computedWidth = computed(() => {
 });
 
 const slots = useSlots();
-const hasDefaultSlot = slots.default ? !!slots.default() : false;
+const hasDefaultSlot = !!slots.default;
 </script>
