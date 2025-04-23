@@ -1,6 +1,7 @@
 import type { StorybookConfig } from "@storybook/vue3-vite";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
-import * as path from "node:path";
+import path from "path";
+import { fileURLToPath } from "url";
 import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
@@ -21,10 +22,11 @@ const config: StorybookConfig = {
   },
 
   viteFinal: async (config) => {
+    const storybookDir = path.dirname(fileURLToPath(import.meta.url));
     return mergeConfig(config, {
       plugins: [vanillaExtractPlugin()],
       alias: {
-        "@": path.resolve(__dirname, "../src"),
+        "@": path.resolve(storybookDir, "../src"),
       },
       base: "./",
     });
