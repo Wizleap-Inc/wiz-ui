@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.28.0
+
+### Minor Changes
+
+- [#1473](https://github.com/Wizleap-Inc/wiz-ui/pull/1473) [`dce232a`](https://github.com/Wizleap-Inc/wiz-ui/commit/dce232a50e482afe3e45bc72c2c9e0050dc8017e) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Shine アイコンを追加
+
 ## 0.27.0
 
 ### Minor Changes
