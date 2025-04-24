@@ -116,6 +116,7 @@ import { WizISchedule } from "./schedule";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
 import { WizISettings } from "./settings";
+import { WizIShineBold } from "./shine-bold";
 import { WizIShoppingmode } from "./shoppingmode";
 import { WizISmartphone } from "./smartphone";
 import { WizISmartphoneBold } from "./smartphone-bold";
@@ -250,6 +251,7 @@ export type TIcon =
   | typeof WizISearch
   | typeof WizISend
   | typeof WizISettings
+  | typeof WizIShineBold
   | typeof WizIShoppingmode
   | typeof WizISmartphoneBold
   | typeof WizISmartphone
@@ -384,6 +386,7 @@ export {
   WizISearch,
   WizISend,
   WizISettings,
+  WizIShineBold,
   WizIShoppingmode,
   WizISmartphoneBold,
   WizISmartphone,

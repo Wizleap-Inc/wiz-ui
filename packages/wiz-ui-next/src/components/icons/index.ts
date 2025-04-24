@@ -116,6 +116,7 @@ import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
 import { default as WizISettings } from "./settings.vue";
+import { default as WizIShineBold } from "./shine-bold.vue";
 import { default as WizIShoppingmode } from "./shoppingmode.vue";
 import { default as WizISmartphoneBold } from "./smartphone-bold.vue";
 import { default as WizISmartphone } from "./smartphone.vue";
@@ -250,6 +251,7 @@ export type TIcon =
   | typeof WizISearch
   | typeof WizISend
   | typeof WizISettings
+  | typeof WizIShineBold
   | typeof WizIShoppingmode
   | typeof WizISmartphoneBold
   | typeof WizISmartphone
@@ -384,6 +386,7 @@ export {
   WizISearch,
   WizISend,
   WizISettings,
+  WizIShineBold,
   WizIShoppingmode,
   WizISmartphoneBold,
   WizISmartphone,
