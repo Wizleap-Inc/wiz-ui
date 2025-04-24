@@ -40,6 +40,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "Wiz-UI",
       fileName: (format) => `wiz-ui.${format}.js`,
+      cssFileName: "style",
     },
     rollupOptions: {
       external: ["react", "react-dom"],

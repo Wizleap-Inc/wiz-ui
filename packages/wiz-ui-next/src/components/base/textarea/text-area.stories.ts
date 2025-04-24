@@ -1,5 +1,4 @@
-import { expect } from "@storybook/jest";
-import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 

@@ -14,10 +14,7 @@
   >
     <WizVStack :gap="gap" :align="align">
       <div
-        v-if="
-          ($slots.mainHeaderArea && $slots.mainHeaderArea()) ||
-          ($slots.subHeaderArea && $slots.subHeaderArea())
-        "
+        v-if="$slots.mainHeaderArea || $slots.subHeaderArea"
         :class="cardHeaderStyle"
       >
         <div>
@@ -27,10 +24,10 @@
           <slot name="subHeaderArea" />
         </div>
       </div>
-      <div v-if="$slots.default && $slots.default()" :class="cardBodyStyle">
+      <div v-if="$slots.default" :class="cardBodyStyle">
         <slot />
       </div>
-      <div v-if="$slots.footer && $slots.footer()">
+      <div v-if="$slots.footer">
         <slot name="footer" />
       </div>
     </WizVStack>
@@ -39,23 +36,23 @@
 
 <script setup lang="ts">
 import {
-  ComponentName,
   ColorKeys,
+  ComponentName,
   SpacingKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
-  cardStyle,
-  cardFitStyle,
   cardBodyStyle,
-  cardShadowStyle,
   cardBorderStyle,
+  cardFitStyle,
   cardHeaderStyle,
+  cardShadowStyle,
+  cardStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/card.css";
 import {
+  backgroundStyle,
   paddingStyle,
   paddingXStyle,
   paddingYStyle,
-  backgroundStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType } from "vue";
 

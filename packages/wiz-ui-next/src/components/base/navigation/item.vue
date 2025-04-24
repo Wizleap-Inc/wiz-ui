@@ -125,18 +125,13 @@ const isExternalLink = computed(
   () => typeof props.to === "string" && props.to.startsWith("http")
 );
 
-interface Emit {
-  /**
-   * @deprecated この イベント は削除予定です。
-   */
-  (e: "setLock", isLocking: boolean): void;
-  /**
-   * @deprecated この イベント は削除予定です。
-   */
-  (e: "unlock"): void;
-  (e: "toggle", value: boolean): void;
-}
-const emit = defineEmits<Emit>();
+const emit = defineEmits<{
+  /** @deprecated このイベントは削除予定です。 */
+  setLock: [isLocking: boolean];
+  /** @deprecated このイベントは削除予定です。 */
+  unlock: [];
+  toggle: [value: boolean];
+}>();
 
 const navItemRef = ref<HTMLElement>();
 

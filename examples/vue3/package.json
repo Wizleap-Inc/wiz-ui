@@ -15,7 +15,7 @@
     "@wizleap-inc/wiz-ui-constants": "workspace:"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "5.1.2",
+    "@vitejs/plugin-vue": "5.2.3",
     "vue-router": "^4.1.6",
     "vue-tsc": "2.0.29"
   }

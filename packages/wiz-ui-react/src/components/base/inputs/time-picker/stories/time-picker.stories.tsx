@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { fireEvent, within } from "@storybook/testing-library";
+import { fireEvent, within } from "@storybook/test";
 import { useState } from "react";
 
 import { WizTimePicker } from "../components";

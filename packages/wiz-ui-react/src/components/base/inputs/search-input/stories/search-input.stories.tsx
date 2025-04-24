@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { screen, userEvent, within } from "@storybook/testing-library";
+import { screen, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 
 import { WizIPublic } from "@/components/icons";

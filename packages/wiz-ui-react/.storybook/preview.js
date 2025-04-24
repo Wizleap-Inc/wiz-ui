@@ -21,6 +21,7 @@ export const parameters = {
     ],
   },
   screenshot: {
+    waitFor: "fontLoading",
     viewports: {
       desktop: {
         width: 1440,
