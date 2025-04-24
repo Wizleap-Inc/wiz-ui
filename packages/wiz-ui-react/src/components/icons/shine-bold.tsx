@@ -3,7 +3,7 @@ type Props = {
   className?: string;
   style?: CSSProperties;
 };
-export const WizIShine = ({ className, style }: Props) => (
+export const WizIShineBold = ({ className, style }: Props) => (
   <svg
     className={className}
     style={style}
@@ -17,4 +17,4 @@ export const WizIShine = ({ className, style }: Props) => (
     <path d="M11.5 9.5L9 4L6.5 9.5L1 12L6.5 14.5L9 20L11.5 14.5L17 12L11.5 9.5ZM9.99 12.99L9 15.17L8.01 12.99L5.83 12L8.01 11.01L9 8.83L9.99 11.01L12.17 12L9.99 12.99Z" />
   </svg>
 );
-WizIShine.displayName = "WizIShine";
+WizIShineBold.displayName = "WizIShineBold";

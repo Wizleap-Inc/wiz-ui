@@ -21,6 +21,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 
 defineOptions({
-  name: ComponentName.IShine,
+  name: ComponentName.IShineBold,
 });
 </script>
