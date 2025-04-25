@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from "@storybook/vue3";
-import { ColorKeys, COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
+import { COLOR_MAP_ACCESSORS, ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import { ref } from "vue";
 
-import { WizTextInput } from "@/components";
+import { WizICircleCheck, WizIcon, WizTextInput } from "@/components";
 
 import { WizFormControl } from ".";
 export default {
@@ -231,4 +231,26 @@ LabelTagPosition.parameters = {
       }),
     },
   },
+};
+
+const labelSuffixTemplate: StoryFn<typeof WizFormControl> = (args) => ({
+  setup() {
+    const input = ref("");
+    return { args, input, WizICircleCheck };
+  },
+  components: { WizFormControl, WizTextInput, WizIcon, WizICircleCheck },
+  template: `
+    <WizFormControl v-bind="args">
+      <template #labelSuffix> 
+        <WizIcon :icon="WizICircleCheck" />
+      </template>
+    </WizFormControl>
+  `,
+});
+
+export const LabelSuffix = labelSuffixTemplate.bind({});
+LabelSuffix.args = {
+  label: "Label",
+  borderLeft: true,
+  required: true,
 };

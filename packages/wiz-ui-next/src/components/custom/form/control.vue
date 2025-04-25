@@ -10,28 +10,30 @@
       :align="direction === 'horizontal' ? 'center' : undefined"
       :wrap="false"
     >
-      <WizHStack
-        :width="labelWidth"
-        align="center"
-        :reverse="labelTagPosition === 'left'"
-        :justify="labelTagPosition === 'left' ? 'end' : 'start'"
-        gap="xs"
-        my="xs2"
-        :class="[
-          borderLeft && [borderLeftStyle, borderColorStyle[borderColor]],
-        ]"
-      >
-        <WizText
-          as="label"
-          :htmlFor="htmlFor"
-          :color="labelColor"
-          :font-size="labelFontSize"
-          :bold="borderLeft"
-          :class="[borderLeft && borderLeftTextStyle]"
+      <WizHStack :width="labelWidth" gap="xs" my="xs2" :wrap="false">
+        <WizHStack
+          align="center"
+          :reverse="labelTagPosition === 'left'"
+          :justify="labelTagPosition === 'left' ? 'end' : 'start'"
+          gap="xs"
+          :wrap="false"
+          :class="[
+            borderLeft && [borderLeftStyle, borderColorStyle[borderColor]],
+          ]"
         >
-          {{ label }}
-        </WizText>
-        <WizTag font-size="xs2" label="必須" v-if="required" />
+          <WizText
+            as="label"
+            :htmlFor="htmlFor"
+            :color="labelColor"
+            :font-size="labelFontSize"
+            :bold="borderLeft"
+            :class="[borderLeft && borderLeftTextStyle]"
+          >
+            {{ label }}
+          </WizText>
+          <WizTag font-size="xs2" label="必須" v-if="required" />
+        </WizHStack>
+        <slot name="labelSuffix" />
       </WizHStack>
       <slot />
     </WizStack>
