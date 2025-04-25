@@ -10,13 +10,12 @@
       :align="direction === 'horizontal' ? 'center' : undefined"
       :wrap="false"
     >
-      <WizHStack :width="labelWidth" gap="xs" my="xs2" :wrap="false">
+      <WizHStack :width="labelWidth" gap="xs2" my="xs2">
         <WizHStack
           align="center"
           :reverse="labelTagPosition === 'left'"
           :justify="labelTagPosition === 'left' ? 'end' : 'start'"
           gap="xs"
-          :wrap="false"
           :class="[
             borderLeft && [borderLeftStyle, borderColorStyle[borderColor]],
           ]"

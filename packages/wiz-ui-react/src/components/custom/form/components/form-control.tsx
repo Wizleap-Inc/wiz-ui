@@ -66,13 +66,12 @@ const FormControl: FC<Props> = ({
           nowrap
           align={direction === "horizontal" ? "center" : undefined}
         >
-          <WizHStack width={labelWidth} gap="xs" my="xs2" nowrap>
+          <WizHStack width={labelWidth} gap="xs2" my="xs2" nowrap>
             <WizHStack
               align="center"
               reverse={resolvedLabelTagPosition === "left"}
               justify={resolvedLabelTagPosition === "left" ? "end" : "start"}
               gap="xs"
-              nowrap
               className={clsx({
                 [styles.borderLeftStyle]: borderLeft,
                 [borderColorStyle[borderColor]]: borderLeft,
