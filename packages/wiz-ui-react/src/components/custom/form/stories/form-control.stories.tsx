@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { WizTextInput } from "@/components";
+import { WizICircleCheck, WizIcon, WizTextInput } from "@/components";
 
 import { WizFormControl } from "../components";
 
@@ -106,5 +106,13 @@ export const labelTagPosition: Story = {
           "labelTagPositionを指定すると、labelのTagの位置を変更できます。`left` または `right` を指定できます。default は `right` です。",
       },
     },
+  },
+};
+
+export const LabelSuffix: Story = {
+  args: {
+    label: "Label",
+    required: true,
+    labelSuffix: <WizIcon icon={WizICircleCheck} />,
   },
 };
