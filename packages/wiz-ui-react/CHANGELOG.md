@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.8.0
+
+### Minor Changes
+
+- [#1475](https://github.com/Wizleap-Inc/wiz-ui/pull/1475) [`4cd1d17`](https://github.com/Wizleap-Inc/wiz-ui/commit/4cd1d17230733c5c083e32fd2f16bd8bcb8396ba) Thanks [@RyushiAok](https://github.com/RyushiAok)! - feat(form-control): 補足としてラベルの右側にコンポーネントを埋め込めるようにする
+
 ## 2.7.0
 
 ### Minor Changes
