@@ -2,7 +2,7 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/text-area.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { forwardRef, useContext } from "react";
+import { ComponentPropsWithoutRef, forwardRef, useContext } from "react";
 
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { BaseProps } from "@/types";
@@ -12,12 +12,8 @@ function getInputBorderStyleKey(isError?: boolean) {
 }
 
 type Props = BaseProps & {
-  id?: string;
   value: string;
-  placeholder?: string;
-  disabled?: boolean;
   expand?: boolean;
-  rows?: number;
   error?: boolean;
   resize?: "none" | "both" | "horizontal" | "vertical";
   maxWidth?: string;
@@ -25,19 +21,17 @@ type Props = BaseProps & {
   maxHeight?: string;
   minHeight?: string;
   onChange?: (value: string) => void;
-};
+} & Omit<
+    ComponentPropsWithoutRef<"textarea">,
+    "onChange" | "style" | "className"
+  >;
 
 const TextArea = forwardRef<HTMLTextAreaElement, Props>(
   (
     {
       className,
       style,
-      id,
-      value,
-      placeholder,
-      disabled,
       expand,
-      rows = 3,
       error,
       resize = "none",
       maxWidth,
@@ -45,6 +39,8 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
       maxHeight,
       minHeight,
       onChange,
+      rows = 3,
+      ...props
     },
     ref
   ) => {
@@ -55,10 +51,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
     return (
       <textarea
         ref={ref}
-        id={id}
-        value={value}
-        placeholder={placeholder}
-        disabled={disabled}
+        {...props}
         rows={rows}
         style={{
           ...style,
