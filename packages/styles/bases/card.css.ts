@@ -18,7 +18,6 @@ export const cardShadowStyle = style({
 export const cardBorderStyle = style({
   borderWidth: "1px",
   borderStyle: "solid",
-  borderColor: THEME.color.gray[400],
 });
 
 export const cardFitStyle = style({

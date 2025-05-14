@@ -1,6 +1,7 @@
 import {
   ColorKeys,
   ComponentName,
+  getColorCss,
   SpacingKeys,
 } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/card.css";
@@ -22,6 +23,7 @@ type Props = BaseProps & {
   backgroundColor?: ColorKeys;
   shadow?: boolean;
   border?: boolean;
+  borderColor?: ColorKeys;
   align?: "start" | "center" | "end" | "stretch";
   fit?: boolean;
   maxWidth?: string;
@@ -49,6 +51,7 @@ const Card = ({
   mainHeaderArea,
   subHeaderArea,
   footerArea,
+  borderColor = "gray.400",
   ...props
 }: Props) => {
   return (
@@ -65,7 +68,11 @@ const Card = ({
         !px && !py && paddingStyle[p],
         backgroundStyle[backgroundColor],
       ])}
-      style={{ ...style, maxWidth }}
+      style={{
+        ...style,
+        maxWidth,
+        borderColor: border ? getColorCss(borderColor) : undefined,
+      }}
     >
       <WizVStack gap={gap} align={align} nowrap={true}>
         {(mainHeaderArea || subHeaderArea) && (
