@@ -71,6 +71,7 @@ export default defineConfig([
       "vue/no-unused-components": "warn",
       "vue/no-unused-vars": "warn",
       "vue/no-use-v-if-with-v-for": "warn",
+      "vue/require-default-prop": "off",
       "vue/require-prop-types": "warn",
       "vue/require-v-for-key": "off",
       "vue/return-in-computed-property": "warn",
