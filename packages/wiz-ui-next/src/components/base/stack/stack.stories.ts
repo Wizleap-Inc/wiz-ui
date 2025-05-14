@@ -24,14 +24,17 @@ const spacingKeys = [
   "my",
 ];
 
-const spacingControls = spacingKeys.reduce((acc, key) => {
-  acc[key] = {
-    control: { type: "select" },
-    options: SPACING_ACCESSORS,
-  };
-  return acc;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-}, {} as Record<string, any>);
+const spacingControls = spacingKeys.reduce(
+  (acc, key) => {
+    acc[key] = {
+      control: { type: "select" },
+      options: SPACING_ACCESSORS,
+    };
+    return acc;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  },
+  {} as Record<string, any>
+);
 
 export default {
   title: "Base/Stack",
@@ -65,7 +68,6 @@ export default {
 
 const Box = defineComponent({
   props: {
-    // eslint-disable-next-line vue/no-unused-properties
     index: {
       type: Number,
       required: true,

@@ -1,8 +1,8 @@
 <template>
   <div
+    ref="popupContainerRef"
     :class="popupContainerStyle"
     :style="{ width: (expand && '100%') || width }"
-    ref="popupContainerRef"
   >
     <slot />
   </div>

@@ -6,7 +6,7 @@
         :key="tab.name"
         :label="tab.label"
         :tab="tab"
-        :notificationCount="tab.notificationCount"
+        :notification-count="tab.notificationCount"
         :disabled="tab.disabled"
         :width="width"
         :active="tab.name === modelValue"

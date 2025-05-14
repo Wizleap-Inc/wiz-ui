@@ -21,14 +21,14 @@
               }}{{ showExLabel && item.exLabel ? " " + item.exLabel : "" }}
             </span>
             <button
+              :ref="setUnselectableRef(i)"
               type="button"
+              :class="selectBoxInnerBoxCloseButtonStyle"
+              :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+              :disabled="disabled"
               @click="onClear(item.value)"
               @keypress.enter="onClear(item.value)"
               @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
-              :class="selectBoxInnerBoxCloseButtonStyle"
-              :ref="setUnselectableRef(i)"
-              :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
-              :disabled="disabled"
             >
               <WizIcon
                 :icon="WizIClose"
@@ -42,12 +42,12 @@
             v-if="
               multiSelectable || !isValueMatched || selectedItem.length === 0
             "
+            ref="inputRef"
             :class="selectBoxSearchInputStyle"
             :value="searchValue"
-            @input="onSetSearchValue"
             :placeholder="selectedItem.length === 0 ? placeholder : ''"
-            ref="inputRef"
             :disabled="disabled"
+            @input="onSetSearchValue"
             @keydown="onKeydownBackspace.focus"
           />
         </WizHStack>
@@ -55,9 +55,9 @@
       <button
         type="button"
         :class="selectBoxExpandIconStyle"
-        @click="toggleSelectBox"
         :disabled="disabled"
         :aria-label="ARIA_LABELS.SEARCH_SELECTOR.EXPAND"
+        @click="toggleSelectBox"
       >
         <WizIcon
           v-if="isOpen"
@@ -76,17 +76,17 @@
     </div>
     <WizPopup
       layer="popover"
-      :isOpen="isOpen"
-      @onClose="emit('toggle', false)"
-      :isDirectionFixed="isDirectionFixed"
+      :is-open="isOpen"
+      :is-direction-fixed="isDirectionFixed"
+      @on-close="emit('toggle', false)"
     >
       <div
-        :class="selectBoxSelectorStyle"
-        :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
         v-if="
           filteredOptions.length > 0 ||
           (searchValue !== '' && !options.some((v) => v.label === searchValue))
         "
+        :class="selectBoxSelectorStyle"
+        :style="{ minWidth: width, maxHeight: dropdownMaxHeight }"
       >
         <WizVStack gap="xs2">
           <PopupButtonGroup
@@ -197,7 +197,7 @@ const toggleDropdown = () => {
   inputRef.value?.focus();
 };
 
-const deepCopy = <T>(ary: T): T => JSON.parse(JSON.stringify(ary));
+const deepCopy = <T,>(ary: T): T => JSON.parse(JSON.stringify(ary));
 const optionMap = computed(
   () =>
     new Map(

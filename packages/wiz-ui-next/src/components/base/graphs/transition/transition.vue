@@ -1,14 +1,14 @@
 <template>
-  <Container :maxFrequency="maxFrequency">
+  <Container :max-frequency="maxFrequency">
     <div :class="graphBodyStyle">
       <Bar
         v-for="(barData, i) in formattedBarData"
-        :label="barData.label"
-        :isFirst="i === 0"
-        :frequency="barData.frequency"
-        :lastFrequency="barData.lastFrequency"
-        :maxFrequency="maxFrequency"
         :key="i"
+        :label="barData.label"
+        :is-first="i === 0"
+        :frequency="barData.frequency"
+        :last-frequency="barData.lastFrequency"
+        :max-frequency="maxFrequency"
       />
     </div>
     <div :class="summaryLabelStyle">

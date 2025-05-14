@@ -2,10 +2,10 @@
   <WizPopupContainer>
     <slot />
     <WizPopup
-      :isOpen="modelValue"
-      @onClose="modelValue = false"
+      :is-open="modelValue"
       :gap="gap"
-      :isDirectionFixed="isDirectionFixed"
+      :is-direction-fixed="isDirectionFixed"
+      @on-close="modelValue = false"
     >
       <div :class="[dropdownStyle, skeleton && dropdownSkeletonStyle]">
         <WizVStack p="xs" gap="xs2">

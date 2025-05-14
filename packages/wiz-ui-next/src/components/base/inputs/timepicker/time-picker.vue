@@ -15,10 +15,10 @@
         <span>{{ modelValue || placeholder }}</span>
       </WizHStack>
       <WizPopup
-        :isOpen="openTimepicker"
-        @onClose="openTimepicker = false"
+        :is-open="openTimepicker"
         gap="xs"
-        :isDirectionFixed="isDirectionFixed"
+        :is-direction-fixed="isDirectionFixed"
+        @on-close="openTimepicker = false"
       >
         <div :class="timePickerSelectorStyle">
           <WizHStack overflow="none" gap="xs2">

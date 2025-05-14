@@ -1,8 +1,8 @@
 <template>
   <textarea
+    :id="id"
     v-model="textValue"
     :placeholder="placeholder"
-    :id="id"
     :disabled="disabled"
     :rows="rows"
     :class="[

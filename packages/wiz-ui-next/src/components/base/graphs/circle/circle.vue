@@ -5,8 +5,8 @@
     </Bar>
     <div :class="CircleGraphLabelContainerStyle">
       <div
-        :class="CircleGraphLabelStyle"
         v-for="(label, i) in data.map((item) => item.label)"
+        :class="CircleGraphLabelStyle"
       >
         <span
           :class="[CircleGraphLabelIconStyle]"

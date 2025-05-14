@@ -1,19 +1,19 @@
 <template>
-  <WizBox overflowY="scroll" ref="chatListRef" width="100%">
+  <WizBox ref="chatListRef" overflow-y="scroll" width="100%">
     <WizVStack gap="xs" py="xs">
       <template v-for="messages in displayMessages" :key="messages.date">
         <WizHStack justify="center">
           <WizTag
             :label="formatDateToMonthDayWeek(messages.date)"
             variant="mono"
-            fontSize="xs2"
+            font-size="xs2"
           />
         </WizHStack>
         <WizChatItem
           v-for="(item, i) in messages.contents"
           :key="messages.date.toDateString() + i"
           :content="item"
-          :maxChatItemWidth="`200px`"
+          :max-chat-item-width="`200px`"
         />
       </template>
     </WizVStack>

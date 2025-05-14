@@ -73,10 +73,10 @@
         <!-- Checkbox -->
         <div v-else :class="styles.searchDropdownCheckboxItemStyle">
           <WizCheckBoxNew
+            :id="`${option.label}_${option.value}`"
             :style="{ width: '100%' }"
             :checked="checkValues.includes(option.value)"
             :value="option.value"
-            :id="`${option.label}_${option.value}`"
             @update:checked="handleClickCheckbox(option.value)"
           >
             <WizHStack width="100%" align="center" nowrap gap="xs2">
@@ -104,9 +104,9 @@
     v-if="isOpen"
     v-model="checkValues"
     :options="activeOptionChildren ?? []"
-    :popupWidth="computedPopupWidth"
-    :emptyMessage="emptyMessage"
-    :singleSelect="singleSelect"
+    :popup-width="computedPopupWidth"
+    :empty-message="emptyMessage"
+    :single-select="singleSelect"
     @toggle="emit('toggle', $event)"
   />
 </template>

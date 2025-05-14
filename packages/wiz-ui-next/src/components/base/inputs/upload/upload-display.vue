@@ -25,11 +25,11 @@
       v-if="(multiple && fileList.length) || (!multiple && !isUploading)"
     >
       <div
+        v-for="(file, index) in Array.from(fileList)"
         :class="[
           uploadDisplayStyle,
           isApplyFadeIn(index) ? uploadDisplayFadeInStyle : '',
         ]"
-        v-for="(file, index) in Array.from(fileList)"
       >
         <WizHStack align="center" gap="xs2">
           <WizIAttachFile :class="attachFileIconStyle" />

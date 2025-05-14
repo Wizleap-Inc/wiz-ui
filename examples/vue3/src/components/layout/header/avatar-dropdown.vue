@@ -3,9 +3,9 @@
     <WizAvatar
       :src="AVATAR_SRC"
       :fallback="AVATAR_FALLBACK"
-      ariaLabel="avatar"
-      @click="toggleAvatarDropdownOpen"
+      aria-label="avatar"
       clickable
+      @click="toggleAvatarDropdownOpen"
     />
     <template #options>
       <WizDropdownItem @click="onDropdownItemClick('選択肢１')"

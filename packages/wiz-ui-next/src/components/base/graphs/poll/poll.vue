@@ -1,20 +1,20 @@
 <template>
-  <div :class="PollGraphWrapperStyle" ref="pollWrapperRef">
+  <div ref="pollWrapperRef" :class="PollGraphWrapperStyle">
     <Row
       v-for="(row, i) in data"
       :key="i"
       :label="row.label"
-      :innerLabel="row.innerLabel"
-      :labelWidth="labelWidth"
-      :isColorFixed="isColorFixed"
-      :barPercentage="row.percentage"
+      :inner-label="row.innerLabel"
+      :label-width="labelWidth"
+      :is-color-fixed="isColorFixed"
+      :bar-percentage="row.percentage"
     />
     <Row
       v-for="(_, i) in Array(
         rowCount - data.length < 0 ? 0 : rowCount - data.length
       )"
       :key="-1 * i - 1"
-      :labelWidth="labelWidth"
+      :label-width="labelWidth"
     />
     <span
       :class="PollGraphDividerStyle"

@@ -2,17 +2,17 @@
   <WizPopupContainer>
     <WizIconButton
       :icon="WizINotification"
-      ariaLabel="Notification"
+      aria-label="Notification"
       size="xl"
       variant="transparent"
       color="gray.700"
       @click="toggleNotificationOpen"
     />
     <WizPopup
-      :isOpen="isNotificationOpen"
-      @onClose="isNotificationOpen = false"
+      :is-open="isNotificationOpen"
       layer="floating"
       gap="md"
+      @on-close="isNotificationOpen = false"
     >
       <WizBox width="300px">
         <WizNotification

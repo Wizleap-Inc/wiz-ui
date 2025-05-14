@@ -1,12 +1,12 @@
 <template>
   <teleport to="body">
     <div
+      ref="modalRef"
       :class="[
         zIndexStyle['base'],
         !isActuallyOpen && styles.hiddenStyle,
         styles.containerStyle,
       ]"
-      ref="modalRef"
     >
       <WizVStack>
         <div :class="styles.headerStyle">
@@ -21,8 +21,8 @@
               <WizIconButton
                 :icon="WizIClose"
                 variant="transparent"
+                :aria-label="ARIA_LABELS.FULL_MODAL_VIEW.CLOSE"
                 @click="closeModal"
-                :ariaLabel="ARIA_LABELS.FULL_MODAL_VIEW.CLOSE"
               />
             </WizHStack>
           </WizHStack>

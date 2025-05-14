@@ -31,12 +31,12 @@
                 </span>
                 <button
                   type="button"
-                  @click="onClear(item)"
-                  @keypress.enter="onClear(item)"
-                  @keydown="(e) => onBackspace(item, e)"
                   :class="styles.searchInputInnerBoxCloseButtonStyle"
                   :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
                   :disabled="disabled"
+                  @click="onClear(item)"
+                  @keypress.enter="onClear(item)"
+                  @keydown="(e) => onBackspace(item, e)"
                 >
                   <WizIcon
                     :icon="WizIClose"
@@ -54,16 +54,16 @@
               <WizIcon :icon="icon" color="gray.500" />
             </div> -->
             <input
+              v-model="searchValue"
               type="text"
               :class="[styles.searchInputInnerInputStyle]"
-              v-model="searchValue"
               :placeholder="!displayingSelectedItems ? placeholder : undefined"
               :name="name"
               :disabled="disabled"
+              autocomplete="off"
               @focusin="hasFocus = true"
               @focusout="hasFocus = false"
               @click="emit('toggle', true)"
-              autocomplete="off"
             />
           </WizHStack>
         </WizHStack>
@@ -71,17 +71,17 @@
     </div>
 
     <WizPopup
-      :isOpen="!disabled && openPopup"
-      @onClose="emit('toggle', false)"
-      :isDirectionFixed="isDirectionFixed"
+      :is-open="!disabled && openPopup"
+      :is-direction-fixed="isDirectionFixed"
+      @on-close="emit('toggle', false)"
     >
       <WizHStack nowrap>
         <WizSearchPopup
           v-model="checkValues"
           :options="filteredOptions"
-          :popupWidth="computedPopupWidth"
-          :emptyMessage="emptyMessage"
-          :singleSelect="singleSelect"
+          :popup-width="computedPopupWidth"
+          :empty-message="emptyMessage"
+          :single-select="singleSelect"
           @toggle="emit('toggle', $event)"
         />
       </WizHStack>
@@ -170,7 +170,7 @@ const valueToOption = computed(() => {
       const children = option.children.map((child) => ({
         ...child,
         // 要件上、全角空白のため無視
-        // eslint-disable-next-line no-irregular-whitespace
+
         label: `${option.label}　${child.label}`,
       }));
       return [option, ...flatten(children)];
