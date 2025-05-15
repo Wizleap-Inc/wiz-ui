@@ -20,7 +20,7 @@
       <WizIconButton
         variant="transparent"
         :icon="WizIClose"
-        :aria-label="ARIA_LABELS.INFORMATION_PANEL.CLOSE"
+        :ariaLabel="ARIA_LABELS.INFORMATION_PANEL.CLOSE"
         @click="close"
       />
     </WizVStack>

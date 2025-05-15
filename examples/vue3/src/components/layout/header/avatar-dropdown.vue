@@ -3,7 +3,7 @@
     <WizAvatar
       :src="AVATAR_SRC"
       :fallback="AVATAR_FALLBACK"
-      aria-label="avatar"
+      ariaLabel="avatar"
       clickable
       @click="toggleAvatarDropdownOpen"
     />

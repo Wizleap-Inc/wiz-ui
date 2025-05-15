@@ -12,7 +12,7 @@
           <template v-if="!hideClose" #subHeaderArea>
             <WizIconButton
               :icon="WizIClose"
-              :aria-label="ARIA_LABELS.DIALOG.CLOSE"
+              :ariaLabel="ARIA_LABELS.DIALOG.CLOSE"
               variant="transparent"
               @click="close"
             />

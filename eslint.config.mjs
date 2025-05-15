@@ -47,6 +47,7 @@ export default defineConfig([
       "vue/component-definition-name-casing": "warn",
       "vue/component-name-in-template-casing": "warn",
       "vue/custom-event-name-casing": ["warn", "camelCase"],
+      "vue/attribute-hyphenation": "off",
       "vue/no-async-in-computed-properties": "warn",
       "vue/no-computed-properties-in-data": "warn",
       "vue/no-custom-modifiers-on-v-model": "warn",

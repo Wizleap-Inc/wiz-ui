@@ -9,7 +9,7 @@
           :icon="WizIMenu"
           size="lg"
           variant="transparent"
-          :aria-label="ARIA_LABELS.MENU"
+          :ariaLabel="ARIA_LABELS.MENU"
           @click="toggleMenuOpen"
         />
         <slot name="left" />

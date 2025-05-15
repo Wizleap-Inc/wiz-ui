@@ -21,7 +21,7 @@
               <WizIconButton
                 :icon="WizIClose"
                 variant="transparent"
-                :aria-label="ARIA_LABELS.FULL_MODAL_VIEW.CLOSE"
+                :ariaLabel="ARIA_LABELS.FULL_MODAL_VIEW.CLOSE"
                 @click="closeModal"
               />
             </WizHStack>
