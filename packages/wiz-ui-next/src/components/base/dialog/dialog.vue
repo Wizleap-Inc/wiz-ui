@@ -5,7 +5,7 @@
       :style="{ zIndex: currentZIndex }"
     >
       <div :class="dialogMaskStyle" @click.self="close">
-        <WizCard :maxWidth="maxWidth" p="xl" :title="title" :align="align">
+        <WizCard :max-width="maxWidth" p="xl" :title="title" :align="align">
           <template #mainHeaderArea>
             <slot v-if="!title" name="title" />
           </template>
@@ -13,8 +13,8 @@
             <WizIconButton
               :icon="WizIClose"
               :ariaLabel="ARIA_LABELS.DIALOG.CLOSE"
-              @click="close"
               variant="transparent"
+              @click="close"
             />
           </template>
           <slot />

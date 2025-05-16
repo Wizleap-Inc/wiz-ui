@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="snackbarRef"
     :class="[
       snackbarStyle,
       snackbarWidthStyle[snackbarWidthType],
@@ -10,18 +11,17 @@
       bottom: `${bottom}`,
       left: `${left}`,
     }"
-    ref="snackbarRef"
   >
     <div :class="snackbarContainerStyle">
       <WizIcon color="white.800" :icon="WizICircleCheck" />
       <div :class="snackbarMessageStyle">
-        <WizText color="white.800" fontSize="sm">{{ message }}</WizText>
+        <WizText color="white.800" font-size="sm">{{ message }}</WizText>
       </div>
       <button
         type="button"
         :class="snackbarCloseButtonStyle"
-        @click="onDelete"
         :aria-label="ARIA_LABELS.SNACKBAR.CLOSE"
+        @click="onDelete"
       >
         <WizIcon color="white.800" :icon="WizIClose" />
       </button>

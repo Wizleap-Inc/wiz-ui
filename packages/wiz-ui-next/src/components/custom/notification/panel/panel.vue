@@ -1,18 +1,18 @@
 <template>
   <WizBox
-    @mouseover.native="setIsHover(true)"
-    @mouseleave.native="setIsHover(false)"
-    @pointerdown.native="setIsPressed(true)"
-    @pointerup.native="setIsPressed(false)"
-    @pointerleave.native="setIsPressed(false)"
-    @pointercancel.native="setIsPressed(false)"
-    @click.native="onClick"
-    :bgColor="panelBgColor()"
+    :bg-color="panelBgColor()"
     height="fit-content"
     cursor="pointer"
     :style="{
       width,
     }"
+    @mouseover="setIsHover(true)"
+    @mouseleave="setIsHover(false)"
+    @pointerdown="setIsPressed(true)"
+    @pointerup="setIsPressed(false)"
+    @pointerleave="setIsPressed(false)"
+    @pointercancel="setIsPressed(false)"
+    @click="onClick"
   >
     <WizHStack px="md" py="xs" justify="between" align="center" nowrap>
       <WizVStack position="relative" width="100%">
@@ -30,7 +30,7 @@
                     paddingBottom: THEME.spacing.xs,
                   }"
                 >
-                  <WizText :bold="!read" fontSize="xs" color="gray.700">
+                  <WizText :bold="!read" font-size="xs" color="gray.700">
                     {{ item.title }}
                   </WizText>
                 </WizUnstyledTd>
@@ -38,25 +38,25 @@
                   align="left"
                   :style="{ paddingBottom: THEME.spacing.xs }"
                 >
-                  <WizText :bold="!read" fontSize="xs" color="gray.700">
+                  <WizText :bold="!read" font-size="xs" color="gray.700">
                     {{ item.content }}
                   </WizText>
                 </WizUnstyledTd>
               </WizUnstyledTr>
             </WizUnstyledTbody>
           </WizUnstyledTable>
-          <WizText color="gray.600" fontSize="xs2">
+          <WizText color="gray.600" font-size="xs2">
             {{ displayHowPast }}
           </WizText>
         </WizHStack>
         <WizVStack gap="xs">
-          <WizText color="gray.700" fontSize="xs" :maxLines="2" :bold="!read">
+          <WizText color="gray.700" font-size="xs" :max-lines="2" :bold="!read">
             {{ title }}
           </WizText>
           <WizText
             v-if="variant === 'secondary'"
             color="gray.600"
-            fontSize="xs2"
+            font-size="xs2"
           >
             {{ displayDatetime }}
           </WizText>
@@ -140,7 +140,7 @@ const setIsPressed = (value: boolean) => {
 };
 
 const panelBgColor = (): ColorKeys => {
-  if (isPc) {
+  if (isPc.value) {
     if (isPressed.value) {
       return "green.300";
     }

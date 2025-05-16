@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { StoryFn } from "@storybook/vue3";
 import { computed } from "vue";
 

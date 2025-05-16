@@ -9,10 +9,10 @@
       @click="toggleNotificationOpen"
     />
     <WizPopup
-      :isOpen="isNotificationOpen"
-      @onClose="isNotificationOpen = false"
+      :is-open="isNotificationOpen"
       layer="floating"
       gap="md"
+      @on-close="isNotificationOpen = false"
     >
       <WizBox width="300px">
         <WizNotification

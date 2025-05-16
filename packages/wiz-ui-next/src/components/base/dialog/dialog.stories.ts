@@ -1,7 +1,8 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+/* eslint-disable vue/one-component-per-file */
+import { Meta, StoryFn } from "@storybook/vue3";
 import { defineComponent, ref } from "vue";
 
-import { WizIconButton, WizTextButton, WizText } from "@/components";
+import { WizIconButton, WizText, WizTextButton } from "@/components";
 import { WizTag } from "@/components/base/tag";
 import { WizIBusinessCenter, WizIClose } from "@/components/icons";
 

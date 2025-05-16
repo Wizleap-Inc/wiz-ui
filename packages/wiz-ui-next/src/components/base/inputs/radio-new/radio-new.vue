@@ -1,11 +1,11 @@
 <template>
   <label :class="labelClass">
     <input
+      :id="id"
       type="radio"
       :class="[styles.inputStyle, styles.inputMarginStyle[borderState]]"
       :checked="actualChecked"
       :value="value"
-      :id="id"
       :name="name"
       :disabled="disabled"
       @change="handleChange"
