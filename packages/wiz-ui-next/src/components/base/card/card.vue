@@ -10,7 +10,10 @@
       !px && !py && paddingStyle[p],
       backgroundStyle[backgroundColor],
     ]"
-    :style="{ maxWidth }"
+    :style="{
+      maxWidth,
+      borderColor: border ? getColorCss(borderColor) : undefined,
+    }"
   >
     <WizVStack :gap="gap" :align="align">
       <div
@@ -39,6 +42,7 @@ import {
   ColorKeys,
   ComponentName,
   SpacingKeys,
+  getColorCss,
 } from "@wizleap-inc/wiz-ui-constants";
 import {
   cardBodyStyle,
@@ -88,6 +92,11 @@ defineProps({
   border: {
     type: Boolean,
     required: false,
+  },
+  borderColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "gray.400",
   },
   align: {
     type: String as PropType<"start" | "center" | "end" | "stretch">,
