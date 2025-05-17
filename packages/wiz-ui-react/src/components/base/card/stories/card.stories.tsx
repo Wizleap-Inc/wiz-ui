@@ -85,6 +85,22 @@ export const Border: Story = {
   },
 };
 
+export const borderColor: Story = {
+  args: {
+    border: true,
+    borderColor: "red.500",
+  },
+  render: (args) => {
+    return <WizCard {...args}>Card の Body</WizCard>;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "`border` を指定することができます。",
+      },
+    },
+  },
+};
 export const Align: Story = {
   args: {
     align: "center",

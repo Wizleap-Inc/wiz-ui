@@ -1,15 +1,15 @@
-import { StoryFn, Meta } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import {
   COLOR_MAP_ACCESSORS,
   SPACING_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
 
 import {
+  WizHStack,
+  WizIcon,
+  WizIHelp,
   WizTextButton,
   WizTooltip,
-  WizIcon,
-  WizHStack,
-  WizIHelp,
 } from "@/components";
 
 import WizCard from "./card.vue";
@@ -107,6 +107,12 @@ Border.parameters = {
       `,
     },
   },
+};
+
+export const BorderColor = Template.bind({});
+BorderColor.args = {
+  border: true,
+  borderColor: "red.500",
 };
 
 export const Align = Template.bind({});

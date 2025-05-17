@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.9.0
+
+### Minor Changes
+
+- [#1485](https://github.com/Wizleap-Inc/wiz-ui/pull/1485) [`190ea81`](https://github.com/Wizleap-Inc/wiz-ui/commit/190ea81ed17a2756874cc750a83e7eb93c44ead5) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(Card): borderColor
+
+### Patch Changes
+
+- Updated dependencies [[`190ea81`](https://github.com/Wizleap-Inc/wiz-ui/commit/190ea81ed17a2756874cc750a83e7eb93c44ead5)]:
+  - @wizleap-inc/wiz-ui-styles@0.43.0
+
 ## 2.8.0
 
 ### Minor Changes
