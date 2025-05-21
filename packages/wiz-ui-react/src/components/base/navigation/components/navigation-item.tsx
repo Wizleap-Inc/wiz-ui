@@ -85,22 +85,25 @@ const NavigationItem = <T extends ElementType>({
   tooltipText,
   buttons,
   isPopupOpen = false,
+  href,
+  as,
+  asProps,
   onTogglePopup,
   ...props
 }: Props<T>) => {
-  const isAnchor = "href" in props && props.as === undefined;
-  const LinkComponent = props.as || "a";
-  const isExternalLink = !!props?.href?.startsWith("http");
+  const isAnchor = href && as === undefined;
+  const LinkComponent = as || "a";
+  const isExternalLink = !!href?.startsWith("http");
   const linkProps = isAnchor
     ? {
-        href: disabled ? undefined : props.href ?? "",
+        href: disabled ? undefined : href ?? "",
         target: !disabled && isExternalLink ? "_blank" : undefined,
       }
     : {
-        ...props.asProps,
+        ...asProps,
         style: {
           cursor: disabled ? "not-allowed" : "pointer",
-          ...props.asProps?.style,
+          ...asProps?.style,
         },
       };
   const popupAnchor = useRef<HTMLDivElement>(null);
