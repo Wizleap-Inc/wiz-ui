@@ -28,7 +28,11 @@ export const Default: Story = {
     },
   },
   args: {},
-  render: (args) => <WizAnchor {...args}>○○へ飛ぶ</WizAnchor>,
+  render: (args) => (
+    <WizAnchor {...args} data-testid="anchor-test">
+      ○○へ飛ぶ
+    </WizAnchor>
+  ),
 };
 
 export const Color: Story = {

@@ -34,6 +34,7 @@ export const Default: Story = {
           onChange={(changed) => {
             setValue(changed);
           }}
+          data-testid="panel-switch-test"
         />
       </div>
     );

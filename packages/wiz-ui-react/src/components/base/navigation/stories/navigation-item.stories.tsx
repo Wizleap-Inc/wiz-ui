@@ -14,7 +14,9 @@ export default meta;
 type Story = StoryObj<typeof WizNavigationItem>;
 
 const Template: Story = {
-  render: (args) => <WizNavigationItem {...args} />,
+  render: (args) => (
+    <WizNavigationItem {...args} data-testid="navigation-item-test" />
+  ),
 };
 
 export const Default: Story = {

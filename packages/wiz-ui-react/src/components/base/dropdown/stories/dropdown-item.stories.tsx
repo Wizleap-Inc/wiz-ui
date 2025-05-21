@@ -14,7 +14,11 @@ export default meta;
 type Story = StoryObj<typeof WizDropdownItem>;
 
 const Template: Story = {
-  render: (args) => <WizDropdownItem {...args}>選択肢</WizDropdownItem>,
+  render: (args) => (
+    <WizDropdownItem {...args} data-testid="dropdown-item-test">
+      選択肢
+    </WizDropdownItem>
+  ),
 };
 
 export const Default: Story = {

@@ -38,6 +38,7 @@ export const Default: Story = {
         {...args}
         activeTabName={activeTabName}
         onClickTab={(name) => setActiveTabName(name)}
+        data-testid="tab-test"
       />
     );
   },

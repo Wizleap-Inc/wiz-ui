@@ -36,6 +36,7 @@ export const Default: Story = {
         {...args}
         currentPage={currentPage}
         onChangePage={(page) => setCurrentPage(page)}
+        data-testid="pagination-test"
       />
     );
   },

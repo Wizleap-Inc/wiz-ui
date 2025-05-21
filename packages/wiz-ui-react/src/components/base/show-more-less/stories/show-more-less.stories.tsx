@@ -41,6 +41,7 @@ export const Default: Story = {
         {...args}
         isOpen={isOpen}
         onToggle={() => setIsOpen((prev) => !prev)}
+        data-testid="show-more-less-test"
       />
     );
   },

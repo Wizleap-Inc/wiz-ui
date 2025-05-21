@@ -29,7 +29,12 @@ export const Default: Story = {
     return (
       <>
         <p>入力値: {value1 ? "true" : "false"}</p>
-        <WizToggleSwitch {...args} value={value1} setValue={setValue1} />
+        <WizToggleSwitch
+          {...args}
+          value={value1}
+          setValue={setValue1}
+          data-testid="toggle-switch-test"
+        />
         <p>入力値: {value2 ? "true" : "false"}</p>
         <WizToggleSwitch {...args} value={value2} setValue={setValue2} />
       </>
