@@ -11,7 +11,7 @@ import { WizHStack, WizIExpandMore, WizIcon } from "@/components";
 
 import { useToggleAnimation } from "./use-toggle-animation";
 
-type Props = ComponentPropsWithoutRef<"details"> & {
+type Props = Omit<ComponentPropsWithoutRef<"details">, "onToggle"> & {
   isOpen: boolean;
   openMessage?: string;
   closeMessage?: string;
