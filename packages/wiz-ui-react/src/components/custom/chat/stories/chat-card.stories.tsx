@@ -173,6 +173,7 @@ export const Playground: Story = {
         typingUsername="なんとかかんとか"
         status={status}
         statusOptions={dummyStatusOptions}
+        data-testid="chat-card-test"
         onToggle={() => {
           setHaveNewMessage(false);
           setIsOpen((current) => !current);
