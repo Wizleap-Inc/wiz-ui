@@ -5,7 +5,7 @@ import { FC, useId, ComponentPropsWithoutRef } from "react";
 
 import { PanelItems } from "./type";
 
-type Props = ComponentPropsWithoutRef<"div"> & {
+type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   value: number | null;
   items: PanelItems[];
   width?: string;

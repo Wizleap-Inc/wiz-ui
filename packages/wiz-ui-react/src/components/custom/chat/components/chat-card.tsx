@@ -33,7 +33,7 @@ import { WizChatForm, WizChatItem } from ".";
 
 const TOGGLE_ANIMATION_DURATION = 300;
 
-type Props<T> = ComponentPropsWithoutRef<"div"> & {
+type Props<T> = Omit<ComponentPropsWithoutRef<"div">, "onSubmit"> & {
   textValue: string;
   username: string;
   isOpen: boolean;

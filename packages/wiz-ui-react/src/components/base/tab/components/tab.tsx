@@ -16,8 +16,6 @@ type Props = ComponentPropsWithoutRef<"div"> & {
 };
 
 const Tab: FC<Props> = ({
-  className,
-  style,
   activeTabName,
   items,
   gap,
@@ -29,8 +27,6 @@ const Tab: FC<Props> = ({
   return (
     <WizHStack
       {...props}
-      className={className}
-      style={style}
       gap={gap}
       nowrap
       justify={center ? "center" : undefined}
