@@ -54,7 +54,8 @@ const Snackbar: FC<Props> = ({
       handleClose();
     }, DISPLAY_DURATION);
     // 初回のみ autoClose を設定し、以後 Props の変化で発火させないようにする
-  }, [autoClose, handleClose]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div
