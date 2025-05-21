@@ -5,14 +5,13 @@ import {
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, ComponentPropsWithoutRef } from "react";
 
 import { WizHStack, WizIExpandMore, WizIcon } from "@/components";
-import { BaseProps } from "@/types";
 
 import { useToggleAnimation } from "./use-toggle-animation";
 
-type Props = BaseProps & {
+type Props = ComponentPropsWithoutRef<"details"> & {
   isOpen: boolean;
   openMessage?: string;
   closeMessage?: string;
@@ -34,12 +33,14 @@ const Accordion: FC<Props> = ({
   fontColor = "gray.600",
   children,
   onToggle,
+  ...props
 }) => {
   const { isActuallyOpen, isAnimating, contentRef } =
     useToggleAnimation(isOpen);
 
   return (
     <details
+      {...props}
       open={isActuallyOpen}
       style={{ ...style, width }}
       className={clsx(

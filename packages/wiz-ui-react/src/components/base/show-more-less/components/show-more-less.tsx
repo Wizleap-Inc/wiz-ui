@@ -15,11 +15,11 @@ import {
   useEffect,
   useRef,
   useState,
+  ComponentPropsWithoutRef,
 } from "react";
 
 import { WizHStack, WizIExpandMore, WizIcon, WizVStack } from "@/components";
-import { BaseProps } from "@/types";
-type Props = BaseProps & {
+type Props = ComponentPropsWithoutRef<"div"> & {
   isOpen: boolean;
   openMessage?: string;
   closeMessage?: string;
@@ -39,6 +39,7 @@ const ShowMoreLess: FC<Props> = ({
   variant = "pc",
   onToggle,
   children,
+  ...props
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<string>("0px");
@@ -56,6 +57,7 @@ const ShowMoreLess: FC<Props> = ({
 
   return (
     <div
+      {...props}
       className={clsx(className, showMoreLessDetailsStyle)}
       style={{ ...style, width: width }}
     >

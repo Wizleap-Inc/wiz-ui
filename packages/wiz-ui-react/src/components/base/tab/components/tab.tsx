@@ -1,13 +1,12 @@
 import { ComponentName, SpacingKeys } from "@wizleap-inc/wiz-ui-constants";
-import { FC } from "react";
+import { FC, ComponentPropsWithoutRef } from "react";
 
 import { WizHStack } from "@/components";
-import { BaseProps } from "@/types";
 
 import { WizTabPane } from "./tab-pane";
 import { TabItem } from "./types";
 
-type Props = BaseProps & {
+type Props = ComponentPropsWithoutRef<"div"> & {
   activeTabName: string;
   items: TabItem[];
   gap?: SpacingKeys;
@@ -25,9 +24,11 @@ const Tab: FC<Props> = ({
   width,
   center = false,
   onClickTab,
+  ...props
 }: Props) => {
   return (
     <WizHStack
+      {...props}
       className={className}
       style={style}
       gap={gap}
