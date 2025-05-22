@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.9.1
+
+### Patch Changes
+
+- [#1487](https://github.com/Wizleap-Inc/wiz-ui/pull/1487) [`67bf390`](https://github.com/Wizleap-Inc/wiz-ui/commit/67bf390b912fc2720a1fe9c17979c628ad20c297) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - E2E テストのため data-testid を Component に付与できるようにする
+
 ## 2.9.0
 
 ### Minor Changes
