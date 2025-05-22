@@ -3,6 +3,7 @@ import * as styles from "@wizleap-inc/wiz-ui-styles/customs/chat-card.css";
 import { formatDateToMonthDayWeek } from "@wizleap-inc/wiz-ui-utils";
 import {
   ComponentProps,
+  ComponentPropsWithoutRef,
   Fragment,
   useCallback,
   useEffect,
@@ -25,7 +26,6 @@ import {
   WizText,
   WizVStack,
 } from "@/components";
-import { BaseProps } from "@/types";
 
 import { DisplayMessage, Message } from "./types";
 
@@ -33,7 +33,7 @@ import { WizChatForm, WizChatItem } from ".";
 
 const TOGGLE_ANIMATION_DURATION = 300;
 
-type Props<T> = BaseProps & {
+type Props<T> = Omit<ComponentPropsWithoutRef<"div">, "onSubmit"> & {
   textValue: string;
   username: string;
   isOpen: boolean;
@@ -52,8 +52,6 @@ type Props<T> = BaseProps & {
 };
 
 const ChatCard = <T,>({
-  className,
-  style,
   isOpen,
   textValue,
   username,
@@ -69,6 +67,7 @@ const ChatCard = <T,>({
   onChangeTextValue,
   onSubmit,
   onToggle,
+  ...props
 }: Props<T>) => {
   const wrapperBoxRef = useRef<HTMLDivElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
@@ -140,8 +139,7 @@ const ChatCard = <T,>({
 
   return (
     <WizBox
-      className={className}
-      style={style}
+      {...props}
       ref={wrapperBoxRef}
       position="fixed"
       right="1.5rem"

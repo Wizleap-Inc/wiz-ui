@@ -1,13 +1,11 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/panel-switch-input.css";
 import clsx from "clsx";
-import { FC, useId } from "react";
-
-import { BaseProps } from "@/types";
+import { FC, useId, ComponentPropsWithoutRef } from "react";
 
 import { PanelItems } from "./type";
 
-type Props = BaseProps & {
+type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   value: number | null;
   items: PanelItems[];
   width?: string;
@@ -21,11 +19,13 @@ const PanelSwitch: FC<Props> = ({
   items,
   width,
   onChange,
+  ...props
 }) => {
   const idPrefix = useId();
 
   return (
     <div
+      {...props}
       className={clsx(className, styles.panelSwitchStyle)}
       style={{ ...style, ...(width ? { width } : {}) }}
     >

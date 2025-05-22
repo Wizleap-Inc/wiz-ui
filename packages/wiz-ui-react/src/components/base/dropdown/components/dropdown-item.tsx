@@ -1,25 +1,22 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/dropdown.css";
 import clsx from "clsx";
-import { FC, MouseEventHandler, ReactNode, useState } from "react";
+import { ComponentPropsWithoutRef, FC, ReactNode, useState } from "react";
 
 import { WizHStack, WizIcon } from "@/components";
 import { TIcon } from "@/components/icons";
-import { BaseProps } from "@/types";
-type Props = BaseProps & {
+
+type Props = ComponentPropsWithoutRef<"button"> & {
   icon?: TIcon;
-  disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
 };
 
 const DropdownItem: FC<Props> = ({
   className,
-  style,
   icon,
-  disabled = false,
   onClick,
   children,
+  ...props
 }) => {
   const [isHover, setIsHover] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -36,10 +33,9 @@ const DropdownItem: FC<Props> = ({
 
   return (
     <button
+      {...props}
       type="button"
       className={clsx(className, styles.dropdownItemStyle)}
-      style={style}
-      disabled={disabled}
       onClick={onClick}
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}

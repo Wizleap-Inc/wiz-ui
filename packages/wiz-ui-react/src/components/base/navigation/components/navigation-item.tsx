@@ -13,6 +13,7 @@ import {
 import clsx from "clsx";
 import {
   ComponentProps,
+  ComponentPropsWithoutRef,
   ElementType,
   useCallback,
   useMemo,
@@ -28,11 +29,10 @@ import {
   WizPopupButtonGroup,
   WizTooltip,
 } from "@/components";
-import { BaseProps } from "@/types";
 
 import { ButtonGroupItem, ButtonItem } from "../../popup-button-group/types";
 
-type Props<T extends ElementType> = BaseProps & {
+type Props<T extends ElementType> = ComponentPropsWithoutRef<"div"> & {
   icon: TIcon;
   label: string;
   active: boolean;
@@ -77,7 +77,6 @@ type Props<T extends ElementType> = BaseProps & {
  * ```
  */
 const NavigationItem = <T extends ElementType>({
-  className,
   style,
   icon: Icon,
   label,
@@ -86,22 +85,25 @@ const NavigationItem = <T extends ElementType>({
   tooltipText,
   buttons,
   isPopupOpen = false,
+  href,
+  as,
+  asProps,
   onTogglePopup,
   ...props
 }: Props<T>) => {
-  const isAnchor = "href" in props && props.as === undefined;
-  const LinkComponent = props.as || "a";
-  const isExternalLink = !!props?.href?.startsWith("http");
+  const isAnchor = href && as === undefined;
+  const LinkComponent = as || "a";
+  const isExternalLink = !!href?.startsWith("http");
   const linkProps = isAnchor
     ? {
-        href: disabled ? undefined : props.href ?? "",
+        href: disabled ? undefined : href ?? "",
         target: !disabled && isExternalLink ? "_blank" : undefined,
       }
     : {
-        ...props.asProps,
+        ...asProps,
         style: {
           cursor: disabled ? "not-allowed" : "pointer",
-          ...props.asProps?.style,
+          ...asProps?.style,
         },
       };
   const popupAnchor = useRef<HTMLDivElement>(null);
@@ -148,9 +150,9 @@ const NavigationItem = <T extends ElementType>({
 
   const body = (
     <div
+      {...props}
       ref={popupAnchor}
       onClick={handleClick}
-      className={className}
       style={{ ...style, display: tooltipText ? "block" : "inline-block" }}
     >
       <LinkComponent
