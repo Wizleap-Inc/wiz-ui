@@ -1,9 +1,9 @@
 <template>
   <div :class="[textInputStyle]" :style="{ width: computedWidth }">
-    <component :class="textInputIconStyle" :is="icon" />
+    <component :is="icon" :class="textInputIconStyle" />
     <PrivateBaseInput
-      v-model="textValue"
       :id="id"
+      v-model="textValue"
       :placeholder="placeholder"
       :disabled="disabled"
       width="100%"

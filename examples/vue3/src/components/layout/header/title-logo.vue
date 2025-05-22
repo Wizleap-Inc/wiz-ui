@@ -1,5 +1,5 @@
 <template>
-  <WizHeading fontSize="sm" color="gray.900" padding="0 1rem">
+  <WizHeading font-size="sm" color="gray.900" padding="0 1rem">
     Wiz UI Playground
   </WizHeading>
 </template>

@@ -2,8 +2,8 @@
   <table :class="styles.calendarStyle">
     <td
       v-for="row in WEEK_LIST_JP"
-      :class="styles.calendarCellStyle"
       :key="row"
+      :class="styles.calendarCellStyle"
     >
       <div :class="[styles.calendarItemStyle['dayOfWeek']]">
         {{ row }}
@@ -16,8 +16,8 @@
         :class="styles.calendarCellStyle"
       >
         <button
-          type="button"
           v-if="adjacent.current.day"
+          type="button"
           :class="styles.calendarItemCommonStyle"
           :aria-label="`${currentMonth.getFullYear()}年${
             currentMonth.getMonth() + 1

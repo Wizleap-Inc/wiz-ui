@@ -3,12 +3,12 @@
     <WizStack :gap="gap" :direction="direction" wrap>
       <div v-for="option in options" :key="option.key">
         <input
+          :id="option.key"
+          v-model="radioValue"
           :class="radioInputStyle"
           type="radio"
           :name="option.key"
-          :id="option.key"
           :value="option.value"
-          v-model="radioValue"
           :disabled="disabled || option.disabled"
           @focus="focusOption = option.value"
           @blur="focusOption = null"

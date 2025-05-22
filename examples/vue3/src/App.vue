@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { WizProvider, WizHStack } from "@wizleap-inc/wiz-ui-next";
+import { WizHStack, WizProvider } from "@wizleap-inc/wiz-ui-next";
 
 import Header from "./components/layout/header/index.vue";
 import Navigation from "./components/layout/navigation/index.vue";

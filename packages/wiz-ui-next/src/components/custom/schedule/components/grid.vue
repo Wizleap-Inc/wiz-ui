@@ -10,14 +10,14 @@
   >
     <WizScheduleCard
       v-for="schedule in schedules"
-      :key="schedule.id"
       :id="schedule.id"
+      :key="schedule.id"
       :text="schedule.text"
       :variant="schedule.variant"
-      :gridRow="getGridRow(schedule.start, schedule.end, schedule.text) || ''"
-      :gridColumn="`${schedule.col} / ${schedule.col + 1}`"
+      :grid-row="getGridRow(schedule.start, schedule.end, schedule.text) || ''"
+      :grid-column="`${schedule.col} / ${schedule.col + 1}`"
       :show="getGridRow(schedule.start, schedule.end, schedule.text) !== null"
-      @scheduleClick="emits('scheduleClick', $event)"
+      @schedule-click="emits('scheduleClick', $event)"
     ></WizScheduleCard>
   </div>
 </template>

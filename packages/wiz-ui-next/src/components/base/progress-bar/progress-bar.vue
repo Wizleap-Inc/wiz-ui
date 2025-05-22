@@ -6,24 +6,24 @@
       :class="progressBarItemStyle[i === 0 ? 'first' : 'default']"
     >
       <WizTooltip>
-        <template #content v-if="content.tooltip">
+        <template v-if="content.tooltip" #content>
           {{ content.status === "none" ? undefined : content.tooltip }}
         </template>
         <div :class="progressBarPointWrapperStyle">
           <span :class="progressBarItemAnnotationStyle">
-            <WizText fontSize="xs2" color="red.800" whiteSpace="nowrap">
+            <WizText font-size="xs2" color="red.800" white-space="nowrap">
               {{ content.annotation }}
             </WizText>
           </span>
           <WizProgressPoint :status="content.status" :value="content.value" />
           <span :class="progressBarItemLabelStyle">
-            <WizText fontSize="xs2" color="gray.600" whiteSpace="nowrap">
+            <WizText font-size="xs2" color="gray.600" white-space="nowrap">
               {{ content.label }}
             </WizText>
           </span>
         </div>
       </WizTooltip>
-      <WizProgressLine :active="content.progress" :isFirst="i === 0" />
+      <WizProgressLine :active="content.progress" :is-first="i === 0" />
     </div>
   </div>
 </template>

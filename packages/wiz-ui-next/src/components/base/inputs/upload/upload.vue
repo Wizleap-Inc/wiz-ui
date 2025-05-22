@@ -1,26 +1,26 @@
 <template>
   <WizVStack gap="xl3">
     <label
+      v-if="(!multiple && !isUploaded) || multiple"
       :class="[uploadStyle, isEnter ? uploadEnterStyle : '']"
       @dragenter="dragEnter"
       @dragleave="dragLeave"
       @dragover.prevent
       @drop.prevent="dropFile"
-      v-if="(!multiple && !isUploaded) || multiple"
       ><input
         :class="uploadInputStyle"
-        @change="selectFile"
         type="file"
         :multiple="multiple"
+        @change="selectFile"
       />こちらにドラック＆ドロップしてファイルをアップロード</label
     >
     <WizUploadDisplay
       :progress="progress"
-      :completedFileCount="completedFileCount"
-      :fileList="fileList"
-      :isUploaded="isUploaded"
-      :isUploading="isUploading"
-      :uploadingFileCount="uploadingFileCount"
+      :completed-file-count="completedFileCount"
+      :file-list="fileList"
+      :is-uploaded="isUploaded"
+      :is-uploading="isUploading"
+      :uploading-file-count="uploadingFileCount"
       :multiple="multiple"
     ></WizUploadDisplay>
   </WizVStack>

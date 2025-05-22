@@ -1,8 +1,8 @@
 <template>
   <div
+    v-show="show"
     :class="[styles.card[variant]]"
     :style="{ gridRow, gridColumn }"
-    v-show="show"
     @click="emits('scheduleClick', id)"
   >
     {{ displayText }}

@@ -7,8 +7,8 @@
     ]"
   >
     <component
-      v-if="icon"
       :is="icon"
+      v-if="icon"
       :class="[messageBoxIconStyle, messageBoxIconFillStyle[variant]]"
     />
     <WizVStack gap="xs">

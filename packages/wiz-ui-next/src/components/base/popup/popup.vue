@@ -1,6 +1,7 @@
 <template>
   <teleport to="body">
     <div
+      ref="popupRef"
       :class="[
         popupStyle,
         shadow && popupShadowStyle,
@@ -12,7 +13,6 @@
         inset,
         transform: `${popupTranslate} translateZ(0)`,
       }"
-      ref="popupRef"
       @mouseleave="mouseLeave"
     >
       <slot />

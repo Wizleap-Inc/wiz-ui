@@ -13,9 +13,7 @@ const ColorCircle = defineComponent({
       required: true,
     },
   },
-  template: `<div :style="style"></div>`,
   computed: {
-    // eslint-disable-next-line vue/no-unused-properties
     style() {
       return {
         width: "3rem",
@@ -25,6 +23,7 @@ const ColorCircle = defineComponent({
       };
     },
   },
+  template: `<div :style="style"></div>`,
 });
 
 const Template: StoryFn = (args) => ({

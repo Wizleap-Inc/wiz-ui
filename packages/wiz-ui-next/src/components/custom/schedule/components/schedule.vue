@@ -1,11 +1,11 @@
 <template>
   <div :class="[styles.schedule]">
-    <WizScheduleSheet :startHour="startHour" :endHour="endHour" />
+    <WizScheduleSheet :start-hour="startHour" :end-hour="endHour" />
     <WizScheduleGrid
-      :startHour="startHour"
-      :endHour="endHour"
+      :start-hour="startHour"
+      :end-hour="endHour"
       :schedules="schedules"
-      @scheduleClick="emits('scheduleClick', $event)"
+      @schedule-click="emits('scheduleClick', $event)"
     />
   </div>
 </template>
@@ -18,7 +18,7 @@ import { PropType, defineProps } from "vue";
 
 import { Schedule } from "../types";
 
-import { WizScheduleSheet, WizScheduleGrid } from ".";
+import { WizScheduleGrid, WizScheduleSheet } from ".";
 
 defineProps({
   startHour: {
@@ -34,7 +34,7 @@ defineProps({
   schedules: {
     type: Array as PropType<Schedule>,
     required: false,
-    default: [],
+    default: () => [],
   },
 });
 

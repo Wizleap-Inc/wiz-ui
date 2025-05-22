@@ -1,5 +1,6 @@
 <template>
   <component
+    :is="isRouterLink ? 'router-link' : 'a'"
     :class="[
       anchorStyle,
       colorStyle[color],
@@ -7,22 +8,21 @@
       fontWeightStyle[fontWeight],
       nowrap && anchorNoWrapStyle,
     ]"
-    :is="isRouterLink ? 'router-link' : 'a'"
     :to="isRouterLink ? to : undefined"
     :href="isRouterLink ? undefined : to"
     :target="openInNewTab ? '_blank' : undefined"
     :rel="openInNewTab ? 'noopener noreferrer' : undefined"
   >
     <WizIcon
-      :icon="icon"
       v-if="icon && iconPosition === 'left'"
+      :icon="icon"
       :size="getRelativeFontSize(fontSize, 3)"
       :color="color"
     />
     <slot />
     <WizIcon
-      :icon="icon"
       v-if="icon && iconPosition === 'right'"
+      :icon="icon"
       :size="getRelativeFontSize(fontSize, 3)"
       :color="color"
     />

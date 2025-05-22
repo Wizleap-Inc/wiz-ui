@@ -12,12 +12,12 @@
           :for="option.key"
         >
           <input
+            :id="option.key"
+            v-model="checkboxValue"
             :class="checkboxInputStyle"
             type="checkbox"
-            :id="option.key"
             :name="option.key"
             :value="option.value"
-            v-model="checkboxValue"
             :disabled="disabled || option.disabled"
             @focus="focusOption = option.value"
             @blur="focusOption = null"
@@ -117,10 +117,13 @@ const labelPointer = (optionDisabled?: boolean) =>
 const focusOption = ref<number | null>(null);
 
 const value2Option = computed(() =>
-  props.options.reduce((acc, option) => {
-    acc[option.value] = option;
-    return acc;
-  }, {} as Record<number, CheckBoxOption>)
+  props.options.reduce(
+    (acc, option) => {
+      acc[option.value] = option;
+      return acc;
+    },
+    {} as Record<number, CheckBoxOption>
+  )
 );
 const checkboxLabelFocusStyle = computed(() => (n: number) => {
   if (props.disabled || value2Option.value[n].disabled) return;

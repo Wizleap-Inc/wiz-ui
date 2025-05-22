@@ -15,12 +15,12 @@
     >
       {{ item.label }}
       <input
+        :id="`panel${key}`"
+        v-model="switchValue"
         :class="panelSwitchInputStyle"
         type="radio"
-        :id="`panel${key}`"
         :name="`panel${key}`"
         :value="item.value"
-        v-model="switchValue"
       />
     </label>
   </div>

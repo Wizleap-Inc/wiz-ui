@@ -1,8 +1,8 @@
 <template>
   <div
+    v-show="visible"
     :class="[informationPanelStyle, border && informationPanelBorderStyle]"
     :style="{ width }"
-    v-show="visible"
   >
     <WizVStack gap="xs">
       <div v-for="(message, i) in messages" :key="i">
@@ -20,8 +20,8 @@
       <WizIconButton
         variant="transparent"
         :icon="WizIClose"
-        @click="close"
         :ariaLabel="ARIA_LABELS.INFORMATION_PANEL.CLOSE"
+        @click="close"
       />
     </WizVStack>
   </div>
