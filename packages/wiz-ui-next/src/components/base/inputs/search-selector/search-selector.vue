@@ -27,7 +27,9 @@
               @keydown="(e) => onKeydownBackspace.unselect(item.value, e)"
               :class="selectBoxInnerBoxCloseButtonStyle"
               :ref="setUnselectableRef(i)"
-              :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+              :aria-label="
+                `${item.label}の` + ARIA_LABELS.SEARCH_SELECTOR.UNSELECT
+              "
               :disabled="disabled"
             >
               <WizIcon

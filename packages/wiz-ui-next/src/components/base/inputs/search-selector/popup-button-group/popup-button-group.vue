@@ -47,6 +47,7 @@
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs} + ${depth} * ${THEME.spacing.lg})`,
           }"
+          :aria-label="`search-selector-${item.item.option.label}`"
           @click="popupButtonMouseDown(item.item)"
           @mouseover="popupButtonMouseOver(item.item)"
           @mouseout="popupButtonMouseOut(item.item)"
