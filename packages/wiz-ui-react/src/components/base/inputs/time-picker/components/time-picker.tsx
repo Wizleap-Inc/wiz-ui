@@ -24,7 +24,7 @@ import { FormControlContext } from "@/components/custom/form/components/form-con
 
 import { HOURS, MINUTES, Time } from "../types/time";
 
-type Props = ComponentPropsWithoutRef<"div"> & {
+type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   time: Time | null;
   placeholder?: string;
   width?: string;
