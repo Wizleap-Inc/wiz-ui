@@ -29,6 +29,7 @@ const Template: Story = {
         {...args}
         value={value}
         onChange={(updated) => setValue(updated)}
+        data-testid="selectbox-test"
       />
     );
   },

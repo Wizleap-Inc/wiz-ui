@@ -29,6 +29,7 @@ type Story = StoryObj<typeof WizInformationPanel>;
 export const Default: Story = {
   args: {
     messages: [{ text: "メッセージ1", type: "default" }],
+    "data-testid": "information-panel-test",
   },
 };
 

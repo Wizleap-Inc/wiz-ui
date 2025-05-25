@@ -12,6 +12,7 @@ type Story = StoryObj<typeof WizNotification>;
 
 export const Default: Story = {
   args: {
+    "data-testid": "notification-test",
     tabs: [
       {
         label: "タブ1",

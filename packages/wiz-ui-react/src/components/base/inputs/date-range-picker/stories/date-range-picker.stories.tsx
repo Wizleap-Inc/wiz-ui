@@ -191,6 +191,7 @@ export const Playground: Story = {
         onChangeDateRange={setDateRange}
         selectBoxValue={selectBoxValue}
         onChangeSelectBoxValue={setSelectBoxValue}
+        data-testid="date-range-picker-test"
       />
     );
   },

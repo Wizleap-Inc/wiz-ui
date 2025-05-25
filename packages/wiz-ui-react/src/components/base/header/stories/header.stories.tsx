@@ -21,7 +21,11 @@ const content = () => (
   </>
 );
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    "data-testid": "header-test",
+  },
+};
 
 export const LeftContent: Story = {
   args: {

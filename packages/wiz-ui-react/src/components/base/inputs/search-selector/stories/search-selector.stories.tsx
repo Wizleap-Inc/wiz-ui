@@ -68,6 +68,7 @@ const getTemplate = (): Story => {
             values={values}
             onChangeValues={(changed) => setValues(changed)}
             onCreate={onCreate}
+            data-testid="search-selector-test"
           />
         </>
       );

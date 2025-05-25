@@ -13,6 +13,7 @@ export default meta;
 type Story = StoryObj<typeof WizNotificationPanel>;
 
 const baseProps = {
+  "data-testid": "notification-panel-test",
   title:
     "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",
   timestamp: new Date("2021-01-01 00:00:00"),

@@ -17,7 +17,14 @@ type Story = StoryObj<typeof WizTimePicker>;
 export const Default: Story = {
   render: (args) => {
     const [time, setTime] = useState<Time | null>(null);
-    return <WizTimePicker {...args} time={time} onChange={setTime} />;
+    return (
+      <WizTimePicker
+        {...args}
+        time={time}
+        onChange={setTime}
+        data-testid="time-picker-test"
+      />
+    );
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

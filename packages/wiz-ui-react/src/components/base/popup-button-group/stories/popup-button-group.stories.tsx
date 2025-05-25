@@ -87,7 +87,9 @@ export const Default: Story = {
     options: dummyItems,
   },
   render: (args) => {
-    return <WizPopupButtonGroup {...args} />;
+    return (
+      <WizPopupButtonGroup {...args} data-testid="popup-button-group-test" />
+    );
   },
 };
 

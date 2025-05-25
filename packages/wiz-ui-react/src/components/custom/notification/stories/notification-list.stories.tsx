@@ -14,6 +14,7 @@ type Story = StoryObj<typeof WizNotificationList>;
 
 export const Variant: Story = {
   args: {
+    "data-testid": "notification-list-test",
     notifications: Array.from({ length: 3 }, (_, i) => ({
       id: `${i}`,
       title: "ほげほげほげほげほげほげほげほげほげほげほげほげほげほげ",

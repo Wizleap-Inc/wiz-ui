@@ -33,6 +33,7 @@ const Template: Story = {
           {...args}
           values={values}
           onChangeValues={(changed) => setValues(changed)}
+          data-testid="search-input-test"
         />
       </div>
     );
