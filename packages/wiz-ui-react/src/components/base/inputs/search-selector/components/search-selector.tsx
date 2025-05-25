@@ -11,6 +11,7 @@ import {
   useMemo,
   useRef,
   useState,
+  ComponentPropsWithoutRef,
 } from "react";
 
 import {
@@ -23,14 +24,13 @@ import {
   WizPopup,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
-import { BaseProps } from "@/types";
 
 import { PopupButtonGroup } from "./popup-button-group";
 import { ButtonGroupItem } from "./popup-button-group/types";
 import { filterOptions } from "./search-selector-helper";
 import { SearchSelectorOption } from "./types";
 
-type Props<T> = BaseProps & {
+type Props<T> = ComponentPropsWithoutRef<"div"> & {
   options: SearchSelectorOption<T>[];
   values: T[];
   placeholder?: string;
@@ -77,6 +77,7 @@ const SearchSelector = <T,>({
   onChangeValues,
   onCreate,
   onInputSearchText,
+  ...props
 }: Props<T>) => {
   const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -242,6 +243,7 @@ const SearchSelector = <T,>({
   return (
     <>
       <div
+        {...props}
         ref={wrapperRef}
         className={clsx(
           className,
@@ -275,6 +277,7 @@ const SearchSelector = <T,>({
                 <button
                   type="button"
                   ref={(ref) => (clearButtonsRef.current[i] = ref)}
+                  aria-label={`${selectedOption.label}の選択を解除`}
                   className={styles.selectBoxInnerBoxCloseButtonStyle}
                   disabled={disabled}
                   onClick={handleClickClearButton(selectedOption)}

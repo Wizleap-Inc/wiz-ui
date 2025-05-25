@@ -2,9 +2,8 @@ import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-new.css";
 import clsx from "clsx";
 import {
-  ChangeEvent,
   ChangeEventHandler,
-  ComponentProps,
+  ComponentPropsWithoutRef,
   ReactNode,
   forwardRef,
   useCallback,
@@ -15,21 +14,14 @@ import {
 
 import { WizIcon } from "@/components/base/icon";
 import { WizICheckBold } from "@/components/icons";
-import { BaseProps } from "@/types";
 
-type InputProps = ComponentProps<"input">;
+type InputProps = ComponentPropsWithoutRef<"input">;
 
-type Props = BaseProps & {
-  checked?: boolean;
-  value?: InputProps["value"];
-  id?: string;
-  name?: string;
-  disabled?: boolean;
+type Props = InputProps & {
   strikeThrough?: boolean;
   bordered?: boolean;
   error?: boolean;
   children?: ReactNode;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const CheckboxNew = forwardRef<HTMLInputElement, Props>(
@@ -94,7 +86,6 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
       props.disabled,
       strikeThrough,
     ]);
-
     return (
       <label className={labelClassName} style={style}>
         <input

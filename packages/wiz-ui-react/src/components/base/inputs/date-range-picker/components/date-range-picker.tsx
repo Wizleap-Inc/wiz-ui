@@ -11,6 +11,7 @@ import {
   useMemo,
   useRef,
   useState,
+  ComponentPropsWithoutRef,
 } from "react";
 
 import {
@@ -31,11 +32,10 @@ import {
 import { DateStatus } from "@/components/base/calendar/components/types";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 import { useClickOutside } from "@/hooks/use-click-outside";
-import { BaseProps } from "@/types";
 
 import { DateRange, DateRangePickerSelectBoxOption } from "../types";
 
-type Props = BaseProps & {
+type Props = Omit<ComponentPropsWithoutRef<"button">, "disabled"> & {
   dateRange: DateRange;
   /**
    * @deprecated このプロパティは将来のバージョンで削除される予定です。代わりに `width="100%"` を使用してください。
@@ -78,6 +78,7 @@ const DateRangePicker: FC<Props> = ({
   disabledDate = () => false,
   formatDate = (date: Date) =>
     `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  ...props
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSelectBoxOpen, setIsSelectBoxOpen] = useState(false);
@@ -230,10 +231,10 @@ const DateRangePicker: FC<Props> = ({
     onChangeDateRange?.(tempDateRange);
     setIsOpen(false);
   };
-
   return (
     <>
       <button
+        {...props}
         type="button"
         ref={anchor}
         aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}

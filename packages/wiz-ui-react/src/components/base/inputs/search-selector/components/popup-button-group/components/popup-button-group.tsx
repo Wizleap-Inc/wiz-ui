@@ -5,10 +5,9 @@ import {
   popupButtonGroupStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/search-selector.css";
 import clsx from "clsx";
-import { useMemo } from "react";
+import { useMemo, ComponentPropsWithoutRef } from "react";
 
 import { WizVStack } from "@/components";
-import { BaseProps } from "@/types";
 
 import { ButtonGroupItem, ItemElement } from "../types";
 
@@ -16,7 +15,7 @@ import { ButtonItem } from "./button-item";
 import { DividerItem } from "./divider-item";
 import { GroupItem } from "./group-item";
 
-type Props<T> = BaseProps & {
+type Props<T> = ComponentPropsWithoutRef<"div"> & {
   options: ButtonGroupItem<T>[];
   width?: string;
   p?: SpacingKeys;
@@ -40,6 +39,7 @@ export const PopupButtonGroup = <T,>({
   groupDivider = false,
   buttonDivider = false,
   depth = 0,
+  ...props
 }: Props<T>) => {
   const items = useMemo(() => {
     const divider: ItemElement<T> = { kind: "divider" };
@@ -73,6 +73,7 @@ export const PopupButtonGroup = <T,>({
 
   return (
     <div
+      {...props}
       className={clsx(
         className,
         popupButtonGroupStyle,

@@ -13,6 +13,7 @@ import {
   useContext,
   useRef,
   useState,
+  ComponentPropsWithoutRef,
 } from "react";
 
 import {
@@ -31,8 +32,7 @@ import {
   WizIChevronLeft,
   WizIChevronRight,
 } from "@/components/icons";
-import { BaseProps } from "@/types";
-type Props = BaseProps & {
+type Props = Omit<ComponentPropsWithoutRef<"button">, "disabled"> & {
   date: Date | null;
   placeholder?: string;
   width?: string;
@@ -75,6 +75,7 @@ const DatePicker: FC<Props> = ({
   formatDate = (date) =>
     `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   _today,
+  ...props
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const cancelButtonVisible = !disabled && !!date;
@@ -147,6 +148,7 @@ const DatePicker: FC<Props> = ({
   return (
     <>
       <button
+        {...props}
         type="button"
         ref={wrapperButtonRef}
         className={clsx(

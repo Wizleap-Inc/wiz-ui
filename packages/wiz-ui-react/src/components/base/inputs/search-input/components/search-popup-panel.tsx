@@ -141,6 +141,7 @@ export const SearchPopupPanel = <T extends CheckboxOption>({
                           style={{ width: "100%" }}
                           type="button"
                           className={styles.searchDropdownSingleSelectItemStyle}
+                          aria-label={`${option.label}-${option.value}`}
                           onClick={() => handleClickButton(option.value)}
                         >
                           <div className={styles.searchInputLabelStyle}>
@@ -165,6 +166,7 @@ export const SearchPopupPanel = <T extends CheckboxOption>({
                           value={option.value}
                           id={`${option.label}-${option.value}`}
                           checked={values.includes(option.value)}
+                          aria-label={`${option.label}-${option.value}`}
                           onChange={(e) => {
                             handleChangeValues(option.value, e.target.checked);
                           }}
