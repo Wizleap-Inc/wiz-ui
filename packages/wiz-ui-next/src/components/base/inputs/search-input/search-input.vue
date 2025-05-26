@@ -35,10 +35,9 @@
                   @keypress.enter="onClear(item)"
                   @keydown="(e) => onBackspace(item, e)"
                   :class="styles.searchInputInnerBoxCloseButtonStyle"
-                  :aria-label="
-                    `${valueToOption.get(item)?.label}の` +
+                  :aria-label="`${valueToOption.get(item)?.label}の${
                     ARIA_LABELS.SEARCH_SELECTOR.UNSELECT
-                  "
+                  }`"
                   :disabled="disabled"
                 >
                   <WizIcon

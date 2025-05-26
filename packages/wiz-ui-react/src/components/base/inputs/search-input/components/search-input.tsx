@@ -187,9 +187,7 @@ const SearchInput = <T extends CheckboxOption>({
                     <button
                       type="button"
                       className={styles.searchInputInnerBoxCloseButtonStyle}
-                      aria-label={
-                        `${value}の` + ARIA_LABELS.SEARCH_SELECTOR.UNSELECT
-                      }
+                      aria-label={`${value}の${ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}`}
                       onClick={() => onClear(value)}
                       onKeyDown={handleKeyDown(value)}
                       disabled={disabled}
