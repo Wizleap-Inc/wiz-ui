@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.10.0
+
+### Minor Changes
+
+- [#1490](https://github.com/Wizleap-Inc/wiz-ui/pull/1490) [`1aab796`](https://github.com/Wizleap-Inc/wiz-ui/commit/1aab7969288b9bdc7c3d1f06a7761c18299ecc60) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - E2E テストのための aria-label の付与と、data-testid を Component に付与できるようにする
+
 ## 3.9.0
 
 ### Minor Changes
