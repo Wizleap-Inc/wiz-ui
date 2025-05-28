@@ -86,6 +86,7 @@ export const ButtonItem = <T,>({
         style={{
           paddingLeft: `calc(${THEME.spacing.xs} + ${depth} * ${THEME.spacing.lg})`,
         }}
+        aria-label={`search-selector-${item.option.label}`}
         onClick={handleClick}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}

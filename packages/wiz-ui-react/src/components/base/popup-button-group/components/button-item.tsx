@@ -86,6 +86,7 @@ export const ButtonItem: FC<Props> = ({
         style={{
           paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
         }}
+        aria-label={`popup-button-group-${item.option.label}`}
         onClick={handleClick}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}

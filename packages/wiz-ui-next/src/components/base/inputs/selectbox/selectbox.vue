@@ -52,6 +52,7 @@
             :disabled="option.disabled"
             v-for="(option, key) in options"
             :key="'option' + key"
+            :aria-label="`selectbox-${option.label}`"
             @click="onSelect(option.value)"
           >
             <span>

@@ -2,7 +2,13 @@ import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/search-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { KeyboardEventHandler, useMemo, useRef, useState } from "react";
+import {
+  KeyboardEventHandler,
+  useMemo,
+  useRef,
+  useState,
+  ComponentPropsWithoutRef,
+} from "react";
 
 import {
   TIcon,
@@ -12,12 +18,11 @@ import {
   WizIcon,
   WizPopup,
 } from "@/components";
-import { BaseProps } from "@/types";
 
 import { SearchPopupPanel } from "./search-popup-panel";
 import { CheckboxOption, SearchInputOption } from "./types";
 
-type Props<T extends CheckboxOption> = BaseProps & {
+type Props<T extends CheckboxOption> = ComponentPropsWithoutRef<"div"> & {
   options: SearchInputOption<T>[];
   values: T[];
   name?: string;
@@ -77,6 +82,7 @@ const SearchInput = <T extends CheckboxOption>({
   onChangeValues,
   showParentLabel,
   icon = WizISearch,
+  ...props
 }: Props<T>) => {
   const [filteringText, setFilteringText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -139,6 +145,7 @@ const SearchInput = <T extends CheckboxOption>({
   return (
     <>
       <div
+        {...props}
         ref={inputRef}
         className={clsx(
           className,
@@ -180,7 +187,7 @@ const SearchInput = <T extends CheckboxOption>({
                     <button
                       type="button"
                       className={styles.searchInputInnerBoxCloseButtonStyle}
-                      aria-label={ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}
+                      aria-label={`${value}の${ARIA_LABELS.SEARCH_SELECTOR.UNSELECT}`}
                       onClick={() => onClear(value)}
                       onKeyDown={handleKeyDown(value)}
                       disabled={disabled}
