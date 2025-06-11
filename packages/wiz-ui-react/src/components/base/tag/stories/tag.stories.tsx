@@ -16,6 +16,7 @@ type Story = StoryObj<typeof WizTag>;
 const variants = [
   "info",
   "red",
+  "redFill",
   "green",
   "yellow",
   "blue",

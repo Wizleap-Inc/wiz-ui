@@ -19,6 +19,10 @@ export const tagColorStyle = styleVariants({
     backgroundColor: THEME.color.red[300],
     color: THEME.color.red[800],
   },
+  redFill: {
+    backgroundColor: THEME.color.red[800],
+    color: THEME.color.white[800],
+  },
   green: {
     backgroundColor: THEME.color.green[300],
     color: THEME.color.green[800],
@@ -64,6 +68,7 @@ export const tagIconColorStyle: Record<string, ColorKeys> = {
   gray: "white.800",
   darkGray: "white.800",
   greenFill: "white.800",
+  redFill: "white.800",
   white: "gray.800",
 };
 export const tagIconSize: { [key in FontSizeKeys]: FontSizeKeys } = {
