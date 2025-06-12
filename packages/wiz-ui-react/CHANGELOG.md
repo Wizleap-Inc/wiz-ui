@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.11.0
+
+### Minor Changes
+
+- [#1495](https://github.com/Wizleap-Inc/wiz-ui/pull/1495) [`efa3865`](https://github.com/Wizleap-Inc/wiz-ui/commit/efa3865e3dfb1ba8f267f6c01601acf4f8b52799) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tag): redFillオプションを追加
+
+### Patch Changes
+
+- Updated dependencies [[`efa3865`](https://github.com/Wizleap-Inc/wiz-ui/commit/efa3865e3dfb1ba8f267f6c01601acf4f8b52799)]:
+  - @wizleap-inc/wiz-ui-styles@0.44.0
+
 ## 2.10.0
 
 ### Minor Changes
