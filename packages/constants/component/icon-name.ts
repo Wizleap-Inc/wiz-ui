@@ -97,6 +97,7 @@ export const IconComponentName = {
   IMenuOpen: "WizIMenuOpen",
   IMenu: "WizIMenu",
   IMicBold: "WizIMicBold",
+  IMinusFilled: "WizIMinusFilled",
   IMonitoring: "WizIMonitoring",
   IMoreVertBold: "WizIMoreVertBold",
   IMoreVert: "WizIMoreVert",
