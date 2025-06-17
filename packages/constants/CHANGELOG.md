@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.38.0
+
+### Minor Changes
+
+- [#1498](https://github.com/Wizleap-Inc/wiz-ui/pull/1498) [`fdc955e`](https://github.com/Wizleap-Inc/wiz-ui/commit/fdc955e014ff545911d5839f0542d4e82d9c07e8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): minus-filled
+
 ## 0.37.0
 
 ### Minor Changes
