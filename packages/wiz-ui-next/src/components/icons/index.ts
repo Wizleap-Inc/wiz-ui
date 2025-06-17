@@ -96,6 +96,7 @@ import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMicBold } from "./mic-bold.vue";
+import { default as WizIMinusFilled } from "./minus-filled.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVertBold } from "./more-vert-bold.vue";
 import { default as WizIMoreVert } from "./more-vert.vue";
@@ -231,6 +232,7 @@ export type TIcon =
   | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMicBold
+  | typeof WizIMinusFilled
   | typeof WizIMonitoring
   | typeof WizIMoreVertBold
   | typeof WizIMoreVert
@@ -366,6 +368,7 @@ export {
   WizIMenuOpen,
   WizIMenu,
   WizIMicBold,
+  WizIMinusFilled,
   WizIMonitoring,
   WizIMoreVertBold,
   WizIMoreVert,
