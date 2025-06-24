@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.13.0
+
+### Minor Changes
+
+- [#1502](https://github.com/Wizleap-Inc/wiz-ui/pull/1502) [`8f0cae4`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f0cae4efcda4d7c83b99678441bb5c67401a8f8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - アイコンを追加: WizIEditPencilBold
+
+### Patch Changes
+
+- Updated dependencies [[`8f0cae4`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f0cae4efcda4d7c83b99678441bb5c67401a8f8)]:
+  - @wizleap-inc/wiz-ui-constants@0.39.0
+  - @wizleap-inc/wiz-ui-styles@0.44.2
+
 ## 3.12.0
 
 ### Minor Changes
