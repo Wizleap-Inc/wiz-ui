@@ -66,6 +66,7 @@ import { default as WizIDownload } from "./download.vue";
 import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
+import { default as WizIEditPencilBold } from "./edit-pencil-bold.vue";
 import { default as WizIEmergencyHome } from "./emergency-home.vue";
 import { default as WizIErrorFilled } from "./error-filled.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
@@ -202,6 +203,7 @@ export type TIcon =
   | typeof WizIDraft
   | typeof WizIDrafts
   | typeof WizIEditNote
+  | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
   | typeof WizIErrorFilled
   | typeof WizIExpandLess
@@ -338,6 +340,7 @@ export {
   WizIDraft,
   WizIDrafts,
   WizIEditNote,
+  WizIEditPencilBold,
   WizIEmergencyHome,
   WizIErrorFilled,
   WizIExpandLess,
