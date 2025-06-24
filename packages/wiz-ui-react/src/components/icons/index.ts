@@ -66,6 +66,7 @@ import { WizIDownload } from "./download";
 import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
+import { WizIEditPencilBold } from "./edit-pencil-bold";
 import { WizIEmergencyHome } from "./emergency-home";
 import { WizIErrorFilled } from "./error-filled";
 import { WizIExpandLess } from "./expand-less";
@@ -202,6 +203,7 @@ export type TIcon =
   | typeof WizIDraft
   | typeof WizIDrafts
   | typeof WizIEditNote
+  | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
   | typeof WizIErrorFilled
   | typeof WizIExpandLess
@@ -338,6 +340,7 @@ export {
   WizIDraft,
   WizIDrafts,
   WizIEditNote,
+  WizIEditPencilBold,
   WizIEmergencyHome,
   WizIErrorFilled,
   WizIExpandLess,
