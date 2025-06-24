@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.30.0
+
+### Minor Changes
+
+- [#1502](https://github.com/Wizleap-Inc/wiz-ui/pull/1502) [`8f0cae4`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f0cae4efcda4d7c83b99678441bb5c67401a8f8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - アイコンを追加: WizIEditPencilBold
+
 ## 0.29.0
 
 ### Minor Changes
