@@ -22,6 +22,7 @@ type Props = {
     | "redFill"
     | "green"
     | "yellow"
+    | "yellowFill"
     | "blue"
     | "mono"
     | "gray"

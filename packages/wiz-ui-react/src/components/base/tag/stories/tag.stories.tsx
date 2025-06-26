@@ -19,6 +19,7 @@ const variants = [
   "redFill",
   "green",
   "yellow",
+  "yellowFill",
   "blue",
   "mono",
   "gray",

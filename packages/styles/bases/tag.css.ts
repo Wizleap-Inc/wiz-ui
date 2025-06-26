@@ -31,6 +31,10 @@ export const tagColorStyle = styleVariants({
     backgroundColor: THEME.color.yellow[300],
     color: THEME.color.yellow[800],
   },
+  yellowFill: {
+    backgroundColor: THEME.color.yellow[800],
+    color: THEME.color.white[800],
+  },
   blue: {
     backgroundColor: THEME.color.blue[300],
     color: THEME.color.blue[800],
@@ -63,6 +67,7 @@ export const tagIconColorStyle: Record<string, ColorKeys> = {
   red: "red.800",
   green: "green.800",
   yellow: "yellow.800",
+  yellowFill: "white.800",
   blue: "blue.800",
   mono: "gray.900",
   gray: "white.800",
