@@ -63,6 +63,7 @@ defineProps({
       | "redFill"
       | "green"
       | "yellow"
+      | "yellowFill"
       | "blue"
       | "mono"
       | "gray"
