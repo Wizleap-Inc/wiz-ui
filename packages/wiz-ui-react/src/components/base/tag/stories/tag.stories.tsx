@@ -170,6 +170,10 @@ export const Variant: Story = {
       <div>variant={'"darkGray"'}</div>
       <WizTag {...args} label="11/11(月)" variant="greenFill" />
       <div>variant={'"greenFill"'}</div>
+      <WizTag {...args} label="11/11(月)" variant="redFill" />
+      <div>variant={'"redFill"'}</div>
+      <WizTag {...args} label="11/11(月)" variant="yellowFill" />
+      <div>variant={'"yellowFill"'}</div>
       <WizTag {...args} label="11/11(月)" variant="white" />
       <div>variant={'"white"'}</div>
     </div>
