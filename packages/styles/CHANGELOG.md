@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.45.0
+
+### Minor Changes
+
+- [#1506](https://github.com/Wizleap-Inc/wiz-ui/pull/1506) [`ace273e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ace273ee4b5ce5a265627782bfdb1b606803a924) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(tag): yellowFillの追加
+
 ## 0.44.2
 
 ### Patch Changes
