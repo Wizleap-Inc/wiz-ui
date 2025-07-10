@@ -30,6 +30,7 @@ type Props<T extends ElementType> = BaseProps & {
   icon?: TIcon;
   iconPosition?: "left" | "right";
   nowrap?: boolean;
+  [key: `data-${string}`]: string;
   children: ReactNode;
 } & (
     | {
@@ -61,20 +62,23 @@ const Anchor = forwardRef(
       nowrap = false,
       onClick,
       children,
+      href,
+      as,
+      asProps,
       ...props
     }: Props<T>,
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
-    const isAnchor = "href" in props && props.as === undefined;
-    const LinkComponent = props.as || "a";
+    const isAnchor = href && as === undefined;
+    const LinkComponent = as || "a";
 
     const linkProps = isAnchor
       ? {
-          href: props.href,
+          href: href,
           target: openInNewTab ? "_blank" : undefined,
           rel: openInNewTab ? "noopener noreferrer" : undefined,
         }
-      : props.asProps;
+      : asProps;
 
     const anchorStyle = clsx([
       className,
@@ -95,6 +99,7 @@ const Anchor = forwardRef(
 
     return (
       <LinkComponent
+        {...props}
         {...linkProps}
         ref={ref}
         className={anchorStyle}

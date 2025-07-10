@@ -1,5 +1,31 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.45.0
+
+### Minor Changes
+
+- [#1506](https://github.com/Wizleap-Inc/wiz-ui/pull/1506) [`ace273e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ace273ee4b5ce5a265627782bfdb1b606803a924) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(tag): yellowFillの追加
+
+## 0.44.2
+
+### Patch Changes
+
+- Updated dependencies [[`8f0cae4`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f0cae4efcda4d7c83b99678441bb5c67401a8f8)]:
+  - @wizleap-inc/wiz-ui-constants@0.39.0
+
+## 0.44.1
+
+### Patch Changes
+
+- Updated dependencies [[`fdc955e`](https://github.com/Wizleap-Inc/wiz-ui/commit/fdc955e014ff545911d5839f0542d4e82d9c07e8)]:
+  - @wizleap-inc/wiz-ui-constants@0.38.0
+
+## 0.44.0
+
+### Minor Changes
+
+- [#1495](https://github.com/Wizleap-Inc/wiz-ui/pull/1495) [`efa3865`](https://github.com/Wizleap-Inc/wiz-ui/commit/efa3865e3dfb1ba8f267f6c01601acf4f8b52799) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tag): redFillオプションを追加
+
 ## 0.43.0
 
 ### Minor Changes

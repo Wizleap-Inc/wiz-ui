@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.39.0
+
+### Minor Changes
+
+- [#1502](https://github.com/Wizleap-Inc/wiz-ui/pull/1502) [`8f0cae4`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f0cae4efcda4d7c83b99678441bb5c67401a8f8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - アイコンを追加: WizIEditPencilBold
+
+## 0.38.0
+
+### Minor Changes
+
+- [#1498](https://github.com/Wizleap-Inc/wiz-ui/pull/1498) [`fdc955e`](https://github.com/Wizleap-Inc/wiz-ui/commit/fdc955e014ff545911d5839f0542d4e82d9c07e8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): minus-filled
+
 ## 0.37.0
 
 ### Minor Changes

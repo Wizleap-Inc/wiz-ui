@@ -32,7 +32,9 @@
                 <button
                   type="button"
                   :class="styles.searchInputInnerBoxCloseButtonStyle"
-                  :aria-label="ARIA_LABELS.SEARCH_SELECTOR.UNSELECT"
+                  :aria-label="`${valueToOption.get(item)?.label}の${
+                    ARIA_LABELS.SEARCH_SELECTOR.UNSELECT
+                  }`"
                   :disabled="disabled"
                   @click="onClear(item)"
                   @keypress.enter="onClear(item)"

@@ -52,6 +52,7 @@
             type="button"
             :class="selectBoxSelectorOptionStyle"
             :disabled="option.disabled"
+            :aria-label="`selectbox-${option.label}`"
             @click="onSelect(option.value)"
           >
             <span>

@@ -1,6 +1,13 @@
 import { ColorKeys, ComponentName, THEME } from "@wizleap-inc/wiz-ui-constants";
 import { formatDateToYMDHM, formatHowPast } from "@wizleap-inc/wiz-ui-utils";
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  ComponentPropsWithoutRef,
+} from "react";
 
 import {
   WizBox,
@@ -14,11 +21,10 @@ import {
   WizUnstyledTr,
   WizVStack,
 } from "@/components";
-import { BaseProps } from "@/types";
 
 import { PanelVariant, TableInfoItem } from "./types";
 
-type Props = BaseProps & {
+type Props = Omit<ComponentPropsWithoutRef<"div">, "onClick" | "title"> & {
   title: string;
   timestamp: Date;
   variant?: PanelVariant;
@@ -29,8 +35,6 @@ type Props = BaseProps & {
 };
 
 const NotificationPanel: FC<Props> = ({
-  className,
-  style,
   title,
   timestamp,
   variant = "primary",
@@ -38,6 +42,7 @@ const NotificationPanel: FC<Props> = ({
   tableInfo,
   width,
   onClick,
+  ...props
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -74,8 +79,7 @@ const NotificationPanel: FC<Props> = ({
   };
   return (
     <WizBox
-      className={className}
-      style={style}
+      {...props}
       onMouseOver={useCallback(() => setIsHovered(true), [])}
       onMouseLeave={useCallback(() => setIsHovered(false), [])}
       onPointerDown={useCallback(() => setIsPressed(true), [])}

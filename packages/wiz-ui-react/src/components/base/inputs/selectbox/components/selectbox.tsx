@@ -10,6 +10,7 @@ import {
   useMemo,
   useRef,
   useState,
+  ComponentPropsWithoutRef,
 } from "react";
 
 import {
@@ -20,7 +21,6 @@ import {
   WizVStack,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
-import { BaseProps } from "@/types";
 type SelectBoxOption<T = number> = {
   label: string;
   exLabel?: string;
@@ -28,7 +28,7 @@ type SelectBoxOption<T = number> = {
   disabled?: boolean;
 };
 
-type Props<T> = BaseProps & {
+type Props<T> = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   options: SelectBoxOption<T>[];
   value: T | null;
   placeholder?: string;
@@ -61,6 +61,7 @@ const SelectBox = <T,>({
   showExLabel = false,
   dropdownMaxHeight,
   onChange,
+  ...props
 }: Props<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
@@ -113,6 +114,7 @@ const SelectBox = <T,>({
   return (
     <>
       <div
+        {...props}
         ref={anchorRef}
         className={clsx(
           className,
@@ -179,6 +181,7 @@ const SelectBox = <T,>({
                 disabled={option.disabled}
                 key={`${option.value}-${option.label}`}
                 className={styles.selectBoxSelectorOptionStyle}
+                aria-label={`selectbox-${option.label}`}
                 onClick={() => handleClickOption(option)}
               >
                 <span>{option.label}</span>

@@ -60,8 +60,10 @@ defineProps({
     type: String as PropType<
       | "info"
       | "red"
+      | "redFill"
       | "green"
       | "yellow"
+      | "yellowFill"
       | "blue"
       | "mono"
       | "gray"

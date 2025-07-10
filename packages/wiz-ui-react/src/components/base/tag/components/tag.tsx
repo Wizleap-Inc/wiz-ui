@@ -19,8 +19,10 @@ type Props = {
   variant?:
     | "info"
     | "red"
+    | "redFill"
     | "green"
     | "yellow"
+    | "yellowFill"
     | "blue"
     | "mono"
     | "gray"

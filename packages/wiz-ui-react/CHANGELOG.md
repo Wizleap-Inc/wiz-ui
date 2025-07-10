@@ -1,5 +1,63 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.14.0
+
+### Minor Changes
+
+- [#1506](https://github.com/Wizleap-Inc/wiz-ui/pull/1506) [`ace273e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ace273ee4b5ce5a265627782bfdb1b606803a924) Thanks [@ichi-h](https://github.com/ichi-h)! - feat(tag): yellowFillの追加
+
+### Patch Changes
+
+- Updated dependencies [[`ace273e`](https://github.com/Wizleap-Inc/wiz-ui/commit/ace273ee4b5ce5a265627782bfdb1b606803a924)]:
+  - @wizleap-inc/wiz-ui-styles@0.45.0
+
+## 2.13.0
+
+### Minor Changes
+
+- [#1502](https://github.com/Wizleap-Inc/wiz-ui/pull/1502) [`8f0cae4`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f0cae4efcda4d7c83b99678441bb5c67401a8f8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - アイコンを追加: WizIEditPencilBold
+
+### Patch Changes
+
+- Updated dependencies [[`8f0cae4`](https://github.com/Wizleap-Inc/wiz-ui/commit/8f0cae4efcda4d7c83b99678441bb5c67401a8f8)]:
+  - @wizleap-inc/wiz-ui-constants@0.39.0
+  - @wizleap-inc/wiz-ui-styles@0.44.2
+
+## 2.12.0
+
+### Minor Changes
+
+- [#1498](https://github.com/Wizleap-Inc/wiz-ui/pull/1498) [`fdc955e`](https://github.com/Wizleap-Inc/wiz-ui/commit/fdc955e014ff545911d5839f0542d4e82d9c07e8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): minus-filled
+
+### Patch Changes
+
+- Updated dependencies [[`fdc955e`](https://github.com/Wizleap-Inc/wiz-ui/commit/fdc955e014ff545911d5839f0542d4e82d9c07e8)]:
+  - @wizleap-inc/wiz-ui-constants@0.38.0
+  - @wizleap-inc/wiz-ui-styles@0.44.1
+
+## 2.11.0
+
+### Minor Changes
+
+- [#1495](https://github.com/Wizleap-Inc/wiz-ui/pull/1495) [`efa3865`](https://github.com/Wizleap-Inc/wiz-ui/commit/efa3865e3dfb1ba8f267f6c01601acf4f8b52799) Thanks [@RyushiAok](https://github.com/RyushiAok)! - Feat(tag): redFillオプションを追加
+
+### Patch Changes
+
+- Updated dependencies [[`efa3865`](https://github.com/Wizleap-Inc/wiz-ui/commit/efa3865e3dfb1ba8f267f6c01601acf4f8b52799)]:
+  - @wizleap-inc/wiz-ui-styles@0.44.0
+
+## 2.10.0
+
+### Minor Changes
+
+- [#1490](https://github.com/Wizleap-Inc/wiz-ui/pull/1490) [`1aab796`](https://github.com/Wizleap-Inc/wiz-ui/commit/1aab7969288b9bdc7c3d1f06a7761c18299ecc60) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - E2E テストのための aria-label の付与と、data-testid を Component に付与できるようにする
+
+## 2.9.1
+
+### Patch Changes
+
+- [#1487](https://github.com/Wizleap-Inc/wiz-ui/pull/1487) [`67bf390`](https://github.com/Wizleap-Inc/wiz-ui/commit/67bf390b912fc2720a1fe9c17979c628ad20c297) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - E2E テストのため data-testid を Component に付与できるようにする
+
 ## 2.9.0
 
 ### Minor Changes

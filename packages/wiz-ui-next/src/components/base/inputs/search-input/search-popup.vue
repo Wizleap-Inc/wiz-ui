@@ -63,6 +63,7 @@
             :class="[styles.searchDropdownSingleSelectItemStyle]"
             width="100%"
             gap="xs2"
+            :aria-label="`${option.label}_${option.value}`"
             @click="handleClickButton(option.value)"
           >
             <div :class="styles.searchInputLabelStyle">
@@ -77,6 +78,7 @@
             :style="{ width: '100%' }"
             :checked="checkValues.includes(option.value)"
             :value="option.value"
+            :aria-label="`${option.label}_${option.value}`"
             @update:checked="handleClickCheckbox(option.value)"
           >
             <WizHStack width="100%" align="center" nowrap gap="xs2">

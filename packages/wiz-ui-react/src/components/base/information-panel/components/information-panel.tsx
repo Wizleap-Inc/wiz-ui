@@ -1,17 +1,16 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/information-panel.css";
 import clsx from "clsx";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, ComponentPropsWithoutRef } from "react";
 
 import { WizIClose, WizIconButton, WizVStack } from "@/components";
-import { BaseProps } from "@/types";
 
 type TextMessage = {
   text: string;
   type: "default" | "error";
 };
 
-type Props = BaseProps & {
+type Props = ComponentPropsWithoutRef<"div"> & {
   messages: (TextMessage | ReactNode)[];
   width?: string;
   border?: boolean;
@@ -37,9 +36,11 @@ const InformationPanel: FC<Props> = ({
   width,
   border = false,
   onClose,
+  ...props
 }) => {
   return (
     <div
+      {...props}
       className={clsx(
         className,
         styles.informationPanelStyle,

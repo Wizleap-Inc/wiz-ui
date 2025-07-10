@@ -50,6 +50,7 @@
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
           :tabIndex="0"
+          :aria-label="`popup-button-group-${item.item.option.label}`"
           @click="popupButtonMouseDown(item.item)"
           @mouseover="popupButtonMouseOver(item.item)"
           @mouseout="popupButtonMouseOut(item.item)"

@@ -8,14 +8,13 @@ import {
   headerStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/header.css";
 import clsx from "clsx";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, ComponentPropsWithoutRef } from "react";
 
 import { WizHStack, WizIMenu } from "@/components";
-import { BaseProps } from "@/types";
 
 import { WizIconButton } from "../../buttons/icon";
 
-type Props = BaseProps & {
+type Props = ComponentPropsWithoutRef<"div"> & {
   gapLeft?: SpacingKeys;
   gapRight?: SpacingKeys;
   sticky?: boolean;
@@ -33,9 +32,11 @@ const Header: FC<Props> = ({
   leftContent,
   rightContent,
   onToggle,
+  ...props
 }) => {
   return (
     <div
+      {...props}
       className={clsx(className, headerStyle, sticky && headerStickyStyle)}
       style={{ ...style, zIndex: THEME.zIndex.floating }}
     >

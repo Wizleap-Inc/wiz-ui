@@ -22,6 +22,7 @@ export default {
       options: [
         "info",
         "red",
+        "redFill",
         "green",
         "yellow",
         "blue",
@@ -29,6 +30,7 @@ export default {
         "gray",
         "darkGray",
         "greenFill",
+        "yellowFill",
         "white",
       ],
     },
@@ -91,8 +93,12 @@ export const Variant: StoryFn<typeof WizTag> = (args) => ({
       <div>variant="gray"</div>
       <WizTag label="タグ" variant="darkGray" :icon="WizIClose" />
       <div>variant="darkGray"</div>
+      <WizTag label="タグ" variant="redFill" :icon="WizIClose" />
+      <div>variant="redFill"</div>
       <WizTag label="タグ" variant="greenFill" :icon="WizIClose" />
       <div>variant="greenFill"</div>
+      <WizTag label="タグ" variant="yellowFill" :icon="WizIClose" />
+      <div>variant="yellowFill"</div>
       <WizTag label="タグ" variant="white" :icon="WizIClose" />
       <div>variant="white"</div>
     </div>

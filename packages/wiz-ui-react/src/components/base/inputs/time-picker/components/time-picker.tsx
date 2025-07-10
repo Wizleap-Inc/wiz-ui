@@ -2,7 +2,14 @@ import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import {
+  FC,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  ComponentPropsWithoutRef,
+} from "react";
 
 import {
   WizDivider,
@@ -14,11 +21,10 @@ import {
   WizVStack,
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
-import { BaseProps } from "@/types";
 
 import { HOURS, MINUTES, Time } from "../types/time";
 
-type Props = BaseProps & {
+type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   time: Time | null;
   placeholder?: string;
   width?: string;
@@ -38,6 +44,7 @@ const TimePicker: FC<Props> = ({
   isDirectionFixed = false,
   error = false,
   onChange,
+  ...props
 }) => {
   const anchor = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +85,7 @@ const TimePicker: FC<Props> = ({
   return (
     <>
       <div
+        {...props}
         ref={anchor}
         className={clsx([
           className,
@@ -152,6 +160,7 @@ const TimePicker: FC<Props> = ({
                         timePickerSelectorOptionItemColor(option === time?.hour)
                       ],
                     ])}
+                    aria-label={`time-picker-${option}時`}
                     onClick={() =>
                       onChange?.({ hour: option, minute: time?.minute || 0 })
                     }
@@ -200,6 +209,7 @@ const TimePicker: FC<Props> = ({
                         )
                       ],
                     ])}
+                    aria-label={`time-picker-${option}分`}
                     onClick={() =>
                       onChange?.({ hour: time?.hour || 0, minute: option })
                     }
