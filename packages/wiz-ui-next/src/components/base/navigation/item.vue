@@ -45,23 +45,23 @@
       </div>
       <div v-if="existPopup">
         <WizPopup
-          :isOpen="isOpen"
-          @onClose="popupOnClose"
+          :is-open="isOpen"
           direction="rt"
           layer="popover"
-          :isDirectionFixed="true"
+          :is-direction-fixed="true"
+          @on-close="popupOnClose"
         >
           <WizPopupButtonGroup
             :options="popupButtons"
             :class="navigationPopupContainerStyle"
             p="xs"
-            borderRadius="xs2"
+            border-radius="xs2"
             :disabled="disabled"
           />
         </WizPopup>
       </div>
     </WizPopupContainer>
-    <template #content v-if="tooltipText">
+    <template v-if="tooltipText" #content>
       {{ tooltipText }}
     </template>
   </WizTooltip>

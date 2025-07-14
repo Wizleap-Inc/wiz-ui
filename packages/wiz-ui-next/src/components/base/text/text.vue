@@ -16,7 +16,7 @@
     :for="htmlFor"
     :style="overflowStyles"
   >
-    <span :class="textDummyStyle" v-if="dummyValue">{{ dummyValue }}</span>
+    <span v-if="dummyValue" :class="textDummyStyle">{{ dummyValue }}</span>
     <slot v-else />
   </component>
 </template>

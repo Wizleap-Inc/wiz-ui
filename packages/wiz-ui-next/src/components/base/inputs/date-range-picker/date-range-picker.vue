@@ -53,16 +53,16 @@
       </button>
     </button>
     <WizPopup
-      :isOpen="!disabled && isOpen"
-      @onClose="onClose"
-      :isDirectionFixed="isDirectionFixed"
+      :is-open="!disabled && isOpen"
+      :is-direction-fixed="isDirectionFixed"
+      @on-close="onClose"
     >
       <WizCard p="no">
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
             <div
-              :class="styles.popupHeaderSelectBoxContainerStyle"
               ref="selectBoxContainerRef"
+              :class="styles.popupHeaderSelectBoxContainerStyle"
             >
               <button
                 type="button"
@@ -85,9 +85,9 @@
                 :class="styles.popupHeaderSelectBoxOptionsStyle"
               >
                 <button
-                  type="button"
                   v-for="(option, index) in selectBoxOptions"
                   :key="index"
+                  type="button"
                   :class="styles.popupHeaderSelectBoxOptionStyle"
                   :aria-label="option.label"
                   @click="handleSelectBoxOptionClick(option.value)"
@@ -116,12 +116,12 @@
                 <div :class="styles.popupCalendarHeaderSpacerStyle" />
               </div>
               <WizCalendar
-                :currentMonth="leftCalendarDate"
-                :activeDates="selectedDates"
-                @click="handleDayClick"
-                :disabledDate="disabledDate"
-                :filledWeeks="true"
+                :current-month="leftCalendarDate"
+                :active-dates="selectedDates"
+                :disabled-date="disabledDate"
+                :filled-weeks="true"
                 :_today="_today || new Date()"
+                @click="handleDayClick"
               />
             </div>
             <div :class="styles.popupCalendarContainerStyle['right']">
@@ -142,18 +142,18 @@
                 </button>
               </div>
               <WizCalendar
-                :currentMonth="rightCalendarDate"
-                :activeDates="selectedDates"
-                @click="handleDayClick"
-                :disabledDate="disabledDate"
-                :filledWeeks="true"
+                :current-month="rightCalendarDate"
+                :active-dates="selectedDates"
+                :disabled-date="disabledDate"
+                :filled-weeks="true"
                 :_today="_today || new Date()"
+                @click="handleDayClick"
               />
             </div>
           </div>
           <WizDivider color="gray.300" />
           <WizHStack p="sm" gap="sm" justify="end">
-            <WizTextButton @click="onClose" variant="sub">
+            <WizTextButton variant="sub" @click="onClose">
               {{ ARIA_LABELS.CANCEL }}
             </WizTextButton>
             <WizTextButton @click="onSubmit">

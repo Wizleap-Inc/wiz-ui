@@ -1,11 +1,11 @@
 <template>
   <label :class="styles.toggleSwitchStyle">
     <input
+      v-model="switchValue"
       :class="styles.toggleSwitchInputStyle"
       type="checkbox"
       :disabled="disabled"
       :aria-label="ariaLabel"
-      v-model="switchValue"
     />
     <span
       :class="[

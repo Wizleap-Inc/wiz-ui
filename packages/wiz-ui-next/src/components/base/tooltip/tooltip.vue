@@ -1,22 +1,22 @@
 <template>
   <div
     :class="tooltipStyle"
+    :style="{ width: expand ? '100%' : 'initial' }"
     @mouseenter="isHover = true"
     @mouseleave="isHover = false"
-    :style="{ width: expand ? '100%' : 'initial' }"
   >
     <WizPopupContainer :expand="expand">
       <slot />
       <WizPopup
         v-if="$slots.content"
-        :isOpen="isHover || isOpen"
+        :is-open="isHover || isOpen"
         :direction="computedDirection"
         :shadow="false"
         :animation="true"
-        @onTurn="turnPopup"
         gap="xs2"
         layer="tooltip"
-        :isDirectionFixed="isDirectionFixed"
+        :is-direction-fixed="isDirectionFixed"
+        @on-turn="turnPopup"
       >
         <div
           :class="[tooltipPositionStyle[actuallyDirection], tooltipPopupStyle]"

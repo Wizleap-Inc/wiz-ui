@@ -22,7 +22,7 @@
         >
           <WizText
             as="label"
-            :htmlFor="htmlFor"
+            :html-for="htmlFor"
             :color="labelColor"
             :font-size="labelFontSize"
             :bold="borderLeft"
@@ -30,7 +30,7 @@
           >
             {{ label }}
           </WizText>
-          <WizTag font-size="xs2" label="必須" v-if="required" />
+          <WizTag v-if="required" font-size="xs2" label="必須" />
         </WizHStack>
         <slot name="labelSuffix" />
       </WizHStack>

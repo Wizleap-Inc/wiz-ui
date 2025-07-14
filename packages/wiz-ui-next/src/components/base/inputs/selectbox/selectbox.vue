@@ -37,9 +37,9 @@
       </div>
     </div>
     <WizPopup
-      :isOpen="openSelectBox"
-      @onClose="openSelectBox = false"
-      :isDirectionFixed="isDirectionFixed"
+      :is-open="openSelectBox"
+      :is-direction-fixed="isDirectionFixed"
+      @on-close="openSelectBox = false"
     >
       <div
         :class="selectBoxSelectorStyle"
@@ -47,11 +47,11 @@
       >
         <WizVStack>
           <button
+            v-for="(option, key) in options"
+            :key="'option' + key"
             type="button"
             :class="selectBoxSelectorOptionStyle"
             :disabled="option.disabled"
-            v-for="(option, key) in options"
-            :key="'option' + key"
             :aria-label="`selectbox-${option.label}`"
             @click="onSelect(option.value)"
           >

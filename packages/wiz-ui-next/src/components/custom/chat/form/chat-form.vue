@@ -12,8 +12,8 @@
       <WizIconButton
         :icon="WizISend"
         :disabled="disabled"
-        @click="onSubmit"
         :ariaLabel="ARIA_LABELS.CHAT_FORM.SEND"
+        @click="onSubmit"
       />
     </div>
   </WizHStack>

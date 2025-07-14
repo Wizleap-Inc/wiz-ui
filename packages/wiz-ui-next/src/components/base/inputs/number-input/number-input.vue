@@ -9,29 +9,29 @@
     @focusout="hasFocus = false"
   >
     <input
+      ref="inputRef"
       :class="styles.input"
       type="number"
       :value="inputValue"
-      ref="inputRef"
-      @input="onInput"
       v-bind="restProps"
       :disabled="disabled"
+      @input="onInput"
     />
     <WizVStack justify="center" nowrap>
       <button
         type="button"
-        @click="handleStepUp"
         :class="styles.button"
         :disabled="disabled"
+        @click="handleStepUp"
       >
         <WizIArrowDropUp :class="[styles.arrowIcon]" />
       </button>
       <WizDivider />
       <button
         type="button"
-        @click="handleStepDown"
         :class="styles.button"
         :disabled="disabled"
+        @click="handleStepDown"
       >
         <WizIArrowDropDown :class="[styles.arrowIcon]" />
       </button>

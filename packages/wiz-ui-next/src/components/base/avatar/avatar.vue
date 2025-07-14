@@ -11,8 +11,8 @@
     @click="onClick"
   >
     <img
-      :class="avatarImageStyle"
       v-if="src !== undefined && isImgLoadSuccess"
+      :class="avatarImageStyle"
       :src="src"
       :alt="alt"
       @error="onError"

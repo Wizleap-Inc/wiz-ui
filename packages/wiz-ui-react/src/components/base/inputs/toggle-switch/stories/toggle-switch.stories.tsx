@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
@@ -23,7 +24,6 @@ type Story = StoryObj<typeof WizToggleSwitch>;
 export const Default: Story = {
   args: {},
   render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value1, setValue1] = useState(false);
     const [value2, setValue2] = useState(true);
     return (
@@ -42,7 +42,6 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value1, setValue1] = useState(false);
     const [value2, setValue2] = useState(true);
     return (

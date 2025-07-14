@@ -1,19 +1,19 @@
 <template>
   <Container
-    :maxFrequency="maxFrequency"
-    :annotationUnit="(unitPosition === 'intersection' && unit) || undefined"
+    :max-frequency="maxFrequency"
+    :annotation-unit="(unitPosition === 'intersection' && unit) || undefined"
     :label-unit="(unitPosition === 'vertical' && unit) || undefined"
   >
     <div :class="[graphBodyStyle]">
       <Bar
         v-for="(barData, i) in formattedBarData"
-        :label="barData.label"
-        :isFirst="i === 0"
-        :data="barData"
-        :maxFrequency="maxFrequency"
         :key="barData.label"
-        :barGap="barGap"
-        :barGroupWidth="barGroupWidth"
+        :label="barData.label"
+        :is-first="i === 0"
+        :data="barData"
+        :max-frequency="maxFrequency"
+        :bar-gap="barGap"
+        :bar-group-width="barGroupWidth"
         :theta="theta"
       />
     </div>
