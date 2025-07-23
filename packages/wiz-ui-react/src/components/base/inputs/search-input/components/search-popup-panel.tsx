@@ -186,7 +186,7 @@ export const SearchPopupPanel = <T extends CheckboxOption>({
                           gap="xs2"
                           nowrap
                         >
-                          <WizHStack align="center" gap="xs2" nowrap>
+                          <WizHStack align="center" gap="xs" nowrap>
                             {/* Checkboxが押下された場合、すべての子要素は親要素の状態に従う。（再帰的に状態を更新する） */}
                             <WizCheckBoxNew
                               value={option.value}
@@ -306,7 +306,7 @@ export const SearchPopupPanel = <T extends CheckboxOption>({
                             gap="xs2"
                             nowrap
                           >
-                            <WizHStack align="center" gap="xs2" nowrap>
+                            <WizHStack align="center" gap="xs" nowrap>
                               <WizCheckBoxNew
                                 value={option.value}
                                 id={`${option.label}-${option.value}`}
