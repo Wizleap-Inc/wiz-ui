@@ -109,7 +109,7 @@ export const searchDropdownLabelStyle = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  paddingLeft: THEME.spacing.xs,
+  paddingLeft: THEME.spacing.xs2,
   cursor: "pointer",
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[800],
