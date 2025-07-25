@@ -97,5 +97,9 @@ export const Short: Story = {
     variant: "information",
     short: true,
   },
-  render: (args) => <WizMessageBox {...args} />,
+  render: (args) => (
+    <WizMessageBox {...args}>
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+    </WizMessageBox>
+  ),
 };
