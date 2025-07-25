@@ -14,7 +14,7 @@
     />
     <WizVStack gap="xs">
       <div :class="messageBoxTitleStyle">{{ title }}</div>
-      <div v-if="hasDefaultSlot && !short" :class="messageBoxBodyStyle">
+      <div v-if="hasDefaultSlot" :class="messageBoxBodyStyle">
         <slot />
       </div>
     </WizVStack>

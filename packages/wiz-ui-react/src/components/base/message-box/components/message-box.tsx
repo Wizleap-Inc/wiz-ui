@@ -55,7 +55,7 @@ const MessageBox = forwardRef(
         )}
         <WizVStack gap="xs">
           <div className={styles.messageBoxTitleStyle}>{title}</div>
-          {children && !short && (
+          {children && (
             <div className={styles.messageBoxBodyStyle}>{children}</div>
           )}
         </WizVStack>
