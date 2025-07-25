@@ -4,6 +4,7 @@
       messageBoxStyle,
       messageBoxWidthStyle[computedWidth],
       messageBoxVariantStyle[variant],
+      short && messageBoxShortStyle,
     ]"
   >
     <component
@@ -26,6 +27,7 @@ import {
   messageBoxBodyStyle,
   messageBoxIconFillStyle,
   messageBoxIconStyle,
+  messageBoxShortStyle,
   messageBoxStyle,
   messageBoxTitleStyle,
   messageBoxVariantStyle,
@@ -55,6 +57,11 @@ const props = defineProps({
     required: false,
   },
   expand: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  short: {
     type: Boolean,
     required: false,
     default: false,

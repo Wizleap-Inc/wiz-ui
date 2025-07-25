@@ -17,6 +17,7 @@ type Props = BaseProps & {
   variant?: "information" | "caution" | "warning";
   icon?: TIcon;
   expand?: boolean;
+  short?: boolean;
   children?: ReactNode;
 };
 
@@ -29,6 +30,7 @@ const MessageBox = forwardRef(
       variant = "information",
       icon,
       expand = false,
+      short = false,
       children,
     }: Props,
     ref: ForwardedRef<HTMLDivElement>
@@ -41,7 +43,8 @@ const MessageBox = forwardRef(
           className,
           styles.messageBoxStyle,
           styles.messageBoxWidthStyle[width],
-          styles.messageBoxVariantStyle[variant]
+          styles.messageBoxVariantStyle[variant],
+          short && styles.messageBoxShortStyle
         )}
         style={style}
       >

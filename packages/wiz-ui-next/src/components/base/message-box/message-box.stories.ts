@@ -79,3 +79,10 @@ EmptyBody.args = {
   title: "ヘッダーヘッダーヘッダー",
   variant: "information",
 };
+
+export const Short = Template.bind({});
+Short.args = {
+  title: "ヘッダーヘッダーヘッダー",
+  variant: "information",
+  short: true,
+};
