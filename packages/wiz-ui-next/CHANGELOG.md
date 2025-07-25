@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.15.0
+
+### Minor Changes
+
+- [#1513](https://github.com/Wizleap-Inc/wiz-ui/pull/1513) [`780fa30`](https://github.com/Wizleap-Inc/wiz-ui/commit/780fa303defc522f02dee4ae099c48428ddf55fa) Thanks [@mazyutyu](https://github.com/mazyutyu)! - MessageBox: body の fontSize を 14px に変更
+  MessageBox: short バージョンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`780fa30`](https://github.com/Wizleap-Inc/wiz-ui/commit/780fa303defc522f02dee4ae099c48428ddf55fa)]:
+  - @wizleap-inc/wiz-ui-styles@0.46.0
+
 ## 3.14.0
 
 ### Minor Changes
