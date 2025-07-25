@@ -90,3 +90,12 @@ export const EmptyBody: Story = {
   },
   render: (args) => <WizMessageBox {...args} />,
 };
+
+export const Short: Story = {
+  args: {
+    title: "ヘッダーヘッダーヘッダー",
+    variant: "information",
+    short: true,
+  },
+  render: (args) => <WizMessageBox {...args} />,
+};
