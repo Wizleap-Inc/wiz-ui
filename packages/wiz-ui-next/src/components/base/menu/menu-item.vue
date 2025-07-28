@@ -17,7 +17,7 @@
       <div :class="fontSizeStyle[fontSize]">
         {{ label }}
       </div>
-      <WizIcon size="xl2" :icon="WizIChevronRight" color="green.800" />
+      <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
     </WizHStack>
   </div>
 </template>
@@ -98,5 +98,11 @@ const componentStatus = computed(() => {
   if (props.active || isPressed.value) return "active";
   if (isHover.value) return "hover";
   return "default";
+});
+
+const iconColor = computed(() => {
+  if (!props.clickable) return "gray.500";
+  if (props.active || isHover.value) return "green.800";
+  return "gray.500";
 });
 </script>
