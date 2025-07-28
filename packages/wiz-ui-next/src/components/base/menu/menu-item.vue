@@ -17,7 +17,17 @@
       <div :class="fontSizeStyle[fontSize]">
         {{ label }}
       </div>
-      <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
+
+      <WizHStack align="center" gap="xs">
+        <WizTag
+          v-if="tagLabel"
+          :label="tagLabel"
+          :icon="tagIcon"
+          :variant="tagVariant"
+          :fontSize="tagSize"
+        />
+        <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
+      </WizHStack>
     </WizHStack>
   </div>
 </template>
@@ -32,9 +42,10 @@ import {
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
 
-import { WizIChevronRight } from "@/components/icons";
+import { TIcon, WizIChevronRight } from "@/components/icons";
 
-import { WizHStack, WizIcon } from "../";
+import { WizHStack, WizIcon, WizTag } from "../";
+import { TagVariant } from "../tag/types";
 
 interface Emit {
   (event: "click"): void;
@@ -74,6 +85,20 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  tagLabel: {
+    type: String,
+    required: false,
+    default: "",
+  },
+  tagIcon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+  },
+  tagVariant: {
+    type: String as PropType<TagVariant>,
+    required: false,
+    default: "info",
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -98,6 +123,11 @@ const componentStatus = computed(() => {
   if (props.active || isPressed.value) return "active";
   if (isHover.value) return "hover";
   return "default";
+});
+
+const tagSize = computed(() => {
+  if (props.fontSize === "xl5" || props.fontSize === "xl6") return "md";
+  return "xs";
 });
 
 const iconColor = computed(() => {
