@@ -19,13 +19,15 @@
       </div>
 
       <WizHStack align="center" gap="xs">
-        <WizTag
-          v-if="tagLabel"
-          :label="tagLabel"
-          :icon="tagIcon"
-          :variant="tagVariant"
-          :fontSize="tagSize"
-        />
+        <div v-if="tagLabel" :class="menuItemTagStyle">
+          <WizTag
+            :label="tagLabel"
+            :icon="tagIcon"
+            :variant="tagVariant"
+            :fontSize="tagFontSize"
+            fontWeight="bold"
+          />
+        </div>
         <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
       </WizHStack>
     </WizHStack>
@@ -38,6 +40,7 @@ import {
   menuItemStyle,
   menuItemVariantStyle,
   menuItemExpand,
+  menuItemTagStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
@@ -125,7 +128,7 @@ const componentStatus = computed(() => {
   return "default";
 });
 
-const tagSize = computed(() => {
+const tagFontSize = computed(() => {
   if (props.fontSize === "xl5" || props.fontSize === "xl6") return "md";
   return "xs";
 });

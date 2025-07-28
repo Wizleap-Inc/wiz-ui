@@ -6,6 +6,10 @@ export const menuItemStyle = style({
   lineHeight: THEME.fontSize.xl3,
 });
 
+export const menuItemTagStyle = style({
+  lineHeight: THEME.fontSize.md,
+});
+
 export const menuItemExpand = style({
   boxSizing: "border-box",
   width: "100% !important",
