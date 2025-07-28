@@ -89,6 +89,13 @@ export const FontSize: Story = {
   render: (args) => <WizMenuItem {...args} />,
 };
 
+export const Selected: Story = {
+  args: {
+    label: "テスト",
+    selected: true,
+  },
+};
+
 export const Tag: Story = {
   args: {
     label: "テスト",

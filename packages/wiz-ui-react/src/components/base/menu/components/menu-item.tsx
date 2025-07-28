@@ -32,6 +32,7 @@ type Props = BaseProps & {
   clickable?: boolean;
   expand?: boolean;
   fontSize?: FontSizeKeys;
+  selected?: boolean;
   tagLabel?: string;
   tagIcon?: TIcon;
   tagVariant?: TagVariant;
@@ -48,6 +49,7 @@ const MenuItem = forwardRef(
       clickable = true,
       expand,
       fontSize = "md",
+      selected,
       tagLabel,
       tagIcon,
       tagVariant = "info",
@@ -71,6 +73,7 @@ const MenuItem = forwardRef(
 
     function getVariant() {
       if (!clickable) return "disabled";
+      if (selected) return "selected";
       if (active || isPressed) return "active";
       if (isHover) return "hover";
       return "default";
