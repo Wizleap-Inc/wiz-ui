@@ -15,8 +15,16 @@ import {
   useState,
 } from "react";
 
-import { WizHStack, WizIChevronRight, WizIcon } from "@/components";
+import {
+  TIcon,
+  WizHStack,
+  WizIChevronRight,
+  WizIcon,
+  WizTag,
+} from "@/components";
 import { BaseProps } from "@/types";
+
+import { TagVariant } from "../../tag/types";
 type Props = BaseProps & {
   label: string;
   width?: string;
@@ -24,6 +32,9 @@ type Props = BaseProps & {
   clickable?: boolean;
   expand?: boolean;
   fontSize?: FontSizeKeys;
+  tagLabel?: string;
+  tagIcon?: TIcon;
+  tagVariant?: TagVariant;
 } & ComponentProps<"div">;
 
 const MenuItem = forwardRef(
@@ -37,6 +48,9 @@ const MenuItem = forwardRef(
       clickable = true,
       expand,
       fontSize = "md",
+      tagLabel,
+      tagIcon,
+      tagVariant = "info",
       onMouseOver,
       onMouseLeave,
       onMouseDown,
@@ -106,6 +120,8 @@ const MenuItem = forwardRef(
       }
     };
 
+    const tagFontSize = fontSize === "xl5" || fontSize === "xl6" ? "md" : "xs";
+
     return (
       <div
         ref={ref}
@@ -129,7 +145,20 @@ const MenuItem = forwardRef(
       >
         <WizHStack align="center" justify="between">
           <div className={fontSizeStyle[fontSize]}>{label}</div>
-          <WizIcon size="xl2" icon={WizIChevronRight} color={iconColor} />
+          <WizHStack align="center" gap="xs">
+            {tagLabel && (
+              <div className={styles.menuItemTagStyle}>
+                <WizTag
+                  label={tagLabel}
+                  icon={tagIcon}
+                  variant={tagVariant}
+                  fontSize={tagFontSize}
+                  fontWeight="bold"
+                />
+              </div>
+            )}
+            <WizIcon size="xl2" icon={WizIChevronRight} color={iconColor} />
+          </WizHStack>
         </WizHStack>
       </div>
     );

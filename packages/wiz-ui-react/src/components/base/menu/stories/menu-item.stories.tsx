@@ -88,3 +88,11 @@ export const FontSize: Story = {
   },
   render: (args) => <WizMenuItem {...args} />,
 };
+
+export const Tag: Story = {
+  args: {
+    label: "テスト",
+    tagLabel: "Tags",
+    tagVariant: "green",
+  },
+};
