@@ -13,22 +13,12 @@ import clsx from "clsx";
 import { ComponentProps, ForwardedRef, forwardRef } from "react";
 
 import { TIcon, WizIcon } from "@/components";
+
+import { TagVariant } from "../types";
 type Props = {
   label: string;
   icon?: TIcon;
-  variant?:
-    | "info"
-    | "red"
-    | "redFill"
-    | "green"
-    | "yellow"
-    | "yellowFill"
-    | "blue"
-    | "mono"
-    | "gray"
-    | "darkGray"
-    | "greenFill"
-    | "white";
+  variant?: TagVariant;
   fontSize?: FontSizeKeys;
   fontWeight?: FontWeightKeys;
   round?: boolean;
