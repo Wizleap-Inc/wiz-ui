@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.47.0
+
+### Minor Changes
+
+- [#1515](https://github.com/Wizleap-Inc/wiz-ui/pull/1515) [`85d9dff`](https://github.com/Wizleap-Inc/wiz-ui/commit/85d9dff94fafccf8791b6d2ff7dfc14c43b4b7b0) Thanks [@mazyutyu](https://github.com/mazyutyu)! - MenuItem に Tag を追加できるように
+
 ## 0.46.0
 
 ### Minor Changes
