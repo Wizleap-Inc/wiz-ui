@@ -128,3 +128,10 @@ Selected.args = {
   label: "テスト",
   selected: true,
 };
+
+export const Tag = Template.bind({});
+Tag.args = {
+  label: "テスト",
+  tagLabel: "Tags",
+  tagVariant: "green",
+};
