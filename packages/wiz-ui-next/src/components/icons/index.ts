@@ -68,6 +68,7 @@ import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIEditPencilBold } from "./edit-pencil-bold.vue";
 import { default as WizIEmergencyHome } from "./emergency-home.vue";
+import { default as WizIErrorBold } from "./error-bold.vue";
 import { default as WizIErrorFilled } from "./error-filled.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
@@ -96,6 +97,7 @@ import { default as WizIMail } from "./mail.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
+import { default as WizIMergeTypeBold } from "./merge-type-bold.vue";
 import { default as WizIMicBold } from "./mic-bold.vue";
 import { default as WizIMinusFilled } from "./minus-filled.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
@@ -205,6 +207,7 @@ export type TIcon =
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
+  | typeof WizIErrorBold
   | typeof WizIErrorFilled
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
@@ -233,6 +236,7 @@ export type TIcon =
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
+  | typeof WizIMergeTypeBold
   | typeof WizIMicBold
   | typeof WizIMinusFilled
   | typeof WizIMonitoring
@@ -342,6 +346,7 @@ export {
   WizIEditNote,
   WizIEditPencilBold,
   WizIEmergencyHome,
+  WizIErrorBold,
   WizIErrorFilled,
   WizIExpandLess,
   WizIExpandMoreBold,
@@ -370,6 +375,7 @@ export {
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
+  WizIMergeTypeBold,
   WizIMicBold,
   WizIMinusFilled,
   WizIMonitoring,

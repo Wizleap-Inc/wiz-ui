@@ -68,6 +68,7 @@ import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
 import { WizIEditPencilBold } from "./edit-pencil-bold";
 import { WizIEmergencyHome } from "./emergency-home";
+import { WizIErrorBold } from "./error-bold";
 import { WizIErrorFilled } from "./error-filled";
 import { WizIExpandLess } from "./expand-less";
 import { WizIExpandMore } from "./expand-more";
@@ -96,6 +97,7 @@ import { WizIMailBold } from "./mail-bold";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
+import { WizIMergeTypeBold } from "./merge-type-bold";
 import { WizIMicBold } from "./mic-bold";
 import { WizIMinusFilled } from "./minus-filled";
 import { WizIMonitoring } from "./monitoring";
@@ -205,6 +207,7 @@ export type TIcon =
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
+  | typeof WizIErrorBold
   | typeof WizIErrorFilled
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
@@ -233,6 +236,7 @@ export type TIcon =
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
+  | typeof WizIMergeTypeBold
   | typeof WizIMicBold
   | typeof WizIMinusFilled
   | typeof WizIMonitoring
@@ -342,6 +346,7 @@ export {
   WizIEditNote,
   WizIEditPencilBold,
   WizIEmergencyHome,
+  WizIErrorBold,
   WizIErrorFilled,
   WizIExpandLess,
   WizIExpandMoreBold,
@@ -370,6 +375,7 @@ export {
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
+  WizIMergeTypeBold,
   WizIMicBold,
   WizIMinusFilled,
   WizIMonitoring,

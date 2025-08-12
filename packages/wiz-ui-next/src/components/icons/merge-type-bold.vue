@@ -1,0 +1,20 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="1em"
+    viewBox="0 -960 960 960"
+    width="1em"
+  >
+    <path
+      d="M692-300q-11 11-28 11t-28-11L480-455q-11-11-17-25.5t-6-30.5v-273l-77 76q-12 12-28.5 12T323-708q-12-12-12-28.5t12-28.5l147-147q6-6 13-8.5t15-2.5q8 0 15 2.5t13 8.5l147 144q12 12 12 28.5T673-711q-12 12-28.5 11.5T616-712l-76-76v252l152 152q11 11 11 28t-11 28Zm-424-1q-12-12-11.5-28.5T269-358l71-70q12-12 28.5-12t28.5 12q12 12 11.5 28.5T396-371l-71 70q-11 11-27.5 11T268-301Z"
+    />
+  </svg>
+</template>
+
+<script setup lang="ts">
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+
+defineOptions({
+  name: ComponentName.IMergeTypeBold,
+});
+</script>
