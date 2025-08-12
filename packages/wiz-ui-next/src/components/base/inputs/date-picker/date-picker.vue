@@ -39,7 +39,10 @@
       :is-direction-fixed="isDirectionFixed"
       @on-close="onClose"
     >
-      <div :class="datePickerSelectorStyle">
+      <div
+        :id="attrs.id ? `date-picker-popup-${attrs.id}` : undefined"
+        :class="datePickerSelectorStyle"
+      >
         <WizHStack align="center" my="xs2" justify="between">
           <WizHStack align="center" pl="xs" gap="xs">
             <WizHStack align="center" gap="xs2">
@@ -153,7 +156,7 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, computed, inject, ref } from "vue";
+import { PropType, computed, inject, ref, useAttrs } from "vue";
 
 import {
   WizCalendar,
@@ -253,6 +256,7 @@ const props = defineProps({
 
 const emit = defineEmits<Emit>();
 
+const attrs = useAttrs();
 const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 

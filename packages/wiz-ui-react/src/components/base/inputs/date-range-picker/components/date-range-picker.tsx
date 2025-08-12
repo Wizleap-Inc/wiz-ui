@@ -231,6 +231,8 @@ const DateRangePicker: FC<Props> = ({
     onChangeDateRange?.(tempDateRange);
     setIsOpen(false);
   };
+
+  const { id } = props;
   return (
     <>
       <button
@@ -303,7 +305,7 @@ const DateRangePicker: FC<Props> = ({
         isDirectionFixed={isDirectionFixed}
         anchorElement={anchor}
       >
-        <WizCard p="no">
+        <WizCard p="no" id={id ? `date-range-picker-popup-${id}` : undefined}>
           <div className={styles.popupStyle}>
             {selectBoxOptions && (
               <div className={styles.popupHeaderStyle}>
