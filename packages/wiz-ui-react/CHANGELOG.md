@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.17.0
+
+### Minor Changes
+
+- [#1519](https://github.com/Wizleap-Inc/wiz-ui/pull/1519) [`6d6b9ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d6b9ca3171de18b8460cdc3843c9077d14d824d) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - DatepickerのPopupにユニークなIDを付与する
+
+- [#1520](https://github.com/Wizleap-Inc/wiz-ui/pull/1520) [`fd6e570`](https://github.com/Wizleap-Inc/wiz-ui/commit/fd6e57013c2f13010c93e07e25b7be91be631b8a) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - アイコン追加: WizIMergeTypeBold, WizIErrorBold
+
 ## 2.16.0
 
 ### Minor Changes
