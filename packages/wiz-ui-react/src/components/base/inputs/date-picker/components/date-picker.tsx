@@ -145,6 +145,8 @@ const DatePicker: FC<Props> = ({
     setIsOpen(false);
   };
 
+  const { id } = props;
+
   return (
     <>
       <button
@@ -192,7 +194,10 @@ const DatePicker: FC<Props> = ({
         isDirectionFixed={isDirectionFixed}
         anchorElement={wrapperButtonRef}
       >
-        <div className={styles.datePickerSelectorStyle}>
+        <div
+          id={id ? `date-picker-popup-${id}` : undefined}
+          className={styles.datePickerSelectorStyle}
+        >
           <WizHStack align="center" my="xs2" justify="between">
             <WizHStack align="center" pl="xs" gap="xs">
               <WizHStack align="center" gap="xs2">

@@ -57,7 +57,10 @@
       :is-direction-fixed="isDirectionFixed"
       @on-close="onClose"
     >
-      <WizCard p="no">
+      <WizCard
+        :id="attrs.id ? `date-range-picker-popup-${attrs.id}` : undefined"
+        p="no"
+      >
         <div :class="styles.popupStyle">
           <div v-if="selectBoxOptions" :class="styles.popupHeaderStyle">
             <div
@@ -170,7 +173,7 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, inject, PropType, ref } from "vue";
+import { computed, inject, PropType, ref, useAttrs } from "vue";
 
 import {
   WizCalendar,
@@ -274,6 +277,7 @@ const props = defineProps({
 
 const emit = defineEmits<Emit>();
 
+const attrs = useAttrs();
 const computedWidth = computed(() => (props.expand ? "100%" : props.width));
 
 const isSelectBoxOpen = ref(false);
