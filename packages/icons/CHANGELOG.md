@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.31.0
+
+### Minor Changes
+
+- [#1520](https://github.com/Wizleap-Inc/wiz-ui/pull/1520) [`fd6e570`](https://github.com/Wizleap-Inc/wiz-ui/commit/fd6e57013c2f13010c93e07e25b7be91be631b8a) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - アイコン追加: WizIMergeTypeBold, WizIErrorBold
+
 ## 0.30.0
 
 ### Minor Changes
