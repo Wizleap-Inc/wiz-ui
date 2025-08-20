@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.40.0
+
+### Minor Changes
+
+- [#1524](https://github.com/Wizleap-Inc/wiz-ui/pull/1524) [`9deb544`](https://github.com/Wizleap-Inc/wiz-ui/commit/9deb5444a7d98ac7842d91451d739cd93ca3f420) Thanks [@k-tada](https://github.com/k-tada)! - アイコン追加: WizIRecordVoiceOverBold
+
 ## 0.39.0
 
 ### Minor Changes
