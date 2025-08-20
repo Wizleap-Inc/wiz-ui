@@ -113,6 +113,7 @@ import { WizIPinDrop } from "./pin-drop";
 import { WizIPlayArrowFilled } from "./play-arrow-filled";
 import { WizIPlayCircleBold } from "./play-circle-bold";
 import { WizIPublic } from "./public";
+import { WizIRecordVoiceOverBold } from "./record-voice-over-bold";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
 import { WizIReviews } from "./reviews";
@@ -252,6 +253,7 @@ export type TIcon =
   | typeof WizIPlayArrowFilled
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
+  | typeof WizIRecordVoiceOverBold
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
@@ -391,6 +393,7 @@ export {
   WizIPlayArrowFilled,
   WizIPlayCircleBold,
   WizIPublic,
+  WizIRecordVoiceOverBold,
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,
