@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.18.0
+
+### Minor Changes
+
+- [#1524](https://github.com/Wizleap-Inc/wiz-ui/pull/1524) [`9deb544`](https://github.com/Wizleap-Inc/wiz-ui/commit/9deb5444a7d98ac7842d91451d739cd93ca3f420) Thanks [@k-tada](https://github.com/k-tada)! - アイコン追加: WizIRecordVoiceOverBold
+
+### Patch Changes
+
+- Updated dependencies [[`9deb544`](https://github.com/Wizleap-Inc/wiz-ui/commit/9deb5444a7d98ac7842d91451d739cd93ca3f420)]:
+  - @wizleap-inc/wiz-ui-constants@0.40.0
+  - @wizleap-inc/wiz-ui-styles@0.47.1
+
 ## 3.17.0
 
 ### Minor Changes
