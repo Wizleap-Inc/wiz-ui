@@ -113,6 +113,7 @@ import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIPlayArrowFilled } from "./play-arrow-filled.vue";
 import { default as WizIPlayCircleBold } from "./play-circle-bold.vue";
 import { default as WizIPublic } from "./public.vue";
+import { default as WizIRecordVoiceOverBold } from "./record-voice-over-bold.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizIReviews } from "./reviews.vue";
@@ -252,6 +253,7 @@ export type TIcon =
   | typeof WizIPlayArrowFilled
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
+  | typeof WizIRecordVoiceOverBold
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
@@ -391,6 +393,7 @@ export {
   WizIPlayArrowFilled,
   WizIPlayCircleBold,
   WizIPublic,
+  WizIRecordVoiceOverBold,
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,

@@ -114,6 +114,7 @@ export const IconComponentName = {
   IPlayArrowFilled: "WizIPlayArrowFilled",
   IPlayCircleBold: "WizIPlayCircleBold",
   IPublic: "WizIPublic",
+  IRecordVoiceOverBold: "WizIRecordVoiceOverBold",
   IRemoveBold: "WizIRemoveBold",
   IRemove: "WizIRemove",
   IReviews: "WizIReviews",
