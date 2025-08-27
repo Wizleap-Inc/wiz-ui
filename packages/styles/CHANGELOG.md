@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.49.0
+
+### Minor Changes
+
+- [#1531](https://github.com/Wizleap-Inc/wiz-ui/pull/1531) [`358f27a`](https://github.com/Wizleap-Inc/wiz-ui/commit/358f27a0ff708cb6c75e2614dcffa6a03573eda1) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - lineコンポーネント size: mdのstyleを微調整
+
 ## 0.48.0
 
 ### Minor Changes
