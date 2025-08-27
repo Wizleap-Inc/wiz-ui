@@ -1,5 +1,18 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.19.0
+
+### Minor Changes
+
+- [#1529](https://github.com/Wizleap-Inc/wiz-ui/pull/1529) [`214102d`](https://github.com/Wizleap-Inc/wiz-ui/commit/214102d3347154d2f545262423fcfcebb7d5c28d) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Cardにhexpandプロパティを追加して、縦幅100％を実現できるようにする
+
+- [#1528](https://github.com/Wizleap-Inc/wiz-ui/pull/1528) [`dab046b`](https://github.com/Wizleap-Inc/wiz-ui/commit/dab046bb1c70e8d54b9ec140ab2b2c819f790afb) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - LineコンポーネントにsizeとactiveColorプロパティを追加
+
+### Patch Changes
+
+- Updated dependencies [[`214102d`](https://github.com/Wizleap-Inc/wiz-ui/commit/214102d3347154d2f545262423fcfcebb7d5c28d), [`dab046b`](https://github.com/Wizleap-Inc/wiz-ui/commit/dab046bb1c70e8d54b9ec140ab2b2c819f790afb)]:
+  - @wizleap-inc/wiz-ui-styles@0.48.0
+
 ## 3.18.0
 
 ### Minor Changes
