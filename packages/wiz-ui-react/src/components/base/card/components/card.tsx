@@ -26,6 +26,7 @@ type Props = BaseProps & {
   borderColor?: ColorKeys;
   align?: "start" | "center" | "end" | "stretch";
   fit?: boolean;
+  hexpand?: boolean;
   maxWidth?: string;
   gap?: SpacingKeys;
   children?: ReactNode;
@@ -45,6 +46,7 @@ const Card = ({
   border,
   align = "end",
   fit,
+  hexpand,
   maxWidth,
   gap = "md",
   children,
@@ -61,6 +63,7 @@ const Card = ({
         className,
         styles.cardStyle,
         fit && styles.cardFitStyle,
+        hexpand && styles.cardHexpandStyle,
         shadow && styles.cardShadowStyle,
         border && styles.cardBorderStyle,
         px && paddingXStyle[px],
@@ -74,7 +77,12 @@ const Card = ({
         borderColor: border ? getColorCss(borderColor) : undefined,
       }}
     >
-      <WizVStack gap={gap} align={align} nowrap={true}>
+      <WizVStack
+        gap={gap}
+        align={align}
+        nowrap={true}
+        height={hexpand ? "100%" : "auto"}
+      >
         {(mainHeaderArea || subHeaderArea) && (
           <div className={styles.cardHeaderStyle}>
             <div>{mainHeaderArea}</div>

@@ -3,6 +3,7 @@
     :class="[
       cardStyle,
       fit && cardFitStyle,
+      hexpand && cardHexpandStyle,
       shadow && cardShadowStyle,
       border && cardBorderStyle,
       px && paddingXStyle[px],
@@ -15,7 +16,7 @@
       borderColor: border ? getColorCss(borderColor) : undefined,
     }"
   >
-    <WizVStack :gap="gap" :align="align">
+    <WizVStack :gap="gap" :align="align" :height="hexpand ? '100%' : 'auto'">
       <div
         v-if="$slots.mainHeaderArea || $slots.subHeaderArea"
         :class="cardHeaderStyle"
@@ -48,6 +49,7 @@ import {
   cardBodyStyle,
   cardBorderStyle,
   cardFitStyle,
+  cardHexpandStyle,
   cardHeaderStyle,
   cardShadowStyle,
   cardStyle,
@@ -104,6 +106,10 @@ defineProps({
     default: "end",
   },
   fit: {
+    type: Boolean,
+    required: false,
+  },
+  hexpand: {
     type: Boolean,
     required: false,
   },
