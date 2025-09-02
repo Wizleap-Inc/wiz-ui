@@ -99,6 +99,7 @@ import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
 import { WizIMergeTypeBold } from "./merge-type-bold";
 import { WizIMicBold } from "./mic-bold";
+import { WizIMicFilled } from "./mic-filled";
 import { WizIMinusFilled } from "./minus-filled";
 import { WizIMonitoring } from "./monitoring";
 import { WizIMoreVert } from "./more-vert";
@@ -239,6 +240,7 @@ export type TIcon =
   | typeof WizIMenu
   | typeof WizIMergeTypeBold
   | typeof WizIMicBold
+  | typeof WizIMicFilled
   | typeof WizIMinusFilled
   | typeof WizIMonitoring
   | typeof WizIMoreVertBold
@@ -379,6 +381,7 @@ export {
   WizIMenu,
   WizIMergeTypeBold,
   WizIMicBold,
+  WizIMicFilled,
   WizIMinusFilled,
   WizIMonitoring,
   WizIMoreVertBold,
