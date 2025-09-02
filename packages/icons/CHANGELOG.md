@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.32.0
+
+### Minor Changes
+
+- [#1534](https://github.com/Wizleap-Inc/wiz-ui/pull/1534) [`af6146e`](https://github.com/Wizleap-Inc/wiz-ui/commit/af6146ecaa0db3527916db726493da26f12d9d66) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): WizIMicFilledを追加
+
 ## 0.31.0
 
 ### Minor Changes

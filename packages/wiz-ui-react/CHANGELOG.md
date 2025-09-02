@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.21.0
+
+### Minor Changes
+
+- [#1534](https://github.com/Wizleap-Inc/wiz-ui/pull/1534) [`af6146e`](https://github.com/Wizleap-Inc/wiz-ui/commit/af6146ecaa0db3527916db726493da26f12d9d66) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): WizIMicFilledを追加
+
+### Patch Changes
+
+- Updated dependencies [[`af6146e`](https://github.com/Wizleap-Inc/wiz-ui/commit/af6146ecaa0db3527916db726493da26f12d9d66)]:
+  - @wizleap-inc/wiz-ui-constants@0.41.0
+  - @wizleap-inc/wiz-ui-styles@0.49.1
+
 ## 2.20.0
 
 ### Minor Changes
