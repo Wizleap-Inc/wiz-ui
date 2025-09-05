@@ -3,7 +3,7 @@
     <WizText
       v-if="content.username"
       as="span"
-      fontSize="xs2"
+      font-size="xs2"
       color="gray.600"
       >{{ content.username }}</WizText
     >
@@ -13,27 +13,27 @@
         fit
         px="md"
         py="xs"
-        borderColor="gray.300"
-        :maxWidth="maxChatItemWidth"
+        border-color="gray.300"
+        :max-width="maxChatItemWidth"
       >
         <template v-for="(part, i) in linkify(content.message)">
           <WizAnchor
             v-if="part.type === 'link'"
-            :to="part.content"
             :key="'anchor' + i"
+            :to="part.content"
             target="_blank"
-            fontSize="xs"
+            font-size="xs"
           >
             {{ part.content }}
           </WizAnchor>
           <WizText
             v-else
-            as="span"
-            fontSize="xs"
-            color="gray.700"
-            whiteSpace="preLine"
-            breakAll
             :key="'text' + i"
+            as="span"
+            font-size="xs"
+            color="gray.700"
+            white-space="preLine"
+            break-all
           >
             {{ part.content }}
           </WizText>
@@ -44,16 +44,16 @@
           <WizText
             v-if="content.readers !== undefined"
             as="span"
-            fontSize="xs2"
+            font-size="xs2"
             color="gray.500"
           >
             {{ displayReadStatus }}
           </WizText>
-          <template #content v-if="content.readers?.length">
+          <template v-if="content.readers?.length" #content>
             {{ content.readers?.join("\n") }}
           </template>
         </WizTooltip>
-        <WizText as="span" fontSize="xs2" color="gray.500">{{
+        <WizText as="span" font-size="xs2" color="gray.500">{{
           formatDateToTime(content.time)
         }}</WizText>
       </WizVStack>

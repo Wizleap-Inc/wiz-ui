@@ -24,6 +24,10 @@ export const cardFitStyle = style({
   width: "fit-content",
 });
 
+export const cardHexpandStyle = style({
+  height: "100%",
+});
+
 export const cardHeaderStyle = style({
   display: "flex",
   justifyContent: "space-between",

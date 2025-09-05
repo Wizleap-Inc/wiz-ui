@@ -1,5 +1,46 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.49.1
+
+### Patch Changes
+
+- Updated dependencies [[`af6146e`](https://github.com/Wizleap-Inc/wiz-ui/commit/af6146ecaa0db3527916db726493da26f12d9d66)]:
+  - @wizleap-inc/wiz-ui-constants@0.41.0
+
+## 0.49.0
+
+### Minor Changes
+
+- [#1531](https://github.com/Wizleap-Inc/wiz-ui/pull/1531) [`358f27a`](https://github.com/Wizleap-Inc/wiz-ui/commit/358f27a0ff708cb6c75e2614dcffa6a03573eda1) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - lineコンポーネント size: mdのstyleを微調整
+
+## 0.48.0
+
+### Minor Changes
+
+- [#1529](https://github.com/Wizleap-Inc/wiz-ui/pull/1529) [`214102d`](https://github.com/Wizleap-Inc/wiz-ui/commit/214102d3347154d2f545262423fcfcebb7d5c28d) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Cardにhexpandプロパティを追加して、縦幅100％を実現できるようにする
+
+- [#1528](https://github.com/Wizleap-Inc/wiz-ui/pull/1528) [`dab046b`](https://github.com/Wizleap-Inc/wiz-ui/commit/dab046bb1c70e8d54b9ec140ab2b2c819f790afb) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - LineコンポーネントにsizeとactiveColorプロパティを追加
+
+## 0.47.1
+
+### Patch Changes
+
+- Updated dependencies [[`9deb544`](https://github.com/Wizleap-Inc/wiz-ui/commit/9deb5444a7d98ac7842d91451d739cd93ca3f420)]:
+  - @wizleap-inc/wiz-ui-constants@0.40.0
+
+## 0.47.0
+
+### Minor Changes
+
+- [#1515](https://github.com/Wizleap-Inc/wiz-ui/pull/1515) [`85d9dff`](https://github.com/Wizleap-Inc/wiz-ui/commit/85d9dff94fafccf8791b6d2ff7dfc14c43b4b7b0) Thanks [@mazyutyu](https://github.com/mazyutyu)! - MenuItem に Tag を追加できるように
+
+## 0.46.0
+
+### Minor Changes
+
+- [#1513](https://github.com/Wizleap-Inc/wiz-ui/pull/1513) [`780fa30`](https://github.com/Wizleap-Inc/wiz-ui/commit/780fa303defc522f02dee4ae099c48428ddf55fa) Thanks [@mazyutyu](https://github.com/mazyutyu)! - MessageBox: body の fontSize を 14px に変更
+  MessageBox: short バージョンの追加
+
 ## 0.45.0
 
 ### Minor Changes

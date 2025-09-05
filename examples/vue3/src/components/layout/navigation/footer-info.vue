@@ -3,10 +3,10 @@
     <WizAnchor
       to="https://wizleap.co.jp"
       :icon="WizIOpenInNew"
-      iconPosition="right"
+      icon-position="right"
       color="gray.700"
-      fontSize="sm"
-      openInNewTab
+      font-size="sm"
+      open-in-new-tab
       nowrap
     >
       会社概要
@@ -14,10 +14,10 @@
     <WizAnchor
       to="https://wizleap.co.jp/services/"
       :icon="WizIOpenInNew"
-      iconPosition="right"
+      icon-position="right"
       color="gray.700"
-      fontSize="sm"
-      openInNewTab
+      font-size="sm"
+      open-in-new-tab
       nowrap
     >
       サービス
@@ -25,10 +25,10 @@
     <WizAnchor
       to="https://wizleap.co.jp/news/"
       :icon="WizIOpenInNew"
-      iconPosition="right"
+      icon-position="right"
       color="gray.700"
-      fontSize="sm"
-      openInNewTab
+      font-size="sm"
+      open-in-new-tab
       nowrap
     >
       ニュース

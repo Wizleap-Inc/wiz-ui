@@ -1,11 +1,11 @@
 <template>
-  <div :class="graphBarStyle" ref="graphRef">
-    <span :class="graphBarLabelStyle" ref="labelRef">{{ label }}</span>
+  <div ref="graphRef" :class="graphBarStyle">
+    <span ref="labelRef" :class="graphBarLabelStyle">{{ label }}</span>
     <div
       v-for="bar in bars"
       :key="bar.id"
-      :class="[graphBarItemStyle, bar.bgColorStyle]"
       ref="barRefs"
+      :class="[graphBarItemStyle, bar.bgColorStyle]"
       :style="{
         height: `${bar.y * 100}%`,
         width: `${barWidth * (1 - barGap) * 100}%`,
@@ -13,9 +13,9 @@
       }"
     >
       <span
-        :class="[graphBarNumberStyle, bar.numberColorStyle]"
         v-if="bar.y !== 0"
         ref="barFrequencyRefs"
+        :class="[graphBarNumberStyle, bar.numberColorStyle]"
       >
         {{ bar.frequency }}
       </span>

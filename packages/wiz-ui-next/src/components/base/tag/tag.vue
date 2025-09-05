@@ -42,6 +42,7 @@ import { PropType } from "vue";
 
 import { WizIcon } from "@/components/base";
 import type { TIcon } from "@/components/icons";
+import { TagVariant } from "./types";
 
 defineOptions({
   name: ComponentName.Tag,
@@ -57,20 +58,7 @@ defineProps({
     required: false,
   },
   variant: {
-    type: String as PropType<
-      | "info"
-      | "red"
-      | "redFill"
-      | "green"
-      | "yellow"
-      | "yellowFill"
-      | "blue"
-      | "mono"
-      | "gray"
-      | "darkGray"
-      | "greenFill"
-      | "white"
-    >,
+    type: String as PropType<TagVariant>,
     required: false,
     default: "info",
   },

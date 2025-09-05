@@ -6,9 +6,9 @@
     <div :class="PollStyle">
       <Bar
         v-if="barPercentage !== undefined"
-        :isColorFixed="isColorFixed"
-        :barPercentage="barPercentage"
-        :innerLabel="innerLabel"
+        :is-color-fixed="isColorFixed"
+        :bar-percentage="barPercentage"
+        :inner-label="innerLabel"
       />
     </div>
   </div>

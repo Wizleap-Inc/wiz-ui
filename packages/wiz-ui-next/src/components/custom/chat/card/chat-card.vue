@@ -1,5 +1,6 @@
 <template>
   <WizBox
+    ref="floatChatCardRef"
     position="fixed"
     :bottom="
       isOpen
@@ -9,8 +10,7 @@
     right="1.5rem"
     width="20rem"
     :transition="`bottom ${canAnimate ? '0.3s' : '0s'} ease-in-out`"
-    ref="floatChatCardRef"
-    zIndex="floating"
+    z-index="floating"
   >
     <WizCard shadow align="stretch">
       <template #mainHeaderArea>
@@ -22,7 +22,7 @@
             v-if="haveNewMessage"
             :width="THEME.fontSize.md"
             :height="THEME.fontSize.md"
-            bgColor="red.800"
+            bg-color="red.800"
             round="max"
           />
         </WizHStack>
@@ -35,24 +35,24 @@
         />
       </template>
       <WizDivider />
-      <WizBox overflowY="scroll" ref="chatListRef">
+      <WizBox ref="chatListRef" overflow-y="scroll">
         <WizVStack gap="xs" py="xs" height="320px">
           <template
-            v-for="messages in displayMessages"
-            :key="messages.date.toDateString()"
+            v-for="message in displayMessages"
+            :key="message.date.toDateString()"
           >
             <WizHStack justify="center">
               <WizTag
-                :label="formatDateToMonthDayWeek(messages.date)"
+                :label="formatDateToMonthDayWeek(message.date)"
                 variant="mono"
-                fontSize="xs2"
+                font-size="xs2"
               />
             </WizHStack>
             <WizChatItem
-              v-for="(item, i) in messages.contents"
-              :key="messages.date.toDateString() + i"
+              v-for="(item, i) in message.contents"
+              :key="message.date.toDateString() + i"
               :content="item"
-              maxChatItemWidth="192px"
+              max-chat-item-width="192px"
             />
           </template>
         </WizVStack>
@@ -61,14 +61,14 @@
         <WizVStack width="100%" justify="end" gap="xs">
           <WizChatForm
             v-model="textValue"
-            @submit="onSubmit"
             :placeholder="placeholder"
-            :formRows="formRows"
+            :form-rows="formRows"
+            @submit="onSubmit"
           />
           <WizHStack v-if="status !== undefined && statusOptions !== undefined">
             <WizSelectBox
-              :options="statusOptions"
               v-model="statusValue"
+              :options="statusOptions"
               :placeholder="statusPlaceholder"
               expand
             />
@@ -79,8 +79,13 @@
               }"
             />
           </WizHStack>
-          <WizText v-if="typingUsername" color="gray.600" as="p" fontSize="xs2">
-            <WizText as="span" bold fontSize="xs2" color="gray.700">
+          <WizText
+            v-if="typingUsername"
+            color="gray.600"
+            as="p"
+            font-size="xs2"
+          >
+            <WizText as="span" bold font-size="xs2" color="gray.700">
               {{ typingUsername }}
             </WizText>
             さんが入力しています...
@@ -91,13 +96,13 @@
     <button
       type="button"
       :class="chatCardOpenButtonStyle"
-      @click="toggleDisplay"
       :aria-label="ARIA_LABELS.CHAT_CARD.EXPAND"
+      @click="toggleDisplay"
     />
   </WizBox>
 </template>
 
-<script setup lang="ts" generic="T=number">
+<script setup lang="ts" generic="T = number">
 import {
   ARIA_LABELS,
   ComponentName,

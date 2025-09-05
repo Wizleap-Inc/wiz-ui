@@ -68,6 +68,7 @@ import { default as WizIDrafts } from "./drafts.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIEditPencilBold } from "./edit-pencil-bold.vue";
 import { default as WizIEmergencyHome } from "./emergency-home.vue";
+import { default as WizIErrorBold } from "./error-bold.vue";
 import { default as WizIErrorFilled } from "./error-filled.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
@@ -96,7 +97,9 @@ import { default as WizIMail } from "./mail.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
+import { default as WizIMergeTypeBold } from "./merge-type-bold.vue";
 import { default as WizIMicBold } from "./mic-bold.vue";
+import { default as WizIMicFilled } from "./mic-filled.vue";
 import { default as WizIMinusFilled } from "./minus-filled.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVertBold } from "./more-vert-bold.vue";
@@ -111,6 +114,7 @@ import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIPlayArrowFilled } from "./play-arrow-filled.vue";
 import { default as WizIPlayCircleBold } from "./play-circle-bold.vue";
 import { default as WizIPublic } from "./public.vue";
+import { default as WizIRecordVoiceOverBold } from "./record-voice-over-bold.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizIReviews } from "./reviews.vue";
@@ -205,6 +209,7 @@ export type TIcon =
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
+  | typeof WizIErrorBold
   | typeof WizIErrorFilled
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
@@ -233,7 +238,9 @@ export type TIcon =
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
+  | typeof WizIMergeTypeBold
   | typeof WizIMicBold
+  | typeof WizIMicFilled
   | typeof WizIMinusFilled
   | typeof WizIMonitoring
   | typeof WizIMoreVertBold
@@ -248,6 +255,7 @@ export type TIcon =
   | typeof WizIPlayArrowFilled
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
+  | typeof WizIRecordVoiceOverBold
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
@@ -342,6 +350,7 @@ export {
   WizIEditNote,
   WizIEditPencilBold,
   WizIEmergencyHome,
+  WizIErrorBold,
   WizIErrorFilled,
   WizIExpandLess,
   WizIExpandMoreBold,
@@ -370,7 +379,9 @@ export {
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
+  WizIMergeTypeBold,
   WizIMicBold,
+  WizIMicFilled,
   WizIMinusFilled,
   WizIMonitoring,
   WizIMoreVertBold,
@@ -385,6 +396,7 @@ export {
   WizIPlayArrowFilled,
   WizIPlayCircleBold,
   WizIPublic,
+  WizIRecordVoiceOverBold,
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,

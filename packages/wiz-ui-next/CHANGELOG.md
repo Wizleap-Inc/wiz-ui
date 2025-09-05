@@ -1,5 +1,84 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.21.0
+
+### Minor Changes
+
+- [#1534](https://github.com/Wizleap-Inc/wiz-ui/pull/1534) [`af6146e`](https://github.com/Wizleap-Inc/wiz-ui/commit/af6146ecaa0db3527916db726493da26f12d9d66) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): WizIMicFilledを追加
+
+### Patch Changes
+
+- Updated dependencies [[`af6146e`](https://github.com/Wizleap-Inc/wiz-ui/commit/af6146ecaa0db3527916db726493da26f12d9d66)]:
+  - @wizleap-inc/wiz-ui-constants@0.41.0
+  - @wizleap-inc/wiz-ui-styles@0.49.1
+
+## 3.20.0
+
+### Minor Changes
+
+- [#1531](https://github.com/Wizleap-Inc/wiz-ui/pull/1531) [`358f27a`](https://github.com/Wizleap-Inc/wiz-ui/commit/358f27a0ff708cb6c75e2614dcffa6a03573eda1) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - lineコンポーネント size: mdのstyleを微調整
+
+### Patch Changes
+
+- Updated dependencies [[`358f27a`](https://github.com/Wizleap-Inc/wiz-ui/commit/358f27a0ff708cb6c75e2614dcffa6a03573eda1)]:
+  - @wizleap-inc/wiz-ui-styles@0.49.0
+
+## 3.19.0
+
+### Minor Changes
+
+- [#1529](https://github.com/Wizleap-Inc/wiz-ui/pull/1529) [`214102d`](https://github.com/Wizleap-Inc/wiz-ui/commit/214102d3347154d2f545262423fcfcebb7d5c28d) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Cardにhexpandプロパティを追加して、縦幅100％を実現できるようにする
+
+- [#1528](https://github.com/Wizleap-Inc/wiz-ui/pull/1528) [`dab046b`](https://github.com/Wizleap-Inc/wiz-ui/commit/dab046bb1c70e8d54b9ec140ab2b2c819f790afb) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - LineコンポーネントにsizeとactiveColorプロパティを追加
+
+### Patch Changes
+
+- Updated dependencies [[`214102d`](https://github.com/Wizleap-Inc/wiz-ui/commit/214102d3347154d2f545262423fcfcebb7d5c28d), [`dab046b`](https://github.com/Wizleap-Inc/wiz-ui/commit/dab046bb1c70e8d54b9ec140ab2b2c819f790afb)]:
+  - @wizleap-inc/wiz-ui-styles@0.48.0
+
+## 3.18.0
+
+### Minor Changes
+
+- [#1524](https://github.com/Wizleap-Inc/wiz-ui/pull/1524) [`9deb544`](https://github.com/Wizleap-Inc/wiz-ui/commit/9deb5444a7d98ac7842d91451d739cd93ca3f420) Thanks [@k-tada](https://github.com/k-tada)! - アイコン追加: WizIRecordVoiceOverBold
+
+### Patch Changes
+
+- Updated dependencies [[`9deb544`](https://github.com/Wizleap-Inc/wiz-ui/commit/9deb5444a7d98ac7842d91451d739cd93ca3f420)]:
+  - @wizleap-inc/wiz-ui-constants@0.40.0
+  - @wizleap-inc/wiz-ui-styles@0.47.1
+
+## 3.17.0
+
+### Minor Changes
+
+- [#1519](https://github.com/Wizleap-Inc/wiz-ui/pull/1519) [`6d6b9ca`](https://github.com/Wizleap-Inc/wiz-ui/commit/6d6b9ca3171de18b8460cdc3843c9077d14d824d) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - DatepickerのPopupにユニークなIDを付与する
+
+- [#1520](https://github.com/Wizleap-Inc/wiz-ui/pull/1520) [`fd6e570`](https://github.com/Wizleap-Inc/wiz-ui/commit/fd6e57013c2f13010c93e07e25b7be91be631b8a) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - アイコン追加: WizIMergeTypeBold, WizIErrorBold
+
+## 3.16.0
+
+### Minor Changes
+
+- [#1515](https://github.com/Wizleap-Inc/wiz-ui/pull/1515) [`85d9dff`](https://github.com/Wizleap-Inc/wiz-ui/commit/85d9dff94fafccf8791b6d2ff7dfc14c43b4b7b0) Thanks [@mazyutyu](https://github.com/mazyutyu)! - MenuItem に Tag を追加できるように
+
+### Patch Changes
+
+- Updated dependencies [[`85d9dff`](https://github.com/Wizleap-Inc/wiz-ui/commit/85d9dff94fafccf8791b6d2ff7dfc14c43b4b7b0)]:
+  - @wizleap-inc/wiz-ui-styles@0.47.0
+
+## 3.15.0
+
+### Minor Changes
+
+- [#1513](https://github.com/Wizleap-Inc/wiz-ui/pull/1513) [`780fa30`](https://github.com/Wizleap-Inc/wiz-ui/commit/780fa303defc522f02dee4ae099c48428ddf55fa) Thanks [@mazyutyu](https://github.com/mazyutyu)! - MessageBox: body の fontSize を 14px に変更
+  MessageBox: short バージョンの追加
+
+### Patch Changes
+
+- Updated dependencies [[`780fa30`](https://github.com/Wizleap-Inc/wiz-ui/commit/780fa303defc522f02dee4ae099c48428ddf55fa)]:
+  - @wizleap-inc/wiz-ui-styles@0.46.0
+
 ## 3.14.0
 
 ### Minor Changes

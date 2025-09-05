@@ -1,8 +1,10 @@
-import type { StorybookConfig } from "@storybook/vue3-vite";
-import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import { mergeConfig } from "vite";
+
+import type { StorybookConfig } from "@storybook/vue3-vite";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"],

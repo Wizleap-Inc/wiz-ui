@@ -1,13 +1,13 @@
 <template>
-  <div :class="snackbarControllerStyle" ref="containerRef">
+  <div ref="containerRef" :class="snackbarControllerStyle">
     <WizSnackbar
       v-for="(option, i) in snackbarOptions"
       :key="option.created"
       :expand="option.options?.expand"
       :message="option.message"
-      @delete="option.delete"
       :bottom="`${calcBottom(i)}px`"
       :left="`${md}px`"
+      @delete="option.delete"
     />
   </div>
 </template>

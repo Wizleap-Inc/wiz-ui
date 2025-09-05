@@ -1,9 +1,9 @@
 <template>
   <div :class="[passwordStyle]" :style="{ width: computedWidth }">
     <PrivateBaseInput
+      :id="id"
       v-model="passwordValue"
       :placeholder="placeholder"
-      :id="id"
       :disabled="disabled"
       width="100%"
       :error="isError"
@@ -17,8 +17,8 @@
       type="button"
       :aria-label="ARIA_LABELS.PASSWORD_VISIBLE_TOGGLE"
       :class="passwordVisibleIconStyle"
-      @click="isPasswordVisible = !isPasswordVisible"
       :disabled="disabled"
+      @click="isPasswordVisible = !isPasswordVisible"
     >
       <WizIEye
         :class="

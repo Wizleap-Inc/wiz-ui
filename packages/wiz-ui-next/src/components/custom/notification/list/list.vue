@@ -1,5 +1,5 @@
 <template>
-  <WizBox :height="height" overflowY="scroll">
+  <WizBox :height="height" overflow-y="scroll">
     <template v-if="notifications.length > 0">
       <template v-for="(item, i) in notifications" :key="item.id">
         <WizNotificationPanel
@@ -7,18 +7,18 @@
           :read="item.read"
           :title="item.title"
           :timestamp="item.timestamp"
-          :tableInfo="item.tableInfo"
+          :table-info="item.tableInfo"
           @click="onClick(item.id)"
         />
         <WizDivider
-          :key="'divider' + i"
           v-if="i !== notifications.length - 1"
+          :key="'divider' + i"
         />
       </template>
     </template>
     <template v-else>
       <WizHStack align="center" justify="center" height="100%">
-        <WizText color="gray.600" fontSize="sm">{{ emptyMessage }}</WizText>
+        <WizText color="gray.600" font-size="sm">{{ emptyMessage }}</WizText>
       </WizHStack>
     </template>
   </WizBox>

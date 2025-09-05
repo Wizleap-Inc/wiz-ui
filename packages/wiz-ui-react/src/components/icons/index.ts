@@ -68,6 +68,7 @@ import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
 import { WizIEditPencilBold } from "./edit-pencil-bold";
 import { WizIEmergencyHome } from "./emergency-home";
+import { WizIErrorBold } from "./error-bold";
 import { WizIErrorFilled } from "./error-filled";
 import { WizIExpandLess } from "./expand-less";
 import { WizIExpandMore } from "./expand-more";
@@ -96,7 +97,9 @@ import { WizIMailBold } from "./mail-bold";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
+import { WizIMergeTypeBold } from "./merge-type-bold";
 import { WizIMicBold } from "./mic-bold";
+import { WizIMicFilled } from "./mic-filled";
 import { WizIMinusFilled } from "./minus-filled";
 import { WizIMonitoring } from "./monitoring";
 import { WizIMoreVert } from "./more-vert";
@@ -111,6 +114,7 @@ import { WizIPinDrop } from "./pin-drop";
 import { WizIPlayArrowFilled } from "./play-arrow-filled";
 import { WizIPlayCircleBold } from "./play-circle-bold";
 import { WizIPublic } from "./public";
+import { WizIRecordVoiceOverBold } from "./record-voice-over-bold";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
 import { WizIReviews } from "./reviews";
@@ -205,6 +209,7 @@ export type TIcon =
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
+  | typeof WizIErrorBold
   | typeof WizIErrorFilled
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
@@ -233,7 +238,9 @@ export type TIcon =
   | typeof WizIManageAccounts
   | typeof WizIMenuOpen
   | typeof WizIMenu
+  | typeof WizIMergeTypeBold
   | typeof WizIMicBold
+  | typeof WizIMicFilled
   | typeof WizIMinusFilled
   | typeof WizIMonitoring
   | typeof WizIMoreVertBold
@@ -248,6 +255,7 @@ export type TIcon =
   | typeof WizIPlayArrowFilled
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
+  | typeof WizIRecordVoiceOverBold
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
@@ -342,6 +350,7 @@ export {
   WizIEditNote,
   WizIEditPencilBold,
   WizIEmergencyHome,
+  WizIErrorBold,
   WizIErrorFilled,
   WizIExpandLess,
   WizIExpandMoreBold,
@@ -370,7 +379,9 @@ export {
   WizIManageAccounts,
   WizIMenuOpen,
   WizIMenu,
+  WizIMergeTypeBold,
   WizIMicBold,
+  WizIMicFilled,
   WizIMinusFilled,
   WizIMonitoring,
   WizIMoreVertBold,
@@ -385,6 +396,7 @@ export {
   WizIPlayArrowFilled,
   WizIPlayCircleBold,
   WizIPublic,
+  WizIRecordVoiceOverBold,
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,

@@ -35,17 +35,20 @@
       </WizHStack>
     </button>
     <WizPopup
-      :isOpen="!disabled && isOpen"
-      @onClose="onClose"
-      :isDirectionFixed="isDirectionFixed"
+      :is-open="!disabled && isOpen"
+      :is-direction-fixed="isDirectionFixed"
+      @on-close="onClose"
     >
-      <div :class="datePickerSelectorStyle">
+      <div
+        :id="attrs.id ? `date-picker-popup-${attrs.id}` : undefined"
+        :class="datePickerSelectorStyle"
+      >
         <WizHStack align="center" my="xs2" justify="between">
           <WizHStack align="center" pl="xs" gap="xs">
             <WizHStack align="center" gap="xs2">
               <WizText
                 as="span"
-                fontSize="xs"
+                font-size="xs"
                 line-height="lg"
                 color="gray.800"
               >
@@ -82,7 +85,7 @@
                 </button>
               </WizVStack>
             </WizHStack>
-            <WizText as="span" fontSize="xs" color="gray.800">
+            <WizText as="span" font-size="xs" color="gray.800">
               {{ currentDateTitle }}
             </WizText>
           </WizHStack>
@@ -106,7 +109,7 @@
           </div>
         </WizHStack>
         <WizCalendar
-          :activeDates="
+          :active-dates="
             tempDate
               ? [
                   {
@@ -116,15 +119,15 @@
                 ]
               : []
           "
-          @click="handleClickCalendar"
-          :currentMonth="currentMonth"
-          filledWeeks
-          :disabledDate="disabledDate"
+          :current-month="currentMonth"
+          filled-weeks
+          :disabled-date="disabledDate"
           :_today="_today || new Date()"
+          @click="handleClickCalendar"
         />
         <WizDivider color="gray.300" />
         <WizHStack p="sm" gap="sm" justify="end">
-          <WizTextButton @click="onClose" variant="sub">
+          <WizTextButton variant="sub" @click="onClose">
             {{ ARIA_LABELS.CANCEL }}
           </WizTextButton>
           <WizTextButton @click="onSubmit">
@@ -153,7 +156,7 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, computed, inject, ref } from "vue";
+import { PropType, computed, inject, ref, useAttrs } from "vue";
 
 import {
   WizCalendar,
@@ -253,6 +256,7 @@ const props = defineProps({
 
 const emit = defineEmits<Emit>();
 
+const attrs = useAttrs();
 const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 

@@ -96,7 +96,7 @@ const NavigationItem = <T extends ElementType>({
   const isExternalLink = !!href?.startsWith("http");
   const linkProps = isAnchor
     ? {
-        href: disabled ? undefined : href ?? "",
+        href: disabled ? undefined : (href ?? ""),
         target: !disabled && isExternalLink ? "_blank" : undefined,
       }
     : {

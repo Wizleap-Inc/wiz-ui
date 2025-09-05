@@ -1,9 +1,9 @@
 <template>
-  <div :class="graphBarStyle" ref="barRef">
+  <div ref="barRef" :class="graphBarStyle">
     <span :class="graphBarLabelStyle">{{ label }}</span>
     <div
-      :class="graphBarTransitionStyle"
       ref="barTransitionRef"
+      :class="graphBarTransitionStyle"
       :style="{
         display: isFirst ? 'none' : 'block',
         height: `${
@@ -16,8 +16,8 @@
       }"
     >
       <div
-        :class="graphBarTransitionLineStyle"
         ref="barTransitionLineRef"
+        :class="graphBarTransitionLineStyle"
         :style="{
           display: frequency === 0 && lastFrequency === 0 ? 'none' : 'block',
           transformOrigin:
@@ -25,7 +25,7 @@
           top: transitionRelativeFrequency <= 0 ? '0' : '100%',
         }"
       ></div>
-      <div :class="graphBarTransitionLabelStyle" ref="barTransitionLabelRef">
+      <div ref="barTransitionLabelRef" :class="graphBarTransitionLabelStyle">
         {{
           frequency === 0 && lastFrequency === 0
             ? "―"
@@ -40,14 +40,14 @@
       :style="{ height: `${lastAbsoluteFrequency * 100}%` }"
     ></div>
     <div
-      :class="[graphBarItemStyle, graphBarItemIndexStyle['current']]"
       ref="barItemCurrentRef"
+      :class="[graphBarItemStyle, graphBarItemIndexStyle['current']]"
       :style="{ height: `${currentAbsoluteFrequency * 100}%` }"
     >
       <span
-        :class="graphBarNumberStyle"
-        ref="barItemCurrentFrequencyRef"
         v-if="frequency !== 0"
+        ref="barItemCurrentFrequencyRef"
+        :class="graphBarNumberStyle"
       >
         {{ frequency }}
       </span>

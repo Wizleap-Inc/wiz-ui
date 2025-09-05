@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryFn } from "@storybook/vue3";
 import { provide } from "vue";
 

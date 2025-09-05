@@ -9,14 +9,14 @@
     <WizVStack width="100%" justify="end" gap="xs">
       <WizChatForm
         v-model="textValue"
-        @submit="onSubmit"
         :placeholder="placeholder"
-        :formRows="formRows"
+        :form-rows="formRows"
+        @submit="onSubmit"
       />
       <WizHStack v-if="status !== undefined && statusOptions !== undefined">
         <WizSelectBox
-          :options="statusOptions"
           v-model="statusValue"
+          :options="statusOptions"
           :placeholder="statusPlaceholder"
           expand
         />
@@ -27,8 +27,8 @@
           }"
         />
       </WizHStack>
-      <WizText v-if="typingUsername" color="gray.600" as="p" fontSize="xs2">
-        <WizText as="span" bold fontSize="xs2" color="gray.700">
+      <WizText v-if="typingUsername" color="gray.600" as="p" font-size="xs2">
+        <WizText as="span" bold font-size="xs2" color="gray.700">
           {{ typingUsername }}
         </WizText>
         さんが入力しています...

@@ -30,14 +30,15 @@
         >
         <WizPopupButtonGroup
           :options="item.item.items"
-          :groupDivider="item.item.groupDivider"
-          :buttonDivider="item.item.buttonDivider"
+          :group-divider="item.item.groupDivider"
+          :button-divider="item.item.buttonDivider"
           :disabled="disabled"
           :depth="depth + 1"
         />
       </div>
       <div v-else-if="item.item.kind === 'button'">
         <div
+          :key="`${item.item.option.label}-${item.item.option.value}`"
           :class="[
             popupButtonGroupButtonBaseStyle,
             disabled || item.item.option.disabled
@@ -48,14 +49,13 @@
           :style="{
             paddingLeft: `calc(${THEME.spacing.xs2} + ${depth} * ${THEME.spacing.lg})`,
           }"
+          :tabIndex="0"
           :aria-label="`popup-button-group-${item.item.option.label}`"
           @click="popupButtonMouseDown(item.item)"
           @mouseover="popupButtonMouseOver(item.item)"
           @mouseout="popupButtonMouseOut(item.item)"
           @mousedown="onHoldClick(item.item)"
           @keypress.enter="popupButtonKeyPressEnter(item.item)"
-          :tabIndex="0"
-          :key="`${item.item.option.label}-${item.item.option.value}`"
         >
           <span :class="popupButtonGroupInnerContainerStyle">
             <span>{{ item.item.option.label }}</span>
@@ -66,10 +66,10 @@
                 item.item.option.value === isClicking
                   ? 'white.800'
                   : disabled || item.item.option.disabled
-                  ? 'gray.400'
-                  : item.item.option.value === isHover
-                  ? 'green.800'
-                  : item.item.option.iconDefaultColor ?? 'gray.500'
+                    ? 'gray.400'
+                    : item.item.option.value === isHover
+                      ? 'green.800'
+                      : (item.item.option.iconDefaultColor ?? 'gray.500')
               "
               size="md"
             />

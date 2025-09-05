@@ -1,5 +1,5 @@
 <template>
-  <div :class="PollGraphStyle" ref="pollRef">
+  <div ref="pollRef" :class="PollGraphStyle">
     <div
       ref="barRef"
       :class="[PollBodyStyle, backgroundStyle[barColor]]"
@@ -7,7 +7,7 @@
         backgroundColor: barColor,
       }"
     >
-      <span :class="PollGraphInnerLabelStyle" ref="innerLabelRef">{{
+      <span ref="innerLabelRef" :class="PollGraphInnerLabelStyle">{{
         innerLabel
       }}</span>
     </div>

@@ -1,5 +1,7 @@
 <template>
   <input
+    :id="id"
+    v-model="textValue"
     :class="[
       baseInputStyle,
       baseInputPaddingStyle[spaceType],
@@ -9,11 +11,9 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :type="type"
+    :autocomplete="autocomplete"
     @focusin="onFocusIn"
     @focusout="onFocusOut"
-    v-model="textValue"
-    :id="id"
-    :autocomplete="autocomplete"
   />
 </template>
 

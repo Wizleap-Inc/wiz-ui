@@ -30,9 +30,9 @@
                 <WizHStack gap="xs" align="center">
                   <WizTag
                     v-if="tag"
-                    fontSize="xs"
+                    font-size="xs"
                     :label="tag"
-                    fontWeight="bold"
+                    font-weight="bold"
                     :variant="TAG_COLOR_MAP[variant]"
                   />
                   <div :class="styles.title">{{ title }}</div>
@@ -50,9 +50,9 @@
               <WizHStack nowrap justify="between" align="center">
                 <WizTag
                   v-if="tag"
-                  fontSize="xs"
+                  font-size="xs"
                   :label="tag"
-                  fontWeight="bold"
+                  font-weight="bold"
                   :variant="TAG_COLOR_MAP[variant]"
                 />
                 <span v-else :class="styles.title">{{ title }}</span>
@@ -68,7 +68,7 @@
             </WizVStack>
           </template>
         </div>
-        <div :class="styles.body" v-if="slot.default">
+        <div v-if="slot.default" :class="styles.body">
           <slot />
         </div>
       </div>
@@ -94,7 +94,7 @@ defineOptions({
 
 type TimelineVariant = "success" | "failure" | "yellow" | "gray";
 
-const props = defineProps({
+defineProps({
   variant: {
     type: String as PropType<TimelineVariant>,
     required: false,

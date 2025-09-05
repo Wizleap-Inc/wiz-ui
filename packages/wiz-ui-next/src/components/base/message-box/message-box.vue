@@ -4,11 +4,12 @@
       messageBoxStyle,
       messageBoxWidthStyle[computedWidth],
       messageBoxVariantStyle[variant],
+      short && messageBoxShortStyle,
     ]"
   >
     <component
-      v-if="icon"
       :is="icon"
+      v-if="icon"
       :class="[messageBoxIconStyle, messageBoxIconFillStyle[variant]]"
     />
     <WizVStack gap="xs">
@@ -26,6 +27,7 @@ import {
   messageBoxBodyStyle,
   messageBoxIconFillStyle,
   messageBoxIconStyle,
+  messageBoxShortStyle,
   messageBoxStyle,
   messageBoxTitleStyle,
   messageBoxVariantStyle,
@@ -55,6 +57,11 @@ const props = defineProps({
     required: false,
   },
   expand: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  short: {
     type: Boolean,
     required: false,
     default: false,

@@ -1,8 +1,8 @@
 <template>
   <WizHeader
-    avatarSrc="https://avatars.githubusercontent.com/u/10214025?v=4"
-    gapLeft="sm"
-    gapRight="xl"
+    avatar-src="https://avatars.githubusercontent.com/u/10214025?v=4"
+    gap-left="sm"
+    gap-right="xl"
     sticky
   >
     <template #left>

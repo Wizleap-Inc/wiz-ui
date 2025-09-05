@@ -17,7 +17,19 @@
       <div :class="fontSizeStyle[fontSize]">
         {{ label }}
       </div>
-      <WizIcon size="xl2" :icon="WizIChevronRight" color="green.800" />
+
+      <WizHStack align="center" gap="xs">
+        <div v-if="tagLabel" :class="menuItemTagStyle">
+          <WizTag
+            :label="tagLabel"
+            :icon="tagIcon"
+            :variant="tagVariant"
+            :fontSize="tagFontSize"
+            fontWeight="bold"
+          />
+        </div>
+        <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
+      </WizHStack>
     </WizHStack>
   </div>
 </template>
@@ -28,13 +40,15 @@ import {
   menuItemStyle,
   menuItemVariantStyle,
   menuItemExpand,
+  menuItemTagStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
 
-import { WizIChevronRight } from "@/components/icons";
+import { TIcon, WizIChevronRight } from "@/components/icons";
 
-import { WizHStack, WizIcon } from "../";
+import { WizHStack, WizIcon, WizTag } from "../";
+import { TagVariant } from "../tag/types";
 
 interface Emit {
   (event: "click"): void;
@@ -74,6 +88,20 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  tagLabel: {
+    type: String,
+    required: false,
+    default: "",
+  },
+  tagIcon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+  },
+  tagVariant: {
+    type: String as PropType<TagVariant>,
+    required: false,
+    default: "info",
+  },
 });
 
 const emit = defineEmits<Emit>();
@@ -98,5 +126,16 @@ const componentStatus = computed(() => {
   if (props.active || isPressed.value) return "active";
   if (isHover.value) return "hover";
   return "default";
+});
+
+const tagFontSize = computed(() => {
+  if (props.fontSize === "xl5" || props.fontSize === "xl6") return "md";
+  return "xs";
+});
+
+const iconColor = computed(() => {
+  if (!props.clickable) return "gray.500";
+  if (props.active || isHover.value) return "green.800";
+  return "gray.500";
 });
 </script>

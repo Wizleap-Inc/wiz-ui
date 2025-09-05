@@ -10,16 +10,16 @@
         <span :class="progressBarItemLabelStyle">
           <WizVStack align="center" gap="xs2">
             <WizText
-              fontSize="sm"
-              whiteSpace="nowrap"
+              font-size="sm"
+              white-space="nowrap"
               :bold="true"
               :color="content.status === 'done' ? 'green.800' : 'gray.800'"
             >
               {{ content.label }}
             </WizText>
             <WizText
-              fontSize="xs"
-              whiteSpace="nowrap"
+              font-size="xs"
+              white-space="nowrap"
               :color="content.status === 'done' ? 'green.800' : 'gray.800'"
             >
               {{ content.description }}
@@ -27,7 +27,7 @@
           </WizVStack>
         </span>
       </WizVStack>
-      <WizStepLine :active="content.progress" :isFirst="i === 0" />
+      <WizStepLine :active="content.progress" :is-first="i === 0" />
     </div>
   </div>
 </template>

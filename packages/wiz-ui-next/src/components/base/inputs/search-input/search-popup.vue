@@ -42,8 +42,8 @@
                 <WizHStack align="center" gap="xs2" nowrap>
                   <!-- Checkboxが押下された場合、すべての子要素は親要素の状態に従う。（再帰的に状態を更新する） -->
                   <WizCheckBoxNew
-                    :value="option.value"
                     :id="`parent-${option.label}-${option.value}`"
+                    :value="option.value"
                     :checked="
                       (!hasEmptyChildren(option) &&
                         optionSelectionStateMap.get(option.value)) ||
@@ -150,8 +150,8 @@
               <WizHStack py="xs2" width="100%" align="center" gap="xs2" nowrap>
                 <WizHStack align="center" gap="xs2" nowrap>
                   <WizCheckBoxNew
-                    :value="option.value"
                     :id="`${option.label}_${option.value}`"
+                    :value="option.value"
                     :checked="checkValues.includes(option.value)"
                     :aria-label="`${option.label}_${option.value}`"
                     @update:checked="handleClickCheckbox(option.value, $event)"
@@ -182,9 +182,9 @@
     v-if="isOpen"
     v-model="checkValues"
     :options="activeOptionChildren ?? []"
-    :popupWidth="computedPopupWidth"
-    :emptyMessage="emptyMessage"
-    :singleSelect="singleSelect"
+    :popup-width="computedPopupWidth"
+    :empty-message="emptyMessage"
+    :single-select="singleSelect"
     @toggle="emit('toggle', $event)"
   />
 </template>
@@ -297,9 +297,6 @@ const optionSelectionStateMap = computed(() => {
   });
   return map;
 });
-
-const allOptionsHaveChildren = (options: SearchInputOption<T>[]) =>
-  options.every((option) => !!option.children);
 
 const checkValues = computed({
   get: () => props.modelValue,

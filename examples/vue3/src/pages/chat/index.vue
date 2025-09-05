@@ -37,7 +37,7 @@
           background: 'white',
         }"
       >
-        <ChatForm v-model="formText" typingUsername="user" @submit="submit" />
+        <ChatForm v-model="formText" typing-username="user" @submit="submit" />
       </div>
     </div>
   </WizVStack>

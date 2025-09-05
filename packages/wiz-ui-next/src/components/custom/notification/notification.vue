@@ -1,12 +1,12 @@
 <template>
   <div>
     <WizTab v-model="activeTab" :items="tabs" />
-    <WizBox bgColor="white.800" roundB="xs2" overflow="hidden">
+    <WizBox bg-color="white.800" round-b="xs2" overflow="hidden">
       <WizNotificationList
         :notifications="displayNotifications"
         :variant="selectedVariant"
         :height="height"
-        :emptyMessage="emptyMessage"
+        :empty-message="emptyMessage"
         @click="onClick"
       />
     </WizBox>
