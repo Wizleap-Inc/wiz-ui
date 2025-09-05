@@ -156,6 +156,7 @@ export const SearchPopupPanel = <T extends CheckboxOption>({
               activeOption && activeOption.value === option.value;
             const optionTag = option.tag;
             const hasChildren = !!option.children;
+            const hasEmptyChildren = option.children?.length === 0;
             const allChildrenSelected = hasChildren
               ? optionSelectionStateMap.get(option.value) || false
               : false;
@@ -174,8 +175,12 @@ export const SearchPopupPanel = <T extends CheckboxOption>({
                       // ex. ある子要素のCheckboxをOffにした時、その親にあたる要素のCheckboxは全てOffでなければならない。
                       <div
                         className={clsx(
-                          styles.searchDropdownLabelStyle,
-                          isActive && styles.searchDropdownSelectingItemStyle
+                          hasEmptyChildren
+                            ? styles.searchDropdownLabelDisabledStyle
+                            : styles.searchDropdownLabelStyle,
+                          isActive &&
+                            !hasEmptyChildren &&
+                            styles.searchDropdownSelectingItemStyle
                         )}
                       >
                         <WizHStack
@@ -191,7 +196,10 @@ export const SearchPopupPanel = <T extends CheckboxOption>({
                             <WizCheckBoxNew
                               value={option.value}
                               id={`parent-${option.label}-${option.value}`}
-                              checked={allChildrenSelected}
+                              checked={
+                                hasEmptyChildren ? false : allChildrenSelected
+                              }
+                              disabled={hasEmptyChildren}
                               aria-label={`${option.label}の全選択`}
                               onChange={(e) => {
                                 handleParentCheckboxChange(

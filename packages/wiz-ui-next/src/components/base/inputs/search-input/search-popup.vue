@@ -23,8 +23,11 @@
             <!-- ex. ある子要素のCheckboxをOffにした時、その親にあたる要素のCheckboxは全てOffでなければならない。 -->
             <div
               :class="[
-                styles.searchDropdownLabelStyle,
+                hasEmptyChildren(option)
+                  ? styles.searchDropdownLabelDisabledStyle
+                  : styles.searchDropdownLabelStyle,
                 activeItem === option.value &&
+                  !hasEmptyChildren(option) &&
                   styles.searchDropdownSelectingItemStyle,
               ]"
             >
@@ -42,8 +45,11 @@
                     :value="option.value"
                     :id="`parent-${option.label}-${option.value}`"
                     :checked="
-                      optionSelectionStateMap.get(option.value) || false
+                      (!hasEmptyChildren(option) &&
+                        optionSelectionStateMap.get(option.value)) ||
+                      false
                     "
+                    :disabled="hasEmptyChildren(option)"
                     :aria-label="`${option.label}の全選択`"
                     @update:checked="handleParentCheckboxChange(option, $event)"
                   />
@@ -335,6 +341,11 @@ const handleParentCheckboxChange = (
 const handleClickButton = (value: T) => {
   checkValues.value = [value];
   emit("toggle", false);
+};
+
+const hasEmptyChildren = (option: SearchInputOption<T>) => {
+  const childrenValues = optionChildrenValuesMap.value.get(option.value) || [];
+  return option.children && childrenValues.length === 0;
 };
 
 // optionsが変更されたときにactiveItemをリセット
