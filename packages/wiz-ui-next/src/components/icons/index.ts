@@ -8,6 +8,7 @@ import { default as WizIArrowDropDown } from "./arrow-drop-down.vue";
 import { default as WizIArrowDropUp } from "./arrow-drop-up.vue";
 import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIArrowUpward } from "./arrow-upward.vue";
+import { default as WizIArticleBold } from "./article-bold.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
@@ -76,17 +77,23 @@ import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIFamilyHome } from "./family-home.vue";
 import { default as WizIFeedback } from "./feedback.vue";
+import { default as WizIFolderBold } from "./folder-bold.vue";
+import { default as WizIFolderFilled } from "./folder-filled.vue";
+import { default as WizIFolderSharedFilled } from "./folder-shared-filled.vue";
 import { default as WizIForwardToInbox } from "./forward-to-inbox.vue";
+import { default as WizIGroupBold } from "./group-bold.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
 import { default as WizIHistory } from "./history.vue";
 import { default as WizIHome } from "./home.vue";
 import { default as WizIHourglassTop } from "./hourglass-top.vue";
 import { default as WizIImageBold } from "./image-bold.vue";
+import { default as WizIImagesmodeBold } from "./imagesmode-bold.vue";
 import { default as WizIInboxCustomize } from "./inbox-customize.vue";
 import { default as WizIInfoBold } from "./info-bold.vue";
 import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
+import { default as WizIJamboardKioskBold } from "./jamboard-kiosk-bold.vue";
 import { default as WizIKeepBold } from "./keep-bold.vue";
 import { default as WizILinkOff } from "./link-off.vue";
 import { default as WizILocationCity } from "./location-city.vue";
@@ -108,7 +115,9 @@ import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
 import { default as WizIPauseCircleBold } from "./pause-circle-bold.vue";
+import { default as WizIPersonAddBold } from "./person-add-bold.vue";
 import { default as WizIPersonFilled } from "./person-filled.vue";
+import { default as WizIPictureAsPdfBold } from "./picture-as-pdf-bold.vue";
 import { default as WizIPieChart } from "./pie-chart.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIPlayArrowFilled } from "./play-arrow-filled.vue";
@@ -127,6 +136,7 @@ import { default as WizIShoppingmode } from "./shoppingmode.vue";
 import { default as WizISmartphoneBold } from "./smartphone-bold.vue";
 import { default as WizISmartphone } from "./smartphone.vue";
 import { default as WizISmsBold } from "./sms-bold.vue";
+import { default as WizIStarBold } from "./star-bold.vue";
 import { default as WizIStarFilled } from "./star-filled.vue";
 import { default as WizIStars } from "./stars.vue";
 import { default as WizIStopFilled } from "./stop-filled.vue";
@@ -136,6 +146,8 @@ import { default as WizITask } from "./task.vue";
 import { default as WizITimerFilled } from "./timer-filled.vue";
 import { default as WizITune } from "./tune.vue";
 import { default as WizIUpload } from "./upload.vue";
+import { default as WizIVideoCameraBackBold } from "./video-camera-back-bold.vue";
+import { default as WizIViewModuleBold } from "./view-module-bold.vue";
 import { default as WizIWarning } from "./warning.vue";
 
 export type TIcon =
@@ -149,6 +161,7 @@ export type TIcon =
   | typeof WizIArrowDropUp
   | typeof WizIArrowRight
   | typeof WizIArrowUpward
+  | typeof WizIArticleBold
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
   | typeof WizIAttachFile
@@ -217,17 +230,23 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIFamilyHome
   | typeof WizIFeedback
+  | typeof WizIFolderBold
+  | typeof WizIFolderFilled
+  | typeof WizIFolderSharedFilled
   | typeof WizIForwardToInbox
+  | typeof WizIGroupBold
   | typeof WizIGroups
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
   | typeof WizIImageBold
+  | typeof WizIImagesmodeBold
   | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
+  | typeof WizIJamboardKioskBold
   | typeof WizIKeepBold
   | typeof WizILinkOff
   | typeof WizILocationCity
@@ -249,7 +268,9 @@ export type TIcon =
   | typeof WizINotification
   | typeof WizIOpenInNew
   | typeof WizIPauseCircleBold
+  | typeof WizIPersonAddBold
   | typeof WizIPersonFilled
+  | typeof WizIPictureAsPdfBold
   | typeof WizIPieChart
   | typeof WizIPinDrop
   | typeof WizIPlayArrowFilled
@@ -268,6 +289,7 @@ export type TIcon =
   | typeof WizISmartphoneBold
   | typeof WizISmartphone
   | typeof WizISmsBold
+  | typeof WizIStarBold
   | typeof WizIStarFilled
   | typeof WizIStars
   | typeof WizIStopFilled
@@ -277,6 +299,8 @@ export type TIcon =
   | typeof WizITimerFilled
   | typeof WizITune
   | typeof WizIUpload
+  | typeof WizIVideoCameraBackBold
+  | typeof WizIViewModuleBold
   | typeof WizIWarning;
 
 export {
@@ -290,6 +314,7 @@ export {
   WizIArrowDropUp,
   WizIArrowRight,
   WizIArrowUpward,
+  WizIArticleBold,
   WizIAssignmentAdd,
   WizIAssignment,
   WizIAttachFile,
@@ -358,17 +383,23 @@ export {
   WizIEye,
   WizIFamilyHome,
   WizIFeedback,
+  WizIFolderBold,
+  WizIFolderFilled,
+  WizIFolderSharedFilled,
   WizIForwardToInbox,
+  WizIGroupBold,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
   WizIImageBold,
+  WizIImagesmodeBold,
   WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
+  WizIJamboardKioskBold,
   WizIKeepBold,
   WizILinkOff,
   WizILocationCity,
@@ -390,7 +421,9 @@ export {
   WizINotification,
   WizIOpenInNew,
   WizIPauseCircleBold,
+  WizIPersonAddBold,
   WizIPersonFilled,
+  WizIPictureAsPdfBold,
   WizIPieChart,
   WizIPinDrop,
   WizIPlayArrowFilled,
@@ -409,6 +442,7 @@ export {
   WizISmartphoneBold,
   WizISmartphone,
   WizISmsBold,
+  WizIStarBold,
   WizIStarFilled,
   WizIStars,
   WizIStopFilled,
@@ -418,5 +452,7 @@ export {
   WizITimerFilled,
   WizITune,
   WizIUpload,
+  WizIVideoCameraBackBold,
+  WizIViewModuleBold,
   WizIWarning,
 };
