@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.33.0
+
+### Minor Changes
+
+- [#1540](https://github.com/Wizleap-Inc/wiz-ui/pull/1540) [`c72e499`](https://github.com/Wizleap-Inc/wiz-ui/commit/c72e499739985cd4774df259594d07292924bd11) Thanks [@k-tada](https://github.com/k-tada)! - Feat(icon): 新アイコンを12個追加
+
 ## 0.32.0
 
 ### Minor Changes
