@@ -8,6 +8,7 @@ import { WizIArrowDropDown } from "./arrow-drop-down";
 import { WizIArrowDropUp } from "./arrow-drop-up";
 import { WizIArrowRight } from "./arrow-right";
 import { WizIArrowUpward } from "./arrow-upward";
+import { WizIArticleBold } from "./article-bold";
 import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
 import { WizIAttachFile } from "./attach-file";
@@ -76,17 +77,23 @@ import { WizIExpandMoreBold } from "./expand-more-bold";
 import { WizIEye } from "./eye";
 import { WizIFamilyHome } from "./family-home";
 import { WizIFeedback } from "./feedback";
+import { WizIFolderBold } from "./folder-bold";
+import { WizIFolderFilled } from "./folder-filled";
+import { WizIFolderSharedFilled } from "./folder-shared-filled";
 import { WizIForwardToInbox } from "./forward-to-inbox";
+import { WizIGroupBold } from "./group-bold";
 import { WizIGroups } from "./groups";
 import { WizIHelp } from "./help";
 import { WizIHistory } from "./history";
 import { WizIHome } from "./home";
 import { WizIHourglassTop } from "./hourglass-top";
 import { WizIImageBold } from "./image-bold";
+import { WizIImagesmodeBold } from "./imagesmode-bold";
 import { WizIInboxCustomize } from "./inbox-customize";
 import { WizIInfo } from "./info";
 import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
+import { WizIJamboardKioskBold } from "./jamboard-kiosk-bold";
 import { WizIKeepBold } from "./keep-bold";
 import { WizILinkOff } from "./link-off";
 import { WizILocationCity } from "./location-city";
@@ -108,7 +115,9 @@ import { WizINoteAdd } from "./note-add";
 import { WizINotification } from "./notification";
 import { WizIOpenInNew } from "./open-in-new";
 import { WizIPauseCircleBold } from "./pause-circle-bold";
+import { WizIPersonAddBold } from "./person-add-bold";
 import { WizIPersonFilled } from "./person-filled";
+import { WizIPictureAsPdfBold } from "./picture-as-pdf-bold";
 import { WizIPieChart } from "./pie-chart";
 import { WizIPinDrop } from "./pin-drop";
 import { WizIPlayArrowFilled } from "./play-arrow-filled";
@@ -127,6 +136,7 @@ import { WizIShoppingmode } from "./shoppingmode";
 import { WizISmartphone } from "./smartphone";
 import { WizISmartphoneBold } from "./smartphone-bold";
 import { WizISmsBold } from "./sms-bold";
+import { WizIStarBold } from "./star-bold";
 import { WizIStarFilled } from "./star-filled";
 import { WizIStars } from "./stars";
 import { WizIStopFilled } from "./stop-filled";
@@ -136,6 +146,8 @@ import { WizITask } from "./task";
 import { WizITimerFilled } from "./timer-filled";
 import { WizITune } from "./tune";
 import { WizIUpload } from "./upload";
+import { WizIVideoCameraBackBold } from "./video-camera-back-bold";
+import { WizIViewModuleBold } from "./view-module-bold";
 import { WizIWarning } from "./warning";
 
 export type TIcon =
@@ -149,6 +161,7 @@ export type TIcon =
   | typeof WizIArrowDropUp
   | typeof WizIArrowRight
   | typeof WizIArrowUpward
+  | typeof WizIArticleBold
   | typeof WizIAssignmentAdd
   | typeof WizIAssignment
   | typeof WizIAttachFile
@@ -217,17 +230,23 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIFamilyHome
   | typeof WizIFeedback
+  | typeof WizIFolderBold
+  | typeof WizIFolderFilled
+  | typeof WizIFolderSharedFilled
   | typeof WizIForwardToInbox
+  | typeof WizIGroupBold
   | typeof WizIGroups
   | typeof WizIHelp
   | typeof WizIHistory
   | typeof WizIHome
   | typeof WizIHourglassTop
   | typeof WizIImageBold
+  | typeof WizIImagesmodeBold
   | typeof WizIInboxCustomize
   | typeof WizIInfoBold
   | typeof WizIInfoFilled
   | typeof WizIInfo
+  | typeof WizIJamboardKioskBold
   | typeof WizIKeepBold
   | typeof WizILinkOff
   | typeof WizILocationCity
@@ -249,7 +268,9 @@ export type TIcon =
   | typeof WizINotification
   | typeof WizIOpenInNew
   | typeof WizIPauseCircleBold
+  | typeof WizIPersonAddBold
   | typeof WizIPersonFilled
+  | typeof WizIPictureAsPdfBold
   | typeof WizIPieChart
   | typeof WizIPinDrop
   | typeof WizIPlayArrowFilled
@@ -268,6 +289,7 @@ export type TIcon =
   | typeof WizISmartphoneBold
   | typeof WizISmartphone
   | typeof WizISmsBold
+  | typeof WizIStarBold
   | typeof WizIStarFilled
   | typeof WizIStars
   | typeof WizIStopFilled
@@ -277,6 +299,8 @@ export type TIcon =
   | typeof WizITimerFilled
   | typeof WizITune
   | typeof WizIUpload
+  | typeof WizIVideoCameraBackBold
+  | typeof WizIViewModuleBold
   | typeof WizIWarning;
 
 export {
@@ -290,6 +314,7 @@ export {
   WizIArrowDropUp,
   WizIArrowRight,
   WizIArrowUpward,
+  WizIArticleBold,
   WizIAssignmentAdd,
   WizIAssignment,
   WizIAttachFile,
@@ -358,17 +383,23 @@ export {
   WizIEye,
   WizIFamilyHome,
   WizIFeedback,
+  WizIFolderBold,
+  WizIFolderFilled,
+  WizIFolderSharedFilled,
   WizIForwardToInbox,
+  WizIGroupBold,
   WizIGroups,
   WizIHelp,
   WizIHistory,
   WizIHome,
   WizIHourglassTop,
   WizIImageBold,
+  WizIImagesmodeBold,
   WizIInboxCustomize,
   WizIInfoBold,
   WizIInfoFilled,
   WizIInfo,
+  WizIJamboardKioskBold,
   WizIKeepBold,
   WizILinkOff,
   WizILocationCity,
@@ -390,7 +421,9 @@ export {
   WizINotification,
   WizIOpenInNew,
   WizIPauseCircleBold,
+  WizIPersonAddBold,
   WizIPersonFilled,
+  WizIPictureAsPdfBold,
   WizIPieChart,
   WizIPinDrop,
   WizIPlayArrowFilled,
@@ -409,6 +442,7 @@ export {
   WizISmartphoneBold,
   WizISmartphone,
   WizISmsBold,
+  WizIStarBold,
   WizIStarFilled,
   WizIStars,
   WizIStopFilled,
@@ -418,5 +452,7 @@ export {
   WizITimerFilled,
   WizITune,
   WizIUpload,
+  WizIVideoCameraBackBold,
+  WizIViewModuleBold,
   WizIWarning,
 };
