@@ -79,6 +79,7 @@ import { default as WizIFamilyHome } from "./family-home.vue";
 import { default as WizIFeedback } from "./feedback.vue";
 import { default as WizIFolderBold } from "./folder-bold.vue";
 import { default as WizIFolderFilled } from "./folder-filled.vue";
+import { default as WizIFolderSharedBold } from "./folder-shared-bold.vue";
 import { default as WizIFolderSharedFilled } from "./folder-shared-filled.vue";
 import { default as WizIForwardToInbox } from "./forward-to-inbox.vue";
 import { default as WizIGroupBold } from "./group-bold.vue";
@@ -232,6 +233,7 @@ export type TIcon =
   | typeof WizIFeedback
   | typeof WizIFolderBold
   | typeof WizIFolderFilled
+  | typeof WizIFolderSharedBold
   | typeof WizIFolderSharedFilled
   | typeof WizIForwardToInbox
   | typeof WizIGroupBold
@@ -385,6 +387,7 @@ export {
   WizIFeedback,
   WizIFolderBold,
   WizIFolderFilled,
+  WizIFolderSharedBold,
   WizIFolderSharedFilled,
   WizIForwardToInbox,
   WizIGroupBold,

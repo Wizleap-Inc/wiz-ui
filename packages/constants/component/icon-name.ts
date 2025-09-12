@@ -80,6 +80,7 @@ export const IconComponentName = {
   IFeedback: "WizIFeedback",
   IFolderBold: "WizIFolderBold",
   IFolderFilled: "WizIFolderFilled",
+  IFolderSharedBold: "WizIFolderSharedBold",
   IFolderSharedFilled: "WizIFolderSharedFilled",
   IForwardToInbox: "WizIForwardToInbox",
   IGroupBold: "WizIGroupBold",
