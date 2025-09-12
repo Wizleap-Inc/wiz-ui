@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.23.0
+
+### Minor Changes
+
+- [#1543](https://github.com/Wizleap-Inc/wiz-ui/pull/1543) [`126b5c1`](https://github.com/Wizleap-Inc/wiz-ui/commit/126b5c1100bae98f7c052694023747e757c9fa08) Thanks [@k-tada](https://github.com/k-tada)! - Feat(icon): WizIFolderSharedBold
+
+### Patch Changes
+
+- Updated dependencies [[`126b5c1`](https://github.com/Wizleap-Inc/wiz-ui/commit/126b5c1100bae98f7c052694023747e757c9fa08)]:
+  - @wizleap-inc/wiz-ui-constants@0.43.0
+  - @wizleap-inc/wiz-ui-styles@0.49.3
+
 ## 2.22.0
 
 ### Minor Changes
