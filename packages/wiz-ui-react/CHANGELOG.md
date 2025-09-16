@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.24.0
+
+### Minor Changes
+
+- [#1546](https://github.com/Wizleap-Inc/wiz-ui/pull/1546) [`6738d33`](https://github.com/Wizleap-Inc/wiz-ui/commit/6738d33120145201bc5bc96b9ba3f6f8e8f9506f) Thanks [@k-tada](https://github.com/k-tada)! - Feat(icon): WizIPictureAsPdfFilled
+
+### Patch Changes
+
+- Updated dependencies [[`6738d33`](https://github.com/Wizleap-Inc/wiz-ui/commit/6738d33120145201bc5bc96b9ba3f6f8e8f9506f)]:
+  - @wizleap-inc/wiz-ui-constants@0.44.0
+  - @wizleap-inc/wiz-ui-styles@0.49.4
+
 ## 2.23.0
 
 ### Minor Changes
