@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.45.0
+
+### Minor Changes
+
+- [#1549](https://github.com/Wizleap-Inc/wiz-ui/pull/1549) [`d7c75ed`](https://github.com/Wizleap-Inc/wiz-ui/commit/d7c75edac551013b5d821c65594bcc1edcf29842) Thanks [@k-tada](https://github.com/k-tada)! - Feat(icon): WizIDownloadBold
+
 ## 0.44.0
 
 ### Minor Changes
