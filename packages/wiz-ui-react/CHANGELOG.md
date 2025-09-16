@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.25.0
+
+### Minor Changes
+
+- [#1549](https://github.com/Wizleap-Inc/wiz-ui/pull/1549) [`d7c75ed`](https://github.com/Wizleap-Inc/wiz-ui/commit/d7c75edac551013b5d821c65594bcc1edcf29842) Thanks [@k-tada](https://github.com/k-tada)! - Feat(icon): WizIDownloadBold
+
+### Patch Changes
+
+- Updated dependencies [[`d7c75ed`](https://github.com/Wizleap-Inc/wiz-ui/commit/d7c75edac551013b5d821c65594bcc1edcf29842)]:
+  - @wizleap-inc/wiz-ui-constants@0.45.0
+  - @wizleap-inc/wiz-ui-styles@0.49.5
+
 ## 2.24.0
 
 ### Minor Changes
