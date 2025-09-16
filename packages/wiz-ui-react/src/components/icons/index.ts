@@ -64,6 +64,7 @@ import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
 import { WizIDomain } from "./domain";
 import { WizIDownload } from "./download";
+import { WizIDownloadBold } from "./download-bold";
 import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
@@ -218,6 +219,7 @@ export type TIcon =
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDomain
+  | typeof WizIDownloadBold
   | typeof WizIDownload
   | typeof WizIDraft
   | typeof WizIDrafts
@@ -373,6 +375,7 @@ export {
   WizIDemography,
   WizIDescription,
   WizIDomain,
+  WizIDownloadBold,
   WizIDownload,
   WizIDraft,
   WizIDrafts,

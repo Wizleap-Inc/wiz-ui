@@ -63,6 +63,7 @@ import { default as WizIDelete } from "./delete.vue";
 import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
 import { default as WizIDomain } from "./domain.vue";
+import { default as WizIDownloadBold } from "./download-bold.vue";
 import { default as WizIDownload } from "./download.vue";
 import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
@@ -218,6 +219,7 @@ export type TIcon =
   | typeof WizIDemography
   | typeof WizIDescription
   | typeof WizIDomain
+  | typeof WizIDownloadBold
   | typeof WizIDownload
   | typeof WizIDraft
   | typeof WizIDrafts
@@ -373,6 +375,7 @@ export {
   WizIDemography,
   WizIDescription,
   WizIDomain,
+  WizIDownloadBold,
   WizIDownload,
   WizIDraft,
   WizIDrafts,

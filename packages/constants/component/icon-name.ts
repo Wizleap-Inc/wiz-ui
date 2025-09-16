@@ -64,6 +64,7 @@ export const IconComponentName = {
   IDemography: "WizIDemography",
   IDescription: "WizIDescription",
   IDomain: "WizIDomain",
+  IDownloadBold: "WizIDownloadBold",
   IDownload: "WizIDownload",
   IDraft: "WizIDraft",
   IDrafts: "WizIDrafts",
