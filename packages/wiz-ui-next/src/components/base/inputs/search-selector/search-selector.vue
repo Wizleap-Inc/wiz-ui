@@ -131,7 +131,6 @@ import { formControlKey } from "@/hooks/use-form-control-provider";
 
 import { WizHStack, WizVStack } from "../../stack";
 
-import { filterOptions } from "./levenshtein-distance";
 import { ButtonGroupItem, PopupButtonGroup } from "./popup-button-group";
 import { SelectBoxOption } from "./types";
 
@@ -156,14 +155,6 @@ type Props<T> = {
   isDirectionFixed?: boolean;
   showExLabel?: boolean;
   dropdownMaxHeight?: string;
-  /**
-   * 検索対象に含む類似度の閾値を，0から1の範囲で指定します。
-   * 類似度は標準化レーベンシュタイン距離に基づいて計算され，0に近いほど類似しています。
-   * ただし，類似度の最小値が閾値を上回る場合は部分一致で検索します。
-   * @default 0.75
-   *
-   */
-  threshold?: number;
 };
 
 const props = withDefaults(defineProps<Props<T>>(), {
@@ -174,7 +165,6 @@ const props = withDefaults(defineProps<Props<T>>(), {
   addable: false,
   isDirectionFixed: false,
   showExLabel: false,
-  threshold: 0.75,
 });
 
 const emit = defineEmits<{
@@ -197,7 +187,6 @@ const toggleDropdown = () => {
   inputRef.value?.focus();
 };
 
-const deepCopy = <T,>(ary: T): T => JSON.parse(JSON.stringify(ary));
 const optionMap = computed(
   () =>
     new Map(
@@ -219,24 +208,20 @@ const setUnselectableRef =
   };
 
 const filteredOptions = computed(() => {
-  const sortedOptions =
-    props.searchValue.length === 0
-      ? props.options
-      : filterOptions(
-          deepCopy(props.options),
-          props.searchValue,
-          props.threshold
-        ).filter(
-          (matchedOption) =>
-            !props.modelValue.some((value) => matchedOption.value === value)
-        );
-
-  const removeSelectedOptions = (options: SelectBoxOption<T>[]) => {
-    return options.filter((v) => {
+  if (props.searchValue.length === 0) {
+    return props.options.filter((v) => {
       return !selectedItem.value.some((item) => item && item.value === v.value);
     });
-  };
-  return removeSelectedOptions(sortedOptions);
+  }
+
+  const lowerSearchValue = props.searchValue.toLowerCase();
+  return props.options.filter((option) => {
+    const matchesSearch = option.label.toLowerCase().includes(lowerSearchValue);
+    const notSelected = !selectedItem.value.some(
+      (item) => item && item.value === option.value
+    );
+    return matchesSearch && notSelected;
+  });
 });
 
 const toggleSelectBox = () => {
