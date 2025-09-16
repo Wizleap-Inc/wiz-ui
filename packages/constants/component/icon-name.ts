@@ -120,6 +120,7 @@ export const IconComponentName = {
   IPersonAddBold: "WizIPersonAddBold",
   IPersonFilled: "WizIPersonFilled",
   IPictureAsPdfBold: "WizIPictureAsPdfBold",
+  IPictureAsPdfFilled: "WizIPictureAsPdfFilled",
   IPieChart: "WizIPieChart",
   IPinDrop: "WizIPinDrop",
   IPlayArrowFilled: "WizIPlayArrowFilled",

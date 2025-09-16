@@ -119,6 +119,7 @@ import { WizIPauseCircleBold } from "./pause-circle-bold";
 import { WizIPersonAddBold } from "./person-add-bold";
 import { WizIPersonFilled } from "./person-filled";
 import { WizIPictureAsPdfBold } from "./picture-as-pdf-bold";
+import { WizIPictureAsPdfFilled } from "./picture-as-pdf-filled";
 import { WizIPieChart } from "./pie-chart";
 import { WizIPinDrop } from "./pin-drop";
 import { WizIPlayArrowFilled } from "./play-arrow-filled";
@@ -273,6 +274,7 @@ export type TIcon =
   | typeof WizIPersonAddBold
   | typeof WizIPersonFilled
   | typeof WizIPictureAsPdfBold
+  | typeof WizIPictureAsPdfFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
   | typeof WizIPlayArrowFilled
@@ -427,6 +429,7 @@ export {
   WizIPersonAddBold,
   WizIPersonFilled,
   WizIPictureAsPdfBold,
+  WizIPictureAsPdfFilled,
   WizIPieChart,
   WizIPinDrop,
   WizIPlayArrowFilled,

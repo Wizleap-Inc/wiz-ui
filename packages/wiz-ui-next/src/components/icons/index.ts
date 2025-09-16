@@ -119,6 +119,7 @@ import { default as WizIPauseCircleBold } from "./pause-circle-bold.vue";
 import { default as WizIPersonAddBold } from "./person-add-bold.vue";
 import { default as WizIPersonFilled } from "./person-filled.vue";
 import { default as WizIPictureAsPdfBold } from "./picture-as-pdf-bold.vue";
+import { default as WizIPictureAsPdfFilled } from "./picture-as-pdf-filled.vue";
 import { default as WizIPieChart } from "./pie-chart.vue";
 import { default as WizIPinDrop } from "./pin-drop.vue";
 import { default as WizIPlayArrowFilled } from "./play-arrow-filled.vue";
@@ -273,6 +274,7 @@ export type TIcon =
   | typeof WizIPersonAddBold
   | typeof WizIPersonFilled
   | typeof WizIPictureAsPdfBold
+  | typeof WizIPictureAsPdfFilled
   | typeof WizIPieChart
   | typeof WizIPinDrop
   | typeof WizIPlayArrowFilled
@@ -427,6 +429,7 @@ export {
   WizIPersonAddBold,
   WizIPersonFilled,
   WizIPictureAsPdfBold,
+  WizIPictureAsPdfFilled,
   WizIPieChart,
   WizIPinDrop,
   WizIPlayArrowFilled,
