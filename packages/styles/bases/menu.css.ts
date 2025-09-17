@@ -29,6 +29,7 @@ export const menuItemVariantStyle = styleVariants({
   active: {
     color: THEME.color.green[800],
     backgroundColor: THEME.color.green[300],
+    fontWeight: 700,
     cursor: "pointer",
   },
   disabled: {
