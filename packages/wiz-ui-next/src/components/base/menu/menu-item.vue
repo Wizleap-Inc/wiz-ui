@@ -32,7 +32,12 @@
             fontWeight="bold"
           />
         </div>
-        <WizIcon size="xl2" :icon="WizIChevronRight" :color="tagIconColor" />
+        <WizIcon
+          v-if="!hideChevron"
+          size="xl2"
+          :icon="WizIChevronRight"
+          :color="tagIconColor"
+        />
       </WizHStack>
     </WizHStack>
   </div>
@@ -98,6 +103,11 @@ const props = defineProps({
     required: false,
   },
   transparent: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  hideChevron: {
     type: Boolean,
     required: false,
     default: false,

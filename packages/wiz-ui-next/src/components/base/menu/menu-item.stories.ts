@@ -144,24 +144,14 @@ Transparent.args = {
   transparent: true,
 };
 
-export const TransparentActive = Template.bind({});
-TransparentActive.args = {
-  label: "テスト",
-  transparent: true,
-  active: true,
-};
-
 export const Icon = Template.bind({});
 Icon.args = {
   label: "テスト",
   icon: WizIFolderFilled,
-  transparent: true,
 };
 
-export const IconActive = Template.bind({});
-IconActive.args = {
+export const HideChevron = Template.bind({});
+HideChevron.args = {
   label: "テスト",
-  icon: WizIFolderFilled,
-  active: true,
-  transparent: true,
+  hideChevron: true,
 };
