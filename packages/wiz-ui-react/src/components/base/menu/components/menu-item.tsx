@@ -33,6 +33,7 @@ type Props = BaseProps & {
   expand?: boolean;
   fontSize?: FontSizeKeys;
   selected?: boolean;
+  icon?: TIcon;
   transparent?: boolean;
   tagLabel?: string;
   tagIcon?: TIcon;
@@ -51,6 +52,7 @@ const MenuItem = forwardRef(
       expand,
       fontSize = "md",
       selected,
+      icon,
       transparent,
       tagLabel,
       tagIcon,
@@ -71,6 +73,8 @@ const MenuItem = forwardRef(
     const [isPressed, setIsPressed] = useState(false);
 
     const iconColor: ColorKeys =
+      clickable && (active || isHover) ? "green.800" : "gray.800";
+    const tagIconColor: ColorKeys =
       clickable && (active || isHover) ? "green.800" : "gray.500";
 
     function getVariant() {
@@ -150,7 +154,10 @@ const MenuItem = forwardRef(
         onKeyDown={handleKeyDown}
       >
         <WizHStack align="center" justify="between">
-          <div className={fontSizeStyle[fontSize]}>{label}</div>
+          <WizHStack align="center" gap="xs">
+            {icon && <WizIcon icon={icon} size="xl2" color={iconColor} />}
+            <div className={fontSizeStyle[fontSize]}>{label}</div>
+          </WizHStack>
           <WizHStack align="center" gap="xs">
             {tagLabel && (
               <div className={styles.menuItemTagStyle}>
@@ -163,7 +170,7 @@ const MenuItem = forwardRef(
                 />
               </div>
             )}
-            <WizIcon size="xl2" icon={WizIChevronRight} color={iconColor} />
+            <WizIcon size="xl2" icon={WizIChevronRight} color={tagIconColor} />
           </WizHStack>
         </WizHStack>
       </div>

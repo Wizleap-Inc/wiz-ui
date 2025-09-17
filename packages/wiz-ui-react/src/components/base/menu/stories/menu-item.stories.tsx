@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { WizIFolderFilled } from "@/components/icons";
+
 import { WizMenuItem } from "../components/menu-item";
 
 const meta: Meta<typeof WizMenuItem> = {
@@ -108,5 +110,12 @@ export const Transparent: Story = {
   args: {
     label: "テスト",
     transparent: true,
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    label: "テスト",
+    icon: WizIFolderFilled,
   },
 };
