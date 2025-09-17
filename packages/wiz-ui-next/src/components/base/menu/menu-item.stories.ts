@@ -1,6 +1,8 @@
 import { StoryFn, Meta } from "@storybook/vue3";
 import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
+import { WizIFolderFilled } from "@/components/icons";
+
 import { WizMenuItem } from "./";
 
 export default {
@@ -147,4 +149,19 @@ TransparentActive.args = {
   label: "テスト",
   transparent: true,
   active: true,
+};
+
+export const Icon = Template.bind({});
+Icon.args = {
+  label: "テスト",
+  icon: WizIFolderFilled,
+  transparent: true,
+};
+
+export const IconActive = Template.bind({});
+IconActive.args = {
+  label: "テスト",
+  icon: WizIFolderFilled,
+  active: true,
+  transparent: true,
 };

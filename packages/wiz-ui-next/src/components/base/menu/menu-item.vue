@@ -15,9 +15,12 @@
     @click="onClick"
   >
     <WizHStack align="center" justify="between">
-      <div :class="fontSizeStyle[fontSize]">
-        {{ label }}
-      </div>
+      <WizHStack align="center" gap="xs">
+        <WizIcon v-if="icon" size="xl2" :icon="icon" :color="iconColor" />
+        <div :class="fontSizeStyle[fontSize]">
+          {{ label }}
+        </div>
+      </WizHStack>
 
       <WizHStack align="center" gap="xs">
         <div v-if="tagLabel" :class="menuItemTagStyle">
@@ -29,7 +32,7 @@
             fontWeight="bold"
           />
         </div>
-        <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
+        <WizIcon size="xl2" :icon="WizIChevronRight" :color="tagIconColor" />
       </WizHStack>
     </WizHStack>
   </div>
@@ -90,6 +93,10 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+  },
   transparent: {
     type: Boolean,
     required: false,
@@ -141,6 +148,12 @@ const tagFontSize = computed(() => {
 });
 
 const iconColor = computed(() => {
+  if (!props.clickable) return "gray.500";
+  if (props.active || isHover.value) return "green.800";
+  return "gray.800";
+});
+
+const tagIconColor = computed(() => {
   if (!props.clickable) return "gray.500";
   if (props.active || isHover.value) return "green.800";
   return "gray.500";
