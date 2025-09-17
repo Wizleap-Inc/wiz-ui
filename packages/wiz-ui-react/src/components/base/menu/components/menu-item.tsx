@@ -35,6 +35,7 @@ type Props = BaseProps & {
   selected?: boolean;
   icon?: TIcon;
   transparent?: boolean;
+  hideChevron?: boolean;
   tagLabel?: string;
   tagIcon?: TIcon;
   tagVariant?: TagVariant;
@@ -54,6 +55,7 @@ const MenuItem = forwardRef(
       selected,
       icon,
       transparent,
+      hideChevron,
       tagLabel,
       tagIcon,
       tagVariant = "info",
@@ -170,7 +172,13 @@ const MenuItem = forwardRef(
                 />
               </div>
             )}
-            <WizIcon size="xl2" icon={WizIChevronRight} color={tagIconColor} />
+            {!hideChevron && (
+              <WizIcon
+                size="xl2"
+                icon={WizIChevronRight}
+                color={tagIconColor}
+              />
+            )}
           </WizHStack>
         </WizHStack>
       </div>

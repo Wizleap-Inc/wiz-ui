@@ -119,3 +119,10 @@ export const Icon: Story = {
     icon: WizIFolderFilled,
   },
 };
+
+export const HideChevron: Story = {
+  args: {
+    label: "テスト",
+    hideChevron: true,
+  },
+};
