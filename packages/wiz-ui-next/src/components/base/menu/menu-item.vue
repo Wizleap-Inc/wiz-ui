@@ -4,6 +4,7 @@
       menuItemStyle,
       menuItemVariantStyle[componentStatus],
       expand && menuItemExpand,
+      transparent && menuItemTransparentVariantStyle[componentStatus],
     ]"
     :style="{ width: width }"
     @mouseover="onMouseOver"
@@ -37,10 +38,11 @@
 <script setup lang="ts">
 import { FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  menuItemStyle,
-  menuItemVariantStyle,
   menuItemExpand,
+  menuItemStyle,
   menuItemTagStyle,
+  menuItemTransparentVariantStyle,
+  menuItemVariantStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
@@ -84,6 +86,11 @@ const props = defineProps({
     default: "md",
   },
   selected: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  transparent: {
     type: Boolean,
     required: false,
     default: false,

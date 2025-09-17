@@ -135,3 +135,16 @@ Tag.args = {
   tagLabel: "Tags",
   tagVariant: "green",
 };
+
+export const Transparent = Template.bind({});
+Transparent.args = {
+  label: "テスト",
+  transparent: true,
+};
+
+export const TransparentActive = Template.bind({});
+TransparentActive.args = {
+  label: "テスト",
+  transparent: true,
+  active: true,
+};

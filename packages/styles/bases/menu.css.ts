@@ -44,3 +44,21 @@ export const menuItemVariantStyle = styleVariants({
     fontWeight: 700,
   },
 });
+
+export const menuItemTransparentVariantStyle = styleVariants({
+  default: {
+    backgroundColor: THEME.color.transparent,
+  },
+  hover: {
+    backgroundColor: THEME.color.transparent,
+  },
+  active: {
+    backgroundColor: THEME.color.white[800],
+  },
+  disabled: {
+    backgroundColor: THEME.color.transparent,
+  },
+  selected: {
+    backgroundColor: THEME.color.white[800],
+  },
+});
