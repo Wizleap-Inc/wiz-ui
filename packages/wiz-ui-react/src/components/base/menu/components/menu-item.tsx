@@ -33,6 +33,7 @@ type Props = BaseProps & {
   expand?: boolean;
   fontSize?: FontSizeKeys;
   selected?: boolean;
+  transparent?: boolean;
   tagLabel?: string;
   tagIcon?: TIcon;
   tagVariant?: TagVariant;
@@ -50,6 +51,7 @@ const MenuItem = forwardRef(
       expand,
       fontSize = "md",
       selected,
+      transparent,
       tagLabel,
       tagIcon,
       tagVariant = "info",
@@ -132,7 +134,8 @@ const MenuItem = forwardRef(
           className,
           styles.menuItemStyle,
           styles.menuItemVariantStyle[getVariant()],
-          expand && styles.menuItemExpand
+          expand && styles.menuItemExpand,
+          transparent && styles.menuItemTransparentVariantStyle[getVariant()]
         )}
         style={{ ...style, width }}
         {...props}

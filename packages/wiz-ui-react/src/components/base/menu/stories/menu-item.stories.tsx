@@ -103,3 +103,10 @@ export const Tag: Story = {
     tagVariant: "green",
   },
 };
+
+export const Transparent: Story = {
+  args: {
+    label: "テスト",
+    transparent: true,
+  },
+};
