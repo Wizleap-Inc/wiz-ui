@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.26.0
+
+### Minor Changes
+
+- [#1551](https://github.com/Wizleap-Inc/wiz-ui/pull/1551) [`3f20301`](https://github.com/Wizleap-Inc/wiz-ui/commit/3f20301adfd72487d12cf3dfdd0d6d5c5c4950c3) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(search-selector): levenshteinから部分一致にロジックを変更する
+
 ## 3.25.0
 
 ### Minor Changes
