@@ -1,6 +1,8 @@
 import { StoryFn, Meta } from "@storybook/vue3";
 import { FONT_SIZE_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 
+import { WizIFolderFilled } from "@/components/icons";
+
 import { WizMenuItem } from "./";
 
 export default {
@@ -134,4 +136,22 @@ Tag.args = {
   label: "テスト",
   tagLabel: "Tags",
   tagVariant: "green",
+};
+
+export const Transparent = Template.bind({});
+Transparent.args = {
+  label: "テスト",
+  transparent: true,
+};
+
+export const Icon = Template.bind({});
+Icon.args = {
+  label: "テスト",
+  icon: WizIFolderFilled,
+};
+
+export const HideChevron = Template.bind({});
+HideChevron.args = {
+  label: "テスト",
+  hideChevron: true,
 };

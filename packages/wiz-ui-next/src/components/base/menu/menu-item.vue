@@ -4,6 +4,7 @@
       menuItemStyle,
       menuItemVariantStyle[componentStatus],
       expand && menuItemExpand,
+      transparent && menuItemTransparentVariantStyle[componentStatus],
     ]"
     :style="{ width: width }"
     @mouseover="onMouseOver"
@@ -14,9 +15,17 @@
     @click="onClick"
   >
     <WizHStack align="center" justify="between">
-      <div :class="fontSizeStyle[fontSize]">
-        {{ label }}
-      </div>
+      <WizHStack align="center" gap="xs">
+        <WizIcon
+          v-if="icon"
+          :size="menuItemIconSize[fontSize]"
+          :icon="icon"
+          :color="iconColor"
+        />
+        <div :class="fontSizeStyle[fontSize]">
+          {{ label }}
+        </div>
+      </WizHStack>
 
       <WizHStack align="center" gap="xs">
         <div v-if="tagLabel" :class="menuItemTagStyle">
@@ -28,7 +37,12 @@
             fontWeight="bold"
           />
         </div>
-        <WizIcon size="xl2" :icon="WizIChevronRight" :color="iconColor" />
+        <WizIcon
+          v-if="!hideChevron"
+          size="xl2"
+          :icon="WizIChevronRight"
+          :color="tagIconColor"
+        />
       </WizHStack>
     </WizHStack>
   </div>
@@ -37,10 +51,12 @@
 <script setup lang="ts">
 import { FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  menuItemStyle,
-  menuItemVariantStyle,
   menuItemExpand,
+  menuItemStyle,
   menuItemTagStyle,
+  menuItemTransparentVariantStyle,
+  menuItemVariantStyle,
+  menuItemIconSize,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
@@ -84,6 +100,20 @@ const props = defineProps({
     default: "md",
   },
   selected: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  icon: {
+    type: Object as PropType<TIcon>,
+    required: false,
+  },
+  transparent: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  hideChevron: {
     type: Boolean,
     required: false,
     default: false,
@@ -134,6 +164,12 @@ const tagFontSize = computed(() => {
 });
 
 const iconColor = computed(() => {
+  if (!props.clickable) return "gray.500";
+  if (props.active || isHover.value) return "green.800";
+  return "gray.800";
+});
+
+const tagIconColor = computed(() => {
   if (!props.clickable) return "gray.500";
   if (props.active || isHover.value) return "green.800";
   return "gray.500";

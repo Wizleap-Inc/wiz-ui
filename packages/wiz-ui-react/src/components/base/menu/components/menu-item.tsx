@@ -33,6 +33,9 @@ type Props = BaseProps & {
   expand?: boolean;
   fontSize?: FontSizeKeys;
   selected?: boolean;
+  icon?: TIcon;
+  transparent?: boolean;
+  hideChevron?: boolean;
   tagLabel?: string;
   tagIcon?: TIcon;
   tagVariant?: TagVariant;
@@ -50,6 +53,9 @@ const MenuItem = forwardRef(
       expand,
       fontSize = "md",
       selected,
+      icon,
+      transparent,
+      hideChevron,
       tagLabel,
       tagIcon,
       tagVariant = "info",
@@ -69,6 +75,8 @@ const MenuItem = forwardRef(
     const [isPressed, setIsPressed] = useState(false);
 
     const iconColor: ColorKeys =
+      clickable && (active || isHover) ? "green.800" : "gray.800";
+    const tagIconColor: ColorKeys =
       clickable && (active || isHover) ? "green.800" : "gray.500";
 
     function getVariant() {
@@ -132,7 +140,8 @@ const MenuItem = forwardRef(
           className,
           styles.menuItemStyle,
           styles.menuItemVariantStyle[getVariant()],
-          expand && styles.menuItemExpand
+          expand && styles.menuItemExpand,
+          transparent && styles.menuItemTransparentVariantStyle[getVariant()]
         )}
         style={{ ...style, width }}
         {...props}
@@ -147,7 +156,16 @@ const MenuItem = forwardRef(
         onKeyDown={handleKeyDown}
       >
         <WizHStack align="center" justify="between">
-          <div className={fontSizeStyle[fontSize]}>{label}</div>
+          <WizHStack align="center" gap="xs">
+            {icon && (
+              <WizIcon
+                icon={icon}
+                size={styles.menuItemIconSize[fontSize]}
+                color={iconColor}
+              />
+            )}
+            <div className={fontSizeStyle[fontSize]}>{label}</div>
+          </WizHStack>
           <WizHStack align="center" gap="xs">
             {tagLabel && (
               <div className={styles.menuItemTagStyle}>
@@ -160,7 +178,13 @@ const MenuItem = forwardRef(
                 />
               </div>
             )}
-            <WizIcon size="xl2" icon={WizIChevronRight} color={iconColor} />
+            {!hideChevron && (
+              <WizIcon
+                size="xl2"
+                icon={WizIChevronRight}
+                color={tagIconColor}
+              />
+            )}
           </WizHStack>
         </WizHStack>
       </div>
