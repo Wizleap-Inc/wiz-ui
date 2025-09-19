@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { FontSizeKeys, THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const menuItemStyle = style({
   padding: `${THEME.spacing.xs} ${THEME.spacing.md}`,
@@ -62,3 +62,18 @@ export const menuItemTransparentVariantStyle = styleVariants({
     backgroundColor: THEME.color.white[800],
   },
 });
+
+export const menuItemIconSize: { [key in FontSizeKeys]: FontSizeKeys } = {
+  xs3: "lg",
+  xs2: "lg",
+  xs: "xl",
+  sm: "xl",
+  md: "xl2",
+  lg: "xl2",
+  xl: "xl3",
+  xl2: "xl3",
+  xl3: "xl4",
+  xl4: "xl5",
+  xl5: "xl6",
+  xl6: "xl6",
+};

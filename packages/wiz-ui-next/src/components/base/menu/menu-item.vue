@@ -16,7 +16,12 @@
   >
     <WizHStack align="center" justify="between">
       <WizHStack align="center" gap="xs">
-        <WizIcon v-if="icon" :size="iconSize" :icon="icon" :color="iconColor" />
+        <WizIcon
+          v-if="icon"
+          :size="menuItemIconSize[fontSize]"
+          :icon="icon"
+          :color="iconColor"
+        />
         <div :class="fontSizeStyle[fontSize]">
           {{ label }}
         </div>
@@ -51,6 +56,7 @@ import {
   menuItemTagStyle,
   menuItemTransparentVariantStyle,
   menuItemVariantStyle,
+  menuItemIconSize,
 } from "@wizleap-inc/wiz-ui-styles/bases/menu.css";
 import { fontSizeStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
@@ -161,32 +167,6 @@ const iconColor = computed(() => {
   if (!props.clickable) return "gray.500";
   if (props.active || isHover.value) return "green.800";
   return "gray.800";
-});
-
-const iconSize = computed(() => {
-  switch (props.fontSize) {
-    case "xs3":
-    case "xs2":
-      return "lg";
-    case "xs":
-    case "sm":
-      return "xl";
-    case "md":
-    case "lg":
-      return "xl2";
-    case "xl":
-    case "xl2":
-      return "xl3";
-    case "xl3":
-      return "xl4";
-    case "xl4":
-      return "xl5";
-    case "xl5":
-    case "xl6":
-      return "xl6";
-    default:
-      return "xl2";
-  }
 });
 
 const tagIconColor = computed(() => {
