@@ -98,7 +98,7 @@ const props = defineProps({
 });
 
 interface Emit {
-  (e: "onMicClick"): void;
+  (e: "micClick"): void;
 }
 
 const emit = defineEmits<Emit>();
@@ -132,6 +132,6 @@ const computedPlaceholder = computed(() => {
 
 const onMicClick = () => {
   if (props.disabled) return;
-  emit("onMicClick");
+  emit("micClick");
 };
 </script>

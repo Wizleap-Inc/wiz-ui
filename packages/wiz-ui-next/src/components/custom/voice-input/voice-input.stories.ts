@@ -65,7 +65,7 @@ export default {
       },
     },
     onMicClick: {
-      action: "onMicClick",
+      action: "micClick",
     },
   },
 } as Meta<typeof WizVoiceInput>;
@@ -79,7 +79,7 @@ const Template: StoryFn<typeof WizVoiceInput> = (args) => ({
     };
     return { value, args, handleMicClick };
   },
-  template: `<WizVoiceInput v-bind="args" v-model="value" name="voice-input" @onMicClick="handleMicClick" />`,
+  template: `<WizVoiceInput v-bind="args" v-model="value" name="voice-input" @micClick="handleMicClick" />`,
 });
 
 export const Default = Template.bind({});
