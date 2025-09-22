@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.34.0
+
+### Minor Changes
+
+- [#1557](https://github.com/Wizleap-Inc/wiz-ui/pull/1557) [`e6c3128`](https://github.com/Wizleap-Inc/wiz-ui/commit/e6c312858240126a7e116f3961b594b04569df72) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: VoiceInput Componentの追加
+
 ## 0.33.0
 
 ### Minor Changes
