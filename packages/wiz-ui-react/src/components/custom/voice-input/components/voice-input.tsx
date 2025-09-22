@@ -69,7 +69,7 @@ const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
     const micColor: ColorKeys = useMemo(() => {
       if (micDisabled || disabled) return "gray.500";
       if (isListening) return "green.800";
-      return "gray.800";
+      return "gray.700";
     }, [isListening, micDisabled, disabled]);
 
     const computedPlaceholder = useMemo(() => {

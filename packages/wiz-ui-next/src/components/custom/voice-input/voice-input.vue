@@ -116,7 +116,7 @@ const micColor = computed(() => {
   if (props.micDisabled || props.disabled) return "gray.500";
   if (props.isListening) return "green.800";
 
-  return "gray.800";
+  return "gray.700";
 });
 
 const computedPlaceholder = computed(() => {
