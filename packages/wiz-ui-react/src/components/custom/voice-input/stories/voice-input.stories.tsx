@@ -110,6 +110,13 @@ Row.args = {
   isListening: false,
 };
 
+export const Listening = Template.bind({});
+Listening.args = {
+  placeholder: "音声入力中...",
+  micDisabled: false,
+  isListening: true,
+};
+
 export const Resize = Template.bind({});
 Resize.args = {
   resize: "both",

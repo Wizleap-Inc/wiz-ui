@@ -118,6 +118,13 @@ Row.args = {
   isListening: false,
 };
 
+export const Listening = Template.bind({});
+Listening.args = {
+  placeholder: "音声入力中...",
+  micDisabled: false,
+  isListening: true,
+};
+
 export const Test = Template.bind({});
 Test.args = {
   placeholder: "入力してください",
