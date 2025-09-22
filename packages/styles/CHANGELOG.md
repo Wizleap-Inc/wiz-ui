@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.50.0
+
+### Minor Changes
+
+- [#1553](https://github.com/Wizleap-Inc/wiz-ui/pull/1553) [`e316915`](https://github.com/Wizleap-Inc/wiz-ui/commit/e316915c83cd5662873c525c1dc3b5f75d7c9707) Thanks [@k-tada](https://github.com/k-tada)! - MenuItemのアイコン表示・シェブロン削除対応
+
+- [#1557](https://github.com/Wizleap-Inc/wiz-ui/pull/1557) [`e6c3128`](https://github.com/Wizleap-Inc/wiz-ui/commit/e6c312858240126a7e116f3961b594b04569df72) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: VoiceInput Componentの追加
+
 ## 0.49.5
 
 ### Patch Changes
