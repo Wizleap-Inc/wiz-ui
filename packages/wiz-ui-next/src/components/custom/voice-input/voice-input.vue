@@ -27,15 +27,16 @@
       @click="onMicClick"
     >
       <WizIcon
-        :icon="micDisabled || disabled ? WizIMicOffFilled : WizIMicBold"
+        :icon="micDisabled || disabled ? WizIMicOffFilled : WizIMicFilled"
         :color="micColor"
+        size="xl"
       />
     </button>
   </label>
 </template>
 
 <script setup lang="ts">
-import { WizIcon, WizIMicBold, WizIMicOffFilled } from "@/components";
+import { WizIcon, WizIMicFilled, WizIMicOffFilled } from "@/components";
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import {
   voiceInputExpandStyle,

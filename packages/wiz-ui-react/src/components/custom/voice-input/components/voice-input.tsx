@@ -16,7 +16,7 @@ import React, {
   useState,
 } from "react";
 
-import { WizIcon, WizIMicBold, WizIMicOffFilled } from "@/components";
+import { WizIcon, WizIMicFilled, WizIMicOffFilled } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 
 type Props = Omit<
@@ -125,8 +125,9 @@ const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
           aria-label={isListening ? "音声入力を停止" : "音声入力を開始"}
         >
           <WizIcon
-            icon={micDisabled || disabled ? WizIMicOffFilled : WizIMicBold}
+            icon={micDisabled || disabled ? WizIMicOffFilled : WizIMicFilled}
             color={micColor}
+            size="xl"
           />
         </button>
       </label>
