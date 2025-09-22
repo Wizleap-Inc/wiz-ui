@@ -109,6 +109,7 @@ import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMergeTypeBold } from "./merge-type-bold.vue";
 import { default as WizIMicBold } from "./mic-bold.vue";
 import { default as WizIMicFilled } from "./mic-filled.vue";
+import { default as WizIMicOffFilled } from "./mic-off-filled.vue";
 import { default as WizIMinusFilled } from "./minus-filled.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVertBold } from "./more-vert-bold.vue";
@@ -265,6 +266,7 @@ export type TIcon =
   | typeof WizIMergeTypeBold
   | typeof WizIMicBold
   | typeof WizIMicFilled
+  | typeof WizIMicOffFilled
   | typeof WizIMinusFilled
   | typeof WizIMonitoring
   | typeof WizIMoreVertBold
@@ -421,6 +423,7 @@ export {
   WizIMergeTypeBold,
   WizIMicBold,
   WizIMicFilled,
+  WizIMicOffFilled,
   WizIMinusFilled,
   WizIMonitoring,
   WizIMoreVertBold,

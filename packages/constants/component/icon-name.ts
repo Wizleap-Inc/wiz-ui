@@ -110,6 +110,7 @@ export const IconComponentName = {
   IMergeTypeBold: "WizIMergeTypeBold",
   IMicBold: "WizIMicBold",
   IMicFilled: "WizIMicFilled",
+  IMicOffFilled: "WizIMicOffFilled",
   IMinusFilled: "WizIMinusFilled",
   IMonitoring: "WizIMonitoring",
   IMoreVertBold: "WizIMoreVertBold",
