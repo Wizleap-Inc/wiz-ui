@@ -65,6 +65,7 @@ export const ComponentName = {
   Tag: "WizTag",
   TextArea: "WizTextArea",
   Tooltip: "WizTooltip",
+  VoiceInput: "WizVoiceInput",
   ChatCard: "WizChatCard",
   ChatForm: "WizChatForm",
   ChatItem: "WizChatItem",
