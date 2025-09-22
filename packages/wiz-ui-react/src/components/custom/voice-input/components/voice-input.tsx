@@ -29,7 +29,6 @@ type Props = Omit<
   micDisabled: boolean;
   expand?: boolean;
   rows?: number;
-  resize?: "none" | "both" | "horizontal" | "vertical";
   maxWidth?: string;
   minWidth?: string;
   isListening: boolean;
@@ -46,7 +45,6 @@ const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
       micDisabled,
       expand = false,
       rows = 3,
-      resize = "none",
       maxWidth,
       minWidth,
       isListening,
@@ -111,7 +109,6 @@ const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
           disabled={disabled}
           rows={rows}
           className={voiceInputTextAreaStyle}
-          style={{ resize }}
           onChange={handleChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

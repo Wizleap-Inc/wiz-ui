@@ -29,6 +29,7 @@ export const voiceInputTextAreaStyle = style({
   boxSizing: "border-box",
   border: "none",
   outline: "none",
+  resize: "none",
   "::placeholder": {
     color: THEME.color.gray[500],
   },

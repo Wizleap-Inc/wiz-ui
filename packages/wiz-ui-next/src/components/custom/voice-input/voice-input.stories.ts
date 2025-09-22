@@ -43,12 +43,6 @@ export default {
         type: "number",
       },
     },
-    resize: {
-      control: {
-        type: "select",
-      },
-      options: ["both", "horizontal", "vertical", "none"],
-    },
     isListening: {
       control: {
         type: "boolean",
@@ -128,15 +122,6 @@ Listening.args = {
 export const Test = Template.bind({});
 Test.args = {
   placeholder: "入力してください",
-  micDisabled: false,
-  isListening: false,
-};
-
-export const Resize = Template.bind({});
-Resize.args = {
-  resize: "both",
-  placeholder: "入力してください",
-  maxWidth: "400px",
   micDisabled: false,
   isListening: false,
 };
