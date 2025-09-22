@@ -69,8 +69,8 @@ const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
     }, [isError, isListening, isFocused]);
 
     const micColor: ColorKeys = useMemo(() => {
-      if (isListening) return "green.800";
       if (micDisabled || disabled) return "gray.500";
+      if (isListening) return "green.800";
       return "gray.800";
     }, [isListening, micDisabled, disabled]);
 

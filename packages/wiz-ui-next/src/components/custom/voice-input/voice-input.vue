@@ -118,17 +118,15 @@ const state = computed(() => {
 });
 
 const micColor = computed(() => {
-  if (props.isListening) return "green.800";
   if (props.micDisabled || props.disabled) return "gray.500";
+  if (props.isListening) return "green.800";
 
   return "gray.800";
 });
 
 const computedPlaceholder = computed(() => {
   if (props.placeholder) return props.placeholder;
-  return props.disabled
-    ? "入力できません"
-    : props.placeholder || "入力してください";
+  return props.disabled ? "入力できません" : "入力してください";
 });
 
 const onMicClick = () => {
