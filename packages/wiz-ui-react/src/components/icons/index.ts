@@ -60,6 +60,7 @@ import { WizICounter9 } from "./counter-9";
 import { WizICounter9Filled } from "./counter-9-filled";
 import { WizIDashboard } from "./dashboard";
 import { WizIDelete } from "./delete";
+import { WizIDeleteBold } from "./delete-bold";
 import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
 import { WizIDomain } from "./domain";
@@ -97,6 +98,7 @@ import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
 import { WizIJamboardKioskBold } from "./jamboard-kiosk-bold";
 import { WizIKeepBold } from "./keep-bold";
+import { WizILinkBold } from "./link-bold";
 import { WizILinkOff } from "./link-off";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
@@ -216,6 +218,7 @@ export type TIcon =
   | typeof WizICounter9Filled
   | typeof WizICounter9
   | typeof WizIDashboard
+  | typeof WizIDeleteBold
   | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
@@ -254,6 +257,7 @@ export type TIcon =
   | typeof WizIInfo
   | typeof WizIJamboardKioskBold
   | typeof WizIKeepBold
+  | typeof WizILinkBold
   | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
@@ -373,6 +377,7 @@ export {
   WizICounter9Filled,
   WizICounter9,
   WizIDashboard,
+  WizIDeleteBold,
   WizIDelete,
   WizIDemography,
   WizIDescription,
@@ -411,6 +416,7 @@ export {
   WizIInfo,
   WizIJamboardKioskBold,
   WizIKeepBold,
+  WizILinkBold,
   WizILinkOff,
   WizILocationCity,
   WizILocationOn,
