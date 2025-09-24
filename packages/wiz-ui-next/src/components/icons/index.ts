@@ -59,6 +59,7 @@ import { default as WizICounter8 } from "./counter-8.vue";
 import { default as WizICounter9Filled } from "./counter-9-filled.vue";
 import { default as WizICounter9 } from "./counter-9.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
+import { default as WizIDeleteBold } from "./delete-bold.vue";
 import { default as WizIDelete } from "./delete.vue";
 import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
@@ -97,6 +98,7 @@ import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizIJamboardKioskBold } from "./jamboard-kiosk-bold.vue";
 import { default as WizIKeepBold } from "./keep-bold.vue";
+import { default as WizILinkBold } from "./link-bold.vue";
 import { default as WizILinkOff } from "./link-off.vue";
 import { default as WizILocationCity } from "./location-city.vue";
 import { default as WizILocationOn } from "./location-on.vue";
@@ -216,6 +218,7 @@ export type TIcon =
   | typeof WizICounter9Filled
   | typeof WizICounter9
   | typeof WizIDashboard
+  | typeof WizIDeleteBold
   | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
@@ -254,6 +257,7 @@ export type TIcon =
   | typeof WizIInfo
   | typeof WizIJamboardKioskBold
   | typeof WizIKeepBold
+  | typeof WizILinkBold
   | typeof WizILinkOff
   | typeof WizILocationCity
   | typeof WizILocationOn
@@ -373,6 +377,7 @@ export {
   WizICounter9Filled,
   WizICounter9,
   WizIDashboard,
+  WizIDeleteBold,
   WizIDelete,
   WizIDemography,
   WizIDescription,
@@ -411,6 +416,7 @@ export {
   WizIInfo,
   WizIJamboardKioskBold,
   WizIKeepBold,
+  WizILinkBold,
   WizILinkOff,
   WizILocationCity,
   WizILocationOn,
