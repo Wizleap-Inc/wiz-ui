@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.46.0
+
+### Minor Changes
+
+- [#1559](https://github.com/Wizleap-Inc/wiz-ui/pull/1559) [`323bf28`](https://github.com/Wizleap-Inc/wiz-ui/commit/323bf28563a2e1dc1ca2c5788121a7998c07224b) Thanks [@k-tada](https://github.com/k-tada)! - WizIDeleteBold, WizILinkBoldの追加
+
 ## 0.45.0
 
 ### Minor Changes
