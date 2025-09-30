@@ -12,3 +12,4 @@ export * from "./date-picker";
 export * from "./upload";
 export * from "./search-input";
 export * from "./date-range-picker";
+export * from "./number-input";
