@@ -40,6 +40,7 @@ import { WizICloudUpload } from "./cloud-upload";
 import { WizIContactPageFilled } from "./contact-page-filled";
 import { WizIContentCopy } from "./content-copy";
 import { WizIContract } from "./contract";
+import { WizICorporateFare } from "./corporate-fare";
 import { WizICounter1 } from "./counter-1";
 import { WizICounter1Filled } from "./counter-1-filled";
 import { WizICounter2 } from "./counter-2";
@@ -199,6 +200,7 @@ export type TIcon =
   | typeof WizIContactPageFilled
   | typeof WizIContentCopy
   | typeof WizIContract
+  | typeof WizICorporateFare
   | typeof WizICounter1Filled
   | typeof WizICounter1
   | typeof WizICounter2Filled
@@ -358,6 +360,7 @@ export {
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
+  WizICorporateFare,
   WizICounter1Filled,
   WizICounter1,
   WizICounter2Filled,
