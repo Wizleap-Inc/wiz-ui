@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.48.0
+
+### Minor Changes
+
+- [#1567](https://github.com/Wizleap-Inc/wiz-ui/pull/1567) [`03da141`](https://github.com/Wizleap-Inc/wiz-ui/commit/03da141a5f01676d27c8464d6c0ef3343bb96af2) Thanks [@k-tada](https://github.com/k-tada)! - アイコンWizIEditNoteBold, WizIZoomInBold, WizIZoomOutBoldの追加
+
 ## 0.47.0
 
 ### Minor Changes
