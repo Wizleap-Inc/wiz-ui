@@ -40,6 +40,7 @@ import { default as WizICloudUpload } from "./cloud-upload.vue";
 import { default as WizIContactPageFilled } from "./contact-page-filled.vue";
 import { default as WizIContentCopy } from "./content-copy.vue";
 import { default as WizIContract } from "./contract.vue";
+import { default as WizICorporateFare } from "./corporate-fare.vue";
 import { default as WizICounter1Filled } from "./counter-1-filled.vue";
 import { default as WizICounter1 } from "./counter-1.vue";
 import { default as WizICounter2Filled } from "./counter-2-filled.vue";
@@ -199,6 +200,7 @@ export type TIcon =
   | typeof WizIContactPageFilled
   | typeof WizIContentCopy
   | typeof WizIContract
+  | typeof WizICorporateFare
   | typeof WizICounter1Filled
   | typeof WizICounter1
   | typeof WizICounter2Filled
@@ -358,6 +360,7 @@ export {
   WizIContactPageFilled,
   WizIContentCopy,
   WizIContract,
+  WizICorporateFare,
   WizICounter1Filled,
   WizICounter1,
   WizICounter2Filled,

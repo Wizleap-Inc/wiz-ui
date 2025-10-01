@@ -41,6 +41,7 @@ export const IconComponentName = {
   IContactPageFilled: "WizIContactPageFilled",
   IContentCopy: "WizIContentCopy",
   IContract: "WizIContract",
+  ICorporateFare: "WizICorporateFare",
   ICounter1Filled: "WizICounter1Filled",
   ICounter1: "WizICounter1",
   ICounter2Filled: "WizICounter2Filled",
