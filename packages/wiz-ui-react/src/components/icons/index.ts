@@ -70,6 +70,7 @@ import { WizIDownloadBold } from "./download-bold";
 import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
 import { WizIEditNote } from "./edit-note";
+import { WizIEditNoteBold } from "./edit-note-bold";
 import { WizIEditPencilBold } from "./edit-pencil-bold";
 import { WizIEmergencyHome } from "./emergency-home";
 import { WizIErrorBold } from "./error-bold";
@@ -156,6 +157,8 @@ import { WizIUpload } from "./upload";
 import { WizIVideoCameraBackBold } from "./video-camera-back-bold";
 import { WizIViewModuleBold } from "./view-module-bold";
 import { WizIWarning } from "./warning";
+import { WizIZoomInBold } from "./zoom-in-bold";
+import { WizIZoomOutBold } from "./zoom-out-bold";
 
 export type TIcon =
   | typeof WizIAddCircle
@@ -229,6 +232,7 @@ export type TIcon =
   | typeof WizIDownload
   | typeof WizIDraft
   | typeof WizIDrafts
+  | typeof WizIEditNoteBold
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
@@ -315,7 +319,9 @@ export type TIcon =
   | typeof WizIUpload
   | typeof WizIVideoCameraBackBold
   | typeof WizIViewModuleBold
-  | typeof WizIWarning;
+  | typeof WizIWarning
+  | typeof WizIZoomInBold
+  | typeof WizIZoomOutBold;
 
 export {
   WizIAddCircle,
@@ -389,6 +395,7 @@ export {
   WizIDownload,
   WizIDraft,
   WizIDrafts,
+  WizIEditNoteBold,
   WizIEditNote,
   WizIEditPencilBold,
   WizIEmergencyHome,
@@ -476,4 +483,6 @@ export {
   WizIVideoCameraBackBold,
   WizIViewModuleBold,
   WizIWarning,
+  WizIZoomInBold,
+  WizIZoomOutBold,
 };

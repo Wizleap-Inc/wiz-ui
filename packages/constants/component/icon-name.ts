@@ -70,6 +70,7 @@ export const IconComponentName = {
   IDownload: "WizIDownload",
   IDraft: "WizIDraft",
   IDrafts: "WizIDrafts",
+  IEditNoteBold: "WizIEditNoteBold",
   IEditNote: "WizIEditNote",
   IEditPencilBold: "WizIEditPencilBold",
   IEmergencyHome: "WizIEmergencyHome",
@@ -157,4 +158,6 @@ export const IconComponentName = {
   IVideoCameraBackBold: "WizIVideoCameraBackBold",
   IViewModuleBold: "WizIViewModuleBold",
   IWarning: "WizIWarning",
+  IZoomInBold: "WizIZoomInBold",
+  IZoomOutBold: "WizIZoomOutBold",
 };
