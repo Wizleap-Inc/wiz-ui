@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.29.0
+
+### Minor Changes
+
+- [#1564](https://github.com/Wizleap-Inc/wiz-ui/pull/1564) [`8cfd6fd`](https://github.com/Wizleap-Inc/wiz-ui/commit/8cfd6fdb89862898520cc2ba7c758c66a5331da6) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: Icon WizICorporateFareを追加,wiz-ui-nextでnumber-inputをexport
+
+### Patch Changes
+
+- Updated dependencies [[`8cfd6fd`](https://github.com/Wizleap-Inc/wiz-ui/commit/8cfd6fdb89862898520cc2ba7c758c66a5331da6)]:
+  - @wizleap-inc/wiz-ui-constants@0.47.0
+  - @wizleap-inc/wiz-ui-styles@0.50.2
+
 ## 3.28.0
 
 ### Minor Changes
