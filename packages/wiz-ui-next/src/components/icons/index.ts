@@ -69,6 +69,7 @@ import { default as WizIDownloadBold } from "./download-bold.vue";
 import { default as WizIDownload } from "./download.vue";
 import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
+import { default as WizIEditNoteBold } from "./edit-note-bold.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIEditPencilBold } from "./edit-pencil-bold.vue";
 import { default as WizIEmergencyHome } from "./emergency-home.vue";
@@ -156,6 +157,8 @@ import { default as WizIUpload } from "./upload.vue";
 import { default as WizIVideoCameraBackBold } from "./video-camera-back-bold.vue";
 import { default as WizIViewModuleBold } from "./view-module-bold.vue";
 import { default as WizIWarning } from "./warning.vue";
+import { default as WizIZoomInBold } from "./zoom-in-bold.vue";
+import { default as WizIZoomOutBold } from "./zoom-out-bold.vue";
 
 export type TIcon =
   | typeof WizIAddCircle
@@ -229,6 +232,7 @@ export type TIcon =
   | typeof WizIDownload
   | typeof WizIDraft
   | typeof WizIDrafts
+  | typeof WizIEditNoteBold
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
   | typeof WizIEmergencyHome
@@ -315,7 +319,9 @@ export type TIcon =
   | typeof WizIUpload
   | typeof WizIVideoCameraBackBold
   | typeof WizIViewModuleBold
-  | typeof WizIWarning;
+  | typeof WizIWarning
+  | typeof WizIZoomInBold
+  | typeof WizIZoomOutBold;
 
 export {
   WizIAddCircle,
@@ -389,6 +395,7 @@ export {
   WizIDownload,
   WizIDraft,
   WizIDrafts,
+  WizIEditNoteBold,
   WizIEditNote,
   WizIEditPencilBold,
   WizIEmergencyHome,
@@ -476,4 +483,6 @@ export {
   WizIVideoCameraBackBold,
   WizIViewModuleBold,
   WizIWarning,
+  WizIZoomInBold,
+  WizIZoomOutBold,
 };
