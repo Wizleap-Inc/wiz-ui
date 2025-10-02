@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.51.0
+
+### Minor Changes
+
+- [#1570](https://github.com/Wizleap-Inc/wiz-ui/pull/1570) [`291f958`](https://github.com/Wizleap-Inc/wiz-ui/commit/291f958d69061816867279cbdb30205d65b20389) Thanks [@k-tada](https://github.com/k-tada)! - WizIconButtonにvariant="white"の追加
+
 ## 0.50.3
 
 ### Patch Changes
