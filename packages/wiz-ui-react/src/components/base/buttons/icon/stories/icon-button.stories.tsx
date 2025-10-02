@@ -34,7 +34,7 @@ export const Variant: Story = {
     docs: {
       description: {
         story:
-          "`variant` により、IconButton の色を決められたテーマ色に変更することができます。'primary', 'sub', 'transparent', 'link', から選択できます。 default は`primary` です。",
+          "`variant` により、IconButton の色を決められたテーマ色に変更することができます。'primary', 'sub', 'transparent', 'link', 'white' から選択できます。 default は`primary` です。",
       },
     },
   },
@@ -63,6 +63,10 @@ export const Variant: Story = {
         <WizIconButton {...args} variant="link" />
       </div>
       <div>variant = link</div>
+      <div>
+        <WizIconButton {...args} variant="white" />
+      </div>
+      <div>variant = white</div>
     </div>
   ),
   args: {
@@ -143,6 +147,10 @@ export const Disabled: Story = {
         <WizIconButton disabled {...args} variant="link" />
       </div>
       <div>disabled = true, variant = link</div>
+      <div>
+        <WizIconButton disabled {...args} variant="white" />
+      </div>
+      <div>disabled = true, variant = white</div>
     </div>
   ),
   args: {

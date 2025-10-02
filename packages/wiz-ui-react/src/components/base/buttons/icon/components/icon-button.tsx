@@ -11,7 +11,7 @@ import { TIcon, WizIcon } from "@/components";
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
   icon: TIcon;
-  variant?: "primary" | "sub" | "transparent" | "link";
+  variant?: "primary" | "sub" | "transparent" | "link" | "white";
   disabled?: boolean;
   size?: "sm" | "md" | "lg" | "xl";
 } & ComponentProps<"button">;
@@ -21,6 +21,7 @@ const iconSVGColor: Record<string, ColorKeys> = {
   sub: "green.800",
   transparent: "gray.800",
   link: "blue.800",
+  white: "white.800",
 };
 
 const IconButton = forwardRef(
