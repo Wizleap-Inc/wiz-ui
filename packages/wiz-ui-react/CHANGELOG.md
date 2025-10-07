@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.32.0
+
+### Minor Changes
+
+- [#1572](https://github.com/Wizleap-Inc/wiz-ui/pull/1572) [`9c65483`](https://github.com/Wizleap-Inc/wiz-ui/commit/9c65483c1c51ccd4e3e2c3e75370f898cb920f20) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - fix(voice-input): on-changeをoptionalにする
+
 ## 2.31.0
 
 ### Minor Changes
