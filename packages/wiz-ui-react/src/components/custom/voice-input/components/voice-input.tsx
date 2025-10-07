@@ -33,7 +33,7 @@ type Props = Omit<
   minWidth?: string;
   isListening: boolean;
   onMicClick: () => void;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 
 const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
@@ -82,10 +82,6 @@ const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
       onMicClick();
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      onChange(e.target.value);
-    };
-
     return (
       <label
         className={clsx(
@@ -109,7 +105,7 @@ const VoiceInput = forwardRef<HTMLTextAreaElement, Props>(
           disabled={disabled}
           rows={rows}
           className={voiceInputTextAreaStyle}
-          onChange={handleChange}
+          onChange={(e) => onChange?.(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           {...rest}
