@@ -69,6 +69,14 @@ export const iconButtonStyle = styleVariants({
       padding: 0,
     },
   ],
+  green: [
+    baseIconButtonStyle,
+    {
+      background: "none",
+      border: "none",
+      padding: 0,
+    },
+  ],
 });
 
 export const iconButtonDisabledStyle = style({
@@ -91,5 +99,8 @@ export const iconButtonSVGStyle = styleVariants({
   },
   white: {
     fill: THEME.color.white[800],
+  },
+  green: {
+    fill: THEME.color.green[800],
   },
 });
