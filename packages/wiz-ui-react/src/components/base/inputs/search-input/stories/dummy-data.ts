@@ -82,16 +82,7 @@ export const normalOptions: SearchInputOption[] = [
               {
                 label: "11-オプション1",
                 value: 111,
-                children: [
-                  {
-                    label: "opt 11-1-1",
-                    value: 1111,
-                  },
-                  {
-                    label: "opt 11-1-2",
-                    value: 1112,
-                  },
-                ],
+                children: [],
               },
               {
                 label: "11-オプション2",
@@ -205,6 +196,7 @@ export const normalOptions: SearchInputOption[] = [
   {
     label: "テスト保険会社3",
     value: 21,
+    children: [],
   },
 ];
 
