@@ -44,6 +44,8 @@ export const Variant: StoryFn<typeof WizIconButton> = (args) => ({
       <div>variant = link</div>
       <div><WizIconButton ariaLabel="white" variant="white" :icon="WizISend" @click="args.onClick('white')" /></div>
       <div>variant = white</div>
+      <div><WizIconButton ariaLabel="green" variant="green" :icon="WizISend" @click="args.onClick('green')" /></div>
+      <div>variant = green</div>
     </div>
   `,
 });
@@ -52,7 +54,7 @@ Variant.parameters = {
   docs: {
     description: {
       story:
-        "`variant` により、IconButton の色を決められたテーマ色に変更することができます。'primary', 'sub', 'transparent', 'link', 'white' から選択できます。 default は`primary` です。",
+        "`variant` により、IconButton の色を決められたテーマ色に変更することができます。'primary', 'sub', 'transparent', 'link', 'white', 'green' から選択できます。 default は`primary` です。",
     },
     source: {
       code: `
@@ -68,6 +70,8 @@ Variant.parameters = {
     <div>variant = link</div>
     <div><WizIconButton ariaLabel="white" variant="white" :icon="WizISend" @click="args.onClick('white')" /></div>
     <div>variant = white</div>
+    <div><WizIconButton ariaLabel="green" variant="green" :icon="WizISend" @click="args.onClick('green')" /></div>
+    <div>variant = green</div>
   </div>
 </template>
       `,
@@ -128,6 +132,8 @@ export const Disabled: StoryFn<typeof WizIconButton> = (args) => ({
       <div>disabled = true, variant = link</div>
       <div><WizIconButton disabled ariaLabel="white" variant="white" :icon="WizISend" @click="args.onClick('white disabled')" /></div>
       <div>disabled = true, variant = white</div>
+      <div><WizIconButton disabled ariaLabel="green" variant="green" :icon="WizISend" @click="args.onClick('green disabled')" /></div>
+      <div>disabled = true, variant = green</div>
     </div>
   `,
 });
@@ -152,6 +158,8 @@ Disabled.parameters = {
     <div>disabled = true, variant = link</div>
     <div><WizIconButton disabled ariaLabel="white" variant="white" :icon="WizISend" @click="args.onClick('white disabled')" /></div>
     <div>disabled = true, variant = white</div>
+    <div><WizIconButton disabled ariaLabel="green" variant="green" :icon="WizISend" @click="args.onClick('green disabled')" /></div>
+    <div>disabled = true, variant = green</div>
   </div>
 </template>
       `,

@@ -48,7 +48,7 @@ const props = defineProps({
   },
   variant: {
     type: String as PropType<
-      "primary" | "sub" | "transparent" | "link" | "white"
+      "primary" | "sub" | "transparent" | "link" | "white" | "green"
     >,
     required: false,
     default: "primary",
