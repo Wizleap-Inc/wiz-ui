@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.33.0
+
+### Minor Changes
+
+- [#1578](https://github.com/Wizleap-Inc/wiz-ui/pull/1578) [`7d95088`](https://github.com/Wizleap-Inc/wiz-ui/commit/7d95088bda59132c20a586ed054ce2892a0f3591) Thanks [@k-tada](https://github.com/k-tada)! - WizIconButtonにvariant="green"の追加
+
+### Patch Changes
+
+- Updated dependencies [[`7d95088`](https://github.com/Wizleap-Inc/wiz-ui/commit/7d95088bda59132c20a586ed054ce2892a0f3591)]:
+  - @wizleap-inc/wiz-ui-styles@0.52.0
+
 ## 2.32.0
 
 ### Minor Changes
