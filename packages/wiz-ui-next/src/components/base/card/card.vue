@@ -5,7 +5,7 @@
       fit && cardFitStyle,
       hexpand && cardHexpandStyle,
       shadow && cardShadowStyle,
-      border && cardBorderStyle,
+      border && cardBorderStyle[borderStyle],
       px && paddingXStyle[px],
       py && paddingYStyle[py],
       !px && !py && paddingStyle[p],
@@ -99,6 +99,11 @@ defineProps({
     type: String as PropType<ColorKeys>,
     required: false,
     default: "gray.400",
+  },
+  borderStyle: {
+    type: String as PropType<"solid" | "dashed" | "dotted">,
+    required: false,
+    default: "solid",
   },
   align: {
     type: String as PropType<"start" | "center" | "end" | "stretch">,

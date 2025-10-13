@@ -24,6 +24,7 @@ type Props = BaseProps & {
   shadow?: boolean;
   border?: boolean;
   borderColor?: ColorKeys;
+  borderStyle?: "solid" | "dashed" | "dotted";
   align?: "start" | "center" | "end" | "stretch";
   fit?: boolean;
   hexpand?: boolean;
@@ -54,6 +55,7 @@ const Card = ({
   subHeaderArea,
   footerArea,
   borderColor = "gray.400",
+  borderStyle = "solid",
   ...props
 }: Props) => {
   return (
@@ -65,7 +67,7 @@ const Card = ({
         fit && styles.cardFitStyle,
         hexpand && styles.cardHexpandStyle,
         shadow && styles.cardShadowStyle,
-        border && styles.cardBorderStyle,
+        border && styles.cardBorderStyle[borderStyle],
         px && paddingXStyle[px],
         py && paddingYStyle[py],
         !px && !py && paddingStyle[p],
