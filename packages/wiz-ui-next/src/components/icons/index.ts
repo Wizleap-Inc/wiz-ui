@@ -1,3 +1,4 @@
+import { default as WizIAccountCircleBold } from "./account-circle-bold.vue";
 import { default as WizIAddCircle } from "./add-circle.vue";
 import { default as WizIAdd } from "./add.vue";
 import { default as WizIAdjustBold } from "./adjust-bold.vue";
@@ -10,6 +11,7 @@ import { default as WizIArrowRight } from "./arrow-right.vue";
 import { default as WizIArrowUpward } from "./arrow-upward.vue";
 import { default as WizIArticleBold } from "./article-bold.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
+import { default as WizIAssignmentBold } from "./assignment-bold.vue";
 import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./auto-renew.vue";
@@ -17,14 +19,17 @@ import { default as WizIBarChart4Bars } from "./bar-chart-4-bars.vue";
 import { default as WizIBook } from "./book.vue";
 import { default as WizIBrightFilled } from "./bright-filled.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
+import { default as WizICalendarMonthBold } from "./calendar-month-bold.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICallBold } from "./call-bold.vue";
 import { default as WizICamera } from "./camera.vue";
+import { default as WizICancelBold } from "./cancel-bold.vue";
 import { default as WizICancel } from "./cancel.vue";
 import { default as WizIChangeHistory } from "./change-history.vue";
 import { default as WizIChatBubbleFilled } from "./chat-bubble-filled.vue";
 import { default as WizIChat } from "./chat.vue";
 import { default as WizICheckBold } from "./check-bold.vue";
+import { default as WizICheckCircleBold } from "./check-circle-bold.vue";
 import { default as WizICheckCircleFilled } from "./check-circle-filled.vue";
 import { default as WizICheck } from "./check.vue";
 import { default as WizIChevronLeftBold } from "./chevron-left-bold.vue";
@@ -34,6 +39,7 @@ import { default as WizIChevronRight } from "./chevron-right.vue";
 import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizICircle } from "./circle.vue";
 import { default as WizIClinicalNotes } from "./clinical-notes.vue";
+import { default as WizIClockLoader20Bold } from "./clock-loader-20-bold.vue";
 import { default as WizICloseBold } from "./close-bold.vue";
 import { default as WizIClose } from "./close.vue";
 import { default as WizICloudUpload } from "./cloud-upload.vue";
@@ -103,6 +109,7 @@ import { default as WizIKeepBold } from "./keep-bold.vue";
 import { default as WizILinkBold } from "./link-bold.vue";
 import { default as WizILinkOff } from "./link-off.vue";
 import { default as WizILocationCity } from "./location-city.vue";
+import { default as WizILocationOnBold } from "./location-on-bold.vue";
 import { default as WizILocationOn } from "./location-on.vue";
 import { default as WizILogin } from "./login.vue";
 import { default as WizIMailBold } from "./mail-bold.vue";
@@ -135,9 +142,12 @@ import { default as WizIRecordVoiceOverBold } from "./record-voice-over-bold.vue
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizIReviews } from "./reviews.vue";
+import { default as WizIRotateRightBold } from "./rotate-right-bold.vue";
+import { default as WizIScheduleBold } from "./schedule-bold.vue";
 import { default as WizISchedule } from "./schedule.vue";
 import { default as WizISearch } from "./search.vue";
 import { default as WizISend } from "./send.vue";
+import { default as WizISettingsBold } from "./settings-bold.vue";
 import { default as WizISettings } from "./settings.vue";
 import { default as WizIShineBold } from "./shine-bold.vue";
 import { default as WizIShoppingmode } from "./shoppingmode.vue";
@@ -155,12 +165,14 @@ import { default as WizITimerFilled } from "./timer-filled.vue";
 import { default as WizITune } from "./tune.vue";
 import { default as WizIUpload } from "./upload.vue";
 import { default as WizIVideoCameraBackBold } from "./video-camera-back-bold.vue";
+import { default as WizIVideocamBold } from "./videocam-bold.vue";
 import { default as WizIViewModuleBold } from "./view-module-bold.vue";
 import { default as WizIWarning } from "./warning.vue";
 import { default as WizIZoomInBold } from "./zoom-in-bold.vue";
 import { default as WizIZoomOutBold } from "./zoom-out-bold.vue";
 
 export type TIcon =
+  | typeof WizIAccountCircleBold
   | typeof WizIAddCircle
   | typeof WizIAdd
   | typeof WizIAdjustBold
@@ -173,6 +185,7 @@ export type TIcon =
   | typeof WizIArrowUpward
   | typeof WizIArticleBold
   | typeof WizIAssignmentAdd
+  | typeof WizIAssignmentBold
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
@@ -180,14 +193,17 @@ export type TIcon =
   | typeof WizIBook
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
+  | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
   | typeof WizICamera
+  | typeof WizICancelBold
   | typeof WizICancel
   | typeof WizIChangeHistory
   | typeof WizIChatBubbleFilled
   | typeof WizIChat
   | typeof WizICheckBold
+  | typeof WizICheckCircleBold
   | typeof WizICheckCircleFilled
   | typeof WizICheck
   | typeof WizIChevronLeftBold
@@ -197,6 +213,7 @@ export type TIcon =
   | typeof WizICircleCheck
   | typeof WizICircle
   | typeof WizIClinicalNotes
+  | typeof WizIClockLoader20Bold
   | typeof WizICloseBold
   | typeof WizIClose
   | typeof WizICloudUpload
@@ -266,6 +283,7 @@ export type TIcon =
   | typeof WizILinkBold
   | typeof WizILinkOff
   | typeof WizILocationCity
+  | typeof WizILocationOnBold
   | typeof WizILocationOn
   | typeof WizILogin
   | typeof WizIMailBold
@@ -298,9 +316,12 @@ export type TIcon =
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
+  | typeof WizIRotateRightBold
+  | typeof WizIScheduleBold
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
+  | typeof WizISettingsBold
   | typeof WizISettings
   | typeof WizIShineBold
   | typeof WizIShoppingmode
@@ -318,12 +339,14 @@ export type TIcon =
   | typeof WizITune
   | typeof WizIUpload
   | typeof WizIVideoCameraBackBold
+  | typeof WizIVideocamBold
   | typeof WizIViewModuleBold
   | typeof WizIWarning
   | typeof WizIZoomInBold
   | typeof WizIZoomOutBold;
 
 export {
+  WizIAccountCircleBold,
   WizIAddCircle,
   WizIAdd,
   WizIAdjustBold,
@@ -336,6 +359,7 @@ export {
   WizIArrowUpward,
   WizIArticleBold,
   WizIAssignmentAdd,
+  WizIAssignmentBold,
   WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
@@ -343,14 +367,17 @@ export {
   WizIBook,
   WizIBrightFilled,
   WizIBusinessCenter,
+  WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
   WizICamera,
+  WizICancelBold,
   WizICancel,
   WizIChangeHistory,
   WizIChatBubbleFilled,
   WizIChat,
   WizICheckBold,
+  WizICheckCircleBold,
   WizICheckCircleFilled,
   WizICheck,
   WizIChevronLeftBold,
@@ -360,6 +387,7 @@ export {
   WizICircleCheck,
   WizICircle,
   WizIClinicalNotes,
+  WizIClockLoader20Bold,
   WizICloseBold,
   WizIClose,
   WizICloudUpload,
@@ -429,6 +457,7 @@ export {
   WizILinkBold,
   WizILinkOff,
   WizILocationCity,
+  WizILocationOnBold,
   WizILocationOn,
   WizILogin,
   WizIMailBold,
@@ -461,9 +490,12 @@ export {
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,
+  WizIRotateRightBold,
+  WizIScheduleBold,
   WizISchedule,
   WizISearch,
   WizISend,
+  WizISettingsBold,
   WizISettings,
   WizIShineBold,
   WizIShoppingmode,
@@ -481,6 +513,7 @@ export {
   WizITune,
   WizIUpload,
   WizIVideoCameraBackBold,
+  WizIVideocamBold,
   WizIViewModuleBold,
   WizIWarning,
   WizIZoomInBold,

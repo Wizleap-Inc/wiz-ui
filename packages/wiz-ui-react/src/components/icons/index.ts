@@ -1,3 +1,4 @@
+import { WizIAccountCircleBold } from "./account-circle-bold";
 import { WizIAdd } from "./add";
 import { WizIAddCircle } from "./add-circle";
 import { WizIAdjust } from "./adjust";
@@ -11,6 +12,7 @@ import { WizIArrowUpward } from "./arrow-upward";
 import { WizIArticleBold } from "./article-bold";
 import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
+import { WizIAssignmentBold } from "./assignment-bold";
 import { WizIAttachFile } from "./attach-file";
 import { WizIAutoRenew } from "./auto-renew";
 import { WizIBarChart4Bars } from "./bar-chart-4-bars";
@@ -18,14 +20,17 @@ import { WizIBook } from "./book";
 import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
+import { WizICalendarMonthBold } from "./calendar-month-bold";
 import { WizICallBold } from "./call-bold";
 import { WizICamera } from "./camera";
 import { WizICancel } from "./cancel";
+import { WizICancelBold } from "./cancel-bold";
 import { WizIChangeHistory } from "./change-history";
 import { WizIChat } from "./chat";
 import { WizIChatBubbleFilled } from "./chat-bubble-filled";
 import { WizICheck } from "./check";
 import { WizICheckBold } from "./check-bold";
+import { WizICheckCircleBold } from "./check-circle-bold";
 import { WizICheckCircleFilled } from "./check-circle-filled";
 import { WizIChevronLeft } from "./chevron-left";
 import { WizIChevronLeftBold } from "./chevron-left-bold";
@@ -34,6 +39,7 @@ import { WizIChevronRightBold } from "./chevron-right-bold";
 import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClinicalNotes } from "./clinical-notes";
+import { WizIClockLoader20Bold } from "./clock-loader-20-bold";
 import { WizIClose } from "./close";
 import { WizICloseBold } from "./close-bold";
 import { WizICloudUpload } from "./cloud-upload";
@@ -104,6 +110,7 @@ import { WizILinkBold } from "./link-bold";
 import { WizILinkOff } from "./link-off";
 import { WizILocationCity } from "./location-city";
 import { WizILocationOn } from "./location-on";
+import { WizILocationOnBold } from "./location-on-bold";
 import { WizILogin } from "./login";
 import { WizIMail } from "./mail";
 import { WizIMailBold } from "./mail-bold";
@@ -135,10 +142,13 @@ import { WizIRecordVoiceOverBold } from "./record-voice-over-bold";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
 import { WizIReviews } from "./reviews";
+import { WizIRotateRightBold } from "./rotate-right-bold";
 import { WizISchedule } from "./schedule";
+import { WizIScheduleBold } from "./schedule-bold";
 import { WizISearch } from "./search";
 import { WizISend } from "./send";
 import { WizISettings } from "./settings";
+import { WizISettingsBold } from "./settings-bold";
 import { WizIShineBold } from "./shine-bold";
 import { WizIShoppingmode } from "./shoppingmode";
 import { WizISmartphone } from "./smartphone";
@@ -155,12 +165,14 @@ import { WizITimerFilled } from "./timer-filled";
 import { WizITune } from "./tune";
 import { WizIUpload } from "./upload";
 import { WizIVideoCameraBackBold } from "./video-camera-back-bold";
+import { WizIVideocamBold } from "./videocam-bold";
 import { WizIViewModuleBold } from "./view-module-bold";
 import { WizIWarning } from "./warning";
 import { WizIZoomInBold } from "./zoom-in-bold";
 import { WizIZoomOutBold } from "./zoom-out-bold";
 
 export type TIcon =
+  | typeof WizIAccountCircleBold
   | typeof WizIAddCircle
   | typeof WizIAdd
   | typeof WizIAdjustBold
@@ -173,6 +185,7 @@ export type TIcon =
   | typeof WizIArrowUpward
   | typeof WizIArticleBold
   | typeof WizIAssignmentAdd
+  | typeof WizIAssignmentBold
   | typeof WizIAssignment
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
@@ -180,14 +193,17 @@ export type TIcon =
   | typeof WizIBook
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
+  | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
   | typeof WizICamera
+  | typeof WizICancelBold
   | typeof WizICancel
   | typeof WizIChangeHistory
   | typeof WizIChatBubbleFilled
   | typeof WizIChat
   | typeof WizICheckBold
+  | typeof WizICheckCircleBold
   | typeof WizICheckCircleFilled
   | typeof WizICheck
   | typeof WizIChevronLeftBold
@@ -197,6 +213,7 @@ export type TIcon =
   | typeof WizICircleCheck
   | typeof WizICircle
   | typeof WizIClinicalNotes
+  | typeof WizIClockLoader20Bold
   | typeof WizICloseBold
   | typeof WizIClose
   | typeof WizICloudUpload
@@ -266,6 +283,7 @@ export type TIcon =
   | typeof WizILinkBold
   | typeof WizILinkOff
   | typeof WizILocationCity
+  | typeof WizILocationOnBold
   | typeof WizILocationOn
   | typeof WizILogin
   | typeof WizIMailBold
@@ -298,9 +316,12 @@ export type TIcon =
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
+  | typeof WizIRotateRightBold
+  | typeof WizIScheduleBold
   | typeof WizISchedule
   | typeof WizISearch
   | typeof WizISend
+  | typeof WizISettingsBold
   | typeof WizISettings
   | typeof WizIShineBold
   | typeof WizIShoppingmode
@@ -318,12 +339,14 @@ export type TIcon =
   | typeof WizITune
   | typeof WizIUpload
   | typeof WizIVideoCameraBackBold
+  | typeof WizIVideocamBold
   | typeof WizIViewModuleBold
   | typeof WizIWarning
   | typeof WizIZoomInBold
   | typeof WizIZoomOutBold;
 
 export {
+  WizIAccountCircleBold,
   WizIAddCircle,
   WizIAdd,
   WizIAdjustBold,
@@ -336,6 +359,7 @@ export {
   WizIArrowUpward,
   WizIArticleBold,
   WizIAssignmentAdd,
+  WizIAssignmentBold,
   WizIAssignment,
   WizIAttachFile,
   WizIAutoRenew,
@@ -343,14 +367,17 @@ export {
   WizIBook,
   WizIBrightFilled,
   WizIBusinessCenter,
+  WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
   WizICamera,
+  WizICancelBold,
   WizICancel,
   WizIChangeHistory,
   WizIChatBubbleFilled,
   WizIChat,
   WizICheckBold,
+  WizICheckCircleBold,
   WizICheckCircleFilled,
   WizICheck,
   WizIChevronLeftBold,
@@ -360,6 +387,7 @@ export {
   WizICircleCheck,
   WizICircle,
   WizIClinicalNotes,
+  WizIClockLoader20Bold,
   WizICloseBold,
   WizIClose,
   WizICloudUpload,
@@ -429,6 +457,7 @@ export {
   WizILinkBold,
   WizILinkOff,
   WizILocationCity,
+  WizILocationOnBold,
   WizILocationOn,
   WizILogin,
   WizIMailBold,
@@ -461,9 +490,12 @@ export {
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,
+  WizIRotateRightBold,
+  WizIScheduleBold,
   WizISchedule,
   WizISearch,
   WizISend,
+  WizISettingsBold,
   WizISettings,
   WizIShineBold,
   WizIShoppingmode,
@@ -481,6 +513,7 @@ export {
   WizITune,
   WizIUpload,
   WizIVideoCameraBackBold,
+  WizIVideocamBold,
   WizIViewModuleBold,
   WizIWarning,
   WizIZoomInBold,
