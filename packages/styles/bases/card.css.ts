@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const cardStyle = style({
@@ -15,9 +15,14 @@ export const cardShadowStyle = style({
   boxShadow: THEME.shadow.md,
 });
 
-export const cardBorderStyle = style({
+const cardBorderBase = style({
   borderWidth: "1px",
-  borderStyle: "solid",
+});
+
+export const cardBorderStyle = styleVariants({
+  solid: [cardBorderBase, { borderStyle: "solid" }],
+  dashed: [cardBorderBase, { borderStyle: "dashed" }],
+  dotted: [cardBorderBase, { borderStyle: "dotted" }],
 });
 
 export const cardFitStyle = style({

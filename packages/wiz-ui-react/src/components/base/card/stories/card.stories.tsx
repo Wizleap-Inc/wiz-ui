@@ -32,6 +32,10 @@ const meta: Meta<typeof WizCard> = {
     border: {
       control: { type: "boolean" },
     },
+    borderStyle: {
+      control: { type: "select" },
+      options: ["solid", "dashed", "dotted"],
+    },
     align: {
       control: { type: "select" },
       options: ["start", "center", "end"],
@@ -101,6 +105,25 @@ export const borderColor: Story = {
     },
   },
 };
+
+export const BorderStyle: Story = {
+  args: {
+    border: true,
+    borderStyle: "dashed",
+  },
+  render: (args) => {
+    return <WizCard {...args}>Card の Body</WizCard>;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`borderStyle` を指定することができます。選択肢は `solid`, `dashed`, `dotted` の中から選択できます。",
+      },
+    },
+  },
+};
+
 export const Align: Story = {
   args: {
     align: "center",

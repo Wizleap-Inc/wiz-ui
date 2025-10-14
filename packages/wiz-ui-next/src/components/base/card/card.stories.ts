@@ -40,6 +40,10 @@ export default {
     border: {
       control: { type: "boolean" },
     },
+    borderStyle: {
+      control: { type: "select" },
+      options: ["solid", "dashed", "dotted"],
+    },
     align: {
       control: { type: "select" },
       options: ["start", "center", "end"],
@@ -113,6 +117,29 @@ export const BorderColor = Template.bind({});
 BorderColor.args = {
   border: true,
   borderColor: "red.500",
+};
+
+export const BorderStyle = Template.bind({});
+BorderStyle.args = {
+  border: true,
+  borderStyle: "dashed",
+};
+BorderStyle.parameters = {
+  docs: {
+    description: {
+      story:
+        "`borderStyle` を指定することができます。選択肢は `solid`, `dashed`, `dotted` の中から選択できます。",
+    },
+    source: {
+      code: `
+<template>
+  <WizCard border borderStyle="dashed">
+    defaultスロット
+  </WizCard>
+</template>
+      `,
+    },
+  },
 };
 
 export const Align = Template.bind({});
