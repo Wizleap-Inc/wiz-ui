@@ -15,6 +15,6 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 
 defineOptions({
-  name: ComponentName.IClockLoaderBold,
+  name: ComponentName.IClockLoader20Bold,
 });
 </script>

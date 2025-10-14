@@ -40,7 +40,7 @@ export const IconComponentName = {
   ICircleCheck: "WizICircleCheck",
   ICircle: "WizICircle",
   IClinicalNotes: "WizIClinicalNotes",
-  IClockLoaderBold: "WizIClockLoaderBold",
+  IClockLoader20Bold: "WizIClockLoader20Bold",
   ICloseBold: "WizICloseBold",
   IClose: "WizIClose",
   ICloudUpload: "WizICloudUpload",

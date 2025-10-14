@@ -39,7 +39,7 @@ import { WizIChevronRightBold } from "./chevron-right-bold";
 import { WizICircle } from "./circle";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClinicalNotes } from "./clinical-notes";
-import { WizIClockLoaderBold } from "./clock-loader-bold";
+import { WizIClockLoader20Bold } from "./clock-loader-20-bold";
 import { WizIClose } from "./close";
 import { WizICloseBold } from "./close-bold";
 import { WizICloudUpload } from "./cloud-upload";
@@ -213,7 +213,7 @@ export type TIcon =
   | typeof WizICircleCheck
   | typeof WizICircle
   | typeof WizIClinicalNotes
-  | typeof WizIClockLoaderBold
+  | typeof WizIClockLoader20Bold
   | typeof WizICloseBold
   | typeof WizIClose
   | typeof WizICloudUpload
@@ -387,7 +387,7 @@ export {
   WizICircleCheck,
   WizICircle,
   WizIClinicalNotes,
-  WizIClockLoaderBold,
+  WizIClockLoader20Bold,
   WizICloseBold,
   WizIClose,
   WizICloudUpload,
