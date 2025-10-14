@@ -1,5 +1,21 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.34.0
+
+### Minor Changes
+
+- [#1583](https://github.com/Wizleap-Inc/wiz-ui/pull/1583) [`473f800`](https://github.com/Wizleap-Inc/wiz-ui/commit/473f8002c8b695e416e6b26fd9ea849ef4fd928c) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: VoiceInputにResizeプロパティを追加
+
+- [#1580](https://github.com/Wizleap-Inc/wiz-ui/pull/1580) [`0eb2132`](https://github.com/Wizleap-Inc/wiz-ui/commit/0eb213233b3c86e0d485d017ee361a3f70c4d58e) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: CardにBorderStyleプロパティを追加
+
+- [#1581](https://github.com/Wizleap-Inc/wiz-ui/pull/1581) [`4f8a888`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f8a8880d1d38e33ef72ea772c882d81c707372b) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: アイコンを複数追加
+
+### Patch Changes
+
+- Updated dependencies [[`473f800`](https://github.com/Wizleap-Inc/wiz-ui/commit/473f8002c8b695e416e6b26fd9ea849ef4fd928c), [`0eb2132`](https://github.com/Wizleap-Inc/wiz-ui/commit/0eb213233b3c86e0d485d017ee361a3f70c4d58e), [`4f8a888`](https://github.com/Wizleap-Inc/wiz-ui/commit/4f8a8880d1d38e33ef72ea772c882d81c707372b)]:
+  - @wizleap-inc/wiz-ui-styles@0.53.0
+  - @wizleap-inc/wiz-ui-constants@0.49.0
+
 ## 2.33.0
 
 ### Minor Changes
