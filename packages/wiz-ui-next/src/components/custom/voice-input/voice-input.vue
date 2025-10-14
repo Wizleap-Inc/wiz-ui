@@ -14,6 +14,7 @@
       :placeholder="computedPlaceholder"
       :disabled="disabled"
       :rows="rows"
+      :style="{ resize }"
       :class="[voiceInputTextAreaStyle]"
       @focus="isFocused = true"
       @blur="isFocused = false"
@@ -45,7 +46,7 @@ import {
   voiceInputButtonStyle,
 } from "@wizleap-inc/wiz-ui-styles/customs/voice-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
-import { computed, inject, ref } from "vue";
+import { PropType, computed, inject, ref } from "vue";
 
 import { formControlKey } from "@/hooks/use-form-control-provider";
 
@@ -77,6 +78,10 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 3,
+  },
+  resize: {
+    type: String as PropType<"none" | "vertical">,
+    default: "none",
   },
   maxWidth: {
     type: String,
