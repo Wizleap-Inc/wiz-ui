@@ -117,6 +117,7 @@ import { WizIMailBold } from "./mail-bold";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
 import { WizIMenuOpen } from "./menu-open";
+import { WizIMergeType } from "./merge-type";
 import { WizIMergeTypeBold } from "./merge-type-bold";
 import { WizIMicBold } from "./mic-bold";
 import { WizIMicFilled } from "./mic-filled";
@@ -138,6 +139,7 @@ import { WizIPinDrop } from "./pin-drop";
 import { WizIPlayArrowFilled } from "./play-arrow-filled";
 import { WizIPlayCircleBold } from "./play-circle-bold";
 import { WizIPublic } from "./public";
+import { WizIRecordVoiceOver } from "./record-voice-over";
 import { WizIRecordVoiceOverBold } from "./record-voice-over-bold";
 import { WizIRemove } from "./remove";
 import { WizIRemoveBold } from "./remove-bold";
@@ -292,6 +294,7 @@ export type TIcon =
   | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMergeTypeBold
+  | typeof WizIMergeType
   | typeof WizIMicBold
   | typeof WizIMicFilled
   | typeof WizIMicOffFilled
@@ -313,6 +316,7 @@ export type TIcon =
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
   | typeof WizIRecordVoiceOverBold
+  | typeof WizIRecordVoiceOver
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
@@ -466,6 +470,7 @@ export {
   WizIMenuOpen,
   WizIMenu,
   WizIMergeTypeBold,
+  WizIMergeType,
   WizIMicBold,
   WizIMicFilled,
   WizIMicOffFilled,
@@ -487,6 +492,7 @@ export {
   WizIPlayCircleBold,
   WizIPublic,
   WizIRecordVoiceOverBold,
+  WizIRecordVoiceOver,
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,
