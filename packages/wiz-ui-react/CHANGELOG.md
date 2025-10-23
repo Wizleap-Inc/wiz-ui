@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.35.0
+
+### Minor Changes
+
+- [#1586](https://github.com/Wizleap-Inc/wiz-ui/pull/1586) [`43f8379`](https://github.com/Wizleap-Inc/wiz-ui/commit/43f8379b8190ca8fc2fc071d2d6701ddc2036f84) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: アイコン追加 MergeType, RecordVoiceOver
+
+### Patch Changes
+
+- Updated dependencies [[`43f8379`](https://github.com/Wizleap-Inc/wiz-ui/commit/43f8379b8190ca8fc2fc071d2d6701ddc2036f84)]:
+  - @wizleap-inc/wiz-ui-constants@0.50.0
+  - @wizleap-inc/wiz-ui-styles@0.53.1
+
 ## 2.34.0
 
 ### Minor Changes
