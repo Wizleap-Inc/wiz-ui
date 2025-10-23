@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.35.0
+
+### Minor Changes
+
+- [#1589](https://github.com/Wizleap-Inc/wiz-ui/pull/1589) [`c590334`](https://github.com/Wizleap-Inc/wiz-ui/commit/c5903347724c714c7cc2987a3fe3206c1b4c87d1) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Fix: corporate-fareアイコンの原型が変更されていたようなのでもとに戻す
+
+### Patch Changes
+
+- Updated dependencies [[`c590334`](https://github.com/Wizleap-Inc/wiz-ui/commit/c5903347724c714c7cc2987a3fe3206c1b4c87d1)]:
+  - @wizleap-inc/wiz-ui-constants@0.51.0
+  - @wizleap-inc/wiz-ui-styles@0.54.0
+
 ## 3.34.0
 
 ### Minor Changes
