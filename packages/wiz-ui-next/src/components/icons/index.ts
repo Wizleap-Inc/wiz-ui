@@ -118,6 +118,7 @@ import { default as WizIManageAccounts } from "./manage-accounts.vue";
 import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMergeTypeBold } from "./merge-type-bold.vue";
+import { default as WizIMergeType } from "./merge-type.vue";
 import { default as WizIMicBold } from "./mic-bold.vue";
 import { default as WizIMicFilled } from "./mic-filled.vue";
 import { default as WizIMicOffFilled } from "./mic-off-filled.vue";
@@ -139,6 +140,7 @@ import { default as WizIPlayArrowFilled } from "./play-arrow-filled.vue";
 import { default as WizIPlayCircleBold } from "./play-circle-bold.vue";
 import { default as WizIPublic } from "./public.vue";
 import { default as WizIRecordVoiceOverBold } from "./record-voice-over-bold.vue";
+import { default as WizIRecordVoiceOver } from "./record-voice-over.vue";
 import { default as WizIRemoveBold } from "./remove-bold.vue";
 import { default as WizIRemove } from "./remove.vue";
 import { default as WizIReviews } from "./reviews.vue";
@@ -292,6 +294,7 @@ export type TIcon =
   | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMergeTypeBold
+  | typeof WizIMergeType
   | typeof WizIMicBold
   | typeof WizIMicFilled
   | typeof WizIMicOffFilled
@@ -313,6 +316,7 @@ export type TIcon =
   | typeof WizIPlayCircleBold
   | typeof WizIPublic
   | typeof WizIRecordVoiceOverBold
+  | typeof WizIRecordVoiceOver
   | typeof WizIRemoveBold
   | typeof WizIRemove
   | typeof WizIReviews
@@ -466,6 +470,7 @@ export {
   WizIMenuOpen,
   WizIMenu,
   WizIMergeTypeBold,
+  WizIMergeType,
   WizIMicBold,
   WizIMicFilled,
   WizIMicOffFilled,
@@ -487,6 +492,7 @@ export {
   WizIPlayCircleBold,
   WizIPublic,
   WizIRecordVoiceOverBold,
+  WizIRecordVoiceOver,
   WizIRemoveBold,
   WizIRemove,
   WizIReviews,
