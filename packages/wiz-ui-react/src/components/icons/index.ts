@@ -87,6 +87,7 @@ import { WizIExpandMoreBold } from "./expand-more-bold";
 import { WizIEye } from "./eye";
 import { WizIFamilyHome } from "./family-home";
 import { WizIFeedback } from "./feedback";
+import { WizIFolder } from "./folder";
 import { WizIFolderBold } from "./folder-bold";
 import { WizIFolderFilled } from "./folder-filled";
 import { WizIFolderSharedBold } from "./folder-shared-bold";
@@ -267,6 +268,7 @@ export type TIcon =
   | typeof WizIFolderFilled
   | typeof WizIFolderSharedBold
   | typeof WizIFolderSharedFilled
+  | typeof WizIFolder
   | typeof WizIForwardToInbox
   | typeof WizIGroupBold
   | typeof WizIGroups
@@ -443,6 +445,7 @@ export {
   WizIFolderFilled,
   WizIFolderSharedBold,
   WizIFolderSharedFilled,
+  WizIFolder,
   WizIForwardToInbox,
   WizIGroupBold,
   WizIGroups,
