@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.36.0
+
+### Minor Changes
+
+- [#1592](https://github.com/Wizleap-Inc/wiz-ui/pull/1592) [`678d6e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/678d6e09603812d7e91ccc5eb0944f9ee3389355) Thanks [@k-tada](https://github.com/k-tada)! - Feat(icon): WizIFolderの追加
+
+### Patch Changes
+
+- Updated dependencies [[`678d6e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/678d6e09603812d7e91ccc5eb0944f9ee3389355)]:
+  - @wizleap-inc/wiz-ui-constants@0.52.0
+  - @wizleap-inc/wiz-ui-styles@0.54.1
+
 ## 3.35.0
 
 ### Minor Changes
