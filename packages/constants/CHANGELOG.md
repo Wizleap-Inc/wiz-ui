@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.52.0
+
+### Minor Changes
+
+- [#1592](https://github.com/Wizleap-Inc/wiz-ui/pull/1592) [`678d6e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/678d6e09603812d7e91ccc5eb0944f9ee3389355) Thanks [@k-tada](https://github.com/k-tada)! - Feat(icon): WizIFolderの追加
+
 ## 0.51.0
 
 ### Minor Changes
