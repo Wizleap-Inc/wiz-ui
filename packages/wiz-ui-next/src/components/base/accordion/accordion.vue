@@ -11,6 +11,7 @@
       <WizHStack
         align="center"
         justify="between"
+        :reverse="iconPosition === 'left'"
         gap="xs2"
         :class="[
           accordionMessageStyle,
@@ -46,8 +47,8 @@ import {
   accordionExpandIconStyle,
   accordionMessageStyle,
   accordionRotateIconStyle,
-  accordionSummaryStyle,
   accordionSummaryAlignStyle,
+  accordionSummaryStyle,
   accordionSummaryTextStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
 import {
@@ -98,6 +99,11 @@ const props = defineProps({
     type: String as PropType<"start" | "center" | "end">,
     required: false,
     default: "center",
+  },
+  iconPosition: {
+    type: String as PropType<"left" | "right">,
+    required: false,
+    default: "right",
   },
 });
 

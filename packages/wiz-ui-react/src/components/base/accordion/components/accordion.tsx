@@ -19,6 +19,7 @@ type Props = Omit<ComponentPropsWithoutRef<"details">, "onToggle"> & {
   bgColor?: ColorKeys;
   fontColor?: ColorKeys;
   align?: "start" | "center" | "end";
+  iconPosition?: "left" | "right";
   children?: ReactNode;
   onToggle?: () => void;
 };
@@ -33,6 +34,7 @@ const Accordion: FC<Props> = ({
   bgColor,
   fontColor = "gray.600",
   align = "center",
+  iconPosition = "right",
   children,
   onToggle,
   ...props
@@ -70,7 +72,12 @@ const Accordion: FC<Props> = ({
             bgColor && backgroundStyle[bgColor]
           )}
         >
-          <WizHStack align="center" justify="between" gap="xs2">
+          <WizHStack
+            align="center"
+            justify="between"
+            gap="xs2"
+            reverse={iconPosition === "left"}
+          >
             <div>{isOpen ? closeMessage : openMessage}</div>
             <div
               className={clsx(
