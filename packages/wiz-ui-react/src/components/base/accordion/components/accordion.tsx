@@ -18,6 +18,7 @@ type Props = Omit<ComponentPropsWithoutRef<"details">, "onToggle"> & {
   width?: string;
   bgColor?: ColorKeys;
   fontColor?: ColorKeys;
+  align?: "start" | "center" | "end";
   children?: ReactNode;
   onToggle?: () => void;
 };
@@ -31,6 +32,7 @@ const Accordion: FC<Props> = ({
   width = "20rem",
   bgColor,
   fontColor = "gray.600",
+  align = "center",
   children,
   onToggle,
   ...props
@@ -50,7 +52,10 @@ const Accordion: FC<Props> = ({
       )}
     >
       <summary
-        className={styles.accordionSummaryStyle}
+        className={clsx(
+          styles.accordionSummaryStyle,
+          styles.accordionSummaryAlignStyle[align]
+        )}
         onClick={(e) => {
           e.preventDefault();
           if (!isAnimating) {

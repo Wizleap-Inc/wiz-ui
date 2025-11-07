@@ -4,7 +4,10 @@
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
-    <summary :class="accordionSummaryStyle" @click="onClick">
+    <summary
+      :class="[accordionSummaryStyle, accordionSummaryAlignStyle[align]]"
+      @click="onClick"
+    >
       <WizHStack
         align="center"
         justify="between"
@@ -38,19 +41,20 @@
 <script setup lang="ts">
 import { ColorKeys } from "@wizleap-inc/wiz-ui-constants";
 import {
-  accordionMessageStyle,
-  accordionDetailsStyle,
   accordionContentStyle,
-  accordionSummaryStyle,
+  accordionDetailsStyle,
   accordionExpandIconStyle,
+  accordionMessageStyle,
   accordionRotateIconStyle,
+  accordionSummaryStyle,
+  accordionSummaryAlignStyle,
   accordionSummaryTextStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/accordion.css";
 import {
   backgroundStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { ref, PropType, nextTick } from "vue";
+import { PropType, nextTick, ref } from "vue";
 
 import { WizHStack, WizIcon } from "@/components";
 import { WizIExpandMore } from "@/components/icons";
@@ -89,6 +93,11 @@ const props = defineProps({
     type: String as PropType<ColorKeys>,
     required: false,
     default: "gray.600",
+  },
+  align: {
+    type: String as PropType<"start" | "center" | "end">,
+    required: false,
+    default: "center",
   },
 });
 

@@ -7,6 +7,12 @@ import { WizAccordion } from "../components";
 const meta: Meta<typeof WizAccordion> = {
   title: "Base/Accordion",
   component: WizAccordion,
+  argTypes: {
+    align: {
+      control: { type: "select" },
+      options: ["start", "center", "end"],
+    },
+  },
 };
 
 export default meta;
@@ -72,5 +78,12 @@ export const Multiple: Story = {
         ))}
       </>
     );
+  },
+};
+
+export const Align: Story = {
+  ...Template,
+  args: {
+    align: "start",
   },
 };

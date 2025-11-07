@@ -16,6 +16,10 @@ export default {
       control: { type: "select" },
       options: COLOR_MAP_ACCESSORS,
     },
+    align: {
+      control: { type: "select" },
+      options: ["start", "center", "end"],
+    },
   },
 } as Meta<typeof WizAccordion>;
 
@@ -94,3 +98,8 @@ const MultipleTemplate: StoryFn<typeof WizAccordion> = (args) => ({
 });
 
 export const Multiple = MultipleTemplate.bind({});
+
+export const Align = Template.bind({});
+Align.args = {
+  align: "start",
+};
