@@ -21,7 +21,7 @@ export * from "./anchor";
 export * from "./inputs";
 export * from "./show-more-less";
 export * from "./header";
-export * from "./dialog";
+export * from "./dialogs";
 export * from "./calendar";
 export * from "./accordion";
 export * from "./text";
