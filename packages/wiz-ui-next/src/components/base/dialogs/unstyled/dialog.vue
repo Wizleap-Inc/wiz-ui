@@ -19,7 +19,7 @@ import {
   dialogStyle,
   dialogVisibleStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/dialog.css";
-import { computed, onUnmounted, watch } from "vue";
+import { onUnmounted, watch } from "vue";
 
 import { useZIndex } from "@/hooks";
 
@@ -27,23 +27,7 @@ defineOptions({
   name: ComponentName.UnstyledDialog,
 });
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    required: true,
-  },
-});
-
-interface Emit {
-  (e: "update:modelValue", value: boolean): void;
-}
-
-const emit = defineEmits<Emit>();
-
-const visible = computed({
-  get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
-});
+const visible = defineModel<boolean>({ required: true });
 
 const close = () => (visible.value = false);
 
