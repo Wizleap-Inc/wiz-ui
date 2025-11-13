@@ -4,4 +4,4 @@
 "@wizleap-inc/wiz-ui-constants": minor
 ---
 
-WizUnstyledDilogの追加
+WizUnstyledDialogの追加
