@@ -9,7 +9,7 @@ import { WizIBusinessCenter, WizIClose } from "@/components/icons";
 import { WizDialog } from ".";
 
 export default {
-  title: "Base/Dialog",
+  title: "Base/Dialogs/Dialog",
   component: WizDialog,
   argTypes: {
     value: {

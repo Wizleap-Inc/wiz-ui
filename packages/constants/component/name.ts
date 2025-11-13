@@ -88,6 +88,7 @@ export const ComponentName = {
   ProgressPoint: "WizProgressPoint",
   SelectBox: "WizSelectBox",
   Dialog: "WizDialog",
+  UnstyledDialog: "WizUnstyledDialog",
   Provider: "WizProvider",
   CircleGraph: "WizCircleGraph",
   CompareGraph: "WizCompareGraph",

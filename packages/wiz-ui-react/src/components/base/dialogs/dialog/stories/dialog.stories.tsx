@@ -7,7 +7,7 @@ import { WizTag, WizText, WizTextButton } from "@/components";
 import { WizDialog } from "../components";
 
 const meta: Meta<typeof WizDialog> = {
-  title: "Base/Dialog",
+  title: "Base/Dialogs/Dialog",
   component: WizDialog,
 };
 
