@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.53.0
+
+### Minor Changes
+
+- [#1597](https://github.com/Wizleap-Inc/wiz-ui/pull/1597) [`2e06be6`](https://github.com/Wizleap-Inc/wiz-ui/commit/2e06be6103e1c5947e57b23bceda794afcbbcda0) Thanks [@k-tada](https://github.com/k-tada)! - WizUnstyledDialogの追加
+
 ## 0.52.0
 
 ### Minor Changes
