@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.37.0
+
+### Minor Changes
+
+- [#1596](https://github.com/Wizleap-Inc/wiz-ui/pull/1596) [`4447767`](https://github.com/Wizleap-Inc/wiz-ui/commit/4447767586ff254f2ab4c303a38990b6eb04cc26) Thanks [@k-tada](https://github.com/k-tada)! - Feat(WizAccordion): align, iconPositionの追加
+
+- [#1597](https://github.com/Wizleap-Inc/wiz-ui/pull/1597) [`2e06be6`](https://github.com/Wizleap-Inc/wiz-ui/commit/2e06be6103e1c5947e57b23bceda794afcbbcda0) Thanks [@k-tada](https://github.com/k-tada)! - WizUnstyledDialogの追加
+
+### Patch Changes
+
+- Updated dependencies [[`4447767`](https://github.com/Wizleap-Inc/wiz-ui/commit/4447767586ff254f2ab4c303a38990b6eb04cc26), [`2e06be6`](https://github.com/Wizleap-Inc/wiz-ui/commit/2e06be6103e1c5947e57b23bceda794afcbbcda0)]:
+  - @wizleap-inc/wiz-ui-styles@0.55.0
+  - @wizleap-inc/wiz-ui-constants@0.53.0
+
 ## 3.36.0
 
 ### Minor Changes
