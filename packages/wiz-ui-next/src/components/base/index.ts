@@ -6,7 +6,7 @@ export * from "./box";
 export * from "./buttons";
 export * from "./calendar";
 export * from "./card";
-export * from "./dialog";
+export * from "./dialogs";
 export * from "./divider";
 export * from "./drawer";
 export * from "./dropdown";
