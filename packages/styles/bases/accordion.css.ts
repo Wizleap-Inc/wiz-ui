@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 export const accordionDetailsStyle = style({
@@ -22,6 +22,18 @@ export const accordionSummaryStyle = style({
     "&::-webkit-details-marker": {
       display: "none",
     },
+  },
+});
+
+export const accordionSummaryAlignStyle = styleVariants({
+  start: {
+    justifyContent: "flex-start",
+  },
+  center: {
+    justifyContent: "center",
+  },
+  end: {
+    justifyContent: "flex-end",
   },
 });
 
