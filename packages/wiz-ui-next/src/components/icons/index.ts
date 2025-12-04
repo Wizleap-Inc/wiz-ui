@@ -81,6 +81,7 @@ import { default as WizIEditPencilBold } from "./edit-pencil-bold.vue";
 import { default as WizIEmergencyHome } from "./emergency-home.vue";
 import { default as WizIErrorBold } from "./error-bold.vue";
 import { default as WizIErrorFilled } from "./error-filled.vue";
+import { default as WizIExpandLessBold } from "./expand-less-bold.vue";
 import { default as WizIExpandLess } from "./expand-less.vue";
 import { default as WizIExpandMoreBold } from "./expand-more-bold.vue";
 import { default as WizIExpandMore } from "./expand-more.vue";
@@ -258,6 +259,7 @@ export type TIcon =
   | typeof WizIEmergencyHome
   | typeof WizIErrorBold
   | typeof WizIErrorFilled
+  | typeof WizIExpandLessBold
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
@@ -435,6 +437,7 @@ export {
   WizIEmergencyHome,
   WizIErrorBold,
   WizIErrorFilled,
+  WizIExpandLessBold,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,

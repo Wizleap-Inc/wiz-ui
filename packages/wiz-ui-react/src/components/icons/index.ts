@@ -82,6 +82,7 @@ import { WizIEmergencyHome } from "./emergency-home";
 import { WizIErrorBold } from "./error-bold";
 import { WizIErrorFilled } from "./error-filled";
 import { WizIExpandLess } from "./expand-less";
+import { WizIExpandLessBold } from "./expand-less-bold";
 import { WizIExpandMore } from "./expand-more";
 import { WizIExpandMoreBold } from "./expand-more-bold";
 import { WizIEye } from "./eye";
@@ -258,6 +259,7 @@ export type TIcon =
   | typeof WizIEmergencyHome
   | typeof WizIErrorBold
   | typeof WizIErrorFilled
+  | typeof WizIExpandLessBold
   | typeof WizIExpandLess
   | typeof WizIExpandMoreBold
   | typeof WizIExpandMore
@@ -435,6 +437,7 @@ export {
   WizIEmergencyHome,
   WizIErrorBold,
   WizIErrorFilled,
+  WizIExpandLessBold,
   WizIExpandLess,
   WizIExpandMoreBold,
   WizIExpandMore,
