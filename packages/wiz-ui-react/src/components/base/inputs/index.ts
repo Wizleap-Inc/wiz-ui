@@ -13,3 +13,5 @@ export * from "./upload";
 export * from "./date-picker";
 export * from "./date-range-picker";
 export * from "./number-input";
+export * from "./tmpChackBox";
+export * from "./flexbles/";
