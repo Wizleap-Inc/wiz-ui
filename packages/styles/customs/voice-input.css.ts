@@ -12,6 +12,7 @@ export const voiceInputStyle = style({
   justifyContent: "space-between",
   alignItems: "end",
   gap: THEME.spacing.xs,
+  backgroundColor: THEME.color.white[800],
 });
 
 export const voiceInputExpandStyle = style({
