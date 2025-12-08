@@ -4,12 +4,17 @@
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
+    <!-- align-betweenはテキストとアイコンの間隔のためのものなのでstartに変換する -->
     <summary
-      :class="[accordionSummaryStyle, accordionSummaryAlignStyle[align]]"
+      :class="[
+        accordionSummaryStyle,
+        accordionSummaryAlignStyle[align === 'between' ? 'start' : align],
+      ]"
       @click="onClick"
     >
       <WizHStack
         align="center"
+        :width="align === 'between' ? '100%' : 'auto'"
         justify="between"
         :reverse="iconPosition === 'left'"
         gap="xs2"
@@ -24,8 +29,8 @@
         </div>
         <WizIcon
           size="xl2"
-          :icon="WizIExpandMore"
-          :color="fontColor"
+          :icon="expandIcon"
+          :color="iconColor || fontColor"
           :class="[
             accordionExpandIconStyle,
             isOpen && accordionRotateIconStyle,
@@ -55,10 +60,10 @@ import {
   backgroundStyle,
   colorStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
-import { PropType, nextTick, ref } from "vue";
+import { PropType, computed, nextTick, ref } from "vue";
 
 import { WizHStack, WizIcon } from "@/components";
-import { WizIExpandMore } from "@/components/icons";
+import { WizIExpandMore, WizIExpandMoreBold } from "@/components/icons";
 
 import {
   ANIMATION_CONFIGURATION,
@@ -96,7 +101,7 @@ const props = defineProps({
     default: "gray.600",
   },
   align: {
-    type: String as PropType<"start" | "center" | "end">,
+    type: String as PropType<"start" | "center" | "end" | "between">,
     required: false,
     default: "center",
   },
@@ -104,6 +109,15 @@ const props = defineProps({
     type: String as PropType<"left" | "right">,
     required: false,
     default: "right",
+  },
+  iconWeight: {
+    type: String as PropType<"normal" | "bold">,
+    required: false,
+    default: "normal",
+  },
+  iconColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
   },
 });
 
@@ -114,6 +128,10 @@ const emit = defineEmits<Emit>();
 
 const contentRef = ref<HTMLElement | undefined>();
 const isAnimating = ref(false);
+
+const expandIcon = computed(() => {
+  return props.iconWeight === "bold" ? WizIExpandMoreBold : WizIExpandMore;
+});
 
 const onClick = (event: MouseEvent) => {
   event.preventDefault();

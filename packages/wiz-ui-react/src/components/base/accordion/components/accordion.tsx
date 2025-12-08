@@ -7,7 +7,12 @@ import {
 import clsx from "clsx";
 import { FC, ReactNode, ComponentPropsWithoutRef } from "react";
 
-import { WizHStack, WizIExpandMore, WizIcon } from "@/components";
+import {
+  WizHStack,
+  WizIExpandMore,
+  WizIExpandMoreBold,
+  WizIcon,
+} from "@/components";
 
 import { useToggleAnimation } from "./use-toggle-animation";
 
@@ -18,8 +23,10 @@ type Props = Omit<ComponentPropsWithoutRef<"details">, "onToggle"> & {
   width?: string;
   bgColor?: ColorKeys;
   fontColor?: ColorKeys;
-  align?: "start" | "center" | "end";
+  align?: "start" | "center" | "end" | "between";
   iconPosition?: "left" | "right";
+  iconWeight?: "normal" | "bold";
+  iconColor?: ColorKeys;
   children?: ReactNode;
   onToggle?: () => void;
 };
@@ -35,12 +42,17 @@ const Accordion: FC<Props> = ({
   fontColor = "gray.600",
   align = "center",
   iconPosition = "right",
+  iconWeight = "normal",
+  iconColor,
   children,
   onToggle,
   ...props
 }) => {
   const { isActuallyOpen, isAnimating, contentRef } =
     useToggleAnimation(isOpen);
+
+  const expandIcon =
+    iconWeight === "bold" ? WizIExpandMoreBold : WizIExpandMore;
 
   return (
     <details
@@ -56,7 +68,9 @@ const Accordion: FC<Props> = ({
       <summary
         className={clsx(
           styles.accordionSummaryStyle,
-          styles.accordionSummaryAlignStyle[align]
+          styles.accordionSummaryAlignStyle[
+            align === "between" ? "start" : align
+          ]
         )}
         onClick={(e) => {
           e.preventDefault();
@@ -71,6 +85,7 @@ const Accordion: FC<Props> = ({
             colorStyle[fontColor],
             bgColor && backgroundStyle[bgColor]
           )}
+          style={{ width: align === "between" ? "100%" : "auto" }}
         >
           <WizHStack
             align="center"
@@ -85,7 +100,11 @@ const Accordion: FC<Props> = ({
                 isOpen && styles.accordionRotateIconStyle
               )}
             >
-              <WizIcon icon={WizIExpandMore} size="xl2" color={fontColor} />
+              <WizIcon
+                icon={expandIcon}
+                size="xl2"
+                color={iconColor || fontColor}
+              />
             </div>
           </WizHStack>
         </div>
