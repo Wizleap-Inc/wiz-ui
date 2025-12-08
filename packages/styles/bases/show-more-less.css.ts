@@ -1,5 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { THEME } from "@wizleap-inc/wiz-ui-constants";
+import { THEME, FLAT_COLOR_MAP } from "@wizleap-inc/wiz-ui-constants";
 
 export const showMoreLessDetailsStyle = style({
   borderRadius: THEME.spacing.xs,
@@ -66,3 +66,7 @@ export const showMoreLessExpandIconStyle = style({
 export const showMoreLessRotateIconStyle = style({
   transform: "rotate(180deg)",
 });
+
+export const backgroundStyle = styleVariants(FLAT_COLOR_MAP, (background) => ({
+  background,
+}));

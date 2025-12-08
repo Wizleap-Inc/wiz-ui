@@ -6,8 +6,8 @@ import {
   showMoreLessMessageStyle,
   showMoreLessRotateIconStyle,
   showMoreLessSummaryStyle,
+  backgroundStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
-import { backgroundStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   FC,
