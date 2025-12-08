@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.39.0
+
+### Minor Changes
+
+- [#1602](https://github.com/Wizleap-Inc/wiz-ui/pull/1602) [`8369202`](https://github.com/Wizleap-Inc/wiz-ui/commit/8369202fdff50edf484887d8c301b5b7731fb674) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): WizIExpandLessBoldの追加
+
 ## 0.38.0
 
 ### Minor Changes
