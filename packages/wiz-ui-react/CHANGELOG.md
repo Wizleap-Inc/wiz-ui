@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.40.0
+
+### Minor Changes
+
+- [#1612](https://github.com/Wizleap-Inc/wiz-ui/pull/1612) [`6ad1ce9`](https://github.com/Wizleap-Inc/wiz-ui/commit/6ad1ce9bcc613cdd824f904a0e227eec04dadb97) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - hotfix(show-more-less): bgColorが正しく動いていないバグを修正
+
+### Patch Changes
+
+- Updated dependencies [[`6ad1ce9`](https://github.com/Wizleap-Inc/wiz-ui/commit/6ad1ce9bcc613cdd824f904a0e227eec04dadb97)]:
+  - @wizleap-inc/wiz-ui-styles@0.57.0
+
 ## 2.39.0
 
 ### Minor Changes
