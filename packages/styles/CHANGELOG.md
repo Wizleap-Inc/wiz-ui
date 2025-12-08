@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.56.0
+
+### Minor Changes
+
+- [#1610](https://github.com/Wizleap-Inc/wiz-ui/pull/1610) [`4e13c36`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e13c36256d7b9c6e48e7f9d54927c6d0bdfcb54) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Fix(VoiceInput): 背景色が一部transparentだったので白に統一
+
+### Patch Changes
+
+- Updated dependencies [[`8369202`](https://github.com/Wizleap-Inc/wiz-ui/commit/8369202fdff50edf484887d8c301b5b7731fb674)]:
+  - @wizleap-inc/wiz-ui-constants@0.54.0
+
 ## 0.55.0
 
 ### Minor Changes

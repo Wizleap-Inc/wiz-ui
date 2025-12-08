@@ -1,5 +1,21 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.39.0
+
+### Minor Changes
+
+- [#1608](https://github.com/Wizleap-Inc/wiz-ui/pull/1608) [`5d8ed5b`](https://github.com/Wizleap-Inc/wiz-ui/commit/5d8ed5b54d742d5122265a276754f7dfacf71d9a) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(ShowMoreLess): bgColorでtransparentを受け取れるようにする
+
+- [#1602](https://github.com/Wizleap-Inc/wiz-ui/pull/1602) [`8369202`](https://github.com/Wizleap-Inc/wiz-ui/commit/8369202fdff50edf484887d8c301b5b7731fb674) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat(icon): WizIExpandLessBoldの追加
+
+- [#1605](https://github.com/Wizleap-Inc/wiz-ui/pull/1605) [`5900deb`](https://github.com/Wizleap-Inc/wiz-ui/commit/5900deba29228d8393895bcb67a0230791269d80) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: アコーディオンにiconWeightとiconColorを追加
+
+### Patch Changes
+
+- Updated dependencies [[`8369202`](https://github.com/Wizleap-Inc/wiz-ui/commit/8369202fdff50edf484887d8c301b5b7731fb674), [`4e13c36`](https://github.com/Wizleap-Inc/wiz-ui/commit/4e13c36256d7b9c6e48e7f9d54927c6d0bdfcb54)]:
+  - @wizleap-inc/wiz-ui-constants@0.54.0
+  - @wizleap-inc/wiz-ui-styles@0.56.0
+
 ## 2.38.0
 
 ### Minor Changes
