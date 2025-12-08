@@ -18,11 +18,19 @@ export default {
     },
     align: {
       control: { type: "select" },
-      options: ["start", "center", "end"],
+      options: ["start", "center", "end", "between"],
     },
     iconPosition: {
       control: { type: "select" },
       options: ["left", "right"],
+    },
+    iconWeight: {
+      control: { type: "select" },
+      options: ["normal", "bold"],
+    },
+    iconColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
     },
   },
 } as Meta<typeof WizAccordion>;
@@ -111,4 +119,14 @@ Align.args = {
 export const IconPosition = Template.bind({});
 IconPosition.args = {
   iconPosition: "left",
+};
+
+export const IconWeight = Template.bind({});
+IconWeight.args = {
+  iconWeight: "bold",
+};
+
+export const IconColor = Template.bind({});
+IconColor.args = {
+  iconColor: "green.800",
 };

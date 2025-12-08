@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
+import { COLOR_MAP_ACCESSORS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
 import { WizAccordion } from "../components";
@@ -8,13 +9,29 @@ const meta: Meta<typeof WizAccordion> = {
   title: "Base/Accordion",
   component: WizAccordion,
   argTypes: {
+    bgColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    fontColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
     align: {
       control: { type: "select" },
-      options: ["start", "center", "end"],
+      options: ["start", "center", "end", "between"],
     },
     iconPosition: {
       control: { type: "select" },
       options: ["left", "right"],
+    },
+    iconWeight: {
+      control: { type: "select" },
+      options: ["normal", "bold"],
+    },
+    iconColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
     },
   },
 };
@@ -96,5 +113,19 @@ export const IconPosition: Story = {
   ...Template,
   args: {
     iconPosition: "left",
+  },
+};
+
+export const IconWeight: Story = {
+  ...Template,
+  args: {
+    iconWeight: "bold",
+  },
+};
+
+export const IconColor: Story = {
+  ...Template,
+  args: {
+    iconColor: "green.800",
   },
 };
