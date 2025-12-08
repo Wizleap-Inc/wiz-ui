@@ -11,6 +11,10 @@ export default {
       control: { type: "select" },
       options: ["pc", "mobile"],
     },
+    bgColor: {
+      control: { type: "select" },
+      options: ["transparent"],
+    },
   },
 } as Meta<typeof WizShowMoreLess>;
 
@@ -88,3 +92,8 @@ const MultipleTemplate: StoryFn<typeof WizShowMoreLess> = (args) => ({
 });
 
 export const Multiple = MultipleTemplate.bind({});
+
+export const BgColor = Template.bind({});
+BgColor.args = {
+  bgColor: "transparent",
+};

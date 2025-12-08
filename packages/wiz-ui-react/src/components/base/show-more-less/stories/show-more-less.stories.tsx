@@ -8,7 +8,12 @@ import { WizShowMoreLess } from "../components";
 const meta: Meta<typeof WizShowMoreLess> = {
   title: "Base/ShowMoreLess",
   component: WizShowMoreLess,
-  argTypes: {},
+  argTypes: {
+    bgColor: {
+      control: { type: "select" },
+      options: ["transparent"],
+    },
+  },
   parameters: {
     docs: {
       description: {
@@ -103,6 +108,23 @@ export const Multiple: Story = {
           />
         ))}
       </>
+    );
+  },
+};
+
+export const BgColor: Story = {
+  args: {
+    bgColor: "transparent",
+    children,
+  },
+  render: (args) => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <WizShowMoreLess
+        {...args}
+        isOpen={isOpen}
+        onToggle={() => setIsOpen((prev) => !prev)}
+      />
     );
   },
 };

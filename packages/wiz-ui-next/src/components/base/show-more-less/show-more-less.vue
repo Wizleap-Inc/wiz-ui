@@ -1,6 +1,6 @@
 <template>
   <WizVStack
-    :class="[showMoreLessDetailsStyle]"
+    :class="[showMoreLessDetailsStyle, bgColor && backgroundStyle[bgColor]]"
     :style="{ width }"
     :open="isOpen || isAnimating"
   >
@@ -13,7 +13,13 @@
     >
       <slot />
     </div>
-    <div :class="showMoreLessSummaryStyle[variant]" @click="onClick">
+    <div
+      :class="[
+        showMoreLessSummaryStyle[variant],
+        bgColor && backgroundStyle[bgColor],
+      ]"
+      @click="onClick"
+    >
       <div :class="showMoreLessMessageStyle">
         <WizHStack align="center" justify="between" gap="xs2">
           <div>
@@ -43,6 +49,7 @@ import {
   showMoreLessRotateIconStyle,
   showMoreLessSummaryStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
+import { backgroundStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import { PropType, computed, ref } from "vue";
 
 import { WizHStack, WizIcon, WizVStack } from "@/components";
@@ -72,6 +79,10 @@ defineProps({
     type: String,
     required: false,
     default: "20rem",
+  },
+  bgColor: {
+    type: String as PropType<"transparent" | undefined>,
+    required: false,
   },
 });
 

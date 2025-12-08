@@ -7,6 +7,7 @@ import {
   showMoreLessRotateIconStyle,
   showMoreLessSummaryStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/show-more-less.css";
+import { backgroundStyle } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
 import {
   FC,
@@ -25,6 +26,7 @@ type Props = ComponentPropsWithoutRef<"div"> & {
   closeMessage?: string;
   width?: string;
   variant?: "pc" | "mobile";
+  bgColor?: "transparent";
   onToggle?: () => void;
   children: ReactNode;
 };
@@ -37,6 +39,7 @@ const ShowMoreLess: FC<Props> = ({
   closeMessage = "閉じる",
   width = "20rem",
   variant = "pc",
+  bgColor,
   onToggle,
   children,
   ...props
@@ -58,7 +61,11 @@ const ShowMoreLess: FC<Props> = ({
   return (
     <div
       {...props}
-      className={clsx(className, showMoreLessDetailsStyle)}
+      className={clsx(
+        className,
+        showMoreLessDetailsStyle,
+        bgColor && backgroundStyle[bgColor]
+      )}
       style={{ ...style, width: width }}
     >
       <WizVStack>
@@ -70,7 +77,10 @@ const ShowMoreLess: FC<Props> = ({
           {children}
         </div>
         <div
-          className={showMoreLessSummaryStyle[variant]}
+          className={clsx(
+            showMoreLessSummaryStyle[variant],
+            bgColor && backgroundStyle[bgColor]
+          )}
           onClick={handleClick}
           style={{ width }}
         >
