@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": minor
 ---
 
-feat: make textarea component I/F standard
+feat: TextAreaコンポーネントのインターフェースをネイティブのtextareaに近づける変更を行いました
