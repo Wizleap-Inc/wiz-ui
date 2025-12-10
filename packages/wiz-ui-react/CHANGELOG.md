@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 2.41.0
+
+### Minor Changes
+
+- [#1614](https://github.com/Wizleap-Inc/wiz-ui/pull/1614) [`70059cc`](https://github.com/Wizleap-Inc/wiz-ui/commit/70059ccabc39d87c20ab8d5bdb2947b59db4aefc) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - feat: TextAreaコンポーネントのインターフェースをネイティブのtextareaに近づける変更を行いました
+
 ## 2.40.0
 
 ### Minor Changes
