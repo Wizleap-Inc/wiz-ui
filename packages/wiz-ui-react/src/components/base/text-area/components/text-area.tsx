@@ -9,14 +9,9 @@ function getInputBorderStyleKey(isError?: boolean) {
   if (isError) return "error";
   return "default";
 }
-
-type TextAreaHTMLProps = Omit<
-  ComponentPropsWithoutRef<"textarea">,
-  "value" | "onChange"
->;
+type TextAreaHTMLProps = ComponentPropsWithoutRef<"textarea">;
 
 type Props = TextAreaHTMLProps & {
-  value: string;
   expand?: boolean;
   error?: boolean;
   resize?: "none" | "both" | "horizontal" | "vertical";
@@ -24,7 +19,6 @@ type Props = TextAreaHTMLProps & {
   minWidth?: string;
   maxHeight?: string;
   minHeight?: string;
-  onChange?: (value: string) => void;
 };
 
 const TextArea = forwardRef<HTMLTextAreaElement, Props>(
@@ -70,7 +64,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
           expand && styles.textAreaExpandStyle,
           inputBorderStyle[getInputBorderStyleKey(isError)]
         )}
-        onChange={(e) => onChange?.(e.target.value)}
+        onChange={onChange}
       />
     );
   }
