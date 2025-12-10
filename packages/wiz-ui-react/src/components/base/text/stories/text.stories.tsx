@@ -4,6 +4,7 @@ import {
   COLOR_MAP_ACCESSORS,
   WHITE_SPACE_MAP_ACCESSORS,
 } from "@wizleap-inc/wiz-ui-constants";
+import { useEffect, useRef } from "react";
 
 import { WizText } from "../components/text";
 
@@ -168,5 +169,74 @@ export const MaxLines: Story = {
   args: {
     as: "p",
     maxLines: 5,
+  },
+};
+
+export const ParagraphWithRef: Story = {
+  render: (args) => {
+    const text = "これはテキストです。\nこれはテキストです。";
+    const textRef = useRef<HTMLParagraphElement>(null);
+    useEffect(() => {
+      if (textRef.current) {
+        console.log({
+          offsetWidth: textRef.current?.offsetWidth,
+          scrollWidth: textRef.current?.scrollWidth,
+        });
+      }
+    }, [text]);
+    return (
+      <WizText ref={textRef} {...args}>
+        {text}
+      </WizText>
+    );
+  },
+  args: {
+    as: "p",
+  },
+};
+
+export const SpanWithRef: Story = {
+  render: (args) => {
+    const text = "これはテキストです。\nこれはテキストです。";
+    const textRef = useRef<HTMLSpanElement>(null);
+    useEffect(() => {
+      if (textRef.current) {
+        console.log({
+          offsetWidth: textRef.current?.offsetWidth,
+          scrollWidth: textRef.current?.scrollWidth,
+        });
+      }
+    }, [text]);
+    return (
+      <WizText ref={textRef} {...args}>
+        {text}
+      </WizText>
+    );
+  },
+  args: {
+    as: "span",
+  },
+};
+
+export const LabelWithRef: Story = {
+  render: (args) => {
+    const text = "これはテキストです。\nこれはテキストです。";
+    const textRef = useRef<HTMLLabelElement>(null);
+    useEffect(() => {
+      if (textRef.current) {
+        console.log({
+          offsetWidth: textRef.current?.offsetWidth,
+          scrollWidth: textRef.current?.scrollWidth,
+        });
+      }
+    }, [text]);
+    return (
+      <WizText ref={textRef} {...args}>
+        {text}
+      </WizText>
+    );
+  },
+  args: {
+    as: "label",
   },
 };

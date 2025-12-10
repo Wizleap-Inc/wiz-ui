@@ -12,7 +12,13 @@ import {
   whiteSpaceStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import clsx from "clsx";
-import { CSSProperties, ReactNode, memo } from "react";
+import {
+  CSSProperties,
+  ReactNode,
+  forwardRef,
+  memo,
+  ForwardedRef,
+} from "react";
 
 import { BaseProps } from "@/types";
 type Props = BaseProps & {
@@ -36,73 +42,91 @@ type Props = BaseProps & {
   children?: ReactNode;
 };
 
-const _Text = ({
-  className,
-  style,
-  as = "p",
-  htmlFor,
-  color = "gray.900",
-  fontSize = "md",
-  lineHeight,
-  bold,
-  maxLines,
-  whiteSpace = "normal",
-  isBlurred = false,
-  breakAll,
-  textAlign = "start",
-  lineThrough = false,
-  display,
-  children,
-}: Props) => {
-  const textStyle: CSSProperties = {
-    ...style,
-    ...(maxLines && {
-      overflow: "hidden",
-      display: "-webkit-box",
-      WebkitBoxOrient: "vertical",
-      WebkitLineClamp: maxLines,
-    }),
-  };
-  const textClass = clsx([
-    className,
-    styles.textStyle,
-    styles.textFontWeightStyle[bold ? "bold" : "default"],
-    styles.textAlignStyle[textAlign],
-    (maxLines || breakAll) && styles.textWordBreakStyle,
-    lineHeight
-      ? lineHeightStyle[lineHeight]
-      : styles.textDefaultLineHeightStyle,
-    fontSizeStyle[fontSize],
-    colorStyle[color],
-    whiteSpaceStyle[whiteSpace],
-    lineThrough && styles.textLineThroughStyle,
-    isBlurred && styles.textDummyStyle,
-    display && styles.textDisplayStyle[display],
-  ]);
-  switch (as) {
-    case "p": {
-      return (
-        <p className={textClass} style={textStyle}>
-          {children}
-        </p>
-      );
-    }
-    case "label": {
-      return (
-        <label htmlFor={htmlFor} className={textClass} style={textStyle}>
-          {children}
-        </label>
-      );
-    }
-    case "span": {
-      return (
-        <span className={textClass} style={textStyle}>
-          {children}
-        </span>
-      );
+const _Text = forwardRef(
+  (
+    {
+      className,
+      style,
+      as = "p",
+      htmlFor,
+      color = "gray.900",
+      fontSize = "md",
+      lineHeight,
+      bold,
+      maxLines,
+      whiteSpace = "normal",
+      isBlurred = false,
+      breakAll,
+      textAlign = "start",
+      lineThrough = false,
+      display,
+      children,
+    }: Props,
+    ref: ForwardedRef<HTMLParagraphElement | HTMLSpanElement | HTMLLabelElement>
+  ) => {
+    const textStyle: CSSProperties = {
+      ...style,
+      ...(maxLines && {
+        overflow: "hidden",
+        display: "-webkit-box",
+        WebkitBoxOrient: "vertical",
+        WebkitLineClamp: maxLines,
+      }),
+    };
+    const textClass = clsx([
+      className,
+      styles.textStyle,
+      styles.textFontWeightStyle[bold ? "bold" : "default"],
+      styles.textAlignStyle[textAlign],
+      (maxLines || breakAll) && styles.textWordBreakStyle,
+      lineHeight
+        ? lineHeightStyle[lineHeight]
+        : styles.textDefaultLineHeightStyle,
+      fontSizeStyle[fontSize],
+      colorStyle[color],
+      whiteSpaceStyle[whiteSpace],
+      lineThrough && styles.textLineThroughStyle,
+      isBlurred && styles.textDummyStyle,
+      display && styles.textDisplayStyle[display],
+    ]);
+    switch (as) {
+      case "p": {
+        return (
+          <p
+            className={textClass}
+            style={textStyle}
+            ref={ref as ForwardedRef<HTMLParagraphElement>}
+          >
+            {children}
+          </p>
+        );
+      }
+      case "label": {
+        return (
+          <label
+            htmlFor={htmlFor}
+            className={textClass}
+            style={textStyle}
+            ref={ref as ForwardedRef<HTMLLabelElement>}
+          >
+            {children}
+          </label>
+        );
+      }
+      case "span": {
+        return (
+          <span
+            className={textClass}
+            style={textStyle}
+            ref={ref as ForwardedRef<HTMLSpanElement>}
+          >
+            {children}
+          </span>
+        );
+      }
     }
   }
-};
+);
 
 _Text.displayName = ComponentName.Text;
 
