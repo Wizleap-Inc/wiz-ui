@@ -2,4 +2,4 @@
 "@wizleap-inc/wiz-ui-react": major
 ---
 
-feat: TextAreaとCheckBoxのインターフェースをネイティブのtextareaに近づける変更を行いました
+feat: TextAreaとCheckBoxを、制御コンポーネントとしても非制御コンポーネントとしても利用できるように変更
