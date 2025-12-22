@@ -1,5 +1,5 @@
 ---
-"@wizleap-inc/wiz-ui-react": minor
+"@wizleap-inc/wiz-ui-react": major
 ---
 
-feat: TextAreaコンポーネントのインターフェースをネイティブのtextareaに近づける変更を行いました
+feat: TextAreaとCheckBoxのインターフェースをネイティブのtextareaに近づける変更を行いました
