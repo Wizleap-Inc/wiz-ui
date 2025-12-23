@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 3.0.0
+
+### Major Changes
+
+- [#1617](https://github.com/Wizleap-Inc/wiz-ui/pull/1617) [`5049bf5`](https://github.com/Wizleap-Inc/wiz-ui/commit/5049bf5ce2586f4ab6647b7d38245e745e4b2287) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - feat: TextAreaとCheckBoxを、制御コンポーネントとしても非制御コンポーネントとしても利用できるように変更
+
 ## 2.40.0
 
 ### Minor Changes
