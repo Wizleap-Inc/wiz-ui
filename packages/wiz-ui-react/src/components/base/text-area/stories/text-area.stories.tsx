@@ -84,7 +84,13 @@ export const Playground: Story = {
     return (
       <div>
         <p>入力値：{value}</p>
-        <WizTextArea {...args} value={value} onChange={setValue} />
+        <WizTextArea
+          {...args}
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        />
       </div>
     );
   },

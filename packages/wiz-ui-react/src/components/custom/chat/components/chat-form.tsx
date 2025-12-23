@@ -36,7 +36,7 @@ const ChatForm: FC<Props> = ({
         disabled={disabled}
         rows={formRows}
         expand
-        onChange={onChange}
+        onChange={(e) => onChange?.(e.target.value)}
       />
       <div>
         <WizIconButton icon={WizISend} disabled={disabled} onClick={onSubmit} />

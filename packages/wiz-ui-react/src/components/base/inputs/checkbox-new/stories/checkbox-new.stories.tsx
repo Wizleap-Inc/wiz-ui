@@ -23,26 +23,26 @@ export const Variations: Story = {
   render: () => {
     const variations: ComponentProps<typeof WizCheckBoxNew>[][] = [
       [
-        { checked: false },
-        { checked: false, disabled: true },
-        { checked: false, strikeThrough: true },
+        { defaultChecked: false },
+        { defaultChecked: false, disabled: true },
+        { defaultChecked: false, strikeThrough: true },
       ],
       [
-        { checked: true },
-        { checked: true, disabled: true },
-        { checked: true, strikeThrough: true },
+        { defaultChecked: true },
+        { defaultChecked: true, disabled: true },
+        { defaultChecked: true, strikeThrough: true },
       ],
       [
-        { checked: false, bordered: true },
-        { checked: false, bordered: true, disabled: true },
-        { checked: false, bordered: true, error: true },
-        { checked: false, bordered: true, strikeThrough: true },
+        { defaultChecked: false, bordered: true },
+        { defaultChecked: false, bordered: true, disabled: true },
+        { defaultChecked: false, bordered: true, error: true },
+        { defaultChecked: false, bordered: true, strikeThrough: true },
       ],
       [
-        { checked: true, bordered: true },
-        { checked: true, bordered: true, disabled: true },
-        { checked: true, bordered: true, error: true },
-        { checked: true, bordered: true, strikeThrough: true },
+        { defaultChecked: true, bordered: true },
+        { defaultChecked: true, bordered: true, disabled: true },
+        { defaultChecked: true, bordered: true, error: true },
+        { defaultChecked: true, bordered: true, strikeThrough: true },
       ],
     ];
     return (
@@ -69,8 +69,8 @@ export const Variations: Story = {
 export const MultipleLines: Story = {
   render: () => {
     const multipleLines: ComponentProps<typeof WizCheckBoxNew>[][] = [
-      [{ checked: false }],
-      [{ checked: false, bordered: true }],
+      [{ defaultChecked: false }],
+      [{ defaultChecked: false, bordered: true }],
     ];
     return (
       <WizVStack gap="md">

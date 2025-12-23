@@ -1,13 +1,10 @@
 import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/checkbox-new.css";
 import clsx from "clsx";
-import {
-  ChangeEventHandler,
+import React, {
   ComponentPropsWithoutRef,
   ReactNode,
   forwardRef,
-  useCallback,
-  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -15,14 +12,23 @@ import {
 import { WizIcon } from "@/components/base/icon";
 import { WizICheckBold } from "@/components/icons";
 
-type InputProps = ComponentPropsWithoutRef<"input">;
-
-type Props = InputProps & {
+interface BaseProps extends ComponentPropsWithoutRef<"input"> {
   strikeThrough?: boolean;
   bordered?: boolean;
   error?: boolean;
   children?: ReactNode;
-};
+}
+
+interface ControlledProps extends BaseProps {
+  checked: boolean;
+  defaultChecked?: never;
+}
+
+interface UncontrolledProps extends BaseProps {
+  checked?: never;
+  defaultChecked?: boolean;
+}
+type Props = ControlledProps | UncontrolledProps;
 
 const CheckboxNew = forwardRef<HTMLInputElement, Props>(
   (
@@ -30,6 +36,7 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
       className,
       style,
       checked,
+      defaultChecked,
       children,
       strikeThrough,
       bordered,
@@ -39,24 +46,17 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) => {
+    const [uncontrolledChecked, setUncontrolledChecked] =
+      useState(defaultChecked);
     const isControlled = checked !== undefined;
+    const actualChecked = isControlled ? checked : uncontrolledChecked;
 
-    const [actualChecked, setActualChecked] = useState(checked);
-    useEffect(() => {
-      if (isControlled) {
-        setActualChecked(checked);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) {
+        setUncontrolledChecked(e.target.checked);
       }
-    }, [checked, isControlled]);
-
-    const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
-      (e) => {
-        onChange?.(e);
-        if (!isControlled) {
-          setActualChecked(e.target.checked);
-        }
-      },
-      [isControlled, onChange]
-    );
+      onChange?.(e);
+    };
 
     const labelClassName = useMemo(() => {
       const borderedState = (() => {
@@ -96,7 +96,7 @@ const CheckboxNew = forwardRef<HTMLInputElement, Props>(
             styles.inputStyle,
             styles.inputMarginStyle[bordered ? "bordered" : "default"]
           )}
-          checked={actualChecked}
+          {...(isControlled ? { checked } : { defaultChecked })}
           onChange={handleChange}
         />
         <div
