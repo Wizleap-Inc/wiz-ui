@@ -4,9 +4,7 @@
       <div ref="navItemRef" @click="navItemOnClick">
         <component
           :is="disabled || isExternalLink ? 'a' : 'router-link'"
-          :to="!disabled && !isExternalLink ? to : undefined"
-          :href="!disabled && isExternalLink ? to : undefined"
-          :target="!disabled && isExternalLink ? '_blank' : undefined"
+          v-bind="linkAttrs"
           :class="[
             navigationItemStyle,
             disabled
@@ -134,6 +132,17 @@ const emit = defineEmits<{
 }>();
 
 const navItemRef = ref<HTMLElement>();
+
+const linkAttrs = computed(() => {
+  if (props.disabled) return {};
+
+  if (isExternalLink.value) {
+    return { href: props.to, target: "_blank" };
+  }
+
+  // router-link 用 (toが空文字列の場合は#を返す)
+  return { to: props.to };
+});
 
 const existPopup = computed(() => props.buttons && props.buttons?.length > 0);
 const navItemOnClick = () => emit("toggle", !props.isOpen);
