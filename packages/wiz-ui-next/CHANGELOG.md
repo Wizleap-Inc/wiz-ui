@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.40.0
+
+### Minor Changes
+
+- [#1621](https://github.com/Wizleap-Inc/wiz-ui/pull/1621) [`5e6d2d5`](https://github.com/Wizleap-Inc/wiz-ui/commit/5e6d2d5689aaeac05c11de9ee42a9a31cb1761b1) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Feat: サイドメニューを別タブで開けるようにする
+
 ## 3.39.0
 
 ### Minor Changes
