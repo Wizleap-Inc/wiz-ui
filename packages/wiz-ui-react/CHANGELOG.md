@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 3.0.1
+
+### Patch Changes
+
+- [#1625](https://github.com/Wizleap-Inc/wiz-ui/pull/1625) [`bfbe7a9`](https://github.com/Wizleap-Inc/wiz-ui/commit/bfbe7a9df42d975a1407f1a75de7d965ea71f303) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - use typeof operator
+
 ## 3.0.0
 
 ### Major Changes
