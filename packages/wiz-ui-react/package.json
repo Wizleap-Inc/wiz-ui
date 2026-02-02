@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@wizleap-inc/wiz-ui-react",
   "version": "3.0.0",
   "description": "A React UI Framework for Wizleap Inc.",
@@ -30,9 +31,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/wiz-ui.umd.js",
-  "module": "./dist/wiz-ui.es.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/wiz-ui.es.js"
+    }
+  },
   "dependencies": {
     "@wizleap-inc/wiz-ui-constants": "workspace:*",
     "@wizleap-inc/wiz-ui-styles": "workspace:*",

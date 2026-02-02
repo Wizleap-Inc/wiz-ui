@@ -39,6 +39,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "Wiz-UI",
+      formats: ["es"],
       fileName: (format) => `wiz-ui.${format}.js`,
       cssFileName: "style",
     },
