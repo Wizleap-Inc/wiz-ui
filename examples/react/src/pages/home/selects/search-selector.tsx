@@ -1,5 +1,7 @@
-import { WizSearchSelector } from "@wizleap-inc/wiz-ui-react";
-import { SearchSelectorOption } from "@wizleap-inc/wiz-ui-react/dist/components/base/inputs/search-selector/components/types";
+import {
+  WizSearchSelector,
+  SearchSelectorOption,
+} from "@wizleap-inc/wiz-ui-react";
 import { useCallback, useState } from "react";
 
 const getDummyOptions = (label: string, count: number, exLabel?: string) => {
