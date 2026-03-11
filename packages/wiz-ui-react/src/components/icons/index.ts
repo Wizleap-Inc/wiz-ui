@@ -17,6 +17,8 @@ import { WizIAttachFile } from "./attach-file";
 import { WizIAutoRenew } from "./auto-renew";
 import { WizIBarChart4Bars } from "./bar-chart-4-bars";
 import { WizIBook } from "./book";
+import { WizIBookmarkBold } from "./bookmark-bold";
+import { WizIBookmarkFilled } from "./bookmark-filled";
 import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
@@ -25,6 +27,8 @@ import { WizICallBold } from "./call-bold";
 import { WizICamera } from "./camera";
 import { WizICancel } from "./cancel";
 import { WizICancelBold } from "./cancel-bold";
+import { WizICategoryBold } from "./category-bold";
+import { WizICategoryFilled } from "./category-filled";
 import { WizIChangeHistory } from "./change-history";
 import { WizIChat } from "./chat";
 import { WizIChatBubbleFilled } from "./chat-bubble-filled";
@@ -37,6 +41,7 @@ import { WizIChevronLeftBold } from "./chevron-left-bold";
 import { WizIChevronRight } from "./chevron-right";
 import { WizIChevronRightBold } from "./chevron-right-bold";
 import { WizICircle } from "./circle";
+import { WizICircleBold } from "./circle-bold";
 import { WizICircleCheck } from "./circle-check";
 import { WizIClinicalNotes } from "./clinical-notes";
 import { WizIClockLoader20Bold } from "./clock-loader-20-bold";
@@ -118,6 +123,7 @@ import { WizIMail } from "./mail";
 import { WizIMailBold } from "./mail-bold";
 import { WizIManageAccounts } from "./manage-accounts";
 import { WizIMenu } from "./menu";
+import { WizIMenuBold } from "./menu-bold";
 import { WizIMenuOpen } from "./menu-open";
 import { WizIMergeType } from "./merge-type";
 import { WizIMergeTypeBold } from "./merge-type-bold";
@@ -195,6 +201,8 @@ export type TIcon =
   | typeof WizIAutoRenew
   | typeof WizIBarChart4Bars
   | typeof WizIBook
+  | typeof WizIBookmarkBold
+  | typeof WizIBookmarkFilled
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
   | typeof WizICalendarMonthBold
@@ -203,6 +211,8 @@ export type TIcon =
   | typeof WizICamera
   | typeof WizICancelBold
   | typeof WizICancel
+  | typeof WizICategoryBold
+  | typeof WizICategoryFilled
   | typeof WizIChangeHistory
   | typeof WizIChatBubbleFilled
   | typeof WizIChat
@@ -214,6 +224,7 @@ export type TIcon =
   | typeof WizIChevronLeft
   | typeof WizIChevronRightBold
   | typeof WizIChevronRight
+  | typeof WizICircleBold
   | typeof WizICircleCheck
   | typeof WizICircle
   | typeof WizIClinicalNotes
@@ -295,6 +306,7 @@ export type TIcon =
   | typeof WizIMailBold
   | typeof WizIMail
   | typeof WizIManageAccounts
+  | typeof WizIMenuBold
   | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMergeTypeBold
@@ -373,6 +385,8 @@ export {
   WizIAutoRenew,
   WizIBarChart4Bars,
   WizIBook,
+  WizIBookmarkBold,
+  WizIBookmarkFilled,
   WizIBrightFilled,
   WizIBusinessCenter,
   WizICalendarMonthBold,
@@ -381,6 +395,8 @@ export {
   WizICamera,
   WizICancelBold,
   WizICancel,
+  WizICategoryBold,
+  WizICategoryFilled,
   WizIChangeHistory,
   WizIChatBubbleFilled,
   WizIChat,
@@ -392,6 +408,7 @@ export {
   WizIChevronLeft,
   WizIChevronRightBold,
   WizIChevronRight,
+  WizICircleBold,
   WizICircleCheck,
   WizICircle,
   WizIClinicalNotes,
@@ -473,6 +490,7 @@ export {
   WizIMailBold,
   WizIMail,
   WizIManageAccounts,
+  WizIMenuBold,
   WizIMenuOpen,
   WizIMenu,
   WizIMergeTypeBold,
