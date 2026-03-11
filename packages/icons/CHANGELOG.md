@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.41.0
+
+### Minor Changes
+
+- [#1634](https://github.com/Wizleap-Inc/wiz-ui/pull/1634) [`30ac4dd`](https://github.com/Wizleap-Inc/wiz-ui/commit/30ac4dd6590859d405087a11f5858933ae354089) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Icon の色が指定されているのを修正
+
 ## 0.40.0
 
 ### Minor Changes
