@@ -19,7 +19,7 @@ export const labelStyle = styleVariants({
   disabled: [
     labelBaseStyle,
     {
-      color: THEME.color.gray[500],
+      color: THEME.color.gray[800],
       cursor: "not-allowed",
     },
   ],
@@ -64,7 +64,14 @@ export const borderedStyle = styleVariants({
     borderedBaseStyle,
     {
       borderColor: THEME.color.gray[400],
-      backgroundColor: THEME.color.gray[300],
+      backgroundColor: THEME.color.gray[200],
+    },
+  ],
+  disabledChecked: [
+    borderedBaseStyle,
+    {
+      borderColor: THEME.color.green[800],
+      backgroundColor: THEME.color.gray[200],
     },
   ],
 });

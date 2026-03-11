@@ -65,6 +65,9 @@ const RadioNew = forwardRef<HTMLInputElement, Props>(
 
     const labelClassName = useMemo(() => {
       const borderedState = (() => {
+        if (props.disabled && actualChecked) {
+          return "disabledChecked";
+        }
         if (props.disabled) {
           return "disabled";
         }

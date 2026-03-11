@@ -55,6 +55,9 @@ watch(
 
 const labelClass = computed(() => {
   const borderedState = (() => {
+    if (props.disabled && actualChecked.value) {
+      return "disabledChecked";
+    }
     if (props.disabled) {
       return "disabled";
     }
