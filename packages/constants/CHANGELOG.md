@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.55.0
+
+### Minor Changes
+
+- [#1631](https://github.com/Wizleap-Inc/wiz-ui/pull/1631) [`c7f20e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/c7f20e02a1cb97f76804210d6313141d47e1f60c) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Icon の追加（Bookmark, Category, CirlceBold, MenuBold）
+
 ## 0.54.0
 
 ### Minor Changes

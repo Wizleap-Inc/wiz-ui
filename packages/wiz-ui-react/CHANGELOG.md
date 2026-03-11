@@ -1,5 +1,19 @@
 # @wizleap-inc/wiz-ui-react
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1632](https://github.com/Wizleap-Inc/wiz-ui/pull/1632) [`4eadd3f`](https://github.com/Wizleap-Inc/wiz-ui/commit/4eadd3fda131adb1480f60d6c5065211b819b2d2) Thanks [@mazyutyu](https://github.com/mazyutyu)! - CheckboxNew, RadioNew の disabled のスタイルを変更
+
+- [#1631](https://github.com/Wizleap-Inc/wiz-ui/pull/1631) [`c7f20e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/c7f20e02a1cb97f76804210d6313141d47e1f60c) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Icon の追加（Bookmark, Category, CirlceBold, MenuBold）
+
+### Patch Changes
+
+- Updated dependencies [[`4eadd3f`](https://github.com/Wizleap-Inc/wiz-ui/commit/4eadd3fda131adb1480f60d6c5065211b819b2d2), [`c7f20e0`](https://github.com/Wizleap-Inc/wiz-ui/commit/c7f20e02a1cb97f76804210d6313141d47e1f60c)]:
+  - @wizleap-inc/wiz-ui-styles@0.58.0
+  - @wizleap-inc/wiz-ui-constants@0.55.0
+
 ## 3.0.1
 
 ### Patch Changes
