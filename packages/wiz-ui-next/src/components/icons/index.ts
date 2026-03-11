@@ -17,6 +17,8 @@ import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./auto-renew.vue";
 import { default as WizIBarChart4Bars } from "./bar-chart-4-bars.vue";
 import { default as WizIBook } from "./book.vue";
+import { default as WizIBookmarkBold } from "./bookmark-bold.vue";
+import { default as WizIBookmarkFilled } from "./bookmark-filled.vue";
 import { default as WizIBrightFilled } from "./bright-filled.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendarMonthBold } from "./calendar-month-bold.vue";
@@ -25,6 +27,8 @@ import { default as WizICallBold } from "./call-bold.vue";
 import { default as WizICamera } from "./camera.vue";
 import { default as WizICancelBold } from "./cancel-bold.vue";
 import { default as WizICancel } from "./cancel.vue";
+import { default as WizICategoryBold } from "./category-bold.vue";
+import { default as WizICategoryFilled } from "./category-filled.vue";
 import { default as WizIChangeHistory } from "./change-history.vue";
 import { default as WizIChatBubbleFilled } from "./chat-bubble-filled.vue";
 import { default as WizIChat } from "./chat.vue";
@@ -36,6 +40,7 @@ import { default as WizIChevronLeftBold } from "./chevron-left-bold.vue";
 import { default as WizIChevronLeft } from "./chevron-left.vue";
 import { default as WizIChevronRightBold } from "./chevron-right-bold.vue";
 import { default as WizIChevronRight } from "./chevron-right.vue";
+import { default as WizICircleBold } from "./circle-bold.vue";
 import { default as WizICircleCheck } from "./circle-check.vue";
 import { default as WizICircle } from "./circle.vue";
 import { default as WizIClinicalNotes } from "./clinical-notes.vue";
@@ -117,6 +122,7 @@ import { default as WizILogin } from "./login.vue";
 import { default as WizIMailBold } from "./mail-bold.vue";
 import { default as WizIMail } from "./mail.vue";
 import { default as WizIManageAccounts } from "./manage-accounts.vue";
+import { default as WizIMenuBold } from "./menu-bold.vue";
 import { default as WizIMenuOpen } from "./menu-open.vue";
 import { default as WizIMenu } from "./menu.vue";
 import { default as WizIMergeTypeBold } from "./merge-type-bold.vue";
@@ -195,6 +201,8 @@ export type TIcon =
   | typeof WizIAutoRenew
   | typeof WizIBarChart4Bars
   | typeof WizIBook
+  | typeof WizIBookmarkBold
+  | typeof WizIBookmarkFilled
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
   | typeof WizICalendarMonthBold
@@ -203,6 +211,8 @@ export type TIcon =
   | typeof WizICamera
   | typeof WizICancelBold
   | typeof WizICancel
+  | typeof WizICategoryBold
+  | typeof WizICategoryFilled
   | typeof WizIChangeHistory
   | typeof WizIChatBubbleFilled
   | typeof WizIChat
@@ -214,6 +224,7 @@ export type TIcon =
   | typeof WizIChevronLeft
   | typeof WizIChevronRightBold
   | typeof WizIChevronRight
+  | typeof WizICircleBold
   | typeof WizICircleCheck
   | typeof WizICircle
   | typeof WizIClinicalNotes
@@ -295,6 +306,7 @@ export type TIcon =
   | typeof WizIMailBold
   | typeof WizIMail
   | typeof WizIManageAccounts
+  | typeof WizIMenuBold
   | typeof WizIMenuOpen
   | typeof WizIMenu
   | typeof WizIMergeTypeBold
@@ -373,6 +385,8 @@ export {
   WizIAutoRenew,
   WizIBarChart4Bars,
   WizIBook,
+  WizIBookmarkBold,
+  WizIBookmarkFilled,
   WizIBrightFilled,
   WizIBusinessCenter,
   WizICalendarMonthBold,
@@ -381,6 +395,8 @@ export {
   WizICamera,
   WizICancelBold,
   WizICancel,
+  WizICategoryBold,
+  WizICategoryFilled,
   WizIChangeHistory,
   WizIChatBubbleFilled,
   WizIChat,
@@ -392,6 +408,7 @@ export {
   WizIChevronLeft,
   WizIChevronRightBold,
   WizIChevronRight,
+  WizICircleBold,
   WizICircleCheck,
   WizICircle,
   WizIClinicalNotes,
@@ -473,6 +490,7 @@ export {
   WizIMailBold,
   WizIMail,
   WizIManageAccounts,
+  WizIMenuBold,
   WizIMenuOpen,
   WizIMenu,
   WizIMergeTypeBold,
