@@ -23,6 +23,7 @@ import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICalendar } from "./calendar";
 import { WizICalendarMonthBold } from "./calendar-month-bold";
+import { WizICall } from "./call";
 import { WizICallBold } from "./call-bold";
 import { WizICamera } from "./camera";
 import { WizICancel } from "./cancel";
@@ -93,6 +94,8 @@ import { WizIExpandMoreBold } from "./expand-more-bold";
 import { WizIEye } from "./eye";
 import { WizIFamilyHome } from "./family-home";
 import { WizIFeedback } from "./feedback";
+import { WizIFlag2Bold } from "./flag-2-bold";
+import { WizIFlag2Filled } from "./flag-2-filled";
 import { WizIFolder } from "./folder";
 import { WizIFolderBold } from "./folder-bold";
 import { WizIFolderFilled } from "./folder-filled";
@@ -208,6 +211,7 @@ export type TIcon =
   | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
+  | typeof WizICall
   | typeof WizICamera
   | typeof WizICancelBold
   | typeof WizICancel
@@ -277,6 +281,8 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIFamilyHome
   | typeof WizIFeedback
+  | typeof WizIFlag2Bold
+  | typeof WizIFlag2Filled
   | typeof WizIFolderBold
   | typeof WizIFolderFilled
   | typeof WizIFolderSharedBold
@@ -392,6 +398,7 @@ export {
   WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
+  WizICall,
   WizICamera,
   WizICancelBold,
   WizICancel,
@@ -461,6 +468,8 @@ export {
   WizIEye,
   WizIFamilyHome,
   WizIFeedback,
+  WizIFlag2Bold,
+  WizIFlag2Filled,
   WizIFolderBold,
   WizIFolderFilled,
   WizIFolderSharedBold,
