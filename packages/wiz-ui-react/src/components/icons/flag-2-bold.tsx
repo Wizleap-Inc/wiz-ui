@@ -1,0 +1,18 @@
+import { CSSProperties } from "react";
+type Props = {
+  className?: string;
+  style?: CSSProperties;
+};
+export const WizIFlag2Bold = ({ className, style }: Props) => (
+  <svg
+    className={className}
+    style={style}
+    xmlns="http://www.w3.org/2000/svg"
+    height="1em"
+    viewBox="0 -960 960 960"
+    width="1em"
+  >
+    <path d="M200-80v-760h640l-80 200 80 200H280v360h-80Zm80-440h442l-48-120 48-120H280v240Zm0 0v-240 240Z" />
+  </svg>
+);
+WizIFlag2Bold.displayName = "WizIFlag2Bold";

@@ -24,6 +24,7 @@ import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICalendarMonthBold } from "./calendar-month-bold.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICallBold } from "./call-bold.vue";
+import { default as WizICall } from "./call.vue";
 import { default as WizICamera } from "./camera.vue";
 import { default as WizICancelBold } from "./cancel-bold.vue";
 import { default as WizICancel } from "./cancel.vue";
@@ -93,6 +94,8 @@ import { default as WizIExpandMore } from "./expand-more.vue";
 import { default as WizIEye } from "./eye.vue";
 import { default as WizIFamilyHome } from "./family-home.vue";
 import { default as WizIFeedback } from "./feedback.vue";
+import { default as WizIFlag2Bold } from "./flag-2-bold.vue";
+import { default as WizIFlag2Filled } from "./flag-2-filled.vue";
 import { default as WizIFolderBold } from "./folder-bold.vue";
 import { default as WizIFolderFilled } from "./folder-filled.vue";
 import { default as WizIFolderSharedBold } from "./folder-shared-bold.vue";
@@ -208,6 +211,7 @@ export type TIcon =
   | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
+  | typeof WizICall
   | typeof WizICamera
   | typeof WizICancelBold
   | typeof WizICancel
@@ -277,6 +281,8 @@ export type TIcon =
   | typeof WizIEye
   | typeof WizIFamilyHome
   | typeof WizIFeedback
+  | typeof WizIFlag2Bold
+  | typeof WizIFlag2Filled
   | typeof WizIFolderBold
   | typeof WizIFolderFilled
   | typeof WizIFolderSharedBold
@@ -392,6 +398,7 @@ export {
   WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
+  WizICall,
   WizICamera,
   WizICancelBold,
   WizICancel,
@@ -461,6 +468,8 @@ export {
   WizIEye,
   WizIFamilyHome,
   WizIFeedback,
+  WizIFlag2Bold,
+  WizIFlag2Filled,
   WizIFolderBold,
   WizIFolderFilled,
   WizIFolderSharedBold,
