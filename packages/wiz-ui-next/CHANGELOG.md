@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.43.0
+
+### Minor Changes
+
+- [#1638](https://github.com/Wizleap-Inc/wiz-ui/pull/1638) [`61d4de0`](https://github.com/Wizleap-Inc/wiz-ui/commit/61d4de05ebd10bdf1ac92a024590e40db8a53d71) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Icon の追加 (Flag2Bold, Flag2Filled, Call)
+
+### Patch Changes
+
+- Updated dependencies [[`a498f9c`](https://github.com/Wizleap-Inc/wiz-ui/commit/a498f9c2ca74d6b1d9bf02141c210766aae5eb0f), [`61d4de0`](https://github.com/Wizleap-Inc/wiz-ui/commit/61d4de05ebd10bdf1ac92a024590e40db8a53d71)]:
+  - @wizleap-inc/wiz-ui-styles@0.59.0
+  - @wizleap-inc/wiz-ui-constants@0.56.0
+
 ## 3.42.0
 
 ### Minor Changes
