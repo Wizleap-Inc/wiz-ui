@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.42.0
+
+### Minor Changes
+
+- [#1638](https://github.com/Wizleap-Inc/wiz-ui/pull/1638) [`61d4de0`](https://github.com/Wizleap-Inc/wiz-ui/commit/61d4de05ebd10bdf1ac92a024590e40db8a53d71) Thanks [@mazyutyu](https://github.com/mazyutyu)! - Icon の追加 (Flag2Bold, Flag2Filled, Call)
+
 ## 0.41.0
 
 ### Minor Changes
