@@ -99,6 +99,7 @@ import { WizIFolderFilled } from "./folder-filled";
 import { WizIFolderSharedBold } from "./folder-shared-bold";
 import { WizIFolderSharedFilled } from "./folder-shared-filled";
 import { WizIForwardToInbox } from "./forward-to-inbox";
+import { WizIFullscreenBold } from "./fullscreen-bold";
 import { WizIGroupBold } from "./group-bold";
 import { WizIGroups } from "./groups";
 import { WizIHelp } from "./help";
@@ -283,6 +284,7 @@ export type TIcon =
   | typeof WizIFolderSharedFilled
   | typeof WizIFolder
   | typeof WizIForwardToInbox
+  | typeof WizIFullscreenBold
   | typeof WizIGroupBold
   | typeof WizIGroups
   | typeof WizIHelp
@@ -467,6 +469,7 @@ export {
   WizIFolderSharedFilled,
   WizIFolder,
   WizIForwardToInbox,
+  WizIFullscreenBold,
   WizIGroupBold,
   WizIGroups,
   WizIHelp,
