@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 3.4.0
+
+### Minor Changes
+
+- [#1643](https://github.com/Wizleap-Inc/wiz-ui/pull/1643) [`1dd6d18`](https://github.com/Wizleap-Inc/wiz-ui/commit/1dd6d18e0ae2f0ae44e081e6311265d6162c0a28) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - DatePicker の適用・キャンセルボタンを削除し、日付を選択した瞬間に値が適用されるように変更
+
 ## 3.3.0
 
 ### Minor Changes
