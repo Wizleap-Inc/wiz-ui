@@ -258,35 +258,25 @@ Test.play = async ({ canvasElement }) => {
 
   // その月の15日を選択
   const body = within(canvasElement.ownerDocument.body);
-  const initialDate = new Date(date.getFullYear(), date.getMonth(), 1);
   const clickDate = new Date(date.getFullYear(), date.getMonth(), 15);
   const pastClickDate = new Date(date.getFullYear(), date.getMonth() - 1, 15);
   const clickDateEl = body.getByLabelText(_formatDateJp(clickDate));
   await userEvent.click(clickDateEl);
-  // 選択済みというラベルがついていることを確認
-  await waitFor(() =>
-    expect(clickDateEl).toHaveAttribute(
-      "aria-label",
-      `${_formatDateJp(clickDate)}-選択済み`
-    )
-  );
 
-  // クリックした段階ではまだInputに反映されていないこと
-  await waitFor(() =>
-    expect(button.textContent).toBe(_formatDateJp(initialDate))
-  );
-
-  // 適用ボタンをクリック
-  const applyButton = body.getByText(ARIA_LABELS.APPLY);
-  await userEvent.click(applyButton);
-
-  // Input内が選択した日付になることを確認
+  // クリックした瞬間にInput内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent).toBe(_formatDateJp(clickDate))
   );
 
   // カレンダー再オープン
   await userEvent.click(button);
+
+  // 選択済みというラベルがついていることを確認
+  await waitFor(() =>
+    expect(
+      body.getByLabelText(`${_formatDateJp(clickDate)}-選択済み`)
+    ).toBeTruthy()
+  );
 
   // 月セレクターのPrevを1回押して操作月を1ヶ月前にする
   const monthSelectorPrev = body.getByLabelText(
@@ -301,38 +291,12 @@ Test.play = async ({ canvasElement }) => {
   // その月の15日を選択
   const pastDay = body.getByLabelText(_formatDateJp(pastClickDate));
   await userEvent.click(pastDay);
-  // 選択済みというラベルがついていることを確認
-  await waitFor(() =>
-    expect(pastDay).toHaveAttribute(
-      "aria-label",
-      `${_formatDateJp(pastClickDate)}-選択済み`
-    )
-  );
 
-  // Input内が選択した日付になることを確認
-  await waitFor(() =>
-    expect(button.textContent).toBe(_formatDateJp(new Date(clickDate)))
-  );
-
-  // 適用ボタンをクリック
-  await userEvent.click(applyButton);
-
-  // Input内が選択した日付になることを確認
+  // クリックした瞬間にInput内が選択した日付になることを確認
   await waitFor(() =>
     expect(button.textContent).toBe(_formatDateJp(new Date(pastClickDate)))
   );
 
-  // 月セレクターのNextを1回押して操作月を1ヶ月後にする
-  const monthSelectorNext = body.getByLabelText(
-    ARIA_LABELS.MONTH_SELECTOR_NEXT
-  );
-  await userEvent.click(monthSelectorNext);
-  const currentMonthDisplay = await body.findByText(
-    _formatDateJpMonth(clickDate)
-  );
-  await waitFor(() => expect(currentMonthDisplay).toBeTruthy());
-
-  await userEvent.click(button);
   await userEvent.tab();
 };
 
