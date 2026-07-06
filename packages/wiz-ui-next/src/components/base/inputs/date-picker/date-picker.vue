@@ -110,10 +110,10 @@
         </WizHStack>
         <WizCalendar
           :active-dates="
-            tempDate
+            calendarValue
               ? [
                   {
-                    date: tempDate,
+                    date: calendarValue,
                     state: 'primary',
                   },
                 ]
@@ -125,15 +125,6 @@
           :_today="_today || new Date()"
           @click="handleClickCalendar"
         />
-        <WizDivider color="gray.300" />
-        <WizHStack p="sm" gap="sm" justify="end">
-          <WizTextButton variant="sub" @click="onClose">
-            {{ ARIA_LABELS.CANCEL }}
-          </WizTextButton>
-          <WizTextButton @click="onSubmit">
-            {{ ARIA_LABELS.APPLY }}
-          </WizTextButton>
-        </WizHStack>
       </div>
     </WizPopup>
   </WizPopupContainer>
@@ -160,13 +151,11 @@ import { PropType, computed, inject, ref, useAttrs } from "vue";
 
 import {
   WizCalendar,
-  WizDivider,
   WizHStack,
   WizIcon,
   WizPopup,
   WizPopupContainer,
   WizText,
-  WizTextButton,
   WizVStack,
 } from "@/components";
 import {
@@ -261,7 +250,6 @@ const defaultCurrentMonth = props.modelValue || new Date();
 const currentMonth = ref(defaultCurrentMonth);
 
 const setIsOpen = (value: boolean) => emit("update:isOpen", value);
-const tempDate = ref(props.modelValue);
 
 const clickToNextMonth = (e: KeyboardEvent | MouseEvent) => {
   e.preventDefault();
@@ -327,24 +315,20 @@ const variant = computed(() => {
   return "default";
 });
 
-const handleClickCalendar = (date: Date) => (tempDate.value = date);
+const handleClickCalendar = (date: Date) => {
+  calendarValue.value = date;
+  setIsOpen(false);
+};
 
 const onClickCancel = (e: MouseEvent) => {
   e.stopPropagation();
-  tempDate.value = null;
   currentMonth.value = new Date(defaultCurrentMonth);
   emit("update:modelValue", null);
   setIsOpen(false);
 };
 
 const onClose = () => {
-  tempDate.value = calendarValue.value;
   currentMonth.value = new Date(defaultCurrentMonth);
-  setIsOpen(false);
-};
-
-const onSubmit = () => {
-  calendarValue.value = tempDate.value;
   setIsOpen(false);
 };
 </script>

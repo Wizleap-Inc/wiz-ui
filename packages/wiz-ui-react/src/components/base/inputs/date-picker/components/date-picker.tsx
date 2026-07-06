@@ -16,13 +16,7 @@ import {
   ComponentPropsWithoutRef,
 } from "react";
 
-import {
-  WizCalendar,
-  WizDivider,
-  WizPopup,
-  WizText,
-  WizTextButton,
-} from "@/components";
+import { WizCalendar, WizPopup, WizText } from "@/components";
 import { WizIcon } from "@/components/base/icon";
 import { WizHStack, WizVStack } from "@/components/base/stack";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
@@ -89,8 +83,6 @@ const DatePicker: FC<Props> = ({
       )
     );
   };
-  const [tempDate, setTempDate] = useState(date);
-
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     e.preventDefault();
     switch (e.key) {
@@ -128,20 +120,18 @@ const DatePicker: FC<Props> = ({
 
   const onCancel = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setTempDate(null);
     setCurrentMonth(new Date());
     onChangeDate?.(null);
     setIsOpen(false);
   };
 
   const onClose = () => {
-    setTempDate(date);
     setCurrentMonth(date || new Date());
     setIsOpen(false);
   };
 
-  const onSubmit = () => {
-    onChangeDate?.(tempDate);
+  const onClickDate = (selected: Date) => {
+    onChangeDate?.(selected);
     setIsOpen(false);
   };
 
@@ -280,24 +270,13 @@ const DatePicker: FC<Props> = ({
             </div>
           </WizHStack>
           <WizCalendar
-            activeDates={
-              (tempDate && [{ date: tempDate, state: "primary" }]) || undefined
-            }
-            onClickDate={(date) => setTempDate(date)}
+            activeDates={(date && [{ date, state: "primary" }]) || undefined}
+            onClickDate={onClickDate}
             currentMonth={currentMonth}
             filledWeeks
             _today={_today || new Date()}
             disabledDate={disabledDate}
           />
-          <WizDivider color="gray.300" />
-          <WizHStack p="sm" gap="sm" justify="end">
-            <WizTextButton onClick={onClose} variant="sub">
-              {ARIA_LABELS.CANCEL}
-            </WizTextButton>
-            <WizTextButton onClick={onSubmit}>
-              {ARIA_LABELS.APPLY}
-            </WizTextButton>
-          </WizHStack>
         </div>
       </WizPopup>
     </>
