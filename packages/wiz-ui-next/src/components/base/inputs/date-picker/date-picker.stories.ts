@@ -300,6 +300,60 @@ Test.play = async ({ canvasElement }) => {
   await userEvent.tab();
 };
 
+export const TestMonthNavigation: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker, WizHStack },
+  setup() {
+    const date = ref<Date | null>(new Date(2000, 0, 1));
+    const isOpen = ref(true);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
+  template: `
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    />
+  `,
+});
+TestMonthNavigation.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button = canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT);
+  await userEvent.click(button);
+  await waitFor(() => expect(button).toHaveFocus());
+
+  const body = within(canvasElement.ownerDocument.body);
+  const initialDate = new Date(2000, 0, 1);
+  const prevMonth = new Date(2000, -1, 1);
+  const nextMonth = new Date(2000, 1, 1);
+
+  // 月セレクターのPrevを1回押して操作月を1ヶ月前にする
+  const monthSelectorPrev = body.getByLabelText(
+    ARIA_LABELS.MONTH_SELECTOR_PREV
+  );
+  await userEvent.click(monthSelectorPrev);
+  await waitFor(() =>
+    expect(body.getByText(_formatDateJpMonth(prevMonth))).toBeTruthy()
+  );
+
+  // 月セレクターのNextを2回押して操作月を1ヶ月後にする
+  const monthSelectorNext = body.getByLabelText(
+    ARIA_LABELS.MONTH_SELECTOR_NEXT
+  );
+  await userEvent.click(monthSelectorNext);
+  await userEvent.click(monthSelectorNext);
+  await waitFor(() =>
+    expect(body.getByText(_formatDateJpMonth(nextMonth))).toBeTruthy()
+  );
+
+  // 月を移動してもInputの値は変わらない（適用されない）ことを確認
+  await waitFor(() =>
+    expect(button.textContent).toBe(_formatDateJp(initialDate))
+  );
+};
+
 export const IsDirectionFixed = Template.bind({});
 IsDirectionFixed.args = {
   modelValue: null,
