@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 3.5.0
+
+### Minor Changes
+
+- [#1646](https://github.com/Wizleap-Inc/wiz-ui/pull/1646) [`30eee66`](https://github.com/Wizleap-Inc/wiz-ui/commit/30eee66539b56cc7373ef75ca17da4c0fdfac376) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Icon の追加 (License)
+
+### Patch Changes
+
+- Updated dependencies [[`30eee66`](https://github.com/Wizleap-Inc/wiz-ui/commit/30eee66539b56cc7373ef75ca17da4c0fdfac376)]:
+  - @wizleap-inc/wiz-ui-constants@0.57.0
+  - @wizleap-inc/wiz-ui-styles@0.59.1
+
 ## 3.4.0
 
 ### Minor Changes
