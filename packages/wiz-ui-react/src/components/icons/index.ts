@@ -116,6 +116,7 @@ import { WizIInfoBold } from "./info-bold";
 import { WizIInfoFilled } from "./info-filled";
 import { WizIJamboardKioskBold } from "./jamboard-kiosk-bold";
 import { WizIKeepBold } from "./keep-bold";
+import { WizILicense } from "./license";
 import { WizILinkBold } from "./link-bold";
 import { WizILinkOff } from "./link-off";
 import { WizILocationCity } from "./location-city";
@@ -303,6 +304,7 @@ export type TIcon =
   | typeof WizIInfo
   | typeof WizIJamboardKioskBold
   | typeof WizIKeepBold
+  | typeof WizILicense
   | typeof WizILinkBold
   | typeof WizILinkOff
   | typeof WizILocationCity
@@ -490,6 +492,7 @@ export {
   WizIInfo,
   WizIJamboardKioskBold,
   WizIKeepBold,
+  WizILicense,
   WizILinkBold,
   WizILinkOff,
   WizILocationCity,
