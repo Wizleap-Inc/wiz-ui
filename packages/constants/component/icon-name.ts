@@ -117,6 +117,7 @@ export const IconComponentName = {
   IInfo: "WizIInfo",
   IJamboardKioskBold: "WizIJamboardKioskBold",
   IKeepBold: "WizIKeepBold",
+  ILicense: "WizILicense",
   ILinkBold: "WizILinkBold",
   ILinkOff: "WizILinkOff",
   ILocationCity: "WizILocationCity",

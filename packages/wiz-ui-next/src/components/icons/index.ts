@@ -116,6 +116,7 @@ import { default as WizIInfoFilled } from "./info-filled.vue";
 import { default as WizIInfo } from "./info.vue";
 import { default as WizIJamboardKioskBold } from "./jamboard-kiosk-bold.vue";
 import { default as WizIKeepBold } from "./keep-bold.vue";
+import { default as WizILicense } from "./license.vue";
 import { default as WizILinkBold } from "./link-bold.vue";
 import { default as WizILinkOff } from "./link-off.vue";
 import { default as WizILocationCity } from "./location-city.vue";
@@ -303,6 +304,7 @@ export type TIcon =
   | typeof WizIInfo
   | typeof WizIJamboardKioskBold
   | typeof WizIKeepBold
+  | typeof WizILicense
   | typeof WizILinkBold
   | typeof WizILinkOff
   | typeof WizILocationCity
@@ -490,6 +492,7 @@ export {
   WizIInfo,
   WizIJamboardKioskBold,
   WizIKeepBold,
+  WizILicense,
   WizILinkBold,
   WizILinkOff,
   WizILocationCity,
