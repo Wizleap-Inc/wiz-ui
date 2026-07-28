@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.43.0
+
+### Minor Changes
+
+- [#1646](https://github.com/Wizleap-Inc/wiz-ui/pull/1646) [`30eee66`](https://github.com/Wizleap-Inc/wiz-ui/commit/30eee66539b56cc7373ef75ca17da4c0fdfac376) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - Icon の追加 (License)
+
 ## 0.42.0
 
 ### Minor Changes
