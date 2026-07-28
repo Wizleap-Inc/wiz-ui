@@ -241,6 +241,42 @@ export const Disabled: Story = {
   ),
 };
 
+// ポップアップが画面下にはみ出す場合、rightTop から rightBottom に回り込んで画面内に収まることを確認する
+export const PopupBottomOverflow: Story = {
+  args: {
+    isOpen: true,
+  },
+  render: (args) => {
+    const [isPopupOpen, setIsPopupOpen] = useState(true);
+    const manyButtons = Array.from({ length: 8 }).map((_, i) =>
+      createButton(i)
+    );
+    return (
+      <div style={{ display: "flex", height: "100vh" }}>
+        <WizNavigationContainer {...args}>
+          <WizNavigationItem
+            icon={WizIDashboard}
+            label="Home"
+            href="/"
+            active={false}
+          />
+          <div style={{ height: "calc(100vh - 160px)" }} />
+          <WizNavigationItem
+            icon={WizIBusinessCenter}
+            label="管理"
+            as="a"
+            asProps={{}}
+            active={isPopupOpen}
+            buttons={manyButtons}
+            isPopupOpen={isPopupOpen}
+            onTogglePopup={setIsPopupOpen}
+          />
+        </WizNavigationContainer>
+      </div>
+    );
+  },
+};
+
 export const PopupAndTooltip: Story = {
   args: {
     isOpen: true,
