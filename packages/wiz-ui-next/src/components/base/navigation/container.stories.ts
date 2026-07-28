@@ -466,49 +466,6 @@ export const Disabled: StoryFn<typeof WizNavContainer> = (args) => ({
   `,
 });
 
-// ポップアップが画面下にはみ出す場合、rt から rb に回り込んで画面内に収まることを確認する
-export const PopupBottomOverflow: StoryFn<typeof WizNavContainer> = (args) => ({
-  components: { WizNavContainer, WizNavItem },
-  setup() {
-    const isOpen = ref(true);
-    const active = ref(true);
-    const toggle = (value: boolean) => {
-      active.value = value;
-      isOpen.value = value;
-    };
-    const manyButtons = Array.from({ length: 8 }).map((_, i) =>
-      createButton(i, args.click)
-    );
-    return {
-      args,
-      WizIDashboard,
-      WizIBusinessCenter,
-      createButton,
-      manyButtons,
-      isOpen,
-      active,
-      toggle,
-    };
-  },
-  template: /* HTML */ `
-    <div style="display: flex; height: 100vh;">
-      <WizNavContainer>
-        <WizNavItem :icon="WizIDashboard" label="Home" to="/" :active="false" />
-        <div style="height: calc(100vh - 160px)"></div>
-        <WizNavItem
-          :buttons="manyButtons"
-          :icon="WizIBusinessCenter"
-          label="管理"
-          to="/admin"
-          :active="active"
-          :isOpen="isOpen"
-          @toggle="toggle"
-        />
-      </WizNavContainer>
-    </div>
-  `,
-});
-
 export const PopupAndTooltip: StoryFn<typeof WizNavContainer> = (args) => ({
   components: { WizNavContainer, WizNavItem },
   setup() {
