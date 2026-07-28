@@ -46,7 +46,6 @@
           :is-open="isOpen"
           direction="rt"
           layer="popover"
-          :is-direction-fixed="true"
           @on-close="popupOnClose"
         >
           <WizPopupButtonGroup

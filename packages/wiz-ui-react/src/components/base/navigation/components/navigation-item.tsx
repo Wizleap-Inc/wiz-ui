@@ -211,7 +211,6 @@ const NavigationItem = <T extends ElementType>({
           onClose={handleClosePopup}
           direction="rightTop"
           layer="popover"
-          isDirectionFixed
         >
           <div className={navigationPopupContainerStyle}>
             <WizPopupButtonGroup
