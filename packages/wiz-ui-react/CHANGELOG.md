@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 3.5.1
+
+### Patch Changes
+
+- [#1650](https://github.com/Wizleap-Inc/wiz-ui/pull/1650) [`c22d9d6`](https://github.com/Wizleap-Inc/wiz-ui/commit/c22d9d6d82887037b9f8933e795bcfb4228461f1) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - NavigationItem のポップアップが画面下にはみ出す場合に、上方向へ回り込んで画面内に収まるように修正
+
 ## 3.5.0
 
 ### Minor Changes
