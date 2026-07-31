@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-react
 
+## 3.6.0
+
+### Minor Changes
+
+- [#1653](https://github.com/Wizleap-Inc/wiz-ui/pull/1653) [`b1a342f`](https://github.com/Wizleap-Inc/wiz-ui/commit/b1a342fdb81c738375055fb9f5edbf3f9322037f) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - feat(checkbox,radio): disabled 状態のデザインを統一 (checked 時は green.500 に薄めた表示、opacity による半透明表現を廃止)
+
+### Patch Changes
+
+- Updated dependencies [[`b1a342f`](https://github.com/Wizleap-Inc/wiz-ui/commit/b1a342fdb81c738375055fb9f5edbf3f9322037f)]:
+  - @wizleap-inc/wiz-ui-styles@0.60.0
+
 ## 3.5.1
 
 ### Patch Changes
