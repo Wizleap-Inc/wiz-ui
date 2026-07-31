@@ -13,7 +13,7 @@
     <div
       :class="[styles.iconWrapperStyle, styles.inputMarginStyle[borderState]]"
     >
-      <div :class="styles.iconPositionStyle">
+      <div v-if="actualChecked" :class="styles.iconPositionStyle">
         <WizIcon :icon="WizICheckBold" color="white.800" size="md" />
       </div>
     </div>

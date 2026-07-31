@@ -72,7 +72,7 @@ export const borderedStyle = styleVariants({
   disabledChecked: [
     borderedBaseStyle,
     {
-      borderColor: THEME.color.green[800],
+      borderColor: THEME.color.green[500],
       backgroundColor: THEME.color.gray[200],
     },
   ],
@@ -124,6 +124,10 @@ export const markerStyle = style([
       [`${inputStyle}:disabled + &`]: {
         backgroundColor: THEME.color.gray[300],
       },
+      [`${inputStyle}:disabled:checked + &`]: {
+        backgroundColor: THEME.color.white[800],
+        borderColor: THEME.color.green[500],
+      },
       [`${inputStyle}:checked + &::before`]: {
         content: "",
         display: "block",
@@ -133,7 +137,7 @@ export const markerStyle = style([
         backgroundColor: THEME.color.green[800],
       },
       [`${inputStyle}:disabled:checked + &::before`]: {
-        backgroundColor: THEME.color.gray[500],
+        backgroundColor: THEME.color.green[500],
       },
     },
   },

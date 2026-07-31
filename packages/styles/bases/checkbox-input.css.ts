@@ -1,4 +1,4 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = THEME.borderWidth.xs;
@@ -32,9 +32,7 @@ export const checkboxLabelCheckedStyle = style({
   },
 });
 
-export const checkboxLabelDisabledStyle = style({
-  opacity: 0.5,
-});
+export const checkboxLabelDisabledStyle = style({});
 
 export const checkboxLabelStrikeThrough = style({
   textDecorationLine: "line-through",
@@ -86,3 +84,18 @@ export const checkboxIconFocusedColorStyle = styleVariants({
 export const checkboxBlockCheckedStyle = style({
   color: THEME.color.green["800"],
 });
+
+globalStyle(
+  `${checkboxLabelDisabledStyle} ${checkboxIconVariantStyle.default}`,
+  {
+    backgroundColor: THEME.color.gray["300"],
+  }
+);
+
+globalStyle(
+  `${checkboxLabelDisabledStyle} ${checkboxIconVariantStyle.checked}`,
+  {
+    fill: THEME.color.green["500"],
+    borderColor: THEME.color.green["500"],
+  }
+);

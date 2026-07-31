@@ -70,7 +70,7 @@ export const borderedStyle = styleVariants({
   disabledChecked: [
     borderedBaseStyle,
     {
-      borderColor: THEME.color.green[800],
+      borderColor: THEME.color.green[500],
       backgroundColor: THEME.color.gray[200],
     },
   ],
@@ -123,7 +123,7 @@ export const iconWrapperStyle = style([
         backgroundColor: THEME.color.gray[300],
       },
       [`${inputStyle}:checked:disabled + &`]: {
-        backgroundColor: THEME.color.gray[400],
+        backgroundColor: THEME.color.green[500],
       },
     },
   },
