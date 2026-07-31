@@ -32,9 +32,7 @@ export const checkboxLabelCheckedStyle = style({
   },
 });
 
-export const checkboxLabelDisabledStyle = style({
-  opacity: 0.5,
-});
+export const checkboxLabelDisabledStyle = style({});
 
 export const checkboxLabelStrikeThrough = style({
   textDecorationLine: "line-through",
@@ -59,10 +57,21 @@ export const checkboxIconBaseStyle = style({
 export const checkboxIconVariantStyle = styleVariants({
   default: {
     border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+    selectors: {
+      [`${checkboxLabelDisabledStyle} &`]: {
+        backgroundColor: THEME.color.gray["300"],
+      },
+    },
   },
   checked: {
     fill: THEME.color.green["800"],
     border: `${borderWidth} solid ${THEME.color.green["800"]}`,
+    selectors: {
+      [`${checkboxLabelDisabledStyle} &`]: {
+        fill: THEME.color.green["500"],
+        borderColor: THEME.color.green["500"],
+      },
+    },
   },
 });
 

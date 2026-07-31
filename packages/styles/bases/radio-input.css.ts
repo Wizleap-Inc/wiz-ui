@@ -48,10 +48,6 @@ export const radioLabelCheckedStyle = style({
   },
 });
 
-export const radioLabelDisabledStyle = style({
-  opacity: 0.5,
-});
-
 export const radioLabelStrikeThrough = style({
   textDecorationLine: "line-through",
 });
@@ -77,6 +73,21 @@ export const radioLabelColorStyle = styleVariants({
     },
     ":after": {
       background: THEME.color.green["800"],
+    },
+  },
+});
+
+export const radioLabelDisabledStyle = style({
+  ":before": {
+    backgroundColor: THEME.color.gray["300"],
+  },
+  selectors: {
+    [`&${radioLabelCheckedStyle}::before`]: {
+      backgroundColor: THEME.color.white["800"],
+      borderColor: THEME.color.green["500"],
+    },
+    [`&${radioLabelCheckedStyle}::after`]: {
+      backgroundColor: THEME.color.green["500"],
     },
   },
 });
