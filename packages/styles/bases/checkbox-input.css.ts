@@ -1,4 +1,4 @@
-import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import { THEME } from "@wizleap-inc/wiz-ui-constants";
 
 const borderWidth = THEME.borderWidth.xs;
@@ -57,10 +57,21 @@ export const checkboxIconBaseStyle = style({
 export const checkboxIconVariantStyle = styleVariants({
   default: {
     border: `${borderWidth} solid ${THEME.color.gray["400"]}`,
+    selectors: {
+      [`${checkboxLabelDisabledStyle} &`]: {
+        backgroundColor: THEME.color.gray["300"],
+      },
+    },
   },
   checked: {
     fill: THEME.color.green["800"],
     border: `${borderWidth} solid ${THEME.color.green["800"]}`,
+    selectors: {
+      [`${checkboxLabelDisabledStyle} &`]: {
+        fill: THEME.color.green["500"],
+        borderColor: THEME.color.green["500"],
+      },
+    },
   },
 });
 
@@ -84,18 +95,3 @@ export const checkboxIconFocusedColorStyle = styleVariants({
 export const checkboxBlockCheckedStyle = style({
   color: THEME.color.green["800"],
 });
-
-globalStyle(
-  `${checkboxLabelDisabledStyle} ${checkboxIconVariantStyle.default}`,
-  {
-    backgroundColor: THEME.color.gray["300"],
-  }
-);
-
-globalStyle(
-  `${checkboxLabelDisabledStyle} ${checkboxIconVariantStyle.checked}`,
-  {
-    fill: THEME.color.green["500"],
-    borderColor: THEME.color.green["500"],
-  }
-);
