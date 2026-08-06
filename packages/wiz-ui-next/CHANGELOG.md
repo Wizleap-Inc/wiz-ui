@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 3.47.0
+
+### Minor Changes
+
+- [#1656](https://github.com/Wizleap-Inc/wiz-ui/pull/1656) [`5262f26`](https://github.com/Wizleap-Inc/wiz-ui/commit/5262f2676c0c97d5bd03b58d4c12c89d6de8d2a8) Thanks [@BestTempuraJP](https://github.com/BestTempuraJP)! - feat(TimePicker): minuteInterval プロパティを追加し、分の選択間隔を指定できるようにする（デフォルトは従来通り5分間隔）
+
 ## 3.46.0
 
 ### Minor Changes
