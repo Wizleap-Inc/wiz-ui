@@ -23,6 +23,9 @@ export default {
     isDirectionFixed: {
       control: { type: "boolean" },
     },
+    minuteInterval: {
+      control: { type: "number" },
+    },
   },
 } as Meta<typeof WizTimePicker>;
 
@@ -52,4 +55,10 @@ Expand.args = {
 export const IsDirectionFixed = Template.bind({});
 IsDirectionFixed.args = {
   isDirectionFixed: true,
+};
+
+// 1分間隔
+export const MinuteInterval = Template.bind({});
+MinuteInterval.args = {
+  minuteInterval: 1,
 };

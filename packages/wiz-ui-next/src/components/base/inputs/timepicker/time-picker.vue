@@ -156,6 +156,11 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  minuteInterval: {
+    type: Number,
+    required: false,
+    default: 5,
+  },
 });
 
 const openTimepicker = ref(false);
@@ -163,8 +168,10 @@ const selectedHour = ref("");
 const selectedMinute = ref("");
 
 const hourOptions = [...Array(24).keys()].map((val) => String(val));
-const minuteOptions = [...Array(12)].map((_, index) =>
-  String(index * 5).padStart(2, "0")
+const minuteOptions = computed(() =>
+  [...Array(Math.ceil(60 / props.minuteInterval))].map((_, index) =>
+    String(index * props.minuteInterval).padStart(2, "0")
+  )
 );
 
 const toggleTimepicker = () => {
