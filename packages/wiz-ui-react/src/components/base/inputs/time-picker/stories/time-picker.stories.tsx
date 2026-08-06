@@ -63,6 +63,20 @@ export const Expand: Story = {
   },
 };
 
+export const MinuteInterval: Story = {
+  args: {
+    minuteInterval: 1,
+  },
+  render: (args) => {
+    const [time, setTime] = useState<Time | null>(null);
+    return <WizTimePicker {...args} time={time} onChange={setTime} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    fireEvent.click(canvas.getByRole("button"));
+  },
+};
+
 export const Error: Story = {
   args: {
     error: true,

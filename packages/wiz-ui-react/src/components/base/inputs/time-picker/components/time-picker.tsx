@@ -22,7 +22,7 @@ import {
 } from "@/components";
 import { FormControlContext } from "@/components/custom/form/components/form-control-context";
 
-import { HOURS, MINUTES, Time } from "../types/time";
+import { HOURS, Time } from "../types/time";
 
 type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   time: Time | null;
@@ -31,6 +31,7 @@ type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   disabled?: boolean;
   isDirectionFixed?: boolean;
   error?: boolean;
+  minuteInterval?: number;
   onChange?: (time: Time | null) => void;
 };
 
@@ -43,9 +44,14 @@ const TimePicker: FC<Props> = ({
   disabled = false,
   isDirectionFixed = false,
   error = false,
+  minuteInterval = 5,
   onChange,
   ...props
 }) => {
+  const minuteOptions = Array.from(
+    { length: Math.ceil(60 / minuteInterval) },
+    (_, i) => i * minuteInterval
+  );
   const anchor = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
@@ -193,7 +199,7 @@ const TimePicker: FC<Props> = ({
                 nowrap
                 className={styles.timePickerScrollStyle}
               >
-                {MINUTES.map((option) => (
+                {minuteOptions.map((option) => (
                   <div
                     key={"mm" + option}
                     className={clsx([
