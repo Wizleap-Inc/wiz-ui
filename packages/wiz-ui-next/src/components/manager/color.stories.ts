@@ -83,6 +83,16 @@ Gray.args = {
   })),
 };
 
+export const Purple = Template.bind({});
+Purple.args = {
+  colors: Array.from(Object.entries(THEME.color.purple)).map(
+    ([key, value]) => ({
+      key: `color.purple.${key}`,
+      value,
+    })
+  ),
+};
+
 export const Others = Template.bind({});
 Others.args = {
   colors: [
