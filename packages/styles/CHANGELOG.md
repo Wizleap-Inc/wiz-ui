@@ -1,5 +1,16 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.61.0
+
+### Minor Changes
+
+- [#1658](https://github.com/Wizleap-Inc/wiz-ui/pull/1658) [`7d2b727`](https://github.com/Wizleap-Inc/wiz-ui/commit/7d2b727924278af03ead4c0ce5bfad676e2ec942) Thanks [@k-tada](https://github.com/k-tada)! - feat(color): purple のカラーパレット（300〜800）を追加
+
+### Patch Changes
+
+- Updated dependencies [[`7d2b727`](https://github.com/Wizleap-Inc/wiz-ui/commit/7d2b727924278af03ead4c0ce5bfad676e2ec942)]:
+  - @wizleap-inc/wiz-ui-constants@0.58.0
+
 ## 0.60.0
 
 ### Minor Changes
