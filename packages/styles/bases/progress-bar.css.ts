@@ -38,16 +38,14 @@ export const progressBarPointWrapperStyle = style({
 
 export const progressBarItemLabelStyle = style({
   position: "absolute",
-  top: "100%",
-  marginTop: THEME.spacing.xs2,
+  top: `calc(100% + ${THEME.spacing.xs2})`,
   left: "50%",
   transform: "translateX(-50%)",
 });
 
 export const progressBarItemAnnotationStyle = style({
   position: "absolute",
-  bottom: "100%",
-  marginBottom: THEME.spacing.xs2,
+  bottom: `calc(100% + ${THEME.spacing.xs2})`,
   left: "50%",
   transform: "translateX(-50%)",
   color: THEME.color.red[800],
