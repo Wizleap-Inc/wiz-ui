@@ -25,8 +25,8 @@ export const Progress = ({
   <div className={styles.progressBarPointWrapperStyle}>
     <span className={styles.progressBarItemAnnotationStyle}>
       <WizText
-        fontSize={annotationSize}
-        color={annotationColor}
+        fontSize={content.annotationSize ?? annotationSize}
+        color={content.annotationColor ?? annotationColor}
         whiteSpace="nowrap"
       >
         {content.annotation}
@@ -34,7 +34,11 @@ export const Progress = ({
     </span>
     <WizProgressPoint status={content.status} value={content.value} />
     <span className={styles.progressBarItemLabelStyle}>
-      <WizText fontSize={labelSize} color={labelColor} whiteSpace="nowrap">
+      <WizText
+        fontSize={content.labelSize ?? labelSize}
+        color={content.labelColor ?? labelColor}
+        whiteSpace="nowrap"
+      >
         {content.label}
       </WizText>
     </span>

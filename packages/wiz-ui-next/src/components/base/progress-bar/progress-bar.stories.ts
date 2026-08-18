@@ -147,3 +147,22 @@ WithCustomLabelAndAnnotation.args = {
   annotationColor: "green.800",
   annotationSize: "md",
 };
+
+export const WithPerItemCustomStyle = Template.bind({});
+WithPerItemCustomStyle.args = {
+  contents: STATUS.map((status, index) => ({
+    status,
+    label: `Label ${index + 1}`,
+    annotation: `Annotation ${index + 1}`,
+    ...(index === 1 && {
+      labelColor: "blue.800" as const,
+      labelSize: "md" as const,
+      annotationColor: "green.800" as const,
+      annotationSize: "md" as const,
+    }),
+    ...(index === 3 && {
+      labelColor: "purple.800" as const,
+      labelSize: "sm" as const,
+    }),
+  })),
+};

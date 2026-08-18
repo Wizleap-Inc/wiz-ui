@@ -208,3 +208,24 @@ export const WithCustomLabelAndAnnotation: Story = {
     annotationSize: "md",
   },
 };
+
+export const WithPerItemCustomStyle: Story = {
+  args: {
+    contents: contents.map((content, index) => ({
+      id: content.id,
+      status: content.status,
+      label: content.label,
+      annotation: content.annotation,
+      ...(index === 1 && {
+        labelColor: "blue.800" as const,
+        labelSize: "md" as const,
+        annotationColor: "green.800" as const,
+        annotationSize: "md" as const,
+      }),
+      ...(index === 3 && {
+        labelColor: "purple.800" as const,
+        labelSize: "sm" as const,
+      }),
+    })),
+  },
+};

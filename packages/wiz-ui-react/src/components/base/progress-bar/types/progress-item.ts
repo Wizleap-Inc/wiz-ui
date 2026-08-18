@@ -1,3 +1,5 @@
+import { ColorKeys, FontSizeKeys } from "@wizleap-inc/wiz-ui-constants";
+
 export type ProgressStatus =
   | "done"
   | "active"
@@ -17,4 +19,8 @@ export interface ProgressItem {
   tooltip?: string;
   progress?: ProgressState;
   value?: number;
+  labelColor?: ColorKeys;
+  labelSize?: FontSizeKeys;
+  annotationColor?: ColorKeys;
+  annotationSize?: FontSizeKeys;
 }

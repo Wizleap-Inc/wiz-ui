@@ -12,8 +12,8 @@
         <div :class="progressBarPointWrapperStyle">
           <span :class="progressBarItemAnnotationStyle">
             <WizText
-              :font-size="annotationSize"
-              :color="annotationColor"
+              :font-size="content.annotationSize ?? annotationSize"
+              :color="content.annotationColor ?? annotationColor"
               white-space="nowrap"
             >
               {{ content.annotation }}
@@ -22,8 +22,8 @@
           <WizProgressPoint :status="content.status" :value="content.value" />
           <span :class="progressBarItemLabelStyle">
             <WizText
-              :font-size="labelSize"
-              :color="labelColor"
+              :font-size="content.labelSize ?? labelSize"
+              :color="content.labelColor ?? labelColor"
               white-space="nowrap"
             >
               {{ content.label }}
