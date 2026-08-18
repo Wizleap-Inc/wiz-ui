@@ -4,13 +4,16 @@ export type ProgressStatus =
   | "inactive"
   | "none"
   | "pending"
-  | "dead";
+  | "dead"
+  | "rejected";
+
+export type ProgressState = "active" | "inactive" | "rejected";
 
 export interface ProgressItem {
   status: ProgressStatus;
   label?: string;
   annotation?: string;
   tooltip?: string;
-  progress?: boolean;
+  progress?: ProgressState;
   value?: number;
 }

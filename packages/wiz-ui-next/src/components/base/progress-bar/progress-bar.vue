@@ -11,25 +11,37 @@
         </template>
         <div :class="progressBarPointWrapperStyle">
           <span :class="progressBarItemAnnotationStyle">
-            <WizText font-size="xs2" color="red.800" white-space="nowrap">
+            <WizText
+              :font-size="annotationSize"
+              :color="annotationColor"
+              white-space="nowrap"
+            >
               {{ content.annotation }}
             </WizText>
           </span>
           <WizProgressPoint :status="content.status" :value="content.value" />
           <span :class="progressBarItemLabelStyle">
-            <WizText font-size="xs2" color="gray.600" white-space="nowrap">
+            <WizText
+              :font-size="labelSize"
+              :color="labelColor"
+              white-space="nowrap"
+            >
               {{ content.label }}
             </WizText>
           </span>
         </div>
       </WizTooltip>
-      <WizProgressLine :active="content.progress" :is-first="i === 0" />
+      <WizProgressLine :state="content.progress" :is-first="i === 0" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+import {
+  ColorKeys,
+  ComponentName,
+  FontSizeKeys,
+} from "@wizleap-inc/wiz-ui-constants";
 import {
   progressBarStyle,
   progressBarItemStyle,
@@ -54,6 +66,26 @@ defineProps({
   contents: {
     type: Array as PropType<ProgressItem[]>,
     required: true,
+  },
+  labelColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "gray.600",
+  },
+  labelSize: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+    default: "xs2",
+  },
+  annotationColor: {
+    type: String as PropType<ColorKeys>,
+    required: false,
+    default: "red.800",
+  },
+  annotationSize: {
+    type: String as PropType<FontSizeKeys>,
+    required: false,
+    default: "xs2",
   },
 });
 </script>

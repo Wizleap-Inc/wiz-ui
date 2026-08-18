@@ -4,18 +4,26 @@ import clsx from "clsx";
 import { FC } from "react";
 
 import { BaseProps } from "@/types";
+
+import type { ProgressState } from "../types";
+
 type Props = BaseProps & {
-  active?: boolean;
+  state?: ProgressState;
   isFirst: boolean;
 };
 
-const ProgressLine: FC<Props> = ({ className, style, active, isFirst }) => {
+const ProgressLine: FC<Props> = ({
+  className,
+  style,
+  state = "inactive",
+  isFirst,
+}) => {
   return (
     <span
       className={clsx(
         className,
         styles.progressLineStyle,
-        styles.progressLineBackgroundStyle[active ? "active" : "inactive"],
+        styles.progressLineBackgroundStyle[state],
         styles.progressLineWidthStyle[isFirst ? "first" : "default"]
       )}
       style={style}
