@@ -1,5 +1,28 @@
 # @wizleap-inc/wiz-ui-react
 
+## 4.0.0
+
+### Major Changes
+
+- [#1662](https://github.com/Wizleap-Inc/wiz-ui/pull/1662) [`b10145b`](https://github.com/Wizleap-Inc/wiz-ui/commit/b10145b941b33742cb94f1ac203ce059af5bc78b) Thanks [@k-tada](https://github.com/k-tada)! - feat(progress-bar)!: rejected ステータスの追加と progress の型変更
+
+  - `ProgressStatus` に `"rejected"`（赤の破線ボーダー・ピンク背景）を追加
+  - `ProgressItem.progress` を `boolean` から `"active" | "inactive" | "rejected"` に変更（新しく `ProgressState` 型としてエクスポート）
+  - `WizProgressLine` の props を `active: boolean` から `state: ProgressState` に変更
+
+  BREAKING CHANGE: `progress: true` は `progress: "active"`、`progress: false` は `progress: "inactive"` に置き換えてください。`WizProgressLine` を直接使用している場合は `active` prop を `state` にリネームしてください。
+
+### Minor Changes
+
+- [#1662](https://github.com/Wizleap-Inc/wiz-ui/pull/1662) [`b10145b`](https://github.com/Wizleap-Inc/wiz-ui/commit/b10145b941b33742cb94f1ac203ce059af5bc78b) Thanks [@k-tada](https://github.com/k-tada)! - feat(progress-bar): WizProgressBar に labelColor / labelSize / annotationColor / annotationSize を追加。あわせて point と label / annotation の間に 4px の余白を追加
+
+- [#1662](https://github.com/Wizleap-Inc/wiz-ui/pull/1662) [`07dfeb2`](https://github.com/Wizleap-Inc/wiz-ui/commit/07dfeb29f54bdd22bd719aaa1d1bbdef71cff76a) Thanks [@k-tada](https://github.com/k-tada)! - feat(progress-bar): ProgressItem ごとに labelColor / labelSize / annotationColor / annotationSize を個別指定可能に。指定がない場合は WizProgressBar 側の同名 prop の値にフォールバック
+
+### Patch Changes
+
+- Updated dependencies [[`b10145b`](https://github.com/Wizleap-Inc/wiz-ui/commit/b10145b941b33742cb94f1ac203ce059af5bc78b), [`b10145b`](https://github.com/Wizleap-Inc/wiz-ui/commit/b10145b941b33742cb94f1ac203ce059af5bc78b)]:
+  - @wizleap-inc/wiz-ui-styles@0.62.0
+
 ## 3.8.0
 
 ### Minor Changes
