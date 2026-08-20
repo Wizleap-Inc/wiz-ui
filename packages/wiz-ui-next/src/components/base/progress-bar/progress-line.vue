@@ -3,7 +3,7 @@
     class="wiz-progress-line"
     :class="[
       progressLineStyle,
-      progressLineBackgroundStyle[active ? 'active' : 'inactive'],
+      progressLineBackgroundStyle[state],
       progressLineWidthStyle[isFirst ? 'first' : 'default'],
     ]"
   />
@@ -16,15 +16,19 @@ import {
   progressLineBackgroundStyle,
   progressLineWidthStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/progress-bar.css";
+import { PropType } from "vue";
+
+import type { ProgressState } from "./types";
 
 defineOptions({
   name: ComponentName.ProgressLine,
 });
 
 defineProps({
-  active: {
-    type: Boolean,
+  state: {
+    type: String as PropType<ProgressState>,
     required: false,
+    default: "inactive",
   },
   isFirst: {
     type: Boolean,

@@ -1,4 +1,8 @@
 import { Meta, StoryFn } from "@storybook/vue3";
+import {
+  COLOR_MAP_ACCESSORS,
+  FONT_SIZE_ACCESSORS,
+} from "@wizleap-inc/wiz-ui-constants";
 
 import { WizProgressBar } from ".";
 
@@ -8,6 +12,22 @@ export default {
   argTypes: {
     content: {
       control: { type: "object" },
+    },
+    labelColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    labelSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
+    },
+    annotationColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    annotationSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
     },
   },
 } as Meta<typeof WizProgressBar>;
@@ -29,7 +49,14 @@ const STATUS = [
   "none",
   "pending",
   "dead",
+  "rejected",
 ] as const;
+
+const progressAt = (index: number): "active" | "inactive" | "rejected" => {
+  if ([1, 3, 4].includes(index)) return "active";
+  if (index === 6) return "rejected";
+  return "inactive";
+};
 
 export const Default = Template.bind({});
 Default.args = {
@@ -48,7 +75,7 @@ export const WithProgress = Template.bind({});
 WithProgress.args = {
   contents: STATUS.map((status, index) => ({
     status,
-    progress: [1, 3, 4].includes(index),
+    progress: progressAt(index),
   })),
 };
 
@@ -81,9 +108,61 @@ WithAll.args = {
   contents: STATUS.map((status, index) => ({
     status,
     value: index + 1,
-    progress: [1, 3, 4].includes(index),
+    progress: progressAt(index),
     tooltip: `Tooltip ${index + 1}`,
     label: `Label ${index + 1}`,
     annotation: `Annotation ${index + 1}`,
+  })),
+};
+
+export const WithCustomLabel = Template.bind({});
+WithCustomLabel.args = {
+  contents: STATUS.map((status, index) => ({
+    status,
+    label: `Label ${index + 1}`,
+  })),
+  labelColor: "blue.800",
+  labelSize: "md",
+};
+
+export const WithCustomAnnotation = Template.bind({});
+WithCustomAnnotation.args = {
+  contents: STATUS.map((status, index) => ({
+    status,
+    annotation: `Annotation ${index + 1}`,
+  })),
+  annotationColor: "green.800",
+  annotationSize: "md",
+};
+
+export const WithCustomLabelAndAnnotation = Template.bind({});
+WithCustomLabelAndAnnotation.args = {
+  contents: STATUS.map((status, index) => ({
+    status,
+    label: `Label ${index + 1}`,
+    annotation: `Annotation ${index + 1}`,
+  })),
+  labelColor: "blue.800",
+  labelSize: "md",
+  annotationColor: "green.800",
+  annotationSize: "md",
+};
+
+export const WithPerItemCustomStyle = Template.bind({});
+WithPerItemCustomStyle.args = {
+  contents: STATUS.map((status, index) => ({
+    status,
+    label: `Label ${index + 1}`,
+    annotation: `Annotation ${index + 1}`,
+    ...(index === 1 && {
+      labelColor: "blue.800" as const,
+      labelSize: "md" as const,
+      annotationColor: "green.800" as const,
+      annotationSize: "md" as const,
+    }),
+    ...(index === 3 && {
+      labelColor: "purple.800" as const,
+      labelSize: "sm" as const,
+    }),
   })),
 };

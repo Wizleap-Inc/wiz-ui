@@ -46,6 +46,12 @@ export const None: Story = {
   },
 };
 
+export const Rejected: Story = {
+  args: {
+    status: "rejected",
+  },
+};
+
 export const WithValue: Story = {
   render: (args) => {
     const status: ProgressStatus[] = [
@@ -55,6 +61,7 @@ export const WithValue: Story = {
       "pending",
       "dead",
       "none",
+      "rejected",
     ];
 
     return (

@@ -1,4 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
+import {
+  COLOR_MAP_ACCESSORS,
+  FONT_SIZE_ACCESSORS,
+} from "@wizleap-inc/wiz-ui-constants";
 
 import { WizProgressBar } from "../components";
 import { ProgressItem } from "../types";
@@ -6,6 +10,24 @@ import { ProgressItem } from "../types";
 const meta: Meta<typeof WizProgressBar> = {
   title: "Base/Progress/Bar",
   component: WizProgressBar,
+  argTypes: {
+    labelColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    labelSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
+    },
+    annotationColor: {
+      control: { type: "select" },
+      options: COLOR_MAP_ACCESSORS,
+    },
+    annotationSize: {
+      control: { type: "select" },
+      options: FONT_SIZE_ACCESSORS,
+    },
+  },
   decorators: [
     (Story) => (
       <div style={{ padding: "100px" }}>
@@ -25,7 +47,7 @@ const contents: ProgressItem[] = [
     tooltip: "Tooltip 1",
     status: "done",
     value: 1,
-    progress: true,
+    progress: "active",
   },
   {
     id: "2",
@@ -34,7 +56,7 @@ const contents: ProgressItem[] = [
     label: "Label 2",
     status: "active",
     value: 2,
-    progress: true,
+    progress: "active",
   },
   {
     id: "3",
@@ -43,7 +65,7 @@ const contents: ProgressItem[] = [
     label: "Label 3",
     status: "inactive",
     value: 3,
-    progress: true,
+    progress: "inactive",
   },
   {
     id: "4",
@@ -52,7 +74,7 @@ const contents: ProgressItem[] = [
     label: "Label 4",
     status: "pending",
     value: 4,
-    progress: true,
+    progress: "active",
   },
   {
     id: "5",
@@ -61,7 +83,7 @@ const contents: ProgressItem[] = [
     label: "Label 5",
     status: "dead",
     value: 5,
-    progress: true,
+    progress: "inactive",
   },
   {
     id: "6",
@@ -70,7 +92,16 @@ const contents: ProgressItem[] = [
     label: "Label 6",
     status: "none",
     value: 6,
-    progress: true,
+    progress: "inactive",
+  },
+  {
+    id: "7",
+    annotation: "Annotation 7",
+    tooltip: "Tooltip 7",
+    label: "Label 7",
+    status: "rejected",
+    value: 7,
+    progress: "rejected",
   },
 ];
 
@@ -136,5 +167,65 @@ export const WithAnnotation: Story = {
 export const WithAll: Story = {
   args: {
     contents: contents,
+  },
+};
+
+export const WithCustomLabel: Story = {
+  args: {
+    contents: contents.map((content) => ({
+      id: content.id,
+      status: content.status,
+      label: content.label,
+    })),
+    labelColor: "blue.800",
+    labelSize: "md",
+  },
+};
+
+export const WithCustomAnnotation: Story = {
+  args: {
+    contents: contents.map((content) => ({
+      id: content.id,
+      status: content.status,
+      annotation: content.annotation,
+    })),
+    annotationColor: "green.800",
+    annotationSize: "md",
+  },
+};
+
+export const WithCustomLabelAndAnnotation: Story = {
+  args: {
+    contents: contents.map((content) => ({
+      id: content.id,
+      status: content.status,
+      label: content.label,
+      annotation: content.annotation,
+    })),
+    labelColor: "blue.800",
+    labelSize: "md",
+    annotationColor: "green.800",
+    annotationSize: "md",
+  },
+};
+
+export const WithPerItemCustomStyle: Story = {
+  args: {
+    contents: contents.map((content, index) => ({
+      id: content.id,
+      status: content.status,
+      label: content.label,
+      annotation: content.annotation,
+      ...(index === 1 && {
+        labelColor: "blue.800" as const,
+        labelSize: "md" as const,
+        annotationColor: "green.800" as const,
+        annotationSize: "md" as const,
+      }),
+      ...(index === 3 && {
+        labelColor: "purple.800" as const,
+        labelSize: "sm" as const,
+      }),
+    })),
   },
 };

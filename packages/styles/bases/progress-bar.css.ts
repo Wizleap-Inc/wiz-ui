@@ -38,14 +38,14 @@ export const progressBarPointWrapperStyle = style({
 
 export const progressBarItemLabelStyle = style({
   position: "absolute",
-  bottom: `calc(${THEME.spacing.md} * -1)`,
+  top: `calc(100% + ${THEME.spacing.xs2})`,
   left: "50%",
   transform: "translateX(-50%)",
 });
 
 export const progressBarItemAnnotationStyle = style({
   position: "absolute",
-  top: `calc(${THEME.spacing.md} * -1)`,
+  bottom: `calc(100% + ${THEME.spacing.xs2})`,
   left: "50%",
   transform: "translateX(-50%)",
   color: THEME.color.red[800],
@@ -66,6 +66,9 @@ export const progressLineBackgroundStyle = styleVariants({
   },
   active: {
     background: THEME.color.green[800],
+  },
+  rejected: {
+    background: THEME.color.red[800],
   },
 });
 
@@ -135,6 +138,13 @@ export const progressPointVariantStyle = styleVariants({
     position: "relative",
     ":before": {
       background: THEME.color.gray[300],
+    },
+  },
+  rejected: {
+    background: `repeating-conic-gradient(${THEME.color.red[800]} 0 calc(360deg / ${PROGRESS_POINT_DASH_NUM} / 2), ${THEME.color.red[300]} 0 calc(360deg / ${PROGRESS_POINT_DASH_NUM}))`,
+    position: "relative",
+    ":before": {
+      background: THEME.color.red[300],
     },
   },
 });

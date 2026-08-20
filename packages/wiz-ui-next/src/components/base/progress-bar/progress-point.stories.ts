@@ -9,7 +9,15 @@ export default {
     status: {
       control: {
         type: "select",
-        options: ["done", "active", "inactive", "pending", "dead", "none"],
+        options: [
+          "done",
+          "active",
+          "inactive",
+          "pending",
+          "dead",
+          "none",
+          "rejected",
+        ],
       },
     },
     value: {
@@ -37,6 +45,7 @@ const MultipleTemplate: StoryFn<typeof WizProgressPoint> = (args) => ({
       <WizProgressPoint v-bind="args" status="pending"/>
       <WizProgressPoint v-bind="args" status="dead"/>
       <WizProgressPoint v-bind="args" status="none"/>
+      <WizProgressPoint v-bind="args" status="rejected"/>
     </div>
   `,
 });
@@ -69,6 +78,11 @@ Dead.args = {
 export const None = Template.bind({});
 None.args = {
   status: "none",
+};
+
+export const Rejected = Template.bind({});
+Rejected.args = {
+  status: "rejected",
 };
 
 export const WithValue = MultipleTemplate.bind({});
