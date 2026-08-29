@@ -42,16 +42,7 @@ export const defaultOption: SearchInputOption[] = [
       {
         label: "保険子会社1",
         value: 6,
-        children: [
-          {
-            label: "保険商品7",
-            value: 7,
-          },
-          {
-            label: "保険商品8",
-            value: 8,
-          },
-        ],
+        children: [],
       },
       {
         label: "保険子会社2",
@@ -201,6 +192,7 @@ export const defaultOption: SearchInputOption[] = [
   {
     label: "テスト保険会社3",
     value: 21,
+    children: [],
   },
 ];
 
@@ -586,5 +578,6 @@ export const emptyMessageOptions: SearchInputOption[] = [
   {
     label: "テスト保険会社3",
     value: 21,
+    children: [],
   },
 ];
