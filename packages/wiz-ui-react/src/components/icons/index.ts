@@ -14,6 +14,7 @@ import { WizIAssignment } from "./assignment";
 import { WizIAssignmentAdd } from "./assignment-add";
 import { WizIAssignmentBold } from "./assignment-bold";
 import { WizIAttachFile } from "./attach-file";
+import { WizIAttachFileBold } from "./attach-file-bold";
 import { WizIAutoRenew } from "./auto-renew";
 import { WizIBarChart4Bars } from "./bar-chart-4-bars";
 import { WizIBook } from "./book";
@@ -76,6 +77,9 @@ import { WizIDelete } from "./delete";
 import { WizIDeleteBold } from "./delete-bold";
 import { WizIDemography } from "./demography";
 import { WizIDescription } from "./description";
+import { WizIDeveloperBoard } from "./developer-board";
+import { WizIDeveloperBoardBold } from "./developer-board-bold";
+import { WizIDeveloperBoardFilled } from "./developer-board-filled";
 import { WizIDomain } from "./domain";
 import { WizIDownload } from "./download";
 import { WizIDownloadBold } from "./download-bold";
@@ -201,6 +205,7 @@ export type TIcon =
   | typeof WizIAssignmentAdd
   | typeof WizIAssignmentBold
   | typeof WizIAssignment
+  | typeof WizIAttachFileBold
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
   | typeof WizIBarChart4Bars
@@ -264,6 +269,9 @@ export type TIcon =
   | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
+  | typeof WizIDeveloperBoardBold
+  | typeof WizIDeveloperBoardFilled
+  | typeof WizIDeveloperBoard
   | typeof WizIDomain
   | typeof WizIDownloadBold
   | typeof WizIDownload
@@ -389,6 +397,7 @@ export {
   WizIAssignmentAdd,
   WizIAssignmentBold,
   WizIAssignment,
+  WizIAttachFileBold,
   WizIAttachFile,
   WizIAutoRenew,
   WizIBarChart4Bars,
@@ -452,6 +461,9 @@ export {
   WizIDelete,
   WizIDemography,
   WizIDescription,
+  WizIDeveloperBoardBold,
+  WizIDeveloperBoardFilled,
+  WizIDeveloperBoard,
   WizIDomain,
   WizIDownloadBold,
   WizIDownload,

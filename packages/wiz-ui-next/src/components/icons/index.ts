@@ -13,6 +13,7 @@ import { default as WizIArticleBold } from "./article-bold.vue";
 import { default as WizIAssignmentAdd } from "./assignment-add.vue";
 import { default as WizIAssignmentBold } from "./assignment-bold.vue";
 import { default as WizIAssignment } from "./assignment.vue";
+import { default as WizIAttachFileBold } from "./attach-file-bold.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./auto-renew.vue";
 import { default as WizIBarChart4Bars } from "./bar-chart-4-bars.vue";
@@ -76,6 +77,9 @@ import { default as WizIDeleteBold } from "./delete-bold.vue";
 import { default as WizIDelete } from "./delete.vue";
 import { default as WizIDemography } from "./demography.vue";
 import { default as WizIDescription } from "./description.vue";
+import { default as WizIDeveloperBoardBold } from "./developer-board-bold.vue";
+import { default as WizIDeveloperBoardFilled } from "./developer-board-filled.vue";
+import { default as WizIDeveloperBoard } from "./developer-board.vue";
 import { default as WizIDomain } from "./domain.vue";
 import { default as WizIDownloadBold } from "./download-bold.vue";
 import { default as WizIDownload } from "./download.vue";
@@ -201,6 +205,7 @@ export type TIcon =
   | typeof WizIAssignmentAdd
   | typeof WizIAssignmentBold
   | typeof WizIAssignment
+  | typeof WizIAttachFileBold
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
   | typeof WizIBarChart4Bars
@@ -264,6 +269,9 @@ export type TIcon =
   | typeof WizIDelete
   | typeof WizIDemography
   | typeof WizIDescription
+  | typeof WizIDeveloperBoardBold
+  | typeof WizIDeveloperBoardFilled
+  | typeof WizIDeveloperBoard
   | typeof WizIDomain
   | typeof WizIDownloadBold
   | typeof WizIDownload
@@ -389,6 +397,7 @@ export {
   WizIAssignmentAdd,
   WizIAssignmentBold,
   WizIAssignment,
+  WizIAttachFileBold,
   WizIAttachFile,
   WizIAutoRenew,
   WizIBarChart4Bars,
@@ -452,6 +461,9 @@ export {
   WizIDelete,
   WizIDemography,
   WizIDescription,
+  WizIDeveloperBoardBold,
+  WizIDeveloperBoardFilled,
+  WizIDeveloperBoard,
   WizIDomain,
   WizIDownloadBold,
   WizIDownload,
