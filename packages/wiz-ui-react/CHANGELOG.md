@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-react
 
+## 4.1.0
+
+### Minor Changes
+
+- [#1665](https://github.com/Wizleap-Inc/wiz-ui/pull/1665) [`91a70c2`](https://github.com/Wizleap-Inc/wiz-ui/commit/91a70c2b1b0ce4993054ff9cc8890bef87ae24d7) Thanks [@mazyutyu](https://github.com/mazyutyu)! - WizIAttachFileBold, WizIDeveloperBoard を追加
+
+### Patch Changes
+
+- Updated dependencies [[`91a70c2`](https://github.com/Wizleap-Inc/wiz-ui/commit/91a70c2b1b0ce4993054ff9cc8890bef87ae24d7)]:
+  - @wizleap-inc/wiz-ui-constants@0.59.0
+  - @wizleap-inc/wiz-ui-styles@0.62.1
+
 ## 4.0.0
 
 ### Major Changes
