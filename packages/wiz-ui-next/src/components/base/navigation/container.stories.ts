@@ -294,6 +294,47 @@ export const Popup: StoryFn<typeof WizNavContainer> = (args) => ({
   `,
 });
 
+export const LongPopup: StoryFn<typeof WizNavContainer> = (args) => ({
+  components: { WizNavContainer, WizNavItem },
+  setup() {
+    const isOpen = ref(false);
+    const toggle = (value: boolean) => {
+      isOpen.value = value;
+    };
+    const createGroups = (click: (n: number) => void): ButtonGroupItem[] =>
+      Array.from({ length: 3 }).map((_, groupIndex) => ({
+        kind: "group",
+        title: `group ${groupIndex}`,
+        groupDivider: true,
+        items: Array.from({ length: 8 }).map((_, i) =>
+          createButton(groupIndex * 8 + i, click)
+        ),
+      }));
+    return {
+      args,
+      WizIBusinessCenter,
+      isOpen,
+      toggle,
+      createGroups,
+    };
+  },
+  template: /* HTML */ `
+    <div style="display: flex; height: 100vh;">
+      <WizNavContainer>
+        <WizNavItem
+          :buttons="createGroups(args.click)"
+          :icon="WizIBusinessCenter"
+          label="Admin"
+          to="/admin"
+          :active="isOpen"
+          :isOpen="isOpen"
+          @toggle="toggle"
+        />
+      </WizNavContainer>
+    </div>
+  `,
+});
+
 export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
   components: { WizNavContainer, WizNavItem, WizHeader, WizTextButton },
   setup() {
