@@ -48,13 +48,14 @@
           layer="popover"
           @on-close="popupOnClose"
         >
-          <WizPopupButtonGroup
-            :options="popupButtons"
-            :class="navigationPopupContainerStyle"
-            p="xs"
-            border-radius="xs2"
-            :disabled="disabled"
-          />
+          <div :class="navigationPopupContainerStyle">
+            <WizPopupButtonGroup
+              :options="popupButtons"
+              p="xs"
+              border-radius="xs2"
+              :disabled="disabled"
+            />
+          </div>
         </WizPopup>
       </div>
     </WizPopupContainer>
