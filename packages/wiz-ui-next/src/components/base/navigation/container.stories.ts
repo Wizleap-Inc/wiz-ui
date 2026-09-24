@@ -1,3 +1,4 @@
+import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { Meta, StoryFn } from "@storybook/vue3";
 import { ref } from "vue";
 
@@ -334,6 +335,14 @@ export const LongPopup: StoryFn<typeof WizNavContainer> = (args) => ({
     </div>
   `,
 });
+LongPopup.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByLabelText("Admin"));
+  const body = within(document.body);
+  await waitFor(() =>
+    expect(body.getByLabelText("popup-button-group-label 0")).toBeVisible()
+  );
+};
 
 export const PopupSticky: StoryFn<typeof WizNavContainer> = (args) => ({
   components: { WizNavContainer, WizNavItem, WizHeader, WizTextButton },
