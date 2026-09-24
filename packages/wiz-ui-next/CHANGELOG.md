@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-next
 
+## 4.1.1
+
+### Patch Changes
+
+- [#1668](https://github.com/Wizleap-Inc/wiz-ui/pull/1668) [`8ed2072`](https://github.com/Wizleap-Inc/wiz-ui/commit/8ed20724dc5e737e1952f9de9ebf9f96d8953599) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - Fix(NavItem): ポップアップの項目が max-height を超えた場合にスクロールするよう修正
+
 ## 4.1.0
 
 ### Minor Changes
