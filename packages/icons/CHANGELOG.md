@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.45.0
+
+### Minor Changes
+
+- [#1672](https://github.com/Wizleap-Inc/wiz-ui/pull/1672) [`7ed58d3`](https://github.com/Wizleap-Inc/wiz-ui/commit/7ed58d3c8a4dbf94e7ce1dbe6fc5594bacc87c02) Thanks [@k-tada](https://github.com/k-tada)! - Icon の追加 (Flowchart, FlowchartBold, FlowchartFilled)
+
 ## 0.44.0
 
 ### Minor Changes
