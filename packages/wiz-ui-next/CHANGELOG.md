@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 4.2.0
+
+### Minor Changes
+
+- [#1672](https://github.com/Wizleap-Inc/wiz-ui/pull/1672) [`7ed58d3`](https://github.com/Wizleap-Inc/wiz-ui/commit/7ed58d3c8a4dbf94e7ce1dbe6fc5594bacc87c02) Thanks [@k-tada](https://github.com/k-tada)! - Icon の追加 (Flowchart, FlowchartBold, FlowchartFilled)
+
+### Patch Changes
+
+- Updated dependencies [[`7ed58d3`](https://github.com/Wizleap-Inc/wiz-ui/commit/7ed58d3c8a4dbf94e7ce1dbe6fc5594bacc87c02)]:
+  - @wizleap-inc/wiz-ui-constants@0.60.0
+  - @wizleap-inc/wiz-ui-styles@0.62.2
+
 ## 4.1.1
 
 ### Patch Changes
