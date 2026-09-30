@@ -100,6 +100,9 @@ import { WizIFamilyHome } from "./family-home";
 import { WizIFeedback } from "./feedback";
 import { WizIFlag2Bold } from "./flag-2-bold";
 import { WizIFlag2Filled } from "./flag-2-filled";
+import { WizIFlowchart } from "./flowchart";
+import { WizIFlowchartBold } from "./flowchart-bold";
+import { WizIFlowchartFilled } from "./flowchart-filled";
 import { WizIFolder } from "./folder";
 import { WizIFolderBold } from "./folder-bold";
 import { WizIFolderFilled } from "./folder-filled";
@@ -292,6 +295,9 @@ export type TIcon =
   | typeof WizIFeedback
   | typeof WizIFlag2Bold
   | typeof WizIFlag2Filled
+  | typeof WizIFlowchartBold
+  | typeof WizIFlowchartFilled
+  | typeof WizIFlowchart
   | typeof WizIFolderBold
   | typeof WizIFolderFilled
   | typeof WizIFolderSharedBold
@@ -484,6 +490,9 @@ export {
   WizIFeedback,
   WizIFlag2Bold,
   WizIFlag2Filled,
+  WizIFlowchartBold,
+  WizIFlowchartFilled,
+  WizIFlowchart,
   WizIFolderBold,
   WizIFolderFilled,
   WizIFolderSharedBold,
