@@ -100,6 +100,9 @@ import { default as WizIFamilyHome } from "./family-home.vue";
 import { default as WizIFeedback } from "./feedback.vue";
 import { default as WizIFlag2Bold } from "./flag-2-bold.vue";
 import { default as WizIFlag2Filled } from "./flag-2-filled.vue";
+import { default as WizIFlowchartBold } from "./flowchart-bold.vue";
+import { default as WizIFlowchartFilled } from "./flowchart-filled.vue";
+import { default as WizIFlowchart } from "./flowchart.vue";
 import { default as WizIFolderBold } from "./folder-bold.vue";
 import { default as WizIFolderFilled } from "./folder-filled.vue";
 import { default as WizIFolderSharedBold } from "./folder-shared-bold.vue";
@@ -292,6 +295,9 @@ export type TIcon =
   | typeof WizIFeedback
   | typeof WizIFlag2Bold
   | typeof WizIFlag2Filled
+  | typeof WizIFlowchartBold
+  | typeof WizIFlowchartFilled
+  | typeof WizIFlowchart
   | typeof WizIFolderBold
   | typeof WizIFolderFilled
   | typeof WizIFolderSharedBold
@@ -484,6 +490,9 @@ export {
   WizIFeedback,
   WizIFlag2Bold,
   WizIFlag2Filled,
+  WizIFlowchartBold,
+  WizIFlowchartFilled,
+  WizIFlowchart,
   WizIFolderBold,
   WizIFolderFilled,
   WizIFolderSharedBold,

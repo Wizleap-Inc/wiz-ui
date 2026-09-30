@@ -1,0 +1,18 @@
+import { CSSProperties } from "react";
+type Props = {
+  className?: string;
+  style?: CSSProperties;
+};
+export const WizIFlowchartFilled = ({ className, style }: Props) => (
+  <svg
+    className={className}
+    style={style}
+    xmlns="http://www.w3.org/2000/svg"
+    height="1em"
+    viewBox="0 -960 960 960"
+    width="1em"
+  >
+    <path d="M600-160v-80H440v-200h-80v80H80v-240h280v80h80v-200h160v-80h280v240H600v-80h-80v320h80v-80h280v240H600Z" />
+  </svg>
+);
+WizIFlowchartFilled.displayName = "WizIFlowchartFilled";
