@@ -109,6 +109,7 @@ import { default as WizIFolderSharedBold } from "./folder-shared-bold.vue";
 import { default as WizIFolderSharedFilled } from "./folder-shared-filled.vue";
 import { default as WizIFolder } from "./folder.vue";
 import { default as WizIForwardToInbox } from "./forward-to-inbox.vue";
+import { default as WizIFullscreenBold } from "./fullscreen-bold.vue";
 import { default as WizIGroupBold } from "./group-bold.vue";
 import { default as WizIGroups } from "./groups.vue";
 import { default as WizIHelp } from "./help.vue";
@@ -304,6 +305,7 @@ export type TIcon =
   | typeof WizIFolderSharedFilled
   | typeof WizIFolder
   | typeof WizIForwardToInbox
+  | typeof WizIFullscreenBold
   | typeof WizIGroupBold
   | typeof WizIGroups
   | typeof WizIHelp
@@ -499,6 +501,7 @@ export {
   WizIFolderSharedFilled,
   WizIFolder,
   WizIForwardToInbox,
+  WizIFullscreenBold,
   WizIGroupBold,
   WizIGroups,
   WizIHelp,
