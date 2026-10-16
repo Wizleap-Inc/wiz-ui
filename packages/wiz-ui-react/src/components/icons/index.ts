@@ -16,12 +16,14 @@ import { WizIAssignmentBold } from "./assignment-bold";
 import { WizIAttachFile } from "./attach-file";
 import { WizIAttachFileBold } from "./attach-file-bold";
 import { WizIAutoRenew } from "./auto-renew";
+import { WizIBalanceBold } from "./balance-bold";
 import { WizIBarChart4Bars } from "./bar-chart-4-bars";
 import { WizIBook } from "./book";
 import { WizIBookmarkBold } from "./bookmark-bold";
 import { WizIBookmarkFilled } from "./bookmark-filled";
 import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
+import { WizICachedBold } from "./cached-bold";
 import { WizICalendar } from "./calendar";
 import { WizICalendarMonthBold } from "./calendar-month-bold";
 import { WizICall } from "./call";
@@ -72,6 +74,7 @@ import { WizICounter8 } from "./counter-8";
 import { WizICounter8Filled } from "./counter-8-filled";
 import { WizICounter9 } from "./counter-9";
 import { WizICounter9Filled } from "./counter-9-filled";
+import { WizICurrencyYenBold } from "./currency-yen-bold";
 import { WizIDashboard } from "./dashboard";
 import { WizIDelete } from "./delete";
 import { WizIDeleteBold } from "./delete-bold";
@@ -85,6 +88,7 @@ import { WizIDownload } from "./download";
 import { WizIDownloadBold } from "./download-bold";
 import { WizIDraft } from "./draft";
 import { WizIDrafts } from "./drafts";
+import { WizIEastBold } from "./east-bold";
 import { WizIEditNote } from "./edit-note";
 import { WizIEditNoteBold } from "./edit-note-bold";
 import { WizIEditPencilBold } from "./edit-pencil-bold";
@@ -145,6 +149,7 @@ import { WizIMinusFilled } from "./minus-filled";
 import { WizIMonitoring } from "./monitoring";
 import { WizIMoreVert } from "./more-vert";
 import { WizIMoreVertBold } from "./more-vert-bold";
+import { WizINorthEastBold } from "./north-east-bold";
 import { WizINoteAdd } from "./note-add";
 import { WizINotification } from "./notification";
 import { WizIOpenInNew } from "./open-in-new";
@@ -175,11 +180,13 @@ import { WizIShoppingmode } from "./shoppingmode";
 import { WizISmartphone } from "./smartphone";
 import { WizISmartphoneBold } from "./smartphone-bold";
 import { WizISmsBold } from "./sms-bold";
+import { WizISouthEastBold } from "./south-east-bold";
 import { WizIStarBold } from "./star-bold";
 import { WizIStarFilled } from "./star-filled";
 import { WizIStars } from "./stars";
 import { WizIStopFilled } from "./stop-filled";
 import { WizIStoreFront } from "./store-front";
+import { WizISubdirectoryArrowRightBold } from "./subdirectory-arrow-right-bold";
 import { WizITab } from "./tab";
 import { WizITask } from "./task";
 import { WizITimerFilled } from "./timer-filled";
@@ -211,12 +218,14 @@ export type TIcon =
   | typeof WizIAttachFileBold
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
+  | typeof WizIBalanceBold
   | typeof WizIBarChart4Bars
   | typeof WizIBook
   | typeof WizIBookmarkBold
   | typeof WizIBookmarkFilled
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
+  | typeof WizICachedBold
   | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
@@ -267,6 +276,7 @@ export type TIcon =
   | typeof WizICounter8
   | typeof WizICounter9Filled
   | typeof WizICounter9
+  | typeof WizICurrencyYenBold
   | typeof WizIDashboard
   | typeof WizIDeleteBold
   | typeof WizIDelete
@@ -280,6 +290,7 @@ export type TIcon =
   | typeof WizIDownload
   | typeof WizIDraft
   | typeof WizIDrafts
+  | typeof WizIEastBold
   | typeof WizIEditNoteBold
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
@@ -340,6 +351,7 @@ export type TIcon =
   | typeof WizIMonitoring
   | typeof WizIMoreVertBold
   | typeof WizIMoreVert
+  | typeof WizINorthEastBold
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
@@ -370,11 +382,13 @@ export type TIcon =
   | typeof WizISmartphoneBold
   | typeof WizISmartphone
   | typeof WizISmsBold
+  | typeof WizISouthEastBold
   | typeof WizIStarBold
   | typeof WizIStarFilled
   | typeof WizIStars
   | typeof WizIStopFilled
   | typeof WizIStoreFront
+  | typeof WizISubdirectoryArrowRightBold
   | typeof WizITab
   | typeof WizITask
   | typeof WizITimerFilled
@@ -406,12 +420,14 @@ export {
   WizIAttachFileBold,
   WizIAttachFile,
   WizIAutoRenew,
+  WizIBalanceBold,
   WizIBarChart4Bars,
   WizIBook,
   WizIBookmarkBold,
   WizIBookmarkFilled,
   WizIBrightFilled,
   WizIBusinessCenter,
+  WizICachedBold,
   WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
@@ -462,6 +478,7 @@ export {
   WizICounter8,
   WizICounter9Filled,
   WizICounter9,
+  WizICurrencyYenBold,
   WizIDashboard,
   WizIDeleteBold,
   WizIDelete,
@@ -475,6 +492,7 @@ export {
   WizIDownload,
   WizIDraft,
   WizIDrafts,
+  WizIEastBold,
   WizIEditNoteBold,
   WizIEditNote,
   WizIEditPencilBold,
@@ -535,6 +553,7 @@ export {
   WizIMonitoring,
   WizIMoreVertBold,
   WizIMoreVert,
+  WizINorthEastBold,
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
@@ -565,11 +584,13 @@ export {
   WizISmartphoneBold,
   WizISmartphone,
   WizISmsBold,
+  WizISouthEastBold,
   WizIStarBold,
   WizIStarFilled,
   WizIStars,
   WizIStopFilled,
   WizIStoreFront,
+  WizISubdirectoryArrowRightBold,
   WizITab,
   WizITask,
   WizITimerFilled,

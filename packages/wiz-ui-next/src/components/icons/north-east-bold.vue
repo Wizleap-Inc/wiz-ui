@@ -1,0 +1,20 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="1em"
+    viewBox="0 -960 960 960"
+    width="1em"
+  >
+    <path
+      d="M680-624 244-188q-11 11-28 11t-28-11q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360-720q0-17 11.5-28.5T400-760h320q17 0 28.5 11.5T760-720v320q0 17-11.5 28.5T720-360q-17 0-28.5-11.5T680-400v-224Z"
+    />
+  </svg>
+</template>
+
+<script setup lang="ts">
+import { ComponentName } from "@wizleap-inc/wiz-ui-constants";
+
+defineOptions({
+  name: ComponentName.INorthEastBold,
+});
+</script>

@@ -16,12 +16,14 @@ import { default as WizIAssignment } from "./assignment.vue";
 import { default as WizIAttachFileBold } from "./attach-file-bold.vue";
 import { default as WizIAttachFile } from "./attach-file.vue";
 import { default as WizIAutoRenew } from "./auto-renew.vue";
+import { default as WizIBalanceBold } from "./balance-bold.vue";
 import { default as WizIBarChart4Bars } from "./bar-chart-4-bars.vue";
 import { default as WizIBook } from "./book.vue";
 import { default as WizIBookmarkBold } from "./bookmark-bold.vue";
 import { default as WizIBookmarkFilled } from "./bookmark-filled.vue";
 import { default as WizIBrightFilled } from "./bright-filled.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
+import { default as WizICachedBold } from "./cached-bold.vue";
 import { default as WizICalendarMonthBold } from "./calendar-month-bold.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICallBold } from "./call-bold.vue";
@@ -72,6 +74,7 @@ import { default as WizICounter8Filled } from "./counter-8-filled.vue";
 import { default as WizICounter8 } from "./counter-8.vue";
 import { default as WizICounter9Filled } from "./counter-9-filled.vue";
 import { default as WizICounter9 } from "./counter-9.vue";
+import { default as WizICurrencyYenBold } from "./currency-yen-bold.vue";
 import { default as WizIDashboard } from "./dashboard.vue";
 import { default as WizIDeleteBold } from "./delete-bold.vue";
 import { default as WizIDelete } from "./delete.vue";
@@ -85,6 +88,7 @@ import { default as WizIDownloadBold } from "./download-bold.vue";
 import { default as WizIDownload } from "./download.vue";
 import { default as WizIDraft } from "./draft.vue";
 import { default as WizIDrafts } from "./drafts.vue";
+import { default as WizIEastBold } from "./east-bold.vue";
 import { default as WizIEditNoteBold } from "./edit-note-bold.vue";
 import { default as WizIEditNote } from "./edit-note.vue";
 import { default as WizIEditPencilBold } from "./edit-pencil-bold.vue";
@@ -145,6 +149,7 @@ import { default as WizIMinusFilled } from "./minus-filled.vue";
 import { default as WizIMonitoring } from "./monitoring.vue";
 import { default as WizIMoreVertBold } from "./more-vert-bold.vue";
 import { default as WizIMoreVert } from "./more-vert.vue";
+import { default as WizINorthEastBold } from "./north-east-bold.vue";
 import { default as WizINoteAdd } from "./note-add.vue";
 import { default as WizINotification } from "./notification.vue";
 import { default as WizIOpenInNew } from "./open-in-new.vue";
@@ -175,11 +180,13 @@ import { default as WizIShoppingmode } from "./shoppingmode.vue";
 import { default as WizISmartphoneBold } from "./smartphone-bold.vue";
 import { default as WizISmartphone } from "./smartphone.vue";
 import { default as WizISmsBold } from "./sms-bold.vue";
+import { default as WizISouthEastBold } from "./south-east-bold.vue";
 import { default as WizIStarBold } from "./star-bold.vue";
 import { default as WizIStarFilled } from "./star-filled.vue";
 import { default as WizIStars } from "./stars.vue";
 import { default as WizIStopFilled } from "./stop-filled.vue";
 import { default as WizIStoreFront } from "./store-front.vue";
+import { default as WizISubdirectoryArrowRightBold } from "./subdirectory-arrow-right-bold.vue";
 import { default as WizITab } from "./tab.vue";
 import { default as WizITask } from "./task.vue";
 import { default as WizITimerFilled } from "./timer-filled.vue";
@@ -211,12 +218,14 @@ export type TIcon =
   | typeof WizIAttachFileBold
   | typeof WizIAttachFile
   | typeof WizIAutoRenew
+  | typeof WizIBalanceBold
   | typeof WizIBarChart4Bars
   | typeof WizIBook
   | typeof WizIBookmarkBold
   | typeof WizIBookmarkFilled
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
+  | typeof WizICachedBold
   | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
@@ -267,6 +276,7 @@ export type TIcon =
   | typeof WizICounter8
   | typeof WizICounter9Filled
   | typeof WizICounter9
+  | typeof WizICurrencyYenBold
   | typeof WizIDashboard
   | typeof WizIDeleteBold
   | typeof WizIDelete
@@ -280,6 +290,7 @@ export type TIcon =
   | typeof WizIDownload
   | typeof WizIDraft
   | typeof WizIDrafts
+  | typeof WizIEastBold
   | typeof WizIEditNoteBold
   | typeof WizIEditNote
   | typeof WizIEditPencilBold
@@ -340,6 +351,7 @@ export type TIcon =
   | typeof WizIMonitoring
   | typeof WizIMoreVertBold
   | typeof WizIMoreVert
+  | typeof WizINorthEastBold
   | typeof WizINoteAdd
   | typeof WizINotification
   | typeof WizIOpenInNew
@@ -370,11 +382,13 @@ export type TIcon =
   | typeof WizISmartphoneBold
   | typeof WizISmartphone
   | typeof WizISmsBold
+  | typeof WizISouthEastBold
   | typeof WizIStarBold
   | typeof WizIStarFilled
   | typeof WizIStars
   | typeof WizIStopFilled
   | typeof WizIStoreFront
+  | typeof WizISubdirectoryArrowRightBold
   | typeof WizITab
   | typeof WizITask
   | typeof WizITimerFilled
@@ -406,12 +420,14 @@ export {
   WizIAttachFileBold,
   WizIAttachFile,
   WizIAutoRenew,
+  WizIBalanceBold,
   WizIBarChart4Bars,
   WizIBook,
   WizIBookmarkBold,
   WizIBookmarkFilled,
   WizIBrightFilled,
   WizIBusinessCenter,
+  WizICachedBold,
   WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
@@ -462,6 +478,7 @@ export {
   WizICounter8,
   WizICounter9Filled,
   WizICounter9,
+  WizICurrencyYenBold,
   WizIDashboard,
   WizIDeleteBold,
   WizIDelete,
@@ -475,6 +492,7 @@ export {
   WizIDownload,
   WizIDraft,
   WizIDrafts,
+  WizIEastBold,
   WizIEditNoteBold,
   WizIEditNote,
   WizIEditPencilBold,
@@ -535,6 +553,7 @@ export {
   WizIMonitoring,
   WizIMoreVertBold,
   WizIMoreVert,
+  WizINorthEastBold,
   WizINoteAdd,
   WizINotification,
   WizIOpenInNew,
@@ -565,11 +584,13 @@ export {
   WizISmartphoneBold,
   WizISmartphone,
   WizISmsBold,
+  WizISouthEastBold,
   WizIStarBold,
   WizIStarFilled,
   WizIStars,
   WizIStopFilled,
   WizIStoreFront,
+  WizISubdirectoryArrowRightBold,
   WizITab,
   WizITask,
   WizITimerFilled,
