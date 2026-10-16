@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-icons
 
+## 0.46.0
+
+### Minor Changes
+
+- [#1675](https://github.com/Wizleap-Inc/wiz-ui/pull/1675) [`92dd215`](https://github.com/Wizleap-Inc/wiz-ui/commit/92dd215c0b9436700209400d253e3fd100de83a6) Thanks [@tsukasa-mi](https://github.com/tsukasa-mi)! - Icon の追加 (NorthEastBold, SouthEastBold, EastBold, SubdirectoryArrowRightBold, CurrencyYenBold, BalanceBold, CachedBold)
+
 ## 0.45.0
 
 ### Minor Changes
