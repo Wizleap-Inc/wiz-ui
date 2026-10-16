@@ -10,4 +10,5 @@ export type TagVariant =
   | "gray"
   | "darkGray"
   | "greenFill"
-  | "white";
+  | "white"
+  | "purple";

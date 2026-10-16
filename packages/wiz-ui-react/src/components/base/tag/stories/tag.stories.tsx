@@ -26,6 +26,7 @@ const variants = [
   "darkGray",
   "greenFill",
   "white",
+  "purple",
 ] as const;
 
 const fontSizes = ["xs2", "xs", "sm", "md", "lg", "xl", "xl2"] as const;
@@ -176,6 +177,8 @@ export const Variant: Story = {
       <div>variant={'"yellowFill"'}</div>
       <WizTag {...args} label="11/11(月)" variant="white" />
       <div>variant={'"white"'}</div>
+      <WizTag {...args} label="11/11(月)" variant="purple" />
+      <div>variant={'"purple"'}</div>
     </div>
   ),
 };
