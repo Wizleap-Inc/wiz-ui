@@ -61,8 +61,8 @@ export const tagColorStyle = styleVariants({
     border: `${THEME.borderWidth.xs} solid ${THEME.color.gray[400]}`,
   },
   purple: {
-    backgroundColor: THEME.color.purple[800],
-    color: THEME.color.white[800],
+    backgroundColor: THEME.color.purple[300],
+    color: THEME.color.purple[800],
   },
 });
 
@@ -79,7 +79,7 @@ export const tagIconColorStyle: Record<string, ColorKeys> = {
   greenFill: "white.800",
   redFill: "white.800",
   white: "gray.800",
-  purple: "white.800",
+  purple: "purple.800",
 };
 export const tagIconSize: { [key in FontSizeKeys]: FontSizeKeys } = {
   xs3: "xs",
