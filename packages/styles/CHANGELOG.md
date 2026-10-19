@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-styles
 
+## 0.63.0
+
+### Minor Changes
+
+- [#1678](https://github.com/Wizleap-Inc/wiz-ui/pull/1678) [`529b177`](https://github.com/Wizleap-Inc/wiz-ui/commit/529b177359f240a12e2651368dcf921fd08f596f) Thanks [@Maple0922](https://github.com/Maple0922)! - feat(tag): variant に purple（背景 purple.300・文字 purple.800）を追加
+
 ## 0.62.3
 
 ### Patch Changes
