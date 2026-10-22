@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 4.5.0
+
+### Minor Changes
+
+- [#1684](https://github.com/Wizleap-Inc/wiz-ui/pull/1684) [`61cf5a7`](https://github.com/Wizleap-Inc/wiz-ui/commit/61cf5a705109f5b72c38956f0ae4606e06d4915e) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - Icon の追加 (CakeBold, CallFilled)
+
+### Patch Changes
+
+- Updated dependencies [[`61cf5a7`](https://github.com/Wizleap-Inc/wiz-ui/commit/61cf5a705109f5b72c38956f0ae4606e06d4915e)]:
+  - @wizleap-inc/wiz-ui-constants@0.62.0
+  - @wizleap-inc/wiz-ui-styles@0.63.1
+
 ## 4.4.0
 
 ### Minor Changes
