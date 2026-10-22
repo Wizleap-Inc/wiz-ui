@@ -24,9 +24,11 @@ import { default as WizIBookmarkFilled } from "./bookmark-filled.vue";
 import { default as WizIBrightFilled } from "./bright-filled.vue";
 import { default as WizIBusinessCenter } from "./business-center.vue";
 import { default as WizICachedBold } from "./cached-bold.vue";
+import { default as WizICakeBold } from "./cake-bold.vue";
 import { default as WizICalendarMonthBold } from "./calendar-month-bold.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICallBold } from "./call-bold.vue";
+import { default as WizICallFilled } from "./call-filled.vue";
 import { default as WizICall } from "./call.vue";
 import { default as WizICamera } from "./camera.vue";
 import { default as WizICancelBold } from "./cancel-bold.vue";
@@ -226,9 +228,11 @@ export type TIcon =
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
   | typeof WizICachedBold
+  | typeof WizICakeBold
   | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
+  | typeof WizICallFilled
   | typeof WizICall
   | typeof WizICamera
   | typeof WizICancelBold
@@ -428,9 +432,11 @@ export {
   WizIBrightFilled,
   WizIBusinessCenter,
   WizICachedBold,
+  WizICakeBold,
   WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
+  WizICallFilled,
   WizICall,
   WizICamera,
   WizICancelBold,

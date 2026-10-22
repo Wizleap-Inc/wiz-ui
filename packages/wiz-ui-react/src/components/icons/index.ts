@@ -24,10 +24,12 @@ import { WizIBookmarkFilled } from "./bookmark-filled";
 import { WizIBrightFilled } from "./bright-filled";
 import { WizIBusinessCenter } from "./business-center";
 import { WizICachedBold } from "./cached-bold";
+import { WizICakeBold } from "./cake-bold";
 import { WizICalendar } from "./calendar";
 import { WizICalendarMonthBold } from "./calendar-month-bold";
 import { WizICall } from "./call";
 import { WizICallBold } from "./call-bold";
+import { WizICallFilled } from "./call-filled";
 import { WizICamera } from "./camera";
 import { WizICancel } from "./cancel";
 import { WizICancelBold } from "./cancel-bold";
@@ -226,9 +228,11 @@ export type TIcon =
   | typeof WizIBrightFilled
   | typeof WizIBusinessCenter
   | typeof WizICachedBold
+  | typeof WizICakeBold
   | typeof WizICalendarMonthBold
   | typeof WizICalendar
   | typeof WizICallBold
+  | typeof WizICallFilled
   | typeof WizICall
   | typeof WizICamera
   | typeof WizICancelBold
@@ -428,9 +432,11 @@ export {
   WizIBrightFilled,
   WizIBusinessCenter,
   WizICachedBold,
+  WizICakeBold,
   WizICalendarMonthBold,
   WizICalendar,
   WizICallBold,
+  WizICallFilled,
   WizICall,
   WizICamera,
   WizICancelBold,
