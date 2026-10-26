@@ -5,8 +5,13 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import {
+  formatDateToYYYYMMDD,
+  parseDateInput,
+} from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
 import {
+  ChangeEvent,
   FC,
   KeyboardEvent,
   MouseEvent,
@@ -52,7 +57,16 @@ type Props = Omit<ComponentPropsWithoutRef<"button">, "disabled"> & {
    * @default (date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
    */
   formatDate?: (date: Date) => string;
+  /**
+   * @description 入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・区切りなし8桁を受け付け、Enter またはフォーカスが外れたときに確定します。不正な値・無効な日付は元の値に戻ります。
+   */
+  allowInput?: boolean;
 };
+
+const isSameDate = (a: Date, b: Date) =>
+  a.getFullYear() === b.getFullYear() &&
+  a.getMonth() === b.getMonth() &&
+  a.getDate() === b.getDate();
 
 const DatePicker: FC<Props> = ({
   className,
@@ -68,6 +82,7 @@ const DatePicker: FC<Props> = ({
   formatYear = (year) => `${year}`,
   formatDate = (date) =>
     `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  allowInput = false,
   _today,
   ...props
 }: Props) => {
@@ -117,9 +132,62 @@ const DatePicker: FC<Props> = ({
     return "default";
   })();
   const wrapperButtonRef = useRef<HTMLButtonElement | null>(null);
+  const wrapperDivRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [editingText, setEditingText] = useState("");
+  const inputText = isInputFocused
+    ? editingText
+    : (date && formatDate(date)) || "";
+
+  const onClickInputWrapper = () => {
+    if (disabled) return;
+    inputRef.current?.focus();
+    setIsOpen(true);
+  };
+
+  const onFocusInput = () => {
+    setEditingText(date ? formatDateToYYYYMMDD(date) : "");
+    setIsInputFocused(true);
+  };
+
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setEditingText(e.target.value);
+    const parsed = parseDateInput(e.target.value);
+    if (parsed) setCurrentMonth(parsed);
+  };
+
+  const commitInput = () => {
+    if (editingText.trim() === "") {
+      if (date) onChangeDate?.(null);
+      return;
+    }
+    const parsed = parseDateInput(editingText);
+    if (!parsed || disabledDate(parsed)) {
+      setEditingText(date ? formatDateToYYYYMMDD(date) : "");
+      setCurrentMonth(date || new Date());
+      return;
+    }
+    if (!date || !isSameDate(parsed, date)) onChangeDate?.(parsed);
+    setEditingText(formatDateToYYYYMMDD(parsed));
+    setCurrentMonth(parsed);
+  };
+
+  const onBlurInput = () => {
+    commitInput();
+    setIsInputFocused(false);
+  };
+
+  const onKeyDownInput = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter" || e.nativeEvent.isComposing) return;
+    e.preventDefault();
+    commitInput();
+    setIsOpen(false);
+  };
 
   const onCancel = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    setEditingText("");
     setCurrentMonth(new Date());
     onChangeDate?.(null);
     setIsOpen(false);
@@ -132,57 +200,92 @@ const DatePicker: FC<Props> = ({
 
   const onClickDate = (selected: Date) => {
     onChangeDate?.(selected);
+    setEditingText(formatDateToYYYYMMDD(selected));
     setIsOpen(false);
   };
 
   const { id } = props;
 
+  const triggerContent = (
+    <WizHStack align="center" height="100%" justify="between" nowrap>
+      <WizHStack gap="xs" align="center" height="100%" nowrap>
+        <span className={styles.datePickerCancelIconStyle}>
+          <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
+        </span>
+        {allowInput ? (
+          <input
+            ref={inputRef}
+            type="text"
+            className={styles.datePickerTextInputStyle}
+            value={inputText}
+            placeholder={placeholder}
+            disabled={disabled}
+            aria-label={ARIA_LABELS.DATE_PICKER_INPUT}
+            onFocus={onFocusInput}
+            onChange={onChangeInput}
+            onBlur={onBlurInput}
+            onKeyDown={onKeyDownInput}
+          />
+        ) : (
+          <span style={{ whiteSpace: "nowrap" }}>
+            {(date && formatDate(date)) || placeholder}
+          </span>
+        )}
+      </WizHStack>
+      {cancelButtonVisible && (
+        <button
+          type="button"
+          className={styles.datePickerCancelIconStyle}
+          disabled={disabled}
+          onClick={onCancel}
+          aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
+        >
+          <WizIcon size="xl2" color="inherit" icon={WizICancel} />
+        </button>
+      )}
+    </WizHStack>
+  );
+
+  const triggerClassName = clsx(
+    className,
+    styles.datePickerStyle,
+    styles.datePickerVariantStyle[variant],
+    inputBorderStyle[borderStyle]
+  );
+
   return (
     <>
-      <button
-        {...props}
-        type="button"
-        ref={wrapperButtonRef}
-        className={clsx(
-          className,
-          styles.datePickerStyle,
-          styles.datePickerVariantStyle[variant],
-          inputBorderStyle[borderStyle]
-        )}
-        style={{ ...style, width }}
-        aria-label={ARIA_LABELS.DATE_PICKER_INPUT}
-        disabled={disabled}
-        onClick={() => setIsOpen((prev) => !prev)}
-        onKeyDown={handleKeyDown}
-      >
-        <WizHStack align="center" height="100%" justify="between" nowrap>
-          <WizHStack gap="xs" align="center" height="100%" nowrap>
-            <span className={styles.datePickerCancelIconStyle}>
-              <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
-            </span>
-            <span style={{ whiteSpace: "nowrap" }}>
-              {(date && formatDate(date)) || placeholder}
-            </span>
-          </WizHStack>
-          {cancelButtonVisible && (
-            <button
-              type="button"
-              className={styles.datePickerCancelIconStyle}
-              disabled={disabled}
-              onClick={onCancel}
-              aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
-            >
-              <WizIcon size="xl2" color="inherit" icon={WizICancel} />
-            </button>
-          )}
-        </WizHStack>
-      </button>
+      {allowInput ? (
+        <div
+          {...(props as ComponentPropsWithoutRef<"div">)}
+          ref={wrapperDivRef}
+          className={triggerClassName}
+          style={{ ...style, width }}
+          onClick={onClickInputWrapper}
+        >
+          {triggerContent}
+        </div>
+      ) : (
+        <button
+          {...props}
+          type="button"
+          ref={wrapperButtonRef}
+          className={triggerClassName}
+          style={{ ...style, width }}
+          aria-label={ARIA_LABELS.DATE_PICKER_INPUT}
+          disabled={disabled}
+          onClick={() => setIsOpen((prev) => !prev)}
+          onKeyDown={handleKeyDown}
+        >
+          {triggerContent}
+        </button>
+      )}
       <WizPopup
         isOpen={!disabled && isOpen}
         onClose={onClose}
         direction="bottomLeft"
         isDirectionFixed={isDirectionFixed}
-        anchorElement={wrapperButtonRef}
+        anchorElement={allowInput ? wrapperDivRef : wrapperButtonRef}
       >
         <div
           id={id ? `date-picker-popup-${id}` : undefined}

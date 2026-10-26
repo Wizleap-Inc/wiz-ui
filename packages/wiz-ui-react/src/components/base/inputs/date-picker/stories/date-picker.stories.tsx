@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import { useState } from "react";
 
@@ -119,5 +119,69 @@ export const DisabledToday: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     canvas.getByLabelText(ARIA_LABELS.DATE_PICKER_INPUT).click();
+  },
+};
+
+export const AllowInput: Story = {
+  args: {
+    allowInput: true,
+  },
+  render: (args) => {
+    const [date, setDate] = useState<Date | null>(new Date(2026, 9, 20));
+    return <WizDatePicker {...args} date={date} onChangeDate={setDate} />;
+  },
+};
+
+export const TestAllowInput: Story = {
+  args: {
+    allowInput: true,
+    disabledDate: (date: Date) => date.getFullYear() >= 2100,
+  },
+  render: (args) => {
+    const [date, setDate] = useState<Date | null>(new Date(2026, 9, 20));
+    return <WizDatePicker {...args} date={date} onChangeDate={setDate} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByLabelText(
+      ARIA_LABELS.DATE_PICKER_INPUT
+    ) as HTMLInputElement;
+
+    // フォーカス中は編集しやすい YYYY/MM/DD 表示になる
+    await userEvent.click(input);
+    await waitFor(() => expect(input.value).toBe("2026/10/20"));
+
+    // 10年後の日付を入力して Enter で確定
+    await userEvent.clear(input);
+    await userEvent.type(input, "2036/10/20{enter}");
+    await userEvent.tab();
+    await waitFor(() => expect(input.value).toBe("2036年10月20日"));
+
+    // 区切りなし8桁
+    await userEvent.click(input);
+    await userEvent.clear(input);
+    await userEvent.type(input, "20370105");
+    await userEvent.tab();
+    await waitFor(() => expect(input.value).toBe("2037年1月5日"));
+
+    // 実在しない日付は元の値に戻る
+    await userEvent.click(input);
+    await userEvent.clear(input);
+    await userEvent.type(input, "2037/2/30");
+    await userEvent.tab();
+    await waitFor(() => expect(input.value).toBe("2037年1月5日"));
+
+    // disabledDate で無効な日付は元の値に戻る
+    await userEvent.click(input);
+    await userEvent.clear(input);
+    await userEvent.type(input, "2100/01/01");
+    await userEvent.tab();
+    await waitFor(() => expect(input.value).toBe("2037年1月5日"));
+
+    // 空にして確定すると未入力になる
+    await userEvent.click(input);
+    await userEvent.clear(input);
+    await userEvent.tab();
+    await waitFor(() => expect(input.value).toBe(""));
   },
 };

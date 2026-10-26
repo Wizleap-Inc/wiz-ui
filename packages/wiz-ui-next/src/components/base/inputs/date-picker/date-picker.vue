@@ -1,25 +1,40 @@
 <template>
   <WizPopupContainer :width="width">
-    <button
-      type="button"
+    <component
+      :is="allowInput ? 'div' : 'button'"
+      :type="allowInput ? undefined : 'button'"
       :class="[
         datePickerStyle,
         datePickerVariantStyle[variant],
         inputBorderStyle[borderState],
       ]"
-      :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
-      @click="setIsOpen(!isOpen)"
-      @keydown.up="clickToNextYear"
-      @keydown.down="clickToPreviousYear"
-      @keydown.left="clickToPreviousMonth"
-      @keydown.right="clickToNextMonth"
+      :aria-label="allowInput ? undefined : ARIA_LABELS.DATE_PICKER_INPUT"
+      @click="onClickTrigger"
+      @keydown.up="!allowInput && clickToNextYear($event)"
+      @keydown.down="!allowInput && clickToPreviousYear($event)"
+      @keydown.left="!allowInput && clickToPreviousMonth($event)"
+      @keydown.right="!allowInput && clickToNextMonth($event)"
     >
       <WizHStack align="center" height="100%" justify="between" nowrap>
         <WizHStack gap="xs" align="center" height="100%" nowrap>
           <span>
             <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
           </span>
-          <span :style="{ whiteSpace: 'nowrap' }">{{
+          <input
+            v-if="allowInput"
+            ref="inputRef"
+            type="text"
+            :class="datePickerTextInputStyle"
+            :value="inputText"
+            :placeholder="placeholder"
+            :disabled="disabled"
+            :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
+            @focus="onFocusInput"
+            @input="onInput"
+            @blur="onBlurInput"
+            @keydown.enter="onKeydownEnterInput"
+          />
+          <span v-else :style="{ whiteSpace: 'nowrap' }">{{
             (calendarValue && formatDate(calendarValue)) || placeholder
           }}</span>
         </WizHStack>
@@ -33,7 +48,7 @@
           <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
         </button>
       </WizHStack>
-    </button>
+    </component>
     <WizPopup
       :is-open="!disabled && isOpen"
       :is-direction-fixed="isDirectionFixed"
@@ -139,6 +154,7 @@ import {
   datePickerMonthSelectorStyle,
   datePickerSelectorStyle,
   datePickerStyle,
+  datePickerTextInputStyle,
   datePickerVariantStyle,
   datePickerYearSelectorItemStyle,
 } from "@wizleap-inc/wiz-ui-styles/bases/date-picker-input.css";
@@ -147,6 +163,10 @@ import {
   fontSizeStyle,
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
+import {
+  formatDateToYYYYMMDD,
+  parseDateInput,
+} from "@wizleap-inc/wiz-ui-utils";
 import { PropType, computed, inject, ref, useAttrs } from "vue";
 
 import {
@@ -235,6 +255,14 @@ const props = defineProps({
     default: (date: Date) =>
       `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   },
+  /**
+   * @description 入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・区切りなし8桁を受け付け、Enter またはフォーカスが外れたときに確定します。不正な値・無効な日付は元の値に戻ります。
+   */
+  allowInput: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
   // eslint-disable-next-line vue/prop-name-casing
   _today: {
     type: Date as PropType<Date>,
@@ -317,11 +345,81 @@ const variant = computed(() => {
 
 const handleClickCalendar = (date: Date) => {
   calendarValue.value = date;
+  editingText.value = formatDateToYYYYMMDD(date);
+  setIsOpen(false);
+};
+
+// Input
+const inputRef = ref<HTMLInputElement>();
+const isInputFocused = ref(false);
+const editingText = ref("");
+const inputText = computed(() => {
+  if (isInputFocused.value) return editingText.value;
+  return props.modelValue ? props.formatDate(props.modelValue) : "";
+});
+
+const isSameDate = (a: Date, b: Date) =>
+  a.getFullYear() === b.getFullYear() &&
+  a.getMonth() === b.getMonth() &&
+  a.getDate() === b.getDate();
+
+const resetEditingText = () => {
+  editingText.value = props.modelValue
+    ? formatDateToYYYYMMDD(props.modelValue)
+    : "";
+};
+
+const onClickTrigger = () => {
+  if (!props.allowInput) return setIsOpen(!props.isOpen);
+  if (props.disabled) return;
+  inputRef.value?.focus();
+  setIsOpen(true);
+};
+
+const onFocusInput = () => {
+  resetEditingText();
+  isInputFocused.value = true;
+};
+
+const onInput = (e: Event) => {
+  editingText.value = (e.target as HTMLInputElement).value;
+  const parsed = parseDateInput(editingText.value);
+  if (parsed) currentMonth.value = parsed;
+};
+
+const commitInput = () => {
+  if (editingText.value.trim() === "") {
+    if (props.modelValue) emit("update:modelValue", null);
+    return;
+  }
+  const parsed = parseDateInput(editingText.value);
+  if (!parsed || props.disabledDate(parsed)) {
+    resetEditingText();
+    currentMonth.value = new Date(props.modelValue || defaultCurrentMonth);
+    return;
+  }
+  if (!props.modelValue || !isSameDate(parsed, props.modelValue)) {
+    emit("update:modelValue", parsed);
+  }
+  editingText.value = formatDateToYYYYMMDD(parsed);
+  currentMonth.value = parsed;
+};
+
+const onBlurInput = () => {
+  commitInput();
+  isInputFocused.value = false;
+};
+
+const onKeydownEnterInput = (e: KeyboardEvent) => {
+  if (e.isComposing) return;
+  e.preventDefault();
+  commitInput();
   setIsOpen(false);
 };
 
 const onClickCancel = (e: MouseEvent) => {
   e.stopPropagation();
+  editingText.value = "";
   currentMonth.value = new Date(defaultCurrentMonth);
   emit("update:modelValue", null);
   setIsOpen(false);
