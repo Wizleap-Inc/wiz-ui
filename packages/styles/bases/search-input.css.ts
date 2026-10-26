@@ -105,24 +105,45 @@ export const searchDropdownItemStyle = style({
   width: "100%",
 });
 
-export const searchDropdownLabelStyle = style({
+const searchDropdownLabelBaseStyle = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  paddingLeft: THEME.spacing.xs,
-  cursor: "pointer",
+  paddingLeft: THEME.spacing.xs2,
   fontSize: THEME.fontSize.sm,
   color: THEME.color.gray[800],
   userSelect: "none",
-  "@media": {
-    "(any-hover: hover)": {
-      ":hover": {
-        background: THEME.color.green[300],
-        color: THEME.color.green[800],
+});
+
+export const searchDropdownLabelStyle = style([
+  searchDropdownLabelBaseStyle,
+  {
+    cursor: "pointer",
+    "@media": {
+      "(any-hover: hover)": {
+        ":hover": {
+          background: THEME.color.green[300],
+          color: THEME.color.green[800],
+        },
       },
     },
   },
-});
+]);
+
+export const searchDropdownLabelDisabledStyle = style([
+  searchDropdownLabelBaseStyle,
+  {
+    cursor: "default",
+    "@media": {
+      "(any-hover: hover)": {
+        ":hover": {
+          background: THEME.color.gray[300],
+          color: THEME.color.gray[800],
+        },
+      },
+    },
+  },
+]);
 
 export const searchDropdownEmptyMessageStyle = style({
   display: "flex",
@@ -193,6 +214,7 @@ export const searchCheckboxBlockCheckedStyle = style({
 
 export const searchInputLabelStyle = style({
   width: "100%",
+  lineHeight: THEME.fontSize.xl2,
 });
 
 export const searchInputCheckboxStyle = style({});
