@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 4.5.1
+
+### Patch Changes
+
+- [#1687](https://github.com/Wizleap-Inc/wiz-ui/pull/1687) [`475b94b`](https://github.com/Wizleap-Inc/wiz-ui/commit/475b94b57af46596efb5d24237e738d9689b61fb) Thanks [@mazyutyu](https://github.com/mazyutyu)! - useClickOutside のタッチ判定を touchstart から click に変更。iOS で Popup の項目をタップすると、合成 click の前に Popup が閉じて下の要素に click が落ちる問題の修正
+
 ## 4.5.0
 
 ### Minor Changes
