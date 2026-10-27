@@ -12,10 +12,10 @@ export const useClickOutside = (
       if (!isInsideElementClicked) callback(event);
     };
     document.addEventListener("mouseup", handleClick);
-    document.addEventListener("touchstart", handleClick);
+    document.addEventListener("click", handleClick);
     return () => {
       document.removeEventListener("mouseup", handleClick);
-      document.removeEventListener("touchstart", handleClick);
+      document.removeEventListener("click", handleClick);
     };
   }, [callback, insideElements]);
 };
