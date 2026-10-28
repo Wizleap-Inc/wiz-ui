@@ -79,7 +79,11 @@ const Popup: FC<Props> = ({
     left?: number;
   }>({});
 
-  useClickOutside([popupRef, anchorElement], () => closeOnBlur && onClose?.());
+  useClickOutside(
+    [popupRef, anchorElement],
+    () => onClose?.(),
+    isOpen && closeOnBlur
+  );
 
   const isPopupFixed = hasFixedOrStickyParent(anchorElement.current);
 
