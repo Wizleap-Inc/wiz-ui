@@ -1,5 +1,17 @@
 # @wizleap-inc/wiz-ui-next
 
+## 4.6.0
+
+### Minor Changes
+
+- [#1691](https://github.com/Wizleap-Inc/wiz-ui/pull/1691) [`a81ace3`](https://github.com/Wizleap-Inc/wiz-ui/commit/a81ace3c22153aef2982d8df67343517773aac34) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - WizICallLog を追加
+
+### Patch Changes
+
+- Updated dependencies [[`a81ace3`](https://github.com/Wizleap-Inc/wiz-ui/commit/a81ace3c22153aef2982d8df67343517773aac34)]:
+  - @wizleap-inc/wiz-ui-constants@0.63.0
+  - @wizleap-inc/wiz-ui-styles@0.63.2
+
 ## 4.5.0
 
 ### Minor Changes
