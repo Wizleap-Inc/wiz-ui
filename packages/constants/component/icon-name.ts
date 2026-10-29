@@ -30,6 +30,7 @@ export const IconComponentName = {
   ICalendar: "WizICalendar",
   ICallBold: "WizICallBold",
   ICallFilled: "WizICallFilled",
+  ICallLog: "WizICallLog",
   ICall: "WizICall",
   ICamera: "WizICamera",
   ICancelBold: "WizICancelBold",
