@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
-import { FC, act, useRef } from "react";
+import { FC, act, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { createRoot, Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -15,10 +16,21 @@ type ProbeProps = { enabled: boolean; onOutside: (e: Event) => void };
 
 const Probe: FC<ProbeProps> = ({ enabled, onOutside }) => {
   const ref = useRef<HTMLDivElement | null>(null);
+  const [isRemoved, setIsRemoved] = useState(false);
   useClickOutside([ref], onOutside, enabled);
   return (
     <div ref={ref} data-testid="inside">
       <button data-testid="inside-button">item</button>
+      {/* 選ぶと一覧から消える項目 (multiSelectable の SearchSelector)。
+          ブラウザでは React の再描画が document のリスナーより先に走るので、flushSync で同じ順序にする */}
+      {!isRemoved && (
+        <button
+          data-testid="removable-button"
+          onClick={() => flushSync(() => setIsRemoved(true))}
+        >
+          removable item
+        </button>
+      )}
     </div>
   );
 };
@@ -48,6 +60,8 @@ describe("useClickOutside", () => {
   const inside = () => container!.querySelector("[data-testid=inside]")!;
   const insideButton = () =>
     container!.querySelector("[data-testid=inside-button]")!;
+  const removableButton = () =>
+    container!.querySelector("[data-testid=removable-button]")!;
 
   beforeEach(() => {
     vi.useFakeTimers();
@@ -80,6 +94,29 @@ describe("useClickOutside", () => {
     settle();
     pointerDown(insideButton());
     click(insideButton());
+    expect(onOutside).not.toHaveBeenCalled();
+  });
+
+  it("内側の click の処理中にその要素が DOM から取り除かれても呼ばれない", () => {
+    render(true);
+    settle();
+    const button = removableButton();
+    act(() => {
+      pointerDown(button);
+      click(button);
+    });
+    expect(button.isConnected).toBe(false);
+    expect(onOutside).not.toHaveBeenCalled();
+  });
+
+  it("キーボード操作で内側の要素が DOM から取り除かれても呼ばれない", () => {
+    render(true);
+    settle();
+    const button = removableButton();
+    act(() => {
+      click(button);
+    });
+    expect(button.isConnected).toBe(false);
     expect(onOutside).not.toHaveBeenCalled();
   });
 
