@@ -130,3 +130,59 @@ export const formatNumHourToTime = (numHour: number): string => {
   const minutes = Math.floor((numHour - hours) * 60);
   return [hours, minutes.toString().padStart(2, "0")].join(":");
 };
+
+/**
+ * formatDateToYYYYMMDD
+ * ```ts
+ * const input = new Date('2021-01-01');
+ * const output = '2021/01/01';
+ * assert.equal(formatDateToYYYYMMDD(input), output);
+ * ```
+ * @param date
+ * @returns string
+ */
+export const formatDateToYYYYMMDD = (date: Date): string => {
+  const year = String(date.getFullYear()).padStart(4, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return [year, month, day].join("/");
+};
+
+/**
+ * parseDateInput
+ * 手入力された日付文字列を Date に変換します。
+ * `YYYY/MM/DD`・`YYYY-MM-DD`（月日は1桁可）と区切りなし8桁を受け付け、全角数字・全角区切りも半角として扱います。
+ * 形式が違う・実在しない日付の場合は null を返します。
+ * ```ts
+ * assert.deepEqual(parseDateInput('2036/1/5'), new Date(2036, 0, 5));
+ * assert.deepEqual(parseDateInput('２０３６－１０－２０'), new Date(2036, 9, 20));
+ * assert.deepEqual(parseDateInput('20361020'), new Date(2036, 9, 20));
+ * assert.equal(parseDateInput('2036/2/30'), null);
+ * ```
+ * @param input
+ * @returns Date | null
+ */
+export const parseDateInput = (input: string): Date | null => {
+  const normalized = input
+    .trim()
+    .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+    .replace(/[／]/g, "/")
+    .replace(/[－ー−]/g, "-");
+  const match =
+    normalized.match(/^(\d{4})([/-])(\d{1,2})\2(\d{1,2})$/) ??
+    normalized.match(/^(\d{4})()(\d{2})(\d{2})$/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[3]);
+  const day = Number(match[4]);
+  const date = new Date(year, month - 1, day);
+  date.setFullYear(year);
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month - 1 ||
+    date.getDate() !== day
+  ) {
+    return null;
+  }
+  return date;
+};
