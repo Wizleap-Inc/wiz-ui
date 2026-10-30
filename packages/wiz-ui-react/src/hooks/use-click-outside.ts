@@ -6,8 +6,8 @@ export const useClickOutside = (
 ) => {
   useEffect(() => {
     const handleClick = (event: Event) => {
-      const isInsideElementClicked = insideElements.some((el) =>
-        el?.current?.contains(event.target as Node)
+      const isInsideElementClicked = insideElements.some(
+        (el) => el?.current && event.composedPath().includes(el.current)
       );
       if (!isInsideElementClicked) callback(event);
     };
