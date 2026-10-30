@@ -1,5 +1,29 @@
 # @wizleap-inc/wiz-ui-react
 
+## 4.6.1
+
+### Patch Changes
+
+- [#1696](https://github.com/Wizleap-Inc/wiz-ui/pull/1696) [`3e2ae0d`](https://github.com/Wizleap-Inc/wiz-ui/commit/3e2ae0dee0953c2c274c3ba488b692c52ca647c1) Thanks [@mazyutyu](https://github.com/mazyutyu)! - useClickOutside の内外判定を `event.composedPath()` で行うように変更。multiSelectable の SearchSelector で項目を選ぶたびに Popup が閉じる問題の修正
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1691](https://github.com/Wizleap-Inc/wiz-ui/pull/1691) [`a81ace3`](https://github.com/Wizleap-Inc/wiz-ui/commit/a81ace3c22153aef2982d8df67343517773aac34) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - WizICallLog を追加
+
+### Patch Changes
+
+- Updated dependencies [[`a81ace3`](https://github.com/Wizleap-Inc/wiz-ui/commit/a81ace3c22153aef2982d8df67343517773aac34)]:
+  - @wizleap-inc/wiz-ui-constants@0.63.0
+  - @wizleap-inc/wiz-ui-styles@0.63.2
+
+## 4.5.1
+
+### Patch Changes
+
+- [#1687](https://github.com/Wizleap-Inc/wiz-ui/pull/1687) [`475b94b`](https://github.com/Wizleap-Inc/wiz-ui/commit/475b94b57af46596efb5d24237e738d9689b61fb) Thanks [@mazyutyu](https://github.com/mazyutyu)! - useClickOutside のタッチ判定を touchstart から click に変更。iOS で Popup の項目をタップすると、合成 click の前に Popup が閉じて下の要素に click が落ちる問題の修正
+
 ## 4.5.0
 
 ### Minor Changes

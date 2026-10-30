@@ -30,6 +30,7 @@ import { WizICalendarMonthBold } from "./calendar-month-bold";
 import { WizICall } from "./call";
 import { WizICallBold } from "./call-bold";
 import { WizICallFilled } from "./call-filled";
+import { WizICallLog } from "./call-log";
 import { WizICamera } from "./camera";
 import { WizICancel } from "./cancel";
 import { WizICancelBold } from "./cancel-bold";
@@ -233,6 +234,7 @@ export type TIcon =
   | typeof WizICalendar
   | typeof WizICallBold
   | typeof WizICallFilled
+  | typeof WizICallLog
   | typeof WizICall
   | typeof WizICamera
   | typeof WizICancelBold
@@ -437,6 +439,7 @@ export {
   WizICalendar,
   WizICallBold,
   WizICallFilled,
+  WizICallLog,
   WizICall,
   WizICamera,
   WizICancelBold,

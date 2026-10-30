@@ -29,6 +29,7 @@ import { default as WizICalendarMonthBold } from "./calendar-month-bold.vue";
 import { default as WizICalendar } from "./calendar.vue";
 import { default as WizICallBold } from "./call-bold.vue";
 import { default as WizICallFilled } from "./call-filled.vue";
+import { default as WizICallLog } from "./call-log.vue";
 import { default as WizICall } from "./call.vue";
 import { default as WizICamera } from "./camera.vue";
 import { default as WizICancelBold } from "./cancel-bold.vue";
@@ -233,6 +234,7 @@ export type TIcon =
   | typeof WizICalendar
   | typeof WizICallBold
   | typeof WizICallFilled
+  | typeof WizICallLog
   | typeof WizICall
   | typeof WizICamera
   | typeof WizICancelBold
@@ -437,6 +439,7 @@ export {
   WizICalendar,
   WizICallBold,
   WizICallFilled,
+  WizICallLog,
   WizICall,
   WizICamera,
   WizICancelBold,

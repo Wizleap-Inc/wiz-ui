@@ -6,16 +6,16 @@ export const useClickOutside = (
 ) => {
   useEffect(() => {
     const handleClick = (event: Event) => {
-      const isInsideElementClicked = insideElements.some((el) =>
-        el?.current?.contains(event.target as Node)
+      const isInsideElementClicked = insideElements.some(
+        (el) => el?.current && event.composedPath().includes(el.current)
       );
       if (!isInsideElementClicked) callback(event);
     };
     document.addEventListener("mouseup", handleClick);
-    document.addEventListener("touchstart", handleClick);
+    document.addEventListener("click", handleClick);
     return () => {
       document.removeEventListener("mouseup", handleClick);
-      document.removeEventListener("touchstart", handleClick);
+      document.removeEventListener("click", handleClick);
     };
   }, [callback, insideElements]);
 };

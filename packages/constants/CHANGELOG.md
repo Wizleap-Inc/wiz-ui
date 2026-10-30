@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.63.0
+
+### Minor Changes
+
+- [#1691](https://github.com/Wizleap-Inc/wiz-ui/pull/1691) [`a81ace3`](https://github.com/Wizleap-Inc/wiz-ui/commit/a81ace3c22153aef2982d8df67343517773aac34) Thanks [@NaoyaFurumura](https://github.com/NaoyaFurumura)! - WizICallLog を追加
+
 ## 0.62.0
 
 ### Minor Changes
