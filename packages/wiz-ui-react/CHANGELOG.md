@@ -1,5 +1,11 @@
 # @wizleap-inc/wiz-ui-react
 
+## 4.6.1
+
+### Patch Changes
+
+- [#1696](https://github.com/Wizleap-Inc/wiz-ui/pull/1696) [`3e2ae0d`](https://github.com/Wizleap-Inc/wiz-ui/commit/3e2ae0dee0953c2c274c3ba488b692c52ca647c1) Thanks [@mazyutyu](https://github.com/mazyutyu)! - useClickOutside の内外判定を `event.composedPath()` で行うように変更。multiSelectable の SearchSelector で項目を選ぶたびに Popup が閉じる問題の修正
+
 ## 4.6.0
 
 ### Minor Changes
