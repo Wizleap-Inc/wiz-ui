@@ -204,7 +204,11 @@ const DateRangePicker: FC<Props> = ({
 
   const anchor = useRef<HTMLButtonElement | null>(null);
   const selectBoxRef = useRef<HTMLDivElement | null>(null);
-  useClickOutside([selectBoxRef], () => setIsSelectBoxOpen(false));
+  useClickOutside(
+    [selectBoxRef],
+    () => setIsSelectBoxOpen(false),
+    isSelectBoxOpen
+  );
 
   const isError = error || formControl.error;
   const borderStyle = (() => {
