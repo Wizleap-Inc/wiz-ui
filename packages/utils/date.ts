@@ -131,32 +131,23 @@ export const formatNumHourToTime = (numHour: number): string => {
   return [hours, minutes.toString().padStart(2, "0")].join(":");
 };
 
-/**
- * formatDateToYYYYMMDD
- * ```ts
- * const input = new Date('2021-01-01');
- * const output = '2021/01/01';
- * assert.equal(formatDateToYYYYMMDD(input), output);
- * ```
- * @param date
- * @returns string
- */
-export const formatDateToYYYYMMDD = (date: Date): string => {
-  const year = String(date.getFullYear()).padStart(4, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return [year, month, day].join("/");
-};
+const DATE_INPUT_PATTERNS = [
+  /^(\d{4})\/(\d{1,2})\/(\d{1,2})(?!\d)/,
+  /^(\d{4})-(\d{1,2})-(\d{1,2})(?!\d)/,
+  /^(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})(?!\d)/,
+  /^(\d{4})(\d{2})(\d{2})(?!\d)/,
+];
 
 /**
  * parseDateInput
  * 手入力された日付文字列を Date に変換します。
- * `YYYY/MM/DD`・`YYYY-MM-DD`（月日は1桁可）と区切りなし8桁を受け付け、全角数字・全角区切りも半角として扱います。
- * 形式が違う・実在しない日付の場合は null を返します。
+ * 先頭が `YYYY/M/D`・`YYYY-M-D`・`YYYY年M月D日`・区切りなし8桁のいずれかであれば、その日付を採用します（後ろに曜日や時刻が続いても可）。
+ * 全角数字・全角区切りも半角として扱います。解釈できない・実在しない日付の場合は null を返します。
  * ```ts
  * assert.deepEqual(parseDateInput('2036/1/5'), new Date(2036, 0, 5));
- * assert.deepEqual(parseDateInput('２０３６－１０－２０'), new Date(2036, 9, 20));
+ * assert.deepEqual(parseDateInput('２０３６年１０月２０日'), new Date(2036, 9, 20));
  * assert.deepEqual(parseDateInput('20361020'), new Date(2036, 9, 20));
+ * assert.deepEqual(parseDateInput('2036-10-20 10:00'), new Date(2036, 9, 20));
  * assert.equal(parseDateInput('2036/2/30'), null);
  * ```
  * @param input
@@ -168,13 +159,13 @@ export const parseDateInput = (input: string): Date | null => {
     .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
     .replace(/[／]/g, "/")
     .replace(/[－ー−]/g, "-");
-  const match =
-    normalized.match(/^(\d{4})([/-])(\d{1,2})\2(\d{1,2})$/) ??
-    normalized.match(/^(\d{4})()(\d{2})(\d{2})$/);
+  const match = DATE_INPUT_PATTERNS.map((pattern) =>
+    normalized.match(pattern)
+  ).find((m) => m !== null);
   if (!match) return null;
   const year = Number(match[1]);
-  const month = Number(match[3]);
-  const day = Number(match[4]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
   const date = new Date(year, month - 1, day);
   date.setFullYear(year);
   if (

@@ -147,9 +147,9 @@ export const TestAllowInput: Story = {
       ARIA_LABELS.DATE_PICKER_INPUT
     ) as HTMLInputElement;
 
-    // フォーカス中は編集しやすい YYYY/MM/DD 表示になる
+    // フォーカスしても表示と同じ形式のまま編集できる
     await userEvent.click(input);
-    await waitFor(() => expect(input.value).toBe("2026/10/20"));
+    await waitFor(() => expect(input.value).toBe("2026年10月20日"));
 
     // 10年後の日付を入力して Enter で確定
     await userEvent.clear(input);
@@ -164,19 +164,36 @@ export const TestAllowInput: Story = {
     await userEvent.tab();
     await waitFor(() => expect(input.value).toBe("2037年1月5日"));
 
-    // 実在しない日付は元の値に戻る
+    // 日本語表記 + 時刻付きは日付部分を採用する
     await userEvent.click(input);
     await userEvent.clear(input);
-    await userEvent.type(input, "2037/2/30");
+    await userEvent.type(input, "2038年3月4日 10:00");
     await userEvent.tab();
-    await waitFor(() => expect(input.value).toBe("2037年1月5日"));
+    await waitFor(() => expect(input.value).toBe("2038年3月4日"));
 
-    // disabledDate で無効な日付は元の値に戻る
+    // 実在しない日付は入力を残したままエラー表示になる
+    await userEvent.click(input);
+    await userEvent.clear(input);
+    await userEvent.type(input, "2038/2/30");
+    await userEvent.tab();
+    await waitFor(() => expect(input.value).toBe("2038/2/30"));
+    await waitFor(() => expect(input).toHaveAttribute("aria-invalid", "true"));
+
+    // disabledDate で無効な日付もエラー表示になる
     await userEvent.click(input);
     await userEvent.clear(input);
     await userEvent.type(input, "2100/01/01");
     await userEvent.tab();
-    await waitFor(() => expect(input.value).toBe("2037年1月5日"));
+    await waitFor(() => expect(input.value).toBe("2100/01/01"));
+    await waitFor(() => expect(input).toHaveAttribute("aria-invalid", "true"));
+
+    // 正しい日付に直すとエラーが解除される
+    await userEvent.click(input);
+    await userEvent.clear(input);
+    await userEvent.type(input, "2039-04-05");
+    await userEvent.tab();
+    await waitFor(() => expect(input.value).toBe("2039年4月5日"));
+    await waitFor(() => expect(input).not.toHaveAttribute("aria-invalid"));
 
     // 空にして確定すると未入力になる
     await userEvent.click(input);
