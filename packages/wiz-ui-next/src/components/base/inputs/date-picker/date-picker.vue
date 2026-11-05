@@ -29,7 +29,6 @@
             :placeholder="placeholder"
             :disabled="disabled"
             :aria-label="ARIA_LABELS.DATE_PICKER_INPUT"
-            :aria-invalid="isInputInvalid || undefined"
             @focus="onFocusInput"
             @input="onInput"
             @blur="onBlurInput"
@@ -165,7 +164,7 @@ import {
   inputBorderStyle,
 } from "@wizleap-inc/wiz-ui-styles/commons";
 import { parseDateInput } from "@wizleap-inc/wiz-ui-utils";
-import { PropType, computed, inject, ref, useAttrs, watch } from "vue";
+import { PropType, computed, inject, ref, useAttrs } from "vue";
 
 import {
   WizCalendar,
@@ -254,7 +253,7 @@ const props = defineProps({
       `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
   },
   /**
-   * @description 入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・`YYYY年M月D日`・区切りなし8桁を受け付け（後ろに時刻などが続いても日付部分を採用）、Enter またはフォーカスが外れたときに確定します。解釈できない値・無効な日付は、入力を残したまま枠をエラー表示にします。
+   * @description 入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・`YYYY年M月D日`・区切りなし8桁を受け付け（後ろに時刻などが続いても日付部分を採用）、Enter またはフォーカスが外れたときに確定します。解釈できない値・無効な日付は元の値に戻ります。
    */
   allowInput: {
     type: Boolean,
@@ -330,7 +329,7 @@ const form = inject(formControlKey);
 const isError = computed(() => (form ? form.isError.value : false));
 
 const borderState = computed(() => {
-  if (isError.value || isInputInvalid.value) return "error";
+  if (isError.value) return "error";
   if (props.isOpen && !props.disabled) return "active";
   return "default";
 });
@@ -344,7 +343,6 @@ const variant = computed(() => {
 const handleClickCalendar = (date: Date) => {
   calendarValue.value = date;
   editingText.value = props.formatDate(date);
-  isInputInvalid.value = false;
   setIsOpen(false);
 };
 
@@ -352,22 +350,11 @@ const handleClickCalendar = (date: Date) => {
 const inputRef = ref<HTMLInputElement>();
 const isInputFocused = ref(false);
 const editingText = ref("");
-const isInputInvalid = ref(false);
 const formattedValue = computed(() =>
   props.modelValue ? props.formatDate(props.modelValue) : ""
 );
 const inputText = computed(() =>
-  isInputFocused.value || isInputInvalid.value
-    ? editingText.value
-    : formattedValue.value
-);
-
-// 親から日付が変わったら入力エラーを解除する（同じ日付の Date が再生成されても解除しない）
-watch(
-  () => props.modelValue?.getTime(),
-  () => {
-    isInputInvalid.value = false;
-  }
+  isInputFocused.value ? editingText.value : formattedValue.value
 );
 
 const isSameDate = (a: Date, b: Date) =>
@@ -383,33 +370,28 @@ const onClickTrigger = () => {
 };
 
 const onFocusInput = () => {
-  if (!isInputInvalid.value) editingText.value = formattedValue.value;
+  editingText.value = formattedValue.value;
   isInputFocused.value = true;
 };
 
 const onInput = (e: Event) => {
   editingText.value = (e.target as HTMLInputElement).value;
-  isInputInvalid.value = false;
   const parsed = parseDateInput(editingText.value);
   if (parsed) currentMonth.value = parsed;
 };
 
 const commitInput = () => {
-  if (editingText.value === formattedValue.value) {
-    isInputInvalid.value = false;
-    return;
-  }
+  if (editingText.value === formattedValue.value) return;
   if (editingText.value.trim() === "") {
-    isInputInvalid.value = false;
     if (props.modelValue) emit("update:modelValue", null);
     return;
   }
   const parsed = parseDateInput(editingText.value);
   if (!parsed || props.disabledDate(parsed)) {
-    isInputInvalid.value = true;
+    editingText.value = formattedValue.value;
+    currentMonth.value = new Date(props.modelValue || defaultCurrentMonth);
     return;
   }
-  isInputInvalid.value = false;
   if (!props.modelValue || !isSameDate(parsed, props.modelValue)) {
     emit("update:modelValue", parsed);
   }
@@ -432,7 +414,6 @@ const onKeydownEnterInput = (e: KeyboardEvent) => {
 const onClickCancel = (e: MouseEvent) => {
   e.stopPropagation();
   editingText.value = "";
-  isInputInvalid.value = false;
   currentMonth.value = new Date(defaultCurrentMonth);
   emit("update:modelValue", null);
   setIsOpen(false);

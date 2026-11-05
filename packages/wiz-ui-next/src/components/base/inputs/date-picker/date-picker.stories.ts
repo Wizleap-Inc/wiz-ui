@@ -454,7 +454,7 @@ AllowInput.parameters = {
 - 後ろに曜日や時刻が続いていても、先頭の日付部分を採用します（例: \`2036/10/20 10:00\`）
 - 編集中も表示と同じ形式（\`formatDate\`）のまま編集できます
 - Enter またはフォーカスが外れたときに確定します
-- 解釈できない・実在しない・\`disabledDate\` で無効な日付は、入力を残したまま枠がエラー表示になります（値は変わりません）
+- 解釈できない・実在しない・\`disabledDate\` で無効な日付は、元の値に戻ります
 - 空にして確定すると \`null\` になります
 `,
     },
@@ -512,29 +512,26 @@ TestAllowInput.play = async ({ canvasElement }) => {
   await userEvent.tab();
   await waitFor(() => expect(input.value).toBe("2038年3月4日"));
 
-  // 実在しない日付は入力を残したままエラー表示になる
+  // 実在しない日付は元の値に戻る
   await userEvent.click(input);
   await userEvent.clear(input);
   await userEvent.type(input, "2038/2/30");
   await userEvent.tab();
-  await waitFor(() => expect(input.value).toBe("2038/2/30"));
-  await waitFor(() => expect(input).toHaveAttribute("aria-invalid", "true"));
+  await waitFor(() => expect(input.value).toBe("2038年3月4日"));
 
-  // disabledDate で無効な日付もエラー表示になる
+  // disabledDate で無効な日付は元の値に戻る
   await userEvent.click(input);
   await userEvent.clear(input);
   await userEvent.type(input, "2100/01/01");
   await userEvent.tab();
-  await waitFor(() => expect(input.value).toBe("2100/01/01"));
-  await waitFor(() => expect(input).toHaveAttribute("aria-invalid", "true"));
+  await waitFor(() => expect(input.value).toBe("2038年3月4日"));
 
-  // 正しい日付に直すとエラーが解除される
+  // Enter で確定しても、解釈できない値は元の値に戻る
   await userEvent.click(input);
   await userEvent.clear(input);
-  await userEvent.type(input, "2039-04-05");
+  await userEvent.type(input, "2039/ab/05{enter}");
   await userEvent.tab();
-  await waitFor(() => expect(input.value).toBe("2039年4月5日"));
-  await waitFor(() => expect(input).not.toHaveAttribute("aria-invalid"));
+  await waitFor(() => expect(input.value).toBe("2038年3月4日"));
 
   // 空にして確定すると未入力になる
   await userEvent.click(input);

@@ -13,7 +13,6 @@ import {
   KeyboardEvent,
   MouseEvent,
   useContext,
-  useEffect,
   useRef,
   useState,
   ComponentPropsWithoutRef,
@@ -56,7 +55,7 @@ type Props = Omit<ComponentPropsWithoutRef<"button">, "disabled"> & {
    */
   formatDate?: (date: Date) => string;
   /**
-   * @description 入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・`YYYY年M月D日`・区切りなし8桁を受け付け（後ろに時刻などが続いても日付部分を採用）、Enter またはフォーカスが外れたときに確定します。解釈できない値・無効な日付は、入力を残したまま枠をエラー表示にします。
+   * @description 入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・`YYYY年M月D日`・区切りなし8桁を受け付け（後ろに時刻などが続いても日付部分を採用）、Enter またはフォーカスが外れたときに確定します。解釈できない値・無効な日付は元の値に戻ります。
    */
   allowInput?: boolean;
 };
@@ -123,20 +122,12 @@ const DatePicker: FC<Props> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [editingText, setEditingText] = useState("");
-  const [isInputInvalid, setIsInputInvalid] = useState(false);
   const formattedValue = date ? formatDate(date) : "";
-  const inputText =
-    isInputFocused || isInputInvalid ? editingText : formattedValue;
-
-  // 親から日付が変わったら入力エラーを解除する（同じ日付の Date が再生成されても解除しない）
-  const dateTime = date?.getTime();
-  useEffect(() => {
-    setIsInputInvalid(false);
-  }, [dateTime]);
+  const inputText = isInputFocused ? editingText : formattedValue;
 
   const formControl = useContext(FormControlContext);
   const borderStyle = (() => {
-    if (error || formControl.error || isInputInvalid) return "error";
+    if (error || formControl.error) return "error";
     if (isOpen && !disabled) return "active";
     return "default";
   })();
@@ -152,33 +143,28 @@ const DatePicker: FC<Props> = ({
   };
 
   const onFocusInput = () => {
-    if (!isInputInvalid) setEditingText(formattedValue);
+    setEditingText(formattedValue);
     setIsInputFocused(true);
   };
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setEditingText(e.target.value);
-    setIsInputInvalid(false);
     const parsed = parseDateInput(e.target.value);
     if (parsed) setCurrentMonth(parsed);
   };
 
   const commitInput = () => {
-    if (editingText === formattedValue) {
-      setIsInputInvalid(false);
-      return;
-    }
+    if (editingText === formattedValue) return;
     if (editingText.trim() === "") {
-      setIsInputInvalid(false);
       if (date) onChangeDate?.(null);
       return;
     }
     const parsed = parseDateInput(editingText);
     if (!parsed || disabledDate(parsed)) {
-      setIsInputInvalid(true);
+      setEditingText(formattedValue);
+      setCurrentMonth(date || new Date());
       return;
     }
-    setIsInputInvalid(false);
     if (!date || !isSameDate(parsed, date)) onChangeDate?.(parsed);
     setEditingText(formatDate(parsed));
     setCurrentMonth(parsed);
@@ -199,7 +185,6 @@ const DatePicker: FC<Props> = ({
   const onCancel = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setEditingText("");
-    setIsInputInvalid(false);
     setCurrentMonth(new Date());
     onChangeDate?.(null);
     setIsOpen(false);
@@ -213,7 +198,6 @@ const DatePicker: FC<Props> = ({
   const onClickDate = (selected: Date) => {
     onChangeDate?.(selected);
     setEditingText(formatDate(selected));
-    setIsInputInvalid(false);
     setIsOpen(false);
   };
 
@@ -234,7 +218,6 @@ const DatePicker: FC<Props> = ({
             placeholder={placeholder}
             disabled={disabled}
             aria-label={ARIA_LABELS.DATE_PICKER_INPUT}
-            aria-invalid={isInputInvalid || undefined}
             onFocus={onFocusInput}
             onChange={onChangeInput}
             onBlur={onBlurInput}
