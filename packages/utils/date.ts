@@ -177,3 +177,41 @@ export const parseDateInput = (input: string): Date | null => {
   }
   return date;
 };
+
+const TIME_INPUT_PATTERNS = [
+  /^(\d{1,2}):(\d{2})(?::\d{2})?$/,
+  /^(\d{1,2})\s*時\s*(\d{1,2})\s*分?$/,
+  /^(\d{1,2})(\d{2})$/,
+];
+
+/**
+ * parseTimeInput
+ * 手入力された時刻文字列を時・分に変換します。
+ * `H:mm`（`H:mm:ss` の秒は無視）・`H時m分`・区切りなし（`930`・`0930`）を受け付けます。
+ * 全角数字・全角コロンも半角として扱います。解釈できない・存在しない時刻の場合は null を返します。
+ * ```ts
+ * assert.deepEqual(parseTimeInput('9:05'), { hour: 9, minute: 5 });
+ * assert.deepEqual(parseTimeInput('１０：３０'), { hour: 10, minute: 30 });
+ * assert.deepEqual(parseTimeInput('10時30分'), { hour: 10, minute: 30 });
+ * assert.deepEqual(parseTimeInput('0930'), { hour: 9, minute: 30 });
+ * assert.equal(parseTimeInput('25:00'), null);
+ * ```
+ * @param input
+ * @returns { hour: number; minute: number } | null
+ */
+export const parseTimeInput = (
+  input: string
+): { hour: number; minute: number } | null => {
+  const normalized = input
+    .trim()
+    .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+    .replace(/[：]/g, ":");
+  const match = TIME_INPUT_PATTERNS.map((pattern) =>
+    normalized.match(pattern)
+  ).find((m) => m !== null);
+  if (!match) return null;
+  const hour = Number(match[1]);
+  const minute = Number(match[2]);
+  if (hour > 23 || minute > 59) return null;
+  return { hour, minute };
+};
