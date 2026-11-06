@@ -1,24 +1,47 @@
 <template>
   <WizPopupContainer :width="computedWidth">
-    <button
-      type="button"
+    <component
+      :is="allowInput ? 'div' : 'button'"
+      :type="allowInput ? undefined : 'button'"
       :class="[
         styles.variantStyles[variant],
         styles.bodyStyle[disabled ? 'disabled' : 'active'],
         inputBorderStyle[borderState],
       ]"
       style="width: 100%"
-      :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
-      :disabled="disabled"
-      @click="setIsOpen(!isOpen)"
-      @keydown.left="moveToPrevMonth"
-      @keydown.right="moveToNextMonth"
+      :aria-label="allowInput ? undefined : ARIA_LABELS.RANGE_DATE_PICKER_INPUT"
+      :disabled="allowInput ? undefined : disabled"
+      @click="onClickTrigger"
+      @keydown.left="!allowInput && moveToPrevMonth($event)"
+      @keydown.right="!allowInput && moveToNextMonth($event)"
     >
       <WizHStack gap="xs" align="center" height="100%" nowrap>
         <span>
           <WizIcon size="xl2" color="gray.500" :icon="WizICalendar" />
         </span>
+        <input
+          v-if="allowInput"
+          ref="startInputRef"
+          type="text"
+          :class="[
+            styles.textInputStyle,
+            styles.inputTextStyle[
+              (disabled && 'disabled') ||
+                (modelValue.start && 'selected') ||
+                'default'
+            ],
+          ]"
+          :value="startInputText"
+          placeholder="開始日"
+          :disabled="disabled"
+          :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_START_INPUT"
+          @focus="onFocusInput('start')"
+          @input="onInput('start', $event)"
+          @blur="onBlurInput('start')"
+          @keydown.enter="onKeydownEnterInput('start', $event)"
+        />
         <span
+          v-else
           :class="
             styles.inputTextStyle[
               (disabled && 'disabled') ||
@@ -31,7 +54,28 @@
           }}</span
         >
         <span :class="styles.separatorStyle">-</span>
+        <input
+          v-if="allowInput"
+          type="text"
+          :class="[
+            styles.textInputStyle,
+            styles.inputTextStyle[
+              (disabled && 'disabled') ||
+                (modelValue.end && 'selected') ||
+                'default'
+            ],
+          ]"
+          :value="endInputText"
+          placeholder="終了日"
+          :disabled="disabled"
+          :aria-label="ARIA_LABELS.RANGE_DATE_PICKER_END_INPUT"
+          @focus="onFocusInput('end')"
+          @input="onInput('end', $event)"
+          @blur="onBlurInput('end')"
+          @keydown.enter="onKeydownEnterInput('end', $event)"
+        />
         <span
+          v-else
           :class="
             styles.inputTextStyle[
               (disabled && 'disabled') ||
@@ -51,7 +95,7 @@
       >
         <WizIcon size="xl2" color="inherit" :icon="WizICancel" />
       </button>
-    </button>
+    </component>
     <WizPopup
       :is-open="!disabled && isOpen"
       :is-direction-fixed="isDirectionFixed"
@@ -173,6 +217,7 @@
 import { ARIA_LABELS } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { parseDateInput } from "@wizleap-inc/wiz-ui-utils";
 import { computed, inject, PropType, ref, useAttrs } from "vue";
 
 import {
@@ -266,6 +311,14 @@ const props = defineProps({
     required: false,
     default: (date: Date) =>
       `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  },
+  /**
+   * @description 開始日・終了日の入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・`YYYY年M月D日`・区切りなし8桁を受け付け（後ろに時刻などが続いても日付部分を採用）、Enter またはフォーカスが外れたときに確定します。解釈できない値・無効な日付・開始日と終了日が前後する日付は元の値に戻ります。
+   */
+  allowInput: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
   // eslint-disable-next-line vue/prop-name-casing
   _today: {
@@ -403,8 +456,110 @@ const borderState = computed(() => {
   return "default";
 });
 
+// Input
+const startInputRef = ref<HTMLInputElement>();
+const focusedInput = ref<"start" | "end" | null>(null);
+const editingText = ref("");
+
+const formatInputDate = (date: Date | null) =>
+  date ? props.formatDate(date) : "";
+const startInputText = computed(() =>
+  focusedInput.value === "start"
+    ? editingText.value
+    : formatInputDate(props.modelValue.start)
+);
+const endInputText = computed(() =>
+  focusedInput.value === "end"
+    ? editingText.value
+    : formatInputDate(props.modelValue.end)
+);
+
+const toDayTime = (date: Date) =>
+  new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+
+const showDateOnCalendar = (field: "start" | "end", date: Date) => {
+  const monthOffset = field === "start" ? 1 : 0;
+  rightCalendarDate.value = new Date(
+    date.getFullYear(),
+    date.getMonth() + monthOffset,
+    1
+  );
+};
+
+const onClickTrigger = (e: MouseEvent) => {
+  if (!props.allowInput) return setIsOpen(!props.isOpen);
+  if (props.disabled) return;
+  if (!(e.target instanceof HTMLInputElement)) startInputRef.value?.focus();
+  setIsOpen(true);
+};
+
+const onFocusInput = (field: "start" | "end") => {
+  editingText.value = formatInputDate(props.modelValue[field]);
+  focusedInput.value = field;
+};
+
+const onInput = (field: "start" | "end", e: Event) => {
+  editingText.value = (e.target as HTMLInputElement).value;
+  const parsed = parseDateInput(editingText.value);
+  if (parsed) showDateOnCalendar(field, parsed);
+};
+
+const applyInputRange = (range: DateRange) => {
+  tempDateRange.value = range;
+  emit("update:modelValue", range);
+};
+
+const commitInput = (field: "start" | "end") => {
+  const { start, end } = props.modelValue;
+  const current = field === "start" ? start : end;
+  const formatted = formatInputDate(current);
+  if (editingText.value === formatted) return;
+  if (editingText.value.trim() === "") {
+    if (field === "start") {
+      applyInputRange({ start: null, end: null });
+    } else if (start) {
+      applyInputRange({ start, end: null });
+    }
+    return;
+  }
+  const parsed = parseDateInput(editingText.value);
+  const isInvalid =
+    !parsed ||
+    props.disabledDate(parsed) ||
+    (field === "start" && !!end && toDayTime(parsed) > toDayTime(end)) ||
+    (field === "end" && (!start || toDayTime(parsed) < toDayTime(start)));
+  if (isInvalid) {
+    editingText.value = formatted;
+    initializeRightCalendarDate();
+    return;
+  }
+  editingText.value = props.formatDate(parsed);
+  showDateOnCalendar(field, parsed);
+  if (current && toDayTime(parsed) === toDayTime(current)) return;
+  if (field === "start") {
+    applyInputRange(
+      end ? { start: parsed, end } : { start: parsed, end: null }
+    );
+  } else if (start) {
+    applyInputRange({ start, end: parsed });
+  }
+};
+
+const onBlurInput = (field: "start" | "end") => {
+  commitInput(field);
+  focusedInput.value = null;
+};
+
+const onKeydownEnterInput = (field: "start" | "end", e: KeyboardEvent) => {
+  if (e.isComposing) return;
+  e.preventDefault();
+  commitInput(field);
+  setIsOpen(false);
+};
+
 const onClickCancel = (e: MouseEvent) => {
   e.stopPropagation();
+  editingText.value = "";
   tempDateRange.value = { start: null, end: null };
   initializeRightCalendarDate();
   emit("update:modelValue", tempDateRange.value);
