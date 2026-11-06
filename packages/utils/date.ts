@@ -130,3 +130,50 @@ export const formatNumHourToTime = (numHour: number): string => {
   const minutes = Math.floor((numHour - hours) * 60);
   return [hours, minutes.toString().padStart(2, "0")].join(":");
 };
+
+const DATE_INPUT_PATTERNS = [
+  /^(\d{4})\/(\d{1,2})\/(\d{1,2})(?!\d)/,
+  /^(\d{4})-(\d{1,2})-(\d{1,2})(?!\d)/,
+  /^(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})(?!\d)/,
+  /^(\d{4})(\d{2})(\d{2})(?!\d)/,
+];
+
+/**
+ * parseDateInput
+ * 手入力された日付文字列を Date に変換します。
+ * 先頭が `YYYY/M/D`・`YYYY-M-D`・`YYYY年M月D日`・区切りなし8桁のいずれかであれば、その日付を採用します（後ろに曜日や時刻が続いても可）。
+ * 全角数字・全角区切りも半角として扱います。解釈できない・実在しない日付の場合は null を返します。
+ * ```ts
+ * assert.deepEqual(parseDateInput('2036/1/5'), new Date(2036, 0, 5));
+ * assert.deepEqual(parseDateInput('２０３６年１０月２０日'), new Date(2036, 9, 20));
+ * assert.deepEqual(parseDateInput('20361020'), new Date(2036, 9, 20));
+ * assert.deepEqual(parseDateInput('2036-10-20 10:00'), new Date(2036, 9, 20));
+ * assert.equal(parseDateInput('2036/2/30'), null);
+ * ```
+ * @param input
+ * @returns Date | null
+ */
+export const parseDateInput = (input: string): Date | null => {
+  const normalized = input
+    .trim()
+    .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+    .replace(/[／]/g, "/")
+    .replace(/[－ー−]/g, "-");
+  const match = DATE_INPUT_PATTERNS.map((pattern) =>
+    normalized.match(pattern)
+  ).find((m) => m !== null);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(year, month - 1, day);
+  date.setFullYear(year);
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month - 1 ||
+    date.getDate() !== day
+  ) {
+    return null;
+  }
+  return date;
+};

@@ -424,3 +424,118 @@ export const DisabledToday: StoryFn<typeof WizDatepicker> = (args) => ({
     /> 
   `,
 });
+
+export const AllowInput: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker },
+  setup() {
+    const date = ref<Date | null>(new Date(2026, 9, 20));
+    const isOpen = ref(false);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    return { args, date, isOpen, setIsOpen };
+  },
+  template: `
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      allowInput
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    />
+  `,
+});
+AllowInput.parameters = {
+  docs: {
+    description: {
+      story: `
+\`allowInput\` を指定すると、入力欄に日付を直接入力できます。
+
+- 受け付ける形式: \`YYYY/MM/DD\`・\`YYYY-MM-DD\`・\`YYYY年M月D日\`（月日は1桁可）・区切りなし8桁（\`20361020\`）。全角数字も可
+- 後ろに曜日や時刻が続いていても、先頭の日付部分を採用します（例: \`2036/10/20 10:00\`）
+- 編集中も表示と同じ形式（\`formatDate\`）のまま編集できます
+- Enter またはフォーカスが外れたときに確定します
+- 解釈できない・実在しない・\`disabledDate\` で無効な日付は、元の値に戻ります
+- 空にして確定すると \`null\` になります
+`,
+    },
+  },
+};
+
+export const TestAllowInput: StoryFn<typeof WizDatepicker> = (args) => ({
+  components: { WizDatepicker },
+  setup() {
+    const date = ref<Date | null>(new Date(2026, 9, 20));
+    const isOpen = ref(false);
+    const setIsOpen = (value: boolean) => (isOpen.value = value);
+    const disabledDate = (date: Date) => date.getFullYear() >= 2100;
+    return { args, date, isOpen, setIsOpen, disabledDate };
+  },
+  template: `
+    <WizDatepicker
+      v-bind="args"
+      v-model="date"
+      :isOpen="isOpen"
+      :disabledDate="disabledDate"
+      allowInput
+      @update:modelValue="args.onClick"
+      @update:isOpen="setIsOpen"
+    />
+  `,
+});
+TestAllowInput.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const input = canvas.getByLabelText(
+    ARIA_LABELS.DATE_PICKER_INPUT
+  ) as HTMLInputElement;
+
+  // フォーカスしても表示と同じ形式のまま編集できる
+  await userEvent.click(input);
+  await waitFor(() => expect(input.value).toBe("2026年10月20日"));
+
+  // 10年後の日付を入力して Enter で確定
+  await userEvent.clear(input);
+  await userEvent.type(input, "2036/10/20{enter}");
+  await userEvent.tab();
+  await waitFor(() => expect(input.value).toBe("2036年10月20日"));
+
+  // 区切りなし8桁
+  await userEvent.click(input);
+  await userEvent.clear(input);
+  await userEvent.type(input, "20370105");
+  await userEvent.tab();
+  await waitFor(() => expect(input.value).toBe("2037年1月5日"));
+
+  // 日本語表記 + 時刻付きは日付部分を採用する
+  await userEvent.click(input);
+  await userEvent.clear(input);
+  await userEvent.type(input, "2038年3月4日 10:00");
+  await userEvent.tab();
+  await waitFor(() => expect(input.value).toBe("2038年3月4日"));
+
+  // 実在しない日付は元の値に戻る
+  await userEvent.click(input);
+  await userEvent.clear(input);
+  await userEvent.type(input, "2038/2/30");
+  await userEvent.tab();
+  await waitFor(() => expect(input.value).toBe("2038年3月4日"));
+
+  // disabledDate で無効な日付は元の値に戻る
+  await userEvent.click(input);
+  await userEvent.clear(input);
+  await userEvent.type(input, "2100/01/01");
+  await userEvent.tab();
+  await waitFor(() => expect(input.value).toBe("2038年3月4日"));
+
+  // Enter で確定しても、解釈できない値は元の値に戻る
+  await userEvent.click(input);
+  await userEvent.clear(input);
+  await userEvent.type(input, "2039/ab/05{enter}");
+  await userEvent.tab();
+  await waitFor(() => expect(input.value).toBe("2038年3月4日"));
+
+  // 空にして確定すると未入力になる
+  await userEvent.click(input);
+  await userEvent.clear(input);
+  await userEvent.tab();
+  await waitFor(() => expect(input.value).toBe(""));
+};
