@@ -8,6 +8,8 @@ export const ARIA_LABELS = {
   DATE_PICKER_INPUT: "日付を選択",
   DATE_PICKER_CANCEL: "日付の選択を解除",
   RANGE_DATE_PICKER_INPUT: "日付の範囲を選択",
+  RANGE_DATE_PICKER_START_INPUT: "開始日を入力",
+  RANGE_DATE_PICKER_END_INPUT: "終了日を入力",
   RANGE_DATE_PICKER_SELECT_BOX_INPUT: "日付の種類を選択",
   DIALOG: {
     CLOSE: "ダイアログを閉じる",
