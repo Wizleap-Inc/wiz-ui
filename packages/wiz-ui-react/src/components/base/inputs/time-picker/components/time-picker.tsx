@@ -1,9 +1,13 @@
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/time-picker-input.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { parseTimeInput } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
 import {
+  ChangeEvent,
   FC,
+  KeyboardEvent,
+  MouseEvent,
   useContext,
   useEffect,
   useRef,
@@ -33,6 +37,10 @@ type Props = Omit<ComponentPropsWithoutRef<"div">, "onChange"> & {
   error?: boolean;
   minuteInterval?: number;
   onChange?: (time: Time | null) => void;
+  /**
+   * @description 入力欄に時刻を直接入力できるようにします。`H:mm`・`H時m分`・区切りなし（`930`）を受け付け、Enter またはフォーカスが外れたときに確定します。解釈できない値・存在しない時刻・`minuteInterval` の刻みに合わない時刻は元の値に戻ります。
+   */
+  allowInput?: boolean;
 };
 
 const TimePicker: FC<Props> = ({
@@ -46,6 +54,7 @@ const TimePicker: FC<Props> = ({
   error = false,
   minuteInterval = 5,
   onChange,
+  allowInput = false,
   ...props
 }) => {
   const minuteOptions = Array.from(
@@ -68,10 +77,71 @@ const TimePicker: FC<Props> = ({
     setIsOpen(!isOpen);
   };
 
-  const timePickerCursor = disabled ? "disabled" : "default";
-  const label = time
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [editingText, setEditingText] = useState("");
+  const formattedTime = time
     ? `${time.hour}:${String(time.minute).padStart(2, "0")}`
-    : placeholder;
+    : "";
+  const inputText = isInputFocused ? editingText : formattedTime;
+
+  const onClickTrigger = () => {
+    if (!allowInput) return toggleTimePicker();
+    if (disabled) return;
+    inputRef.current?.focus();
+    setIsOpen(true);
+  };
+
+  const onFocusInput = () => {
+    setEditingText(formattedTime);
+    setIsInputFocused(true);
+  };
+
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setEditingText(e.target.value);
+  };
+
+  const commitInput = () => {
+    if (editingText === formattedTime) return;
+    if (editingText.trim() === "") {
+      onChange?.(null);
+      return;
+    }
+    const parsed = parseTimeInput(editingText);
+    if (!parsed || parsed.minute % minuteInterval !== 0) {
+      setEditingText(formattedTime);
+      return;
+    }
+    const next: Time = {
+      hour: parsed.hour as Time["hour"],
+      minute: parsed.minute,
+    };
+    setEditingText(`${next.hour}:${String(next.minute).padStart(2, "0")}`);
+    if (next.hour !== time?.hour || next.minute !== time?.minute) {
+      onChange?.(next);
+    }
+  };
+
+  const onBlurInput = () => {
+    commitInput();
+    setIsInputFocused(false);
+  };
+
+  const onKeyDownInput = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter" || e.nativeEvent.isComposing) return;
+    e.preventDefault();
+    commitInput();
+    setIsOpen(false);
+  };
+
+  const onClickCancel = (e: MouseEvent<HTMLButtonElement>) => {
+    if (allowInput) e.stopPropagation();
+    setEditingText("");
+    onChange?.(null);
+  };
+
+  const timePickerCursor = disabled ? "disabled" : "default";
+  const label = formattedTime || placeholder;
   const timePickerBoxColor = (() => {
     if (disabled) return "disabled";
     if (time) return "selected";
@@ -102,17 +172,17 @@ const TimePicker: FC<Props> = ({
           styles.timePickerBoxColorStyle[timePickerBoxColor],
         ])}
         style={{ ...style, width }}
-        onClick={toggleTimePicker}
+        onClick={onClickTrigger}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
       >
-        <WizHStack gap="sm" align="center" height="100%">
+        <WizHStack gap="sm" align="center" height="100%" nowrap={allowInput}>
           <button
             type="button"
             className={styles.cancelButtonStyle}
             disabled={!cancelButtonVisible}
             aria-label={ARIA_LABELS.TIME_PICKER_CANCEL}
-            onClick={() => onChange?.(null)}
+            onClick={onClickCancel}
             onFocus={() => setIsCancelButtonFocused(true)}
             onBlur={() => setIsCancelButtonFocused(false)}
           >
@@ -122,7 +192,23 @@ const TimePicker: FC<Props> = ({
               <WizIcon size="xl2" color="gray.500" icon={WizISchedule} />
             )}
           </button>
-          <span>{label}</span>
+          {allowInput ? (
+            <input
+              ref={inputRef}
+              type="text"
+              className={styles.timePickerTextInputStyle}
+              value={inputText}
+              placeholder={placeholder}
+              disabled={disabled}
+              aria-label={ARIA_LABELS.TIME_PICKER_INPUT}
+              onFocus={onFocusInput}
+              onChange={onChangeInput}
+              onBlur={onBlurInput}
+              onKeyDown={onKeyDownInput}
+            />
+          ) : (
+            <span>{label}</span>
+          )}
         </WizHStack>
       </div>
 
