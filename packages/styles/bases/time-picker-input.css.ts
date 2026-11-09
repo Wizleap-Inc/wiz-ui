@@ -125,3 +125,21 @@ export const cancelButtonStyle = style({
     cursor: "not-allowed",
   },
 });
+
+export const timePickerTextInputStyle = style({
+  flex: 1,
+  width: "100%",
+  minWidth: 0,
+  padding: THEME.spacing.no,
+  border: "none",
+  outline: "none",
+  background: "transparent",
+  color: "inherit",
+  font: "inherit",
+  "::placeholder": {
+    color: THEME.color.gray["500"],
+  },
+  ":disabled": {
+    cursor: "not-allowed",
+  },
+});
