@@ -1,8 +1,10 @@
 import { ARIA_LABELS, ComponentName } from "@wizleap-inc/wiz-ui-constants";
 import * as styles from "@wizleap-inc/wiz-ui-styles/bases/date-range-picker.css";
 import { inputBorderStyle } from "@wizleap-inc/wiz-ui-styles/commons";
+import { parseDateInput } from "@wizleap-inc/wiz-ui-utils";
 import clsx from "clsx";
 import {
+  ChangeEvent,
   FC,
   KeyboardEvent,
   MouseEvent,
@@ -57,7 +59,14 @@ type Props = Omit<ComponentPropsWithoutRef<"button">, "disabled"> & {
    * @default (date: Date) => `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
    */
   formatDate?: (date: Date) => string;
+  /**
+   * @description 開始日・終了日の入力欄に日付を直接入力できるようにします。`YYYY/MM/DD`・`YYYY-MM-DD`・`YYYY年M月D日`・区切りなし8桁を受け付け（後ろに時刻などが続いても日付部分を採用）、Enter またはフォーカスが外れたときに確定します。解釈できない値・無効な日付・開始日と終了日が前後する日付は元の値に戻ります。
+   */
+  allowInput?: boolean;
 };
+
+const toDayTime = (date: Date) =>
+  new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 
 const DateRangePicker: FC<Props> = ({
   className,
@@ -78,6 +87,7 @@ const DateRangePicker: FC<Props> = ({
   disabledDate = () => false,
   formatDate = (date: Date) =>
     `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+  allowInput = false,
   ...props
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -213,8 +223,104 @@ const DateRangePicker: FC<Props> = ({
     return "default";
   })();
 
+  const wrapperDivRef = useRef<HTMLDivElement | null>(null);
+  const startInputRef = useRef<HTMLInputElement | null>(null);
+  const [focusedInput, setFocusedInput] = useState<"start" | "end" | null>(
+    null
+  );
+  const [editingText, setEditingText] = useState("");
+  const formatInputDate = (date: Date | null) => (date ? formatDate(date) : "");
+  const startInputText =
+    focusedInput === "start" ? editingText : formatInputDate(dateRange.start);
+  const endInputText =
+    focusedInput === "end" ? editingText : formatInputDate(dateRange.end);
+
+  const showDateOnCalendar = (field: "start" | "end", date: Date) => {
+    const monthOffset = field === "start" ? 1 : 0;
+    setRightCalendarDate(
+      new Date(date.getFullYear(), date.getMonth() + monthOffset, 1)
+    );
+  };
+
+  const onClickInputWrapper = (e: MouseEvent<HTMLDivElement>) => {
+    if (disabled) return;
+    if (!(e.target instanceof HTMLInputElement)) startInputRef.current?.focus();
+    setIsOpen(true);
+  };
+
+  const onFocusInput = (field: "start" | "end") => {
+    setEditingText(formatInputDate(dateRange[field]));
+    setFocusedInput(field);
+  };
+
+  const onChangeInput = (
+    field: "start" | "end",
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
+    setEditingText(e.target.value);
+    const parsed = parseDateInput(e.target.value);
+    if (parsed) showDateOnCalendar(field, parsed);
+  };
+
+  const applyInputRange = (range: DateRange) => {
+    setTempDateRange(range);
+    onChangeDateRange?.(range);
+  };
+
+  const commitInput = (field: "start" | "end") => {
+    const { start, end } = dateRange;
+    const current = field === "start" ? start : end;
+    const formatted = formatInputDate(current);
+    if (editingText === formatted) return;
+    if (editingText.trim() === "") {
+      if (field === "start") {
+        applyInputRange({ start: null, end: null });
+      } else if (start) {
+        applyInputRange({ start, end: null });
+      }
+      return;
+    }
+    const parsed = parseDateInput(editingText);
+    const isInvalid =
+      !parsed ||
+      disabledDate(parsed) ||
+      (field === "start" && !!end && toDayTime(parsed) > toDayTime(end)) ||
+      (field === "end" && (!start || toDayTime(parsed) < toDayTime(start)));
+    if (isInvalid) {
+      setEditingText(formatted);
+      initiaizeRightCalendarDate();
+      return;
+    }
+    setEditingText(formatDate(parsed));
+    showDateOnCalendar(field, parsed);
+    if (current && toDayTime(parsed) === toDayTime(current)) return;
+    if (field === "start") {
+      applyInputRange(
+        end ? { start: parsed, end } : { start: parsed, end: null }
+      );
+    } else if (start) {
+      applyInputRange({ start, end: parsed });
+    }
+  };
+
+  const onBlurInput = (field: "start" | "end") => {
+    commitInput(field);
+    setFocusedInput(null);
+  };
+
+  const onKeyDownInput = (
+    field: "start" | "end",
+    e: KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key !== "Enter" || e.nativeEvent.isComposing) return;
+    e.preventDefault();
+    commitInput(field);
+    setIsOpen(false);
+  };
+
   const onClickCancel = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    setEditingText("");
     initiaizeRightCalendarDate();
     setTempDateRange({ start: null, end: null });
     onChangeDateRange?.({ start: null, end: null });
@@ -233,35 +339,36 @@ const DateRangePicker: FC<Props> = ({
   };
 
   const { id } = props;
-  return (
-    <>
-      <button
-        {...props}
-        type="button"
-        ref={anchor}
-        aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
-        onClick={() => setIsOpen(!isOpen)}
-        onKeyDown={handleKeyDown}
-        disabled={disabled}
-        style={{ ...style, width: computedWidth }}
-        className={clsx(
-          className,
-          styles.bodyStyle[disabled ? "disabled" : "active"],
-          styles.variantStyles[variant],
-          inputBorderStyle[borderStyle]
-        )}
-      >
-        <WizHStack
-          gap="xs"
-          align="center"
-          height="100%"
-          nowrap
-          overflow="hidden"
-        >
-          <div className={styles.popupCalendarCancelIconStyle}>
-            <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
-          </div>
 
+  const triggerContent = (
+    <>
+      <WizHStack gap="xs" align="center" height="100%" nowrap overflow="hidden">
+        <div className={styles.popupCalendarCancelIconStyle}>
+          <WizIcon size="xl2" color="gray.500" icon={WizICalendar} />
+        </div>
+
+        {allowInput ? (
+          <input
+            ref={startInputRef}
+            type="text"
+            className={clsx(
+              styles.textInputStyle,
+              styles.inputTextStyle[
+                (disabled && "disabled") ||
+                  (dateRange.start && "selected") ||
+                  "default"
+              ]
+            )}
+            value={startInputText}
+            placeholder="開始日"
+            disabled={disabled}
+            aria-label={ARIA_LABELS.RANGE_DATE_PICKER_START_INPUT}
+            onFocus={() => onFocusInput("start")}
+            onChange={(e) => onChangeInput("start", e)}
+            onBlur={() => onBlurInput("start")}
+            onKeyDown={(e) => onKeyDownInput("start", e)}
+          />
+        ) : (
           <span
             className={
               styles.inputTextStyle[
@@ -273,7 +380,29 @@ const DateRangePicker: FC<Props> = ({
           >
             {dateRange.start ? formatDate(dateRange.start) : "開始日"}
           </span>
-          <span className={styles.separatorStyle}>-</span>
+        )}
+        <span className={styles.separatorStyle}>-</span>
+        {allowInput ? (
+          <input
+            type="text"
+            className={clsx(
+              styles.textInputStyle,
+              styles.inputTextStyle[
+                (disabled && "disabled") ||
+                  (dateRange.end && "selected") ||
+                  "default"
+              ]
+            )}
+            value={endInputText}
+            placeholder="終了日"
+            disabled={disabled}
+            aria-label={ARIA_LABELS.RANGE_DATE_PICKER_END_INPUT}
+            onFocus={() => onFocusInput("end")}
+            onChange={(e) => onChangeInput("end", e)}
+            onBlur={() => onBlurInput("end")}
+            onKeyDown={(e) => onKeyDownInput("end", e)}
+          />
+        ) : (
           <span
             className={
               styles.inputTextStyle[
@@ -285,25 +414,62 @@ const DateRangePicker: FC<Props> = ({
           >
             {dateRange.end ? formatDate(dateRange.end) : "終了日"}
           </span>
-        </WizHStack>
-
-        {cancelButtonVisible && (
-          <button
-            type="button"
-            className={styles.popupCalendarCancelIconStyle}
-            disabled={disabled}
-            onClick={onClickCancel}
-            aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
-          >
-            <WizIcon size="xl2" color="inherit" icon={WizICancel} />
-          </button>
         )}
-      </button>
+      </WizHStack>
+
+      {cancelButtonVisible && (
+        <button
+          type="button"
+          className={styles.popupCalendarCancelIconStyle}
+          disabled={disabled}
+          onClick={onClickCancel}
+          aria-label={ARIA_LABELS.DATE_PICKER_CANCEL}
+        >
+          <WizIcon size="xl2" color="inherit" icon={WizICancel} />
+        </button>
+      )}
+    </>
+  );
+
+  const triggerClassName = clsx(
+    className,
+    styles.bodyStyle[disabled ? "disabled" : "active"],
+    styles.variantStyles[variant],
+    inputBorderStyle[borderStyle]
+  );
+
+  return (
+    <>
+      {allowInput ? (
+        <div
+          {...(props as ComponentPropsWithoutRef<"div">)}
+          ref={wrapperDivRef}
+          onClick={onClickInputWrapper}
+          style={{ ...style, width: computedWidth }}
+          className={triggerClassName}
+        >
+          {triggerContent}
+        </div>
+      ) : (
+        <button
+          {...props}
+          type="button"
+          ref={anchor}
+          aria-label={ARIA_LABELS.RANGE_DATE_PICKER_INPUT}
+          onClick={() => setIsOpen(!isOpen)}
+          onKeyDown={handleKeyDown}
+          disabled={disabled}
+          style={{ ...style, width: computedWidth }}
+          className={triggerClassName}
+        >
+          {triggerContent}
+        </button>
+      )}
       <WizPopup
         isOpen={!disabled && isOpen}
         onClose={onClose}
         isDirectionFixed={isDirectionFixed}
-        anchorElement={anchor}
+        anchorElement={allowInput ? wrapperDivRef : anchor}
       >
         <WizCard p="no" id={id ? `date-range-picker-popup-${id}` : undefined}>
           <div className={styles.popupStyle}>

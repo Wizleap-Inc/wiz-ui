@@ -210,3 +210,19 @@ export const popupCalendarCancelIconStyle = style({
     cursor: "not-allowed",
   },
 });
+
+export const textInputStyle = style({
+  flex: 1,
+  minWidth: 0,
+  padding: THEME.spacing.no,
+  border: "none",
+  outline: "none",
+  background: "transparent",
+  fontFamily: "inherit",
+  "::placeholder": {
+    color: THEME.color.gray["500"],
+  },
+  ":disabled": {
+    cursor: "not-allowed",
+  },
+});
