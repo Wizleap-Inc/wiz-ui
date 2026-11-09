@@ -1,5 +1,13 @@
 # @wizleap-inc/wiz-ui-constants
 
+## 0.64.0
+
+### Minor Changes
+
+- [#1704](https://github.com/Wizleap-Inc/wiz-ui/pull/1704) [`9a586b7`](https://github.com/Wizleap-Inc/wiz-ui/commit/9a586b79e6b1e5f159d7f646618d6c978c5ef489) Thanks [@tsukasa-mi](https://github.com/tsukasa-mi)! - DateRangePicker に `allowInput` を追加し、開始日・終了日の入力欄に日付を直接入力できるようにする（受け付ける形式は DatePicker と同じ）。解釈できない値・無効な日付・開始日と終了日が前後する日付は元の値に戻す。初期値は `false` で既存の挙動は変わらない
+
+- [#1703](https://github.com/Wizleap-Inc/wiz-ui/pull/1703) [`35ce35b`](https://github.com/Wizleap-Inc/wiz-ui/commit/35ce35b6aa43055d3e1c3c4ec77afede3805eaa5) Thanks [@tsukasa-mi](https://github.com/tsukasa-mi)! - TimePicker に `allowInput` を追加し、入力欄に時刻を直接入力できるようにする（`H:mm`・`H時m分`・区切りなし、全角数字可）。解釈できない値・存在しない時刻・`minuteInterval` の刻みに合わない時刻は元の値に戻す。初期値は `false` で既存の挙動は変わらない
+
 ## 0.63.0
 
 ### Minor Changes
